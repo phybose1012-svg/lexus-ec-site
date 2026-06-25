@@ -19,7 +19,7 @@ interface Props {
 
 const { formType, title, fields, submitLabel = "送信する" } = Astro.props;
 const configuredEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT;
-const endpoint = configuredEndpoint || "/form-submit/";
+const endpoint = configuredEndpoint || "/form-submit";
 const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" };
 ---
 

@@ -52,7 +52,7 @@ Cloudflare の Variables & Secrets:
 | `PUBLIC_GA_MEASUREMENT_ID` | `G-3VC4WYYD01` | GA4 Measurement ID | 設定済み |
 | `PUBLIC_ANALYTICS_BRANCH` | 未設定 | GA を発火する branch。未設定時は `main` | 任意 |
 | `PUBLIC_ANALYTICS_HOSTNAMES` | 未設定 | GA を許可する hostname。未設定時は `lexus-ec.com,www.lexus-ec.com` | 任意 |
-| `PUBLIC_FORM_ENDPOINT` | 未設定 | フォーム送信 endpoint。設定値は `/form-submit/` | 外部送信先設定後に追加 |
+| `PUBLIC_FORM_ENDPOINT` | 未設定 | フォーム送信 endpoint。設定値は `/form-submit` | 外部送信先設定後に追加 |
 
 直近の Cloudflare 画面では `Value=22.16.0` という不要な環境変数が見えていた。これは Node.js version 固定には使われない。build は Cloudflare 既定の Node.js 22.16.0 で成功しているため緊急対応は不要だが、後で削除してよい。
 
@@ -190,12 +190,12 @@ AI 分析用に後で決める項目:
 
 | Path | 用途 | 現状 |
 |---|---|---|
-| `/request-documents/` | 資料請求 | `/form-submit/` へ送信可能。環境変数未設定時は pending |
-| `/reservation/` | 相談 / 予約 | `/form-submit/` へ送信可能。環境変数未設定時は pending |
-| `/top/reservation/` | 相談 / 予約 | `/form-submit/` へ送信可能。環境変数未設定時は pending |
-| `/top/contact/` | 問い合わせ | `/form-submit/` へ送信可能。環境変数未設定時は pending |
-| `/test-entry/` | 体験 / 申し込み系 | `/form-submit/` へ送信可能。環境変数未設定時は pending |
-| `/lexus-online/contact/` | Lexus Online 問い合わせ | `/form-submit/` へ送信可能。環境変数未設定時は pending |
+| `/request-documents/` | 資料請求 | `/form-submit` へ送信可能。環境変数未設定時は pending |
+| `/reservation/` | 相談 / 予約 | `/form-submit` へ送信可能。環境変数未設定時は pending |
+| `/top/reservation/` | 相談 / 予約 | `/form-submit` へ送信可能。環境変数未設定時は pending |
+| `/top/contact/` | 問い合わせ | `/form-submit` へ送信可能。環境変数未設定時は pending |
+| `/test-entry/` | 体験 / 申し込み系 | `/form-submit` へ送信可能。環境変数未設定時は pending |
+| `/lexus-online/contact/` | Lexus Online 問い合わせ | `/form-submit` へ送信可能。環境変数未設定時は pending |
 
 ### 最小構成案
 
@@ -207,11 +207,11 @@ Cloudflare Pages Functions を使う。
 frontend/functions/form-submit.ts
 ```
 
-実装済み。Functions の対象 URL は `frontend/public/_routes.json` で `/form-submit` と `/form-submit/` のみに限定している。
+実装済み。Functions の対象 URL は `frontend/public/_routes.json` で `/form-submit` と `/form-submit/*` のみに限定している。
 
 処理:
 
-1. `POST /form-submit/` のみ受け付ける。
+1. `POST /form-submit` のみ受け付ける。
 2. `formType` を allowlist で検証する。
 3. 必須項目、メール形式、電話番号、本文長を検証する。
 4. honeypot または Cloudflare Turnstile で spam を抑える。
@@ -237,7 +237,7 @@ frontend/functions/form-submit.ts
 
 | Name | 種別 | 値 | 備考 |
 |---|---|---|---|
-| `PUBLIC_FORM_ENDPOINT` | Build variable | `/form-submit/` | client に出る。秘密情報不可 |
+| `PUBLIC_FORM_ENDPOINT` | Build variable | `/form-submit` | client に出る。秘密情報不可 |
 | `FORM_NOTIFICATION_TO` | Runtime variable | 要確認 | 通知先 |
 | `FORM_NOTIFICATION_FROM` | Runtime variable | 要確認 | 送信元。認証済み domain 推奨 |
 | `RESEND_API_KEY` または `SENDGRID_API_KEY` | Secret | 要発行 | provider 決定後 |
@@ -250,7 +250,7 @@ frontend/functions/form-submit.ts
 
 | Name | 種別 | 値 | 備考 |
 |---|---|---|---|
-| `PUBLIC_FORM_ENDPOINT` | Build variable | `/form-submit/` | これを入れるとフォームが実送信モードになる |
+| `PUBLIC_FORM_ENDPOINT` | Build variable | `/form-submit` | これを入れるとフォームが実送信モードになる |
 | `FORM_NOTIFICATION_TO` | Runtime variable | 要確認 | 通知先メール。複数はカンマ区切り |
 | `FORM_NOTIFICATION_FROM` | Runtime variable | 要確認 | Resend / SendGrid で認証済みの送信元 |
 | `RESEND_API_KEY` または `SENDGRID_API_KEY` | Secret | 要発行 | どちらか一方 |

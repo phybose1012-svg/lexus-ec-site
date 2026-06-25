@@ -15,7 +15,7 @@ const title = "個別説明会予約 - 医学部予備校 レクサス E.C.";
 const description =
   "レクサス教育センター - プロの講師が分かりやすくご説明します。 - レクサスのシステム説明- 進路相談 - 学習相談 - 気になることをお気軽にご相談ください。体験授業、特待生コースの選抜テストのお申込みも承ります。 - 医学部予備校 - 専用寮あり";
 const configuredEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT;
-const endpoint = configuredEndpoint || "/form-submit/";
+const endpoint = configuredEndpoint || "/form-submit";
 const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" };
 const mascot = "/assets/legacy/wp-content/uploads/2025/02/新レクサスくん-指さし-2_20240826143701-899x1024.png";
 const studentOptions = ["高校1年", "高校2年", "高校3年", "1浪目", "2浪目", "3浪以上", "再受験生", "大学生", "社会人", "その他"];

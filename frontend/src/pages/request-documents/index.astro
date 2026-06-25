@@ -10,7 +10,7 @@ const title = "資料請求 - 医学部予備校 レクサス E.C.";
 const description =
   "資料請求 - レクサス教育センターに関する資料をご郵送します。パンフレット / 医学部情報本 / 出願・面接試験ガイドライン / 入学をご検討中の皆様へ";
 const configuredEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT;
-const endpoint = configuredEndpoint || "/form-submit/";
+const endpoint = configuredEndpoint || "/form-submit";
 const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" };
 ---
 

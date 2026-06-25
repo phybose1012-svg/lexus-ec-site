@@ -8,12 +8,12 @@
 
 | 項目 | 内容 |
 |---|---|
-| Endpoint | `/form-submit/` |
+| Endpoint | `/form-submit` |
 | 実装ファイル | `frontend/functions/form-submit.ts` |
-| Functions route 制限 | `frontend/public/_routes.json` で `/form-submit` と `/form-submit/` のみに限定 |
+| Functions route 制限 | `frontend/public/_routes.json` で `/form-submit` と `/form-submit/*` のみに限定 |
 | 送信先 | email, Google Sheets webhook, Slack webhook |
 | 既定の必須送信先 | `email,sheets,slack` |
-| フォーム有効化 | Cloudflare Pages に `PUBLIC_FORM_ENDPOINT=/form-submit/` を設定して再デプロイ |
+| フォーム有効化 | Cloudflare Pages に `PUBLIC_FORM_ENDPOINT=/form-submit` を設定して再デプロイ |
 
 ## Cloudflare Pages に追加する環境変数
 
@@ -21,7 +21,7 @@ Build variable:
 
 | Name | 値 |
 |---|---|
-| `PUBLIC_FORM_ENDPOINT` | `/form-submit/` |
+| `PUBLIC_FORM_ENDPOINT` | `/form-submit` |
 
 Runtime secrets / variables:
 

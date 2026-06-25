@@ -7,7 +7,7 @@ const description =
   "Lexus Onlineへのお問い合わせフォームです。教育業務システム、AI業務改善、Webアプリ、SaaS開発、生徒管理、教材作成、自動採点、保守運用について相談できます。";
 const canonical = "https://lexus-ec.com/lexus-online/contact/";
 const configuredEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT;
-const endpoint = configuredEndpoint || "/form-submit/";
+const endpoint = configuredEndpoint || "/form-submit";
 const localFormAttrs = configuredEndpoint ? {} : { "data-lo-local-form": "pending" };
 
 const requestTypes = [
