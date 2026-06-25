@@ -1,0 +1,93 @@
+---
+import LegacyFormFooter from "../../components/fixed/LegacyFormFooter.astro";
+import PendingFormScript from "../../components/fixed/PendingFormScript.astro";
+import SiteHeader from "../../components/site/SiteHeader.astro";
+import { seo } from "../../data/home";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/pages.css";
+
+const title = "資料請求 - 医学部予備校 レクサス E.C.";
+const description =
+  "資料請求 - レクサス教育センターに関する資料をご郵送します。パンフレット / 医学部情報本 / 出願・面接試験ガイドライン / 入学をご検討中の皆様へ";
+const configuredEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT;
+const endpoint = configuredEndpoint || "/form-submit/";
+const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" };
+---
+
+<BaseLayout title={title} description={description} canonical="https://lexus-ec.com/request-documents/" ogImage={seo.ogImage}>
+  <SiteHeader />
+  <main class="minimal-form-page request-doc-page">
+    <section class="request-doc-intro" aria-label="資料請求フォーム案内">
+      <div class="logo-strip logo-strip--top" aria-hidden="true"></div>
+      <p>必須事項を入力して<br />「送信ボタンを」押して下さい。</p>
+    </section>
+
+    <section class="google-form-lite" aria-label="資料請求フォーム">
+      <form action={endpoint} method="post" class="google-form-lite__body" {...localFormAttrs}>
+        <input type="hidden" name="formType" value="request-documents" />
+        <input type="hidden" name="sourcePath" value="/request-documents/" />
+
+        <div class="google-form-lite__head">
+          <h1 class="google-form-lite__title">資料請求フォーム</h1>
+          <p>必須項目を入力してください。</p>
+        </div>
+
+        <p class="google-form-lite__login">
+          <a href="https://accounts.google.com/" rel="noreferrer">Google にログイン</a>すると作業内容を保存できます。 <a href="https://support.google.com/docs/" rel="noreferrer">詳細</a>
+        </p>
+        <p class="google-form-lite__required">* 必須の質問です</p>
+
+        <label class="google-question">
+          <span>メールアドレス <em>*</em></span>
+          <input type="email" name="email" required placeholder="メールアドレス" />
+        </label>
+        <label class="google-question">
+          <span>お名前 <em>*</em></span>
+          <input type="text" name="name" required />
+        </label>
+
+        <div class="google-form-lite__extra-grid">
+          <label class="google-question google-question--compact">
+            <span>電話番号 <em>*</em></span>
+            <input type="tel" name="tel" required />
+          </label>
+          <label class="google-question google-question--compact">
+            <span>学年・状況 <em>*</em></span>
+            <select name="studentType" required>
+              <option value="">選択してください</option>
+              <option>既卒生</option>
+              <option>高3生</option>
+              <option>高2生</option>
+              <option>高1生</option>
+              <option>中学生</option>
+              <option>再受験生</option>
+              <option>保護者</option>
+            </select>
+          </label>
+          <label class="google-question google-question--compact">
+            <span>郵便番号 <em>*</em></span>
+            <input type="text" name="postalCode" required placeholder="150-0031" />
+          </label>
+          <label class="google-question google-question--compact">
+            <span>送付先住所 <em>*</em></span>
+            <textarea name="address" required rows="1"></textarea>
+          </label>
+        </div>
+
+        <label class="google-question google-question--compact google-question--checkbox">
+          <span class="google-checkbox">
+            <input type="checkbox" name="privacy" value="同意する" required />
+            <span>個人情報の取り扱いに同意します。 <em>*</em></span>
+          </span>
+        </label>
+
+        <button class="google-form-lite__submit" type="submit">送信</button>
+        <p class="form-submit-note" data-local-form-status hidden></p>
+      </form>
+    </section>
+
+    <div class="logo-strip logo-strip--bottom" aria-hidden="true"></div>
+  </main>
+  {!configuredEndpoint && <PendingFormScript />}
+  <LegacyFormFooter />
+</BaseLayout>

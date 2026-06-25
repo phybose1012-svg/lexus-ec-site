@@ -1,0 +1,44 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogImage?: string;
+}
+
+const { title, description, canonical, ogImage } = Astro.props;
+const resolvedOgImage = ogImage ? new URL(ogImage, "https://lexus-ec.com").href : undefined;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="max-image-preview:large" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:site_name" content="医学部予備校 レクサス E.C. - レクサス教育センターの公式ページ" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {resolvedOgImage && <meta property="og:image" content={resolvedOgImage} />}
+    {resolvedOgImage && <meta property="og:image:secure_url" content={resolvedOgImage} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {resolvedOgImage && <meta name="twitter:image" content={resolvedOgImage} />}
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">コンテンツにスキップ</a>
+    <span id="content" class="skip-anchor" tabindex="-1"></span>
+    <slot />
+  </body>
+</html>

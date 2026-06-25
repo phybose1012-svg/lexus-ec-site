@@ -1,0 +1,521 @@
+---
+import SectionHeading from "../components/SectionHeading.astro";
+import SuccessCard from "../components/SuccessCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import {
+  acceptedUniversities,
+  achievementStats,
+  assets,
+  comparisonRows,
+  courses,
+  growthItems,
+  headerActions,
+  heroActions,
+  latestPosts,
+  methodPillars,
+  navGroups,
+  parentVoices,
+  quickLinks,
+  representativeMessages,
+  seo,
+  successCards,
+  supportItems,
+  supportMetrics,
+} from "../data/home";
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  name: "医学部予備校 レクサス E.C.",
+  alternateName: "レクサス教育センター",
+  url: "https://lexus-ec.com/",
+  logo: seo.ogImage,
+  description: seo.description,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "東京都渋谷区桜丘町29-7",
+    addressLocality: "渋谷区",
+    addressRegion: "東京都",
+    postalCode: "150-0031",
+    addressCountry: "JP",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "03-3477-1306",
+    contactType: "customer service",
+    areaServed: "JP",
+    availableLanguage: ["ja"],
+  },
+};
+
+const buttonClass = (tone = "red") => `button button--${tone}`;
+const navLinkAttrs = (link: { target?: string; rel?: string }) => ({
+  target: link.target,
+  rel: link.rel ?? (link.target === "_blank" ? "noopener" : undefined),
+});
+const featuredSuccessCards = successCards.slice(0, 3);
+const mobilePrimaryActions = headerActions.slice(0, 2);
+const mobileSecondaryActions = headerActions.slice(2);
+const headerNavGroups = navGroups;
+---
+
+<BaseLayout title={seo.title} description={seo.description} canonical={seo.canonical} ogImage={seo.ogImage}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
+  </Fragment>
+
+  <header class="site-header">
+    <div class="top-header">
+      <a class="brand" href="/" aria-label="医学部予備校 レクサス E.C.">
+        <img src={assets.logo} alt="医学部予備校 LEXUS レクサス教育センター" width="1181" height="380" fetchpriority="high" decoding="async" />
+      </a>
+      <div class="header-copy" aria-label="校舎の特徴">
+        <span>「渋谷駅」徒歩5分</span>
+        <span>寮と一体型の校舎</span>
+        <span>自由に質問可能</span>
+      </div>
+      <div class="header-actions" aria-label="固定ショートカット">
+        {headerActions.map((action) => (
+          <a class={`header-action header-action--${action.tone}`} href={action.href}>
+            <img src={action.icon} alt="" width="96" height="96" decoding="async" />
+            <span>{action.label}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="mobile-fixed-nav" aria-label="固定ショートカット">
+      {mobilePrimaryActions.map((action) => (
+        <a class={`mobile-shortcut mobile-shortcut--${action.tone}`} href={action.href}>
+          <img src={action.icon} alt="" width="96" height="96" decoding="async" />
+          <span>{action.label}</span>
+        </a>
+      ))}
+      <button class="mobile-menu-button" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu-panel" data-mobile-menu-toggle>
+        <span class="mobile-menu-button__box" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+      {mobileSecondaryActions.map((action) => (
+        <a class={`mobile-shortcut mobile-shortcut--${action.tone}`} href={action.href}>
+          <img src={action.icon} alt="" width="96" height="96" decoding="async" />
+          <span>{action.label}</span>
+        </a>
+      ))}
+    </div>
+
+    <div class="mobile-menu-panel" id="mobile-menu-panel" hidden>
+      <nav class="mobile-menu-panel__inner" aria-label="スマートフォンメニュー">
+          {headerNavGroups.map((group) => (
+            <section class="mobile-menu-group">
+            <p class="mobile-menu-group__label">{group.label}</p>
+            <ul>
+              {group.links.map((link) => (
+                <li><a href={link.href} {...navLinkAttrs(link)}>{link.label}</a></li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </nav>
+    </div>
+  </header>
+
+  <nav class="mega-nav" aria-label="主要ナビゲーション">
+    <ul>
+        {headerNavGroups.map((group) => (
+          <li>
+          <a class="mega-nav__label" href={group.links[0].href} {...navLinkAttrs(group.links[0])}>{group.label}</a>
+          <div class="mega-panel">
+            {group.links.map((link) => <a href={link.href} {...navLinkAttrs(link)}>{link.label}</a>)}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <script is:inline>
+    (() => {
+      const toggle = document.querySelector("[data-mobile-menu-toggle]");
+      const panel = document.getElementById("mobile-menu-panel");
+      if (!toggle || !panel) return;
+
+      const setOpen = (open) => {
+        panel.hidden = !open;
+        toggle.setAttribute("aria-expanded", String(open));
+        toggle.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
+        document.documentElement.classList.toggle("mobile-menu-open", open);
+      };
+
+      toggle.addEventListener("click", () => setOpen(panel.hidden));
+      panel.addEventListener("click", (event) => {
+        if (event.target instanceof HTMLAnchorElement) setOpen(false);
+      });
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") setOpen(false);
+      });
+    })();
+  </script>
+
+  <main>
+    <section class="premium-hero" aria-labelledby="premium-hero-title">
+      <img class="premium-hero__bg" src={assets.heroPaper} alt="" width="1440" height="734" fetchpriority="high" decoding="async" />
+      <div class="premium-hero__inner">
+        <p class="premium-hero__year">2026年度</p>
+        <p class="premium-hero__sub">最高級の医学部受験指導</p>
+        <h2 id="premium-hero-title">覚悟が決まったら<br />レクサス・プレミア本科へ<br />（開講中）</h2>
+        <p class="premium-hero__target">
+          対象：既卒生（年齢制限なし）<br />
+          欠員が出た場合、6月入学可能。<br />
+          <span>※お問合せ下さい。</span>
+        </p>
+        <div class="hero-actions">
+          {heroActions.map((action) => <a class={buttonClass(action.tone)} href={action.href}>{action.label}</a>)}
+        </div>
+        <img class="jewel-strip" src={assets.jewelPattern} alt="" width="800" height="58" decoding="async" />
+      </div>
+    </section>
+
+    <section class="intro-section" aria-labelledby="home-title">
+      <div class="content-narrow">
+        <h1 id="home-title">
+          医学部受験 なら、<br />
+          実績35年の レクサス教育センター（レクサス E.C.）にお任せください。
+        </h1>
+        <p>
+          偏差値50台からの合格率は88%。「緻密な“鬼特訓”メニュー」と「1日13時間の厳しい管理体制 (＝“鬼監理”)」で、医学部受験生を合格へ導きます。校舎は寮と一体型で、渋谷（東京）にあります。レクサスは日本全国の浪人生や現役生の医師への思いに応えます。
+        </p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="achievements">
+      <div class="content">
+        <SectionHeading id="achievements" label="ACHIEVEMENTS" title="合格実績" subtitle="〜 一年で合格する割合 〜" />
+
+        <div class="achievement-stats">
+          {achievementStats.map((stat) => (
+            <article class={`stat-card stat-card--${stat.tone}`}>
+              <p>{stat.label}</p>
+              <strong>{stat.value}</strong>
+            </article>
+          ))}
+        </div>
+
+        <h3 class="university-list__title">合格した大学一覧(医学部医学科のみ)</h3>
+        <div class="university-list" aria-label="医学部入試過去6年分の最終合格者データ">
+          {acceptedUniversities.map((column) => (
+            <ul>
+              {column.map((result) => (
+                <li>
+                  <span>{result.name}</span>
+                  <strong>{result.count}</strong>
+                </li>
+              ))}
+            </ul>
+          ))}
+        </div>
+        <p class="note">医学部入試過去6年分（2020〜2025年度）の最終合格者データです。</p>
+      </div>
+    </section>
+
+    <section class="section section--soft" aria-labelledby="voices">
+      <div class="content">
+        <SectionHeading
+          id="voices"
+          label="VOICE"
+          title={"医学部合格者の\nインタビュー動画"}
+          subtitle="レクサスで合格した生徒たちの声"
+        />
+        <div class="success-grid">
+          {featuredSuccessCards.map((card) => <SuccessCard card={card} />)}
+        </div>
+        <div class="center-actions success-more">
+          <a class="button button--red" href="/top/voice/">合格体験記をもっと見る</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section other-voices" aria-label="その他動画、インタビュー記事">
+      <div class="content">
+        <h2>その他動画、インタビュー記事</h2>
+        <a class="voice-banner" href="/voice/" aria-label="インタビューを全て見る">
+          <img src={assets.voiceBanner} alt="合格者の声" width="1200" height="628" loading="lazy" decoding="async" />
+          <span>インタビューを全て見る</span>
+        </a>
+
+        <h3>「保護者様の声」も公開中！</h3>
+        <div class="parent-voice-grid">
+          {parentVoices.map((voice) => (
+            <article class="parent-voice-card">
+              <h4>{voice.title}</h4>
+              <p>{voice.body}</p>
+              <a href={voice.href}>{voice.cta}</a>
+            </article>
+          ))}
+        </div>
+        <div class="quick-links">
+          {quickLinks.map((link) => <a class={buttonClass(link.tone)} href={link.href}>{link.label}</a>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--selection" aria-labelledby="selection">
+      <div class="content">
+        <SectionHeading id="selection" label="SELECTION" title="特待生募集中" />
+        <a class="selection-poster" href="/test-entry/">
+          <img src={assets.selection} alt="特待生選抜テストのお知らせ" width="1024" height="1024" loading="lazy" decoding="async" />
+        </a>
+        <div class="center-actions">
+          <a class="button button--blue" href="/test-entry/">選抜の詳細へ</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section representative" aria-labelledby="representative-title">
+      <div class="content representative__grid">
+        <div class="representative__portrait">
+          <p>医学部合格に自信あり！</p>
+          <img src={assets.representative} alt="レクサス教育センター 代表取締役 島内義仁" width="435" height="533" loading="lazy" decoding="async" />
+          <strong>レクサスE.C. 代表　島内 義仁</strong>
+        </div>
+        <div class="representative__message">
+          <h3 class="section-label">代表よりメッセージ</h3>
+          <h2 id="representative-title">レクサスは1992年創立、1000人以上の医学部生を輩出している医学部受験の専門塾です。</h2>
+          <p>
+            レクサスは、医学部受験に必要な厳しさを日々の学習に落とし込みます。授業、課題、質問、確認、生活リズムまでを途切れさせず、受験生の一年を合格へ向けて使い切ります。
+          </p>
+          <ul class="message-list">
+            {representativeMessages.map((message) => <li><h3>{message}</h3></li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pickup" aria-labelledby="pickup">
+      <div class="content">
+        <SectionHeading id="pickup" label="PICK UP" title="動画コンテンツ" subtitle="＼ 必ず役立つ！ ／" />
+        <ul class="pickup-tags" aria-label="動画コンテンツの種類">
+          <li>科目別解説</li>
+          <li>医学部情報</li>
+          <li>息抜き動画</li>
+        </ul>
+        <a class="video-poster" href="/penguin-geometry/">
+          <img src={assets.penguinVideo} alt="動画視聴ページへ" width="1024" height="512" loading="lazy" decoding="async" />
+          <span>動画視聴はコチラ</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="line-support" aria-labelledby="line-support-title">
+      <div class="content line-support__inner">
+        <p>＼ 大好評の神サポート！ ／</p>
+        <h2 id="line-support-title">↓ 無料でLINE質問対応 ↓</h2>
+        <h3>英語・数学・物理・化学・生物<br />の質問に答えます。</h3>
+        <a href="/top/line/" class="line-support__image">
+          <img src={assets.lineSupport} alt="オンライン質問室のイメージ画像01" width="500" height="500" loading="lazy" decoding="async" />
+        </a>
+        <a class="button button--green" href="/top/line/">詳しくはコチラ</a>
+      </div>
+    </section>
+
+    <section class="section section--soft" aria-labelledby="latest-posts">
+      <div class="content">
+        <SectionHeading id="latest-posts" label="NEW" title="最新投稿記事" />
+        <div class="post-grid">
+          {latestPosts.map((post) => <a href={post.href}>{post.label}</a>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" aria-labelledby="about">
+      <div class="content content-narrow">
+        <SectionHeading id="about" label="ABOUT" title={"「レクサス」は類の無い\n医学部専門予備校です"} />
+        <p class="about__lead">偶然や奇跡に頼らない逆転劇。</p>
+        <img class="about__mark" src={assets.onikanriTitle} alt="鬼監理×鬼特訓" width="1024" height="184" loading="lazy" decoding="async" />
+        <p class="about__lead">の先にある、絶対の合格へ有無を言わさず連れていく。</p>
+      </div>
+    </section>
+
+    <section class="section reason" id="reason" aria-labelledby="reason-title">
+      <div class="content">
+        <picture>
+          <source media="(max-width: 700px)" srcset={assets.trainingTall} />
+          <img class="reason__hero" src={assets.trainingWide} alt="年末年始医学部必勝「鬼特訓」イメージ" width="1024" height="511" loading="lazy" decoding="async" />
+        </picture>
+        <p class="section-label">REASON</p>
+        <h2 id="reason-title">レクサスは他と何が違うのか？</h2>
+
+        <div class="comparison-table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>レクサス</th>
+                <th>他の医専</th>
+                <th>大手予備校</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparisonRows.map((row) => (
+                <tr>
+                  <th>{row.item}</th>
+                  <td class="target-col">{row.lexus}</td>
+                  <td>{row.medical}</td>
+                  <td>{row.major}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pillar-grid">
+          {methodPillars.map((pillar) => (
+            <article class="pillar-card">
+              <div class="pillar-card__head">
+                <img src={pillar.image} alt={pillar.imageAlt} width="234" height="260" loading="lazy" decoding="async" />
+                <h3>{pillar.title}</h3>
+              </div>
+              <p class="pillar-card__subtitle">{pillar.subtitle}</p>
+              <p>{pillar.body}</p>
+              <div class="pillar-card__actions">
+                {pillar.links.map((link) => <a class={buttonClass(link.tone)} href={link.href}>{link.label}</a>)}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <section class="growth-box" aria-labelledby="growth-title">
+          <h3 id="growth-title">レクサスで芽生える力</h3>
+          <ul>
+            {growthItems.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+      </div>
+    </section>
+
+    <section class="become-oni" aria-label="勉強の鬼になれ">
+      <div class="content">
+        <p>“勉強の鬼”になれ</p>
+        <img src={assets.oniMascot} alt="年末年始医学部必勝「鬼特訓」イメージ" width="1024" height="687" loading="lazy" decoding="async" />
+      </div>
+    </section>
+
+    <section class="section method" aria-labelledby="method">
+      <div class="content">
+        <SectionHeading id="method" label="METHOD" title="医学部合格メソッド" />
+        <div class="method-lead">
+          <h3>「厳しさ」が最短合格の絶対条件！</h3>
+          <p>レクサス教育センターでは、情熱と実力を兼ね備えた講師達があなたの学習を厳しく管理し、独自の医学部専門カリキュラムで合格へ導きます。講師の指示通りに課題をこなせば、医学部に合格する実力が必ず身につきます。</p>
+        </div>
+
+        <section class="support-box" aria-labelledby="support-title">
+          <h3 id="support-title">● 万全のサポート内容 ●</h3>
+          <ul>
+            {supportItems.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+
+        <div class="teacher-strip">
+          <img src={assets.teacherMath} alt="数学科講師 小田" width="803" height="1024" loading="lazy" decoding="async" />
+          <div>
+            <p>思い切りやろう</p>
+            <strong>2026年度 生徒募集中！<br />ぼくらの授業を体験しよう ☆</strong>
+            <a class="button button--blue" href="/top/teacher/">講師紹介を見る</a>
+          </div>
+          <img src={assets.teacherChemistry} alt="化学/数学講師 藤橋幹夫" width="777" height="1024" loading="lazy" decoding="async" />
+        </div>
+
+        <section class="quantity-box" aria-labelledby="quantity-title">
+          <h3 id="quantity-title">● 業界トップの「質」と「量」 ●</h3>
+          <div class="metric-grid">
+            {supportMetrics.map((metric) => (
+              <article>
+                <p>{metric.label}</p>
+                <strong>{metric.value}</strong>
+              </article>
+            ))}
+          </div>
+          <div class="center-actions">
+            <a class="button button--red" href="/top/results/">合格メソッドを詳しく見る</a>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="section section--courses" id="courses" aria-labelledby="courses-title">
+      <div class="content">
+        <h2 id="courses-title">老舗の医学部予備校だから成せる<br />「コース」と「カリキュラム」</h2>
+        <p class="courses__lead">ご自身のタイプに合った「コース選択」が合格への第一歩。</p>
+        <div class="course-grid">
+          {courses.map((course) => (
+            <article class="course-card">
+              <h3>{course.target}</h3>
+              <h4><a href={course.href}>{course.name}</a></h4>
+              <small>{course.english}</small>
+              <p>{course.note}</p>
+              <a class="course-card__button" href={course.href}>コースの内容を見る</a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section strictness" aria-labelledby="strictness-title">
+      <div class="content content-narrow">
+        <SectionHeading id="strictness-title" label="STRICT" title={"厳しいレクサスだから\n最短合格を実現できます"} />
+        <h3>「厳しさ」 とは？</h3>
+        <p>「厳しさ」といえば、少し怖いイメージでしょうか？大丈夫！怖くありません。レクサスでは、「厳しさ」＝「成功をつかむために必要な事を与え続ける姿勢」として、医学部受験を全面的にサポートしています。</p>
+        <ol>
+          <li>不要な知識はそぎ落とし、分かりやすくシンプルに伝える。</li>
+          <li>疑問が生じたら、その場で解決させる。</li>
+          <li>できるようになるまで何度も練習させて、できるようになるところを見届ける。</li>
+        </ol>
+        <h3>今、勉強習慣がなくても合格できます！</h3>
+        <p>医学部予備校の役割は、「医者になりたい」という受験生に適切な行動を促し医学部合格に導くことです。レクサスは、受験生の医者への思いを行動力へ還元する予備校です。</p>
+      </div>
+    </section>
+
+    <section class="section location" aria-labelledby="location-title">
+      <div class="content">
+        <SectionHeading id="location-title" label="LOCATION" title="東京（渋谷）のレクサスには日本全国から医学部志願者が集まります！" />
+        <div class="dorm-layout">
+          <div>
+            <h3>生徒専用寮のご案内『LEXUS GARDEN』</h3>
+            <p>東京都渋谷の閑静な住宅街にたたずむ医学部受験に集中できる快適空間。校舎と寮が近いから、通学・質問・復習・生活管理まで途切れずに回せます。</p>
+            <a class="button button--blue" href="/top/lexus-garden/">生徒専用寮を見る</a>
+          </div>
+          <img src={assets.dorm} alt="寮と一体型の校舎 レクサス専用寮外観" width="1024" height="651" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </section>
+
+    <section class="final-message">
+      <p>きみはできる。さあ、“勉強の鬼”になろう。</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="content">
+      <p class="site-footer__menu-title">ー MENU ー</p>
+      <div class="footer-grid">
+        {navGroups.map((group) => (
+          <nav aria-label={group.label}>
+            <p class="footer-grid__label">{group.label}</p>
+            {group.links.map((link) => <a href={link.href} {...navLinkAttrs(link)}>{link.label}</a>)}
+          </nav>
+        ))}
+        <address>
+          <p class="footer-grid__label">ＣＯＮＴＡＣＴ</p>
+          <a href="mailto:info@lexus-ec.com">info@lexus-ec.com</a>
+          <a href="tel:03-3477-1306">03-3477-1306</a>
+          <p class="footer-grid__label">ＡＣＣＥＳＳ</p>
+          <a href="https://maps.app.goo.gl/Yo1p2wJuwUkgrNtPA">寮と一体の校舎「レクサスガーデン」</a>
+          <a class="site-footer__legal" href="/%e7%89%b9%e5%ae%9a%e5%95%86%e5%8f%96%e5%bc%95%e6%b3%95%e3%81%ab%e5%9f%ba%e3%81%a5%e3%81%8f%e8%a1%a8%e8%a8%98/">特商法に基づく表記</a>
+        </address>
+      </div>
+      <img class="footer-logo" src={assets.footerLogo} alt="鬼特訓する医学部予備校レクサスE.C.（レクサス教育センター）" width="1503" height="593" loading="lazy" decoding="async" />
+      <small>© LEXUS Education Center</small>
+    </div>
+  </footer>
+</BaseLayout>

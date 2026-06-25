@@ -1,0 +1,193 @@
+---
+import LexusOnlineDetailLayout from "../../components/lexus-online/LexusOnlineDetailLayout.astro";
+import { lexusOnlineContactHref, lexusOnlineOpenItems } from "../../data/lexusOnlineDetails";
+
+const title = "Lexus Online 開発ポリシー｜教育事業者向けAI業務改善・Webアプリ開発";
+const description =
+  "Lexus Onlineの開発ポリシーを、教育を情報処理として支える思想、スモールスタート、AI活用、教材・方法論の蓄積まで詳しく説明します。";
+const canonical = "https://lexus-ec.com/lexus-online/policy/";
+
+const principles = [
+  {
+    label: "Policy 01",
+    title: "教育を、扱える情報構造にする",
+    body: "教育は、点数、答案、課題、面談、弱点、教材、復習、進捗、成果、展望を結びつける営みです。Lexus Onlineは、これらを単なる記録ではなく、次の判断と指示につながる情報構造として設計します。",
+  },
+  {
+    label: "Policy 02",
+    title: "最初から巨大なシステムにしない",
+    body: "現場で使われない機能を積み上げても、教育の質は上がりません。最初は毎日使われる最小範囲を定め、記録、判断、指示、改善の流れが回るかを検証します。",
+  },
+  {
+    label: "Policy 03",
+    title: "品質ではなく、無駄な開発範囲を削る",
+    body: "安く作るために品質を削るのではありません。教育現場に共通する型を再利用し、独自開発が必要な部分だけに開発費を集中させます。",
+  },
+  {
+    label: "Policy 04",
+    title: "AI導入を目的にしない",
+    body: "AIは派手なデモのためではなく、記録、判断、指示、改善の負担を軽くするために使います。人間が確認すべき判断は残し、AIに任せる範囲を明確にします。",
+  },
+  {
+    label: "Policy 05",
+    title: "納品で終わらせず、運用で育てる",
+    body: "教育現場の業務は、導入後に初めて本当の課題が見えます。初期データ投入、講師説明、運用ルール作成、改善ミーティングまで含めて、使われるシステムに育てます。",
+  },
+  {
+    label: "Policy 06",
+    title: "知見を一代限りで終わらせない",
+    body: "教材、説明、方法論、改善履歴を再利用できる形に残します。優れた指導者の知恵を、次の講師と次の生徒の出発点に変えます。",
+  },
+];
+
+const antiPatterns = [
+  "AIチャットを置いただけで、業務フローが何も変わらないシステム",
+  "現場が入力し続けるだけで、判断や指示に戻ってこない記録システム",
+  "初期費用を大きくして、導入後の改善予算が残らない開発計画",
+  "教室ごとの運用差を無視して、既製の型を押し付ける導入",
+  "講師の経験や教材を属人化させたまま、見た目だけをデジタル化する設計",
+];
+
+const decisionRules = [
+  {
+    title: "作るかどうかの判断",
+    body: "その機能が、記録、判断、指示、改善のいずれかを軽くするかで判断します。単に便利そう、見栄えがよい、AIらしいという理由だけでは開発範囲に入れません。",
+  },
+  {
+    title: "標準化するか個別化するかの判断",
+    body: "教育現場に共通する部分は標準化し、指導方針、生徒層、教材方針、保護者対応など現場の品質に関わる部分は調整できる余地を残します。",
+  },
+  {
+    title: "AIに任せるか人間が見るかの判断",
+    body: "事務処理、下書き、候補提示、分類、集計はAIに寄せます。一方で、最終判断、保護者説明、評価に関わる重要な意思決定は人間が確認する設計にします。",
+  },
+];
+---
+
+<LexusOnlineDetailLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  eyebrow="Development Policy"
+  heading="教育を変えるために、開発範囲を小さく、思想を大きく持つ。"
+  lead="Lexus Onlineは、ただ安く開発するサービスではありません。教育現場に必要な情報処理を支え、講師の理想を現実に近づけるための開発部門です。"
+  currentPath="/lexus-online/policy/"
+>
+  <section class="lo-detail-section">
+    <div class="lo-detail-container">
+      <div class="lo-detail-heading">
+        <p class="lo-detail-label">Core Idea</p>
+        <h2>教育は、情報を結びつけて処理する仕事である。</h2>
+        <p>
+          点数を見るだけでは教育になりません。答案の質、課題の出し方、復習タイミング、教材の選択、志望校との距離、本人の性格までつながって初めて、次の支援が決まります。
+          Lexus Onlineは、そのつながりを扱える形にします。
+        </p>
+      </div>
+      <div class="lo-detail-band">
+        <p>
+          記録が判断につながり、判断が指示につながり、指示の結果が改善として戻ってくる。
+          この循環を毎日回せる状態を、教育現場のOSとして設計します。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="lo-detail-section lo-detail-section--soft">
+    <div class="lo-detail-container">
+      <div class="lo-detail-heading">
+        <p class="lo-detail-label">Principles</p>
+        <h2>Lexus Onlineの開発原則</h2>
+        <p>共有スライドにある思想を、実際の要件定義、設計、実装、運用改善で使う判断基準に落とし込んでいます。</p>
+      </div>
+      <div class="lo-detail-grid">
+        {principles.map((item) => (
+          <article class="lo-detail-card">
+            <span>{item.label}</span>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="lo-detail-section lo-detail-section--dark">
+    <div class="lo-detail-container">
+      <div class="lo-detail-heading">
+        <p class="lo-detail-label">Not To Build</p>
+        <h2>作らないものを決める。</h2>
+        <p>
+          開発費を抑える最大の方法は、雑に作ることではなく、作るべきでないものを早い段階で外すことです。
+          これはLexus Onlineの重要な開発姿勢です。
+        </p>
+      </div>
+      <div class="lo-detail-grid lo-detail-grid--two">
+        <article class="lo-detail-card">
+          <h3>避ける開発</h3>
+          <ul class="lo-detail-list">
+            {antiPatterns.map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
+        <article class="lo-detail-card">
+          <h3>重視する開発</h3>
+          <ul class="lo-detail-list">
+            <li>現場で毎日開かれる画面を先に作る</li>
+            <li>講師が次に何をすべきか分かる状態にする</li>
+            <li>教材や指導方法が再利用できる構造を作る</li>
+            <li>生徒ごとの違いを扱えるデータ設計にする</li>
+            <li>導入後の改善余地を最初から残す</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="lo-detail-section">
+    <div class="lo-detail-container">
+      <div class="lo-detail-heading">
+        <p class="lo-detail-label">Decision Rules</p>
+        <h2>開発中の判断基準</h2>
+        <p>要望をそのまま積み上げるのではなく、教育品質と運用定着に効くかどうかで優先順位を決めます。</p>
+      </div>
+      <div class="lo-detail-flow">
+        {decisionRules.map((item) => (
+          <article class="lo-detail-step">
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="lo-detail-section lo-detail-section--soft">
+    <div class="lo-detail-container">
+      <div class="lo-detail-heading">
+        <p class="lo-detail-label">Open Items</p>
+        <h2>今後、具体化が必要な項目</h2>
+        <p>ページとしては方向性を示していますが、正式な営業資料・契約資料にする前に、次の項目は詰める必要があります。</p>
+      </div>
+      <div class="lo-detail-checklist">
+        <h3>要確認リスト</h3>
+        <ul>
+          {lexusOnlineOpenItems.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="lo-detail-cta">
+    <div class="lo-detail-container">
+      <p class="lo-detail-label">Next</p>
+      <h2>思想を、現場の業務フローに翻訳します。</h2>
+      <p>自社の教育業務にどこから適用できるかを知りたい場合は、現在の管理表、教材作成、採点、講師連絡、保護者対応の流れから整理します。</p>
+      <div class="lo-detail-actions">
+        <a class="button button--red" href="/lexus-online/contact/">問い合わせフォームへ</a>
+        <a class="button button--blue" href="/lexus-online/development-flow/">開発の流れを見る</a>
+        <a class="button button--light" href={lexusOnlineContactHref}>メールで相談する</a>
+      </div>
+    </div>
+  </section>
+</LexusOnlineDetailLayout>

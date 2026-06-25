@@ -1,0 +1,105 @@
+---
+import { assets, headerActions, navGroups } from "../../data/home";
+
+const mobilePrimaryActions = headerActions.slice(0, 2);
+const mobileSecondaryActions = headerActions.slice(2);
+const headerNavGroups = navGroups;
+const linkAttrs = (link: { target?: string; rel?: string }) => ({
+  target: link.target,
+  rel: link.rel ?? (link.target === "_blank" ? "noopener" : undefined),
+});
+---
+
+<header class="site-header">
+  <div class="top-header">
+    <a class="brand" href="/" aria-label="医学部予備校 レクサス E.C.">
+      <img src={assets.logo} alt="医学部予備校 LEXUS レクサス教育センター" width="1181" height="380" fetchpriority="high" decoding="async" />
+    </a>
+    <div class="header-copy" aria-label="校舎の特徴">
+      <span>「渋谷駅」徒歩5分</span>
+      <span>寮と一体型の校舎</span>
+      <span>自由に質問可能</span>
+    </div>
+    <div class="header-actions" aria-label="固定ショートカット">
+      {headerActions.map((action) => (
+        <a class={`header-action header-action--${action.tone}`} href={action.href}>
+          <img src={action.icon} alt="" width="96" height="96" decoding="async" />
+          <span>{action.label}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <div class="mobile-fixed-nav" aria-label="固定ショートカット">
+    {mobilePrimaryActions.map((action) => (
+      <a class={`mobile-shortcut mobile-shortcut--${action.tone}`} href={action.href}>
+        <img src={action.icon} alt="" width="96" height="96" decoding="async" />
+        <span>{action.label}</span>
+      </a>
+    ))}
+    <button class="mobile-menu-button" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu-panel" data-mobile-menu-toggle>
+      <span class="mobile-menu-button__box" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+    {mobileSecondaryActions.map((action) => (
+      <a class={`mobile-shortcut mobile-shortcut--${action.tone}`} href={action.href}>
+        <img src={action.icon} alt="" width="96" height="96" decoding="async" />
+        <span>{action.label}</span>
+      </a>
+    ))}
+  </div>
+
+  <div class="mobile-menu-panel" id="mobile-menu-panel" hidden>
+    <nav class="mobile-menu-panel__inner" aria-label="スマートフォンメニュー">
+      {headerNavGroups.map((group) => (
+        <section class="mobile-menu-group">
+          <p class="mobile-menu-group__label">{group.label}</p>
+          <ul>
+            {group.links.map((link) => (
+              <li><a href={link.href} {...linkAttrs(link)}>{link.label}</a></li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<nav class="mega-nav" aria-label="主要ナビゲーション">
+  <ul>
+    {headerNavGroups.map((group) => (
+      <li>
+        <a class="mega-nav__label" href={group.links[0].href} {...linkAttrs(group.links[0])}>{group.label}</a>
+        <div class="mega-panel">
+          {group.links.map((link) => <a href={link.href} {...linkAttrs(link)}>{link.label}</a>)}
+        </div>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<script is:inline>
+  (() => {
+    const toggle = document.querySelector("[data-mobile-menu-toggle]");
+    const panel = document.getElementById("mobile-menu-panel");
+    if (!toggle || !panel) return;
+
+    const setOpen = (open) => {
+      panel.hidden = !open;
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
+      document.documentElement.classList.toggle("mobile-menu-open", open);
+    };
+
+    toggle.addEventListener("click", () => setOpen(panel.hidden));
+    panel.addEventListener("click", (event) => {
+      if (event.target instanceof HTMLAnchorElement) setOpen(false);
+    });
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") setOpen(false);
+    });
+  })();
+</script>

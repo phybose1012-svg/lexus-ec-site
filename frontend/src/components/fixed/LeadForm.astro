@@ -1,0 +1,60 @@
+---
+import PendingFormScript from "./PendingFormScript.astro";
+
+type FormField = {
+  name: string;
+  label: string;
+  type: "text" | "email" | "tel" | "textarea" | "select" | "date" | "checkbox";
+  required?: boolean;
+  options?: string[];
+  placeholder?: string;
+};
+
+interface Props {
+  formType: string;
+  title: string;
+  fields: FormField[];
+  submitLabel?: string;
+}
+
+const { formType, title, fields, submitLabel = "送信する" } = Astro.props;
+const configuredEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT;
+const endpoint = configuredEndpoint || "/form-submit/";
+const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" };
+---
+
+<section class="lead-form" aria-labelledby={`${formType}-form-title`}>
+  <div class="lead-form__head">
+    <p>FORM</p>
+    <h2 id={`${formType}-form-title`}>{title}</h2>
+  </div>
+  <form action={endpoint} method="post" class="lead-form__body" {...localFormAttrs}>
+    <input type="hidden" name="formType" value={formType} />
+    <input type="hidden" name="sourcePath" value={Astro.url.pathname} />
+    <div class="form-grid">
+      {fields.map((field) => (
+        <label class={`form-field form-field--${field.type}`}>
+          <span>{field.label}{field.required && <em>必須</em>}</span>
+          {field.type === "textarea" ? (
+            <textarea name={field.name} required={field.required} placeholder={field.placeholder} rows="6"></textarea>
+          ) : field.type === "select" ? (
+            <select name={field.name} required={field.required}>
+              <option value="">選択してください</option>
+              {field.options?.map((option) => <option value={option}>{option}</option>)}
+            </select>
+          ) : field.type === "checkbox" ? (
+            <span class="checkbox-line">
+              <input type="checkbox" name={field.name} value="同意する" required={field.required} />
+              <span>{field.placeholder || field.label}</span>
+            </span>
+          ) : (
+            <input type={field.type} name={field.name} required={field.required} placeholder={field.placeholder} />
+          )}
+        </label>
+      ))}
+    </div>
+    <button class="button button--red" type="submit">{submitLabel}</button>
+    <p class="form-submit-note" data-local-form-status hidden></p>
+  </form>
+</section>
+{!configuredEndpoint && <PendingFormScript />}

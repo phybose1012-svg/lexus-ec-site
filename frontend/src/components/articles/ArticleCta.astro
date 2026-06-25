@@ -1,0 +1,80 @@
+---
+import type { ArticleCtaVariant } from "../../data/articleTemplates";
+
+interface CtaCopy {
+  eyebrow: string;
+  title: string;
+  body: string;
+  primaryLabel: string;
+  primaryHref: string;
+  secondaryLabel: string;
+  secondaryHref: string;
+}
+
+interface Props {
+  variant?: ArticleCtaVariant;
+  title?: string;
+  body?: string;
+}
+
+const ctaByVariant: Record<ArticleCtaVariant, CtaCopy> = {
+  exam: {
+    eyebrow: "LEXUS E.C.",
+    title: "医学部合格までの学習設計を相談する",
+    body: "現在の成績、志望校、入試方式に合わせて、科目別に何を優先すべきかを整理します。",
+    primaryLabel: "無料面談を予約",
+    primaryHref: "/reservation/",
+    secondaryLabel: "資料請求",
+    secondaryHref: "/request-documents/",
+  },
+  consultation: {
+    eyebrow: "CONSULTATION",
+    title: "面接・志望理由対策を個別に相談する",
+    body: "大学別の評価観点を踏まえて、面接で伝えるべき内容を一緒に整理します。",
+    primaryLabel: "無料面談を予約",
+    primaryHref: "/reservation/",
+    secondaryLabel: "コースを見る",
+    secondaryHref: "/top/course/",
+  },
+  voice: {
+    eyebrow: "VOICE",
+    title: "次は自分の合格ストーリーを作る",
+    body: "合格者の学習法を参考にしながら、現在地に合う学習計画へ落とし込みます。",
+    primaryLabel: "合格者の声を見る",
+    primaryHref: "/voice/",
+    secondaryLabel: "無料面談を予約",
+    secondaryHref: "/reservation/",
+  },
+  parent: {
+    eyebrow: "FOR PARENTS",
+    title: "ご家庭での支え方も含めて相談する",
+    body: "受験生本人だけでなく、ご家庭での声かけや予備校選びも含めて整理します。",
+    primaryLabel: "無料面談を予約",
+    primaryHref: "/reservation/",
+    secondaryLabel: "資料請求",
+    secondaryHref: "/request-documents/",
+  },
+  default: {
+    eyebrow: "LEXUS E.C.",
+    title: "医学部受験の悩みを相談する",
+    body: "記事の内容を、自分の状況ではどう使うべきかまで一緒に確認できます。",
+    primaryLabel: "無料面談を予約",
+    primaryHref: "/reservation/",
+    secondaryLabel: "資料請求",
+    secondaryHref: "/request-documents/",
+  },
+};
+
+const { variant = "default", title, body } = Astro.props;
+const copy = ctaByVariant[variant];
+---
+
+<aside class={`article-cta article-cta--${variant}`} aria-label="相談導線">
+  <p class="article-cta__eyebrow">{copy.eyebrow}</p>
+  <h2>{title ?? copy.title}</h2>
+  <p>{body ?? copy.body}</p>
+  <div class="article-cta__actions">
+    <a class="article-button article-button--primary" href={copy.primaryHref}>{copy.primaryLabel}</a>
+    <a class="article-button article-button--secondary" href={copy.secondaryHref}>{copy.secondaryLabel}</a>
+  </div>
+</aside>

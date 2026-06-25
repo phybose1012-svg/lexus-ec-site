@@ -1,0 +1,186 @@
+---
+import { seo } from "../../../data/home";
+import { getVoicePage } from "../../../lib/voiceSource";
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+
+const page = getVoicePage();
+
+const topLinks = [
+  { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
+  { label: "理念と沿革", href: "/top/history/", tone: "red" },
+];
+
+const guideActions = [
+  { label: "資料請求", href: "/request-documents/", tone: "red" },
+  { label: "個別説明会", href: "/reservation/", tone: "blue" },
+];
+
+const successButtonLabels = [
+  "【千葉大医学部】 合格！",
+  "【順天堂大】合格！",
+  "【国際医療福祉大】合格！",
+  "【日本医科大】合格！",
+  "【関西医科大】　合格！",
+  "【昭和大】合格！",
+  "【東京医科大】 合格！",
+  "【杏林大学】　合格！",
+  "【帝京大】　合格 ！",
+  "【聖マリアンナ医科大】合格！",
+  "【東北医科薬科大】　合格！",
+  "【日本大】　合格！",
+];
+---
+
+<SiteLayout title={page.title} description={page.description} canonical={page.canonical} ogImage={seo.ogImage}>
+  <main class="voice-page">
+    <section class="voice-hero">
+      <div class="content voice-hero__inner">
+        <p class="voice-hero__eyebrow">SUCCESS STORIES</p>
+        <h1>{page.h1}</h1>
+        <h2>{page.mainCopy}</h2>
+        <p>レクサス教育センターでは、情熱と実力を兼ね備えた講師達があなたの学習を厳しく管理し、合格へ導きます。講師の指示通りに課題をこなせば、医学部に合格する実力が必ず身につきます。</p>
+      </div>
+    </section>
+
+    <div class="content voice-hero__actions">
+      {topLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+    </div>
+
+    <section class="voice-notice">
+      <div class="content voice-notice__grid">
+        <article>
+          <h2><span>最新インタビュー動画</span><span>準備中！</span></h2>
+          <p>最新の合格者インタビューは、公開準備ができたものから順次追加します。</p>
+          <div class="voice-notice__actions">
+            <a class="button button--green" href="#voice-videos">▼ 合格者の声をもっと見る</a>
+            <a class="button button--blue" href="#voice-interviews">メールを見る</a>
+            <a class="button button--red" href="#voice-interviews">お手紙を見る</a>
+          </div>
+        </article>
+        <article>
+          <h2>「保護者様の声」も公開中！</h2>
+          <p>生徒本人の体験記だけでなく、保護者様から届いた声もあわせて掲載しています。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="voice-success" aria-labelledby="voice-success-title">
+      <div class="content">
+        <header class="voice-section-head">
+          <p>RECENT RESULTS</p>
+          <h2 id="voice-success-title">「厳しさ」を乗り越えた先輩の合格体験記</h2>
+        </header>
+        <div class="voice-success-grid">
+          {page.successPhotos.map((story, index) => (
+            <article class="voice-success-card">
+              <h3>{story.headline}</h3>
+              <div class="voice-success-card__body">
+                <div class="voice-success-card__image">
+                  <img
+                    src={story.image.src}
+                    alt={story.image.alt}
+                    width={story.image.width || "1200"}
+                    height={story.image.height || "900"}
+                    loading={index < 3 ? undefined : "lazy"}
+                    decoding="async"
+                  />
+                </div>
+                <dl class="voice-success-card__stats">
+                  {story.stats.map((stat) => (
+                    <div>
+                      <dt>{stat.label}</dt>
+                      <dd>{stat.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                {story.videoUrl && (
+                  <a class="voice-success-card__video" href={story.videoUrl} target="_blank" rel="noopener noreferrer">
+                    {story.videoLabel}
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+        <div class="voice-similarity-buttons" aria-hidden="true">
+          {successButtonLabels.map((label) => <a class="button" href="#voice-videos" tabindex="-1">{label}</a>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="voice-videos" id="voice-videos" aria-labelledby="voice-video-title">
+      <div class="content">
+        {page.logoStrip && <img class="voice-logo-strip" src={page.logoStrip.src} alt="" width={page.logoStrip.width || "1024"} height={page.logoStrip.height || "74"} loading="lazy" decoding="async" />}
+        <header class="voice-section-head voice-section-head--dark">
+          <p>VIDEO MESSAGE</p>
+          <h2 id="voice-video-title">合格者からメッセージ</h2>
+        </header>
+        <div class="voice-video-grid">
+          {page.videos.map((video) => (
+            <article class="voice-video-card">
+              <a class="voice-video-card__media" href={video.url || "#voice-video-title"} target={video.url ? "_blank" : undefined} rel={video.url ? "noopener noreferrer" : undefined}>
+                {video.thumbnail ? (
+                  <img src={video.thumbnail.src} alt={video.thumbnail.alt || video.title} width={video.thumbnail.width || "1280"} height={video.thumbnail.height || "720"} loading="lazy" decoding="async" />
+                ) : (
+                  <span>{video.title}</span>
+                )}
+              </a>
+              <div class="voice-video-card__body">
+                <h3>{video.title}</h3>
+                {video.duration && <p>{video.duration}</p>}
+                <a href={video.url || "#voice-video-title"} target={video.url ? "_blank" : undefined} rel={video.url ? "noopener noreferrer" : undefined}>{video.url ? "動画を見る" : "準備中"}</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="voice-garden" aria-labelledby="voice-garden-title">
+      <div class="content voice-garden__grid">
+        <div>
+          <p class="voice-garden__label">DORMITORY</p>
+          <h2 id="voice-garden-title">生徒専用寮</h2>
+          <h3>レクサスガーデン</h3>
+          <p>学習環境を生活面から支える専用寮も用意しています。地方在住の受験生も、校舎と一体の環境で医学部合格を目指せます。</p>
+          <a class="button button--green" href="/top/lexus-garden/">設備や費用を見てみる</a>
+        </div>
+        {page.garden && <img src={page.garden.src} alt={page.garden.alt} width={page.garden.width || "788"} height={page.garden.height || "518"} loading="lazy" decoding="async" />}
+      </div>
+    </section>
+
+    <section class="voice-interviews" id="voice-interviews" aria-labelledby="voice-interviews-title">
+      <div class="content">
+        <header class="voice-section-head">
+          <p>INTERVIEW ARCHIVE</p>
+          <h2 id="voice-interviews-title">合格者インタビューを公開中！</h2>
+        </header>
+        <div class="voice-interview-grid">
+          {page.interviews.map((interview) => (
+            <article class="voice-interview-card">
+              {interview.image && (
+                <a class="voice-interview-card__image" href={interview.href}>
+                  <img src={interview.image.src} alt={interview.image.alt || interview.title} width={interview.image.width || "300"} height={interview.image.height || "226"} loading="lazy" decoding="async" />
+                </a>
+              )}
+              <div>
+                <h3><a href={interview.href}>{interview.title}</a></h3>
+                <a class="voice-readmore" href={interview.href}>続きを読む</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="voice-guide" aria-labelledby="voice-guide-title">
+      <div class="content voice-guide__inner">
+        <p>{page.guideTitle}</p>
+        <h2 id="voice-guide-title">{page.guideLead}</h2>
+        <div class="fixed-hero__actions">
+          {guideActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>

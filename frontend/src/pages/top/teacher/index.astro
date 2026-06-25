@@ -1,0 +1,144 @@
+---
+import { defaultPageActions } from "../../../data/fixedPages";
+import { seo } from "../../../data/home";
+import { getTeacherPage } from "../../../lib/teacherSource";
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+
+const page = getTeacherPage();
+---
+
+<SiteLayout title={page.title} description={page.description} canonical={page.canonical} ogImage={seo.ogImage}>
+  <main class="teacher-page">
+    <section class="teacher-hero">
+      <div class="content teacher-hero__inner">
+        <h1>{page.h1}</h1>
+        <p class="teacher-hero__lead">{page.lead}</p>
+        <div class="teacher-hero__visual" aria-label={page.confidence}>
+          {page.heroPortraits[0] && (
+            <img src={page.heroPortraits[0].src} alt={page.heroPortraits[0].alt} width="758" height="1024" decoding="async" fetchpriority="high" />
+          )}
+          <p>{page.confidence}</p>
+          {page.heroPortraits[1] && <img src={page.heroPortraits[1].src} alt={page.heroPortraits[1].alt} width="800" height="800" decoding="async" />}
+        </div>
+        <a class="teacher-primary-button" href="/reservation/">{page.ctaLabel}</a>
+      </div>
+    </section>
+
+    <section class="teacher-quality" aria-labelledby="teacher-quality-title">
+      <div class="teacher-quality__band">
+        <h2 id="teacher-quality-title">{page.representative.title}</h2>
+      </div>
+    </section>
+
+    <section class="teacher-message">
+      <div class="content teacher-message__grid">
+        <figure class="teacher-message__portrait">
+          <img src={page.representative.image.src} alt={page.representative.image.alt} width="900" height="900" loading="lazy" decoding="async" />
+          <figcaption>
+            <span>{page.representative.role}</span>
+            <strong>{page.representative.name}</strong>
+          </figcaption>
+        </figure>
+        <div class="teacher-message__copy">
+          {page.representative.message.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </div>
+      <p class="content teacher-message__note">{page.note}</p>
+    </section>
+
+    <section class="teacher-directory" aria-label="講師一覧">
+      {page.subjects.map((subject) => (
+        <section class={`teacher-subject teacher-subject--${subject.tone}`} id={subject.slug}>
+          <header class="teacher-subject__head">
+            {page.logoStrip && <img src={page.logoStrip} alt="" width="1024" height="74" loading="lazy" decoding="async" />}
+            <p>{subject.english}</p>
+            <h2>{subject.subject}</h2>
+          </header>
+
+          <div class="teacher-card-list">
+            {subject.teachers.map((teacher) => {
+              const isPending = teacher.videoLabel.includes("準備中");
+              const hasVideo = Boolean(teacher.videoUrl) && !isPending;
+              return (
+                <article class="teacher-card">
+                  <div class="teacher-card__photo">
+                    <img src={teacher.image.src} alt={teacher.image.alt} width="850" height="1024" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="teacher-card__body">
+                    {teacher.role && <p class="teacher-card__role">{teacher.role}</p>}
+                    <h3>{teacher.name}</h3>
+                    <p class="teacher-card__kana">{teacher.kana}</p>
+                    <p class="teacher-card__history">指導歴:{teacher.history}</p>
+
+                    <dl class="teacher-card__traits">
+                      {teacher.traits.map((trait) => (
+                        <div>
+                          <dt>{trait.label}</dt>
+                          <dd>{trait.value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+
+                    <h4>～ 授業を受けた生徒の感想 ～</h4>
+                    <p class="teacher-card__review">{teacher.review}</p>
+                    <a
+                      class={`teacher-video-button${isPending ? " teacher-video-button--pending" : ""}`}
+                      href={hasVideo ? "#teacher-video-dialog" : "#teacher-video-note"}
+                      data-teacher-video={hasVideo ? teacher.videoUrl : undefined}
+                      data-teacher-name={teacher.name}
+                    >
+                      {teacher.videoLabel}
+                    </a>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      ))}
+    </section>
+
+    <section class="teacher-final-cta" id="teacher-video-note">
+      <div class="content">
+        <p>ぼくらの授業を体験しよう</p>
+        <div class="fixed-hero__actions">
+          {defaultPageActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+        </div>
+      </div>
+    </section>
+
+    <dialog class="teacher-video-dialog" id="teacher-video-dialog" data-teacher-video-dialog>
+      <form method="dialog">
+        <button type="submit" aria-label="動画を閉じる">×</button>
+      </form>
+      <p data-teacher-video-title></p>
+      <video controls playsinline preload="none" data-teacher-video-player></video>
+    </dialog>
+
+    <script is:inline>
+      (() => {
+        const dialog = document.querySelector("[data-teacher-video-dialog]");
+        const player = document.querySelector("[data-teacher-video-player]");
+        const title = document.querySelector("[data-teacher-video-title]");
+        if (!(dialog instanceof HTMLDialogElement) || !(player instanceof HTMLVideoElement) || !title) return;
+
+        document.querySelectorAll("[data-teacher-video]").forEach((link) => {
+          link.addEventListener("click", (event) => {
+            const src = link.getAttribute("data-teacher-video");
+            if (!src) return;
+            event.preventDefault();
+            title.textContent = `${link.getAttribute("data-teacher-name") || ""} 先生の授業動画`;
+            player.src = src;
+            dialog.showModal();
+          });
+        });
+
+        dialog.addEventListener("close", () => {
+          player.pause();
+          player.removeAttribute("src");
+          player.load();
+        });
+      })();
+    </script>
+  </main>
+</SiteLayout>

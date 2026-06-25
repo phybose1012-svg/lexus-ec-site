@@ -1,0 +1,207 @@
+---
+import LexusOnlineDetailLayout from "../../components/lexus-online/LexusOnlineDetailLayout.astro";
+import { lexusOnlineContactHref } from "../../data/lexusOnlineDetails";
+
+const title = "Lexus Online お問い合わせ｜教育事業者向けAI業務改善・Webアプリ開発";
+const description =
+  "Lexus Onlineへのお問い合わせフォームです。教育業務システム、AI業務改善、Webアプリ、SaaS開発、生徒管理、教材作成、自動採点、保守運用について相談できます。";
+const canonical = "https://lexus-ec.com/lexus-online/contact/";
+const configuredEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT;
+const endpoint = configuredEndpoint || "/form-submit/";
+const localFormAttrs = configuredEndpoint ? {} : { "data-lo-local-form": "pending" };
+
+const requestTypes = [
+  "AI業務改善の相談",
+  "生徒管理システム",
+  "教材作成システム",
+  "自動採点・添削システム",
+  "勤怠・講師管理システム",
+  "保護者連絡・報告システム",
+  "SaaS / Webアプリ開発",
+  "まず何から相談すべきか知りたい",
+];
+
+const businessTypes = [
+  "塾・予備校",
+  "英会話教室",
+  "学校・スクール",
+  "教材会社",
+  "教育系SaaS / EdTech",
+  "その他の教育事業",
+  "教育業界以外",
+];
+
+const budgetRanges = [
+  "未定",
+  "20万円未満",
+  "20万〜50万円",
+  "50万〜100万円",
+  "100万〜300万円",
+  "300万円以上",
+];
+
+const timelineOptions = ["未定", "なるべく早く相談したい", "1か月以内", "3か月以内", "半年以内", "来期以降"];
+
+const contactChecklist = [
+  "現在の業務で一番時間がかかっている作業",
+  "使っている管理表、SaaS、LINE、Google Workspaceなど",
+  "誰が使うシステムか",
+  "AIに任せたい作業と、人間が確認したい作業",
+  "初期費用と月額保守の希望感",
+  "導入したい時期、繁忙期、避けたい時期",
+];
+---
+
+<LexusOnlineDetailLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  eyebrow="Contact"
+  heading="教育業務の重さを、まず一つ教えてください。"
+  lead="要件が固まっていなくても構いません。現在の管理表、教材作成、採点、講師連絡、保護者対応のどこが重いかを起点に、最初に作るべき範囲を整理します。"
+  currentPath="/lexus-online/contact/"
+>
+  <section class="lo-detail-section">
+    <div class="lo-detail-container">
+      <div class="lo-detail-heading">
+        <p class="lo-detail-label">Inquiry Form</p>
+        <h2>お問い合わせフォーム</h2>
+        <p>内容を確認後、教育業務の整理、概算範囲、初回ヒアリングの進め方をご連絡します。</p>
+      </div>
+
+      <form class="lo-detail-form" action={endpoint} method="post" {...localFormAttrs}>
+        <input type="hidden" name="formType" value="lexus-online-contact" />
+        <input type="hidden" name="sourcePath" value={Astro.url.pathname} />
+
+        <div class="lo-detail-form__grid">
+          <label class="lo-detail-field">
+            会社名・教室名
+            <input type="text" name="company" placeholder="株式会社〇〇 / 〇〇塾" />
+          </label>
+          <label class="lo-detail-field">
+            ご担当者名<em>必須</em>
+            <input type="text" name="name" required placeholder="山田 太郎" />
+          </label>
+          <label class="lo-detail-field">
+            メールアドレス<em>必須</em>
+            <input type="email" name="email" required placeholder="example@example.com" />
+          </label>
+          <label class="lo-detail-field">
+            電話番号
+            <input type="tel" name="tel" placeholder="03-0000-0000" />
+          </label>
+          <label class="lo-detail-field">
+            事業種別<em>必須</em>
+            <select name="businessType" required>
+              <option value="">選択してください</option>
+              {businessTypes.map((item) => <option value={item}>{item}</option>)}
+            </select>
+          </label>
+          <label class="lo-detail-field">
+            相談内容<em>必須</em>
+            <select name="requestType" required>
+              <option value="">選択してください</option>
+              {requestTypes.map((item) => <option value={item}>{item}</option>)}
+            </select>
+          </label>
+          <label class="lo-detail-field">
+            予算感
+            <select name="budgetRange">
+              {budgetRanges.map((item) => <option value={item}>{item}</option>)}
+            </select>
+          </label>
+          <label class="lo-detail-field">
+            希望時期
+            <select name="timeline">
+              {timelineOptions.map((item) => <option value={item}>{item}</option>)}
+            </select>
+          </label>
+          <label class="lo-detail-field lo-detail-field--full">
+            現在使っているツール
+            <textarea name="currentTools" placeholder="例: Googleスプレッドシート、LINE、既存の塾管理システム、紙の管理表など"></textarea>
+          </label>
+          <label class="lo-detail-field lo-detail-field--full">
+            相談したい内容<em>必須</em>
+            <textarea
+              name="message"
+              required
+              placeholder="例: 教材作成と採点に時間がかかっている。生徒ごとの弱点、復習予定、保護者報告を一つにつなげたい。"
+            ></textarea>
+          </label>
+        </div>
+
+        <label class="lo-detail-checkbox">
+          <input type="checkbox" name="privacyConsent" value="同意する" required />
+          <span>入力内容を確認し、問い合わせ対応のために利用されることに同意します。</span>
+        </label>
+
+        <div class="lo-detail-actions">
+          <button class="button button--red" type="submit">問い合わせ内容を送信する</button>
+          <a class="button button--light" href={lexusOnlineContactHref}>メールで相談する</a>
+        </div>
+        <p class="lo-detail-form-note" data-lo-local-form-status hidden></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="lo-detail-section lo-detail-section--soft">
+    <div class="lo-detail-container">
+      <div class="lo-detail-heading">
+        <p class="lo-detail-label">Before Contact</p>
+        <h2>書ける範囲で共有いただきたいこと</h2>
+        <p>すべて分からなくても問題ありません。空欄があっても、初回ヒアリングで一緒に整理できます。</p>
+      </div>
+      <div class="lo-detail-checklist">
+        <h3>相談時の確認項目</h3>
+        <ul>
+          {contactChecklist.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="lo-detail-section lo-detail-section--dark">
+    <div class="lo-detail-container">
+      <div class="lo-detail-heading">
+        <p class="lo-detail-label">Scope</p>
+        <h2>相談できる内容</h2>
+        <p>教育事業者向けを中心に、AI業務改善、Webアプリ、SaaS開発、保守運用まで相談できます。</p>
+      </div>
+      <div class="lo-detail-grid lo-detail-grid--two">
+        <article class="lo-detail-card">
+          <h3>教育業務システム</h3>
+          <ul class="lo-detail-list">
+            <li>生徒管理、成績、面談、弱点、課題管理</li>
+            <li>教材作成、AI作問、PDF出力、教材ライブラリ</li>
+            <li>自動採点、添削補助、記述答案の確認フロー</li>
+            <li>講師管理、勤怠、報告書、保護者連絡</li>
+          </ul>
+        </article>
+        <article class="lo-detail-card">
+          <h3>AI・Webアプリ開発</h3>
+          <ul class="lo-detail-list">
+            <li>既存業務のAI活用診断</li>
+            <li>フォーム、スプレッドシート、管理画面改善</li>
+            <li>SaaS化、多拠点運用、権限管理</li>
+            <li>導入支援、月額保守、継続改善</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+</LexusOnlineDetailLayout>
+
+<script is:inline>
+  (() => {
+    document.addEventListener("submit", (event) => {
+      const form = event.target;
+      if (!(form instanceof HTMLFormElement) || form.dataset.loLocalForm !== "pending") return;
+      event.preventDefault();
+      const status = form.querySelector("[data-lo-local-form-status]");
+      if (!status) return;
+      status.hidden = false;
+      status.textContent =
+        "フォーム送信先は現在準備中です。お急ぎの場合は、メールリンクまたは 03-3477-1306 へお問い合わせください。";
+    });
+  })();
+</script>

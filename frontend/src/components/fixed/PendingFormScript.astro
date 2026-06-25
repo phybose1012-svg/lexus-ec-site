@@ -1,0 +1,15 @@
+<script is:inline>
+  (() => {
+    if (window.__lexusPendingFormBound) return;
+    window.__lexusPendingFormBound = true;
+    document.addEventListener("submit", (event) => {
+      const form = event.target;
+      if (!(form instanceof HTMLFormElement) || form.dataset.localForm !== "pending") return;
+      event.preventDefault();
+      const status = form.querySelector("[data-local-form-status]");
+      if (!status) return;
+      status.hidden = false;
+      status.textContent = "送信機能は現在準備中です。お急ぎの場合は 03-3477-1306 へお電話ください。";
+    });
+  })();
+</script>

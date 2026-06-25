@@ -1,0 +1,76 @@
+---
+import SiteFooter from "../site/SiteFooter.astro";
+import { seo } from "../../data/home";
+import { detailPageJsonLdBase, lexusOnlineDetailPages } from "../../data/lexusOnlineDetails";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/lexus-online-detail.css";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  eyebrow: string;
+  heading: string;
+  lead: string;
+  currentPath: string;
+}
+
+const { title, description, canonical, eyebrow, heading, lead, currentPath } = Astro.props;
+const jsonLd = {
+  ...detailPageJsonLdBase,
+  url: canonical,
+  description,
+};
+const headingPhrases = heading.split("、").map((part, index, parts) => (index < parts.length - 1 ? `${part}、` : part));
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} ogImage={seo.ogImage}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <main class="lo-detail">
+    <a class="lo-detail-back" href="/">トップページに戻る</a>
+
+    <section class="lo-detail-hero" aria-labelledby="lo-detail-title">
+      <div class="lo-detail-hero__waves" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="lo-detail-container lo-detail-hero__inner">
+        <p class="lo-detail-eyebrow">{eyebrow}</p>
+        <h1 id="lo-detail-title">
+          {headingPhrases.map((phrase) => <span class="lo-detail-heading-phrase">{phrase}</span>)}
+        </h1>
+        <p>{lead}</p>
+      </div>
+    </section>
+
+    <nav class="lo-detail-nav" aria-label="Lexus Online 詳細ページ">
+      <div class="lo-detail-container">
+        <a href="/lexus-online/">概要</a>
+        {lexusOnlineDetailPages.map((item) => (
+          <a href={item.href} aria-current={item.href === currentPath ? "page" : undefined}>{item.label}</a>
+        ))}
+      </div>
+    </nav>
+
+    <script is:inline>
+      (() => {
+        const current = document.querySelector('.lo-detail-nav a[aria-current="page"]');
+        const scroller = current?.closest(".lo-detail-container");
+        if (!current || !scroller) return;
+
+        requestAnimationFrame(() => {
+          if (scroller.scrollWidth <= scroller.clientWidth) return;
+          const left = current.offsetLeft - (scroller.clientWidth - current.offsetWidth) / 2;
+          scroller.scrollTo({ left: Math.max(0, left), behavior: "auto" });
+        });
+      })();
+    </script>
+
+    <slot />
+  </main>
+  <SiteFooter />
+</BaseLayout>

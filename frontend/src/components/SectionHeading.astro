@@ -1,0 +1,25 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  subtitle?: string;
+  id?: string;
+}
+
+const { label, title, subtitle, id } = Astro.props;
+const titleLines = title.split("\n");
+---
+
+<header class="section-heading" id={id}>
+  <img src="/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png" alt="" width="800" height="58" loading="lazy" decoding="async" />
+  <p>{label}</p>
+  <h2>
+    {titleLines.map((line, index) => (
+      <>
+        {index > 0 && <br />}
+        {line}
+      </>
+    ))}
+  </h2>
+  {subtitle && <small>{subtitle}</small>}
+</header>

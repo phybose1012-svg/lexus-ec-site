@@ -1,0 +1,223 @@
+---
+import ArticleCta from "../components/articles/ArticleCta.astro";
+import ArticleInfoGrid from "../components/articles/ArticleInfoGrid.astro";
+import ArticleToc, { type ArticleTocItem } from "../components/articles/ArticleToc.astro";
+import {
+  getArticleTemplateDefinition,
+  type ArticleCtaVariant,
+  type ArticleTemplateId,
+} from "../data/articleTemplates";
+import SiteLayout from "./SiteLayout.astro";
+import "../styles/articles.css";
+
+interface ArticleImage {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+}
+
+interface InfoItem {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  template: ArticleTemplateId;
+  title: string;
+  displayTitle?: string;
+  displayTitleLines?: string[];
+  description: string;
+  canonical: string;
+  lead?: string;
+  date?: string;
+  modified?: string;
+  category?: string;
+  categories?: string[];
+  tags?: string[];
+  ogImage?: string;
+  heroImage?: ArticleImage;
+  heroBadge?: string;
+  heroMessage?: string;
+  heroMessageLines?: string[];
+  heroVariant?: "standard" | "oni" | "interview";
+  keyPoints?: string[];
+  toc?: ArticleTocItem[];
+  infoItems?: InfoItem[];
+  ctaVariant?: ArticleCtaVariant;
+}
+
+const {
+  template,
+  title,
+  displayTitle,
+  displayTitleLines = [],
+  description,
+  canonical,
+  lead,
+  date,
+  modified,
+  category,
+  categories = [],
+  tags = [],
+  ogImage,
+  heroImage,
+  heroBadge,
+  heroMessage,
+  heroMessageLines,
+  heroVariant,
+  keyPoints = [],
+  toc = [],
+  infoItems = [],
+  ctaVariant,
+} = Astro.props;
+
+const templateDefinition = getArticleTemplateDefinition(template);
+const allCategories = category ? [category, ...categories.filter((item) => item !== category)] : categories;
+const defaultHeroVariant =
+  template === "university-entrance-strategy"
+    ? "oni"
+    : template === "interview-prep-guide"
+      ? "interview"
+      : "standard";
+const resolvedHeroVariant = heroVariant ?? defaultHeroVariant;
+const isOniHero = resolvedHeroVariant === "oni";
+const isInterviewHero = resolvedHeroVariant === "interview";
+const defaultOniHeroImage = {
+  src: "/illustrations/characters/yuki-sensei-cheer.png",
+  alt: "鬼特訓イメージキャラクター",
+  width: 376,
+  height: 376,
+};
+const resolvedHeroImage = heroImage ?? (isOniHero ? defaultOniHeroImage : undefined);
+const resolvedDisplayTitle = displayTitle ?? title;
+const resolvedDisplayTitleLines = displayTitleLines.length > 0 ? displayTitleLines : [];
+const resolvedHeroBadge = heroBadge ?? (isOniHero ? "HOT" : isInterviewHero ? "INTERVIEW" : "");
+const resolvedHeroMessageLines =
+  heroMessageLines?.length
+    ? heroMessageLines
+    : heroMessage
+      ? heroMessage.split(/\n+/).filter(Boolean)
+      : isOniHero
+        ? ["君ならできる！", "最後まで自分を信じて走り抜け!!"]
+        : isInterviewHero
+          ? ["なぜこの大学なのかを、自分の言葉で語れる状態へ。"]
+        : [];
+
+const formatDate = (value?: string) => {
+  if (!value) return "";
+  const dateValue = new Date(value);
+  if (Number.isNaN(dateValue.getTime())) return "";
+  return new Intl.DateTimeFormat("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(dateValue);
+};
+
+const publishedLabel = formatDate(date);
+const modifiedLabel = formatDate(modified);
+const resolvedCtaVariant = ctaVariant ?? templateDefinition.ctaVariant;
+---
+
+<SiteLayout title={title} description={description} canonical={canonical} ogImage={ogImage ?? resolvedHeroImage?.src}>
+  <main class={`article-page article-page--${template} article-page--tone-${templateDefinition.visualTone}`}>
+    <header class={`article-hero article-hero--${resolvedHeroVariant}`}>
+      <div class="article-container article-hero__inner">
+        <div class="article-hero__copy">
+          {resolvedHeroBadge && <p class="article-hero__badge">{resolvedHeroBadge}</p>}
+          <p class="article-hero__template">{templateDefinition.label}</p>
+          {allCategories.length > 0 && (
+            <ul class="article-hero__categories" aria-label="記事カテゴリー">
+              {allCategories.slice(0, 4).map((item) => <li>{item}</li>)}
+            </ul>
+          )}
+          <h1 aria-label={resolvedDisplayTitle}>
+            {resolvedDisplayTitleLines.length > 0 ? (
+              resolvedDisplayTitleLines.map((line) => <span class="article-hero__title-line">{line}</span>)
+            ) : (
+              resolvedDisplayTitle
+            )}
+          </h1>
+          {resolvedHeroMessageLines.length > 0 && (
+            <p class="article-hero__message">
+              {resolvedHeroMessageLines.map((line) => <span>{line}</span>)}
+            </p>
+          )}
+          {isOniHero && resolvedHeroImage && (
+            <figure class="article-hero__image">
+              <img
+                src={resolvedHeroImage.src}
+                alt={resolvedHeroImage.alt}
+                width={resolvedHeroImage.width}
+                height={resolvedHeroImage.height}
+                loading="eager"
+                decoding="async"
+              />
+            </figure>
+          )}
+          {lead && <p class="article-hero__lead">{lead}</p>}
+          <dl class="article-hero__meta">
+            {publishedLabel && (
+              <div>
+                <dt>公開日</dt>
+                <dd>{publishedLabel}</dd>
+              </div>
+            )}
+            {modifiedLabel && modifiedLabel !== publishedLabel && (
+              <div>
+                <dt>更新日</dt>
+                <dd>{modifiedLabel}</dd>
+              </div>
+            )}
+          </dl>
+        </div>
+        {!isOniHero && resolvedHeroImage && (
+          <figure class="article-hero__image">
+            <img
+              src={resolvedHeroImage.src}
+              alt={resolvedHeroImage.alt}
+              width={resolvedHeroImage.width}
+              height={resolvedHeroImage.height}
+              loading="eager"
+              decoding="async"
+            />
+          </figure>
+        )}
+      </div>
+    </header>
+
+    <div class="article-container article-body-grid">
+      <article class="article-main">
+        {keyPoints.length > 0 && (
+          <section class="article-keypoints" aria-label="この記事の要点">
+            <h2>この記事の要点</h2>
+            <ul>
+              {keyPoints.map((point) => <li>{point}</li>)}
+            </ul>
+          </section>
+        )}
+
+        <ArticleInfoGrid items={infoItems} />
+
+        <div class="article-content">
+          <slot />
+        </div>
+      </article>
+
+      <aside class="article-sidebar">
+        <ArticleToc items={toc} />
+        <ArticleCta variant={resolvedCtaVariant} />
+        {tags.length > 0 && (
+          <section class="article-tags" aria-label="タグ">
+            <p>タグ</p>
+            <ul>
+              {tags.map((tag) => <li>{tag}</li>)}
+            </ul>
+          </section>
+        )}
+        <slot name="sidebar" />
+      </aside>
+    </div>
+  </main>
+</SiteLayout>

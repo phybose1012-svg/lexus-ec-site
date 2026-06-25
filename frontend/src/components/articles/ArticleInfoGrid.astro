@@ -1,0 +1,24 @@
+---
+interface InfoItem {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  items?: InfoItem[];
+}
+
+const { items = [] } = Astro.props;
+const visibleItems = items.filter((item) => item.label && item.value);
+---
+
+{visibleItems.length > 0 && (
+  <dl class="article-info-grid">
+    {visibleItems.map((item) => (
+      <div>
+        <dt>{item.label}</dt>
+        <dd>{item.value}</dd>
+      </div>
+    ))}
+  </dl>
+)}

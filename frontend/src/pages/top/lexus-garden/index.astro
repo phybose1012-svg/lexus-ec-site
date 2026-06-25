@@ -1,0 +1,209 @@
+---
+import { defaultPageActions } from "../../../data/fixedPages";
+import { seo } from "../../../data/home";
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+
+const title = "医学部予備校 の 生徒専用寮- 「LEXUS GARDEN (レクサスガーデン)」｜全国対応";
+const description =
+  "医学部予備校 レクサス教育センターの生徒専用寮、レクサスガーデンをご案内します。渋谷の校舎に直結、安全管理・食事管理・生活指導で全国の受験生を支援。２名のプロ講師が常駐しており、学習相談、メンタルケアにも対応可能です。北海道から沖縄まで、全国の医学部志願者が入居し、合格を勝ち取っています。";
+
+const images = {
+  garden: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-1-04.jpg",
+  roomIntro: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン案内-13-1024x698.jpg",
+  logoStrip: "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png",
+  mascot: "/assets/legacy/wp-content/uploads/2025/02/新レクサスくん-指さし-2_20240826143701-899x1024.png",
+  guide: "/assets/legacy/wp-content/uploads/2025/11/PR用見本2026-1024x1024.jpg",
+};
+
+const quickLinks = [
+  { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
+  { label: "合格体験記", href: "/top/voice/", tone: "green" },
+  { label: "理念と沿革", href: "/top/history/", tone: "red" },
+];
+
+const securityItems = [
+  {
+    label: "オートロック",
+    src: "/assets/legacy/wp-content/uploads/2025/04/レクサスガーデン-オートロック-3.jpg",
+    alt: "レクサスガーデン オートロック",
+    width: 300,
+    height: 330,
+  },
+  {
+    label: "監視カメラ",
+    src: "/assets/legacy/wp-content/uploads/2025/04/レクサスガーデン　監視カメラ.jpg",
+    alt: "レクサスガーデン 監視カメラ",
+    width: 300,
+    height: 330,
+  },
+  {
+    label: "セキュリティマーク",
+    src: "/assets/legacy/wp-content/uploads/2025/04/レクサスガーデン-セキュリティマーク.jpg",
+    alt: "レクサスガーデン セキュリティマーク",
+    width: 300,
+    height: 330,
+  },
+];
+
+const roomItems = [
+  ["机", "/assets/legacy/wp-content/uploads/2025/04/レクサスガーデン-机.jpg", "レクサスガーデン 机"],
+  ["椅子", "/assets/legacy/wp-content/uploads/2025/04/レクサスガーデン-椅子.jpg", "レクサスガーデン 椅子"],
+  ["ベッド", "/assets/legacy/wp-content/uploads/2025/04/レクサスガーデン-ベッド.jpg", "レクサスガーデン ベッド"],
+  ["カーテン", "/assets/legacy/wp-content/uploads/2025/04/レクサスガーデン-カーテン.jpg", "レクサスガーデン カーテン"],
+  ["冷蔵庫", "/assets/legacy/wp-content/uploads/2025/04/レクサスガーデン-冷蔵庫-1-1.jpg", "レクサスガーデン 冷蔵庫"],
+  ["洗濯機", "/assets/legacy/wp-content/uploads/2025/04/レクサスガーデン-洗濯機.jpg", "レクサスガーデン 洗濯機"],
+  ["エアコン", "/assets/legacy/wp-content/uploads/2025/04/レクサスガーデン　エアコン.jpg", "レクサスガーデン エアコン"],
+  ["電子レンジ", "/assets/legacy/wp-content/uploads/2025/04/レクサスガーデン-電子レンジ.jpg", "レクサスガーデン 電子レンジ"],
+];
+
+const floorPlans = [
+  ["タイプA", "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-06.jpg"],
+  ["タイプB", "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-07.jpg"],
+];
+
+const lifeGallery = [
+  ["居室内写真", "/assets/legacy/wp-content/uploads/2024/11/居室内写真7-scaled.jpg"],
+  ["居室内写真", "/assets/legacy/wp-content/uploads/2024/11/居室内写真1-scaled.jpg"],
+  ["地下自習室", "/assets/legacy/wp-content/uploads/2024/11/DSC00015-scaled.jpg"],
+  ["内装", "/assets/legacy/wp-content/uploads/2024/11/DSC09748-scaled.jpg"],
+  ["質問対応の様子", "/assets/legacy/wp-content/uploads/2024/11/DSC00006-scaled.jpg"],
+  ["内装", "/assets/legacy/wp-content/uploads/2024/11/DSC09792-scaled.jpg"],
+];
+
+const exteriorGallery = [
+  ["レクサスガーデン外観", images.garden],
+  ["エントランス", "/assets/legacy/wp-content/uploads/2024/11/IMG_5004-scaled.jpg"],
+  ["エントランス", "/assets/legacy/wp-content/uploads/2024/11/IMG_5025-scaled.jpg"],
+  ["玄関", "/assets/legacy/wp-content/uploads/2024/11/玄関-scaled.jpg"],
+  ["ガーデン質問対応", "/assets/legacy/wp-content/uploads/2025/02/ガーデン質問対応.jpg"],
+  ["川島T授業", "/assets/legacy/wp-content/uploads/2025/02/川島T授業.jpg"],
+];
+---
+
+<SiteLayout title={title} description={description} canonical="https://lexus-ec.com/top/lexus-garden/" ogImage={seo.ogImage}>
+  <main class="garden-page">
+    <section class="garden-hero">
+      <div class="garden-hero__title">
+        <h1>生徒専用寮 <br />『LEXUS GARDEN』 のご案内</h1>
+      </div>
+      <div class="content garden-hero__stack">
+        <img class="garden-hero__building" src={images.garden} alt="レクサスガーデン外観" width="788" height="518" decoding="async" />
+        <a
+          class="button button--green garden-view-button"
+          href="https://www.google.com/maps/@35.654961,139.6995549,3a,75y,255.71h,82.94t/data=!3m7!1e1!3m5!1s4MmKqgfWgAEElbVTY_DenA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D7.055657400941385%26panoid%3D4MmKqgfWgAEElbVTY_DenA%26yaw%3D255.71317896736466!7i16384!8i8192?hl=ja&coh=205410&entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D"
+          rel="noreferrer"
+        >
+          周りの風景を見る
+        </a>
+        <img class="garden-hero__room" src={images.roomIntro} alt="レクサスガーデン案内" width="800" height="545" loading="lazy" decoding="async" />
+        <div class="garden-button-row garden-button-row--center">
+          {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="garden-floor" aria-labelledby="garden-floor-title">
+      <div class="content">
+        <img class="garden-logo-strip" src={images.logoStrip} alt="ロゴ" width="800" height="58" loading="lazy" decoding="async" />
+        <h2 id="garden-floor-title">◇◆◇ 間取り図 ◇◆◇</h2>
+        <p>女性専用フロアあります。</p>
+        <figure class="garden-floor-plan">
+          <div class="garden-floor-plan__grid">
+            {floorPlans.map(([label, src]) => (
+              <a href={src}>
+                <img src={src} alt={`レクサスガーデン ${label}`} width="800" height="800" loading="lazy" decoding="async" />
+              </a>
+            ))}
+          </div>
+          <figcaption>← スクロール →<br />（タップで拡大できます）</figcaption>
+        </figure>
+        <div class="garden-button-row garden-button-row--center">
+          <a class="button button--red" href="/request-documents/">資料請求</a>
+          <a class="button button--blue" href="/reservation/">内見予約</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="garden-equipment" aria-labelledby="garden-equipment-title">
+      <div class="content">
+        <h2 id="garden-equipment-title">◇◆◇ 安全で快適な設備 ◇◆◇</h2>
+        <p class="garden-lead">受験勉強に専念できる、安心のセキュリティー</p>
+        <div class="garden-security-grid">
+          {securityItems.map((item) => (
+            <figure>
+              <img src={item.src} alt={item.alt} width={item.width} height={item.height} loading="lazy" decoding="async" />
+              <figcaption>{item.label}</figcaption>
+            </figure>
+          ))}
+        </div>
+        <ul class="garden-feature-list">
+          <li>◎床暖房あり</li>
+          <li>◎ウォシュレットあり</li>
+          <li>◎独立洗面台あり</li>
+          <li>◎浴室乾燥機あり</li>
+          <li>◎食事の宅配可能（オプション）</li>
+        </ul>
+        <div class="garden-room-labels">
+          {roomItems.map(([label]) => <span>{label}</span>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="garden-location" aria-labelledby="garden-location-title">
+      <div class="content garden-location__grid">
+        <img src={images.mascot} alt="レクサスくん(マスコットキャラクター)" width="800" height="911" loading="lazy" decoding="async" />
+        <div>
+          <h2 id="garden-location-title">◇◆◇ 所在地 ◇◆◇</h2>
+          <p>〒150-0031 東京都渋谷区桜丘町29番7号 LEXUS GARDEN<br />★JR渋谷駅の 新南改札 から徒歩５分</p>
+          <h2>◇◆◇ Googleマップ ◇◆◇</h2>
+          <a class="garden-map-card" href="https://www.google.com/maps/search/?api=1&query=東京都渋谷区桜丘町29-7" rel="noreferrer">
+            <span>東京都渋谷区桜丘町29-7</span>
+            <strong>Google Mapで開く</strong>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="garden-gallery" aria-labelledby="garden-gallery-title">
+      <div class="content">
+        <h2 id="garden-gallery-title">◇◆◇ ギャラリー ◇◆◇</h2>
+        <div class="garden-photo-grid">
+          {lifeGallery.map(([label, src]) => (
+            <a href={src}>
+              <img src={src} alt={label} width="600" height="400" loading="lazy" decoding="async" />
+              <span>{label}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="garden-gallery garden-gallery--second" aria-labelledby="garden-gallery-second-title">
+      <div class="content">
+        <h2 id="garden-gallery-second-title">◇◆◇ ギャラリー ◇◆◇</h2>
+        <div class="garden-photo-grid">
+          {exteriorGallery.map(([label, src]) => (
+            <a href={src}>
+              <img src={src} alt={label} width="600" height="400" loading="lazy" decoding="async" />
+              <span>{label}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="garden-guide">
+      <div class="content garden-guide__grid">
+        <img src={images.guide} alt="医学部合格読本 2026" width="800" height="800" loading="lazy" decoding="async" />
+        <div>
+          <h3>資料請求した方へプレゼント</h3>
+          <h2>レクサスのプロ講師と、 レクサスの卒業生が、共同で作りました。</h2>
+          <p>レクサスガーデンの設備や費用、通学環境については資料請求または個別相談でご確認ください。</p>
+          <div class="fixed-hero__actions">
+            {defaultPageActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>

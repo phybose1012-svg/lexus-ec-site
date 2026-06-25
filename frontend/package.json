@@ -1,0 +1,19 @@
+{
+  "name": "lexus-ec-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node ./scripts/astro-command.mjs dev --host 127.0.0.1",
+    "build": "node ./scripts/astro-command.mjs check && node ./scripts/astro-command.mjs build",
+    "preview": "node ./scripts/astro-command.mjs preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "astro": "^5.0.0",
+    "typescript": "^5.6.0"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.61.0"
+  }
+}

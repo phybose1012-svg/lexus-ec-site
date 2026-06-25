@@ -1,0 +1,219 @@
+---
+import LexusOnlineDetailLayout from "../../components/lexus-online/LexusOnlineDetailLayout.astro";
+import { lexusOnlineContactHref } from "../../data/lexusOnlineDetails";
+
+const title = "Lexus Online アプリケーション開発の流れ｜教育業務システム・AI業務改善";
+const description =
+  "Lexus Onlineのアプリケーション開発プロセスを、業務診断、MVP設計、UI設計、開発、導入、改善、保守まで詳しく説明します。";
+const canonical = "https://lexus-ec.com/lexus-online/development-flow/";
+
+const phases = [
+  {
+    title: "現場診断",
+    body: "生徒管理、教材作成、採点、勤怠、保護者連絡、講師共有などの現行フローを確認します。最初に、何をデジタル化するかではなく、どこで教育品質が落ちているかを見ます。",
+  },
+  {
+    title: "情報設計",
+    body: "点数、課題、答案、面談、弱点、復習予定、教材、講師コメントなどを、どの単位で保存し、誰が見て、何に使うかを定義します。",
+  },
+  {
+    title: "MVP範囲の決定",
+    body: "最初から全機能を作りません。毎日使われる画面、判断を軽くする機能、手戻りを減らす帳票から優先します。",
+  },
+  {
+    title: "UI・業務フロー設計",
+    body: "講師、教室長、事務、保護者、生徒のそれぞれが、迷わず使える画面にします。見た目の派手さより、入力の軽さと確認のしやすさを優先します。",
+  },
+  {
+    title: "開発・AI組み込み",
+    body: "Webアプリ、管理画面、データベース、PDF出力、AI作問、添削補助、レポート生成などを実装します。AIは業務の流れに埋め込み、単体機能で浮かないようにします。",
+  },
+  {
+    title: "導入支援",
+    body: "初期データ投入、講師説明、操作ルール作成、権限設定、既存表からの移行を支援します。導入直後は、使われていない理由を早く見つけます。",
+  },
+  {
+    title: "運用改善・保守",
+    body: "月次で利用状況と課題を確認し、軽微な修正、レポート改善、AI出力調整、運用ルール見直しを続けます。納品して終わりではなく、現場に合わせて育てます。",
+  },
+];
+
+const deliverables = [
+  {
+    item: "業務診断メモ",
+    detail: "現行フロー、課題、重複作業、属人化している判断、優先改善点を整理します。",
+  },
+  {
+    item: "MVP要件定義",
+    detail: "初期開発で作る機能、作らない機能、次フェーズへ回す機能を明確にします。",
+  },
+  {
+    item: "画面構成・権限設計",
+    detail: "講師、管理者、事務、保護者、生徒など、利用者ごとの表示範囲を決めます。",
+  },
+  {
+    item: "プロトタイプ",
+    detail: "開発前または開発初期に、画面の流れを確認できる状態にします。",
+  },
+  {
+    item: "本番アプリケーション",
+    detail: "Webアプリ、管理画面、データベース、AI連携、帳票出力などを実装します。",
+  },
+  {
+    item: "導入・運用資料",
+    detail: "操作手順、入力ルール、権限ルール、問い合わせ時の確認項目をまとめます。",
+  },
+];
+
+const systemRows = [
+  {
+    type: "生徒管理",
+    mvp: "生徒情報、成績、面談、課題、弱点を一画面で確認",
+    growth: "志望校距離、復習設計、講師別コメント、保護者報告と連携",
+  },
+  {
+    type: "教材作成",
+    mvp: "問題、解説、単元、難度、PDF出力の基本管理",
+    growth: "AI作問、教材ライブラリ、改善履歴、講師間共有",
+  },
+  {
+    type: "採点・添削",
+    mvp: "採点基準、答案アップロード、講師確認フロー",
+    growth: "AI補助採点、記述添削候補、弱点タグ化、再出題",
+  },
+  {
+    type: "講師・勤怠",
+    mvp: "シフト、稼働時間、担当生徒、報告提出状況",
+    growth: "給与計算前データ、稼働分析、講師別KPI",
+  },
+  {
+    type: "保護者連絡",
+    mvp: "月次報告、面談メモ、連絡履歴、テンプレート",
+    growth: "学習状況レポート、未読管理、問い合わせ管理",
+  },
+];
+---
+
+<LexusOnlineDetailLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  eyebrow="Development Flow"
+  heading="現場で使われる順番に作る。"
+  lead="Lexus Onlineは、要件を膨らませて高額化するのではなく、教育現場のボトルネックを見つけ、最初に効く範囲から小さく作り、運用の中で育てます。"
+  currentPath="/lexus-online/development-flow/"
+>
+  <section class="lo-detail-section">
+    <div class="lo-detail-container">
+      <div class="lo-detail-heading">
+        <p class="lo-detail-label">Process</p>
+        <h2>開発の7ステップ</h2>
+        <p>各ステップで「教育品質に効くか」「現場が毎日使えるか」「次の改善につながるか」を確認します。</p>
+      </div>
+      <div class="lo-detail-flow">
+        {phases.map((phase) => (
+          <article class="lo-detail-step">
+            <div>
+              <h3>{phase.title}</h3>
+              <p>{phase.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="lo-detail-section lo-detail-section--soft">
+    <div class="lo-detail-container">
+      <div class="lo-detail-heading">
+        <p class="lo-detail-label">Deliverables</p>
+        <h2>開発中に作るもの</h2>
+        <p>納品物はソースコードだけではありません。現場が運用できる状態まで含めて整えます。</p>
+      </div>
+      <div class="lo-detail-grid">
+        {deliverables.map((item) => (
+          <article class="lo-detail-card">
+            <span>Deliverable</span>
+            <h3>{item.item}</h3>
+            <p>{item.detail}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="lo-detail-section">
+    <div class="lo-detail-container">
+      <div class="lo-detail-heading">
+        <p class="lo-detail-label">MVP to Growth</p>
+        <h2>最初に作る範囲と、育てる範囲</h2>
+        <p>同じ生徒管理でも、最初から全機能を作るか、使われる最小範囲から始めるかで費用と定着率が大きく変わります。</p>
+      </div>
+      <div class="lo-detail-table-wrap">
+        <table class="lo-detail-table">
+          <thead>
+            <tr>
+              <th>対象</th>
+              <th>最初に作る範囲</th>
+              <th>運用後に育てる範囲</th>
+            </tr>
+          </thead>
+          <tbody>
+            {systemRows.map((row) => (
+              <tr>
+                <th>{row.type}</th>
+                <td>{row.mvp}</td>
+                <td>{row.growth}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="lo-detail-section lo-detail-section--dark">
+    <div class="lo-detail-container">
+      <div class="lo-detail-heading">
+        <p class="lo-detail-label">Maintenance</p>
+        <h2>保守は、止まらないためだけでなく、良くするためにある。</h2>
+        <p>
+          教育業務システムは、使いながらルールが変わります。保守では障害確認だけでなく、利用状況、入力負荷、講師の迷い、AI出力のズレを見て改善します。
+        </p>
+      </div>
+      <div class="lo-detail-grid lo-detail-grid--two">
+        <article class="lo-detail-card">
+          <h3>通常保守で見ること</h3>
+          <ul class="lo-detail-list">
+            <li>軽微な表示修正、文言修正、設定変更</li>
+            <li>月次の利用状況確認と改善相談</li>
+            <li>データ保存、権限、ログ、操作ミスの確認</li>
+            <li>AI出力の調整、プロンプト更新、テンプレート改善</li>
+          </ul>
+        </article>
+        <article class="lo-detail-card">
+          <h3>別途設計になること</h3>
+          <ul class="lo-detail-list">
+            <li>決済連携、基幹システム連携、大規模データ移行</li>
+            <li>24時間監視、高度なセキュリティ監査、SLA契約</li>
+            <li>新しい業務領域の追加、SaaS外販化、複数拠点展開</li>
+            <li>大規模なAI利用量、外部API費用、インフラ増強</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="lo-detail-cta">
+    <div class="lo-detail-container">
+      <p class="lo-detail-label">Next</p>
+      <h2>まず、作る前に業務の流れを整理します。</h2>
+      <p>現在の管理表、教材作成手順、採点、講師連絡、保護者報告を見れば、どこから作るべきかを切り分けられます。</p>
+      <div class="lo-detail-actions">
+        <a class="button button--red" href="/lexus-online/contact/">問い合わせフォームへ</a>
+        <a class="button button--blue" href="/lexus-online/application-flow/">申し込みの流れを見る</a>
+        <a class="button button--light" href={lexusOnlineContactHref}>メールで相談する</a>
+      </div>
+    </div>
+  </section>
+</LexusOnlineDetailLayout>

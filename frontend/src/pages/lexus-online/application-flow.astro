@@ -1,0 +1,199 @@
+---
+import LexusOnlineDetailLayout from "../../components/lexus-online/LexusOnlineDetailLayout.astro";
+import { lexusOnlineContactHref, lexusOnlineOpenItems } from "../../data/lexusOnlineDetails";
+
+const title = "Lexus Online 相談・申し込みの流れ｜教育事業者向けシステム開発";
+const description =
+  "Lexus Onlineへの相談から申し込み、見積もり、契約、開発着手までの流れと、事前に整理しておきたい項目をまとめたページです。";
+const canonical = "https://lexus-ec.com/lexus-online/application-flow/";
+
+const steps = [
+  {
+    title: "問い合わせ",
+    body: "フォームまたはメールで、現在困っている業務、作りたいシステム、既存ツール、希望時期を送ってください。詳細が固まっていなくても構いません。",
+  },
+  {
+    title: "初回ヒアリング",
+    body: "生徒管理、教材作成、採点、講師管理、保護者連絡など、どの業務から改善すべきかを整理します。AIを入れる前に、業務の流れを確認します。",
+  },
+  {
+    title: "診断・改善方針の提示",
+    body: "最初に作るべき範囲、作らない範囲、既存ツールで代替できる範囲を分けます。必要に応じて、MVP案と段階的な拡張案を提示します。",
+  },
+  {
+    title: "概算見積もり",
+    body: "機能範囲、導入支援、保守範囲、AI利用量、既存システム連携の有無をもとに、初期費用と月額保守の目安を出します。",
+  },
+  {
+    title: "要件整理・契約",
+    body: "個人情報の扱い、データ移行、利用者権限、納品範囲、保守範囲、支払い条件を整理し、合意後に着手します。",
+  },
+  {
+    title: "開発着手",
+    body: "画面構成、データ構造、業務フロー、初期導入の順番を確定し、短いサイクルで確認しながら開発します。",
+  },
+];
+
+const prepItems = [
+  {
+    title: "現在使っている管理表・ツール",
+    body: "Googleスプレッドシート、Excel、LINE、メール、既存SaaS、紙の管理表など、実際に使っているものを共有できる範囲で整理してください。",
+  },
+  {
+    title: "一番重い業務",
+    body: "教材作成、採点、報告書、面談準備、講師連絡、保護者対応など、時間がかかっている作業を優先順位付きで整理します。",
+  },
+  {
+    title: "誰が使うか",
+    body: "教室長、講師、事務、保護者、生徒、外部講師など、利用者ごとに見せてよい情報と入力すべき情報が変わります。",
+  },
+  {
+    title: "扱う個人情報",
+    body: "生徒情報、成績、答案、面談記録、保護者連絡履歴、決済情報など、保存する情報の種類を確認します。",
+  },
+  {
+    title: "導入したい時期",
+    body: "新年度、講習前、入試期後など、教育現場の繁忙期を考慮して、開発と導入のスケジュールを調整します。",
+  },
+  {
+    title: "予算感と保守方針",
+    body: "最初の開発費だけでなく、月額保守、改善ミーティング、AI/API利用料、サーバー費用も含めて考えます。",
+  },
+];
+
+const scopeQuestions = [
+  "いま最も減らしたい作業時間は何か",
+  "毎日使われる画面はどれか",
+  "講師が判断に迷う場面はどこか",
+  "保護者へ説明しにくい情報は何か",
+  "教材や説明が属人化している部分はどこか",
+  "AIに任せたい作業と、人間が確認したい作業は何か",
+  "既存システムを残す部分と、置き換える部分はどこか",
+  "最初の1か月で効果を確認したい指標は何か",
+];
+---
+
+<LexusOnlineDetailLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  eyebrow="Application Flow"
+  heading="相談前に、完璧な要件書はいりません。"
+  lead="必要なのは、教育現場で何が重く、何を軽くしたいかです。Lexus Onlineは、相談段階で業務を分解し、最初に作るべき範囲を一緒に絞ります。"
+  currentPath="/lexus-online/application-flow/"
+>
+  <section class="lo-detail-section">
+    <div class="lo-detail-container">
+      <div class="lo-detail-heading">
+        <p class="lo-detail-label">From Inquiry To Start</p>
+        <h2>問い合わせから開発着手まで</h2>
+        <p>初回相談では、システム名よりも業務の流れを重視します。要件が曖昧な状態からでも、改善範囲を切り分けられるように進めます。</p>
+      </div>
+      <div class="lo-detail-flow">
+        {steps.map((step) => (
+          <article class="lo-detail-step">
+            <div>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="lo-detail-section lo-detail-section--soft">
+    <div class="lo-detail-container">
+      <div class="lo-detail-heading">
+        <p class="lo-detail-label">Preparation</p>
+        <h2>相談前に整理できると早いもの</h2>
+        <p>すべて揃っていなくても相談可能です。分かる範囲で共有いただけると、初回診断の精度が上がります。</p>
+      </div>
+      <div class="lo-detail-grid">
+        {prepItems.map((item) => (
+          <article class="lo-detail-card">
+            <span>Check</span>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="lo-detail-section">
+    <div class="lo-detail-container">
+      <div class="lo-detail-heading">
+        <p class="lo-detail-label">Scope Questions</p>
+        <h2>最初の開発範囲を決める質問</h2>
+        <p>回答できないものがあっても問題ありません。むしろ、この質問に答える過程で「最初に作るべきもの」が見えてきます。</p>
+      </div>
+      <div class="lo-detail-checklist">
+        <h3>ヒアリング項目</h3>
+        <ul>
+          {scopeQuestions.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="lo-detail-section lo-detail-section--dark">
+    <div class="lo-detail-container">
+      <div class="lo-detail-heading">
+        <p class="lo-detail-label">Decision Needed</p>
+        <h2>契約前に詰める項目</h2>
+        <p>教育業務システムは個人情報と運用ルールに関わるため、開発前に次の項目を明確にします。</p>
+      </div>
+      <div class="lo-detail-grid lo-detail-grid--two">
+        <article class="lo-detail-card">
+          <h3>業務・機能面</h3>
+          <ul class="lo-detail-list">
+            <li>最初に扱う業務領域</li>
+            <li>MVPに含める機能と含めない機能</li>
+            <li>利用者の種類と権限</li>
+            <li>既存データの移行範囲</li>
+            <li>帳票、PDF、保護者向けレポートの形式</li>
+          </ul>
+        </article>
+        <article class="lo-detail-card">
+          <h3>契約・運用面</h3>
+          <ul class="lo-detail-list">
+            <li>個人情報の保存場所と利用範囲</li>
+            <li>AIに渡す情報と渡さない情報</li>
+            <li>月額保守の範囲</li>
+            <li>追加開発の判断基準</li>
+            <li>公開事例として掲載できる範囲</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="lo-detail-section lo-detail-section--soft">
+    <div class="lo-detail-container">
+      <div class="lo-detail-heading">
+        <p class="lo-detail-label">Open Items</p>
+        <h2>このサービス全体で今後具体化する項目</h2>
+        <p>営業資料や契約資料としてより強くするには、次の項目をさらに詰める必要があります。</p>
+      </div>
+      <div class="lo-detail-checklist">
+        <h3>要確認リスト</h3>
+        <ul>
+          {lexusOnlineOpenItems.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="lo-detail-cta">
+    <div class="lo-detail-container">
+      <p class="lo-detail-label">Start</p>
+      <h2>まずは、今いちばん重い業務を一つ教えてください。</h2>
+      <p>そこから、AIで軽くできる部分、Webアプリ化すべき部分、既存ツールで十分な部分を切り分けます。</p>
+      <div class="lo-detail-actions">
+        <a class="button button--red" href="/lexus-online/contact/">問い合わせフォームへ</a>
+        <a class="button button--blue" href={lexusOnlineContactHref}>メールで相談する</a>
+      </div>
+    </div>
+  </section>
+</LexusOnlineDetailLayout>

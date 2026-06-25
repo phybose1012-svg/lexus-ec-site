@@ -1,0 +1,95 @@
+---
+import { seo } from "../../data/home";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../site/SiteHeader.astro";
+import LegacyFormFooter from "./LegacyFormFooter.astro";
+import PendingFormScript from "./PendingFormScript.astro";
+
+const title = "お問い合わせ - 医学部予備校 レクサス E.C.";
+const description =
+  "医学部予備校レクサス教育センターへのお問い合わせ・資料請求はこちら。パンフレットのご請求、個別入塾説明会、校舎・専用寮の見学、無料体験授業のお申し込みを一括で承ります。医学部受験に関するご質問もお気軽にどうぞ。";
+const configuredEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT;
+const endpoint = configuredEndpoint || "/form-submit/";
+const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" };
+const mascot = "/assets/legacy/wp-content/uploads/2025/02/新レクサスくん_お辞儀_cropped-979x1024.jpg";
+const garden = "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-1-04.jpg";
+---
+
+<BaseLayout title={title} description={description} canonical="https://lexus-ec.com/top/contact/" ogImage={seo.ogImage}>
+  <SiteHeader />
+  <main class="legacy-contact-page">
+    <section class="legacy-contact-hero">
+      <p>CONTACT</p>
+      <h1>お問い合わせ</h1>
+      <div class="legacy-contact-hero__mascot">
+        <span>ご質問ください</span>
+        <img src={mascot} alt="新レクサスくん_お辞儀_cropped 医学部合格 医学部受験情報 医学部予備校 レクサス教育センター" width="979" height="1024" loading="lazy" decoding="async" />
+        <span>なんでも気軽に</span>
+      </div>
+    </section>
+
+    <section class="legacy-contact-phone" aria-label="電話でのお問い合わせ">
+      <p>お急ぎの場合は<br />電話でお問い合わせください。</p>
+      <a href="tel:03-3477-1306">03-3477-1306</a>
+    </section>
+
+    <section class="legacy-contact-line">
+      <h2>LINEでもお応えします。</h2>
+      <a href="https://lin.ee/GxPRvAE" rel="noreferrer"><span class="legacy-line-button">LINE</span></a>
+      <p>↑ お問合せ用アカウント ↑</p>
+    </section>
+
+    <section class="legacy-contact-form-block" aria-labelledby="contact-form-heading">
+      <h2 id="contact-form-heading">◇ お問い合わせフォーム ◇</h2>
+      <form action={endpoint} method="post" class="legacy-contact-form" {...localFormAttrs}>
+        <input type="hidden" name="formType" value="contact" />
+        <input type="hidden" name="sourcePath" value="/top/contact/" />
+        <label>
+          <span>お名前 <em>*</em></span>
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          <span>メールアドレス <em>*</em></span>
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          <span>電話番号</span>
+          <input type="tel" name="tel" />
+        </label>
+        <label>
+          <span>学年・状況</span>
+          <select name="studentType">
+            <option value="">選択してください</option>
+            <option>既卒生</option>
+            <option>高3生</option>
+            <option>高2生</option>
+            <option>高1生</option>
+            <option>中学生</option>
+            <option>再受験生</option>
+            <option>保護者</option>
+          </select>
+        </label>
+        <label class="legacy-contact-form__wide">
+          <span>ご相談内容 <em>*</em></span>
+          <textarea name="message" rows="3" required></textarea>
+        </label>
+        <label class="legacy-contact-form__privacy">
+          <input type="checkbox" name="privacy" value="同意する" required />
+          <span>個人情報の取り扱いに同意します。 <em>*</em></span>
+        </label>
+        <button type="submit">問い合わせる</button>
+        <p class="form-submit-note" data-local-form-status hidden></p>
+      </form>
+    </section>
+
+    <section class="legacy-contact-garden">
+      <h2>生徒専用寮</h2>
+      <p>LEXUS GARDEN</p>
+      <h3>レクサスガーデン</h3>
+      <img src={garden} alt="レクサスガーデン外観" width="1200" height="800" loading="lazy" decoding="async" />
+      <a href="/top/lexus-garden/">設備や費用を見る</a>
+    </section>
+  </main>
+  {!configuredEndpoint && <PendingFormScript />}
+  <LegacyFormFooter />
+</BaseLayout>

@@ -1,0 +1,27 @@
+---
+export interface ArticleTocItem {
+  id: string;
+  text: string;
+  level?: 2 | 3;
+}
+
+interface Props {
+  items?: ArticleTocItem[];
+}
+
+const { items = [] } = Astro.props;
+const visibleItems = items.filter((item) => item.id && item.text);
+---
+
+{visibleItems.length > 0 && (
+  <nav class="article-toc" aria-label="記事の目次">
+    <p class="article-toc__title">目次</p>
+    <ol>
+      {visibleItems.map((item) => (
+        <li class:list={[item.level === 3 && "article-toc__item--child"]}>
+          <a href={`#${item.id}`}>{item.text}</a>
+        </li>
+      ))}
+    </ol>
+  </nav>
+)}

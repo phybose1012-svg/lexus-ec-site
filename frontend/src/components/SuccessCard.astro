@@ -1,0 +1,51 @@
+---
+import type { SuccessCard as SuccessCardData } from "../data/home";
+
+interface Props {
+  card: SuccessCardData;
+  priority?: boolean;
+}
+
+const { card, priority = false } = Astro.props;
+const videoHref = `https://www.youtube.com/watch?v=${card.videoId}`;
+---
+
+<article class="success-card">
+  <h3>
+    {card.titleLines.map((line, index) => (
+      <>
+        {index > 0 && <br />}
+        {line}
+      </>
+    ))}
+  </h3>
+  <div class="success-card__body">
+    <img
+      src={card.image}
+      alt={card.imageAlt}
+      width={card.width}
+      height={card.height}
+      loading={priority ? "eager" : "lazy"}
+      fetchpriority={priority ? "high" : "auto"}
+      decoding="async"
+    />
+    <dl>
+      <div>
+        <dt>合格大学</dt>
+        <dd>
+          {card.universities.map((university, index) => (
+            <>
+              {index > 0 && <br />}
+              {university}
+            </>
+          ))}
+        </dd>
+      </div>
+      <div>
+        <dt>偏差値</dt>
+        <dd>{card.deviation}</dd>
+      </div>
+    </dl>
+    <a class="video-button" href={videoHref} target="_blank" rel="noopener">▶︎ インタビュー動画を見る</a>
+  </div>
+</article>

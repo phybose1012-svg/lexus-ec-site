@@ -1,0 +1,165 @@
+---
+import { seo } from "../../data/home";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+
+const title = "入学までの流れ - レクサス教育センター";
+const description =
+  "入学 - までの流れ - まずは個別説明会のご予約 - 電話または申込みフォームからのご予約をお願いします。個別説明会は 60～90分ほどのお時間を頂戴しております。体験授業、選抜テストの申し込みも合わせて承ります。 - レクサス教育センター - 医学部予備校 - 専用寮あり";
+
+const images = {
+  logoStrip: "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png",
+  consultation: "/assets/legacy/wp-content/uploads/2025/02/説明会写真-01-e1724740397912-1024x585.jpg",
+  flow: "/assets/legacy/wp-content/uploads/2025/05/入学までの流れ-1-777x1024.jpg",
+  mascot: "/assets/legacy/wp-content/uploads/2025/02/新レクサスくん-指さし-2_20240826143701-899x1024.png",
+  garden: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-1-04.jpg",
+  guide: "/assets/legacy/wp-content/uploads/2025/10/読本-2026.jpg",
+};
+
+const quickLinks = [
+  { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
+  { label: "合格体験記", href: "/top/voice/", tone: "green" },
+  { label: "理念と沿革", href: "/top/history/", tone: "red" },
+];
+
+const steps = [
+  {
+    number: "01",
+    title: "無料面談のご予約",
+    body: "電話または予約フォームからお申し込みください。個別説明会は60〜90分ほどのお時間を頂戴しています。",
+    note: "体験授業、選抜テストの申し込みも合わせて承ります。",
+  },
+  {
+    number: "02",
+    title: "プロ講師と面談",
+    body: "レクサスがご自身に合う予備校かどうかを確かめます。指導方針、校舎、専用寮をご案内し、学習相談も行います。",
+  },
+  {
+    number: "03",
+    title: "レクサスの授業を体験",
+    body: "プロ講師の指導を実際に受けていただきます。個別説明会で体験授業の予約が可能です。",
+  },
+  {
+    number: "04",
+    title: "学習プランとお見積り",
+    body: "合格までの学習計画を提示し、その内容に合わせて学費のお見積りをいたします。",
+  },
+  {
+    number: "05",
+    title: "入学手続き",
+    body: "学習計画と学費をご覧のうえ、入学をご希望の場合は入学手続きの書類をお渡しします。",
+    note: "専用寮の利用をご希望の場合は、入寮手続きの書類も合わせてお渡しします。",
+  },
+];
+---
+
+<SiteLayout title={title} description={description} canonical="https://lexus-ec.com/top/entrance/" ogImage={seo.ogImage}>
+  <main class="entrance-page">
+    <section class="entrance-ribbon" aria-hidden="true">
+      <img src={images.logoStrip} alt="" width="1024" height="74" decoding="async" />
+    </section>
+
+    <section class="entrance-hero">
+      <div class="content entrance-hero__inner">
+        <nav class="entrance-hero__links" aria-label="関連ページ">
+          {quickLinks.map((link) => <a class={`entrance-pill entrance-pill--${link.tone}`} href={link.href}>{link.label}</a>)}
+        </nav>
+        <div class="entrance-hero__grid">
+          <div>
+            <p class="entrance-hero__eyebrow">レクサス教育センター入学をご検討の方へ</p>
+            <h1>入学までの流れ</h1>
+            <p class="entrance-hero__lead">まずは個別説明会のご予約から。学習相談、体験授業、選抜テスト、専用寮の見学まで、現在の状況に合わせてご案内します。</p>
+            <div class="entrance-actions">
+              <a class="button button--blue" href="/reservation/">個別説明会を予約</a>
+              <a class="button button--green" href="/top/teacher/">体験授業を相談</a>
+              <a class="button button--red" href="/test-entry/">選抜テスト申込</a>
+            </div>
+          </div>
+          <img src={images.consultation} alt="個別説明会で相談する様子" width="1024" height="585" decoding="async" />
+        </div>
+      </div>
+    </section>
+
+    <section class="entrance-reserve" aria-labelledby="entrance-reserve-title">
+      <div class="content entrance-reserve__grid">
+        <div>
+          <p class="entrance-section-label">RESERVATION</p>
+          <h2 id="entrance-reserve-title">無料面談のご予約</h2>
+          <p>電話または申込みフォームからのご予約をお願いします。</p>
+        </div>
+        <div class="entrance-reserve__actions">
+          <a class="entrance-phone" href="tel:0334771306">
+            <span>お電話</span>
+            <strong>03-3477-1306</strong>
+          </a>
+          <a class="button button--red" href="/reservation/">予約フォーム</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="entrance-flow" aria-labelledby="entrance-flow-title">
+      <div class="content entrance-flow__inner">
+        <header class="entrance-section-head">
+          <p>FLOW</p>
+          <h2 id="entrance-flow-title">合格への近道を案内します</h2>
+        </header>
+        <div class="entrance-flow__grid">
+          <div class="entrance-step-list">
+            {steps.map((step) => (
+              <article class="entrance-step">
+                <div class="entrance-step__marker">
+                  <span>{step.number}</span>
+                </div>
+                <div class="entrance-step__body">
+                  <h3>{step.title}</h3>
+                  <p>{step.body}</p>
+                  {step.note && <p class="entrance-step__note">{step.note}</p>}
+                </div>
+              </article>
+            ))}
+          </div>
+          <aside class="entrance-flow__visual" aria-label="入学までの流れ 図解">
+            <img src={images.flow} alt="入学までの流れの図解" width="777" height="1024" loading="lazy" decoding="async" />
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="entrance-guide-block">
+      <div class="content entrance-guide-block__grid">
+        <div>
+          <p class="entrance-section-label">GUIDANCE</p>
+          <h2>校舎と専用寮も見学できます</h2>
+          <p>専用寮「LEXUS GARDEN」の内見も可能です。遠方からの受験生、保護者の方にも、生活面を含めてご確認いただけます。</p>
+          <a class="button button--green" href="/top/lexus-garden/">設備や費用を見てみる</a>
+        </div>
+        <img src={images.garden} alt="生徒専用寮 レクサスガーデン外観" width="788" height="518" loading="lazy" decoding="async" />
+      </div>
+    </section>
+
+    <section class="entrance-document">
+      <div class="content entrance-document__grid">
+        <img src={images.guide} alt="医学部合格読本 2026" width="920" height="920" loading="lazy" decoding="async" />
+        <div>
+          <p class="entrance-section-label">DOCUMENT</p>
+          <h2>資料請求した方へプレゼント</h2>
+          <p>レクサスのプロ講師と卒業生が共同で作った医学部情報誌をお届けします。</p>
+          <a class="button button--red" href="/request-documents/">資料請求</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="entrance-final-cta">
+      <div class="content entrance-final-cta__inner">
+        <img src={images.mascot} alt="" width="899" height="1024" loading="lazy" decoding="async" />
+        <div>
+          <p>医学部合格へ向けて、今の状況から最短距離を一緒に設計します。</p>
+          <div class="entrance-actions">
+            <a class="button button--blue" href="/reservation/">個別説明会</a>
+            <a class="button button--green" href="/top/teacher/">講師紹介</a>
+            <a class="button button--red" href="/top/voice/">合格体験記</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>

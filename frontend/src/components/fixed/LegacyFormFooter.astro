@@ -1,0 +1,28 @@
+---
+import { navGroups } from "../../data/home";
+---
+
+<footer class="legacy-form-footer">
+  <div class="legacy-form-footer__box">
+    <p class="legacy-form-footer__title">ー MENU ー</p>
+    <div class="legacy-form-footer__grid">
+      {navGroups.map((group) => (
+        <nav aria-label={group.label}>
+          <p>{group.label}</p>
+          {group.links.map((link) => <a href={link.href}>{link.label}</a>)}
+        </nav>
+      ))}
+      <address>
+        <p>CONTACT</p>
+        <a href="mailto:info@lexus-ec.com">info@lexus-ec.com</a>
+        <a href="tel:03-3477-1306">03-3477-1306</a>
+      </address>
+      <address>
+        <p>ACCESS</p>
+        <a href="https://maps.app.goo.gl/Yo1p2wJuwUkgrNtPA">寮と一体の校舎<br />「レクサスガーデン」</a>
+      </address>
+    </div>
+  </div>
+  <p class="legacy-form-footer__copyright">© All Rights Reserved.</p>
+  <a class="legacy-form-footer__legal" href="/特定商取引法に基づく表記/">特商法に基づく表記</a>
+</footer>

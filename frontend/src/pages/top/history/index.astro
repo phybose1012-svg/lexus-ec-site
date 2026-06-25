@@ -1,0 +1,299 @@
+---
+import { seo } from "../../../data/home";
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+
+const title = "レクサスの医学部予備校としての歩み - 創立から30年以上の沿革";
+const description =
+  "レクサス教育センター - 創立から30年の沿革 - 1989年：レクサスの前身が誕生。私、島内が学生の時、知人に「息子の勉強を見てやって欲しい」と頼まれて家庭教師のアルバイトを始めた。運良く、そのご子息の大学進学が決まったところで、「ーーさんの娘さんも見てやってよ」と頼まれ、その依頼も受けることにした。";
+
+const images = {
+  representative: "/assets/legacy/wp-content/uploads/2025/02/島内T-e1725539542904.jpg",
+  classScene: "/assets/legacy/wp-content/uploads/2024/11/IMG_1216-1024x685.jpg",
+  oldResults: "/assets/legacy/wp-content/uploads/2024/11/IMG_1218-e1732074849531-748x1024.png",
+  nightTraining: "/assets/legacy/wp-content/uploads/2024/11/IMG_1217-715x1024.jpg",
+  passChart: "/assets/legacy/wp-content/uploads/2024/11/2-1024x1024.jpg",
+  dormitory: "/assets/legacy/wp-content/uploads/2024/11/1201-2018入学案内_本文-1-698x1024.jpg",
+  lineSystem: "/assets/legacy/wp-content/uploads/2024/11/検索システム-LINE用-1024x691.png",
+  guide: "/assets/legacy/wp-content/uploads/2025/11/PR用見本2026-1024x1024.jpg",
+};
+
+const quickLinks = [
+  { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
+  { label: "合格体験記", href: "/top/voice/", tone: "green" },
+  { label: "理念と沿革", href: "/top/history/", tone: "red" },
+];
+
+const qualities = [
+  {
+    label: "プロ講師の質",
+    body: "ベテラン講師、有名講師であっても、難解なコスパの悪い知識を解説する講師、生徒をよく見ていない講師、自己満足で指導をする講師もいます。レクサスではそのような講師をプロとは認めず、経験豊富で生徒を合格させる講師のみに授業や質問対応を任せています。",
+  },
+  {
+    label: "学習環境の質",
+    body: "生徒の疑問や不安を即座に解決できる環境は、長時間の勉強に対するモチベーションや、勉強効率を大幅に向上させます。レクサスでは快適な学習空間をつくり、信頼のおけるプロ講師達が多大な時間を生徒対応に費しています。",
+  },
+  {
+    label: "情報の質",
+    body: "SNSなどで多くの情報が飛び交う昨今では、誤った情報に受験生が惑わされ不安になるケースが急増しています。そのため、進路指導、医学部入試ガイダンス、医学部情報誌には、正確かつ有益な情報を徹底的に厳選しています。",
+  },
+];
+
+const timeline = [
+  {
+    year: "1989年",
+    title: "レクサスの前身が誕生",
+    body: [
+      "私、島内が学生の時、知人に「息子の勉強を見てやって欲しい」と頼まれて家庭教師のアルバイトを始めた。",
+      "運良く、そのご子息の大学進学が決まったところで、「ーーさんの娘さんも見てやってよ」と頼まれ、その依頼も受けることにした。",
+      "またもや運良く合格。面白いくらい生徒たちは合格していき、私の受け持つ生徒数は12人に達していた。",
+      "各生徒の家庭に移動しての指導が厳しくなってきたため、各ご家族にご理解をいただいて、渋谷の貸しスペースや友人の塾に生徒を呼んで指導する形に切り替えた。",
+      "特に塾名はつけなかったが、これが「レクサス教育センター」の前身である。",
+    ],
+  },
+  {
+    year: "1991年",
+    title: "「新しい予備校」の構想",
+    body: [
+      "腕の良い講師が合格まで引っ張り上げる予備校はないものだろうか。",
+      "家庭教師と並行して、予備校講師の仕事もしていた私は、常々考えていた。",
+      "大規模な予備校は、魅力的な講師が多く、知識は得られるが、学力の伸びは生徒の自主性にゆだねられる。",
+      "小規模の塾では、手厚いサポートがあっても、知識と経験が豊富なプロの講師が集まりにくい。",
+      "このままでは、正しく導いてあげれば成功するはずの若者が、自身の可能性を広げずに社会に出てしまう。",
+      "この状況を打開できる予備校を創りたいと思うようになった。",
+    ],
+  },
+  {
+    year: "1992年",
+    title: "「レクサス教育センター」設立",
+    image: images.classScene,
+    imageAlt: "当時の授業風景",
+    imageWidth: 800,
+    imageHeight: 535,
+    body: [
+      "生徒ができるようになるまで見届ける予備校を創ろう。",
+      "「－－－、あとは復習しておくように！」で終わらせる予備校にはしたくない。",
+      "私の予備校では曖昧なアドバイスはしない。",
+      "アドバイスには具体性（いつ、何を、どのようにするのか）が必要だ。過保護かも知れないがその進捗確認も。",
+      "そして、できるまで導くには、ダメなものはダメだと指摘する「厳しさ」も必要だ。",
+      "生徒の人気取りに必死な講師は必要ない。生徒を本気で受からせようする情熱のある講師が欲しい。",
+      "このような私の想いに賛同し集まった3人の講師で「レクサス教育センター」は始まった。",
+    ],
+  },
+  {
+    year: "1996年",
+    title: "慶應医学部 初合格",
+    body: ["当時、レクサスの生徒全員が医学部志望ではなかったが、この年、レクサスで１人目の慶應医学部の合格者が出た。"],
+  },
+  {
+    year: "1998年",
+    title: "慶應医学部 8人合格",
+    image: images.oldResults,
+    imageAlt: "当時の合格実績",
+    imageWidth: 748,
+    imageHeight: 1024,
+    body: [
+      "レクサスの評判は広がり、都内を中心に生徒が集まった。",
+      "具体的かつ厳しい指導は功を奏し、19９８年の慶應医学部合格者は8名に上った。",
+      "これを機に入学生のほとんどが医学部志望となり、「レクサス教育センター」は医学部予備校として広く認知されるようになった。",
+    ],
+  },
+  {
+    year: "1999年",
+    title: "業界初の「質問し放題」を導入",
+    image: images.nightTraining,
+    imageAlt: "夜間指導導入当初",
+    imageWidth: 715,
+    imageHeight: 1024,
+    body: [
+      "授業や演習の内容はもとより、授業外の何気ない質問対応が生徒の成績に大きな影響を与える。",
+      "いつでも質問できる環境を作れば、もっと大きな成果が出せるに違いない。",
+      "そう思い、新システム導入の条件をクリアすべく奔走した。",
+      "情熱ある講師達の協力のお陰で、現在の「夜間個別トレーニング」に当たる「夜間指導」の導入を実現した。",
+      "このシステムを導入して以来、「え？この子が医学部合格？」と驚かれるような逆転合格がレクサスでの毎年の恒例となった。",
+    ],
+  },
+  {
+    year: "2000年",
+    title: "「医学部合格読本」を出版",
+    body: [
+      "インターネットの普及が進み、受験生が入試情報を容易に入手できる時代が到来した。",
+      "しかし、入手できる情報の中には不正確な情報が数多く含まれ、受験生が振り回されてしまう危険性があった。",
+      "正確かつ有用な情報を集めた本を作ろう。",
+      "1999年に思い立ち、翌年に『私立医学部 合格読本2000』 を製作、出版した。",
+      "（現在でも新年度版の出版を続けている）",
+    ],
+  },
+  {
+    year: "2003年",
+    title: "非選抜コースで合格率80％突破！",
+    image: images.passChart,
+    imageAlt: "合格者割合 円グラフ",
+    imageWidth: 800,
+    imageHeight: 800,
+    body: [
+      "どこの予備校でも選抜クラス、特待コースの類が存在し、合格率は当然高い。",
+      "予備校の真価は、上位コース以外の生徒をどれだけ合格へ導いているかで決まる。",
+      "当時、レクサスには「SSコース（選抜）」「SAコース(選抜)」「Aコース」「Fコース」「Pコース」の5コースが設置されていた。",
+      "2010年。非選抜コースである「Aコース」（現在のAdvancedコースに相当）の生徒のうち８０％が医学部合格を勝ち取った。",
+      "Aコースの生徒は4月のレクサス入学時で偏差値が55程度である。",
+    ],
+  },
+  {
+    year: "2010年",
+    title: "9月の偏差値55からの合格率88％",
+    body: [
+      "医学部入試において、模試の偏差値はあまり当てにならないと常々感じていた。",
+      "確かに偏差値は高いに越したことはない。",
+      "しかし、偏差値55でE判定だからといって、それが医学部合格を諦める理由にはならない。",
+      "偏差値は基礎学力の指標に過ぎず、合格の可能性に比例しない。",
+      "偏差値55程度あれば、受験大学の傾向分析と対策で合格は十分可能である。",
+      "この年はそれを証明できた年だった。",
+    ],
+  },
+  {
+    year: "2015年",
+    title: "専用寮「レクサスガーデン」が完成",
+    image: images.dormitory,
+    imageAlt: "学生寮",
+    imageWidth: 698,
+    imageHeight: 1024,
+    body: [
+      "レクサスには毎年日本中から生徒が集まるようになっていた。",
+      "レクサス生しか踏み入らないマンションがあれば、地方から来た生徒やその保護者も安心だろう。",
+      "レクサス生専用マンション寮「LEXUS GARDEN」の建設に着手した。",
+      "竣工は201５年。2016年に利用を開始した。",
+    ],
+  },
+  {
+    year: "2020年",
+    title: "非選抜コースで合格率が90％突破！",
+    body: [
+      "コロナの影響下で受験生の学習環境が大きく乱される年であった。",
+      "レクサスではオンライン指導と対面指導を適宜使い分けて、指導の質を落とさないよう努めた。",
+      "この対応が功を奏し、非選抜コースである「Aコース」の生徒うち9２％が医学部合格を勝ち取った。",
+    ],
+  },
+  {
+    year: "2021年",
+    title: "医学部情報検索システム 「レクサスくん」を公式LINEで開発",
+    image: images.lineSystem,
+    imageAlt: "検索システム LINE",
+    imageWidth: 800,
+    imageHeight: 540,
+    body: [
+      "今はSNSの時代。LINEで簡単に医学部情報が入手できる仕組みは受験生の役に立つはずだ。",
+      "そう思い、医学部入試情報のデータ入力を開始、その１か月後に「レクサスくん」が完成した。",
+      "ちなみに「レクサスくん」のキャラクターデザインはレクサス講師の元教え子が行った。",
+    ],
+  },
+  {
+    year: "2022年",
+    title: "選抜コースで合格率100％達成！",
+    body: [
+      "コロナ渦での指導経験は、講師達の指導スキルを向上させた。",
+      "その証拠に非選抜コースである「Advancedコース」と「Basic αコース」の生徒全員が医学部合格を勝ち取った。",
+      "「Basic αコース」の生徒は、レクサス入学時の偏差値が50程度であった。",
+      "私の追求する「合格へ引っ張り上げる予備校」に近づけたと感じだ。",
+      "引き続き、全コース全員合格を目指そう。",
+    ],
+  },
+  {
+    year: "2024年",
+    title: "公式LINE「レクサスくん」の登録者 4万人突破 （業界1位）",
+    body: [
+      "「レクサスくん」は煩わしい広告なしで、欲しい情報に行きつける仕組みである。",
+      "この有意義なシステムをもっと多くの受験生に利用してもらいたい。",
+    ],
+  },
+];
+---
+
+<SiteLayout title={title} description={description} canonical="https://lexus-ec.com/top/history/" ogImage={seo.ogImage}>
+  <main class="history-page">
+    <section class="history-hero">
+      <div class="content history-hero__inner">
+        <p class="history-hero__label">HISTORY</p>
+        <h1>医学部予備校として躍進し続けた軌跡</h1>
+        <p class="history-hero__anniversary">おかげさまで<br />レクサスは<br /><strong>35周年を迎えます。</strong></p>
+        <div class="history-button-row">
+          {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="history-message" aria-labelledby="history-message-title">
+      <div class="history-message__band">
+        <h2 id="history-message-title">代表よりメッセージ</h2>
+      </div>
+      <div class="content history-message__grid">
+        <figure class="history-message__portrait">
+          <img src={images.representative} alt="レクサス教育センター 代表取締役 島内義仁" width="435" height="533" loading="lazy" decoding="async" />
+          <figcaption>
+            <span>レクサス教育センター代表</span>
+            <strong>島内 義仁</strong>
+          </figcaption>
+        </figure>
+        <div class="history-message__body">
+          <p class="history-message__lead">医学部合格に自信あり！</p>
+          <p>レクサス教育センターを設立して33年。「受験生を合格へと引っ張り上げる予備校」として、以下の3点を磨き上げてきました。</p>
+          <div class="history-quality-list">
+            {qualities.map((quality) => (
+              <article class="history-quality">
+                <strong>{quality.label}</strong>
+                <p>{quality.body}</p>
+              </article>
+            ))}
+          </div>
+          <p>謳い文句でなく、レクサスほど真剣にこれら「３つの質」の向上に努めている医学部予備校は他に無いと誇りを持っています。</p>
+          <p>レクサスでの受験勉強は「医学部合格への最短ルート」です。 さあ、自分を信じて全力で突き進んでください。頑張れ！</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="history-timeline" aria-labelledby="history-timeline-title">
+      <div class="content">
+        <header class="history-section-head">
+          <p>OUR HISTORY</p>
+          <h2 id="history-timeline-title">レクサスの歴史・沿革</h2>
+        </header>
+        <div class="history-timeline__list">
+          {timeline.map((item) => (
+            <article class={`history-timeline-item${item.image ? " history-timeline-item--with-image" : ""}`}>
+              <div class="history-timeline-item__marker">
+                <span>{item.year}</span>
+              </div>
+              <div class="history-timeline-item__content">
+                <strong class="history-timeline-item__title">{item.year} {item.title}</strong>
+                <div class="history-timeline-item__body">
+                  <div>
+                    {item.body.map((paragraph) => <p>{paragraph}</p>)}
+                  </div>
+                  {item.image && (
+                    <figure>
+                      <img src={item.image} alt={item.imageAlt} width={item.imageWidth} height={item.imageHeight} loading="lazy" decoding="async" />
+                      <figcaption>{item.imageAlt}</figcaption>
+                    </figure>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="history-guide">
+      <div class="content history-guide__grid">
+        <img src={images.guide} alt="医学部合格読本 2026" width="800" height="800" loading="lazy" decoding="async" />
+        <div>
+          <h3>資料請求した方へプレゼント</h3>
+          <h2>レクサスのプロ講師と、 レクサスの卒業生が、共同で作りました。</h2>
+          <p>医学部入試を知り尽くした講師陣と、実際に合格を勝ち取った卒業生の視点を合わせ、受験生が迷わず準備できる情報をまとめています。</p>
+          <div class="fixed-hero__actions">
+            <a class="button button--red" href="/request-documents/">資料請求</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>

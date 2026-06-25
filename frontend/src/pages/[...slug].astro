@@ -1,0 +1,245 @@
+---
+import LeadForm from "../components/fixed/LeadForm.astro";
+import { defaultPageActions } from "../data/fixedPages";
+import { seo } from "../data/home";
+import { getFixedPageByPath, getFixedPageStaticPaths, type ExtractedPage } from "../lib/fixedPageSource";
+import { getMigratedPostByPath, getMigratedPostStaticPaths, type MigratedPost } from "../lib/postSource";
+import ArticleLayout from "../layouts/ArticleLayout.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+
+export const getStaticPaths = () => {
+  const postPaths = getMigratedPostStaticPaths();
+  const postSlugs = new Set(postPaths.map((route) => route.params.slug));
+  const fixedPaths = getFixedPageStaticPaths().filter((route) => !postSlugs.has(route.params.slug));
+  return [...fixedPaths, ...postPaths];
+};
+
+const routeProps = (Astro.props ?? {}) as { page?: ExtractedPage; post?: MigratedPost };
+const requestedPath = Astro.url.pathname || "/";
+const post = routeProps.post ?? getMigratedPostByPath(requestedPath);
+const fixedPage = routeProps.page ?? (!post ? getFixedPageByPath(requestedPath) : undefined);
+const page =
+  fixedPage ??
+  ({
+    path: requestedPath,
+    title: "ページが見つかりません",
+    description: "指定されたページを確認できませんでした。",
+    canonical: new URL(requestedPath, seo.canonical).href,
+    h1: "ページが見つかりません",
+    headings: [],
+    paragraphs: ["URLをご確認いただくか、トップページから目的のページをお探しください。"],
+    images: [],
+    contentHtml: "<p>URLをご確認いただくか、トップページから目的のページをお探しください。</p>",
+  } satisfies ExtractedPage);
+const routeClass = `fixed-page--${page.path.replace(/^\/|\/$/g, "").replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
+const premierPlanPages: Record<
+  string,
+  { lead: string; prefix?: string; code: string; suffix?: string; meta: string }
+> = {
+  "/top/course/lexus-premiere-course/ss/": {
+    lead: "東大・慶應医学部合格プラン",
+    prefix: "特別選抜",
+    code: "SS",
+    suffix: "プラン",
+    meta: "対象偏差値：65～ / 選抜テスト：あり / 定員：9名 / 年間費用：1,478,000円～（税抜）",
+  },
+  "/top/course/lexus-premiere-course/sa/": {
+    lead: "慈恵、順天、日医、国公立を目指すなら",
+    prefix: "選抜",
+    code: "SA",
+    suffix: "プラン",
+    meta: "対象偏差値：60～65 / 選抜テスト：あり / 定員：9名 / 年間費用：2,204,000円～（税抜）",
+  },
+  "/top/course/lexus-premiere-course/advanced/": {
+    lead: "都内の私立医学部合格プラン",
+    code: "Advanced",
+    suffix: "プラン",
+    meta: "対象偏差値：55～60 / 選抜テスト：なし / 定員：30名 / 年間費用：2,902,000円～（税抜）",
+  },
+  "/top/course/lexus-premiere-course/basic-α/": {
+    lead: "偏差値50台から医学部合格",
+    code: "Basic α",
+    suffix: "プラン",
+    meta: "対象偏差値：50～55 / 選抜テスト：なし / 定員：15名 / 年間費用：3,452,000円～（税抜）",
+  },
+  "/top/course/lexus-premiere-course/basic-β/": {
+    lead: "偏差値40台から医学部合格",
+    code: "Basic β",
+    suffix: "プラン",
+    meta: "対象偏差値：40～50 / 選抜テスト：なし / 定員：15名 / 年間費用：3,452,000円～（税抜）",
+  },
+  "/top/course/lexus-premiere-course/introduction/": {
+    lead: "0から始めて医学部合格",
+    code: "Introduction",
+    suffix: "プラン",
+    meta: "対象：初学者 / 選抜テスト：なし / 定員：9名 / 年間費用：4,256,000円～（税抜）",
+  },
+};
+const genekiPlanPages: Record<
+  string,
+  { headline: string; plan: string; body: string; purpose: string }
+> = {
+  "/todai-keio-med-special/": {
+    headline: "「偏差値70から先」の医学部合格へ。\nー トップレベル鬼特訓プラン ー",
+    plan: "トップレベル鬼特訓プラン",
+    body: "東大理III・慶應医学部。全国最上位の挑戦には、全国最上位の設計が必要です。“才能”を、“結果”に変える環境がここにあります。",
+    purpose: "このプランは、\n「トップ医学部専門のカリキュラム」\nなので、大変厳しい指導になります。",
+  },
+  "/top/course/high-level-geneki-course/nankan-igakubu/": {
+    headline: "難関医学部突破へ。\nー 難関医学部突破プラン ー",
+    plan: "難関医学部突破プラン",
+    body: "国公立、慈恵、順天など、難関医学部の現役合格に必要な学習量と設計を整えます。",
+    purpose: "このプランは、\n「難関医学部専門のカリキュラム」\nで現役合格を狙います。",
+  },
+  "/top/course/high-level-geneki-course/joui-igakubu/": {
+    headline: "上位医学部合格へ。\nー 上位医学部合格プラン ー",
+    plan: "上位医学部合格プラン",
+    body: "昭和、東医など上位私立医学部への現役合格に向けて、基礎から得点力まで仕上げます。",
+    purpose: "このプランは、\n「上位医学部専門のカリキュラム」\nで得点力を高めます。",
+  },
+};
+let decodedPagePath = page.path;
+try {
+  decodedPagePath = decodeURIComponent(page.path);
+} catch {
+  decodedPagePath = page.path;
+}
+const premierPlan = premierPlanPages[page.path] ?? premierPlanPages[decodedPagePath];
+const genekiPlan = genekiPlanPages[page.path] ?? genekiPlanPages[decodedPagePath];
+const isTestEntryPage = page.path === "/test-entry/" || decodedPagePath === "/test-entry/";
+const logoStrip = "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
+const mascotArcher = "/assets/legacy/wp-content/uploads/2025/05/レクサスくん弓.jpg";
+const premierPlanImage = page.images[0]?.src
+  ? page.images[0].src.replace("https://lexus-ec.com/wp-content/uploads", "/assets/legacy/wp-content/uploads")
+  : "";
+const isLegalPage = page.canonical.includes("%e7%89%b9") || page.h1.includes("特定商取引");
+---
+
+{post ? (
+  <ArticleLayout
+    template={post.template}
+    title={post.title}
+    displayTitle={post.displayTitle}
+    displayTitleLines={post.displayTitleLines}
+    description={post.description}
+    canonical={post.canonical}
+    lead={post.lead}
+    date={post.date}
+    modified={post.modified}
+    categories={post.categories}
+    tags={post.tags}
+    heroImage={post.heroImage ?? undefined}
+    heroBadge={post.heroBadge}
+    heroMessage={post.heroMessage}
+    heroMessageLines={post.heroMessageLines}
+    heroVariant={post.heroVariant}
+    keyPoints={post.keyPoints}
+    toc={post.toc}
+    infoItems={post.infoItems}
+  >
+    <Fragment set:html={post.contentHtml} />
+  </ArticleLayout>
+) : (
+<SiteLayout title={page.title} description={page.description} canonical={page.canonical} ogImage={seo.ogImage}>
+  <main class={`fixed-page ${routeClass}${page.form ? " fixed-page--form" : ""}${premierPlan ? " fixed-page--premier-plan" : ""}${genekiPlan ? " fixed-page--geneki-plan" : ""}`}>
+    {genekiPlan && (
+      <section class="geneki-plan-hero">
+        <div class="content geneki-plan-hero__inner">
+          <img class="geneki-plan-hero__strip" src={logoStrip} alt="" width="800" height="58" decoding="async" />
+          <div class="course-title-card course-title-card--geneki course-title-card--geneki-plan">
+            <p class="course-title-card__jp">ハイレベル現役合格コース</p>
+            <p class="course-title-card__en">High-level GENEKI Course</p>
+            <p class="course-title-card__lead">慶應、慈恵、順天、日医をはじめとする都内の医学部に現役合格するためのコースです。</p>
+          </div>
+          <h1>{genekiPlan.headline}</h1>
+          <p class="geneki-plan-hero__body">{genekiPlan.body}</p>
+          <p class="geneki-plan-hero__reserve">＼ 無料面談をご予約ください ／</p>
+          <a class="button button--red geneki-plan-hero__button" href="/reservation/">ご予約はコチラ</a>
+          <div class="geneki-plan-hero__purpose">
+            <p>PURPOSE</p>
+            <h2>{genekiPlan.purpose}</h2>
+          </div>
+          <div class="geneki-plan-hero__check">
+            <p>対象受験生チェック(✓)</p>
+            <img src={mascotArcher} alt="" width="670" height="670" loading="lazy" decoding="async" />
+          </div>
+        </div>
+      </section>
+    )}
+    {premierPlan && (
+      <>
+        <section class="premier-plan-brand">
+          <div class="content premier-plan-brand__inner">
+            <div class="premier-plan-brand__icon" aria-hidden="true">◆</div>
+            <p>レクサス プレミア 本科</p>
+            <p class="premier-plan-brand__en">Premier Main Course</p>
+          </div>
+        </section>
+        <section class="premier-plan-summary">
+          <div class="content">
+            <p class="premier-plan-summary__lead">{premierPlan.lead}</p>
+            <h1>
+              {premierPlan.prefix && <span>{premierPlan.prefix}</span>}
+              <strong>{premierPlan.code}</strong>
+              {premierPlan.suffix && <span>{premierPlan.suffix}</span>}
+            </h1>
+            <p class="premier-plan-summary__meta">{premierPlan.meta}</p>
+          </div>
+        </section>
+        <section class="premier-plan-detail-head">
+          <div class="content">
+            <p>DETAIL</p>
+            <h2>プラン詳細</h2>
+            {premierPlanImage && <img src={premierPlanImage} alt="" width="520" height="650" loading="lazy" decoding="async" />}
+          </div>
+        </section>
+      </>
+    )}
+    {page.form && !isTestEntryPage && (
+      <section class="fixed-hero">
+        <div class="content fixed-hero__inner">
+          {!isLegalPage && <p class="fixed-hero__eyebrow">LEXUS E.C.</p>}
+          <h1>{page.h1}</h1>
+          {!isLegalPage && <p>{page.description}</p>}
+          {!isLegalPage && (
+            <div class="fixed-hero__actions">
+              {defaultPageActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+            </div>
+          )}
+        </div>
+      </section>
+    )}
+
+    {page.form ? (
+      <>
+        <section class="section fixed-source-section fixed-source-section--form">
+          <div class="content fixed-source fixed-source--form" set:html={page.contentHtml} />
+        </section>
+        <section class="section fixed-form-section">
+          <div class="content fixed-intro">
+            <p>{page.form.lead}</p>
+          </div>
+          <div class="content">
+            <LeadForm formType={page.form.formType} title={page.form.title} fields={page.form.fields} submitLabel={page.form.submitLabel} />
+          </div>
+        </section>
+      </>
+    ) : (
+      <section class={`section fixed-source-section${premierPlan ? " fixed-source-section--premier-plan" : ""}`}>
+        <div class="content fixed-source" set:html={page.contentHtml} />
+      </section>
+    )}
+
+    {page.form && !isLegalPage && !isTestEntryPage && (
+      <section class="fixed-cta">
+        <div class="content">
+          <p>医学部合格へ向けて、今の状況から最短距離を一緒に設計します。</p>
+          <div class="fixed-hero__actions">
+            {defaultPageActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+          </div>
+        </div>
+      </section>
+    )}
+  </main>
+</SiteLayout>
+)}

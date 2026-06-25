@@ -1,0 +1,332 @@
+---
+import { seo } from "../../data/home";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+
+const logoStrip = "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
+const penLogo = "/assets/legacy/wp-content/uploads/2025/11/ペン先-ロゴ-4色-300x300.png";
+const resultImage = "/assets/legacy/wp-content/uploads/2026/01/2025年度-医学部入試-実績-1536x1240.jpg";
+const trainingTitle = "/assets/legacy/wp-content/uploads/2026/01/鬼監理×鬼特訓-1024x184.jpg";
+const oniKanri = "/assets/legacy/wp-content/uploads/2026/01/鬼-指示出し-e1768024719806.png";
+const oniTraining = "/illustrations/characters/yuki-sensei-cheer.png";
+const classImage = "/assets/legacy/wp-content/uploads/2026/01/2026-クラス一覧.jpg";
+const annualPlan = "/assets/legacy/wp-content/uploads/2026/01/2026-パンフ-プレミア本科-年間計画-2048x1237.jpg";
+const messageImage = "/assets/legacy/wp-content/uploads/2026/01/川島先生授業風景-名前入り.jpg";
+const selectionImage = "/assets/legacy/wp-content/uploads/2026/05/レクサスの選抜テストP-1024x1024.jpg";
+const gardenImage = "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-1-04.jpg";
+
+const quickLinks = [
+  { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
+  { label: "合格体験記", href: "/top/voice/", tone: "green" },
+  { label: "理念と沿革", href: "/top/history/", tone: "red" },
+];
+
+const stats = [
+  { label: "偏差値60台スタート", value: "100%合格", tone: "orange" },
+  { label: "偏差値50台スタート", value: "88%合格", tone: "green" },
+  { label: "合格者の最高年齢", value: "41歳", tone: "cyan" },
+];
+
+const universities = [
+  ["千葉大学 4名", "愛媛大学 1名", "慶應義塾大学 1名", "東京慈恵会医科大学 5名", "順天堂大学 8名"],
+  ["日本大学 30名", "杏林大学 30名", "帝京大学 33名", "東京女子医科大学 18名", "北里大学 6名"],
+  ["東北医科薬科大学 12名", "岩手医科大学 50名", "愛知医科大学 10名", "金沢医科大学 45名", "近畿大学 6名"],
+];
+
+const featureCards = [
+  {
+    title: "鬼監理",
+    image: oniKanri,
+    lead: "プロ講師の眼力 × 医学部専門AIのデータ分析",
+    body: "副代表クラスのトップ講師陣が担任となり、AIを有効活用して学習進捗、得意不得意、成長速度を監理。学習から無駄と甘えを排除します。",
+    href: "/top/results/",
+  },
+  {
+    title: "鬼特訓",
+    image: oniTraining,
+    lead: "プロ講師の質問対応 × 課題の具体化",
+    body: "授業後の自習時間を濃厚な特訓時間へ。課題提示、即時添削、追加課題。理解できるまで帰れない夜間トレーニングです。",
+    href: "/top/teacher/",
+  },
+];
+
+const supportItems = [
+  "クラス授業",
+  "個別演習指導",
+  "課題プリント",
+  "質問し放題",
+  "効果測定テスト",
+  "取りこぼしフォロー",
+  "共通テスト対策",
+  "推薦・総合型対策",
+  "面接・小論文対策",
+  "学習マネージメント",
+  "メンタルケア",
+  "受験校選定サポート",
+  "出願サポート",
+  "大学別対策",
+  "受験期の質問対応",
+  "後期試験対策",
+];
+
+const learningSystems = [
+  {
+    label: "01",
+    title: "クラス授業",
+    body: "講師全員がプロ中のプロ。少人数制・対話形式で、一人ひとりの反応を見ながら理解を深めます。",
+  },
+  {
+    label: "02",
+    title: "クラス演習",
+    body: "講師が見回る中で課題演習を行い、誤った理解があればその場で補足説明を実施します。",
+  },
+  {
+    label: "03",
+    title: "“鬼特訓” 夜間トレーニング",
+    body: "指定課題と質問対応を繰り返し、「デキる」を「速くデキる」に変えます。",
+  },
+  {
+    label: "04",
+    title: "“鬼監理” チェックテスト",
+    body: "年間265回の試験で、わかったつもりを徹底的に排除します。",
+  },
+  {
+    label: "05",
+    title: "担任はプロ講師",
+    body: "勉強の仕方、復習、受験大学の決定まで、プロ講師である担任が共に歩みます。",
+  },
+];
+
+const infoPosts = [
+  { title: "獨協医科大学｜医学部｜【2027年度の合格へ】科目別一般選抜（前期）の傾向と対策", href: "/dokkyouika-university-entrance-exam-measures2027/" },
+  { title: "自治医科大学｜医学部｜【2027年度の合格へ】科目別一般選抜の傾向と対策", href: "/jichiika-university-entrance-exam-measures2027/" },
+  { title: "埼玉医科大学｜医学部｜【2027年度の合格へ】科目別一般選抜の傾向と対策", href: "/saitamaika-university-entrance-exam-measures2027/" },
+  { title: "東北医科薬科大学｜医学部｜【2027年度の合格へ】科目別一般選抜の傾向と対策", href: "/touhokuikayakka-university-entrance-exam-measures2027/" },
+  { title: "東海大学｜医学部｜【2027年度の合格へ】科目別一般選抜の傾向と対策", href: "/toukai-university-entrance-exam-measures2027/" },
+  { title: "金沢医科大学｜医学部｜【2027年度の合格へ】科目別一般選抜の傾向と対策", href: "/kanazawaika-university-entrance-exam-measures2027/" },
+];
+---
+
+<SiteLayout
+  title="【既卒生】1年で医学部合格へ。鬼監理×鬼特訓の「レクサスプレミア本科」｜医学部受験ならLEXUS（レクサス教育センター）"
+  description="【既卒生対象・2026年4月開講】医学部予備校レクサス教育センター「レクサスプレミア本科」のコース紹介です。「鬼監理×鬼特訓」による徹底的な学習管理と実践指導で、医学部逆転合格を「奇跡」から「必然」へ変えます。カリキュラム、学費、合格実績、専用寮の詳細はこちら。"
+  canonical="https://lexus-ec.com/lexus-premier/"
+  ogImage={seo.ogImage}
+>
+  <main class="premier-page">
+    <section class="premier-opening">
+      <div class="content premier-opening__inner">
+        <img src={logoStrip} alt="" width="1024" height="74" decoding="async" />
+        <h1>2027年度対応<br />オールインワンの医学部受験サポート<br /><span>既卒生対象</span></h1>
+      </div>
+    </section>
+
+    <section class="premier-hero">
+      <div class="content premier-hero__inner">
+        <div class="premier-hero__brand">
+          <img src={penLogo} alt="レクサス教育センターロゴ" width="300" height="300" decoding="async" />
+          <p>レクサス式</p>
+        </div>
+        <p class="premier-hero__year">2026年度</p>
+        <p class="premier-hero__copy">最高級の医学部受験指導</p>
+        <h2>レクサス・プレミア本科<br />4月開講</h2>
+        <p class="premier-hero__target">対象：既卒生（年齢制限なし）</p>
+        <p class="premier-hero__period">募集期間：2月1日(日)〜4月5日(日)</p>
+        <div class="premier-hero__actions">
+          <a class="button button--red" href="/request-documents/">資料請求する</a>
+          <a class="button button--blue" href="/reservation/">個別説明会へ</a>
+        </div>
+        <div class="premier-quick-actions">
+          {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+        </div>
+        <p class="premier-hero__limit">定員になり次第終了</p>
+      </div>
+    </section>
+
+    <section class="premier-response">
+      <div class="content-narrow">
+        <p>「もう、後がない」</p>
+        <p>「大手予備校では、何も変わらなかった」</p>
+        <p>「とにかく今年、合格させてくれ」</p>
+        <strong>レクサスが応えます。</strong>
+      </div>
+    </section>
+
+    <section class="premier-ideal" aria-labelledby="premier-ideal-title">
+      <div class="content">
+        <p class="premier-section-label">IDEAL FORM</p>
+        <h2 id="premier-ideal-title">医学部合格への 理想形。</h2>
+        <p class="premier-ideal__lead">
+          レクサス・プレミア本科は、授業を受けるだけのコースではありません。学習管理、質問対応、夜間演習、出願戦略、生活リズムまでを一体化し、医学部合格に必要な行動を毎日積み上げるための環境です。
+        </p>
+        <div class="premier-ideal-grid">
+          <article>
+            <span>01</span>
+            <h3>“鬼監理”で迷わせない</h3>
+            <p>学習計画、課題、復習、確認テストを講師側が把握し、今日やるべきことを具体化します。</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>“鬼特訓”で逃がさない</h3>
+            <p>授業後の演習と質問対応を重ね、分かったつもりを実戦で使える状態まで引き上げます。</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>寮と校舎を一体化</h3>
+            <p>移動時間と生活の乱れを減らし、医学部受験に集中するための学習生活を設計します。</p>
+          </article>
+        </div>
+        <div class="premier-ideal__actions">
+          <a class="button button--red" href="/study-support-system/">“鬼監理”を詳しく見る</a>
+          <a class="button button--blue" href="/medical-english-training/">英語の鬼特訓</a>
+          <a class="button button--green" href="/medical-math-training/">数学の鬼特訓</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="premier-achievement" aria-labelledby="premier-achievement-title">
+      <div class="content">
+        <p class="premier-section-label">ACHIEVEMENT</p>
+        <h2 id="premier-achievement-title">2025年度の実績報告</h2>
+        <p class="premier-subtitle">～ 一年で合格する割合 ～</p>
+        <img class="premier-result-image" src={resultImage} alt="2025年度 医学部医学科 入試合格実績" width="1536" height="1240" decoding="async" />
+        <h3>累計合格実績</h3>
+        <div class="premier-stat-grid">
+          {stats.map((stat) => (
+            <article class={`premier-stat premier-stat--${stat.tone}`}>
+              <p>{stat.label}</p>
+              <strong>{stat.value}</strong>
+            </article>
+          ))}
+        </div>
+        <h3>合格した大学一覧 (医学部医学科のみ)</h3>
+        <div class="premier-university-grid">
+          {universities.map((column) => (
+            <ul>
+              {column.map((item) => <li>{item}</li>)}
+            </ul>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="premier-feature" aria-labelledby="premier-feature-title">
+      <div class="content">
+        <img class="premier-feature__title" src={trainingTitle} alt="鬼監理×鬼特訓" width="1024" height="184" loading="lazy" decoding="async" />
+        <h2 id="premier-feature-title">プレミア本科 の 特徴</h2>
+        <p class="premier-feature__lead">の先にある、絶対の合格へ有無を言わさず連れていく。</p>
+        <div class="premier-feature-grid">
+          {featureCards.map((card) => (
+            <article class="premier-feature-card">
+              <img src={card.image} alt="" width="420" height="420" loading="lazy" decoding="async" />
+              <h3>{card.title}</h3>
+              <p class="premier-feature-card__lead">{card.lead}</p>
+              <p>{card.body}</p>
+              <a href={card.href}>{card.title}を詳しく見る</a>
+            </article>
+          ))}
+        </div>
+        <div class="premier-feature__closing">
+          <p>もしあなたが、今の学習環境に限界を感じているのなら、</p>
+          <p>このコースこそが <span>突破口</span> となります。</p>
+          <p>あなたを1年間、合格のためだけに突き進む <span>勉強の鬼</span> へと変える、</p>
+          <p>「特訓プログラム」です。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="premier-overview" aria-labelledby="premier-overview-title">
+      <div class="content">
+        <img src={logoStrip} alt="" width="1024" height="74" loading="lazy" decoding="async" />
+        <h2 id="premier-overview-title">プレミア本科の 概要</h2>
+        <h3>クラス一覧</h3>
+        <img class="premier-wide-image" src={classImage} alt="2026レクサスプレミア本科 クラス一覧" width="1200" height="747" loading="lazy" decoding="async" />
+        <h3>年間計画イメージ</h3>
+        <img class="premier-wide-image" src={annualPlan} alt="2026レクサスプレミア本科 年間計画" width="2048" height="1237" loading="lazy" decoding="async" />
+        <h3>週間予定イメージ</h3>
+        <div class="premier-week-table">
+          <p>午前はインプット、午後はアウトプット、夜はトレーニングと質問対応。</p>
+          <p>「【+α】アウトプット」は、やり残した課題を終わらせる時間で、記載された科目の質問も可能です。</p>
+          <p>「国語」・「社会」・「情報」の共通テスト対策も追加可能です。</p>
+        </div>
+        <h3 class="premier-support-title">サポート内容 一覧</h3>
+        <ul class="premier-support-grid">
+          {supportItems.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="premier-learning" aria-labelledby="premier-learning-title">
+      <div class="content">
+        <h2 id="premier-learning-title">学習システム</h2>
+        <div class="premier-learning-grid">
+          {learningSystems.map((item) => (
+            <article>
+              <span>{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="premier-message" aria-labelledby="premier-message-title">
+      <div class="content premier-message__box">
+        <div>
+          <h2 class="premier-message__label">MESSAGE</h2>
+          <h3 id="premier-message-title">お約束 します。</h3>
+          <h2>本コースの環境に食らいつき、私たちが敷いたレールを走り切った先には、必ず 「医学部合格」 という現実が待っています。</h2>
+          <p>本コースの環境に食らいつき、私たちが敷いたレールを走り切った先には、必ず「医学部合格」という現実が待っています。</p>
+          <h3>“今年で絶対に終わらせる”</h3>
+          <p>その強い覚悟があるのなら、私たちは全身全霊をかけて、あなたを医師への道へと押し上げます。</p>
+        </div>
+        <img src={messageImage} alt="レクサス教育センター副代表 川島友紀 授業風景" width="900" height="900" loading="lazy" decoding="async" />
+      </div>
+    </section>
+
+    <section class="premier-contact">
+      <div class="content">
+        <p>丁寧にご説明します。</p>
+        <h2>まずは、お問合せください。</h2>
+        <div class="premier-hero__actions">
+          <a class="button button--red" href="/request-documents/">資料請求する</a>
+          <a class="button button--blue" href="/reservation/">個別説明会へ</a>
+        </div>
+        <div class="premier-quick-actions">
+          {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+        </div>
+        <p class="premier-contact__tel">【お急ぎでしたら、お電話ください】<br /><strong>03-3477-1306</strong><br />受付時間：10時00分〜21時00分</p>
+      </div>
+    </section>
+
+    <section class="premier-extra" id="premier-selection">
+      <div class="content premier-extra__grid">
+        <article>
+          <h2>特待生募集中</h2>
+          <img src={selectionImage} alt="特待生選抜テストのお知らせ" width="1024" height="1024" loading="lazy" decoding="async" />
+          <a class="button button--red" href="#premier-selection">選抜の詳細へ</a>
+        </article>
+        <article>
+          <h2>【さらに集中したい方へ】<br />レクサス専用寮に入居可能。<br />「10ヶ月合宿プラン」</h2>
+          <img src={gardenImage} alt="レクサスガーデン外観" width="900" height="600" loading="lazy" decoding="async" />
+          <p>地方在住の方、実家の甘えを断ち切りたい方へ。東京渋谷の高級住宅街に佇む、専用寮をご用意しました。</p>
+          <a class="button button--green" href="/top/lexus-garden/">設備や費用を見てみる</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="premier-info" aria-labelledby="premier-info-title">
+      <div class="content">
+        <img src={logoStrip} alt="" width="1024" height="74" loading="lazy" decoding="async" />
+        <h2 id="premier-info-title">最新 医学部受験情報</h2>
+        <div class="premier-info-grid">
+          {infoPosts.map((post) => (
+            <article>
+              <h3><a href={post.href}>{post.title}</a></h3>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>

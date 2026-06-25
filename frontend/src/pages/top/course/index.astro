@@ -1,0 +1,131 @@
+---
+import { seo } from "../../../data/home";
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+
+const logoStrip = "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
+const representative = "/assets/legacy/wp-content/uploads/2025/02/島内T-e1725539542904.jpg";
+const flowImage = "/assets/legacy/wp-content/uploads/2025/05/入学までの流れ-1-777x1024.jpg";
+const gardenImage = "/assets/legacy/wp-content/uploads/2026/01/レクサス専用寮外観-1024x651.jpg";
+
+const courseLinks = [
+  { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
+  { label: "合格体験記", href: "/top/voice/", tone: "green" },
+  { label: "理念と沿革", href: "/top/history/", tone: "red" },
+];
+
+const courses = [
+  {
+    target: "◆ 既卒生・再受験生 対象フルコース ◆",
+    name: "レクサス プレミア 本科",
+    english: "Premier Main Course",
+    description: "医学部受験を全面的にサポートする“オールインワン”コースです。各科目クラス分けあり。",
+    href: "/lexus-premier/",
+    tone: "premier",
+    mark: "diamond",
+  },
+  {
+    target: "◆ 高2・高3 対象コース ◆",
+    name: "ハイレベル現役合格コース",
+    english: "High-level GENEKI Course",
+    description: "慶應、慈恵、順天、日医をはじめとする都内の医学部に現役合格するためのコースです。",
+    href: "/top/course/high-level-geneki-course/",
+    tone: "geneki",
+    mark: "pen",
+  },
+  {
+    target: "◆ 既卒・再受験・高1～3 対象コース ◆",
+    name: "オーダーメード演習 コース",
+    english: "Custom-made Course",
+    description: "自分のレベルに合った演習ベースのカリキュラムで倍速学習をするコースです。",
+    href: "/top/course/custom-made-course/",
+    tone: "custom",
+    mark: "rocket",
+  },
+  {
+    target: "◆ 高1・高2 対象コース ◆",
+    name: "メディカル準備コース (高等部)",
+    english: "Medical Prep Course",
+    description: "医学部受験で優位に立つ先取り学習コースです。慶應、日大の内部進学対策も承ります。",
+    href: "/top/course/medical-prep/",
+    tone: "prep",
+    mark: "tree",
+  },
+  {
+    target: "◆ 中学生 対象コース ◆",
+    name: "メディカル準備コース (中等部)",
+    english: "Medical Prep Course",
+    description: "先手必勝！難関医学部を目指す中高一貫カリキュラムの先取り学習コースです。",
+    href: "/top/course/medical-prep-junior/",
+    tone: "junior",
+    mark: "leaf",
+  },
+];
+---
+
+<SiteLayout title="医学部対策 - コース紹介と学費" description="医学部対策 - 学費を抑えたい方は「選抜SSコース」、初歩から学習したい方は「Introductionコース」がオススメです。あなたに合ったコースがきっと見つかります！ - レクサス教育センター - 医学部予備校 - 創立33年 - 専用寮アリ" canonical="https://lexus-ec.com/top/course/" ogImage={seo.ogImage}>
+  <main class="course-page">
+    <section class="course-top-ribbon" aria-hidden="true">
+      <img src={logoStrip} alt="" width="1024" height="74" decoding="async" />
+    </section>
+
+    <section class="course-hero">
+      <div class="content course-hero__inner">
+        <nav class="course-hero__links" aria-label="関連ページ">
+          {courseLinks.map((link) => <a class={`course-pill course-pill--${link.tone}`} href={link.href}>{link.label}</a>)}
+        </nav>
+        <h1>医学部合格へ続く コースをご案内</h1>
+        <p>ご自身のタイプに合った<br />「コース選択」が合格への第一歩。</p>
+      </div>
+    </section>
+
+    <section class="course-list" aria-labelledby="course-list-title">
+      <div class="content">
+        <header class="course-list__head">
+          <h2 id="course-list-title">コース 一覧</h2>
+        </header>
+        <div class="course-band-list">
+          {courses.map((course) => (
+            <article class="course-band-item">
+              <h3>{course.target}</h3>
+              <a class={`course-band course-band--${course.tone}`} href={course.href}>
+                <span class={`course-band__mark course-band__mark--${course.mark}`} aria-hidden="true"></span>
+                <h4>{course.name}</h4>
+                <em>{course.english}</em>
+                <span>{course.description}</span>
+              </a>
+              <a class={`course-detail-button course-detail-button--${course.tone}`} href={course.href}>☞ コースの内容を見る</a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="course-consult">
+      <div class="content course-consult__grid">
+        <p>自分に合った<br />医学部合格への道が、<br />必ずある！<br />是非ご相談ください。</p>
+        <img src={representative} alt="レクサス教育センター代表 島内義仁" width="435" height="533" loading="lazy" decoding="async" />
+      </div>
+    </section>
+
+    <section class="course-flow" aria-labelledby="course-flow-title">
+      <div class="content">
+        <h2 id="course-flow-title">↓ 入学までの流れ ↓</h2>
+        <img src={flowImage} alt="入学までの流れ" width="777" height="1024" decoding="async" />
+        <p>※ 「無料面談」の前に、「無料体験 （体験授業）」を受けることも可能です。</p>
+        <div class="course-flow__actions">
+          <a class="button button--blue" href="/reservation/">無料面談はコチラ</a>
+          <a class="button button--green" href="/top/teacher/">無料体験はコチラ</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="course-garden" aria-labelledby="course-garden-title">
+      <div class="content">
+        <img class="course-garden__strip" src={logoStrip} alt="" width="1024" height="74" loading="lazy" decoding="async" />
+        <h2 id="course-garden-title">生徒専用寮のご案内 『LEXUS GARDEN』</h2>
+        <img class="course-garden__photo" src={gardenImage} alt="寮と一体型の校舎 外観" width="1024" height="651" decoding="async" />
+        <a class="button button--green" href="/top/lexus-garden/">設備や費用を見てみる</a>
+      </div>
+    </section>
+  </main>
+</SiteLayout>

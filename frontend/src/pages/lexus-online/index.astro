@@ -1,0 +1,2780 @@
+---
+import { seo } from "../../data/home";
+import SiteFooter from "../../components/site/SiteFooter.astro";
+import { lexusOnlineDetailPages } from "../../data/lexusOnlineDetails";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const pageTitle = "Lexus Online｜教育事業者向けAI業務改善・Webアプリ/SaaS開発｜レクサス教育センター";
+const pageDescription =
+  "Lexus Onlineは、教育事業者向けにAI業務改善、Webアプリ開発、SaaS開発、生徒管理、教材作成、自動採点・添削、講師管理、保護者連絡システムを設計・開発・導入・改善まで支援するサービスです。";
+const canonical = "https://lexus-ec.com/lexus-online/";
+const contactHref =
+  "mailto:info@lexus-ec.com?subject=Lexus%20Online%E3%81%B8%E3%81%AE%E7%9B%B8%E8%AB%87";
+
+const heroWaves = [
+  { x: 31, y: 72, size: 126, delay: -6.84 },
+  { x: 36, y: 68, size: 142, delay: -6.46 },
+  { x: 41, y: 64, size: 158, delay: -6.08 },
+  { x: 46, y: 60, size: 174, delay: -5.7 },
+  { x: 51, y: 56, size: 190, delay: -5.32 },
+  { x: 56, y: 52, size: 208, delay: -4.94 },
+  { x: 61, y: 48, size: 226, delay: -4.56 },
+  { x: 66, y: 44, size: 244, delay: -4.18 },
+  { x: 71, y: 40, size: 262, delay: -3.8 },
+  { x: 76, y: 36, size: 280, delay: -3.42 },
+  { x: 81, y: 32, size: 298, delay: -3.04 },
+  { x: 86, y: 28, size: 316, delay: -2.66 },
+];
+
+const serviceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Lexus Online",
+  serviceType: "教育事業者向けAI業務改善・Webアプリ/SaaS開発",
+  provider: {
+    "@type": "EducationalOrganization",
+    name: "レクサス教育センター",
+    url: "https://lexus-ec.com/",
+  },
+  areaServed: "JP",
+  url: canonical,
+  description: pageDescription,
+};
+
+const pageNav = [
+  { label: "概要", href: "#overview" },
+  { label: "方針", href: "#policy" },
+  { label: "理由", href: "#why" },
+  { label: "対応範囲", href: "#systems" },
+  { label: "料金", href: "#pricing" },
+  { label: "進め方", href: "#flow" },
+  { label: "詳細", href: "#resources" },
+  { label: "FAQ", href: "#faq" },
+];
+
+const operationItems = [
+  { label: "記録", body: "点数、答案、課題、面談、つまずきを残す" },
+  { label: "判断", body: "弱点、優先順位、復習タイミングを見極める" },
+  { label: "指示", body: "次にやるべき教材、演習、声かけを示す" },
+  { label: "改善", body: "結果を見て、教材と支援方法を更新する" },
+];
+
+const policyItems = [
+  {
+    title: "最初から巨大化させない",
+    body: "現場で本当に使われる範囲を見極め、最小の業務フローから作ります。大きな理想は、小さく使われる仕組みから育てます。",
+  },
+  {
+    title: "品質ではなく、無駄な範囲を削る",
+    body: "安くするために品質を落とすのではありません。教育現場に共通する型を再利用し、不要な独自開発や過剰機能を削ります。",
+  },
+  {
+    title: "AI導入を目的にしない",
+    body: "AIは派手なデモのためではなく、記録、判断、指示、改善の流れを軽くするために使います。人が確認すべき判断は残します。",
+  },
+  {
+    title: "納品後も運用で育てる",
+    body: "システムは納品して終わりではありません。導入、講師への説明、運用ルールづくり、改善まで含めて、現場に定着させます。",
+  },
+  {
+    title: "知見を一代限りで終わらせない",
+    body: "教材、説明、方法論、改善履歴を蓄積・共有・更新できる形にし、次の指導者が再利用できる構造を作ります。",
+  },
+  {
+    title: "教育原価を下げ、品質へ戻す",
+    body: "管理業務の負担と開発費を下げることで、授業料を下げる余地や、講師・教材品質へ投資する余地を作ります。",
+  },
+];
+
+const reasonCards = [
+  {
+    label: "01",
+    title: "教育は情報処理の連続である",
+    body: "教育とは、記録、判断、指示、復習、教材、進捗、成果、展望など、大量の情報を結びつけて処理する営みです。",
+  },
+  {
+    label: "02",
+    title: "正しい方法は一つではない",
+    body: "理解重視、暗記重視、授業中心、自学中心。どれも相手と文脈によって正しくも誤りにもなります。だから生徒ごとの情報処理が必要です。",
+  },
+  {
+    label: "03",
+    title: "人間だけでは漏れが起きる",
+    body: "生徒数が増えるほど、復習漏れ、課題重複、判断の属人化が起きます。熱意だけでは、理想の教育管理を毎日維持しきれません。",
+  },
+  {
+    label: "04",
+    title: "知恵が業界資産になりにくい",
+    body: "優れた教材や方法論が個人の手元で止まり、次の指導者へ継承されにくい。教育にも、再利用されアップデートされる構造が必要です。",
+  },
+];
+
+const teamItems = [
+  {
+    title: "教育現場を起点にする",
+    body: "レクサス教育センターで培ってきた学習管理、教材、講師連携の課題意識を、開発要件へ翻訳します。",
+  },
+  {
+    title: "業務フローから設計する",
+    body: "画面を先に作るのではなく、誰が、いつ、何を記録し、何を判断し、次にどう動くかを整理します。",
+  },
+  {
+    title: "AIとWeb開発を現実運用へ落とす",
+    body: "AI、データベース、管理画面、帳票、権限、導入支援を、日々使われる業務システムとして接続します。",
+  },
+];
+
+const systems = [
+  {
+    title: "生徒管理システム",
+    body: "成績、課題、面談記録、志望校、弱点、復習履歴を一元化し、教室長と講師が同じ状態を見られるようにします。",
+  },
+  {
+    title: "教材作成システム",
+    body: "AI作問、解説生成、単元別テンプレート、PDF出力、教材ライブラリ化を支援します。",
+  },
+  {
+    title: "自動採点・添削システム",
+    body: "小テスト、英作文、記述答案、自由記述の採点補助を設計します。講師確認を前提に、添削時間を圧縮します。",
+  },
+  {
+    title: "勤怠・講師管理システム",
+    body: "講師シフト、稼働時間、担当生徒、授業報告、給与計算前の集計を整理します。",
+  },
+  {
+    title: "保護者連絡・報告システム",
+    body: "月次報告、面談前レポート、課題提出状況、学習方針の共有をスムーズにします。",
+  },
+  {
+    title: "SaaS/Webアプリ開発",
+    body: "教室内ツールから外販SaaSまで、要件定義、UI設計、開発、運用改善を一気通貫で行います。",
+  },
+  {
+    title: "AI業務改善",
+    body: "既存フォーム、スプレッドシート、報告書、教材作成、問い合わせ対応など、重い業務からAI活用を設計します。",
+  },
+  {
+    title: "教育データ基盤",
+    body: "教材、答案、成績、指導履歴、改善履歴を再利用できるデータ構造に整え、継承できる教育資産へ変えます。",
+  },
+];
+
+const pricingRows = [
+  {
+    scope: "簡易管理画面、業務診断、小規模自動化",
+    market: "50万〜150万円程度",
+    lexus: "19.8万円〜",
+  },
+  {
+    scope: "生徒管理、教材作成、情報共有系MVP",
+    market: "300万〜500万円程度",
+    lexus: "49.8万円〜",
+  },
+  {
+    scope: "自動採点、添削、複数教室、分析機能",
+    market: "500万〜1,000万円以上",
+    lexus: "98万円〜",
+  },
+  {
+    scope: "SaaS化、多拠点運用、権限管理、外部連携",
+    market: "1,000万円以上",
+    lexus: "個別見積もり",
+  },
+];
+
+const maintenanceRows = [
+  {
+    scope: "AI業務改善、簡易管理画面、小規模自動化",
+    market: "月1万〜3万円程度",
+    lexus: "月3,000円〜",
+    note: "障害一次確認、軽微な文言・設定修正、月次の利用状況確認を中心に対応します。",
+  },
+  {
+    scope: "生徒管理、教材作成、情報共有系MVP",
+    market: "月4万〜8万円程度",
+    lexus: "月5,000円〜",
+    note: "データ保全、軽微修正、操作相談、運用ルールの見直しを小さく継続します。",
+  },
+  {
+    scope: "自動採点・添削、AI機能、複数教室対応",
+    market: "月7万〜15万円程度",
+    lexus: "月1万円〜",
+    note: "AI出力の調整、採点基準の更新、権限・ログ確認、改善相談を含めて設計します。",
+  },
+  {
+    scope: "勤怠・講師管理、保護者連絡・報告システム",
+    market: "月4万〜10万円程度",
+    lexus: "月8,000円〜",
+    note: "月次運用の詰まり、帳票・通知内容の微調整、講師向け説明の改善を支援します。",
+  },
+  {
+    scope: "SaaS/Webアプリ、多拠点運用、外部連携",
+    market: "月15万〜30万円以上",
+    lexus: "月1.5万円〜",
+    note: "監視、問い合わせ整理、軽微改善、継続開発の優先順位づけまで個別に設計します。",
+  },
+];
+
+const plans = [
+  {
+    name: "Starter",
+    title: "AI業務診断・小規模自動化",
+    price: "19.8万円〜",
+    items: ["業務ヒアリング", "AI活用設計", "フォーム・表計算改善", "簡易ダッシュボード"],
+  },
+  {
+    name: "Standard",
+    title: "教育業務Webアプリ開発",
+    price: "49.8万円〜",
+    items: ["生徒管理・教材作成MVP", "管理画面UI設計", "AI機能の組み込み", "導入研修と初期改善"],
+  },
+  {
+    name: "Growth",
+    title: "SaaS化・多拠点運用支援",
+    price: "98万円〜",
+    items: ["複数教室対応", "権限管理・ログ設計", "自動採点添削・分析", "継続改善ミーティング"],
+  },
+];
+
+const flow = [
+  {
+    label: "01",
+    title: "現場診断",
+    body: "業務フロー、既存ツール、講師の負担、生徒管理の課題を整理します。",
+  },
+  {
+    label: "02",
+    title: "要件定義",
+    body: "最初から巨大な仕様にせず、最短で効果が出る範囲を切り出します。",
+  },
+  {
+    label: "03",
+    title: "設計・開発",
+    body: "Webアプリ、AI機能、管理画面、帳票出力、データベースを実装します。",
+  },
+  {
+    label: "04",
+    title: "導入支援",
+    body: "講師説明、初期データ投入、運用ルール作成まで支援します。",
+  },
+  {
+    label: "05",
+    title: "運用改善",
+    body: "使われていない理由を見つけ、現場に合わせて機能とUIを磨きます。",
+  },
+  {
+    label: "06",
+    title: "知見化",
+    body: "教材、判断基準、改善履歴を蓄積し、次の開発と教育品質へ還元します。",
+  },
+];
+
+const faqs = [
+  {
+    question: "公開できる導入実績はありますか？",
+    answer:
+      "このページでは、未確定の実績や公開許可のない実績は掲載していません。相談時には、守秘義務に配慮しながら、考え方やサンプル構成をご説明します。",
+  },
+  {
+    question: "AIを入れれば教育の質は上がりますか？",
+    answer:
+      "AI導入そのものを目的にはしません。記録、判断、指示、改善の流れを軽くし、講師が生徒を見る時間を増やす設計で初めて意味があります。",
+  },
+  {
+    question: "既存の塾管理システムやスプレッドシートと併用できますか？",
+    answer:
+      "可能です。いきなり全面移行せず、既存運用を残しながら、重い業務だけを小さく置き換える進め方を推奨します。",
+  },
+  {
+    question: "個人情報や生徒データの扱いは相談できますか？",
+    answer:
+      "要件定義の段階で、扱うデータ、閲覧権限、保存期間、AIへ渡す情報の範囲を整理します。必要に応じてAIに渡さない設計も行います。",
+  },
+  {
+    question: "教育業界以外でも依頼できますか？",
+    answer:
+      "AI業務改善やWebアプリ開発自体は対応可能です。ただしLexus Onlineの強みは、教育現場の情報処理と運用改善にあります。",
+  },
+  {
+    question: "どのくらいの期間で始められますか？",
+    answer:
+      "小規模な診断や自動化は短期間で着手できます。業務Webアプリは、範囲を絞ったMVPから始め、導入後に改善していく前提で計画します。",
+  },
+  {
+    question: "保守費には何が含まれますか？",
+    answer:
+      "障害一次確認、軽微な修正、操作相談、データ保全の確認、月次の改善相談などを、システムの規模に合わせて設計します。サーバー費、AI API利用料、24時間監視、大きな機能追加、セキュリティ監査は別途整理します。",
+  },
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} canonical={canonical} ogImage={seo.ogImage}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceJsonLd)} />
+  </Fragment>
+
+  <main class="lo-page">
+    <nav class="lo-fixed-nav" aria-label="Lexus Online ページナビゲーション">
+      <div class="content">
+        <a href="/lexus-online/" aria-current="page">概要</a>
+        {lexusOnlineDetailPages.map((item) => <a href={item.href}>{item.label}</a>)}
+      </div>
+    </nav>
+
+    <a class="lo-home-link" href="/">トップページに戻る</a>
+    <section class="lo-hero" aria-labelledby="lo-title">
+      <div class="content lo-hero__inner">
+        <div class="lo-hero-statement">
+          <span class="lo-hero-statement__scan" aria-hidden="true"></span>
+          <p class="lo-eyebrow">Education Technology Service</p>
+          <h1 id="lo-title" class="lo-hero-title">
+            <span class="lo-hero-title__message">テクノロジーを教育に結びつける</span>
+            <span class="lo-hero-title__brand" aria-label="Lexus Online">
+              <span>Lexus</span>
+              <span>Online</span>
+            </span>
+          </h1>
+          <div class="lo-hero-bridge" aria-hidden="true">
+            <span>Technology</span>
+            <i></i>
+            <span>Lexus Online</span>
+            <i></i>
+            <span>Education</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="lo-page-nav" aria-label="Lexus Online ページ内目次">
+      <div class="content">
+        {pageNav.map((item) => <a href={item.href}>{item.label}</a>)}
+      </div>
+    </nav>
+
+    <section class="lo-signal" aria-labelledby="lo-signal-title">
+      <div class="lo-hero-waves" aria-hidden="true">
+        {heroWaves.map((wave, index) => (
+          <span
+            class={`lo-wave-point lo-wave-point--${index + 1}`}
+            style={`--x: ${wave.x}%; --y: ${wave.y}%; --size: ${wave.size}px; --delay: ${wave.delay}s;`}
+          >
+            <span class="lo-wave-source"></span>
+            <span class="lo-wavelet"></span>
+          </span>
+        ))}
+        <span class="lo-wave-front lo-wave-front--one"></span>
+        <span class="lo-wave-front lo-wave-front--two"></span>
+        <span class="lo-wave-front lo-wave-front--three"></span>
+      </div>
+      <div class="content lo-signal__inner">
+        <div class="lo-signal__copy">
+          <p class="lo-section-label">Education Operation System</p>
+          <h2 id="lo-signal-title">教育の品質を上げるための<span class="lo-nowrap">AI・Webシステム</span>開発。</h2>
+          <p class="lo-hero__lead">
+            Lexus Onlineは、法人向けにAI業務改善、Webアプリ開発、SaaS開発、教育事業者向け業務システム開発を行うレクサスの開発部門・サービスです。
+            ただ安く開発するのではなく、教育現場で毎日使われ、教育の質を実際に上げる仕組みを作ります。
+          </p>
+          <div class="lo-hero__actions">
+            <a class="button button--red" href={contactHref}>メールで相談する</a>
+            <a class="button button--blue" href="#systems">対応システムを見る</a>
+            <a class="button button--light" href="#pricing">料金目安を見る</a>
+          </div>
+        </div>
+        <div class="lo-operation-map" aria-label="Lexus Onlineが支える教育業務の流れ">
+          {operationItems.map((item) => (
+            <article>
+              <span>{item.label}</span>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="overview" class="lo-section lo-section--white" aria-labelledby="overview-title">
+      <div class="content lo-two-column">
+        <div>
+          <p class="lo-section-label">Service Overview</p>
+          <h2 id="overview-title">教育現場の情報を、次の支援へつなぐ。</h2>
+        </div>
+        <div class="lo-prose">
+          <p>
+            教育とは、記録、判断、指示、復習、教材、進捗、成果、展望など、大量の情報を結びつけて処理する営みです。
+            しかし現場では、その多くが紙、表計算、チャット、講師の記憶に分散しています。
+          </p>
+          <p>
+            Lexus Onlineは、その分散を整理し、生徒ごとの状態を見える化し、講師が次の判断をしやすくするためのシステムを開発します。
+            派手なAIデモではなく、毎日使われ、教育の質を上げる業務基盤を重視します。
+          </p>
+          <div class="lo-system-visual" aria-hidden="true" data-lo-tilt>
+            <div class="lo-system-scene">
+              <div class="lo-system-frame lo-system-frame--one"></div>
+              <div class="lo-system-frame lo-system-frame--two"></div>
+              <div class="lo-system-axis lo-system-axis--x"></div>
+              <div class="lo-system-axis lo-system-axis--y"></div>
+              <div class="lo-system-core">
+                <span>Lexus Online</span>
+                <strong>Education OS</strong>
+                <p>記録・判断・指示・改善を一つの流れにする。</p>
+              </div>
+              <div class="lo-data-node lo-data-node--record">
+                <span>Record</span>
+                <strong>記録</strong>
+                <small>score / task / log</small>
+              </div>
+              <div class="lo-data-node lo-data-node--judge">
+                <span>Judge</span>
+                <strong>判断</strong>
+                <small>priority / gap</small>
+              </div>
+              <div class="lo-data-node lo-data-node--instruct">
+                <span>Instruct</span>
+                <strong>指示</strong>
+                <small>next action</small>
+              </div>
+              <div class="lo-data-node lo-data-node--improve">
+                <span>Improve</span>
+                <strong>改善</strong>
+                <small>update / inherit</small>
+              </div>
+              <div class="lo-packet lo-packet--one"></div>
+              <div class="lo-packet lo-packet--two"></div>
+              <div class="lo-packet lo-packet--three"></div>
+              <div class="lo-console-panel">
+                <span>live workflow</span>
+                <i></i>
+                <i></i>
+                <i></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="policy" class="lo-section lo-section--soft" aria-labelledby="policy-title">
+      <div class="content">
+        <div class="lo-heading">
+          <p class="lo-section-label">Development Policy</p>
+          <h2 id="policy-title">Lexus独自の開発ポリシー</h2>
+          <p>
+            ピッチ資料で示された思想を、実際の受託開発と運用改善の進め方へ落とし込んだ方針です。
+          </p>
+        </div>
+        <div class="lo-policy-grid">
+          {policyItems.map((item) => (
+            <article>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="why" class="lo-section lo-section--ink" aria-labelledby="why-title">
+      <div class="content">
+        <div class="lo-heading">
+          <p class="lo-section-label">Why Education</p>
+          <h2 id="why-title">教育業界向け開発に取り組む理由</h2>
+          <p>
+            正しい教育方法は一つではありません。人によって、前提となる能力、目的、実行方法が変わります。
+            だからこそ、生徒ごとの情報を処理し、その人に合った支援を設計する必要があります。
+          </p>
+        </div>
+        <div class="lo-reason-grid">
+          {reasonCards.map((item) => (
+            <article>
+              <span>{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+        <p class="lo-why-closing">
+          熱意ある指導者の理想をテクノロジーで拡張し、低品質なサービスが自然に選ばれにくくなる構造を作る。
+          その結果として、教育業界全体の品質向上と成長に貢献することを目指します。
+        </p>
+      </div>
+    </section>
+
+    <section id="team" class="lo-section lo-section--white" aria-labelledby="team-title">
+      <div class="content lo-team-layout">
+        <div>
+          <p class="lo-section-label">Developer / Team</p>
+          <h2 id="team-title">教育現場と開発をつなぐチーム。</h2>
+          <p class="lo-team-note">
+            個人名や未確定の実績をこのページで大きく見せるのではなく、Lexus Onlineの開発姿勢を明確に示します。
+          </p>
+        </div>
+        <div class="lo-team-list">
+          {teamItems.map((item) => (
+            <article>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="systems" class="lo-section lo-section--soft" aria-labelledby="systems-title">
+      <div class="content">
+        <div class="lo-heading">
+          <p class="lo-section-label">Systems</p>
+          <h2 id="systems-title">対応可能なシステム</h2>
+          <p>
+            教育現場に共通する型を活かしながら、個別の教室・事業モデルに合わせて調整します。
+          </p>
+        </div>
+        <div class="lo-system-grid">
+          {systems.map((system, index) => (
+            <article>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{system.title}</h3>
+              <p>{system.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="lo-section lo-section--white" aria-labelledby="pricing-title">
+      <div class="content">
+        <div class="lo-heading">
+          <p class="lo-section-label">Price / Benchmark</p>
+          <h2 id="pricing-title">料金・相場比較</h2>
+          <p>
+            通常外注では数百万円〜1,000万円規模になりやすい教育業務システムを、Lexusは10分の1水準から導入可能にします。
+          </p>
+          <p>
+            安さの理由は、品質を削ることではなく、共通する型を使い、最初に作る範囲を絞ることです。
+          </p>
+          <p>
+            保守についても、毎月の固定費を大きくしすぎず、必要な確認・軽微改善・運用相談から始められるように設計します。
+          </p>
+        </div>
+        <div class="lo-table-wrap">
+          <table class="lo-pricing-table">
+            <thead>
+              <tr>
+                <th>開発内容</th>
+                <th>一般的な外注相場の目安</th>
+                <th>Lexusの目安</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pricingRows.map((row) => (
+                <tr>
+                  <th>{row.scope}</th>
+                  <td>{row.market}</td>
+                  <td>{row.lexus}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div class="lo-plan-grid">
+          {plans.map((plan) => (
+            <article>
+              <p>{plan.name}</p>
+              <h3>{plan.title}</h3>
+              <strong>{plan.price}</strong>
+              <ul>
+                {plan.items.map((item) => <li>{item}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
+        <div class="lo-maintenance-block">
+          <div class="lo-subheading">
+            <p>Maintenance Benchmark</p>
+            <h3>保守・運用の月額目安</h3>
+            <p>
+              一般的な保守費は、開発費の約15%を年間費用として見る考え方があります。
+              Lexusでは、教育現場で本当に必要な保守範囲を絞り、相場の約10分の1水準から継続できる設計にします。
+            </p>
+          </div>
+          <div class="lo-table-wrap">
+            <table class="lo-pricing-table lo-maintenance-table">
+              <thead>
+                <tr>
+                  <th>保守対象</th>
+                  <th>一般的な保守相場の目安</th>
+                  <th>Lexusの保守目安</th>
+                  <th>主な保守範囲</th>
+                </tr>
+              </thead>
+              <tbody>
+                {maintenanceRows.map((row) => (
+                  <tr>
+                    <th>{row.scope}</th>
+                    <td>{row.market}</td>
+                    <td>{row.lexus}</td>
+                    <td>{row.note}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p class="lo-price-note">
+          ※10分の1水準は、フルスクラッチ開発や多機能システム開発、一般的な保守相場と比較した場合の目安です。既存システム連携、決済連携、個人情報管理、AI利用量、保守範囲、セキュリティ要件、24時間監視の有無によって費用は変動します。
+        </p>
+      </div>
+    </section>
+
+    <section id="flow" class="lo-section lo-section--soft" aria-labelledby="flow-title">
+      <div class="content">
+        <div class="lo-heading">
+          <p class="lo-section-label">Flow</p>
+          <h2 id="flow-title">開発の進め方</h2>
+          <p>
+            設計、開発、導入、改善までを一続きのプロセスとして扱います。
+          </p>
+        </div>
+        <ol class="lo-flow-list">
+          {flow.map((item) => (
+            <li>
+              <span>{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section id="resources" class="lo-section lo-section--white" aria-labelledby="resources-title">
+      <div class="content">
+        <div class="lo-heading">
+          <p class="lo-section-label">More Detail</p>
+          <h2 id="resources-title">さらに詳しく知りたい方へ</h2>
+          <p>
+            このページでは全体像をまとめています。開発思想、実際のアプリケーション開発の流れ、申し込みまでの準備、問い合わせフォームは、下層ページで詳しく整理しています。
+          </p>
+        </div>
+        <div class="lo-resource-grid">
+          {lexusOnlineDetailPages.map((item, index) => (
+            <article>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{item.label}</h3>
+              <p>{item.summary}</p>
+              <a href={item.href}>詳しく見る</a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="lo-section lo-section--white" aria-labelledby="faq-title">
+      <div class="content lo-faq-layout">
+        <div>
+          <p class="lo-section-label">FAQ</p>
+          <h2 id="faq-title">よくある質問</h2>
+        </div>
+        <div class="lo-faq-list">
+          {faqs.map((faq) => (
+            <details>
+              <summary>{faq.question}</summary>
+              <p>{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="lo-contact" aria-labelledby="contact-title">
+      <div class="content lo-contact__inner">
+        <p class="lo-section-label">Contact</p>
+        <h2 id="contact-title">まずは、いちばん重い教育業務を聞かせてください。</h2>
+        <p>
+          生徒管理、教材作成、採点添削、勤怠、保護者連絡、SaaS構想。
+          どこから小さく始めるべきか、現場の状況から整理します。
+        </p>
+        <div class="lo-contact__actions">
+          <a class="button button--red" href={contactHref}>メールで相談する</a>
+          <a class="button button--blue" href="/top/contact/">既存フォームから問い合わせる</a>
+        </div>
+        <p class="lo-contact__note">お問い合わせの際は「Lexus Onlineについて」とご記載ください。</p>
+      </div>
+    </section>
+  </main>
+  <SiteFooter />
+</BaseLayout>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector(".lo-page");
+    if (!root) return;
+
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    root.classList.add("lo-motion-ready");
+
+    const revealTargets = root.querySelectorAll(
+      ".lo-heading, .lo-two-column, .lo-team-layout, .lo-faq-layout, .lo-operation-map article, .lo-policy-grid article, .lo-reason-grid article, .lo-system-grid article, .lo-plan-grid article, .lo-flow-list li, .lo-resource-grid article",
+    );
+
+    revealTargets.forEach((target) => target.classList.add("lo-reveal"));
+
+    if (!prefersReduced && "IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: "0px 0px -12% 0px", threshold: 0.12 },
+      );
+      revealTargets.forEach((target) => observer.observe(target));
+    } else {
+      revealTargets.forEach((target) => target.classList.add("is-visible"));
+    }
+
+    const tilt = root.querySelector("[data-lo-tilt]");
+    if (!prefersReduced && tilt) {
+      root.addEventListener("pointermove", (event) => {
+        const rect = tilt.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+        const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+        tilt.style.setProperty("--tilt-x", `${Math.max(-1, Math.min(1, y)) * -4}deg`);
+        tilt.style.setProperty("--tilt-y", `${Math.max(-1, Math.min(1, x)) * 5}deg`);
+      });
+    }
+  })();
+</script>
+
+<style>
+  .lo-page {
+    --lo-ink: #111111;
+    --lo-muted: #5e5a53;
+    --lo-line: #ded6c8;
+    --lo-paper: #fffdf8;
+    --lo-soft: #f6f2ea;
+    --lo-gold: #c49a2d;
+    --lo-gold-dark: #8f6a18;
+    --lo-red: #8f1d1d;
+    --lo-red-deep: #5f1111;
+    --lo-fixed-nav-height: 60px;
+    position: relative;
+    padding-top: var(--lo-fixed-nav-height);
+    background: var(--lo-paper);
+    color: var(--lo-ink);
+  }
+
+  .lo-home-link {
+    position: absolute;
+    top: calc(var(--lo-fixed-nav-height) + 18px);
+    left: max(18px, calc((100vw - 1180px) / 2));
+    z-index: 20;
+    display: inline-flex;
+    gap: 7px;
+    align-items: center;
+    border: 1px solid rgb(17 17 17 / 14%);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 72%);
+    color: #2f271f;
+    padding: 7px 13px 8px;
+    box-shadow: 0 10px 28px rgb(57 38 12 / 10%);
+    backdrop-filter: blur(12px);
+    font-size: 0.82rem;
+    font-weight: 800;
+    line-height: 1.25;
+    min-height: 36px;
+    text-decoration: none;
+    transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+  }
+
+  .lo-home-link::before {
+    content: "<";
+    color: var(--lo-red);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .lo-home-link:hover,
+  .lo-home-link:focus-visible {
+    border-color: rgb(143 29 29 / 28%);
+    background: rgb(255 255 255 / 88%);
+    transform: translateY(-1px);
+  }
+
+  :global(body:has(.lo-page) .site-header) {
+    position: relative !important;
+    inset: auto !important;
+  }
+
+  :global(body:has(.lo-page) .mega-nav) {
+    position: static !important;
+    top: auto !important;
+  }
+
+  @keyframes loWaveSourcePulse {
+    0%,
+    100% {
+      opacity: 0.16;
+      transform: translate(-50%, -50%) scale(0.82);
+    }
+
+    42% {
+      opacity: 0.36;
+      transform: translate(-50%, -50%) scale(1.38);
+    }
+  }
+
+  @keyframes loWavelet {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.08);
+    }
+
+    18% {
+      opacity: 0.46;
+    }
+
+    56% {
+      opacity: 0.3;
+    }
+
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1.55);
+    }
+  }
+
+  @keyframes loWaveFront {
+    0% {
+      opacity: 0;
+      transform: translate(calc(-50% - 36px), calc(-50% + 24px)) rotate(-30deg) scale(0.78);
+    }
+
+    24% {
+      opacity: 0.52;
+    }
+
+    72% {
+      opacity: 0.32;
+    }
+
+    100% {
+      opacity: 0;
+      transform: translate(calc(-50% + 54px), calc(-50% - 52px)) rotate(-30deg) scale(1.2);
+    }
+  }
+
+  @keyframes loHeroScan {
+    from {
+      transform: translateX(-120%) skewX(-12deg);
+    }
+
+    to {
+      transform: translateX(120%) skewX(-12deg);
+    }
+  }
+
+  @keyframes loBrandGlow {
+    0%,
+    100% {
+      filter: drop-shadow(0 12px 28px rgb(57 38 12 / 9%));
+    }
+
+    50% {
+      filter: drop-shadow(0 18px 38px rgb(143 29 29 / 16%));
+    }
+  }
+
+  @keyframes loBridgePulse {
+    0% {
+      transform: scaleX(0);
+      transform-origin: left center;
+      opacity: 0.18;
+    }
+
+    42% {
+      transform: scaleX(1);
+      transform-origin: left center;
+      opacity: 0.88;
+    }
+
+    100% {
+      transform: scaleX(0);
+      transform-origin: right center;
+      opacity: 0.18;
+    }
+  }
+
+  @keyframes loFrameRotate {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+  @keyframes loFrameCounterRotate {
+    from {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    to {
+      transform: translate(-50%, -50%) rotate(-315deg);
+    }
+  }
+
+  @keyframes loNodeFloat {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+
+    50% {
+      translate: 0 -9px;
+    }
+  }
+
+  @keyframes loPacketRoute {
+    0% {
+      left: 18%;
+      top: 21%;
+      opacity: 0;
+    }
+
+    12% {
+      opacity: 1;
+    }
+
+    32% {
+      left: 77%;
+      top: 23%;
+    }
+
+    55% {
+      left: 76%;
+      top: 74%;
+    }
+
+    78% {
+      left: 18%;
+      top: 74%;
+      opacity: 1;
+    }
+
+    100% {
+      left: 18%;
+      top: 21%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes loConsoleScan {
+    0% {
+      transform: scaleX(0);
+      transform-origin: left center;
+      opacity: 0.25;
+    }
+
+    48% {
+      transform: scaleX(1);
+      transform-origin: left center;
+      opacity: 0.9;
+    }
+
+    52% {
+      transform: scaleX(1);
+      transform-origin: right center;
+      opacity: 0.9;
+    }
+
+    100% {
+      transform: scaleX(0);
+      transform-origin: right center;
+      opacity: 0.25;
+    }
+  }
+
+  @keyframes loFlowSweep {
+    from {
+      transform: translateX(-100%);
+    }
+
+    to {
+      transform: translateX(420%);
+    }
+  }
+
+  @keyframes loRevealUp {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .lo-page :where(section[id], .lo-anchor) {
+    scroll-margin-top: 92px;
+  }
+
+  .lo-nowrap {
+    white-space: nowrap;
+  }
+
+  .lo-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-bottom: 1px solid var(--lo-line);
+    background: linear-gradient(115deg, #fff 0%, #fffdf8 58%, #f5efe4 100%);
+    padding-block: 66px 34px;
+  }
+
+  .lo-hero-waves,
+  .lo-wave-point,
+  .lo-wave-source,
+  .lo-wavelet,
+  .lo-wave-front {
+    position: absolute;
+    display: block;
+  }
+
+  .lo-hero-waves {
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    mix-blend-mode: multiply;
+    opacity: 0.86;
+    pointer-events: none;
+  }
+
+  .lo-hero__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+    justify-items: stretch;
+  }
+
+  .lo-hero__copy {
+    width: 100%;
+    max-width: 1180px;
+    min-width: 0;
+  }
+
+  .lo-wave-point {
+    left: var(--x);
+    top: var(--y);
+    z-index: 1;
+  }
+
+  .lo-wave-source {
+    left: 0;
+    top: 0;
+    z-index: 2;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgb(143 29 29 / 28%);
+    box-shadow:
+      0 0 0 5px rgb(255 255 255 / 56%),
+      0 0 20px rgb(196 154 45 / 22%);
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    animation: loWaveSourcePulse 7.2s ease-in-out var(--delay) infinite;
+  }
+
+  .lo-wavelet {
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: var(--size);
+    aspect-ratio: 1;
+    border: 1px solid rgb(196 154 45 / 36%);
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, rgb(255 255 255 / 18%) 0 18%, rgb(255 224 138 / 12%) 19% 38%, transparent 39%),
+      radial-gradient(circle, transparent 0 61%, rgb(143 29 29 / 12%) 62% 64%, transparent 65%);
+    box-shadow:
+      inset 0 0 42px rgb(196 154 45 / 6%),
+      0 0 32px rgb(196 154 45 / 8%);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.08);
+    transform-origin: center;
+    animation: loWavelet 7.2s cubic-bezier(0.22, 0.62, 0.2, 1) var(--delay) infinite;
+  }
+
+  .lo-wave-front {
+    z-index: 0;
+    left: 72%;
+    top: 41%;
+    width: min(70vw, 1040px);
+    aspect-ratio: 1;
+    border: 2px solid rgb(196 154 45 / 28%);
+    border-bottom-color: rgb(143 29 29 / 14%);
+    border-left-color: transparent;
+    border-radius: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-30deg) scale(0.84);
+    transform-origin: center;
+    -webkit-mask-image: linear-gradient(135deg, transparent 0%, #000 28%, #000 100%);
+    mask-image: linear-gradient(135deg, transparent 0%, #000 28%, #000 100%);
+    animation: loWaveFront 7.2s cubic-bezier(0.22, 0.62, 0.2, 1) -4.95s infinite;
+  }
+
+  .lo-wave-front--two {
+    left: 78%;
+    top: 35%;
+    width: min(82vw, 1220px);
+    border-color: rgb(143 29 29 / 18%);
+    border-left-color: transparent;
+    animation-delay: -4.25s;
+  }
+
+  .lo-wave-front--three {
+    left: 84%;
+    top: 29%;
+    width: min(94vw, 1400px);
+    border-color: rgb(196 154 45 / 20%);
+    border-left-color: transparent;
+    animation-delay: -3.55s;
+  }
+
+  .lo-eyebrow,
+  .lo-section-label {
+    margin: 0 0 14px;
+    color: var(--lo-gold-dark);
+    font-size: 0.82rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .lo-hero-statement {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    overflow: hidden;
+    border-block: 1px solid rgb(17 17 17 / 13%);
+    background:
+      linear-gradient(90deg, rgb(255 255 255 / 86%), rgb(255 251 240 / 72%), rgb(255 255 255 / 74%)),
+      repeating-linear-gradient(90deg, rgb(196 154 45 / 8%) 0 1px, transparent 1px 42px),
+      repeating-linear-gradient(0deg, rgb(17 17 17 / 4%) 0 1px, transparent 1px 42px);
+    padding: clamp(26px, 3.4vw, 46px) clamp(18px, 4vw, 54px);
+    box-shadow: 0 28px 78px rgb(57 38 12 / 10%);
+  }
+
+  .lo-hero-statement::before,
+  .lo-hero-statement::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .lo-hero-statement::before {
+    inset: 18px;
+    border: 1px solid rgb(196 154 45 / 18%);
+  }
+
+  .lo-hero-statement::after {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    height: 4px;
+    background: linear-gradient(90deg, var(--lo-red), var(--lo-gold), transparent);
+  }
+
+  .lo-hero-statement__scan {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(100deg, transparent 0%, rgb(255 255 255 / 0%) 38%, rgb(255 255 255 / 56%) 50%, rgb(196 154 45 / 13%) 56%, transparent 72%);
+    opacity: 0.8;
+    animation: loHeroScan 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .lo-hero-statement > :not(.lo-hero-statement__scan) {
+    position: relative;
+    z-index: 3;
+  }
+
+  .lo-hero h1,
+  .lo-section h2,
+  .lo-contact h2 {
+    margin: 0;
+    color: var(--lo-ink);
+    font-family: var(--font-serif);
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 1.22;
+  }
+
+  .lo-hero h1 {
+    max-width: none;
+  }
+
+  .lo-hero-title {
+    display: grid;
+    gap: clamp(10px, 1.8vw, 18px);
+  }
+
+  .lo-hero-title__message {
+    display: block;
+    color: #1a1411;
+    font-size: clamp(2rem, 3.7vw, 4rem);
+    line-height: 1.08;
+  }
+
+  .lo-hero-title__brand {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.18em;
+    align-items: baseline;
+    color: transparent;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(4.2rem, 7.2vw, 7.45rem);
+    font-weight: 900;
+    line-height: 0.88;
+    background: linear-gradient(92deg, #111 0%, #251816 28%, var(--lo-red) 54%, var(--lo-gold-dark) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-transform: uppercase;
+    animation: loBrandGlow 5.8s ease-in-out infinite;
+  }
+
+  .lo-hero-bridge {
+    display: grid;
+    grid-template-columns: auto minmax(42px, 1fr) auto minmax(42px, 1fr) auto;
+    gap: 12px;
+    align-items: center;
+    max-width: 840px;
+    margin-top: clamp(22px, 3vw, 34px);
+    color: #3a3029;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(0.82rem, 1vw, 1rem);
+    font-weight: 900;
+  }
+
+  .lo-hero-bridge i {
+    position: relative;
+    display: block;
+    height: 1px;
+    overflow: hidden;
+    background: rgb(17 17 17 / 14%);
+  }
+
+  .lo-hero-bridge i::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, var(--lo-red), var(--lo-gold));
+    transform-origin: left center;
+    animation: loBridgePulse 3.8s ease-in-out infinite;
+  }
+
+  .lo-hero-bridge i:nth-of-type(2)::before {
+    animation-delay: -1.9s;
+  }
+
+  .lo-hero__lead {
+    max-width: 930px;
+    margin: 16px 0 0;
+    color: #302b27;
+    font-size: clamp(1rem, 1.35vw, 1.2rem);
+    font-weight: 600;
+    line-height: 1.88;
+  }
+
+  .lo-hero__lead strong {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--lo-ink);
+    font-family: var(--font-serif);
+    font-size: clamp(1.18rem, 1.8vw, 1.6rem);
+    font-weight: 900;
+    line-height: 1.45;
+  }
+
+  .lo-hero__actions,
+  .lo-contact__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 30px;
+  }
+
+  .lo-signal {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-bottom: 1px solid var(--lo-line);
+    background: linear-gradient(115deg, #fff 0%, #fffdf8 54%, #f5efe4 100%);
+    padding-block: 52px 64px;
+  }
+
+  .lo-signal__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: clamp(26px, 4vw, 42px);
+  }
+
+  .lo-signal__copy {
+    max-width: 940px;
+  }
+
+  .lo-signal h2 {
+    margin: 0;
+    color: var(--lo-ink);
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 3.2vw, 3.2rem);
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 1.28;
+  }
+
+  .lo-system-visual {
+    --tilt-x: 0deg;
+    --tilt-y: 0deg;
+    width: min(100%, 640px);
+    min-width: 0;
+    margin: 34px auto 0;
+    perspective: 1200px;
+    transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+    transform-style: preserve-3d;
+    transition: transform 180ms ease;
+  }
+
+  .lo-system-scene {
+    position: relative;
+    width: min(100%, 560px);
+    aspect-ratio: 1;
+    margin-inline: auto;
+    overflow: hidden;
+    border: 1px solid rgb(17 17 17 / 11%);
+    background:
+      linear-gradient(135deg, rgb(255 255 255 / 82%), rgb(255 253 248 / 70%)),
+      repeating-linear-gradient(90deg, rgb(196 154 45 / 8%) 0 1px, transparent 1px 34px),
+      repeating-linear-gradient(0deg, rgb(17 17 17 / 4%) 0 1px, transparent 1px 34px);
+    box-shadow: 0 22px 64px rgb(57 38 12 / 13%);
+  }
+
+  .lo-system-scene::before,
+  .lo-system-scene::after {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgb(196 154 45 / 28%);
+    pointer-events: none;
+  }
+
+  .lo-system-scene::after {
+    inset: 38px;
+    border-color: rgb(143 29 29 / 16%);
+  }
+
+  .lo-system-frame {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 66%;
+    aspect-ratio: 1;
+    border: 1px solid rgb(196 154 45 / 34%);
+    pointer-events: none;
+  }
+
+  .lo-system-frame--one {
+    animation: loFrameRotate 28s linear infinite;
+  }
+
+  .lo-system-frame--two {
+    width: 48%;
+    border-color: rgb(143 29 29 / 22%);
+    animation: loFrameCounterRotate 22s linear infinite;
+  }
+
+  .lo-system-axis {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, rgb(196 154 45 / 44%), transparent);
+    pointer-events: none;
+  }
+
+  .lo-system-axis--x {
+    left: 12%;
+    right: 12%;
+    top: 50%;
+    height: 1px;
+  }
+
+  .lo-system-axis--y {
+    left: 50%;
+    top: 12%;
+    bottom: 12%;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgb(143 29 29 / 34%), transparent);
+  }
+
+  .lo-system-core {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 4;
+    display: grid;
+    width: 40%;
+    aspect-ratio: 1;
+    place-content: center;
+    gap: 8px;
+    padding: 28px;
+    border: 1px solid rgb(196 154 45 / 54%);
+    background: rgb(255 255 255 / 92%);
+    box-shadow:
+      0 22px 54px rgb(196 154 45 / 18%),
+      inset 0 0 0 10px rgb(246 242 234 / 70%);
+    text-align: center;
+    transform: translate(-50%, -50%);
+  }
+
+  .lo-system-core span,
+  .lo-data-node span,
+  .lo-console-panel span {
+    color: var(--lo-gold-dark);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .lo-system-core strong {
+    color: var(--lo-red);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.2rem, 2vw, 1.72rem);
+    line-height: 1;
+  }
+
+  .lo-system-core p {
+    margin: 0;
+    color: var(--lo-muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+    line-height: 1.55;
+  }
+
+  .lo-data-node {
+    position: absolute;
+    z-index: 3;
+    display: grid;
+    gap: 5px;
+    width: 146px;
+    min-height: 94px;
+    padding: 14px 16px;
+    border: 1px solid rgb(17 17 17 / 12%);
+    background: rgb(255 255 255 / 88%);
+    box-shadow: 0 16px 38px rgb(57 38 12 / 11%);
+    animation: loNodeFloat 6.2s ease-in-out infinite;
+  }
+
+  .lo-data-node::before {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: -5px;
+    width: 10px;
+    height: 10px;
+    background: var(--lo-gold);
+    transform: rotate(45deg);
+  }
+
+  .lo-data-node strong {
+    color: var(--lo-ink);
+    font-family: var(--font-serif);
+    font-size: 1.16rem;
+    line-height: 1.2;
+  }
+
+  .lo-data-node small {
+    color: var(--lo-muted);
+    font-size: 0.74rem;
+    font-weight: 800;
+    line-height: 1.35;
+  }
+
+  .lo-data-node--record {
+    left: 6%;
+    top: 11%;
+  }
+
+  .lo-data-node--judge {
+    right: 5%;
+    top: 13%;
+    animation-delay: -1.2s;
+  }
+
+  .lo-data-node--instruct {
+    right: 7%;
+    bottom: 10%;
+    animation-delay: -2.4s;
+  }
+
+  .lo-data-node--improve {
+    left: 7%;
+    bottom: 10%;
+    animation-delay: -3.6s;
+  }
+
+  .lo-packet {
+    position: absolute;
+    z-index: 5;
+    width: 14px;
+    height: 14px;
+    border: 1px solid rgb(255 255 255 / 82%);
+    background: var(--lo-red);
+    box-shadow: 0 0 22px rgb(143 29 29 / 44%);
+    transform: rotate(45deg);
+    animation: loPacketRoute 8s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+  }
+
+  .lo-packet--two {
+    background: var(--lo-gold);
+    box-shadow: 0 0 22px rgb(196 154 45 / 44%);
+    animation-delay: -2.6s;
+  }
+
+  .lo-packet--three {
+    background: #17110f;
+    box-shadow: 0 0 22px rgb(17 17 17 / 28%);
+    animation-delay: -5.2s;
+  }
+
+  .lo-console-panel {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 22px;
+    z-index: 6;
+    display: grid;
+    grid-template-columns: 130px 1fr 0.7fr 0.48fr;
+    gap: 10px;
+    align-items: center;
+    min-height: 44px;
+    border: 1px solid rgb(17 17 17 / 12%);
+    background: rgb(255 255 255 / 86%);
+    padding: 11px 14px;
+  }
+
+  .lo-console-panel i {
+    position: relative;
+    display: block;
+    height: 8px;
+    overflow: hidden;
+    background: rgb(17 17 17 / 8%);
+  }
+
+  .lo-console-panel i::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, var(--lo-gold), var(--lo-red));
+    animation: loConsoleScan 3.2s ease-in-out infinite;
+  }
+
+  .lo-console-panel i:nth-child(3)::before {
+    animation-delay: -1s;
+  }
+
+  .lo-console-panel i:nth-child(4)::before {
+    animation-delay: -1.8s;
+  }
+
+  .lo-operation-map {
+    position: relative;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: 100%;
+    margin-top: 0;
+    border: 1px solid rgb(17 17 17 / 14%);
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .lo-operation-map::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    width: 22%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--lo-gold), var(--lo-red), transparent);
+    animation: loFlowSweep 6s ease-in-out infinite;
+  }
+
+  .lo-operation-map article {
+    position: relative;
+    z-index: 1;
+    min-height: 150px;
+    padding: 24px;
+    background: rgb(255 255 255 / 86%);
+  }
+
+  .lo-operation-map article + article {
+    border-left: 1px solid var(--lo-line);
+  }
+
+  .lo-operation-map span {
+    display: block;
+    color: var(--lo-red);
+    font-family: var(--font-serif);
+    font-size: 1.85rem;
+    font-weight: 900;
+    line-height: 1.1;
+  }
+
+  .lo-operation-map p {
+    margin: 14px 0 0;
+    color: var(--lo-muted);
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.7;
+  }
+
+  .lo-fixed-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 110;
+    width: 100%;
+    border-bottom: 1px solid var(--lo-line);
+    background: rgb(255 255 255 / 94%);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 24px rgb(57 38 12 / 7%);
+  }
+
+  .lo-fixed-nav .content {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1px;
+    justify-content: center;
+    overflow-x: auto;
+    padding-block: 10px;
+    scrollbar-width: none;
+  }
+
+  .lo-fixed-nav .content::-webkit-scrollbar {
+    display: none;
+  }
+
+  .lo-fixed-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    min-height: 38px;
+    padding: 8px 14px;
+    border: 1px solid transparent;
+    color: #2c2824;
+    font-size: 0.9rem;
+    font-weight: 900;
+    line-height: 1.3;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .lo-fixed-nav a:hover,
+  .lo-fixed-nav a:focus-visible,
+  .lo-fixed-nav a[aria-current="page"] {
+    border-color: rgb(196 154 45 / 42%);
+    color: var(--lo-red);
+    background: #fffaf0;
+  }
+
+  .lo-page-nav {
+    position: relative;
+    z-index: 5;
+    border-block: 1px solid var(--lo-line);
+    background: rgb(255 255 255 / 92%);
+  }
+
+  .lo-page-nav .content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+    justify-content: center;
+    padding-block: 10px;
+  }
+
+  .lo-page-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 8px 14px;
+    border: 1px solid transparent;
+    color: #2c2824;
+    font-size: 0.9rem;
+    font-weight: 900;
+    line-height: 1.3;
+    text-decoration: none;
+  }
+
+  .lo-page-nav a:hover,
+  .lo-page-nav a:focus-visible {
+    border-color: rgb(196 154 45 / 42%);
+    color: var(--lo-red);
+    background: #fffaf0;
+  }
+
+  .lo-section {
+    padding-block: 88px;
+    scroll-margin-top: 104px;
+  }
+
+  .lo-section--white {
+    background: #fff;
+  }
+
+  .lo-section--soft {
+    background: var(--lo-soft);
+  }
+
+  .lo-section--ink {
+    background: linear-gradient(135deg, #17110f, #3b1715);
+    color: #fff;
+  }
+
+  .lo-section--ink .lo-section-label {
+    color: #e2bd55;
+  }
+
+  .lo-section--ink h2,
+  .lo-section--ink h3 {
+    color: #fff;
+  }
+
+  .lo-section--ink .lo-heading p,
+  .lo-section--ink .lo-reason-grid p,
+  .lo-why-closing {
+    color: rgb(255 255 255 / 78%);
+  }
+
+  .lo-two-column,
+  .lo-team-layout,
+  .lo-faq-layout {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1fr);
+    gap: 54px;
+    align-items: start;
+  }
+
+  .lo-section h2,
+  .lo-contact h2 {
+    font-size: clamp(2rem, 3.6vw, 3.65rem);
+  }
+
+  .lo-prose p,
+  .lo-heading p,
+  .lo-team-note,
+  .lo-contact p {
+    margin: 0;
+    color: var(--lo-muted);
+    font-size: 1.04rem;
+    font-weight: 500;
+    line-height: 1.9;
+  }
+
+  .lo-prose p + p {
+    margin-top: 18px;
+  }
+
+  .lo-heading {
+    max-width: 980px;
+    margin-bottom: 38px;
+  }
+
+  .lo-heading p {
+    max-width: 940px;
+    margin-top: 18px;
+  }
+
+  .lo-policy-grid,
+  .lo-reason-grid,
+  .lo-system-grid,
+  .lo-plan-grid,
+  .lo-resource-grid,
+  .lo-team-list {
+    display: grid;
+    gap: 18px;
+  }
+
+  .lo-policy-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lo-policy-grid article,
+  .lo-system-grid article,
+  .lo-plan-grid article,
+  .lo-resource-grid article,
+  .lo-team-list article,
+  .lo-faq-list details {
+    border: 1px solid var(--lo-line);
+    background: #fff;
+    box-shadow: 0 16px 42px rgb(57 38 12 / 7%);
+  }
+
+  .lo-policy-grid article,
+  .lo-system-grid article,
+  .lo-plan-grid article,
+  .lo-resource-grid article,
+  .lo-team-list article,
+  .lo-flow-list li,
+  .lo-faq-list details {
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .lo-policy-grid article:hover,
+  .lo-system-grid article:hover,
+  .lo-plan-grid article:hover,
+  .lo-resource-grid article:hover,
+  .lo-team-list article:hover,
+  .lo-flow-list li:hover,
+  .lo-faq-list details:hover {
+    border-color: rgb(196 154 45 / 54%);
+    box-shadow: 0 22px 54px rgb(57 38 12 / 12%);
+    transform: translateY(-4px);
+  }
+
+  .lo-policy-grid article,
+  .lo-system-grid article,
+  .lo-plan-grid article,
+  .lo-resource-grid article {
+    min-height: 250px;
+    padding: 28px;
+  }
+
+  .lo-policy-grid h3,
+  .lo-reason-grid h3,
+  .lo-system-grid h3,
+  .lo-plan-grid h3,
+  .lo-resource-grid h3,
+  .lo-team-list h3 {
+    margin: 0;
+    color: var(--lo-ink);
+    font-size: 1.18rem;
+    font-weight: 900;
+    line-height: 1.5;
+  }
+
+  .lo-policy-grid p,
+  .lo-system-grid p,
+  .lo-resource-grid p,
+  .lo-team-list p,
+  .lo-plan-grid li,
+  .lo-flow-list p,
+  .lo-price-note,
+  .lo-faq-list p {
+    margin: 14px 0 0;
+    color: var(--lo-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.8;
+  }
+
+  .lo-reason-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 34px 46px;
+  }
+
+  .lo-reason-grid article {
+    min-height: 230px;
+    border-top: 1px solid rgb(226 189 85 / 52%);
+    padding: 22px 0 0;
+  }
+
+  .lo-reason-grid span,
+  .lo-system-grid span,
+  .lo-resource-grid span,
+  .lo-flow-list span,
+  .lo-plan-grid > article > p {
+    display: inline-block;
+    color: var(--lo-gold-dark);
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .lo-reason-grid span {
+    margin-bottom: 28px;
+    color: #e2bd55;
+    font-size: 2.2rem;
+  }
+
+  .lo-reason-grid p {
+    margin: 14px 0 0;
+  }
+
+  .lo-why-closing {
+    max-width: 980px;
+    margin: 42px 0 0;
+    border-left: 4px solid #e2bd55;
+    padding-left: 22px;
+    font-size: 1.08rem;
+    font-weight: 600;
+    line-height: 1.9;
+  }
+
+  .lo-team-list {
+    gap: 14px;
+  }
+
+  .lo-team-list article {
+    padding: 24px;
+  }
+
+  .lo-system-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .lo-system-grid span {
+    margin-bottom: 32px;
+    color: var(--lo-red);
+    font-size: 1.4rem;
+  }
+
+  .lo-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--lo-line);
+    background: #fff;
+    box-shadow: 0 16px 42px rgb(57 38 12 / 7%);
+  }
+
+  .lo-pricing-table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+  }
+
+  .lo-pricing-table th,
+  .lo-pricing-table td {
+    border-bottom: 1px solid var(--lo-line);
+    padding: 18px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .lo-pricing-table thead th {
+    background: #1b1512;
+    color: #fff;
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  .lo-pricing-table tbody th {
+    width: 44%;
+    font-weight: 900;
+  }
+
+  .lo-pricing-table tbody td:nth-child(3) {
+    color: var(--lo-red);
+    font-size: 1.15rem;
+    font-weight: 900;
+    white-space: nowrap;
+  }
+
+  .lo-maintenance-block {
+    margin-top: 42px;
+  }
+
+  .lo-subheading {
+    max-width: 920px;
+    margin-bottom: 20px;
+  }
+
+  .lo-subheading > p:first-child {
+    margin: 0 0 10px;
+    color: var(--lo-gold-dark);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.86rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .lo-subheading h3 {
+    margin: 0;
+    color: var(--lo-ink);
+    font-family: var(--font-serif);
+    font-size: clamp(1.45rem, 2.4vw, 2.35rem);
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 1.35;
+  }
+
+  .lo-subheading > p:last-child {
+    margin: 12px 0 0;
+    color: var(--lo-muted);
+    font-size: 0.98rem;
+    font-weight: 500;
+    line-height: 1.8;
+  }
+
+  .lo-maintenance-table {
+    min-width: 940px;
+    table-layout: fixed;
+  }
+
+  .lo-maintenance-table tbody th {
+    width: 32%;
+  }
+
+  .lo-maintenance-table th:nth-child(2),
+  .lo-maintenance-table th:nth-child(3) {
+    width: 18%;
+    white-space: nowrap;
+  }
+
+  .lo-maintenance-table th:nth-child(4) {
+    width: 32%;
+  }
+
+  .lo-maintenance-table tbody td:last-child {
+    color: var(--lo-muted);
+    font-size: 0.92rem;
+    font-weight: 500;
+    line-height: 1.75;
+    white-space: normal;
+  }
+
+  .lo-plan-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 28px;
+  }
+
+  .lo-plan-grid article {
+    min-height: 360px;
+  }
+
+  .lo-plan-grid > article > p {
+    margin: 0 0 18px;
+    text-transform: uppercase;
+  }
+
+  .lo-plan-grid strong {
+    display: block;
+    margin-top: 16px;
+    color: var(--lo-red);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2.35rem;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .lo-plan-grid ul {
+    display: grid;
+    gap: 9px;
+    margin-top: 22px;
+  }
+
+  .lo-plan-grid li {
+    position: relative;
+    margin: 0;
+    padding-left: 18px;
+  }
+
+  .lo-plan-grid li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 7px;
+    height: 7px;
+    background: var(--lo-gold);
+    transform: rotate(45deg);
+  }
+
+  .lo-price-note {
+    margin-top: 18px;
+    font-size: 0.9rem;
+  }
+
+  .lo-flow-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    counter-reset: flow;
+  }
+
+  .lo-flow-list li {
+    min-height: 220px;
+    border: 1px solid var(--lo-line);
+    background: #fff;
+    padding: 24px;
+  }
+
+  .lo-flow-list span {
+    margin-bottom: 24px;
+    color: var(--lo-red);
+    font-size: 1.45rem;
+  }
+
+  .lo-flow-list h3 {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.45;
+  }
+
+  .lo-resource-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .lo-resource-grid article {
+    min-height: 300px;
+  }
+
+  .lo-resource-grid span {
+    margin-bottom: 28px;
+    color: var(--lo-red);
+    font-size: 1.35rem;
+  }
+
+  .lo-resource-grid a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    margin-top: 18px;
+    border: 1px solid rgb(143 29 29 / 24%);
+    padding: 9px 14px;
+    color: var(--lo-red);
+    font-size: 0.86rem;
+    font-weight: 900;
+    line-height: 1.25;
+    text-decoration: none;
+  }
+
+  .lo-resource-grid a:hover,
+  .lo-resource-grid a:focus-visible {
+    border-color: rgb(196 154 45 / 48%);
+    background: #fff8e9;
+  }
+
+  .lo-faq-list {
+    display: grid;
+    gap: 12px;
+  }
+
+  .lo-faq-list details {
+    padding: 0;
+  }
+
+  .lo-faq-list summary {
+    cursor: pointer;
+    padding: 20px 22px;
+    color: var(--lo-ink);
+    font-size: 1rem;
+    font-weight: 900;
+    line-height: 1.6;
+  }
+
+  .lo-faq-list p {
+    margin: 0;
+    border-top: 1px solid var(--lo-line);
+    padding: 18px 22px 22px;
+  }
+
+  .lo-contact {
+    background: linear-gradient(135deg, #17110f, #3a1715);
+    color: #fff;
+    padding-block: 78px;
+    text-align: center;
+  }
+
+  .lo-contact .lo-section-label {
+    color: #e2bd55;
+  }
+
+  .lo-contact h2 {
+    color: #fff;
+  }
+
+  .lo-contact p {
+    max-width: 820px;
+    margin: 18px auto 0;
+    color: rgb(255 255 255 / 78%);
+  }
+
+  .lo-contact__actions {
+    justify-content: center;
+  }
+
+  .lo-contact__note {
+    font-size: 0.9rem !important;
+  }
+
+  .lo-motion-ready .lo-reveal {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  .lo-motion-ready .lo-reveal.is-visible {
+    animation: loRevealUp 620ms cubic-bezier(0.18, 0.84, 0.2, 1) both;
+  }
+
+  .lo-operation-map article:nth-child(2),
+  .lo-policy-grid article:nth-child(2n),
+  .lo-system-grid article:nth-child(2n),
+  .lo-plan-grid article:nth-child(2),
+  .lo-resource-grid article:nth-child(2n),
+  .lo-flow-list li:nth-child(2n) {
+    animation-delay: 90ms;
+  }
+
+  .lo-operation-map article:nth-child(3),
+  .lo-policy-grid article:nth-child(3n),
+  .lo-system-grid article:nth-child(3n),
+  .lo-resource-grid article:nth-child(3n),
+  .lo-flow-list li:nth-child(3n) {
+    animation-delay: 170ms;
+  }
+
+  .lo-operation-map article:nth-child(4),
+  .lo-policy-grid article:nth-child(4n),
+  .lo-system-grid article:nth-child(4n),
+  .lo-resource-grid article:nth-child(4n),
+  .lo-flow-list li:nth-child(4n) {
+    animation-delay: 250ms;
+  }
+
+  @media (max-width: 1120px) {
+    .lo-hero__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .lo-policy-grid,
+    .lo-system-grid,
+    .lo-resource-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .lo-reason-grid,
+    .lo-flow-list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 960px) {
+    .lo-two-column,
+    .lo-team-layout,
+    .lo-faq-layout {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .lo-operation-map,
+    .lo-plan-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .lo-operation-map article + article {
+      border-top: 1px solid var(--lo-line);
+      border-left: 0;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .lo-table-wrap {
+      overflow: visible;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .lo-pricing-table {
+      min-width: 0;
+    }
+
+    .lo-pricing-table,
+    .lo-pricing-table tbody,
+    .lo-pricing-table tr,
+    .lo-pricing-table th,
+    .lo-pricing-table td {
+      display: block;
+      width: 100%;
+    }
+
+    .lo-pricing-table thead {
+      display: none;
+    }
+
+    .lo-pricing-table tbody {
+      display: grid;
+      gap: 12px;
+    }
+
+    .lo-pricing-table tr {
+      border: 1px solid var(--lo-line);
+      background: #fff;
+      padding: 18px;
+      box-shadow: 0 12px 28px rgb(57 38 12 / 7%);
+    }
+
+    .lo-pricing-table th,
+    .lo-pricing-table td {
+      border: 0;
+      padding: 0;
+    }
+
+    .lo-pricing-table tbody th,
+    .lo-maintenance-table tbody th {
+      width: 100%;
+    }
+
+    .lo-pricing-table td {
+      margin-top: 12px;
+      color: var(--lo-muted);
+      font-size: 0.92rem;
+      font-weight: 500;
+      white-space: normal !important;
+    }
+
+    .lo-pricing-table tbody td:nth-of-type(1)::before,
+    .lo-pricing-table tbody td:nth-of-type(2)::before,
+    .lo-maintenance-table tbody td:nth-of-type(1)::before,
+    .lo-maintenance-table tbody td:nth-of-type(2)::before,
+    .lo-maintenance-table tbody td:nth-of-type(3)::before {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--lo-gold-dark);
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+    }
+
+    .lo-pricing-table tbody td:nth-of-type(1)::before {
+      content: "一般的な外注相場の目安";
+    }
+
+    .lo-pricing-table tbody td:nth-of-type(2)::before {
+      content: "Lexusの目安";
+    }
+
+    .lo-maintenance-table tbody td:nth-of-type(1)::before {
+      content: "一般的な保守相場の目安";
+    }
+
+    .lo-maintenance-table tbody td:nth-of-type(2)::before {
+      content: "Lexusの保守目安";
+    }
+
+    .lo-maintenance-table tbody td:nth-of-type(3)::before {
+      content: "主な保守範囲";
+    }
+  }
+
+  @media (max-width: 680px) {
+    .lo-page {
+      --lo-fixed-nav-height: 56px;
+    }
+
+    :global(body:has(.lo-page)) {
+      padding-top: 0 !important;
+    }
+
+    :global(body:has(.lo-page) .mobile-menu-panel) {
+      position: absolute !important;
+      inset: 100% 0 auto !important;
+      max-height: calc(100vh - 86px);
+    }
+
+    .lo-page :where(section[id], .lo-anchor) {
+      scroll-margin-top: 118px;
+    }
+
+    .lo-home-link {
+      top: calc(var(--lo-fixed-nav-height) + 13px);
+      left: 14px;
+      padding: 7px 12px;
+      font-size: 0.8rem;
+      min-height: 36px;
+    }
+
+    .lo-hero {
+      padding-block: 58px 24px;
+    }
+
+    .lo-hero-statement {
+      padding: 24px 16px 26px;
+    }
+
+    .lo-hero-statement::before {
+      inset: 10px;
+    }
+
+    .lo-hero-waves {
+      opacity: 0.7;
+    }
+
+    .lo-signal {
+      padding-block: 38px 48px;
+    }
+
+    .lo-signal h2 {
+      font-size: clamp(1.55rem, 7.5vw, 2.2rem);
+      line-height: 1.34;
+    }
+
+    .lo-wave-front {
+      left: 86%;
+      width: 118vw;
+    }
+
+    .lo-hero__inner {
+      gap: 30px;
+    }
+
+    .lo-hero h1 {
+      font-size: clamp(2rem, 9vw, 2.85rem);
+      line-height: 1.25;
+    }
+
+    .lo-hero-title {
+      gap: 8px;
+    }
+
+    .lo-hero-title__message {
+      font-size: clamp(1.48rem, 7.3vw, 2.22rem);
+      line-height: 1.18;
+    }
+
+    .lo-hero-title__brand {
+      display: grid;
+      gap: 0;
+      font-size: clamp(3.35rem, 16.6vw, 4.4rem);
+      line-height: 0.9;
+    }
+
+    .lo-hero-bridge {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-top: 20px;
+      font-size: 0.76rem;
+    }
+
+    .lo-hero-bridge i {
+      height: 2px;
+    }
+
+    .lo-hero__lead,
+    .lo-prose p,
+    .lo-heading p,
+    .lo-team-note,
+    .lo-contact p {
+      font-size: 0.94rem;
+      line-height: 1.82;
+    }
+
+    .lo-hero__actions,
+    .lo-contact__actions {
+      display: grid;
+      justify-items: center;
+      width: 100%;
+    }
+
+    .lo-hero__actions .button,
+    .lo-contact__actions .button {
+      width: min(100%, 292px);
+    }
+
+    .lo-operation-map {
+      margin-top: 0;
+    }
+
+    .lo-operation-map article {
+      min-height: 0;
+      padding: 20px;
+    }
+
+    .lo-system-scene {
+      width: min(100%, 342px);
+      aspect-ratio: auto;
+      min-height: 520px;
+    }
+
+    .lo-system-frame,
+    .lo-system-axis,
+    .lo-packet {
+      display: none;
+    }
+
+    .lo-system-core {
+      left: 50%;
+      top: 26px;
+      width: calc(100% - 42px);
+      aspect-ratio: auto;
+      min-height: 132px;
+      transform: translateX(-50%);
+    }
+
+    .lo-data-node {
+      position: relative;
+      left: auto;
+      right: auto;
+      top: auto;
+      bottom: auto;
+      width: calc(100% - 42px);
+      margin-inline: auto;
+      min-height: 78px;
+      animation: none;
+    }
+
+    .lo-data-node--record {
+      margin-top: 178px;
+    }
+
+    .lo-data-node--judge,
+    .lo-data-node--instruct,
+    .lo-data-node--improve {
+      margin-top: 10px;
+    }
+
+    .lo-console-panel {
+      display: none;
+    }
+
+    .lo-fixed-nav .content,
+    .lo-page-nav .content {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 6px;
+      width: min(100% - 28px, 420px);
+      justify-content: flex-start;
+      overflow-x: auto;
+      padding-block: 8px;
+      scrollbar-width: none;
+    }
+
+    .lo-fixed-nav .content {
+      width: min(100% - 20px, 540px);
+    }
+
+    .lo-fixed-nav .content::-webkit-scrollbar,
+    .lo-page-nav .content::-webkit-scrollbar {
+      display: none;
+    }
+
+    .lo-fixed-nav a,
+    .lo-page-nav a {
+      flex: 0 0 auto;
+      min-height: 38px;
+      border-color: var(--lo-line);
+      background: #fff;
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+
+    .lo-fixed-nav a[aria-current="page"] {
+      border-color: rgb(196 154 45 / 42%);
+      color: var(--lo-red);
+      background: #fffaf0;
+    }
+
+    .lo-section {
+      padding-block: 58px;
+      scroll-margin-top: 118px;
+    }
+
+    .lo-section h2,
+    .lo-contact h2 {
+      font-size: clamp(1.6rem, 8vw, 2.3rem);
+      line-height: 1.35;
+    }
+
+    .lo-policy-grid,
+    .lo-reason-grid,
+    .lo-system-grid,
+    .lo-resource-grid,
+    .lo-flow-list {
+      grid-template-columns: 1fr;
+    }
+
+    .lo-policy-grid article,
+    .lo-system-grid article,
+    .lo-plan-grid article,
+    .lo-resource-grid article,
+    .lo-flow-list li,
+    .lo-team-list article {
+      min-height: 0;
+      padding: 20px;
+    }
+
+    .lo-reason-grid article {
+      min-height: 0;
+    }
+
+    .lo-plan-grid strong {
+      font-size: 2rem;
+      white-space: normal;
+    }
+
+    .lo-table-wrap {
+      overflow: visible;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .lo-pricing-table {
+      min-width: 0;
+    }
+
+    .lo-pricing-table,
+    .lo-pricing-table tbody,
+    .lo-pricing-table tr,
+    .lo-pricing-table th,
+    .lo-pricing-table td {
+      display: block;
+      width: 100%;
+    }
+
+    .lo-pricing-table thead {
+      display: none;
+    }
+
+    .lo-pricing-table tbody {
+      display: grid;
+      gap: 12px;
+    }
+
+    .lo-pricing-table tr {
+      border: 1px solid var(--lo-line);
+      background: #fff;
+      padding: 18px;
+      box-shadow: 0 12px 28px rgb(57 38 12 / 7%);
+    }
+
+    .lo-pricing-table th,
+    .lo-pricing-table td {
+      border: 0;
+      padding: 0;
+    }
+
+    .lo-pricing-table tbody th,
+    .lo-maintenance-table tbody th {
+      width: 100%;
+    }
+
+    .lo-pricing-table td {
+      margin-top: 12px;
+      color: var(--lo-muted);
+      font-size: 0.92rem;
+      font-weight: 500;
+      white-space: normal !important;
+    }
+
+    .lo-pricing-table tbody td:nth-of-type(1)::before,
+    .lo-pricing-table tbody td:nth-of-type(2)::before,
+    .lo-maintenance-table tbody td:nth-of-type(3)::before {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--lo-gold-dark);
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+    }
+
+    .lo-pricing-table tbody td:nth-of-type(1)::before {
+      content: "一般的な外注相場の目安";
+    }
+
+    .lo-pricing-table tbody td:nth-of-type(2)::before {
+      content: "Lexusの目安";
+    }
+
+    .lo-maintenance-table tbody td:nth-of-type(1)::before {
+      content: "一般的な保守相場の目安";
+    }
+
+    .lo-maintenance-table tbody td:nth-of-type(2)::before {
+      content: "Lexusの保守目安";
+    }
+
+    .lo-maintenance-table tbody td:nth-of-type(3)::before {
+      content: "主な保守範囲";
+    }
+
+    .lo-faq-list summary {
+      padding: 14px 16px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .lo-faq-list p {
+      padding: 16px 18px 18px;
+      font-size: 0.9rem;
+    }
+
+    .lo-contact {
+      padding-block: 58px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lo-wave-source,
+    .lo-wavelet,
+    .lo-wave-front,
+    .lo-hero-statement__scan,
+    .lo-hero-title__brand,
+    .lo-hero-bridge i::before,
+    .lo-system-frame,
+    .lo-data-node,
+    .lo-packet,
+    .lo-console-panel i::before,
+    .lo-operation-map::before,
+    .lo-motion-ready .lo-reveal.is-visible {
+      animation: none !important;
+    }
+
+    .lo-system-visual,
+    .lo-policy-grid article,
+    .lo-system-grid article,
+    .lo-plan-grid article,
+    .lo-resource-grid article,
+    .lo-team-list article,
+    .lo-flow-list li,
+    .lo-faq-list details {
+      transition: none !important;
+      transform: none !important;
+    }
+
+    .lo-wave-source {
+      opacity: 0.16;
+    }
+
+    .lo-wavelet,
+    .lo-wave-front {
+      opacity: 0.18;
+    }
+
+    .lo-motion-ready .lo-reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

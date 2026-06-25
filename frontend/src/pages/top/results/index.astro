@@ -1,0 +1,263 @@
+---
+import { seo } from "../../../data/home";
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+
+const title = "医学部合格 - 合格メソッド";
+const description =
+  "医学部合格 - レクサス教育センター - OB、OGの声 - 元々、勉強習慣はありませんでしたが…気がついたら一日中勉強していました。夜間指導は他の塾とは違って、絶対に夜間残らなきゃいけないっていう強制参加制度でしたから、これはよその予備校とはちがうなと思いました。俺一人でやってるとサボっちゃうほうなので。";
+
+const images = {
+  oni: "/illustrations/characters/yuki-sensei-cheer.png",
+  logoStrip: "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png",
+  representative: "/assets/legacy/wp-content/uploads/2025/02/島内T-e1725539542904.jpg",
+  mascot: "/assets/legacy/wp-content/uploads/2025/02/新レクサスくん-指さし-2_20240826143701-899x1024.png",
+  garden: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-1-04.jpg",
+  guide: "/assets/legacy/wp-content/uploads/2025/11/PR用見本2026-1024x1024.jpg",
+};
+
+const universityResults = [
+  ["慶應義塾大学", "1名"],
+  ["東京慈恵会医科大学", "5名"],
+  ["順天堂大学", "8名"],
+  ["日本医科大学", "8名"],
+  ["関西医科大学", "4名"],
+  ["東京医科大学", "16名"],
+  ["東邦大学", "14名"],
+  ["昭和医科大学", "23名"],
+  ["日本大学", "30名"],
+  ["杏林大学", "30名"],
+  ["帝京大学", "33名"],
+  ["東京女子医科大学", "18名"],
+  ["東海大学", "22名"],
+  ["聖マリアンナ医科大学", "41名"],
+  ["国際医療福祉大学", "4名"],
+  ["獨協医科大学", "29名"],
+  ["埼玉医科大学", "47名"],
+  ["東北医科薬科大学", "12名"],
+  ["岩手医科大学", "50名"],
+  ["愛知医科大学", "10名"],
+  ["金沢医科大学", "45名"],
+  ["兵庫医科大学", "3名"],
+  ["川崎医科大学", "48名"],
+  ["久留米大学", "2名"],
+];
+
+const stats = [
+  { label: "一年で合格する割合", value: "68%", note: "医学部合格" },
+  { label: "偏差値60台スタート", value: "100%", note: "医学部合格" },
+  { label: "偏差値50台スタート", value: "88%", note: "医学部合格" },
+  { label: "合格者の最高年齢", value: "41歳", note: "年齢制限なし" },
+];
+
+const quickLinks = [
+  { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
+  { label: "合格体験記", href: "/top/voice/", tone: "green" },
+  { label: "理念と沿革", href: "/top/history/", tone: "red" },
+];
+
+const resultActions = [
+  { label: "資料請求", href: "/request-documents/", tone: "red" },
+  { label: "合格者の声へ", href: "/top/voice/", tone: "blue" },
+];
+
+const conditions = [
+  {
+    label: "【条件 その１】",
+    title: "勉強時間を思い切り増やす",
+    metrics: ["入学後の勉強時間", "1日 約13時間", "いつでも質問可能！"],
+    points: [
+      {
+        title: "POINT 1 思い切りやれば、苦痛は無くなる！",
+        body: "一日の大半を勉強時間に充てれば、自然と勉強が習慣化されて、勉強そのものに苦痛を感じにくくなります。",
+      },
+      {
+        title: "POINT 2 思い切りやれば、「楽しい」に変えられる！",
+        body: "勉強が習慣化されるとできる事が増え、処理スピードが上がり、成長が加速します。",
+      },
+      {
+        title: "POINT 3 いつでも質問できるから継続できる！",
+        body: "長時間の勉強を続けても、疑問が解消されなければ苦痛は消えません。レクサスではいつでもプロ講師に質問できます。",
+      },
+    ],
+    quote:
+      "元々、勉強習慣はありませんでしたが…気がついたら一日中勉強していました。夜間指導は他の塾とは違って、強制参加制度でしたから、これはよその予備校とはちがうなと思いました。",
+  },
+  {
+    label: "【条件 その2】",
+    title: "プロが指示します",
+    metrics: ["やるべきことは", "合計396セット", "実践形式で15回"],
+    points: [
+      {
+        title: "POINT 1 人それぞれ「良い」は違う！",
+        body: "良い勉強法、参考書、授業は個々の状況によって異なります。自分にとって何が良いのかを自分で判断するのは非常に困難です。",
+      },
+      {
+        title: "POINT 2 あなたの「良い」をプロが見抜きます！",
+        body: "プロ講師は多くの受験生を合格へ導いた経験に基づき、生徒一人一人に合格への最善策を正しく明示します。",
+      },
+      {
+        title: "POINT 3 目の前の課題に集中するだけでOK！",
+        body: "膨大な学習計画を日々の課題やテストに切り分け、締め切り効果も使って学習効率を高めます。",
+      },
+    ],
+    quote: "もう迷う必要なし！復習課題まで指定されるので効率的でした。授業と夜間課題がリンクしていて、その日の授業の類題を解くだけで復習になりました。",
+  },
+  {
+    label: "【条件 その3】",
+    title: "情報戦を制して合格をつかめ！",
+    metrics: ["情報戦を制して", "合計50年分以上", "9月開始12回で完成"],
+    points: [
+      {
+        title: "POINT 1 情報収集もプロにお任せ！",
+        body: "医学部入試情報は、大学発信、予備校データ、個人の意見に分かれます。最短合格にはプロ講師の目で情報を厳選することが不可欠です。",
+      },
+      {
+        title: "POINT 2 過去問で勝ち方を知る！",
+        body: "解答形式、問題の難度、制限時間の厳しさ、目標点を把握した上で、合格ラインを超える練習を重ねます。",
+      },
+      {
+        title: "POINT 3 二次試験対策も準備は万全！",
+        body: "小論文は落とされない書き方、面接は好感度と説得力が重要です。9月から準備し、主要科目の勉強時間を削らずに対策します。",
+      },
+    ],
+    quote: "面接、小論文も迷わない！9月からじっくり準備して、説得力のある医師志望理由を言語化できました。",
+  },
+];
+---
+
+<SiteLayout title={title} description={description} canonical="https://lexus-ec.com/top/results/" ogImage={seo.ogImage}>
+  <main class="results-page">
+    <section class="results-hero">
+      <div class="content results-hero__grid">
+        <div>
+          <p class="results-hero__lead">【全医学部受験生へ】密度の高い勉強をしませんか？</p>
+          <h1>医学部合格を叶えるメソッド</h1>
+          <p>「鬼監理」と「鬼特訓」があなたを劇的に変えます。さあ、“勉強の鬼”と化せ！</p>
+          <strong>レクサス教育センターは元祖“鬼特訓予備校”です。</strong>
+        </div>
+        <img src={images.oni} alt="鬼特訓イメージキャラクター" width="234" height="260" decoding="async" />
+      </div>
+    </section>
+
+    <section class="results-achievement" aria-labelledby="results-achievement-title">
+      <div class="content">
+        <img class="results-logo-strip" src={images.logoStrip} alt="" width="800" height="58" loading="lazy" decoding="async" />
+        <header class="results-section-head">
+          <p>ACHIEVEMENTS</p>
+          <h2 id="results-achievement-title">合格実績</h2>
+          <span>～ 一年で合格する割合 ～</span>
+        </header>
+        <div class="results-stat-grid">
+          {stats.map((stat) => (
+            <article>
+              <p>{stat.label}</p>
+              <strong>{stat.value}</strong>
+              <span>{stat.note}</span>
+            </article>
+          ))}
+        </div>
+        <p class="results-note">※全コースでの募集定員は72名です。</p>
+        <h3>合格した大学一覧 (医学部医学科のみ)</h3>
+        <ul class="results-university-grid">
+          {universityResults.map(([name, count]) => (
+            <li><span>{name}</span><strong>{count}</strong></li>
+          ))}
+        </ul>
+        <p class="results-note">※医学部入試過去6年分 (2020～2025年度) の最終合格者データです。</p>
+        <div class="results-achievement__actions" aria-label="合格実績ページの補助導線">
+          {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+        </div>
+        <div class="results-achievement__actions" aria-label="合格メソッドページの主要導線">
+          {resultActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+        </div>
+        <img class="results-precondition-photo" src={images.representative} alt="レクサス教育センター代表" width="435" height="533" loading="lazy" decoding="async" />
+      </div>
+    </section>
+
+    <section class="results-conditions" aria-labelledby="results-conditions-title">
+      <div class="content">
+        <header class="results-section-head">
+          <p>METHOD</p>
+          <h2 id="results-conditions-title">「3つの条件」</h2>
+          <span>最短合格には秘訣があります。</span>
+        </header>
+        <div class="results-condition-list">
+          {conditions.map((condition, index) => (
+            <article class="results-condition">
+              <div class="results-condition__intro">
+                <div>
+                  <h3>{condition.label}</h3>
+                  <p class="results-condition__title">{condition.title}</p>
+                </div>
+                <ul>
+                  {condition.metrics.map((metric) => <li>{metric}</li>)}
+                </ul>
+              </div>
+
+              {index === 1 && (
+                <>
+                  <h2 class="results-callout-heading">プロが指示します</h2>
+                  <h2 class="results-callout-heading">やるべきことは</h2>
+                  <h4>（※既卒生コースの年間学習計画）</h4>
+                </>
+              )}
+              {index === 2 && (
+                <>
+                  <h2 class="results-callout-heading">合格をつかめ ！</h2>
+                  <h2 class="results-callout-heading">情報戦を制して</h2>
+                  <h4>（※既卒生コースの年間学習計画）</h4>
+                </>
+              )}
+
+              <div class="results-point-grid">
+                {condition.points.map((point) => (
+                  <section>
+                    <strong>{point.title}</strong>
+                    <p>{point.body}</p>
+                  </section>
+                ))}
+              </div>
+              <blockquote>{condition.quote}</blockquote>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="results-message">
+      <div class="content results-message__grid">
+        <img src={images.representative} alt="レクサス教育センター 代表取締役 島内義仁" width="435" height="533" loading="lazy" decoding="async" />
+        <div>
+          <h2>さあ勝ちにいこう ！</h2>
+          <h2>条件は満たされた</h2>
+          <p>レクサスでは、毎日「何を、いつ、どのように」を明確にしたプランで学習します。受験勉強の苦痛を取り除き、むしろ楽しいと思える状態を作ることで合格に大きく近づきます。</p>
+          <img src={images.mascot} alt="レクサスくん(マスコットキャラクター)" width="800" height="911" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </section>
+
+    <section class="results-garden" aria-labelledby="results-garden-title">
+      <div class="content results-garden__grid">
+        <div>
+          <h2 id="results-garden-title">生徒専用寮 『LEXUS GARDEN』のご案内</h2>
+          <p>校舎と一体型の環境で、学習時間と生活リズムを保ちます。地方からの受験生も、専用寮を使って医学部受験に集中できます。</p>
+          <a class="button button--green" href="/top/lexus-garden/">設備や費用を見てみる</a>
+        </div>
+        <img src={images.garden} alt="レクサスガーデン外観" width="788" height="518" loading="lazy" decoding="async" />
+      </div>
+    </section>
+
+    <section class="results-guide">
+      <div class="content results-guide__grid">
+        <img src={images.guide} alt="医学部合格読本 2026" width="800" height="800" loading="lazy" decoding="async" />
+        <div>
+          <h3>資料請求した方へプレゼント</h3>
+          <h2>レクサスのプロ講師と、 レクサスの卒業生が、共同で作りました。</h2>
+          <div class="fixed-hero__actions">
+            <a class="button button--red" href="/request-documents/">資料請求</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>

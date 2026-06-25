@@ -1,0 +1,626 @@
+export type LinkItem = {
+  label: string;
+  href: string;
+  target?: "_blank";
+  rel?: string;
+};
+
+export type NavGroup = {
+  label: string;
+  links: LinkItem[];
+};
+
+export type HeaderAction = LinkItem & {
+  icon: string;
+  tone: "pink" | "green" | "orange" | "blue";
+};
+
+export type StatCard = {
+  label: string;
+  value: string;
+  tone: "orange" | "green" | "cyan";
+};
+
+export type UniversityResult = {
+  name: string;
+  count: string;
+};
+
+export type SuccessCard = {
+  titleLines: string[];
+  image: string;
+  imageAlt: string;
+  width: number;
+  height: number;
+  universities: string[];
+  deviation: string;
+  videoId: string;
+};
+
+export type ParentVoice = {
+  title: string;
+  body: string;
+  href: string;
+  cta: string;
+};
+
+export type ActionLink = LinkItem & {
+  tone?: "red" | "blue" | "green" | "gold" | "light";
+};
+
+export type MethodPillar = {
+  title: string;
+  subtitle: string;
+  body: string;
+  image: string;
+  imageAlt: string;
+  links: ActionLink[];
+};
+
+export type ComparisonRow = {
+  item: string;
+  lexus: string;
+  medical: string;
+  major: string;
+};
+
+export type CourseCard = {
+  target: string;
+  name: string;
+  english: string;
+  href: string;
+  note: string;
+};
+
+export type SupportMetric = {
+  label: string;
+  value: string;
+};
+
+export type FooterGroup = {
+  title: string;
+  links: LinkItem[];
+};
+
+export const seo = {
+  title: "“鬼特訓”する 医学部予備校 LEXUS (レクサス)｜寮と一体型の医学部受験専門塾【渋谷・東京】",
+  description:
+    "医学部予備校 として35周年を迎える老舗予備校。「厳しい監理体制」（＝鬼監理）と「当日実行型カリキュラム」（＝鬼特訓）が特徴です。東京の渋谷で校舎は専用寮と一体型。厳選されたプロ講師による少人数・個別指導と、1日13時間の徹底学習サポートで医学部合格へ導く医学部受験専門の塾です。",
+  canonical: "https://lexus-ec.com/",
+  ogImage: "/assets/legacy/wp-content/uploads/2024/09/新レクサス1-e1726564535383.png",
+};
+
+export const assets = {
+  iconAccess: "/assets/legacy/wp-content/uploads/2024/08/アイコン-09.jpg",
+  iconConsult: "/assets/legacy/wp-content/uploads/2025/05/アイコン-08.jpg",
+  iconContact: "/assets/legacy/wp-content/uploads/2024/08/アイコン-07.jpg",
+  iconRequest: "/assets/legacy/wp-content/uploads/2025/05/アイコン-06.jpg",
+  logo: "/assets/legacy/wp-content/uploads/2024/08/社名ロゴ-1.jpg",
+  footerLogo: "/assets/legacy/wp-content/uploads/2024/08/レクサス社名ロゴ.jpg",
+  heroPaper: "/assets/legacy/wp-content/uploads/2026/01/鬼-和紙01.jpg",
+  jewelPattern: "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png",
+  voiceBanner: "/assets/legacy/wp-content/uploads/2025/02/合格者の声.jpg",
+  parentLetter: "/assets/legacy/wp-content/uploads/2025/03/手紙.jpg",
+  selection: "/assets/legacy/wp-content/uploads/2026/05/レクサスの選抜テストP-1024x1024.jpg",
+  representative: "/assets/legacy/wp-content/uploads/2025/02/島内T-e1725539542904.jpg",
+  penguinVideo: "/assets/legacy/wp-content/uploads/2025/08/ペンギン動画-1024x512.jpg",
+  lineSupport: "/assets/legacy/wp-content/uploads/elementor/thumbs/レクサス-オンLINE質問室01-r7jf12vg2u9tg5t6zi49eycff15bl75rl2fjix8ryg.jpg",
+  onikanriTitle: "/assets/legacy/wp-content/uploads/2026/01/鬼監理×鬼特訓-1024x184.jpg",
+  trainingWide: "/assets/legacy/wp-content/uploads/2025/12/レクサスくん鬼特訓中-1024x511.jpg",
+  trainingTall: "/assets/legacy/wp-content/uploads/2025/12/レクサスくん鬼特訓中tate-738x1024.jpg",
+  oniCoach: "/assets/legacy/wp-content/uploads/2026/01/鬼-指示出し-e1768024719806.png",
+  oniTraining: "/illustrations/characters/yuki-sensei-cheer.png",
+  oniMascot: "/assets/legacy/wp-content/uploads/2025/12/レクサスくん鬼-1-1024x687.jpg",
+  teacherMath: "/assets/legacy/wp-content/uploads/2025/02/数学-小田Ｔ-e1739985341931-803x1024.jpg",
+  teacherChemistry: "/assets/legacy/wp-content/uploads/2025/02/cropped_image4-777x1024.jpg",
+  dorm: "/assets/legacy/wp-content/uploads/2026/01/レクサス専用寮外観-1024x651.jpg",
+  pointingMascot: "/assets/legacy/wp-content/uploads/2025/11/新レクサスくん-指さし.jpg",
+};
+
+export const headerActions: HeaderAction[] = [
+  { label: "アクセス", href: "/top/access/", icon: assets.iconAccess, tone: "pink" },
+  { label: "個別相談", href: "/top/reservation/", icon: assets.iconConsult, tone: "green" },
+  { label: "お問合せ", href: "/top/contact/", icon: assets.iconContact, tone: "orange" },
+  { label: "資料請求", href: "/request-documents/", icon: assets.iconRequest, tone: "blue" },
+];
+
+export const navGroups: NavGroup[] = [
+  {
+    label: "実績 / メソッド / 講師",
+    links: [
+      { label: "合格実績", href: "/top/voice/" },
+      { label: "“鬼特訓”とは？", href: "/medical-english-training/" },
+      { label: "“鬼監理”とは？", href: "/study-support-system/" },
+      { label: "医学部受験 攻略メソッド", href: "/top/results/" },
+      { label: "講師紹介", href: "/top/teacher/" },
+      { label: "医学部予備校としての強み", href: "/top/history/" },
+      { label: "よくある質問", href: "/top/faq/" },
+    ],
+  },
+  {
+    label: "体験 / ガイダンス",
+    links: [
+      { label: "体験授業", href: "/top/teacher/" },
+      { label: "個別説明会", href: "/reservation/" },
+      { label: "専用寮の見学", href: "/top/lexus-garden/" },
+      { label: "入学までの流れ", href: "/entrance/" },
+      { label: "よくある質問", href: "/top/faq/" },
+    ],
+  },
+  {
+    label: "コース / 学費",
+    links: [
+      { label: "医学部専門 コース一覧", href: "/top/course/" },
+      { label: "レクサス プレミア本科 【既卒生専用】", href: "/lexus-premier/" },
+      { label: "ハイレベル現役合格コース 【高2・3生専用】", href: "/top/course/high-level-geneki-course/" },
+      { label: "オーダーメード演習コース 【全学年対象】", href: "/top/course/custom-made-course/" },
+      { label: "メディカル準備コース 【高等部】", href: "/top/course/medical-prep/" },
+      { label: "メディカル準備コース 【中等部】", href: "/top/course/medical-prep-junior/" },
+    ],
+  },
+  {
+    label: "校舎 / 寮",
+    links: [
+      { label: "アクセス", href: "/top/access/" },
+      { label: "生徒専用寮 「レクサスガーデン」", href: "/top/lexus-garden/" },
+      { label: "校舎と寮の見学", href: "/reservation/" },
+      { label: "よくある質問", href: "/top/faq/" },
+    ],
+  },
+  {
+    label: "医学部情報",
+    links: [
+      { label: "国公立医学部（大学別）", href: "/top/information-kokuritsu/" },
+      { label: "私立医学部（大学別）", href: "/top/information-shiritsu/" },
+      { label: "私立医学部 入試のQ＆A", href: "/information-faq/" },
+      { label: "私立医学部 繰り上げ合格データ", href: "/kuriage-information/" },
+    ],
+  },
+  {
+    label: "法人向け開発",
+    links: [
+      { label: "Lexus Online", href: "/lexus-online/", target: "_blank" },
+      { label: "AI業務改善", href: "/lexus-online/#systems", target: "_blank" },
+      { label: "Webアプリ / SaaS開発", href: "/lexus-online/#systems", target: "_blank" },
+      { label: "開発ポリシー詳細", href: "/lexus-online/policy/", target: "_blank" },
+      { label: "開発の流れ", href: "/lexus-online/development-flow/", target: "_blank" },
+      { label: "料金・相場比較", href: "/lexus-online/#pricing", target: "_blank" },
+      { label: "開発相談フォーム", href: "/lexus-online/contact/", target: "_blank" },
+    ],
+  },
+];
+
+export const heroActions: ActionLink[] = [
+  { label: "資料請求する", href: "/request-documents/", tone: "red" },
+  { label: "個別説明会へ", href: "/top/reservation/", tone: "blue" },
+  { label: "コース詳細へ", href: "/lexus-premier/", tone: "light" },
+];
+
+export const achievementStats: StatCard[] = [
+  { label: "偏差値60台スタート", value: "100%合格", tone: "orange" },
+  { label: "偏差値50台スタート", value: "88%合格", tone: "green" },
+  { label: "合格者の最高年齢", value: "41歳", tone: "cyan" },
+];
+
+export const acceptedUniversities: UniversityResult[][] = [
+  [
+    { name: "千葉大学", count: "4名" },
+    { name: "愛媛大学", count: "1名" },
+    { name: "慶應義塾大学", count: "1名" },
+    { name: "東京慈恵会医科大学", count: "5名" },
+    { name: "順天堂大学", count: "8名" },
+    { name: "日本医科大学", count: "8名" },
+    { name: "関西医科大学", count: "4名" },
+    { name: "東京医科大学", count: "16名" },
+    { name: "東邦大学", count: "14名" },
+    { name: "昭和医科大学", count: "23名" },
+  ],
+  [
+    { name: "日本大学", count: "30名" },
+    { name: "杏林大学", count: "30名" },
+    { name: "帝京大学", count: "33名" },
+    { name: "東京女子医科大学", count: "18名" },
+    { name: "北里大学", count: "6名" },
+    { name: "東海大学", count: "22名" },
+    { name: "聖マリアンナ医科大学", count: "41名" },
+    { name: "国際医療福祉大学", count: "4名" },
+    { name: "獨協医科大学", count: "29名" },
+    { name: "埼玉医科大学", count: "47名" },
+  ],
+  [
+    { name: "東北医科薬科大学", count: "12名" },
+    { name: "岩手医科大学", count: "50名" },
+    { name: "愛知医科大学", count: "10名" },
+    { name: "金沢医科大学", count: "45名" },
+    { name: "近畿大学", count: "6名" },
+    { name: "兵庫医科大学", count: "3名" },
+    { name: "川崎医科大学", count: "48名" },
+    { name: "福岡大学", count: "4名" },
+    { name: "久留米大学", count: "2名" },
+  ],
+];
+
+export const successCards: SuccessCard[] = [
+  {
+    titleLines: ["レクサスをフル活用して", "医学部へ！"],
+    image: "/assets/legacy/wp-content/uploads/2026/04/レクサス教育センター-医学部合格者-順天堂大学2026合格.jpg",
+    imageAlt: "レクサスをフル活用して順天堂大学に合格した生徒の写真",
+    width: 1024,
+    height: 765,
+    universities: ["順天堂大学 医学部", "国際医療福祉大学 医学部"],
+    deviation: "50 → 68",
+    videoId: "lg1x_sI9ZhU",
+  },
+  {
+    titleLines: ["絶対落ちたと思った…が！", "不屈の精神と戦略で全勝"],
+    image: "/assets/legacy/wp-content/uploads/2026/04/レクサス教育センター-医学部合格者-千葉大学2026合格.jpg",
+    imageAlt: "レクサスをフル活用して千葉大学に合格した生徒の写真",
+    width: 1577,
+    height: 1187,
+    universities: ["千葉大学 医学部", "国際医療福祉大学 医学部", "東京医科大学 医学部"],
+    deviation: "64 → 70以上",
+    videoId: "4qnlrouxX98",
+  },
+  {
+    titleLines: ["英語を武器に医学部へ！", "根性の逆転合格"],
+    image: "/assets/legacy/wp-content/uploads/2026/04/レクサス教育センター-医学部合格者-北里大学2026合格.jpg",
+    imageAlt: "3浪で北里大学に合格した生徒の写真",
+    width: 1284,
+    height: 965,
+    universities: ["北里大学"],
+    deviation: "58 → 65",
+    videoId: "TP5jKcQjB_E",
+  },
+  {
+    titleLines: ["薬学部から医学部へ！", "執念の逆転合格"],
+    image: "/assets/legacy/wp-content/uploads/2025/03/レクサス教育センター-医学部予備校-杏林合格.jpg",
+    imageAlt: "再受験で杏林大学に合格した生徒の写真",
+    width: 964,
+    height: 646,
+    universities: ["杏林大学"],
+    deviation: "50 → 64",
+    videoId: "n24q16MJeIQ",
+  },
+  {
+    titleLines: ["英語と化学を克服して", "医学部へ！"],
+    image: "/assets/legacy/wp-content/uploads/2025/03/医学部予備校-レクサス教育センター-昭和大学合格-1.jpg",
+    imageAlt: "昭和医科大学に合格した生徒の写真",
+    width: 1048,
+    height: 664,
+    universities: ["昭和医科大学 医学部"],
+    deviation: "60 → 66",
+    videoId: "vw0i8Lsmj3A",
+  },
+  {
+    titleLines: ["苦手の英語を克服して", "医学部へ！"],
+    image: "/assets/legacy/wp-content/uploads/2025/03/医学部予備校-レクサス教育センター-東京医科大学合格.jpg",
+    imageAlt: "東京医科大学と帝京大学に合格した生徒の写真",
+    width: 1100,
+    height: 823,
+    universities: ["東京医科大学 医学部", "帝京大学 医学部"],
+    deviation: "50 → 68",
+    videoId: "M-mDvonB5M0",
+  },
+  {
+    titleLines: ["スポーツトレーナーから", "医学部へ！"],
+    image: "/assets/legacy/wp-content/uploads/2025/03/医学部予備校-レクサス教育センター-日本大学合格-1.jpg",
+    imageAlt: "再受験で日本大学に合格した生徒の写真",
+    width: 2868,
+    height: 1772,
+    universities: ["日本大学 医学部"],
+    deviation: "未習 → 65",
+    videoId: "O8bDESro59M",
+  },
+  {
+    titleLines: ["理系科目の知識０から", "医学部へ！"],
+    image: "/assets/legacy/wp-content/uploads/2025/03/医学部予備校-レクサス教育センター-杏林大学合格-1.jpg",
+    imageAlt: "偏差値30台から杏林大学に合格した生徒の写真",
+    width: 917,
+    height: 656,
+    universities: ["杏林大学 医学部", "岩手医科大学 医学部"],
+    deviation: "30 → 55",
+    videoId: "kbTgyDnqbBQ",
+  },
+  {
+    titleLines: ["得意の英語を活かして", "医学部へ！"],
+    image: "/assets/legacy/wp-content/uploads/2025/03/医学部予備校-レクサス教育センター-東邦大学合格.jpg",
+    imageAlt: "東邦大学医学部に合格した生徒の写真",
+    width: 1200,
+    height: 740,
+    universities: ["東邦大学 医学部", "杏林大学 医学部"],
+    deviation: "60 → 70",
+    videoId: "wI1goEveTak",
+  },
+  {
+    titleLines: ["苦手な数学を克服して", "医学部へ！"],
+    image: "/assets/legacy/wp-content/uploads/2025/03/医学部予備校-レクサス教育センター-東京女子医科大学合格.jpg",
+    imageAlt: "東京女子医科大学に合格した生徒の写真",
+    width: 1038,
+    height: 677,
+    universities: ["東京女子医科大学 医学部"],
+    deviation: "50 → 62",
+    videoId: "3NkIuz6MHUY",
+  },
+  {
+    titleLines: ["苦手の英語を克服して", "医学部へ！"],
+    image: "/assets/legacy/wp-content/uploads/2025/03/医学部予備校-レクサス教育センター-埼玉医大合格.jpg",
+    imageAlt: "埼玉医科大学に合格した生徒の写真",
+    width: 1033,
+    height: 696,
+    universities: ["埼玉医科大学 医学部", "川崎医科大学 医学部"],
+    deviation: "50 → 63",
+    videoId: "oIgOmTwJUdo",
+  },
+  {
+    titleLines: ["苦手の英語を克服して", "医学部へ！"],
+    image: "/assets/legacy/wp-content/uploads/2026/03/高崎-2024-国際医療福祉など.jpg",
+    imageAlt: "偏差値50から1年で国際医療福祉大学に合格した生徒の写真",
+    width: 1920,
+    height: 1080,
+    universities: ["国際医療福祉大学 医学部", "帝京大学 医学部"],
+    deviation: "50 → 66",
+    videoId: "upVSu-gDZQ8",
+  },
+  {
+    titleLines: ["出願、小論文、面接対策も万全！"],
+    image: "/assets/legacy/wp-content/uploads/2026/03/柿崎-2024-東北医科薬科など.jpg",
+    imageAlt: "偏差値50から東北医科薬科大、岩手医大 獨協医大に合格した生徒の写真",
+    width: 1064,
+    height: 798,
+    universities: ["東北医科薬科大学 医学部", "獨協医科大学 医学部", "岩手医科大学 医学部"],
+    deviation: "55 → 66",
+    videoId: "r4tZfnusYIg",
+  },
+  {
+    titleLines: ["私だけの課題を出してくれた！"],
+    image: "/assets/legacy/wp-content/uploads/2026/03/まりな-2024-東京医科.jpg",
+    imageAlt: "偏差値50以下から1年で東京医科大学に合格した生徒の写真",
+    width: 1104,
+    height: 771,
+    universities: ["東京医科大学 医学部", "東海大学 医学部"],
+    deviation: "50以下 → 66",
+    videoId: "2fp04MFyZ70",
+  },
+  {
+    titleLines: ["疑問を解決できた！"],
+    image: "/assets/legacy/wp-content/uploads/2026/03/羽生2024-日大など.jpg",
+    imageAlt: "偏差値55から1年で日大、東海大、兵庫医大に合格した生徒の写真",
+    width: 1064,
+    height: 798,
+    universities: ["日本大学 医学部", "東海大学 医学部", "兵庫医科大学 医学部"],
+    deviation: "55 → 67",
+    videoId: "5QEQN6b9C2Y",
+  },
+  {
+    titleLines: ["偏差値50以下から", "1年で合格！"],
+    image: "/assets/legacy/wp-content/uploads/2025/02/2-5.jpg",
+    imageAlt: "偏差値50以下から1年で帝京大学、杏林大学など多くの大学に合格した生徒の写真",
+    width: 1080,
+    height: 1080,
+    universities: ["帝京大学 医学部", "杏林大学 医学部", "川崎医科大学 医学部"],
+    deviation: "50 → 67",
+    videoId: "jBDkPazdSxY",
+  },
+  {
+    titleLines: ["いつでも質問できたから", "疑問が溜まらなかった！"],
+    image: "/assets/legacy/wp-content/uploads/2025/02/広告用バナー-e1724776355744.jpg",
+    imageAlt: "杏林大に合格した生徒の写真",
+    width: 1154,
+    height: 706,
+    universities: ["杏林大学 医学部"],
+    deviation: "58 → 65",
+    videoId: "HLsJ6aIz0u0",
+  },
+  {
+    titleLines: ["レクサスだから", "浪人から抜け出せた！"],
+    image: "/assets/legacy/wp-content/uploads/2026/03/レクサス-2024-日大合格.jpg",
+    imageAlt: "日大に合格した生徒の写真",
+    width: 1064,
+    height: 798,
+    universities: ["日本大学 医学部"],
+    deviation: "55 → 65",
+    videoId: "CxhaahsOy8c",
+  },
+  {
+    titleLines: ["個々のニーズに応えてくれた！"],
+    image: "/assets/legacy/wp-content/uploads/2026/03/富岡-2024-関西医科.jpg",
+    imageAlt: "再受験で関西医科大学に合格した生徒の写真",
+    width: 1020,
+    height: 574,
+    universities: ["関西医科大学 医学部"],
+    deviation: "初学 → 68",
+    videoId: "0nuNiwDEDXc",
+  },
+];
+
+export const parentVoices: ParentVoice[] = [
+  {
+    title: "杏林医学部 逆転合格！！",
+    body: "保護者様からお手紙を頂きました。",
+    href: "/mail-03/",
+    cta: "お手紙を見る",
+  },
+  {
+    title: "４兄弟が医学部合格！！",
+    body: "保護者様からメールを頂きました。",
+    href: "/mail-02/",
+    cta: "メールを見る",
+  },
+  {
+    title: "慶應大医学部 合格！！",
+    body: "保護者様からお手紙を頂きました。",
+    href: "/mail-01/",
+    cta: "お手紙を見る",
+  },
+];
+
+export const quickLinks: ActionLink[] = [
+  { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
+  { label: "合格体験記", href: "/top/voice/", tone: "green" },
+  { label: "理念と沿革", href: "/top/history/", tone: "red" },
+];
+
+export const representativeMessages = [
+  "見た目は高価だがコスパは良い、本物のレクサスを実際に見て欲しい。",
+  "レクサスは生徒にも求めます。この一年は真剣勝負です。",
+  "レクサスが考える効率の良い合格法",
+  "レクサスは経験も強みです",
+];
+
+export const latestPosts: LinkItem[] = [
+  { label: "獨協医科大学｜医学部｜【2027年度の合格へ】科目別一般選抜（前期）の傾向と対策", href: "/dokkyouika-university-entrance-exam-measures2027/" },
+  { label: "自治医科大学｜医学部｜【2027年度の合格へ】科目別一般選抜の傾向と対策", href: "/jichiika-university-entrance-exam-measures2027/" },
+  { label: "埼玉医科大学｜医学部｜【2027年度の合格へ】科目別一般選抜の傾向と対策", href: "/saitamaika-university-entrance-exam-measures2027/" },
+  { label: "東北医科薬科大学｜医学部｜【2027年度の合格へ】科目別一般選抜の傾向と対策", href: "/touhokuikayakka-university-entrance-exam-measures2027/" },
+  { label: "東海大学｜医学部｜【2027年度の合格へ】科目別一般選抜の傾向と対策", href: "/toukai-university-entrance-exam-measures2027/" },
+  { label: "金沢医科大学｜医学部｜【2027年度の合格へ】科目別一般選抜の傾向と対策", href: "/kanazawaika-university-entrance-exam-measures2027/" },
+];
+
+export const comparisonRows: ComparisonRow[] = [
+  { item: "医学部対策カリキュラム", lexus: "◎", medical: "◎", major: "○" },
+  { item: "授業の質", lexus: "◎", medical: "◎", major: "◎" },
+  { item: "有名講師の在籍数", lexus: "△", medical: "○", major: "◎" },
+  { item: "確認テスト", lexus: "◎", medical: "◎", major: "△" },
+  { item: "弱点フォロー", lexus: "◎", medical: "○", major: "×" },
+  { item: "演習指導", lexus: "◎", medical: "○", major: "×" },
+  { item: "質問対応", lexus: "◎", medical: "△", major: "×" },
+  { item: "アナログでの学習監理", lexus: "◎", medical: "△", major: "×" },
+  { item: "AIを駆使した学習監理", lexus: "○", medical: "×", major: "△" },
+];
+
+export const methodPillars: MethodPillar[] = [
+  {
+    title: "鬼監理",
+    subtitle: "プロ講師の眼力 × 医学部専門AIのデータ分析",
+    body: "副代表クラスのトップ講師陣が担任となり、AIを有効活用して学習進捗、得意不得意、成長速度を監理。「アナログの熱量」と「デジタルの精密さ」で、学習から無駄と甘えを排除します。",
+    image: assets.oniCoach,
+    imageAlt: "鬼監理イメージキャラクター",
+    links: [{ label: "“鬼監理”を詳しく見る", href: "/study-support-system/", tone: "blue" }],
+  },
+  {
+    title: "鬼特訓",
+    subtitle: "プロ講師の質問対応 × 課題の具体化",
+    body: "多くの受験生が脱落する授業後の自習時間を、濃厚な特訓時間へ。課題提示、即時添削、追加課題。理解できるまで帰れない、夕方以降の学習密度を高める夜間トレーニングです。",
+    image: assets.oniTraining,
+    imageAlt: "鬼特訓イメージキャラクター",
+    links: [
+      { label: "英語の鬼特訓", href: "/medical-english-training/", tone: "red" },
+      { label: "数学の鬼特訓", href: "/medical-math-training/", tone: "red" },
+    ],
+  },
+];
+
+export const growthItems = [
+  "授業と演習で理解を深め、多くの問題を解決する力を身に付ける",
+  "プロ講師との質問対応で、わずかな疑問も残さない探求心を育む",
+  "厳しい“鬼監理”で実行力や継続力を鍛える",
+  "厳しい“鬼特訓”で向上心や自主性を目覚めさせる",
+  "多くの成功体験を積み重ねて、自分に自信をもち、逆境に強くなる",
+];
+
+export const supportItems = [
+  "クラス授業",
+  "個別演習指導",
+  "課題プリント",
+  "質問し放題",
+  "効果測定テスト",
+  "取りこぼしフォロー",
+  "共通テスト対策",
+  "推薦・総合型対策",
+  "面接・小論文対策",
+  "学習マネージメント",
+  "メンタルケア",
+  "受験校選定サポート",
+  "出願サポート",
+  "大学別対策",
+  "受験期の質問対応",
+  "後期試験対策",
+];
+
+export const supportMetrics: SupportMetric[] = [
+  { label: "年間学習時間", value: "約3500時間" },
+  { label: "完全拘束制", value: "1日 最大13時間" },
+  { label: "毎日、確認テスト", value: "合計432回" },
+  { label: "毎日、課題演習", value: "合計396セット" },
+  { label: "模擬試験で得点力アップ", value: "実戦形式で15回" },
+  { label: "過去問で最終チェック", value: "合計50年分以上" },
+  { label: "用意周到な二次試験準備", value: "8月から開始" },
+  { label: "担任はプロ講師", value: "合計36回面談" },
+];
+
+export const courses: CourseCard[] = [
+  {
+    target: "◆ 浪人生・再受験生 対象フルコース ◆",
+    name: "レクサス プレミア 本科",
+    english: "Premier Main Course",
+    href: "/top/course/lexus-premiere-course/",
+    note: "医学部受験を全面的にサポートする“オールインワン”コースです。各科目クラス分けあり。",
+  },
+  {
+    target: "◆ 浪人・再受験・高校生 対象 個別指導コース ◆",
+    name: "オーダーメード演習 コース",
+    english: "Custom-made Course",
+    href: "/top/course/custom-made-course/",
+    note: "自分のレベルに合った演習ベースのカリキュラムで倍速学習をするコースです。",
+  },
+  {
+    target: "◆ 高2生・高3生 対象 “鬼特訓”コース ◆",
+    name: "ハイレベル現役合格コース",
+    english: "High-level GENEKI Course",
+    href: "/top/course/high-level-geneki-course/",
+    note: "慶應、慈恵、順天、日医をはじめとする都内の医学部に現役合格するためのコースです。",
+  },
+  {
+    target: "◆ 高1・2生 対象 医学部受験 “準備”コース ◆",
+    name: "メディカル準備コース (高等部)",
+    english: "Medical Prep Course",
+    href: "/top/course/medical-prep/",
+    note: "医学部受験で優位に立つ先取り学習コースです。慶應、日大の内部進学対策も承ります。",
+  },
+  {
+    target: "◆ 中学生 対象 医学部受験 “準備”コース ◆",
+    name: "メディカル準備コース (中等部)",
+    english: "Medical Prep Course",
+    href: "/top/course/medical-prep-junior/",
+    note: "先手必勝！難関医学部を目指す中高一貫カリキュラムの先取り学習コースです。",
+  },
+];
+
+export const footerGroups: FooterGroup[] = [
+  {
+    title: "実績 / メソッド / 講師",
+    links: [
+      { label: "合格実績", href: "#achievements" },
+      { label: "合格メソッド", href: "#method" },
+      { label: "講師紹介", href: "/top/teacher/" },
+      { label: "レクサスの歴史", href: "/top/history/" },
+      { label: "よくある質問", href: "/top/faq/" },
+    ],
+  },
+  {
+    title: "体験授業 / ガイダンス",
+    links: [
+      { label: "個別説明会予約", href: "/top/reservation/" },
+      { label: "専用寮の見学予約", href: "/top/lexus-garden/" },
+      { label: "入学までの流れ", href: "/entrance/" },
+    ],
+  },
+  {
+    title: "コースと学費",
+    links: [
+      { label: "レクサス プレミア本科【既卒生専用】", href: "/top/course/lexus-premiere-course/" },
+      { label: "ハイレベル現役合格コース【高2・3専用】", href: "/top/course/high-level-geneki-course/" },
+      { label: "オーダーメード演習コース【全学年対象】", href: "/top/course/custom-made-course/" },
+      { label: "メディカル準備コース【高等部】", href: "/top/course/medical-prep/" },
+      { label: "メディカル準備コース【中等部】", href: "/top/course/medical-prep-junior/" },
+    ],
+  },
+  {
+    title: "校舎と専用寮",
+    links: [
+      { label: "アクセス", href: "/top/access/" },
+      { label: "生徒専用寮「レクサスガーデン」", href: "/top/lexus-garden/" },
+      { label: "校舎と寮の見学予約", href: "/reservation/" },
+    ],
+  },
+];

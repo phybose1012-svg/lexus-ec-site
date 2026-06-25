@@ -1,0 +1,135 @@
+---
+import { seo } from "../../data/home";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../site/SiteHeader.astro";
+import LegacyFormFooter from "./LegacyFormFooter.astro";
+import PendingFormScript from "./PendingFormScript.astro";
+
+interface Props {
+  canonical: string;
+  sourcePath: string;
+}
+
+const { canonical, sourcePath } = Astro.props;
+const title = "個別説明会予約 - 医学部予備校 レクサス E.C.";
+const description =
+  "レクサス教育センター - プロの講師が分かりやすくご説明します。 - レクサスのシステム説明- 進路相談 - 学習相談 - 気になることをお気軽にご相談ください。体験授業、特待生コースの選抜テストのお申込みも承ります。 - 医学部予備校 - 専用寮あり";
+const configuredEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT;
+const endpoint = configuredEndpoint || "/form-submit/";
+const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" };
+const mascot = "/assets/legacy/wp-content/uploads/2025/02/新レクサスくん-指さし-2_20240826143701-899x1024.png";
+const studentOptions = ["高校1年", "高校2年", "高校3年", "1浪目", "2浪目", "3浪以上", "再受験生", "大学生", "社会人", "その他"];
+const countOptions = ["1名", "2名", "3名", "4名", "5名以上"];
+const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15:30 ～ 17:00", "17:30 ～ 19:00", "19:30 ～ 21:00"];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} ogImage={seo.ogImage}>
+  <SiteHeader />
+  <main class="legacy-reservation-page">
+    <section class="reservation-lead" aria-label="無料面談のご予約">
+      <h1 class="reservation-lead__title">無料面談のご予約</h1>
+      <p>
+        体験授業や入学をご検討の方は、<br />
+        まず無料面談をご予約下さい。<br />
+        詳しくご説明いたします。
+      </p>
+      <div class="reservation-mascot-row">
+        <h2>お気軽にどうぞ</h2>
+        <img src={mascot} alt="レクサスくん(マスコットキャラクター)" width="899" height="1024" loading="lazy" decoding="async" />
+        <h2>毎日実施中</h2>
+      </div>
+      <p class="reservation-lead__notice">
+        必須事項を入力して<br />
+        「予約する」ボタンを押して下さい。
+      </p>
+    </section>
+
+    <section class="reservation-form-wrap" aria-label="個別説明会予約フォーム">
+      <form action={endpoint} method="post" class="legacy-reservation-form" {...localFormAttrs}>
+        <input type="hidden" name="formType" value="reservation" />
+        <input type="hidden" name="sourcePath" value={sourcePath} />
+
+        <label class="legacy-reservation-field">
+          <span>参加者（代表者）の氏名 <em>*</em></span>
+          <input type="text" name="name" required placeholder="田中　小太郎" />
+        </label>
+        <label class="legacy-reservation-field">
+          <span>よみがな <em>*</em></span>
+          <input type="text" name="kana" required placeholder="たなか　こたろう" />
+        </label>
+        <fieldset class="legacy-reservation-field legacy-reservation-field--radio">
+          <legend>現在どれが当てはまりますか？ <em>*</em></legend>
+          {studentOptions.map((option) => (
+            <label><input type="radio" name="studentType" value={option} required />{option}</label>
+          ))}
+        </fieldset>
+        <fieldset class="legacy-reservation-field legacy-reservation-field--radio">
+          <legend>ご希望の面談方式は？</legend>
+          <label><input type="checkbox" name="style" value="オンライン" />オンライン</label>
+          <label><input type="checkbox" name="style" value="対面" />対面(渋谷の校舎で)</label>
+        </fieldset>
+        <fieldset class="legacy-reservation-field legacy-reservation-field--radio">
+          <legend>何名でご参加しますか？ <em>*</em></legend>
+          {countOptions.map((option) => (
+            <label><input type="radio" name="participants" value={option} required />{option}</label>
+          ))}
+        </fieldset>
+        <label class="legacy-reservation-field">
+          <span>ご連絡先(メールアドレス) <em>*</em></span>
+          <input type="email" name="email" required placeholder="予約内容の確認メールをお送りします。" />
+        </label>
+        <label class="legacy-reservation-field">
+          <span>ご連絡先(電話番号) <em>*</em></span>
+          <input type="tel" name="tel" required placeholder="メール連絡で問題が生じた場合に限り、お電話で予約確認をいたします。" />
+        </label>
+        <label class="legacy-reservation-field">
+          <span>ご希望の日程は？(第一希望) <em>*</em></span>
+          <input type="date" name="preferredDate1" required />
+        </label>
+        <fieldset class="legacy-reservation-field legacy-reservation-field--radio">
+          <legend>ご希望の時間帯は？(第一希望) <em>*</em></legend>
+          {timeOptions.map((option) => (
+            <label><input type="radio" name="preferredTime1" value={option} required />{option}</label>
+          ))}
+        </fieldset>
+        <label class="legacy-reservation-field">
+          <span>ご希望の日程は？(第二希望) <em>*</em></span>
+          <input type="date" name="preferredDate2" required />
+        </label>
+        <fieldset class="legacy-reservation-field legacy-reservation-field--radio">
+          <legend>ご希望の時間帯は？(第二希望) <em>*</em></legend>
+          {timeOptions.map((option) => (
+            <label><input type="radio" name="preferredTime2" value={option} required />{option}</label>
+          ))}
+        </fieldset>
+        <fieldset class="legacy-reservation-field legacy-reservation-field--radio">
+          <legend>寮の内見を希望しますか？※対面の方のみご回答ください。</legend>
+          <label><input type="checkbox" name="gardenVisit" value="はい" />はい</label>
+          <label><input type="checkbox" name="gardenVisit" value="いいえ" />いいえ</label>
+          <label><input type="checkbox" name="gardenVisit" value="検討中" />検討中</label>
+        </fieldset>
+        <label class="legacy-reservation-field">
+          <span>Message</span>
+          <textarea name="message" rows="4" placeholder="「こんな事を聞きたい！」など、ご要望があればご記入ください(空欄でもOKです)"></textarea>
+        </label>
+
+        <button class="legacy-reservation-submit" type="submit">予約する</button>
+        <p class="form-submit-note" data-local-form-status hidden></p>
+      </form>
+    </section>
+
+    <section class="reservation-phone" aria-label="電話予約">
+      <p>【お電話でもご予約承ります】</p>
+      <a href="tel:03-3477-1306">03-3477-1306</a>
+      <p>受付時間：10時00分～21時00分</p>
+    </section>
+
+    <nav class="legacy-pill-nav" aria-label="関連ページ">
+      <a class="legacy-pill-nav__blue" href="/top/teacher/">講師紹介</a>
+      <a class="legacy-pill-nav__green" href="/top/voice/">合格体験記</a>
+      <a class="legacy-pill-nav__red" href="/top/history/">理念と沿革</a>
+    </nav>
+  </main>
+  {!configuredEndpoint && <PendingFormScript />}
+  <LegacyFormFooter />
+</BaseLayout>

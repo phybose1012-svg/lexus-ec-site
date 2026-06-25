@@ -1,0 +1,175 @@
+---
+import { seo } from "../../../data/home";
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+
+const title = "アクセス";
+const description = "JR渋谷駅の新南改札から徒歩5分.。校舎と寮が一体の医学部予備校です。 〒150-0031 東京都渋谷区桜丘町29-7 LEXUS GADEN";
+
+const images = {
+  logoStrip: "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png",
+  routeMap: "/assets/legacy/wp-content/uploads/2025/09/ガーデン地図-1-2-1024x709.jpg",
+  mascot: "/assets/legacy/wp-content/uploads/2025/02/新レクサスくん-指さし-2_20240826143701-899x1024.png",
+  garden: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-1-04.jpg",
+  guide: "/assets/legacy/wp-content/uploads/2025/11/PR用見本2026-1024x1024.jpg",
+};
+
+const quickLinks = [
+  { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
+  { label: "合格体験記", href: "/top/voice/", tone: "green" },
+  { label: "理念と沿革", href: "/top/history/", tone: "red" },
+];
+
+const routeSteps = [
+  {
+    text: "① JR渋谷駅新南口で降りて右に",
+    src: "/assets/legacy/wp-content/uploads/2025/09/1駅-1024x768.jpg",
+    alt: "道順01",
+    width: 800,
+    height: 600,
+  },
+  {
+    text: "② エスカレーターで1階に降りる",
+    src: "/assets/legacy/wp-content/uploads/2025/09/2さくらステージ-768x1024.jpg",
+    alt: "道順02",
+    width: 768,
+    height: 1024,
+  },
+  {
+    text: "③ 正面の坂を上る（赤い舗装です）",
+    src: "/assets/legacy/wp-content/uploads/2025/09/3さくらステージ前の坂-768x1024.jpg",
+    alt: "道順03",
+    width: 768,
+    height: 1024,
+  },
+  {
+    text: "④ ３つ目の交差を右に",
+    src: "/assets/legacy/wp-content/uploads/2025/09/4インフォスタワー前01-768x1024.jpg",
+    alt: "道順04",
+    width: 768,
+    height: 1024,
+  },
+  {
+    text: "⑤ ガスト（から好し）の前で左へ",
+    src: "/assets/legacy/wp-content/uploads/2025/09/5インフォスタワー前02-768x1024.jpg",
+    alt: "道順05",
+    width: 768,
+    height: 1024,
+  },
+  {
+    text: "⑥ つき当たりを右へ",
+    src: "/assets/legacy/wp-content/uploads/2025/09/6-ガスト-1024x1024.jpg",
+    alt: "道順06",
+    width: 800,
+    height: 800,
+  },
+  {
+    text: "⑦ 右側に渋谷区文化センターがあります。",
+    src: "/assets/legacy/wp-content/uploads/2025/09/7-最後の曲がり角-768x1024.jpg",
+    alt: "道順07",
+    width: 768,
+    height: 1024,
+  },
+  {
+    text: "⑧ 到着です。受付はB1です。",
+    src: "/assets/legacy/wp-content/uploads/2025/09/8-渋谷区文化センター裏-768x1024.jpg",
+    alt: "道順08",
+    width: 768,
+    height: 1024,
+  },
+  {
+    text: "※ 分かりにくい時はお電話ください。03-3477-1306",
+    src: "/assets/legacy/wp-content/uploads/2025/09/9-到着-768x1024.jpg",
+    alt: "道順09 到着",
+    width: 768,
+    height: 1024,
+  },
+];
+---
+
+<SiteLayout title={title} description={description} canonical="https://lexus-ec.com/top/access/" ogImage={seo.ogImage}>
+  <main class="access-page">
+    <section class="access-hero">
+      <div class="content access-hero__inner">
+        <img class="access-logo-strip" src={images.logoStrip} alt="ロゴ" width="800" height="58" decoding="async" />
+        <h1>レクサスへの行き方<br />渋谷駅からの道案内</h1>
+        <p>〒150-0031 東京都渋谷区桜丘町29番7号 LEXUS GARDEN<br />★JR渋谷駅の 新南改札 から徒歩５分</p>
+      </div>
+    </section>
+
+    <section class="access-map" aria-labelledby="access-campus-title">
+      <div class="content access-map__grid">
+        <div>
+          <h3 id="access-campus-title">レクサスガーデン校舎</h3>
+          <p class="access-campus-copy">校舎と寮が一体になった、医学部受験に集中するための学習拠点です。</p>
+          <p class="access-campus-address">〒150-0031 東京都渋谷区桜丘町29番7号 LEXUS GARDEN<br />★JR渋谷駅の 新南改札 から徒歩５分<br />03-3477-1306</p>
+          <div class="access-button-row">
+            {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+          </div>
+          <h4>Google Map</h4>
+          <a class="access-map-card" href="https://www.google.com/maps/search/?api=1&query=東京都渋谷区桜丘町29-7" rel="noreferrer">
+            <span>東京都渋谷区桜丘町29-7</span>
+            <strong>Google Mapで開く</strong>
+          </a>
+        </div>
+        <img src={images.routeMap} alt="順路まとめ" width="800" height="554" loading="lazy" decoding="async" />
+      </div>
+    </section>
+
+    <section class="access-route" aria-labelledby="access-route-title">
+      <div class="content">
+        <h4 id="access-route-title">↓ 道案内はコチラ ↓</h4>
+        <div class="access-route-grid">
+          {routeSteps.map((step) => (
+            <figure class="access-step">
+              <img src={step.src} alt={step.alt} width={step.width} height={step.height} loading="lazy" decoding="async" />
+              <figcaption>{step.text}</figcaption>
+            </figure>
+          ))}
+        </div>
+        <div class="access-phone-cta">
+          <p>※ 分かりにくい時はお電話ください。</p>
+          <a href="tel:03-3477-1306">03-3477-1306</a>
+          <a class="button button--blue" href="tel:03-3477-1306">電話をかける</a>
+          <div class="access-button-row">
+            {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="access-dorm" aria-labelledby="access-dorm-title">
+      <div class="content access-dorm__grid">
+        <img src={images.mascot} alt="レクサスくん(マスコットキャラクター)" width="800" height="911" loading="lazy" decoding="async" />
+        <div>
+          <h2 id="access-dorm-title">生徒専用寮</h2>
+          <h3>レクサスガーデン</h3>
+          <p>生徒専用寮 LEXUS GARDEN。校舎と一体の生活環境で、学習時間と生活リズムを守りながら医学部合格を目指せます。</p>
+          <a
+            class="button button--blue"
+            href="https://www.google.com/maps/@35.654961,139.6995549,3a,75y,255.71h,82.94t/data=!3m7!1e1!3m5!1s4MmKqgfWgAEElbVTY_DenA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D7.055657400941385%26panoid%3D4MmKqgfWgAEElbVTY_DenA%26yaw%3D255.71317896736466!7i16384!8i8192?hl=ja&coh=205410&entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D"
+            rel="noreferrer"
+          >
+            レクサスガーデン周りの風景を見る
+          </a>
+          <a class="button button--green" href="/top/lexus-garden/">設備や費用を見てみる</a>
+        </div>
+        <img src={images.garden} alt="レクサスガーデン外観" width="788" height="518" loading="lazy" decoding="async" />
+      </div>
+    </section>
+
+    <section class="access-guide">
+      <div class="content access-guide__grid">
+        <img src={images.guide} alt="医学部合格読本 2026" width="800" height="800" loading="lazy" decoding="async" />
+        <div>
+          <h3>資料請求した方へプレゼント</h3>
+          <h2>レクサスのプロ講師と、 レクサスの卒業生が、共同で作りました。</h2>
+          <p>医学部入試の情報と、レクサスの学習環境を確認したい方は資料請求または個別相談をご利用ください。</p>
+          <div class="fixed-hero__actions">
+            <a class="button button--red" href="/request-documents/">資料請求</a>
+            {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>

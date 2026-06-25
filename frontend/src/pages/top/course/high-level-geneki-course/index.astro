@@ -1,0 +1,157 @@
+---
+import { seo } from "../../../../data/home";
+import SiteLayout from "../../../../layouts/SiteLayout.astro";
+
+const title = "ハイレベル現役合格コース -医学部予備校 レクサス教育センター【渋谷駅から徒歩3分】";
+const description =
+  "「ハイレベル現役合格コース」は、何が何でも浪人したくない高校生が医学部現役合格を達成できる特別プログラム。個別最適化されたカリキュラムと徹底したサポートで、基礎から実戦力まで段階的に育成します。";
+
+const images = {
+  logoStrip: "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png",
+  mascot: "/assets/legacy/wp-content/uploads/2025/05/レクサスくん弓.jpg",
+  garden: "/assets/legacy/wp-content/uploads/2025/12/Gemini_Generated_Image_h3qlynh3qlynh3ql-e1764922283465-1024x790.jpg",
+};
+
+const recommend = ["模試の判定はDやEばかり。", "数学IIIや理科が間に合う気がしない。", "小論文？面接？何から始めればいい？", "周りが浪人を勧めてくる。", "でも、どうしても現役で決めたい！"];
+const plans = [
+  { title: "トップレベル“鬼特訓”", rows: ["【目標大学】 東大、慶應など、医学部のトップ", "【入学時の学力】 偏差値60相当 (目安)", "【月額料金 】 ¥28,000〜"], href: "/top/course/high-level-geneki-course/nankan-igakubu/" },
+  { title: "難関医学部突破プラン", rows: ["【目標大学】 国公立、慈恵、順天など、難関医学部", "【入学時の学力】 偏差値60相当 (目安)", "【月額料金 】 ¥28,000〜"], href: "/top/course/high-level-geneki-course/nankan-igakubu/" },
+  { title: "上位医学部合格プラン", rows: ["【目標大学】 昭和、東医など上位の私立医学部", "【入学時の学力】 偏差値55相当 (目安)", "【月額料金 】 ¥28,000〜"], href: "/top/course/high-level-geneki-course/joui-igakubu/" },
+];
+const otherCourses = [
+  ["◆ 既卒生・再受験生 対象フルコース ◆", "レクサス プレミア 本科", "Premier Main Course", "医学部受験を全面的にサポートする“オールインワン”コースです。各科目クラス分けあり。", "/top/course/lexus-premiere-course/"],
+  ["◆ 既卒・再受験・高1～3 対象コース ◆", "オーダーメード演習 コース", "Custom-made Course", "自分のレベルに合った演習ベースのカリキュラムで倍速学習をするコースです。", "/top/course/custom-made-course/"],
+  ["◆ 高1・高2 対象コース ◆", "メディカル準備コース (高等部)", "Medical Prep Course", "医学部受験で優位に立つ先取り学習コースです。慶應、日大の内部進学対策も承ります。", "/top/course/medical-prep/"],
+  ["◆ 中学生 対象コース ◆", "メディカル準備コース (中等部)", "Medical Prep Course", "先手必勝！難関医学部を目指す中高一貫カリキュラムの先取り学習コースです。", "/top/course/medical-prep-junior/"],
+];
+const heroActions = [
+  { label: "体験授業はコチラ", href: "/test-entry/", tone: "red" },
+  { label: "無料面談はコチラ", href: "/reservation/", tone: "blue" },
+];
+const quickLinks = [
+  { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
+  { label: "合格体験記", href: "/top/voice/", tone: "green" },
+  { label: "理念と沿革", href: "/top/history/", tone: "red" },
+];
+---
+
+<SiteLayout title={title} description={description} canonical="https://lexus-ec.com/top/course/high-level-geneki-course/" ogImage={seo.ogImage}>
+  <main class="course-detail-page course-detail-page--geneki">
+    <section class="course-detail-hero course-detail-hero--geneki">
+      <div class="content course-detail-hero__intro course-detail-hero__intro--geneki">
+        <img class="course-detail-logo-strip" src={images.logoStrip} alt="ロゴ" width="800" height="58" decoding="async" />
+        <h1>「現役で、医学部へ。」<br />基礎から、戦略から、あなたに必要なすべてを揃えました。</h1>
+        <div class="course-title-card course-title-card--geneki">
+          <p class="course-title-card__jp">ハイレベル現役合格コース</p>
+          <p class="course-title-card__en">High-level GENEKI Course</p>
+          <p class="course-title-card__lead">慶應、慈恵、順天、日医をはじめとする都内の医学部に現役合格するためのコースです。</p>
+        </div>
+        <div class="course-detail-hero__actions">
+          <a class="button button--blue" href="/test-entry/">体験授業はコチラ</a>
+          <a class="button button--red" href="/reservation/">無料面談はコチラ</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="course-detail-recommend course-detail-recommend--geneki">
+      <div class="content course-detail-recommend__inner">
+        <h2>こんな高校生にオススメです。</h2>
+        <div class="course-detail-recommend__grid">
+          <img src={images.mascot} alt="" width="670" height="670" decoding="async" />
+          <ul>{recommend.map((item) => <li>{item}</li>)}</ul>
+        </div>
+      </div>
+    </section>
+    <section class="course-detail-hero">
+      <div class="content course-detail-hero__grid">
+        <div>
+          <img class="course-detail-logo-strip" src={images.logoStrip} alt="ロゴ" width="800" height="58" decoding="async" />
+          <h1>「現役で、医学部へ。」<br />基礎から、戦略から、あなたに必要なすべてを揃えました。</h1>
+          <h4>ハイレベル現役合格コース</h4>
+          <p>High-level GENEKI Course</p>
+          <div class="fixed-hero__actions">
+            {heroActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+          </div>
+          <div class="course-detail-quick-actions">
+            {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+          </div>
+        </div>
+        <img src={images.mascot} alt="" width="670" height="670" decoding="async" />
+      </div>
+    </section>
+
+    <section class="course-detail-recommend">
+      <div class="content course-detail-two-column">
+        <div>
+          <h3>こんな高校生にオススメです。</h3>
+          <ul>{recommend.map((item) => <li>{item}</li>)}</ul>
+        </div>
+        <p>慶應、慈恵、順天、日医をはじめとする都内の医学部に現役合格するためのコースです。</p>
+      </div>
+    </section>
+
+    <section class="course-detail-overview">
+      <div class="content">
+        <h2>コース概要</h2>
+        <div class="course-detail-overview-grid">
+          <article>
+            <h3>● HL現役合格コース とは？ ●</h3>
+            <p>現役で医学部に合格するための“最適化された仕組み”。今の偏差値でも、現役合格は可能です。「方法」と「環境」が揃っていれば。</p>
+          </article>
+          <article>
+            <h3>● 万全のサポート内容 ●</h3>
+            <p>「プロ講師の授業」 × 「厳しい課題管理」 × 「確認テスト」</p>
+            <div class="course-detail-supports"><span>受験校選定サポート</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="course-detail-curriculum">
+      <div class="content">
+        <h2>「カリキュラム」 一覧</h2>
+        <p>まずはご希望の「カリキュラム 」を選択して下さい。カリキュラムは全部で3種類です。</p>
+        <div class="course-detail-plan-grid">
+          {plans.map((plan) => (
+            <article>
+              <h3>{plan.title}</h3>
+              <ul>{plan.rows.map((row) => <li>{row}</li>)}</ul>
+              <a class="button button--blue" href={plan.href}>詳しくはコチラ</a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="course-detail-garden">
+      <div class="content course-detail-garden__grid">
+        <div>
+          <h2>生徒専用寮のご案内 『LEXUS GARDEN』</h2>
+          <p>長期休み中の利用など、最短3日間～の利用が可能です。</p>
+          <a class="button button--green" href="/top/lexus-garden/">設備や費用を見てみる</a>
+        </div>
+        <img src={images.garden} alt="生徒専用寮外観" width="800" height="617" loading="lazy" decoding="async" />
+      </div>
+    </section>
+
+    <section class="course-detail-other">
+      <div class="content">
+        <h2>他のコース 一覧</h2>
+        <div class="course-detail-other-grid">
+          {otherCourses.map(([category, courseTitle, en, body, href]) => (
+            <article>
+              <h3>{category}</h3>
+              <h4>{courseTitle}</h4>
+              <p class="course-detail-other__en">{en}</p>
+              <p>{body}</p>
+              <a class="button button--blue" href={href}>コースの内容を見る</a>
+            </article>
+          ))}
+        </div>
+        <div class="course-detail-quick-actions course-detail-quick-actions--bottom">
+          {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>
