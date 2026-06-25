@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node ./scripts/astro-command.mjs dev --host 127.0.0.1",
-    "build": "node ./scripts/astro-command.mjs check && node ./scripts/astro-command.mjs build",
+    "build": "node ./scripts/verify-build-inputs.mjs && node ./scripts/astro-command.mjs check && node ./scripts/astro-command.mjs build",
     "preview": "node ./scripts/astro-command.mjs preview --host 127.0.0.1"
   },
   "dependencies": {
