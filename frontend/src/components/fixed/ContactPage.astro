@@ -44,6 +44,7 @@ const garden = "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデ�
       <form action={endpoint} method="post" class="legacy-contact-form" {...localFormAttrs}>
         <input type="hidden" name="formType" value="contact" />
         <input type="hidden" name="sourcePath" value="/top/contact/" />
+        <input type="text" name="websiteUrl" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;" />
         <label>
           <span>お名前 <em>*</em></span>
           <input type="text" name="name" required />

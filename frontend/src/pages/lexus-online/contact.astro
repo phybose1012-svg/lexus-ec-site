@@ -72,6 +72,7 @@ const contactChecklist = [
       <form class="lo-detail-form" action={endpoint} method="post" {...localFormAttrs}>
         <input type="hidden" name="formType" value="lexus-online-contact" />
         <input type="hidden" name="sourcePath" value={Astro.url.pathname} />
+        <input type="text" name="websiteUrl" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;" />
 
         <div class="lo-detail-form__grid">
           <label class="lo-detail-field">

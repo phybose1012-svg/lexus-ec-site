@@ -48,6 +48,7 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
       <form action={endpoint} method="post" class="legacy-reservation-form" {...localFormAttrs}>
         <input type="hidden" name="formType" value="reservation" />
         <input type="hidden" name="sourcePath" value={sourcePath} />
+        <input type="text" name="websiteUrl" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;" />
 
         <label class="legacy-reservation-field">
           <span>参加者（代表者）の氏名 <em>*</em></span>

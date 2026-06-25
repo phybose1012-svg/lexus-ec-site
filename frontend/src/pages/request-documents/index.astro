@@ -26,6 +26,7 @@ const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" 
       <form action={endpoint} method="post" class="google-form-lite__body" {...localFormAttrs}>
         <input type="hidden" name="formType" value="request-documents" />
         <input type="hidden" name="sourcePath" value="/request-documents/" />
+        <input type="text" name="websiteUrl" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;" />
 
         <div class="google-form-lite__head">
           <h1 class="google-form-lite__title">資料請求フォーム</h1>

@@ -28,7 +28,7 @@
 | GA4 の発火条件 | Cloudflare Pages の `main` branch のみ。staging / local では発火しない |
 | robots / sitemap | 実装済み。staging で `robots.txt` と `sitemap.xml` の返却を確認済み |
 | Staging の検索除外 | `x-robots-tag: noindex` を確認済み |
-| フォーム送信 | バックエンド未実装。現状は静的表示のみ |
+| フォーム送信 | Pages Functions の受け口は実装済み。外部送信先と環境変数は未設定 |
 
 ## Cloudflare Pages 推奨設定
 
@@ -52,7 +52,7 @@ Cloudflare の Variables & Secrets:
 | `PUBLIC_GA_MEASUREMENT_ID` | `G-3VC4WYYD01` | GA4 Measurement ID | 設定済み |
 | `PUBLIC_ANALYTICS_BRANCH` | 未設定 | GA を発火する branch。未設定時は `main` | 任意 |
 | `PUBLIC_ANALYTICS_HOSTNAMES` | 未設定 | GA を許可する hostname。未設定時は `lexus-ec.com,www.lexus-ec.com` | 任意 |
-| `PUBLIC_FORM_ENDPOINT` | 未設定 | フォーム送信 endpoint | backend 実装後に設定 |
+| `PUBLIC_FORM_ENDPOINT` | 未設定 | フォーム送信 endpoint。設定値は `/form-submit/` | 外部送信先設定後に追加 |
 
 直近の Cloudflare 画面では `Value=22.16.0` という不要な環境変数が見えていた。これは Node.js version 固定には使われない。build は Cloudflare 既定の Node.js 22.16.0 で成功しているため緊急対応は不要だが、後で削除してよい。
 
@@ -190,12 +190,12 @@ AI 分析用に後で決める項目:
 
 | Path | 用途 | 現状 |
 |---|---|---|
-| `/request-documents/` | 資料請求 | backend 未実装 |
-| `/reservation/` | 相談 / 予約 | backend 未実装 |
-| `/top/reservation/` | 相談 / 予約 | backend 未実装 |
-| `/top/contact/` | 問い合わせ | backend 未実装 |
-| `/test-entry/` | 体験 / 申し込み系 | backend 未実装 |
-| `/lexus-online/contact/` | Lexus Online 問い合わせ | backend 未実装 |
+| `/request-documents/` | 資料請求 | `/form-submit/` へ送信可能。環境変数未設定時は pending |
+| `/reservation/` | 相談 / 予約 | `/form-submit/` へ送信可能。環境変数未設定時は pending |
+| `/top/reservation/` | 相談 / 予約 | `/form-submit/` へ送信可能。環境変数未設定時は pending |
+| `/top/contact/` | 問い合わせ | `/form-submit/` へ送信可能。環境変数未設定時は pending |
+| `/test-entry/` | 体験 / 申し込み系 | `/form-submit/` へ送信可能。環境変数未設定時は pending |
+| `/lexus-online/contact/` | Lexus Online 問い合わせ | `/form-submit/` へ送信可能。環境変数未設定時は pending |
 
 ### 最小構成案
 
@@ -206,6 +206,8 @@ Cloudflare Pages Functions を使う。
 ```text
 frontend/functions/form-submit.ts
 ```
+
+実装済み。Functions の対象 URL は `frontend/public/_routes.json` で `/form-submit` と `/form-submit/` のみに限定している。
 
 処理:
 
@@ -244,6 +246,19 @@ frontend/functions/form-submit.ts
 | `GOOGLE_SHEETS_WEBHOOK_URL` | Secret | 要確認 | Sheets 保存時 |
 | `CRM_WEBHOOK_URL` | Secret | 要確認 | CRM 連携時 |
 
+現在の実装で使う主要変数:
+
+| Name | 種別 | 値 | 備考 |
+|---|---|---|---|
+| `PUBLIC_FORM_ENDPOINT` | Build variable | `/form-submit/` | これを入れるとフォームが実送信モードになる |
+| `FORM_NOTIFICATION_TO` | Runtime variable | 要確認 | 通知先メール。複数はカンマ区切り |
+| `FORM_NOTIFICATION_FROM` | Runtime variable | 要確認 | Resend / SendGrid で認証済みの送信元 |
+| `RESEND_API_KEY` または `SENDGRID_API_KEY` | Secret | 要発行 | どちらか一方 |
+| `GOOGLE_SHEETS_WEBHOOK_URL` | Secret | 要作成 | Google Apps Script の Web app URL |
+| `GOOGLE_SHEETS_WEBHOOK_SECRET` | Secret | 要作成 | Apps Script と照合する共有 secret |
+| `SLACK_WEBHOOK_URL` | Secret | 要作成 | Slack Incoming Webhook URL |
+| `FORM_REQUIRED_DESTINATIONS` | Runtime variable | `email,sheets,slack` | 既定値。未設定でも同じ |
+
 ### セキュリティ注意点
 
 - `PUBLIC_` 付きの値はブラウザに露出する。API key や webhook URL を入れない。
@@ -268,7 +283,7 @@ frontend/functions/form-submit.ts
 | 404 | custom 404 は未作成。必要性を確認 |
 | redirects | 旧 URL 棚卸し後に判断 |
 | 外部リクエスト | LINE / Google / 動画 / 地図などを production 前に確認 |
-| フォーム送信 | 未実装。次工程 |
+| フォーム送信 | Pages Function 実装済み。外部送信先設定と staging 実送信テストが次工程 |
 | モバイル表示 | 別セッションのデザイン確認完了後に staging で確認 |
 | DNS | 既存アプリとメール record を維持したまま本番切り替えが必要 |
 | rollback | DNS record screenshot / export を残してから実施 |
