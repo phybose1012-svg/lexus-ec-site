@@ -78,8 +78,11 @@ const firstReadableFile = (urls: URL[]) => {
 
 const baselineFile = () =>
   firstReadableFile([
+    new URL("../../baseline/pages/top_teacher.html", import.meta.url),
     new URL("../../../baseline/pages/top_teacher.html", import.meta.url),
     new URL("../../../../baseline/pages/top_teacher.html", import.meta.url),
+    new URL("../../../../../baseline/pages/top_teacher.html", import.meta.url),
+    new URL("../../../../../../baseline/pages/top_teacher.html", import.meta.url),
   ]);
 
 const reviewMarker = "～ 授業を受けた生徒の感想 ～";

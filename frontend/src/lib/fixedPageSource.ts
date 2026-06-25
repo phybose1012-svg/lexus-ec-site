@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { formPageConfigs } from "../data/fixedPages";
@@ -25,7 +25,19 @@ export type ExtractedPage = {
   form?: (typeof formPageConfigs)[string];
 };
 
-const getBaselineDir = () => fileURLToPath(new URL("../../../baseline/pages/", import.meta.url));
+const firstBaselineDir = (urls: URL[]) => {
+  for (const url of urls) {
+    const dir = fileURLToPath(url);
+    if (existsSync(path.join(dir, "manifest.json"))) return dir;
+  }
+  return fileURLToPath(urls[0]);
+};
+
+const getBaselineDir = () =>
+  firstBaselineDir([
+    new URL("../../baseline/pages/", import.meta.url),
+    new URL("../../../baseline/pages/", import.meta.url),
+  ]);
 const dedicatedPagePaths = new Set([
   "/top/teacher/",
   "/top/course/",

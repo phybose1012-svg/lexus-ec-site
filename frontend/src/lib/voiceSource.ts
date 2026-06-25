@@ -75,8 +75,11 @@ const firstReadableFile = (urls: URL[]) => {
 
 const baselineFile = () =>
   firstReadableFile([
+    new URL("../../baseline/pages/top_voice.html", import.meta.url),
     new URL("../../../baseline/pages/top_voice.html", import.meta.url),
     new URL("../../../../baseline/pages/top_voice.html", import.meta.url),
+    new URL("../../../../../baseline/pages/top_voice.html", import.meta.url),
+    new URL("../../../../../../baseline/pages/top_voice.html", import.meta.url),
   ]);
 
 const decodeEntities = (value = "") =>

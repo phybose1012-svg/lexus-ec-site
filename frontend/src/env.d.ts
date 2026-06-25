@@ -1,6 +1,7 @@
 /// <reference types="astro/client" />
 
 declare module "node:fs" {
+  export function existsSync(file: string): boolean;
   export function readFileSync(file: string, encoding: BufferEncoding): string;
 }
 
