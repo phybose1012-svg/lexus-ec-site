@@ -151,7 +151,7 @@ li {
   z-index: 0;
   width: 100%;
   height: 156px;
-  background: url("/assets/legacy/wp-content/uploads/2024/11/背景ロゴ-縦長.png") top center / 1440px auto no-repeat;
+  background: url("/assets/legacy/wp-content/uploads/2024/11/背景ロゴ-縦長.png") top center / max(1440px, 100vw) auto no-repeat;
   pointer-events: none;
 }
 
@@ -166,27 +166,31 @@ li {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 400px minmax(228px, 1fr) auto;
-  gap: 52px;
+  grid-template-columns: minmax(280px, 400px) minmax(188px, 1fr) minmax(248px, auto);
+  gap: clamp(18px, 3vw, 42px);
   align-items: center;
-  width: min(1150px, calc(100% - 64px));
+  width: min(1120px, calc(100% - 40px));
   min-height: 156px;
   margin-inline: auto;
-  padding: 20px 18px 7px;
+  padding: 20px 12px 7px;
 }
 
 .brand {
   display: block;
+  min-width: 0;
 }
 
 .brand img {
+  display: block;
   width: min(400px, 100%);
+  height: auto;
 }
 
 .header-copy {
   display: grid;
   gap: 9px;
   justify-content: start;
+  min-width: 0;
   color: #111;
   font-family: "Yu Mincho", "Hiragino Mincho ProN", "YuMincho", "Times New Roman", serif;
   font-size: 1.08rem;
@@ -200,7 +204,7 @@ li {
   border-radius: 0;
   padding: 0 0 0 1.18em;
   background: transparent;
-  font-size: 1.08rem;
+  font-size: clamp(0.92rem, 1.35vw, 1.08rem);
 }
 
 .header-copy span::before {
@@ -212,8 +216,8 @@ li {
 
 .header-actions {
   display: grid;
-  grid-template-columns: repeat(4, 82px);
-  gap: 18px;
+  grid-template-columns: repeat(4, minmax(58px, 74px));
+  gap: clamp(7px, 1.2vw, 14px);
   justify-content: end;
   align-items: center;
   margin-top: 21px;
@@ -227,7 +231,7 @@ li {
   padding: 0 1px 4px;
   color: #302b27;
   font-family: "BIZ UDPGothic", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
-  font-size: 1rem;
+  font-size: clamp(0.8rem, 1.2vw, 0.98rem);
   font-weight: 600;
   line-height: 1.25;
   text-align: center;
@@ -235,8 +239,8 @@ li {
 }
 
 .header-action img {
-  width: 80px;
-  height: 61px;
+  width: clamp(56px, 6.6vw, 76px);
+  height: clamp(44px, 5vw, 58px);
   object-fit: contain;
 }
 
@@ -272,12 +276,14 @@ li {
 }
 
 .mega-nav ul {
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  width: min(1150px, calc(100% - 64px));
+  width: min(1120px, calc(100% - 40px));
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 0 48px;
+  padding: 0 clamp(14px, 3vw, 34px);
   border: 1px solid #222;
   background: #fff;
   list-style: none;
@@ -285,56 +291,76 @@ li {
 
 .mega-nav li {
   position: relative;
+  z-index: 0;
+}
+
+.mega-nav li:hover,
+.mega-nav li:focus-within {
+  z-index: 20;
 }
 
 .mega-nav__label {
-  display: block;
+  display: flex;
   min-height: 48px;
-  padding: 13px 18px 12px 8px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px clamp(6px, 1.3vw, 14px);
   border-inline: 0;
   color: #111;
   font-family: "BIZ UDPGothic", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
-  font-size: 1rem;
+  font-size: clamp(0.78rem, 1.28vw, 0.98rem);
   font-weight: 600;
+  line-height: 1.25;
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
 
 .mega-nav__label::after {
   content: "";
   display: inline-block;
-  margin-left: 7px;
+  flex: 0 0 auto;
+  margin-left: 6px;
   border-top: 6px solid #777;
   border-inline: 5px solid transparent;
   vertical-align: middle;
 }
 
-.mega-nav li + li .mega-nav__label::before {
+.mega-nav__label::before {
   content: "";
   display: inline-block;
+  flex: 0 0 auto;
   width: 3px;
   height: 15px;
-  margin-right: 10px;
+  margin-right: clamp(5px, 0.9vw, 10px);
   background: #f2a100;
   vertical-align: -2px;
 }
 
 .mega-panel {
   position: absolute;
-  inset-inline: 0;
+  inset-inline: 0 auto;
   top: 100%;
+  z-index: 30;
   display: grid;
-  min-width: 260px;
+  width: max-content;
+  min-width: 220px;
+  max-width: min(320px, calc(100vw - 40px));
   padding: 10px;
   background: #fff;
   color: var(--ink);
   border: 1px solid var(--line);
-  box-shadow: var(--shadow);
+  box-shadow: 0 16px 28px rgb(35 25 18 / 18%);
   opacity: 0;
   transform: translateY(-6px);
   pointer-events: none;
   transition: opacity 140ms ease, transform 140ms ease;
+}
+
+.mega-nav li:nth-last-child(-n + 2) .mega-panel {
+  inset-inline: auto 0;
 }
 
 .mega-nav li:hover .mega-panel,
@@ -348,6 +374,7 @@ li {
   padding: 9px 10px;
   border-bottom: 1px solid #eee6dc;
   font-size: 0.92rem;
+  overflow-wrap: anywhere;
   text-decoration: none;
 }
 
@@ -1473,17 +1500,85 @@ li {
 
 @media (max-width: 960px) {
   .top-header {
-    grid-template-columns: 1fr;
-    justify-items: center;
+    grid-template-columns: minmax(260px, 1fr) max-content;
+    grid-template-areas:
+      "brand actions"
+      "copy copy";
+    gap: 12px 22px;
     min-height: auto;
+    width: min(900px, calc(100% - 36px));
+    padding: 14px 8px 12px;
     text-align: center;
   }
 
-  .header-actions {
-    justify-content: center;
+  .brand {
+    grid-area: brand;
+    justify-self: start;
   }
 
-  .mega-nav ul,
+  .brand img {
+    width: min(340px, 44vw);
+  }
+
+  .header-copy {
+    grid-area: copy;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    justify-content: center;
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
+
+  .header-copy span {
+    font-size: 0.9rem;
+  }
+
+  .header-actions {
+    grid-area: actions;
+    grid-template-columns: repeat(4, minmax(54px, 64px));
+    gap: 8px;
+    align-self: center;
+    justify-content: end;
+    margin-top: 0;
+  }
+
+  .header-action {
+    min-height: 72px;
+    padding-bottom: 0;
+    font-size: 0.76rem;
+  }
+
+  .header-action img {
+    width: 56px;
+    height: 45px;
+  }
+
+  .mega-nav {
+    padding-block: 6px 10px;
+  }
+
+  .mega-nav::before {
+    margin-bottom: 5px;
+    font-size: 1rem;
+  }
+
+  .mega-nav ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: min(900px, calc(100% - 36px));
+    padding: 0 12px;
+  }
+
+  .mega-nav__label {
+    min-height: 44px;
+    padding: 9px 8px;
+    font-size: 0.86rem;
+  }
+
+  .mega-nav li:nth-child(3n) .mega-panel {
+    inset-inline: auto 0;
+  }
+
   .achievement-stats,
   .success-grid,
   .parent-voice-grid,
@@ -1552,8 +1647,14 @@ li {
 }
 
 @media (max-width: 680px) {
+  :root {
+    --mobile-header-top-height: 128px;
+    --mobile-header-actions-height: 86px;
+    --mobile-header-total-height: 214px;
+  }
+
   body {
-    padding-top: 226px;
+    padding-top: var(--mobile-header-total-height);
   }
 
   .content {
@@ -1576,8 +1677,8 @@ li {
     inset: 0;
     z-index: 0;
     width: 100%;
-    height: 156px;
-    background: url("/assets/legacy/wp-content/uploads/2024/11/背景ロゴ-縦長.png") top center / 390px auto no-repeat;
+    height: var(--mobile-header-top-height);
+    background: url("/assets/legacy/wp-content/uploads/2024/11/背景ロゴ-縦長.png") top center / max(390px, 100vw) auto no-repeat;
     clip-path: none;
     transform: none;
   }
@@ -1595,11 +1696,19 @@ li {
     z-index: 1;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 7px;
+    grid-template-areas:
+      "brand"
+      "copy";
+    gap: 4px;
+    align-content: start;
     justify-items: center;
     width: 100%;
-    min-height: 140px;
-    padding: 15px 60px 8px;
+    min-height: var(--mobile-header-top-height);
+    padding: 12px 58px 5px;
+  }
+
+  .brand {
+    justify-self: center;
   }
 
   .brand img {
@@ -1612,7 +1721,7 @@ li {
 
   .header-copy {
     display: block;
-    margin-top: 6px;
+    margin-top: 2px;
     color: #111;
     font-family: "Yu Mincho", "Hiragino Mincho ProN", "YuMincho", "Times New Roman", serif;
     font-size: 0.84rem;
@@ -1646,7 +1755,7 @@ li {
     z-index: 1;
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    height: 86px;
+    height: var(--mobile-header-actions-height);
     background: #fff;
     border-bottom: 1px solid #eee8df;
     box-shadow: none;
@@ -1655,10 +1764,12 @@ li {
   .mobile-shortcut,
   .mobile-menu-button {
     display: grid;
+    grid-template-rows: 52px 16px;
+    row-gap: 4px;
     place-items: center;
     align-content: center;
     min-width: 0;
-    min-height: 86px;
+    min-height: var(--mobile-header-actions-height);
     padding: 7px 3px 6px;
     border: 0;
     background: #fff;
@@ -1673,13 +1784,15 @@ li {
   }
 
   .mobile-shortcut img {
+    align-self: center;
     width: 60px;
     height: 50px;
-    margin-bottom: 4px;
+    margin-bottom: 0;
     object-fit: contain;
   }
 
-  .mobile-shortcut span {
+  .mobile-shortcut span,
+  .mobile-menu-button__label {
     overflow: hidden;
     max-width: 100%;
     white-space: nowrap;
@@ -1691,8 +1804,12 @@ li {
   }
 
   .mobile-menu-button__box {
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    align-self: center;
     width: 52px;
     height: 44px;
     border-radius: 6px;
@@ -1714,7 +1831,7 @@ li {
 
   .mobile-menu-panel {
     position: fixed;
-    inset: 226px 0 0;
+    inset: var(--mobile-header-total-height) 0 0;
     z-index: 110;
     display: block;
     overflow-y: auto;

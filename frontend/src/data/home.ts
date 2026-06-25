@@ -126,7 +126,7 @@ export const headerActions: HeaderAction[] = [
 
 export const navGroups: NavGroup[] = [
   {
-    label: "実績 / メソッド / 講師",
+    label: "実績 / メソッド",
     links: [
       { label: "合格実績", href: "/top/voice/" },
       { label: "“鬼特訓”とは？", href: "/medical-english-training/" },
@@ -138,7 +138,7 @@ export const navGroups: NavGroup[] = [
     ],
   },
   {
-    label: "体験 / ガイダンス",
+    label: "体験 / 見学",
     links: [
       { label: "体験授業", href: "/top/teacher/" },
       { label: "個別説明会", href: "/reservation/" },
@@ -588,7 +588,7 @@ export const courses: CourseCard[] = [
 
 export const footerGroups: FooterGroup[] = [
   {
-    title: "実績 / メソッド / 講師",
+    title: "実績 / メソッド",
     links: [
       { label: "合格実績", href: "#achievements" },
       { label: "合格メソッド", href: "#method" },
