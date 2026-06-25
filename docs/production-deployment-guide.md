@@ -1,9 +1,10 @@
 # Production deployment guide
 
-作成日: 2026-06-24
+作成日: 2026-06-24  
+更新日: 2026-06-25
 
 対象: LEXUS 教育センター Astro 静的サイトを Cloudflare Pages に公開するための案内書。  
-この文書は実行手順の整理であり、DNS 変更、デプロイ、環境変数登録、外部サービス作成はまだ行っていない。
+この文書は実行手順の整理であり、本番 Pages デプロイ、Pages custom domain 切り替え、環境変数登録、外部サービス作成はまだ行っていない。
 
 ## 現状サマリー
 
@@ -11,6 +12,8 @@
 |---|---|
 | プロジェクトルート | `C:\---hp` |
 | フロントエンド | `C:\---hp\frontend` |
+| GitHub repository | `https://github.com/phybose1012-svg/lexus-ec-site.git` |
+| Git branch | `main` = production, `staging` = 社長確認用 preview |
 | Framework | Astro 5 系の static site |
 | Astro output | `output: "static"` |
 | Astro site | `https://lexus-ec.com` |
@@ -19,7 +22,9 @@
 | Cloudflare Pages build command | `npm run build` |
 | build output | `frontend/dist` |
 | Cloudflare Pages 上の output directory | `dist`。`Root directory` を `frontend` にするため |
-| build 確認 | 2026-06-24 に `npm.cmd run build` 成功。Astro check は 0 errors / 0 warnings、564 pages built |
+| build 確認 | 2026-06-25 に `npm.cmd run build` 成功。Astro check は 0 errors / 0 warnings、564 pages built |
+| Cloudflare DNS | `lexus-ec.com` zone active。nameserver は `brad.ns.cloudflare.com`, `dee.ns.cloudflare.com` |
+| Cloudflare Pages project | 未作成 |
 | フォーム送信 endpoint | `PUBLIC_FORM_ENDPOINT` 未設定時は `/form-submit/` 表示だが、`data-local-form="pending"` により送信は保留表示で止まる |
 | Pages Functions | 未実装 |
 | `_headers` / `_redirects` | 未作成 |
@@ -34,8 +39,8 @@
 
 | Cloudflare 画面項目 | 推奨値 | 補足 |
 |---|---|---|
-| Project name | `lexus-ec` | `lexus-ec.pages.dev` を取りたい。使用済みなら `lexus-ec-frontend` などに変更。要確認 |
-| Production branch | `main` | ローカル `.git` からは確定不可。GitHub/GitLab 側の本番ブランチを要確認 |
+| Project name | `lexus-ec` | `lexus-ec.pages.dev` を取りたい。使用済みなら `lexus-ec-frontend` などに変更 |
+| Production branch | `main` | GitHub へ push 済み |
 | Framework preset | `Astro` | Cloudflare 公式の Astro preset は `npm run build` / `dist` |
 | Root directory | `frontend` | monorepo 形なので、Pages の root を Astro プロジェクトに合わせる |
 | Build command | `npm run build` | Cloudflare 用。ローカル Windows では `npm.cmd run build` |
@@ -46,7 +51,7 @@
 | Environment variables: 初回静的公開 | `NODE_VERSION=22.16.0` のみ | フォームをまだ送信しない場合。フォームは保留メッセージになる |
 | Environment variables: フォーム有効化時 | `NODE_VERSION=22.16.0`, `PUBLIC_FORM_ENDPOINT=/form-submit/` | `PUBLIC_FORM_ENDPOINT` を入れないと pending script が送信を止める |
 
-Cloudflare 公式ドキュメント確認日: 2026-06-24
+Cloudflare 公式ドキュメント確認日: 2026-06-25
 
 - Astro guide: https://developers.cloudflare.com/pages/framework-guides/deploy-an-astro-site/
 - Build configuration: https://developers.cloudflare.com/pages/configuration/build-configuration/
@@ -147,8 +152,8 @@ Production: https://lexus-ec.com/
 
 ## 初回デプロイ手順
 
-1. GitHub または GitLab の本番リポジトリと production branch を確定する。
-2. Cloudflare dashboard で `Workers & Pages` → `Create application` → `Pages` → `Import an existing Git repository` を選ぶ。
+1. GitHub repository `phybose1012-svg/lexus-ec-site` と production branch `main` は確定済み。
+2. Cloudflare dashboard で `Workers & Pages` → `Create application` → `Pages` → `Connect to Git` を選ぶ。
 3. 対象リポジトリを選び、上記の Pages 推奨設定を入力する。
 4. 初回はフォーム backend を未実装のまま静的公開するなら、`PUBLIC_FORM_ENDPOINT` は設定しない。
 5. フォームも同時に有効化するなら、先に `frontend/functions/form-submit.ts` などの Pages Function を実装し、`PUBLIC_FORM_ENDPOINT=/form-submit/` を production / preview 両方に設定する。
