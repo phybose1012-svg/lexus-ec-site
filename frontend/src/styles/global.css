@@ -328,6 +328,10 @@ li {
   vertical-align: middle;
 }
 
+.mega-nav__label--single::after {
+  content: none;
+}
+
 .mega-nav__label::before {
   content: "";
   display: inline-block;

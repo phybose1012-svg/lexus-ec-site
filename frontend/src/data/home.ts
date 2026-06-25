@@ -179,13 +179,7 @@ export const navGroups: NavGroup[] = [
   {
     label: "法人向け開発",
     links: [
-      { label: "Lexus Online", href: "/lexus-online/", target: "_blank" },
-      { label: "AI業務改善", href: "/lexus-online/#systems", target: "_blank" },
-      { label: "Webアプリ / SaaS開発", href: "/lexus-online/#systems", target: "_blank" },
-      { label: "開発ポリシー詳細", href: "/lexus-online/policy/", target: "_blank" },
-      { label: "開発の流れ", href: "/lexus-online/development-flow/", target: "_blank" },
-      { label: "料金・相場比較", href: "/lexus-online/#pricing", target: "_blank" },
-      { label: "開発相談フォーム", href: "/lexus-online/contact/", target: "_blank" },
+      { label: "法人向け開発", href: "/lexus-online/" },
     ],
   },
 ];

@@ -126,11 +126,13 @@ const headerNavGroups = navGroups;
   <nav class="mega-nav" aria-label="主要ナビゲーション">
     <ul>
         {headerNavGroups.map((group) => (
-          <li>
-          <a class="mega-nav__label" href={group.links[0].href} {...navLinkAttrs(group.links[0])}>{group.label}</a>
-          <div class="mega-panel">
-            {group.links.map((link) => <a href={link.href} {...navLinkAttrs(link)}>{link.label}</a>)}
-          </div>
+          <li class={group.links.length === 1 ? "mega-nav__item--single" : undefined}>
+          <a class={`mega-nav__label${group.links.length === 1 ? " mega-nav__label--single" : ""}`} href={group.links[0].href} {...navLinkAttrs(group.links[0])}>{group.label}</a>
+          {group.links.length > 1 && (
+            <div class="mega-panel">
+              {group.links.map((link) => <a href={link.href} {...navLinkAttrs(link)}>{link.label}</a>)}
+            </div>
+          )}
         </li>
       ))}
     </ul>
