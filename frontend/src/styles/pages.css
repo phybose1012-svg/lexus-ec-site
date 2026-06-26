@@ -1263,6 +1263,35 @@
   height: clamp(12px, var(--unstack-spacer, 20px), 40px) !important;
 }
 
+/* Elementor gallery widgets rely on runtime JS for their justified/masonry
+   layout, which never runs in the static extraction — leaving a tall empty
+   container with mis-positioned items. Force any extracted gallery into a
+   simple responsive CSS grid. */
+.fixed-source .elementor-gallery__container {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+.fixed-source :where(.e-gallery-item, .elementor-gallery-item) {
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+
+.fixed-source :where(.e-gallery-item img, .elementor-gallery-item img) {
+  position: relative !important;
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  border-radius: var(--radius);
+}
+
 .fixed-source :where(.elementor-screen-only, .screen-reader-text) {
   position: absolute;
   width: 1px;

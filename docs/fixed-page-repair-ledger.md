@@ -152,6 +152,11 @@ node ./scripts/capture-visual-set.mjs / /top/voice/ /top/results/ /top/teacher/ 
 - 修正: 再利用クラス `.fixed-page--unstack` を新設（`pages.css`）＋ `[...slug].astro` で対象パスに付与。各コンテナを縦積み（`flex-direction:column`）・1カラム中央寄せ（max 860px）・spacer高さclampで是正。
 - 確認: 3ページとも desktop/mobile で中央1カラムの可読レイアウトに。
 
+### `/kuriage-information/` — 完了（壊れたElementorギャラリー）
+- 問題: ページ中央に巨大な空白。原因は繰り上げ合格者数の26枚のデータ画像が `.elementor-gallery`（Elementorギャラリー）に入っており、抽出時の `style=` 一括除去で各タイルの `background-image` が消え、空タイルの羅列＝空白になっていた（画像URLは親 `<a href>` に残存）。
+- 修正: `fixedPageSource.ts` に `restoreGalleryImages` 変換を追加し、`<a href>` から `<img>` を復元（style除去の前段）。さらに base CSS で `.elementor-gallery__container` を responsive grid 化（JS非依存）。**ギャラリーを持つ fixed-source 9ページ全てに有効**。
+- 確認: 26枚のデータ画像がグリッド表示、空白解消。
+
 ### `/top/information-shiritsu/` — 対応中
 - 上部（見出し・画像・ボタン）は49個の固有ルールで正常。私立医学部リンク一覧が長い1カラムで冗長 → グリッド化を検討中。
 

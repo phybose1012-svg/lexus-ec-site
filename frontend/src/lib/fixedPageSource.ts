@@ -200,6 +200,21 @@ const replaceExternalWidgets = (html: string) =>
     '<span class="legacy-line-button">LINE</span>',
   );
 
+// Elementor gallery widgets set each tile's image as an inline-style
+// background-image, which stripUnsafeAttrs() later removes — leaving empty
+// tiles. The image URL still lives on the wrapping <a href>; restore it as a
+// real <img> inside the tile so the gallery renders.
+const restoreGalleryImages = (html: string) =>
+  html.replace(
+    /<a\b([^>]*e-gallery-item[^>]*)>([\s\S]*?)<div\b([^>]*elementor-gallery-item__image[^>]*)>\s*<\/div>/gi,
+    (match, aAttrs, between, imgAttrs) => {
+      const href = attr(`<a${aAttrs}>`, "href");
+      if (!href || !/\.(?:jpe?g|png|webp|gif|avif)$/i.test(href)) return match;
+      const alt = (attr(`<div${imgAttrs}>`, "aria-label") || "").replace(/"/g, "&quot;");
+      return `<a${aAttrs}>${between}<div${imgAttrs}><img src="${href}" alt="${alt}"></div>`;
+    },
+  );
+
 const stripUnsafeAttrs = (html: string) =>
   html
     .replace(/\son[a-z]+=(["'])(.*?)\1/gi, "")
@@ -241,7 +256,7 @@ const sanitizeSourceHtml = (content: string, options: { removeFirstH1?: boolean 
       return `<h2${attrs}>${inner}</h2>`;
     });
 
-  return addMediaDefaults(stripUnsafeAttrs(replaceExternalWidgets(normalizeInternalLinks(normalizeAssetAttrs(withoutDynamic)))))
+  return addMediaDefaults(stripUnsafeAttrs(restoreGalleryImages(replaceExternalWidgets(normalizeInternalLinks(normalizeAssetAttrs(withoutDynamic))))))
     .replace(/<div class=["']elementor-widget-container["']>\s*<\/div>/gi, " ")
     .replace(/<p>\s*<\/p>/gi, " ")
     .replace(/\s+([）」』】、。，．！？!?])/g, "$1")
