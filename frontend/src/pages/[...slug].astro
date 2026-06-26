@@ -3,7 +3,6 @@ import LeadForm from "../components/fixed/LeadForm.astro";
 import { defaultPageActions } from "../data/fixedPages";
 import { seo } from "../data/home";
 import { getFixedPageByPath, getFixedPageStaticPaths, type ExtractedPage } from "../lib/fixedPageSource";
-import { getLegacyRedirectByPath, getLegacyRedirectStaticPaths, type LegacyRedirect } from "../lib/legacyRedirects";
 import { getMigratedPostByPath, getMigratedPostStaticPaths, type MigratedPost } from "../lib/postSource";
 import ArticleLayout from "../layouts/ArticleLayout.astro";
 import SiteLayout from "../layouts/SiteLayout.astro";
@@ -12,19 +11,13 @@ export const getStaticPaths = () => {
   const postPaths = getMigratedPostStaticPaths();
   const postSlugs = new Set(postPaths.map((route) => route.params.slug));
   const fixedPaths = getFixedPageStaticPaths().filter((route) => !postSlugs.has(route.params.slug));
-  const fixedSlugs = new Set(fixedPaths.map((route) => route.params.slug));
-  const redirectPaths = getLegacyRedirectStaticPaths().filter(
-    (route) => !postSlugs.has(route.params.slug) && !fixedSlugs.has(route.params.slug),
-  );
-  return [...fixedPaths, ...postPaths, ...redirectPaths];
+  return [...fixedPaths, ...postPaths];
 };
 
-const routeProps = (Astro.props ?? {}) as { page?: ExtractedPage; post?: MigratedPost; legacyRedirect?: LegacyRedirect };
+const routeProps = (Astro.props ?? {}) as { page?: ExtractedPage; post?: MigratedPost };
 const requestedPath = Astro.url.pathname || "/";
-const legacyRedirect = routeProps.legacyRedirect ?? getLegacyRedirectByPath(requestedPath);
-const post = !legacyRedirect ? (routeProps.post ?? getMigratedPostByPath(requestedPath)) : undefined;
-const fixedPage = !legacyRedirect ? (routeProps.page ?? (!post ? getFixedPageByPath(requestedPath) : undefined)) : undefined;
-const redirectCanonical = legacyRedirect ? new URL(legacyRedirect.to, seo.canonical).href : "";
+const post = routeProps.post ?? getMigratedPostByPath(requestedPath);
+const fixedPage = routeProps.page ?? (!post ? getFixedPageByPath(requestedPath) : undefined);
 const page =
   fixedPage ??
   ({
@@ -136,53 +129,7 @@ const premierPlanImage = page.images[0]?.src
 const isLegalPage = page.canonical.includes("%e7%89%b9") || page.h1.includes("特定商取引");
 ---
 
-{legacyRedirect ? (
-  <html lang="ja">
-    <head>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta http-equiv="refresh" content={`0; url=${legacyRedirect.to}`} />
-      <meta name="robots" content="noindex,follow" />
-      <link rel="canonical" href={redirectCanonical} />
-      <title>Redirecting | LEXUS E.C.</title>
-      <script is:inline>
-        const canonical = document.querySelector('link[rel="canonical"]');
-        if (canonical?.href) window.location.replace(canonical.href);
-      </script>
-      <style>
-        body {
-          margin: 0;
-          min-height: 100vh;
-          display: grid;
-          place-items: center;
-          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-          color: #171717;
-          background: #faf7f2;
-        }
-        main {
-          width: min(90vw, 560px);
-          padding: 32px;
-          border: 1px solid rgba(0, 0, 0, 0.08);
-          background: #fff;
-        }
-        p {
-          margin: 0 0 14px;
-          line-height: 1.8;
-        }
-        a {
-          color: #b51223;
-          font-weight: 700;
-        }
-      </style>
-    </head>
-    <body>
-      <main>
-        <p>ページを移動しました。自動的に新しいページへ移動します。</p>
-        <p><a href={legacyRedirect.to}>新しいページを開く</a></p>
-      </main>
-    </body>
-  </html>
-) : post ? (
+{post ? (
   <ArticleLayout
     template={post.template}
     title={post.title}
