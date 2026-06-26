@@ -174,6 +174,17 @@ node ./scripts/capture-visual-set.mjs / /top/voice/ /top/results/ /top/teacher/ 
 - `/reservation/`: ラジオ/チェック群を縦1列→多カラム折返し（フォーム大幅短縮）、フォーム行間9→15px、入力枠 `#aeb7c3`→`var(--line)`＋角丸4px、送信ボタン高さ34→46px。
 - 確認: 5ページとも desktop/mobile でビルド・目視OK、横スクロールなし、機能・内容は不変。
 
+## バッチ6：本番比較に基づく作り直し（ユーザー指摘で猛省）
+
+**反省**: study-support / kokuritsu / shiritsu の前回修正は、本番ページを一度も見ずに抽出HTMLを雑に近似しただけで、品質が全く不足していた。今回 Playwright で**本番(lexus-ec.com)を直接スクショ**し、staging と並べて比較して作り直した。
+
+- **/top/information-kokuritsu/ ・ /information-shiritsu/**: 前回は大学リンク280件を素のauto-columnに流しただけ（本番と無関係）。本番＝「緑の見出しバンド＋淡色ボックス＋多カラムのリンク格子」。`.fixed-page--directory` を新設し、`unstack`（潰れ修正）に加えて、h2を緑バンド化・リンク`<ul>`を淡緑ボックス＋多カラム化。desktopは本番とほぼ一致。（本番はmobileでカナ別ボックスの別ウィジェットを出すが、当方は同一内容をボックス整形で両対応。）
+- **/study-support-system/**: `unstack` で1カラム化済み＋ブランド整形（中央寄せ見出し＋赤アクセント、鬼監理の図解に枠）。本番にある「2カラム比較カード」「プレミア本科の黒金バンド」は未再現（要：セクション単位の追加スタイル）。
+
+## 残ギャップ（必要なら対応）
+- study-support の 2-up比較カード／プレミア本科バンドのセクション別スタイル。
+- 本番のmobile専用ウィジェット（kana別）への厳密一致。
+
 ## 次の候補（未トリアージ）
 - 既に第一視＋スクリプト検査で「問題なし」とした重点ページ（results/teacher/lexus-premier/lexus-garden/history/faq/entrance/medical-english-training）の全コンテナ精査（任意）。
 - 特商法ページ（パーセントエンコードURL）の崩れのみ確認。
