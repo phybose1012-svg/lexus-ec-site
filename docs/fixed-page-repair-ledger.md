@@ -188,6 +188,13 @@ node ./scripts/capture-visual-set.mjs / /top/voice/ /top/results/ /top/teacher/ 
 - 修正: ドロップダウン複製とバーガートグルを `display:none`／本物の `elementor-nav-menu--main` を罫線付きグリッド（表組み風）に／五十音ラベルを中央見出し化／緑バンド見出し。
 - 結果: desktop/mobile とも本番とほぼ一致（五十音グループ＋整然としたグリッド、ページ長も本番並みに短縮）。
 
+## バッチ8：study-support のカスタムコンポーネントCSS復元（根本原因発見）
+
+- **根本原因**: 抽出処理は `<style>` ブロックを除去する。study-support の「鬼監理」セクションは独自コンポーネント `.lexus-manage-wrapper`（manage-grid 2カラム比較／quote-box／円形画像／human-grid 等）で、そのCSSがページ内 `<style>` にあったため**まるごと消えていた**＝のっぺり表示の主因。
+- 修正: 本番ベースラインから当該CSS（3.8KB）を復元し、`.lexus-manage-wrapper` スコープで pages.css に追加（グローバルのフォント変数は汚さない）。アナログ(赤)/デジタル(紺)の2カラム比較カード・金縁円形画像・引用ボックスが本番通り描画。
+- 残: プレミア本科の黒金バンド（同様に要確認）。
+- **教訓**: 他の固定ページも独自 `<style>` コンポーネントを持つ場合、同様に消えている可能性。`<style>` を持つページは個別に復元検討。
+
 ## 残ギャップ（必要なら対応）
 - study-support の 2-up比較カード／プレミア本科バンドのセクション別スタイル。
 - 本番のmobile専用ウィジェット（kana別）への厳密一致。
