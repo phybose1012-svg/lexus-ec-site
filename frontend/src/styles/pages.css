@@ -1292,6 +1292,29 @@
   border-radius: var(--radius);
 }
 
+/* Medical-school directory pages: production lays the university link
+   lists out in multiple columns. The extraction flattens each icon-list
+   into a single tall column — reflow the link lists into responsive
+   columns to match. */
+.fixed-page--top-information-kokuritsu .fixed-source ul:has(a.elementor-item),
+.fixed-page--top-information-shiritsu .fixed-source ul:has(a.elementor-item) {
+  column-width: 190px;
+  column-gap: 26px;
+  padding-left: 0;
+}
+
+.fixed-page--top-information-kokuritsu .fixed-source ul:has(a.elementor-item) li,
+.fixed-page--top-information-shiritsu .fixed-source ul:has(a.elementor-item) li {
+  break-inside: avoid;
+}
+
+.fixed-page--top-information-kokuritsu .fixed-source ul:has(a.elementor-item) a,
+.fixed-page--top-information-shiritsu .fixed-source ul:has(a.elementor-item) a {
+  display: block;
+  padding: 7px 10px;
+  border-bottom: 1px solid #ece1cd;
+}
+
 .fixed-source :where(.elementor-screen-only, .screen-reader-text) {
   position: absolute;
   width: 1px;

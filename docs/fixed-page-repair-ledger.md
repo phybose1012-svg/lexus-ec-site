@@ -157,8 +157,11 @@ node ./scripts/capture-visual-set.mjs / /top/voice/ /top/results/ /top/teacher/ 
 - 修正: `fixedPageSource.ts` に `restoreGalleryImages` 変換を追加し、`<a href>` から `<img>` を復元（style除去の前段）。さらに base CSS で `.elementor-gallery__container` を responsive grid 化（JS非依存）。**ギャラリーを持つ fixed-source 9ページ全てに有効**。
 - 確認: 26枚のデータ画像がグリッド表示、空白解消。
 
-### `/top/information-shiritsu/` — 対応中
-- 上部（見出し・画像・ボタン）は49個の固有ルールで正常。私立医学部リンク一覧が長い1カラムで冗長 → グリッド化を検討中。
+### `/top/information-kokuritsu/` `/top/information-shiritsu/` 大学リンク一覧 — 完了（本番準拠の多段化）
+- 方針（ユーザー確認済み）: 本番と同じ多カラムのディレクトリ表示に寄せる。
+- 問題: 大学リンク（計280件・45本の `<ul>`）が抽出でicon-listのカラム構成を失い、縦1列に冗長展開。
+- 修正: ディレクトリ2ページの `ul:has(a.elementor-item)` に `column-width:190px` を適用しレスポンシブ多段化。各リンクを枠線付きブロックに整形。PCで4〜6段、モバイルで1〜2段にリフロー。
+- 確認: PC/mobile OK。ページ長が大幅短縮、ディレクトリらしい一覧に。
 
 ## 次の候補（未トリアージ）
 - 既に第一視＋スクリプト検査で「問題なし」とした重点ページ（results/teacher/lexus-premier/lexus-garden/history/faq/entrance/medical-english-training）の全コンテナ精査（任意）。
