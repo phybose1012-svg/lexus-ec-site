@@ -322,8 +322,11 @@ body:has(.lo-detail) {
   box-shadow: none;
 }
 
-.lo-detail-section--dark .lo-detail-card p {
-  color: rgb(255 255 255 / 78%);
+.lo-detail-section--dark .lo-detail-card p,
+.lo-detail-section--dark .lo-detail-card .lo-detail-step p,
+.lo-detail-section--dark .lo-detail-card .lo-detail-list li,
+.lo-detail-section--dark .lo-detail-card .lo-detail-checklist li {
+  color: rgb(255 255 255 / 82%);
 }
 
 .lo-detail-list,
