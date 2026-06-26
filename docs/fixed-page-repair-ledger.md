@@ -138,6 +138,23 @@ node ./scripts/capture-visual-set.mjs / /top/voice/ /top/results/ /top/teacher/ 
 ### 横スクロール・配色とも問題なしを確認（10ページ, fixed-source）
 `/top/information-kokuritsu/`, `/top/information-shiritsu/`, `/kuriage-information/`, `/medical-math-training/`, `/study-support-system/`, `/results/`(旧), `/voice/`(旧), `/todai-keio-med-special/`, `/top/line/`, `/past-post/`
 
+## バッチ4修正記録（実機で発覚したレイアウト崩れ — ユーザー指摘）
+
+**重要な学び**: `scrollWidth`/配色hexだけのトリアージでは「レイアウト崩壊（カラム潰れ・要素非表示）」を見逃す。実機（staging）でユーザーが見て初めて発覚。以後、フルページ・スクリーンショットの目視を必須とする。
+
+### `/top/history/` — 完了（最重要バグ）
+- 問題: 沿革タイムライン（1989〜2024の全14項目＝ページの主要コンテンツ）が `.history-timeline .content { display:none }` で**完全非表示**にされ、代わりに `.history-timeline::after { height:4300px }`（モバイルは4200px）の**巨大な空白**が挿入されていた。タイムライン本体のCSS・コンテンツは完全に揃っており、隠蔽ハックの取り残しと判断。
+- 修正: 隠蔽3ルールを削除。タイムラインが desktop/mobile とも正常描画（赤い年マーカー＋接続線＋カード）。
+- 確認: PC/mobile OK。
+
+### `/study-support-system/`, `/top/information-kokuritsu/`, `/medical-math-training/` — 完了（カラム潰れ）
+- 問題: ページ固有CSSが0件で、base `.fixed-source` の `.e-con-inner{display:flex;flex-wrap:wrap}` ＋ 各widget `flex:1 1 300px` により、**縦積みのはずのコンテンツが横3カラム364pxに潰れ／spacerに半分占有され**、左寄せ・右側大量空白の崩壊。
+- 修正: 再利用クラス `.fixed-page--unstack` を新設（`pages.css`）＋ `[...slug].astro` で対象パスに付与。各コンテナを縦積み（`flex-direction:column`）・1カラム中央寄せ（max 860px）・spacer高さclampで是正。
+- 確認: 3ページとも desktop/mobile で中央1カラムの可読レイアウトに。
+
+### `/top/information-shiritsu/` — 対応中
+- 上部（見出し・画像・ボタン）は49個の固有ルールで正常。私立医学部リンク一覧が長い1カラムで冗長 → グリッド化を検討中。
+
 ## 次の候補（未トリアージ）
 - 既に第一視＋スクリプト検査で「問題なし」とした重点ページ（results/teacher/lexus-premier/lexus-garden/history/faq/entrance/medical-english-training）の全コンテナ精査（任意）。
 - 特商法ページ（パーセントエンコードURL）の崩れのみ確認。

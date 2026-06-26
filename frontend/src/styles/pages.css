@@ -1244,6 +1244,25 @@
   width: 100%;
 }
 
+/* Un-squish extracted Elementor pages that have no per-section overrides:
+   stack each container's widgets vertically into one readable centered
+   column instead of the default wrapping flex row that splits stacked
+   content into 300px sub-columns. */
+.fixed-page--unstack .fixed-source :where(.e-con-inner, .elementor-container, .e-con-full) {
+  flex-direction: column;
+  align-items: center;
+}
+
+.fixed-page--unstack .fixed-source :where(.e-con-inner > .elementor-element, .e-con-full > .elementor-element, .elementor-container > .elementor-column, .e-con-inner > .e-con) {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 860px;
+}
+
+.fixed-page--unstack .fixed-source .elementor-spacer .elementor-spacer-inner {
+  height: clamp(12px, var(--unstack-spacer, 20px), 40px) !important;
+}
+
 .fixed-source :where(.elementor-screen-only, .screen-reader-text) {
   position: absolute;
   width: 1px;
@@ -9092,17 +9111,7 @@
 .history-timeline {
   display: block;
   background: #fff;
-  padding-block: 0;
-}
-
-.history-timeline .content {
-  display: none;
-}
-
-.history-timeline::after {
-  display: block;
-  height: 4300px;
-  content: "";
+  padding-block: 0 88px;
 }
 
 .history-section-head {
@@ -9415,10 +9424,6 @@
 
   .history-timeline__list {
     gap: 20px;
-  }
-
-  .history-timeline::after {
-    height: 4200px;
   }
 
   .history-timeline__list::before {
