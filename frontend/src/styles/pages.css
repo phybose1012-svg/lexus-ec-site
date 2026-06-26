@@ -4285,7 +4285,6 @@
 }
 
 .minimal-form-page {
-  min-height: 980px;
   background: #fff;
   color: #202124;
 }
@@ -4326,7 +4325,7 @@
 .logo-strip--bottom {
   width: min(690px, calc(100% - 48px));
   height: 46px;
-  margin: 92px auto 0;
+  margin: 44px auto 0;
   background-size: auto 34px;
 }
 
@@ -4349,7 +4348,7 @@
 
 .google-form-lite__head {
   overflow: hidden;
-  border-top: 10px solid #4285f4;
+  border-top: 10px solid var(--red);
   padding: 20px 24px 14px;
 }
 
@@ -4387,7 +4386,7 @@
 .google-form-lite__required {
   border-top: 0;
   border-radius: 0 0 4px 4px;
-  color: #d93025;
+  color: var(--red);
 }
 
 .google-question {
@@ -4403,19 +4402,18 @@
 }
 
 .google-question em {
-  color: #d93025;
+  color: var(--red);
   font-style: normal;
 }
 
 .google-question input,
 .google-question select,
 .google-question textarea {
-  width: min(240px, 100%);
-  border: 0;
-  border-bottom: 1px solid #dadce0;
-  border-radius: 0;
+  width: 100%;
+  border: 1px solid #c7c7c7;
+  border-radius: 4px;
   background: #fff;
-  padding: 8px 0;
+  padding: 8px 10px;
   color: #202124;
   font: inherit;
 }
@@ -4466,13 +4464,13 @@
 
 .google-form-lite__submit {
   justify-self: start;
-  min-width: 76px;
+  min-width: 140px;
   border: 0;
   border-radius: 4px;
-  background: #1a73e8;
+  background: var(--red);
   color: #fff;
   padding: 10px 24px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .legacy-form-footer {
@@ -4482,7 +4480,7 @@
 
 .legacy-form-footer__box {
   width: min(1180px, calc(100% - 96px));
-  margin: 0 auto 130px;
+  margin: 0 auto 36px;
   background: #3f3f3f;
   padding: 30px 34px;
 }
@@ -4539,7 +4537,7 @@
 }
 
 .legacy-form-footer__copyright {
-  background: #00ae18;
+  background: #00b71a;
   padding: 12px 16px;
   color: #fff;
   font-weight: 700;
@@ -4549,7 +4547,7 @@
 .legacy-form-footer__legal {
   display: block;
   padding: 14px 16px 24px;
-  color: #e7007f !important;
+  color: var(--red) !important;
   font-size: 0.86rem !important;
   text-align: center;
 }
@@ -4671,7 +4669,7 @@
 }
 
 .legacy-reservation-field em {
-  color: #ff0066;
+  color: var(--red);
   font-style: normal;
 }
 
@@ -4719,7 +4717,7 @@
   min-height: 34px;
   margin-top: 8px;
   border: 0;
-  background: #ff0066;
+  background: var(--red);
   color: #fff;
   font-size: 1rem;
   font-weight: 900;
@@ -4764,15 +4762,15 @@
 }
 
 .legacy-pill-nav__blue {
-  background: #003fff;
+  background: var(--blue);
 }
 
 .legacy-pill-nav__green {
-  background: #007d2a;
+  background: var(--green);
 }
 
 .legacy-pill-nav__red {
-  background: #a10000;
+  background: var(--red);
 }
 
 .legacy-contact-page {
@@ -4802,7 +4800,7 @@
 
 .legacy-contact-hero p {
   margin: 0;
-  color: #bbb;
+  color: var(--muted);
   font-size: 2.05rem;
   font-weight: 900;
   letter-spacing: 0.08em;
@@ -4939,7 +4937,7 @@
 }
 
 .legacy-contact-form em {
-  color: #f06;
+  color: var(--red);
   font-style: normal;
 }
 
@@ -4977,7 +4975,7 @@
   min-width: 128px;
   border: 0;
   border-radius: 4px;
-  background: #00b900;
+  background: var(--red);
   color: #fff;
   padding: 8px 18px;
   font-weight: 900;
@@ -5015,7 +5013,7 @@
 .legacy-contact-garden a {
   margin-top: 42px;
   border-radius: 5px;
-  background: #00b900;
+  background: var(--green);
   color: #fff;
   padding: 10px 22px;
   font-weight: 900;
@@ -11232,11 +11230,11 @@
 }
 
 .course-title-card--medical-prep {
-  background: #690086;
+  background: #8b0000;
 }
 
 .course-title-card--custom-made {
-  background: #1431be;
+  background: #12356a;
 }
 
 .course-title-card--custom-made::before {
@@ -11394,7 +11392,7 @@
   content: "✓";
   position: absolute;
   left: 0;
-  color: #ff0d55;
+  color: var(--green);
   font-weight: 900;
 }
 
@@ -11700,7 +11698,6 @@
   .course-detail-hero--junior h1 {
     font-size: 1.18rem;
     line-height: 1.35;
-    white-space: nowrap;
   }
 
   .course-title-card {
@@ -11837,14 +11834,12 @@
     width: 100%;
     font-size: 1.1rem;
     line-height: 1.35;
-    white-space: nowrap;
   }
 
   .course-detail-hero--custom-made h1 {
     width: 100%;
     font-size: 1.1rem;
     line-height: 1.35;
-    white-space: nowrap;
   }
 
   .course-title-card--medical-prep {
