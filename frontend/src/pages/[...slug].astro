@@ -255,5 +255,76 @@ const isLegalPage = page.canonical.includes("%e7%89%b9") || page.h1.includes("�
       </section>
     )}
   </main>
+  {directory && (
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        const root = document.querySelector(".fixed-page--directory .fixed-source");
+        if (!root) return;
+        const findLabel = (w) => {
+          let node = w;
+          while (node && node !== root) {
+            let prev = node.previousElementSibling;
+            while (prev) {
+              const te = prev.matches(".elementor-widget-text-editor") ? prev : prev.querySelector(".elementor-widget-text-editor");
+              const el = te || prev;
+              const t = (el.textContent || "").trim();
+              if (t && t.length <= 16) return { label: t.replace(/の大学$/, ""), el };
+              prev = prev.previousElementSibling;
+            }
+            node = node.parentElement;
+          }
+          return { label: "", el: null };
+        };
+        // Walk h2 + nav menus in document order, bucket the labelled lists per section.
+        const flow = Array.from(root.querySelectorAll("h2, .elementor-widget-nav-menu"));
+        const sections = new Map();
+        let current = "__top__";
+        flow.forEach((el) => {
+          if (el.tagName === "H2") { current = el; return; }
+          if (!el.querySelector(".elementor-nav-menu--main")) return;
+          const { label, el: labelEl } = findLabel(el);
+          if (!label) return;
+          if (!sections.has(current)) sections.set(current, []);
+          sections.get(current).push({ widget: el, label, labelEl });
+        });
+        sections.forEach((items) => {
+          if (items.length < 2) return;
+          const anchor = items[0].widget.closest(".elementor-element.e-con") || items[0].widget;
+          const bar = document.createElement("div");
+          bar.className = "dir-tabs";
+          bar.setAttribute("role", "tablist");
+          const panelWrap = document.createElement("div");
+          panelWrap.className = "dir-tab-panels";
+          items.forEach((it, i) => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "dir-tab" + (i === 0 ? " is-active" : "");
+            btn.textContent = it.label;
+            btn.setAttribute("role", "tab");
+            btn.setAttribute("aria-selected", i === 0 ? "true" : "false");
+            const panel = document.createElement("div");
+            panel.className = "dir-tab-panel";
+            if (i !== 0) panel.hidden = true;
+            if (it.labelEl) it.labelEl.remove();
+            panel.appendChild(it.widget);
+            panelWrap.appendChild(panel);
+            btn.addEventListener("click", () => {
+              bar.querySelectorAll(".dir-tab").forEach((b) => {
+                b.classList.remove("is-active");
+                b.setAttribute("aria-selected", "false");
+              });
+              btn.classList.add("is-active");
+              btn.setAttribute("aria-selected", "true");
+              panelWrap.querySelectorAll(".dir-tab-panel").forEach((p) => { p.hidden = true; });
+              panel.hidden = false;
+            });
+            bar.appendChild(btn);
+          });
+          anchor.parentElement.insertBefore(bar, anchor);
+          anchor.parentElement.insertBefore(panelWrap, anchor);
+        });
+      });
+    </script>
+  )}
 </SiteLayout>
 )}

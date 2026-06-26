@@ -195,6 +195,11 @@ node ./scripts/capture-visual-set.mjs / /top/voice/ /top/results/ /top/teacher/ 
 - 残: プレミア本科の黒金バンド（同様に要確認）。
 - **教訓**: 他の固定ページも独自 `<style>` コンポーネントを持つ場合、同様に消えている可能性。`<style>` を持つページは個別に復元検討。
 
+## バッチ9：ウィジェット中央寄せ＋ディレクトリ五十音タブ
+
+- **中央寄せ**: 抽出ページのCTAボタン等が全幅ウィジェット内で左寄せ＝ズレていた。`.fixed-page--unstack` の button/wrapper を中央寄せ（text-align/justify center）。3ページとも整列改善。
+- **五十音タブ（kokuritsu / shiritsu）**: 大学一覧をダラダラ縦並びにせず、五十音グループ（ア行/カ行…）を**タブ切替**に。`[...slug].astro` に is:inline スクリプトを追加し、セクション(h2)単位で本物の `elementor-nav-menu--main` グループを収集→タブバー＋パネル生成（先頭タブを既定表示）。緑ピルのタブUIをCSSで用意。desktop/mobile ともページ大幅短縮＆見やすさ向上。
+
 ## 残ギャップ（必要なら対応）
 - study-support の 2-up比較カード／プレミア本科バンドのセクション別スタイル。
 - 本番のmobile専用ウィジェット（kana別）への厳密一致。

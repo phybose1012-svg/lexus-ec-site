@@ -1378,6 +1378,54 @@
   color: var(--red);
 }
 
+/* 五十音 tab UI built by the directory enhancement script. */
+.fixed-page--directory .fixed-source .dir-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  width: min(1040px, 100%);
+  margin: 10px auto 0;
+}
+
+.fixed-page--directory .fixed-source .dir-tab {
+  border: 2px solid var(--green);
+  border-radius: 999px;
+  background: #fff;
+  padding: 8px 18px;
+  color: #186a49;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.fixed-page--directory .fixed-source .dir-tab.is-active {
+  background: var(--green);
+  color: #fff;
+}
+
+.fixed-page--directory .fixed-source .dir-tab-panels {
+  width: min(1040px, 100%);
+  margin: 12px auto 0;
+}
+
+.fixed-page--directory .fixed-source .dir-tab-panel .elementor-nav-menu--main ul {
+  margin-top: 0;
+}
+
+/* Centre CTA buttons and standalone controls in the stacked extracted pages
+   (the extraction leaves them left-aligned inside full-width widgets). */
+.fixed-page--unstack .fixed-source :where(.elementor-widget-button, .elementor-button-wrapper),
+.fixed-page--unstack .fixed-source .elementor-widget-text-editor {
+  text-align: center;
+}
+
+.fixed-page--unstack .fixed-source .elementor-button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 /* study-support-system: content page (also carries .fixed-page--unstack).
    Give the stacked sections a clean branded rhythm closer to production:
    centred section headers with a red accent and framed key diagrams. */
