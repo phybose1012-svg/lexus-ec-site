@@ -13,12 +13,12 @@
 
 | 対象 | path | 実装種別 | 優先度 | 方針 | PC | mobile | 状態 | commit |
 |---|---|---|---|---|---|---|---|---|
-| 合格体験記 | `/top/voice/` | 専用Astro | A | 統合 | OK | OK | 完了 | (本コミット) |
+| 合格体験記 | `/top/voice/` | 専用Astro | A | 統合 | OK | OK | 完了 | 4f99945 |
 | 合格実績・メソッド | `/top/results/` | 専用Astro | A | 統合 | OK | OK | 確認済(問題なし) | - |
 | 講師紹介 | `/top/teacher/` | 専用Astro | A | 統合 | OK | OK | 確認済(問題なし) | - |
 | コース一覧 | `/top/course/` | 専用Astro | A | 統合 | OK | OK | 確認済(問題なし) | - |
 | レクサス プレミア本科 | `/lexus-premier/` | 専用Astro | A | 統合 | OK | OK | 確認済(問題なし) | - |
-| アクセス | `/top/access/` | 専用Astro | B | 統合 | 要再修正 | 要確認 | 未着手 | - |
+| アクセス | `/top/access/` | 専用Astro | B | 統合 | OK | OK | 完了 | (本コミット) |
 | レクサスガーデン | `/top/lexus-garden/` | 専用Astro | B | 統合 | OK | OK | 確認済(問題なし) | - |
 | 強み(沿革) | `/top/history/` | 専用Astro | B | 統合 | OK | OK | 確認済(問題なし) | - |
 | FAQ | `/top/faq/` | 専用Astro | B | 整理 | OK | OK | 確認済(問題なし) | - |
@@ -62,6 +62,23 @@ node ./scripts/capture-visual-set.mjs / /top/voice/ /top/results/ /top/teacher/ 
   - 横スクロール: なし / H1: 1 / SEO(title/canonical): 不変
 - 触ったファイル: `frontend/src/styles/pages.css`（`.voice-hero` / `.voice-hero__actions` / mobile `.voice-hero` / mobile `.voice-notice`）
 
+### `/top/access/` アクセス — 完了
+
+- production: <https://lexus-ec.com/top/access/>
+- staging: <https://staging.lexus-ec.pages.dev/top/access/>
+- 方針: ブランド統合リデザイン（崩れ修正）
+- 問題（崩れ）:
+  - 電話CTA（`.access-phone-cta`）が**ホットピンク**。電話番号ピル `background: #f5339a`、注記テキスト `color: #e83a86`。本番・ブランド配色外。
+  - セレクタ `.access-phone-cta > a` が電話番号リンクと `電話をかける`（`.button--blue`）の**両方**に当たり、青ボタンまでピンクに上書きされていた。
+- 修正:
+  - 電話番号ピルを `var(--red)`（#8b0000）に、注記テキストを `#8f1515`（同ページ見出しと同系の濃赤）に変更。
+  - ピルのセレクタを `.access-phone-cta > a:not(.button)` に限定し、`電話をかける` のブランド青を復帰。グリッドに `gap: 12px` を付与し余白を整理。
+- 確認:
+  - PC 1366x900: OK / mobile 390x844: OK（ピンク消滅、赤ピル＋青ボタンで自然）
+  - build: OK（564 pages）/ 横スクロールなし / H1=1 / SEO不変
+  - 道順写真の空白はファーストビュー外の `loading="lazy"` 画像のスクショ未読込（実ファイルは dist に存在＝崩れではない）
+- 触ったファイル: `frontend/src/styles/pages.css`（`.access-phone-cta` 一式）
+
 ## 発見した別ページの課題（未対応・次の候補）
 
-- `/top/access/`: `.access-phone-cta` に同系のホットピンク `#f5339a` / テキスト `#e83a86`（pages.css 周辺）。ブランド配色外。アクセスページ着手時に統合する。
+- 現状なし（トリアージ済みの重点11ページで未対応の明確な崩れは解消）。次はコース詳細各ページ／フォーム系／情報ページ群を順次トリアージ予定。

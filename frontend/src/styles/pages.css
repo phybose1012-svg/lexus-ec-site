@@ -10015,33 +10015,35 @@
 .access-phone-cta {
   display: grid;
   justify-items: center;
+  gap: 12px;
   margin-top: 34px;
   text-align: center;
 }
 
 .access-phone-cta p {
-  margin: 0 0 8px;
-  color: #e83a86;
+  margin: 0;
+  color: #8f1515;
   font-size: 0.98rem;
   font-weight: 900;
 }
 
-.access-phone-cta > a {
+.access-phone-cta > a:not(.button) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 34px;
   border-radius: 999px;
-  background: #f5339a;
+  background: var(--red);
   color: #fff;
   padding: 7px 26px;
   font-weight: 900;
+  letter-spacing: 0.04em;
   text-decoration: none;
 }
 
 .access-phone-cta .access-button-row {
   justify-content: center;
-  margin-bottom: 0;
+  margin: 0;
 }
 
 .access-dorm {
