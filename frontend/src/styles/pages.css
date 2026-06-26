@@ -1413,6 +1413,24 @@
   border: 1px solid #ecdfc8;
 }
 
+/* Premier-course callout -> black/gold band (matches the brand premier card). */
+.fixed-page--study-support-system .fixed-source h3:has(a[href*="premiere-course"]) {
+  width: min(820px, 100%);
+  margin: 26px auto 6px;
+  border: 2px solid var(--gold);
+  border-radius: 8px;
+  background: linear-gradient(180deg, #2c2c2c, #111);
+  padding: 16px 18px;
+  color: #f3e5ab;
+  text-align: center;
+}
+
+.fixed-page--study-support-system .fixed-source h3:has(a[href*="premiere-course"]) a {
+  color: #f3e5ab;
+  font-weight: 900;
+  text-decoration: none;
+}
+
 /* Recovered custom "鬼監理" component styling. The page embeds a bespoke
    .lexus-manage-wrapper component whose CSS lived in an inline <style> block
    that the extraction strips — restore it (scoped, without touching global
