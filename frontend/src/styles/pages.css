@@ -4731,7 +4731,7 @@
 
 .legacy-reservation-form {
   display: grid;
-  gap: 9px;
+  gap: 15px;
   font-size: 0.9rem;
 }
 
@@ -4763,8 +4763,8 @@
 .legacy-reservation-field input[type="date"],
 .legacy-reservation-field textarea {
   width: 100%;
-  border: 1px solid #aeb7c3;
-  border-radius: 0;
+  border: 1px solid var(--line);
+  border-radius: 4px;
   background: #fff;
   padding: 5px 8px;
   color: #111;
@@ -4778,14 +4778,17 @@
 }
 
 .legacy-reservation-field--radio {
-  gap: 3px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
 }
 
 .legacy-reservation-field--radio label {
   display: flex;
-  gap: 5px;
+  flex: 0 0 auto;
+  gap: 6px;
   align-items: center;
-  min-height: 17px;
+  min-height: 22px;
   font-weight: 400;
   line-height: 1.2;
 }
@@ -4798,7 +4801,7 @@
 
 .legacy-reservation-submit {
   width: 100%;
-  min-height: 34px;
+  min-height: 46px;
   margin-top: 8px;
   border: 0;
   background: var(--red);
@@ -7237,7 +7240,7 @@
 }
 
 .premier-stat {
-  background: #6b6b6b;
+  background: #686868;
   color: #fff;
   padding: 16px;
   text-align: center;
@@ -7256,15 +7259,15 @@
 }
 
 .premier-stat--orange strong {
-  color: #ffae19;
+  color: var(--orange);
 }
 
 .premier-stat--green strong {
-  color: #52ff42;
+  color: #00b71a;
 }
 
 .premier-stat--cyan strong {
-  color: #14e7ff;
+  color: #26a5b9;
 }
 
 .premier-achievement h3 {
@@ -7358,7 +7361,7 @@
 .premier-feature-card a {
   display: inline-flex;
   border: 2px solid #c79f42;
-  border-radius: 999px;
+  border-radius: 4px;
   color: #111;
   padding: 8px 18px;
   font-weight: 900;
@@ -7443,7 +7446,7 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #18b934;
+  background: #009b09;
   color: #fff;
   content: "✓";
   font-size: 0.78rem;
@@ -7461,7 +7464,7 @@
 }
 
 .premier-learning-grid article {
-  min-height: 230px;
+  min-height: 190px;
   background: #fff;
   padding: 30px;
   box-shadow: 0 12px 32px rgb(0 0 0 / 8%);
@@ -8732,7 +8735,7 @@
 .results-point-grid strong {
   display: block;
   margin: 0 0 12px;
-  color: #ef3f87;
+  color: var(--red);
   font-size: 1.05rem;
   font-weight: 900;
   line-height: 1.55;
@@ -9558,7 +9561,7 @@
   gap: 18px;
   align-items: center;
   justify-content: center;
-  margin-top: 92px;
+  margin-top: 44px;
 }
 
 .faq-hero__mascot p {
@@ -9579,17 +9582,14 @@
   flex-wrap: wrap;
   gap: 16px;
   justify-content: center;
-  margin-top: 84px;
+  margin-top: 40px;
 }
 
 .faq-hero__actions .button {
   width: 140px;
   min-width: 0;
   min-height: 50px;
-  border: 0;
-  border-radius: 999px;
   padding: 10px 18px;
-  box-shadow: none;
   font-size: 1.05rem;
   line-height: 1.35;
 }
@@ -9609,25 +9609,25 @@
   display: grid;
   gap: 16px;
   margin-bottom: 0;
-  padding-block: 126px 42px;
+  padding-block: 92px 42px;
 }
 
 .faq-section::before {
   position: absolute;
   inset: 0 auto auto 50%;
   width: 100vw;
-  height: 32px;
-  background: #00c910;
+  height: 18px;
+  background: var(--green);
   content: "";
   transform: translateX(-50%);
 }
 
 .faq-section::after {
   position: absolute;
-  inset: 32px auto auto 50%;
+  inset: 18px auto auto 50%;
   width: 100vw;
-  height: 20px;
-  background: #c8f3c3;
+  height: 8px;
+  background: #cfe9d3;
   content: "";
   transform: translateX(-50%);
 }
@@ -10365,7 +10365,7 @@
 .garden-hero__title {
   position: relative;
   margin-bottom: 0;
-  background: #4aa938;
+  background: #00b71a;
   padding: 40px 16px 34px;
   color: #fff;
 }
@@ -10413,11 +10413,11 @@
 .garden-view-button {
   min-width: 180px;
   min-height: 44px;
-  border: 2px solid #3b3b3b;
-  border-radius: 6px;
+  border: 2px solid var(--gold);
+  border-radius: 4px;
   padding: 8px 18px;
-  background: #fff !important;
-  color: #222 !important;
+  background: #fff;
+  color: #2e2616;
   box-shadow: none;
   margin-top: 3px;
 }
@@ -10520,7 +10520,8 @@
 
 .garden-floor-plan__grid img {
   aspect-ratio: 1 / 1.22;
-  object-fit: cover;
+  background: #fff;
+  object-fit: contain;
 }
 
 .garden-floor-plan figcaption {

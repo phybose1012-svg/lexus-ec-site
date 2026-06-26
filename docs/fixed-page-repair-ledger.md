@@ -163,6 +163,17 @@ node ./scripts/capture-visual-set.mjs / /top/voice/ /top/results/ /top/teacher/ 
 - 修正: ディレクトリ2ページの `ul:has(a.elementor-item)` に `column-width:190px` を適用しレスポンシブ多段化。各リンクを枠線付きブロックに整形。PCで4〜6段、モバイルで1〜2段にリフロー。
 - 確認: PC/mobile OK。ページ長が大幅短縮、ディレクトリらしい一覧に。
 
+## バッチ5：中位5ページのブランド磨き（ユーザー一任）
+
+専用Astro5ページを「私の判断で磨いてよい」との指示で、ポリッシュレビューAgent3体の指摘を基にブランド整合の低リスク改善を適用。
+
+- `/top/results/`: POINT見出しの先頭がホットピンク `#ef3f87` → `var(--red)`（赤/緑/青のブランド三色に統一）。
+- `/lexus-premier/`: 実績スタットのネオン色（`#52ff42`/`#14e7ff`/`#ffae19`）→ ブランド許容色（`#00b71a`/`#26a5b9`/`var(--orange)`）、カード背景をresults同値`#686868`に統一、チェック`#18b934`→`#009b09`、feature CTAの角丸999px→4px、learningカード`min-height`230→190。
+- `/top/lexus-garden/`: 周辺風景CTAのグレー枠白ボタン→ゴールド枠ブランドボタン、間取り図 `object-fit:cover`→`contain`（プランを切らない）、heroバンド緑 `#4aa938`→`#00b71a`。
+- `/top/faq/`: heroボタンのピル(border:0/999px)→ブランド標準ボタン（金枠4px）、緑の区切り帯 32+20px→18+8px・`var(--green)`化で過剰さ解消、セクション上余白126→92px、マスコット/ボタン周りの余白92/84→44/40px。
+- `/reservation/`: ラジオ/チェック群を縦1列→多カラム折返し（フォーム大幅短縮）、フォーム行間9→15px、入力枠 `#aeb7c3`→`var(--line)`＋角丸4px、送信ボタン高さ34→46px。
+- 確認: 5ページとも desktop/mobile でビルド・目視OK、横スクロールなし、機能・内容は不変。
+
 ## 次の候補（未トリアージ）
 - 既に第一視＋スクリプト検査で「問題なし」とした重点ページ（results/teacher/lexus-premier/lexus-garden/history/faq/entrance/medical-english-training）の全コンテナ精査（任意）。
 - 特商法ページ（パーセントエンコードURL）の崩れのみ確認。
