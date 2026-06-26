@@ -1292,27 +1292,64 @@
   border-radius: var(--radius);
 }
 
-/* Medical-school directory pages: production lays the university link
-   lists out in multiple columns. The extraction flattens each icon-list
-   into a single tall column — reflow the link lists into responsive
-   columns to match. */
-.fixed-page--top-information-kokuritsu .fixed-source ul:has(a.elementor-item),
-.fixed-page--top-information-shiritsu .fixed-source ul:has(a.elementor-item) {
-  column-width: 190px;
-  column-gap: 26px;
-  padding-left: 0;
+/* Medical-school directory pages (kokuritsu / shiritsu): match production —
+   green banded section headers + light boxed multi-column link grids.
+   These pages also carry .fixed-page--unstack (to un-squish the flex rows);
+   here we widen the stacked children and add the directory chrome. */
+.fixed-page--directory .fixed-source :where(.e-con-inner, .elementor-container, .e-con-full) {
+  align-items: stretch;
 }
 
-.fixed-page--top-information-kokuritsu .fixed-source ul:has(a.elementor-item) li,
-.fixed-page--top-information-shiritsu .fixed-source ul:has(a.elementor-item) li {
+.fixed-page--directory .fixed-source :where(.e-con-inner > .elementor-element, .e-con-full > .elementor-element, .elementor-container > .elementor-column, .e-con-inner > .e-con) {
+  max-width: 100%;
+}
+
+.fixed-page--directory .fixed-source h2 {
+  margin: 8px 0 2px;
+  border-bottom: 0;
+  border-radius: 6px;
+  background: var(--green);
+  padding: 12px 18px;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: clamp(1.18rem, 2.4vw, 1.55rem);
+  text-align: center;
+}
+
+.fixed-page--directory .fixed-source h3 {
+  margin: 6px 0 0;
+  color: #186a49;
+  font-size: clamp(1.05rem, 2vw, 1.32rem);
+  text-align: center;
+}
+
+.fixed-page--directory .fixed-source ul:has(a.elementor-item) {
+  display: block;
+  column-width: 200px;
+  column-gap: 24px;
+  margin: 0;
+  padding: 16px 20px;
+  border: 1px solid #d6e8d8;
+  border-radius: 8px;
+  background: #f4faf4;
+  box-shadow: 0 8px 22px rgb(34 132 93 / 10%);
+}
+
+.fixed-page--directory .fixed-source ul:has(a.elementor-item) li {
   break-inside: avoid;
 }
 
-.fixed-page--top-information-kokuritsu .fixed-source ul:has(a.elementor-item) a,
-.fixed-page--top-information-shiritsu .fixed-source ul:has(a.elementor-item) a {
+.fixed-page--directory .fixed-source ul:has(a.elementor-item) a {
   display: block;
-  padding: 7px 10px;
-  border-bottom: 1px solid #ece1cd;
+  padding: 8px 10px;
+  border-bottom: 1px solid #e2eedd;
+  color: #1d2a1f;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.fixed-page--directory .fixed-source ul:has(a.elementor-item) a:hover {
+  color: var(--red);
 }
 
 .fixed-source :where(.elementor-screen-only, .screen-reader-text) {

@@ -36,10 +36,16 @@ const routeClass = `fixed-page--${page.path.replace(/^\/|\/$/g, "").replace(/[^a
 // containers into one readable column instead of the squished flex-row default.
 const unstackPaths = new Set<string>([
   "/study-support-system/",
-  "/top/information-kokuritsu/",
   "/medical-math-training/",
 ]);
 const unstack = unstackPaths.has(page.path);
+// Medical-school directory pages: stack + render banded section headers and
+// boxed multi-column university link grids to match production.
+const directoryPaths = new Set<string>([
+  "/top/information-kokuritsu/",
+  "/top/information-shiritsu/",
+]);
+const directory = directoryPaths.has(page.path);
 const premierPlanPages: Record<
   string,
   { lead: string; prefix?: string; code: string; suffix?: string; meta: string }
@@ -149,7 +155,7 @@ const isLegalPage = page.canonical.includes("%e7%89%b9") || page.h1.includes("ç‰
   </ArticleLayout>
 ) : (
 <SiteLayout title={page.title} description={page.description} canonical={page.canonical} ogImage={seo.ogImage}>
-  <main class={`fixed-page ${routeClass}${unstack ? " fixed-page--unstack" : ""}${page.form ? " fixed-page--form" : ""}${premierPlan ? " fixed-page--premier-plan" : ""}${genekiPlan ? " fixed-page--geneki-plan" : ""}`}>
+  <main class={`fixed-page ${routeClass}${unstack ? " fixed-page--unstack" : ""}${directory ? " fixed-page--unstack fixed-page--directory" : ""}${page.form ? " fixed-page--form" : ""}${premierPlan ? " fixed-page--premier-plan" : ""}${genekiPlan ? " fixed-page--geneki-plan" : ""}`}>
     {genekiPlan && (
       <section class="geneki-plan-hero">
         <div class="content geneki-plan-hero__inner">
