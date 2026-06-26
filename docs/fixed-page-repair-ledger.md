@@ -116,5 +116,29 @@ node ./scripts/capture-visual-set.mjs / /top/voice/ /top/results/ /top/teacher/ 
 - `/lexus-online/contact/`: フォールバック文言の電話番号 `03-3477-1306` が data側のメール `info@lexus-ec.com` と混在。番号が正か要確認（コード未変更）。
 - `/reservation/` と `/top/reservation/` は同一 `ReservationPage.astro` を描画し、`fixedPages.ts` の別定義（見学希望select等）が未使用。意図的統合か要確認（崩れではないため未変更）。
 
+## バッチ3修正記録（情報・旧URL・抽出流し込みページ群）
+
+`fixed-source`（Elementor抽出流し込み）13ページを一括キャプチャし、`scrollWidth-clientWidth` で横スクロール、配色smellをスクリプト検出。崩れは2ページの横スクロールと1ページの配色のみ。残り10ページは横スクロールなし・ブランド外色なしを確認。
+
+### `/information-faq/` 私立医学部Q&A — 完了
+- 問題: Q&A見出し・強調pがブランド外のホットピンク赤 `#ff005d`（本番ベースラインに該当色なし=staging由来）。
+- 修正: `#ff005d` → `var(--red)`（2箇所, pages.css:2842/2867）。
+- 確認: desktop/mobile OK、横スクロールなし、テーブル/情報量は不変。
+
+### `/english-training/` 英語トレーニング旧 — 完了（横スクロール）
+- 問題: `.elementor-widget-image img` に `max-width: none` が指定され、`attachment-large`画像が原寸800pxで描画 → **desktop +117 / mobile +410** の横スクロール。固定幅 `width:800px` のロゴ枠も。
+- 修正: `max-width: none` → `max-width: 100%; height: auto`（pages.css:369）／ロゴ枠 `width:800px` → `min(800px, 100%)`。
+- 確認: desktop/mobile とも横スクロール解消、画像はビューポート内に収まる。
+
+### `/top/summer-plan/` 夏期プラン — 完了（横スクロール）
+- 問題: Elementorカルーセルの送り矢印（`.elementor-swiper-button`）が `left/right: -270px` で外側配置、さらにメインswiperの矢印が `right:-32px` かつ位置指定の祖先が無く `offsetParent=body` → 矢印がビューポート外（desktop +270 / mobile +32）。静的抽出のためSwiperの `position:relative/overflow` が効かずトラックも未包含。
+- 修正: 矢印を内側（`left/right: 8px`）へ／swiper系コンテナ（`.e-n-carousel/.elementor-main-swiper/.swiper` 等）に `position: relative; max-width:100%; overflow:hidden`／ページmainに `overflow-x: clip`。
+- 確認: desktop/mobile とも横スクロール解消、カルーセル表示・各CTAは正常。
+
+### 横スクロール・配色とも問題なしを確認（10ページ, fixed-source）
+`/top/information-kokuritsu/`, `/top/information-shiritsu/`, `/kuriage-information/`, `/medical-math-training/`, `/study-support-system/`, `/results/`(旧), `/voice/`(旧), `/todai-keio-med-special/`, `/top/line/`, `/past-post/`
+
 ## 次の候補（未トリアージ）
-- 情報ページ群（`/top/information-*`, `/information-faq/`, `/kuriage-information/`）、旧URL群（`/english-training/`, `/medical-math-training/`, `/study-support-system/`, `/results/`, `/voice/`, `/todai-keio-med-special/`, `/top/line/`, `/top/summer-plan/`, `/past-post/`）、特商法ページ。多くは `[...slug]` 生成テンプレート由来のためテンプレート単位でトリアージ予定。
+- 既に第一視＋スクリプト検査で「問題なし」とした重点ページ（results/teacher/lexus-premier/lexus-garden/history/faq/entrance/medical-english-training）の全コンテナ精査（任意）。
+- 特商法ページ（パーセントエンコードURL）の崩れのみ確認。
+- `[...slug]` 生成の投稿系ページ群（記事テンプレート）の精査（`ArticleLayout` 単位）。

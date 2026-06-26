@@ -367,7 +367,8 @@
 }
 
 .fixed-page--english-training .fixed-source :where(.elementor-widget-image, .elementor-widget-image img) {
-  max-width: none;
+  max-width: 100%;
+  height: auto;
 }
 
 .fixed-page--english-training .fixed-source :where(.elementor-widget-image img) {
@@ -397,7 +398,7 @@
 }
 
 .fixed-page--english-training .elementor-element-6cf5409 {
-  width: 800px !important;
+  width: min(800px, 100%) !important;
   margin-top: 28px;
 }
 
@@ -2839,7 +2840,7 @@
   margin: 0;
   border: 0;
   padding: 0;
-  color: #ff005d;
+  color: var(--red);
   font-family: var(--font-sans);
   font-size: 1.72rem;
   font-weight: 900;
@@ -2864,7 +2865,7 @@
 }
 
 .fixed-page--information-faq :where(.elementor-element-0e9d42d, .elementor-element-3ae2e2b, .elementor-element-dab3246, .elementor-element-4e6bb27, .elementor-element-48f37b5, .elementor-element-8c948cb) p {
-  color: #ff005d !important;
+  color: var(--red) !important;
   font-size: 1.45rem !important;
   line-height: 1.25 !important;
 }
@@ -3949,6 +3950,10 @@
   display: none;
 }
 
+.fixed-page--top-summer-plan {
+  overflow-x: clip;
+}
+
 .fixed-page--top-summer-plan .fixed-source-section {
   padding-top: 18px;
 }
@@ -3972,6 +3977,14 @@
 
 .fixed-page--top-summer-plan .fixed-source :where(.elementor-widget-n-carousel, .elementor-widget-n-carousel .elementor-widget-container) {
   position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.fixed-page--top-summer-plan .fixed-source :where(.e-n-carousel, .elementor-main-swiper, .elementor-slides-wrapper, .swiper) {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .fixed-page--top-summer-plan .fixed-source :where(.elementor-swiper-button) {
@@ -3997,7 +4010,7 @@
 }
 
 .fixed-page--top-summer-plan .fixed-source :where(.elementor-swiper-button-prev) {
-  left: -270px;
+  left: 8px;
 }
 
 .fixed-page--top-summer-plan .fixed-source :where(.elementor-swiper-button-prev)::before {
@@ -4005,7 +4018,7 @@
 }
 
 .fixed-page--top-summer-plan .fixed-source :where(.elementor-swiper-button-next) {
-  right: -270px;
+  right: 8px;
 }
 
 .fixed-page--top-summer-plan .fixed-source :where(.elementor-swiper-button-next)::before {
