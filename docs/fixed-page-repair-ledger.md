@@ -200,9 +200,40 @@ node ./scripts/capture-visual-set.mjs / /top/voice/ /top/results/ /top/teacher/ 
 - **中央寄せ**: 抽出ページのCTAボタン等が全幅ウィジェット内で左寄せ＝ズレていた。`.fixed-page--unstack` の button/wrapper を中央寄せ（text-align/justify center）。3ページとも整列改善。
 - **五十音タブ（kokuritsu / shiritsu）**: 大学一覧をダラダラ縦並びにせず、五十音グループ（ア行/カ行…）を**タブ切替**に。`[...slug].astro` に is:inline スクリプトを追加し、セクション(h2)単位で本物の `elementor-nav-menu--main` グループを収集→タブバー＋パネル生成（先頭タブを既定表示）。緑ピルのタブUIをCSSで用意。desktop/mobile ともページ大幅短縮＆見やすさ向上。
 
+## バッチ10：本番並列比較で3ページを仕上げ（Playwright prod↔stag フルページ比較）
+
+本番(lexus-ec.com)とローカルdistを desktop1366 / mobile390 でフルページ撮影し、1500px帯にスライスして1組ずつ目視比較。DOM/算出値はJS無効レンダリングや小プローブで実測（推測しない）。
+
+### 五十音タブのラベル崩れ（kokuritsu / shiritsu）— 完了（最重要バグ）
+- 問題: 第1セクション（共通テスト/HOT）の各リストは本番では Elementor タブ widget で、抽出でタブ見出しが消失。`findLabel` がセクション小見出し（"共通テスト ボーダー・足切り情報"=16字, "HOT"）にフォールバックし、**全タブが同一ラベル**＝可読性ゼロ＋モバイルで全幅縦積み（高さ +2200px の主因）。
+- 修正: `[...slug].astro` のタブ生成スクリプトを再設計。ラベル付きリスト（○行の大学）から「大学名→五十音行」マップを構築し、ラベルの無いリストは収録大学の多数決で行ラベルを推定（`resolveRow`）。「2026 ○○大学 医学部｜…」のような装飾ラベルは大学名の部分一致で照合。これにより共通テスト/二次試験/大学基本情報の3セクションが正しく ア行/カ行… にタブ化。安全弁としてラベルが分化しない場合はタブ化しない。
+- 結果: koku モバイル 8589→6008px、本番(5107)に接近。タブラベル正常化。
+
+### 二次試験リストの単列化・本番準拠（kokuritsu）— 完了
+- 問題: 二次試験リスト（長い装飾リンク約45件）がタブ化されず多カラムグリッドに潰れ＝本番(単列リスト)と不一致＋高さ膨張。
+- 修正: 二次試験も行タブ化。長文項目を含むタブセットは `dir-tab-panel--list` を付与し単列リスト表示。グリッドは短い大学名のタブパネルのみに限定（`.dir-tab-panel ul`）。
+
+### 緑バンドの過剰を是正（kokuritsu / shiritsu）— 完了
+- 問題: セクション見出しを飽和した緑グラデのバンドにしていた（本番は明朝の素見出し＋小チップ）。
+- 修正: h2 を**中央寄せ明朝＋緑の下線アクセント**に変更（塗りバンド廃止）。タブピルも淡色＋アクティブのみ緑塗りに軽量化。
+
+### shiritsu ヒーローの縦書きキャッチ崩れ（mobile）— 完了
+- 問題: 「正しい情報を集めて」「入試で優位に立とう」の縦書き見出しがマスコットに重なり判読不可（Elementorのtransform消失＋unstackで縦積み化）。
+- 修正: shiritsu限定で当該コンテナ（`:has(> .elementor-widget-heading.e-transform)`）を中央寄せ3カラムflex行に。縦書きキャッチがマスコットを左右から挟む本番レイアウトを復元。
+
+### study-support プレミア本科バンド＋見出しリンク化の是正 — 完了
+- 問題: ①「老舗の医学部予備校…「鬼監理」と「鬼特訓」」見出しが赤い下線リンクで表示（本番は黒明朝）。②黒金バンドが対象行を誤り（premiere-courseリンクを持つ"◆浪人生…◆"行だけバンド化）、本来の「レクサス プレミア 本科 / Pemier Main Course」(/lexus-premier/) はバラの赤リンクで左寄せ放置。
+- 修正: ①`.elementor-heading-title a` を `color:inherit; text-decoration:none` で素見出し化。②プレミアの共通コンテナ `.e-con-inner:has(> .elementor-widget-heading a[href*="premiere-course"])` を黒金バンド化し、◆浪人生◆＋プレミア本科＋Pemier＋説明＋CTAを一体の高級カードに（本番準拠）。
+- human-section 見出しを中央→左寄せ（本番一致）。
+
+### 確認
+- 3ページとも build OK（681pages, 0 error）、横スクロールなし（overflow=0）。本番↔stag を desktop/mobile スライス比較し残差を解消。
+- ボタンの三色（紺/緑/赤）は shiritsu/study-support では本番同様に出るが kokuritsu は全幅elementor-buttonが赤一色（=ブランド色、許容）。
+- 触ったファイル: `frontend/src/pages/[...slug].astro`, `frontend/src/styles/pages.css` のみ（ユーザー並行作業は未ステージ）。
+
 ## 残ギャップ（必要なら対応）
-- study-support の 2-up比較カード／プレミア本科バンドのセクション別スタイル。
-- 本番のmobile専用ウィジェット（kana別）への厳密一致。
+- 大学基本情報グリッドの末尾空セル（auto-fill由来、軽微）。HOT/BASIC/NEWチップを黒チップ中央寄せに（本番は黒チップ、現状は小灰文字）。
+- 本番のmobile専用ウィジェット（kana別アコーディオン）への厳密一致は非採用（当方はタブで全行を可読表示＝本番のトグル隠蔽より良いと判断）。
 
 ## 次の候補（未トリアージ）
 - 既に第一視＋スクリプト検査で「問題なし」とした重点ページ（results/teacher/lexus-premier/lexus-garden/history/faq/entrance/medical-english-training）の全コンテナ精査（任意）。

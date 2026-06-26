@@ -3,6 +3,7 @@ import LeadForm from "../components/fixed/LeadForm.astro";
 import { defaultPageActions } from "../data/fixedPages";
 import { seo } from "../data/home";
 import { getFixedPageByPath, getFixedPageStaticPaths, type ExtractedPage } from "../lib/fixedPageSource";
+import { getLegacyRedirectByPath, getLegacyRedirectStaticPaths, type LegacyRedirect } from "../lib/legacyRedirects";
 import { getMigratedPostByPath, getMigratedPostStaticPaths, type MigratedPost } from "../lib/postSource";
 import ArticleLayout from "../layouts/ArticleLayout.astro";
 import SiteLayout from "../layouts/SiteLayout.astro";
@@ -11,13 +12,19 @@ export const getStaticPaths = () => {
   const postPaths = getMigratedPostStaticPaths();
   const postSlugs = new Set(postPaths.map((route) => route.params.slug));
   const fixedPaths = getFixedPageStaticPaths().filter((route) => !postSlugs.has(route.params.slug));
-  return [...fixedPaths, ...postPaths];
+  const fixedSlugs = new Set(fixedPaths.map((route) => route.params.slug));
+  const redirectPaths = getLegacyRedirectStaticPaths().filter(
+    (route) => !postSlugs.has(route.params.slug) && !fixedSlugs.has(route.params.slug),
+  );
+  return [...fixedPaths, ...postPaths, ...redirectPaths];
 };
 
-const routeProps = (Astro.props ?? {}) as { page?: ExtractedPage; post?: MigratedPost };
+const routeProps = (Astro.props ?? {}) as { page?: ExtractedPage; post?: MigratedPost; legacyRedirect?: LegacyRedirect };
 const requestedPath = Astro.url.pathname || "/";
-const post = routeProps.post ?? getMigratedPostByPath(requestedPath);
-const fixedPage = routeProps.page ?? (!post ? getFixedPageByPath(requestedPath) : undefined);
+const legacyRedirect = routeProps.legacyRedirect ?? getLegacyRedirectByPath(requestedPath);
+const post = !legacyRedirect ? (routeProps.post ?? getMigratedPostByPath(requestedPath)) : undefined;
+const fixedPage = !legacyRedirect ? (routeProps.page ?? (!post ? getFixedPageByPath(requestedPath) : undefined)) : undefined;
+const redirectCanonical = legacyRedirect ? new URL(legacyRedirect.to, seo.canonical).href : "";
 const page =
   fixedPage ??
   ({
@@ -129,7 +136,53 @@ const premierPlanImage = page.images[0]?.src
 const isLegalPage = page.canonical.includes("%e7%89%b9") || page.h1.includes("特定商取引");
 ---
 
-{post ? (
+{legacyRedirect ? (
+  <html lang="ja">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta http-equiv="refresh" content={`0; url=${legacyRedirect.to}`} />
+      <meta name="robots" content="noindex,follow" />
+      <link rel="canonical" href={redirectCanonical} />
+      <title>Redirecting | LEXUS E.C.</title>
+      <script is:inline>
+        const canonical = document.querySelector('link[rel="canonical"]');
+        if (canonical?.href) window.location.replace(canonical.href);
+      </script>
+      <style>
+        body {
+          margin: 0;
+          min-height: 100vh;
+          display: grid;
+          place-items: center;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          color: #171717;
+          background: #faf7f2;
+        }
+        main {
+          width: min(90vw, 560px);
+          padding: 32px;
+          border: 1px solid rgba(0, 0, 0, 0.08);
+          background: #fff;
+        }
+        p {
+          margin: 0 0 14px;
+          line-height: 1.8;
+        }
+        a {
+          color: #b51223;
+          font-weight: 700;
+        }
+      </style>
+    </head>
+    <body>
+      <main>
+        <p>ページを移動しました。自動的に新しいページへ移動します。</p>
+        <p><a href={legacyRedirect.to}>新しいページを開く</a></p>
+      </main>
+    </body>
+  </html>
+) : post ? (
   <ArticleLayout
     template={post.template}
     title={post.title}
@@ -260,6 +313,8 @@ const isLegalPage = page.canonical.includes("%e7%89%b9") || page.h1.includes("�
       document.addEventListener("DOMContentLoaded", () => {
         const root = document.querySelector(".fixed-page--directory .fixed-source");
         if (!root) return;
+        // 五十音 row label, e.g. ア行 / カ行 / ハ・マ行 / ヤ・ハ行.
+        const ROW_RE = /^[ァ-ヶ・ー]+行$/;
         const findLabel = (w) => {
           let node = w;
           while (node && node !== root) {
@@ -275,20 +330,58 @@ const isLegalPage = page.canonical.includes("%e7%89%b9") || page.h1.includes("�
           }
           return { label: "", el: null };
         };
-        // Walk h2 + nav menus in document order, bucket the labelled lists per section.
+        const menuItems = (nav) => Array.from(nav.querySelectorAll(".elementor-nav-menu--main a")).map((a) => (a.textContent || "").trim()).filter(Boolean);
+        // Pass 1: from properly-labelled lists (○行の大学) build a university -> row map.
+        const nameToRow = {};
+        root.querySelectorAll(".elementor-widget-nav-menu").forEach((nav) => {
+          if (!nav.querySelector(".elementor-nav-menu--main")) return;
+          const { label } = findLabel(nav);
+          if (ROW_RE.test(label)) menuItems(nav).forEach((n) => { if (!(n in nameToRow)) nameToRow[n] = label; });
+        });
+        // Longest-first university names, for substring matching against decorated
+        // labels like "2026 大分大学 医学部｜二次試験の傾向…".
+        const rowEntries = Object.entries(nameToRow).sort((a, b) => b[0].length - a[0].length);
+        const inferRow = (text) => {
+          if (nameToRow[text]) return nameToRow[text];
+          for (const [name, row] of rowEntries) if (text.includes(name)) return row;
+          return "";
+        };
+        // Resolve a list's row label: prefer its own (○行の大学), else infer by
+        // majority vote of its universities — covers the first "共通テスト/HOT"
+        // lists (plain names) and the 二次試験 lists (decorated names) alike.
+        const resolveRow = (nav, rawLabel) => {
+          if (ROW_RE.test(rawLabel)) return rawLabel;
+          const counts = {};
+          let best = "", bestN = 0;
+          menuItems(nav).forEach((n) => {
+            const r = inferRow(n);
+            if (!r) return;
+            counts[r] = (counts[r] || 0) + 1;
+            if (counts[r] > bestN) { bestN = counts[r]; best = r; }
+          });
+          return best;
+        };
+        // Walk h2 + nav menus in document order, bucket the 五十音 lists per section.
         const flow = Array.from(root.querySelectorAll("h2, .elementor-widget-nav-menu"));
         const sections = new Map();
         let current = "__top__";
         flow.forEach((el) => {
           if (el.tagName === "H2") { current = el; return; }
           if (!el.querySelector(".elementor-nav-menu--main")) return;
-          const { label, el: labelEl } = findLabel(el);
-          if (!label) return;
+          const { label: rawLabel, el: labelEl } = findLabel(el);
+          const row = resolveRow(el, rawLabel);
+          if (!row) return; // not a 五十音 university list — leave it untouched
+          const ownRow = ROW_RE.test(rawLabel);
           if (!sections.has(current)) sections.set(current, []);
-          sections.get(current).push({ widget: el, label, labelEl });
+          sections.get(current).push({ widget: el, label: row, labelEl: ownRow ? labelEl : null });
         });
         sections.forEach((items) => {
           if (items.length < 2) return;
+          // Safety: skip tabbing if labels failed to differentiate.
+          if (new Set(items.map((g) => g.label)).size < 2) return;
+          // Long decorated items (二次試験 links) read better as a single-column
+          // list; short university names tile into a compact grid.
+          const longText = items.some((g) => menuItems(g.widget).some((n) => n.length > 12));
           const anchor = items[0].widget.closest(".elementor-element.e-con") || items[0].widget;
           const bar = document.createElement("div");
           bar.className = "dir-tabs";
@@ -303,7 +396,7 @@ const isLegalPage = page.canonical.includes("%e7%89%b9") || page.h1.includes("�
             btn.setAttribute("role", "tab");
             btn.setAttribute("aria-selected", i === 0 ? "true" : "false");
             const panel = document.createElement("div");
-            panel.className = "dir-tab-panel";
+            panel.className = "dir-tab-panel" + (longText ? " dir-tab-panel--list" : "");
             if (i !== 0) panel.hidden = true;
             if (it.labelEl) it.labelEl.remove();
             panel.appendChild(it.widget);

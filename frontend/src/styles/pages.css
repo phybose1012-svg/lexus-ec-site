@@ -1311,17 +1311,22 @@
   display: none !important;
 }
 
-/* Section headers (大学基本情報 / 共通テスト… / 更新情報) -> green band. */
+/* Section headers (大学基本情報 / 共通テスト… / 更新情報). Production renders
+   these as a clean serif title (with a small HOT/BASIC chip above), not a
+   saturated green band — use a centred serif title with a thin green accent. */
 .fixed-page--directory .fixed-source h2 {
   width: min(900px, 100%);
-  margin: 28px auto 4px;
-  border-bottom: 0;
-  border-radius: 8px;
-  background: linear-gradient(180deg, #2a9d63, #1b8350);
-  padding: 11px 18px;
-  color: #fff;
-  font-family: var(--font-sans);
-  font-size: clamp(1.16rem, 2.3vw, 1.46rem);
+  margin: 44px auto 12px;
+  border: 0;
+  border-bottom: 3px solid var(--green);
+  border-radius: 0;
+  background: none;
+  padding: 0 10px 9px;
+  color: #1d2330;
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
   text-align: center;
 }
 
@@ -1340,17 +1345,17 @@
   text-align: center;
 }
 
-/* The real university list -> compact table-like grid (hairlines between cells). */
+/* Non-tabbed link lists (e.g. 二次試験の傾向… per-university links) ->
+   a simple single-column list of full-width rows, matching production. */
 .fixed-page--directory .fixed-source .elementor-nav-menu--main ul {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(116px, 1fr));
-  gap: 1px;
+  display: flex !important;
+  flex-direction: column;
+  gap: 0;
   width: min(1040px, 100%);
-  margin: 8px auto 4px;
+  margin: 10px auto 4px;
   padding: 0;
-  border: 1px solid #cdded0;
+  border: 1px solid #e0e6e1;
   border-radius: 8px;
-  background: #cdded0;
   overflow: hidden;
 }
 
@@ -1359,23 +1364,107 @@
 }
 
 .fixed-page--directory .fixed-source .elementor-nav-menu--main a {
+  display: block;
+  padding: 11px 16px;
+  border-bottom: 1px solid #eef2ee;
+  color: #1d2a1f;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.fixed-page--directory .fixed-source .elementor-nav-menu--main a:hover {
+  background: #f4f8f4;
+  color: var(--green);
+}
+
+/* Tabbed 五十音 lists -> compact table-like grid (hairlines between cells). */
+.fixed-page--directory .fixed-source .dir-tab-panel .elementor-nav-menu--main ul {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(116px, 1fr));
+  gap: 1px;
+  margin: 0 auto 4px;
+  border: 1px solid #cdded0;
+  border-radius: 8px;
+  background: #cdded0;
+}
+
+.fixed-page--directory .fixed-source .dir-tab-panel .elementor-nav-menu--main a {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100%;
   padding: 9px 6px;
+  border-bottom: 0;
   background: #fff;
-  color: #1d2a1f;
   font-size: 0.9rem;
   font-weight: 700;
   line-height: 1.35;
   text-align: center;
-  text-decoration: none;
 }
 
-.fixed-page--directory .fixed-source .elementor-nav-menu--main a:hover {
+.fixed-page--directory .fixed-source .dir-tab-panel .elementor-nav-menu--main a:hover {
   background: #fff6e8;
   color: var(--red);
+}
+
+/* shiritsu hero: the vertical catch-copy ("正しい情報を集めて" / "入試で優位に立とう")
+   should flank the mascot as in production. The extraction lost Elementor's
+   transforms and the unstack rule collapses the container to a column, scrambling
+   the vertical text. Restore a centred 3-column row. */
+.fixed-page--top-information-shiritsu .fixed-source .e-con:has(> .elementor-widget-heading.e-transform) {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: min(520px, 100%);
+  margin-inline: auto;
+}
+
+.fixed-page--top-information-shiritsu .fixed-source .e-con:has(> .elementor-widget-heading.e-transform) > .elementor-widget-heading {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 56px;
+}
+
+.fixed-page--top-information-shiritsu .fixed-source .e-con:has(> .elementor-widget-heading.e-transform) .elementor-heading-title {
+  writing-mode: vertical-rl;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+.fixed-page--top-information-shiritsu .fixed-source .e-con:has(> .elementor-widget-heading.e-transform) > .elementor-widget-image {
+  flex: 0 1 auto;
+  max-width: 220px;
+}
+
+.fixed-page--top-information-shiritsu .fixed-source .e-con:has(> .elementor-widget-heading.e-transform) img {
+  width: 100%;
+  height: auto;
+}
+
+/* Tab panels of long decorated links (二次試験) -> single-column list. */
+.fixed-page--directory .fixed-source .dir-tab-panel--list .elementor-nav-menu--main ul {
+  display: flex !important;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid #e0e6e1;
+  background: transparent;
+}
+
+.fixed-page--directory .fixed-source .dir-tab-panel--list .elementor-nav-menu--main a {
+  display: block;
+  min-height: 0;
+  padding: 11px 16px;
+  border-bottom: 1px solid #eef2ee;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: left;
 }
 
 /* 五十音 tab UI built by the directory enhancement script. */
@@ -1389,18 +1478,19 @@
 }
 
 .fixed-page--directory .fixed-source .dir-tab {
-  border: 2px solid var(--green);
+  border: 1px solid #cdded0;
   border-radius: 999px;
-  background: #fff;
-  padding: 8px 18px;
-  color: #186a49;
+  background: #f3f7f3;
+  padding: 7px 16px;
+  color: #1d4d35;
   font: inherit;
-  font-size: 0.95rem;
-  font-weight: 900;
+  font-size: 0.92rem;
+  font-weight: 800;
   cursor: pointer;
 }
 
 .fixed-page--directory .fixed-source .dir-tab.is-active {
+  border-color: var(--green);
   background: var(--green);
   color: #fff;
 }
@@ -1461,22 +1551,39 @@
   border: 1px solid #ecdfc8;
 }
 
-/* Premier-course callout -> black/gold band (matches the brand premier card). */
-.fixed-page--study-support-system .fixed-source h3:has(a[href*="premiere-course"]) {
+/* Heading widgets on this page are anchor-wrapped; the extraction left them
+   looking like red underlined links. Render them as plain headings (production
+   shows e.g. "老舗の医学部予備校…「鬼監理」と「鬼特訓」" as black serif). */
+.fixed-page--study-support-system .fixed-source .elementor-heading-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Premier-course block -> one cohesive black/gold band, as in production:
+   ◆ 浪人生・再受験生 対象フルコース ◆ + レクサス プレミア 本科 / Pemier Main
+   Course + description + CTA, all centred on dark with gold text. */
+.fixed-page--study-support-system .fixed-source .e-con-inner:has(> .elementor-widget-heading a[href*="premiere-course"]) {
   width: min(820px, 100%);
-  margin: 26px auto 6px;
+  margin: 24px auto;
   border: 2px solid var(--gold);
-  border-radius: 8px;
+  border-radius: 10px;
   background: linear-gradient(180deg, #2c2c2c, #111);
-  padding: 16px 18px;
-  color: #f3e5ab;
+  padding: 26px 20px 28px;
   text-align: center;
 }
 
-.fixed-page--study-support-system .fixed-source h3:has(a[href*="premiere-course"]) a {
+.fixed-page--study-support-system .fixed-source .e-con-inner:has(> .elementor-widget-heading a[href*="premiere-course"]) :where(.elementor-heading-title, .elementor-heading-title a) {
   color: #f3e5ab;
-  font-weight: 900;
   text-decoration: none;
+}
+
+.fixed-page--study-support-system .fixed-source .e-con-inner:has(> .elementor-widget-heading a[href*="premiere-course"]) :where(p, .elementor-widget-text-editor) {
+  color: rgb(255 255 255 / 86%);
+}
+
+.fixed-page--study-support-system .fixed-source .e-con-inner:has(> .elementor-widget-heading a[href*="premiere-course"]) .elementor-button {
+  background: var(--red);
+  color: #fff;
 }
 
 /* Recovered custom "鬼監理" component styling. The page embeds a bespoke
@@ -1637,8 +1744,8 @@
   margin: 0 0 18px;
   color: var(--lx-navy);
   font-family: var(--lx-mincho);
-  font-size: 1.5rem;
-  text-align: center;
+  font-size: 1.6rem;
+  text-align: left;
 }
 
 @media (max-width: 768px) {
