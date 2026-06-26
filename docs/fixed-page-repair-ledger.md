@@ -181,6 +181,13 @@ node ./scripts/capture-visual-set.mjs / /top/voice/ /top/results/ /top/teacher/ 
 - **/top/information-kokuritsu/ ・ /information-shiritsu/**: 前回は大学リンク280件を素のauto-columnに流しただけ（本番と無関係）。本番＝「緑の見出しバンド＋淡色ボックス＋多カラムのリンク格子」。`.fixed-page--directory` を新設し、`unstack`（潰れ修正）に加えて、h2を緑バンド化・リンク`<ul>`を淡緑ボックス＋多カラム化。desktopは本番とほぼ一致。（本番はmobileでカナ別ボックスの別ウィジェットを出すが、当方は同一内容をボックス整形で両対応。）
 - **/study-support-system/**: `unstack` で1カラム化済み＋ブランド整形（中央寄せ見出し＋赤アクセント、鬼監理の図解に枠）。本番にある「2カラム比較カード」「プレミア本科の黒金バンド」は未再現（要：セクション単位の追加スタイル）。
 
+## バッチ7：本番スクショ精査でディレクトリを正しく作り直し
+
+前回の `.fixed-page--directory` も不十分（本番を見たつもりで構造を誤認）。本番HTMLを精査して判明した真の構造で作り直し:
+- 大学リンクは `elementor-nav-menu`（五十音グループ ア行/カ行…）。各リストが **aria-hidden のドロップダウン複製**として二重に出力され、抽出でElementorの `display:none` が消えて**重複表示**＝密な羅列の主因だった。
+- 修正: ドロップダウン複製とバーガートグルを `display:none`／本物の `elementor-nav-menu--main` を罫線付きグリッド（表組み風）に／五十音ラベルを中央見出し化／緑バンド見出し。
+- 結果: desktop/mobile とも本番とほぼ一致（五十音グループ＋整然としたグリッド、ページ長も本番並みに短縮）。
+
 ## 残ギャップ（必要なら対応）
 - study-support の 2-up比較カード／プレミア本科バンドのセクション別スタイル。
 - 本番のmobile専用ウィジェット（kana別）への厳密一致。

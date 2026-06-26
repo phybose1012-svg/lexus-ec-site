@@ -1304,51 +1304,77 @@
   max-width: 100%;
 }
 
+/* Each university list is an elementor-nav-menu, duplicated as an
+   aria-hidden dropdown copy + a burger toggle the static page can't run.
+   Hide those so only the real list shows. */
+.fixed-page--directory .fixed-source :where(.elementor-nav-menu--dropdown, .elementor-menu-toggle) {
+  display: none !important;
+}
+
+/* Section headers (大学基本情報 / 共通テスト… / 更新情報) -> green band. */
 .fixed-page--directory .fixed-source h2 {
-  margin: 8px 0 2px;
+  width: min(900px, 100%);
+  margin: 28px auto 4px;
   border-bottom: 0;
-  border-radius: 6px;
-  background: var(--green);
-  padding: 12px 18px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #2a9d63, #1b8350);
+  padding: 11px 18px;
   color: #fff;
   font-family: var(--font-sans);
-  font-size: clamp(1.18rem, 2.4vw, 1.55rem);
+  font-size: clamp(1.16rem, 2.3vw, 1.46rem);
   text-align: center;
 }
 
 .fixed-page--directory .fixed-source h3 {
-  margin: 6px 0 0;
+  margin: 4px 0 0;
   color: #186a49;
-  font-size: clamp(1.05rem, 2vw, 1.32rem);
+  font-size: clamp(1.02rem, 1.9vw, 1.28rem);
   text-align: center;
 }
 
-.fixed-page--directory .fixed-source ul:has(a.elementor-item) {
-  display: block;
-  column-width: 200px;
-  column-gap: 24px;
-  margin: 0;
-  padding: 16px 20px;
-  border: 1px solid #d6e8d8;
+/* Group labels (○行の大学 etc.) and intro lines sit in text-editor widgets. */
+.fixed-page--directory .fixed-source .elementor-widget-text-editor p {
+  margin: 12px 0 0;
+  color: #3a2f25;
+  font-weight: 800;
+  text-align: center;
+}
+
+/* The real university list -> compact table-like grid (hairlines between cells). */
+.fixed-page--directory .fixed-source .elementor-nav-menu--main ul {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(116px, 1fr));
+  gap: 1px;
+  width: min(1040px, 100%);
+  margin: 8px auto 4px;
+  padding: 0;
+  border: 1px solid #cdded0;
   border-radius: 8px;
-  background: #f4faf4;
-  box-shadow: 0 8px 22px rgb(34 132 93 / 10%);
+  background: #cdded0;
+  overflow: hidden;
 }
 
-.fixed-page--directory .fixed-source ul:has(a.elementor-item) li {
-  break-inside: avoid;
+.fixed-page--directory .fixed-source .elementor-nav-menu--main li {
+  margin: 0;
 }
 
-.fixed-page--directory .fixed-source ul:has(a.elementor-item) a {
-  display: block;
-  padding: 8px 10px;
-  border-bottom: 1px solid #e2eedd;
+.fixed-page--directory .fixed-source .elementor-nav-menu--main a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 9px 6px;
+  background: #fff;
   color: #1d2a1f;
+  font-size: 0.9rem;
   font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
   text-decoration: none;
 }
 
-.fixed-page--directory .fixed-source ul:has(a.elementor-item) a:hover {
+.fixed-page--directory .fixed-source .elementor-nav-menu--main a:hover {
+  background: #fff6e8;
   color: var(--red);
 }
 
