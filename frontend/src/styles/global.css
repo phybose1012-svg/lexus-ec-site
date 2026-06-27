@@ -1491,9 +1491,19 @@ li {
   text-decoration: none;
 }
 
+/* The footer logo asset is a white-background lockup (green text + colourful
+   mark). On the dark footer a raw 620px white rectangle reads as unfinished, so
+   present it as a refined brand plate: smaller, rounded, a subtle gold hairline
+   and a soft lift, with balanced padding. */
 .footer-logo {
-  width: min(620px, 100%);
-  margin: 0 auto 20px;
+  display: block;
+  width: min(400px, 100%);
+  margin: 4px auto 24px;
+  padding: 20px 26px;
+  border: 1px solid rgb(212 175 55 / 45%);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 16px 38px rgb(0 0 0 / 32%);
 }
 
 .site-footer small {
