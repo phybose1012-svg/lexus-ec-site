@@ -1201,8 +1201,18 @@
 .fixed-source :where(.elementor-widget-image img, .wp-block-image img) {
   display: block;
   margin-inline: auto;
-  background: #fff;
-  box-shadow: 0 12px 34px rgb(55 41 20 / 14%);
+  border-radius: 12px;
+  /* Soft, light lift so white-background photos read as a gentle card on the
+     warm page rather than a hard rectangle pasted on beige. */
+  box-shadow: 0 10px 30px rgb(40 30 15 / 8%);
+}
+
+/* Decorative origami logo strips are transparent PNGs — let them sit directly on
+   the page (no white mat / shadow / rounded box) so they blend like production. */
+.fixed-source img[alt="ロゴ"] {
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .fixed-source :where(.elementor-widget-image) {
@@ -1522,6 +1532,109 @@
   text-align: center;
 }
 
+/* Section eyebrow chips (HOT / BASIC / NEW / LEXUS GARDEN) -> black pill badge
+   like production. Chips render as <p class="elementor-heading-title"> whereas
+   section titles render as <h2>, so scoping to p (and excluding the hero's
+   vertical e-transform copy) targets the chips only. */
+.fixed-page--directory .fixed-source .elementor-widget-heading:not(.e-transform) p.elementor-heading-title {
+  display: inline-block;
+  border-radius: 4px;
+  background: #1a1a1a;
+  padding: 5px 20px;
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+}
+
+/* The 講師紹介 / 合格体験記 / 理念と沿革 button trio: production lays them in a
+   centred horizontal row with per-destination brand colours. Extraction left
+   them stacked and all-red. Re-colour by destination and row-centre the trio
+   container (matched via two adjacent button widgets so the single-button
+   premier band is not affected). */
+.fixed-source a.elementor-button[href="/top/teacher/"] {
+  background: #225e9d;
+}
+
+.fixed-source a.elementor-button[href="/top/voice/"] {
+  background: var(--green);
+}
+
+.fixed-source a.elementor-button[href="/top/history/"] {
+  background: var(--red);
+}
+
+.fixed-source .e-con:has(> .elementor-widget-button + .elementor-widget-button) {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.fixed-source .e-con:has(> .elementor-widget-button + .elementor-widget-button) > .elementor-widget-button {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  max-width: 100%;
+  margin: 0;
+}
+
+/* shiritsu hero: reliably centre the vertical-copy + mascot trio (a stray
+   full-width flex distribution was pulling it to the left third on desktop). */
+.fixed-page--top-information-shiritsu .fixed-source .e-con:has(> .elementor-widget-heading.e-transform) {
+  width: fit-content !important;
+  max-width: 100%;
+  margin-inline: auto !important;
+}
+
+/* study-support phone CTA: the number sat in an Elementor icon-list styled as a
+   left-aligned white box with a gold left-bar and an underlined link — read as a
+   stray pasted block. Centre it, drop the box/underline, make the number a clear
+   brand-red display line like production. */
+.fixed-page--study-support-system .fixed-source .elementor-icon-list-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fixed-page--study-support-system .fixed-source .elementor-icon-list-item {
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  text-align: center;
+}
+
+.fixed-page--study-support-system .fixed-source .elementor-icon-list-item a,
+.fixed-page--study-support-system .fixed-source .elementor-icon-list-text {
+  color: var(--red);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+/* 字間 (tracking): give the Japanese serif headings the airier spacing prod uses. */
+.fixed-page--directory .fixed-source h2 {
+  letter-spacing: 0.14em;
+}
+
+.fixed-page--directory .fixed-source h3 {
+  letter-spacing: 0.08em;
+}
+
+.fixed-page--study-support-system .fixed-source .elementor-heading-title,
+.fixed-page--study-support-system .fixed-source h2 {
+  letter-spacing: 0.06em;
+}
+
+.lexus-manage-wrapper .manage-header h2,
+.lexus-manage-wrapper .human-title,
+.lexus-manage-wrapper .quote-text {
+  letter-spacing: 0.04em;
+}
+
 /* study-support-system: content page (also carries .fixed-page--unstack).
    Give the stacked sections a clean branded rhythm closer to production:
    centred section headers with a red accent and framed key diagrams. */
@@ -1554,7 +1667,7 @@
 }
 
 .fixed-page--study-support-system .fixed-source .elementor-widget-image img {
-  border: 1px solid #ecdfc8;
+  border: 0;
 }
 
 /* Heading widgets on this page are anchor-wrapped; the extraction left them

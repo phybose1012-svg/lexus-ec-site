@@ -238,8 +238,20 @@ node ./scripts/capture-visual-set.mjs / /top/voice/ /top/results/ /top/teacher/ 
 - **タブ内コンテンツの縦並び＋高さ制御**: 五十音タブ（共通テスト/二次試験/大学基本情報）のパネル内を、従来の多カラムグリッドから**単列縦並び**に統一。パネルは `width:min(640px,100%); margin:auto` で中央寄せし、`max-height:440px; overflow-y:auto` で**コンテンツが多いタブはパネル内スクロール**（カ行など項目数の多い行で有効）。大学名は中央寄せ、二次試験の長い記事名は左寄せ（`dir-tab-panel--list`）。
 - 確認: 3ページ build OK（681pages）、横スクロール0。実機反映後に再確認予定。触ったのは `pages.css` のみ（`[...slug].astro` のユーザーWIPは未ステージ）。
 
+## バッチ12：精密ポリッシュ（中央寄せ徹底・画像のなじみ・字間・余白）ユーザー指摘
+
+並列サブエージェント3体で本番↔stagスライスを精査し、DOMプローブ（`_audit`=画像コーナー画素+コンテナ背景+全要素text-align、`_diag`/`_btn`=幾何）で客観確認しながら直列修正。
+
+- **画像のなじみ（白画像をベージュ背景に貼った件）**: 全画像に効いていた `background:#fff`＋濃いめブラウン影＋（study-support）`#ecdfc8`ハード枠を撤廃。global を「角丸12px＋淡い影 `0 10px 30px rgb(40 30 15/8%)`」のソフトカードに。装飾の origami ロゴ帯（`img[alt="ロゴ"]`）は透明背景・影なし・角丸なしで本番同様に地に溶け込ませた。寮写真/合格読本/鬼監理図はソフト影の浮きカードに。
+- **中央寄せの徹底**: 抽出見出し `.elementor-heading-title` の Elementor 左寄せ既定で左に偏っていたチップ/ラベル（ABOUT/HOT/BASIC/NEW/LEXUS GARDEN/「丁寧にご説明します。」）を中央寄せ（`e-transform`=縦書きヒーロー除外）。study-support の電話番号が icon-list で「白箱＋金の左罫＋下線リンク」の左寄せ放置だったのを、箱/罫/下線を除去し中央寄せの赤い番号表示に。shiritsu ヒーロー（縦書き＋マスコット）が desktop で左三分の一に寄っていたのを `width:fit-content; margin-inline:auto !important` で中央に。
+- **ボタン三色＋横並び**: 講師紹介/合格体験記/理念と沿革が全幅縦積み・全部赤だったのを、href で 紺(#225e9d)/緑/赤 に色分けし、トリオのコンテナを `:has(> .elementor-widget-button + .elementor-widget-button)` で横並び中央寄せ、各ボタンを `width:auto !important` で内容幅に（プレミアバンドの単一ボタンは誤爆しない）。
+- **チップ黒ピル化**: HOT/BASIC/NEW/LEXUS GARDEN を本番同様の黒ピル（明朝・字間広め）に。`p.elementor-heading-title` に限定（セクション見出しは `h2.elementor-heading-title` なので除外＝緑下線の明朝のまま）。
+- **字間（余白の一部）**: 明朝見出しに letter-spacing を付与（directory h2=0.14em / h3=0.08em / study-support 見出し=0.06em / manage 見出し=0.04em）。
+- 確認: 3ページとも build OK（0エラー）、横スクロール0、左寄せは shiritsu ヒーロー縦書きのみ（意図通り）。実機反映後に再確認。触ったのは `pages.css` のみ。
+
 ## 残ギャップ（必要なら対応）
-- HOT/BASIC/NEWチップを黒チップ化（本番は黒チップ、現状は中央寄せの小灰文字）。
+- 共通フッタの「白ロゴカード on 黒」（全サイト共通チャンクのため本3ページ範囲外。要なら別途）。
+- 余白リズムのさらなる追い込み（本番との微差）。
 - 本番のmobile専用ウィジェット（kana別アコーディオン）への厳密一致は非採用（当方はタブで全行を可読表示＝本番のトグル隠蔽より良いと判断）。
 
 ## 次の候補（未トリアージ）
