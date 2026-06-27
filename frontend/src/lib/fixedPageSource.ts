@@ -3,6 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { formPageConfigs } from "../data/fixedPages";
 import { seo } from "../data/home";
+import { getLegacyRedirectByPath } from "./legacyRedirects";
 
 type PageManifestItem = {
   path: string;
@@ -192,6 +193,8 @@ const normalizeInternalLinks = (html: string) =>
     )
     .replace(/href=(["'])https:\/\/lexus-ec\.com([^"']*)\1/gi, (_match, _quote, href) => {
       const pathname = href || "/";
+      const legacyRedirect = getLegacyRedirectByPath(pathname);
+      if (legacyRedirect) return `href="${legacyRedirect.to}"`;
       const isMigrated = [...routeVariants(pathname)].some((variant) => getKnownStaticPaths().has(variant));
       return isMigrated ? `href="${pathname}"` : `href="https://lexus-ec.com${pathname}"`;
     })
