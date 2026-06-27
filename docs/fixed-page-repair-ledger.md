@@ -231,8 +231,15 @@ node ./scripts/capture-visual-set.mjs / /top/voice/ /top/results/ /top/teacher/ 
 - ボタンの三色（紺/緑/赤）は shiritsu/study-support では本番同様に出るが kokuritsu は全幅elementor-buttonが赤一色（=ブランド色、許容）。
 - 触ったファイル: `frontend/src/pages/[...slug].astro`, `frontend/src/styles/pages.css` のみ（ユーザー並行作業は未ステージ）。
 
+## バッチ11：中央寄せ徹底＋タブ内コンテンツの縦並び・高さ制御（ユーザー指摘）
+
+- **中央寄せ漏れ**: `.elementor-heading-title`（抽出見出し）が Elementor 既定の左寄せのまま残り、チップ/ラベル類（ABOUT / HOT / BASIC / NEW / LEXUS GARDEN / 「丁寧にご説明します。」等）が左に偏っていた。`_align.mjs` プローブで computed text-align=left の短い見出しを列挙して特定。
+  - 修正: `.fixed-page--unstack .fixed-source .elementor-widget-heading:not(.e-transform) .elementor-heading-title { text-align:center }`。`e-transform`（shiritsuヒーローの縦書き）を除外。カスタムコンポーネント `.lexus-manage-wrapper`（人による担任制の左寄せ見出し等）は Elementor 見出しではないため非干渉＝意図的な左寄せを維持。
+- **タブ内コンテンツの縦並び＋高さ制御**: 五十音タブ（共通テスト/二次試験/大学基本情報）のパネル内を、従来の多カラムグリッドから**単列縦並び**に統一。パネルは `width:min(640px,100%); margin:auto` で中央寄せし、`max-height:440px; overflow-y:auto` で**コンテンツが多いタブはパネル内スクロール**（カ行など項目数の多い行で有効）。大学名は中央寄せ、二次試験の長い記事名は左寄せ（`dir-tab-panel--list`）。
+- 確認: 3ページ build OK（681pages）、横スクロール0。実機反映後に再確認予定。触ったのは `pages.css` のみ（`[...slug].astro` のユーザーWIPは未ステージ）。
+
 ## 残ギャップ（必要なら対応）
-- 大学基本情報グリッドの末尾空セル（auto-fill由来、軽微）。HOT/BASIC/NEWチップを黒チップ中央寄せに（本番は黒チップ、現状は小灰文字）。
+- HOT/BASIC/NEWチップを黒チップ化（本番は黒チップ、現状は中央寄せの小灰文字）。
 - 本番のmobile専用ウィジェット（kana別アコーディオン）への厳密一致は非採用（当方はタブで全行を可読表示＝本番のトグル隠蔽より良いと判断）。
 
 ## 次の候補（未トリアージ）

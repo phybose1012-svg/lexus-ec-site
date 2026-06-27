@@ -1379,29 +1379,41 @@
   color: var(--green);
 }
 
-/* Tabbed 五十音 lists -> compact table-like grid (hairlines between cells). */
+/* Tabbed 五十音 lists -> a single-column vertical list, centred on the page,
+   height-capped so a tab with many universities/articles scrolls inside its
+   own panel instead of stretching the page. */
 .fixed-page--directory .fixed-source .dir-tab-panel .elementor-nav-menu--main ul {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(116px, 1fr));
-  gap: 1px;
-  margin: 0 auto 4px;
-  border: 1px solid #cdded0;
+  display: flex !important;
+  flex-direction: column;
+  gap: 0;
+  width: min(640px, 100%);
+  margin: 0 auto;
+  max-height: 440px;
+  overflow-y: auto;
+  border: 1px solid #d8e2da;
   border-radius: 8px;
-  background: #cdded0;
+  background: #fff;
+}
+
+.fixed-page--directory .fixed-source .dir-tab-panel .elementor-nav-menu--main li {
+  margin: 0;
 }
 
 .fixed-page--directory .fixed-source .dir-tab-panel .elementor-nav-menu--main a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100%;
-  padding: 9px 6px;
-  border-bottom: 0;
+  display: block;
+  min-height: 0;
+  padding: 11px 16px;
+  border-bottom: 1px solid #eef2ee;
   background: #fff;
-  font-size: 0.9rem;
-  font-weight: 700;
-  line-height: 1.35;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.5;
   text-align: center;
+  text-decoration: none;
+}
+
+.fixed-page--directory .fixed-source .dir-tab-panel .elementor-nav-menu--main li:last-child a {
+  border-bottom: 0;
 }
 
 .fixed-page--directory .fixed-source .dir-tab-panel .elementor-nav-menu--main a:hover {
@@ -1447,23 +1459,8 @@
   height: auto;
 }
 
-/* Tab panels of long decorated links (二次試験) -> single-column list. */
-.fixed-page--directory .fixed-source .dir-tab-panel--list .elementor-nav-menu--main ul {
-  display: flex !important;
-  flex-direction: column;
-  gap: 0;
-  border: 1px solid #e0e6e1;
-  background: transparent;
-}
-
+/* Long decorated links (二次試験 articles) read better left-aligned. */
 .fixed-page--directory .fixed-source .dir-tab-panel--list .elementor-nav-menu--main a {
-  display: block;
-  min-height: 0;
-  padding: 11px 16px;
-  border-bottom: 1px solid #eef2ee;
-  font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 1.5;
   text-align: left;
 }
 
@@ -1514,6 +1511,15 @@
 .fixed-page--unstack .fixed-source .elementor-button-wrapper {
   display: flex;
   justify-content: center;
+}
+
+/* Heading widgets (eyebrows/section chips like ABOUT / HOT / BASIC / NEW /
+   LEXUS GARDEN and short stand-alone lines) keep Elementor's left default after
+   extraction — centre them. Excludes the shiritsu hero's vertical e-transform
+   headings; the custom .lexus-manage-wrapper component isn't an Elementor
+   heading widget so its intentional left-aligned titles are untouched. */
+.fixed-page--unstack .fixed-source .elementor-widget-heading:not(.e-transform) .elementor-heading-title {
+  text-align: center;
 }
 
 /* study-support-system: content page (also carries .fixed-page--unstack).
