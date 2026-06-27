@@ -1635,6 +1635,15 @@
   letter-spacing: 0.04em;
 }
 
+/* 代表メッセージ accordion titles render (statically) as a stack of heavy red
+   centred lines that "shout". Lighten the weight/size so they read as refined
+   sub-headers rather than a wall of bold red. */
+.fixed-page--study-support-system .fixed-source .e-n-accordion-item-title-text {
+  font-size: clamp(1rem, 3.4vw, 1.12rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
 /* study-support-system: content page (also carries .fixed-page--unstack).
    Give the stacked sections a clean branded rhythm closer to production:
    centred section headers with a red accent and framed key diagrams. */
@@ -7017,7 +7026,9 @@
     max-width: 100%;
     min-width: 0;
     border-bottom-width: 2px;
-    font-size: clamp(1.42rem, 6.35vw, 1.58rem);
+    /* Sized so the longest English title ("High-level GENEKI Course") fits on
+       one line without clipping across 360–430px phones. */
+    font-size: clamp(1.2rem, 5.8vw, 1.45rem);
     white-space: nowrap;
   }
 
