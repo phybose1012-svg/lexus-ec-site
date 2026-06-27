@@ -134,28 +134,17 @@ const localLegacyAsset = (src: string) => {
   return src;
 };
 
-const uniqueImages = (images: SourceImage[]) => {
-  const seen = new Set<string>();
-  return images.filter((image) => {
-    if (seen.has(image.src)) return false;
-    seen.add(image.src);
-    return true;
-  });
-};
-
 const sourceImages = (html: string) =>
-  uniqueImages(
-    [...html.matchAll(/<img[^>]+>/gi)]
-      .map((match) => {
-        const tag = match[0];
-        return {
-          src: localLegacyAsset(attr(tag, "data-lazy-src") || attr(tag, "src")),
-          alt: attr(tag, "alt"),
-          pos: match.index || 0,
-        };
-      })
-      .filter((image) => image.src && !image.src.startsWith("data:image")),
-  );
+  [...html.replace(/<noscript[\s\S]*?<\/noscript>/gi, (match) => " ".repeat(match.length)).matchAll(/<img[^>]+>/gi)]
+    .map((match) => {
+      const tag = match[0];
+      return {
+        src: localLegacyAsset(attr(tag, "data-lazy-src") || attr(tag, "src")),
+        alt: attr(tag, "alt"),
+        pos: match.index || 0,
+      };
+    })
+    .filter((image) => image.src && !image.src.startsWith("data:image"));
 
 const sourceVideos = (html: string) =>
   [...html.matchAll(/<video[\s\S]*?<\/video>/gi)]
@@ -206,8 +195,8 @@ const cleanRole = (role: string) => {
 const extractTeacher = (html: string, images: SourceImage[], subjectStart: number, heading: HeadingRow, blockEnd: number): TeacherCard => {
   const image =
     imageBefore(images, heading.pos, subjectStart) ||
-    imageAfter(images, heading.pos, blockEnd) ||
-    imageByTeacherName(images, heading.text) || {
+    imageByTeacherName(images, heading.text) ||
+    imageAfter(images, heading.pos, blockEnd) || {
     src: "",
     alt: heading.text,
     pos: heading.pos,
