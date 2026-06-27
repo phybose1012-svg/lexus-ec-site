@@ -1454,8 +1454,8 @@
 
 .fixed-page--top-information-shiritsu .fixed-source .e-con:has(> .elementor-widget-heading.e-transform) .elementor-heading-title {
   writing-mode: vertical-rl;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  font-weight: 600;
+  letter-spacing: 0.18em;
   white-space: nowrap;
 }
 
@@ -1485,10 +1485,13 @@
 }
 
 .fixed-page--directory .fixed-source .dir-tab {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
   border: 1px solid #cdded0;
   border-radius: 999px;
   background: #f3f7f3;
-  padding: 7px 16px;
+  padding: 7px 18px;
   color: #1d4d35;
   font: inherit;
   font-size: 0.92rem;
