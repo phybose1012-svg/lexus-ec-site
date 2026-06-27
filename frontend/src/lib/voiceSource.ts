@@ -167,13 +167,30 @@ const normalizeHref = (href: string) => href || "/";
 
 const imageForTitle = (images: VoiceImage[], title: string) => images.find((image) => cleanText(image.alt).replace(/\s+/g, "") === title.replace(/\s+/g, ""));
 
+const normalizeVideoUrl = (url: string) => {
+  const trimmed = url.trim();
+  if (!trimmed) return "";
+  try {
+    const parsed = new URL(trimmed);
+    const isLegacyUploadVideo =
+      parsed.hostname === "lexus-ec.com" &&
+      parsed.pathname.startsWith("/wp-content/uploads/") &&
+      /\.(?:mp4|mov|webm)$/i.test(parsed.pathname);
+    if (isLegacyUploadVideo) return "";
+  } catch {
+    // Keep relative or malformed legacy values out of the rendered video links.
+    return "";
+  }
+  return trimmed;
+};
+
 const extractVideos = (html: string, images: VoiceImage[]) =>
   [...html.matchAll(/<div[^>]+data-video-url=["'][^"']*["'][^>]*data-video-title=["'][^"']*["'][^>]*>/gi)].map((match) => {
     const tag = match[0];
     const title = attr(tag, "data-video-title");
     return {
       title,
-      url: attr(tag, "data-video-url"),
+      url: normalizeVideoUrl(attr(tag, "data-video-url")),
       duration: attr(tag, "data-video-duration"),
       thumbnail: imageForTitle(images, title),
     };

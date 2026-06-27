@@ -19,6 +19,19 @@ function normalizeLegacyAssetReference(assetPath = "") {
   }
 }
 
+function stripTags(value = "") {
+  return value.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function normalizeLegacyUploadAnchor(_match, before, src, after, inner) {
+  const localSrc = normalizeLegacyAssetReference(src.replace(/^https:\/\/lexus-ec\.com/i, ""));
+  if (existsSync(path.join(publicDir, localSrc))) return `<a${before}href="${localSrc}"${after}>${inner}</a>`;
+
+  const text = stripTags(inner).replace(/\s+/g, "");
+  if (!text || text === "タップして拡大") return " ";
+  return inner;
+}
+
 let changedPosts = 0;
 let removedMissingImages = 0;
 let removedMissingHeroImages = 0;
@@ -37,6 +50,14 @@ for (const file of files) {
     const before = post.contentHtml || "";
     const after = before
       .replace(/<img\b[^>]*src=["']https:\/\/lexus-ec\.com\/wp-content\/plugins\/elementor\/assets\/images\/placeholder\.png["'][^>]*>/gi, " ")
+      .replace(/href=["']\[(https?:\/\/[^\]\s]+)\]\((https?:\/\/[^)"']+)\)["']/gi, (_match, _label, href) => `href="${href}"`)
+      .replace(/<a\b([^>]*?)href=["'](https:\/\/lexus-ec\.com\/wp-content\/uploads\/[^"']+)["']([^>]*)>([\s\S]*?)<\/a>/gi, normalizeLegacyUploadAnchor)
+      .replace(/<a\b([^>]*?)href=["'](\/wp-content\/uploads\/[^"']+)["']([^>]*)>([\s\S]*?)<\/a>/gi, normalizeLegacyUploadAnchor)
+      .replace(
+        /<a\b([^>]*?)href=["']_wp_link_placeholder["']([^>]*)>\s*(https?:\/\/[^<\s]+)\s*<\/a>/gi,
+        (_match, before, after, href) => `<a${before}href="${href}"${after}>${href}</a>`,
+      )
+      .replace(/<a\b[^>]*href=["']_wp_link_placeholder["'][^>]*>\s*<\/a>/gi, " ")
       .replace(/https:\/\/lexus-ec\.com(\/wp-content\/uploads\/[^"'<>\s)]+)/gi, (_match, src) =>
         normalizeLegacyAssetReference(src),
       )

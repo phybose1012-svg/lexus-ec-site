@@ -187,6 +187,9 @@ const normalizeInternalLinks = (html: string) =>
     .replace(/(href|src)=(["'])https:\/\/lexus-ec\.com(\/wp-content\/uploads\/[^"']*)\2/gi, (_match, attrName, _quote, assetPath) =>
       `${attrName}="${localLegacyAssetPath(assetPath)}"`,
     )
+    .replace(/(href|src)=(["'])(\/wp-content\/uploads\/[^"']*)\2/gi, (_match, attrName, _quote, assetPath) =>
+      `${attrName}="${localLegacyAssetPath(assetPath)}"`,
+    )
     .replace(/href=(["'])https:\/\/lexus-ec\.com([^"']*)\1/gi, (_match, _quote, href) => {
       const pathname = href || "/";
       const isMigrated = [...routeVariants(pathname)].some((variant) => getKnownStaticPaths().has(variant));

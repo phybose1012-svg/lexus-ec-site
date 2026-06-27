@@ -1,0 +1,86 @@
+---
+import AdminLayout from "../../../layouts/AdminLayout.astro";
+import { recentActivities, reportSnapshots } from "../../../data/adminDashboard";
+---
+
+<AdminLayout title="SEOレポート | LEXUS E.C." active="reports">
+  <section class="admin-page-head">
+    <div>
+      <p class="admin-eyebrow">SEO and audit reports</p>
+      <h1>ローカル監査結果の閲覧</h1>
+      <p>
+        CodexやClaude Codeで実行したSEO分析、内部リンク監査、表示崩れ監査をここに集約するためのレポート画面です。
+      </p>
+    </div>
+    <div class="admin-status-card">
+      <span>取り込み方式</span>
+      <strong>JSON更新</strong>
+      <p>次段階でローカル出力を管理データへ接続します。</p>
+    </div>
+  </section>
+
+  <section class="admin-report-grid" aria-label="監査レポート">
+    {
+      reportSnapshots.map((report) => (
+        <article class:list={["admin-report-card", `is-${report.state}`]}>
+          <div class="admin-report-card__head">
+            <div>
+              <span>{report.source}</span>
+              <h2>{report.title}</h2>
+            </div>
+            <strong>{report.score}</strong>
+          </div>
+          <dl>
+            <div>
+              <dt>更新</dt>
+              <dd>{report.updatedAt}</dd>
+            </div>
+            <div>
+              <dt>状態</dt>
+              <dd>{report.state}</dd>
+            </div>
+          </dl>
+          <p>{report.summary}</p>
+          <footer>{report.nextAction}</footer>
+        </article>
+      ))
+    }
+  </section>
+
+  <section class="admin-grid admin-grid--two">
+    <div class="admin-panel">
+      <div class="admin-panel-head">
+        <div>
+          <p class="admin-eyebrow">Report contract</p>
+          <h2>表示する情報</h2>
+        </div>
+      </div>
+      <ul class="admin-check-list">
+        <li>ページURL、優先度、問題の種類、修正提案</li>
+        <li>title、description、canonical、見出し構造</li>
+        <li>内部リンク、モバイル表示、CTA導線</li>
+        <li>修正済み、再確認待ち、保留の状態</li>
+      </ul>
+    </div>
+
+    <div class="admin-panel">
+      <div class="admin-panel-head">
+        <div>
+          <p class="admin-eyebrow">Changes</p>
+          <h2>直近の修正履歴</h2>
+        </div>
+      </div>
+      <div class="admin-mini-timeline">
+        {
+          recentActivities.map((activity) => (
+            <article>
+              <time datetime={activity.date}>{activity.date}</time>
+              <strong>{activity.title}</strong>
+              <p>{activity.detail}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</AdminLayout>

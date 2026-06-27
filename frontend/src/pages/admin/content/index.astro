@@ -1,0 +1,100 @@
+---
+import AdminLayout from "../../../layouts/AdminLayout.astro";
+import { adminUrlPairs, contentQueue, kindLabels } from "../../../data/adminDashboard";
+---
+
+<AdminLayout title="コンテンツ管理 | LEXUS E.C." active="content">
+  <section class="admin-page-head">
+    <div>
+      <p class="admin-eyebrow">Content workbench</p>
+      <h1>固定ページと投稿の修正キュー</h1>
+      <p>
+        ページ単位で作業を切り分け、元ページとステージングの比較、修正、確認を同じ流れで扱います。
+      </p>
+    </div>
+    <div class="admin-action-stack" aria-label="主要操作">
+      <a class="admin-button" href="https://staging.lexus-ec.pages.dev/" target="_blank" rel="noreferrer">Staging</a>
+      <a class="admin-button admin-button--ghost" href="https://lexus-ec.com/" target="_blank" rel="noreferrer">Production</a>
+    </div>
+  </section>
+
+  <section class="admin-panel">
+    <div class="admin-panel-head">
+      <div>
+        <p class="admin-eyebrow">Queue</p>
+        <h2>作業対象</h2>
+      </div>
+      <span class="admin-count">{contentQueue.length}</span>
+    </div>
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th scope="col">対象</th>
+            <th scope="col">種別</th>
+            <th scope="col">状態</th>
+            <th scope="col">優先度</th>
+            <th scope="col">次の作業</th>
+            <th scope="col">URL</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            contentQueue.map((item) => (
+              <tr>
+                <th scope="row" data-label="対象">
+                  <strong>{item.title}</strong>
+                  <span>{item.targetPath}</span>
+                </th>
+                <td data-label="種別">{kindLabels[item.kind]}</td>
+                <td data-label="状態">
+                  <span class="admin-pill">{item.state}</span>
+                </td>
+                <td data-label="優先度">{item.priority}</td>
+                <td data-label="次の作業">{item.nextAction}</td>
+                <td data-label="URL">
+                  <div class="admin-link-stack">
+                    {item.sourceUrl && (
+                      <a href={item.sourceUrl} target="_blank" rel="noreferrer">
+                        本番
+                      </a>
+                    )}
+                    {item.stagingUrl && (
+                      <a href={item.stagingUrl} target="_blank" rel="noreferrer">
+                        staging
+                      </a>
+                    )}
+                  </div>
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="admin-panel">
+    <div class="admin-panel-head">
+      <div>
+        <p class="admin-eyebrow">Compare map</p>
+        <h2>本番とステージングの対応表</h2>
+      </div>
+      <span class="admin-count">{adminUrlPairs.length}</span>
+    </div>
+    <div class="admin-url-grid">
+      {
+        adminUrlPairs.map((pair) => (
+          <article class="admin-url-card">
+            <h3>{pair.label}</h3>
+            <p>{pair.checkPoint}</p>
+            <div>
+              <a href={pair.productionUrl} target="_blank" rel="noreferrer">Production</a>
+              <a href={pair.stagingUrl} target="_blank" rel="noreferrer">Staging</a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</AdminLayout>
