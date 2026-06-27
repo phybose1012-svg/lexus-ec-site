@@ -11,6 +11,8 @@ const page = getTeacherPage();
   <main class="teacher-page">
     <section class="teacher-hero">
       <div class="content teacher-hero__inner">
+        {page.logoStrip && <img class="teacher-hero__strip" src={page.logoStrip} alt="" width="800" height="58" decoding="async" fetchpriority="high" />}
+        <p class="teacher-hero__eyebrow">TEACHERS</p>
         <h1>{page.h1}</h1>
         <p class="teacher-hero__lead">{page.lead}</p>
         <div class="teacher-hero__visual" aria-label={page.confidence}>
@@ -20,7 +22,7 @@ const page = getTeacherPage();
           <p>{page.confidence}</p>
           {page.heroPortraits[1] && <img src={page.heroPortraits[1].src} alt={page.heroPortraits[1].alt} width="800" height="800" decoding="async" />}
         </div>
-        <a class="teacher-primary-button" href="/reservation/">{page.ctaLabel}</a>
+        <a class="button button--blue teacher-primary-button" href="/reservation/">{page.ctaLabel}</a>
       </div>
     </section>
 
