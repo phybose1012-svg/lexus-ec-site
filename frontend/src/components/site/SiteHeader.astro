@@ -29,7 +29,9 @@ const linkAttrs = (link: { target?: string; rel?: string }) => ({
       ))}
     </div>
   </div>
+  </header>
 
+  <div class="mobile-fixed-nav-wrap">
   <div class="mobile-fixed-nav" aria-label="固定ショートカット">
     {mobilePrimaryActions.map((action) => (
       <a class={`mobile-shortcut mobile-shortcut--${action.tone}`} href={action.href}>
@@ -67,7 +69,7 @@ const linkAttrs = (link: { target?: string; rel?: string }) => ({
       ))}
     </nav>
   </div>
-</header>
+  </div>
 
 <nav class="mega-nav" aria-label="主要ナビゲーション">
   <ul>

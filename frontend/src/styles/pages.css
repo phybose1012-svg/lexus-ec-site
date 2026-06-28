@@ -13115,10 +13115,6 @@
 }
 
 @media (max-width: 680px) {
-  body:has(.site-header) {
-    padding-top: var(--mobile-header-total-height);
-  }
-
   body:has(.site-header) .top-header {
     min-height: var(--mobile-header-top-height);
     padding: 12px 58px 5px;
@@ -13131,6 +13127,9 @@
   }
 
   body:has(.site-header) .mobile-menu-panel {
-    inset: var(--mobile-header-total-height) 0 0;
+    inset: auto;
+    top: 100%;
+    left: 0;
+    right: 0;
   }
 }

@@ -249,6 +249,7 @@ li {
   min-height: 2.5em;
 }
 
+.mobile-fixed-nav-wrap,
 .mobile-fixed-nav,
 .mobile-menu-panel {
   display: none;
@@ -1688,10 +1689,6 @@ li {
     --mobile-header-total-height: 214px;
   }
 
-  body {
-    padding-top: var(--mobile-header-total-height);
-  }
-
   .content {
     width: min(100% - 28px, 1140px);
   }
@@ -1700,12 +1697,19 @@ li {
     padding-block: 58px;
   }
 
+  /* Mobile: the brand/tagline header scrolls away normally; only the icon bar
+     (in .mobile-fixed-nav-wrap) sticks to the top. */
   .site-header {
-    position: fixed;
-    inset: 0 0 auto;
-    z-index: 120;
+    position: static;
     border-bottom: 0;
     overflow: visible;
+  }
+
+  .mobile-fixed-nav-wrap {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 120;
   }
 
   .site-header::before {
@@ -1865,10 +1869,14 @@ li {
   }
 
   .mobile-menu-panel {
-    position: fixed;
-    inset: var(--mobile-header-total-height) 0 0;
+    position: absolute;
+    inset: auto;
+    top: 100%;
+    left: 0;
+    right: 0;
     z-index: 110;
     display: block;
+    max-height: calc(100vh - var(--mobile-header-actions-height));
     overflow-y: auto;
     background: rgb(25 22 19 / 54%);
   }
