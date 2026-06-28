@@ -458,6 +458,7 @@ li {
   font-size: 2.05rem;
   font-weight: 600;
   line-height: 1.45;
+  letter-spacing: 0.14em;
   text-shadow: 0 1px 0 rgb(255 255 255 / 90%), 0 10px 24px rgb(255 255 255 / 88%);
 }
 
@@ -468,6 +469,7 @@ li {
   font-size: 2.52rem;
   font-weight: 700;
   line-height: 1.62;
+  letter-spacing: 0.1em;
   text-shadow:
     0 1px 0 rgb(255 255 255 / 96%),
     0 4px 14px rgb(255 255 255 / 88%),
@@ -481,6 +483,7 @@ li {
   font-size: 1.08rem;
   font-weight: 600;
   line-height: 1.85;
+  letter-spacing: 0.08em;
   text-shadow: 0 1px 0 rgb(255 255 255 / 92%), 0 8px 22px rgb(255 255 255 / 86%);
 }
 
@@ -556,6 +559,7 @@ li {
   font-size: 1.55rem;
   font-weight: 700;
   line-height: 2;
+  letter-spacing: 0.06em;
   text-align: center;
 }
 
@@ -565,6 +569,7 @@ li {
   font-size: 1.08rem;
   font-weight: 700;
   line-height: 2;
+  letter-spacing: 0.04em;
   text-align: center;
   text-wrap: pretty;
 }
@@ -602,6 +607,7 @@ li {
   font-family: var(--font-serif);
   font-size: 2.25rem;
   line-height: 1.5;
+  letter-spacing: 0.12em;
 }
 
 .section-heading small {
@@ -610,6 +616,37 @@ li {
   color: var(--muted);
   font-size: 1.05rem;
   font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+/* TOP page only (scoped via the home-exclusive .premium-hero): give every
+   serif section heading / lead the same horizontal breathing room production
+   uses on its Mincho display type. */
+body:has(.premium-hero) h2 {
+  letter-spacing: 0.1em;
+}
+
+body:has(.premium-hero) :is(h3, h4) {
+  letter-spacing: 0.08em;
+}
+
+body:has(.premium-hero) .about__lead {
+  letter-spacing: 0.06em;
+}
+
+body:has(.premium-hero) .premium-hero__year {
+  letter-spacing: 0.1em;
+}
+
+/* Big display catchphrase paragraphs (not body copy). */
+body:has(.premium-hero) :is(
+  .representative__portrait p,
+  .line-support__inner > p,
+  .become-oni p,
+  .teacher-strip p,
+  .final-message p
+) {
+  letter-spacing: 0.08em;
 }
 
 .achievement-stats {
