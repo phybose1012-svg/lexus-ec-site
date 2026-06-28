@@ -2016,7 +2016,8 @@ body:has(.premium-hero) :is(
   .premium-hero__bg {
     opacity: 0.66;
     filter: blur(0.65px) saturate(80%) contrast(88%) brightness(1.1);
-    object-position: 43% top;
+    /* Frame the oni's face (≈15%/30% of the artwork) into the mobile viewport. */
+    object-position: 15% 30%;
     /* Settle animation ends at the mobile resting values. */
     animation-name: heroSettleM;
   }
