@@ -551,8 +551,8 @@ li {
   min-width: 172px;
   min-height: 50px;
   border: 2px solid var(--gold);
-  border-radius: 4px;
-  padding: 10px 18px;
+  border-radius: 999px;
+  padding: 10px 30px;
   color: #fff;
   font-weight: 800;
   line-height: 1.25;
@@ -670,16 +670,6 @@ body:has(.premium-hero) :is(h3, h4) {
 
 body:has(.premium-hero) .about__lead {
   letter-spacing: 0.06em;
-}
-
-/* TOP page only (staging trial before going global): make the real CTAs
-   pill-shaped so they read clearly as buttons and don't get confused with
-   the sharp black section-label chips (NEW / ABOUT / …). The pill's rounded
-   ends eat into usable width, so widen the horizontal padding to keep the
-   label off the curve. */
-body:has(.premium-hero) .button {
-  border-radius: 999px;
-  padding-inline: 30px;
 }
 
 body:has(.premium-hero) .premium-hero__year {
