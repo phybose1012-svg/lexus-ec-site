@@ -1545,6 +1545,17 @@ body:has(.premium-hero) :is(
   text-align: center;
 }
 
+/* Logo strip used as a divider above the 業界トップの「質」と「量」 block. */
+.quantity-divider {
+  display: block;
+  width: min(800px, 100%);
+  margin: 10px auto 24px;
+}
+
+.quantity-box h3 {
+  white-space: nowrap;
+}
+
 .growth-box ul,
 .support-box ul {
   display: grid;
@@ -2671,6 +2682,10 @@ body:has(.premium-hero) :is(
   .quantity-box,
   .method-lead {
     padding: 22px 18px;
+  }
+
+  .quantity-box h3 {
+    font-size: 1.15rem;
   }
 
   .growth-box ul,
