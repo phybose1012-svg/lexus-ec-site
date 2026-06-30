@@ -452,11 +452,45 @@ li {
   100% { opacity: 1; transform: none; }
 }
 
+/* On load, the 鬼監理×鬼特訓 flame title bursts in over the hero together with
+   the oni, holds briefly, then fades out to reveal the hero copy. Decorative
+   overlay — hidden to assistive tech and after the animation. */
+.hero-oni-words {
+  position: absolute;
+  z-index: 5;
+  top: 46%;
+  left: 50%;
+  margin: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 11vw, 5.6rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  background: linear-gradient(180deg, #f8b13a 0%, #f47a1d 32%, #db2017 64%, #7c0e12 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 3px 22px rgb(255 140 30 / 55%));
+  opacity: 0;
+  animation: heroOniWords 2.4s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@keyframes heroOniWords {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
+  14%  { opacity: 1; transform: translate(-50%, -50%) scale(1.04); }
+  54%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.94); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .premium-hero__bg,
   .premium-hero::before,
   .premium-hero::after,
-  .premium-hero__inner {
+  .premium-hero__inner,
+  .hero-oni-words {
     animation: none !important;
   }
 }
