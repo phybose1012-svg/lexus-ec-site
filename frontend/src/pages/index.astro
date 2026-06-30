@@ -357,15 +357,16 @@ const headerNavGroups = navGroups;
           <span>鬼監理</span><span class="about__mark-x" aria-hidden="true">×</span><span>鬼特訓</span>
         </p>
         <p class="about__lead">の先にある、絶対の合格へ有無を言わさず連れていく。</p>
+        <picture>
+          <source media="(max-width: 700px)" srcset={assets.trainingTall} />
+          <img class="about__hero" src={assets.trainingWide} alt="年末年始医学部必勝「鬼特訓」イメージ" width="1024" height="511" loading="lazy" decoding="async" />
+        </picture>
       </div>
     </section>
 
     <section class="section reason" id="reason" aria-labelledby="reason-title">
       <div class="content">
-        <picture>
-          <source media="(max-width: 700px)" srcset={assets.trainingTall} />
-          <img class="reason__hero" src={assets.trainingWide} alt="年末年始医学部必勝「鬼特訓」イメージ" width="1024" height="511" loading="lazy" decoding="async" />
-        </picture>
+        <img class="reason__divider" src={assets.jewelPattern} alt="" width="800" height="58" loading="lazy" decoding="async" />
         <p class="section-label">REASON</p>
         <h2 id="reason-title">レクサスは他と何が違うのか？</h2>
 

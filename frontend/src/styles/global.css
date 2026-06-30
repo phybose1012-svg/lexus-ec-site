@@ -1280,16 +1280,23 @@ body:has(.premium-hero) :is(
   vertical-align: 0.06em;
 }
 
+.about__hero {
+  width: min(1000px, 100%);
+  margin: 34px auto 0;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
 .reason {
   background: #f9f6f1;
   text-align: center;
 }
 
-.reason__hero {
-  width: min(1000px, 100%);
-  margin: 0 auto 28px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+.reason__divider {
+  /* Logo strip used as a section divider — pull it up so it sits near the
+     beige section's top edge instead of floating with a big air gap. */
+  width: min(800px, 100%);
+  margin: -54px auto 34px;
 }
 
 .reason h2 {
@@ -2438,11 +2445,13 @@ body:has(.premium-hero) :is(
     font-size: 1.4rem;
   }
 
-  .reason__hero {
-    max-height: 360px;
-    margin-bottom: 18px;
-    object-fit: cover;
-    object-position: center 42%;
+  .about__hero {
+    margin-top: 22px;
+  }
+
+  .reason__divider {
+    margin-top: -34px;
+    margin-bottom: 26px;
   }
 
   .reason h2 {
