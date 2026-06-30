@@ -2076,8 +2076,8 @@ body:has(.premium-hero) :is(
     line-height: 1.5;
   }
 
-  .course-card {
-    grid-template-columns: 1fr;
+  .course-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .achievement-stats {
