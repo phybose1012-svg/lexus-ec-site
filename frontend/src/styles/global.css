@@ -582,7 +582,7 @@ li {
 
 .jewel-strip {
   width: min(800px, 100%);
-  margin-top: 30px;
+  margin-top: 16px;
 }
 
 .intro-section {
@@ -614,13 +614,17 @@ li {
 .section-heading {
   display: grid;
   justify-items: center;
+  /* The logo strip is a divider, not content — pull the whole heading up so
+     it sits near the section's top edge instead of floating with a big air
+     gap above it. */
+  margin-top: -54px;
   margin-bottom: 34px;
   text-align: center;
 }
 
 .section-heading img {
   width: min(800px, 100%);
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
 .section-heading p,
@@ -2096,6 +2100,10 @@ body:has(.premium-hero) :is(
     font-size: 0.96rem;
     line-height: 1.85;
     text-align: left;
+  }
+
+  .section-heading {
+    margin-top: -34px;
   }
 
   .section-heading h2,
