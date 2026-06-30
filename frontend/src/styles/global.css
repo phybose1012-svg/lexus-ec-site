@@ -1882,6 +1882,36 @@ body:has(.premium-hero) :is(
   text-align: left;
 }
 
+/* Feature tags for the dorm (auto-lock, study room, meals, …). */
+.dorm-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dorm-tags li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  background: #fff;
+  color: #3a2f1a;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.dorm-tags li::before {
+  content: "✓";
+  color: var(--gold-dark);
+  font-weight: 900;
+}
+
 /* Image + button stacked, button directly under the (now clickable) image. */
 .dorm-media {
   display: flex;
