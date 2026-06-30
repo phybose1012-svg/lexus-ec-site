@@ -1701,8 +1701,11 @@ body:has(.premium-hero) :is(
   background: #f2f2f2;
 }
 
-/* Gold rules bracketing the COURSE heading, like the original page. */
-.section--courses .section-heading h2 {
+/* Gold rules bracketing the COURSE heading and every heading below it
+   (STRICT, LOCATION), like the original page. */
+.section--courses .section-heading h2,
+.strictness .section-heading h2,
+.location .section-heading h2 {
   width: fit-content;
   max-width: 100%;
   margin-inline: auto;
@@ -1861,6 +1864,11 @@ body:has(.premium-hero) :is(
   grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1fr);
   gap: 36px;
   align-items: center;
+}
+
+/* Centre the LEXUS GARDEN copy and its button. */
+.dorm-layout > div {
+  text-align: center;
 }
 
 .dorm-layout h3 {
