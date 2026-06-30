@@ -1348,47 +1348,105 @@ body:has(.premium-hero) :is(
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 28px;
   margin-bottom: 36px;
-  text-align: left;
-}
-
-.pillar-card {
-  border: 1px solid #eadac0;
-  border-radius: var(--radius);
-  background: #fff;
-  padding: 28px;
-  box-shadow: var(--shadow);
-}
-
-.pillar-card__head {
-  display: grid;
-  grid-template-columns: 116px 1fr;
-  gap: 18px;
-  align-items: center;
-}
-
-.pillar-card__head img {
-  max-height: 130px;
-  object-fit: contain;
-}
-
-.pillar-card h3 {
-  margin: 0;
-  color: var(--red);
-  font-family: var(--font-serif);
-  font-size: 2rem;
-}
-
-.pillar-card__subtitle {
-  border-block: 1px solid var(--line);
-  margin: 18px 0;
-  padding-block: 12px;
-  color: #2e2b27;
-  font-weight: 900;
   text-align: center;
 }
 
-.pillar-card p:not(.pillar-card__subtitle) {
-  margin: 0 0 20px;
+.pillar-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #d8c9a8;
+  border-radius: 18px;
+  background: #f6f4ef;
+  padding: 26px;
+  box-shadow: var(--shadow);
+}
+
+/* Header: oni character floats at the left edge, title centred in the card
+   (matches the production card). */
+.pillar-card__head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  margin-bottom: 4px;
+}
+
+.pillar-card__head img {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+  transform: translateY(-50%);
+}
+
+.pillar-card__title {
+  margin: 0;
+  color: #1b1b1b;
+  font-family: var(--font-serif);
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+/* Subtitle wrapped by two hairline rules, with the × on its own line. */
+.pillar-card__subtitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin: 16px 0 0;
+  padding-block: 16px;
+  border-block: 1px solid #d8c9a8;
+  color: #2e2b27;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.pillar-card__times {
+  font-size: 0.95em;
+  line-height: 1;
+  color: #8a8275;
+}
+
+.pillar-card__body {
+  margin: 18px 0 0;
+  text-align: center;
+  line-height: 1.95;
+  color: #3a352f;
+}
+
+/* "↓ 詳しくはコチラ ↓" cue — pushed to sit just above the button so cards of
+   different body length keep their buttons bottom-aligned. */
+.pillar-card__cue {
+  margin: auto 0 12px;
+  color: #b0a796;
+  font-size: 0.92rem;
+  letter-spacing: 0.12em;
+}
+
+.pillar-card__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 26px;
+  border: 3px solid #c5a059;
+  border-radius: 999px;
+  background: #fff;
+  color: #1b1b1b;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.pillar-card__button:hover {
+  background: #c5a059;
+  color: #fff;
 }
 
 .growth-box,
@@ -2481,20 +2539,19 @@ body:has(.premium-hero) :is(
   }
 
   .pillar-card {
-    padding: 18px;
+    padding: 20px 18px;
   }
 
   .pillar-card__head {
-    grid-template-columns: 72px 1fr;
-    gap: 12px;
+    min-height: 80px;
   }
 
   .pillar-card__head img {
-    max-height: 90px;
+    width: 76px;
   }
 
-  .pillar-card h3 {
-    font-size: 1.35rem;
+  .pillar-card__title {
+    font-size: 1.5rem;
   }
 
   .growth-box,
@@ -2536,16 +2593,24 @@ body:has(.premium-hero) :is(
   }
 
   .pillar-card__subtitle {
-    margin: 12px 0;
-    padding-block: 9px;
-    font-size: 0.9rem;
-    line-height: 1.6;
+    margin-top: 12px;
+    padding-block: 12px;
+    font-size: 1rem;
+    line-height: 1.55;
   }
 
-  .pillar-card p:not(.pillar-card__subtitle) {
-    margin-bottom: 14px;
+  .pillar-card__body {
     font-size: 0.9rem;
-    line-height: 1.7;
+    line-height: 1.85;
+  }
+
+  .pillar-card__cue {
+    font-size: 0.86rem;
+  }
+
+  .pillar-card__button {
+    padding: 11px 20px;
+    font-size: 0.9rem;
   }
 
   .teacher-strip {

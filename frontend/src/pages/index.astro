@@ -398,12 +398,20 @@ const headerNavGroups = navGroups;
             <article class="pillar-card">
               <div class="pillar-card__head">
                 <img src={pillar.image} alt={pillar.imageAlt} width="234" height="260" loading="lazy" decoding="async" />
-                <h3>{pillar.title}</h3>
+                <h3 class="pillar-card__title">{pillar.title}</h3>
               </div>
-              <p class="pillar-card__subtitle">{pillar.subtitle}</p>
-              <p>{pillar.body}</p>
+              <p class="pillar-card__subtitle">
+                {pillar.subtitle.split("×").map((part, i) => (
+                  <Fragment>
+                    {i > 0 && <span class="pillar-card__times" aria-hidden="true">×</span>}
+                    <span>{part.trim()}</span>
+                  </Fragment>
+                ))}
+              </p>
+              <p class="pillar-card__body">{pillar.body}</p>
+              <p class="pillar-card__cue" aria-hidden="true">↓ 詳しくはコチラ ↓</p>
               <div class="pillar-card__actions">
-                {pillar.links.map((link) => <a class={buttonClass(link.tone)} href={link.href}>{link.label}</a>)}
+                {pillar.links.map((link) => <a class="pillar-card__button" href={link.href}>{link.label}</a>)}
               </div>
             </article>
           ))}
