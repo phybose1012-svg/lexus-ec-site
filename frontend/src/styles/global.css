@@ -1376,6 +1376,12 @@ body:has(.premium-hero) :is(
   min-width: 620px;
   border-collapse: collapse;
   text-align: center;
+  /* fixed layout so the long item labels don't blow the first column out */
+  table-layout: fixed;
+}
+
+.comparison-table th:first-child {
+  width: 28%;
 }
 
 .comparison-table th,
@@ -1393,7 +1399,7 @@ body:has(.premium-hero) :is(
 }
 
 .comparison-table tbody th {
-  text-align: left;
+  text-align: center;
 }
 
 .comparison-table .target-col {
@@ -2621,6 +2627,10 @@ body:has(.premium-hero) :is(
 
   .comparison-table {
     min-width: 520px;
+  }
+
+  .comparison-table th:first-child {
+    width: 36%;
   }
 
   .comparison-table th,
