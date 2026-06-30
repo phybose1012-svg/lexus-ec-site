@@ -386,7 +386,6 @@ li {
 .premium-hero {
   position: relative;
   isolation: isolate;
-  min-height: 734px;
   overflow: hidden;
   background: #fbf7ef;
 }
@@ -1992,7 +1991,7 @@ body:has(.premium-hero) :is(
   }
 
   .premium-hero {
-    min-height: 620px;
+    min-height: 0;
   }
 
   .premium-hero::before {
@@ -2031,7 +2030,7 @@ body:has(.premium-hero) :is(
 
   .premium-hero__inner {
     width: min(100% - 28px, 620px);
-    padding-block: 30px 24px;
+    padding-block: 30px 18px;
   }
 
   .premium-hero__year {
