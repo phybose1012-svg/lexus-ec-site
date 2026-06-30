@@ -295,9 +295,19 @@ const headerNavGroups = navGroups;
             <p>
               レクサスは、医学部受験に必要な厳しさを日々の学習に落とし込みます。授業、課題、質問、確認、生活リズムまでを途切れさせず、受験生の一年を合格へ向けて使い切ります。
             </p>
-            <ul class="message-list">
-              {representativeMessages.map((message) => <li><h3>{message}</h3></li>)}
-            </ul>
+            <div class="message-list">
+              {representativeMessages.map((message, i) => (
+                <details class="message-item" name="representative-message" open={i === 0}>
+                  <summary class="message-item__summary">
+                    <h3>{message.title}</h3>
+                    <span class="message-item__icon" aria-hidden="true"></span>
+                  </summary>
+                  <div class="message-item__body">
+                    {message.body.map((para) => <p>{para}</p>)}
+                  </div>
+                </details>
+              ))}
+            </div>
           </div>
         </div>
       </div>
