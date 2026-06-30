@@ -527,6 +527,29 @@ const headerNavGroups = navGroups;
     </section>
   </main>
 
+  <script is:inline>
+    // Reveal the ABOUT statement (偶然や奇跡… / 鬼監理×鬼特訓 / の先にある…) when it
+    // scrolls into view. Gated on the .anim-ready class so the text is never
+    // hidden if JS / IntersectionObserver is unavailable; skipped under
+    // reduced-motion. Disconnects after firing once — no ongoing cost.
+    (function () {
+      var about = document.querySelector(".about");
+      if (!about || !("IntersectionObserver" in window)) return;
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      about.classList.add("anim-ready");
+      var io = new IntersectionObserver(function (entries, obs) {
+        for (var i = 0; i < entries.length; i++) {
+          if (entries[i].isIntersecting) {
+            about.classList.add("is-revealed");
+            obs.disconnect();
+            break;
+          }
+        }
+      }, { threshold: 0.35 });
+      io.observe(about);
+    })();
+  </script>
+
   <footer class="site-footer">
     <div class="content">
       <p class="site-footer__menu-title">ー MENU ー</p>
