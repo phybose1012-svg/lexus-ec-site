@@ -1390,11 +1390,16 @@ body:has(.premium-hero) :is(
 
 .pillar-card__title {
   margin: 0;
-  color: #111;
   font-family: var(--font-serif);
   font-size: 1.9rem;
   font-weight: 700;
   letter-spacing: 0.1em;
+  /* Flame / 鬼滅-style gradient text, matching the hero & ABOUT 鬼監理×鬼特訓 mark. */
+  background: linear-gradient(180deg, #f8b13a 0%, #f47a1d 32%, #db2017 64%, #7c0e12 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 /* Subtitle wrapped by two hairline rules, with the × on its own line. */
