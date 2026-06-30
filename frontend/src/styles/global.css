@@ -1346,45 +1346,51 @@ body:has(.premium-hero) :is(
 .pillar-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px;
+  gap: 52px 28px;
+  /* leave head-room above the row so the oni that pokes out of each card's
+     top edge doesn't collide with what's above */
+  margin-top: 52px;
   margin-bottom: 36px;
   text-align: center;
 }
 
 .pillar-card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  border: 1px solid #d8c9a8;
-  border-radius: 18px;
-  background: #f6f4ef;
-  padding: 26px;
-  box-shadow: var(--shadow);
+  /* white card, thin gold frame, gentle round — and overflow visible so the
+     oni character can break out past the top edge (matches production). */
+  border: 2px solid #c5a059;
+  border-radius: 15px;
+  background: #fff;
+  padding: 18px 22px 24px;
+  overflow: visible;
 }
 
-/* Header: oni character floats at the left edge, title centred in the card
-   (matches the production card). */
+/* Header: the oni is pinned to the bottom-left and is taller than the row, so
+   it breaks out above the card's top edge; the title sits centred, bottom
+   aligned with the oni (matches the production card). */
 .pillar-card__head {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  min-height: 100px;
-  margin-bottom: 4px;
+  min-height: 64px;
+  margin-bottom: 2px;
 }
 
 .pillar-card__head img {
   position: absolute;
-  left: 0;
-  top: 50%;
-  width: 100px;
+  left: 6px;
+  bottom: 0;
+  width: 104px;
   height: auto;
   object-fit: contain;
-  transform: translateY(-50%);
 }
 
 .pillar-card__title {
   margin: 0;
-  color: #1b1b1b;
+  color: #111;
   font-family: var(--font-serif);
   font-size: 1.9rem;
   font-weight: 700;
@@ -1433,11 +1439,11 @@ body:has(.premium-hero) :is(
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 13px 26px;
+  padding: 14px 28px;
   border: 3px solid #c5a059;
-  border-radius: 999px;
+  border-radius: 22px;
   background: #fff;
-  color: #1b1b1b;
+  color: #111;
   font-weight: 700;
   text-align: center;
   text-decoration: none;
@@ -2538,16 +2544,22 @@ body:has(.premium-hero) :is(
     font-size: 1.05rem;
   }
 
+  .pillar-grid {
+    gap: 46px;
+    margin-top: 44px;
+  }
+
   .pillar-card {
-    padding: 20px 18px;
+    padding: 16px 16px 20px;
   }
 
   .pillar-card__head {
-    min-height: 80px;
+    min-height: 52px;
   }
 
   .pillar-card__head img {
-    width: 76px;
+    width: 80px;
+    left: 2px;
   }
 
   .pillar-card__title {
