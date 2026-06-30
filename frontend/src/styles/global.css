@@ -946,7 +946,7 @@ body:has(.premium-hero) :is(
 
 .selection-poster {
   display: block;
-  width: min(580px, 100%);
+  width: min(460px, 100%);
   margin: 0 auto 24px;
 }
 
@@ -981,7 +981,7 @@ body:has(.premium-hero) :is(
 }
 
 .representative__portrait img {
-  width: min(360px, 100%);
+  width: min(300px, 100%);
 }
 
 .representative__portrait strong {
@@ -1007,7 +1007,7 @@ body:has(.premium-hero) :is(
 .message-list li {
   border-left: 4px solid var(--gold);
   background: #fff;
-  padding: 12px 16px;
+  padding: 10px 14px;
   font-weight: 700;
 }
 
@@ -1040,7 +1040,7 @@ body:has(.premium-hero) :is(
 .video-poster {
   position: relative;
   display: block;
-  width: min(780px, 100%);
+  width: min(680px, 100%);
   margin-inline: auto;
   text-decoration: none;
 }
@@ -2238,7 +2238,7 @@ body:has(.premium-hero) :is(
   }
 
   .representative__portrait img {
-    width: min(220px, 100%);
+    width: min(186px, 100%);
   }
 
   .representative__portrait strong {
@@ -2247,7 +2247,8 @@ body:has(.premium-hero) :is(
 
   .representative__message h2 {
     font-size: 1.35rem;
-    line-height: 1.55;
+    line-height: 1.45;
+    margin-bottom: 12px;
   }
 
   .representative__message > p:not(.section-label) {
@@ -2264,6 +2265,14 @@ body:has(.premium-hero) :is(
     padding: 9px 12px;
     font-size: 0.86rem;
     line-height: 1.6;
+  }
+
+  .dorm-layout {
+    gap: 22px;
+  }
+
+  .dorm-layout h3 {
+    font-size: 1.4rem;
   }
 
   .reason__hero {
