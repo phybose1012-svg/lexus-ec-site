@@ -278,21 +278,26 @@ const headerNavGroups = navGroups;
     </section>
 
     <section class="section representative" aria-labelledby="representative-title">
-      <div class="content representative__grid">
-        <div class="representative__portrait">
-          <p>医学部合格に自信あり！</p>
-          <img src={assets.representative} alt="レクサス教育センター 代表取締役 島内義仁" width="435" height="533" loading="lazy" decoding="async" />
-          <strong>レクサスE.C. 代表　島内 義仁</strong>
-        </div>
-        <div class="representative__message">
-          <h3 class="section-label">代表よりメッセージ</h3>
-          <h2 id="representative-title">レクサスは1992年創立、1000人以上の医学部生を輩出している医学部受験の専門塾です。</h2>
-          <p>
-            レクサスは、医学部受験に必要な厳しさを日々の学習に落とし込みます。授業、課題、質問、確認、生活リズムまでを途切れさせず、受験生の一年を合格へ向けて使い切ります。
-          </p>
-          <ul class="message-list">
-            {representativeMessages.map((message) => <li><h3>{message}</h3></li>)}
-          </ul>
+      <div class="content">
+        <header class="section-heading">
+          <img src={assets.jewelPattern} alt="" width="800" height="58" loading="lazy" decoding="async" />
+          <p>代表よりメッセージ</p>
+        </header>
+        <div class="representative__grid">
+          <div class="representative__portrait">
+            <p>医学部合格に自信あり！</p>
+            <img src={assets.representative} alt="レクサス教育センター 代表取締役 島内義仁" width="435" height="533" loading="lazy" decoding="async" />
+            <strong>レクサスE.C. 代表　島内 義仁</strong>
+          </div>
+          <div class="representative__message">
+            <h2 id="representative-title">レクサスは1992年創立、1000人以上の医学部生を輩出している医学部受験の専門塾です。</h2>
+            <p>
+              レクサスは、医学部受験に必要な厳しさを日々の学習に落とし込みます。授業、課題、質問、確認、生活リズムまでを途切れさせず、受験生の一年を合格へ向けて使い切ります。
+            </p>
+            <ul class="message-list">
+              {representativeMessages.map((message) => <li><h3>{message}</h3></li>)}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
