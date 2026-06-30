@@ -70,6 +70,7 @@ export type CourseCard = {
   english: string;
   href: string;
   note: string;
+  accent: string;
 };
 
 export type SupportMetric = {
@@ -574,6 +575,7 @@ export const courses: CourseCard[] = [
     english: "Premier Main Course",
     href: "/top/course/lexus-premiere-course/",
     note: "医学部受験を全面的にサポートする“オールインワン”コースです。各科目クラス分けあり。",
+    accent: "#0a0a0a",
   },
   {
     target: "◆ 浪人・再受験・高校生 対象 個別指導コース ◆",
@@ -581,6 +583,7 @@ export const courses: CourseCard[] = [
     english: "Custom-made Course",
     href: "/top/course/custom-made-course/",
     note: "自分のレベルに合った演習ベースのカリキュラムで倍速学習をするコースです。",
+    accent: "#0f2db8",
   },
   {
     target: "◆ 高2生・高3生 対象 “鬼特訓”コース ◆",
@@ -588,6 +591,7 @@ export const courses: CourseCard[] = [
     english: "High-level GENEKI Course",
     href: "/top/course/high-level-geneki-course/",
     note: "慶應、慈恵、順天、日医をはじめとする都内の医学部に現役合格するためのコースです。",
+    accent: "#115220",
   },
   {
     target: "◆ 高1・2生 対象 医学部受験 “準備”コース ◆",
@@ -595,6 +599,7 @@ export const courses: CourseCard[] = [
     english: "Medical Prep Course",
     href: "/top/course/medical-prep/",
     note: "医学部受験で優位に立つ先取り学習コースです。慶應、日大の内部進学対策も承ります。",
+    accent: "#5e0881",
   },
   {
     target: "◆ 中学生 対象 医学部受験 “準備”コース ◆",
@@ -602,6 +607,7 @@ export const courses: CourseCard[] = [
     english: "Medical Prep Course",
     href: "/top/course/medical-prep-junior/",
     note: "先手必勝！難関医学部を目指す中高一貫カリキュラムの先取り学習コースです。",
+    accent: "#0c5f63",
   },
 ];
 
