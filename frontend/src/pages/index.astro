@@ -342,7 +342,9 @@ const headerNavGroups = navGroups;
       <div class="content content-narrow">
         <SectionHeading id="about" label="ABOUT" title={"「レクサス」は類の無い\n医学部専門予備校です"} />
         <p class="about__lead">偶然や奇跡に頼らない逆転劇。</p>
-        <img class="about__mark" src={assets.onikanriTitle} alt="鬼監理×鬼特訓" width="1024" height="184" loading="lazy" decoding="async" />
+        <p class="about__mark" aria-label="鬼監理×鬼特訓">
+          <span>鬼監理</span><span class="about__mark-x" aria-hidden="true">×</span><span>鬼特訓</span>
+        </p>
         <p class="about__lead">の先にある、絶対の合格へ有無を言わさず連れていく。</p>
       </div>
     </section>

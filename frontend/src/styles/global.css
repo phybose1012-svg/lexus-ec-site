@@ -1132,8 +1132,26 @@ body:has(.premium-hero) :is(
 }
 
 .about__mark {
-  width: min(520px, 100%);
-  margin: 16px auto;
+  margin: 18px auto 16px;
+  font-family: var(--font-serif);
+  font-size: clamp(2.1rem, 7vw, 3.1rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 0.06em;
+  /* Flame / 鬼滅-style vertical gradient: gold-orange at the top burning down
+     to a deep crimson. Clipped to the glyphs. */
+  background: linear-gradient(180deg, #f8b13a 0%, #f47a1d 32%, #db2017 64%, #7c0e12 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.about__mark-x {
+  /* keep the × lighter and spaced, like the original mark */
+  margin: 0 0.22em;
+  font-size: 0.78em;
+  vertical-align: 0.06em;
 }
 
 .reason {
