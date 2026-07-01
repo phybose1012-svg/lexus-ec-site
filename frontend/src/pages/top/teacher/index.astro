@@ -11,7 +11,7 @@ const page = getTeacherPage();
   <main class="teacher-page">
     <section class="teacher-hero">
       <div class="content teacher-hero__inner">
-        {page.logoStrip && <img class="teacher-hero__strip" src={page.logoStrip} alt="" width="800" height="58" decoding="async" fetchpriority="high" />}
+        {page.logoStrip && <img class="teacher-hero__strip" src={page.logoStrip} alt="" width="800" height="58" decoding="async" fetchpriority="high" aria-hidden="true" />}
         <p class="teacher-hero__eyebrow">TEACHERS</p>
         <h1>{page.h1}</h1>
         <p class="teacher-hero__lead">{page.lead}</p>
@@ -52,7 +52,7 @@ const page = getTeacherPage();
       {page.subjects.map((subject) => (
         <section class={`teacher-subject teacher-subject--${subject.tone}`} id={subject.slug}>
           <header class="teacher-subject__head">
-            {page.logoStrip && <img src={page.logoStrip} alt="" width="1024" height="74" loading="lazy" decoding="async" />}
+            {page.logoStrip && <img src={page.logoStrip} alt="" width="1024" height="74" loading="lazy" decoding="async" aria-hidden="true" />}
             <p>{subject.english}</p>
             <h2>{subject.subject}</h2>
           </header>

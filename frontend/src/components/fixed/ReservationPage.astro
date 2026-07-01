@@ -27,18 +27,18 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
   <SiteHeader />
   <main class="legacy-reservation-page">
     <section class="reservation-lead" aria-label="無料面談のご予約">
-      <h1 class="reservation-lead__title">無料面談のご予約</h1>
-      <p>
+      <h1 class="reservation-lead__title" data-admin-editable="reservation.title">無料面談のご予約</h1>
+      <p data-admin-editable="reservation.lead">
         体験授業や入学をご検討の方は、<br />
         まず無料面談をご予約下さい。<br />
         詳しくご説明いたします。
       </p>
       <div class="reservation-mascot-row">
-        <h2>お気軽にどうぞ</h2>
+        <h2 data-admin-editable="reservation.mascot.left">お気軽にどうぞ</h2>
         <img src={mascot} alt="レクサスくん(マスコットキャラクター)" width="899" height="1024" loading="lazy" decoding="async" />
-        <h2>毎日実施中</h2>
+        <h2 data-admin-editable="reservation.mascot.right">毎日実施中</h2>
       </div>
-      <p class="reservation-lead__notice">
+      <p class="reservation-lead__notice" data-admin-editable="reservation.notice">
         必須事項を入力して<br />
         「予約する」ボタンを押して下さい。
       </p>
@@ -114,15 +114,15 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
           <textarea name="message" rows="4" placeholder="「こんな事を聞きたい！」など、ご要望があればご記入ください(空欄でもOKです)"></textarea>
         </label>
 
-        <button class="legacy-reservation-submit" type="submit">予約する</button>
+        <button class="legacy-reservation-submit" type="submit" data-admin-editable="reservation.submit">予約する</button>
         <p class="form-submit-note" data-local-form-status hidden></p>
       </form>
     </section>
 
     <section class="reservation-phone" aria-label="電話予約">
-      <p>【お電話でもご予約承ります】</p>
+      <p data-admin-editable="reservation.phone.label">【お電話でもご予約承ります】</p>
       <a href="tel:03-3477-1306">03-3477-1306</a>
-      <p>受付時間：10時00分～21時00分</p>
+      <p data-admin-editable="reservation.phone.hours">受付時間：10時00分～21時00分</p>
     </section>
 
     <nav class="legacy-pill-nav" aria-label="関連ページ">

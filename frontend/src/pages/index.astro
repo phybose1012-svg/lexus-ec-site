@@ -167,10 +167,10 @@ const headerNavGroups = navGroups;
     <section class="premium-hero" aria-labelledby="premium-hero-title">
       <img class="premium-hero__bg" src={assets.heroPaper} alt="" width="1440" height="734" fetchpriority="high" decoding="async" />
       <div class="premium-hero__inner">
-        <p class="premium-hero__year">2026年度</p>
-        <p class="premium-hero__sub">最高級の医学部受験指導</p>
-        <h2 id="premium-hero-title">覚悟が決まったら<br />レクサス・プレミア本科へ<br />（開講中）</h2>
-        <p class="premium-hero__target">
+        <p class="premium-hero__year" data-admin-editable="home.hero.year">2026年度</p>
+        <p class="premium-hero__sub" data-admin-editable="home.hero.subtitle">最高級の医学部受験指導</p>
+        <h2 id="premium-hero-title" data-admin-editable="home.hero.title">覚悟が決まったら<br />レクサス・プレミア本科へ<br />（開講中）</h2>
+        <p class="premium-hero__target" data-admin-editable="home.hero.target">
           対象：既卒生（年齢制限なし）<br />
           欠員が出た場合、6月入学可能。<br />
           <span>※お問合せ下さい。</span>
@@ -185,11 +185,11 @@ const headerNavGroups = navGroups;
 
     <section class="intro-section" aria-labelledby="home-title">
       <div class="content-narrow">
-        <h1 id="home-title">
+        <h1 id="home-title" data-admin-editable="home.intro.title">
           医学部受験 なら、<br />
           実績35年の レクサス教育センター（レクサス E.C.）にお任せください。
         </h1>
-        <p>
+        <p data-admin-editable="home.intro.body">
           偏差値50台からの合格率は88%。「緻密な“鬼特訓”メニュー」と「1日13時間の厳しい管理体制 (＝“鬼監理”)」で、医学部受験生を合格へ導きます。校舎は寮と一体型で、渋谷（東京）にあります。レクサスは日本全国の浪人生や現役生の医師への思いに応えます。
         </p>
       </div>
@@ -291,8 +291,8 @@ const headerNavGroups = navGroups;
             <strong>レクサスE.C. 代表　島内 義仁</strong>
           </div>
           <div class="representative__message">
-            <h2 id="representative-title">レクサスは1992年創立、1000人以上の医学部生を輩出している医学部受験の専門塾です。</h2>
-            <p>
+            <h2 id="representative-title" data-admin-editable="home.representative.title">レクサスは1992年創立、1000人以上の医学部生を輩出している医学部受験の専門塾です。</h2>
+            <p data-admin-editable="home.representative.body">
               レクサスは、医学部受験に必要な厳しさを日々の学習に落とし込みます。授業、課題、質問、確認、生活リズムまでを途切れさせず、受験生の一年を合格へ向けて使い切ります。
             </p>
             <div class="message-list">
@@ -437,8 +437,8 @@ const headerNavGroups = navGroups;
       <div class="content">
         <SectionHeading id="method" label="METHOD" title="医学部合格メソッド" />
         <div class="method-lead">
-          <h3>「厳しさ」が最短合格の絶対条件！</h3>
-          <p>レクサス教育センターでは、情熱と実力を兼ね備えた講師達があなたの学習を厳しく管理し、独自の医学部専門カリキュラムで合格へ導きます。講師の指示通りに課題をこなせば、医学部に合格する実力が必ず身につきます。</p>
+          <h3 data-admin-editable="home.method.headline">「厳しさ」が最短合格の絶対条件！</h3>
+          <p data-admin-editable="home.method.body">レクサス教育センターでは、情熱と実力を兼ね備えた講師達があなたの学習を厳しく管理し、独自の医学部専門カリキュラムで合格へ導きます。講師の指示通りに課題をこなせば、医学部に合格する実力が必ず身につきます。</p>
         </div>
 
         <section class="support-box" aria-labelledby="support-title">
@@ -478,8 +478,8 @@ const headerNavGroups = navGroups;
 
     <section class="section section--courses" id="courses" aria-labelledby="courses-title">
       <div class="content">
-        <SectionHeading id="courses-title" label="COURSE" title={"老舗の医学部予備校\nだから成せる\n「コース」と「カリキュラム」"} />
-        <p class="courses__lead">ご自身のタイプに合った「コース選択」が合格への第一歩。</p>
+        <SectionHeading id="courses-title" label="COURSE" title={"老舗の医学部予備校\nだから成せる\n「コース」と「カリキュラム」"} editableId="home.courses.title" />
+        <p class="courses__lead" data-admin-editable="home.courses.lead">ご自身のタイプに合った「コース選択」が合格への第一歩。</p>
         <div class="course-grid">
           {courses.map((course) => (
             <article class="course-card" style={`--card-accent: ${course.accent}`}>
@@ -542,7 +542,7 @@ const headerNavGroups = navGroups;
     </section>
 
     <section class="final-message">
-      <p>きみはできる。<br />さあ、“勉強の鬼”になろう。</p>
+      <p data-admin-editable="home.final.message">きみはできる。<br />さあ、“勉強の鬼”になろう。</p>
     </section>
   </main>
 

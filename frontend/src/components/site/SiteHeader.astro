@@ -23,7 +23,7 @@ const linkAttrs = (link: { target?: string; rel?: string }) => ({
     <div class="header-actions" aria-label="固定ショートカット">
       {headerActions.map((action) => (
         <a class={`header-action header-action--${action.tone}`} href={action.href}>
-          <img src={action.icon} alt="" width="96" height="96" decoding="async" />
+          <img src={action.icon} alt="" width="96" height="96" decoding="async" aria-hidden="true" />
           <span>{action.label}</span>
         </a>
       ))}
@@ -35,7 +35,7 @@ const linkAttrs = (link: { target?: string; rel?: string }) => ({
   <div class="mobile-fixed-nav" aria-label="固定ショートカット">
     {mobilePrimaryActions.map((action) => (
       <a class={`mobile-shortcut mobile-shortcut--${action.tone}`} href={action.href}>
-        <img src={action.icon} alt="" width="96" height="96" decoding="async" />
+        <img src={action.icon} alt="" width="96" height="96" decoding="async" aria-hidden="true" />
         <span>{action.label}</span>
       </a>
     ))}
@@ -49,7 +49,7 @@ const linkAttrs = (link: { target?: string; rel?: string }) => ({
     </button>
     {mobileSecondaryActions.map((action) => (
       <a class={`mobile-shortcut mobile-shortcut--${action.tone}`} href={action.href}>
-        <img src={action.icon} alt="" width="96" height="96" decoding="async" />
+        <img src={action.icon} alt="" width="96" height="96" decoding="async" aria-hidden="true" />
         <span>{action.label}</span>
       </a>
     ))}

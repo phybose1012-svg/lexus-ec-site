@@ -55,12 +55,105 @@ export type MigratedPost = {
   };
 };
 
+const normalizeMigratedPostPath = (value: string) => {
+  let pathname = value;
+  try {
+    pathname = new URL(value).pathname;
+  } catch {
+    pathname = value;
+  }
+  pathname = pathname.split(/[?#]/)[0] || "/";
+  return pathname.endsWith("/") ? pathname : `${pathname}/`;
+};
+
+const decodeEntities = (value = "") =>
+  value
+    .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(Number(code)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, code) => String.fromCharCode(parseInt(code, 16)))
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, "\"")
+    .replace(/&#039;/g, "'");
+
+const cleanText = (value = "") =>
+  decodeEntities(value)
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<svg[\s\S]*?<\/svg>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const escapeHtmlAttr = (value: string) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+const attr = (tag: string, name: string) => {
+  const match = tag.match(new RegExp(`${name}=["']([^"']*)["']`, "i"));
+  return match?.[1] || "";
+};
+
+const assetLabel = (href: string) => {
+  const pathname = normalizeMigratedPostPath(href).split(/[?#]/)[0] || href;
+  const fileName = pathname.split("/").filter(Boolean).pop() || "画像";
+  let label = decodeEntities(fileName);
+  try {
+    label = decodeURIComponent(label);
+  } catch {
+    // Keep the readable fallback from the original URL.
+  }
+  return label
+    .replace(/\.(?:jpe?g|png|webp|gif|avif)$/i, "")
+    .replace(/[-_]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim() || "画像";
+};
+
+const imageLinkLabel = (href: string, inner: string) => {
+  const imageTag = inner.match(/<img\b[^>]*>/i)?.[0] || "";
+  const imageAlt = cleanText(attr(imageTag, "alt"));
+  if (imageAlt) return `画像を拡大する: ${imageAlt}`;
+  const pathname = normalizeMigratedPostPath(href).split(/[?#]/)[0] || "";
+  if (/\.(?:jpe?g|png|webp|gif|avif)$/i.test(pathname)) return `画像を拡大する: ${assetLabel(href)}`;
+  return "";
+};
+
+const labelNamelessLinks = (html: string) =>
+  html.replace(
+    /<a\b([^>]*?)href=(["'])(.*?)\2([^>]*)>([\s\S]*?)<\/a>/gi,
+    (match, before, quote, href, after, inner) => {
+      if (/\saria-label=(["']).*?\1/i.test(`${before} ${after}`)) return match;
+      if (cleanText(inner)) return match;
+      const label = imageLinkLabel(href, inner);
+      if (!label) return match;
+      return `<a${before}aria-label="${escapeHtmlAttr(label)}" href=${quote}${href}${quote}${after}>${inner}</a>`;
+    },
+  );
+
+const postTitleOverrides: Record<string, string> = {
+  "/information-faq/": "医学部入試のQ&A｜倍率・学費・卒業率を医学部予備校レクサスが解説",
+};
+
+const prepareMigratedPost = (post: MigratedPost): MigratedPost => {
+  const path = normalizeMigratedPostPath(post.path);
+  return {
+    ...post,
+    title: postTitleOverrides[path] || post.title,
+    contentHtml: labelNamelessLinks(post.contentHtml),
+  };
+};
+
 export const migratedPosts = [
   ...admissionInfoPosts,
   ...universityStrategyPosts,
   ...interviewPrepPosts,
   ...voiceInterviewPosts,
-] as MigratedPost[];
+].map((post) => prepareMigratedPost(post as MigratedPost)) as MigratedPost[];
 
 export const getMigratedPostStaticPaths = () =>
   migratedPosts.map((post) => ({

@@ -134,6 +134,7 @@ const premierPlanImage = page.images[0]?.src
   ? page.images[0].src.replace("https://lexus-ec.com/wp-content/uploads", "/assets/legacy/wp-content/uploads")
   : "";
 const isLegalPage = page.canonical.includes("%e7%89%b9") || page.h1.includes("特定商取引");
+const needsFixedSourceH1 = !page.form && !premierPlan && !genekiPlan && !isLegalPage;
 ---
 
 {legacyRedirect ? (
@@ -209,6 +210,7 @@ const isLegalPage = page.canonical.includes("%e7%89%b9") || page.h1.includes("�
 ) : (
 <SiteLayout title={page.title} description={page.description} canonical={page.canonical} ogImage={seo.ogImage}>
   <main class={`fixed-page ${routeClass}${unstack ? " fixed-page--unstack" : ""}${directory ? " fixed-page--unstack fixed-page--directory" : ""}${page.form ? " fixed-page--form" : ""}${premierPlan ? " fixed-page--premier-plan" : ""}${genekiPlan ? " fixed-page--geneki-plan" : ""}`}>
+    {needsFixedSourceH1 && <h1 class="visually-hidden">{page.h1}</h1>}
     {genekiPlan && (
       <section class="geneki-plan-hero">
         <div class="content geneki-plan-hero__inner">

@@ -5,7 +5,7 @@ import "../styles/admin.css";
 interface Props {
   title: string;
   description?: string;
-  active?: "dashboard" | "content" | "reports";
+  active?: "dashboard" | "content" | "editor" | "reports" | "import";
 }
 
 const {
@@ -17,7 +17,9 @@ const {
 const navItems = [
   { id: "dashboard", label: "Overview", href: "/admin/" },
   { id: "content", label: "Content", href: "/admin/content/" },
+  { id: "editor", label: "Editor", href: "/admin/editor/" },
   { id: "reports", label: "Reports", href: "/admin/reports/" },
+  { id: "import", label: "Import", href: "/admin/reports/import/" },
 ] as const;
 ---
 

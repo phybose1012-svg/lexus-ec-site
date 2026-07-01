@@ -110,7 +110,7 @@ const exteriorGallery = [
         <figure class="garden-floor-plan">
           <div class="garden-floor-plan__grid">
             {floorPlans.map(([label, src]) => (
-              <a href={src}>
+              <a href={src} aria-label={`間取り図を拡大する: レクサスガーデン ${label}`}>
                 <img src={src} alt={`レクサスガーデン ${label}`} width="800" height="800" loading="lazy" decoding="async" />
               </a>
             ))}
