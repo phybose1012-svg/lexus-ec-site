@@ -1605,19 +1605,34 @@ body:has(.premium-hero) :is(
 }
 
 .become-oni {
-  background: linear-gradient(180deg, #241111, #6c1010);
+  /* Near-black almost all the way down, then a thin band of red-hot glow at
+     the very bottom edge — like iron heated until it burns red. */
+  background: linear-gradient(
+    180deg,
+    #000 0%,
+    #000 87%,
+    #1c0604 92%,
+    #7c150a 97%,
+    #d5340f 99%,
+    #ff5c22 100%
+  );
   padding-block: 52px;
   text-align: center;
 }
 
 .become-oni p {
   margin: 0 0 24px;
-  background: linear-gradient(to bottom, #fde047, #ef4444, #7f1d1d);
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 0 12px rgb(220 38 38 / 55%));
+  /* Same serif + flame gradient as the 鬼監理×鬼特訓 mark. */
+  font-family: var(--font-serif);
   font-size: 2.7rem;
-  font-weight: 900;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  background: linear-gradient(180deg, #f8b13a 0%, #f47a1d 32%, #db2017 64%, #7c0e12 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 0 14px rgb(244 122 29 / 45%));
 }
 
 .become-oni img {
