@@ -1610,10 +1610,10 @@ body:has(.premium-hero) :is(
   background: linear-gradient(
     180deg,
     #000 0%,
-    #000 87%,
-    #1c0604 92%,
-    #7c150a 97%,
-    #d5340f 99%,
+    #000 93.5%,
+    #1c0604 96%,
+    #7c150a 98.5%,
+    #d5340f 99.5%,
     #ff5c22 100%
   );
   padding-block: 52px;
@@ -2684,6 +2684,10 @@ body:has(.premium-hero) :is(
   .become-oni p,
   .final-message p {
     font-size: 1.55rem;
+  }
+
+  .become-oni p {
+    font-size: 2.15rem;
   }
 
   .representative__grid {
