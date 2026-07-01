@@ -115,7 +115,7 @@ const infoPosts = [
   <main class="premier-page">
     <section class="premier-opening">
       <div class="content premier-opening__inner">
-        <img src={logoStrip} alt="" width="1024" height="74" decoding="async" />
+        <img src={logoStrip} alt="" width="1024" height="74" decoding="async" aria-hidden="true" />
         <h1>2027年度対応<br />オールインワンの医学部受験サポート<br /><span>既卒生対象</span></h1>
       </div>
     </section>
@@ -176,9 +176,9 @@ const infoPosts = [
           </article>
         </div>
         <div class="premier-ideal__actions">
-          <a class="button button--red" href="/study-support-system/">“鬼監理”を詳しく見る</a>
-          <a class="button button--blue" href="/medical-english-training/">英語の鬼特訓</a>
-          <a class="button button--green" href="/medical-math-training/">数学の鬼特訓</a>
+          <a class="button button--blue" href="/study-support-system/">“鬼監理”を詳しく見る</a>
+          <a class="button button--red" href="/medical-english-training/">英語の鬼特訓</a>
+          <a class="button button--red" href="/medical-math-training/">数学の鬼特訓</a>
         </div>
       </div>
     </section>
@@ -217,7 +217,7 @@ const infoPosts = [
         <div class="premier-feature-grid">
           {featureCards.map((card) => (
             <article class="premier-feature-card">
-              <img src={card.image} alt="" width="420" height="420" loading="lazy" decoding="async" />
+              <img src={card.image} alt="" width="420" height="420" loading="lazy" decoding="async" aria-hidden="true" />
               <h3>{card.title}</h3>
               <p class="premier-feature-card__lead">{card.lead}</p>
               <p>{card.body}</p>
@@ -236,7 +236,7 @@ const infoPosts = [
 
     <section class="premier-overview" aria-labelledby="premier-overview-title">
       <div class="content">
-        <img src={logoStrip} alt="" width="1024" height="74" loading="lazy" decoding="async" />
+        <img src={logoStrip} alt="" width="1024" height="74" loading="lazy" decoding="async" aria-hidden="true" />
         <h2 id="premier-overview-title">プレミア本科の 概要</h2>
         <h3>クラス一覧</h3>
         <img class="premier-wide-image" src={classImage} alt="2026レクサスプレミア本科 クラス一覧" width="1200" height="747" loading="lazy" decoding="async" />
@@ -304,7 +304,7 @@ const infoPosts = [
         <article>
           <h2>特待生募集中</h2>
           <img src={selectionImage} alt="特待生選抜テストのお知らせ" width="1024" height="1024" loading="lazy" decoding="async" />
-          <a class="button button--red" href="#premier-selection">選抜の詳細へ</a>
+          <a class="button button--blue" href="#premier-selection">選抜の詳細へ</a>
         </article>
         <article>
           <h2>【さらに集中したい方へ】<br />レクサス専用寮に入居可能。<br />「10ヶ月合宿プラン」</h2>
@@ -317,7 +317,7 @@ const infoPosts = [
 
     <section class="premier-info" aria-labelledby="premier-info-title">
       <div class="content">
-        <img src={logoStrip} alt="" width="1024" height="74" loading="lazy" decoding="async" />
+        <img src={logoStrip} alt="" width="1024" height="74" loading="lazy" decoding="async" aria-hidden="true" />
         <h2 id="premier-info-title">最新 医学部受験情報</h2>
         <div class="premier-info-grid">
           {infoPosts.map((post) => (

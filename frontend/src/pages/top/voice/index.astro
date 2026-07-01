@@ -118,7 +118,13 @@ const successButtonLabels = [
         <div class="voice-video-grid">
           {page.videos.map((video) => (
             <article class="voice-video-card">
-              <a class="voice-video-card__media" href={video.url || "#voice-video-title"} target={video.url ? "_blank" : undefined} rel={video.url ? "noopener noreferrer" : undefined}>
+              <a
+                class="voice-video-card__media"
+                href={video.url || "#voice-video-title"}
+                target={video.url ? "_blank" : undefined}
+                rel={video.url ? "noopener noreferrer" : undefined}
+                aria-label={video.url ? `動画を新しいタブで開く: ${video.title}` : `動画準備中: ${video.title}`}
+              >
                 {video.thumbnail ? (
                   <img src={video.thumbnail.src} alt={video.thumbnail.alt || video.title} width={video.thumbnail.width || "1280"} height={video.thumbnail.height || "720"} loading="lazy" decoding="async" />
                 ) : (
@@ -159,7 +165,7 @@ const successButtonLabels = [
           {page.interviews.map((interview) => (
             <article class="voice-interview-card">
               {interview.image && (
-                <a class="voice-interview-card__image" href={interview.href}>
+                <a class="voice-interview-card__image" href={interview.href} aria-label={`合格者インタビューを読む: ${interview.title}`}>
                   <img src={interview.image.src} alt={interview.image.alt || interview.title} width={interview.image.width || "300"} height={interview.image.height || "226"} loading="lazy" decoding="async" />
                 </a>
               )}

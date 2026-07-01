@@ -171,6 +171,8 @@
   grid-template-columns: minmax(0, 1fr) minmax(210px, 300px);
   gap: 18px clamp(28px, 6vw, 74px);
   align-items: center;
+  justify-items: center;
+  text-align: center;
 }
 
 .article-hero--oni .article-hero__copy > :not(.article-hero__image) {
@@ -179,6 +181,15 @@
 
 .article-hero--oni .article-hero__template {
   color: #7a1b17;
+}
+
+.article-hero--oni .article-hero__message,
+.article-hero--oni .article-hero__lead {
+  margin-inline: auto;
+}
+
+.article-hero--oni .article-hero__meta {
+  justify-content: center;
 }
 
 .article-hero--oni h1 {
@@ -238,7 +249,11 @@
 }
 
 .article-hero--interview .article-hero__copy {
+  width: 100%;
   max-width: 860px;
+  margin-inline: auto;
+  justify-items: center;
+  text-align: center;
 }
 
 .article-hero--interview .article-hero__badge {
@@ -247,6 +262,15 @@
 
 .article-hero--interview .article-hero__template {
   color: #16436f;
+}
+
+.article-hero--interview .article-hero__message,
+.article-hero--interview .article-hero__lead {
+  margin-inline: auto;
+}
+
+.article-hero--interview .article-hero__meta {
+  justify-content: center;
 }
 
 .article-hero--interview h1 {
@@ -524,6 +548,7 @@
 .article-cta {
   background: #8b0000;
   color: #fff;
+  text-align: center;
 }
 
 .article-cta__eyebrow {
@@ -636,11 +661,27 @@
 
   .article-hero--oni .article-hero__copy {
     grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .article-hero--interview .article-hero__copy {
+    justify-items: center;
+    text-align: center;
   }
 
   .article-hero--oni .article-hero__copy > :not(.article-hero__image),
   .article-hero--oni .article-hero__image {
     grid-column: 1;
+  }
+
+  .article-hero__message,
+  .article-hero__lead {
+    margin-inline: auto;
+  }
+
+  .article-hero__meta {
+    justify-content: center;
   }
 
   .article-hero--oni .article-hero__image {

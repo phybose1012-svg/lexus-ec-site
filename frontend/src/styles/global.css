@@ -17,6 +17,18 @@
   --font-serif: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
   --radius: 8px;
   --shadow: 0 10px 26px rgb(57 38 12 / 12%);
+  --site-button-min-width: 172px;
+  --site-button-min-height: 50px;
+  --site-button-border: 2px solid var(--gold);
+  --site-button-radius: 4px;
+  --site-button-padding: 10px 18px;
+  --site-button-font-size: 1rem;
+  --site-button-font-weight: 800;
+  --site-button-line-height: 1.25;
+  --site-button-blue: #12356a;
+  --site-button-red: var(--red);
+  --site-button-green: var(--green);
+  --site-button-light: #151515;
 }
 
 * {
@@ -60,6 +72,19 @@ body {
   width: 1px;
   height: 1px;
   overflow: hidden;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  border: 0 !important;
+  white-space: nowrap !important;
 }
 
 h1,
@@ -507,28 +532,29 @@ li {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 172px;
-  min-height: 50px;
-  border: 2px solid var(--gold);
-  border-radius: 4px;
-  padding: 10px 18px;
+  min-width: var(--site-button-min-width);
+  min-height: var(--site-button-min-height);
+  border: var(--site-button-border);
+  border-radius: var(--site-button-radius);
+  padding: var(--site-button-padding);
   color: #fff;
-  font-weight: 800;
-  line-height: 1.25;
+  font-size: var(--site-button-font-size);
+  font-weight: var(--site-button-font-weight);
+  line-height: var(--site-button-line-height);
   text-align: center;
   text-decoration: none;
 }
 
 .button--red {
-  background: var(--red);
+  background: var(--site-button-red);
 }
 
 .button--blue {
-  background: #12356a;
+  background: var(--site-button-blue);
 }
 
 .button--green {
-  background: var(--green);
+  background: var(--site-button-green);
 }
 
 .button--gold {
@@ -537,7 +563,7 @@ li {
 }
 
 .button--light {
-  background: #151515;
+  background: var(--site-button-light);
 }
 
 .jewel-strip {
@@ -1941,11 +1967,11 @@ li {
   .premium-hero__bg {
     opacity: 0.52;
     filter: blur(0.65px) saturate(80%) contrast(88%) brightness(1.1);
-    object-position: 43% top;
+    object-position: center top;
   }
 
   .premium-hero__inner {
-    width: min(100% - 28px, 620px);
+    width: min(620px, calc(100% - 28px));
     padding-block: 30px 24px;
   }
 
@@ -1961,6 +1987,8 @@ li {
   }
 
   .premium-hero h2 {
+    width: 100%;
+    max-width: 100%;
     margin-top: 22px;
     font-size: 1.44rem;
     font-weight: 700;
@@ -1969,6 +1997,8 @@ li {
   }
 
   .premium-hero__target {
+    width: 100%;
+    max-width: 100%;
     margin-top: 18px;
     font-size: 0.9rem;
     font-weight: 600;

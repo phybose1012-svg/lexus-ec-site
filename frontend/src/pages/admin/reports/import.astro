@@ -1,0 +1,302 @@
+---
+import AdminLayout from "../../../layouts/AdminLayout.astro";
+---
+
+<AdminLayout title="レポート取り込み | LEXUS E.C." active="import">
+  <section class="admin-page-head">
+    <div>
+      <p class="admin-eyebrow">Report import</p>
+      <h1>監査レポートの取り込み</h1>
+      <p>
+        ローカルPCで実行したSEO分析、内部リンク監査、モバイル表示監査の結果をJSONとして保存する画面です。
+      </p>
+    </div>
+    <div class="admin-status-card">
+      <span>同期状態</span>
+      <strong id="admin-report-storage-state">Local report</strong>
+      <p id="admin-report-sync-state">ブラウザ内にレポートを保存します。</p>
+    </div>
+  </section>
+
+  <section class="admin-editor-grid">
+    <form class="admin-panel admin-editor-form" id="admin-report-form">
+      <div class="admin-panel-head">
+        <div>
+          <p class="admin-eyebrow">Importer</p>
+          <h2>レポート入力</h2>
+        </div>
+        <span class="admin-pill" id="admin-report-state">未保存</span>
+      </div>
+
+      <div class="admin-form-row">
+        <label class="admin-field">
+          <span>監査種別</span>
+          <select id="admin-report-source">
+            <option value="seo-analysis">SEO分析</option>
+            <option value="audit-internal-links">内部リンク監査</option>
+            <option value="audit-mobile-linebreaks">モバイル表示監査</option>
+            <option value="staging-check">ステージング確認</option>
+            <option value="custom">その他</option>
+          </select>
+        </label>
+        <label class="admin-field">
+          <span>状態</span>
+          <select id="admin-report-status">
+            <option value="確認中">確認中</option>
+            <option value="要修正">要修正</option>
+            <option value="良好">良好</option>
+            <option value="保留">保留</option>
+          </select>
+        </label>
+      </div>
+
+      <label class="admin-field">
+        <span>タイトル</span>
+        <input id="admin-report-title" value="SEO分析サマリー" autocomplete="off" />
+      </label>
+
+      <label class="admin-field">
+        <span>対象URL</span>
+        <input id="admin-report-url" value="https://staging.lexus-ec.pages.dev/" autocomplete="off" />
+      </label>
+
+      <div class="admin-form-row">
+        <label class="admin-field">
+          <span>優先度</span>
+          <select id="admin-report-priority">
+            <option value="高">高</option>
+            <option value="中">中</option>
+            <option value="低">低</option>
+          </select>
+        </label>
+        <label class="admin-field">
+          <span>スコア</span>
+          <input id="admin-report-score" value="-" autocomplete="off" />
+        </label>
+      </div>
+
+      <label class="admin-field">
+        <span>要約</span>
+        <textarea id="admin-report-summary" rows="4">監査結果の要点をここに記録します。</textarea>
+      </label>
+
+      <label class="admin-field">
+        <span>監査JSON</span>
+        <textarea id="admin-report-json" rows="12">{`{
+  "summary": "監査結果の要約",
+  "items": []
+}`}</textarea>
+      </label>
+
+      <label class="admin-field">
+        <span>次の作業</span>
+        <textarea id="admin-report-next-action" rows="3">優先度が高い項目から修正対象へ追加する。</textarea>
+      </label>
+
+      <div class="admin-editor-actions">
+        <button class="admin-button" type="button" id="admin-report-save">レポート保存</button>
+        <button class="admin-button admin-button--ghost" type="button" id="admin-report-sync">API同期</button>
+        <button class="admin-button admin-button--ghost" type="button" id="admin-report-validate">JSON確認</button>
+        <button class="admin-button admin-button--ghost" type="button" id="admin-report-copy">コピー</button>
+      </div>
+    </form>
+
+    <aside class="admin-editor-side">
+      <section class="admin-panel admin-preview">
+        <div class="admin-panel-head">
+          <div>
+            <p class="admin-eyebrow">Preview</p>
+            <h2>取り込み内容</h2>
+          </div>
+        </div>
+        <article class="admin-report-card is-確認中">
+          <div class="admin-report-card__head">
+            <div>
+              <span id="admin-report-preview-source">seo-analysis</span>
+              <h2 id="admin-report-preview-title">SEO分析サマリー</h2>
+            </div>
+            <strong id="admin-report-preview-score">-</strong>
+          </div>
+          <dl>
+            <div>
+              <dt>状態</dt>
+              <dd id="admin-report-preview-status">確認中</dd>
+            </div>
+            <div>
+              <dt>優先度</dt>
+              <dd id="admin-report-preview-priority">高</dd>
+            </div>
+          </dl>
+          <p id="admin-report-preview-summary">監査結果の要点をここに記録します。</p>
+          <footer id="admin-report-preview-next-action">優先度が高い項目から修正対象へ追加する。</footer>
+        </article>
+      </section>
+
+      <section class="admin-panel">
+        <div class="admin-panel-head">
+          <div>
+            <p class="admin-eyebrow">Saved</p>
+            <h2>保存済みレポート</h2>
+          </div>
+          <button class="admin-mini-button" type="button" id="admin-report-refresh">更新</button>
+        </div>
+        <div class="admin-draft-list" id="admin-report-list"></div>
+      </section>
+    </aside>
+  </section>
+
+  <script>
+    // @ts-nocheck
+    const storageKey = "lexus-admin-reports-v1";
+    const getElement = (id) => document.getElementById(id);
+    const fields = {
+      source: getElement("admin-report-source"),
+      status: getElement("admin-report-status"),
+      title: getElement("admin-report-title"),
+      url: getElement("admin-report-url"),
+      priority: getElement("admin-report-priority"),
+      score: getElement("admin-report-score"),
+      summary: getElement("admin-report-summary"),
+      rawJson: getElement("admin-report-json"),
+      nextAction: getElement("admin-report-next-action"),
+    };
+
+    const readReports = () => {
+      try {
+        return JSON.parse(localStorage.getItem(storageKey) || "[]");
+      } catch {
+        return [];
+      }
+    };
+
+    const writeReports = (reports) => {
+      localStorage.setItem(storageKey, JSON.stringify(reports));
+    };
+
+    const parseRawJson = () => {
+      try {
+        return JSON.parse(fields.rawJson.value || "{}");
+      } catch {
+        return null;
+      }
+    };
+
+    const reportFromForm = () => ({
+      id: `${fields.source.value}-${Date.now()}`,
+      source: fields.source.value,
+      title: fields.title.value.trim(),
+      url: fields.url.value.trim(),
+      status: fields.status.value,
+      priority: fields.priority.value,
+      score: fields.score.value.trim(),
+      summary: fields.summary.value.trim(),
+      nextAction: fields.nextAction.value.trim(),
+      rawJson: fields.rawJson.value.trim(),
+      parsed: parseRawJson(),
+      updatedAt: new Date().toISOString(),
+    });
+
+    const setState = (label) => {
+      getElement("admin-report-state").textContent = label;
+    };
+
+    const updatePreview = () => {
+      getElement("admin-report-preview-source").textContent = fields.source.value;
+      getElement("admin-report-preview-title").textContent = fields.title.value || "無題";
+      getElement("admin-report-preview-score").textContent = fields.score.value || "-";
+      getElement("admin-report-preview-status").textContent = fields.status.value;
+      getElement("admin-report-preview-priority").textContent = fields.priority.value;
+      getElement("admin-report-preview-summary").textContent = fields.summary.value || "";
+      getElement("admin-report-preview-next-action").textContent = fields.nextAction.value || "";
+    };
+
+    const renderReports = () => {
+      const list = getElement("admin-report-list");
+      const reports = readReports();
+      if (!reports.length) {
+        list.innerHTML = '<p class="admin-empty">保存済みレポートはありません。</p>';
+        return;
+      }
+      list.replaceChildren(
+        ...reports.map((report) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "admin-draft-item";
+          button.innerHTML = "<strong></strong><span></span><small></small>";
+          button.querySelector("strong").textContent = report.title || "無題";
+          button.querySelector("span").textContent = `${report.source || ""} / ${report.status || ""}`;
+          button.querySelector("small").textContent = new Intl.DateTimeFormat("ja-JP", {
+            dateStyle: "medium",
+            timeStyle: "short",
+          }).format(new Date(report.updatedAt));
+          button.addEventListener("click", () => {
+            fields.source.value = report.source || "custom";
+            fields.status.value = report.status || "確認中";
+            fields.title.value = report.title || "";
+            fields.url.value = report.url || "";
+            fields.priority.value = report.priority || "中";
+            fields.score.value = report.score || "-";
+            fields.summary.value = report.summary || "";
+            fields.rawJson.value = report.rawJson || "{}";
+            fields.nextAction.value = report.nextAction || "";
+            setState("編集中");
+            updatePreview();
+          });
+          return button;
+        }),
+      );
+    };
+
+    const saveReport = () => {
+      const report = reportFromForm();
+      const reports = [report, ...readReports()].slice(0, 50);
+      writeReports(reports);
+      setState("保存済み");
+      renderReports();
+      updatePreview();
+      return report;
+    };
+
+    const syncReport = async () => {
+      const report = saveReport();
+      try {
+        const response = await fetch("/admin/api/reports", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(report),
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        getElement("admin-report-storage-state").textContent = "API synced";
+        getElement("admin-report-sync-state").textContent = "APIへ同期しました。";
+      } catch {
+        getElement("admin-report-storage-state").textContent = "Local report";
+        getElement("admin-report-sync-state").textContent = "API未設定のため、ブラウザ内に保存しました。";
+      }
+    };
+
+    const validateJson = () => {
+      setState(parseRawJson() ? "JSON OK" : "JSONエラー");
+    };
+
+    const copyReport = async () => {
+      await navigator.clipboard.writeText(JSON.stringify(reportFromForm(), null, 2));
+      setState("コピー済み");
+    };
+
+    Object.values(fields).forEach((field) => {
+      field.addEventListener("input", () => {
+        setState("編集中");
+        updatePreview();
+      });
+    });
+
+    getElement("admin-report-save").addEventListener("click", saveReport);
+    getElement("admin-report-sync").addEventListener("click", syncReport);
+    getElement("admin-report-validate").addEventListener("click", validateJson);
+    getElement("admin-report-copy").addEventListener("click", copyReport);
+    getElement("admin-report-refresh").addEventListener("click", renderReports);
+
+    updatePreview();
+    renderReports();
+  </script>
+</AdminLayout>

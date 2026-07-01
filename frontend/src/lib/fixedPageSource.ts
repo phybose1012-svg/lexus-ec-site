@@ -152,6 +152,10 @@ const pageDescription = (html: string) => {
 
 const pageTitle = (html: string) => cleanText(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] || "") || seo.title;
 
+const pageTitleOverrides: Record<string, string> = {
+  "/information-faq/": "医学部入試のQ&A｜倍率・学費・卒業率を医学部予備校レクサスが解説",
+};
+
 const pageCanonical = (html: string, fallbackPath: string) => {
   const tag = html.match(/<link[^>]+rel=["']canonical["'][^>]*>/i)?.[0] || "";
   return attr(tag, "href") || new URL(fallbackPath, "https://lexus-ec.com").href;
@@ -228,6 +232,63 @@ const stripUnsafeAttrs = (html: string) =>
     .replace(/\s(?:id|data-[\w:-]+)=(["'])(.*?)\1/gi, "")
     .replace(/\s(?:role|tabindex|target|rel)=(["'])(.*?)\1/gi, "");
 
+const escapeHtmlAttr = (value: string) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+const assetLabel = (href: string) => {
+  const pathname = routePathname(href).split(/[?#]/)[0] || href;
+  const fileName = pathname.split("/").filter(Boolean).pop() || "画像";
+  const decoded = decodeEntities(fileName);
+  let label = decoded;
+  try {
+    label = decodeURIComponent(decoded);
+  } catch {
+    label = decoded;
+  }
+  return label
+    .replace(/\.(?:jpe?g|png|webp|gif|avif)$/i, "")
+    .replace(/[-_]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim() || "画像";
+};
+
+const accessibleLinkLabel = (href: string) => {
+  const pathname = routePathname(href);
+  if (pathname.includes("/request-documents/")) return "資料請求ページを開く";
+  if (/\.(?:jpe?g|png|webp|gif|avif)$/i.test(pathname.split(/[?#]/)[0] || "")) {
+    return `画像を開く: ${assetLabel(href)}`;
+  }
+  return "";
+};
+
+const labelNamelessLinks = (html: string) =>
+  html.replace(
+    /<a\b([^>]*?)href=(["'])(.*?)\2([^>]*)>([\s\S]*?)<\/a>/gi,
+    (match, before, quote, href, after, inner) => {
+      if (/\saria-label=(["']).*?\1/i.test(`${before} ${after}`)) return match;
+      if (cleanText(inner)) return match;
+      const label = accessibleLinkLabel(href);
+      if (!label) return match;
+      return `<a${before}aria-label="${escapeHtmlAttr(label)}" href=${quote}${href}${quote}${after}>${inner}</a>`;
+    },
+  );
+
+const addImageAltDefaults = (html: string) =>
+  html.replace(/<img\b([^>]*)>/gi, (tag, attrs) => {
+    const src = attr(tag, "src");
+    if (!src) return tag;
+    const hasAlt = /\salt=(["'])(.*?)\1/i.test(tag);
+    if (hasAlt && !/\salt=(["'])\s*\1/i.test(tag)) return tag;
+    const alt = assetLabel(src);
+    if (hasAlt) return tag.replace(/\salt=(["'])\s*\1/i, ` alt="${escapeHtmlAttr(alt)}"`);
+    const normalizedAttrs = String(attrs).replace(/\/\s*$/, "");
+    return `<img${normalizedAttrs} alt="${escapeHtmlAttr(alt)}">`;
+  });
+
 const addMediaDefaults = (html: string) =>
   html
     .replace(/<img\b([^>]*)>/gi, (tag) => {
@@ -262,7 +323,7 @@ const sanitizeSourceHtml = (content: string, options: { removeFirstH1?: boolean 
       return `<h2${attrs}>${inner}</h2>`;
     });
 
-  return addMediaDefaults(stripUnsafeAttrs(restoreGalleryImages(replaceExternalWidgets(normalizeInternalLinks(normalizeAssetAttrs(withoutDynamic))))))
+  return addMediaDefaults(addImageAltDefaults(labelNamelessLinks(stripUnsafeAttrs(restoreGalleryImages(replaceExternalWidgets(normalizeInternalLinks(normalizeAssetAttrs(withoutDynamic))))))))
     .replace(/<div class=["']elementor-widget-container["']>\s*<\/div>/gi, " ")
     .replace(/<p>\s*<\/p>/gi, " ")
     .replace(/\s+([）」』】、。，．！？!?])/g, "$1")
@@ -289,7 +350,7 @@ const extractPage = (item: PageManifestItem): ExtractedPage => {
     .replace(/<iframe[\s\S]*?<\/iframe>/gi, " ")
     .replace(/<noscript[\s\S]*?<\/noscript>/gi, " ");
 
-  const title = pageTitle(html);
+  const title = pageTitleOverrides[item.path] || pageTitle(html);
   const description = pageDescription(html);
   const headingRows = [...content.matchAll(/<h([1-3])[^>]*>([\s\S]*?)<\/h\1>/gi)]
     .map((match) => ({ tag: `h${match[1]}`, text: cleanText(match[2]) }))

@@ -56,8 +56,8 @@ const flowActions = [
           <p class="course-title-card__lead">医学部受験で優位に立つ先取り学習コースです。慶應、日大の内部進学対策も承ります。</p>
         </div>
         <div class="course-detail-hero__actions">
-          <a class="button button--blue" href="/test-entry/">体験授業はコチラ</a>
-          <a class="button button--red" href="/reservation/">個別相談はコチラ</a>
+          <a class="button button--red" href="/test-entry/">体験授業はコチラ</a>
+          <a class="button button--blue" href="/reservation/">個別相談はコチラ</a>
         </div>
       </div>
     </section>
@@ -82,8 +82,8 @@ const flowActions = [
       <div class="content course-detail-hero__grid">
         <div>
           <img class="course-detail-logo-strip" src={images.logoStrip} alt="ロゴ" width="800" height="58" decoding="async" />
-          <h1>【オンライン対応】<br />医学部受験で優位に立つ先取りコース</h1>
-          <h4>メディカル準備コース (高等部)</h4>
+          <h2 class="course-detail-subhero-title">【オンライン対応】<br />医学部受験で優位に立つ先取りコース</h2>
+          <p class="course-detail-course-name">メディカル準備コース (高等部)</p>
           <p>Medical Prep Course</p>
           <div class="fixed-hero__actions">
             {heroActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
@@ -130,7 +130,7 @@ const flowActions = [
         <div class="course-detail-plan-grid">
           {plans.map((plan) => (
             <article>
-              {plan.heading === "h2" ? <h2>{plan.title}</h2> : <h4>{plan.title}</h4>}
+              <h3>{plan.title}</h3>
               <ul>{plan.rows.map((row) => <li>{row}</li>)}</ul>
             </article>
           ))}

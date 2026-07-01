@@ -19,6 +19,8 @@ const analyticsHostnames = (
   .filter(Boolean);
 const analyticsBranch = import.meta.env.PUBLIC_ANALYTICS_BRANCH || "main";
 const deploymentBranch = import.meta.env.CF_PAGES_BRANCH || "";
+const shouldNoindex = Boolean(deploymentBranch && deploymentBranch !== analyticsBranch);
+const robotsContent = shouldNoindex ? "noindex,nofollow,max-image-preview:large" : "max-image-preview:large";
 const shouldRenderAnalytics = Boolean(
   gaMeasurementId && analyticsHostnames.length && deploymentBranch === analyticsBranch
 );
@@ -31,7 +33,7 @@ const shouldRenderAnalytics = Boolean(
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="max-image-preview:large" />
+    <meta name="robots" content={robotsContent} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="canonical" href={canonical} />
     <meta property="og:locale" content="ja_JP" />

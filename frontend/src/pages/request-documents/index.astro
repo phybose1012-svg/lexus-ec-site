@@ -19,7 +19,7 @@ const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" 
   <main class="minimal-form-page request-doc-page">
     <section class="request-doc-intro" aria-label="資料請求フォーム案内">
       <div class="logo-strip logo-strip--top" aria-hidden="true"></div>
-      <p>必須事項を入力して<br />「送信ボタンを」押して下さい。</p>
+      <p data-admin-editable="request.intro">必須事項を入力して<br />「送信ボタンを」押して下さい。</p>
     </section>
 
     <section class="google-form-lite" aria-label="資料請求フォーム">
@@ -29,8 +29,8 @@ const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" 
         <input type="text" name="websiteUrl" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;" />
 
         <div class="google-form-lite__head">
-          <h1 class="google-form-lite__title">資料請求フォーム</h1>
-          <p>必須項目を入力してください。</p>
+          <h1 class="google-form-lite__title" data-admin-editable="request.form.title">資料請求フォーム</h1>
+          <p data-admin-editable="request.form.lead">必須項目を入力してください。</p>
         </div>
 
         <p class="google-form-lite__required"><em>*</em> は必須項目です</p>
@@ -79,7 +79,7 @@ const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" 
           </span>
         </label>
 
-        <button class="google-form-lite__submit" type="submit">送信</button>
+        <button class="google-form-lite__submit" type="submit" data-admin-editable="request.submit">送信</button>
         <p class="form-submit-note" data-local-form-status hidden></p>
       </form>
     </section>

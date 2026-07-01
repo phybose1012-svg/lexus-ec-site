@@ -2,7 +2,7 @@
 import { seo } from "../../../data/home";
 import SiteLayout from "../../../layouts/SiteLayout.astro";
 
-const title = "アクセス";
+const title = "アクセス・校舎案内｜渋谷駅徒歩5分の医学部予備校レクサスE.C.";
 const description = "JR渋谷駅の新南改札から徒歩5分.。校舎と寮が一体の医学部予備校です。 〒150-0031 東京都渋谷区桜丘町29-7 LEXUS GADEN";
 
 const images = {
@@ -99,13 +99,13 @@ const routeSteps = [
     <section class="access-map" aria-labelledby="access-campus-title">
       <div class="content access-map__grid">
         <div>
-          <h3 id="access-campus-title">レクサスガーデン校舎</h3>
+          <h2 id="access-campus-title">レクサスガーデン校舎</h2>
           <p class="access-campus-copy">校舎と寮が一体になった、医学部受験に集中するための学習拠点です。</p>
           <p class="access-campus-address">〒150-0031 東京都渋谷区桜丘町29番7号 LEXUS GARDEN<br />★JR渋谷駅の 新南改札 から徒歩５分<br />03-3477-1306</p>
           <div class="access-button-row">
             {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
           </div>
-          <h4>Google Map</h4>
+          <h3>Google Map</h3>
           <a class="access-map-card" href="https://www.google.com/maps/search/?api=1&query=東京都渋谷区桜丘町29-7" rel="noreferrer">
             <span>東京都渋谷区桜丘町29-7</span>
             <strong>Google Mapで開く</strong>
@@ -117,7 +117,7 @@ const routeSteps = [
 
     <section class="access-route" aria-labelledby="access-route-title">
       <div class="content">
-        <h4 id="access-route-title">↓ 道案内はコチラ ↓</h4>
+        <h2 id="access-route-title">↓ 道案内はコチラ ↓</h2>
         <div class="access-route-grid">
           {routeSteps.map((step) => (
             <figure class="access-step">
