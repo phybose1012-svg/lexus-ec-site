@@ -1,9 +1,16 @@
 ---
 import { seo } from "../../../data/home";
-import { getVoicePage } from "../../../lib/voiceSource";
+import { getVoicePage, type VoiceImage } from "../../../lib/voiceSource";
 import SiteLayout from "../../../layouts/SiteLayout.astro";
 
 const page = getVoicePage();
+
+// Success-student photos for the hero marquee (the "wall of pass").
+const isImage = (image: VoiceImage | undefined): image is VoiceImage => Boolean(image);
+const interviewImages = page.interviews.map((item) => item.image).filter(isImage);
+const marqueePool: VoiceImage[] = interviewImages.length >= 12 ? interviewImages : page.successPhotos.map((story) => story.image);
+const marqueeRow1 = marqueePool.filter((_, index) => index % 2 === 0).slice(0, 18);
+const marqueeRow2 = marqueePool.filter((_, index) => index % 2 === 1).slice(0, 18);
 
 const topLinks = [
   { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
@@ -37,6 +44,27 @@ const successButtonLabels = [
       <div class="content voice-hero__inner">
         <p class="voice-hero__eyebrow">SUCCESS STORIES</p>
         <h1>{page.h1}</h1>
+        <p class="voice-hero__count">{page.graduateCopy}</p>
+      </div>
+      {marqueeRow1.length > 0 && (
+        <div class="voice-marquee" aria-hidden="true">
+          <div class="voice-marquee__row voice-marquee__row--left">
+            {[...marqueeRow1, ...marqueeRow1].map((image) => (
+              <span class="voice-marquee__item">
+                <img src={image.src} alt="" width="160" height="120" loading="lazy" decoding="async" />
+              </span>
+            ))}
+          </div>
+          <div class="voice-marquee__row voice-marquee__row--right">
+            {[...marqueeRow2, ...marqueeRow2].map((image) => (
+              <span class="voice-marquee__item">
+                <img src={image.src} alt="" width="160" height="120" loading="lazy" decoding="async" />
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+      <div class="content voice-hero__inner">
         <h2>{page.mainCopy}</h2>
         <p>レクサス教育センターでは、情熱と実力を兼ね備えた講師達があなたの学習を厳しく管理し、合格へ導きます。講師の指示通りに課題をこなせば、医学部に合格する実力が必ず身につきます。</p>
       </div>
