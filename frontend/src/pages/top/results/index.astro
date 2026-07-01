@@ -130,9 +130,16 @@ const conditions = [
     <section class="results-hero">
       <div class="content results-hero__grid">
         <div>
-          <p class="results-hero__lead">【全医学部受験生へ】密度の高い勉強をしませんか？</p>
+          <p class="results-hero__lead">
+            <span>【全医学部受験生へ】</span>
+            <span>密度の高い勉強をしませんか？</span>
+          </p>
           <h1>医学部合格を叶えるメソッド</h1>
-          <p>「鬼監理」と「鬼特訓」があなたを劇的に変えます。さあ、“勉強の鬼”と化せ！</p>
+          <p class="results-hero__copy">
+            <span>「鬼監理」と「鬼特訓」が</span>
+            <span>あなたを劇的に変えます。</span>
+            <span>さあ、“勉強の鬼”と化せ！</span>
+          </p>
           <strong>レクサス教育センターは元祖“鬼特訓予備校”です。</strong>
         </div>
         <img src={images.oni} alt="鬼特訓イメージキャラクター" width="234" height="260" decoding="async" />
@@ -147,6 +154,9 @@ const conditions = [
           <h2 id="results-achievement-title">合格実績</h2>
           <span>～ 一年で合格する割合 ～</span>
         </header>
+        <p class="results-achievement__intro">
+          レクサスは、厳しい鬼監理・鬼特訓を30年以上続けてきた医学部専門予備校です。少人数の環境で、勉強時間・課題管理・入試情報をまとめて支えます。
+        </p>
         <div class="results-stat-grid">
           {stats.map((stat) => (
             <article>
@@ -170,7 +180,6 @@ const conditions = [
         <div class="results-achievement__actions" aria-label="合格メソッドページの主要導線">
           {resultActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
         </div>
-        <img class="results-precondition-photo" src={images.representative} alt="レクサス教育センター代表" width="435" height="533" loading="lazy" decoding="async" />
       </div>
     </section>
 
