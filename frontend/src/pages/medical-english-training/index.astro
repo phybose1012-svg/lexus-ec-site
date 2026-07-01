@@ -148,9 +148,9 @@ const grammarSteps = [
         </figure>
       </div>
       <nav class="eng-link-row" aria-label="関連ページ">
-        <a class="button" href="/top/teacher/">講師紹介</a>
-        <a class="button" href="/top/voice/">合格体験記</a>
-        <a class="button" href="/top/history/">理念と沿革</a>
+        <a class="button button--blue" href="/top/teacher/">講師紹介</a>
+        <a class="button button--green" href="/top/voice/">合格体験記</a>
+        <a class="button button--red" href="/top/history/">理念と沿革</a>
       </nav>
     </section>
 
@@ -200,14 +200,14 @@ const grammarSteps = [
         <p class="eng-related__title">鬼監理</p>
         <p class="eng-related__catch">プロ講師の眼力<br />×<br />医学部専門AIのデータ分析</p>
         <p>副代表クラスのトップ講師陣が担任となり、学習進捗、得意不得意、成長速度を監理。学習から「無駄」と「甘え」を排除します。</p>
-        <a class="button" href="/study-support-system/">“鬼監理”を詳しく見る</a>
+        <a class="button button--blue" href="/study-support-system/">“鬼監理”を詳しく見る</a>
       </article>
       <article>
         <img src={assets.oniTraining} alt="" width="234" height="260" loading="lazy" decoding="async" />
         <p class="eng-related__title">鬼特訓</p>
         <p class="eng-related__catch">プロ講師の質問対応<br />×<br />課題の具体化</p>
         <p>授業後の自習時間を濃厚な特訓時間へ。課題提示、即時添削、追加課題で、夕方以降の学習密度を高めます。</p>
-        <a class="button" href="/medical-math-training/">数学の“鬼特訓”も詳しく見る</a>
+        <a class="button button--red" href="/medical-math-training/">数学の“鬼特訓”も詳しく見る</a>
       </article>
     </section>
 
@@ -216,9 +216,9 @@ const grammarSteps = [
       <h2 id="eng-contact-title">まずは、お問合せください。</h2>
       <p>医学部英語をどう伸ばすべきか、現在地から具体的に整理します。</p>
       <div class="eng-link-row">
-        <a class="button" href="/request-documents/">資料請求</a>
-        <a class="button" href="/reservation/">個別説明会</a>
-        <a class="button" href="/top/contact/">お問い合わせ</a>
+        <a class="button button--red" href="/request-documents/">資料請求</a>
+        <a class="button button--blue" href="/reservation/">個別説明会</a>
+        <a class="button button--light" href="/top/contact/">お問い合わせ</a>
       </div>
     </section>
   </main>
@@ -563,26 +563,20 @@ const grammarSteps = [
     width: 100%;
   }
 
-  .eng-link-row a,
-  .eng-related a {
+  .eng-link-row .button,
+  .eng-related .button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 42px;
-    border-radius: 4px;
-    background: var(--eng-red);
-    color: #fff;
-    padding: 10px 18px;
-    font-weight: 800;
+    min-width: var(--site-button-min-width);
+    min-height: var(--site-button-min-height);
+    border: var(--site-button-border);
+    border-radius: var(--site-button-radius);
+    padding: var(--site-button-padding);
+    font-size: var(--site-button-font-size);
+    font-weight: var(--site-button-font-weight);
+    line-height: var(--site-button-line-height);
     text-decoration: none;
-  }
-
-  .eng-link-row a:nth-child(2) {
-    background: var(--eng-blue);
-  }
-
-  .eng-link-row a:nth-child(3) {
-    background: #171717;
   }
 
   .eng-side-mascot {
@@ -804,7 +798,13 @@ const grammarSteps = [
     .eng-link-row {
       display: grid;
       grid-template-columns: 1fr;
-      max-width: 270px;
+      max-width: 290px;
+      margin-inline: auto;
+    }
+
+    .eng-link-row .button,
+    .eng-related .button {
+      width: min(100%, 290px);
     }
 
     .eng-memory-flow {
