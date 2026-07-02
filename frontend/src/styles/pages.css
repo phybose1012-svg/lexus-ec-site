@@ -9088,26 +9088,34 @@
 
 .voice-interview-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
 }
 
-/* Show only the first 9 interviews until "もっと見る" is tapped. */
-.voice-interview-grid.is-collapsed .voice-interview-card:nth-child(n + 10) {
+/* Show only the first 8 interviews (clean rows) until "もっと見る" is tapped. */
+.voice-interview-grid.is-collapsed .voice-interview-card:nth-child(n + 9) {
   display: none;
 }
 
 .voice-interview-more {
-  margin-top: 32px;
+  margin-top: 36px;
   text-align: center;
 }
 
 .voice-interview-card {
   display: grid;
   grid-template-rows: auto 1fr;
-  border: 1px solid #e3d4bc;
+  overflow: hidden;
+  border: 1px solid #ecdfc8;
+  border-radius: 10px;
   background: #fff;
-  box-shadow: 0 8px 20px rgb(55 41 20 / 10%);
+  box-shadow: 0 6px 16px rgb(55 41 20 / 8%);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.voice-interview-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgb(55 41 20 / 14%);
 }
 
 .voice-interview-card__image {
@@ -9117,22 +9125,43 @@
 
 .voice-interview-card__image img {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
+  object-position: center 28%;
 }
 
-.voice-interview-card > div {
+.voice-interview-card__body {
   display: grid;
-  gap: 14px;
-  align-content: space-between;
-  min-height: 156px;
-  padding: 18px;
+  gap: 8px;
+  align-content: start;
+  min-height: 132px;
+  padding: 16px 16px 18px;
+}
+
+.voice-interview-card__uni {
+  margin: 0;
+  color: #9a7422;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+
+.voice-interview-card__uni::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 1px;
+  margin-right: 6px;
+  background: #c5a059;
+  vertical-align: middle;
 }
 
 .voice-interview-card h3 {
   margin: 0;
-  font-size: 1rem;
-  line-height: 1.68;
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.6;
 }
 
 .voice-interview-card h3 a {
@@ -9142,9 +9171,10 @@
 
 .voice-readmore {
   justify-self: start;
+  margin-top: 4px;
   border-bottom: 2px solid #b11219;
   color: #b11219;
-  font-size: 0.92rem;
+  font-size: 0.84rem;
   font-weight: 900;
   text-decoration: none;
 }
@@ -9275,7 +9305,6 @@
 
   .voice-success-grid,
   .voice-video-grid,
-  .voice-interview-grid,
   .voice-notice__grid {
     grid-template-columns: 1fr;
   }
@@ -9292,17 +9321,28 @@
     gap: 10px;
   }
 
-  .voice-interview-card > div {
-    min-height: 168px;
-    padding: 22px;
-  }
-
-  .voice-interview-card__image img {
-    aspect-ratio: 4 / 3;
-  }
-
   .voice-interview-grid {
-    gap: 28px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .voice-interview-card__body {
+    min-height: 112px;
+    padding: 12px 12px 14px;
+    gap: 6px;
+  }
+
+  .voice-interview-card__uni {
+    font-size: 0.68rem;
+  }
+
+  .voice-interview-card h3 {
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  .voice-readmore {
+    font-size: 0.78rem;
   }
 }
 

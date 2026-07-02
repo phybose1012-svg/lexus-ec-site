@@ -189,22 +189,27 @@ const successButtonLabels = [
           <p>INTERVIEW ARCHIVE</p>
           <h2 id="voice-interviews-title">合格者インタビューを公開中！</h2>
         </header>
-        <div class={`voice-interview-grid${page.interviews.length > 9 ? " is-collapsed" : ""}`} data-interview-grid>
-          {page.interviews.map((interview) => (
-            <article class="voice-interview-card">
-              {interview.image && (
-                <a class="voice-interview-card__image" href={interview.href} aria-label={`合格者インタビューを読む: ${interview.title}`}>
-                  <img src={interview.image.src} alt={interview.image.alt || interview.title} width={interview.image.width || "300"} height={interview.image.height || "226"} loading="lazy" decoding="async" />
-                </a>
-              )}
-              <div>
-                <h3><a href={interview.href}>{interview.title}</a></h3>
-                <a class="voice-readmore" href={interview.href}>続きを読む</a>
-              </div>
-            </article>
-          ))}
+        <div class={`voice-interview-grid${page.interviews.length > 8 ? " is-collapsed" : ""}`} data-interview-grid>
+          {page.interviews.map((interview) => {
+            const [headline, ...uniParts] = interview.title.split("｜");
+            const university = uniParts.join("｜").trim();
+            return (
+              <article class="voice-interview-card">
+                {interview.image && (
+                  <a class="voice-interview-card__image" href={interview.href} aria-label={`合格者インタビューを読む: ${interview.title}`}>
+                    <img src={interview.image.src} alt={interview.image.alt || interview.title} width={interview.image.width || "300"} height={interview.image.height || "226"} loading="lazy" decoding="async" />
+                  </a>
+                )}
+                <div class="voice-interview-card__body">
+                  {university && <p class="voice-interview-card__uni">{university}</p>}
+                  <h3><a href={interview.href}>{headline.trim()}</a></h3>
+                  <a class="voice-readmore" href={interview.href}>続きを読む</a>
+                </div>
+              </article>
+            );
+          })}
         </div>
-        {page.interviews.length > 9 && (
+        {page.interviews.length > 8 && (
           <div class="voice-interview-more">
             <button class="button button--red" type="button" data-interview-more>合格者インタビューをもっと見る</button>
           </div>
