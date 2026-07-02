@@ -1,5 +1,5 @@
 ---
-import LegacyFormFooter from "../../components/fixed/LegacyFormFooter.astro";
+import SiteFooter from "../../components/site/SiteFooter.astro";
 import PendingFormScript from "../../components/fixed/PendingFormScript.astro";
 import SiteHeader from "../../components/site/SiteHeader.astro";
 import { seo } from "../../data/home";
@@ -87,5 +87,5 @@ const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" 
     <div class="logo-strip logo-strip--bottom" aria-hidden="true"></div>
   </main>
   {!configuredEndpoint && <PendingFormScript />}
-  <LegacyFormFooter />
+  <SiteFooter />
 </BaseLayout>

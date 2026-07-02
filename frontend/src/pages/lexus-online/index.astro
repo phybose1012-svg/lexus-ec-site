@@ -316,8 +316,14 @@ const faqs = [
   <main class="lo-page">
     <nav class="lo-fixed-nav" aria-label="Lexus Online ページナビゲーション">
       <div class="content">
-        <a href="/lexus-online/" aria-current="page">概要</a>
-        {lexusOnlineDetailPages.map((item) => <a href={item.href}>{item.label}</a>)}
+        <button class="lo-nav-toggle" type="button" aria-expanded="false" aria-controls="lo-fixed-nav-list" data-lo-nav-toggle>
+          <span class="lo-nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="lo-nav-toggle__label">メニュー</span>
+        </button>
+        <div class="lo-nav-list" id="lo-fixed-nav-list">
+          <a href="/lexus-online/" aria-current="page">概要</a>
+          {lexusOnlineDetailPages.map((item) => <a href={item.href}>{item.label}</a>)}
+        </div>
       </div>
     </nav>
 
@@ -347,7 +353,13 @@ const faqs = [
 
     <nav class="lo-page-nav" aria-label="Lexus Online ページ内目次">
       <div class="content">
-        {pageNav.map((item) => <a href={item.href}>{item.label}</a>)}
+        <button class="lo-nav-toggle" type="button" aria-expanded="false" aria-controls="lo-page-nav-list" data-lo-nav-toggle>
+          <span class="lo-nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="lo-nav-toggle__label">目次</span>
+        </button>
+        <div class="lo-nav-list" id="lo-page-nav-list">
+          {pageNav.map((item) => <a href={item.href}>{item.label}</a>)}
+        </div>
       </div>
     </nav>
 
@@ -745,6 +757,22 @@ const faqs = [
         tilt.style.setProperty("--tilt-y", `${Math.max(-1, Math.min(1, x)) * 5}deg`);
       });
     }
+
+    // Mobile hamburger toggles for the fixed nav + in-page ToC.
+    root.querySelectorAll("[data-lo-nav-toggle]").forEach((toggle) => {
+      const nav = toggle.closest(".lo-fixed-nav, .lo-page-nav");
+      if (!nav) return;
+      toggle.addEventListener("click", () => {
+        const open = nav.classList.toggle("lo-nav-open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+      nav.querySelectorAll(".lo-nav-list a").forEach((link) =>
+        link.addEventListener("click", () => {
+          nav.classList.remove("lo-nav-open");
+          toggle.setAttribute("aria-expanded", "false");
+        }),
+      );
+    });
   })();
 </script>
 
@@ -1665,18 +1693,45 @@ const faqs = [
     box-shadow: 0 10px 24px rgb(57 38 12 / 7%);
   }
 
-  .lo-fixed-nav .content {
+  .lo-fixed-nav .content,
+  .lo-page-nav .content {
     display: flex;
-    flex-wrap: nowrap;
-    gap: 1px;
     justify-content: center;
-    overflow-x: auto;
     padding-block: 10px;
-    scrollbar-width: none;
   }
 
-  .lo-fixed-nav .content::-webkit-scrollbar {
+  /* Hamburger toggle — hidden on desktop, shown on mobile. */
+  .lo-nav-toggle {
     display: none;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--lo-line);
+    border-radius: 999px;
+    background: #fff;
+    color: #2c2824;
+    padding: 8px 16px;
+    font-size: 0.86rem;
+    font-weight: 900;
+    cursor: pointer;
+  }
+
+  .lo-nav-toggle__bars {
+    display: inline-grid;
+    gap: 3px;
+    width: 16px;
+  }
+
+  .lo-nav-toggle__bars span {
+    height: 2px;
+    border-radius: 2px;
+    background: var(--lo-red);
+  }
+
+  .lo-nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+    justify-content: center;
   }
 
   .lo-fixed-nav a {
@@ -1708,14 +1763,6 @@ const faqs = [
     z-index: 5;
     border-block: 1px solid var(--lo-line);
     background: rgb(255 255 255 / 92%);
-  }
-
-  .lo-page-nav .content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1px;
-    justify-content: center;
-    padding-block: 10px;
   }
 
   .lo-page-nav a {
@@ -2562,39 +2609,51 @@ const faqs = [
       display: none;
     }
 
+    /* Collapse both nav bars into a hamburger dropdown on mobile. */
     .lo-fixed-nav .content,
     .lo-page-nav .content {
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 6px;
-      width: min(100% - 28px, 420px);
-      justify-content: flex-start;
-      overflow-x: auto;
+      position: relative;
+      justify-content: center;
       padding-block: 8px;
-      scrollbar-width: none;
     }
 
-    .lo-fixed-nav .content {
-      width: min(100% - 20px, 540px);
+    .lo-nav-toggle {
+      display: inline-flex;
     }
 
-    .lo-fixed-nav .content::-webkit-scrollbar,
-    .lo-page-nav .content::-webkit-scrollbar {
+    .lo-nav-list {
       display: none;
-    }
-
-    .lo-fixed-nav a,
-    .lo-page-nav a {
-      flex: 0 0 auto;
-      min-height: 38px;
-      border-color: var(--lo-line);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 40;
+      flex-direction: column;
+      gap: 0;
+      max-height: 66vh;
+      overflow-y: auto;
       background: #fff;
-      font-size: 0.82rem;
-      white-space: nowrap;
+      border-top: 1px solid var(--lo-line);
+      box-shadow: 0 16px 30px rgb(57 38 12 / 16%);
     }
 
-    .lo-fixed-nav a[aria-current="page"] {
-      border-color: rgb(196 154 45 / 42%);
+    .lo-fixed-nav.lo-nav-open .lo-nav-list,
+    .lo-page-nav.lo-nav-open .lo-nav-list {
+      display: flex;
+    }
+
+    .lo-nav-list a {
+      width: 100%;
+      justify-content: flex-start;
+      min-height: 46px;
+      border: 0;
+      border-bottom: 1px solid var(--lo-line);
+      background: #fff;
+      font-size: 0.9rem;
+      white-space: normal;
+    }
+
+    .lo-nav-list a[aria-current="page"] {
       color: var(--lo-red);
       background: #fffaf0;
     }

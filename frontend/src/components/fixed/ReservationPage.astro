@@ -2,7 +2,7 @@
 import { seo } from "../../data/home";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SiteHeader from "../site/SiteHeader.astro";
-import LegacyFormFooter from "./LegacyFormFooter.astro";
+import SiteFooter from "../site/SiteFooter.astro";
 import PendingFormScript from "./PendingFormScript.astro";
 
 interface Props {
@@ -132,5 +132,5 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
     </nav>
   </main>
   {!configuredEndpoint && <PendingFormScript />}
-  <LegacyFormFooter />
+  <SiteFooter />
 </BaseLayout>

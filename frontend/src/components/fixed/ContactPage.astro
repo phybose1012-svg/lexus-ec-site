@@ -2,7 +2,7 @@
 import { seo } from "../../data/home";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SiteHeader from "../site/SiteHeader.astro";
-import LegacyFormFooter from "./LegacyFormFooter.astro";
+import SiteFooter from "../site/SiteFooter.astro";
 import PendingFormScript from "./PendingFormScript.astro";
 
 const title = "お問い合わせ - 医学部予備校 レクサス E.C.";
@@ -92,5 +92,5 @@ const garden = "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデ�
     </section>
   </main>
   {!configuredEndpoint && <PendingFormScript />}
-  <LegacyFormFooter />
+  <SiteFooter />
 </BaseLayout>
