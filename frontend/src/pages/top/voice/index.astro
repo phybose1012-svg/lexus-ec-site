@@ -1,6 +1,7 @@
 ---
 import { seo } from "../../../data/home";
 import { getVoicePage, type VoiceImage } from "../../../lib/voiceSource";
+import { marqueeThumb } from "../../../lib/marqueeThumb";
 import SiteLayout from "../../../layouts/SiteLayout.astro";
 
 const page = getVoicePage();
@@ -90,7 +91,7 @@ const successButtonLabels = [
           <div class="voice-marquee__row voice-marquee__row--left">
             {[...marqueeRow1, ...marqueeRow1].map((item) => (
               <span class="voice-marquee__item">
-                <img src={item.src} alt="" width="160" height="120" loading="lazy" decoding="async" />
+                <img src={marqueeThumb(item.src)} alt="" width="160" height="120" loading="lazy" decoding="async" />
                 <span class="voice-marquee__tag">{item.label}</span>
               </span>
             ))}
@@ -98,7 +99,7 @@ const successButtonLabels = [
           <div class="voice-marquee__row voice-marquee__row--right">
             {[...marqueeRow2, ...marqueeRow2].map((item) => (
               <span class="voice-marquee__item">
-                <img src={item.src} alt="" width="160" height="120" loading="lazy" decoding="async" />
+                <img src={marqueeThumb(item.src)} alt="" width="160" height="120" loading="lazy" decoding="async" />
                 <span class="voice-marquee__tag">{item.label}</span>
               </span>
             ))}

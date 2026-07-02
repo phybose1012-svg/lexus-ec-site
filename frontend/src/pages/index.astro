@@ -3,6 +3,7 @@ import SectionHeading from "../components/SectionHeading.astro";
 import SuccessCard from "../components/SuccessCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getVoicePage, type VoiceImage } from "../lib/voiceSource";
+import { marqueeThumb } from "../lib/marqueeThumb";
 import {
   acceptedUniversities,
   achievementStats,
@@ -64,8 +65,8 @@ const marqueeItems: MarqueeItem[] =
     : voicePage.successPhotos
         .filter((story) => isImage(story.image))
         .map((story) => ({ src: story.image.src, alt: story.image.alt || "", label: "合格" }));
-const marqueeRow1 = marqueeItems.filter((_, index) => index % 2 === 0).slice(0, 18);
-const marqueeRow2 = marqueeItems.filter((_, index) => index % 2 === 1).slice(0, 18);
+const marqueeRow1 = marqueeItems.filter((_, index) => index % 2 === 0).slice(0, 12);
+const marqueeRow2 = marqueeItems.filter((_, index) => index % 2 === 1).slice(0, 12);
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
@@ -227,6 +228,21 @@ const headerNavGroups = navGroups;
       <p class="hero-oni-words" aria-hidden="true"><span>鬼監理</span><span class="about__mark-x">×</span><span>鬼特訓</span></p>
     </section>
 
+    {marqueeRow1.length > 0 && (
+      <section class="home-marquee-section home-marquee-section--top" aria-label="合格者の写真">
+        <div class="home-marquee" aria-hidden="true">
+          <div class="home-marquee__row home-marquee__row--left">
+            {[...marqueeRow1, ...marqueeRow1].map((item) => (
+              <span class="home-marquee__item">
+                <img src={marqueeThumb(item.src)} alt="" width="160" height="120" loading="lazy" decoding="async" />
+                <span class="home-marquee__tag">{item.label}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
     <section class="intro-section" aria-labelledby="home-title">
       <div class="content-narrow">
         <h1 id="home-title" data-admin-editable="home.intro.title">
@@ -239,21 +255,13 @@ const headerNavGroups = navGroups;
       </div>
     </section>
 
-    {marqueeRow1.length > 0 && (
-      <section class="home-marquee-section" aria-label="合格者の写真">
+    {marqueeRow2.length > 0 && (
+      <section class="home-marquee-section home-marquee-section--bottom" aria-label="合格者の写真">
         <div class="home-marquee" aria-hidden="true">
-          <div class="home-marquee__row home-marquee__row--left">
-            {[...marqueeRow1, ...marqueeRow1].map((item) => (
-              <span class="home-marquee__item">
-                <img src={item.src} alt="" width="160" height="120" loading="lazy" decoding="async" />
-                <span class="home-marquee__tag">{item.label}</span>
-              </span>
-            ))}
-          </div>
           <div class="home-marquee__row home-marquee__row--right">
             {[...marqueeRow2, ...marqueeRow2].map((item) => (
               <span class="home-marquee__item">
-                <img src={item.src} alt="" width="160" height="120" loading="lazy" decoding="async" />
+                <img src={marqueeThumb(item.src)} alt="" width="160" height="120" loading="lazy" decoding="async" />
                 <span class="home-marquee__tag">{item.label}</span>
               </span>
             ))}
