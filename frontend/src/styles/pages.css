@@ -7196,10 +7196,9 @@
 .entrance-ribbon {
   display: grid;
   place-items: center;
-  min-height: 72px;
   overflow: hidden;
-  background:
-    linear-gradient(174deg, #18c900 0 44%, #a8eaa1 45% 66%, #e7ffe1 67% 100%);
+  background: #fff;
+  padding-block: 28px 4px;
 }
 
 .entrance-ribbon img {
@@ -7593,7 +7592,7 @@
   }
 
   .entrance-ribbon {
-    min-height: 40px;
+    padding-block: 18px 2px;
   }
 
   .entrance-hero {
