@@ -781,11 +781,17 @@ body:has(.premium-hero) :is(
   color: var(--cyan);
 }
 
+/* Matches the /top/results/ 合格した大学一覧: a single framed grid that
+   flows row-by-row (cleaner than the old per-column lists, esp. on mobile). */
 .university-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px;
-  padding-inline: 12px;
+  gap: 10px 30px;
+  width: min(920px, 100%);
+  margin: 0 auto;
+  border-block: 1px solid #e2d8ca;
+  padding: 22px 10px;
+  list-style: none;
 }
 
 .university-list__title {
@@ -795,23 +801,24 @@ body:has(.premium-hero) :is(
   text-align: center;
 }
 
-.university-list ul {
-  display: grid;
-  gap: 8px;
-}
-
 .university-list li {
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
-  gap: 18px;
-  border-bottom: 1px dotted #c9bca8;
-  padding-bottom: 6px;
-  font-size: 1.04rem;
+  gap: 14px;
+  border-bottom: 1px dotted #d1c4b2;
+  padding: 4px 0 6px;
+  font-size: 0.98rem;
+  font-weight: 800;
+  line-height: 1.55;
+  text-align: left;
 }
 
 .university-list strong {
+  display: inline-block;
   flex: 0 0 auto;
   color: var(--red);
+  white-space: nowrap;
 }
 
 .note {
@@ -2190,25 +2197,22 @@ body:has(.premium-hero) :is(
 
   .university-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 6px 14px;
-    padding-inline: 0;
-  }
-
-  .university-list ul {
-    gap: 5px;
+    gap: 8px 14px;
+    padding: 18px 0;
   }
 
   .university-list li {
     display: block;
     padding-bottom: 4px;
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     line-height: 1.45;
     text-align: center;
   }
 
   .university-list strong {
-    display: inline-block;
-    margin-left: 0.4em;
+    display: block;
+    margin-top: 2px;
+    margin-left: 0;
   }
 
   .representative__grid,
@@ -2578,7 +2582,6 @@ body:has(.premium-hero) :is(
   }
 
   .achievement-stats,
-  .university-list,
   .success-grid,
   .parent-voice-grid,
   .pillar-grid,

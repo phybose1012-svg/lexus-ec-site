@@ -279,18 +279,14 @@ const headerNavGroups = navGroups;
 
       <div class="content">
         <h3 class="university-list__title">合格した大学一覧(医学部医学科のみ)</h3>
-        <div class="university-list" aria-label="医学部入試過去6年分の最終合格者データ">
-          {acceptedUniversities.map((column) => (
-            <ul>
-              {column.map((result) => (
-                <li>
-                  <span>{result.name}</span>
-                  <strong>{result.count}</strong>
-                </li>
-              ))}
-            </ul>
+        <ul class="university-list" aria-label="医学部入試過去6年分の最終合格者データ">
+          {acceptedUniversities.flat().map((result) => (
+            <li>
+              <span>{result.name}</span>
+              <strong>{result.count}</strong>
+            </li>
           ))}
-        </div>
+        </ul>
         <p class="note">医学部入試過去6年分（2020〜2025年度）の最終合格者データです。</p>
       </div>
     </section>
