@@ -109,7 +109,7 @@ export const assets = {
   onikanriTitle: "/assets/legacy/wp-content/uploads/2026/01/鬼監理×鬼特訓-1024x184.jpg",
   trainingWide: "/assets/legacy/wp-content/uploads/2025/12/レクサスくん鬼特訓中-1024x511.jpg",
   trainingTall: "/assets/legacy/wp-content/uploads/2025/12/レクサスくん鬼特訓中tate-738x1024.jpg",
-  oniCoach: "/assets/legacy/wp-content/uploads/2026/01/鬼-指示出し-e1768024719806.png",
+  oniCoach: "/illustrations/characters/yuki-sensei-default.png",
   oniTraining: "/illustrations/characters/yuki-sensei-cheer.png",
   oniMascot: "/assets/legacy/wp-content/uploads/2025/12/レクサスくん鬼-1-1024x687.jpg",
   teacherMath: "/assets/legacy/wp-content/uploads/2025/02/数学-小田Ｔ-e1739985341931-803x1024.jpg",
