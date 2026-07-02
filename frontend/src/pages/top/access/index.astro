@@ -84,9 +84,36 @@ const routeSteps = [
     height: 1024,
   },
 ];
+
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": ["EducationalOrganization", "LocalBusiness"],
+  name: "医学部予備校 レクサス E.C.",
+  alternateName: "レクサス教育センター",
+  url: "https://lexus-ec.com/top/access/",
+  logo: seo.ogImage,
+  image: seo.ogImage,
+  telephone: "03-3477-1306",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "東京都渋谷区桜丘町29-7",
+    addressLocality: "渋谷区",
+    addressRegion: "東京都",
+    postalCode: "150-0031",
+    addressCountry: "JP",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 35.654961,
+    longitude: 139.6995549,
+  },
+  hasMap: "https://www.google.com/maps/search/?api=1&query=東京都渋谷区桜丘町29-7",
+  areaServed: "JP",
+};
 ---
 
 <SiteLayout title={title} description={description} canonical="https://lexus-ec.com/top/access/" ogImage={seo.ogImage}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(localBusinessJsonLd)} />
   <main class="access-page">
     <section class="access-hero">
       <div class="content access-hero__inner">

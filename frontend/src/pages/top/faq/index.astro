@@ -168,9 +168,25 @@ const sections = [
     ],
   },
 ];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: sections.flatMap((section) =>
+    section.items.map((item) => ({
+      "@type": "Question",
+      name: item.question.replace(/^Q\d+\.\s*/, ""),
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer.replace(/^A\d+\.\s*/, ""),
+      },
+    })),
+  ),
+};
 ---
 
 <SiteLayout title={title} description={description} canonical="https://lexus-ec.com/top/faq/" ogImage={seo.ogImage}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
   <main class="faq-page">
     <section class="faq-hero">
       <div class="content faq-hero__inner">
