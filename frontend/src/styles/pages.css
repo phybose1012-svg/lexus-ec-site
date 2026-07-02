@@ -9403,16 +9403,40 @@
     font-size: 0.78rem;
   }
 
+  /* Recent-results cards: keep them readable but noticeably more compact
+     on mobile so the list isn't such a long scroll. */
+  .voice-success-grid {
+    gap: 18px;
+  }
+
   .voice-success-card h3 {
-    font-size: 1rem;
+    padding: 11px 14px;
+    font-size: 0.95rem;
+    line-height: 1.4;
   }
 
   .voice-success-card__body {
-    padding: 16px;
+    gap: 11px;
+    padding: 13px;
+  }
+
+  .voice-success-card__image {
+    aspect-ratio: 16 / 10;
+  }
+
+  .voice-success-card__stats {
+    font-size: 0.86rem;
+    line-height: 1.5;
   }
 
   .voice-success-card__stats div {
     gap: 10px;
+    padding: 6px 0;
+  }
+
+  .voice-success-card__video {
+    padding: 9px;
+    font-size: 0.9rem;
   }
 
   .voice-interview-grid {
