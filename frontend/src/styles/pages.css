@@ -10092,10 +10092,10 @@
 
 .results-message__grid {
   display: grid;
-  grid-template-columns: 300px minmax(0, 1fr);
-  gap: 46px;
+  grid-template-columns: 380px minmax(0, 1fr);
+  gap: 52px;
   align-items: center;
-  width: min(980px, calc(100% - 40px));
+  width: min(1060px, calc(100% - 40px));
   border-block: 1px solid #e4d9ca;
   padding-block: 46px;
 }
@@ -10120,7 +10120,7 @@
   line-height: 1.9;
 }
 
-.results-message div img {
+.results-message__grid > div > img {
   width: 160px;
   margin-left: auto;
 }
@@ -10207,7 +10207,8 @@
   }
 
   .results-hero img,
-  .results-message div img {
+  .results-message__grid > img,
+  .results-message__grid > div > img {
     margin-inline: auto;
   }
 

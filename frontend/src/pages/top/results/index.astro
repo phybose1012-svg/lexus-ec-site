@@ -1,4 +1,5 @@
 ---
+import SectionHeading from "../../../components/SectionHeading.astro";
 import { seo } from "../../../data/home";
 import SiteLayout from "../../../layouts/SiteLayout.astro";
 
@@ -11,7 +12,7 @@ const images = {
   logoStrip: "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png",
   representative: "/assets/legacy/wp-content/uploads/2025/02/島内T-e1725539542904.jpg",
   mascot: "/assets/legacy/wp-content/uploads/2025/02/新レクサスくん-指さし-2_20240826143701-899x1024.png",
-  garden: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-1-04.jpg",
+  garden: "/assets/legacy/wp-content/uploads/2026/01/レクサス専用寮外観-1024x651.jpg",
   guide: "/assets/legacy/wp-content/uploads/2025/11/PR用見本2026-1024x1024.jpg",
   studentSato: "/assets/legacy/wp-content/uploads/2024/09/sato.jpg",
   studentAzukihara: "/assets/legacy/wp-content/uploads/2024/09/2019_18img5-e1730739513538.jpg",
@@ -304,21 +305,36 @@ const conditions = [
         <img src={images.representative} alt="レクサス教育センター 代表取締役 島内義仁" width="435" height="533" loading="lazy" decoding="async" />
         <div>
           <h2>さあ勝ちにいこう ！</h2>
-          <h2>条件は満たされた</h2>
+          <h2>条件は満たされた。</h2>
           <p>レクサスでは、毎日「何を、いつ、どのように」を明確にしたプランで学習します。受験勉強の苦痛を取り除き、むしろ楽しいと思える状態を作ることで合格に大きく近づきます。</p>
           <img src={images.mascot} alt="レクサスくん(マスコットキャラクター)" width="800" height="911" loading="lazy" decoding="async" />
         </div>
       </div>
     </section>
 
-    <section class="results-garden" aria-labelledby="results-garden-title">
-      <div class="content results-garden__grid">
-        <div>
-          <h2 id="results-garden-title">生徒専用寮 『LEXUS GARDEN』のご案内</h2>
-          <p>校舎と一体型の環境で、学習時間と生活リズムを保ちます。地方からの受験生も、専用寮を使って医学部受験に集中できます。</p>
-          <a class="button button--green" href="/top/lexus-garden/">設備や費用を見てみる</a>
+    <section class="section location" aria-labelledby="results-garden-title">
+      <div class="content">
+        <SectionHeading id="results-garden-title" label="LOCATION" title="東京（渋谷）のレクサスには日本全国から医学部志願者が集まります！" />
+        <div class="dorm-layout">
+          <div>
+            <h3>生徒専用寮のご案内『LEXUS GARDEN』</h3>
+            <ul class="dorm-tags">
+              <li>渋谷駅 徒歩5分</li>
+              <li>校舎直結</li>
+              <li>オートロック</li>
+              <li>地下自習室完備</li>
+              <li>食事あり</li>
+              <li>プロ講師常駐</li>
+            </ul>
+            <p>東京都渋谷の閑静な住宅街にたたずむ医学部受験に集中できる快適空間。校舎と寮が近いから、通学・質問・復習・生活管理まで途切れずに回せます。</p>
+          </div>
+          <div class="dorm-media">
+            <a class="dorm-media__image" href="/top/lexus-garden/">
+              <img src={images.garden} alt="寮と一体型の校舎 レクサス専用寮外観" width="1024" height="651" loading="lazy" decoding="async" />
+            </a>
+            <a class="button button--blue" href="/top/lexus-garden/">生徒専用寮を見る</a>
+          </div>
         </div>
-        <img src={images.garden} alt="レクサスガーデン外観" width="788" height="518" loading="lazy" decoding="async" />
       </div>
     </section>
 
