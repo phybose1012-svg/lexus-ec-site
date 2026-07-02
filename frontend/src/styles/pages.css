@@ -10318,22 +10318,26 @@
     text-indent: 0.36em;
   }
 
+  /* Keep the title on ONE line and shrink the box to fit the text, so the
+     gold rules (::after at 100%) match the "医学部合格を叶えるメソッド" width.
+     The white band (::before) stays full-bleed at 100vw. */
   .results-hero h1 {
     order: -1;
     grid-column: 1 / -1;
-    margin: 0;
-    padding: 14px 18px;
-    font-size: 1.62rem;
-    line-height: 1.5;
-    letter-spacing: 0.14em;
-    text-indent: 0.14em;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 13px 6px;
+    font-size: clamp(1.2rem, 5vw, 1.62rem);
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    text-indent: 0.12em;
     text-align: center;
+    white-space: nowrap;
   }
 
-  /* Keep the white band full-bleed (inherits 100vw); shrink the gold rules
-     to roughly the title's text width. */
   .results-hero h1::after {
-    width: min(58%, 220px);
+    width: 100%;
   }
 
   .results-hero__lead {
