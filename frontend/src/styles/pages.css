@@ -9555,11 +9555,11 @@
 .results-hero__grid {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 380px;
-  gap: 0 48px;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 0 40px;
   align-items: center;
   justify-items: center;
-  min-height: 468px;
+  min-height: 400px;
   isolation: isolate;
 }
 
@@ -9584,12 +9584,12 @@
 .results-hero__lead {
   grid-column: 1;
   width: min(720px, 100%);
-  margin: 18px 0 8px;
+  margin: 14px 0 8px;
   color: #17110d;
   font-family: var(--font-serif);
-  font-size: clamp(1.78rem, 2.25vw, 2.35rem);
+  font-size: clamp(1.48rem, 1.85vw, 1.95rem);
   font-weight: 900;
-  line-height: 1.7;
+  line-height: 1.65;
   letter-spacing: 0.04em;
   word-break: keep-all;
 }
@@ -9625,6 +9625,7 @@
 .results-hero__eyebrow {
   order: -2;
   grid-column: 1 / -1;
+  width: 100%;
   margin: 0 0 16px;
   color: #b28f4e;
   font-family: var(--font-sans);
@@ -9632,6 +9633,7 @@
   font-weight: 700;
   letter-spacing: 0.42em;
   line-height: 1;
+  text-align: center;
   text-indent: 0.42em;
 }
 
@@ -9639,15 +9641,21 @@
   order: -1;
   grid-column: 1 / -1;
   position: relative;
+  isolation: isolate;
   width: 100%;
   margin: 0;
   padding: 18px 20px;
   font-family: var(--font-serif);
-  font-size: clamp(2.25rem, 3.4vw, 3.35rem);
+  font-size: clamp(2.1rem, 3vw, 3rem);
   font-weight: 600;
   line-height: 1.35;
   letter-spacing: 0.2em;
   text-indent: 0.2em;
+}
+
+/* Gold-foil gradient on the text itself (a span, so it paints above the
+   white band below). */
+.results-hero h1 span {
   background: linear-gradient(177deg, #e6c67e 0%, #c8a24f 34%, #a97e2b 66%, #7c5a18 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -9655,23 +9663,33 @@
   color: transparent;
 }
 
-.results-hero h1::before,
-.results-hero h1::after {
+/* White band behind the title so the gold text stays readable over the
+   hero's diagonal wash. */
+.results-hero h1::before {
   position: absolute;
+  z-index: -2;
+  top: 0;
+  bottom: 0;
   left: 50%;
-  width: min(94%, 660px);
-  height: 2px;
+  width: min(96%, 780px);
   transform: translateX(-50%);
-  background: linear-gradient(90deg, rgb(197 160 89 / 0%) 0%, #c5a059 22%, #9a7422 50%, #c5a059 78%, rgb(197 160 89 / 0%) 100%);
+  background: linear-gradient(90deg, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 96%) 12%, #fff 30%, #fff 70%, rgb(255 255 255 / 96%) 88%, rgb(255 255 255 / 0%) 100%);
   content: "";
 }
 
-.results-hero h1::before {
-  top: 0;
-}
-
+/* Delicate gold rules top & bottom (both drawn as one layer), fading at ends. */
 .results-hero h1::after {
+  position: absolute;
+  z-index: -1;
+  top: 0;
   bottom: 0;
+  left: 50%;
+  width: min(94%, 700px);
+  transform: translateX(-50%);
+  background:
+    linear-gradient(90deg, rgb(197 160 89 / 0%) 0%, #c5a059 22%, #9a7422 50%, #c5a059 78%, rgb(197 160 89 / 0%) 100%) left top / 100% 2px no-repeat,
+    linear-gradient(90deg, rgb(197 160 89 / 0%) 0%, #c5a059 22%, #9a7422 50%, #c5a059 78%, rgb(197 160 89 / 0%) 100%) left bottom / 100% 2px no-repeat;
+  content: "";
 }
 
 .results-hero p:not(.results-hero__lead) {
@@ -9679,9 +9697,9 @@
   width: min(720px, 100%);
   margin: 0;
   font-family: var(--font-serif);
-  font-size: clamp(1.45rem, 1.72vw, 1.82rem);
+  font-size: clamp(1.18rem, 1.42vw, 1.48rem);
   font-weight: 900;
-  line-height: 1.9;
+  line-height: 1.85;
   letter-spacing: 0.04em;
   word-break: keep-all;
 }
@@ -9700,7 +9718,7 @@
 .results-hero img {
   grid-column: 2;
   grid-row: 3 / span 3;
-  width: min(370px, 100%);
+  width: min(290px, 100%);
   justify-self: center;
   align-self: end;
   transform: translateY(2px);
