@@ -13,6 +13,9 @@ const images = {
   mascot: "/assets/legacy/wp-content/uploads/2025/02/新レクサスくん-指さし-2_20240826143701-899x1024.png",
   garden: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-1-04.jpg",
   guide: "/assets/legacy/wp-content/uploads/2025/11/PR用見本2026-1024x1024.jpg",
+  studentSato: "/assets/legacy/wp-content/uploads/2024/09/sato.jpg",
+  studentAzukihara: "/assets/legacy/wp-content/uploads/2024/09/2019_18img5-e1730739513538.jpg",
+  studentKakizaki: "/assets/legacy/wp-content/uploads/2026/03/柿崎-2024-東北医科薬科など.jpg",
 };
 
 const universityResults = [
@@ -58,64 +61,120 @@ const quickLinks = [
 const conditions = [
   {
     label: "【条件 その１】",
-    title: "勉強時間を思い切り増やす",
-    metrics: ["入学後の勉強時間", "1日 約13時間", "いつでも質問可能！"],
+    title: "勉強を、楽にする。",
+    summary:
+      "医学部受験では、勉強量を増やすこと自体が最初の壁になります。レクサスでは一日の流れを校舎側で設計し、質問できる環境まで整えることで、勉強を「気合いで耐えるもの」から「毎日続けられる習慣」に変えていきます。",
+    focusTitle: "どうせやるなら、思い切りやる",
+    focusBody:
+      "中途半端な勉強時間では、苦痛だけが残りがちです。一日の大半を勉強に使う環境へ切り替えることで、迷う時間・サボる余地・質問できない不安を減らします。",
+    metrics: [
+      { label: "年間学習時間", value: "約3500時間" },
+      { label: "1日の学習", value: "約13時間" },
+      { label: "質問対応", value: "いつでも可能" },
+    ],
     points: [
       {
-        title: "POINT 1 思い切りやれば、苦痛は無くなる！",
-        body: "一日の大半を勉強時間に充てれば、自然と勉強が習慣化されて、勉強そのものに苦痛を感じにくくなります。",
+        title: "POINT 1 勉強量を生活の中心に置く",
+        body: "「今日は何時間やるか」を毎朝考える状態では、勉強を始めるだけでも消耗します。校舎で過ごす時間を長く取り、勉強する前提の生活に変えることで、学習量を安定させます。",
       },
       {
-        title: "POINT 2 思い切りやれば、「楽しい」に変えられる！",
-        body: "勉強が習慣化されるとできる事が増え、処理スピードが上がり、成長が加速します。",
+        title: "POINT 2 できることが増える実感を作る",
+        body: "勉強が習慣になると、知識の抜けが埋まり、処理スピードも上がります。成長が見え始めると、勉強は苦痛だけの作業ではなく、前に進んでいる実感を伴う時間になります。",
       },
       {
-        title: "POINT 3 いつでも質問できるから継続できる！",
-        body: "長時間の勉強を続けても、疑問が解消されなければ苦痛は消えません。レクサスではいつでもプロ講師に質問できます。",
+        title: "POINT 3 疑問をその場で止めない",
+        body: "長時間勉強しても、分からない箇所が積み上がれば手は止まります。いつでも質問できる体制を置くことで、つまずきを早く解消し、長時間学習を継続できる状態にします。",
       },
     ],
-    quote:
-      "元々、勉強習慣はありませんでしたが…気がついたら一日中勉強していました。夜間指導は他の塾とは違って、強制参加制度でしたから、これはよその予備校とはちがうなと思いました。",
+    testimonial: {
+      image: images.studentSato,
+      width: 195,
+      height: 226,
+      alt: "帝京大学医学部に合格した佐藤正則さん",
+      lead: "元々、勉強習慣はありませんでしたが、気がついたら一日中勉強していました。",
+      quote:
+        "夜間指導は他の塾とは違って、絶対に夜間残らなきゃいけないという強制参加制度でした。自分一人だとサボってしまうほうなので、これはよその予備校とは違うなと思いました。",
+      name: "佐藤正則さん",
+      school: "帝京大学 医学部",
+    },
   },
   {
     label: "【条件 その2】",
-    title: "プロが指示します",
-    metrics: ["やるべきことは", "合計396セット", "実践形式で15回"],
+    title: "課題を、具体化する。",
+    summary:
+      "医学部受験では、努力量だけでなく「何を、どの順番で、いつまでにやるか」の精度が合否を分けます。レクサスではプロ講師が生徒の学力・目標・性格を見たうえで、毎日の課題まで具体化します。",
+    focusTitle: "プロが指示し、迷う時間を勉強時間に変える",
+    focusBody:
+      "勉強法や参考書選びで悩み続ける時間は、受験生にとって大きな損失です。必要な課題を細かく切り分け、締め切りと確認テストで実行まで管理します。",
+    metrics: [
+      { label: "確認テスト", value: "合計432回" },
+      { label: "演習課題", value: "合計396セット" },
+      { label: "模擬試験", value: "実践形式で15回" },
+    ],
     points: [
       {
-        title: "POINT 1 人それぞれ「良い」は違う！",
-        body: "良い勉強法、参考書、授業は個々の状況によって異なります。自分にとって何が良いのかを自分で判断するのは非常に困難です。",
+        title: "POINT 1 人によって最適解は違う",
+        body: "良い参考書、良い授業、良い勉強法は、目標大学・現在の学力・性格によって変わります。先輩に合った方法が、今の自分にそのまま合うとは限りません。",
       },
       {
-        title: "POINT 2 あなたの「良い」をプロが見抜きます！",
-        body: "プロ講師は多くの受験生を合格へ導いた経験に基づき、生徒一人一人に合格への最善策を正しく明示します。",
+        title: "POINT 2 プロが優先順位を決める",
+        body: "科目を分かりやすく教えるだけでなく、合格までに必要な順番を見抜くのがプロ講師の役割です。迷っている時間を減らし、いま解くべき課題へ集中させます。",
       },
       {
-        title: "POINT 3 目の前の課題に集中するだけでOK！",
-        body: "膨大な学習計画を日々の課題やテストに切り分け、締め切り効果も使って学習効率を高めます。",
+        title: "POINT 3 毎日の実行単位まで落とす",
+        body: "年間計画はそのままだと大きすぎます。レクサスでは課題・確認テスト・復習を日々の単位に分け、締め切りを置くことで、目の前の一題に集中できる状態を作ります。",
       },
     ],
-    quote: "もう迷う必要なし！復習課題まで指定されるので効率的でした。授業と夜間課題がリンクしていて、その日の授業の類題を解くだけで復習になりました。",
+    testimonial: {
+      image: images.studentAzukihara,
+      width: 990,
+      height: 837,
+      alt: "埼玉医科大学医学部に合格した小豆原さん",
+      lead: "もう迷う必要なし。復習課題まで指定されるので効率的でした。",
+      quote:
+        "レクサスでは授業と夜間課題がリンクしていました。その日の授業の類題が課題になっていて、それを解くだけで授業の復習になるので本当に効率的でした。",
+      name: "小豆原さん",
+      school: "埼玉医科大学 医学部",
+    },
   },
   {
     label: "【条件 その3】",
-    title: "情報戦を制して合格をつかめ！",
-    metrics: ["情報戦を制して", "合計50年分以上", "9月開始12回で完成"],
+    title: "情報戦で、勝つ。",
+    summary:
+      "医学部入試は大学ごとに問題形式・難度・面接傾向が大きく異なります。ネット上の断片的な情報に振り回されず、プロ講師が入試情報を整理し、出願校選びから二次試験対策まで合格に必要な情報へ変換します。",
+    focusTitle: "過去問・出願・面接まで、勝ち方を決める",
+    focusBody:
+      "正しい情報を持っていても、使い方を誤れば点数にはつながりません。大学別の過去問分析と面談を通じて、本人に合う戦い方へ落とし込みます。",
+    metrics: [
+      { label: "過去問指導", value: "50年分以上" },
+      { label: "出願・面接", value: "9月から開始" },
+      { label: "担任面談", value: "合計36回" },
+    ],
     points: [
       {
-        title: "POINT 1 情報収集もプロにお任せ！",
-        body: "医学部入試情報は、大学発信、予備校データ、個人の意見に分かれます。最短合格にはプロ講師の目で情報を厳選することが不可欠です。",
+        title: "POINT 1 情報の意味を見誤らない",
+        body: "医学部入試の情報には、大学発信の事実、予備校の分析、個人の感想が混在します。不安をあおる情報ではなく、合格判断に使える情報だけを選びます。",
       },
       {
-        title: "POINT 2 過去問で勝ち方を知る！",
-        body: "解答形式、問題の難度、制限時間の厳しさ、目標点を把握した上で、合格ラインを超える練習を重ねます。",
+        title: "POINT 2 過去問で大学別の勝ち方を知る",
+        body: "同じ医学部入試でも、解答形式・問題の難度・時間の厳しさ・目標点は大学ごとに違います。過去問を通じて、自分が合格点を取るための戦い方を決めます。",
       },
       {
-        title: "POINT 3 二次試験対策も準備は万全！",
-        body: "小論文は落とされない書き方、面接は好感度と説得力が重要です。9月から準備し、主要科目の勉強時間を削らずに対策します。",
+        title: "POINT 3 二次試験を直前任せにしない",
+        body: "小論文は落とされない書き方、面接は好感度と説得力が重要です。9月から準備を始めることで、主要科目の勉強時間を削りすぎずに仕上げます。",
       },
     ],
-    quote: "面接、小論文も迷わない！9月からじっくり準備して、説得力のある医師志望理由を言語化できました。",
+    testimonial: {
+      image: images.studentKakizaki,
+      width: 1064,
+      height: 798,
+      alt: "東北医科薬科大学医学部に合格した柿崎さん",
+      lead: "面接、小論文も迷わない。医師志望理由は意外と難しいです。",
+      quote:
+        "正直、自分が医師になりたい理由はフワッとしていましたが、9月からじっくり準備して考えがまとまりました。おかげで説得力のある医師志望理由を言語化できました。",
+      name: "柿崎さん",
+      school: "東北医科薬科大学 医学部",
+    },
   },
 ];
 ---
@@ -183,32 +242,28 @@ const conditions = [
           <span>最短合格には秘訣があります。</span>
         </header>
         <div class="results-condition-list">
-          {conditions.map((condition, index) => (
+          {conditions.map((condition) => (
             <article class="results-condition">
               <div class="results-condition__intro">
                 <div>
                   <h3>{condition.label}</h3>
                   <p class="results-condition__title">{condition.title}</p>
+                  <p class="results-condition__summary">{condition.summary}</p>
                 </div>
                 <ul>
-                  {condition.metrics.map((metric) => <li>{metric}</li>)}
+                  {condition.metrics.map((metric) => (
+                    <li>
+                      <span>{metric.label}</span>
+                      <strong>{metric.value}</strong>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
-              {index === 1 && (
-                <>
-                  <h2 class="results-callout-heading">プロが指示します</h2>
-                  <h2 class="results-callout-heading">やるべきことは</h2>
-                  <p class="results-plan-note">（※既卒生コースの年間学習計画）</p>
-                </>
-              )}
-              {index === 2 && (
-                <>
-                  <h2 class="results-callout-heading">合格をつかめ ！</h2>
-                  <h2 class="results-callout-heading">情報戦を制して</h2>
-                  <p class="results-plan-note">（※既卒生コースの年間学習計画）</p>
-                </>
-              )}
+              <div class="results-condition__focus">
+                <h4>{condition.focusTitle}</h4>
+                <p>{condition.focusBody}</p>
+              </div>
 
               <div class="results-point-grid">
                 {condition.points.map((point) => (
@@ -218,7 +273,26 @@ const conditions = [
                   </section>
                 ))}
               </div>
-              <blockquote>{condition.quote}</blockquote>
+              <figure class="results-testimonial">
+                <img
+                  src={condition.testimonial.image}
+                  alt={condition.testimonial.alt}
+                  width={condition.testimonial.width}
+                  height={condition.testimonial.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>
+                  <span>合格者の声</span>
+                  <strong>{condition.testimonial.lead}</strong>
+                  <blockquote>{condition.testimonial.quote}</blockquote>
+                  <p>
+                    <b>{condition.testimonial.name}</b>
+                    <small>{condition.testimonial.school}</small>
+                  </p>
+                  <a class="button button--red" href="/top/voice/">合格者の声へ</a>
+                </figcaption>
+              </figure>
             </article>
           ))}
         </div>

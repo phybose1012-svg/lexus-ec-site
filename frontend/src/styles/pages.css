@@ -9680,7 +9680,7 @@
   background: #fff;
   box-shadow: 0 12px 30px rgb(57 38 12 / 8%);
   padding: 30px;
-  text-align: center;
+  text-align: left;
 }
 
 .results-condition__intro {
@@ -9712,11 +9712,16 @@
   letter-spacing: 0.05em;
 }
 
+.results-condition__summary {
+  margin: 14px 0 0;
+  color: #3d352e;
+  font-weight: 700;
+  line-height: 1.85;
+}
+
 .results-condition__intro ul {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: 10px;
-  justify-content: center;
   margin: 0;
   border: 0;
   padding: 0;
@@ -9725,25 +9730,54 @@
 
 .results-condition__intro li {
   border: 1px solid rgb(19 143 117 / 24%);
-  border-radius: 999px;
+  border-radius: 8px;
   background: #fff;
-  padding: 6px 12px;
-  color: #138f75;
-  font-weight: 900;
+  padding: 12px 14px;
+  color: #173b35;
   line-height: 1.45;
 }
 
-.results-callout-heading {
-  margin: 20px auto 0;
+.results-condition__intro li span,
+.results-testimonial figcaption > span {
+  display: block;
   color: #8f1515;
-  font-size: 1.35rem;
-  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
 }
 
-.results-condition > h4 {
-  margin: 8px auto 0;
-  color: #5d5146;
-  text-align: center;
+.results-condition__intro li strong {
+  display: block;
+  margin-top: 4px;
+  color: #138f75;
+  font-family: var(--font-serif);
+  font-size: 1.16rem;
+  line-height: 1.35;
+}
+
+.results-condition__focus {
+  max-width: 860px;
+  margin: 24px auto 0;
+  border: 1px solid #ead8bd;
+  border-left: 5px solid var(--gold);
+  border-radius: 8px;
+  background: linear-gradient(90deg, #fffaf0 0%, #fff 100%);
+  padding: 20px 24px;
+  text-align: left;
+}
+
+.results-condition__focus h4 {
+  margin: 0;
+  color: #8f1515;
+  font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+  line-height: 1.5;
+}
+
+.results-condition__focus p {
+  margin: 8px 0 0;
+  color: #3d352e;
+  font-weight: 700;
+  line-height: 1.85;
 }
 
 .results-point-grid {
@@ -9795,17 +9829,70 @@
   line-height: 1.85;
 }
 
-.results-condition blockquote {
+.results-testimonial {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
   max-width: 900px;
-  margin: 28px auto 0;
+  margin: 30px auto 0;
   border: 1px solid #d8cabc;
-  border-left: 5px solid var(--gold);
   border-radius: 8px;
-  background: #fffdf8;
-  padding: 18px 22px;
+  background:
+    linear-gradient(135deg, rgb(143 21 21 / 7%) 0 38%, transparent 38%),
+    #fffdf8;
+  padding: 18px;
+}
+
+.results-testimonial img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 10px 22px rgb(57 38 12 / 14%);
+}
+
+.results-testimonial figcaption {
+  min-width: 0;
+}
+
+.results-testimonial figcaption > strong {
+  display: block;
+  margin: 8px 0 0;
+  color: #17110d;
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+  font-weight: 900;
+  line-height: 1.6;
+}
+
+.results-testimonial blockquote {
+  margin: 12px 0 0;
+  border-left: 4px solid var(--gold);
+  padding: 2px 0 2px 16px;
+  color: #312c27;
   font-weight: 800;
   line-height: 1.85;
-  text-align: left;
+}
+
+.results-testimonial p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: baseline;
+  margin: 14px 0 16px;
+  color: #17110d;
+}
+
+.results-testimonial b {
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.results-testimonial small {
+  color: #5d5146;
+  font-size: 0.88rem;
+  font-weight: 800;
 }
 
 .results-message {
@@ -9941,6 +10028,10 @@
 
   .results-condition__intro {
     text-align: center;
+  }
+
+  .results-testimonial {
+    grid-template-columns: 180px minmax(0, 1fr);
   }
 
   .results-message__grid {
@@ -10122,6 +10213,15 @@
     padding: 18px;
   }
 
+  .results-condition__summary,
+  .results-condition__focus {
+    text-align: left;
+  }
+
+  .results-condition__focus {
+    padding: 18px;
+  }
+
   .results-condition__intro ul {
     gap: 8px;
   }
@@ -10130,9 +10230,34 @@
     width: 100%;
   }
 
-  .results-condition blockquote {
-    margin: 22px 0 0;
+  .results-testimonial {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 24px 0 0;
     padding: 16px;
+  }
+
+  .results-testimonial img {
+    width: min(270px, 100%);
+    justify-self: center;
+  }
+
+  .results-testimonial blockquote {
+    padding-left: 14px;
+  }
+
+  .results-testimonial p {
+    display: block;
+  }
+
+  .results-testimonial small {
+    display: block;
+    margin-top: 4px;
+  }
+
+  .results-testimonial .button {
+    width: 100%;
+    max-width: 270px;
   }
 
   .results-message__grid {
