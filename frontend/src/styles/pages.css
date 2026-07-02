@@ -9092,6 +9092,16 @@
   gap: 20px;
 }
 
+/* Show only the first 9 interviews until "もっと見る" is tapped. */
+.voice-interview-grid.is-collapsed .voice-interview-card:nth-child(n + 10) {
+  display: none;
+}
+
+.voice-interview-more {
+  margin-top: 32px;
+  text-align: center;
+}
+
 .voice-interview-card {
   display: grid;
   grid-template-rows: auto 1fr;

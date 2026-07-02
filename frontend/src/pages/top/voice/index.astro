@@ -189,7 +189,7 @@ const successButtonLabels = [
           <p>INTERVIEW ARCHIVE</p>
           <h2 id="voice-interviews-title">合格者インタビューを公開中！</h2>
         </header>
-        <div class="voice-interview-grid">
+        <div class={`voice-interview-grid${page.interviews.length > 9 ? " is-collapsed" : ""}`} data-interview-grid>
           {page.interviews.map((interview) => (
             <article class="voice-interview-card">
               {interview.image && (
@@ -204,8 +204,25 @@ const successButtonLabels = [
             </article>
           ))}
         </div>
+        {page.interviews.length > 9 && (
+          <div class="voice-interview-more">
+            <button class="button button--red" type="button" data-interview-more>合格者インタビューをもっと見る</button>
+          </div>
+        )}
       </div>
     </section>
+
+    <script is:inline>
+      (() => {
+        const btn = document.querySelector("[data-interview-more]");
+        const grid = document.querySelector("[data-interview-grid]");
+        if (!btn || !grid) return;
+        btn.addEventListener("click", () => {
+          grid.classList.remove("is-collapsed");
+          btn.parentElement?.remove();
+        });
+      })();
+    </script>
 
     <section class="voice-guide" aria-labelledby="voice-guide-title">
       <div class="content voice-guide__inner">
