@@ -97,8 +97,8 @@ const pillarCards = [
   <main class="study-page">
     <section class="study-hero" aria-labelledby="study-title">
       <div class="study-hero__inner">
+        <img class="study-hero__strip" src={assets.logoStrip} alt="" width="800" height="58" fetchpriority="high" decoding="async" />
         <div class="study-hero__copy">
-          <img src={assets.logoStrip} alt="" width="800" height="58" fetchpriority="high" decoding="async" />
           <p class="study-hero__label">STUDY SUPPORT SYSTEM</p>
           <h1 id="study-title">医学部合格を強制する<br />鉄壁の監理システム</h1>
           <p class="study-hero__lead">それが、レクサスの “鬼監理”</p>
@@ -284,15 +284,21 @@ const pillarCards = [
   .study-hero__inner {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
-    gap: 42px;
+    gap: 26px 42px;
     align-items: center;
     padding-block: 42px 54px;
   }
 
-  .study-hero__copy > img,
+  .study-hero__strip,
   .study-contact img {
     width: min(800px, 100%);
     height: auto;
+    margin-inline: auto;
+  }
+
+  .study-hero__strip {
+    grid-column: 1 / -1;
+    justify-self: center;
   }
 
   .study-hero__label,
@@ -496,16 +502,21 @@ const pillarCards = [
 
   .kanri-card li {
     position: relative;
+    line-height: 1.65;
     padding-left: 1.25em;
     font-weight: 800;
   }
 
   .kanri-card li::before {
     position: absolute;
+    top: 0.82em;
     left: 0;
-    color: var(--study-red);
-    content: "●";
-    font-size: 0.7em;
+    width: 0.58em;
+    height: 0.58em;
+    border-radius: 50%;
+    background: var(--study-red);
+    content: "";
+    transform: translateY(-50%);
   }
 
   .diagram-card {
