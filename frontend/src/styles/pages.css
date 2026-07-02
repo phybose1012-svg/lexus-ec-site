@@ -12490,6 +12490,13 @@
   font-weight: 900;
 }
 
+.course-detail-hero p.course-detail-hero__tagline {
+  margin: 0 0 22px;
+  color: inherit;
+  font-size: 2.45rem;
+  line-height: 1.45;
+}
+
 .course-detail-hero__grid > img {
   width: 230px;
   justify-self: center;
@@ -13247,7 +13254,8 @@
     text-align: center;
   }
 
-  .course-detail-hero h1 {
+  .course-detail-hero h1,
+  .course-detail-hero p.course-detail-hero__tagline {
     font-size: 1.5rem;
   }
 
