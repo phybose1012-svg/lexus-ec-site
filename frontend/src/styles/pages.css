@@ -8927,11 +8927,16 @@
 }
 
 .voice-notice article:first-child {
+  position: relative;
+  overflow: hidden;
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  background: #009b09;
-  color: #fff;
-  padding: 15px max(24px, calc((100vw - 1140px) / 2));
+  border-block: 1px solid rgb(197 160 89 / 42%);
+  background:
+    radial-gradient(120% 140% at 50% 0%, rgb(197 160 89 / 12%) 0%, rgb(197 160 89 / 0%) 60%),
+    linear-gradient(135deg, #17110d 0%, #2b2016 52%, #17110d 100%);
+  color: #f6efe0;
+  padding: 24px max(24px, calc((100vw - 1140px) / 2));
   text-align: center;
 }
 
@@ -8941,15 +8946,81 @@
 }
 
 .voice-notice h2 {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
   margin: 0;
   color: inherit;
-  font-size: clamp(1.18rem, 3.6vw, 1.55rem);
-  line-height: 1.4;
+  font-weight: 400;
 }
 
-.voice-notice h2 span {
-  display: inline-block;
+.voice-notice__eyebrow {
+  color: #d9b45a;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.42em;
+  line-height: 1;
+  text-indent: 0.42em;
+}
+
+.voice-notice__line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.voice-notice__text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.18rem, 3.2vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
   white-space: nowrap;
+}
+
+.voice-notice__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 15px;
+  border: 1px solid rgb(197 160 89 / 55%);
+  border-radius: 999px;
+  background: rgb(197 160 89 / 12%);
+  color: #ecd6a6;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.voice-notice__pill::before {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #d9b45a;
+  box-shadow: 0 0 0 0 rgb(217 180 90 / 60%);
+  animation: voiceNoticePulse 2.2s ease-out infinite;
+  content: "";
+}
+
+@keyframes voiceNoticePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(217 180 90 / 55%);
+  }
+  70% {
+    box-shadow: 0 0 0 7px rgb(217 180 90 / 0%);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(217 180 90 / 0%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .voice-notice__pill::before {
+    animation: none;
+  }
 }
 
 .voice-notice p {
