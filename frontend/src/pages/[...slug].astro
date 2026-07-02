@@ -11,7 +11,10 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 export const getStaticPaths = () => {
   const postPaths = getMigratedPostStaticPaths();
   const postSlugs = new Set(postPaths.map((route) => route.params.slug));
-  const fixedPaths = getFixedPageStaticPaths().filter((route) => !postSlugs.has(route.params.slug));
+  const dedicatedFixedSlugs = new Set(["study-support-system"]);
+  const fixedPaths = getFixedPageStaticPaths().filter(
+    (route) => !postSlugs.has(route.params.slug) && !dedicatedFixedSlugs.has(route.params.slug),
+  );
   const fixedSlugs = new Set(fixedPaths.map((route) => route.params.slug));
   const redirectPaths = getLegacyRedirectStaticPaths().filter(
     (route) => !postSlugs.has(route.params.slug) && !fixedSlugs.has(route.params.slug),
@@ -42,7 +45,6 @@ const routeClass = `fixed-page--${page.path.replace(/^\/|\/$/g, "").replace(/[^a
 // Extracted Elementor pages with no per-section layout overrides: stack their
 // containers into one readable column instead of the squished flex-row default.
 const unstackPaths = new Set<string>([
-  "/study-support-system/",
   "/medical-math-training/",
 ]);
 const unstack = unstackPaths.has(page.path);

@@ -1,0 +1,670 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+
+const title = "医学部合格を支える鬼監理システム｜レクサス教育センター";
+const description =
+  "医学部合格に甘えは不要。レクサス教育センターは、課題完了を可視化するアナログ監理と、学習進捗を検知するAI管理、さらにプロ講師の担任制で、受験生の学習を徹底的に支えます。";
+const canonical = "https://lexus-ec.com/study-support-system/";
+
+const assets = {
+  logoStrip: "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png",
+  oniKanri: "/illustrations/characters/yuki-sensei-default.png",
+  oniTraining: "/illustrations/characters/yuki-sensei-cheer.png",
+  analogDiagram: "/assets/legacy/wp-content/uploads/2026/01/鬼監理（アナログ）-1024x856.jpg",
+  digitalDiagram: "/assets/legacy/wp-content/uploads/2026/01/鬼監理（デジタル）-1024x739.jpg",
+  stampOni: "/assets/legacy/wp-content/uploads/2026/01/ハンコ鬼.jpg",
+  aiOni: "/assets/legacy/wp-content/uploads/2026/01/AIレクサスくん.jpg",
+  representative: "/assets/legacy/wp-content/uploads/2025/02/島内T-e1725539542904.jpg",
+};
+
+const managementSteps = [
+  {
+    title: "課題完了を見える化",
+    body: "やるべき課題、完了した課題、残っている課題を一目で把握。曖昧な努力ではなく、毎日の実行量を管理します。",
+  },
+  {
+    title: "遅れを即時に検知",
+    body: "提出状況や入退室の記録をもとに、遅れを早い段階で発見。放置せず、担任面談や追加指導につなげます。",
+  },
+  {
+    title: "担任が軌道修正",
+    body: "プロ講師が学習量、理解度、生活リズムを確認。授業が難しすぎないか、課題量が適正かまで見直します。",
+  },
+];
+
+const kanriCards = [
+  {
+    label: "ANALOG",
+    title: "情熱的なアナログ監理",
+    image: assets.stampOni,
+    imageAlt: "ハンコ鬼による課題完了チェックのイメージ",
+    body: "課題の完了をハンコで可視化し、未消化の課題をそのままにしません。手で確認するからこそ、生徒の表情や小さな変化まで見逃しません。",
+    points: ["ハンコ地獄で課題消化を可視化", "未消化課題を即時に把握", "担任が声かけと面談で修正"],
+  },
+  {
+    label: "DIGITAL",
+    title: "精密なデジタル監理",
+    image: assets.aiOni,
+    imageAlt: "AIレクサスくんによる学習進捗管理のイメージ",
+    body: "AIが提出状況や入退室を追跡し、遅れが出た生徒を検知します。提出のめどが立たない場合は、担任との面談につなげます。",
+    points: ["LINEで遅れを通知", "入退室をデジタル打刻", "面談予約まで自動で接続"],
+  },
+];
+
+const diagrams = [
+  {
+    title: "アナログ監理の流れ",
+    image: assets.analogDiagram,
+    alt: "鬼監理のアナログ管理フロー",
+    width: 1024,
+    height: 856,
+  },
+  {
+    title: "デジタル監理の流れ",
+    image: assets.digitalDiagram,
+    alt: "鬼監理のデジタル管理フロー",
+    width: 1024,
+    height: 739,
+  },
+];
+
+const pillarCards = [
+  {
+    title: "鬼監理",
+    image: assets.oniKanri,
+    width: 219,
+    height: 251,
+    subtitle: "プロ講師の眼力×医学部専門AIのデータ分析",
+    body: "副代表クラスのトップ講師陣が担任となり、学習進捗、得意不得意、成長速度を監理。学習から「無駄」と「甘え」を排除します。",
+    links: [{ label: "“鬼監理”の仕組みを見る", href: "#kanri-system" }],
+  },
+  {
+    title: "鬼特訓",
+    image: assets.oniTraining,
+    width: 234,
+    height: 260,
+    subtitle: "プロ講師の質問対応×課題の具体化",
+    body: "授業後の自習時間を濃厚な特訓時間へ。課題提示、即時添削、追加課題で、夕方以降の学習密度を高めます。",
+    links: [
+      { label: "英語の“鬼特訓”を見る", href: "/medical-english-training/" },
+      { label: "数学の“鬼特訓”を見る", href: "/medical-math-training/" },
+    ],
+  },
+];
+---
+
+<SiteLayout title={title} description={description} canonical={canonical} ogImage={assets.analogDiagram}>
+  <main class="study-page">
+    <section class="study-hero" aria-labelledby="study-title">
+      <div class="study-hero__inner">
+        <div class="study-hero__copy">
+          <img src={assets.logoStrip} alt="" width="800" height="58" fetchpriority="high" decoding="async" />
+          <p class="study-hero__label">STUDY SUPPORT SYSTEM</p>
+          <h1 id="study-title">医学部合格を強制する<br />鉄壁の監理システム</h1>
+          <p class="study-hero__lead">それが、レクサスの “鬼監理”</p>
+          <p class="study-hero__text">
+            課題完了を見える化するアナログ監理、遅れを検知するAI管理、そして最後に人が支える担任制。
+            レクサスは「やる気が出たら頑張る」ではなく、合格に必要な行動を毎日積み上げる仕組みを作ります。
+          </p>
+          <div class="study-actions">
+            <a class="button button--red" href="/reservation/">個別説明会を予約</a>
+            <a class="button button--blue" href="/request-documents/">資料請求</a>
+          </div>
+        </div>
+        <figure class="study-hero__visual">
+          <img src={assets.oniKanri} alt="鬼監理のイメージキャラクター" width="219" height="251" fetchpriority="high" decoding="async" />
+          <figcaption>甘えを残さない。課題を残さない。</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="study-section study-section--white" aria-labelledby="study-principle-title">
+      <div class="study-content">
+        <header class="study-heading">
+          <p>PRINCIPLE</p>
+          <h2 id="study-principle-title">勉強を「本人任せ」にしない</h2>
+          <span>医学部受験で差がつくのは、毎日の実行管理です。</span>
+        </header>
+        <div class="study-step-grid">
+          {managementSteps.map((step, index) => (
+            <article class="study-step">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="study-section" id="kanri-system" aria-labelledby="kanri-system-title">
+      <div class="study-content">
+        <header class="study-heading">
+          <p>ONI KANRI</p>
+          <h2 id="kanri-system-title">レクサス名物 “鬼監理”</h2>
+          <span>アナログの熱量と、デジタルの精度を両方使います。</span>
+        </header>
+        <div class="kanri-grid">
+          {kanriCards.map((card) => (
+            <article class="kanri-card">
+              <div class="kanri-card__media">
+                <img src={card.image} alt={card.imageAlt} width="520" height="390" loading="lazy" decoding="async" />
+              </div>
+              <div class="kanri-card__body">
+                <p>{card.label}</p>
+                <h3>{card.title}</h3>
+                <p>{card.body}</p>
+                <ul>
+                  {card.points.map((point) => <li>{point}</li>)}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="study-section study-section--white" aria-labelledby="study-flow-title">
+      <div class="study-content">
+        <header class="study-heading">
+          <p>FLOW</p>
+          <h2 id="study-flow-title">課題を残さない管理フロー</h2>
+          <span>感覚ではなく、見える形で進捗を追います。</span>
+        </header>
+        <div class="diagram-grid">
+          {diagrams.map((diagram) => (
+            <figure class="diagram-card">
+              <img src={diagram.image} alt={diagram.alt} width={diagram.width} height={diagram.height} loading="lazy" decoding="async" />
+              <figcaption>{diagram.title}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="study-section study-section--teacher" aria-labelledby="teacher-system-title">
+      <div class="study-content teacher-panel">
+        <figure class="teacher-panel__photo">
+          <img src={assets.representative} alt="レクサス教育センター代表 島内康行" width="435" height="533" loading="lazy" decoding="async" />
+          <figcaption>レクサス教育センター<br />代表 島内 康行</figcaption>
+        </figure>
+        <div class="teacher-panel__message">
+          <p class="teacher-panel__label">HUMAN SUPPORT</p>
+          <h2 id="teacher-system-title">最後は「人」が支える。<br />プロ講師による担任制</h2>
+          <p>
+            生徒一人にプロ講師が担任として付きます。授業が難しすぎないか、課題の量は適正か、
+            いま何につまずいているのかを常に確認し、学習の軌道を修正します。
+          </p>
+          <p>
+            受験生の悩みは、学力だけでなく生活リズムや人間関係に起因することもあります。
+            思いの丈を担任に話せる状態を作り、保護者様との面談も含めてご家庭と連携します。
+          </p>
+          <div class="study-actions study-actions--left">
+            <a class="button button--blue" href="/top/teacher/">講師紹介</a>
+            <a class="button button--green" href="/top/voice/">合格体験記</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="study-section study-section--white" aria-labelledby="study-pillars-title">
+      <div class="study-content">
+        <header class="study-heading">
+          <p>METHOD</p>
+          <h2 id="study-pillars-title">鬼監理 × 鬼特訓</h2>
+          <span>老舗の医学部予備校だから成せる、学習密度の作り方です。</span>
+        </header>
+        <div class="study-pillar-grid">
+          {pillarCards.map((card) => (
+            <article class="pillar-card">
+              <div class="pillar-card__head">
+                <img src={card.image} alt="" width={card.width} height={card.height} loading="lazy" decoding="async" aria-hidden="true" />
+                <h3 class="pillar-card__title">{card.title}</h3>
+              </div>
+              <p class="pillar-card__subtitle">
+                {card.subtitle.split("×").map((part, i) => (
+                  <Fragment>
+                    {i > 0 && <span class="pillar-card__times" aria-hidden="true">×</span>}
+                    <span>{part.trim()}</span>
+                  </Fragment>
+                ))}
+              </p>
+              <p class="pillar-card__body">{card.body}</p>
+              <p class="pillar-card__cue" aria-hidden="true">↓ 詳しくはコチラ ↓</p>
+              <div class="pillar-card__actions">
+                {card.links.map((link) => <a class="pillar-card__button" href={link.href}>{link.label}</a>)}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="study-contact" aria-labelledby="study-contact-title">
+      <div class="study-content">
+        <img src={assets.logoStrip} alt="" width="800" height="58" loading="lazy" decoding="async" />
+        <h2 id="study-contact-title">まずは、お問合せください。</h2>
+        <p>現在の学習状況を伺い、どこを監理すべきか、どの課題から着手すべきかを具体的に整理します。</p>
+        <div class="study-actions">
+          <a class="button button--red" href="/request-documents/">資料請求</a>
+          <a class="button button--blue" href="/reservation/">個別説明会</a>
+          <a class="button button--light" href="/top/contact/">お問い合わせ</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>
+
+<style>
+  .study-page {
+    --study-paper: #fffdf8;
+    --study-soft: #f8f4ed;
+    --study-ink: #211b17;
+    --study-muted: #61594f;
+    --study-gold: #c5a059;
+    --study-red: #8b0000;
+    --study-blue: #12356a;
+    background: var(--study-soft);
+    color: var(--study-ink);
+  }
+
+  .study-hero {
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 78%), rgb(248 244 237 / 92%)),
+      var(--study-soft);
+    border-bottom: 1px solid #e5dac7;
+  }
+
+  .study-hero__inner,
+  .study-content {
+    width: min(1080px, calc(100% - 40px));
+    margin-inline: auto;
+  }
+
+  .study-hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+    gap: 42px;
+    align-items: center;
+    padding-block: 42px 54px;
+  }
+
+  .study-hero__copy > img,
+  .study-contact img {
+    width: min(800px, 100%);
+    height: auto;
+  }
+
+  .study-hero__label,
+  .study-heading p,
+  .teacher-panel__label {
+    margin: 22px 0 12px;
+    color: var(--study-gold);
+    font-family: var(--font-serif);
+    font-size: 0.92rem;
+    font-weight: 800;
+  }
+
+  .study-hero h1 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 2.6rem;
+    font-weight: 800;
+    line-height: 1.45;
+  }
+
+  .study-hero__lead {
+    margin: 14px 0 0;
+    color: var(--study-red);
+    font-family: var(--font-serif);
+    font-size: 1.55rem;
+    font-weight: 800;
+    line-height: 1.5;
+  }
+
+  .study-hero__text {
+    margin: 20px 0 0;
+    color: #3c352e;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 2;
+  }
+
+  .study-hero__visual {
+    display: grid;
+    justify-items: center;
+    margin: 0;
+    text-align: center;
+  }
+
+  .study-hero__visual img {
+    width: min(230px, 72vw);
+  }
+
+  .study-hero__visual figcaption {
+    margin-top: 14px;
+    color: var(--study-red);
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 800;
+  }
+
+  .study-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    margin-top: 26px;
+  }
+
+  .study-actions--left {
+    justify-content: flex-start;
+  }
+
+  .study-section {
+    padding-block: 74px;
+  }
+
+  .study-section--white {
+    background: #fff;
+  }
+
+  .study-heading {
+    display: grid;
+    justify-items: center;
+    margin-bottom: 34px;
+    text-align: center;
+  }
+
+  .study-heading p,
+  .teacher-panel__label {
+    margin-top: 0;
+  }
+
+  .study-heading h2,
+  .study-contact h2 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 2.15rem;
+    font-weight: 800;
+    line-height: 1.55;
+  }
+
+  .study-heading span {
+    margin-top: 12px;
+    color: var(--study-muted);
+    font-weight: 700;
+  }
+
+  .study-step-grid,
+  .kanri-grid,
+  .diagram-grid,
+  .study-pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px;
+  }
+
+  .study-step-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .study-step,
+  .kanri-card,
+  .diagram-card {
+    border: 1px solid #dfd2bd;
+    border-radius: 8px;
+    background: var(--study-paper);
+    box-shadow: 0 12px 26px rgb(48 32 12 / 10%);
+    overflow: hidden;
+  }
+
+  .study-step {
+    padding: 26px 22px 24px;
+    text-align: center;
+  }
+
+  .study-step span {
+    display: inline-grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border: 1px solid var(--study-gold);
+    border-radius: 50%;
+    color: var(--study-red);
+    font-family: var(--font-serif);
+    font-weight: 800;
+  }
+
+  .study-step h3 {
+    margin: 18px 0 10px;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+  }
+
+  .study-step p,
+  .kanri-card__body p,
+  .teacher-panel__message p,
+  .study-contact p {
+    margin: 0;
+    line-height: 1.95;
+  }
+
+  .kanri-card {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    background: #fff;
+  }
+
+  .kanri-card__media {
+    display: grid;
+    min-height: 220px;
+    place-items: center;
+    background: #f7f1e6;
+    border-bottom: 1px solid #e0d1b8;
+    padding: 24px;
+  }
+
+  .kanri-card__media img {
+    max-height: 250px;
+    object-fit: contain;
+  }
+
+  .kanri-card__body {
+    padding: 28px;
+  }
+
+  .kanri-card__body > p:first-child {
+    margin: 0 0 8px;
+    color: var(--study-gold);
+    font-family: var(--font-serif);
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .kanri-card h3 {
+    margin: 0 0 14px;
+    font-family: var(--font-serif);
+    font-size: 1.55rem;
+  }
+
+  .kanri-card ul {
+    display: grid;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .kanri-card li {
+    position: relative;
+    padding-left: 1.25em;
+    font-weight: 800;
+  }
+
+  .kanri-card li::before {
+    position: absolute;
+    left: 0;
+    color: var(--study-red);
+    content: "●";
+    font-size: 0.7em;
+  }
+
+  .diagram-card {
+    margin: 0;
+    background: #fff;
+    padding: 18px;
+  }
+
+  .diagram-card img {
+    width: 100%;
+    border-radius: 6px;
+  }
+
+  .diagram-card figcaption {
+    margin-top: 12px;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  .study-section--teacher {
+    background: #f7efe1;
+  }
+
+  .teacher-panel {
+    display: grid;
+    grid-template-columns: minmax(220px, 330px) minmax(0, 1fr);
+    gap: 42px;
+    align-items: center;
+  }
+
+  .teacher-panel__photo {
+    display: grid;
+    justify-items: center;
+    margin: 0;
+    text-align: center;
+  }
+
+  .teacher-panel__photo img {
+    width: min(270px, 100%);
+  }
+
+  .teacher-panel__photo figcaption {
+    margin-top: 12px;
+    font-weight: 800;
+  }
+
+  .teacher-panel__message h2 {
+    margin: 0 0 18px;
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    line-height: 1.55;
+  }
+
+  .teacher-panel__message p + p {
+    margin-top: 16px;
+  }
+
+  .study-pillar-grid {
+    gap: 52px 28px;
+    margin-top: 48px;
+  }
+
+  .study-contact {
+    background: #fffdf8;
+    border-top: 1px solid #e7dccb;
+    padding-block: 70px;
+    text-align: center;
+  }
+
+  .study-contact h2 {
+    margin-top: 26px;
+  }
+
+  .study-contact p {
+    width: min(700px, 100%);
+    margin: 16px auto 0;
+    color: #3d362f;
+    font-weight: 700;
+  }
+
+  @media (max-width: 860px) {
+    .study-hero__inner,
+    .teacher-panel {
+      grid-template-columns: 1fr;
+    }
+
+    .study-hero__copy {
+      text-align: center;
+    }
+
+    .study-step-grid,
+    .kanri-grid,
+    .diagram-grid,
+    .study-pillar-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .study-actions--left {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .study-hero__inner,
+    .study-content {
+      width: min(100% - 28px, 1080px);
+    }
+
+    .study-hero__inner {
+      padding-block: 30px 42px;
+    }
+
+    .study-hero h1 {
+      font-size: 2rem;
+      line-height: 1.45;
+    }
+
+    .study-hero__lead {
+      font-size: 1.25rem;
+    }
+
+    .study-hero__text {
+      font-size: 0.98rem;
+      text-align: left;
+    }
+
+    .study-section,
+    .study-contact {
+      padding-block: 54px;
+    }
+
+    .study-heading {
+      margin-bottom: 26px;
+    }
+
+    .study-heading h2,
+    .study-contact h2 {
+      font-size: 1.65rem;
+    }
+
+    .study-step,
+    .kanri-card__body,
+    .diagram-card {
+      padding: 20px;
+    }
+
+    .kanri-card__media {
+      min-height: 180px;
+      padding: 20px;
+    }
+
+    .kanri-card h3 {
+      font-size: 1.35rem;
+    }
+
+    .teacher-panel__message h2 {
+      font-size: 1.55rem;
+    }
+  }
+</style>
