@@ -9671,9 +9671,9 @@
   top: 0;
   bottom: 0;
   left: 50%;
-  width: min(100%, 960px);
+  width: 100vw;
   transform: translateX(-50%);
-  background: linear-gradient(90deg, rgb(255 255 255 / 0%) 0%, #fff 6%, #fff 94%, rgb(255 255 255 / 0%) 100%);
+  background: #fff;
   content: "";
 }
 
@@ -10291,7 +10291,7 @@
       linear-gradient(135deg, rgb(255 255 255 / 0%) 0 52%, rgb(139 0 0 / 6%) 52% 58%, rgb(255 255 255 / 0%) 58%),
       linear-gradient(180deg, #fff 0 74px, #f8f3ec 74px 100%);
     color: #17110d;
-    padding-block: 0 28px;
+    padding-block: 26px 28px;
   }
 
   .results-hero__grid::before {
@@ -10330,9 +10330,10 @@
     text-align: center;
   }
 
-  .results-hero h1::before,
+  /* Keep the white band full-bleed (inherits 100vw); shrink the gold rules
+     to roughly the title's text width. */
   .results-hero h1::after {
-    width: min(100%, 300px);
+    width: min(58%, 220px);
   }
 
   .results-hero__lead {
