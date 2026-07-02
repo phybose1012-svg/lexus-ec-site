@@ -195,19 +195,37 @@ const grammarSteps = [
     </section>
 
     <section class="eng-related" aria-label="鬼監理と鬼特訓">
-      <article>
-        <img src={assets.oniKanri} alt="" width="219" height="251" loading="lazy" decoding="async" />
-        <p class="eng-related__title">鬼監理</p>
-        <p class="eng-related__catch">プロ講師の眼力<br />×<br />医学部専門AIのデータ分析</p>
-        <p>副代表クラスのトップ講師陣が担任となり、学習進捗、得意不得意、成長速度を監理。学習から「無駄」と「甘え」を排除します。</p>
-        <a class="button button--blue" href="/study-support-system/">“鬼監理”を詳しく見る</a>
+      <article class="pillar-card">
+        <div class="pillar-card__head">
+          <img src={assets.oniKanri} alt="" width="219" height="251" loading="lazy" decoding="async" />
+          <h3 class="pillar-card__title">鬼監理</h3>
+        </div>
+        <p class="pillar-card__subtitle">
+          <span>プロ講師の眼力</span>
+          <span class="pillar-card__times" aria-hidden="true">×</span>
+          <span>医学部専門AIのデータ分析</span>
+        </p>
+        <p class="pillar-card__body">副代表クラスのトップ講師陣が担任となり、学習進捗、得意不得意、成長速度を監理。学習から「無駄」と「甘え」を排除します。</p>
+        <p class="pillar-card__cue" aria-hidden="true">↓ 詳しくはコチラ ↓</p>
+        <div class="pillar-card__actions">
+          <a class="pillar-card__button" href="/study-support-system/">“鬼監理”を詳しく見る</a>
+        </div>
       </article>
-      <article>
-        <img src={assets.oniTraining} alt="" width="234" height="260" loading="lazy" decoding="async" />
-        <p class="eng-related__title">鬼特訓</p>
-        <p class="eng-related__catch">プロ講師の質問対応<br />×<br />課題の具体化</p>
-        <p>授業後の自習時間を濃厚な特訓時間へ。課題提示、即時添削、追加課題で、夕方以降の学習密度を高めます。</p>
-        <a class="button button--red" href="/medical-math-training/">数学の“鬼特訓”も詳しく見る</a>
+      <article class="pillar-card">
+        <div class="pillar-card__head">
+          <img src={assets.oniTraining} alt="" width="234" height="260" loading="lazy" decoding="async" />
+          <h3 class="pillar-card__title">鬼特訓</h3>
+        </div>
+        <p class="pillar-card__subtitle">
+          <span>プロ講師の質問対応</span>
+          <span class="pillar-card__times" aria-hidden="true">×</span>
+          <span>課題の具体化</span>
+        </p>
+        <p class="pillar-card__body">授業後の自習時間を濃厚な特訓時間へ。課題提示、即時添削、追加課題で、夕方以降の学習密度を高めます。</p>
+        <p class="pillar-card__cue" aria-hidden="true">↓ 詳しくはコチラ ↓</p>
+        <div class="pillar-card__actions">
+          <a class="pillar-card__button" href="/medical-math-training/">数学の“鬼特訓”も詳しく見る</a>
+        </div>
       </article>
     </section>
 
@@ -445,7 +463,6 @@ const grammarSteps = [
   .eng-step p,
   .eng-correction p,
   .eng-philosophy p,
-  .eng-related p,
   .eng-contact p {
     margin: 0;
     color: #444;
@@ -538,12 +555,15 @@ const grammarSteps = [
 
   .eng-teacher {
     margin: 0;
+    justify-self: center;
     text-align: center;
   }
 
   .eng-teacher img {
+    display: block;
     width: min(230px, 100%);
     height: auto;
+    margin-inline: auto;
     border-radius: 4px;
     background: #fff;
   }
@@ -564,7 +584,7 @@ const grammarSteps = [
   }
 
   .eng-link-row .button,
-  .eng-related .button {
+  .eng-contact .button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -629,36 +649,9 @@ const grammarSteps = [
   .eng-related {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px;
-    padding-block: 24px 46px;
-  }
-
-  .eng-related article {
-    display: grid;
-    justify-items: center;
-    gap: 14px;
-    border-top: 1px solid var(--eng-gold);
-    border-bottom: 1px solid var(--eng-gold);
-    background: #fff;
-    padding: 28px;
+    gap: 52px 28px;
+    padding-block: 72px 52px;
     text-align: center;
-  }
-
-  .eng-related img {
-    width: auto;
-    height: 150px;
-  }
-
-  .eng-related__title {
-    margin: 0;
-    color: var(--eng-navy);
-    font-family: var(--font-serif);
-    font-size: 1.45rem;
-  }
-
-  .eng-related__catch {
-    color: #211915 !important;
-    font-weight: 800;
   }
 
   .eng-contact {
@@ -726,7 +719,6 @@ const grammarSteps = [
     .eng-step p,
     .eng-correction p,
     .eng-philosophy p,
-    .eng-related p,
     .eng-contact p {
       font-size: 0.92rem;
       line-height: 1.9;
@@ -776,6 +768,10 @@ const grammarSteps = [
       grid-template-columns: 1fr;
     }
 
+    .eng-message__grid {
+      justify-items: center;
+    }
+
     .eng-correction__card {
       padding: 22px 20px;
     }
@@ -788,7 +784,15 @@ const grammarSteps = [
     }
 
     .eng-philosophy {
+      width: 100%;
       padding: 28px 22px;
+    }
+
+    .eng-teacher {
+      order: -1;
+      width: 100%;
+      justify-self: center;
+      margin-inline: auto;
     }
 
     .eng-teacher img {
@@ -802,8 +806,7 @@ const grammarSteps = [
       margin-inline: auto;
     }
 
-    .eng-link-row .button,
-    .eng-related .button {
+    .eng-link-row .button {
       width: min(100%, 290px);
     }
 
@@ -816,8 +819,9 @@ const grammarSteps = [
       transform: rotate(90deg);
     }
 
-    .eng-related article {
-      padding: 24px 20px;
+    .eng-related {
+      gap: 46px;
+      padding-block: 58px 40px;
     }
   }
 </style>
