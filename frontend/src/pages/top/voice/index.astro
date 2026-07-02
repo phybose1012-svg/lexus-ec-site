@@ -6,11 +6,50 @@ import SiteLayout from "../../../layouts/SiteLayout.astro";
 const page = getVoicePage();
 
 // Success-student photos for the hero marquee (the "wall of pass").
+type MarqueeItem = { src: string; alt: string; label: string };
 const isImage = (image: VoiceImage | undefined): image is VoiceImage => Boolean(image);
-const interviewImages = page.interviews.map((item) => item.image).filter(isImage);
-const marqueePool: VoiceImage[] = interviewImages.length >= 12 ? interviewImages : page.successPhotos.map((story) => story.image);
-const marqueeRow1 = marqueePool.filter((_, index) => index % 2 === 0).slice(0, 18);
-const marqueeRow2 = marqueePool.filter((_, index) => index % 2 === 1).slice(0, 18);
+
+// A few well-known short forms; everything else falls back to a safe
+// generic shortening (医科大学→医大, 大学→大) so we never mislabel.
+const UNI_ABBR: Record<string, string> = {
+  聖マリアンナ医科大学: "聖マリ医大",
+  東京慈恵会医科大学: "慈恵医大",
+  東京女子医科大学: "東京女子医大",
+  東北医科薬科大学: "東北医薬大",
+  国際医療福祉大学: "国際医療福祉大",
+};
+
+// Turn an interview title ("記事タイトル｜大学名合格") into a compact
+// "〇〇大合格" badge. Without a ｜ we can't be sure of the university,
+// so we keep the plain 合格 badge.
+const passLabelFromTitle = (title: string): string => {
+  if (!title.includes("｜")) return "合格";
+  let uni = title
+    .split("｜")
+    .slice(1)
+    .join("｜")
+    .split(/[、,]/)[0]
+    .replace(/他.*$/, "")
+    .replace(/合格.*$/, "")
+    .replace(/医学部医学科|医学部/g, "")
+    .replace(/^旧/, "")
+    .trim();
+  if (!uni) return "合格";
+  uni = UNI_ABBR[uni] ?? uni.replace(/医科大学/, "医大").replace(/大学$/, "大");
+  return `${uni}合格`;
+};
+
+const interviewMarquee: MarqueeItem[] = page.interviews
+  .filter((item) => isImage(item.image))
+  .map((item) => ({ src: item.image!.src, alt: item.image!.alt || item.title, label: passLabelFromTitle(item.title) }));
+const marqueeItems: MarqueeItem[] =
+  interviewMarquee.length >= 12
+    ? interviewMarquee
+    : page.successPhotos
+        .filter((story) => isImage(story.image))
+        .map((story) => ({ src: story.image.src, alt: story.image.alt || "", label: "合格" }));
+const marqueeRow1 = marqueeItems.filter((_, index) => index % 2 === 0).slice(0, 18);
+const marqueeRow2 = marqueeItems.filter((_, index) => index % 2 === 1).slice(0, 18);
 
 const topLinks = [
   { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
@@ -49,16 +88,18 @@ const successButtonLabels = [
       {marqueeRow1.length > 0 && (
         <div class="voice-marquee" aria-hidden="true">
           <div class="voice-marquee__row voice-marquee__row--left">
-            {[...marqueeRow1, ...marqueeRow1].map((image) => (
+            {[...marqueeRow1, ...marqueeRow1].map((item) => (
               <span class="voice-marquee__item">
-                <img src={image.src} alt="" width="160" height="120" loading="lazy" decoding="async" />
+                <img src={item.src} alt="" width="160" height="120" loading="lazy" decoding="async" />
+                <span class="voice-marquee__tag">{item.label}</span>
               </span>
             ))}
           </div>
           <div class="voice-marquee__row voice-marquee__row--right">
-            {[...marqueeRow2, ...marqueeRow2].map((image) => (
+            {[...marqueeRow2, ...marqueeRow2].map((item) => (
               <span class="voice-marquee__item">
-                <img src={image.src} alt="" width="160" height="120" loading="lazy" decoding="async" />
+                <img src={item.src} alt="" width="160" height="120" loading="lazy" decoding="async" />
+                <span class="voice-marquee__tag">{item.label}</span>
               </span>
             ))}
           </div>
