@@ -228,21 +228,6 @@ const headerNavGroups = navGroups;
       <p class="hero-oni-words" aria-hidden="true"><span>鬼監理</span><span class="about__mark-x">×</span><span>鬼特訓</span></p>
     </section>
 
-    {marqueeRow1.length > 0 && (
-      <section class="home-marquee-section home-marquee-section--top" aria-label="合格者の写真">
-        <div class="home-marquee" aria-hidden="true">
-          <div class="home-marquee__row home-marquee__row--left">
-            {[...marqueeRow1, ...marqueeRow1].map((item) => (
-              <span class="home-marquee__item">
-                <img src={marqueeThumb(item.src)} alt="" width="160" height="120" loading="lazy" decoding="async" />
-                <span class="home-marquee__tag">{item.label}</span>
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-    )}
-
     <section class="intro-section" aria-labelledby="home-title">
       <div class="content-narrow">
         <h1 id="home-title" data-admin-editable="home.intro.title">
@@ -254,21 +239,6 @@ const headerNavGroups = navGroups;
         </p>
       </div>
     </section>
-
-    {marqueeRow2.length > 0 && (
-      <section class="home-marquee-section home-marquee-section--bottom" aria-label="合格者の写真">
-        <div class="home-marquee" aria-hidden="true">
-          <div class="home-marquee__row home-marquee__row--right">
-            {[...marqueeRow2, ...marqueeRow2].map((item) => (
-              <span class="home-marquee__item">
-                <img src={marqueeThumb(item.src)} alt="" width="160" height="120" loading="lazy" decoding="async" />
-                <span class="home-marquee__tag">{item.label}</span>
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-    )}
 
     <section class="section" aria-labelledby="achievements">
       <div class="content">
@@ -282,7 +252,32 @@ const headerNavGroups = navGroups;
             </article>
           ))}
         </div>
+      </div>
 
+      {marqueeRow1.length > 0 && (
+        <div class="home-marquee-section">
+          <div class="home-marquee" aria-hidden="true">
+            <div class="home-marquee__row home-marquee__row--left">
+              {[...marqueeRow1, ...marqueeRow1].map((item) => (
+                <span class="home-marquee__item">
+                  <img src={marqueeThumb(item.src)} alt="" width="160" height="120" loading="lazy" decoding="async" />
+                  <span class="home-marquee__tag">{item.label}</span>
+                </span>
+              ))}
+            </div>
+            <div class="home-marquee__row home-marquee__row--right">
+              {[...marqueeRow2, ...marqueeRow2].map((item) => (
+                <span class="home-marquee__item">
+                  <img src={marqueeThumb(item.src)} alt="" width="160" height="120" loading="lazy" decoding="async" />
+                  <span class="home-marquee__tag">{item.label}</span>
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div class="content">
         <h3 class="university-list__title">合格した大学一覧(医学部医学科のみ)</h3>
         <div class="university-list" aria-label="医学部入試過去6年分の最終合格者データ">
           {acceptedUniversities.map((column) => (
