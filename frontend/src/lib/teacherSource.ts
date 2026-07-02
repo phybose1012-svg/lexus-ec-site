@@ -281,8 +281,9 @@ export const getTeacherPage = (): TeacherPage => {
   const representativeImage = images.find((image) => image.alt.includes("島内")) || pageImages.find(meaningfulTeacherImage) || images[0];
   const logoStrip = images.find((image) => image.src.includes("背景ロゴだらけメニュー透明3"))?.src || "";
 
+  void pageTitle;
   return {
-    title: pageTitle(html, h1),
+    title: "医学部予備校の講師紹介｜質にこだわり抜いたプロ講師陣｜レクサスE.C.",
     description: metaContent(html, "description") || "レクサス教育センターの医学部受験を知り尽くした講師陣を紹介します。",
     canonical: "https://lexus-ec.com/top/teacher/",
     h1,

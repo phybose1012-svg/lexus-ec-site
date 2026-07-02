@@ -27,7 +27,6 @@ const staticPagePaths = [
   "/lexus-online/contact/",
   "/lexus-online/development-flow/",
   "/lexus-online/policy/",
-  "/top/reservation/",
   "/top/history/",
   "/top/lexus-garden/",
   "/top/teacher/",

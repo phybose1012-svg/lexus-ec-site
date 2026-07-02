@@ -305,8 +305,9 @@ export const getVoicePage = (): VoicePage => {
     headings.find((heading) => heading.text.includes("レクサスのプロ講師") && heading.tag === "h2")?.text ||
     "レクサスのプロ講師と、レクサスの卒業生が、共同で作りました。";
 
+  void pageTitle;
   return {
-    title: pageTitle(html, h1),
+    title: "医学部の合格体験記｜逆転合格した卒業生・保護者の声｜レクサスE.C.",
     description: metaContent(html, "description") || "医学部予備校レクサス教育センターの合格体験記、合格者インタビュー、保護者様の声を紹介します。",
     canonical: "https://lexus-ec.com/top/voice/",
     h1,
