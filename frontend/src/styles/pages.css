@@ -8974,14 +8974,23 @@
 
 .voice-video-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
 }
 
 .voice-video-card {
-  background: #fff;
+  display: grid;
+  grid-template-rows: auto 1fr;
   overflow: hidden;
-  box-shadow: 0 12px 28px rgb(0 0 0 / 26%);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgb(0 0 0 / 30%);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.voice-video-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgb(0 0 0 / 40%);
 }
 
 .voice-video-card__media {
@@ -8989,26 +8998,43 @@
   display: grid;
   place-items: center;
   aspect-ratio: 16 / 9;
-  background: #111;
+  background: #0d0d0d;
   color: #fff;
   font-weight: 900;
   text-align: center;
   text-decoration: none;
 }
 
+/* Centered play button over a soft dark veil. */
+.voice-video-card__media::before {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(0 0 0 / 0%) 40%, rgb(0 0 0 / 30%) 100%);
+  content: "";
+  transition: background 0.25s ease;
+}
+
 .voice-video-card__media::after {
   position: absolute;
-  inset: auto 14px 14px auto;
+  z-index: 1;
   display: grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
+  padding-left: 3px;
   border-radius: 50%;
-  background: #b11219;
+  background: rgb(177 18 25 / 92%);
+  box-shadow: 0 4px 14px rgb(0 0 0 / 45%);
   color: #fff;
   content: "▶";
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   line-height: 1;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.voice-video-card:hover .voice-video-card__media::after {
+  transform: scale(1.12);
+  background: #b11219;
 }
 
 .voice-video-card__media img {
@@ -9017,33 +9043,81 @@
   object-fit: cover;
 }
 
-.voice-video-card__media span {
-  padding: 22px;
+/* Duration badge, YouTube-style, bottom-right of the thumbnail. */
+.voice-video-card__time {
+  position: absolute;
+  z-index: 1;
+  right: 8px;
+  bottom: 8px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgb(0 0 0 / 82%);
+  color: #fff;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+.voice-video-card__ph {
+  padding: 20px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Pending (準備中) cards: no play affordance, quiet placeholder + badge. */
+.voice-video-card.is-pending .voice-video-card__media {
+  background: linear-gradient(150deg, #2a2019 0%, #14100c 100%);
+}
+
+.voice-video-card.is-pending .voice-video-card__media::after {
+  display: none;
+}
+
+.voice-video-card__badge {
+  position: absolute;
+  z-index: 1;
+  right: 8px;
+  bottom: 8px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  border: 1px solid rgb(197 160 89 / 55%);
+  background: rgb(0 0 0 / 45%);
+  color: #d9c290;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
 }
 
 .voice-video-card__body {
   display: grid;
-  gap: 10px;
-  padding: 18px;
+  gap: 8px;
+  align-content: start;
+  padding: 14px 14px 16px;
 }
 
 .voice-video-card h3 {
   margin: 0;
   color: #211a13;
-  font-size: 1.08rem;
+  font-size: 0.92rem;
+  font-weight: 800;
   line-height: 1.55;
 }
 
-.voice-video-card p {
-  margin: 0;
-  color: #8f1515;
-  font-weight: 900;
-}
-
-.voice-video-card__body a {
+.voice-video-card__link {
   justify-self: start;
   color: #0d5b7c;
+  font-size: 0.84rem;
   font-weight: 900;
+  text-decoration: none;
+}
+
+.voice-video-card__link::after {
+  content: " ›";
+}
+
+.voice-video-card.is-pending .voice-video-card__link {
+  color: #9a8d7c;
 }
 
 .voice-garden {
@@ -9304,9 +9378,27 @@
   }
 
   .voice-success-grid,
-  .voice-video-grid,
   .voice-notice__grid {
     grid-template-columns: 1fr;
+  }
+
+  .voice-video-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .voice-video-card__body {
+    padding: 11px 11px 13px;
+    gap: 6px;
+  }
+
+  .voice-video-card h3 {
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .voice-video-card__link {
+    font-size: 0.78rem;
   }
 
   .voice-success-card h3 {

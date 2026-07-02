@@ -145,7 +145,7 @@ const successButtonLabels = [
         </header>
         <div class="voice-video-grid">
           {page.videos.map((video) => (
-            <article class="voice-video-card">
+            <article class={`voice-video-card${video.url ? "" : " is-pending"}`}>
               <a
                 class="voice-video-card__media"
                 href={video.url || "#voice-video-title"}
@@ -153,16 +153,17 @@ const successButtonLabels = [
                 rel={video.url ? "noopener noreferrer" : undefined}
                 aria-label={video.url ? `動画を新しいタブで開く: ${video.title}` : `動画準備中: ${video.title}`}
               >
-                {video.thumbnail ? (
+                {video.url && video.thumbnail ? (
                   <img src={video.thumbnail.src} alt={video.thumbnail.alt || video.title} width={video.thumbnail.width || "1280"} height={video.thumbnail.height || "720"} loading="lazy" decoding="async" />
                 ) : (
-                  <span>{video.title}</span>
+                  <span class="voice-video-card__ph">{video.title}</span>
                 )}
+                {video.url && video.duration && <span class="voice-video-card__time">{video.duration}</span>}
+                {!video.url && <span class="voice-video-card__badge">準備中</span>}
               </a>
               <div class="voice-video-card__body">
                 <h3>{video.title}</h3>
-                {video.duration && <p>{video.duration}</p>}
-                <a href={video.url || "#voice-video-title"} target={video.url ? "_blank" : undefined} rel={video.url ? "noopener noreferrer" : undefined}>{video.url ? "動画を見る" : "準備中"}</a>
+                <a class="voice-video-card__link" href={video.url || "#voice-video-title"} target={video.url ? "_blank" : undefined} rel={video.url ? "noopener noreferrer" : undefined}>{video.url ? "動画を見る" : "準備中"}</a>
               </div>
             </article>
           ))}
