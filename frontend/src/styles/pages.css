@@ -8617,30 +8617,63 @@
 }
 
 .voice-hero__eyebrow {
-  display: none;
+  display: block;
+  margin: 0 0 16px;
+  color: #b28f4e;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.42em;
+  line-height: 1;
+  text-indent: 0.42em;
 }
 
 .voice-hero h1 {
+  position: relative;
   width: auto;
   max-width: 100%;
   margin: 0;
-  border-top: 2px solid #c5a059;
-  border-bottom: 2px solid #c5a059;
-  color: #17110d;
-  padding: 12px 44px;
-  font-size: 2.8rem;
-  font-weight: 900;
-  letter-spacing: 0.16em;
-  line-height: 1.4;
+  padding: 18px 52px;
+  font-family: var(--font-serif, serif);
+  font-size: 3rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  line-height: 1.35;
+  text-indent: 0.22em;
+  background: linear-gradient(177deg, #e6c67e 0%, #c8a24f 34%, #a97e2b 66%, #7c5a18 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Delicate gold rules that fade at the ends (far more refined than solid). */
+.voice-hero h1::before,
+.voice-hero h1::after {
+  position: absolute;
+  left: 50%;
+  width: min(100%, 420px);
+  height: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, rgb(197 160 89 / 0%) 0%, #c5a059 22%, #9a7422 50%, #c5a059 78%, rgb(197 160 89 / 0%) 100%);
+  content: "";
+}
+
+.voice-hero h1::before {
+  top: 0;
+}
+
+.voice-hero h1::after {
+  bottom: 0;
 }
 
 .voice-page .voice-hero .voice-hero__count {
   width: auto;
-  margin: 18px 0 0;
-  color: #a9791f;
+  margin: 20px 0 0;
+  color: #4a3d2c;
   font-family: var(--font-serif, serif);
-  font-size: 1.25rem;
-  font-weight: 900;
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-align: center;
 }
 
@@ -9389,20 +9422,29 @@
     padding-block: 38px 44px;
   }
 
-  .voice-hero__eyebrow,
   .voice-hero__actions {
     display: none;
   }
 
+  .voice-hero__eyebrow {
+    margin-bottom: 12px;
+    font-size: 0.68rem;
+    letter-spacing: 0.36em;
+    text-indent: 0.36em;
+  }
+
   .voice-hero h1 {
     width: auto;
-    border-top: 2px solid #c5a059;
-    border-bottom: 2px solid #c5a059;
-    color: #17110d;
-    padding: 10px 26px;
-    font-size: 2rem;
-    letter-spacing: 0.12em;
-    line-height: 1.5;
+    padding: 14px 26px;
+    font-size: 2.15rem;
+    letter-spacing: 0.18em;
+    text-indent: 0.18em;
+    line-height: 1.45;
+  }
+
+  .voice-hero h1::before,
+  .voice-hero h1::after {
+    width: min(100%, 300px);
   }
 
   .voice-hero h2 {
