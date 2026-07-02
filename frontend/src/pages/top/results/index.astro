@@ -55,11 +55,6 @@ const quickLinks = [
   { label: "理念と沿革", href: "/top/history/", tone: "red" },
 ];
 
-const resultActions = [
-  { label: "資料請求", href: "/request-documents/", tone: "red" },
-  { label: "合格者の声へ", href: "/top/voice/", tone: "blue" },
-];
-
 const conditions = [
   {
     label: "【条件 その１】",
@@ -173,12 +168,9 @@ const conditions = [
             <li><span>{name}</span><strong>{count}</strong></li>
           ))}
         </ul>
-        <p class="results-note">※医学部入試過去6年分 (2020～2025年度) の最終合格者データです。</p>
+        <p class="results-note">※過去6年分 (2021～2026年度) の最終合格者データ</p>
         <div class="results-achievement__actions" aria-label="合格実績ページの補助導線">
           {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
-        </div>
-        <div class="results-achievement__actions" aria-label="合格メソッドページの主要導線">
-          {resultActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
         </div>
       </div>
     </section>
