@@ -51,6 +51,8 @@ const dedicatedPagePaths = new Set([
   "/english-training/",
   "/penguin-geometry/",
   "/penguin-integral/",
+  "/voice/",
+  "/results/",
   "/top/teacher/",
   "/top/course/",
   "/top/course/lexus-premiere-course/",
