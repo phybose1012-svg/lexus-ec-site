@@ -10737,18 +10737,48 @@
 }
 
 .history-hero__label {
-  display: none;
+  display: block;
+  margin: 0 0 16px;
+  color: #9a7422;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
 }
 
 .history-hero h1 {
-  width: 100%;
+  position: relative;
+  width: min(900px, 100%);
   margin: 0;
-  border-top: 1px solid #17110d;
-  border-bottom: 1px solid #17110d;
-  padding-block: 11px;
-  font-size: 1.78rem;
-  font-weight: 900;
+  padding-block: 20px;
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+  font-weight: 800;
   line-height: 1.5;
+  background: linear-gradient(177deg, #e6c67e, #c8a24f 34%, #a97e2b 66%, #7c5a18);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.history-hero h1::before,
+.history-hero h1::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: min(540px, 92%);
+  height: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, #c5a059, #9a7422, #c5a059, transparent);
+}
+
+.history-hero h1::before {
+  top: 0;
+}
+
+.history-hero h1::after {
+  bottom: 0;
 }
 
 .history-hero p:not(.history-hero__label) {
