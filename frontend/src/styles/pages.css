@@ -11132,7 +11132,7 @@
 /* Non-directory legacy content: raw elementor flex containers (e-con e-flex)
    collapse/misalign without Elementor's CSS. Normalize to plain block flow so
    text and pseudo-tables stack cleanly inside the centered column. */
-.legacy-article-section .fixed-source :where(.e-con, .e-flex, .elementor-container, .elementor-row) {
+.legacy-article-section:not(.lap--raw) .fixed-source :where(.e-con, .e-flex, .elementor-container, .elementor-row) {
   display: block !important;
   width: 100% !important;
   max-width: 100% !important;
@@ -11140,7 +11140,7 @@
   transform: none !important;
 }
 
-.legacy-article-section .fixed-source :where(.elementor-widget) {
+.legacy-article-section:not(.lap--raw) .fixed-source :where(.elementor-widget) {
   width: auto !important;
   max-width: 100% !important;
 }
@@ -11161,8 +11161,41 @@
 }
 
 /* Excessive Elementor spacers — cap the height. */
-.legacy-article-body :where(.elementor-spacer, .elementor-spacer-inner) {
+.legacy-article-section:not(.lap--raw) .legacy-article-body :where(.elementor-spacer, .elementor-spacer-inner) {
   height: clamp(4px, 1.4vw, 16px) !important;
+}
+
+/* Raw Elementor pages (original layout restored via legacy-elementor.css):
+   give the column the original content width. */
+.legacy-article-section.lap--raw .legacy-article-body {
+  width: min(1200px, calc(100% - 24px));
+}
+
+/* Entrance animations never run (no Elementor JS) — keep content visible. */
+.legacy-article-section.lap--raw .legacy-article-body .elementor-invisible {
+  visibility: visible !important;
+}
+
+/* No swiper JS either: collapse sliders to their first slide, and honour
+   the "hidden on every device" marker (raw pages skip .fixed-source, which
+   normally provides both). */
+.legacy-article-section.lap--raw .legacy-article-body :where(.swiper-wrapper, .elementor-slides) {
+  display: block !important;
+  transform: none !important;
+}
+
+.legacy-article-section.lap--raw .legacy-article-body .swiper-slide {
+  width: 100% !important;
+}
+
+.legacy-article-section.lap--raw .legacy-article-body .swiper-slide:not(:first-child) {
+  display: none !important;
+}
+
+.legacy-article-section.lap--raw
+  .legacy-article-body
+  :where(.elementor-hidden-desktop.elementor-hidden-tablet.elementor-hidden-mobile) {
+  display: none !important;
 }
 
 /* Per-section header on directory pages: logo-strip divider + black label. */
@@ -11239,11 +11272,56 @@
 }
 
 .legacy-article-body .lap-sec--a {
-  background: #fffdf8;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px #eee3d2;
 }
 
 .legacy-article-body .lap-sec--b {
   background: #eef5ee;
+}
+
+/* /past-post/ archive: per-university article lists inside the 五十音 tabs. */
+.ppa-lead {
+  max-width: 720px;
+  margin: 18px auto 0;
+  padding-inline: 20px;
+  color: #5c5244;
+  font-size: 0.95rem;
+  line-height: 1.9;
+}
+
+.legacy-article-body .lap-sec > h2 {
+  margin: 10px 0 18px;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  color: #1e1a18;
+}
+
+.ppa-panel {
+  display: grid;
+  gap: 26px;
+}
+
+.ppa-panel[hidden] {
+  display: none;
+}
+
+.ppa-uni__name {
+  width: fit-content;
+  margin: 0 auto 4px;
+  padding: 3px 18px;
+  border-bottom: 2px solid #1b6e48;
+  color: #1e1a18;
+  font-family: var(--font-serif);
+  font-size: 1.08rem;
+  text-align: center;
+}
+
+.ppa-list {
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 8px;
+  padding-inline: 10px;
 }
 
 /* Reused related-links button row appended to every legacy page. */

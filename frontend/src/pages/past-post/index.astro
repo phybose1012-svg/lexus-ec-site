@@ -1,0 +1,288 @@
+---
+import SiteFooter from "../../components/site/SiteFooter.astro";
+import SiteHeader from "../../components/site/SiteHeader.astro";
+import { seo } from "../../data/home";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/pages.css";
+import { migratedPosts } from "../../lib/postSource";
+
+// 全国医学部の索引。読みで五十音行に割り当てて私立/国公立でタブ分けする。
+type Uni = { name: string; kana: string; type: "shiritsu" | "kokuritsu"; aliases?: string[] };
+const UNIS: Uni[] = [
+  // 私立
+  { name: "愛知医科大学", kana: "あいち", type: "shiritsu" },
+  { name: "岩手医科大学", kana: "いわて", type: "shiritsu", aliases: ["岩手医科"] },
+  { name: "大阪医科薬科大学", kana: "おおさかいかやっか", type: "shiritsu", aliases: ["旧大阪医科大学"] },
+  { name: "金沢医科大学", kana: "かなざわいか", type: "shiritsu" },
+  { name: "川崎医科大学", kana: "かわさきいか", type: "shiritsu" },
+  { name: "関西医科大学", kana: "かんさいいか", type: "shiritsu" },
+  { name: "北里大学", kana: "きたさと", type: "shiritsu" },
+  { name: "杏林大学", kana: "きょうりん", type: "shiritsu", aliases: ["杏林"] },
+  { name: "近畿大学", kana: "きんき", type: "shiritsu" },
+  { name: "久留米大学", kana: "くるめ", type: "shiritsu" },
+  { name: "慶應義塾大学", kana: "けいおう", type: "shiritsu", aliases: ["慶應大学"] },
+  { name: "国際医療福祉大学", kana: "こくさいいりょうふくし", type: "shiritsu" },
+  { name: "埼玉医科大学", kana: "さいたまいか", type: "shiritsu" },
+  { name: "産業医科大学", kana: "さんぎょういか", type: "shiritsu" },
+  { name: "自治医科大学", kana: "じちいか", type: "shiritsu", aliases: ["自治医科"] },
+  { name: "順天堂大学", kana: "じゅんてんどう", type: "shiritsu" },
+  { name: "昭和医科大学", kana: "しょうわいか", type: "shiritsu", aliases: ["昭和医科", "昭和大学", "旧昭和大学"] },
+  { name: "聖マリアンナ医科大学", kana: "せいまりあんな", type: "shiritsu", aliases: ["聖マリアンナ大学"] },
+  { name: "帝京大学", kana: "ていきょう", type: "shiritsu", aliases: ["帝京"] },
+  { name: "東海大学", kana: "とうかい", type: "shiritsu" },
+  { name: "東京医科大学", kana: "とうきょういか", type: "shiritsu" },
+  { name: "東京慈恵会医科大学", kana: "とうきょうじけいかい", type: "shiritsu" },
+  { name: "東京女子医科大学", kana: "とうきょうじょしいか", type: "shiritsu" },
+  { name: "東邦大学", kana: "とうほう", type: "shiritsu" },
+  { name: "東北医科薬科大学", kana: "とうほくいかやっか", type: "shiritsu" },
+  { name: "獨協医科大学", kana: "どっきょういか", type: "shiritsu" },
+  { name: "日本大学", kana: "にほん", type: "shiritsu", aliases: ["日大医学部"] },
+  { name: "日本医科大学", kana: "にほんいか", type: "shiritsu" },
+  { name: "兵庫医科大学", kana: "ひょうごいか", type: "shiritsu" },
+  { name: "福岡大学", kana: "ふくおか", type: "shiritsu" },
+  { name: "藤田医科大学", kana: "ふじたいか", type: "shiritsu" },
+  // 国公立
+  { name: "旭川医科大学", kana: "あさひかわいか", type: "kokuritsu" },
+  { name: "秋田大学", kana: "あきた", type: "kokuritsu" },
+  { name: "愛媛大学", kana: "えひめ", type: "kokuritsu" },
+  { name: "大分大学", kana: "おおいた", type: "kokuritsu" },
+  { name: "大阪大学", kana: "おおさか", type: "kokuritsu" },
+  { name: "大阪公立大学", kana: "おおさかこうりつ", type: "kokuritsu" },
+  { name: "岡山大学", kana: "おかやま", type: "kokuritsu" },
+  { name: "香川大学", kana: "かがわ", type: "kokuritsu" },
+  { name: "鹿児島大学", kana: "かごしま", type: "kokuritsu" },
+  { name: "金沢大学", kana: "かなざわ", type: "kokuritsu" },
+  { name: "岐阜大学", kana: "ぎふ", type: "kokuritsu" },
+  { name: "九州大学", kana: "きゅうしゅう", type: "kokuritsu" },
+  { name: "京都大学", kana: "きょうと", type: "kokuritsu" },
+  { name: "京都府立医科大学", kana: "きょうとふりついか", type: "kokuritsu" },
+  { name: "熊本大学", kana: "くまもと", type: "kokuritsu" },
+  { name: "群馬大学", kana: "ぐんま", type: "kokuritsu" },
+  { name: "神戸大学", kana: "こうべ", type: "kokuritsu" },
+  { name: "高知大学", kana: "こうち", type: "kokuritsu" },
+  { name: "佐賀大学", kana: "さが", type: "kokuritsu" },
+  { name: "札幌医科大学", kana: "さっぽろいか", type: "kokuritsu" },
+  { name: "滋賀医科大学", kana: "しがいか", type: "kokuritsu" },
+  { name: "島根大学", kana: "しまね", type: "kokuritsu" },
+  { name: "信州大学", kana: "しんしゅう", type: "kokuritsu" },
+  { name: "千葉大学", kana: "ちば", type: "kokuritsu" },
+  { name: "筑波大学", kana: "つくば", type: "kokuritsu" },
+  { name: "東京大学", kana: "とうきょう", type: "kokuritsu" },
+  { name: "東京科学大学", kana: "とうきょうかがく", type: "kokuritsu" },
+  { name: "東北大学", kana: "とうほく", type: "kokuritsu" },
+  { name: "徳島大学", kana: "とくしま", type: "kokuritsu" },
+  { name: "鳥取大学", kana: "とっとり", type: "kokuritsu" },
+  { name: "富山大学", kana: "とやま", type: "kokuritsu" },
+  { name: "長崎大学", kana: "ながさき", type: "kokuritsu" },
+  { name: "名古屋大学", kana: "なごや", type: "kokuritsu" },
+  { name: "名古屋市立大学", kana: "なごやしりつ", type: "kokuritsu" },
+  { name: "奈良県立医科大学", kana: "ならけんりついか", type: "kokuritsu" },
+  { name: "新潟大学", kana: "にいがた", type: "kokuritsu" },
+  { name: "浜松医科大学", kana: "はままついか", type: "kokuritsu" },
+  { name: "弘前大学", kana: "ひろさき", type: "kokuritsu" },
+  { name: "広島大学", kana: "ひろしま", type: "kokuritsu" },
+  { name: "福井大学", kana: "ふくい", type: "kokuritsu" },
+  { name: "福島県立医科大学", kana: "ふくしまけんりついか", type: "kokuritsu" },
+  { name: "北海道大学", kana: "ほっかいどう", type: "kokuritsu" },
+  { name: "三重大学", kana: "みえ", type: "kokuritsu" },
+  { name: "宮崎大学", kana: "みやざき", type: "kokuritsu" },
+  { name: "山形大学", kana: "やまがた", type: "kokuritsu" },
+  { name: "山口大学", kana: "やまぐち", type: "kokuritsu" },
+  { name: "山梨大学", kana: "やまなし", type: "kokuritsu" },
+  { name: "横浜市立大学", kana: "よこはましりつ", type: "kokuritsu" },
+  { name: "琉球大学", kana: "りゅうきゅう", type: "kokuritsu" },
+  { name: "和歌山県立医科大学", kana: "わかやまけんりついか", type: "kokuritsu" },
+];
+
+const ROWS = [
+  { label: "ア行", re: /^[あ-おゔ]/ },
+  { label: "カ行", re: /^[か-ごゕゖ]/ },
+  { label: "サ行", re: /^[さ-ぞ]/ },
+  { label: "タ行", re: /^[た-ど]/ },
+  { label: "ナ行", re: /^[な-の]/ },
+  { label: "ハ行", re: /^[は-ぽ]/ },
+  { label: "マ行", re: /^[ま-も]/ },
+  { label: "ヤ・ラ・ワ行", re: /^[や-ん]/ },
+];
+const rowFor = (kana: string) => ROWS.find((r) => r.re.test(kana))?.label ?? "ヤ・ラ・ワ行";
+
+// タイトル中の大学名で記事を割り当てる（長い別名から先に照合）。
+const matchers = UNIS.flatMap((u) => [u.name, ...(u.aliases ?? [])].map((a) => ({ alias: a, uni: u }))).sort(
+  (a, b) => b.alias.length - a.alias.length,
+);
+const uniFor = (title: string) => matchers.find((m) => title.includes(m.alias))?.uni ?? null;
+
+// 旧サイトにのみ残っている未移行記事（リンク切れ防止のため絶対URLで温存）。
+const EXTERNAL: { uni: string | null; title: string; url: string }[] = [
+  { uni: "埼玉医科大学", title: "埼玉医科大学(後期)補欠の繰り上げは何番まで？過去10年のデータと対策", url: "https://lexus-ec.com/saitama-med-late-waitlist/" },
+  { uni: "埼玉医科大学", title: "埼玉医科大学 医学部の繰り上げ合格【2026年度版】｜いつ連絡が来る？何位まで回る？", url: "https://lexus-ec.com/saitama-med-waitlist-guide/" },
+  { uni: "日本大学", title: "日大医学部の補欠繰り上げはいつまで？過去データから見る合格ライン", url: "https://lexus-ec.com/nihonn-waitlist-guide/" },
+  { uni: "金沢医科大学", title: "金沢医科大学の補欠合格・繰り上げ順位の推移｜2026年入試の動向分析", url: "https://lexus-ec.com/kanazawa-med-waitlist-guide/" },
+  { uni: "杏林大学", title: "杏林大学 医学部の繰り上げ合格【2026年度版】｜補欠順位は何位まで回る？過去10年データ", url: "https://lexus-ec.com/kyorin-medical-waiting-list-success/" },
+  { uni: "東京医科大学", title: "東京医科大学 医学部の繰り上げ合格【2026年度版】｜補欠何番まで回る？", url: "https://lexus-ec.com/tokyo-med-waitlist-status_2026/" },
+  { uni: "北里大学", title: "北里大学 医学部の繰り上げ合格【2026年度版】｜補欠順位は何位まで回る？過去10年データ", url: "https://lexus-ec.com/kitasato-medicine-waitlist-success/" },
+  { uni: "岩手医科大学", title: "岩手医科大学｜2025年度入試｜英語の過去問分析｜合格を掴む時間配分と対策法", url: "https://lexus-ec.com/iwate-med-english-2025-analysis/" },
+  { uni: "岩手医科大学", title: "岩手医科大学｜2025年度入試｜数学の過去問分析｜合格を掴む時間配分と対策法", url: "https://lexus-ec.com/iwate-med-math-2025-analysis/" },
+  { uni: "岩手医科大学", title: "岩手医科大学｜2025年度入試｜化学の過去問分析｜合格を掴む時間配分と対策法", url: "https://lexus-ec.com/iwate-med-chemi-2025-analysis/" },
+  { uni: "岩手医科大学", title: "岩手医科大学｜2025年度入試｜物理の過去問分析｜合格を掴む時間配分と対策法", url: "https://lexus-ec.com/iwate-med-physic-2025-analysis/" },
+  { uni: "岩手医科大学", title: "岩手医科大学｜2025年度入試｜生物の過去問分析｜合格を掴む時間配分と対策法", url: "https://lexus-ec.com/iwate-med-biology-2025-analysis/" },
+  { uni: null, title: "【医学部受験】「不合格」に沈む我が子へ。親が今夜掛けるべき言葉と、やってはいけないNG行動", url: "https://lexus-ec.com/oya-to-kodomo/" },
+  { uni: null, title: "【医学部受験】逆転合格への予備校選び｜もう一年を無駄にしないために。", url: "https://lexus-ec.com/yobikou-change/" },
+];
+
+type Entry = { title: string; href: string; date: string; external?: boolean };
+const displayTitle = (t: string) => t.replace(/｜医学部受験で役立つ情報$/, "").trim();
+
+const byUni = new Map<string, Entry[]>();
+const columns: Entry[] = [];
+for (const p of migratedPosts) {
+  const entry: Entry = { title: displayTitle(p.title), href: p.path, date: (p.date || "").slice(0, 10) };
+  const uni = uniFor(p.title);
+  if (uni) {
+    if (!byUni.has(uni.name)) byUni.set(uni.name, []);
+    byUni.get(uni.name)!.push(entry);
+  } else {
+    columns.push(entry);
+  }
+}
+for (const e of EXTERNAL) {
+  const entry: Entry = { title: e.title, href: e.url, date: "", external: true };
+  if (e.uni) {
+    if (!byUni.has(e.uni)) byUni.set(e.uni, []);
+    byUni.get(e.uni)!.push(entry);
+  } else {
+    columns.push(entry);
+  }
+}
+byUni.forEach((list) => list.sort((a, b) => (a.date < b.date ? 1 : -1)));
+columns.sort((a, b) => (a.date < b.date ? 1 : -1));
+
+const collator = new Intl.Collator("ja");
+const groupTabs = (type: "shiritsu" | "kokuritsu") => {
+  const unis = UNIS.filter((u) => u.type === type && byUni.has(u.name)).sort((a, b) => collator.compare(a.kana, b.kana));
+  return ROWS.map((row) => ({
+    row: row.label,
+    unis: unis.filter((u) => rowFor(u.kana) === row.label).map((u) => ({ name: u.name, posts: byUni.get(u.name)! })),
+  })).filter((g) => g.unis.length > 0);
+};
+const shiritsuTabs = groupTabs("shiritsu");
+const kokuritsuTabs = groupTabs("kokuritsu");
+const totalCount = migratedPosts.length + EXTERNAL.length;
+
+const guideImage = "/assets/legacy/wp-content/uploads/2025/11/PR用見本2026-1024x1024.jpg";
+const logoStrip = "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
+---
+
+<BaseLayout
+  title="投稿記事一覧｜医学部受験情報｜国公立＋私立医学部 - 医学部予備校 レクサス E.C."
+  description={`国公立・私立 全国の医学部入試情報アーカイブ。二次試験・共通テストの傾向、面接対策、繰り上げ合格情報など${totalCount}本の記事を大学別・五十音順に整理しています。`}
+  canonical="https://lexus-ec.com/past-post/"
+  ogImage={seo.ogImage}
+>
+  <SiteHeader />
+  <main class="legacy-article-page">
+    <section class="legacy-article-hero">
+      <img class="page-head__strip" src={logoStrip} alt="" width="800" height="58" decoding="async" />
+      <p class="page-head__label">ARCHIVE</p>
+      <h1 class="page-head__title">国公立＋私立 全国の医学部入試情報</h1>
+      <span class="page-head__rule" aria-hidden="true"></span>
+      <p class="ppa-lead">
+        二次試験・共通テストの傾向と対策、面接・志望理由のヒント、繰り上げ合格情報など、全{totalCount}本の記事を大学別に整理しました。
+      </p>
+    </section>
+
+    <section class="fixed-page fixed-page--unstack fixed-page--directory legacy-article-section">
+      <div class="content fixed-source legacy-article-body">
+        {[
+          { key: "shiritsu", label: "PRIVATE", heading: "私立医学部の記事一覧", tabs: shiritsuTabs, tone: "lap-sec--a" },
+          { key: "kokuritsu", label: "NATIONAL", heading: "国公立医学部の記事一覧", tabs: kokuritsuTabs, tone: "lap-sec--b" },
+        ].map((sec, i) => (
+          <section class={`lap-sec ${sec.tone}`}>
+            <div class="lap-sechead">
+              {i > 0 && <img class="lap-sechead__strip" src={logoStrip} alt="" aria-hidden="true" />}
+              <p class="lap-sechead__label">{sec.label}</p>
+            </div>
+            <h2>{sec.heading}</h2>
+            <div class="dir-tabs" role="tablist">
+              {sec.tabs.map((g, j) => (
+                <button type="button" class={`dir-tab${j === 0 ? " is-active" : ""}`} role="tab" aria-selected={j === 0 ? "true" : "false"} data-tab={`${sec.key}-${j}`}>
+                  {g.row}
+                </button>
+              ))}
+            </div>
+            <div class="dir-tab-panels">
+              {sec.tabs.map((g, j) => (
+                <div class="dir-tab-panel ppa-panel" data-panel={`${sec.key}-${j}`} hidden={j !== 0}>
+                  {g.unis.map((u) => (
+                    <div class="ppa-uni">
+                      <h3 class="ppa-uni__name">{u.name}</h3>
+                      <ul class="lap-news ppa-list">
+                        {u.posts.map((p) => (
+                          <li>
+                            <a href={p.href} rel={p.external ? "noopener" : undefined}>{p.title}</a>
+                            {p.date && <time>{p.date}</time>}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </section>
+        ))}
+
+        <section class="lap-sec lap-sec--a">
+          <div class="lap-sechead">
+            <img class="lap-sechead__strip" src={logoStrip} alt="" aria-hidden="true" />
+            <p class="lap-sechead__label">COLUMN</p>
+          </div>
+          <h2>医学部受験コラム・全般情報</h2>
+          <ul class="lap-news ppa-list">
+            {columns.map((p) => (
+              <li>
+                <a href={p.href} rel={p.external ? "noopener" : undefined}>{p.title}</a>
+                {p.date && <time>{p.date}</time>}
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+    </section>
+
+    <section class="access-guide legacy-guide">
+      <div class="content access-guide__grid">
+        <img src={guideImage} alt="医学部合格読本 2026" width="800" height="800" loading="lazy" decoding="async" />
+        <div>
+          <h3>資料請求した方へプレゼント</h3>
+          <h2>レクサスのプロ講師と、 レクサスの卒業生が、共同で作りました。</h2>
+          <p>医学部入試の情報と、レクサスの学習環境を確認したい方は資料請求または個別相談をご利用ください。</p>
+          <div class="fixed-hero__actions">
+            <a class="button button--red" href="/request-documents/">資料請求</a>
+            <a class="button button--blue" href="/reservation/">個別相談</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <SiteFooter />
+
+  <script is:inline>
+    document.querySelectorAll(".dir-tabs").forEach((bar) => {
+      bar.querySelectorAll(".dir-tab").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const key = btn.getAttribute("data-tab");
+          bar.querySelectorAll(".dir-tab").forEach((b) => {
+            b.classList.toggle("is-active", b === btn);
+            b.setAttribute("aria-selected", b === btn ? "true" : "false");
+          });
+          const wrap = bar.nextElementSibling;
+          if (!wrap) return;
+          wrap.querySelectorAll(".dir-tab-panel").forEach((p) => {
+            p.hidden = p.getAttribute("data-panel") !== key;
+          });
+        });
+      });
+    });
+  </script>
+</BaseLayout>
