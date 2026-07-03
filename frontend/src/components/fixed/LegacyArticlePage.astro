@@ -28,18 +28,13 @@ if (!page) throw new Error(`LegacyArticlePage: no legacy content for ${path}`);
 
 const logoStrip = "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
 
-let body = page.contentHtml;
-if (fromHeading) {
-  const idx = body.indexOf(fromHeading);
-  if (idx !== -1) {
-    const tagStart = body.lastIndexOf("<", idx);
-    if (tagStart !== -1) body = body.slice(tagStart);
-  }
-}
+// NB: never string-slice contentHtml (it leaves unbalanced tags that close the
+// container early and spill content full-width). The intro is cleaned in the DOM.
+void fromHeading;
+const body = page.contentHtml;
 
-const bodyWrapClass = directory
-  ? "fixed-page fixed-page--unstack fixed-page--directory legacy-article-directory"
-  : "section legacy-article-section";
+const bodyWrapClass =
+  "fixed-page fixed-page--unstack legacy-article-section" + (directory ? " fixed-page--directory" : "");
 ---
 
 <BaseLayout
@@ -63,10 +58,9 @@ const bodyWrapClass = directory
   </main>
   <SiteFooter />
 
-  {directory && (
-    <script is:inline>
+  <script is:inline>
       document.addEventListener("DOMContentLoaded", () => {
-        const root = document.querySelector(".fixed-page--directory .fixed-source");
+        const root = document.querySelector(".legacy-article-body");
         if (!root) return;
         // The premium hero already shows the page title. Clean the legacy intro:
         // (1) drop any heading that merely repeats the title (e.g. "…（全国版）"),
@@ -92,6 +86,8 @@ const bodyWrapClass = directory
             if (precedes && !isAncestor && n.parentElement) n.remove();
           });
         }
+        // Directory pages only: build the 五十音 tabs from the university lists.
+        if (!root.closest(".fixed-page--directory")) return;
         const ROW_RE = /^[ァ-ヶ・ー]+行$/;
         const findLabel = (w) => {
           let node = w;
@@ -186,5 +182,4 @@ const bodyWrapClass = directory
         });
       });
     </script>
-  )}
 </BaseLayout>

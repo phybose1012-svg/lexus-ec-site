@@ -11126,6 +11126,22 @@
   margin-inline: auto;
 }
 
+/* Non-directory legacy content: raw elementor flex containers (e-con e-flex)
+   collapse/misalign without Elementor's CSS. Normalize to plain block flow so
+   text and pseudo-tables stack cleanly inside the centered column. */
+.legacy-article-section .fixed-source :where(.e-con, .e-flex, .elementor-container, .elementor-row) {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-inline: 0 !important;
+  transform: none !important;
+}
+
+.legacy-article-section .fixed-source :where(.elementor-widget) {
+  width: auto !important;
+  max-width: 100% !important;
+}
+
 @media (max-width: 680px) {
   .page-head__label {
     font-size: 0.9rem;
