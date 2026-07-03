@@ -11198,6 +11198,33 @@
   display: none !important;
 }
 
+/* Elementor gallery widgets (no gallery JS/CSS): lay the items out as a
+   uniform image grid instead of a full-width stack. */
+.legacy-article-section.lap--raw .legacy-article-body .elementor-gallery__container {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+.legacy-article-section.lap--raw .legacy-article-body .e-gallery-item {
+  display: block;
+  position: relative;
+}
+
+.legacy-article-section.lap--raw .legacy-article-body .e-gallery-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #e5dcc9;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.legacy-article-section.lap--raw .legacy-article-body .elementor-gallery-item__overlay {
+  display: none;
+}
+
 /* Per-section header on directory pages: logo-strip divider + black label. */
 .lap-sechead {
   display: grid;
