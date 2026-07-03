@@ -12,8 +12,9 @@ const page = getTeacherPage();
     <section class="teacher-hero">
       <div class="content teacher-hero__inner">
         {page.logoStrip && <img class="teacher-hero__strip" src={page.logoStrip} alt="" width="800" height="58" decoding="async" fetchpriority="high" aria-hidden="true" />}
-        <p class="teacher-hero__eyebrow">TEACHERS</p>
-        <h1>{page.h1}</h1>
+        <p class="page-head__label">TEACHERS</p>
+        <h1 class="page-head__title">{page.h1}</h1>
+        <span class="page-head__rule" aria-hidden="true"></span>
         <p class="teacher-hero__lead">{page.lead}</p>
         <div class="teacher-hero__visual" aria-label={page.confidence}>
           {page.heroPortraits[0] && (

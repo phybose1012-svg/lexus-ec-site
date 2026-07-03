@@ -10998,7 +10998,7 @@
   display: block;
   width: min(620px, 86%);
   height: 1px;
-  margin-top: 22px;
+  margin: 22px auto 0;
   background: #a88d57;
 }
 
@@ -12339,38 +12339,11 @@
   text-align: center;
 }
 
-.garden-hero__title {
-  position: relative;
-  margin-bottom: 0;
-  background: linear-gradient(180deg, #22815a, #175c3c);
-  padding: 40px 16px 34px;
-  color: #fff;
-}
-
-.garden-hero__title::after {
-  position: absolute;
-  right: 0;
-  bottom: -26px;
-  left: 0;
-  height: 52px;
-  background:
-    radial-gradient(75% 70% at 22% 0%, rgb(255 255 255 / 0%) 48%, #fff 50%),
-    radial-gradient(75% 70% at 72% 0%, rgb(255 255 255 / 0%) 48%, #fff 50%),
-    linear-gradient(180deg, rgb(223 232 224 / 80%), rgb(255 255 255 / 0%));
-  content: "";
-}
-
 .garden-hero__stack {
   display: grid;
   justify-items: center;
   gap: 22px;
-}
-
-.garden-hero h1 {
-  margin: 0;
-  font-size: 2rem;
-  font-weight: 900;
-  line-height: 1.45;
+  margin-top: 30px;
 }
 
 .garden-hero img {
@@ -12787,18 +12760,8 @@
     text-align: center;
   }
 
-  .garden-hero__title {
-    margin-bottom: 0;
-    padding: 16px 14px 26px;
-  }
-
-  .garden-hero h1 {
-    font-size: 1rem;
-    line-height: 1.7;
-  }
-
   .garden-hero__stack {
-    margin-top: -22px;
+    margin-top: 18px;
   }
 
   .garden-hero__building {
