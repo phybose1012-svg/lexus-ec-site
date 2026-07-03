@@ -10994,6 +10994,52 @@
   height: auto;
 }
 
+/* Shared premium page-title treatment (matches /medical-english-training/):
+   logo strip + gold serif eyebrow + black serif title + thin gold rule. */
+.page-head__strip {
+  width: min(800px, 100%);
+  height: auto;
+  margin-inline: auto;
+  opacity: 0.95;
+}
+
+.page-head__label {
+  margin: 18px 0 14px;
+  color: #a88d57;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.page-head__title {
+  margin: 0;
+  color: #1e1a18;
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3.3vw, 2.35rem);
+  font-weight: 700;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.page-head__rule {
+  display: block;
+  width: min(620px, 86%);
+  height: 1px;
+  margin-top: 22px;
+  background: #a88d57;
+}
+
+@media (max-width: 680px) {
+  .page-head__label {
+    font-size: 0.9rem;
+  }
+
+  .page-head__title {
+    font-size: 1.5rem;
+  }
+}
+
 .history-hero {
   border-bottom: 0;
   background: #fff;
@@ -11004,51 +11050,6 @@
 .history-hero__inner {
   display: grid;
   justify-items: center;
-}
-
-.history-hero__label {
-  display: block;
-  margin: 0 0 16px;
-  color: #9a7422;
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.42em;
-  text-indent: 0.42em;
-}
-
-.history-hero h1 {
-  position: relative;
-  width: min(900px, 100%);
-  margin: 0;
-  padding-block: 20px;
-  font-family: var(--font-serif);
-  font-size: clamp(1.6rem, 3vw, 2.25rem);
-  font-weight: 800;
-  line-height: 1.5;
-  background: linear-gradient(177deg, #e6c67e, #c8a24f 34%, #a97e2b 66%, #7c5a18);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
-
-.history-hero h1::before,
-.history-hero h1::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  width: min(540px, 92%);
-  height: 2px;
-  transform: translateX(-50%);
-  background: linear-gradient(90deg, transparent, #c5a059, #9a7422, #c5a059, transparent);
-}
-
-.history-hero h1::before {
-  top: 0;
-}
-
-.history-hero h1::after {
-  bottom: 0;
 }
 
 .history-hero p:not(.history-hero__label) {
@@ -11422,17 +11423,6 @@
 
   .history-hero {
     padding-block: 41px 9px;
-  }
-
-  .history-hero__label {
-    display: none;
-  }
-
-  .history-hero h1 {
-    width: 100%;
-    padding-block: 11px;
-    font-size: 1.12rem;
-    line-height: 1.45;
   }
 
   .history-hero p:not(.history-hero__label) {
