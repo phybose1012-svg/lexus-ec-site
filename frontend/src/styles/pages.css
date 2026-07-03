@@ -11840,33 +11840,43 @@
 }
 
 .access-dorm {
-  border-top: 32px solid #00c910;
+  border-top: 6px solid #1b6e48;
   background: #eef8ef;
-  padding-block: 68px;
+  padding-block: 72px;
 }
 
 .access-dorm__grid {
   display: grid;
-  grid-template-columns: 190px minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: 32px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 46px;
   align-items: center;
 }
 
+.access-dorm__eyebrow {
+  margin: 0 0 12px;
+  color: #9a7422;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.32em;
+}
+
 .access-dorm h2 {
-  margin: 0 0 10px;
+  margin: 0 0 14px;
   font-size: 2rem;
   line-height: 1.4;
 }
 
-.access-dorm__grid > img:first-child {
-  width: 170px;
-  justify-self: center;
+.access-dorm__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 26px;
 }
 
 .access-dorm__grid > img:last-child {
   width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 12px 28px rgb(58 42 18 / 15%);
+  border-radius: 12px;
+  box-shadow: 0 16px 34px rgb(58 42 18 / 18%);
 }
 
 .access-guide {
