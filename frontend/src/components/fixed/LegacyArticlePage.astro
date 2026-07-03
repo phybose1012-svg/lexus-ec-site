@@ -27,6 +27,7 @@ const page = extractLegacyContentByPath(path);
 if (!page) throw new Error(`LegacyArticlePage: no legacy content for ${path}`);
 
 const logoStrip = "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
+const guideImage = "/assets/legacy/wp-content/uploads/2025/11/PR用見本2026-1024x1024.jpg";
 
 // NB: never string-slice contentHtml (it leaves unbalanced tags that close the
 // container early and spill content full-width). The intro is cleaned in the DOM.
@@ -55,6 +56,29 @@ const bodyWrapClass =
     <section class={bodyWrapClass}>
       <div class="content fixed-source legacy-article-body" set:html={body} />
     </section>
+
+    <section class="access-guide legacy-guide">
+      <div class="content access-guide__grid">
+        <img src={guideImage} alt="医学部合格読本 2026" width="800" height="800" loading="lazy" decoding="async" />
+        <div>
+          <h3>資料請求した方へプレゼント</h3>
+          <h2>レクサスのプロ講師と、 レクサスの卒業生が、共同で作りました。</h2>
+          <p>医学部入試の情報と、レクサスの学習環境を確認したい方は資料請求または個別相談をご利用ください。</p>
+          <div class="fixed-hero__actions">
+            <a class="button button--red" href="/request-documents/">資料請求</a>
+            <a class="button button--blue" href="/reservation/">個別相談</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="legacy-related">
+      <div class="content legacy-related__row">
+        <a class="button button--blue" href="/top/teacher/">講師紹介</a>
+        <a class="button button--green" href="/top/voice/">合格体験記</a>
+        <a class="button button--red" href="/top/history/">理念と沿革</a>
+      </div>
+    </section>
   </main>
   <SiteFooter />
 
@@ -66,7 +90,11 @@ const bodyWrapClass =
         // (1) drop any heading that merely repeats the title (e.g. "…（全国版）"),
         // (2) then drop everything before the first real section heading
         //     (mascot, quick-link buttons, decorative pinwheels, intro copy).
-        const norm = (s) => (s || "").replace(/\s+/g, "").trim();
+        const norm = (s) => (s || "")
+          .replace(/[Ａ-Ｚａ-ｚ０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xFEE0))
+          .replace(/＆/g, "&")
+          .replace(/\s+/g, "")
+          .trim();
         const heroTitle = norm(document.querySelector(".page-head__title")?.textContent);
         if (heroTitle) {
           Array.from(root.querySelectorAll("h1, h2, h3")).forEach((h) => {
@@ -86,8 +114,51 @@ const bodyWrapClass =
             if (precedes && !isAncestor && n.parentElement) n.remove();
           });
         }
+
+        // Remove legacy footer chrome — the page appends polished 資料請求 +
+        // related-links sections, so drop the raw duplicates from the content.
+        const isDir = !!root.closest(".fixed-page--directory");
+        const BTN_RE = /(講師紹介|合格体験記|理念と沿革|資料請求|個別相談|個別説明会|お問い?合せ|お問い合わせ)/;
+        root.querySelectorAll(".elementor-widget-button, .elementor-button").forEach((w) => {
+          if (!BTN_RE.test(norm(w.textContent))) return;
+          const con = w.closest(".elementor-element.e-con");
+          const target = con && !con.querySelector("h1, h2, h3, img, .elementor-nav-menu, .elementor-widget-text-editor, iframe") ? con : w;
+          if (target && target.parentElement) target.remove();
+        });
+        const SEC_RE = /(資料請求した方へプレゼント|共同で作りました)/;
+        Array.from(root.querySelectorAll("h1, h2, h3")).forEach((h) => {
+          if (!SEC_RE.test(norm(h.textContent))) return;
+          let sec = h;
+          while (sec.parentElement && sec.parentElement !== root && !sec.parentElement.classList.contains("page-content")) {
+            if (sec.parentElement.querySelectorAll("h2, h3").length > 1) break;
+            sec = sec.parentElement;
+          }
+          if (sec.parentElement) sec.remove();
+        });
+
+        // Section colour-coding: tint each content section as an alternating card.
+        if (!isDir) {
+          const seen = new Set();
+          let i = 0;
+          Array.from(root.querySelectorAll("h2")).forEach((h) => {
+            let sec = h;
+            while (
+              sec.parentElement &&
+              sec.parentElement !== root &&
+              !sec.parentElement.classList.contains("page-content") &&
+              sec.parentElement.querySelectorAll("h2").length <= 1
+            ) {
+              sec = sec.parentElement;
+            }
+            if (seen.has(sec) || sec === root) return;
+            seen.add(sec);
+            sec.classList.add("lap-sec", i % 2 ? "lap-sec--b" : "lap-sec--a");
+            i++;
+          });
+        }
+
         // Directory pages only: build the 五十音 tabs from the university lists.
-        if (!root.closest(".fixed-page--directory")) return;
+        if (!isDir) return;
         const ROW_RE = /^[ァ-ヶ・ー]+行$/;
         const findLabel = (w) => {
           let node = w;

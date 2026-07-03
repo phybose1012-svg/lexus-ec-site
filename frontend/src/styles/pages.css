@@ -11142,6 +11142,49 @@
   max-width: 100% !important;
 }
 
+/* Elementor responsive variants: without Elementor's CSS both the desktop and
+   mobile copies render, doubling the page. Honour the visibility classes. */
+@media (min-width: 768px) {
+  .legacy-article-section .fixed-source .elementor-hidden-desktop {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .legacy-article-section .fixed-source .elementor-hidden-mobile,
+  .legacy-article-section .fixed-source .elementor-hidden-phone {
+    display: none !important;
+  }
+}
+
+/* Section colour-coding: alternate tinted cards so sections read distinctly. */
+.legacy-article-body .lap-sec {
+  border-radius: 16px;
+  padding: 10px clamp(16px, 3vw, 44px) 30px;
+  margin-block: 16px;
+}
+
+.legacy-article-body .lap-sec--a {
+  background: #fffdf8;
+}
+
+.legacy-article-body .lap-sec--b {
+  background: #eef5ee;
+}
+
+/* Reused related-links button row appended to every legacy page. */
+.legacy-related {
+  padding-block: 10px 66px;
+  background: #fff;
+}
+
+.legacy-related__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
 @media (max-width: 680px) {
   .page-head__label {
     font-size: 0.9rem;
