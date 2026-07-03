@@ -129,14 +129,16 @@ try {
 }
 const premierPlan = premierPlanPages[page.path] ?? premierPlanPages[decodedPagePath];
 const genekiPlan = genekiPlanPages[page.path] ?? genekiPlanPages[decodedPagePath];
+const isMail03Page = page.path === "/mail-03/";
 const isTestEntryPage = page.path === "/test-entry/" || decodedPagePath === "/test-entry/";
 const logoStrip = "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
 const mascotArcher = "/assets/legacy/wp-content/uploads/2025/05/レクサスくん弓.jpg";
+const parentLetterImage = "/assets/legacy/wp-content/uploads/2025/03/手紙.jpg";
 const premierPlanImage = page.images[0]?.src
   ? page.images[0].src.replace("https://lexus-ec.com/wp-content/uploads", "/assets/legacy/wp-content/uploads")
   : "";
 const isLegalPage = page.canonical.includes("%e7%89%b9") || page.h1.includes("特定商取引");
-const needsFixedSourceH1 = !page.form && !premierPlan && !genekiPlan && !isLegalPage;
+const needsFixedSourceH1 = !page.form && !premierPlan && !genekiPlan && !isLegalPage && !isMail03Page;
 ---
 
 {legacyRedirect ? (
@@ -213,6 +215,36 @@ const needsFixedSourceH1 = !page.form && !premierPlan && !genekiPlan && !isLegal
 <SiteLayout title={page.title} description={page.description} canonical={page.canonical} ogImage={seo.ogImage}>
   <main class={`fixed-page ${routeClass}${unstack ? " fixed-page--unstack" : ""}${directory ? " fixed-page--unstack fixed-page--directory" : ""}${page.form ? " fixed-page--form" : ""}${premierPlan ? " fixed-page--premier-plan" : ""}${genekiPlan ? " fixed-page--geneki-plan" : ""}`}>
     {needsFixedSourceH1 && <h1 class="visually-hidden">{page.h1}</h1>}
+    {isMail03Page && (
+      <section class="parent-letter-hero" aria-labelledby="parent-letter-title">
+        <div class="content parent-letter-hero__inner">
+          <div class="parent-letter-hero__copy">
+            <p class="parent-letter-hero__eyebrow">保護者様からのメッセージ</p>
+            <h1 id="parent-letter-title">
+              <span>理系科目ほぼ初学から</span>
+              <span>杏林医学部へ</span>
+            </h1>
+            <p class="parent-letter-hero__lead">
+              ご家族がレクサスに寄せてくださった、受験期の歩みと合格までの記録です。
+            </p>
+            <dl class="parent-letter-hero__meta">
+              <div>
+                <dt>合格大学</dt>
+                <dd>杏林大学医学部・岩手医科大学医学部</dd>
+              </div>
+              <div>
+                <dt>寄稿</dt>
+                <dd>神奈川県在住 保護者様</dd>
+              </div>
+            </dl>
+          </div>
+          <figure class="parent-letter-hero__visual">
+            <img src={parentLetterImage} alt="" width="1024" height="1024" decoding="async" />
+            <figcaption>保護者様からの手紙</figcaption>
+          </figure>
+        </div>
+      </section>
+    )}
     {genekiPlan && (
       <section class="geneki-plan-hero">
         <div class="content geneki-plan-hero__inner">
