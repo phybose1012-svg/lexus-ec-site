@@ -143,8 +143,13 @@ const exteriorGallery = [
           <li>◎浴室乾燥機あり</li>
           <li>◎食事の宅配可能（オプション）</li>
         </ul>
-        <div class="garden-room-labels">
-          {roomItems.map(([label]) => <span>{label}</span>)}
+        <div class="garden-room-grid">
+          {roomItems.map(([label, src, alt]) => (
+            <figure>
+              <img src={src} alt={alt} width="300" height="300" loading="lazy" decoding="async" />
+              <figcaption>{label}</figcaption>
+            </figure>
+          ))}
         </div>
       </div>
     </section>

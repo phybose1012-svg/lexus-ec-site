@@ -12278,10 +12278,18 @@
   box-shadow: 0 10px 24px rgb(58 42 18 / 10%);
 }
 
-.garden-security-grid img {
+.garden-security-grid img,
+.garden-room-grid img {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
+}
+
+.garden-room-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 34px;
 }
 
 .garden-security-grid figcaption,
@@ -12594,7 +12602,7 @@
     display: grid;
   }
 
-  .garden-room-labels {
+  .garden-room-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
     margin-top: 26px;
