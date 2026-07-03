@@ -17,9 +17,12 @@ interface Props {
   description?: string;
   /** Optional cleaner H1 for the hero (defaults to page.h1). */
   heading?: string;
+  /** Medical-school directory pages: apply the .fixed-page--directory styling
+   *  + 五十音 tab builder so the university link lists render as tabbed grids. */
+  directory?: boolean;
 }
 
-const { path, eyebrow = "INFORMATION", fromHeading, title, description, heading } = Astro.props;
+const { path, eyebrow = "INFORMATION", fromHeading, title, description, heading, directory = false } = Astro.props;
 const page = extractLegacyContentByPath(path);
 if (!page) throw new Error(`LegacyArticlePage: no legacy content for ${path}`);
 
@@ -29,11 +32,14 @@ let body = page.contentHtml;
 if (fromHeading) {
   const idx = body.indexOf(fromHeading);
   if (idx !== -1) {
-    // rewind to the opening tag of the heading that contains fromHeading
     const tagStart = body.lastIndexOf("<", idx);
     if (tagStart !== -1) body = body.slice(tagStart);
   }
 }
+
+const bodyWrapClass = directory
+  ? "fixed-page fixed-page--unstack fixed-page--directory legacy-article-directory"
+  : "section legacy-article-section";
 ---
 
 <BaseLayout
@@ -51,9 +57,134 @@ if (fromHeading) {
       <span class="page-head__rule" aria-hidden="true"></span>
     </section>
 
-    <section class="section legacy-article-section">
+    <section class={bodyWrapClass}>
       <div class="content fixed-source legacy-article-body" set:html={body} />
     </section>
   </main>
   <SiteFooter />
+
+  {directory && (
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        const root = document.querySelector(".fixed-page--directory .fixed-source");
+        if (!root) return;
+        // The premium hero already shows the page title. Clean the legacy intro:
+        // (1) drop any heading that merely repeats the title (e.g. "…（全国版）"),
+        // (2) then drop everything before the first real section heading
+        //     (mascot, quick-link buttons, decorative pinwheels, intro copy).
+        const norm = (s) => (s || "").replace(/\s+/g, "").trim();
+        const heroTitle = norm(document.querySelector(".page-head__title")?.textContent);
+        if (heroTitle) {
+          Array.from(root.querySelectorAll("h1, h2, h3")).forEach((h) => {
+            const t = norm(h.textContent);
+            if (!t.startsWith(heroTitle) || t.length > heroTitle.length + 6) return;
+            const el = h.closest(".elementor-widget") || h;
+            el.remove();
+          });
+        }
+        const firstH2 = root.querySelector("h2");
+        if (firstH2) {
+          Array.from(root.querySelectorAll("*")).forEach((n) => {
+            if (n === firstH2) return;
+            const pos = firstH2.compareDocumentPosition(n);
+            const precedes = pos & Node.DOCUMENT_POSITION_PRECEDING;
+            const isAncestor = pos & Node.DOCUMENT_POSITION_CONTAINS;
+            if (precedes && !isAncestor && n.parentElement) n.remove();
+          });
+        }
+        const ROW_RE = /^[ァ-ヶ・ー]+行$/;
+        const findLabel = (w) => {
+          let node = w;
+          while (node && node !== root) {
+            let prev = node.previousElementSibling;
+            while (prev) {
+              const te = prev.matches(".elementor-widget-text-editor") ? prev : prev.querySelector(".elementor-widget-text-editor");
+              const el = te || prev;
+              const t = (el.textContent || "").trim();
+              if (t && t.length <= 16) return { label: t.replace(/の大学$/, ""), el };
+              prev = prev.previousElementSibling;
+            }
+            node = node.parentElement;
+          }
+          return { label: "", el: null };
+        };
+        const menuItems = (nav) => Array.from(nav.querySelectorAll(".elementor-nav-menu--main a")).map((a) => (a.textContent || "").trim()).filter(Boolean);
+        const nameToRow = {};
+        root.querySelectorAll(".elementor-widget-nav-menu").forEach((nav) => {
+          if (!nav.querySelector(".elementor-nav-menu--main")) return;
+          const { label } = findLabel(nav);
+          if (ROW_RE.test(label)) menuItems(nav).forEach((n) => { if (!(n in nameToRow)) nameToRow[n] = label; });
+        });
+        const rowEntries = Object.entries(nameToRow).sort((a, b) => b[0].length - a[0].length);
+        const inferRow = (text) => {
+          if (nameToRow[text]) return nameToRow[text];
+          for (const [name, row] of rowEntries) if (text.includes(name)) return row;
+          return "";
+        };
+        const resolveRow = (nav, rawLabel) => {
+          if (ROW_RE.test(rawLabel)) return rawLabel;
+          const counts = {};
+          let best = "", bestN = 0;
+          menuItems(nav).forEach((n) => {
+            const r = inferRow(n);
+            if (!r) return;
+            counts[r] = (counts[r] || 0) + 1;
+            if (counts[r] > bestN) { bestN = counts[r]; best = r; }
+          });
+          return best;
+        };
+        const flow = Array.from(root.querySelectorAll("h2, .elementor-widget-nav-menu"));
+        const sections = new Map();
+        let current = "__top__";
+        flow.forEach((el) => {
+          if (el.tagName === "H2") { current = el; return; }
+          if (!el.querySelector(".elementor-nav-menu--main")) return;
+          const { label: rawLabel, el: labelEl } = findLabel(el);
+          const row = resolveRow(el, rawLabel);
+          if (!row) return;
+          const ownRow = ROW_RE.test(rawLabel);
+          if (!sections.has(current)) sections.set(current, []);
+          sections.get(current).push({ widget: el, label: row, labelEl: ownRow ? labelEl : null });
+        });
+        sections.forEach((items) => {
+          if (items.length < 2) return;
+          if (new Set(items.map((g) => g.label)).size < 2) return;
+          const longText = items.some((g) => menuItems(g.widget).some((n) => n.length > 12));
+          const anchor = items[0].widget.closest(".elementor-element.e-con") || items[0].widget;
+          const bar = document.createElement("div");
+          bar.className = "dir-tabs";
+          bar.setAttribute("role", "tablist");
+          const panelWrap = document.createElement("div");
+          panelWrap.className = "dir-tab-panels";
+          items.forEach((it, i) => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "dir-tab" + (i === 0 ? " is-active" : "");
+            btn.textContent = it.label;
+            btn.setAttribute("role", "tab");
+            btn.setAttribute("aria-selected", i === 0 ? "true" : "false");
+            const panel = document.createElement("div");
+            panel.className = "dir-tab-panel" + (longText ? " dir-tab-panel--list" : "");
+            if (i !== 0) panel.hidden = true;
+            if (it.labelEl) it.labelEl.remove();
+            panel.appendChild(it.widget);
+            panelWrap.appendChild(panel);
+            btn.addEventListener("click", () => {
+              bar.querySelectorAll(".dir-tab").forEach((b) => {
+                b.classList.remove("is-active");
+                b.setAttribute("aria-selected", "false");
+              });
+              btn.classList.add("is-active");
+              btn.setAttribute("aria-selected", "true");
+              panelWrap.querySelectorAll(".dir-tab-panel").forEach((p) => { p.hidden = true; });
+              panel.hidden = false;
+            });
+            bar.appendChild(btn);
+          });
+          anchor.parentElement.insertBefore(bar, anchor);
+          anchor.parentElement.insertBefore(panelWrap, anchor);
+        });
+      });
+    </script>
+  )}
 </BaseLayout>
