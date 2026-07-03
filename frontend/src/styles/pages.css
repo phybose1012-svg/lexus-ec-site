@@ -3936,6 +3936,169 @@
   }
 }
 
+.fixed-page--parent-letter {
+  background: #fff;
+}
+
+.fixed-page--parent-letter .fixed-source-section {
+  padding-block: 48px 72px;
+  background: #fff;
+}
+
+.fixed-page--parent-letter .fixed-source {
+  width: 100%;
+  max-width: none;
+  gap: 0;
+  overflow: hidden;
+}
+
+.fixed-page--parent-letter .fixed-source :where(.elementor, .elementor-section, .e-con) {
+  gap: 0;
+}
+
+.fixed-page--parent-letter .fixed-source :where(.elementor-container, .e-con-inner, .e-con-full) {
+  gap: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.fixed-page--parent-letter .fixed-source :where(.elementor-widget-image, .elementor-widget-image img) {
+  max-width: none;
+}
+
+.fixed-page--parent-letter .fixed-source :where(.elementor-widget-image img) {
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.fixed-page--parent-letter .fixed-source > .elementor > .e-con:first-child {
+  display: none !important;
+}
+
+.fixed-page--parent-letter .fixed-source > .elementor > .e-con:nth-child(2) {
+  margin-top: 0;
+}
+
+.fixed-page--parent-letter .fixed-source > .elementor > .e-con:nth-child(2) > .e-con-inner {
+  width: min(924px, calc(100% - 40px)) !important;
+}
+
+.fixed-page--parent-letter .fixed-source > .elementor > .e-con:nth-child(2) h2 {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  color: #6b747d;
+  font-family: var(--font-sans);
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.fixed-page--parent-letter .fixed-source > .elementor > .e-con:nth-child(3) {
+  margin-top: 34px;
+}
+
+.fixed-page--parent-letter .fixed-source > .elementor > .e-con:nth-child(3) > .e-con-inner {
+  display: block !important;
+  width: min(924px, calc(100% - 40px)) !important;
+  border: 1px solid #777;
+  padding: 82px 80px 64px;
+}
+
+.fixed-page--parent-letter .fixed-source > .elementor > .e-con:nth-child(3) :where(.e-con, .elementor-widget, .elementor-widget-container) {
+  width: 100% !important;
+}
+
+.fixed-page--parent-letter .fixed-source > .elementor > .e-con:nth-child(3) p {
+  margin: 0 0 16px;
+  color: #050505;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.fixed-page--parent-letter .elementor-widget-call-to-action {
+  display: grid !important;
+  justify-items: center;
+  width: min(560px, calc(100% - 40px)) !important;
+  margin-inline: auto !important;
+}
+
+.fixed-page--parent-letter .elementor-widget-call-to-action .elementor-widget-container,
+.fixed-page--parent-letter .elementor-widget-call-to-action .elementor-cta {
+  width: 100% !important;
+}
+
+.fixed-page--parent-letter .elementor-cta__content,
+.fixed-page--parent-letter .elementor-cta__button-wrapper {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100% !important;
+  text-align: center;
+}
+
+.fixed-page--parent-letter .elementor-cta__button {
+  margin-inline: auto;
+}
+
+@media (max-width: 680px) {
+  body:has(.fixed-page--parent-letter) {
+    padding-top: 0;
+    overflow-x: hidden;
+  }
+
+  body:has(.fixed-page--parent-letter) .mobile-menu-panel {
+    inset: 230px 0 0;
+  }
+
+  body:has(.fixed-page--parent-letter) .top-header {
+    min-height: 146px;
+    padding: 22px 72px 7px;
+  }
+
+  .fixed-page--parent-letter .fixed-source-section {
+    padding-block: 0 44px;
+  }
+
+  .fixed-page--parent-letter .fixed-source > .elementor > .e-con:nth-child(2) {
+    margin-top: 5px;
+  }
+
+  .fixed-page--parent-letter .fixed-source > .elementor > .e-con:nth-child(2) > .e-con-inner,
+  .fixed-page--parent-letter .fixed-source > .elementor > .e-con:nth-child(3) > .e-con-inner {
+    width: min(370px, calc(100% - 20px)) !important;
+  }
+
+  .fixed-page--parent-letter .fixed-source > .elementor > .e-con:nth-child(2) h2 {
+    font-size: 1.25rem;
+    line-height: 1.35;
+    text-align: left;
+  }
+
+  .fixed-page--parent-letter .fixed-source > .elementor > .e-con:nth-child(3) {
+    margin-top: 14px;
+  }
+
+  .fixed-page--parent-letter .fixed-source > .elementor > .e-con:nth-child(3) > .e-con-inner {
+    padding: 14px 10px 24px;
+  }
+
+  .fixed-page--parent-letter .fixed-source > .elementor > .e-con:nth-child(3) p {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .fixed-page--parent-letter .elementor-widget-call-to-action {
+    width: min(340px, calc(100% - 28px)) !important;
+  }
+}
+
 .fixed-page--mail-03 {
   background: #fff;
 }

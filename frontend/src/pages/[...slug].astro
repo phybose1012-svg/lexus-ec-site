@@ -129,7 +129,39 @@ try {
 }
 const premierPlan = premierPlanPages[page.path] ?? premierPlanPages[decodedPagePath];
 const genekiPlan = genekiPlanPages[page.path] ?? genekiPlanPages[decodedPagePath];
-const isMail03Page = page.path === "/mail-03/";
+const parentLetterPages: Record<
+  string,
+  { titleLines: string[]; lead: string; meta: { term: string; description: string }[]; visualCaption: string }
+> = {
+  "/mail-01/": {
+    titleLines: ["慶應医学部合格へ", "親子で走った記録"],
+    lead: "レクサスに寄せられた、先生方との出会いと合格までの歩みです。",
+    meta: [
+      { term: "合格大学", description: "慶應義塾大学医学部" },
+      { term: "寄稿", description: "神奈川県 整形外科医師 保護者様" },
+    ],
+    visualCaption: "保護者様からの手紙",
+  },
+  "/mail-02/": {
+    titleLines: ["4兄弟の医学部受験", "保護者様のメール"],
+    lead: "長い受験期を終えたご家族から届いた、レクサスでの学びと成長の記録です。",
+    meta: [
+      { term: "合格大学", description: "国立大医学部1名・私大医学部3名" },
+      { term: "寄稿", description: "都内在住 勤務医師 保護者様" },
+    ],
+    visualCaption: "保護者様からのメール",
+  },
+  "/mail-03/": {
+    titleLines: ["理系科目ほぼ初学から", "杏林医学部へ"],
+    lead: "ご家族がレクサスに寄せてくださった、受験期の歩みと合格までの記録です。",
+    meta: [
+      { term: "合格大学", description: "杏林大学医学部・岩手医科大学医学部" },
+      { term: "寄稿", description: "神奈川県在住 保護者様" },
+    ],
+    visualCaption: "保護者様からの手紙",
+  },
+};
+const parentLetterPage = parentLetterPages[page.path] ?? parentLetterPages[decodedPagePath];
 const isTestEntryPage = page.path === "/test-entry/" || decodedPagePath === "/test-entry/";
 const logoStrip = "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
 const mascotArcher = "/assets/legacy/wp-content/uploads/2025/05/レクサスくん弓.jpg";
@@ -138,7 +170,7 @@ const premierPlanImage = page.images[0]?.src
   ? page.images[0].src.replace("https://lexus-ec.com/wp-content/uploads", "/assets/legacy/wp-content/uploads")
   : "";
 const isLegalPage = page.canonical.includes("%e7%89%b9") || page.h1.includes("特定商取引");
-const needsFixedSourceH1 = !page.form && !premierPlan && !genekiPlan && !isLegalPage && !isMail03Page;
+const needsFixedSourceH1 = !page.form && !premierPlan && !genekiPlan && !isLegalPage && !parentLetterPage;
 ---
 
 {legacyRedirect ? (
@@ -213,34 +245,31 @@ const needsFixedSourceH1 = !page.form && !premierPlan && !genekiPlan && !isLegal
   </ArticleLayout>
 ) : (
 <SiteLayout title={page.title} description={page.description} canonical={page.canonical} ogImage={seo.ogImage}>
-  <main class={`fixed-page ${routeClass}${unstack ? " fixed-page--unstack" : ""}${directory ? " fixed-page--unstack fixed-page--directory" : ""}${page.form ? " fixed-page--form" : ""}${premierPlan ? " fixed-page--premier-plan" : ""}${genekiPlan ? " fixed-page--geneki-plan" : ""}`}>
+  <main class={`fixed-page ${routeClass}${unstack ? " fixed-page--unstack" : ""}${directory ? " fixed-page--unstack fixed-page--directory" : ""}${page.form ? " fixed-page--form" : ""}${premierPlan ? " fixed-page--premier-plan" : ""}${genekiPlan ? " fixed-page--geneki-plan" : ""}${parentLetterPage ? " fixed-page--parent-letter" : ""}`}>
     {needsFixedSourceH1 && <h1 class="visually-hidden">{page.h1}</h1>}
-    {isMail03Page && (
+    {parentLetterPage && (
       <section class="parent-letter-hero" aria-labelledby="parent-letter-title">
         <div class="content parent-letter-hero__inner">
           <div class="parent-letter-hero__copy">
             <p class="parent-letter-hero__eyebrow">保護者様からのメッセージ</p>
             <h1 id="parent-letter-title">
-              <span>理系科目ほぼ初学から</span>
-              <span>杏林医学部へ</span>
+              {parentLetterPage.titleLines.map((line) => <span>{line}</span>)}
             </h1>
             <p class="parent-letter-hero__lead">
-              ご家族がレクサスに寄せてくださった、受験期の歩みと合格までの記録です。
+              {parentLetterPage.lead}
             </p>
             <dl class="parent-letter-hero__meta">
-              <div>
-                <dt>合格大学</dt>
-                <dd>杏林大学医学部・岩手医科大学医学部</dd>
-              </div>
-              <div>
-                <dt>寄稿</dt>
-                <dd>神奈川県在住 保護者様</dd>
-              </div>
+              {parentLetterPage.meta.map((item) => (
+                <div>
+                  <dt>{item.term}</dt>
+                  <dd>{item.description}</dd>
+                </div>
+              ))}
             </dl>
           </div>
           <figure class="parent-letter-hero__visual">
             <img src={parentLetterImage} alt="" width="1024" height="1024" decoding="async" />
-            <figcaption>保護者様からの手紙</figcaption>
+            <figcaption>{parentLetterPage.visualCaption}</figcaption>
           </figure>
         </div>
       </section>
