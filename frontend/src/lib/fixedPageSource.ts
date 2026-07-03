@@ -41,6 +41,7 @@ const getBaselineDir = () =>
   ]);
 const dedicatedPagePaths = new Set([
   "/test-entry/",
+  "/top/information-shiritsu/",
   "/top/teacher/",
   "/top/course/",
   "/top/course/lexus-premiere-course/",
@@ -407,5 +408,19 @@ export const getFixedPageByPath = (targetPath: string) => {
       [...routeVariants(entry.path)].some((variant) => requestedVariants.has(variant)),
   );
 
+  return item ? extractPage(item) : undefined;
+};
+
+// Like getFixedPageByPath but ignores the dedicatedPagePaths guard, so a page
+// being promoted to a dedicated .astro can still pull its extracted legacy body.
+export const extractLegacyContentByPath = (targetPath: string) => {
+  const requestedVariants = routeVariants(targetPath);
+  const baselineDir = getBaselineDir();
+  const manifest = JSON.parse(readFileSync(path.join(baselineDir, "manifest.json"), "utf8")) as PageManifestItem[];
+  const item = manifest.find(
+    (entry) =>
+      entry.status === 200 &&
+      [...routeVariants(entry.path)].some((variant) => requestedVariants.has(variant)),
+  );
   return item ? extractPage(item) : undefined;
 };

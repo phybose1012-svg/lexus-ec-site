@@ -11109,6 +11109,23 @@
   background: #a88d57;
 }
 
+/* Legacy pages promoted to dedicated .astro (premium hero + real content body) */
+.legacy-article-hero {
+  display: grid;
+  justify-items: center;
+  padding-block: 34px 6px;
+  text-align: center;
+}
+
+.legacy-article-section {
+  padding-block: 20px 64px;
+}
+
+.legacy-article-body {
+  width: min(920px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
 @media (max-width: 680px) {
   .page-head__label {
     font-size: 0.9rem;

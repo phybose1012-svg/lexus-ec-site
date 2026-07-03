@@ -1,0 +1,59 @@
+---
+import SiteFooter from "../site/SiteFooter.astro";
+import SiteHeader from "../site/SiteHeader.astro";
+import { seo } from "../../data/home";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/pages.css";
+import { extractLegacyContentByPath } from "../../lib/fixedPageSource";
+
+interface Props {
+  path: string;
+  eyebrow?: string;
+  /** If set, the article body starts at the first occurrence of this heading text
+   *  (drops the legacy elementor intro: duplicate title / mascot / quick-link buttons). */
+  fromHeading?: string;
+  /** Optional title/description overrides. */
+  title?: string;
+  description?: string;
+  /** Optional cleaner H1 for the hero (defaults to page.h1). */
+  heading?: string;
+}
+
+const { path, eyebrow = "INFORMATION", fromHeading, title, description, heading } = Astro.props;
+const page = extractLegacyContentByPath(path);
+if (!page) throw new Error(`LegacyArticlePage: no legacy content for ${path}`);
+
+const logoStrip = "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
+
+let body = page.contentHtml;
+if (fromHeading) {
+  const idx = body.indexOf(fromHeading);
+  if (idx !== -1) {
+    // rewind to the opening tag of the heading that contains fromHeading
+    const tagStart = body.lastIndexOf("<", idx);
+    if (tagStart !== -1) body = body.slice(tagStart);
+  }
+}
+---
+
+<BaseLayout
+  title={title ?? page.title}
+  description={description ?? page.description}
+  canonical={page.canonical}
+  ogImage={seo.ogImage}
+>
+  <SiteHeader />
+  <main class="legacy-article-page">
+    <section class="legacy-article-hero">
+      <img class="page-head__strip" src={logoStrip} alt="" width="800" height="58" decoding="async" />
+      <p class="page-head__label">{eyebrow}</p>
+      <h1 class="page-head__title">{heading ?? page.h1}</h1>
+      <span class="page-head__rule" aria-hidden="true"></span>
+    </section>
+
+    <section class="section legacy-article-section">
+      <div class="content fixed-source legacy-article-body" set:html={body} />
+    </section>
+  </main>
+  <SiteFooter />
+</BaseLayout>
