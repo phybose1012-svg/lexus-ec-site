@@ -483,6 +483,18 @@
   line-height: 1.65;
 }
 
+@media (max-width: 720px) {
+  .article-content table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .article-content :where(th, td) {
+    min-width: 8.5em;
+  }
+}
+
 .article-content :where(th, td) {
   border: 1px solid var(--line);
   padding: 12px 14px;
