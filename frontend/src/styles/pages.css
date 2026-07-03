@@ -11160,6 +11160,40 @@
   }
 }
 
+/* Excessive Elementor spacers — cap the height. */
+.legacy-article-body .elementor-spacer-inner {
+  height: clamp(6px, 2.4vw, 30px) !important;
+}
+
+/* Per-section header on directory pages: logo-strip divider + black label. */
+.lap-sechead {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+  padding-top: 6px;
+}
+
+.lap-sechead__strip {
+  width: min(760px, 90%);
+  height: auto;
+  opacity: 0.9;
+}
+
+.lap-sechead__label {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  border-radius: 4px;
+  background: #1a1a1a;
+  padding: 5px 20px;
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+}
+
 /* Section colour-coding: alternate tinted cards so sections read distinctly. */
 .legacy-article-body .lap-sec {
   border-radius: 16px;

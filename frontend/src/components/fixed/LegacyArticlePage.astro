@@ -129,8 +129,21 @@ const bodyWrapClass =
           if (sec.parentElement) sec.remove();
         });
 
-        // Section colour-coding: tint each content section as an alternating card.
+        // Section colour-coding + (directory) a consistent header per H2 section:
+        // logo-strip divider + a centred black English label.
         {
+          const LOGO = "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
+          const LABELS = [
+            [/共通テスト|ボーダー|足切り/, "PICK UP"],
+            [/二次|傾向|難易度|合格ライン/, "ANALYSIS"],
+            [/大学基本情報|基本情報/, "BASIC"],
+            [/更新/, "NEWS"],
+            [/専用寮|GARDEN|ガーデン/, "DORMITORY"],
+            [/面接|志望理由/, "INTERVIEW"],
+            [/ホンネ|医大生|現役/, "REAL VOICE"],
+            [/入試問題|傾向と対策/, "TREND"],
+          ];
+          const labelFor = (t) => { for (const [re, l] of LABELS) if (re.test(t)) return l; return "INFORMATION"; };
           const seen = new Set();
           let i = 0;
           Array.from(root.querySelectorAll("h2")).forEach((h) => {
@@ -146,6 +159,28 @@ const bodyWrapClass =
             if (seen.has(sec) || sec === root) return;
             seen.add(sec);
             sec.classList.add("lap-sec", i % 2 ? "lap-sec--b" : "lap-sec--a");
+            if (isDir) {
+              // Drop the inconsistent legacy black chips; we add a uniform one.
+              sec.querySelectorAll(".elementor-widget-heading:not(.e-transform) p.elementor-heading-title").forEach((c) => {
+                if ((c.textContent || "").trim().length > 18) return;
+                (c.closest(".elementor-widget-heading") || c).remove();
+              });
+              const head = document.createElement("div");
+              head.className = "lap-sechead";
+              if (i > 0) {
+                const strip = document.createElement("img");
+                strip.className = "lap-sechead__strip";
+                strip.src = LOGO;
+                strip.alt = "";
+                strip.setAttribute("aria-hidden", "true");
+                head.appendChild(strip);
+              }
+              const chip = document.createElement("p");
+              chip.className = "lap-sechead__label";
+              chip.textContent = labelFor(norm(h.textContent));
+              head.appendChild(chip);
+              sec.insertBefore(head, sec.firstChild);
+            }
             i++;
           });
         }
