@@ -1,0 +1,417 @@
+---
+import admissionInfoPosts from "../../data/generated/admissionInfoPosts.json";
+import interviewPrepPosts from "../../data/generated/interviewPrepPosts.json";
+import universityStrategyPosts from "../../data/generated/universityStrategyPosts.json";
+import voiceInterviewPosts from "../../data/generated/voiceInterviewPosts.json";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+
+type Post = {
+  path: string;
+  title: string;
+  displayTitle?: string;
+  displayTitleLines?: string[];
+  description?: string;
+  date?: string;
+  modified?: string;
+  categories?: string[];
+  template: string;
+  heroImage?: { src?: string; alt?: string } | null;
+};
+
+const templateLabels: Record<string, string> = {
+  "admission-info": "大学別入試情報",
+  "university-entrance-strategy": "大学別・科目別対策",
+  "interview-prep-guide": "医学部面接対策",
+  "voice-interview": "合格者インタビュー",
+};
+
+const templateOrder = [
+  "admission-info",
+  "university-entrance-strategy",
+  "interview-prep-guide",
+  "voice-interview",
+];
+
+const allPosts = [
+  ...(admissionInfoPosts as Post[]),
+  ...(universityStrategyPosts as Post[]),
+  ...(interviewPrepPosts as Post[]),
+  ...(voiceInterviewPosts as Post[]),
+].sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+
+const displayTitle = (post: Post) =>
+  post.displayTitleLines?.filter(Boolean).join(" / ") || post.displayTitle || post.title;
+
+const normalizeCategory = (value?: string) => value?.trim() || "未分類";
+
+const idFor = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "") || "category";
+
+const groupedByTemplate = templateOrder
+  .map((template) => {
+    const posts = allPosts.filter((post) => post.template === template);
+    const categoryNames = [...new Set(posts.flatMap((post) => (post.categories?.length ? post.categories : ["未分類"]).map(normalizeCategory)))].sort(
+      (a, b) => a.localeCompare(b, "ja"),
+    );
+    const categories = categoryNames.map((category) => ({
+      category,
+      posts: posts.filter((post) => (post.categories?.length ? post.categories : ["未分類"]).map(normalizeCategory).includes(category)),
+    }));
+
+    return {
+      id: template,
+      label: templateLabels[template] || template,
+      posts,
+      categories,
+    };
+  })
+  .filter((group) => group.posts.length > 0);
+
+const totalCount = allPosts.length;
+const canonical = "https://lexus-ec.com/article-directory/";
+---
+
+<SiteLayout
+  title="投稿記事一覧｜LEXUS E.C."
+  description="静的化済み投稿記事をカテゴリー別に確認するための一覧ページです。"
+  canonical={canonical}
+>
+  <main class="article-directory">
+    <section class="article-directory__hero">
+      <div class="article-directory__container">
+        <p class="article-directory__eyebrow">POST DIRECTORY</p>
+        <h1>投稿記事一覧</h1>
+        <p>
+          staging に反映している投稿記事を、テンプレート種別とカテゴリー別に確認できます。
+          各リンクから直接記事ページへ遷移できます。
+        </p>
+        <dl class="article-directory__summary">
+          <div>
+            <dt>総記事数</dt>
+            <dd>{totalCount}</dd>
+          </div>
+          {groupedByTemplate.map((group) => (
+            <div>
+              <dt>{group.label}</dt>
+              <dd>{group.posts.length}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+
+    <nav class="article-directory__nav" aria-label="投稿種別">
+      <div class="article-directory__container article-directory__nav-inner">
+        {groupedByTemplate.map((group) => (
+          <a href={`#${group.id}`}>
+            <span>{group.label}</span>
+            <strong>{group.posts.length}</strong>
+          </a>
+        ))}
+      </div>
+    </nav>
+
+    <div class="article-directory__container article-directory__body">
+      {groupedByTemplate.map((group) => (
+        <section id={group.id} class="article-directory__section">
+          <div class="article-directory__section-head">
+            <p>{group.posts.length} articles</p>
+            <h2>{group.label}</h2>
+          </div>
+
+          {group.categories.map((categoryGroup) => (
+            <section id={`${group.id}-${idFor(categoryGroup.category)}`} class="article-directory__category">
+              <h3>
+                <span>{categoryGroup.category}</span>
+                <strong>{categoryGroup.posts.length}</strong>
+              </h3>
+              <div class="article-directory__grid">
+                {categoryGroup.posts.map((post) => (
+                  <article class="article-directory__card">
+                    {post.heroImage?.src && (
+                      <img
+                        src={post.heroImage.src}
+                        alt=""
+                        width="168"
+                        height="112"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    )}
+                    <div>
+                      <a href={post.path}>{displayTitle(post)}</a>
+                      <p>{post.description || post.title}</p>
+                      <small>{post.modified || post.date || ""}</small>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ))}
+        </section>
+      ))}
+    </div>
+  </main>
+</SiteLayout>
+
+<style>
+  .article-directory {
+    background: #fffdf8;
+    color: var(--ink);
+  }
+
+  .article-directory__container {
+    width: min(1120px, calc(100% - 40px));
+    margin-inline: auto;
+  }
+
+  .article-directory__hero {
+    border-bottom: 1px solid var(--line);
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 94%), rgb(255 250 239 / 98%)),
+      repeating-linear-gradient(90deg, rgb(139 0 0 / 5%) 0 1px, transparent 1px 46px);
+    padding: 70px 0 46px;
+    text-align: center;
+  }
+
+  .article-directory__eyebrow {
+    margin: 0 0 10px;
+    color: var(--red);
+    font-size: 0.82rem;
+    font-weight: 900;
+    letter-spacing: 0;
+  }
+
+  .article-directory h1 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 1.5rem + 2.2vw, 4rem);
+    line-height: 1.15;
+  }
+
+  .article-directory__hero > div > p:not(.article-directory__eyebrow) {
+    max-width: 760px;
+    margin: 18px auto 0;
+    color: #3c3833;
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+
+  .article-directory__summary {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+    margin: 28px 0 0;
+  }
+
+  .article-directory__summary div,
+  .article-directory__nav a,
+  .article-directory__card {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 8px 20px rgb(57 38 12 / 5%);
+  }
+
+  .article-directory__summary div {
+    padding: 14px 10px;
+  }
+
+  .article-directory__summary dt {
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 900;
+  }
+
+  .article-directory__summary dd {
+    margin: 4px 0 0;
+    color: var(--red);
+    font-family: var(--font-serif);
+    font-size: 1.74rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .article-directory__nav {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    border-bottom: 1px solid var(--line);
+    background: rgb(255 253 248 / 94%);
+    backdrop-filter: blur(10px);
+    padding: 12px 0;
+  }
+
+  .article-directory__nav-inner {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .article-directory__nav a {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    padding: 12px 14px;
+    color: #2b241f;
+    font-size: 0.9rem;
+    font-weight: 900;
+    text-decoration: none;
+  }
+
+  .article-directory__nav strong {
+    color: var(--red);
+    font-family: var(--font-serif);
+  }
+
+  .article-directory__body {
+    display: grid;
+    gap: 54px;
+    padding: 56px 0 90px;
+  }
+
+  .article-directory__section {
+    scroll-margin-top: 96px;
+  }
+
+  .article-directory__section-head {
+    border-left: 6px solid var(--red);
+    padding-left: 18px;
+    margin-bottom: 24px;
+  }
+
+  .article-directory__section-head p {
+    margin: 0 0 4px;
+    color: var(--red);
+    font-size: 0.78rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .article-directory__section-head h2 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: clamp(1.7rem, 1.35rem + 1vw, 2.5rem);
+    line-height: 1.25;
+  }
+
+  .article-directory__category {
+    margin-top: 30px;
+    scroll-margin-top: 106px;
+  }
+
+  .article-directory__category h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin: 0 0 14px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 10px;
+    font-size: 1.08rem;
+    font-weight: 900;
+  }
+
+  .article-directory__category h3 strong {
+    display: inline-grid;
+    place-items: center;
+    min-width: 38px;
+    min-height: 28px;
+    border-radius: 999px;
+    background: #f7f2ea;
+    color: var(--red);
+    font-family: var(--font-serif);
+    font-size: 1rem;
+  }
+
+  .article-directory__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .article-directory__card {
+    display: grid;
+    grid-template-columns: 124px minmax(0, 1fr);
+    gap: 14px;
+    padding: 14px;
+  }
+
+  .article-directory__card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 6px;
+    object-fit: cover;
+    background: #f7f2ea;
+  }
+
+  .article-directory__card div {
+    min-width: 0;
+  }
+
+  .article-directory__card a {
+    color: #231d19;
+    font-size: 0.94rem;
+    font-weight: 900;
+    line-height: 1.5;
+    text-decoration-color: rgb(139 0 0 / 26%);
+    text-underline-offset: 0.2em;
+  }
+
+  .article-directory__card p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    margin: 8px 0 0;
+    color: #5a5149;
+    font-size: 0.82rem;
+    line-height: 1.65;
+  }
+
+  .article-directory__card small {
+    display: block;
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 800;
+  }
+
+  @media (max-width: 900px) {
+    .article-directory__summary,
+    .article-directory__nav-inner,
+    .article-directory__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .article-directory__container {
+      width: min(100% - 28px, 1120px);
+    }
+
+    .article-directory__hero {
+      padding: 42px 0 32px;
+    }
+
+    .article-directory__summary,
+    .article-directory__nav-inner,
+    .article-directory__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .article-directory__nav {
+      position: static;
+    }
+
+    .article-directory__card {
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 12px;
+      padding: 12px;
+    }
+  }
+</style>
