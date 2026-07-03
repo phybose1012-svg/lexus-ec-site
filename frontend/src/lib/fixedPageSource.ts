@@ -42,6 +42,9 @@ const getBaselineDir = () =>
 const dedicatedPagePaths = new Set([
   "/test-entry/",
   "/top/information-shiritsu/",
+  "/top/information-kokuritsu/",
+  "/kuriage-information/",
+  "/medical-math-training/",
   "/top/teacher/",
   "/top/course/",
   "/top/course/lexus-premiere-course/",
