@@ -5,6 +5,12 @@ import { seo } from "../../data/home";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import "../../styles/pages.css";
 import { extractLegacyContentByPath } from "../../lib/fixedPageSource";
+import { migratedPosts } from "../../lib/postSource";
+
+const recentPosts = [...migratedPosts]
+  .filter((p) => p.date)
+  .sort((a, b) => (a.date < b.date ? 1 : -1))
+  .slice(0, 10);
 
 interface Props {
   path: string;
@@ -56,6 +62,15 @@ const bodyWrapClass =
     <section class={bodyWrapClass}>
       <div class="content fixed-source legacy-article-body" set:html={body} />
     </section>
+
+    <ul class="lap-news" hidden>
+      {recentPosts.map((p) => (
+        <li>
+          <a href={p.path}>{p.title}</a>
+          <time>{(p.date || "").slice(0, 10)}</time>
+        </li>
+      ))}
+    </ul>
 
     <section class="access-guide legacy-guide">
       <div class="content access-guide__grid">
@@ -180,6 +195,17 @@ const bodyWrapClass =
               chip.textContent = labelFor(norm(h.textContent));
               head.appendChild(chip);
               sec.insertBefore(head, sec.firstChild);
+
+              // 更新情報: drop the stale "ほぼ毎日更新" copy and list recent posts.
+              if (/更新情報/.test(norm(h.textContent))) {
+                sec.querySelectorAll(".elementor-widget-text-editor, p").forEach((el) => {
+                  if (/毎日更新|ほぼ毎日/.test(el.textContent || "")) {
+                    (el.closest(".elementor-widget-text-editor") || el).remove();
+                  }
+                });
+                const news = document.querySelector(".lap-news");
+                if (news) { news.hidden = false; sec.appendChild(news); }
+              }
             }
             i++;
           });

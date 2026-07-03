@@ -11161,17 +11161,54 @@
 }
 
 /* Excessive Elementor spacers — cap the height. */
-.legacy-article-body .elementor-spacer-inner {
-  height: clamp(6px, 2.4vw, 30px) !important;
+.legacy-article-body :where(.elementor-spacer, .elementor-spacer-inner) {
+  height: clamp(4px, 1.4vw, 16px) !important;
 }
 
 /* Per-section header on directory pages: logo-strip divider + black label. */
 .lap-sechead {
   display: grid;
   justify-items: center;
-  gap: 14px;
-  margin-bottom: 18px;
+  gap: 12px;
+  margin-bottom: 8px;
   padding-top: 6px;
+}
+
+/* Recent posts list injected into the 更新情報 section. */
+.lap-news {
+  width: min(760px, 100%);
+  margin: 8px auto 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid #e1d3bc;
+}
+
+.lap-news li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 16px;
+  border-bottom: 1px solid #e1d3bc;
+  padding: 12px 6px;
+}
+
+.lap-news a {
+  flex: 1 1 auto;
+  color: #235699;
+  font-weight: 700;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.lap-news a:hover {
+  text-decoration: underline;
+}
+
+.lap-news time {
+  color: #8a7c66;
+  font-size: 0.85rem;
+  white-space: nowrap;
 }
 
 .lap-sechead__strip {
