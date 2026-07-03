@@ -1545,7 +1545,9 @@
    section titles render as <h2>, so scoping to p (and excluding the hero's
    vertical e-transform copy) targets the chips only. */
 .fixed-page--directory .fixed-source .elementor-widget-heading:not(.e-transform) p.elementor-heading-title {
-  display: inline-block;
+  display: block;
+  width: fit-content;
+  margin-inline: auto;
   border-radius: 4px;
   background: #1a1a1a;
   padding: 5px 20px;
@@ -1554,6 +1556,7 @@
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.28em;
+  text-align: center;
 }
 
 /* The 講師紹介 / 合格体験記 / 理念と沿革 button trio: production lays them in a

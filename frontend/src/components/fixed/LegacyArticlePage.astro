@@ -72,13 +72,6 @@ const bodyWrapClass =
       </div>
     </section>
 
-    <section class="legacy-related">
-      <div class="content legacy-related__row">
-        <a class="button button--blue" href="/top/teacher/">講師紹介</a>
-        <a class="button button--green" href="/top/voice/">合格体験記</a>
-        <a class="button button--red" href="/top/history/">理念と沿革</a>
-      </div>
-    </section>
   </main>
   <SiteFooter />
 
@@ -137,7 +130,7 @@ const bodyWrapClass =
         });
 
         // Section colour-coding: tint each content section as an alternating card.
-        if (!isDir) {
+        {
           const seen = new Set();
           let i = 0;
           Array.from(root.querySelectorAll("h2")).forEach((h) => {
