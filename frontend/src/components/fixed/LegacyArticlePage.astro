@@ -230,6 +230,27 @@ const bodyClass = raw
               chip.textContent = labelFor(norm(h.textContent));
               head.appendChild(chip);
               sec.insertBefore(head, sec.firstChild);
+              // Legacy spacers and empty leftovers above the title inflate the
+              // label→title gap unevenly (they also cost one flex-gap slot
+              // each) — drop everything content-free that precedes the h2.
+              sec.querySelectorAll(".elementor-widget-spacer").forEach((sp) => {
+                if (h.compareDocumentPosition(sp) & Node.DOCUMENT_POSITION_PRECEDING) sp.remove();
+              });
+              Array.from(sec.children).forEach((child) => {
+                if (child === head || child.contains(h)) return;
+                if (!(h.compareDocumentPosition(child) & Node.DOCUMENT_POSITION_PRECEDING)) return;
+                if ((child.textContent || "").trim() || child.querySelector("img, iframe, video")) return;
+                child.remove();
+              });
+              const inner = h.closest(".e-con-inner");
+              if (inner && inner.closest(".lap-sec") === sec) {
+                Array.from(inner.children).forEach((child) => {
+                  if (child.contains(h)) return;
+                  if (!(h.compareDocumentPosition(child) & Node.DOCUMENT_POSITION_PRECEDING)) return;
+                  if ((child.textContent || "").trim() || child.querySelector("img, iframe, video")) return;
+                  child.remove();
+                });
+              }
 
               // 更新情報: drop the stale "ほぼ毎日更新" copy and list recent posts.
               if (/更新情報/.test(norm(h.textContent))) {

@@ -1331,7 +1331,9 @@
    saturated green band — use a centred serif title with a thin green accent. */
 .fixed-page--directory .fixed-source h2 {
   width: min(900px, 100%);
-  margin: 44px auto 12px;
+  /* The lap-sechead chip sits right above every section title now — keep
+     the label→title gap tight. */
+  margin: 8px auto 12px;
   border: 0;
   border-bottom: 3px solid var(--green);
   border-radius: 0;
@@ -11229,9 +11231,9 @@
 .lap-sechead {
   display: grid;
   justify-items: center;
-  gap: 12px;
-  margin-bottom: 8px;
-  padding-top: 6px;
+  gap: 10px;
+  margin-bottom: 0;
+  padding-top: 2px;
 }
 
 /* Recent posts list injected into the 更新情報 section. */
