@@ -7,12 +7,6 @@ const representative = "/assets/legacy/wp-content/uploads/2025/02/島内T-e17255
 const flowImage = "/assets/legacy/wp-content/uploads/2025/05/入学までの流れ-1-777x1024.jpg";
 const gardenImage = "/assets/legacy/wp-content/uploads/2026/01/レクサス専用寮外観-1024x651.jpg";
 
-const courseLinks = [
-  { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
-  { label: "合格体験記", href: "/top/voice/", tone: "green" },
-  { label: "理念と沿革", href: "/top/history/", tone: "red" },
-];
-
 const courses = [
   {
     target: "◆ 既卒生・再受験生 対象フルコース ◆",
@@ -70,9 +64,6 @@ const courses = [
 
     <section class="course-hero">
       <div class="content course-hero__inner">
-        <nav class="course-hero__links" aria-label="関連ページ">
-          {courseLinks.map((link) => <a class={`course-pill course-pill--${link.tone}`} href={link.href}>{link.label}</a>)}
-        </nav>
         <h1>医学部合格へ続く コースをご案内</h1>
         <p>ご自身のタイプに合った<br />「コース選択」が合格への第一歩。</p>
       </div>

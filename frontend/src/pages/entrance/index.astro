@@ -15,12 +15,6 @@ const images = {
   guide: "/assets/legacy/wp-content/uploads/2025/10/読本-2026.jpg",
 };
 
-const quickLinks = [
-  { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
-  { label: "合格体験記", href: "/top/voice/", tone: "green" },
-  { label: "理念と沿革", href: "/top/history/", tone: "red" },
-];
-
 const steps = [
   {
     number: "01",
@@ -60,9 +54,6 @@ const steps = [
 
     <section class="entrance-hero">
       <div class="content entrance-hero__inner">
-        <nav class="entrance-hero__links" aria-label="関連ページ">
-          {quickLinks.map((link) => <a class={`entrance-pill entrance-pill--${link.tone}`} href={link.href}>{link.label}</a>)}
-        </nav>
         <div class="entrance-hero__grid">
           <div>
             <p class="entrance-hero__eyebrow">レクサス教育センター入学をご検討の方へ</p>
@@ -152,11 +143,11 @@ const steps = [
       <div class="content entrance-final-cta__inner">
         <img src={images.mascot} alt="" width="899" height="1024" loading="lazy" decoding="async" />
         <div>
-          <p>医学部合格へ向けて、今の状況から最短距離を一緒に設計します。</p>
+          <p>医学部合格へ向けて、<br />今の状況から最短距離を一緒に設計しましょう。</p>
           <div class="entrance-actions">
             <a class="button button--blue" href="/reservation/">個別説明会</a>
-            <a class="button button--blue" href="/top/teacher/">講師紹介</a>
-            <a class="button button--green" href="/top/voice/">合格体験記</a>
+            <a class="button button--green" href="/top/teacher/">講師紹介</a>
+            <a class="button button--red" href="/top/voice/">合格体験記</a>
           </div>
         </div>
       </div>
