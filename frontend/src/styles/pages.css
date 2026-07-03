@@ -5810,15 +5810,8 @@
   gap: 24px;
 }
 
-.reservation-lead p {
+.reservation-lead p:not(.page-head__label) {
   margin: 0;
-  font-weight: 900;
-  line-height: 1.85;
-}
-
-.reservation-lead__title {
-  margin: 0;
-  font-size: 1.35rem;
   font-weight: 900;
   line-height: 1.85;
 }
@@ -6396,11 +6389,7 @@
     gap: 18px;
   }
 
-  .reservation-lead__title {
-    font-size: 1.1rem;
-  }
-
-  .reservation-lead p {
+  .reservation-lead p:not(.page-head__label) {
     font-size: 0.95rem;
     line-height: 1.75;
   }
@@ -7232,17 +7221,7 @@
   background: var(--site-button-red);
 }
 
-.course-hero h1 {
-  width: min(700px, 100%);
-  margin: 0;
-  border-block: 1px solid #111;
-  padding-block: 10px;
-  font-size: 2.45rem;
-  font-weight: 900;
-  line-height: 1.35;
-}
-
-.course-hero p {
+.course-hero__lead {
   margin: 34px 0 0;
   font-size: 1.5rem;
   font-weight: 900;
@@ -7522,14 +7501,7 @@
     font-size: var(--site-button-font-size);
   }
 
-  .course-hero h1 {
-    width: min(100%, 330px);
-    padding-block: 6px;
-    font-size: clamp(1.14rem, 5vw, 1.28rem);
-    white-space: nowrap;
-  }
-
-  .course-hero p {
+  .course-hero__lead {
     margin-top: 12px;
     font-size: 1.05rem;
     line-height: 1.5;
@@ -11561,14 +11533,6 @@
   font-weight: 900;
 }
 
-.faq-hero h1 {
-  margin: 0;
-  padding-block: 0;
-  font-size: 1.7rem;
-  font-weight: 900;
-  line-height: 1.45;
-}
-
 .faq-hero__mascot {
   display: grid;
   grid-template-columns: 92px 330px 92px;
@@ -11768,17 +11732,6 @@
 
   .faq-hero__inner {
     gap: 0;
-  }
-
-  .faq-hero__label {
-    display: none;
-  }
-
-  .faq-hero h1 {
-    width: 100%;
-    max-width: 390px;
-    font-size: 1.08rem;
-    line-height: 1.55;
   }
 
   .faq-hero__mascot {
