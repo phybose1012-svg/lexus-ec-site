@@ -4272,6 +4272,113 @@
   }
 }
 
+.fixed-page--parent-letter .fixed-source .page-content,
+.fixed-page--parent-letter .fixed-source .page-content > .elementor {
+  width: 100%;
+  max-width: none;
+}
+
+.fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:first-child {
+  display: none !important;
+}
+
+.fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(h2) {
+  width: 100%;
+  margin-top: 0;
+}
+
+.fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(h2) > .e-con-inner {
+  width: min(924px, calc(100% - 40px)) !important;
+  margin-inline: auto !important;
+}
+
+.fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(h2) .elementor-widget-text-editor {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(h2) h2 {
+  margin: 0;
+  border: 0;
+  border-bottom: 2px solid rgb(216 189 114 / 88%);
+  padding: 0 0 10px;
+  color: #8b0000;
+  font-family: var(--font-serif);
+  font-size: clamp(1.72rem, 2.55vw, 2.35rem);
+  font-weight: 900;
+  line-height: 1.35;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+.fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(.elementor-widget-text-editor p):not(:has(h2)) {
+  width: 100%;
+  margin-top: 34px;
+}
+
+.fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(.elementor-widget-text-editor p):not(:has(h2)) > .e-con-inner {
+  display: block !important;
+  width: min(924px, calc(100% - 40px)) !important;
+  margin-inline: auto !important;
+  border: 1px solid #777;
+  background: #fff;
+  padding: 82px 80px 64px;
+}
+
+.fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(.elementor-widget-text-editor p):not(:has(h2)) :where(.e-con, .elementor-widget, .elementor-widget-container) {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(.elementor-widget-text-editor p):not(:has(h2)) p {
+  margin: 0 0 16px;
+  color: #050505;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+
+.fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(.elementor-widget-call-to-action) {
+  display: grid !important;
+  justify-items: center !important;
+  width: 100%;
+}
+
+.fixed-page--parent-letter .elementor-widget-call-to-action {
+  width: min(560px, calc(100% - 40px)) !important;
+  max-width: 560px !important;
+  margin-inline: auto !important;
+}
+
+@media (max-width: 680px) {
+  .fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(h2) > .e-con-inner,
+  .fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(.elementor-widget-text-editor p):not(:has(h2)) > .e-con-inner {
+    width: min(370px, calc(100% - 20px)) !important;
+  }
+
+  .fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(h2) h2 {
+    font-size: clamp(1.28rem, 6vw, 1.56rem);
+    line-height: 1.42;
+  }
+
+  .fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(.elementor-widget-text-editor p):not(:has(h2)) {
+    margin-top: 18px;
+  }
+
+  .fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(.elementor-widget-text-editor p):not(:has(h2)) > .e-con-inner {
+    padding: 24px 16px 28px;
+  }
+
+  .fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(.elementor-widget-text-editor p):not(:has(h2)) p {
+    margin-bottom: 15px;
+    font-size: 0.98rem;
+    line-height: 1.58;
+  }
+}
+
 .fixed-page--results {
   background: #fff;
 }
