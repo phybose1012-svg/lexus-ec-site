@@ -4279,7 +4279,31 @@
 }
 
 .fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:first-child {
-  display: none !important;
+  display: grid !important;
+  justify-items: center;
+  width: 100vw !important;
+  max-width: none !important;
+  min-height: 72px;
+  margin-top: 42px;
+  margin-left: calc(50% - 50vw);
+  overflow: visible;
+  background: linear-gradient(180deg, #1b6e48 0 39px, #eef2ec 39px 72px);
+}
+
+.fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:first-child :where(.e-con, .e-con-inner, .e-con-full) {
+  display: grid !important;
+  justify-items: center;
+  width: 100% !important;
+}
+
+.fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:first-child .elementor-widget-image {
+  width: min(800px, 70vw) !important;
+}
+
+.fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:first-child .elementor-widget-image img {
+  display: block;
+  width: 100%;
+  margin-top: 28px;
 }
 
 .fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(h2) {
@@ -4347,13 +4371,75 @@
   width: 100%;
 }
 
+.fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(.elementor-widget-call-to-action) > .e-con-inner {
+  display: grid !important;
+  justify-items: center !important;
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(.elementor-widget-call-to-action) .elementor-widget-call-to-action {
+  display: grid !important;
+  justify-items: center !important;
+  width: min(560px, calc(100% - 40px)) !important;
+  max-width: 560px !important;
+  margin-inline: auto !important;
+}
+
+.fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(.elementor-widget-call-to-action) .elementor-widget-call-to-action .elementor-widget-container {
+  display: grid !important;
+  justify-items: center !important;
+  width: 100% !important;
+}
+
 .fixed-page--parent-letter .elementor-widget-call-to-action {
   width: min(560px, calc(100% - 40px)) !important;
   max-width: 560px !important;
   margin-inline: auto !important;
 }
 
+.fixed-page--parent-letter .elementor-widget-call-to-action .elementor-cta {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: max-content !important;
+  min-width: 208px !important;
+  max-width: 100% !important;
+  margin-inline: auto !important;
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+  text-align: center;
+}
+
+.fixed-page--parent-letter :where(.elementor-cta__button, .elementor-button, .elementor-cta__button-wrapper a) {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: max-content !important;
+  min-width: 208px !important;
+  max-width: 100% !important;
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+  text-align: center;
+}
+
 @media (max-width: 680px) {
+  .fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:first-child {
+    min-height: 52px;
+    margin-top: 34px;
+    background: linear-gradient(180deg, #1b6e48 0 10px, #eef2ec 10px 20px, transparent 20px 52px);
+  }
+
+  .fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:first-child .elementor-widget-image {
+    width: min(320px, 84vw) !important;
+  }
+
+  .fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:first-child .elementor-widget-image img {
+    margin-top: 10px;
+  }
+
   .fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(h2) > .e-con-inner,
   .fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(.elementor-widget-text-editor p):not(:has(h2)) > .e-con-inner {
     width: min(370px, calc(100% - 20px)) !important;
@@ -4376,6 +4462,25 @@
     margin-bottom: 15px;
     font-size: 0.98rem;
     line-height: 1.58;
+  }
+
+  .fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(.elementor-widget-call-to-action) .elementor-widget-call-to-action {
+    width: 180px !important;
+    max-width: 180px !important;
+    margin-inline: 0 !important;
+  }
+
+  .fixed-page--parent-letter .fixed-source .page-content > .elementor > .e-con:has(.elementor-widget-call-to-action) .elementor-widget-call-to-action .elementor-widget-container {
+    width: 180px !important;
+  }
+
+  .fixed-page--parent-letter :where(.elementor-cta__button, .elementor-button, .elementor-cta__button-wrapper a) {
+    min-width: 180px !important;
+  }
+
+  .fixed-page--parent-letter .elementor-widget-call-to-action .elementor-cta {
+    width: 180px !important;
+    min-width: 180px !important;
   }
 }
 
