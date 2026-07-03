@@ -11026,44 +11026,43 @@
 
 .history-guide {
   padding-block: 78px;
-  background: #fff;
-  color: #211a14;
-  text-align: center;
+  background: #2d261f;
+  color: #fff;
 }
 
 .history-guide__grid {
   display: grid;
-  grid-template-columns: 1fr;
-  justify-items: center;
-  gap: 18px;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 42px;
+  align-items: center;
 }
 
 .history-guide img {
-  width: min(180px, 100%);
-  border-radius: 0;
+  width: 100%;
+  border-radius: 8px;
   background: #fff;
-  box-shadow: none;
+  box-shadow: 0 14px 32px rgb(0 0 0 / 26%);
 }
 
 .history-guide h3 {
   margin: 0 0 14px;
-  color: #211a14;
+  color: #f0d177;
   font-size: 1.15rem;
   line-height: 1.45;
 }
 
 .history-guide h2 {
   margin: 0 0 18px;
-  color: #166c22;
-  font-size: 1.05rem;
-  line-height: 1.55;
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 1.5;
 }
 
 .history-guide p {
   max-width: 740px;
   margin: 0 0 28px;
-  color: #166c22;
-  font-weight: 800;
+  color: #e8e0d4;
+  font-weight: 700;
   line-height: 1.9;
 }
 
