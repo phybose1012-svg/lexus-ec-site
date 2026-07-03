@@ -1,0 +1,223 @@
+---
+import SiteFooter from "../../components/site/SiteFooter.astro";
+import SiteHeader from "../../components/site/SiteHeader.astro";
+import PendingFormScript from "../../components/fixed/PendingFormScript.astro";
+import { seo } from "../../data/home";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/pages.css";
+
+const title = "選抜テスト エントリー｜特待生選抜・最難関医学部コース｜医学部予備校 レクサス E.C.";
+const description =
+  "特待生選抜テストのエントリーフォーム。レクサス・プレミア本科の特別選抜SSプラン・英語選抜SAプランへの入学と学費優遇を目指す選抜テストの応募を受け付けます。";
+
+const logoStrip = "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
+
+const configuredEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT;
+const endpoint = configuredEndpoint || "/form-submit";
+const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" };
+
+const selectionPlans = [
+  {
+    tag: "SS",
+    name: "特別選抜SSプラン",
+    target: "東大理III・京大医・慶應医など、医学部の最難関を目指す",
+    note: "合格率100%の実績を持つ特待生プラン。選抜合格で学費の優遇があります。",
+  },
+  {
+    tag: "SA",
+    name: "英語選抜SAプラン",
+    target: "国公立・慈恵・順天など、難関医学部を目指す",
+    note: "英語力を軸に合格を狙う選抜プラン。選抜合格で学費の優遇があります。",
+  },
+];
+
+const studentTypes = ["既卒生", "高3生", "高2生", "高1生", "中学生", "再受験生", "保護者"];
+---
+
+<BaseLayout title={title} description={description} canonical="https://lexus-ec.com/test-entry/" ogImage={seo.ogImage}>
+  <SiteHeader />
+  <main class="minimal-form-page test-entry-page">
+    <section class="test-entry-hero">
+      <img class="page-head__strip" src={logoStrip} alt="" width="800" height="58" decoding="async" />
+      <p class="page-head__label">SELECTION TEST</p>
+      <h1 class="page-head__title">選抜テスト エントリー</h1>
+      <span class="page-head__rule" aria-hidden="true"></span>
+      <p class="test-entry-hero__lead">
+        特待生選抜テスト・最難関医学部コースの応募を受け付けています。<br />
+        選抜に合格すると、レクサス・プレミア本科の学費優遇が受けられます。
+      </p>
+    </section>
+
+    <section class="test-entry-plans" aria-label="特待生選抜の対象プラン">
+      <div class="test-entry-plans__grid">
+        {selectionPlans.map((plan) => (
+          <article class="test-entry-plan">
+            <p class="test-entry-plan__tag">{plan.tag}</p>
+            <div>
+              <h2>{plan.name}</h2>
+              <p class="test-entry-plan__target">{plan.target}</p>
+              <p class="test-entry-plan__note">{plan.note}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="test-entry-plans__link">
+        各プランの学費・カリキュラムの詳細は <a href="/lexus-premier/">レクサス・プレミア本科</a> をご覧ください。
+      </p>
+    </section>
+
+    <section class="google-form-lite" aria-label="選抜テスト エントリーフォーム">
+      <form action={endpoint} method="post" class="google-form-lite__body" {...localFormAttrs}>
+        <input type="hidden" name="formType" value="test-entry" />
+        <input type="hidden" name="sourcePath" value="/test-entry/" />
+        <input type="text" name="websiteUrl" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;" />
+
+        <div class="google-form-lite__head">
+          <h2 class="google-form-lite__title">選抜テスト エントリーフォーム</h2>
+          <p>必須項目を入力してください。</p>
+        </div>
+
+        <p class="google-form-lite__required"><em>*</em> は必須項目です</p>
+
+        <label class="google-question">
+          <span>お名前 <em>*</em></span>
+          <input type="text" name="name" required placeholder="山田 太郎" />
+        </label>
+        <label class="google-question">
+          <span>メールアドレス <em>*</em></span>
+          <input type="email" name="email" required placeholder="example@example.com" />
+        </label>
+
+        <div class="google-form-lite__extra-grid">
+          <label class="google-question google-question--compact">
+            <span>電話番号 <em>*</em></span>
+            <input type="tel" name="tel" required placeholder="03-0000-0000" />
+          </label>
+          <label class="google-question google-question--compact">
+            <span>学年・状況 <em>*</em></span>
+            <select name="studentType" required>
+              <option value="">選択してください</option>
+              {studentTypes.map((s) => <option>{s}</option>)}
+            </select>
+          </label>
+          <label class="google-question google-question--compact">
+            <span>志望大学</span>
+            <input type="text" name="targetUniversity" placeholder="慶應義塾大学 医学部 など" />
+          </label>
+          <label class="google-question google-question--compact">
+            <span>受験希望日 <em>*</em></span>
+            <input type="date" name="preferredDate" required />
+          </label>
+        </div>
+
+        <label class="google-question">
+          <span>ご相談内容 <em>*</em></span>
+          <textarea name="message" required rows="3" placeholder="現在の状況やご希望をお書きください。"></textarea>
+        </label>
+
+        <label class="google-question google-question--compact google-question--checkbox">
+          <span class="google-checkbox">
+            <input type="checkbox" name="privacy" value="同意する" required />
+            <span>個人情報の取り扱いに同意します。 <em>*</em></span>
+          </span>
+        </label>
+
+        <button class="google-form-lite__submit" type="submit">選抜テストに申し込む</button>
+        <p class="form-submit-note" data-local-form-status hidden></p>
+      </form>
+    </section>
+  </main>
+  {!configuredEndpoint && <PendingFormScript />}
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .test-entry-hero {
+    display: grid;
+    justify-items: center;
+    padding-block: 32px 8px;
+    text-align: center;
+  }
+
+  .test-entry-hero__lead {
+    max-width: 640px;
+    margin: 22px auto 0;
+    color: #4a4038;
+    font-weight: 700;
+    line-height: 1.9;
+  }
+
+  .test-entry-plans {
+    width: min(920px, calc(100% - 40px));
+    margin: 30px auto 0;
+  }
+
+  .test-entry-plans__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .test-entry-plan {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+    border: 1px solid #e1d3bc;
+    border-radius: 12px;
+    background: #fffdf8;
+    padding: 20px 22px;
+    box-shadow: 0 10px 24px rgb(58 42 18 / 8%);
+  }
+
+  .test-entry-plan__tag {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    margin: 0;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #22815a, #175c3c);
+    color: #fff;
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .test-entry-plan h2 {
+    margin: 0 0 8px;
+    font-size: 1.2rem;
+    line-height: 1.4;
+  }
+
+  .test-entry-plan__target {
+    margin: 0 0 8px;
+    color: #8b0000;
+    font-weight: 800;
+    line-height: 1.6;
+  }
+
+  .test-entry-plan__note {
+    margin: 0;
+    color: #5b4b3d;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .test-entry-plans__link {
+    margin: 20px 0 0;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .test-entry-plans__link a {
+    color: #9a7422;
+    text-underline-offset: 3px;
+  }
+
+  @media (max-width: 680px) {
+    .test-entry-plans__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

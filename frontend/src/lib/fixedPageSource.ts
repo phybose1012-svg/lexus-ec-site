@@ -40,6 +40,7 @@ const getBaselineDir = () =>
     new URL("../../../baseline/pages/", import.meta.url),
   ]);
 const dedicatedPagePaths = new Set([
+  "/test-entry/",
   "/top/teacher/",
   "/top/course/",
   "/top/course/lexus-premiere-course/",
