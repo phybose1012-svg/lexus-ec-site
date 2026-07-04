@@ -32,6 +32,12 @@ const voicePage = getVoicePage();
 const isImage = (image: VoiceImage | undefined): image is VoiceImage => Boolean(image);
 
 const UNI_ABBR: Record<string, string> = {
+  慶應大: "慶應義塾大",
+  慶応大: "慶應義塾大",
+  慶應義塾大学: "慶應義塾大",
+  慶応義塾大学: "慶應義塾大",
+  昭和大学: "昭和医大",
+  昭和医科大学: "昭和医大",
   聖マリアンナ医科大学: "聖マリ医大",
   東京慈恵会医科大学: "慈恵医大",
   東京女子医科大学: "東京女子医大",
@@ -39,8 +45,12 @@ const UNI_ABBR: Record<string, string> = {
   国際医療福祉大学: "国際医療福祉大",
 };
 
-const passLabelFromTitle = (title: string): string => {
-  if (!title.includes("｜")) return "合格";
+const passLabelFromTitle = (title: string, href = ""): string => {
+  const legacyKey = `${title} ${href}`;
+  if (!title.includes("｜")) {
+    if (/慶應|慶応|慶大/.test(legacyKey) || href.includes("/mail-02/")) return "慶應義塾大合格";
+    return "合格";
+  }
   let uni = title
     .split("｜")
     .slice(1)
@@ -58,7 +68,7 @@ const passLabelFromTitle = (title: string): string => {
 
 const interviewMarquee: MarqueeItem[] = voicePage.interviews
   .filter((item) => isImage(item.image))
-  .map((item) => ({ src: item.image!.src, alt: item.image!.alt || item.title, label: passLabelFromTitle(item.title) }));
+  .map((item) => ({ src: item.image!.src, alt: item.image!.alt || item.title, label: passLabelFromTitle(item.title, item.href) }));
 const marqueeItems: MarqueeItem[] =
   interviewMarquee.length >= 12
     ? interviewMarquee

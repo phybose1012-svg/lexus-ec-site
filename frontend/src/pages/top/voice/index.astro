@@ -13,6 +13,12 @@ const isImage = (image: VoiceImage | undefined): image is VoiceImage => Boolean(
 // A few well-known short forms; everything else falls back to a safe
 // generic shortening (医科大学→医大, 大学→大) so we never mislabel.
 const UNI_ABBR: Record<string, string> = {
+  慶應大: "慶應義塾大",
+  慶応大: "慶應義塾大",
+  慶應義塾大学: "慶應義塾大",
+  慶応義塾大学: "慶應義塾大",
+  昭和大学: "昭和医大",
+  昭和医科大学: "昭和医大",
   聖マリアンナ医科大学: "聖マリ医大",
   東京慈恵会医科大学: "慈恵医大",
   東京女子医科大学: "東京女子医大",
@@ -21,10 +27,13 @@ const UNI_ABBR: Record<string, string> = {
 };
 
 // Turn an interview title ("記事タイトル｜大学名合格") into a compact
-// "〇〇大合格" badge. Without a ｜ we can't be sure of the university,
-// so we keep the plain 合格 badge.
-const passLabelFromTitle = (title: string): string => {
-  if (!title.includes("｜")) return "合格";
+// "〇〇大合格" badge. Without a ｜ we only override well-known legacy titles.
+const passLabelFromTitle = (title: string, href = ""): string => {
+  const legacyKey = `${title} ${href}`;
+  if (!title.includes("｜")) {
+    if (/慶應|慶応|慶大/.test(legacyKey) || href.includes("/mail-02/")) return "慶應義塾大合格";
+    return "合格";
+  }
   let uni = title
     .split("｜")
     .slice(1)
@@ -42,7 +51,7 @@ const passLabelFromTitle = (title: string): string => {
 
 const interviewMarquee: MarqueeItem[] = page.interviews
   .filter((item) => isImage(item.image))
-  .map((item) => ({ src: item.image!.src, alt: item.image!.alt || item.title, label: passLabelFromTitle(item.title) }));
+  .map((item) => ({ src: item.image!.src, alt: item.image!.alt || item.title, label: passLabelFromTitle(item.title, item.href) }));
 const marqueeItems: MarqueeItem[] =
   interviewMarquee.length >= 12
     ? interviewMarquee
