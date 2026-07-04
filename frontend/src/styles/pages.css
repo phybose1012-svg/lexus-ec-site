@@ -8780,70 +8780,6 @@
   box-shadow: 0 14px 32px rgb(0 0 0 / 10%);
 }
 
-.premier-stat-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-  margin-block: 34px 42px;
-}
-
-.premier-stat {
-  border-radius: 8px;
-  background: #2a251f;
-  color: #fff;
-  padding: 16px;
-  text-align: center;
-  box-shadow: 0 12px 24px rgb(35 24 16 / 12%);
-}
-
-.premier-stat p {
-  margin: 0;
-  font-size: 1.15rem;
-  font-weight: 800;
-}
-
-.premier-stat strong {
-  display: block;
-  font-size: 2.35rem;
-  line-height: 1.25;
-}
-
-.premier-stat--orange strong {
-  color: var(--orange);
-}
-
-.premier-stat--green strong {
-  color: #12924a;
-}
-
-.premier-stat--cyan strong {
-  color: #26a5b9;
-}
-
-.premier-achievement h3 {
-  margin: 0 0 24px;
-  font-size: 1.55rem;
-  line-height: 1.55;
-}
-
-.premier-university-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 26px;
-  width: min(980px, 100%);
-  margin-inline: auto;
-}
-
-.premier-university-grid ul {
-  display: grid;
-  gap: 12px;
-}
-
-.premier-university-grid li {
-  font-size: 1.05rem;
-  font-weight: 900;
-}
-
 .premier-feature {
   background: #f5f3ef;
 }
@@ -9433,14 +9369,8 @@
     font-size: 1.62rem;
   }
 
-  .premier-stat-grid,
-  .premier-university-grid,
   .premier-support-grid {
     grid-template-columns: 1fr;
-  }
-
-  .premier-stat strong {
-    font-size: 2rem;
   }
 
   .premier-feature-grid {

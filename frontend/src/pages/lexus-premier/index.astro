@@ -1,5 +1,5 @@
 ---
-import { seo } from "../../data/home";
+import { acceptedUniversities, achievementStats, seo } from "../../data/home";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 
 const logoStrip = "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
@@ -16,12 +16,6 @@ const quickLinks = [
   { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
   { label: "合格体験記", href: "/top/voice/", tone: "green" },
   { label: "理念と沿革", href: "/top/history/", tone: "red" },
-];
-
-const stats = [
-  { label: "偏差値60台スタート", value: "100%合格", tone: "orange" },
-  { label: "偏差値50台スタート", value: "88%合格", tone: "green" },
-  { label: "合格者の最高年齢", value: "41歳", tone: "cyan" },
 ];
 
 const achievementRows = [
@@ -60,12 +54,6 @@ const achievementRows = [
     rate: 60,
     tone: "brown",
   },
-];
-
-const universities = [
-  ["千葉大学 4名", "愛媛大学 1名", "慶應義塾大学 1名", "東京慈恵会医科大学 5名", "順天堂大学 8名"],
-  ["日本大学 30名", "杏林大学 30名", "帝京大学 33名", "東京女子医科大学 18名", "北里大学 6名"],
-  ["東北医科薬科大学 12名", "岩手医科大学 50名", "愛知医科大学 10名", "金沢医科大学 45名", "近畿大学 6名"],
 ];
 
 const featureCards = [
@@ -263,23 +251,25 @@ const infoPosts = [
           </div>
           <p class="premier-result-note">※ すべて医学部医学科の合格実績です。</p>
         </div>
-        <h3>累計合格実績</h3>
-        <div class="premier-stat-grid">
-          {stats.map((stat) => (
-            <article class={`premier-stat premier-stat--${stat.tone}`}>
+        <h3 class="university-list__title">累計合格実績</h3>
+        <div class="achievement-stats">
+          {achievementStats.map((stat) => (
+            <article class={`stat-card stat-card--${stat.tone}`}>
               <p>{stat.label}</p>
               <strong>{stat.value}</strong>
             </article>
           ))}
         </div>
-        <h3>合格した大学一覧 (医学部医学科のみ)</h3>
-        <div class="premier-university-grid">
-          {universities.map((column) => (
-            <ul>
-              {column.map((item) => <li>{item}</li>)}
-            </ul>
+        <h3 class="university-list__title">合格した大学一覧 (医学部医学科のみ)</h3>
+        <ul class="university-list" aria-label="医学部入試過去6年分の最終合格者データ">
+          {acceptedUniversities.flat().map((result) => (
+            <li>
+              <span>{result.name}</span>
+              <strong>{result.count}</strong>
+            </li>
           ))}
-        </div>
+        </ul>
+        <p class="note">※過去6年分 (2021～2026年度) の最終合格者データ</p>
       </div>
     </section>
 
