@@ -131,30 +131,26 @@ const exteriorGallery = [
           decoding="async"
           fetchpriority="high"
         />
-        <div class="garden-opening__message">
-          <p>LEXUS GARDEN / SHIBUYA</p>
+        <div class="garden-opening__mark" aria-hidden="true">RESIDENCE</div>
+        <div class="garden-opening__message" aria-label="医学部受験生だけの専用レジデンス">
+          <p class="garden-opening__eyebrow">PRIVATE RESIDENCE FOR MEDICAL STUDENTS</p>
           <strong>
-            <span>医学部受験生だけの、</span>
-            <span>専用レジデンス。</span>
+            <span style="--i: 1;">医学部受験生</span>
+            <span style="--i: 2;">だけの、</span>
+            <span style="--i: 3;">専用レジデンス。</span>
           </strong>
+          <span class="garden-opening__rule" aria-hidden="true"></span>
+          <p class="garden-opening__lead">渋谷の校舎と日々の生活をひとつにつなぐ、塾生だけの学習拠点。</p>
+          <ul class="garden-opening__chips" aria-label="レクサスガーデンの特徴">
+            <li>校舎直結</li>
+            <li>美味しい食事付き</li>
+            <li>一般入居者なし</li>
+          </ul>
         </div>
         <a class="garden-opening__cue" href="#garden-hero-title" aria-label="レクサスガーデンの説明へ進む">
           <span>SCROLL</span>
         </a>
       </div>
-      <section class="garden-arrival" aria-labelledby="garden-arrival-title">
-        <div class="garden-arrival__panel">
-          <div class="garden-arrival__copy">
-            <p>PRIVATE RESIDENCE FOR MEDICAL STUDENTS</p>
-            <h2 id="garden-arrival-title">塾生だけが暮らす、校舎直結の専用寮。</h2>
-          </div>
-          <div class="garden-arrival__points" aria-label="レクサスガーデンの価値">
-            <span>一般入居者なし</span>
-            <span>美味しい食事付き</span>
-            <span>夜12時まで自習</span>
-          </div>
-        </div>
-      </section>
     </section>
 
     <section class="garden-hero" aria-labelledby="garden-hero-title">
@@ -388,12 +384,12 @@ const exteriorGallery = [
         const range = Math.max(stage.offsetHeight - viewportHeight, 1);
         const progress = clamp(-rect.top / range, 0, 1);
 
-        root.classList.toggle("garden-header-visible", progress > 0.08 || window.scrollY > 40);
-        root.style.setProperty("--garden-image-scale", String((1.045 - progress * 0.035).toFixed(3)));
-        root.style.setProperty("--garden-message-y", (-44 * progress).toFixed(1) + "px");
-        root.style.setProperty("--garden-message-opacity", String((1 - clamp((progress - 0.28) / 0.3, 0, 1)).toFixed(3)));
-        root.style.setProperty("--garden-arrival-y", (96 - progress * 96).toFixed(1) + "px");
-        root.style.setProperty("--garden-arrival-opacity", String(clamp((progress - 0.18) / 0.52, 0, 1).toFixed(3)));
+        root.classList.toggle("garden-header-visible", progress > 0.14 || window.scrollY > 96);
+        root.style.setProperty("--garden-image-scale", String((1.065 - progress * 0.045).toFixed(3)));
+        root.style.setProperty("--garden-message-y", (-28 * progress).toFixed(1) + "px");
+        root.style.setProperty("--garden-message-opacity", String((1 - clamp((progress - 0.62) / 0.28, 0, 1)).toFixed(3)));
+        root.style.setProperty("--garden-mark-x", (34 - progress * 22).toFixed(1) + "px");
+        root.style.setProperty("--garden-cue-opacity", String((1 - clamp((progress - 0.1) / 0.22, 0, 1)).toFixed(3)));
       };
 
       const requestUpdate = () => {
