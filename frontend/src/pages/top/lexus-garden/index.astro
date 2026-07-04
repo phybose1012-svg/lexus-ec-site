@@ -356,4 +356,57 @@ const exteriorGallery = [
   </main>
 
   <SiteFooter />
+  <dialog class="garden-floor-dialog" data-garden-floor-dialog aria-label="Floor plan preview">
+    <div class="garden-floor-dialog__panel">
+      <button class="garden-floor-dialog__close" type="button" data-garden-floor-dialog-close aria-label="Close floor plan preview">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <img
+        data-garden-floor-dialog-image
+        src={floorPlans[0].src}
+        alt=""
+        width={floorPlans[0].width}
+        height={floorPlans[0].height}
+        decoding="async"
+      />
+      <p data-garden-floor-dialog-caption>{floorPlans[0].label}</p>
+    </div>
+  </dialog>
+  <script>
+    (() => {
+      const dialog = document.querySelector("[data-garden-floor-dialog]");
+      if (!(dialog instanceof HTMLDialogElement) || typeof dialog.showModal !== "function") return;
+
+      const image = dialog.querySelector("[data-garden-floor-dialog-image]");
+      const caption = dialog.querySelector("[data-garden-floor-dialog-caption]");
+      const closeButton = dialog.querySelector("[data-garden-floor-dialog-close]");
+      if (!(image instanceof HTMLImageElement) || !(caption instanceof HTMLElement) || !(closeButton instanceof HTMLButtonElement)) return;
+
+      document.querySelectorAll(".garden-floor-plan__grid a").forEach((trigger) => {
+        if (!(trigger instanceof HTMLAnchorElement)) return;
+
+        trigger.addEventListener("click", (event) => {
+          const thumbnail = trigger.querySelector("img");
+          if (!(thumbnail instanceof HTMLImageElement)) return;
+
+          event.preventDefault();
+          const label = trigger.querySelector(".garden-floor-plan__label")?.textContent?.trim() || thumbnail.alt;
+          image.src = trigger.href;
+          image.alt = thumbnail.alt;
+          image.width = Number(thumbnail.getAttribute("width")) || 1;
+          image.height = Number(thumbnail.getAttribute("height")) || 1;
+          caption.textContent = label;
+          dialog.showModal();
+        });
+      });
+
+      closeButton.addEventListener("click", () => {
+        dialog.close();
+      });
+
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+    })();
+  </script>
 </BaseLayout>
