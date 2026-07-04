@@ -12783,7 +12783,7 @@ body:has(.garden-page) .garden-floating-header .site-header {
   overflow: hidden;
   min-height: 100svh;
   align-items: center;
-  background: #ede4d4;
+  background: #ede4d4 url("/assets/lexus-garden/hero-exterior.webp") 50% 0 / cover fixed no-repeat;
   color: #17120d;
 }
 
@@ -12815,6 +12815,7 @@ body:has(.garden-page) .garden-floating-header .site-header {
   height: 100%;
   object-fit: cover;
   object-position: 50% 48%;
+  opacity: 0;
   filter: saturate(1.03) contrast(1.02);
   transform: scale(var(--garden-image-scale, 1.065));
   transform-origin: 50% 0;
@@ -14403,6 +14404,10 @@ body:has(.garden-page) .garden-floating-header .site-header {
 
   .garden-opening__image {
     object-position: 53% 43%;
+  }
+
+  .garden-opening {
+    background-position: 53% 0;
   }
 
   .garden-opening__mark {
