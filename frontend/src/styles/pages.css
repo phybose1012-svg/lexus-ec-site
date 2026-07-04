@@ -14399,15 +14399,57 @@ body:has(.garden-page) .garden-floating-header .site-header {
     font-size: 0.76rem;
   }
 
-  .garden-floor-plan__grid,
-  .garden-photo-grid {
+  .garden-floor-plan__grid {
     grid-template-columns: 1fr;
+  }
+
+  .garden-photo-grid {
+    display: flex;
+    grid-template-columns: none;
+    gap: 12px;
+    width: calc(100% + 28px);
+    margin-inline: -14px;
+    padding: 4px 14px 18px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-padding-inline: 14px;
+    scroll-snap-type: x mandatory;
+    scrollbar-color: #d5bd95 transparent;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .garden-photo-grid::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  .garden-photo-grid::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: #d5bd95;
+  }
+
+  .garden-photo-grid::after {
+    flex: 0 0 2px;
+    content: "";
   }
 
   .garden-photo-grid a,
   .garden-photo-grid a:last-child:nth-child(odd) {
+    flex: 0 0 min(82vw, 314px);
     grid-column: auto;
-    width: 100%;
+    scroll-snap-align: center;
+    width: auto;
+  }
+
+  .garden-photo-grid img {
+    aspect-ratio: 3 / 2;
+  }
+
+  .garden-photo-grid span {
+    min-height: 44px;
+    padding: 9px 10px;
+    font-size: 0.86rem;
+    line-height: 1.4;
   }
 
   .garden-security-grid {
