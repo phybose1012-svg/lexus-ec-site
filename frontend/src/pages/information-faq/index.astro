@@ -1,0 +1,366 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { seo } from "../../data/home";
+
+type AcceptanceRateRow = {
+  rank: string;
+  university: string;
+  examinees: string;
+  accepted: string;
+  rate: string;
+  unpublished?: boolean;
+};
+
+type TuitionRow = {
+  rank: string;
+  university: string;
+  sixYears: string;
+  firstYear: string;
+};
+
+type GraduationRow = {
+  rank: string;
+  university: string;
+  rate: string;
+};
+
+const acceptanceRateRows: AcceptanceRateRow[] = [
+  { rank: "1", university: "久留米大学（後期）", examinees: "498", accepted: "5", rate: "99.6" },
+  { rank: "2", university: "金沢医科大学（後期）", examinees: "1,130", accepted: "13", rate: "86.9" },
+  { rank: "3", university: "産業医科大学（B）", examinees: "412", accepted: "5", rate: "82.4" },
+  { rank: "4", university: "日本大学（II期）", examinees: "1,382", accepted: "21", rate: "65.8" },
+  { rank: "5", university: "埼玉医科大学（後期）", examinees: "1,330", accepted: "23", rate: "57.8" },
+  { rank: "6", university: "関西医科大学（後期）", examinees: "344", accepted: "6", rate: "57.3" },
+  { rank: "7", university: "藤田医科大学（後期）", examinees: "576", accepted: "12", rate: "48.0" },
+  { rank: "8", university: "昭和大学（II期）", examinees: "1,075", accepted: "23", rate: "46.7" },
+  { rank: "9", university: "獨協医科大学（後期）", examinees: "741", accepted: "20", rate: "37.1" },
+  { rank: "10", university: "帝京大学", examinees: "7,761", accepted: "216", rate: "35.9" },
+  { rank: "11", university: "東邦大学", examinees: "2,578", accepted: "98", rate: "26.3" },
+  { rank: "12", university: "順天堂大学（B方式）", examinees: "272", accepted: "11", rate: "24.7" },
+  { rank: "13", university: "金沢医科大学（前期）", examinees: "3,766", accepted: "154", rate: "24.5" },
+  { rank: "14", university: "東海大学", examinees: "3,198", accepted: "132", rate: "24.2" },
+  { rank: "15", university: "兵庫医科大学（B）", examinees: "330", accepted: "16", rate: "20.6" },
+  { rank: "16", university: "獨協医科大学（前期）", examinees: "3,043", accepted: "171", rate: "17.8" },
+  { rank: "17", university: "自治医科大学", examinees: "1,944", accepted: "123", rate: "15.8" },
+  { rank: "18", university: "産業医科大学（A）", examinees: "1,316", accepted: "97", rate: "13.6" },
+  { rank: "19", university: "福岡大学", examinees: "1,905", accepted: "145", rate: "13.1" },
+  { rank: "20", university: "東京医科大学", examinees: "2,515", accepted: "193", rate: "13.0" },
+  { rank: "20", university: "埼玉医科大学（前期）", examinees: "1,286", accepted: "99", rate: "13.0" },
+  { rank: "22", university: "順天堂大学（A方式）", examinees: "2,198", accepted: "172", rate: "12.8" },
+  { rank: "23", university: "関西医科大学（前期）", examinees: "2,158", accepted: "174", rate: "12.4" },
+  { rank: "24", university: "兵庫医科大学（A）", examinees: "1,933", accepted: "189", rate: "10.2" },
+  { rank: "25", university: "岩手医科大学", examinees: "2,315", accepted: "235", rate: "9.9" },
+  { rank: "26", university: "日本大学（I期）", examinees: "1,728", accepted: "178", rate: "9.7" },
+  { rank: "27", university: "東京女子医科大学", examinees: "894", accepted: "104", rate: "8.6" },
+  { rank: "28", university: "昭和大学（I期）", examinees: "1,780", accepted: "217", rate: "8.2" },
+  { rank: "29", university: "久留米大学（前期）", examinees: "1,274", accepted: "164", rate: "7.8" },
+  { rank: "30", university: "慶應義塾大学", examinees: "1,270", accepted: "169", rate: "7.5" },
+  { rank: "31", university: "東京慈恵会医科大学", examinees: "1,644", accepted: "230", rate: "7.1" },
+  { rank: "31", university: "愛知医科大学", examinees: "2,157", accepted: "305", rate: "7.1" },
+  { rank: "33", university: "藤田医科大学（前期）", examinees: "1,766", accepted: "279", rate: "6.3" },
+  { rank: "34", university: "東北医科薬科大学", examinees: "1,969", accepted: "322", rate: "6.1" },
+  { rank: "35", university: "北里大学", examinees: "1,888", accepted: "335", rate: "5.6" },
+  { rank: "-", university: "大阪医科薬科大学（前期）", examinees: "1,551", accepted: "非公表", rate: "非公表", unpublished: true },
+  { rank: "-", university: "大阪医科薬科大学（後期）", examinees: "737", accepted: "非公表", rate: "非公表", unpublished: true },
+  { rank: "-", university: "川崎医科大学", examinees: "1,223", accepted: "非公表", rate: "非公表", unpublished: true },
+  { rank: "-", university: "杏林大学", examinees: "2,870", accepted: "非公表", rate: "非公表", unpublished: true },
+  { rank: "-", university: "近畿大学（前期）", examinees: "1,846", accepted: "非公表", rate: "非公表", unpublished: true },
+  { rank: "-", university: "近畿大学（後期）", examinees: "614", accepted: "非公表", rate: "非公表", unpublished: true },
+  { rank: "-", university: "国際医療福祉大学", examinees: "3,161", accepted: "非公表", rate: "非公表", unpublished: true },
+  { rank: "-", university: "聖マリアンナ医科大学（前期）", examinees: "2,892", accepted: "非公表", rate: "非公表", unpublished: true },
+  { rank: "-", university: "聖マリアンナ医科大学（後期）", examinees: "1,307", accepted: "非公表", rate: "非公表", unpublished: true },
+  { rank: "-", university: "日本医科大学（前期）", examinees: "1,599", accepted: "非公表", rate: "非公表", unpublished: true },
+  { rank: "-", university: "日本医科大学（後期）", examinees: "1,146", accepted: "非公表", rate: "非公表", unpublished: true },
+];
+
+const tuitionRows: TuitionRow[] = [
+  { rank: "1", university: "国際医療福祉大学", sixYears: "18,500,000円", firstYear: "4,500,000円" },
+  { rank: "2", university: "順天堂大学", sixYears: "20,800,000円", firstYear: "2,900,000円" },
+  { rank: "3", university: "関西医科大学", sixYears: "21,000,000円", firstYear: "2,900,000円" },
+  { rank: "4", university: "日本医科大学", sixYears: "22,000,000円", firstYear: "4,500,000円" },
+  { rank: "5", university: "慶應義塾大学", sixYears: "22,419,600円", firstYear: "3,903,350円" },
+  { rank: "6", university: "東京慈恵会医科大学", sixYears: "22,500,000円", firstYear: "3,500,000円" },
+  { rank: "7", university: "自治医科大学", sixYears: "22,600,000円", firstYear: "4,600,000円" },
+  { rank: "8", university: "東邦大学", sixYears: "25,800,000円", firstYear: "4,800,000円" },
+  { rank: "9", university: "昭和大学", sixYears: "27,000,000円", firstYear: "4,500,000円" },
+  { rank: "10", university: "大阪医科薬科大学", sixYears: "28,410,000円", firstYear: "5,985,000円" },
+  { rank: "11", university: "藤田医科大学", sixYears: "29,800,000円", firstYear: "6,300,000円" },
+  { rank: "12", university: "東京医科大学", sixYears: "29,841,800円", firstYear: "4,896,800円" },
+  { rank: "13", university: "産業医科大学", sixYears: "30,490,000円", firstYear: "5,915,000円" },
+  { rank: "14", university: "日本大学", sixYears: "33,100,000円", firstYear: "6,350,000円" },
+  { rank: "15", university: "東北医科薬科大学", sixYears: "34,000,000円", firstYear: "6,500,000円" },
+  { rank: "16", university: "岩手医科大学", sixYears: "34,000,000円", firstYear: "9,000,000円" },
+  { rank: "17", university: "愛知医科大学", sixYears: "34,200,000円", firstYear: "8,200,000円" },
+  { rank: "18", university: "聖マリアンナ医科大学", sixYears: "34,820,000円", firstYear: "6,970,000円" },
+  { rank: "19", university: "東海大学", sixYears: "35,000,000円", firstYear: "6,400,000円" },
+  { rank: "20", university: "近畿大学", sixYears: "35,827,000円", firstYear: "6,804,500円" },
+  { rank: "21", university: "久留米大学", sixYears: "36,200,000円", firstYear: "9,200,000円" },
+  { rank: "22", university: "獨協医科大学", sixYears: "36,600,000円", firstYear: "8,600,000円" },
+  { rank: "23", university: "埼玉医科大学", sixYears: "37,000,000円", firstYear: "8,250,000円" },
+  { rank: "24", university: "兵庫医科大学", sixYears: "37,000,000円", firstYear: "8,500,000円" },
+  { rank: "25", university: "杏林大学", sixYears: "37,000,000円", firstYear: "9,500,000円" },
+  { rank: "26", university: "福岡大学", sixYears: "37,738,260円", firstYear: "8,626,710円" },
+  { rank: "27", university: "帝京大学", sixYears: "38,800,000円", firstYear: "9,370,140円" },
+  { rank: "28", university: "北里大学", sixYears: "38,900,000円", firstYear: "9,000,000円" },
+  { rank: "29", university: "金沢医科大学", sixYears: "39,500,000円", firstYear: "11,000,000円" },
+  { rank: "30", university: "東京女子医科大学", sixYears: "46,214,000円", firstYear: "11,449,000円" },
+  { rank: "31", university: "川崎医科大学", sixYears: "47,400,000円", firstYear: "10,500,000円" },
+];
+
+const graduationRows: GraduationRow[] = [
+  { rank: "1", university: "順天堂大学", rate: "96.4%" },
+  { rank: "2", university: "慶應義塾大学", rate: "93.0%" },
+  { rank: "2", university: "東京女子医科大学", rate: "93.0%" },
+  { rank: "4", university: "自治医科大学", rate: "92.7%" },
+  { rank: "4", university: "東京慈恵会医科大学", rate: "92.7%" },
+  { rank: "6", university: "東北医科薬科大学", rate: "91.0%" },
+  { rank: "7", university: "聖マリアンナ医科大学", rate: "90.4%" },
+  { rank: "8", university: "国際医療福祉大学", rate: "89.3%" },
+  { rank: "9", university: "大阪医科薬科大学", rate: "86.7%" },
+  { rank: "10", university: "東海大学", rate: "86.6%" },
+  { rank: "11", university: "昭和大学", rate: "85.7%" },
+  { rank: "12", university: "東邦大学", rate: "85.2%" },
+  { rank: "13", university: "藤田医科大学", rate: "82.5%" },
+  { rank: "14", university: "北里大学", rate: "80.7%" },
+  { rank: "15", university: "日本医科大学", rate: "80.5%" },
+  { rank: "16", university: "獨協医科大学", rate: "80.0%" },
+  { rank: "16", university: "東京医科大学", rate: "80.0%" },
+  { rank: "18", university: "産業医科大学", rate: "79.0%" },
+  { rank: "19", university: "愛知医科大学", rate: "78.3%" },
+  { rank: "20", university: "金沢医科大学", rate: "78.2%" },
+  { rank: "21", university: "日本大学", rate: "77.9%" },
+  { rank: "22", university: "関西医科大学", rate: "77.8%" },
+  { rank: "23", university: "岩手医科大学", rate: "76.9%" },
+  { rank: "24", university: "久留米大学", rate: "76.7%" },
+  { rank: "25", university: "兵庫医科大学", rate: "75.9%" },
+  { rank: "26", university: "帝京大学", rate: "75.6%" },
+  { rank: "27", university: "近畿大学", rate: "75.4%" },
+  { rank: "28", university: "川崎医科大学", rate: "72.7%" },
+  { rank: "29", university: "福岡大学", rate: "72.1%" },
+  { rank: "30", university: "埼玉医科大学", rate: "71.5%" },
+  { rank: "31", university: "杏林大学", rate: "67.5%" },
+];
+
+const isTopRank = (rank: string) => {
+  const value = Number(rank);
+  return Number.isFinite(value) && value <= 3;
+};
+
+const pageTitle = "医学部入試のQ&A｜倍率・学費・卒業率を医学部予備校レクサスが解説";
+const pageDescription =
+  "医学部入試の倍率、私立医学部の学費、ストレート卒業率、受験校の選び方を医学部予備校レクサスが整理して解説します。";
+---
+
+<SiteLayout title={pageTitle} description={pageDescription} canonical="https://lexus-ec.com/information-faq/" ogImage={seo.ogImage}>
+  <main class="info-faq-page">
+    <section class="info-faq-hero" aria-labelledby="info-faq-title">
+      <div class="content info-faq-hero__inner">
+        <img
+          class="info-faq-hero__logo-strip"
+          src="/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png"
+          alt=""
+          loading="eager"
+        />
+        <p class="info-faq-hero__eyebrow">MEDICAL SCHOOL Q&A</p>
+        <h1 id="info-faq-title">医学部入試のQ&A</h1>
+        <p class="info-faq-hero__lead">
+          倍率、学費、ストレート卒業率。受験校選びで迷いやすい数字を、医学部受験の現場で使いやすい形に整理しました。
+        </p>
+        <div class="info-faq-hero__actions">
+          <a class="button button--red" href="/request-documents/">資料請求</a>
+          <a class="button button--blue" href="/reservation/">個別相談</a>
+        </div>
+      </div>
+    </section>
+
+    <nav class="info-faq-nav" aria-label="医学部入試Q&Aの目次">
+      <div class="content info-faq-nav__grid">
+        <a href="#acceptance-rate">
+          <span>倍率</span>
+          <strong>合格者倍率の見方</strong>
+        </a>
+        <a href="#tuition">
+          <span>学費</span>
+          <strong>6年間・初年度費用</strong>
+        </a>
+        <a href="#graduation-rate">
+          <span>卒業率</span>
+          <strong>大学選びの判断材料</strong>
+        </a>
+      </div>
+    </nav>
+
+    <section id="acceptance-rate" class="info-faq-section info-faq-section--rate">
+      <div class="content">
+        <div class="info-faq-question">
+          <span class="info-faq-question__mark">Q</span>
+          <div>
+            <p class="info-faq-kicker">QUESTION 01</p>
+            <h2>医学部入試の倍率はどのくらい？</h2>
+          </div>
+        </div>
+        <div class="info-faq-answer">
+          <p>
+            一般選抜の合格者倍率（受験者数 ÷ 最終合格者数）は、私立医学部ではおおむね5〜15倍に収まる大学が多いです。
+            ただし後期入試や方式別入試は募集人員が少ないため、見かけ上の倍率が大きくなります。
+          </p>
+          <p>
+            帝京大学や東海大学のように複数日受験を受験者数に含める大学もあります。倍率だけで難易度を判断せず、募集方式、合格者数、問題との相性を合わせて確認することが重要です。
+          </p>
+        </div>
+
+        <div class="info-faq-ranking" aria-labelledby="acceptance-rate-ranking">
+          <div class="info-faq-ranking__head">
+            <p class="info-faq-kicker">RANKING</p>
+            <h3 id="acceptance-rate-ranking">一般選抜 倍率ランキング</h3>
+          </div>
+          <div class="info-faq-rank-table-wrap" tabindex="0">
+            <table class="info-faq-rank-table">
+              <caption>一般選抜の合格者倍率ランキング</caption>
+              <thead>
+                <tr>
+                  <th scope="col">順位</th>
+                  <th scope="col">大学名</th>
+                  <th scope="col">受験者数</th>
+                  <th scope="col">合格者数</th>
+                  <th scope="col">倍率</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  acceptanceRateRows.map((row) => (
+                    <tr class:list={[{ "is-top": isTopRank(row.rank), "is-muted": row.unpublished }]}>
+                      <td><span class="info-faq-rank-num">{row.rank}</span></td>
+                      <th scope="row">{row.university}</th>
+                      <td data-label="受験者数">{row.examinees}</td>
+                      <td data-label="合格者数">{row.accepted}</td>
+                      <td data-label="倍率">{row.rate}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
+          <p class="info-faq-note">非公表の大学は、合格者数または倍率が公開されていないため順位対象外としています。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tuition" class="info-faq-section info-faq-section--tuition">
+      <div class="content">
+        <div class="info-faq-question">
+          <span class="info-faq-question__mark">Q</span>
+          <div>
+            <p class="info-faq-kicker">QUESTION 02</p>
+            <h2>学費が安い大学はどこ？</h2>
+          </div>
+        </div>
+        <div class="info-faq-answer">
+          <p>
+            私立医学部の学費は決して小さな負担ではありません。ただ、自治医科大学のように貸与制度を前提に進学できる大学や、北里大学・兵庫医科大学のように修学資金貸与制度を用意している大学もあります。
+          </p>
+          <p>
+            「6年間の総額」だけでなく、「初年度に必要な費用」「奨学金・貸与制度」「生活費」まで含めて現実的に比較しましょう。
+          </p>
+        </div>
+
+        <div class="info-faq-ranking" aria-labelledby="tuition-ranking">
+          <div class="info-faq-ranking__head">
+            <p class="info-faq-kicker">RANKING</p>
+            <h3 id="tuition-ranking">私立医学部 学費ランキング</h3>
+          </div>
+          <div class="info-faq-rank-table-wrap" tabindex="0">
+            <table class="info-faq-rank-table info-faq-rank-table--tuition">
+              <caption>私立医学部の6年間学費と初年度学費ランキング</caption>
+              <thead>
+                <tr>
+                  <th scope="col">順位</th>
+                  <th scope="col">大学名</th>
+                  <th scope="col">6年間の学費</th>
+                  <th scope="col">初年度の学費</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  tuitionRows.map((row) => (
+                    <tr class:list={[{ "is-top": isTopRank(row.rank) }]}>
+                      <td><span class="info-faq-rank-num">{row.rank}</span></td>
+                      <th scope="row">{row.university}</th>
+                      <td data-label="6年間の学費">{row.sixYears}</td>
+                      <td data-label="初年度の学費">{row.firstYear}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="graduation-rate" class="info-faq-section info-faq-section--graduation">
+      <div class="content">
+        <div class="info-faq-question">
+          <span class="info-faq-question__mark">Q</span>
+          <div>
+            <p class="info-faq-kicker">QUESTION 03</p>
+            <h2>受験校はどう選べばいい？</h2>
+          </div>
+        </div>
+        <div class="info-faq-answer">
+          <p>
+            憧れの大学を1〜2校、目標校を3〜5校、進学可能性を広げる大学を3〜7校。合計7〜14校程度で組み立てると、医学部進学の可能性を現実的に広げやすくなります。
+          </p>
+          <p>
+            教育方針、学費、立地、入試問題との相性に加えて、ストレート卒業率も確認したい指標です。入学後の学習環境まで含めて、納得して進学できる大学を選びましょう。
+          </p>
+        </div>
+
+        <div class="info-faq-ranking" aria-labelledby="graduation-ranking">
+          <div class="info-faq-ranking__head">
+            <p class="info-faq-kicker">RANKING</p>
+            <h3 id="graduation-ranking">ストレート卒業率ランキング</h3>
+          </div>
+          <div class="info-faq-rank-table-wrap" tabindex="0">
+            <table class="info-faq-rank-table info-faq-rank-table--graduation">
+              <caption>医学部のストレート卒業率ランキング</caption>
+              <thead>
+                <tr>
+                  <th scope="col">順位</th>
+                  <th scope="col">大学名</th>
+                  <th scope="col">ストレート卒業率</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  graduationRows.map((row) => (
+                    <tr class:list={[{ "is-top": isTopRank(row.rank) }]}>
+                      <td><span class="info-faq-rank-num">{row.rank}</span></td>
+                      <th scope="row">{row.university}</th>
+                      <td data-label="ストレート卒業率">{row.rate}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-faq-cta" aria-labelledby="info-faq-cta-title">
+      <div class="content-narrow">
+        <p class="info-faq-cta__eyebrow">NEXT STEP</p>
+        <h2 id="info-faq-cta-title">数字を、出願戦略に落とし込む。</h2>
+        <p>
+          倍率や学費は、単独では判断材料になりません。現状の得点、問題傾向との相性、家庭の条件まで合わせて、受験校を具体化していきましょう。
+        </p>
+        <div class="info-faq-cta__actions">
+          <a class="button button--red" href="/request-documents/">資料請求</a>
+          <a class="button button--blue" href="/reservation/">個別相談</a>
+          <a class="button button--green" href="/top/information-shiritsu/">大学別情報</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>

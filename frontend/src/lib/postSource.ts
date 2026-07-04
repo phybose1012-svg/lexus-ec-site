@@ -139,6 +139,8 @@ const postTitleOverrides: Record<string, string> = {
   "/information-faq/": "医学部入試のQ&A｜倍率・学費・卒業率を医学部予備校レクサスが解説",
 };
 
+const dedicatedFixedPostPaths = new Set(["/information-faq/"]);
+
 const prepareMigratedPost = (post: MigratedPost): MigratedPost => {
   const path = normalizeMigratedPostPath(post.path);
   return {
@@ -153,7 +155,9 @@ export const migratedPosts = [
   ...universityStrategyPosts,
   ...interviewPrepPosts,
   ...voiceInterviewPosts,
-].map((post) => prepareMigratedPost(post as MigratedPost)) as MigratedPost[];
+]
+  .filter((post) => !dedicatedFixedPostPaths.has(normalizeMigratedPostPath((post as MigratedPost).path)))
+  .map((post) => prepareMigratedPost(post as MigratedPost)) as MigratedPost[];
 
 export const getMigratedPostStaticPaths = () =>
   migratedPosts.map((post) => ({

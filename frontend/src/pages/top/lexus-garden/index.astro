@@ -9,16 +9,42 @@ const description =
 
 const images = {
   garden: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-1-04.jpg",
-  roomIntro: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン案内-13-1024x698.jpg",
   logoStrip: "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png",
   mascot: "/assets/legacy/wp-content/uploads/2025/02/新レクサスくん-指さし-2_20240826143701-899x1024.png",
   guide: "/assets/legacy/wp-content/uploads/2025/11/PR用見本2026-1024x1024.jpg",
 };
 
+const heroFacts = [
+  { value: "校舎直結", label: "通学時間を学習時間へ" },
+  { value: "渋谷駅徒歩5分", label: "新南改札から近い生活拠点" },
+  { value: "夜12時まで", label: "自習室と質問対応を利用可能" },
+];
+
 const quickLinks = [
   { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
   { label: "合格体験記", href: "/top/voice/", tone: "green" },
   { label: "理念と沿革", href: "/top/history/", tone: "red" },
+];
+
+const overviewPhotos = [
+  { label: "夜12時まで利用できる自習室", src: "/assets/legacy/wp-content/uploads/2024/11/DSC00015-scaled.jpg" },
+  { label: "清潔な居室", src: "/assets/legacy/wp-content/uploads/2024/11/居室内写真7-scaled.jpg" },
+  { label: "質問対応の様子", src: "/assets/legacy/wp-content/uploads/2024/11/DSC00006-scaled.jpg" },
+];
+
+const comfortHighlights = [
+  {
+    title: "安心して暮らせる管理",
+    text: "オートロック、監視カメラ、セキュリティマークを備え、受験生活に集中できる環境を整えています。",
+  },
+  {
+    title: "学習と生活の両立",
+    text: "机、椅子、ベッド、冷蔵庫、洗濯機などを標準設備として用意。入居後すぐに生活を始められます。",
+  },
+  {
+    title: "講師が近い住環境",
+    text: "学習相談やメンタル面の相談まで、校舎と寮が近いレクサスならではの距離感で支えます。",
+  },
 ];
 
 const securityItems = [
@@ -82,32 +108,80 @@ const exteriorGallery = [
 
 <SiteLayout title={title} description={description} canonical="https://lexus-ec.com/top/lexus-garden/" ogImage={seo.ogImage}>
   <main class="garden-page">
-    <section class="garden-hero">
-      <img class="page-head__strip" src={images.logoStrip} alt="" width="800" height="58" decoding="async" />
-      <p class="page-head__label">DORMITORY</p>
-      <h1 class="page-head__title">生徒専用寮『LEXUS GARDEN』のご案内</h1>
-      <span class="page-head__rule" aria-hidden="true"></span>
-      <div class="content garden-hero__stack">
-        <img class="garden-hero__building" src={images.garden} alt="レクサスガーデン外観" width="788" height="518" decoding="async" />
-        <a
-          class="button button--green garden-view-button"
-          href="https://www.google.com/maps/@35.654961,139.6995549,3a,75y,255.71h,82.94t/data=!3m7!1e1!3m5!1s4MmKqgfWgAEElbVTY_DenA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D7.055657400941385%26panoid%3D4MmKqgfWgAEElbVTY_DenA%26yaw%3D255.71317896736466!7i16384!8i8192?hl=ja&coh=205410&entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D"
-          rel="noreferrer"
-        >
-          周りの風景を見る
-        </a>
-        <img class="garden-hero__room" src={images.roomIntro} alt="レクサスガーデン案内" width="800" height="545" loading="lazy" decoding="async" />
-        <div class="garden-button-row garden-button-row--center">
-          {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+    <section class="garden-hero" aria-labelledby="garden-hero-title">
+      <img
+        class="garden-hero__image"
+        src={images.garden}
+        alt=""
+        width="788"
+        height="518"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+        aria-hidden="true"
+      />
+      <div class="content garden-hero__content">
+        <p class="garden-section-kicker garden-hero__kicker">LEXUS GARDEN</p>
+        <h1 id="garden-hero-title">校舎と寮がつながる、医学部受験の生活拠点。</h1>
+        <p class="garden-hero__lead">
+          渋谷駅徒歩5分。自習室、質問対応、居室、生活サポートをひとつの生活圏にまとめ、全国から集まる医学部志願者の毎日を支えます。
+        </p>
+        <div class="garden-hero__facts" aria-label="レクサスガーデンの特徴">
+          {heroFacts.map((item) => (
+            <div>
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
+            </div>
+          ))}
+        </div>
+        <div class="garden-hero__actions">
+          <a class="button button--red" href="/request-documents/">資料請求</a>
+          <a class="button button--blue" href="/reservation/">内見予約</a>
+          <a
+            class="button button--green garden-view-button"
+            href="https://www.google.com/maps/@35.654961,139.6995549,3a,75y,255.71h,82.94t/data=!3m7!1e1!3m5!1s4MmKqgfWgAEElbVTY_DenA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D7.055657400941385%26panoid%3D4MmKqgfWgAEElbVTY_DenA%26yaw%3D255.71317896736466!7i16384!8i8192?hl=ja&coh=205410&entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D"
+            rel="noreferrer"
+          >
+            周辺を見る
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="garden-logo-band" aria-hidden="true">
+      <img src={images.logoStrip} alt="" width="800" height="58" decoding="async" />
+    </div>
+
+    <section class="garden-overview" aria-labelledby="garden-overview-title">
+      <div class="content garden-overview__grid">
+        <div class="garden-overview__copy">
+          <p class="garden-section-kicker">DORM LIFE</p>
+          <h2 id="garden-overview-title">生活時間を、そのまま学習時間へ。</h2>
+          <p>
+            レクサスガーデンは、単なる寮ではなく「授業後も集中が切れない生活環境」です。移動の負担を抑え、夜の自習や質問対応まで自然につながる動線を整えています。
+          </p>
+          <div class="garden-overview__links">
+            {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+          </div>
+        </div>
+        <div class="garden-overview__photos" aria-label="レクサスガーデンの生活環境">
+          {overviewPhotos.map((photo) => (
+            <figure>
+              <img src={photo.src} alt={photo.label} width="600" height="400" loading="lazy" decoding="async" />
+              <figcaption>{photo.label}</figcaption>
+            </figure>
+          ))}
         </div>
       </div>
     </section>
 
     <section class="garden-floor" aria-labelledby="garden-floor-title">
       <div class="content">
-        <img class="garden-logo-strip" src={images.logoStrip} alt="ロゴ" width="800" height="58" loading="lazy" decoding="async" />
-        <h2 id="garden-floor-title">◇◆◇ 間取り図 ◇◆◇</h2>
-        <p>女性専用フロアあります。</p>
+        <header class="garden-section-head">
+          <p class="garden-section-kicker">ROOM PLAN</p>
+          <h2 id="garden-floor-title">間取り図</h2>
+          <p>女性専用フロアもあります。入居前の内見や詳しい費用は、個別にご案内します。</p>
+        </header>
         <figure class="garden-floor-plan">
           <div class="garden-floor-plan__grid">
             {floorPlans.map(([label, src]) => (
@@ -116,7 +190,7 @@ const exteriorGallery = [
               </a>
             ))}
           </div>
-          <figcaption>← スクロール →<br />（タップで拡大できます）</figcaption>
+          <figcaption>タップで拡大できます</figcaption>
         </figure>
         <div class="garden-button-row garden-button-row--center">
           <a class="button button--red" href="/request-documents/">資料請求</a>
@@ -127,8 +201,20 @@ const exteriorGallery = [
 
     <section class="garden-equipment" aria-labelledby="garden-equipment-title">
       <div class="content">
-        <h2 id="garden-equipment-title">◇◆◇ 安全で快適な設備 ◇◆◇</h2>
-        <p class="garden-lead">受験勉強に専念できる、安心のセキュリティー</p>
+        <header class="garden-section-head">
+          <p class="garden-section-kicker">SECURITY & ROOM</p>
+          <h2 id="garden-equipment-title">安全と生活設備</h2>
+          <p>受験勉強に専念できるよう、セキュリティと居室設備をひとつずつ整えています。</p>
+        </header>
+        <div class="garden-highlight-grid">
+          {comfortHighlights.map((item) => (
+            <article>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+        <h3 class="garden-subtitle">セキュリティ</h3>
         <div class="garden-security-grid">
           {securityItems.map((item) => (
             <figure>
@@ -144,6 +230,7 @@ const exteriorGallery = [
           <li>◎浴室乾燥機あり</li>
           <li>◎食事の宅配可能（オプション）</li>
         </ul>
+        <h3 class="garden-subtitle">居室設備</h3>
         <div class="garden-room-grid">
           {roomItems.map(([label, src, alt]) => (
             <figure>
@@ -159,9 +246,9 @@ const exteriorGallery = [
       <div class="content garden-location__grid">
         <img src={images.mascot} alt="レクサスくん(マスコットキャラクター)" width="800" height="911" loading="lazy" decoding="async" />
         <div>
-          <h2 id="garden-location-title">◇◆◇ 所在地 ◇◆◇</h2>
-          <p>〒150-0031 東京都渋谷区桜丘町29番7号 LEXUS GARDEN<br />★JR渋谷駅の 新南改札 から徒歩５分</p>
-          <h2>◇◆◇ Googleマップ ◇◆◇</h2>
+          <p class="garden-section-kicker">LOCATION</p>
+          <h2 id="garden-location-title">渋谷駅から徒歩5分の生活拠点。</h2>
+          <p>〒150-0031 東京都渋谷区桜丘町29番7号 LEXUS GARDEN<br />JR渋谷駅の新南改札から徒歩5分です。</p>
           <a class="garden-map-card" href="https://www.google.com/maps/search/?api=1&query=東京都渋谷区桜丘町29-7" rel="noreferrer">
             <span>東京都渋谷区桜丘町29-7</span>
             <strong>Google Mapで開く</strong>
@@ -172,7 +259,11 @@ const exteriorGallery = [
 
     <section class="garden-gallery" aria-labelledby="garden-gallery-title">
       <div class="content">
-        <h2 id="garden-gallery-title">◇◆◇ ギャラリー ◇◆◇</h2>
+        <header class="garden-section-head">
+          <p class="garden-section-kicker">GALLERY</p>
+          <h2 id="garden-gallery-title">生活環境ギャラリー</h2>
+          <p>居室、自習室、質問対応など、日々の学習を支える場を写真で確認できます。</p>
+        </header>
         <div class="garden-photo-grid">
           {lifeGallery.map(([label, src]) => (
             <a href={src}>
@@ -186,7 +277,11 @@ const exteriorGallery = [
 
     <section class="garden-gallery garden-gallery--second" aria-labelledby="garden-gallery-second-title">
       <div class="content">
-        <h2 id="garden-gallery-second-title">◇◆◇ ギャラリー ◇◆◇</h2>
+        <header class="garden-section-head">
+          <p class="garden-section-kicker">BUILDING</p>
+          <h2 id="garden-gallery-second-title">外観・エントランス</h2>
+          <p>校舎に近い立地と、落ち着いて出入りできる建物まわりの雰囲気です。</p>
+        </header>
         <div class="garden-photo-grid">
           {exteriorGallery.map(([label, src]) => (
             <a href={src}>
@@ -203,9 +298,9 @@ const exteriorGallery = [
         <img src={images.guide} alt="医学部合格読本 2026" width="800" height="800" loading="lazy" decoding="async" />
         <div>
           <h3>資料請求した方へプレゼント</h3>
-          <h2>レクサスのプロ講師と、 レクサスの卒業生が、共同で作りました。</h2>
+          <h2>レクサスのプロ講師と卒業生が、共同で作りました。</h2>
           <p>レクサスガーデンの設備や費用、通学環境については資料請求または個別相談でご確認ください。</p>
-          <div class="fixed-hero__actions">
+          <div class="garden-guide__actions">
             {defaultPageActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
           </div>
         </div>

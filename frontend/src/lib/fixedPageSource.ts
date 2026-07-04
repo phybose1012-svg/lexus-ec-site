@@ -44,6 +44,7 @@ const dedicatedPagePaths = new Set([
   "/test-entry/",
   "/top/information-shiritsu/",
   "/top/information-kokuritsu/",
+  "/information-faq/",
   "/kuriage-information/",
   "/medical-math-training/",
   "/top/summer-plan/",
