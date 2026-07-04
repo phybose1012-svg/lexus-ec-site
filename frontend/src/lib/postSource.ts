@@ -3,6 +3,7 @@ import interviewPrepPosts from "../data/generated/interviewPrepPosts.json";
 import universityStrategyPosts from "../data/generated/universityStrategyPosts.json";
 import voiceInterviewPosts from "../data/generated/voiceInterviewPosts.json";
 import type { ArticleTemplateId } from "../data/articleTemplates";
+import { classifyArticlePost } from "../data/articleTaxonomy.js";
 
 export type MigratedPostImage = {
   src: string;
@@ -141,11 +142,39 @@ const postTitleOverrides: Record<string, string> = {
 
 const dedicatedFixedPostPaths = new Set(["/information-faq/"]);
 
+const uniqueStrings = (items: string[]) => [...new Set(items.filter(Boolean))];
+
+const universityTypeCategory = (value: string) => {
+  if (value === "国公立") return "国公立医学部";
+  if (value === "私立") return "私立医学部";
+  return "";
+};
+
 const prepareMigratedPost = (post: MigratedPost): MigratedPost => {
   const path = normalizeMigratedPostPath(post.path);
-  return {
+  const normalizedPost = {
     ...post,
+    path,
     title: postTitleOverrides[path] || post.title,
+  };
+  const taxonomy = classifyArticlePost(normalizedPost);
+  const taxonomyCategories = uniqueStrings([
+    taxonomy.primaryCategory,
+    taxonomy.subCategory,
+    universityTypeCategory(taxonomy.facets.universityType),
+    taxonomy.facets.region !== "全国" ? taxonomy.facets.region : "",
+  ]);
+  const taxonomyTags = uniqueStrings([
+    ...(post.tags || []).filter((tag) => tag !== "未分類"),
+    taxonomy.facets.examType,
+    ...taxonomy.facets.subjects,
+    ...taxonomy.facets.storyTags,
+  ]);
+
+  return {
+    ...normalizedPost,
+    categories: taxonomyCategories,
+    tags: taxonomyTags,
     contentHtml: labelNamelessLinks(post.contentHtml),
   };
 };

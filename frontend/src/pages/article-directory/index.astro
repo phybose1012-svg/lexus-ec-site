@@ -3,6 +3,11 @@ import admissionInfoPosts from "../../data/generated/admissionInfoPosts.json";
 import interviewPrepPosts from "../../data/generated/interviewPrepPosts.json";
 import universityStrategyPosts from "../../data/generated/universityStrategyPosts.json";
 import voiceInterviewPosts from "../../data/generated/voiceInterviewPosts.json";
+import {
+  displayPostTitle,
+  getTaxonomyStats,
+  groupArticlesForDirectory,
+} from "../../data/articleTaxonomy.js";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 
 type Post = {
@@ -14,23 +19,10 @@ type Post = {
   date?: string;
   modified?: string;
   categories?: string[];
+  tags?: string[];
   template: string;
   heroImage?: { src?: string; alt?: string } | null;
 };
-
-const templateLabels: Record<string, string> = {
-  "admission-info": "大学別入試情報",
-  "university-entrance-strategy": "大学別・科目別対策",
-  "interview-prep-guide": "医学部面接対策",
-  "voice-interview": "合格者インタビュー",
-};
-
-const templateOrder = [
-  "admission-info",
-  "university-entrance-strategy",
-  "interview-prep-guide",
-  "voice-interview",
-];
 
 const allPosts = [
   ...(admissionInfoPosts as Post[]),
@@ -39,44 +31,23 @@ const allPosts = [
   ...(voiceInterviewPosts as Post[]),
 ].sort((a, b) => (b.date || "").localeCompare(a.date || ""));
 
-const displayTitle = (post: Post) =>
-  post.displayTitleLines?.filter(Boolean).join(" / ") || post.displayTitle || post.title;
-
-const normalizeCategory = (value?: string) => value?.trim() || "未分類";
-
 const idFor = (value: string) =>
   value
+    .normalize("NFKC")
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/\s+/g, "-")
+    .replace(/[^\p{Letter}\p{Number}-]+/gu, "")
     .replace(/^-|-$/g, "") || "category";
 
-const groupedByTemplate = templateOrder
-  .map((template) => {
-    const posts = allPosts.filter((post) => post.template === template);
-    const categoryNames = [...new Set(posts.flatMap((post) => (post.categories?.length ? post.categories : ["未分類"]).map(normalizeCategory)))].sort(
-      (a, b) => a.localeCompare(b, "ja"),
-    );
-    const categories = categoryNames.map((category) => ({
-      category,
-      posts: posts.filter((post) => (post.categories?.length ? post.categories : ["未分類"]).map(normalizeCategory).includes(category)),
-    }));
-
-    return {
-      id: template,
-      label: templateLabels[template] || template,
-      posts,
-      categories,
-    };
-  })
-  .filter((group) => group.posts.length > 0);
-
+const directoryGroups = groupArticlesForDirectory(allPosts);
+const taxonomyStats = getTaxonomyStats(allPosts);
 const totalCount = allPosts.length;
 const canonical = "https://lexus-ec.com/article-directory/";
 ---
 
 <SiteLayout
   title="投稿記事一覧｜LEXUS E.C."
-  description="静的化済み投稿記事をカテゴリー別に確認するための一覧ページです。"
+  description="LEXUS E.C. の投稿記事を、大学別入試情報・大学別対策・面接対策・合格者インタビューなどの新しい分類で確認できます。"
   canonical={canonical}
 >
   <main class="article-directory">
@@ -85,15 +56,15 @@ const canonical = "https://lexus-ec.com/article-directory/";
         <p class="article-directory__eyebrow">POST DIRECTORY</p>
         <h1>投稿記事一覧</h1>
         <p>
-          staging に反映している投稿記事を、テンプレート種別とカテゴリー別に確認できます。
-          各リンクから直接記事ページへ遷移できます。
+          既存URLを保ったまま、記事の役割が見えるように再分類しました。
+          大分類・小分類・年度・地域・試験区分から、必要な記事へ直接移動できます。
         </p>
         <dl class="article-directory__summary">
           <div>
             <dt>総記事数</dt>
             <dd>{totalCount}</dd>
           </div>
-          {groupedByTemplate.map((group) => (
+          {directoryGroups.map((group) => (
             <div>
               <dt>{group.label}</dt>
               <dd>{group.posts.length}</dd>
@@ -103,9 +74,9 @@ const canonical = "https://lexus-ec.com/article-directory/";
       </div>
     </section>
 
-    <nav class="article-directory__nav" aria-label="投稿種別">
+    <nav class="article-directory__nav" aria-label="記事分類">
       <div class="article-directory__container article-directory__nav-inner">
-        {groupedByTemplate.map((group) => (
+        {directoryGroups.map((group) => (
           <a href={`#${group.id}`}>
             <span>{group.label}</span>
             <strong>{group.posts.length}</strong>
@@ -114,22 +85,50 @@ const canonical = "https://lexus-ec.com/article-directory/";
       </div>
     </nav>
 
+    <section class="article-directory__facets" aria-label="分類サマリー">
+      <div class="article-directory__container article-directory__facet-grid">
+        <div>
+          <h2>地域別</h2>
+          <ul>
+            {Object.entries(taxonomyStats.countByRegion).map(([label, count]) => (
+              <li>
+                <span>{label}</span>
+                <strong>{count}</strong>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2>試験・記事種別</h2>
+          <ul>
+            {Object.entries(taxonomyStats.countByExamType).map(([label, count]) => (
+              <li>
+                <span>{label}</span>
+                <strong>{count}</strong>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <div class="article-directory__container article-directory__body">
-      {groupedByTemplate.map((group) => (
+      {directoryGroups.map((group) => (
         <section id={group.id} class="article-directory__section">
           <div class="article-directory__section-head">
             <p>{group.posts.length} articles</p>
             <h2>{group.label}</h2>
+            <span>{group.description}</span>
           </div>
 
-          {group.categories.map((categoryGroup) => (
-            <section id={`${group.id}-${idFor(categoryGroup.category)}`} class="article-directory__category">
+          {group.subCategories.map((categoryGroup) => (
+            <section id={`${group.id}-${idFor(categoryGroup.name)}`} class="article-directory__category">
               <h3>
-                <span>{categoryGroup.category}</span>
+                <span>{categoryGroup.name}</span>
                 <strong>{categoryGroup.posts.length}</strong>
               </h3>
               <div class="article-directory__grid">
-                {categoryGroup.posts.map((post) => (
+                {categoryGroup.posts.map((post: any) => (
                   <article class="article-directory__card">
                     {post.heroImage?.src && (
                       <img
@@ -142,8 +141,16 @@ const canonical = "https://lexus-ec.com/article-directory/";
                       />
                     )}
                     <div>
-                      <a href={post.path}>{displayTitle(post)}</a>
+                      <a href={post.path}>{displayPostTitle(post)}</a>
                       <p>{post.description || post.title}</p>
+                      <ul class="article-directory__card-tags">
+                        <li>{post.taxonomy.facets.year}</li>
+                        <li>{post.taxonomy.facets.universityType}</li>
+                        <li>{post.taxonomy.facets.region}</li>
+                        <li>{post.taxonomy.facets.examType}</li>
+                        {post.taxonomy.facets.storyTags?.slice(0, 2).map((tag: string) => <li>{tag}</li>)}
+                        {post.taxonomy.facets.subjects?.slice(0, 2).map((tag: string) => <li>{tag}</li>)}
+                      </ul>
                       <small>{post.modified || post.date || ""}</small>
                     </div>
                   </article>
@@ -202,13 +209,14 @@ const canonical = "https://lexus-ec.com/article-directory/";
 
   .article-directory__summary {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 10px;
     margin: 28px 0 0;
   }
 
   .article-directory__summary div,
   .article-directory__nav a,
+  .article-directory__facet-grid > div,
   .article-directory__card {
     border: 1px solid var(--line);
     border-radius: 8px;
@@ -247,7 +255,7 @@ const canonical = "https://lexus-ec.com/article-directory/";
 
   .article-directory__nav-inner {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 10px;
   }
 
@@ -264,6 +272,56 @@ const canonical = "https://lexus-ec.com/article-directory/";
   }
 
   .article-directory__nav strong {
+    color: var(--red);
+    font-family: var(--font-serif);
+  }
+
+  .article-directory__facets {
+    border-bottom: 1px solid var(--line);
+    background: #faf5ec;
+    padding: 28px 0;
+  }
+
+  .article-directory__facet-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .article-directory__facet-grid > div {
+    padding: 18px;
+  }
+
+  .article-directory__facet-grid h2 {
+    margin: 0 0 12px;
+    color: #2a211b;
+    font-size: 1rem;
+    font-weight: 900;
+  }
+
+  .article-directory__facet-grid ul,
+  .article-directory__card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .article-directory__facet-grid li {
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+    border-radius: 999px;
+    background: #f7f2ea;
+    padding: 5px 10px;
+    color: #4d4037;
+    font-size: 0.8rem;
+    font-weight: 800;
+  }
+
+  .article-directory__facet-grid li strong {
     color: var(--red);
     font-family: var(--font-serif);
   }
@@ -297,6 +355,15 @@ const canonical = "https://lexus-ec.com/article-directory/";
     font-family: var(--font-serif);
     font-size: clamp(1.7rem, 1.35rem + 1vw, 2.5rem);
     line-height: 1.25;
+  }
+
+  .article-directory__section-head span {
+    display: block;
+    max-width: 780px;
+    margin-top: 8px;
+    color: #5a5149;
+    font-size: 0.92rem;
+    line-height: 1.75;
   }
 
   .article-directory__category {
@@ -349,6 +416,11 @@ const canonical = "https://lexus-ec.com/article-directory/";
     background: #f7f2ea;
   }
 
+  .article-directory__card img[src*="/illustrations/characters/"] {
+    object-fit: contain;
+    padding: 8px;
+  }
+
   .article-directory__card div {
     min-width: 0;
   }
@@ -373,6 +445,21 @@ const canonical = "https://lexus-ec.com/article-directory/";
     line-height: 1.65;
   }
 
+  .article-directory__card-tags {
+    margin-top: 10px;
+  }
+
+  .article-directory__card-tags li {
+    border: 1px solid rgb(139 0 0 / 14%);
+    border-radius: 999px;
+    background: #fff8f4;
+    color: #60231d;
+    padding: 2px 8px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    line-height: 1.5;
+  }
+
   .article-directory__card small {
     display: block;
     margin-top: 8px;
@@ -381,11 +468,17 @@ const canonical = "https://lexus-ec.com/article-directory/";
     font-weight: 800;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1020px) {
     .article-directory__summary,
-    .article-directory__nav-inner,
+    .article-directory__nav-inner {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px) {
+    .article-directory__facet-grid,
     .article-directory__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: 1fr;
     }
   }
 
@@ -399,8 +492,7 @@ const canonical = "https://lexus-ec.com/article-directory/";
     }
 
     .article-directory__summary,
-    .article-directory__nav-inner,
-    .article-directory__grid {
+    .article-directory__nav-inner {
       grid-template-columns: 1fr;
     }
 
