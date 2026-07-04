@@ -12770,7 +12770,7 @@ body:has(.garden-page) .garden-floating-header .site-header {
   position: relative;
   isolation: isolate;
   z-index: 2;
-  min-height: 138svh;
+  min-height: 176svh;
   overflow-x: clip;
   background: #ede4d4;
 }
@@ -12817,18 +12817,19 @@ body:has(.garden-page) .garden-floating-header .site-header {
   object-position: 50% 48%;
   filter: saturate(1.03) contrast(1.02);
   transform: scale(var(--garden-image-scale, 1.065));
-  transform-origin: 50% 50%;
+  transform-origin: 50% 0;
   will-change: transform;
 }
 
 .garden-opening__mark {
   position: absolute;
+  top: clamp(112px, 16svh, 180px);
   right: clamp(36px, 6vw, 94px);
-  bottom: 26px;
+  bottom: auto;
   z-index: 1;
   color: rgb(255 253 248 / 70%);
   font-family: var(--font-serif);
-  font-size: 8rem;
+  font-size: clamp(5.1rem, 12svh, 8rem);
   font-weight: 700;
   line-height: 0.82;
   writing-mode: vertical-rl;
@@ -14181,7 +14182,7 @@ body:has(.garden-page) .garden-floating-header .site-header {
 
 @media (max-width: 960px) {
   .garden-scroll-stage {
-    min-height: 136svh;
+    min-height: 154svh;
   }
 
   .garden-opening::before {
@@ -14191,6 +14192,7 @@ body:has(.garden-page) .garden-floating-header .site-header {
   }
 
   .garden-opening__mark {
+    top: auto;
     right: 18px;
     bottom: 24px;
     font-size: 6.2rem;
@@ -14382,7 +14384,7 @@ body:has(.garden-page) .garden-floating-header .site-header {
   }
 
   .garden-scroll-stage {
-    min-height: 132svh;
+    min-height: 146svh;
   }
 
   .garden-opening {
@@ -14406,6 +14408,7 @@ body:has(.garden-page) .garden-floating-header .site-header {
   }
 
   .garden-opening__mark {
+    top: auto;
     right: 4px;
     bottom: 74px;
     font-size: 3.8rem;
