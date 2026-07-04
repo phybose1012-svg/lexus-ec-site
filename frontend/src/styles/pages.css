@@ -13609,6 +13609,169 @@ body:has(.garden-page) .garden-floating-header .site-header {
   color: #fff;
 }
 
+.garden-gallery-dialog {
+  width: min(1080px, calc(100vw - 32px));
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #211a14;
+}
+
+.garden-gallery-dialog::backdrop {
+  background: rgb(12 10 8 / 74%);
+  backdrop-filter: blur(2px);
+}
+
+.garden-gallery-dialog__panel {
+  position: relative;
+  border: 1px solid #e5d6b8;
+  border-radius: 8px;
+  background: #fffdf8;
+  padding: 54px 18px 18px;
+  box-shadow: 0 24px 60px rgb(12 10 8 / 32%);
+}
+
+.garden-gallery-dialog__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid #d8c7a5;
+  border-radius: 999px;
+  background: #102719;
+  color: #fff;
+  font-size: 1.72rem;
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.garden-gallery-dialog__close::before,
+.garden-gallery-dialog__close::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.garden-gallery-dialog__close::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.garden-gallery-dialog__close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.garden-gallery-dialog__close:hover,
+.garden-gallery-dialog__close:focus-visible {
+  background: #9b1820;
+}
+
+.garden-gallery-dialog__close:focus-visible {
+  outline: 3px solid rgb(176 144 37 / 45%);
+  outline-offset: 3px;
+}
+
+.garden-gallery-dialog__close span {
+  display: none;
+}
+
+.garden-gallery-dialog__viewer {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  gap: 12px;
+  align-items: center;
+}
+
+.garden-gallery-dialog__nav {
+  position: relative;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid #d8c7a5;
+  border-radius: 999px;
+  background: #fff;
+  color: #102719;
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgb(58 42 18 / 12%);
+}
+
+.garden-gallery-dialog__nav::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border: solid currentColor;
+  border-width: 0 3px 3px 0;
+  border-radius: 1px;
+}
+
+.garden-gallery-dialog__nav--prev::before {
+  transform: translateX(2px) rotate(135deg);
+}
+
+.garden-gallery-dialog__nav--next::before {
+  transform: translateX(-2px) rotate(-45deg);
+}
+
+.garden-gallery-dialog__nav:hover,
+.garden-gallery-dialog__nav:focus-visible {
+  background: #102719;
+  color: #fff;
+}
+
+.garden-gallery-dialog__nav:focus-visible {
+  outline: 3px solid rgb(176 144 37 / 45%);
+  outline-offset: 3px;
+}
+
+.garden-gallery-dialog__nav span {
+  display: none;
+}
+
+.garden-gallery-dialog img {
+  display: block;
+  width: 100%;
+  max-height: min(74vh, 760px);
+  border-radius: 6px;
+  background: #f8f1e6;
+  object-fit: contain;
+}
+
+.garden-gallery-dialog__footer {
+  display: grid;
+  gap: 4px;
+  margin-top: 12px;
+  justify-items: center;
+}
+
+.garden-gallery-dialog p {
+  margin: 0;
+  color: #453729;
+  font-size: 0.94rem;
+  font-weight: 900;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.garden-gallery-dialog__footer span {
+  color: #806f5b;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
 .garden-button-row {
   justify-content: center;
   margin-top: 28px;
@@ -14532,6 +14695,41 @@ body:has(.garden-page) .garden-floating-header .site-header {
     min-height: 32px;
     padding-inline: 10px;
     font-size: 0.8rem;
+  }
+
+  .garden-gallery-dialog {
+    width: calc(100vw - 20px);
+  }
+
+  .garden-gallery-dialog__panel {
+    padding: 48px 10px 12px;
+  }
+
+  .garden-gallery-dialog__close {
+    top: 8px;
+    right: 8px;
+    width: 38px;
+    height: 38px;
+    font-size: 1.58rem;
+  }
+
+  .garden-gallery-dialog__viewer {
+    grid-template-columns: 34px minmax(0, 1fr) 34px;
+    gap: 6px;
+  }
+
+  .garden-gallery-dialog__nav {
+    width: 34px;
+    height: 34px;
+    font-size: 1.62rem;
+  }
+
+  .garden-gallery-dialog img {
+    max-height: 62vh;
+  }
+
+  .garden-gallery-dialog p {
+    font-size: 0.88rem;
   }
 
   .garden-room-grid {

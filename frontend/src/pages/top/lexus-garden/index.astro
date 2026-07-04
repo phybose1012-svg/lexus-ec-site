@@ -331,8 +331,8 @@ const exteriorGallery = [
           <p>居室、自習室、質問対応など、日々の学習を支える場を写真で確認できます。</p>
         </header>
         <div class="garden-photo-grid">
-          {lifeGallery.map((photo) => (
-            <a href={photo.src} data-fit={photo.fit}>
+          {lifeGallery.map((photo, index) => (
+            <a href={photo.src} data-fit={photo.fit} data-garden-gallery-trigger data-garden-gallery-group="life" data-garden-gallery-index={index}>
               <img src={photo.src} alt={photo.label} width="600" height="400" loading="lazy" decoding="async" />
               <span>{photo.label}</span>
             </a>
@@ -349,8 +349,8 @@ const exteriorGallery = [
           <p>校舎に近い立地と、落ち着いて出入りできる建物まわりの雰囲気です。</p>
         </header>
         <div class="garden-photo-grid">
-          {exteriorGallery.map((photo) => (
-            <a href={photo.src}>
+          {exteriorGallery.map((photo, index) => (
+            <a href={photo.src} data-garden-gallery-trigger data-garden-gallery-group="exterior" data-garden-gallery-index={index}>
               <img src={photo.src} alt={photo.label} width="600" height="400" loading="lazy" decoding="async" />
               <span>{photo.label}</span>
             </a>
@@ -413,6 +413,112 @@ const exteriorGallery = [
   </script>
 
   <SiteFooter />
+  <dialog class="garden-gallery-dialog" data-garden-gallery-dialog aria-label="Gallery preview">
+    <div class="garden-gallery-dialog__panel">
+      <button class="garden-gallery-dialog__close" type="button" data-garden-gallery-dialog-close aria-label="Close gallery preview">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="garden-gallery-dialog__viewer">
+        <button class="garden-gallery-dialog__nav garden-gallery-dialog__nav--prev" type="button" data-garden-gallery-dialog-prev aria-label="Previous gallery image">
+          <span aria-hidden="true">&lsaquo;</span>
+        </button>
+        <img data-garden-gallery-dialog-image src={lifeGallery[0].src} alt="" width="1200" height="800" decoding="async" />
+        <button class="garden-gallery-dialog__nav garden-gallery-dialog__nav--next" type="button" data-garden-gallery-dialog-next aria-label="Next gallery image">
+          <span aria-hidden="true">&rsaquo;</span>
+        </button>
+      </div>
+      <div class="garden-gallery-dialog__footer">
+        <p data-garden-gallery-dialog-caption>{lifeGallery[0].label}</p>
+        <span data-garden-gallery-dialog-count>1 / {lifeGallery.length}</span>
+      </div>
+    </div>
+  </dialog>
+  <script>
+    (() => {
+      const dialog = document.querySelector("[data-garden-gallery-dialog]");
+      if (!(dialog instanceof HTMLDialogElement) || typeof dialog.showModal !== "function") return;
+
+      const image = dialog.querySelector("[data-garden-gallery-dialog-image]");
+      const caption = dialog.querySelector("[data-garden-gallery-dialog-caption]");
+      const count = dialog.querySelector("[data-garden-gallery-dialog-count]");
+      const closeButton = dialog.querySelector("[data-garden-gallery-dialog-close]");
+      const prevButton = dialog.querySelector("[data-garden-gallery-dialog-prev]");
+      const nextButton = dialog.querySelector("[data-garden-gallery-dialog-next]");
+      if (
+        !(image instanceof HTMLImageElement) ||
+        !(caption instanceof HTMLElement) ||
+        !(count instanceof HTMLElement) ||
+        !(closeButton instanceof HTMLButtonElement) ||
+        !(prevButton instanceof HTMLButtonElement) ||
+        !(nextButton instanceof HTMLButtonElement)
+      ) return;
+
+      const triggers = [...document.querySelectorAll("[data-garden-gallery-trigger]")].filter((trigger) => trigger instanceof HTMLAnchorElement);
+      if (!triggers.length) return;
+
+      const groups = new Map();
+      triggers.forEach((trigger) => {
+        const groupName = trigger.dataset.gardenGalleryGroup || "default";
+        const group = groups.get(groupName) || [];
+        group.push(trigger);
+        groups.set(groupName, group);
+      });
+
+      let currentGroup = triggers;
+      let currentIndex = 0;
+
+      const setImage = (index = 0) => {
+        currentIndex = (index + currentGroup.length) % currentGroup.length;
+        const trigger = currentGroup[currentIndex];
+        const thumbnail = trigger.querySelector("img");
+        const label = trigger.querySelector("span")?.textContent?.trim() || thumbnail?.alt || "ギャラリー画像";
+
+        image.src = trigger.href;
+        image.alt = label;
+        caption.textContent = label;
+        count.textContent = `${currentIndex + 1} / ${currentGroup.length}`;
+      };
+
+      triggers.forEach((trigger) => {
+        trigger.addEventListener("click", (event) => {
+          event.preventDefault();
+          const groupName = trigger.dataset.gardenGalleryGroup || "default";
+          currentGroup = groups.get(groupName) || triggers;
+          const index = currentGroup.indexOf(trigger);
+          setImage(index >= 0 ? index : 0);
+          dialog.showModal();
+          closeButton.focus();
+        });
+      });
+
+      prevButton.addEventListener("click", () => {
+        setImage(currentIndex - 1);
+      });
+
+      nextButton.addEventListener("click", () => {
+        setImage(currentIndex + 1);
+      });
+
+      closeButton.addEventListener("click", () => {
+        dialog.close();
+      });
+
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+
+      dialog.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          setImage(currentIndex - 1);
+        }
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          setImage(currentIndex + 1);
+        }
+      });
+    })();
+  </script>
   <dialog class="garden-floor-dialog" data-garden-floor-dialog aria-label="Floor plan preview">
     <div class="garden-floor-dialog__panel">
       <button class="garden-floor-dialog__close" type="button" data-garden-floor-dialog-close aria-label="Close floor plan preview">
