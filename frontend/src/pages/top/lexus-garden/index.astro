@@ -95,21 +95,26 @@ const floorPlans = [
 ];
 
 const lifeGallery = [
-  ["居室内写真", "/assets/legacy/wp-content/uploads/2024/11/居室内写真7-scaled.jpg"],
-  ["居室内写真", "/assets/legacy/wp-content/uploads/2024/11/居室内写真1-scaled.jpg"],
-  ["地下自習室", "/assets/legacy/wp-content/uploads/2024/11/DSC00015-scaled.jpg"],
-  ["内装", "/assets/legacy/wp-content/uploads/2024/11/DSC09748-scaled.jpg"],
-  ["質問対応の様子", "/assets/legacy/wp-content/uploads/2024/11/DSC00006-scaled.jpg"],
-  ["内装", "/assets/legacy/wp-content/uploads/2024/11/DSC09792-scaled.jpg"],
+  { label: "居室のミニキッチン", src: "/assets/legacy/wp-content/uploads/2024/11/居室内写真7-scaled.jpg" },
+  { label: "居室のデスクスペース", src: "/assets/legacy/wp-content/uploads/2024/11/居室内写真1-scaled.jpg" },
+  { label: "地下自習室の個別ブース", src: "/assets/legacy/wp-content/uploads/2024/11/DSC00015-scaled.jpg" },
+  { label: "居室内の洗濯機スペース", src: "/assets/legacy/wp-content/uploads/2024/11/DSC09748-scaled.jpg" },
+  { label: "講師による質問対応", src: "/assets/legacy/wp-content/uploads/2024/11/DSC00006-scaled.jpg" },
+  { label: "居室のベッド・学習机", src: "/assets/legacy/wp-content/uploads/2024/11/DSC09792-scaled.jpg" },
+  { label: "少人数の個別指導", src: "/assets/legacy/wp-content/uploads/2025/02/ガーデン質問対応.jpg" },
+  { label: "授業風景", src: "/assets/legacy/wp-content/uploads/2025/02/川島T授業.jpg" },
+  { label: "談話室・共用スペース", src: "/assets/lexus-garden/talk-lounge.jpg" },
+  { label: "館内の自動販売機", src: "/assets/lexus-garden/vending-machine.jpg", fit: "contain" },
+  { label: "軽食・お菓子コーナー", src: "/assets/lexus-garden/snacks.jpg" },
+  { label: "教室・演習スペース", src: "/assets/lexus-garden/garden-common-space.jpg" },
 ];
 
 const exteriorGallery = [
-  ["レクサスガーデン外観", images.garden],
-  ["エントランス", "/assets/legacy/wp-content/uploads/2024/11/IMG_5004-scaled.jpg"],
-  ["エントランス", "/assets/legacy/wp-content/uploads/2024/11/IMG_5025-scaled.jpg"],
-  ["玄関", "/assets/legacy/wp-content/uploads/2024/11/玄関-scaled.jpg"],
-  ["ガーデン質問対応", "/assets/legacy/wp-content/uploads/2025/02/ガーデン質問対応.jpg"],
-  ["川島T授業", "/assets/legacy/wp-content/uploads/2025/02/川島T授業.jpg"],
+  { label: "レクサスガーデン外観", src: images.garden },
+  { label: "エントランスサイン", src: "/assets/legacy/wp-content/uploads/2024/11/IMG_5004-scaled.jpg" },
+  { label: "オートロック付きエントランス", src: "/assets/legacy/wp-content/uploads/2024/11/IMG_5025-scaled.jpg" },
+  { label: "玄関まわり", src: "/assets/legacy/wp-content/uploads/2024/11/玄関-scaled.jpg" },
+  { label: "エントランスのグリーンサイン", src: "/assets/lexus-garden/entrance.jpg" },
 ];
 ---
 
@@ -325,10 +330,10 @@ const exteriorGallery = [
           <p>居室、自習室、質問対応など、日々の学習を支える場を写真で確認できます。</p>
         </header>
         <div class="garden-photo-grid">
-          {lifeGallery.map(([label, src]) => (
-            <a href={src}>
-              <img src={src} alt={label} width="600" height="400" loading="lazy" decoding="async" />
-              <span>{label}</span>
+          {lifeGallery.map((photo) => (
+            <a href={photo.src} data-fit={photo.fit}>
+              <img src={photo.src} alt={photo.label} width="600" height="400" loading="lazy" decoding="async" />
+              <span>{photo.label}</span>
             </a>
           ))}
         </div>
@@ -343,10 +348,10 @@ const exteriorGallery = [
           <p>校舎に近い立地と、落ち着いて出入りできる建物まわりの雰囲気です。</p>
         </header>
         <div class="garden-photo-grid">
-          {exteriorGallery.map(([label, src]) => (
-            <a href={src}>
-              <img src={src} alt={label} width="600" height="400" loading="lazy" decoding="async" />
-              <span>{label}</span>
+          {exteriorGallery.map((photo) => (
+            <a href={photo.src}>
+              <img src={photo.src} alt={photo.label} width="600" height="400" loading="lazy" decoding="async" />
+              <span>{photo.label}</span>
             </a>
           ))}
         </div>
