@@ -87,8 +87,11 @@ const roomItems = [
 ];
 
 const floorPlans = [
-  ["タイプA", "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-06.jpg"],
-  ["タイプB", "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-07.jpg"],
+  { label: "タイプA", src: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-06.jpg", width: 375, height: 545 },
+  { label: "タイプB", src: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-07.jpg", width: 375, height: 545 },
+  { label: "タイプC", src: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-09.jpg", width: 376, height: 545 },
+  { label: "タイプD", src: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-10.jpg", width: 601, height: 339 },
+  { label: "タイプE", src: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-08.jpg", width: 600, height: 339 },
 ];
 
 const lifeGallery = [
@@ -227,9 +230,10 @@ const exteriorGallery = [
         </header>
         <figure class="garden-floor-plan">
           <div class="garden-floor-plan__grid">
-            {floorPlans.map(([label, src]) => (
-              <a href={src} aria-label={`間取り図を拡大する: レクサスガーデン ${label}`}>
-                <img src={src} alt={`レクサスガーデン ${label}`} width="800" height="800" loading="lazy" decoding="async" />
+            {floorPlans.map((plan) => (
+              <a href={plan.src} aria-label={`間取り図を拡大する: レクサスガーデン ${plan.label}`}>
+                <span class="garden-floor-plan__label">{plan.label}</span>
+                <img src={plan.src} alt={`レクサスガーデン ${plan.label}`} width={plan.width} height={plan.height} loading="lazy" decoding="async" />
               </a>
             ))}
           </div>
