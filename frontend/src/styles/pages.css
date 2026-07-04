@@ -13012,14 +13012,18 @@ body:has(.garden-page) .garden-floating-header .site-header {
 
 .garden-hero {
   position: relative;
-  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  min-height: clamp(1280px, 140vh, 1480px);
+  overflow: visible;
   isolation: isolate;
   background:
     linear-gradient(112deg, #fffdf8 0%, #f7eddd 42%, #183222 42%, #0f2417 100%);
   background-attachment: fixed;
   color: #211a14;
   text-align: left;
-  padding-block: clamp(286px, 23vw, 348px) 78px;
+  padding-block: clamp(116px, 9vw, 148px) 118px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -13078,12 +13082,13 @@ body:has(.garden-page) .garden-floating-header .site-header {
 }
 
 .garden-hero__media {
-  position: absolute;
-  top: 96px;
-  right: max(36px, calc((100vw - 1180px) / 2 + 18px));
-  bottom: auto;
-  left: max(41%, calc((100vw - 1180px) / 2 + 430px));
+  position: sticky;
+  top: clamp(112px, 12vh, 136px);
+  grid-area: 1 / 1;
+  justify-self: end;
+  width: min(49vw, 720px);
   height: clamp(540px, 40vw, 640px);
+  margin-right: max(36px, calc((100vw - 1180px) / 2 + 18px));
   z-index: 0;
 }
 
@@ -13165,12 +13170,14 @@ body:has(.garden-page) .garden-floating-header .site-header {
 
 .garden-hero__content {
   position: relative;
+  grid-area: 1 / 1;
   z-index: 1;
   display: grid;
   grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
   gap: 22px;
   align-items: end;
-  min-height: 600px;
+  align-content: end;
+  min-height: clamp(820px, 94vh, 920px);
   width: min(1180px, calc(100% - 88px));
   margin-inline: auto;
 }
@@ -14196,6 +14203,9 @@ body:has(.garden-page) .garden-floating-header .site-header {
   }
 
   .garden-hero {
+    display: block;
+    min-height: 0;
+    overflow: hidden;
     background:
       linear-gradient(180deg, #102719 0%, #102719 34%, #fffdf8 34%, #f8f0e2 100%);
     background-attachment: scroll;
