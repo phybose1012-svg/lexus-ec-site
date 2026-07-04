@@ -13015,10 +13015,10 @@ body:has(.garden-page) .garden-floating-header .site-header {
   overflow: hidden;
   isolation: isolate;
   background:
-    linear-gradient(115deg, #fffdf8 0%, #fff7e8 48%, #e9f1e6 100%);
+    linear-gradient(112deg, #fffdf8 0%, #f7eddd 42%, #183222 42%, #0f2417 100%);
   color: #211a14;
   text-align: left;
-  padding-block: clamp(276px, 22vw, 326px) 74px;
+  padding-block: clamp(286px, 23vw, 348px) 78px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -13057,38 +13057,50 @@ body:has(.garden-page) .garden-floating-header .site-header {
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(90deg, rgb(255 253 248 / 98%) 0%, rgb(255 253 248 / 92%) 36%, rgb(255 253 248 / 48%) 56%, rgb(255 253 248 / 0%) 78%);
+    linear-gradient(90deg, rgb(255 253 248 / 98%) 0%, rgb(255 253 248 / 94%) 34%, rgb(255 253 248 / 42%) 55%, rgb(255 253 248 / 0%) 72%),
+    repeating-linear-gradient(90deg, rgb(212 175 55 / 12%) 0 1px, transparent 1px 74px);
 }
 
 .garden-hero::after {
   content: "";
   position: absolute;
-  top: 34px;
+  top: 42px;
   right: max(20px, calc((100vw - 1180px) / 2));
-  bottom: 34px;
-  left: max(47%, calc((100vw - 1180px) / 2 + 572px));
+  bottom: 42px;
+  left: max(45%, calc((100vw - 1180px) / 2 + 548px));
   z-index: 0;
-  border: 1px solid rgb(212 175 55 / 58%);
-  border-radius: 8px;
+  border: 1px solid rgb(212 175 55 / 54%);
+  border-radius: 4px;
   pointer-events: none;
 }
 
 .garden-hero__media {
   position: absolute;
-  top: 46px;
+  top: 58px;
   right: max(28px, calc((100vw - 1180px) / 2));
-  bottom: 50px;
-  left: max(49%, calc((100vw - 1180px) / 2 + 610px));
+  bottom: 62px;
+  left: max(46%, calc((100vw - 1180px) / 2 + 560px));
   z-index: 0;
 }
 
 .garden-hero__media::before {
   content: "";
   position: absolute;
-  inset: 20px -18px -18px 20px;
+  inset: 22px -20px -20px 22px;
   z-index: -1;
-  border: 1px solid rgb(15 111 65 / 28%);
-  border-radius: 8px;
+  border: 1px solid rgb(212 175 55 / 44%);
+  border-radius: 4px;
+}
+
+.garden-hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 4px;
+  background:
+    linear-gradient(180deg, rgb(16 39 25 / 0%) 56%, rgb(16 39 25 / 18%) 100%);
+  pointer-events: none;
 }
 
 .garden-page .garden-hero__image {
@@ -13097,22 +13109,24 @@ body:has(.garden-page) .garden-floating-header .site-header {
   height: 100%;
   margin: 0;
   object-fit: cover;
-  object-position: 50% 48%;
-  border-radius: 8px;
-  box-shadow: 0 30px 64px rgb(60 42 24 / 20%);
+  object-position: 50% 50%;
+  border: 1px solid rgb(245 232 195 / 58%);
+  border-radius: 4px;
+  box-shadow: 0 34px 74px rgb(6 18 12 / 38%);
 }
 
 .garden-hero__media-label {
   position: absolute;
   top: 22px;
   right: 22px;
+  z-index: 2;
   width: min(300px, calc(100% - 44px));
-  border: 1px solid #eadcc2;
+  border: 1px solid rgb(212 175 55 / 52%);
   border-left: 5px solid #d4af37;
-  border-radius: 8px;
-  background: rgb(255 255 255 / 94%);
-  padding: 14px 16px;
-  box-shadow: 0 16px 34px rgb(33 26 20 / 16%);
+  border-radius: 4px;
+  background: rgb(16 39 25 / 92%);
+  padding: 15px 17px;
+  box-shadow: 0 18px 38px rgb(6 18 12 / 28%);
 }
 
 .garden-hero__media-label span,
@@ -13122,16 +13136,16 @@ body:has(.garden-page) .garden-floating-header .site-header {
 }
 
 .garden-hero__media-label span {
-  color: #9b1820;
+  color: #d9bd6a;
   font-size: 0.68rem;
   font-weight: 900;
-  letter-spacing: 0.12em;
+  letter-spacing: 0;
   line-height: 1.35;
 }
 
 .garden-hero__media-label strong {
   margin-top: 5px;
-  color: #211a14;
+  color: #fffdf8;
   font-family: var(--font-serif);
   font-size: 1.34rem;
   line-height: 1.25;
@@ -13139,7 +13153,7 @@ body:has(.garden-page) .garden-floating-header .site-header {
 
 .garden-hero__media-label small {
   margin-top: 7px;
-  color: #5b4b3d;
+  color: rgb(255 253 248 / 78%);
   font-size: 0.82rem;
   font-weight: 900;
   line-height: 1.45;
@@ -13152,18 +13166,20 @@ body:has(.garden-page) .garden-floating-header .site-header {
   grid-template-columns: minmax(0, 590px) minmax(0, 1fr);
   gap: 22px;
   align-items: end;
-  min-height: 580px;
+  min-height: 600px;
   margin: 0;
 }
 
 .garden-hero__copy {
   grid-column: 1;
-  border: 1px solid #eadcc2;
-  border-left: 7px solid #9b1820;
+  border: 1px solid rgb(229 213 177 / 90%);
+  border-left: 7px solid #102719;
   border-radius: 8px;
-  background: rgb(255 255 255 / 94%);
-  padding: 28px clamp(24px, 2.6vw, 36px);
-  box-shadow: 0 24px 48px rgb(60 42 24 / 14%);
+  background:
+    linear-gradient(135deg, rgb(255 253 248 / 97%), rgb(250 243 230 / 94%)),
+    #fffdf8;
+  padding: 30px clamp(24px, 2.6vw, 38px);
+  box-shadow: 0 28px 58px rgb(58 42 18 / 18%);
 }
 
 .garden-hero__copy::before {
@@ -13173,7 +13189,7 @@ body:has(.garden-page) .garden-floating-header .site-header {
   height: 4px;
   margin-bottom: 18px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #d4af37, #0f6f41);
+  background: linear-gradient(90deg, #d4af37, #102719 72%, #9b1820);
 }
 
 .garden-hero__kicker {
@@ -13210,7 +13226,7 @@ body:has(.garden-page) .garden-floating-header .site-header {
   margin: 18px 0 0;
   border-left: 4px solid #d4af37;
   border-radius: 0 8px 8px 0;
-  background: #fff8e8;
+  background: #f7efd9;
   padding: 13px 15px;
   color: #43372d;
   font-size: 0.92rem;
@@ -13224,10 +13240,10 @@ body:has(.garden-page) .garden-floating-header .site-header {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   width: min(1080px, 100%);
   margin-top: 0;
-  border: 1px solid #e3d6bd;
+  border: 1px solid rgb(212 175 55 / 40%);
   border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 18px 36px rgb(60 42 24 / 12%);
+  background: rgb(255 253 248 / 96%);
+  box-shadow: 0 22px 44px rgb(58 42 18 / 14%);
   overflow: hidden;
 }
 
@@ -14120,6 +14136,8 @@ body:has(.garden-page) .garden-floating-header .site-header {
   }
 
   .garden-hero {
+    background:
+      linear-gradient(180deg, #102719 0%, #102719 34%, #fffdf8 34%, #f8f0e2 100%);
     padding-block: clamp(168px, 22vw, 236px) 56px;
   }
 
@@ -14149,6 +14167,7 @@ body:has(.garden-page) .garden-floating-header .site-header {
 
   .garden-page .garden-hero__image {
     height: 100%;
+    border-radius: 4px;
   }
 
   .garden-hero__content {
@@ -14386,6 +14405,8 @@ body:has(.garden-page) .garden-floating-header .site-header {
 
   .garden-hero {
     min-height: 0;
+    background:
+      linear-gradient(180deg, #102719 0, #102719 282px, #fffdf8 282px, #f8f0e2 100%);
     padding-block: 106px 44px;
     text-align: left;
   }
@@ -14408,9 +14429,9 @@ body:has(.garden-page) .garden-floating-header .site-header {
   }
 
   .garden-page .garden-hero__image {
-    object-position: 52% center;
-    border-radius: 8px;
-    box-shadow: 0 18px 34px rgb(60 42 24 / 18%);
+    object-position: 50% 50%;
+    border-radius: 4px;
+    box-shadow: 0 20px 38px rgb(6 18 12 / 30%);
   }
 
   .garden-hero__media-label {
@@ -14440,7 +14461,7 @@ body:has(.garden-page) .garden-floating-header .site-header {
 
   .garden-hero__copy {
     border-left-width: 0;
-    border-top: 5px solid #9b1820;
+    border-top: 5px solid #102719;
     padding: 21px 17px 18px;
   }
 
