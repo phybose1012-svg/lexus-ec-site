@@ -289,13 +289,6 @@ const exteriorGallery = [
             </figure>
           ))}
         </div>
-        <ul class="garden-feature-list">
-          <li>◎床暖房あり</li>
-          <li>◎ウォシュレットあり</li>
-          <li>◎独立洗面台あり</li>
-          <li>◎浴室乾燥機あり</li>
-          <li>◎食事の宅配可能（オプション）</li>
-        </ul>
         <h3 class="garden-subtitle">居室設備</h3>
         <div class="garden-room-grid">
           {roomItems.map(([label, src, alt]) => (
@@ -305,6 +298,13 @@ const exteriorGallery = [
             </figure>
           ))}
         </div>
+        <ul class="garden-feature-list" aria-label="居室設備の特徴">
+          <li>床暖房あり</li>
+          <li>ウォシュレットあり</li>
+          <li>独立洗面台あり</li>
+          <li>浴室乾燥機あり</li>
+          <li>食事の宅配可能（オプション）</li>
+        </ul>
       </div>
     </section>
 
