@@ -12757,7 +12757,7 @@
   max-width: none;
   height: 100%;
   object-fit: cover;
-  object-position: center 42%;
+  object-position: center center;
 }
 
 .garden-hero__content {
@@ -12795,9 +12795,9 @@
 
 .garden-hero__facts {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
-  width: min(780px, 100%);
+  width: min(920px, 100%);
   margin-top: 6px;
 }
 
@@ -12847,13 +12847,6 @@
 .garden-button-row .button,
 .garden-overview__links .button {
   min-width: 150px;
-}
-
-.garden-hero__actions .garden-view-button {
-  border: 0;
-  background: #0b6f25;
-  color: #fff;
-  box-shadow: 0 8px 0 #064016;
 }
 
 .garden-logo-band {
@@ -13230,6 +13223,11 @@
     min-height: 640px;
   }
 
+  .garden-hero__facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: min(620px, 100%);
+  }
+
   .garden-overview__grid,
   .garden-location__grid,
   .garden-guide__grid {
@@ -13319,7 +13317,7 @@
   }
 
   .garden-hero__image {
-    object-position: 58% center;
+    object-position: 55% center;
   }
 
   .garden-hero__content {
@@ -13339,7 +13337,7 @@
   }
 
   .garden-hero__facts {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
   }
 
@@ -13368,14 +13366,10 @@
   }
 
   .garden-hero__actions {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     width: 100%;
     max-width: 343px;
     margin-inline: 0;
-  }
-
-  .garden-hero__actions .garden-view-button {
-    grid-column: 1 / -1;
   }
 
   .garden-hero__actions .button,
@@ -13385,6 +13379,12 @@
     width: 100%;
     min-width: 0;
     min-height: 44px;
+  }
+
+  .garden-hero__actions .button {
+    padding-inline: 6px;
+    font-size: 0.9rem;
+    white-space: nowrap;
   }
 
   .garden-logo-band {
