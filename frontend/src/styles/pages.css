@@ -13581,11 +13581,14 @@
 }
 
 .garden-security-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 246px));
+  justify-content: center;
 }
 
 .garden-room-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 190px));
+  justify-content: center;
+  gap: 14px;
   margin-top: 0;
 }
 
@@ -13601,9 +13604,21 @@
 
 .garden-security-grid img,
 .garden-room-grid img {
+  display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+  box-sizing: border-box;
+  background: #f8f3ea;
+  object-fit: contain;
+}
+
+.garden-security-grid img {
+  height: 248px;
+  padding: 12px;
+}
+
+.garden-room-grid img {
+  height: 184px;
+  padding: 12px;
 }
 
 .garden-security-grid figcaption,
@@ -13907,10 +13922,27 @@
     height: 210px;
   }
 
-  .garden-security-grid,
-  .garden-room-grid,
   .garden-photo-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .garden-security-grid {
+    grid-template-columns: repeat(3, minmax(0, 220px));
+    gap: 14px;
+  }
+
+  .garden-room-grid {
+    grid-template-columns: repeat(4, minmax(0, 168px));
+    gap: 12px;
+  }
+
+  .garden-security-grid img {
+    height: 226px;
+  }
+
+  .garden-room-grid img {
+    height: 164px;
+    padding: 10px;
   }
 
   .garden-location {
@@ -14253,9 +14285,19 @@
   }
 
   .garden-floor-plan__grid,
-  .garden-security-grid,
   .garden-photo-grid {
     grid-template-columns: 1fr;
+  }
+
+  .garden-security-grid {
+    grid-template-columns: 1fr;
+    width: min(250px, 100%);
+    margin-inline: auto;
+    gap: 14px;
+  }
+
+  .garden-security-grid img {
+    height: 230px;
   }
 
   .garden-floor-plan {
@@ -14330,8 +14372,21 @@
   }
 
   .garden-room-grid {
+    width: min(312px, 100%);
+    margin-inline: auto;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
+  }
+
+  .garden-room-grid img {
+    height: 150px;
+    padding: 10px;
+  }
+
+  .garden-security-grid figcaption,
+  .garden-room-grid figcaption {
+    padding: 10px;
+    font-size: 0.85rem;
   }
 
   .garden-feature-list {
