@@ -8,6 +8,10 @@ import {
   getTaxonomyStats,
   groupArticlesForDirectory,
 } from "../../data/articleTaxonomy.js";
+import {
+  buildArticleDirectoryImageIndex,
+  resolveArticleDirectoryImage,
+} from "../../data/articleDirectoryImages.js";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 
 type Post = {
@@ -41,6 +45,7 @@ const idFor = (value: string) =>
 
 const directoryGroups = groupArticlesForDirectory(allPosts);
 const taxonomyStats = getTaxonomyStats(allPosts);
+const directoryImageIndex = buildArticleDirectoryImageIndex(allPosts);
 const totalCount = allPosts.length;
 const canonical = "https://lexus-ec.com/article-directory/";
 ---
@@ -128,33 +133,37 @@ const canonical = "https://lexus-ec.com/article-directory/";
                 <strong>{categoryGroup.posts.length}</strong>
               </h3>
               <div class="article-directory__grid">
-                {categoryGroup.posts.map((post: any) => (
-                  <article class="article-directory__card">
-                    {post.heroImage?.src && (
-                      <img
-                        src={post.heroImage.src}
-                        alt=""
-                        width="168"
-                        height="112"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    )}
-                    <div>
-                      <a href={post.path}>{displayPostTitle(post)}</a>
-                      <p>{post.description || post.title}</p>
-                      <ul class="article-directory__card-tags">
-                        <li>{post.taxonomy.facets.year}</li>
-                        <li>{post.taxonomy.facets.universityType}</li>
-                        <li>{post.taxonomy.facets.region}</li>
-                        <li>{post.taxonomy.facets.examType}</li>
-                        {post.taxonomy.facets.storyTags?.slice(0, 2).map((tag: string) => <li>{tag}</li>)}
-                        {post.taxonomy.facets.subjects?.slice(0, 2).map((tag: string) => <li>{tag}</li>)}
-                      </ul>
-                      <small>{post.modified || post.date || ""}</small>
-                    </div>
-                  </article>
-                ))}
+                {categoryGroup.posts.map((post: any) => {
+                  const directoryImage = resolveArticleDirectoryImage(post, directoryImageIndex);
+
+                  return (
+                    <article class="article-directory__card">
+                      {directoryImage?.src && (
+                        <img
+                          src={directoryImage.src}
+                          alt={directoryImage.alt || `${post.taxonomy.facets.universityName}のアイキャッチ画像`}
+                          width="168"
+                          height="112"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      )}
+                      <div>
+                        <a href={post.path}>{displayPostTitle(post)}</a>
+                        <p>{post.description || post.title}</p>
+                        <ul class="article-directory__card-tags">
+                          <li>{post.taxonomy.facets.year}</li>
+                          <li>{post.taxonomy.facets.universityType}</li>
+                          <li>{post.taxonomy.facets.region}</li>
+                          <li>{post.taxonomy.facets.examType}</li>
+                          {post.taxonomy.facets.storyTags?.slice(0, 2).map((tag: string) => <li>{tag}</li>)}
+                          {post.taxonomy.facets.subjects?.slice(0, 2).map((tag: string) => <li>{tag}</li>)}
+                        </ul>
+                        <small>{post.modified || post.date || ""}</small>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
             </section>
           ))}
