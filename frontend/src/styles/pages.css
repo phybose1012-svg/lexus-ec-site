@@ -13015,7 +13015,7 @@ body:has(.garden-page) .garden-floating-header .site-header {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   align-items: start;
-  min-height: clamp(1280px, 140vh, 1480px);
+  min-height: clamp(930px, 106vh, 1080px);
   overflow: visible;
   isolation: isolate;
   background:
@@ -13023,7 +13023,7 @@ body:has(.garden-page) .garden-floating-header .site-header {
   background-attachment: fixed;
   color: #211a14;
   text-align: left;
-  padding-block: clamp(116px, 9vw, 148px) 118px;
+  padding-block: clamp(88px, 7vw, 112px) 82px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -13074,7 +13074,7 @@ body:has(.garden-page) .garden-floating-header .site-header {
   right: max(28px, calc((100vw - 1180px) / 2 + 8px));
   bottom: auto;
   left: max(40%, calc((100vw - 1180px) / 2 + 410px));
-  height: clamp(580px, 42vw, 680px);
+  height: clamp(500px, 36vw, 560px);
   z-index: 0;
   border: 1px solid rgb(212 175 55 / 54%);
   border-radius: 4px;
@@ -13083,11 +13083,11 @@ body:has(.garden-page) .garden-floating-header .site-header {
 
 .garden-hero__media {
   position: sticky;
-  top: clamp(112px, 12vh, 136px);
+  top: clamp(108px, 11vh, 126px);
   grid-area: 1 / 1;
   justify-self: end;
   width: min(49vw, 720px);
-  height: clamp(540px, 40vw, 640px);
+  height: clamp(470px, 35vw, 540px);
   margin-right: max(36px, calc((100vw - 1180px) / 2 + 18px));
   z-index: 0;
 }
@@ -13173,17 +13173,21 @@ body:has(.garden-page) .garden-floating-header .site-header {
   grid-area: 1 / 1;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
-  gap: 22px;
-  align-items: end;
-  align-content: end;
-  min-height: clamp(820px, 94vh, 920px);
+  grid-template-columns: minmax(0, 560px) minmax(360px, 560px);
+  grid-template-rows: clamp(470px, 34vw, 510px) auto;
+  gap: 22px 34px;
+  align-items: start;
+  align-content: start;
+  min-height: clamp(660px, 72vh, 720px);
   width: min(1180px, calc(100% - 88px));
   margin-inline: auto;
 }
 
 .garden-hero__copy {
   grid-column: 1;
+  grid-row: 1 / 3;
+  align-self: start;
+  margin-top: clamp(24px, 3vw, 42px);
   border: 1px solid rgb(229 213 177 / 90%);
   border-left: 7px solid #102719;
   border-radius: 8px;
@@ -13247,10 +13251,12 @@ body:has(.garden-page) .garden-floating-header .site-header {
 }
 
 .garden-hero__facts {
-  grid-column: 1 / -1;
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: end;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  width: min(1080px, 100%);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: min(540px, 100%);
   margin-top: 0;
   border: 1px solid rgb(212 175 55 / 40%);
   border-radius: 8px;
@@ -13260,14 +13266,22 @@ body:has(.garden-page) .garden-floating-header .site-header {
 }
 
 .garden-hero__facts div {
-  min-height: 104px;
+  min-height: 112px;
   border-left: 1px solid #eadcc2;
-  padding: 18px 20px;
+  padding: 18px 18px;
 }
 
 .garden-hero__facts div:first-child {
   border-left: 0;
   background: #102719;
+}
+
+.garden-hero__facts div:nth-child(2n + 1) {
+  border-left: 0;
+}
+
+.garden-hero__facts div:nth-child(n + 3) {
+  border-top: 1px solid #eadcc2;
 }
 
 .garden-hero__facts strong,
@@ -14255,11 +14269,15 @@ body:has(.garden-page) .garden-floating-header .site-header {
   }
 
   .garden-hero__copy {
+    grid-row: auto;
+    margin-top: 0;
     padding: 28px;
   }
 
   .garden-hero__facts {
     grid-column: 1;
+    grid-row: auto;
+    justify-self: stretch;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     width: 100%;
   }
