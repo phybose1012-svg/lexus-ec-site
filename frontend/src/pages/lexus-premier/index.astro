@@ -277,6 +277,198 @@ const annualTracks = [
 
 const planPercent = (value: number) => `${(value / 12) * 100}%`;
 
+type WeekCell = {
+  subjects?: string[];
+  label?: string;
+  note?: string;
+  variant?: string;
+};
+
+type WeeklyScheduleRow =
+  | {
+      kind: "period";
+      period: string;
+      time: string;
+      tone: string;
+      cells: WeekCell[];
+    }
+  | {
+      kind: "break";
+      label: string;
+      tone: string;
+    };
+
+const weekDays = ["月", "火", "水", "木", "金", "土", "日"];
+
+const weeklyScheduleRows: WeeklyScheduleRow[] = [
+  {
+    kind: "period",
+    period: "0",
+    time: "8:20〜9:20",
+    tone: "test",
+    cells: [
+      { subjects: ["英語", "数学"], label: "毎日テスト", variant: "test" },
+      { subjects: ["英語", "化学"], label: "毎日テスト", variant: "test" },
+      { subjects: ["数学", "物/生"], label: "毎日テスト", variant: "test" },
+      { subjects: ["数学", "化学"], label: "毎日テスト", variant: "test" },
+      { subjects: ["英語", "物/生"], label: "毎日テスト", variant: "test" },
+      { subjects: ["数学", "英語"], label: "毎日テスト", variant: "test" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
+    ],
+  },
+  { kind: "break", label: "10分 休憩", tone: "short" },
+  {
+    kind: "period",
+    period: "I",
+    time: "9:30〜10:30",
+    tone: "input",
+    cells: [
+      { subjects: ["英語"], label: "インプット", variant: "input" },
+      { subjects: ["英語"], label: "インプット", variant: "input" },
+      { subjects: ["数学"], label: "週一テスト", variant: "test" },
+      { subjects: ["数学"], label: "インプット", variant: "input" },
+      { subjects: ["英語"], label: "インプット", variant: "input" },
+      { subjects: ["数学"], label: "インプット", variant: "input" },
+      { label: "休憩", variant: "rest" },
+    ],
+  },
+  { kind: "break", label: "10分 休憩", tone: "short" },
+  {
+    kind: "period",
+    period: "II",
+    time: "10:40〜11:40",
+    tone: "input",
+    cells: [
+      { subjects: ["英語"], label: "インプット", variant: "input" },
+      { subjects: ["英語"], label: "インプット", variant: "input" },
+      { subjects: ["数学"], label: "インプット", variant: "input" },
+      { subjects: ["英語"], label: "インプット", variant: "input" },
+      { subjects: ["数学"], label: "インプット", variant: "input" },
+      { label: "インプット", variant: "input" },
+      { label: "休憩", variant: "rest" },
+    ],
+  },
+  { kind: "break", label: "50分 昼食", tone: "meal" },
+  {
+    kind: "period",
+    period: "III",
+    time: "12:30〜13:30",
+    tone: "input",
+    cells: [
+      { subjects: ["数学"], label: "インプット", variant: "input" },
+      { subjects: ["化学"], label: "インプット", variant: "input" },
+      { subjects: ["物理/生物"], label: "インプット", variant: "input" },
+      { subjects: ["化学"], label: "インプット", variant: "input" },
+      { subjects: ["物理/生物"], label: "インプット", variant: "input" },
+      { subjects: ["英語"], label: "週一テスト", variant: "test" },
+      { label: "", variant: "empty" },
+    ],
+  },
+  { kind: "break", label: "10分 休憩", tone: "short" },
+  {
+    kind: "period",
+    period: "IV",
+    time: "13:40〜14:40",
+    tone: "input",
+    cells: [
+      { subjects: ["数学"], label: "インプット", variant: "input" },
+      { subjects: ["化学"], label: "インプット", variant: "input" },
+      { subjects: ["物理/生物"], label: "インプット", variant: "input" },
+      { subjects: ["化学"], label: "インプット", variant: "input" },
+      { subjects: ["物理/生物"], label: "インプット", variant: "input" },
+      { label: "インプット", variant: "input" },
+      { label: "", variant: "empty" },
+    ],
+  },
+  { kind: "break", label: "10分 休憩", tone: "short" },
+  {
+    kind: "period",
+    period: "V",
+    time: "14:50〜15:50",
+    tone: "output",
+    cells: [
+      { subjects: ["数学"], label: "アウトプット", variant: "output" },
+      { subjects: ["化学"], label: "アウトプット", variant: "output" },
+      { subjects: ["物理/生物"], label: "アウトプット", variant: "output" },
+      { subjects: ["化学"], label: "アウトプット", variant: "output" },
+      { subjects: ["物理/生物"], label: "アウトプット", variant: "output" },
+      { subjects: ["英語"], label: "アウトプット", variant: "output" },
+      { label: "", variant: "empty" },
+    ],
+  },
+  { kind: "break", label: "10分 休憩", tone: "short" },
+  {
+    kind: "period",
+    period: "VI",
+    time: "16:00〜17:00",
+    tone: "output",
+    cells: [
+      { subjects: ["英語"], label: "アウトプット", variant: "output" },
+      { subjects: ["英語"], label: "アウトプット", variant: "output" },
+      { subjects: ["数学"], label: "アウトプット", variant: "output" },
+      { subjects: ["数学"], label: "アウトプット", variant: "output" },
+      { subjects: ["英語"], label: "アウトプット", variant: "output" },
+      { subjects: ["数学"], label: "アウトプット", variant: "output" },
+      { label: "", variant: "empty" },
+    ],
+  },
+  { kind: "break", label: "10分 休憩", tone: "short" },
+  {
+    kind: "period",
+    period: "VII",
+    time: "17:10〜18:10",
+    tone: "output",
+    cells: [
+      { label: "【+α】アウトプット", note: "英語/数学・化学/生物", variant: "plus" },
+      { label: "【+α】アウトプット", note: "英語/数学・化学/物理", variant: "plus" },
+      { label: "【+α】アウトプット", note: "英語/数学・物理/生物", variant: "plus" },
+      { label: "【+α】アウトプット", note: "英語/数学・化学/物理/生物", variant: "plus" },
+      { label: "【+α】アウトプット", note: "英語/数学・物理/生物", variant: "plus" },
+      { label: "【+α】アウトプット", note: "英語/数学・化学/物理", variant: "plus" },
+      { label: "", variant: "empty" },
+    ],
+  },
+  { kind: "break", label: "50分 夕食", tone: "meal" },
+  {
+    kind: "period",
+    period: "VIII",
+    time: "19:00〜20:00",
+    tone: "training",
+    cells: [
+      { label: "夜間トレーニング", variant: "training" },
+      { label: "夜間トレーニング", variant: "training" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
+      { label: "小論文対策", note: "選択制", variant: "essay" },
+      { label: "夜間トレーニング", variant: "training" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
+      { label: "", variant: "empty" },
+    ],
+  },
+  {
+    kind: "period",
+    period: "IX",
+    time: "20:00〜21:00",
+    tone: "training",
+    cells: [
+      { label: "夜間トレーニング", variant: "training" },
+      { label: "夜間トレーニング", variant: "training" },
+      { label: "夜間トレーニング", variant: "training" },
+      { label: "夜間トレーニング", variant: "training" },
+      { label: "", variant: "empty" },
+      { label: "", variant: "empty" },
+      { label: "", variant: "empty" },
+    ],
+  },
+];
+
+const weeklyScheduleNotes = [
+  "「【+α】アウトプット」は、やり残した課題を終わらせる時間で、記載された科目の質問も可能です。補講が行われることもあります。",
+  "「国語」・「社会」・「情報」の共通テスト対策も追加可能です。",
+  "小論文の授業は選択制です。選択しない場合は夜間個別トレーニングとなります。",
+];
+
+const weeklyCellClass = (cell: WeekCell) => `premier-week-cell premier-week-cell--${cell.variant ?? "default"}`;
+
 const achievementRows = [
   {
     start: "偏差値60以上スタート",
@@ -702,11 +894,62 @@ const infoPosts = [
           </div>
         </section>
         <h3>週間予定イメージ</h3>
-        <div class="premier-week-table">
-          <p>午前はインプット、午後はアウトプット、夜はトレーニングと質問対応。</p>
-          <p>「【+α】アウトプット」は、やり残した課題を終わらせる時間で、記載された科目の質問も可能です。</p>
-          <p>「国語」・「社会」・「情報」の共通テスト対策も追加可能です。</p>
-        </div>
+        <section class="premier-week-table" aria-label="プレミア本科 週間予定イメージ">
+          <div class="premier-week-table__head">
+            <div>
+              <p>WEEKLY ROUTINE</p>
+              <h4>朝の確認テストから、夜の鬼特訓まで。</h4>
+            </div>
+            <p>毎日テスト、インプット授業、アウトプット演習、夜間トレーニングを1日の流れに固定。学習量を気分任せにせず、生活リズムごと合格へ寄せます。</p>
+          </div>
+          <div class="premier-week-table__legend" aria-label="時間割の区分">
+            <span class="premier-week-table__legend-item premier-week-table__legend-item--test">テスト</span>
+            <span class="premier-week-table__legend-item premier-week-table__legend-item--input">インプット</span>
+            <span class="premier-week-table__legend-item premier-week-table__legend-item--output">アウトプット</span>
+            <span class="premier-week-table__legend-item premier-week-table__legend-item--training">夜間トレーニング</span>
+            <span class="premier-week-table__legend-item premier-week-table__legend-item--self">自習・質問</span>
+          </div>
+          <div class="premier-week-table__scroll" tabindex="0" aria-label="週間予定表。横にスクロールできます。">
+            <table class="premier-week-schedule">
+              <thead>
+                <tr>
+                  <th scope="col">時限 / 時間</th>
+                  {weekDays.map((day) => <th scope="col">{day}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {weeklyScheduleRows.map((row) => (
+                  row.kind === "break" ? (
+                    <tr class={`premier-week-schedule__break premier-week-schedule__break--${row.tone}`}>
+                      <th scope="row" colspan="8">{row.label}</th>
+                    </tr>
+                  ) : (
+                    <tr class={`premier-week-schedule__period premier-week-schedule__period--${row.tone}`}>
+                      <th scope="row">
+                        <span>{row.period}</span>
+                        <small>{row.time}</small>
+                      </th>
+                      {row.cells.map((cell) => (
+                        <td class={weeklyCellClass(cell)}>
+                          {cell.subjects && (
+                            <div class="premier-week-cell__subjects" aria-label="科目">
+                              {cell.subjects.map((subject) => <span>{subject}</span>)}
+                            </div>
+                          )}
+                          {cell.label ? <strong>{cell.label}</strong> : <span class="premier-week-cell__blank">-</span>}
+                          {cell.note && <em>{cell.note}</em>}
+                        </td>
+                      ))}
+                    </tr>
+                  )
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <ul class="premier-week-table__notes">
+            {weeklyScheduleNotes.map((note) => <li>{note}</li>)}
+          </ul>
+        </section>
         <h3 class="premier-support-title">サポート内容 一覧</h3>
         <ul class="premier-support-grid">
           {supportItems.map((item) => <li>{item}</li>)}
