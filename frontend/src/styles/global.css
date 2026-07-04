@@ -267,6 +267,19 @@ li {
   display: none;
 }
 
+.mega-nav-heading {
+  margin: 0;
+  background: #fff;
+  color: #5b5651;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  padding-block: 8px 6px;
+  text-align: center;
+}
+
 .mega-nav {
   position: sticky;
   top: 0;
@@ -275,17 +288,7 @@ li {
   justify-items: center;
   background: #fff;
   color: #111;
-  padding-block: 8px 12px;
-}
-
-.mega-nav::before {
-  content: "main menu";
-  margin-bottom: 6px;
-  color: #5b5651;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  padding-block: 0 12px;
 }
 
 .mega-nav ul {
@@ -2268,6 +2271,7 @@ body:has(.premium-hero) :is(
     content: none;
   }
 
+  .mega-nav-heading,
   .mega-nav {
     display: none;
   }
