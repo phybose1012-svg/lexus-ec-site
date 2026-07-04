@@ -4,7 +4,6 @@ import SiteLayout from "../../layouts/SiteLayout.astro";
 
 const logoStrip = "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
 const penLogo = "/assets/legacy/wp-content/uploads/2025/11/ペン先-ロゴ-4色-300x300.png";
-const resultImage = "/assets/legacy/wp-content/uploads/2026/01/2025年度-医学部入試-実績-1536x1240.jpg";
 const oniKanri = "/illustrations/characters/yuki-sensei-default.png";
 const oniTraining = "/illustrations/characters/yuki-sensei-cheer.png";
 const classImage = "/assets/legacy/wp-content/uploads/2026/01/2026-クラス一覧.jpg";
@@ -23,6 +22,44 @@ const stats = [
   { label: "偏差値60台スタート", value: "100%合格", tone: "orange" },
   { label: "偏差値50台スタート", value: "88%合格", tone: "green" },
   { label: "合格者の最高年齢", value: "41歳", tone: "cyan" },
+];
+
+const achievementRows = [
+  {
+    start: "偏差値60以上スタート",
+    result: "全員合格",
+    detail: "医学部医学科",
+    rate: 100,
+    tone: "gold",
+  },
+  {
+    start: "偏差値55〜60スタート",
+    result: "83%合格",
+    detail: "6名中5名",
+    rate: 83,
+    tone: "red",
+  },
+  {
+    start: "偏差値50〜55スタート",
+    result: "75%合格",
+    detail: "8名中6名",
+    rate: 75,
+    tone: "green",
+  },
+  {
+    start: "偏差値40台スタート",
+    result: "22%合格",
+    detail: "9名中2名",
+    rate: 22,
+    tone: "blue",
+  },
+  {
+    start: "初学者・再受験生",
+    result: "60%合格",
+    detail: "5名中3名",
+    rate: 60,
+    tone: "brown",
+  },
 ];
 
 const universities = [
@@ -191,7 +228,41 @@ const infoPosts = [
         <p class="premier-section-label">ACHIEVEMENT</p>
         <h2 id="premier-achievement-title">2025年度の実績報告</h2>
         <p class="premier-subtitle">～ 一年で合格する割合 ～</p>
-        <img class="premier-result-image" src={resultImage} alt="2025年度 医学部医学科 入試合格実績" width="1536" height="1240" decoding="async" />
+        <p class="premier-achievement__intro">
+          スタートラインは一人ひとり違っても、合格に必要な行動量と精度を毎日積み上げる。その結果を、入学時の偏差値帯ごとに整理しました。
+        </p>
+        <div class="premier-result-panel" aria-label="2025年度 医学部医学科 入試合格実績">
+          <div class="premier-result-panel__head">
+            <div>
+              <span class="premier-result-panel__eyebrow">2025 ENTRANCE EXAM</span>
+              <p><span>スタートライン別・</span><span>医学部医学科合格率</span></p>
+            </div>
+            <strong>医学部医学科のみ</strong>
+          </div>
+          <div class="premier-result-list">
+            {achievementRows.map((row, index) => (
+              <article
+                class={`premier-result-row premier-result-row--${row.tone}`}
+                style={`--rate: ${row.rate}%; --order: ${index};`}
+                aria-label={`${row.start}から${row.result}、${row.detail}`}
+              >
+                <div class="premier-result-row__start">
+                  <span>START</span>
+                  <strong>{row.start}</strong>
+                </div>
+                <div class="premier-result-row__meter" aria-hidden="true">
+                  <span></span>
+                </div>
+                <div class="premier-result-row__result">
+                  <span>RESULT</span>
+                  <strong>{row.result}</strong>
+                  <em>{row.detail}</em>
+                </div>
+              </article>
+            ))}
+          </div>
+          <p class="premier-result-note">※ すべて医学部医学科の合格実績です。</p>
+        </div>
         <h3>累計合格実績</h3>
         <div class="premier-stat-grid">
           {stats.map((stat) => (
