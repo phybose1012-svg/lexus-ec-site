@@ -1,7 +1,10 @@
 ---
 import { defaultPageActions } from "../../../data/fixedPages";
 import { seo } from "../../../data/home";
-import SiteLayout from "../../../layouts/SiteLayout.astro";
+import SiteFooter from "../../../components/site/SiteFooter.astro";
+import SiteHeader from "../../../components/site/SiteHeader.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import "../../../styles/pages.css";
 
 const title = "医学部予備校 の 生徒専用寮- 「LEXUS GARDEN (レクサスガーデン)」｜全国対応";
 const description =
@@ -107,7 +110,32 @@ const exteriorGallery = [
 ];
 ---
 
-<SiteLayout title={title} description={description} canonical="https://lexus-ec.com/top/lexus-garden/" ogImage={seo.ogImage}>
+<BaseLayout title={title} description={description} canonical="https://lexus-ec.com/top/lexus-garden/" ogImage={seo.ogImage}>
+  <section class="garden-opening" aria-label="レクサスガーデンのファーストビュー">
+    <img
+      class="garden-opening__image"
+      src={images.garden}
+      alt=""
+      width="788"
+      height="518"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+    />
+    <div class="garden-opening__message">
+      <p>LEXUS GARDEN / SHIBUYA</p>
+      <strong>
+        <span>医学部受験生だけの、</span>
+        <span>専用レジデンス。</span>
+      </strong>
+    </div>
+    <a class="garden-opening__cue" href="#garden-hero-title" aria-label="レクサスガーデンの説明へ進む">
+      <span>SCROLL</span>
+    </a>
+  </section>
+
+  <SiteHeader />
+
   <main class="garden-page">
     <section class="garden-hero" aria-labelledby="garden-hero-title">
       <div class="garden-hero__media" aria-hidden="true">
@@ -117,9 +145,8 @@ const exteriorGallery = [
           alt=""
           width="788"
           height="518"
-          loading="eager"
+          loading="lazy"
           decoding="async"
-          fetchpriority="high"
         />
         <div class="garden-hero__media-label">
           <span>SHIBUYA / STUDENT RESIDENCE</span>
@@ -323,4 +350,6 @@ const exteriorGallery = [
       </div>
     </section>
   </main>
-</SiteLayout>
+
+  <SiteFooter />
+</BaseLayout>
