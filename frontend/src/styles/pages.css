@@ -13002,7 +13002,10 @@ body:has(.garden-page) .garden-floating-header .site-header {
   background:
     linear-gradient(90deg, rgb(255 253 248 / 94%) 0%, rgb(255 253 248 / 78%) 34%, rgb(255 253 248 / 28%) 58%, rgb(255 253 248 / 0%) 82%),
     linear-gradient(180deg, rgb(255 253 248 / 0%) 58%, rgb(255 253 248 / 56%) 100%);
+  opacity: var(--garden-veil-opacity, 1);
   pointer-events: none;
+  transition: opacity 180ms ease;
+  will-change: opacity;
 }
 
 .garden-opening::after {
@@ -13237,6 +13240,7 @@ body:has(.garden-page) .garden-floating-header .site-header {
 @media (prefers-reduced-motion: reduce) {
   .garden-floating-header .mega-nav,
   .garden-floating-header .mobile-fixed-nav-wrap,
+  .garden-opening::before,
   .garden-opening__message,
   .garden-opening__cue {
     transition: none;

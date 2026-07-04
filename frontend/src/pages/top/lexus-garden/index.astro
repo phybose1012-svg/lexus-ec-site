@@ -400,7 +400,9 @@ const exteriorGallery = [
         root.classList.toggle("garden-header-visible", progress > 0.14 || window.scrollY > 96);
         root.style.setProperty("--garden-image-scale", String((1.065 - progress * 0.045).toFixed(3)));
         root.style.setProperty("--garden-message-y", (-28 * progress).toFixed(1) + "px");
-        root.style.setProperty("--garden-message-opacity", String((1 - clamp((progress - 0.62) / 0.28, 0, 1)).toFixed(3)));
+        const revealOpacity = String((1 - clamp((progress - 0.62) / 0.28, 0, 1)).toFixed(3));
+        root.style.setProperty("--garden-message-opacity", revealOpacity);
+        root.style.setProperty("--garden-veil-opacity", revealOpacity);
         const isCompact = window.matchMedia("(max-width: 680px)").matches;
         const markOffset = isCompact ? 8 - progress * 6 : 34 - progress * 22;
         root.style.setProperty("--garden-mark-x", markOffset.toFixed(1) + "px");
