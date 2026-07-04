@@ -5,7 +5,6 @@ import SiteLayout from "../../layouts/SiteLayout.astro";
 const logoStrip = "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
 const penLogo = "/assets/legacy/wp-content/uploads/2025/11/ペン先-ロゴ-4色-300x300.png";
 const resultImage = "/assets/legacy/wp-content/uploads/2026/01/2025年度-医学部入試-実績-1536x1240.jpg";
-const trainingTitle = "/assets/legacy/wp-content/uploads/2026/01/鬼監理×鬼特訓-1024x184.jpg";
 const oniKanri = "/illustrations/characters/yuki-sensei-default.png";
 const oniTraining = "/illustrations/characters/yuki-sensei-cheer.png";
 const classImage = "/assets/legacy/wp-content/uploads/2026/01/2026-クラス一覧.jpg";
@@ -215,8 +214,15 @@ const infoPosts = [
 
     <section class="premier-feature" aria-labelledby="premier-feature-title">
       <div class="content">
-        <img class="premier-feature__title" src={trainingTitle} alt="鬼監理×鬼特訓" width="1024" height="184" loading="lazy" decoding="async" />
+        <p class="premier-section-label">METHOD</p>
         <h2 id="premier-feature-title">プレミア本科の特徴</h2>
+        <div class="premier-feature__statement" aria-label="鬼監理×鬼特訓">
+          <p>偶然や奇跡に頼らない逆転劇。</p>
+          <p class="premier-feature__mark">
+            <span>鬼監理</span><span class="premier-feature__mark-x" aria-hidden="true">×</span><span>鬼特訓</span>
+          </p>
+          <p>その先にある、絶対の合格へ。</p>
+        </div>
         <p class="premier-feature__lead">鬼監理と鬼特訓で、迷わせず、逃がさず、合格まで伴走します。</p>
         <div class="premier-feature-grid">
           {featureCards.map((card) => (
