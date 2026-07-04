@@ -114,32 +114,49 @@ const exteriorGallery = [
 ---
 
 <BaseLayout title={title} description={description} canonical="https://lexus-ec.com/top/lexus-garden/" ogImage={seo.ogImage}>
-  <section class="garden-opening" aria-label="レクサスガーデンのファーストビュー">
-    <img
-      class="garden-opening__image"
-      src={images.garden}
-      alt=""
-      width="788"
-      height="518"
-      loading="eager"
-      decoding="async"
-      fetchpriority="high"
-    />
-    <div class="garden-opening__message">
-      <p>LEXUS GARDEN / SHIBUYA</p>
-      <strong>
-        <span>医学部受験生だけの、</span>
-        <span>専用レジデンス。</span>
-      </strong>
-    </div>
-    <a class="garden-opening__cue" href="#garden-hero-title" aria-label="レクサスガーデンの説明へ進む">
-      <span>SCROLL</span>
-    </a>
-  </section>
-
-  <SiteHeader />
+  <div class="garden-floating-header" data-garden-floating-header>
+    <SiteHeader />
+  </div>
 
   <main class="garden-page">
+    <section class="garden-scroll-stage" data-garden-scroll-stage aria-label="レクサスガーデンのファーストビュー">
+      <div class="garden-opening">
+        <img
+          class="garden-opening__image"
+          src={images.garden}
+          alt=""
+          width="788"
+          height="518"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+        <div class="garden-opening__message">
+          <p>LEXUS GARDEN / SHIBUYA</p>
+          <strong>
+            <span>医学部受験生だけの、</span>
+            <span>専用レジデンス。</span>
+          </strong>
+        </div>
+        <a class="garden-opening__cue" href="#garden-hero-title" aria-label="レクサスガーデンの説明へ進む">
+          <span>SCROLL</span>
+        </a>
+      </div>
+      <section class="garden-arrival" aria-labelledby="garden-arrival-title">
+        <div class="garden-arrival__panel">
+          <div class="garden-arrival__copy">
+            <p>PRIVATE RESIDENCE FOR MEDICAL STUDENTS</p>
+            <h2 id="garden-arrival-title">塾生だけが暮らす、校舎直結の専用寮。</h2>
+          </div>
+          <div class="garden-arrival__points" aria-label="レクサスガーデンの価値">
+            <span>一般入居者なし</span>
+            <span>美味しい食事付き</span>
+            <span>夜12時まで自習</span>
+          </div>
+        </div>
+      </section>
+    </section>
+
     <section class="garden-hero" aria-labelledby="garden-hero-title">
       <div class="garden-hero__media" aria-hidden="true">
         <img
@@ -355,21 +372,74 @@ const exteriorGallery = [
     </section>
   </main>
 
+  <script is:inline>
+    (() => {
+      const root = document.documentElement;
+      const stage = document.querySelector("[data-garden-scroll-stage]");
+      if (!(stage instanceof HTMLElement)) return;
+
+      let ticking = false;
+      const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+      const update = () => {
+        ticking = false;
+        const rect = stage.getBoundingClientRect();
+        const viewportHeight = Math.max(window.innerHeight || 1, 1);
+        const range = Math.max(stage.offsetHeight - viewportHeight, 1);
+        const progress = clamp(-rect.top / range, 0, 1);
+
+        root.classList.toggle("garden-header-visible", progress > 0.08 || window.scrollY > 40);
+        root.style.setProperty("--garden-image-scale", String((1.045 - progress * 0.035).toFixed(3)));
+        root.style.setProperty("--garden-message-y", (-44 * progress).toFixed(1) + "px");
+        root.style.setProperty("--garden-message-opacity", String((1 - clamp((progress - 0.28) / 0.3, 0, 1)).toFixed(3)));
+        root.style.setProperty("--garden-arrival-y", (96 - progress * 96).toFixed(1) + "px");
+        root.style.setProperty("--garden-arrival-opacity", String(clamp((progress - 0.18) / 0.52, 0, 1).toFixed(3)));
+      };
+
+      const requestUpdate = () => {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(update);
+      };
+
+      update();
+      window.addEventListener("scroll", requestUpdate, { passive: true });
+      window.addEventListener("resize", requestUpdate);
+    })();
+  </script>
+
   <SiteFooter />
   <dialog class="garden-floor-dialog" data-garden-floor-dialog aria-label="Floor plan preview">
     <div class="garden-floor-dialog__panel">
       <button class="garden-floor-dialog__close" type="button" data-garden-floor-dialog-close aria-label="Close floor plan preview">
         <span aria-hidden="true">&times;</span>
       </button>
-      <img
-        data-garden-floor-dialog-image
-        src={floorPlans[0].src}
-        alt=""
-        width={floorPlans[0].width}
-        height={floorPlans[0].height}
-        decoding="async"
-      />
-      <p data-garden-floor-dialog-caption>{floorPlans[0].label}</p>
+      <div class="garden-floor-dialog__viewer">
+        <button class="garden-floor-dialog__nav garden-floor-dialog__nav--prev" type="button" data-garden-floor-dialog-prev aria-label="Previous floor plan">
+          <span aria-hidden="true">&lsaquo;</span>
+        </button>
+        <img
+          data-garden-floor-dialog-image
+          src={floorPlans[0].src}
+          alt=""
+          width={floorPlans[0].width}
+          height={floorPlans[0].height}
+          decoding="async"
+        />
+        <button class="garden-floor-dialog__nav garden-floor-dialog__nav--next" type="button" data-garden-floor-dialog-next aria-label="Next floor plan">
+          <span aria-hidden="true">&rsaquo;</span>
+        </button>
+      </div>
+      <div class="garden-floor-dialog__footer">
+        <p data-garden-floor-dialog-caption>{floorPlans[0].label}</p>
+        <div class="garden-floor-dialog__types" aria-label="Select floor plan type">
+          {floorPlans.map((plan, index) => (
+            <button type="button" data-garden-floor-dialog-thumb data-garden-floor-index={index} aria-pressed={index === 0 ? "true" : "false"}>
+              {plan.label}
+            </button>
+          ))}
+        </div>
+      </div>
     </div>
   </dialog>
   <script>
@@ -380,23 +450,58 @@ const exteriorGallery = [
       const image = dialog.querySelector("[data-garden-floor-dialog-image]");
       const caption = dialog.querySelector("[data-garden-floor-dialog-caption]");
       const closeButton = dialog.querySelector("[data-garden-floor-dialog-close]");
-      if (!(image instanceof HTMLImageElement) || !(caption instanceof HTMLElement) || !(closeButton instanceof HTMLButtonElement)) return;
+      const prevButton = dialog.querySelector("[data-garden-floor-dialog-prev]");
+      const nextButton = dialog.querySelector("[data-garden-floor-dialog-next]");
+      if (
+        !(image instanceof HTMLImageElement) ||
+        !(caption instanceof HTMLElement) ||
+        !(closeButton instanceof HTMLButtonElement) ||
+        !(prevButton instanceof HTMLButtonElement) ||
+        !(nextButton instanceof HTMLButtonElement)
+      ) return;
 
-      document.querySelectorAll(".garden-floor-plan__grid a").forEach((trigger) => {
-        if (!(trigger instanceof HTMLAnchorElement)) return;
+      const triggers = [...document.querySelectorAll(".garden-floor-plan__grid a")].filter((trigger) => trigger instanceof HTMLAnchorElement);
+      const typeButtons = [...dialog.querySelectorAll("[data-garden-floor-dialog-thumb]")].filter((button) => button instanceof HTMLButtonElement);
+      if (!triggers.length) return;
 
+      let currentIndex = 0;
+
+      const setPlan = (index = 0) => {
+        currentIndex = (index + triggers.length) % triggers.length;
+        const trigger = triggers[currentIndex];
+        const thumbnail = trigger.querySelector("img");
+        if (!(thumbnail instanceof HTMLImageElement)) return;
+
+        const label = trigger.querySelector(".garden-floor-plan__label")?.textContent?.trim() || thumbnail.alt;
+        image.src = trigger.href;
+        image.alt = thumbnail.alt;
+        image.width = Number(thumbnail.getAttribute("width")) || 1;
+        image.height = Number(thumbnail.getAttribute("height")) || 1;
+        caption.textContent = label;
+        typeButtons.forEach((button, buttonIndex) => {
+          button.setAttribute("aria-pressed", String(buttonIndex === currentIndex));
+        });
+      };
+
+      triggers.forEach((trigger, index) => {
         trigger.addEventListener("click", (event) => {
-          const thumbnail = trigger.querySelector("img");
-          if (!(thumbnail instanceof HTMLImageElement)) return;
-
           event.preventDefault();
-          const label = trigger.querySelector(".garden-floor-plan__label")?.textContent?.trim() || thumbnail.alt;
-          image.src = trigger.href;
-          image.alt = thumbnail.alt;
-          image.width = Number(thumbnail.getAttribute("width")) || 1;
-          image.height = Number(thumbnail.getAttribute("height")) || 1;
-          caption.textContent = label;
+          setPlan(index);
           dialog.showModal();
+        });
+      });
+
+      prevButton.addEventListener("click", () => {
+        setPlan(currentIndex - 1);
+      });
+
+      nextButton.addEventListener("click", () => {
+        setPlan(currentIndex + 1);
+      });
+
+      typeButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          setPlan(Number(button.dataset.gardenFloorIndex) || 0);
         });
       });
 
@@ -406,6 +511,17 @@ const exteriorGallery = [
 
       dialog.addEventListener("click", (event) => {
         if (event.target === dialog) dialog.close();
+      });
+
+      dialog.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          setPlan(currentIndex - 1);
+        }
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          setPlan(currentIndex + 1);
+        }
       });
     })();
   </script>
