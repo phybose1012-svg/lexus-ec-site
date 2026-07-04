@@ -15,8 +15,8 @@ const images = {
 };
 
 const heroFacts = [
-  { value: "校舎直結", label: "通学時間を学習時間へ" },
-  { value: "渋谷駅徒歩5分", label: "新南改札から近い生活拠点" },
+  { value: "塾生専用", label: "一般入居者が混ざらない受験生だけの寮" },
+  { value: "校舎直結", label: "生活時間をそのまま学習時間へ" },
   { value: "美味しい食事付き", label: "保護者も安心できる食事サポート" },
   { value: "夜12時まで", label: "自習室と質問対応を利用可能" },
 ];
@@ -110,23 +110,49 @@ const exteriorGallery = [
 <SiteLayout title={title} description={description} canonical="https://lexus-ec.com/top/lexus-garden/" ogImage={seo.ogImage}>
   <main class="garden-page">
     <section class="garden-hero" aria-labelledby="garden-hero-title">
-      <img
-        class="garden-hero__image"
-        src={images.garden}
-        alt=""
-        width="788"
-        height="518"
-        loading="eager"
-        decoding="async"
-        fetchpriority="high"
-        aria-hidden="true"
-      />
+      <div class="garden-hero__media" aria-hidden="true">
+        <img
+          class="garden-hero__image"
+          src={images.garden}
+          alt=""
+          width="788"
+          height="518"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+        <div class="garden-hero__media-label">
+          <span>SHIBUYA / STUDENT RESIDENCE</span>
+          <strong>校舎直結の専用寮</strong>
+          <small>渋谷駅徒歩5分・食事サポート付き</small>
+        </div>
+      </div>
       <div class="content garden-hero__content">
-        <p class="garden-section-kicker garden-hero__kicker">LEXUS GARDEN</p>
-        <h1 id="garden-hero-title">校舎と寮がつながる、医学部受験の生活拠点。</h1>
-        <p class="garden-hero__lead">
-          渋谷駅徒歩5分。自習室、質問対応、居室、美味しい食事付きの生活サポートをひとつの生活圏にまとめ、全国から集まる医学部志願者の毎日を支えます。
-        </p>
+        <div class="garden-hero__copy">
+          <p class="garden-section-kicker garden-hero__kicker">LEXUS GARDEN / 生徒専用寮</p>
+          <h1 id="garden-hero-title">
+            <span>全国でも希少な、</span>
+            <span>医学部受験生だけの</span>
+            <span>専用寮。</span>
+          </h1>
+          <p class="garden-hero__lead">
+            綺麗な居室、夜まで使える自習環境、プロ講師の見守り、美味しい食事。校舎と生活がつながるレクサスだけの拠点で、遠方からの一年を受験に集中できる毎日に変えます。
+          </p>
+          <p class="garden-hero__statement">
+            一般の物件紹介ではありません。塾生しか立ち入らない専用寮だから、安全・食事・生活リズムまで、予備校の指導と同じ線上で支えられます。
+          </p>
+          <div class="garden-hero__actions">
+            <a class="button button--red" href="/request-documents/">資料請求</a>
+            <a class="button button--blue" href="/reservation/">内見予約</a>
+            <a
+              class="button button--green garden-view-button"
+              href="https://www.google.com/maps/@35.654961,139.6995549,3a,75y,255.71h,82.94t/data=!3m7!1e1!3m5!1s4MmKqgfWgAEElbVTY_DenA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D7.055657400941385%26panoid%3D4MmKqgfWgAEElbVTY_DenA%26yaw%3D255.71317896736466!7i16384!8i8192?hl=ja&coh=205410&entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D"
+              rel="noreferrer"
+            >
+              周辺を見る
+            </a>
+          </div>
+        </div>
         <div class="garden-hero__facts" aria-label="レクサスガーデンの特徴">
           {heroFacts.map((item) => (
             <div>
@@ -134,17 +160,6 @@ const exteriorGallery = [
               <span>{item.label}</span>
             </div>
           ))}
-        </div>
-        <div class="garden-hero__actions">
-          <a class="button button--red" href="/request-documents/">資料請求</a>
-          <a class="button button--blue" href="/reservation/">内見予約</a>
-          <a
-            class="button button--green garden-view-button"
-            href="https://www.google.com/maps/@35.654961,139.6995549,3a,75y,255.71h,82.94t/data=!3m7!1e1!3m5!1s4MmKqgfWgAEElbVTY_DenA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D7.055657400941385%26panoid%3D4MmKqgfWgAEElbVTY_DenA%26yaw%3D255.71317896736466!7i16384!8i8192?hl=ja&coh=205410&entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D"
-            rel="noreferrer"
-          >
-            周辺を見る
-          </a>
         </div>
       </div>
     </section>
