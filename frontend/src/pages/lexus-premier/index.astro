@@ -859,7 +859,7 @@ const infoPosts = [
                   </span>
                 </div>
               ))}
-              <div class="premier-level-matrix__label premier-level-matrix__label--body">対応レベル</div>
+              <div class="premier-level-matrix__label premier-level-matrix__label--body"><span>対応レベル</span></div>
               {annualLevels.map((item) => (
                 <article class="premier-level-card">
                   {item.schools.length > 0 ? (
@@ -921,15 +921,6 @@ const infoPosts = [
                   </div>
                 </article>
               ))}
-              <div class="premier-roadmap__scale premier-roadmap__scale--bottom">
-                <div class="premier-roadmap__scale-label">到達レベル</div>
-                {annualLevels.map((item) => (
-                  <span class="premier-roadmap__level">
-                    <small>レベル</small>
-                    <strong>{item.level}</strong>
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
           </section>

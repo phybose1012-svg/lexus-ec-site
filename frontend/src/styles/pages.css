@@ -8912,6 +8912,7 @@
 .premier-roadmap-row {
   --plan-label-w: 184px;
   --plan-col-w: 108px;
+  --level-header-h: 112px;
 }
 
 .premier-level-matrix {
@@ -8941,15 +8942,30 @@
   min-height: 112px;
 }
 
+.premier-level-matrix__label:not(.premier-level-matrix__label--body) {
+  top: 0;
+  z-index: 12;
+}
+
 .premier-level-matrix__label--body {
+  z-index: 7;
+  place-items: start center;
   min-height: 456px;
   border-top: 1px solid #d8c79f;
   background: linear-gradient(180deg, #f7f1e5, #ede4d4);
   color: #2f2821;
+  padding-top: 18px;
+}
+
+.premier-level-matrix__label--body span {
+  position: sticky;
+  top: calc(var(--level-header-h) + 18px);
 }
 
 .premier-level-tab {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 9;
   display: grid;
   align-content: start;
   gap: 9px;
@@ -9070,6 +9086,12 @@
   width: max-content;
 }
 
+.premier-roadmap__scale {
+  position: sticky;
+  top: 0;
+  z-index: 9;
+}
+
 .premier-roadmap__scale-label,
 .premier-roadmap__level {
   min-height: 56px;
@@ -9100,19 +9122,6 @@
   font-size: 1.42rem;
   font-weight: 700;
   line-height: 1;
-}
-
-.premier-roadmap__scale--bottom {
-  border-top: 1px solid #d8c79f;
-}
-
-.premier-roadmap__scale--bottom .premier-roadmap__scale-label {
-  background: linear-gradient(180deg, #f7f1e5, #ede4d4);
-  color: #2f2821;
-}
-
-.premier-roadmap__scale--bottom .premier-roadmap__level {
-  background: linear-gradient(180deg, #fffaf0, #f2e8d4);
 }
 
 .premier-roadmap-row {
@@ -9537,7 +9546,7 @@
 
   position: relative;
   display: grid;
-  grid-template-columns: minmax(170px, 200px) minmax(0, 1fr);
+  grid-template-columns: minmax(230px, 260px) minmax(0, 1fr);
   align-items: center;
   gap: 16px;
   overflow: hidden;
@@ -9592,15 +9601,17 @@
   display: flex;
   align-items: baseline;
   justify-content: flex-start;
+  overflow: hidden;
   min-height: 118px;
-  padding-left: 30px;
+  padding-left: 28px;
+  padding-right: 14px;
   color: var(--tier);
   font-family: var(--font-serif);
   text-shadow: 0 8px 22px rgb(0 0 0 / 10%);
 }
 
 .premier-class-card__mark span {
-  font-size: clamp(4.2rem, 7.2vw, 5.8rem);
+  font-size: clamp(3.9rem, 5.4vw, 5.05rem);
   font-weight: 500;
   letter-spacing: 0;
   line-height: 0.78;
@@ -9608,7 +9619,7 @@
 
 .premier-class-card__mark em {
   margin-left: -0.08em;
-  font-size: clamp(1.55rem, 2.8vw, 2.25rem);
+  font-size: clamp(1.34rem, 2vw, 1.78rem);
   font-style: normal;
   letter-spacing: 0;
   line-height: 1;
@@ -10507,17 +10518,36 @@
   }
 
   .premier-class-bridge {
-    flex: 0 0 min(320px, 70vw);
-    grid-template-columns: 1fr;
+    flex: 0 0 150px;
+    grid-template-columns: auto auto;
     align-content: center;
+    justify-content: center;
+    gap: 10px;
     width: auto;
     margin: 0;
     scroll-snap-align: center;
   }
 
   .premier-class-bridge__arrows {
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: 1fr;
+    gap: 6px;
     justify-content: center;
+  }
+
+  .premier-class-bridge__arrows span {
+    border-top: 10px solid transparent;
+    border-right: 14px solid var(--tier);
+    border-bottom: 10px solid transparent;
+    border-left: 0;
+  }
+
+  .premier-class-bridge p {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    min-height: 230px;
+    padding: 12px 8px;
+    line-height: 1.65;
+    text-align: start;
   }
 
   .premier-annual-plan__head {
@@ -10967,30 +10997,32 @@
   }
 
   .premier-class-bridge {
-    flex-basis: min(250px, 76vw);
-    grid-template-columns: 1fr;
-    gap: 9px;
-    width: min(330px, 100%);
-    margin-block: 2px 14px;
+    flex-basis: 126px;
+    grid-template-columns: auto auto;
+    gap: 8px;
+    width: auto;
+    margin-block: 0 12px;
   }
 
   .premier-class-bridge__arrows {
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: 1fr;
     gap: 5px;
     justify-content: center;
   }
 
   .premier-class-bridge__arrows span {
-    border-right-width: 13px;
-    border-bottom-width: 15px;
-    border-left-width: 13px;
+    border-top: 9px solid transparent;
+    border-right: 13px solid var(--tier);
+    border-bottom: 9px solid transparent;
+    border-left: 0;
   }
 
   .premier-class-bridge p {
-    padding: 8px 11px;
-    font-size: 0.82rem;
-    line-height: 1.55;
-    text-align: center;
+    min-height: 208px;
+    padding: 10px 7px;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    text-align: start;
   }
 
   .premier-annual-plan {
@@ -11037,6 +11069,7 @@
   .premier-roadmap-row {
     --plan-label-w: 148px;
     --plan-col-w: 96px;
+    --level-header-h: 96px;
   }
 
   .premier-level-matrix__label {
