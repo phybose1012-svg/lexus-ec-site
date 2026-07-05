@@ -1,0 +1,38 @@
+---
+import type { VoiceSuccessStory } from "../lib/voiceSource";
+
+interface Props {
+  story: VoiceSuccessStory;
+  priority?: boolean;
+}
+
+const { story, priority = false } = Astro.props;
+---
+
+<article class="success-card success-card--voice">
+  <h3><span class="success-card__title-text">{story.headline}</span></h3>
+  <div class="success-card__body">
+    <img
+      src={story.image.src}
+      alt={story.image.alt}
+      width={story.image.width || "1200"}
+      height={story.image.height || "900"}
+      loading={priority ? "eager" : "lazy"}
+      fetchpriority={priority ? "high" : "auto"}
+      decoding="async"
+    />
+    <dl>
+      {story.stats.map((stat) => (
+        <div>
+          <dt>{stat.label}</dt>
+          <dd>{stat.value}</dd>
+        </div>
+      ))}
+    </dl>
+    {story.videoUrl && (
+      <a class="video-button" href={story.videoUrl} target="_blank" rel="noopener noreferrer">
+        {story.videoLabel}
+      </a>
+    )}
+  </div>
+</article>

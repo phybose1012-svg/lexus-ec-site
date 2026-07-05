@@ -12,12 +12,14 @@ const videoHref = `https://www.youtube.com/watch?v=${card.videoId}`;
 
 <article class="success-card">
   <h3>
-    {card.titleLines.map((line, index) => (
-      <>
-        {index > 0 && <br />}
-        {line}
-      </>
-    ))}
+    <span class="success-card__title-text">
+      {card.titleLines.map((line, index) => (
+        <>
+          {index > 0 && <br />}
+          {line}
+        </>
+      ))}
+    </span>
   </h3>
   <div class="success-card__body">
     <img

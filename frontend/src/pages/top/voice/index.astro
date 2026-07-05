@@ -1,5 +1,6 @@
 ---
 import { seo } from "../../../data/home";
+import VoiceSuccessCard from "../../../components/VoiceSuccessCard.astro";
 import { getVoicePage, type VoiceImage } from "../../../lib/voiceSource";
 import { marqueeThumb } from "../../../lib/marqueeThumb";
 import SiteLayout from "../../../layouts/SiteLayout.astro";
@@ -155,37 +156,8 @@ const successButtonLabels = [
           <p>RECENT RESULTS</p>
           <h2 id="voice-success-title">「厳しさ」を乗り越えた先輩の合格体験記</h2>
         </header>
-        <div class="voice-success-grid">
-          {page.successPhotos.map((story, index) => (
-            <article class="voice-success-card">
-              <h3>{story.headline}</h3>
-              <div class="voice-success-card__body">
-                <div class="voice-success-card__image">
-                  <img
-                    src={story.image.src}
-                    alt={story.image.alt}
-                    width={story.image.width || "1200"}
-                    height={story.image.height || "900"}
-                    loading={index < 3 ? undefined : "lazy"}
-                    decoding="async"
-                  />
-                </div>
-                <dl class="voice-success-card__stats">
-                  {story.stats.map((stat) => (
-                    <div>
-                      <dt>{stat.label}</dt>
-                      <dd>{stat.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-                {story.videoUrl && (
-                  <a class="voice-success-card__video" href={story.videoUrl} target="_blank" rel="noopener noreferrer">
-                    {story.videoLabel}
-                  </a>
-                )}
-              </div>
-            </article>
-          ))}
+        <div class="success-grid voice-success-grid">
+          {page.successPhotos.map((story, index) => <VoiceSuccessCard story={story} priority={index < 3} />)}
         </div>
         <div class="voice-similarity-buttons" aria-hidden="true">
           {successButtonLabels.map((label) => <a class="button" href="#voice-videos" tabindex="-1">{label}</a>)}
