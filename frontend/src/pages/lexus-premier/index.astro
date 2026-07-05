@@ -291,6 +291,8 @@ const annualTracks = [
 ];
 
 const planPercent = (value: number) => `${(value / 12) * 100}%`;
+const roadmapRowHeight = (barCount: number) => 58 + barCount * 31;
+const roadmapBarTop = (index: number, total: number) => 17 + (total - 1 - index) * 31;
 
 type WeekCell = {
   subjects?: string[];
@@ -869,13 +871,16 @@ const infoPosts = [
               <div class="premier-roadmap__scale">
                 <div class="premier-roadmap__scale-label">クラス進行</div>
                 {annualLevels.map((item) => (
-                  <span>{item.level}</span>
+                  <span class="premier-roadmap__level">
+                    <small>レベル</small>
+                    <strong>{item.level}</strong>
+                  </span>
                 ))}
               </div>
               {annualTracks.map((track) => (
                 <article
                   class={`premier-roadmap-row premier-roadmap-row--${track.tone}`}
-                  style={`--row-height: ${38 + track.bars.length * 31}px;`}
+                  style={`--row-height: ${roadmapRowHeight(track.bars.length)}px;`}
                 >
                   <div class="premier-roadmap-row__label">
                     <div class="premier-roadmap-row__mark" aria-hidden="true">
@@ -898,7 +903,7 @@ const infoPosts = [
                     {track.bars.map((bar, index) => (
                       <span
                         class="premier-roadmap-row__bar"
-                        style={`--left: ${planPercent(bar.start)}; --width: ${planPercent(bar.end - bar.start)}; --top: ${17 + index * 31}px;`}
+                        style={`--left: ${planPercent(bar.start)}; --width: ${planPercent(bar.end - bar.start)}; --top: ${roadmapBarTop(index, track.bars.length)}px;`}
                         aria-label={`${track.lane} ${bar.label} ${bar.period} 学力レベル${bar.start}から${bar.end}へ`}
                       >
                         <span>{bar.label}</span>
@@ -909,6 +914,15 @@ const infoPosts = [
                   </div>
                 </article>
               ))}
+              <div class="premier-roadmap__scale premier-roadmap__scale--bottom">
+                <div class="premier-roadmap__scale-label">到達レベル</div>
+                {annualLevels.map((item) => (
+                  <span class="premier-roadmap__level">
+                    <small>レベル</small>
+                    <strong>{item.level}</strong>
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </section>

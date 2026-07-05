@@ -9054,19 +9054,48 @@
 }
 
 .premier-roadmap__scale-label,
-.premier-roadmap__scale span {
-  min-height: 50px;
+.premier-roadmap__level {
+  min-height: 56px;
 }
 
-.premier-roadmap__scale span {
+.premier-roadmap__level {
   display: grid;
-  place-items: center;
+  align-content: center;
+  justify-items: center;
+  gap: 3px;
   border-left: 1px solid #d6cbbb;
   background: #f8f3ea;
+  padding: 8px 6px;
+  text-align: center;
+}
+
+.premier-roadmap__level small {
   color: #6b5a42;
-  font-family: var(--font-serif);
-  font-size: 1.45rem;
+  font-size: 0.64rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
   line-height: 1;
+}
+
+.premier-roadmap__level strong {
+  color: #2f2821;
+  font-family: var(--font-serif);
+  font-size: 1.42rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.premier-roadmap__scale--bottom {
+  border-top: 1px solid #d8c79f;
+}
+
+.premier-roadmap__scale--bottom .premier-roadmap__scale-label {
+  background: linear-gradient(180deg, #f7f1e5, #ede4d4);
+  color: #2f2821;
+}
+
+.premier-roadmap__scale--bottom .premier-roadmap__level {
+  background: linear-gradient(180deg, #fffaf0, #f2e8d4);
 }
 
 .premier-roadmap-row {
@@ -10660,8 +10689,8 @@
   }
 
   .premier-roadmap__scale-label,
-  .premier-roadmap__scale span {
-    min-height: 44px;
+  .premier-roadmap__level {
+    min-height: 50px;
   }
 
   .premier-roadmap__scale-label {
@@ -10669,8 +10698,17 @@
     font-size: 0.82rem;
   }
 
-  .premier-roadmap__scale span {
-    font-size: 1.24rem;
+  .premier-roadmap__level {
+    gap: 2px;
+    padding: 7px 5px;
+  }
+
+  .premier-roadmap__level small {
+    font-size: 0.56rem;
+  }
+
+  .premier-roadmap__level strong {
+    font-size: 1.22rem;
   }
 
   .premier-roadmap-row__label {
