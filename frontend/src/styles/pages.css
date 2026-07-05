@@ -9676,12 +9676,13 @@
 
 @media (min-width: 1100px) {
   .premier-week-table__legend {
+    gap: 8px;
     grid-template-columns:
-      minmax(230px, 1.25fr)
-      minmax(230px, 1.25fr)
-      minmax(230px, 1.25fr)
-      minmax(150px, 0.65fr)
-      minmax(150px, 0.65fr);
+      minmax(230px, 1.14fr)
+      minmax(214px, 1.02fr)
+      minmax(214px, 1.02fr)
+      minmax(188px, 0.96fr)
+      minmax(188px, 0.96fr);
   }
 }
 
@@ -9736,6 +9737,18 @@
   font-weight: 900;
   line-height: 1.4;
   overflow-wrap: anywhere;
+}
+
+@media (min-width: 1100px) {
+  .premier-week-table__legend-item {
+    padding-inline: 10px;
+  }
+
+  .premier-week-table__legend-meaning {
+    font-size: 0.7rem;
+    overflow-wrap: normal;
+    white-space: nowrap;
+  }
 }
 
 .premier-week-table__legend-item--test {
