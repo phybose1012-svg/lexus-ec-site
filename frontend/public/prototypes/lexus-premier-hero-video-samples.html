@@ -1298,18 +1298,59 @@
     <script>
       const menu = document.querySelector(".sample-menu");
       const sections = [...document.querySelectorAll(".hero-candidate")];
-      const source = "/assets/lexus-premier/fiery-oni-teaches-with-passion.mp4";
+      const videoSources = [
+        "/assets/lexus-premier/fiery-oni-teaches-with-passion.mp4",
+        "/assets/lexus-premier/fiery-oni-teaches-with-passion-02.mp4",
+      ];
+      const warmedVideos = new Set();
 
       const syncMenu = () => {
         menu.classList.toggle("is-visible", window.scrollY > 80);
       };
 
+      const warmVideo = (src) => {
+        if (!src || warmedVideos.has(src)) return;
+        warmedVideos.add(src);
+        const link = document.createElement("link");
+        link.rel = "prefetch";
+        link.as = "video";
+        link.href = src;
+        document.head.append(link);
+      };
+
       const loadVideo = (section) => {
         const video = section.querySelector("video");
-        if (!video || video.src) return video;
-        video.src = video.dataset.src || source;
-        video.addEventListener("loadeddata", () => section.classList.add("is-video-ready"), { once: true });
-        video.load();
+        if (!video || video.dataset.videoLoaded === "true") return video;
+
+        const playlist = video.dataset.playlist
+          ? video.dataset.playlist.split(",").map((src) => src.trim()).filter(Boolean)
+          : videoSources;
+        let currentIndex = 0;
+
+        const setVideoSource = (index) => {
+          currentIndex = index % playlist.length;
+          warmedVideos.add(playlist[currentIndex]);
+          video.src = playlist[currentIndex];
+          video.load();
+        };
+
+        video.dataset.videoLoaded = "true";
+        video.loop = playlist.length <= 1;
+        video.addEventListener(
+          "loadeddata",
+          () => {
+            section.classList.add("is-video-ready");
+            warmVideo(playlist[(currentIndex + 1) % playlist.length]);
+          },
+          { once: true },
+        );
+        video.addEventListener("ended", () => {
+          if (playlist.length <= 1) return;
+          setVideoSource(currentIndex + 1);
+          warmVideo(playlist[(currentIndex + 1) % playlist.length]);
+          video.play().catch(() => {});
+        });
+        setVideoSource(0);
         return video;
       };
 
@@ -1317,8 +1358,8 @@
         (entries) => {
           entries.forEach((entry) => {
             const section = entry.target;
-            const video = loadVideo(section);
             section.classList.toggle("is-active", entry.isIntersecting);
+            const video = entry.isIntersecting ? loadVideo(section) : section.querySelector("video");
             if (!video) return;
             if (entry.isIntersecting) {
               video.play().catch(() => {});
