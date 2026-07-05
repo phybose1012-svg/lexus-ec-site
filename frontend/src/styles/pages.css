@@ -9720,14 +9720,19 @@
 }
 
 .premier-week-table__scroll {
-  overflow-x: auto;
+  position: relative;
+  max-height: clamp(520px, 68vh, 720px);
+  overflow: auto;
   border: 1px solid #d8c79f;
   border-radius: 8px;
   background: #fffdf8;
   box-shadow: 0 18px 40px rgb(43 32 18 / 12%);
   overscroll-behavior-x: contain;
+  overscroll-behavior-y: auto;
+  scrollbar-gutter: stable;
   scrollbar-color: #b78a31 #f3ead9;
   scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
 }
 
 .premier-week-table__scroll:focus-visible {
@@ -9759,6 +9764,7 @@
   top: 0;
   z-index: 3;
   background: linear-gradient(180deg, #4b3d37, #352b27);
+  box-shadow: 0 6px 12px rgb(43 32 18 / 16%);
   color: #fffaf0;
   padding: 16px 10px;
   font-size: 1.1rem;
@@ -10782,6 +10788,10 @@
     min-height: 30px;
     padding: 7px 10px;
     font-size: 0.72rem;
+  }
+
+  .premier-week-table__scroll {
+    max-height: clamp(430px, 64vh, 600px);
   }
 
   .premier-week-schedule {
