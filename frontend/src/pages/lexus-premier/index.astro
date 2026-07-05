@@ -188,6 +188,21 @@ const annualLevels = [
   { level: "11", label: "最高到達ライン", schools: ["東京大"] },
 ];
 
+const annualLevelLabelLines: Record<string, string[]> = {
+  "0": ["高校入試", "レベル"],
+  "1": ["高校教科書", "入門"],
+  "2": ["高校教科書", "標準〜発展"],
+  "3": ["歯学部", "基礎ライン"],
+  "4": ["歯学部上位", "医学部準備"],
+  "5": ["私立医学部", "標準"],
+  "6": ["私立医学部", "中核"],
+  "7": ["国公立医学部", "標準"],
+  "8": ["国公立医学部", "上位"],
+  "9": ["難関国公立", "難関私立"],
+  "10": ["最難関", "医学部"],
+  "11": ["最高到達", "ライン"],
+};
+
 const annualTracks = [
   {
     tone: "red",
@@ -828,12 +843,16 @@ const infoPosts = [
             <div class="premier-level-matrix">
               <div class="premier-level-matrix__label">学力レベル</div>
               {annualLevels.map((item) => (
-                <div class="premier-level-matrix__number">{item.level}</div>
+                <div class="premier-level-tab" aria-label={`学力レベル${item.level} ${item.label}`}>
+                  <span class="premier-level-tab__number">{item.level}</span>
+                  <span class="premier-level-tab__label">
+                    {(annualLevelLabelLines[item.level] ?? [item.label]).map((line) => <span>{line}</span>)}
+                  </span>
+                </div>
               ))}
               <div class="premier-level-matrix__label premier-level-matrix__label--body">対応レベル</div>
               {annualLevels.map((item) => (
                 <article class="premier-level-card">
-                  <strong>{item.label}</strong>
                   {item.schools.length > 0 ? (
                     <ul>
                       {item.schools.map((school) => <li>{school}</li>)}
