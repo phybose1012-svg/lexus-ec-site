@@ -9670,8 +9670,8 @@
 .premier-week-table__legend {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 10px;
-  margin-bottom: 14px;
+  gap: 9px 10px;
+  margin-bottom: 16px;
 }
 
 .premier-week-table__legend-item {
@@ -9680,18 +9680,37 @@
 
   display: inline-flex;
   align-items: center;
-  min-height: 32px;
+  gap: 8px;
+  min-height: 36px;
   border: 1px solid rgb(255 255 255 / 42%);
   border-radius: 999px;
   background: linear-gradient(180deg, var(--week-tone), var(--week-tone-deep));
   color: #fffaf0;
-  padding: 7px 13px;
+  padding: 8px 13px 8px 15px;
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 34%),
     0 8px 18px rgb(43 32 18 / 12%);
-  font-size: 0.78rem;
-  font-weight: 900;
+  font-size: 0.76rem;
   line-height: 1;
+}
+
+.premier-week-table__legend-label {
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.premier-week-table__legend-meaning {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  border-radius: 999px;
+  background: rgb(255 250 240 / 16%);
+  color: rgb(255 250 240 / 92%);
+  padding: 3px 8px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1.15;
+  white-space: nowrap;
 }
 
 .premier-week-table__legend-item--test {
@@ -10781,13 +10800,22 @@
   }
 
   .premier-week-table__legend {
-    gap: 7px;
+    gap: 8px;
   }
 
   .premier-week-table__legend-item {
-    min-height: 30px;
-    padding: 7px 10px;
+    flex: 1 1 min(100%, 250px);
+    justify-content: space-between;
+    min-height: 34px;
+    padding: 7px 10px 7px 12px;
     font-size: 0.72rem;
+  }
+
+  .premier-week-table__legend-meaning {
+    padding-inline: 7px;
+    font-size: 0.65rem;
+    white-space: normal;
+    text-align: right;
   }
 
   .premier-week-table__scroll {
