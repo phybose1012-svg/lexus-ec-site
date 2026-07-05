@@ -861,7 +861,7 @@ body:has(.premium-hero) :is(
   justify-items: center;
   min-height: 86px;
   margin: 0;
-  padding: 14px 16px;
+  padding: 14px 18px 14px 88px;
   border-radius: calc(var(--radius) - 2px) calc(var(--radius) - 2px) 0 0;
   background: linear-gradient(135deg, var(--red) 0%, var(--red-2) 100%);
   color: #fff;
@@ -873,51 +873,26 @@ body:has(.premium-hero) :is(
 .success-card h3::before {
   content: "";
   position: absolute;
-  top: -19px;
-  left: -18px;
+  top: -22px;
+  left: -20px;
   z-index: 3;
-  width: 82px;
-  height: 82px;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 8C56 20 62 15 72 11C70 24 77 29 90 28C82 39 88 47 96 55C82 58 79 67 84 79C70 75 63 82 59 94C50 84 41 84 32 94C29 81 21 75 8 79C13 67 18 58 4 55C12 47 18 39 10 28C23 29 30 24 28 11C38 15 44 20 50 8Z' fill='%23fff8fa' stroke='%23ee3d63' stroke-width='5' stroke-linejoin='round'/%3E%3Cpath d='M50 8C56 20 62 15 72 11C70 24 77 29 90 28C82 39 88 47 96 55C82 58 79 67 84 79C70 75 63 82 59 94C50 84 41 84 32 94C29 81 21 75 8 79C13 67 18 58 4 55C12 47 18 39 10 28C23 29 30 24 28 11C38 15 44 20 50 8Z' fill='none' stroke='%23ff7b97' stroke-width='1.8' stroke-linejoin='round' transform='translate(50 50) scale(.84) translate(-50 -50)'/%3E%3Cpath d='M50 47C49 35 50 22 50 10M52 48C63 39 74 33 88 29M53 53C65 59 74 67 82 78M48 54C41 65 36 78 33 92M46 51C33 52 20 67 9 78' fill='none' stroke='%23f05a78' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round' opacity='.72'/%3E%3C/svg%3E") center / contain no-repeat;
-  transform: rotate(-8deg);
+  width: 92px;
+  height: 92px;
+  background: url("/assets/site/success-sakura-stamp.png") center / contain no-repeat;
+  transform: rotate(-3deg);
   filter: drop-shadow(0 5px 8px rgb(62 0 0 / 28%));
 }
 
-.success-card h3::after {
-  content: "祝";
-  position: absolute;
-  top: -19px;
-  left: -18px;
-  z-index: 4;
-  display: grid;
-  box-sizing: border-box;
-  width: 82px;
-  height: 82px;
-  padding-top: 1px;
-  place-items: center;
-  color: #d91f47;
-  font-family: var(--font-serif);
-  font-size: 2.05rem;
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: 0;
-  text-shadow:
-    0 1px 0 rgb(255 255 255 / 64%),
-    0 0 7px rgb(255 255 255 / 54%);
-  transform: rotate(-8deg);
-}
-
 @media (max-width: 640px) {
-  .success-card h3::before,
-  .success-card h3::after {
-    top: -17px;
-    left: -8px;
-    width: 76px;
-    height: 76px;
+  .success-card h3 {
+    padding: 14px 14px 14px 52px;
   }
 
-  .success-card h3::after {
-    font-size: 1.9rem;
+  .success-card h3::before {
+    top: -18px;
+    left: -9px;
+    width: 78px;
+    height: 78px;
   }
 }
 
