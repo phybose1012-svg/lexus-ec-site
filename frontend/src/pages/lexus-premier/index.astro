@@ -1,5 +1,6 @@
 ---
 import { acceptedUniversities, achievementStats, seo } from "../../data/home";
+import SectionHeading from "../../components/SectionHeading.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 
 const logoStrip = "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
@@ -650,8 +651,7 @@ const infoPosts = [
 
     <section class="premier-ideal" aria-labelledby="premier-ideal-title">
       <div class="content">
-        <p class="premier-section-label">IDEAL FORM</p>
-        <h2 id="premier-ideal-title">医学部合格への 理想形。</h2>
+        <SectionHeading id="premier-ideal-title" label="IDEAL FORM" title="医学部合格への 理想形。" />
         <p class="premier-ideal__lead">
           レクサス・プレミア本科は、授業を受けるだけのコースではありません。学習管理、質問対応、夜間演習、出願戦略、生活リズムまでを一体化し、医学部合格に必要な行動を毎日積み上げるための環境です。
         </p>
@@ -682,9 +682,7 @@ const infoPosts = [
 
     <section class="premier-achievement" aria-labelledby="premier-achievement-title">
       <div class="content">
-        <p class="premier-section-label">ACHIEVEMENT</p>
-        <h2 id="premier-achievement-title">2025年度の実績報告</h2>
-        <p class="premier-subtitle">～ 一年で合格する割合 ～</p>
+        <SectionHeading id="premier-achievement-title" label="ACHIEVEMENT" title="2025年度の実績報告" subtitle="〜 一年で合格する割合 〜" />
         <p class="premier-achievement__intro">
           スタートラインは一人ひとり違っても、合格に必要な行動量と精度を毎日積み上げる。その結果を、入学時の偏差値帯ごとに整理しました。
         </p>
@@ -744,8 +742,7 @@ const infoPosts = [
 
     <section class="premier-feature" aria-labelledby="premier-feature-title">
       <div class="content">
-        <p class="premier-section-label">METHOD</p>
-        <h2 id="premier-feature-title">プレミア本科の特徴</h2>
+        <SectionHeading id="premier-feature-title" label="METHOD" title="プレミア本科の特徴" />
         <div class="premier-feature__statement" aria-label="鬼監理×鬼特訓">
           <p>偶然や奇跡に頼らない逆転劇。</p>
           <p class="premier-feature__mark">
@@ -788,11 +785,14 @@ const infoPosts = [
 
     <section class="premier-overview" aria-labelledby="premier-overview-title">
       <div class="content">
-        <img src={logoStrip} alt="" width="1024" height="74" loading="lazy" decoding="async" aria-hidden="true" />
-        <h2 id="premier-overview-title">プレミア本科の 概要</h2>
-        <h3>クラス一覧</h3>
-        <p class="premier-class-lead">現在地を見極め、上位クラスへの昇格まで見据えて、授業・演習・夜間トレーニングを一体設計します。</p>
-        <div class="premier-class-board" aria-label="プレミア本科 クラス一覧">
+        <SectionHeading id="premier-overview-title" label="OVERVIEW" title="プレミア本科の概要" />
+        <section class="premier-overview-block premier-overview-block--classes" aria-labelledby="premier-classes-title">
+          <header class="premier-overview-subhead">
+            <p>CLASS DESIGN</p>
+            <h3 id="premier-classes-title">クラス一覧</h3>
+            <small><span>現在地を見極め、上位クラスへの昇格まで見据えます。</span><span>授業・演習・夜間トレーニングを一体設計します。</span></small>
+          </header>
+          <div class="premier-class-board" aria-label="プレミア本科 クラス一覧">
           {classTiers.map((tier) => (
             <>
               <article class={`premier-class-card premier-class-card--${tier.tone}`}>
@@ -826,9 +826,15 @@ const infoPosts = [
               )}
             </>
           ))}
-        </div>
-        <h3>年間計画イメージ</h3>
-        <section class="premier-annual-plan" aria-label="2026レクサスプレミア本科 年間計画">
+          </div>
+        </section>
+        <section class="premier-overview-block premier-overview-block--roadmap" aria-labelledby="premier-roadmap-title">
+          <header class="premier-overview-subhead">
+            <p>YEAR ROADMAP</p>
+            <h3 id="premier-roadmap-title">年間計画イメージ</h3>
+            <small>学力レベル・対応大学・クラス進行を、1年の伸び方として俯瞰できます。</small>
+          </header>
+          <section class="premier-annual-plan" aria-label="2026レクサスプレミア本科 年間計画">
           <div class="premier-annual-plan__head">
             <div>
               <p class="premier-annual-plan__eyebrow">YEAR ROADMAP</p>
@@ -926,9 +932,15 @@ const infoPosts = [
               </div>
             </div>
           </div>
+          </section>
         </section>
-        <h3>週間予定イメージ</h3>
-        <section class="premier-week-table" aria-label="プレミア本科 週間予定イメージ">
+        <section class="premier-overview-block premier-overview-block--weekly" aria-labelledby="premier-weekly-title">
+          <header class="premier-overview-subhead">
+            <p>WEEKLY ROUTINE</p>
+            <h3 id="premier-weekly-title">週間予定イメージ</h3>
+            <small>朝の確認テストから夜の鬼特訓まで、学習量を生活リズムごと固定します。</small>
+          </header>
+          <section class="premier-week-table" aria-label="プレミア本科 週間予定イメージ">
           <div class="premier-week-table__head">
             <div>
               <p>WEEKLY ROUTINE</p>
@@ -1011,17 +1023,24 @@ const infoPosts = [
           <ul class="premier-week-table__notes">
             {weeklyScheduleNotes.map((note) => <li>{note}</li>)}
           </ul>
+          </section>
         </section>
-        <h3 class="premier-support-title">サポート内容 一覧</h3>
-        <ul class="premier-support-grid">
-          {supportItems.map((item) => <li>{item}</li>)}
-        </ul>
+        <section class="premier-overview-block premier-overview-block--support" aria-labelledby="premier-support-title">
+          <header class="premier-overview-subhead">
+            <p>SUPPORT</p>
+            <h3 id="premier-support-title">サポート内容 一覧</h3>
+            <small>授業外の管理・相談・演習環境まで、合格に必要な行動を支えます。</small>
+          </header>
+          <ul class="premier-support-grid">
+            {supportItems.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
       </div>
     </section>
 
     <section class="premier-learning" aria-labelledby="premier-learning-title">
       <div class="content">
-        <h2 id="premier-learning-title">学習システム</h2>
+        <SectionHeading id="premier-learning-title" label="SYSTEM" title="学習システム" />
         <div class="premier-learning-grid">
           {learningSystems.map((item) => (
             <article>
@@ -1080,8 +1099,7 @@ const infoPosts = [
 
     <section class="premier-info" aria-labelledby="premier-info-title">
       <div class="content">
-        <img src={logoStrip} alt="" width="1024" height="74" loading="lazy" decoding="async" aria-hidden="true" />
-        <h2 id="premier-info-title">最新 医学部受験情報</h2>
+        <SectionHeading id="premier-info-title" label="NEW" title="最新 医学部受験情報" />
         <div class="premier-info-grid">
           {infoPosts.map((post) => (
             <article>
