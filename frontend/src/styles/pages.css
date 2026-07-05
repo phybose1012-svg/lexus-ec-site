@@ -9991,9 +9991,65 @@
   text-align: center;
 }
 
+.premier-week-schedule tbody .premier-week-schedule__break th {
+  padding: 8px 12px;
+}
+
+.premier-week-schedule__break-label,
+.premier-week-schedule__break-note {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.premier-week-schedule__break th .premier-week-schedule__break-label,
+.premier-week-schedule__break th .premier-week-schedule__break-note {
+  display: inline-block;
+  color: inherit;
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-top: 0;
+  vertical-align: middle;
+}
+
+.premier-week-schedule__break th .premier-week-schedule__break-label {
+  font-size: inherit;
+}
+
+.premier-week-schedule__break th .premier-week-schedule__break-note {
+  margin-left: 0.45em;
+  color: #7b6542;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.premier-week-schedule__break--short th {
+  background: linear-gradient(90deg, #fbf7ee, #fffdf8);
+  color: #8a7a60;
+  padding: 3px 12px;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+}
+
+.premier-week-schedule tbody .premier-week-schedule__break--short th {
+  padding: 2px 12px;
+}
+
 .premier-week-schedule__break--meal th {
   background: linear-gradient(90deg, #ebe0cd, #fff4dc);
   color: #8a5a12;
+  padding: 9px 12px;
+  line-height: 1.35;
+}
+
+.premier-week-schedule tbody .premier-week-schedule__break--meal th {
+  padding: 9px 12px;
+}
+
+.premier-week-schedule__break--meal th .premier-week-schedule__break-note {
+  color: #6d4a18;
 }
 
 .premier-week-table__notes {

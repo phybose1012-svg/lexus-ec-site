@@ -312,6 +312,7 @@ type WeeklyScheduleRow =
   | {
       kind: "break";
       label: string;
+      note?: string;
       tone: string;
     };
 
@@ -346,7 +347,7 @@ const weeklyScheduleRows: WeeklyScheduleRow[] = [
       { subjects: ["数学"], label: "インプット", variant: "input" },
       { subjects: ["英語"], label: "インプット", variant: "input" },
       { subjects: ["数学"], label: "インプット", variant: "input" },
-      { label: "休憩", variant: "rest" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
     ],
   },
   { kind: "break", label: "10分 休憩", tone: "short" },
@@ -358,14 +359,14 @@ const weeklyScheduleRows: WeeklyScheduleRow[] = [
     cells: [
       { subjects: ["英語"], label: "インプット", variant: "input" },
       { subjects: ["英語"], label: "インプット", variant: "input" },
-      { subjects: ["数学"], label: "インプット", variant: "input" },
+      { subjects: ["数学"], label: "週一テスト", variant: "test" },
       { subjects: ["英語"], label: "インプット", variant: "input" },
       { subjects: ["数学"], label: "インプット", variant: "input" },
-      { label: "インプット", variant: "input" },
-      { label: "休憩", variant: "rest" },
+      { subjects: ["数学"], label: "インプット", variant: "input" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
     ],
   },
-  { kind: "break", label: "50分 昼食", tone: "meal" },
+  { kind: "break", label: "50分 昼食", note: "美味しいお食事をご用意できます", tone: "meal" },
   {
     kind: "period",
     period: "III",
@@ -378,7 +379,7 @@ const weeklyScheduleRows: WeeklyScheduleRow[] = [
       { subjects: ["化学"], label: "インプット", variant: "input" },
       { subjects: ["物理/生物"], label: "インプット", variant: "input" },
       { subjects: ["英語"], label: "週一テスト", variant: "test" },
-      { label: "", variant: "empty" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
     ],
   },
   { kind: "break", label: "10分 休憩", tone: "short" },
@@ -393,8 +394,8 @@ const weeklyScheduleRows: WeeklyScheduleRow[] = [
       { subjects: ["物理/生物"], label: "インプット", variant: "input" },
       { subjects: ["化学"], label: "インプット", variant: "input" },
       { subjects: ["物理/生物"], label: "インプット", variant: "input" },
-      { label: "インプット", variant: "input" },
-      { label: "", variant: "empty" },
+      { subjects: ["英語"], label: "週一テスト", variant: "test" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
     ],
   },
   { kind: "break", label: "10分 休憩", tone: "short" },
@@ -410,7 +411,7 @@ const weeklyScheduleRows: WeeklyScheduleRow[] = [
       { subjects: ["化学"], label: "アウトプット", variant: "output" },
       { subjects: ["物理/生物"], label: "アウトプット", variant: "output" },
       { subjects: ["英語"], label: "アウトプット", variant: "output" },
-      { label: "", variant: "empty" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
     ],
   },
   { kind: "break", label: "10分 休憩", tone: "short" },
@@ -426,7 +427,7 @@ const weeklyScheduleRows: WeeklyScheduleRow[] = [
       { subjects: ["数学"], label: "アウトプット", variant: "output" },
       { subjects: ["英語"], label: "アウトプット", variant: "output" },
       { subjects: ["数学"], label: "アウトプット", variant: "output" },
-      { label: "", variant: "empty" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
     ],
   },
   { kind: "break", label: "10分 休憩", tone: "short" },
@@ -442,10 +443,10 @@ const weeklyScheduleRows: WeeklyScheduleRow[] = [
       { label: "【+α】アウトプット", note: "英語/数学・化学/物理/生物", variant: "plus" },
       { label: "【+α】アウトプット", note: "英語/数学・物理/生物", variant: "plus" },
       { label: "【+α】アウトプット", note: "英語/数学・化学/物理", variant: "plus" },
-      { label: "", variant: "empty" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
     ],
   },
-  { kind: "break", label: "50分 夕食", tone: "meal" },
+  { kind: "break", label: "50分 夕食", note: "美味しいお食事をご用意できます", tone: "meal" },
   {
     kind: "period",
     period: "VIII",
@@ -458,7 +459,7 @@ const weeklyScheduleRows: WeeklyScheduleRow[] = [
       { label: "小論文対策", note: "選択制", variant: "essay" },
       { label: "夜間トレーニング", variant: "training" },
       { label: "自習室開放", note: "質問可能", variant: "self" },
-      { label: "", variant: "empty" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
     ],
   },
   {
@@ -469,11 +470,11 @@ const weeklyScheduleRows: WeeklyScheduleRow[] = [
     cells: [
       { label: "夜間トレーニング", variant: "training" },
       { label: "夜間トレーニング", variant: "training" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
       { label: "夜間トレーニング", variant: "training" },
       { label: "夜間トレーニング", variant: "training" },
-      { label: "", variant: "empty" },
-      { label: "", variant: "empty" },
-      { label: "", variant: "empty" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
     ],
   },
 ];
@@ -979,7 +980,10 @@ const infoPosts = [
                 {weeklyScheduleRows.map((row) => (
                   row.kind === "break" ? (
                     <tr class={`premier-week-schedule__break premier-week-schedule__break--${row.tone}`}>
-                      <th scope="row" colspan="8">{row.label}</th>
+                      <th scope="row" colspan="8">
+                        <span class="premier-week-schedule__break-label">{row.label}</span>
+                        {row.note && <small class="premier-week-schedule__break-note">（{row.note}）</small>}
+                      </th>
                     </tr>
                   ) : (
                     <tr class={`premier-week-schedule__period premier-week-schedule__period--${row.tone}`}>
