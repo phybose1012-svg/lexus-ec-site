@@ -846,7 +846,7 @@ body:has(.premium-hero) :is(
 .success-card {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
   border: 2px solid var(--gold);
   border-radius: var(--radius);
   background: #fff;
@@ -862,6 +862,7 @@ body:has(.premium-hero) :is(
   min-height: 86px;
   margin: 0;
   padding: 14px 16px;
+  border-radius: calc(var(--radius) - 2px) calc(var(--radius) - 2px) 0 0;
   background: linear-gradient(135deg, var(--red) 0%, var(--red-2) 100%);
   color: #fff;
   font-size: 1.08rem;
@@ -872,29 +873,24 @@ body:has(.premium-hero) :is(
 .success-card h3::before {
   content: "祝";
   position: absolute;
-  top: 8px;
-  left: 10px;
-  z-index: 1;
+  top: -16px;
+  left: -16px;
+  z-index: 3;
   display: grid;
-  width: 38px;
-  height: 35px;
+  width: 68px;
+  height: 68px;
   place-items: center;
-  background:
-    radial-gradient(circle at 50% 58%, #fff8f8 0 22%, transparent 23%),
-    radial-gradient(ellipse at 50% 5%, #ffe9ef 0 34%, transparent 35%),
-    radial-gradient(ellipse at 94% 34%, #ffdce7 0 32%, transparent 33%),
-    radial-gradient(ellipse at 76% 92%, #ffe8ef 0 34%, transparent 35%),
-    radial-gradient(ellipse at 24% 92%, #ffe8ef 0 34%, transparent 35%),
-    radial-gradient(ellipse at 6% 34%, #ffdce7 0 32%, transparent 33%);
-  color: #9b0808;
-  clip-path: polygon(50% 0, 62% 25%, 90% 20%, 74% 47%, 88% 76%, 56% 68%, 50% 100%, 44% 68%, 12% 76%, 26% 47%, 10% 20%, 38% 25%);
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 5C47 14 50 23 47 32C55 27 66 29 74 36C67 43 58 46 49 44C56 52 56 63 50 73C41 69 35 62 34 53C29 61 20 67 10 67C9 57 14 48 22 43C13 40 7 32 6 23C16 20 26 22 32 29C31 20 34 11 40 5Z' fill='%23fff1f5' stroke='%23f6bdc9' stroke-width='2.4'/%3E%3Cpath d='M40 5C40 18 40 28 40 38M74 36C61 37 51 39 40 40M50 73C46 60 43 50 40 40M10 67C22 57 31 49 39 40M6 23C18 30 29 36 40 40' fill='none' stroke='%23f0a8b8' stroke-width='1.6' stroke-linecap='round' opacity='.68'/%3E%3Ccircle cx='40' cy='40' r='5.4' fill='%23ffd3dc' opacity='.9'/%3E%3C/svg%3E") center / contain no-repeat;
+  color: #940909;
   font-family: var(--font-serif);
-  font-size: 1.02rem;
+  font-size: 1.52rem;
   font-weight: 900;
   line-height: 1;
-  text-shadow: 0 1px 0 rgb(255 255 255 / 68%);
-  transform: rotate(-12deg);
-  filter: drop-shadow(0 2px 4px rgb(62 0 0 / 24%));
+  text-shadow:
+    0 1px 0 rgb(255 255 255 / 78%),
+    0 0 10px rgb(255 255 255 / 70%);
+  transform: rotate(-10deg);
+  filter: drop-shadow(0 4px 7px rgb(62 0 0 / 26%));
 }
 
 .success-card__title-text {
