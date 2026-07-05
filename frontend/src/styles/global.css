@@ -854,6 +854,8 @@ body:has(.premium-hero) :is(
 }
 
 .success-card h3 {
+  position: relative;
+  isolation: isolate;
   display: grid;
   align-items: center;
   justify-items: center;
@@ -867,7 +869,37 @@ body:has(.premium-hero) :is(
   text-align: center;
 }
 
+.success-card h3::before {
+  content: "祝";
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  z-index: 1;
+  display: grid;
+  width: 38px;
+  height: 35px;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 58%, #fff8f8 0 22%, transparent 23%),
+    radial-gradient(ellipse at 50% 5%, #ffe9ef 0 34%, transparent 35%),
+    radial-gradient(ellipse at 94% 34%, #ffdce7 0 32%, transparent 33%),
+    radial-gradient(ellipse at 76% 92%, #ffe8ef 0 34%, transparent 35%),
+    radial-gradient(ellipse at 24% 92%, #ffe8ef 0 34%, transparent 35%),
+    radial-gradient(ellipse at 6% 34%, #ffdce7 0 32%, transparent 33%);
+  color: #9b0808;
+  clip-path: polygon(50% 0, 62% 25%, 90% 20%, 74% 47%, 88% 76%, 56% 68%, 50% 100%, 44% 68%, 12% 76%, 26% 47%, 10% 20%, 38% 25%);
+  font-family: var(--font-serif);
+  font-size: 1.02rem;
+  font-weight: 900;
+  line-height: 1;
+  text-shadow: 0 1px 0 rgb(255 255 255 / 68%);
+  transform: rotate(-12deg);
+  filter: drop-shadow(0 2px 4px rgb(62 0 0 / 24%));
+}
+
 .success-card__title-text {
+  position: relative;
+  z-index: 2;
   display: block;
 }
 
