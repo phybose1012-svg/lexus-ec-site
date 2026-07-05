@@ -5,6 +5,7 @@ import { seo } from "../../data/home";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import "../../styles/pages.css";
 import { migratedPosts } from "../../lib/postSource";
+import { normalizeInternalHref } from "../../lib/internalLinks";
 
 // 全国医学部の索引。読みで五十音行に割り当てて私立/国公立でタブ分けする。
 type Uni = { name: string; kana: string; type: "shiritsu" | "kokuritsu"; aliases?: string[] };
@@ -146,7 +147,7 @@ for (const p of migratedPosts) {
   }
 }
 for (const e of EXTERNAL) {
-  const entry: Entry = { title: e.title, href: e.url, date: "", external: true };
+  const entry: Entry = { title: e.title, href: normalizeInternalHref(e.url), date: "" };
   if (e.uni) {
     if (!byUni.has(e.uni)) byUni.set(e.uni, []);
     byUni.get(e.uni)!.push(entry);

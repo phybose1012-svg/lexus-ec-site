@@ -4,6 +4,7 @@ import universityStrategyPosts from "../data/generated/universityStrategyPosts.j
 import voiceInterviewPosts from "../data/generated/voiceInterviewPosts.json";
 import type { ArticleTemplateId } from "../data/articleTemplates";
 import { classifyArticlePost } from "../data/articleTaxonomy.js";
+import { normalizeInternalAnchorHrefs } from "./internalLinks";
 
 export type MigratedPostImage = {
   src: string;
@@ -175,7 +176,7 @@ const prepareMigratedPost = (post: MigratedPost): MigratedPost => {
     ...normalizedPost,
     categories: taxonomyCategories,
     tags: taxonomyTags,
-    contentHtml: labelNamelessLinks(post.contentHtml),
+    contentHtml: normalizeInternalAnchorHrefs(labelNamelessLinks(post.contentHtml)),
   };
 };
 

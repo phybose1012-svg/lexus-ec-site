@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { seo } from "../data/home";
+import { normalizeInternalHref } from "./internalLinks";
 
 export type VoiceImage = {
   src: string;
@@ -163,7 +164,7 @@ const metaContent = (html: string, name: string) => {
 
 const pageTitle = (html: string, h1: string) => cleanText(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] || "") || `${h1} | ${seo.title}`;
 
-const normalizeHref = (href: string) => href || "/";
+const normalizeHref = (href: string) => normalizeInternalHref(href || "/");
 
 const imageForTitle = (images: VoiceImage[], title: string) => images.find((image) => cleanText(image.alt).replace(/\s+/g, "") === title.replace(/\s+/g, ""));
 

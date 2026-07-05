@@ -3,7 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { formPageConfigs } from "../data/fixedPages";
 import { seo } from "../data/home";
-import { getLegacyRedirectByPath } from "./legacyRedirects";
+import { normalizeInternalAnchorHrefs } from "./internalLinks";
 
 type PageManifestItem = {
   path: string;
@@ -77,8 +77,6 @@ const dedicatedPagePaths = new Set([
   "/top/contact/",
 ]);
 
-let knownStaticPaths: Set<string> | undefined;
-
 const routePathname = (value: string) => {
   try {
     return new URL(value).pathname;
@@ -100,20 +98,6 @@ const routeVariants = (value: string) => {
     // Keep the original encoded route when decoding is not possible.
   }
   return variants;
-};
-
-const getKnownStaticPaths = () => {
-  if (knownStaticPaths) return knownStaticPaths;
-  const baselineDir = getBaselineDir();
-  const manifest = JSON.parse(readFileSync(path.join(baselineDir, "manifest.json"), "utf8")) as PageManifestItem[];
-  knownStaticPaths = new Set(["/"]);
-  for (const item of manifest) {
-    for (const variant of routeVariants(item.path)) knownStaticPaths.add(variant);
-  }
-  for (const route of dedicatedPagePaths) {
-    for (const variant of routeVariants(route)) knownStaticPaths.add(variant);
-  }
-  return knownStaticPaths;
 };
 
 const decodeEntities = (value = "") =>
@@ -200,7 +184,7 @@ const localLegacyAssetPath = (assetPath: string) => {
 };
 
 const normalizeInternalLinks = (html: string) =>
-  html
+  normalizeInternalAnchorHrefs(html
     .replace(/<a\b([^>]*?)href=(["'])https:\/\/docs\.google\.com\/forms\/[^"']*\2([^>]*)>([\s\S]*?)<\/a>/gi, (_match, before, _quote, after, inner) =>
       `<a${before}href="${localFormPathForLink(inner)}"${after}>${inner}</a>`,
     )
@@ -210,14 +194,7 @@ const normalizeInternalLinks = (html: string) =>
     .replace(/(href|src)=(["'])(\/wp-content\/uploads\/[^"']*)\2/gi, (_match, attrName, _quote, assetPath) =>
       `${attrName}="${localLegacyAssetPath(assetPath)}"`,
     )
-    .replace(/href=(["'])https:\/\/lexus-ec\.com([^"']*)\1/gi, (_match, _quote, href) => {
-      const pathname = href || "/";
-      const legacyRedirect = getLegacyRedirectByPath(pathname);
-      if (legacyRedirect) return `href="${legacyRedirect.to}"`;
-      const isMigrated = [...routeVariants(pathname)].some((variant) => getKnownStaticPaths().has(variant));
-      return isMigrated ? `href="${pathname}"` : `href="https://lexus-ec.com${pathname}"`;
-    })
-    .replace(/src=(["'])https:\/\/lexus-ec\.com([^"']*)\1/gi, (_match, _quote, src) => `src="https://lexus-ec.com${src}"`);
+    .replace(/src=(["'])https:\/\/lexus-ec\.com([^"']*)\1/gi, (_match, _quote, src) => `src="https://lexus-ec.com${src}"`));
 
 const replaceExternalWidgets = (html: string) =>
   html.replace(
