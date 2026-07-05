@@ -10468,24 +10468,9 @@
 }
 
 @media (max-width: 960px) {
-  .premier-class-board {
-    display: flex;
-    align-items: stretch;
-    gap: 12px;
-    overflow-x: auto;
-    padding: 0 4px 10px;
-    scroll-snap-type: x mandatory;
-    overscroll-behavior-x: contain;
-    scrollbar-color: #b78a31 #f3ead9;
-    scrollbar-width: thin;
-    -webkit-overflow-scrolling: touch;
-  }
-
   .premier-class-card {
-    flex: 0 0 min(520px, calc(100% - 32px));
     grid-template-columns: 1fr;
     gap: 0;
-    scroll-snap-align: start;
   }
 
   .premier-class-card__mark {
@@ -10518,36 +10503,8 @@
   }
 
   .premier-class-bridge {
-    flex: 0 0 150px;
-    grid-template-columns: auto auto;
-    align-content: center;
-    justify-content: center;
-    gap: 10px;
-    width: auto;
-    margin: 0;
-    scroll-snap-align: center;
-  }
-
-  .premier-class-bridge__arrows {
-    grid-template-columns: 1fr;
-    gap: 6px;
-    justify-content: center;
-  }
-
-  .premier-class-bridge__arrows span {
-    border-top: 10px solid transparent;
-    border-right: 14px solid var(--tier);
-    border-bottom: 10px solid transparent;
-    border-left: 0;
-  }
-
-  .premier-class-bridge p {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    min-height: 230px;
-    padding: 12px 8px;
-    line-height: 1.65;
-    text-align: start;
+    grid-template-columns: 76px minmax(0, 1fr);
+    width: min(620px, 100%);
   }
 
   .premier-annual-plan__head {
@@ -10997,32 +10954,30 @@
   }
 
   .premier-class-bridge {
-    flex-basis: 126px;
-    grid-template-columns: auto auto;
-    gap: 8px;
-    width: auto;
-    margin-block: 0 12px;
+    grid-template-columns: 1fr;
+    gap: 9px;
+    width: min(330px, 100%);
+    margin-block: 2px 14px;
   }
 
   .premier-class-bridge__arrows {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, auto);
     gap: 5px;
     justify-content: center;
   }
 
   .premier-class-bridge__arrows span {
-    border-top: 9px solid transparent;
-    border-right: 13px solid var(--tier);
-    border-bottom: 9px solid transparent;
-    border-left: 0;
+    border-top: 0;
+    border-right: 13px solid transparent;
+    border-bottom: 15px solid var(--tier);
+    border-left: 13px solid transparent;
   }
 
   .premier-class-bridge p {
-    min-height: 208px;
-    padding: 10px 7px;
-    font-size: 0.78rem;
-    line-height: 1.6;
-    text-align: start;
+    padding: 8px 11px;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    text-align: center;
   }
 
   .premier-annual-plan {
