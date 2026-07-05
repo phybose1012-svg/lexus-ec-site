@@ -506,6 +506,7 @@
         gap: 22px;
         justify-items: center;
         padding-inline: clamp(12px, 5vw, 72px);
+        pointer-events: none;
         text-align: center;
       }
 
@@ -536,6 +537,46 @@
 
       .pattern-05.is-active .fireline-first-item:nth-child(5) {
         animation-delay: 0.7s;
+      }
+
+      .pattern-05 .fireline-corner-mark {
+        position: absolute;
+        top: clamp(16px, 4vh, 38px);
+        right: 0;
+        z-index: 4;
+        display: grid;
+        width: min(242px, 42vw);
+        gap: 5px;
+        border-top: 1px solid rgb(212 175 55 / 72%);
+        border-right: 1px solid rgb(212 175 55 / 48%);
+        background: linear-gradient(135deg, rgb(10 8 5 / 48%), rgb(10 8 5 / 10%));
+        padding: 12px 15px 13px;
+        text-align: right;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-14px) scale(0.96);
+        backdrop-filter: blur(10px);
+      }
+
+      .pattern-05 .fireline-corner-mark span {
+        color: var(--gold);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .pattern-05 .fireline-corner-mark strong {
+        color: #fffaf1;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(0.92rem, 1.6vw, 1.18rem);
+        letter-spacing: 0.03em;
+        line-height: 1.1;
+      }
+
+      .pattern-05.is-active .fireline-corner-mark {
+        animation: firelineCornerMark 0.72s cubic-bezier(0.2, 0.8, 0.2, 1) 3.02s both;
       }
 
       .pattern-05 .fireline-act--second {
@@ -804,17 +845,17 @@
 
       @keyframes firelineFirstDepart {
         0%,
-        48% {
+        42% {
           opacity: 1;
           filter: blur(0);
           transform: translateY(0) scale(1);
         }
 
-        72%,
+        58%,
         100% {
-          opacity: 0.2;
-          filter: blur(1.6px);
-          transform: translateY(-76px) scale(0.9);
+          opacity: 0;
+          filter: blur(7px);
+          transform: translateY(-92px) scale(0.82);
         }
       }
 
@@ -886,6 +927,20 @@
         to {
           opacity: 1;
           transform: translateY(0);
+        }
+      }
+
+      @keyframes firelineCornerMark {
+        from {
+          opacity: 0;
+          filter: blur(5px);
+          transform: translateY(-14px) scale(0.96);
+        }
+
+        to {
+          opacity: 0.94;
+          filter: blur(0);
+          transform: translateY(0) scale(1);
         }
       }
 
@@ -976,6 +1031,11 @@
           width: min(680px, 100%);
         }
 
+        .pattern-05 .fireline-corner-mark {
+          right: 0;
+          width: min(210px, 38vw);
+        }
+
         .pattern-08 .vertical-title {
           min-height: auto;
           justify-content: flex-start;
@@ -1034,6 +1094,21 @@
 
         .pattern-05 .fireline-act--second {
           gap: 14px;
+        }
+
+        .pattern-05 .fireline-corner-mark {
+          top: -54px;
+          width: min(158px, 43vw);
+          padding: 8px 10px 9px;
+        }
+
+        .pattern-05 .fireline-corner-mark span {
+          font-size: 0.58rem;
+          letter-spacing: 0.12em;
+        }
+
+        .pattern-05 .fireline-corner-mark strong {
+          font-size: 0.78rem;
         }
 
         .pattern-05 .quote-stack {
@@ -1184,6 +1259,10 @@
               <h2 class="hero-title fireline-first-item">Premium Medical<br /><strong>Preparation</strong></h2>
               <p class="hero-lead fireline-first-item">少人数制、プロ講師担任、夜間まで続く質問対応。医学部合格だけに集中するための、既卒生専用フルコース。</p>
               <div class="luxury-rule fireline-first-item" aria-hidden="true"></div>
+            </div>
+            <div class="fireline-corner-mark" aria-hidden="true">
+              <span>LEXUS PREMIER</span>
+              <strong>Premium Medical<br />Preparation</strong>
             </div>
             <div class="fireline-act fireline-act--second" aria-label="No Way Back">
               <div class="quote-stack">

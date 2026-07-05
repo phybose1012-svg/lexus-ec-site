@@ -3,13 +3,17 @@ import { acceptedUniversities, achievementStats, seo } from "../../data/home";
 import SectionHeading from "../../components/SectionHeading.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 
-const logoStrip = "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
 const penLogo = "/assets/legacy/wp-content/uploads/2025/11/ペン先-ロゴ-4色-300x300.png";
 const oniKanri = "/illustrations/characters/yuki-sensei-default.png";
 const oniTraining = "/illustrations/characters/yuki-sensei-cheer.png";
 const messageImage = "/assets/legacy/wp-content/uploads/2026/01/川島先生授業風景-名前入り.jpg";
 const selectionImage = "/assets/legacy/wp-content/uploads/2026/05/レクサスの選抜テストP-1024x1024.jpg";
 const gardenImage = "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-1-04.jpg";
+
+const premierHeroVideos = [
+  "/assets/lexus-premier/fiery-oni-teaches-with-passion.mp4",
+  "/assets/lexus-premier/fiery-oni-teaches-with-passion-02.mp4",
+];
 
 const quickLinks = [
   { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
@@ -610,42 +614,57 @@ const infoPosts = [
   ogImage={seo.ogImage}
 >
   <main class="premier-page">
-    <section class="premier-opening">
-      <div class="content premier-opening__inner">
-        <img src={logoStrip} alt="" width="1024" height="74" decoding="async" aria-hidden="true" />
-        <h1>2027年度対応<br />オールインワンの医学部受験サポート<br /><span>既卒生対象</span></h1>
-      </div>
-    </section>
+    <section class="premier-cinematic-hero" data-premier-cinematic-hero>
+      <video
+        class="premier-cinematic-hero__video"
+        muted
+        playsinline
+        preload="metadata"
+        data-src={premierHeroVideos[0]}
+        data-playlist={premierHeroVideos.join("|")}
+      ></video>
+      <div class="premier-cinematic-hero__fallback" aria-hidden="true"></div>
+      <div class="premier-cinematic-hero__shade" aria-hidden="true"></div>
+      <div class="content premier-cinematic-hero__inner">
+        <div class="premier-fireline-stage">
+          <div class="premier-fireline-act premier-fireline-act--first" aria-label="レクサス・プレミア本科">
+            <p class="premier-fireline-kicker premier-fireline-first-item">LEXUS PREMIER</p>
+            <div class="premier-fireline-rule premier-fireline-first-item" aria-hidden="true"></div>
+            <p class="premier-fireline-prime premier-fireline-first-item">Premium Medical<br /><strong>Preparation</strong></p>
+            <p class="premier-fireline-intro premier-fireline-first-item">少人数制、プロ講師担任、夜間まで続く質問対応。既卒生の一年を、医学部合格だけに集中させるためのフルコース。</p>
+            <div class="premier-fireline-rule premier-fireline-first-item" aria-hidden="true"></div>
+          </div>
 
-    <section class="premier-hero">
-      <div class="content premier-hero__inner">
-        <div class="premier-hero__brand">
-          <img src={penLogo} alt="レクサス教育センターロゴ" width="300" height="300" decoding="async" />
-          <p>レクサス式</p>
-        </div>
-        <p class="premier-hero__year">2027年度入試対応</p>
-        <p class="premier-hero__copy">最高級の医学部受験指導</p>
-        <h2>レクサス・プレミア本科<br />4月開講</h2>
-        <p class="premier-hero__lead">授業、演習、質問対応、学習監理、生活環境まで。既卒生の一年を医学部合格へ向けて一体設計します。</p>
-        <p class="premier-hero__target">対象：既卒生（年齢制限なし）</p>
-        <p class="premier-hero__period">募集期間：2月1日(日)〜4月5日(日)</p>
-        <div class="premier-hero__actions">
-          <a class="button button--red" href="/request-documents/">資料請求する</a>
-          <a class="button button--blue" href="/reservation/">個別説明会へ</a>
-        </div>
-        <div class="premier-quick-actions">
-          {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
-        </div>
-        <p class="premier-hero__limit">定員になり次第終了</p>
-      </div>
-    </section>
+          <div class="premier-fireline-corner-mark" aria-hidden="true">
+            <img src={penLogo} alt="" width="300" height="300" decoding="async" />
+            <span>LEXUS PREMIER</span>
+            <strong>Premium Medical<br />Preparation</strong>
+          </div>
 
-    <section class="premier-response">
-      <div class="content-narrow">
-        <p>「もう、後がない」</p>
-        <p>「大手予備校では、何も変わらなかった」</p>
-        <p>「とにかく今年、合格させてくれ」</p>
-        <strong>レクサスが応えます。</strong>
+          <div class="premier-fireline-act premier-fireline-act--second" aria-label="レクサス・プレミア本科 メッセージ">
+            <div class="premier-fireline-quote-stack">
+              <span>「もう、後がない」</span>
+              <span>「大手予備校では、何も変わらなかった」</span>
+              <span>「今年、医学部に合格したい」</span>
+            </div>
+            <p class="premier-fireline-year">2027年度入試対応 / 既卒生対象</p>
+            <h1 class="premier-fireline-title">その覚悟に、<br /><strong>レクサスが応える。</strong></h1>
+            <p class="premier-fireline-lead">授業、演習、質問対応、学習監理、生活環境まで。合格に必要な行動を、曖昧な努力で終わらせないための医学部受験フルコースです。</p>
+            <div class="premier-fireline-meta" aria-label="レクサス・プレミア本科の概要">
+              <span>レクサス・プレミア本科</span>
+              <span>4月開講</span>
+              <span>募集期間 2/1(日)-4/5(日)</span>
+              <span>定員になり次第終了</span>
+            </div>
+            <div class="premier-fireline-actions">
+              <a class="button button--red" href="/request-documents/">資料請求する</a>
+              <a class="button button--blue" href="/reservation/">個別説明会へ</a>
+            </div>
+            <div class="premier-fireline-quick">
+              {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1101,4 +1120,87 @@ const infoPosts = [
       </div>
     </section>
   </main>
+
+  <script is:inline>
+    (() => {
+      const root = document.documentElement;
+      const hero = document.querySelector("[data-premier-cinematic-hero]");
+
+      const syncHeader = () => {
+        root.classList.toggle("premier-nav-visible", window.scrollY > 96);
+      };
+
+      syncHeader();
+      window.addEventListener("scroll", syncHeader, { passive: true });
+
+      if (!hero) return;
+
+      const video = hero.querySelector("video");
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          hero.classList.add("is-active");
+        });
+      });
+
+      if (!video) return;
+
+      const playlist = (video.dataset.playlist || video.dataset.src || "")
+        .split("|")
+        .map((src) => src.trim())
+        .filter(Boolean);
+      const warmedVideos = new Set();
+      let currentIndex = 0;
+
+      if (playlist.length === 0) return;
+
+      const warmVideo = (src) => {
+        if (!src || warmedVideos.has(src)) return;
+        warmedVideos.add(src);
+        const link = document.createElement("link");
+        link.rel = "prefetch";
+        link.as = "video";
+        link.href = src;
+        document.head.append(link);
+      };
+
+      const setVideoSource = (index) => {
+        currentIndex = index % playlist.length;
+        warmedVideos.add(playlist[currentIndex]);
+        video.src = playlist[currentIndex];
+        video.load();
+      };
+
+      video.loop = playlist.length <= 1;
+      video.addEventListener(
+        "loadeddata",
+        () => {
+          hero.classList.add("is-video-ready");
+          warmVideo(playlist[(currentIndex + 1) % playlist.length]);
+        },
+        { once: true },
+      );
+      video.addEventListener("ended", () => {
+        if (playlist.length <= 1) return;
+        setVideoSource(currentIndex + 1);
+        warmVideo(playlist[(currentIndex + 1) % playlist.length]);
+        video.play().catch(() => {});
+      });
+
+      setVideoSource(0);
+
+      if (prefersReducedMotion) return;
+
+      const playVideo = () => video.play().catch(() => {});
+      if (document.visibilityState === "visible") playVideo();
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") {
+          playVideo();
+        } else {
+          video.pause();
+        }
+      });
+    })();
+  </script>
 </SiteLayout>
