@@ -1123,85 +1123,147 @@ const infoPosts = [
   </main>
 
   <script is:inline>
-    (() => {
-      const root = document.documentElement;
-      const hero = document.querySelector("[data-premier-cinematic-hero]");
+    (function () {
+      var root = document.documentElement;
+      var hero = document.querySelector ? document.querySelector("[data-premier-cinematic-hero]") : null;
 
-      const syncHeader = () => {
-        root.classList.toggle("premier-nav-visible", window.scrollY > 96);
+      var hasClass = function (element, name) {
+        return (" " + element.className + " ").indexOf(" " + name + " ") > -1;
+      };
+      var addClass = function (element, name) {
+        if (!element || hasClass(element, name)) return;
+        element.className = element.className ? element.className + " " + name : name;
+      };
+      var removeClass = function (element, name) {
+        if (!element) return;
+        element.className = (" " + element.className + " ")
+          .replace(" " + name + " ", " ")
+          .replace(/^\s+|\s+$/g, "");
+      };
+      var toggleClass = function (element, name, force) {
+        if (force) addClass(element, name);
+        else removeClass(element, name);
+      };
+
+      addClass(root, "premier-page-active");
+
+      var syncHeader = function () {
+        var scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+        toggleClass(root, "premier-nav-visible", scrollY > 96);
       };
 
       syncHeader();
-      window.addEventListener("scroll", syncHeader, { passive: true });
+      if (window.addEventListener) window.addEventListener("scroll", syncHeader, false);
 
-      if (!hero) return;
+      if (!hero || !document.createElement) return;
 
-      const video = hero.querySelector("video");
-      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var prefersReducedMotion = false;
+      if (window.matchMedia) {
+        prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      }
+      if (prefersReducedMotion) return;
 
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          hero.classList.add("is-active");
+      var styleProbe = document.createElement("div").style;
+      var canAnimate = ("animation" in styleProbe || "webkitAnimation" in styleProbe)
+        && ("transform" in styleProbe || "webkitTransform" in styleProbe);
+      if (!canAnimate) return;
+
+      addClass(root, "premier-enhanced");
+
+      var video = hero.getElementsByTagName("video")[0];
+      var raf = window.requestAnimationFrame || function (callback) {
+        return window.setTimeout(callback, 16);
+      };
+
+      raf(function () {
+        raf(function () {
+          addClass(hero, "is-active");
         });
       });
 
       if (!video) return;
 
-      const playlist = (video.dataset.playlist || video.dataset.src || "")
-        .split("|")
-        .map((src) => src.trim())
-        .filter(Boolean);
-      const warmedVideos = new Set();
-      let currentIndex = 0;
+      var videoProbe = document.createElement("video");
+      var canVideo = Boolean(videoProbe.canPlayType && videoProbe.canPlayType("video/mp4"));
+      if (!canVideo) return;
 
-      if (playlist.length === 0) return;
+      var playlistAttribute = video.getAttribute("data-playlist")
+        || video.getAttribute("data-src")
+        || video.getAttribute("src")
+        || "";
+      var rawPlaylist = playlistAttribute.split("|");
+      var playlist = [];
+      for (var i = 0; i < rawPlaylist.length; i += 1) {
+        var source = rawPlaylist[i].replace(/^\s+|\s+$/g, "");
+        if (source) playlist.push(source);
+      }
 
-      const warmVideo = (src) => {
-        if (!src || warmedVideos.has(src)) return;
-        warmedVideos.add(src);
-        const link = document.createElement("link");
+      if (!playlist.length) return;
+
+      var warmedVideos = {};
+      var currentIndex = 0;
+
+      var warmVideo = function (source) {
+        if (!source || warmedVideos[source]) return;
+        warmedVideos[source] = true;
+        var head = document.head || document.getElementsByTagName("head")[0];
+        if (!head) return;
+        var link = document.createElement("link");
         link.rel = "prefetch";
         link.as = "video";
-        link.href = src;
-        document.head.append(link);
+        link.href = source;
+        head.appendChild(link);
       };
 
-      const setVideoSource = (index) => {
+      var setVideoSource = function (index) {
         currentIndex = index % playlist.length;
-        warmedVideos.add(playlist[currentIndex]);
-        video.src = playlist[currentIndex];
-        video.load();
+        warmedVideos[playlist[currentIndex]] = true;
+        if (video.getAttribute("src") !== playlist[currentIndex]) {
+          video.setAttribute("src", playlist[currentIndex]);
+          video.load();
+        }
+      };
+
+      var loaded = false;
+      var onLoaded = function () {
+        if (loaded) return;
+        loaded = true;
+        addClass(hero, "is-video-ready");
+        warmVideo(playlist[(currentIndex + 1) % playlist.length]);
+        if (video.removeEventListener) video.removeEventListener("loadeddata", onLoaded, false);
       };
 
       video.loop = playlist.length <= 1;
-      video.addEventListener(
-        "loadeddata",
-        () => {
-          hero.classList.add("is-video-ready");
+      if (video.addEventListener) {
+        video.addEventListener("loadeddata", onLoaded, false);
+        video.addEventListener("ended", function () {
+          if (playlist.length <= 1) return;
+          setVideoSource(currentIndex + 1);
           warmVideo(playlist[(currentIndex + 1) % playlist.length]);
-        },
-        { once: true },
-      );
-      video.addEventListener("ended", () => {
-        if (playlist.length <= 1) return;
-        setVideoSource(currentIndex + 1);
-        warmVideo(playlist[(currentIndex + 1) % playlist.length]);
-        video.play().catch(() => {});
-      });
+          var nextPlay = video.play && video.play();
+          if (nextPlay && nextPlay.catch) nextPlay.catch(function () {});
+        }, false);
+      }
 
       setVideoSource(0);
+      if (video.readyState >= 2) onLoaded();
 
-      if (prefersReducedMotion) return;
+      var playVideo = function () {
+        if (!video.play) return;
+        var promise = video.play();
+        if (promise && promise.catch) promise.catch(function () {});
+      };
 
-      const playVideo = () => video.play().catch(() => {});
-      if (document.visibilityState === "visible") playVideo();
-      document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState === "visible") {
-          playVideo();
-        } else {
-          video.pause();
-        }
-      });
+      if (!document.visibilityState || document.visibilityState === "visible") playVideo();
+      if (document.addEventListener) {
+        document.addEventListener("visibilitychange", function () {
+          if (!document.visibilityState || document.visibilityState === "visible") {
+            playVideo();
+          } else if (video.pause) {
+            video.pause();
+          }
+        }, false);
+      }
     })();
   </script>
 </SiteLayout>
