@@ -8421,6 +8421,7 @@ html.premier-nav-visible body:has(.premier-page) .mobile-fixed-nav-wrap {
   display: grid;
   gap: 22px;
   justify-items: center;
+  margin-top: -140px;
   padding-inline: clamp(12px, 5vw, 72px);
   pointer-events: none;
   text-align: center;
@@ -8474,10 +8475,14 @@ html.premier-nav-visible body:has(.premier-page) .mobile-fixed-nav-wrap {
 .premier-fireline-prime {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(3.2rem, 8vw, 7.2rem);
+  font-size: clamp(3rem, 7.1vw, 6.25rem);
   font-weight: 700;
   line-height: 0.94;
   text-shadow: 0 22px 46px rgb(0 0 0 / 36%);
+}
+
+.premier-fireline-nowrap {
+  white-space: nowrap;
 }
 
 .premier-fireline-prime strong {
@@ -8502,7 +8507,7 @@ html.premier-nav-visible body:has(.premier-page) .mobile-fixed-nav-wrap {
   z-index: 4;
   display: grid;
   grid-template-columns: 38px minmax(0, 1fr);
-  width: min(258px, 42vw);
+  width: min(300px, 44vw);
   gap: 4px 10px;
   align-items: center;
   border-top: 1px solid rgb(212 175 55 / 72%);
@@ -8530,14 +8535,16 @@ html.premier-nav-visible body:has(.premier-page) .mobile-fixed-nav-wrap {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
   text-transform: uppercase;
 }
 
 .premier-fireline-corner-mark strong {
   color: #fffaf1;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", Meiryo, system-ui, sans-serif;
   font-size: clamp(0.88rem, 1.5vw, 1.12rem);
+  font-weight: 900;
   letter-spacing: 0.03em;
   line-height: 1.1;
 }
@@ -8837,7 +8844,7 @@ html.premier-nav-visible body:has(.premier-page) .mobile-fixed-nav-wrap {
   }
 
   .premier-fireline-corner-mark {
-    width: min(214px, 40vw);
+    width: min(260px, 42vw);
   }
 
   .premier-fireline-title {
@@ -8873,10 +8880,11 @@ html.premier-nav-visible body:has(.premier-page) .mobile-fixed-nav-wrap {
 
   .premier-fireline-act--first {
     gap: 16px;
+    margin-top: -118px;
   }
 
   .premier-fireline-prime {
-    font-size: clamp(2.18rem, 11vw, 3.18rem);
+    font-size: clamp(2.1rem, 9.2vw, 2.65rem);
     line-height: 1.02;
   }
 
@@ -8890,23 +8898,23 @@ html.premier-nav-visible body:has(.premier-page) .mobile-fixed-nav-wrap {
   .premier-fireline-corner-mark {
     top: -54px;
     right: 0;
-    grid-template-columns: 30px minmax(0, 1fr);
-    width: min(158px, 43vw);
+    grid-template-columns: 28px minmax(0, 1fr);
+    width: min(236px, 64vw);
     padding: 8px 10px 9px;
   }
 
   .premier-fireline-corner-mark img {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
   }
 
   .premier-fireline-corner-mark span {
-    font-size: 0.56rem;
-    letter-spacing: 0.11em;
+    font-size: 0.48rem;
+    letter-spacing: 0.04em;
   }
 
   .premier-fireline-corner-mark strong {
-    font-size: 0.72rem;
+    font-size: 0.78rem;
   }
 
   .premier-fireline-act--second {
@@ -9089,8 +9097,8 @@ html.premier-enhanced .premier-fireline-first-item {
 }
 
 .premier-fireline-prime {
-  font-size: 5rem;
-  font-size: clamp(3.2rem, 8vw, 7.2rem);
+  font-size: 4.8rem;
+  font-size: clamp(3rem, 7.1vw, 6.25rem);
 }
 
 .premier-fireline-intro {
@@ -9104,9 +9112,9 @@ html.premier-enhanced .premier-fireline-first-item {
 .premier-fireline-corner-mark {
   top: 24px;
   top: clamp(16px, 4vh, 38px);
-  width: 258px;
-  max-width: 42vw;
-  width: min(258px, 42vw);
+  width: 300px;
+  max-width: 44vw;
+  width: min(300px, 44vw);
   opacity: 0.94;
   transform: none;
 }
@@ -9206,9 +9214,9 @@ html.premier-enhanced .premier-fireline-quick {
   }
 
   .premier-fireline-corner-mark {
-    width: 214px;
-    max-width: 40vw;
-    width: min(214px, 40vw);
+    width: 260px;
+    max-width: 42vw;
+    width: min(260px, 42vw);
   }
 
   .premier-fireline-title {
@@ -9241,8 +9249,8 @@ html.premier-enhanced .premier-fireline-quick {
   }
 
   .premier-fireline-prime {
-    font-size: 2.6rem;
-    font-size: clamp(2.18rem, 11vw, 3.18rem);
+    font-size: 2.35rem;
+    font-size: clamp(2.1rem, 9.2vw, 2.65rem);
   }
 
   .premier-fireline-intro {
@@ -9253,9 +9261,9 @@ html.premier-enhanced .premier-fireline-quick {
 
   .premier-fireline-corner-mark {
     top: -54px;
-    width: 158px;
-    max-width: 43vw;
-    width: min(158px, 43vw);
+    width: 236px;
+    max-width: 64vw;
+    width: min(236px, 64vw);
   }
 
   .premier-fireline-title {
