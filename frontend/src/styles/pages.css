@@ -8692,21 +8692,59 @@ html.premier-nav-visible body:has(.premier-page) .mobile-fixed-nav-wrap {
 }
 
 .premier-fireline-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  max-width: 760px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(150px, 1fr));
+  gap: 10px;
+  width: min(520px, 100%);
+  max-width: 100%;
 }
 
 .premier-fireline-meta span {
-  border: 1px solid rgb(255 250 241 / 24%);
-  background: rgb(255 250 241 / 10%);
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  min-height: 58px;
+  overflow: hidden;
+  border: 1px solid rgb(246 216 125 / 46%);
+  border-top-color: rgb(255 250 241 / 42%);
+  border-radius: 2px;
+  background:
+    linear-gradient(135deg, rgb(255 250 241 / 22%), rgb(212 175 55 / 13%) 44%, rgb(10 8 5 / 34%)),
+    rgb(255 250 241 / 8%);
   color: #fffaf1;
-  padding: 6px 12px;
-  font-size: 0.82rem;
+  padding: 12px 18px;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 22%),
+    0 18px 42px rgb(0 0 0 / 26%);
+  font-size: 0.95rem;
   font-weight: 900;
-  line-height: 1.45;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  text-align: center;
+  text-shadow: 0 2px 16px rgb(0 0 0 / 34%);
   backdrop-filter: blur(10px);
+}
+
+.premier-fireline-meta span::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(120deg, transparent 0 32%, rgb(255 255 255 / 20%) 46%, transparent 60%);
+  content: "";
+  opacity: 0.34;
+  transform: translateX(-36%);
+}
+
+.premier-fireline-meta span::after {
+  position: absolute;
+  right: 14px;
+  bottom: 10px;
+  left: 14px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(246 216 125 / 74%), transparent);
+  content: "";
+  opacity: 0.78;
 }
 
 .premier-fireline-actions,
@@ -8975,12 +9013,16 @@ html.premier-nav-visible body:has(.premier-page) .mobile-fixed-nav-wrap {
   }
 
   .premier-fireline-meta {
-    gap: 6px;
+    width: min(336px, 100%);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
   }
 
   .premier-fireline-meta span {
-    padding: 5px 9px;
-    font-size: 0.72rem;
+    min-height: 50px;
+    padding: 8px 10px;
+    font-size: 0.76rem;
+    letter-spacing: 0.02em;
   }
 
   .premier-fireline-actions,
