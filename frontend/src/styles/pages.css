@@ -10369,21 +10369,12 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
     linear-gradient(180deg, #fff9e8, #d9bc72);
   color: #2f2821;
   font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.64rem;
+  font-weight: 800;
   line-height: 1;
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 60%),
     0 8px 16px rgb(20 14 10 / 18%);
-}
-
-.premier-plan-level strong span {
-  color: #6b5a42;
-  font-family: var(--font-sans);
-  font-size: 0.46rem;
-  font-weight: 900;
-  letter-spacing: 0.06em;
-  line-height: 1;
 }
 
 .premier-plan-level small {
@@ -10699,7 +10690,10 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
 
 .premier-plan-modal__close {
   grid-template-columns: auto auto;
-  gap: 6px;
+  justify-content: center;
+  justify-self: end;
+  gap: 7px;
+  width: fit-content;
   min-width: 82px;
   border: 1px solid #d8c79f;
   border-radius: 999px;

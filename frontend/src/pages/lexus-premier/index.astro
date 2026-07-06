@@ -880,11 +880,11 @@ const infoPosts = [
                     </colgroup>
                     <thead>
                       <tr>
-                        <th scope="col">学力レベル<br />クラス進行</th>
+                        <th scope="col">学力レベル</th>
                         {annualLevels.map((item) => (
                           <th scope="col">
                             <span class="premier-plan-level">
-                              <strong><span>レベル</span>{item.level}</strong>
+                              <strong>{item.level}</strong>
                               <small>
                                 {(annualLevelLabelLines[item.level] ?? [item.label]).map((line) => <span>{line}</span>)}
                               </small>

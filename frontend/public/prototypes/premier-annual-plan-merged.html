@@ -589,7 +589,10 @@
 
       .close-button {
         grid-template-columns: auto auto;
-        gap: 6px;
+        justify-content: center;
+        justify-self: end;
+        gap: 7px;
+        width: fit-content;
         min-width: 82px;
         border: 1px solid #d8c79f;
         border-radius: 999px;
@@ -845,7 +848,7 @@
         const thead = `
           <thead>
             <tr>
-              <th scope="col">学力レベル<br />クラス進行</th>
+              <th scope="col">学力レベル</th>
               ${levels
                 .map(
                   (level) => `
