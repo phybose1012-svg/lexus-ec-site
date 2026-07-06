@@ -296,8 +296,7 @@ const annualTracks = [
 ];
 
 const planPercent = (value: number) => `${(value / 12) * 100}%`;
-const roadmapRowHeight = (barCount: number) => 58 + barCount * 31;
-const roadmapBarTop = (index: number, total: number) => 17 + (total - 1 - index) * 31;
+const annualPlanBarTop = (index: number, total: number) => `${18 + (total - 1 - index) * 20}px`;
 
 type WeekCell = {
   subjects?: string[];
@@ -858,94 +857,115 @@ const infoPosts = [
             <small>学力レベル・対応大学・クラス進行を、1年の伸び方として俯瞰できます。</small>
           </header>
           <section class="premier-annual-plan" aria-label="2026レクサスプレミア本科 年間計画">
-          <div class="premier-annual-plan__head">
-            <div>
-              <p class="premier-annual-plan__eyebrow">YEAR ROADMAP</p>
-              <h4>現在地と、1年後の到達ラインを同じスケールで見る。</h4>
-            </div>
-            <p>学力レベル0〜11を基準に、対応大学の目安とクラス別の進行を整理しました。横に追うほど、各クールでどこまで引き上げるかが見える設計です。</p>
-          </div>
-          <div class="premier-annual-plan__legend" aria-label="クラス色の凡例">
-            <span class="premier-annual-plan__legend-item premier-annual-plan__legend-item--red">Sクラス</span>
-            <span class="premier-annual-plan__legend-item premier-annual-plan__legend-item--gold">Aクラス</span>
-            <span class="premier-annual-plan__legend-item premier-annual-plan__legend-item--green">Fクラス</span>
-            <span class="premier-annual-plan__legend-line">昇格目安</span>
-          </div>
-          <div class="premier-annual-plan__scroll" tabindex="0" aria-label="学力レベル別の対応大学一覧。横にスクロールできます。">
-            <div class="premier-level-matrix">
-              <div class="premier-level-matrix__label">学力レベル</div>
-              {annualLevels.map((item) => (
-                <div class="premier-level-tab" aria-label={`学力レベル${item.level} ${item.label}`}>
-                  <span class="premier-level-tab__number">{item.level}</span>
-                  <span class="premier-level-tab__label">
-                    {(annualLevelLabelLines[item.level] ?? [item.label]).map((line) => <span>{line}</span>)}
-                  </span>
-                </div>
-              ))}
-              <div class="premier-level-matrix__label premier-level-matrix__label--body"><span>対応レベル</span></div>
-              {annualLevels.map((item) => (
-                <article class="premier-level-card">
-                  {item.schools.length > 0 ? (
-                    <ul>
-                      {item.schools.map((school) => <li>{school}</li>)}
-                    </ul>
-                  ) : (
-                    <p>医学部受験に向けた基礎体力を作る期間</p>
-                  )}
-                </article>
-              ))}
-            </div>
-          </div>
-          <div class="premier-annual-plan__scroll premier-annual-plan__scroll--roadmap" tabindex="0" aria-label="クラス別の年間進行ロードマップ。横にスクロールできます。">
-            <div class="premier-roadmap">
-              <div class="premier-roadmap__scale">
-                <div class="premier-roadmap__scale-label">クラス進行</div>
-                {annualLevels.map((item) => (
-                  <span class="premier-roadmap__level">
-                    <small>レベル</small>
-                    <strong>{item.level}</strong>
-                  </span>
-                ))}
+            <div class="premier-annual-plan__head">
+              <div>
+                <p class="premier-annual-plan__eyebrow">YEAR ROADMAP</p>
+                <h4>現在地と、1年後の到達ラインを同じ表で見る。</h4>
               </div>
-              {annualTracks.map((track) => (
-                <article
-                  class={`premier-roadmap-row premier-roadmap-row--${track.tone}`}
-                  style={`--row-height: ${roadmapRowHeight(track.bars.length)}px;`}
-                >
-                  <div class="premier-roadmap-row__label">
-                    <div class="premier-roadmap-row__mark" aria-hidden="true">
-                      <span>{track.letter}</span><em>{track.word}</em>
-                    </div>
-                    <p>{track.lane}</p>
-                    <strong>{track.title}</strong>
-                    <small>【{track.category}】</small>
-                    <b>{track.target}</b>
-                    <span class="premier-roadmap-row__summary-mobile">{track.summary}</span>
-                  </div>
-                  <div class="premier-roadmap-row__lane">
-                    {track.promotions.map((point) => (
-                      <span
-                        class="premier-roadmap-row__promotion"
-                        style={`--left: ${planPercent(point)};`}
-                        aria-hidden="true"
-                      ></span>
-                    ))}
-                    {track.bars.map((bar, index) => (
-                      <span
-                        class="premier-roadmap-row__bar"
-                        style={`--left: ${planPercent(bar.start)}; --width: ${planPercent(bar.end - bar.start)}; --top: ${roadmapBarTop(index, track.bars.length)}px;`}
-                        aria-label={`${track.lane} ${bar.label} ${bar.period} 学力レベル${bar.start}から${bar.end}へ`}
-                      >
-                        <span>{bar.label}</span>
-                        <em>{bar.period}</em>
-                      </span>
-                    ))}
-                    <p>{track.summary}</p>
-                  </div>
-                </article>
-              ))}
+              <p>学力レベル0〜11、対応大学の目安、クラス別の年間進行を1枚に統合しました。通常表示では全体像を俯瞰し、詳細は拡大表示で確認できます。</p>
+              <button class="premier-annual-plan__expand" type="button" data-premier-plan-open>
+                拡大して見る
+              </button>
             </div>
-          </div>
+            <div class="premier-annual-plan__legend" aria-label="クラス色の凡例">
+              <span class="premier-annual-plan__legend-item premier-annual-plan__legend-item--red">Sクラス</span>
+              <span class="premier-annual-plan__legend-item premier-annual-plan__legend-item--gold">Aクラス</span>
+              <span class="premier-annual-plan__legend-item premier-annual-plan__legend-item--green">Fクラス</span>
+              <span class="premier-annual-plan__legend-line">昇格目安</span>
+            </div>
+            <div class="premier-annual-plan__fit" data-premier-plan-fit aria-label="年間計画イメージ 縮小プレビュー">
+              <div class="premier-plan-table-shell" data-premier-plan-fit-shell>
+                <table class="premier-plan-table">
+                  <colgroup>
+                    <col />
+                    {annualLevels.map(() => <col />)}
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">学力レベル<br />クラス進行</th>
+                      {annualLevels.map((item) => (
+                        <th scope="col">
+                          <span class="premier-plan-level">
+                            <strong><span>レベル</span>{item.level}</strong>
+                            <small>
+                              {(annualLevelLabelLines[item.level] ?? [item.label]).map((line) => <span>{line}</span>)}
+                            </small>
+                          </span>
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="premier-plan-table__schools">
+                      <th scope="row"><span>対応大学<br />目安</span></th>
+                      {annualLevels.map((item) => (
+                        <td class="premier-plan-school-cell">
+                          {item.schools.length > 0 ? (
+                            <ul>
+                              {item.schools.map((school) => <li>{school}</li>)}
+                            </ul>
+                          ) : (
+                            <p>医学部受験に向けた基礎体力を作る期間</p>
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                    {annualTracks.map((track) => (
+                      <tr class={`premier-plan-table__track premier-plan-table__track--${track.tone}`}>
+                        <th class="premier-plan-track-head" scope="row">
+                          <span class="premier-plan-track-head__mark" aria-hidden="true">
+                            <span>{track.letter}</span><em>{track.word}</em>
+                          </span>
+                          <p>{track.lane}</p>
+                          <strong>{track.title}</strong>
+                          <small>【{track.category}】</small>
+                          <b>{track.target}</b>
+                        </th>
+                        <td class="premier-plan-lane" colspan={annualLevels.length}>
+                          {track.promotions.map((point) => (
+                            <span
+                              class="premier-plan-lane__promotion"
+                              style={`--left: ${planPercent(point)};`}
+                              aria-hidden="true"
+                            ></span>
+                          ))}
+                          {track.bars.map((bar, index) => (
+                            <span
+                              class="premier-plan-lane__bar"
+                              style={`--left: ${planPercent(bar.start)}; --width: ${planPercent(bar.end - bar.start)}; --top: ${annualPlanBarTop(index, track.bars.length)};`}
+                              aria-label={`${track.lane} ${bar.label} ${bar.period} 学力レベル${bar.start}から${bar.end}へ`}
+                            >
+                              <span>{bar.label}</span>
+                              <em>{bar.period}</em>
+                            </span>
+                          ))}
+                          <p>{track.summary}</p>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="premier-plan-modal" data-premier-plan-modal hidden>
+              <div class="premier-plan-modal__panel" role="dialog" aria-modal="true" aria-labelledby="premier-plan-modal-title">
+                <header class="premier-plan-modal__bar">
+                  <p id="premier-plan-modal-title">年間計画イメージ 拡大表示</p>
+                  <div class="premier-plan-modal__zoom" aria-label="表示倍率">
+                    <button type="button" data-premier-plan-zoom-out aria-label="縮小">−</button>
+                    <button type="button" data-premier-plan-zoom-reset>100%</button>
+                    <button type="button" data-premier-plan-zoom-in aria-label="拡大">＋</button>
+                  </div>
+                  <button class="premier-plan-modal__close" type="button" data-premier-plan-close aria-label="閉じる">
+                    <span aria-hidden="true">×</span>
+                    <strong>閉じる</strong>
+                  </button>
+                </header>
+                <div class="premier-plan-modal__body" data-premier-plan-modal-scroll>
+                  <div class="premier-plan-modal__table" data-premier-plan-modal-shell></div>
+                </div>
+              </div>
+            </div>
           </section>
         </section>
         <section class="premier-overview-block premier-overview-block--weekly" aria-labelledby="premier-weekly-title">
@@ -1290,6 +1310,99 @@ const infoPosts = [
           }
         }, false);
       }
+    })();
+
+    (function () {
+      var fitStage = document.querySelector("[data-premier-plan-fit]");
+      var fitShell = document.querySelector("[data-premier-plan-fit-shell]");
+      var modal = document.querySelector("[data-premier-plan-modal]");
+      var modalShell = document.querySelector("[data-premier-plan-modal-shell]");
+      var modalScroll = document.querySelector("[data-premier-plan-modal-scroll]");
+      var openButton = document.querySelector("[data-premier-plan-open]");
+      var closeButton = document.querySelector("[data-premier-plan-close]");
+      var resetButton = document.querySelector("[data-premier-plan-zoom-reset]");
+      var zoomInButton = document.querySelector("[data-premier-plan-zoom-in]");
+      var zoomOutButton = document.querySelector("[data-premier-plan-zoom-out]");
+      if (!fitStage || !fitShell || !modal || !modalShell || !modalScroll || !openButton || !closeButton || !resetButton) return;
+
+      var zoom = 1;
+      var previousBodyOverflow = "";
+      var previousFocus = null;
+
+      var fitPreview = function () {
+        var table = fitShell.querySelector(".premier-plan-table");
+        if (!table) return;
+        fitShell.style.transform = "scale(1)";
+        fitStage.style.height = "auto";
+        var availableWidth = fitStage.clientWidth;
+        var availableHeight = Math.max(300, Math.min(window.innerHeight * 0.68, 620));
+        var scale = Math.min(availableWidth / table.scrollWidth, availableHeight / table.scrollHeight, 1);
+        fitShell.style.transform = "scale(" + scale + ")";
+        fitStage.style.height = Math.ceil(table.scrollHeight * scale) + "px";
+      };
+
+      var ensureModalTable = function () {
+        if (modalShell.querySelector(".premier-plan-table")) return;
+        var sourceTable = fitShell.querySelector(".premier-plan-table");
+        if (!sourceTable) return;
+        modalShell.appendChild(sourceTable.cloneNode(true));
+      };
+
+      var applyZoom = function () {
+        modalShell.style.zoom = String(zoom);
+        resetButton.textContent = Math.round(zoom * 100) + "%";
+      };
+
+      var openModal = function () {
+        ensureModalTable();
+        previousFocus = document.activeElement;
+        previousBodyOverflow = document.body.style.overflow || "";
+        modal.hidden = false;
+        modal.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+        zoom = 1;
+        applyZoom();
+        modalScroll.scrollTo({ top: 0, left: 0 });
+        closeButton.focus();
+      };
+
+      var closeModal = function () {
+        modal.classList.remove("is-open");
+        modal.hidden = true;
+        document.body.style.overflow = previousBodyOverflow;
+        if (previousFocus && previousFocus.focus) previousFocus.focus();
+      };
+
+      openButton.addEventListener("click", openModal, false);
+      closeButton.addEventListener("click", closeModal, false);
+      if (zoomInButton) {
+        zoomInButton.addEventListener("click", function () {
+          zoom = Math.min(1.8, Math.round((zoom + 0.1) * 10) / 10);
+          applyZoom();
+        }, false);
+      }
+      if (zoomOutButton) {
+        zoomOutButton.addEventListener("click", function () {
+          zoom = Math.max(0.6, Math.round((zoom - 0.1) * 10) / 10);
+          applyZoom();
+        }, false);
+      }
+      resetButton.addEventListener("click", function () {
+        zoom = 1;
+        applyZoom();
+      }, false);
+      modal.addEventListener("click", function (event) {
+        if (event.target === modal) closeModal();
+      }, false);
+      window.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && !modal.hidden) closeModal();
+      }, false);
+      window.addEventListener("resize", fitPreview, false);
+      window.addEventListener("load", function () {
+        fitPreview();
+        applyZoom();
+      }, false);
+      fitPreview();
     })();
   </script>
 </SiteLayout>
