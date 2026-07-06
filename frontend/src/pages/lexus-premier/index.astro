@@ -2,6 +2,64 @@
 import { acceptedUniversities, achievementStats, seo } from "../../data/home";
 import SectionHeading from "../../components/SectionHeading.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
+import { marqueeThumb } from "../../lib/marqueeThumb";
+import { getVoicePage, type VoiceImage } from "../../lib/voiceSource";
+
+type PremierMarqueeItem = { src: string; alt: string; label: string };
+
+const voicePage = getVoicePage();
+const isImage = (image: VoiceImage | undefined): image is VoiceImage => Boolean(image);
+
+const universityAbbreviations: Record<string, string> = {
+  慶應大: "慶應義塾大",
+  慶応大: "慶應義塾大",
+  慶應義塾大学: "慶應義塾大",
+  慶応義塾大学: "慶應義塾大",
+  昭和大学: "昭和医大",
+  昭和医科大学: "昭和医大",
+  聖マリアンナ医科大学: "聖マリ医大",
+  東京慈恵会医科大学: "慈恵医大",
+  東京女子医科大学: "東京女子医大",
+  東北医科薬科大学: "東北医薬大",
+  国際医療福祉大学: "国際医療福祉大",
+};
+
+const passLabelFromTitle = (title: string, href = ""): string => {
+  const legacyKey = `${title} ${href}`;
+  if (!title.includes("｜")) {
+    if (/慶應|慶応|慶大/.test(legacyKey) || href.includes("/mail-02/")) return "慶應義塾大合格";
+    return "合格";
+  }
+
+  let university = title
+    .split("｜")
+    .slice(1)
+    .join("｜")
+    .split(/[、,]/)[0]
+    .replace(/他.*$/, "")
+    .replace(/合格.*$/, "")
+    .replace(/医学部医学科|医学部/g, "")
+    .replace(/^旧/, "")
+    .trim();
+
+  if (!university) return "合格";
+  university = universityAbbreviations[university] ?? university.replace(/医科大学/, "医大").replace(/大学$/, "大");
+  return `${university}合格`;
+};
+
+const interviewMarqueeItems: PremierMarqueeItem[] = voicePage.interviews
+  .filter((item) => isImage(item.image))
+  .map((item) => ({ src: item.image!.src, alt: item.image!.alt || item.title, label: passLabelFromTitle(item.title, item.href) }));
+
+const premierAchievementMarqueeItems: PremierMarqueeItem[] =
+  interviewMarqueeItems.length >= 12
+    ? interviewMarqueeItems
+    : voicePage.successPhotos
+        .filter((story) => isImage(story.image))
+        .map((story) => ({ src: story.image.src, alt: story.image.alt || "", label: "合格" }));
+
+const premierAchievementMarqueeRow1 = premierAchievementMarqueeItems.filter((_, index) => index % 2 === 0).slice(0, 12);
+const premierAchievementMarqueeRow2 = premierAchievementMarqueeItems.filter((_, index) => index % 2 === 1).slice(0, 12);
 
 const penLogo = "/assets/legacy/wp-content/uploads/2025/11/ペン先-ロゴ-4色-300x300.png";
 const oniKanri = "/illustrations/characters/yuki-sensei-default.png";
@@ -709,7 +767,33 @@ const infoPosts = [
 
     <section class="premier-achievement" aria-labelledby="premier-achievement-title">
       <div class="content">
-        <SectionHeading id="premier-achievement-title" label="ACHIEVEMENT" title="2025年度の実績報告" subtitle="〜 一年で合格する割合 〜" />
+        {premierAchievementMarqueeRow1.length > 0 && (
+          <div class="premier-achievement-marquee" aria-hidden="true">
+            <div class="premier-achievement-marquee__row premier-achievement-marquee__row--left">
+              {[...premierAchievementMarqueeRow1, ...premierAchievementMarqueeRow1].map((item) => (
+                <span class="premier-achievement-marquee__item">
+                  <img src={marqueeThumb(item.src)} alt="" width="160" height="120" loading="lazy" decoding="async" />
+                  <span class="premier-achievement-marquee__tag">{item.label}</span>
+                </span>
+              ))}
+            </div>
+            {premierAchievementMarqueeRow2.length > 0 && (
+              <div class="premier-achievement-marquee__row premier-achievement-marquee__row--right">
+                {[...premierAchievementMarqueeRow2, ...premierAchievementMarqueeRow2].map((item) => (
+                  <span class="premier-achievement-marquee__item">
+                    <img src={marqueeThumb(item.src)} alt="" width="160" height="120" loading="lazy" decoding="async" />
+                    <span class="premier-achievement-marquee__tag">{item.label}</span>
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+        <header class="section-heading premier-achievement__heading">
+          <p>ACHIEVEMENT</p>
+          <h2 id="premier-achievement-title">2025年度の実績報告</h2>
+          <small>〜 一年で合格する割合 〜</small>
+        </header>
         <p class="premier-achievement__intro">
           スタートラインは一人ひとり違っても、合格に必要な行動量と精度を毎日積み上げる。その結果を、入学時の偏差値帯ごとに整理しました。
         </p>
