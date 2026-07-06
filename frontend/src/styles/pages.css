@@ -12427,10 +12427,12 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
   background: #fff;
   padding: 42px;
   box-shadow: 0 16px 36px rgb(58 42 18 / 12%);
+  font-family: var(--font-serif);
 }
 
 .premier-message__box p {
   color: #3a352f;
+  font-family: var(--font-serif);
   font-size: 1.08rem;
   font-weight: 700;
   line-height: 1.95;
@@ -12441,6 +12443,7 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
   display: block;
   margin: 0 0 12px;
   color: var(--gold-dark) !important;
+  font-family: var(--font-serif);
   font-size: 0.95rem !important;
   font-weight: 900 !important;
   letter-spacing: 0.18em;
@@ -12469,14 +12472,16 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
 .premier-message__box h3 {
   margin: 32px 0;
   color: #8a1111;
+  font-family: var(--font-serif);
   font-size: 2rem;
   text-align: left;
 }
 
 .premier-message__box img {
   width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 14px 30px rgb(0 0 0 / 12%);
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
 }
 
 .premier-contact {
