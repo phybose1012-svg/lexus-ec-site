@@ -8654,6 +8654,12 @@ html.premier-nav-visible body:has(.premier-page) .mobile-fixed-nav-wrap {
   color: #f6d87d;
 }
 
+@media (min-width: 901px) {
+  .premier-fireline-title strong {
+    white-space: nowrap;
+  }
+}
+
 .premier-fireline-lead {
   max-width: 700px;
   margin: 0;
