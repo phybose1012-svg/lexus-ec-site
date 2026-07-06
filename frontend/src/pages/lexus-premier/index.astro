@@ -659,6 +659,14 @@ const learningSystemOuter = [
   },
 ];
 
+const learningSystemPhotos = [
+  { src: "/assets/images/lexus-premier/premier-learning-01.jpg", width: 900, height: 600 },
+  { src: "/assets/images/lexus-premier/premier-learning-02.jpg", width: 900, height: 515 },
+  { src: "/assets/images/lexus-premier/premier-learning-03.jpg", width: 900, height: 600 },
+  { src: "/assets/images/lexus-premier/premier-learning-04.jpg", width: 900, height: 600 },
+  { src: "/assets/images/lexus-premier/premier-learning-05.jpg", width: 900, height: 600 },
+];
+
 const infoPosts = [
   { title: "獨協医科大学｜医学部｜【2027年度の合格へ】科目別一般選抜（前期）の傾向と対策", href: "/dokkyouika-university-entrance-exam-measures2027/" },
   { title: "自治医科大学｜医学部｜【2027年度の合格へ】科目別一般選抜の傾向と対策", href: "/jichiika-university-entrance-exam-measures2027/" },
@@ -1193,6 +1201,13 @@ const infoPosts = [
 
     <section class="premier-learning" aria-labelledby="premier-learning-title">
       <div class="content premier-learning__inner">
+        <div class="premier-learning-photos" aria-hidden="true">
+          {learningSystemPhotos.map((photo, index) => (
+            <figure class={`premier-learning-photo premier-learning-photo--${index + 1}`}>
+              <img src={photo.src} width={photo.width} height={photo.height} alt="" loading="lazy" decoding="async" />
+            </figure>
+          ))}
+        </div>
         <SectionHeading id="premier-learning-title" label="SYSTEM" title="学習システム" />
         <p class="premier-learning__lead">
           授業、演習、面談、夜間トレーニング、チェックテストを一気通貫で連動させ、理解から定着、確認、修正までを毎日の学習サイクルに組み込みます。
