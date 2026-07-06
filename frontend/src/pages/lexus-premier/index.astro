@@ -568,7 +568,7 @@ const supportItems = [
   "後期試験対策",
 ];
 
-const learningSystems = [
+const learningSystemCore = [
   {
     label: "01",
     title: "クラス授業",
@@ -581,18 +581,23 @@ const learningSystems = [
   },
   {
     label: "03",
-    title: "“鬼特訓” 夜間トレーニング",
-    body: "指定課題と質問対応を繰り返し、「デキる」を「速くデキる」に変えます。",
+    title: "担任面談",
+    body: "勉強の仕方、復習、受験大学の決定まで、プロ講師である担任が共に歩みます。",
   },
+];
+
+const learningSystemOuter = [
   {
     label: "04",
-    title: "“鬼監理” チェックテスト",
-    body: "年間265回の試験で、わかったつもりを徹底的に排除します。",
+    title: "“鬼特訓” 夜間トレーニング",
+    body: "指定課題と質問対応を繰り返し、「デキる」を「速くデキる」に変えます。",
+    tone: "training",
   },
   {
     label: "05",
-    title: "担任はプロ講師",
-    body: "勉強の仕方、復習、受験大学の決定まで、プロ講師である担任が共に歩みます。",
+    title: "“鬼監理” チェックテスト",
+    body: "年間265回の試験で、わかったつもりを徹底的に排除します。",
+    tone: "management",
   },
 ];
 
@@ -1103,16 +1108,45 @@ const infoPosts = [
     </section>
 
     <section class="premier-learning" aria-labelledby="premier-learning-title">
-      <div class="content">
+      <div class="content premier-learning__inner">
         <SectionHeading id="premier-learning-title" label="SYSTEM" title="学習システム" />
-        <div class="premier-learning-grid">
-          {learningSystems.map((item) => (
-            <article>
-              <span>{item.label}</span>
-              <h3>{item.title}</h3>
-              <p>{item.body}</p>
-            </article>
-          ))}
+        <div class="premier-learning-orbit" aria-label="クラス授業、クラス演習、担任面談、鬼特訓、鬼監理が連動する学習システム">
+          <div class="premier-learning-orbit__frame" aria-hidden="true"></div>
+          <div class="premier-learning-orbit__outer">
+            <svg class="premier-learning-orbit__lines premier-learning-orbit__lines--outer" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M14 82 L50 10 L86 82 Z" />
+            </svg>
+            <span class="premier-learning-orbit__axis premier-learning-orbit__axis--outer" aria-hidden="true"></span>
+            <div class="premier-learning-orbit__cluster" aria-label="日中の学習サイクル">
+              <div class="premier-learning-orbit__cluster-face">
+                <div class="premier-learning-orbit__inner">
+                  <svg class="premier-learning-orbit__lines premier-learning-orbit__lines--inner" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                    <path class="premier-learning-orbit__line-main" d="M18 82 L50 18 L82 82 Z" />
+                    <path class="premier-learning-orbit__line-pulse" d="M18 82 L50 18 L82 82" />
+                  </svg>
+                  <span class="premier-learning-orbit__axis premier-learning-orbit__axis--inner" aria-hidden="true"></span>
+                  {learningSystemCore.map((item, index) => (
+                    <article class={`premier-learning-node premier-learning-node--${["lesson", "practice", "mentor"][index]}`}>
+                      <div class="premier-learning-card">
+                        <span>{item.label}</span>
+                        <h3>{item.title}</h3>
+                        <p>{item.body}</p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </div>
+            {learningSystemOuter.map((item) => (
+              <article class={`premier-learning-stage premier-learning-stage--${item.tone}`}>
+                <div class="premier-learning-card premier-learning-card--stage">
+                  <span>{item.label}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
