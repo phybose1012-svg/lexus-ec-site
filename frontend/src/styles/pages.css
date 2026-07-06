@@ -11417,25 +11417,38 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
   --week-tone-deep: #17404d;
 }
 
-.premier-week-table__scroll {
-  position: relative;
-  max-height: clamp(340px, 48vh, 400px);
-  overflow: auto;
-  border: 1px solid #d8c79f;
-  border-radius: 8px;
-  background: #fffdf8;
-  box-shadow: 0 18px 40px rgb(43 32 18 / 12%);
-  overscroll-behavior-x: contain;
-  overscroll-behavior-y: auto;
-  scrollbar-gutter: stable;
-  scrollbar-color: #b78a31 #f3ead9;
-  scrollbar-width: thin;
-  -webkit-overflow-scrolling: touch;
+.premier-week-table__preview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(132px, 156px);
+  gap: 12px;
+  align-items: stretch;
+  margin-top: 14px;
 }
 
-.premier-week-table__scroll:focus-visible {
-  outline: 3px solid rgb(183 138 49 / 46%);
-  outline-offset: 3px;
+.premier-week-table__fit {
+  position: relative;
+  overflow: hidden;
+  min-height: 300px;
+  border: 1px solid #d8c79f;
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, #fff, #fffaf1),
+    #fffdf8;
+  box-shadow: 0 18px 40px rgb(43 32 18 / 12%);
+}
+
+.premier-week-table__fit-shell {
+  width: max-content;
+  transform-origin: top left;
+}
+
+.premier-week-table__expand {
+  min-height: 100%;
+}
+
+.premier-week-table__fit-shell .premier-week-schedule,
+.premier-week-modal .premier-week-schedule {
+  width: 1080px;
 }
 
 .premier-week-schedule {
@@ -11634,7 +11647,9 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
 }
 
 .premier-week-schedule__break th {
-  position: static;
+  position: sticky;
+  left: 0;
+  z-index: 2;
   background: linear-gradient(90deg, #f4ead7, #fff8ec);
   color: #6a5637;
   padding: 8px 12px;
@@ -12054,8 +12069,13 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
     max-width: 720px;
   }
 
-  .premier-week-table__scroll {
-    max-height: clamp(300px, 44vh, 340px);
+  .premier-week-table__preview {
+    grid-template-columns: minmax(0, 1fr) 136px;
+    gap: 10px;
+  }
+
+  .premier-week-table__fit {
+    min-height: 260px;
   }
 
   .premier-week-table__notes {
@@ -12655,8 +12675,18 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
     line-height: 1.45;
   }
 
-  .premier-week-table__scroll {
-    max-height: clamp(240px, 36vh, 300px);
+  .premier-week-table__preview {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .premier-week-table__fit {
+    min-height: 200px;
+  }
+
+  .premier-week-table__fit-shell .premier-week-schedule,
+  .premier-week-modal .premier-week-schedule {
+    width: 980px;
   }
 
   .premier-week-schedule {

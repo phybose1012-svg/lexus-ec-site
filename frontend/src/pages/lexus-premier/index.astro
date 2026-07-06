@@ -1017,49 +1017,76 @@ const infoPosts = [
               <span class="premier-week-table__legend-meaning">= 元気な生徒が自由参加</span>
             </span>
           </div>
-          <div class="premier-week-table__scroll" tabindex="0" aria-label="週間予定表。縦横にスクロールできます。">
-            <table class="premier-week-schedule">
-              <thead>
-                <tr>
-                  <th scope="col">時限 / 時間</th>
-                  {weekDays.map((day) => <th scope="col">{day}</th>)}
-                </tr>
-              </thead>
-              <tbody>
-                {weeklyScheduleRows.map((row) => (
-                  row.kind === "break" ? (
-                    <tr class={`premier-week-schedule__break premier-week-schedule__break--${row.tone}`}>
-                      <th scope="row" colspan="8">
-                        <span class="premier-week-schedule__break-label">{row.label}</span>
-                        {row.note && <small class="premier-week-schedule__break-note">（{row.note}）</small>}
-                      </th>
+          <div class="premier-week-table__preview">
+            <div class="premier-week-table__fit" data-premier-week-fit aria-label="週間予定イメージ 縮小プレビュー">
+              <div class="premier-week-table__fit-shell" data-premier-week-fit-shell>
+                <table class="premier-week-schedule">
+                  <thead>
+                    <tr>
+                      <th scope="col">時限 / 時間</th>
+                      {weekDays.map((day) => <th scope="col">{day}</th>)}
                     </tr>
-                  ) : (
-                    <tr class={`premier-week-schedule__period premier-week-schedule__period--${row.tone}`}>
-                      <th scope="row">
-                        <span>{row.period}</span>
-                        <small>{row.time}</small>
-                      </th>
-                      {row.cells.map((cell) => (
-                        <td class={weeklyCellClass(cell)}>
-                          {cell.subjects && (
-                            <div class="premier-week-cell__subjects" aria-label="科目">
-                              {cell.subjects.map((subject) => <span>{subject}</span>)}
-                            </div>
-                          )}
-                          {cell.label ? <strong>{cell.label}</strong> : <span class="premier-week-cell__blank">-</span>}
-                          {cell.note && <em>{cell.note}</em>}
-                        </td>
-                      ))}
-                    </tr>
-                  )
-                ))}
-              </tbody>
-            </table>
+                  </thead>
+                  <tbody>
+                    {weeklyScheduleRows.map((row) => (
+                      row.kind === "break" ? (
+                        <tr class={`premier-week-schedule__break premier-week-schedule__break--${row.tone}`}>
+                          <th scope="row" colspan="8">
+                            <span class="premier-week-schedule__break-label">{row.label}</span>
+                            {row.note && <small class="premier-week-schedule__break-note">（{row.note}）</small>}
+                          </th>
+                        </tr>
+                      ) : (
+                        <tr class={`premier-week-schedule__period premier-week-schedule__period--${row.tone}`}>
+                          <th scope="row">
+                            <span>{row.period}</span>
+                            <small>{row.time}</small>
+                          </th>
+                          {row.cells.map((cell) => (
+                            <td class={weeklyCellClass(cell)}>
+                              {cell.subjects && (
+                                <div class="premier-week-cell__subjects" aria-label="科目">
+                                  {cell.subjects.map((subject) => <span>{subject}</span>)}
+                                </div>
+                              )}
+                              {cell.label ? <strong>{cell.label}</strong> : <span class="premier-week-cell__blank">-</span>}
+                              {cell.note && <em>{cell.note}</em>}
+                            </td>
+                          ))}
+                        </tr>
+                      )
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <button class="premier-annual-plan__expand premier-week-table__expand" type="button" data-premier-week-open>
+              <span>拡大して見る</span>
+              <small>固定表示で確認</small>
+            </button>
           </div>
           <ul class="premier-week-table__notes">
             {weeklyScheduleNotes.map((note) => <li>{note}</li>)}
           </ul>
+          <div class="premier-plan-modal premier-week-modal" data-premier-week-modal hidden>
+            <div class="premier-plan-modal__panel" role="dialog" aria-modal="true" aria-labelledby="premier-week-modal-title">
+              <header class="premier-plan-modal__bar">
+                <p id="premier-week-modal-title">週間予定イメージ 拡大表示</p>
+                <div class="premier-plan-modal__zoom" aria-label="表示倍率">
+                  <button type="button" data-premier-week-zoom-out aria-label="縮小">−</button>
+                  <button type="button" data-premier-week-zoom-reset>100%</button>
+                  <button type="button" data-premier-week-zoom-in aria-label="拡大">＋</button>
+                </div>
+                <button class="premier-plan-modal__close" type="button" data-premier-week-close aria-label="閉じる">
+                  <span aria-hidden="true">×</span>
+                  <strong>閉じる</strong>
+                </button>
+              </header>
+              <div class="premier-plan-modal__body" data-premier-week-modal-scroll>
+                <div class="premier-plan-modal__table" data-premier-week-modal-shell></div>
+              </div>
+            </div>
+          </div>
           </section>
         </section>
         <section class="premier-overview-block premier-overview-block--support" aria-labelledby="premier-support-title">
@@ -1316,96 +1343,132 @@ const infoPosts = [
     })();
 
     (function () {
-      var fitStage = document.querySelector("[data-premier-plan-fit]");
-      var fitShell = document.querySelector("[data-premier-plan-fit-shell]");
-      var modal = document.querySelector("[data-premier-plan-modal]");
-      var modalShell = document.querySelector("[data-premier-plan-modal-shell]");
-      var modalScroll = document.querySelector("[data-premier-plan-modal-scroll]");
-      var openButton = document.querySelector("[data-premier-plan-open]");
-      var closeButton = document.querySelector("[data-premier-plan-close]");
-      var resetButton = document.querySelector("[data-premier-plan-zoom-reset]");
-      var zoomInButton = document.querySelector("[data-premier-plan-zoom-in]");
-      var zoomOutButton = document.querySelector("[data-premier-plan-zoom-out]");
-      if (!fitStage || !fitShell || !modal || !modalShell || !modalScroll || !openButton || !closeButton || !resetButton) return;
+      var setupFittedTableModal = function (settings) {
+        var fitStage = document.querySelector(settings.fitStage);
+        var fitShell = document.querySelector(settings.fitShell);
+        var modal = document.querySelector(settings.modal);
+        var modalShell = document.querySelector(settings.modalShell);
+        var modalScroll = document.querySelector(settings.modalScroll);
+        var openButton = document.querySelector(settings.openButton);
+        var closeButton = document.querySelector(settings.closeButton);
+        var resetButton = document.querySelector(settings.resetButton);
+        var zoomInButton = document.querySelector(settings.zoomInButton);
+        var zoomOutButton = document.querySelector(settings.zoomOutButton);
+        if (!fitStage || !fitShell || !modal || !modalShell || !modalScroll || !openButton || !closeButton || !resetButton) return;
 
-      var zoom = 1;
-      var previousBodyOverflow = "";
-      var previousFocus = null;
+        var zoom = 1;
+        var previousBodyOverflow = "";
+        var previousFocus = null;
 
-      var fitPreview = function () {
-        var table = fitShell.querySelector(".premier-plan-table");
-        if (!table) return;
-        fitShell.style.transform = "scale(1)";
-        fitStage.style.height = "auto";
-        var availableWidth = fitStage.clientWidth;
-        var availableHeight = Math.max(300, Math.min(window.innerHeight * 0.68, 620));
-        var scale = Math.min(availableWidth / table.scrollWidth, availableHeight / table.scrollHeight, 1);
-        fitShell.style.transform = "scale(" + scale + ")";
-        fitStage.style.height = Math.ceil(table.scrollHeight * scale) + "px";
-      };
+        var fitPreview = function () {
+          var table = fitShell.querySelector(settings.table);
+          if (!table) return;
+          fitShell.style.transform = "scale(1)";
+          fitStage.style.height = "auto";
+          var availableWidth = fitStage.clientWidth;
+          var availableHeight = Math.max(settings.minHeight, Math.min(window.innerHeight * settings.heightRatio, settings.maxHeight));
+          var scale = Math.min(availableWidth / table.scrollWidth, availableHeight / table.scrollHeight, 1);
+          fitShell.style.transform = "scale(" + scale + ")";
+          fitStage.style.height = Math.ceil(table.scrollHeight * scale) + "px";
+        };
 
-      var ensureModalTable = function () {
-        if (modalShell.querySelector(".premier-plan-table")) return;
-        var sourceTable = fitShell.querySelector(".premier-plan-table");
-        if (!sourceTable) return;
-        modalShell.appendChild(sourceTable.cloneNode(true));
-      };
+        var ensureModalTable = function () {
+          if (modalShell.querySelector(settings.table)) return;
+          var sourceTable = fitShell.querySelector(settings.table);
+          if (!sourceTable) return;
+          modalShell.appendChild(sourceTable.cloneNode(true));
+        };
 
-      var applyZoom = function () {
-        modalShell.style.zoom = String(zoom);
-        resetButton.textContent = Math.round(zoom * 100) + "%";
-      };
+        var applyZoom = function () {
+          modalShell.style.zoom = String(zoom);
+          resetButton.textContent = Math.round(zoom * 100) + "%";
+        };
 
-      var openModal = function () {
-        ensureModalTable();
-        previousFocus = document.activeElement;
-        previousBodyOverflow = document.body.style.overflow || "";
-        modal.hidden = false;
-        modal.classList.add("is-open");
-        document.body.style.overflow = "hidden";
-        zoom = 1;
-        applyZoom();
-        modalScroll.scrollTo({ top: 0, left: 0 });
-        closeButton.focus();
-      };
+        var openModal = function () {
+          ensureModalTable();
+          previousFocus = document.activeElement;
+          previousBodyOverflow = document.body.style.overflow || "";
+          modal.hidden = false;
+          modal.classList.add("is-open");
+          document.body.style.overflow = "hidden";
+          zoom = 1;
+          applyZoom();
+          modalScroll.scrollTo({ top: 0, left: 0 });
+          closeButton.focus();
+        };
 
-      var closeModal = function () {
-        modal.classList.remove("is-open");
-        modal.hidden = true;
-        document.body.style.overflow = previousBodyOverflow;
-        if (previousFocus && previousFocus.focus) previousFocus.focus();
-      };
+        var closeModal = function () {
+          modal.classList.remove("is-open");
+          modal.hidden = true;
+          document.body.style.overflow = previousBodyOverflow;
+          if (previousFocus && previousFocus.focus) previousFocus.focus();
+        };
 
-      openButton.addEventListener("click", openModal, false);
-      closeButton.addEventListener("click", closeModal, false);
-      if (zoomInButton) {
-        zoomInButton.addEventListener("click", function () {
-          zoom = Math.min(1.8, Math.round((zoom + 0.1) * 10) / 10);
+        openButton.addEventListener("click", openModal, false);
+        closeButton.addEventListener("click", closeModal, false);
+        if (zoomInButton) {
+          zoomInButton.addEventListener("click", function () {
+            zoom = Math.min(1.8, Math.round((zoom + 0.1) * 10) / 10);
+            applyZoom();
+          }, false);
+        }
+        if (zoomOutButton) {
+          zoomOutButton.addEventListener("click", function () {
+            zoom = Math.max(0.6, Math.round((zoom - 0.1) * 10) / 10);
+            applyZoom();
+          }, false);
+        }
+        resetButton.addEventListener("click", function () {
+          zoom = 1;
           applyZoom();
         }, false);
-      }
-      if (zoomOutButton) {
-        zoomOutButton.addEventListener("click", function () {
-          zoom = Math.max(0.6, Math.round((zoom - 0.1) * 10) / 10);
+        modal.addEventListener("click", function (event) {
+          if (event.target === modal) closeModal();
+        }, false);
+        window.addEventListener("keydown", function (event) {
+          if (event.key === "Escape" && !modal.hidden) closeModal();
+        }, false);
+        window.addEventListener("resize", fitPreview, false);
+        window.addEventListener("load", function () {
+          fitPreview();
           applyZoom();
         }, false);
-      }
-      resetButton.addEventListener("click", function () {
-        zoom = 1;
-        applyZoom();
-      }, false);
-      modal.addEventListener("click", function (event) {
-        if (event.target === modal) closeModal();
-      }, false);
-      window.addEventListener("keydown", function (event) {
-        if (event.key === "Escape" && !modal.hidden) closeModal();
-      }, false);
-      window.addEventListener("resize", fitPreview, false);
-      window.addEventListener("load", function () {
         fitPreview();
-        applyZoom();
-      }, false);
-      fitPreview();
+      };
+
+      setupFittedTableModal({
+        fitStage: "[data-premier-plan-fit]",
+        fitShell: "[data-premier-plan-fit-shell]",
+        modal: "[data-premier-plan-modal]",
+        modalShell: "[data-premier-plan-modal-shell]",
+        modalScroll: "[data-premier-plan-modal-scroll]",
+        openButton: "[data-premier-plan-open]",
+        closeButton: "[data-premier-plan-close]",
+        resetButton: "[data-premier-plan-zoom-reset]",
+        zoomInButton: "[data-premier-plan-zoom-in]",
+        zoomOutButton: "[data-premier-plan-zoom-out]",
+        table: ".premier-plan-table",
+        minHeight: 300,
+        maxHeight: 620,
+        heightRatio: 0.68,
+      });
+
+      setupFittedTableModal({
+        fitStage: "[data-premier-week-fit]",
+        fitShell: "[data-premier-week-fit-shell]",
+        modal: "[data-premier-week-modal]",
+        modalShell: "[data-premier-week-modal-shell]",
+        modalScroll: "[data-premier-week-modal-scroll]",
+        openButton: "[data-premier-week-open]",
+        closeButton: "[data-premier-week-close]",
+        resetButton: "[data-premier-week-zoom-reset]",
+        zoomInButton: "[data-premier-week-zoom-in]",
+        zoomOutButton: "[data-premier-week-zoom-out]",
+        table: ".premier-week-schedule",
+        minHeight: 260,
+        maxHeight: 500,
+        heightRatio: 0.58,
+      });
     })();
   </script>
 </SiteLayout>
