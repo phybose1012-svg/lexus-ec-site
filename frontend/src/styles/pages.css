@@ -8475,7 +8475,7 @@ html.premier-nav-visible body:has(.premier-page) .mobile-fixed-nav-wrap {
 .premier-fireline-prime {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(3rem, 7.1vw, 6.25rem);
+  font-size: clamp(1.82rem, 5.35vw, 4.55rem);
   font-weight: 700;
   line-height: 0.94;
   text-shadow: 0 22px 46px rgb(0 0 0 / 36%);
@@ -8488,6 +8488,19 @@ html.premier-nav-visible body:has(.premier-page) .mobile-fixed-nav-wrap {
 .premier-fireline-prime strong {
   color: #f4d47c;
   font-weight: 700;
+}
+
+.premier-fireline-subtitle {
+  margin: 0;
+  border-top: 1px solid rgb(212 175 55 / 66%);
+  border-bottom: 1px solid rgb(212 175 55 / 42%);
+  color: #f4d47c;
+  padding: 16px 30px;
+  font-size: 1.6rem;
+  font-size: clamp(1.08rem, 2.35vw, 2rem);
+  font-weight: 950;
+  line-height: 1.3;
+  text-shadow: 0 14px 34px rgb(0 0 0 / 42%);
 }
 
 .premier-fireline-intro {
@@ -8884,8 +8897,13 @@ html.premier-nav-visible body:has(.premier-page) .mobile-fixed-nav-wrap {
   }
 
   .premier-fireline-prime {
-    font-size: clamp(2.1rem, 9.2vw, 2.65rem);
+    font-size: clamp(1.48rem, 6.1vw, 1.62rem);
     line-height: 1.02;
+  }
+
+  .premier-fireline-subtitle {
+    padding: 12px 18px;
+    font-size: clamp(1.05rem, 5vw, 1.28rem);
   }
 
   .premier-fireline-intro {
@@ -9097,8 +9115,8 @@ html.premier-enhanced .premier-fireline-first-item {
 }
 
 .premier-fireline-prime {
-  font-size: 4.8rem;
-  font-size: clamp(3rem, 7.1vw, 6.25rem);
+  font-size: 4.2rem;
+  font-size: clamp(1.82rem, 5.35vw, 4.55rem);
 }
 
 .premier-fireline-intro {
@@ -9249,8 +9267,8 @@ html.premier-enhanced .premier-fireline-quick {
   }
 
   .premier-fireline-prime {
-    font-size: 2.35rem;
-    font-size: clamp(2.1rem, 9.2vw, 2.65rem);
+    font-size: 1.52rem;
+    font-size: clamp(1.48rem, 6.1vw, 1.62rem);
   }
 
   .premier-fireline-intro {
