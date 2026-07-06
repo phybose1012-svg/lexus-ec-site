@@ -661,33 +661,44 @@ const infoPosts = [
       </div>
     </section>
 
-    <section class="premier-ideal" aria-labelledby="premier-ideal-title">
-      <div class="content">
-        <SectionHeading id="premier-ideal-title" label="IDEAL FORM" title="医学部合格への 理想形。" />
-        <p class="premier-ideal__lead">
-          レクサス・プレミア本科は、授業を受けるだけのコースではありません。学習管理、質問対応、夜間演習、出願戦略、生活リズムまでを一体化し、医学部合格に必要な行動を毎日積み上げるための環境です。
-        </p>
-        <div class="premier-ideal-grid">
-          <article>
-            <span>01</span>
-            <h3>“鬼監理”で迷わせない</h3>
-            <p>学習計画、課題、復習、確認テストを講師側が把握し、今日やるべきことを具体化します。</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>“鬼特訓”で逃がさない</h3>
-            <p>授業後の演習と質問対応を重ね、分かったつもりを実戦で使える状態まで引き上げます。</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>寮と校舎を一体化</h3>
-            <p>移動時間と生活の乱れを減らし、医学部受験に集中するための学習生活を設計します。</p>
-          </article>
-        </div>
-        <div class="premier-ideal__actions">
-          <a class="button button--blue" href="/study-support-system/">“鬼監理”を詳しく見る</a>
-          <a class="button button--red" href="/medical-english-training/">英語の鬼特訓</a>
-          <a class="button button--red" href="/medical-math-training/">数学の鬼特訓</a>
+    <section class="premier-ideal" aria-labelledby="premier-ideal-title" data-premier-ideal>
+      <div class="content premier-ideal__content">
+        <div class="premier-ideal__panel">
+          <div class="premier-ideal__mark" aria-hidden="true">IDEAL</div>
+          <div class="premier-ideal__copy">
+            <p class="premier-ideal__eyebrow">IDEAL FORM FOR MEDICAL SUCCESS</p>
+            <h2 id="premier-ideal-title" class="premier-ideal__title" aria-label="医学部合格への理想形。">
+              <span><span>医学部合格への</span></span>
+              <span><span>理想形。</span></span>
+            </h2>
+            <div class="premier-ideal__rule" aria-hidden="true"></div>
+            <p class="premier-ideal__lead">
+              レクサス・プレミア本科は、授業を受けるだけのコースではありません。学習管理、質問対応、夜間演習、出願戦略、生活リズムまでを一体化し、医学部合格に必要な行動を毎日積み上げるための環境です。
+            </p>
+            <ul class="premier-ideal__chips" aria-label="レクサス・プレミア本科が一体化する要素">
+              <li>学習管理</li>
+              <li>質問対応</li>
+              <li>夜間演習</li>
+              <li>生活設計</li>
+            </ul>
+          </div>
+          <div class="premier-ideal-grid">
+            <article class="premier-ideal-card premier-ideal-card--primary">
+              <span class="premier-ideal-card__number">01</span>
+              <h3>“鬼監理”で迷わせない</h3>
+              <p>学習計画、課題、復習、確認テストを講師側が把握し、今日やるべきことを具体化します。</p>
+            </article>
+            <article class="premier-ideal-card">
+              <span class="premier-ideal-card__number">02</span>
+              <h3>“鬼特訓”で逃がさない</h3>
+              <p>授業後の演習と質問対応を重ね、分かったつもりを実戦で使える状態まで引き上げます。</p>
+            </article>
+            <article class="premier-ideal-card">
+              <span class="premier-ideal-card__number">03</span>
+              <h3>寮と校舎を一体化</h3>
+              <p>移動時間と生活の乱れを減らし、医学部受験に集中するための学習生活を設計します。</p>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -1118,6 +1129,7 @@ const infoPosts = [
     (function () {
       var root = document.documentElement;
       var hero = document.querySelector ? document.querySelector("[data-premier-cinematic-hero]") : null;
+      var ideal = document.querySelector ? document.querySelector("[data-premier-ideal]") : null;
 
       var hasClass = function (element, name) {
         return (" " + element.className + " ").indexOf(" " + name + " ") > -1;
@@ -1161,6 +1173,28 @@ const infoPosts = [
       if (!canAnimate) return;
 
       addClass(root, "premier-enhanced");
+
+      if (ideal) {
+        var activateIdeal = function () {
+          addClass(ideal, "is-active");
+        };
+
+        if ("IntersectionObserver" in window) {
+          var idealObserver = new IntersectionObserver(function (entries) {
+            for (var entryIndex = 0; entryIndex < entries.length; entryIndex += 1) {
+              if (entries[entryIndex].isIntersecting) {
+                activateIdeal();
+                idealObserver.disconnect();
+                break;
+              }
+            }
+          }, { threshold: 0.28, rootMargin: "-8% 0px -10%" });
+
+          idealObserver.observe(ideal);
+        } else {
+          activateIdeal();
+        }
+      }
 
       var video = hero.getElementsByTagName("video")[0];
       var raf = window.requestAnimationFrame || function (callback) {
