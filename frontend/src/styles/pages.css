@@ -8931,11 +8931,13 @@ html.premier-nav-visible body:has(.premier-page) .mobile-fixed-nav-wrap {
 
   .premier-cinematic-hero__inner {
     width: min(100% - 28px, 1140px);
-    padding-block: 72px 72px;
+    padding-block: 58px;
   }
 
   .premier-fireline-stage {
-    min-height: min(700px, calc(100svh - 118px));
+    min-height: 548px;
+    min-height: min(660px, calc(100vh - 98px));
+    min-height: min(660px, calc(100svh - 98px));
   }
 
   .premier-fireline-act--first {
@@ -9307,14 +9309,15 @@ html.premier-enhanced .premier-fireline-quick {
   .premier-cinematic-hero__inner {
     width: calc(100% - 28px);
     width: min(100% - 28px, 1140px);
-    padding-top: 72px;
-    padding-bottom: 72px;
-    padding-block: 72px;
+    padding-top: 58px;
+    padding-bottom: 58px;
+    padding-block: 58px;
   }
 
   .premier-fireline-stage {
-    min-height: 582px;
-    min-height: min(700px, calc(100svh - 118px));
+    min-height: 548px;
+    min-height: min(660px, calc(100vh - 98px));
+    min-height: min(660px, calc(100svh - 98px));
   }
 
   .premier-fireline-prime {
