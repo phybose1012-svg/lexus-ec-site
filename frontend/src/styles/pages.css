@@ -9389,20 +9389,6 @@ html.premier-enhanced .premier-fireline-quick {
   margin-top: 26px;
 }
 
-.premier-quick-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-  margin-top: 18px;
-}
-
-.premier-quick-actions .button {
-  min-width: 132px;
-  min-height: 42px;
-  padding: 8px 18px;
-  font-size: 0.92rem;
-}
 
 .premier-ideal,
 .premier-achievement,
@@ -12492,21 +12478,45 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
 }
 
 .premier-contact p {
-  margin: 0 0 20px;
-  font-size: 1.2rem;
+  margin: 0;
+  color: rgb(255 248 232 / 88%);
+  font-family: var(--font-serif);
+  font-size: 1.06rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.8;
 }
 
 .premier-contact h2 {
   color: #fff;
+  font-family: var(--font-serif);
+  font-size: clamp(1.82rem, 3vw, 2.32rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.45;
+}
+
+.premier-contact .premier-hero__actions {
+  margin-top: 30px;
+}
+
+.premier-contact .button {
+  font-weight: 800;
 }
 
 .premier-contact__tel {
-  margin-top: 38px !important;
-  font-weight: 900;
+  margin-top: 30px !important;
+  color: rgb(255 248 232 / 82%) !important;
+  font-size: 0.95rem !important;
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
 .premier-contact__tel strong {
-  font-size: 2rem;
+  color: #fff;
+  font-size: clamp(1.6rem, 2.4vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
 }
 
 .premier-extra__grid {
@@ -12806,17 +12816,6 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
     width: 100%;
   }
 
-  .premier-quick-actions {
-    display: grid;
-    grid-template-columns: 1fr;
-    width: min(300px, 100%);
-  }
-
-  .premier-quick-actions .button {
-    justify-self: stretch;
-    min-width: 0;
-    width: 100%;
-  }
 
   .premier-learning-photos {
     position: relative;

@@ -73,12 +73,6 @@ const premierHeroVideos = [
   "/assets/lexus-premier/fiery-oni-teaches-with-passion-02.mp4",
 ];
 
-const quickLinks = [
-  { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
-  { label: "合格体験記", href: "/top/voice/", tone: "green" },
-  { label: "理念と沿革", href: "/top/history/", tone: "red" },
-];
-
 const classTiers = [
   {
     letter: "S",
@@ -1273,9 +1267,6 @@ const infoPosts = [
         <div class="premier-hero__actions">
           <a class="button button--red" href="/request-documents/">資料請求する</a>
           <a class="button button--blue" href="/reservation/">個別説明会へ</a>
-        </div>
-        <div class="premier-quick-actions">
-          {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
         </div>
         <p class="premier-contact__tel">【お急ぎでしたら、お電話ください】<br /><strong>03-3477-1306</strong><br />受付時間：10時00分〜21時00分</p>
       </div>
