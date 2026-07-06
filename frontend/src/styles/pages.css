@@ -11948,6 +11948,16 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
   z-index: 1;
 }
 
+.premier-learning__lead {
+  width: min(720px, 100%);
+  margin: -18px auto 34px;
+  color: #4f4638;
+  font-size: clamp(0.95rem, 1.15vw, 1.08rem);
+  font-weight: 700;
+  line-height: 1.9;
+  text-align: center;
+}
+
 .premier-learning-orbit {
   position: relative;
   width: min(100%, 1060px);
@@ -12130,8 +12140,8 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
 }
 
 .premier-learning-node {
-  width: clamp(142px, 14vw, 188px);
-  min-height: clamp(118px, 12vw, 150px);
+  width: clamp(154px, 15vw, 200px);
+  min-height: clamp(132px, 13vw, 166px);
 }
 
 .premier-learning-node--lesson {
@@ -12153,8 +12163,8 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
 }
 
 .premier-learning-stage {
-  width: clamp(190px, 18vw, 250px);
-  min-height: clamp(150px, 15vw, 190px);
+  width: clamp(212px, 20vw, 270px);
+  min-height: clamp(164px, 16vw, 204px);
 }
 
 .premier-learning-stage--training {
@@ -12173,16 +12183,16 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
   position: relative;
   display: grid;
   min-height: inherit;
-  height: 100%;
+  height: auto;
   align-content: center;
-  gap: 8px;
-  overflow: hidden;
+  gap: 7px;
+  overflow: visible;
   border: 1px solid rgb(17 17 17 / 12%);
   background:
     linear-gradient(135deg, rgb(255 255 255 / 97%), rgb(255 253 248 / 88%)),
     linear-gradient(90deg, rgb(185 152 63 / 8%), transparent);
   color: #202020;
-  padding: clamp(16px, 2vw, 22px);
+  padding: clamp(16px, 1.8vw, 20px);
   box-shadow: 0 22px 42px rgb(39 29 11 / 13%), inset 0 1px 0 rgb(255 255 255 / 72%);
   text-align: left;
   transform-style: preserve-3d;
@@ -12226,19 +12236,19 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
 
 .premier-learning-card h3 {
   margin: 0;
-  color: #111;
+  color: #8a1111;
   font-family: var(--font-serif);
-  font-size: clamp(1.2rem, 2vw, 2.1rem);
+  font-size: clamp(1.05rem, 1.45vw, 1.55rem);
   font-weight: 900;
-  line-height: 1.16;
+  line-height: 1.22;
 }
 
 .premier-learning-card p {
   margin: 0;
   color: #5e5a52;
-  font-size: clamp(0.78rem, 0.95vw, 0.96rem);
+  font-size: clamp(0.76rem, 0.86vw, 0.9rem);
   font-weight: 700;
-  line-height: 1.58;
+  line-height: 1.55;
 }
 
 @keyframes premierLearningOuterOrbit {
@@ -12580,6 +12590,12 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
     min-height: 610px;
   }
 
+  .premier-learning__lead {
+    margin-bottom: 26px;
+    font-size: 0.92rem;
+    line-height: 1.8;
+  }
+
   .premier-learning-orbit__outer {
     top: 53%;
     left: 50%;
@@ -12592,26 +12608,26 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
   }
 
   .premier-learning-node {
-    width: clamp(118px, 18vw, 140px);
-    min-height: 122px;
+    width: clamp(132px, 19vw, 152px);
+    min-height: 134px;
   }
 
   .premier-learning-stage {
-    width: clamp(156px, 24vw, 196px);
-    min-height: 148px;
+    width: clamp(176px, 25vw, 210px);
+    min-height: 158px;
   }
 
   .premier-learning-card {
-    padding: 15px;
+    padding: 14px;
   }
 
   .premier-learning-card h3 {
-    font-size: clamp(1.02rem, 2.2vw, 1.34rem);
+    font-size: clamp(1rem, 2vw, 1.24rem);
   }
 
   .premier-learning-card p {
-    font-size: 0.78rem;
-    line-height: 1.52;
+    font-size: 0.74rem;
+    line-height: 1.5;
   }
 
   .premier-support-grid {
@@ -12682,6 +12698,13 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
     perspective: none;
   }
 
+  .premier-learning__lead {
+    margin: -12px auto 24px;
+    font-size: 0.86rem;
+    line-height: 1.75;
+    text-align: left;
+  }
+
   .premier-learning-orbit__outer,
   .premier-learning-orbit__cluster,
   .premier-learning-orbit__cluster-face,
@@ -12719,12 +12742,12 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
   }
 
   .premier-learning-card h3 {
-    font-size: 1.22rem;
+    font-size: 1.08rem;
   }
 
   .premier-learning-card p {
-    font-size: 0.86rem;
-    line-height: 1.68;
+    font-size: 0.82rem;
+    line-height: 1.62;
   }
 
   .premier-achievement,
