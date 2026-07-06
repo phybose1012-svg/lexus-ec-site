@@ -10011,7 +10011,7 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
 
 .premier-annual-plan__head {
   display: grid;
-  grid-template-columns: minmax(0, 0.82fr) minmax(280px, 1fr) auto;
+  grid-template-columns: minmax(0, 0.82fr) minmax(280px, 1fr);
   align-items: center;
   gap: 16px;
   margin-bottom: 12px;
@@ -10048,33 +10048,89 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
   line-height: 1.65;
 }
 
+.premier-annual-plan__preview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(132px, 156px);
+  gap: 12px;
+  align-items: stretch;
+  margin-top: 12px;
+}
+
 .premier-annual-plan__expand {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 40px;
-  border: 1px solid rgb(255 255 255 / 34%);
-  border-radius: 999px;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 8px;
+  min-height: 100%;
+  border: 1px solid rgb(255 255 255 / 38%);
+  border-radius: 8px;
   background:
-    radial-gradient(circle at 50% 0, rgb(255 255 255 / 22%), transparent 55%),
-    linear-gradient(180deg, #3a2b19, #1c150f);
+    radial-gradient(circle at 50% 0, rgb(255 255 255 / 30%), transparent 52%),
+    linear-gradient(180deg, #5a3f22 0%, #2c1e12 52%, #15100c 100%);
   color: #fffaf0;
-  padding: 9px 16px;
+  padding: 18px 14px;
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 22%),
-    0 8px 18px rgb(43 32 18 / 14%);
-  font-size: 0.8rem;
+    inset 0 1px 0 rgb(255 255 255 / 26%),
+    0 18px 34px rgb(43 32 18 / 18%);
+  font-size: 0.96rem;
   font-weight: 900;
-  line-height: 1;
+  line-height: 1.2;
+  text-align: center;
   white-space: nowrap;
   cursor: pointer;
+  overflow: hidden;
+  transition:
+    box-shadow 180ms ease,
+    transform 180ms ease,
+    filter 180ms ease;
+}
+
+.premier-annual-plan__expand::before {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgb(255 255 255 / 34%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 16%, rgb(255 255 255 / 58%), rgb(255 255 255 / 0%) 44%),
+    linear-gradient(180deg, #fff8e2, #d2ad55);
+  color: #2f2112;
+  content: "+";
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  line-height: 1;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 64%),
+    0 10px 18px rgb(20 14 10 / 24%);
+}
+
+.premier-annual-plan__expand span,
+.premier-annual-plan__expand small {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.premier-annual-plan__expand small {
+  color: rgb(255 250 240 / 76%);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
 }
 
 .premier-annual-plan__expand:hover,
 .premier-annual-plan__expand:focus-visible {
   background:
-    radial-gradient(circle at 50% 0, rgb(255 255 255 / 28%), transparent 55%),
-    linear-gradient(180deg, #4a351e, #21170f);
+    radial-gradient(circle at 50% 0, rgb(255 255 255 / 34%), transparent 52%),
+    linear-gradient(180deg, #6a4928 0%, #332214 52%, #17110d 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 30%),
+    0 22px 40px rgb(43 32 18 / 22%);
+  filter: saturate(1.04);
+  transform: translateY(-1px);
 }
 
 .premier-annual-plan__legend {
@@ -10131,7 +10187,6 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
   position: relative;
   overflow: hidden;
   min-height: 280px;
-  margin-top: 12px;
   border: 1px solid #d8c79f;
   border-radius: 8px;
   background:
@@ -11889,8 +11944,15 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
     max-width: 720px;
   }
 
+  .premier-annual-plan__preview {
+    grid-template-columns: minmax(0, 1fr) 136px;
+    gap: 10px;
+  }
+
   .premier-annual-plan__expand {
-    justify-self: start;
+    min-height: 94px;
+    padding: 14px 10px;
+    font-size: 0.84rem;
   }
 
   .premier-plan-modal {
@@ -12375,8 +12437,38 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
     --plan-school-h: 226px;
   }
 
+  .premier-annual-plan__preview {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
   .premier-annual-plan__fit {
     min-height: 220px;
+  }
+
+  .premier-annual-plan__expand {
+    grid-template-columns: auto auto;
+    gap: 2px 12px;
+    justify-content: center;
+    min-height: 56px;
+    padding: 11px 14px;
+    font-size: 0.9rem;
+  }
+
+  .premier-annual-plan__expand::before {
+    grid-row: 1 / span 2;
+    width: 30px;
+    height: 30px;
+    font-size: 1.16rem;
+  }
+
+  .premier-annual-plan__expand span,
+  .premier-annual-plan__expand small {
+    text-align: left;
+  }
+
+  .premier-annual-plan__expand small {
+    font-size: 0.64rem;
   }
 
   .premier-plan-table thead th:first-child {

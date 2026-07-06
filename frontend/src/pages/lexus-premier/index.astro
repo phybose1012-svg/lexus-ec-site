@@ -863,9 +863,6 @@ const infoPosts = [
                 <h4>現在地と、1年後の到達ラインを同じ表で見る。</h4>
               </div>
               <p>学力レベル0〜11、対応大学の目安、クラス別の年間進行を1枚に統合しました。通常表示では全体像を俯瞰し、詳細は拡大表示で確認できます。</p>
-              <button class="premier-annual-plan__expand" type="button" data-premier-plan-open>
-                拡大して見る
-              </button>
             </div>
             <div class="premier-annual-plan__legend" aria-label="クラス色の凡例">
               <span class="premier-annual-plan__legend-item premier-annual-plan__legend-item--red">Sクラス</span>
@@ -873,79 +870,85 @@ const infoPosts = [
               <span class="premier-annual-plan__legend-item premier-annual-plan__legend-item--green">Fクラス</span>
               <span class="premier-annual-plan__legend-line">昇格目安</span>
             </div>
-            <div class="premier-annual-plan__fit" data-premier-plan-fit aria-label="年間計画イメージ 縮小プレビュー">
-              <div class="premier-plan-table-shell" data-premier-plan-fit-shell>
-                <table class="premier-plan-table">
-                  <colgroup>
-                    <col />
-                    {annualLevels.map(() => <col />)}
-                  </colgroup>
-                  <thead>
-                    <tr>
-                      <th scope="col">学力レベル<br />クラス進行</th>
-                      {annualLevels.map((item) => (
-                        <th scope="col">
-                          <span class="premier-plan-level">
-                            <strong><span>レベル</span>{item.level}</strong>
-                            <small>
-                              {(annualLevelLabelLines[item.level] ?? [item.label]).map((line) => <span>{line}</span>)}
-                            </small>
-                          </span>
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr class="premier-plan-table__schools">
-                      <th scope="row"><span>対応大学<br />目安</span></th>
-                      {annualLevels.map((item) => (
-                        <td class="premier-plan-school-cell">
-                          {item.schools.length > 0 ? (
-                            <ul>
-                              {item.schools.map((school) => <li>{school}</li>)}
-                            </ul>
-                          ) : (
-                            <p>医学部受験に向けた基礎体力を作る期間</p>
-                          )}
-                        </td>
-                      ))}
-                    </tr>
-                    {annualTracks.map((track) => (
-                      <tr class={`premier-plan-table__track premier-plan-table__track--${track.tone}`}>
-                        <th class="premier-plan-track-head" scope="row">
-                          <span class="premier-plan-track-head__mark" aria-hidden="true">
-                            <span>{track.letter}</span><em>{track.word}</em>
-                          </span>
-                          <p>{track.lane}</p>
-                          <strong>{track.title}</strong>
-                          <small>【{track.category}】</small>
-                          <b>{track.target}</b>
-                        </th>
-                        <td class="premier-plan-lane" colspan={annualLevels.length}>
-                          {track.promotions.map((point) => (
-                            <span
-                              class="premier-plan-lane__promotion"
-                              style={`--left: ${planPercent(point)};`}
-                              aria-hidden="true"
-                            ></span>
-                          ))}
-                          {track.bars.map((bar, index) => (
-                            <span
-                              class="premier-plan-lane__bar"
-                              style={`--left: ${planPercent(bar.start)}; --width: ${planPercent(bar.end - bar.start)}; --top: ${annualPlanBarTop(index, track.bars.length)};`}
-                              aria-label={`${track.lane} ${bar.label} ${bar.period} 学力レベル${bar.start}から${bar.end}へ`}
-                            >
-                              <span>{bar.label}</span>
-                              <em>{bar.period}</em>
+            <div class="premier-annual-plan__preview">
+              <div class="premier-annual-plan__fit" data-premier-plan-fit aria-label="年間計画イメージ 縮小プレビュー">
+                <div class="premier-plan-table-shell" data-premier-plan-fit-shell>
+                  <table class="premier-plan-table">
+                    <colgroup>
+                      <col />
+                      {annualLevels.map(() => <col />)}
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th scope="col">学力レベル<br />クラス進行</th>
+                        {annualLevels.map((item) => (
+                          <th scope="col">
+                            <span class="premier-plan-level">
+                              <strong><span>レベル</span>{item.level}</strong>
+                              <small>
+                                {(annualLevelLabelLines[item.level] ?? [item.label]).map((line) => <span>{line}</span>)}
+                              </small>
                             </span>
-                          ))}
-                          <p>{track.summary}</p>
-                        </td>
+                          </th>
+                        ))}
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      <tr class="premier-plan-table__schools">
+                        <th scope="row"><span>対応大学<br />目安</span></th>
+                        {annualLevels.map((item) => (
+                          <td class="premier-plan-school-cell">
+                            {item.schools.length > 0 ? (
+                              <ul>
+                                {item.schools.map((school) => <li>{school}</li>)}
+                              </ul>
+                            ) : (
+                              <p>医学部受験に向けた基礎体力を作る期間</p>
+                            )}
+                          </td>
+                        ))}
+                      </tr>
+                      {annualTracks.map((track) => (
+                        <tr class={`premier-plan-table__track premier-plan-table__track--${track.tone}`}>
+                          <th class="premier-plan-track-head" scope="row">
+                            <span class="premier-plan-track-head__mark" aria-hidden="true">
+                              <span>{track.letter}</span><em>{track.word}</em>
+                            </span>
+                            <p>{track.lane}</p>
+                            <strong>{track.title}</strong>
+                            <small>【{track.category}】</small>
+                            <b>{track.target}</b>
+                          </th>
+                          <td class="premier-plan-lane" colspan={annualLevels.length}>
+                            {track.promotions.map((point) => (
+                              <span
+                                class="premier-plan-lane__promotion"
+                                style={`--left: ${planPercent(point)};`}
+                                aria-hidden="true"
+                              ></span>
+                            ))}
+                            {track.bars.map((bar, index) => (
+                              <span
+                                class="premier-plan-lane__bar"
+                                style={`--left: ${planPercent(bar.start)}; --width: ${planPercent(bar.end - bar.start)}; --top: ${annualPlanBarTop(index, track.bars.length)};`}
+                                aria-label={`${track.lane} ${bar.label} ${bar.period} 学力レベル${bar.start}から${bar.end}へ`}
+                              >
+                                <span>{bar.label}</span>
+                                <em>{bar.period}</em>
+                              </span>
+                            ))}
+                            <p>{track.summary}</p>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
+              <button class="premier-annual-plan__expand" type="button" data-premier-plan-open>
+                <span>拡大して見る</span>
+                <small>固定表示で確認</small>
+              </button>
             </div>
             <div class="premier-plan-modal" data-premier-plan-modal hidden>
               <div class="premier-plan-modal__panel" role="dialog" aria-modal="true" aria-labelledby="premier-plan-modal-title">
