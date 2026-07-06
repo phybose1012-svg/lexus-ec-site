@@ -65,7 +65,6 @@ const penLogo = "/assets/legacy/wp-content/uploads/2025/11/ペン先-ロゴ-4色
 const oniKanri = "/illustrations/characters/yuki-sensei-default.png";
 const oniTraining = "/illustrations/characters/yuki-sensei-cheer.png";
 const messageImage = "/assets/legacy/wp-content/uploads/2026/01/川島先生授業風景-名前入り.jpg";
-const selectionImage = "/assets/legacy/wp-content/uploads/2026/05/レクサスの選抜テストP-1024x1024.jpg";
 const gardenImage = "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-1-04.jpg";
 
 const premierHeroVideos = [
@@ -1272,18 +1271,43 @@ const infoPosts = [
       </div>
     </section>
 
-    <section class="premier-extra" id="premier-selection">
-      <div class="content premier-extra__grid">
-        <article>
-          <h2>特待生募集中</h2>
-          <img src={selectionImage} alt="特待生選抜テストのお知らせ" width="1024" height="1024" loading="lazy" decoding="async" />
-          <a class="button button--blue" href="/test-entry/">選抜テストに申し込む</a>
-        </article>
-        <article>
-          <h2>【さらに集中したい方へ】<br />レクサス専用寮に入居可能。<br />「10ヶ月合宿プラン」</h2>
-          <img src={gardenImage} alt="レクサスガーデン外観" width="900" height="600" loading="lazy" decoding="async" />
-          <p>地方在住の方、実家の甘えを断ち切りたい方へ。東京渋谷の高級住宅街に佇む、専用寮をご用意しました。</p>
-          <a class="button button--green" href="/top/lexus-garden/">設備や費用を見てみる</a>
+    <section class="premier-extra premier-extra--stay" id="premier-stay" aria-labelledby="premier-stay-title">
+      <div class="content">
+        <article class="premier-stay-card">
+          <div class="premier-stay-card__media">
+            <img src={gardenImage} alt="レクサスガーデン外観" width="900" height="600" loading="lazy" decoding="async" />
+            <span class="premier-stay-card__media-label">LEXUS GARDEN</span>
+          </div>
+          <div class="premier-stay-card__body">
+            <p class="premier-stay-card__eyebrow">PREMIUM STAY</p>
+            <h2 id="premier-stay-title">
+              〖さらに集中したい方へ〗
+              <span>レクサス専用寮に入居可能。</span>
+              <strong>「10ヶ月合宿プラン」</strong>
+            </h2>
+            <p class="premier-stay-card__name">
+              レクサス専用マンション寮
+              <strong>LEXUS GARDEN</strong>
+            </p>
+            <p class="premier-stay-card__lead">
+              地方在住の方、実家の甘えを断ち切りたい方へ。東京渋谷の高級住宅街に佇む、鉄筋コンクリート造・オートロック完備の専用寮をご用意しました。
+            </p>
+            <ul class="premier-stay-features" aria-label="レクサスガーデンの特徴">
+              <li>
+                <strong>静寂と安心</strong>
+                <span>内廊下設計、女性も安心のセキュリティ。</span>
+              </li>
+              <li>
+                <strong>完備設備</strong>
+                <span>ベッド、冷蔵庫、洗濯機、床暖房、浴室乾燥機。</span>
+              </li>
+              <li>
+                <strong>館内設備</strong>
+                <span>早朝から深夜まで利用可能な自習室、自販機あり。</span>
+              </li>
+            </ul>
+            <a class="button button--green" href="/top/lexus-garden/">設備や費用を見てみる</a>
+          </div>
         </article>
       </div>
     </section>
