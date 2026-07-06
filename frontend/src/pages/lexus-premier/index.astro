@@ -617,6 +617,7 @@ const infoPosts = [
     <section class="premier-cinematic-hero" data-premier-cinematic-hero>
       <video
         class="premier-cinematic-hero__video"
+        src={premierHeroVideos[0]}
         muted
         playsinline
         preload="metadata"
@@ -815,17 +816,17 @@ const infoPosts = [
           {classTiers.map((tier) => (
             <>
               <article class={`premier-class-card premier-class-card--${tier.tone}`}>
-                <div class="premier-class-card__mark" aria-hidden="true">
-                  <span>{tier.letter}</span>
-                  <em>{tier.word}</em>
+                <div class="premier-class-card__status">
+                  <span class="premier-class-card__mark" aria-hidden="true">{tier.letter}</span>
+                  <div class="premier-class-card__identity">
+                    <p>{tier.label}</p>
+                    <em>{tier.letter}{tier.word}</em>
+                  </div>
+                  <strong class="premier-class-card__target">{tier.target}</strong>
                 </div>
                 <div class="premier-class-card__body">
                   <div class="premier-class-card__head">
-                    <div>
-                      <p>{tier.label}</p>
-                      <h4>{tier.title}<span>【{tier.category}】</span></h4>
-                    </div>
-                    <strong>{tier.target}</strong>
+                    <h4>{tier.title}<span>【{tier.category}】</span></h4>
                   </div>
                   <ul class="premier-class-card__programs" aria-label={`${tier.title}の授業構成`}>
                     {tier.programs.map((program) => <li>{program}</li>)}
