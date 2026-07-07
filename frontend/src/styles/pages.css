@@ -12622,6 +12622,41 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
   display: block;
 }
 
+.premier-stay-card__focus {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  color: #7d1712;
+  font-size: clamp(1rem, 1.35vw, 1.14rem);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1.45;
+}
+
+.premier-stay-card h2 .premier-stay-card__focus {
+  display: inline-flex;
+}
+
+.premier-stay-card__focus::before {
+  display: inline-block;
+  width: 34px;
+  height: 1px;
+  background: linear-gradient(90deg, #b9983f, rgb(185 152 63 / 42%));
+  content: "";
+}
+
+.premier-stay-card__focus::after {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border: 1px solid #b9983f;
+  background: #fff9ef;
+  content: "";
+  transform: rotate(45deg);
+}
+
 .premier-stay-card h2 strong {
   color: #7d1712;
   font-weight: 800;
@@ -13776,6 +13811,17 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
   .premier-extra .premier-stay-card h2 {
     font-size: 1.55rem;
     line-height: 1.38;
+  }
+
+  .premier-stay-card__focus {
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+  }
+
+  .premier-stay-card__focus::before {
+    width: 24px;
   }
 
   .premier-stay-features {
