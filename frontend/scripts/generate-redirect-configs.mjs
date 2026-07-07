@@ -15,10 +15,15 @@ const uniqueRedirects = [
   ...new Map(redirects.map((redirect) => [normalize(redirect.from), { from: normalize(redirect.from), to: normalize(redirect.to) }])).values(),
 ].sort((a, b) => a.from.localeCompare(b.from));
 
+const cloudflareOnlyRedirects = [
+  { from: "/reservation", to: "/top/reservation/" },
+];
+
 await mkdir(publicDir, { recursive: true });
 
 const cloudflareLines = [
   "# Generated from src/data/legacyRedirects.json",
+  ...cloudflareOnlyRedirects.map((redirect) => `${redirect.from} ${redirect.to} 301`),
   ...uniqueRedirects.map((redirect) => `${redirect.from} ${redirect.to} 301`),
   "",
 ];
