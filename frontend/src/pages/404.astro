@@ -1,0 +1,61 @@
+---
+const title = "404 Not Found | LEXUS E.C.";
+const description = "The requested page could not be found.";
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex,follow" />
+    <link rel="canonical" href="https://lexus-ec.com/404/" />
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #f7f3ee;
+        color: #171717;
+      }
+
+      main {
+        width: min(88vw, 560px);
+        padding: 40px;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      h1 {
+        margin: 0 0 16px;
+        font-size: 32px;
+        line-height: 1.2;
+      }
+
+      p {
+        margin: 0 0 24px;
+        line-height: 1.8;
+      }
+
+      a {
+        color: #b51223;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>404 Not Found</h1>
+      <p>The requested page could not be found.</p>
+      <a href="/">Back to home</a>
+    </main>
+  </body>
+</html>
