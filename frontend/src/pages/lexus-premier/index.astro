@@ -676,6 +676,35 @@ const infoPosts = [
   canonical="https://lexus-ec.com/lexus-premier/"
   ogImage={seo.ogImage}
 >
+  <style is:inline>
+    @supports (content-visibility: auto) {
+      .premier-achievement,
+      .premier-feature,
+      .premier-overview,
+      .premier-learning,
+      .premier-message,
+      .premier-contact,
+      .premier-extra,
+      .premier-info {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 920px;
+      }
+
+      .premier-overview {
+        contain-intrinsic-size: auto 2600px;
+      }
+
+      .premier-learning {
+        contain-intrinsic-size: auto 980px;
+      }
+
+      .premier-extra,
+      .premier-info {
+        contain-intrinsic-size: auto 720px;
+      }
+    }
+  </style>
+
   <main class="premier-page">
     <section class="premier-cinematic-hero" data-premier-cinematic-hero>
       <video
@@ -1413,6 +1442,13 @@ const infoPosts = [
       var canVideo = Boolean(videoProbe.canPlayType && videoProbe.canPlayType("video/mp4"));
       if (!canVideo) return;
 
+      var scheduleIdle = function (callback, timeout) {
+        if ("requestIdleCallback" in window) {
+          window.requestIdleCallback(callback, { timeout: timeout || 1600 });
+        } else {
+          window.setTimeout(callback, timeout || 900);
+        }
+      };
       var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
       var effectiveType = connection && connection.effectiveType ? String(connection.effectiveType) : "";
       var saveData = Boolean(connection && connection.saveData);
@@ -1435,26 +1471,13 @@ const infoPosts = [
       if (!playlist.length) return;
       if (!wideVideoViewport || effectiveType === "3g") playlist = [playlist[0]];
 
-      var warmedVideos = {};
       var currentIndex = 0;
-      var canWarmNextVideo = playlist.length > 1 && wideVideoViewport && effectiveType !== "3g";
-
-      var warmVideo = function (source) {
-        if (!canWarmNextVideo) return;
-        if (!source || warmedVideos[source]) return;
-        warmedVideos[source] = true;
-        var head = document.head || document.getElementsByTagName("head")[0];
-        if (!head) return;
-        var link = document.createElement("link");
-        link.rel = "prefetch";
-        link.as = "video";
-        link.href = source;
-        head.appendChild(link);
-      };
+      var heroInView = true;
+      var videoStarted = false;
+      var videoStartQueued = false;
 
       var setVideoSource = function (index) {
         currentIndex = index % playlist.length;
-        warmedVideos[playlist[currentIndex]] = true;
         if (video.getAttribute("src") !== playlist[currentIndex]) {
           video.setAttribute("src", playlist[currentIndex]);
           video.load();
@@ -1466,8 +1489,36 @@ const infoPosts = [
         if (loaded) return;
         loaded = true;
         addClass(hero, "is-video-ready");
-        warmVideo(playlist[(currentIndex + 1) % playlist.length]);
         if (video.removeEventListener) video.removeEventListener("loadeddata", onLoaded, false);
+      };
+
+      var playVideo = function () {
+        if (!video.play) return;
+        var promise = video.play();
+        if (promise && promise.catch) promise.catch(function () {});
+      };
+      var pauseVideo = function () {
+        if (video.pause) video.pause();
+      };
+      var syncVideoPlayback = function () {
+        if (document.visibilityState && document.visibilityState !== "visible") {
+          pauseVideo();
+          return;
+        }
+        if (heroInView) playVideo();
+        else pauseVideo();
+      };
+      var startVideo = function () {
+        if (videoStarted) return;
+        if (!heroInView) {
+          videoStartQueued = true;
+          return;
+        }
+        videoStarted = true;
+        videoStartQueued = false;
+        setVideoSource(0);
+        if (video.readyState >= 2) onLoaded();
+        syncVideoPlayback();
       };
 
       video.loop = playlist.length <= 1;
@@ -1476,34 +1527,48 @@ const infoPosts = [
         video.addEventListener("ended", function () {
           if (playlist.length <= 1) return;
           setVideoSource(currentIndex + 1);
-          warmVideo(playlist[(currentIndex + 1) % playlist.length]);
-          var nextPlay = video.play && video.play();
-          if (nextPlay && nextPlay.catch) nextPlay.catch(function () {});
+          syncVideoPlayback();
         }, false);
       }
 
-      setVideoSource(0);
-      if (video.readyState >= 2) onLoaded();
+      if ("IntersectionObserver" in window) {
+        var heroVideoObserver = new IntersectionObserver(function (entries) {
+          if (!entries || !entries.length) return;
+          heroInView = Boolean(entries[0].isIntersecting);
+          if (videoStartQueued && heroInView) startVideo();
+          if (videoStarted) syncVideoPlayback();
+        }, { threshold: 0.08 });
+        heroVideoObserver.observe(hero);
+      }
 
-      var playVideo = function () {
-        if (!video.play) return;
-        var promise = video.play();
-        if (promise && promise.catch) promise.catch(function () {});
-      };
+      raf(function () {
+        raf(function () {
+          window.setTimeout(function () {
+            scheduleIdle(startVideo, wideVideoViewport ? 900 : 1500);
+          }, wideVideoViewport ? 420 : 950);
+        });
+      });
 
-      if (!document.visibilityState || document.visibilityState === "visible") playVideo();
       if (document.addEventListener) {
         document.addEventListener("visibilitychange", function () {
-          if (!document.visibilityState || document.visibilityState === "visible") {
-            playVideo();
-          } else if (video.pause) {
-            video.pause();
-          }
+          if (videoStarted) syncVideoPlayback();
         }, false);
       }
     })();
 
     (function () {
+      var scheduleFittedTables = function (callback) {
+        var run = function () {
+          callback();
+        };
+        if ("requestIdleCallback" in window) {
+          window.requestIdleCallback(run, { timeout: 2200 });
+        } else {
+          window.setTimeout(run, 900);
+        }
+      };
+
+      var bootFittedTables = function () {
       var setupFittedTableModal = function (settings) {
         var fitStage = document.querySelector(settings.fitStage);
         var fitShell = document.querySelector(settings.fitShell);
@@ -1520,6 +1585,8 @@ const infoPosts = [
         var zoom = 1;
         var previousBodyOverflow = "";
         var previousFocus = null;
+        var previewReady = false;
+        var resizeTimer = 0;
 
         var fitPreview = function () {
           var table = fitShell.querySelector(settings.table);
@@ -1546,6 +1613,7 @@ const infoPosts = [
         };
 
         var openModal = function () {
+          fitPreview();
           ensureModalTable();
           previousFocus = document.activeElement;
           previousBodyOverflow = document.body.style.overflow || "";
@@ -1589,12 +1657,34 @@ const infoPosts = [
         window.addEventListener("keydown", function (event) {
           if (event.key === "Escape" && !modal.hidden) closeModal();
         }, false);
-        window.addEventListener("resize", fitPreview, false);
-        window.addEventListener("load", function () {
+        var activatePreview = function () {
+          if (previewReady) return;
+          previewReady = true;
           fitPreview();
           applyZoom();
-        }, false);
-        fitPreview();
+        };
+        var queuePreview = function () {
+          if (!previewReady) return;
+          if (resizeTimer) window.clearTimeout(resizeTimer);
+          resizeTimer = window.setTimeout(fitPreview, 120);
+        };
+
+        window.addEventListener("resize", queuePreview, false);
+
+        if ("IntersectionObserver" in window) {
+          var fitObserver = new IntersectionObserver(function (entries) {
+            for (var entryIndex = 0; entryIndex < entries.length; entryIndex += 1) {
+              if (entries[entryIndex].isIntersecting) {
+                activatePreview();
+                fitObserver.disconnect();
+                break;
+              }
+            }
+          }, { rootMargin: "420px 0px", threshold: 0.01 });
+          fitObserver.observe(fitStage);
+        } else {
+          window.addEventListener("load", activatePreview, false);
+        }
       };
 
       setupFittedTableModal({
@@ -1630,6 +1720,17 @@ const infoPosts = [
         maxHeight: 500,
         heightRatio: 0.58,
       });
+      };
+
+      var scheduleBoot = function () {
+        scheduleFittedTables(bootFittedTables);
+      };
+
+      if (document.readyState === "loading" && document.addEventListener) {
+        document.addEventListener("DOMContentLoaded", scheduleBoot, false);
+      } else {
+        scheduleBoot();
+      }
     })();
   </script>
 </SiteLayout>
