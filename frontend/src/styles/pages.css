@@ -12448,7 +12448,7 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
 
 .premier-message__box img {
   width: 100%;
-  border-radius: 50%;
+  border-radius: 6px;
   background: transparent;
   box-shadow: none;
 }
@@ -12964,6 +12964,9 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
     width: 100%;
   }
 
+  .premier-contact .premier-hero__actions {
+    margin-inline: auto;
+  }
 
   .premier-learning-photos {
     position: relative;
