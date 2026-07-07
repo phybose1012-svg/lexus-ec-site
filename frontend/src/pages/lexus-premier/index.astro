@@ -680,10 +680,9 @@ const infoPosts = [
     <section class="premier-cinematic-hero" data-premier-cinematic-hero>
       <video
         class="premier-cinematic-hero__video"
-        src={premierHeroVideos[0]}
         muted
         playsinline
-        preload="metadata"
+        preload="none"
         data-src={premierHeroVideos[0]}
         data-playlist={premierHeroVideos.join("|")}
       ></video>
@@ -1414,6 +1413,14 @@ const infoPosts = [
       var canVideo = Boolean(videoProbe.canPlayType && videoProbe.canPlayType("video/mp4"));
       if (!canVideo) return;
 
+      var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      var effectiveType = connection && connection.effectiveType ? String(connection.effectiveType) : "";
+      var saveData = Boolean(connection && connection.saveData);
+      var lowMemory = Boolean(navigator.deviceMemory && navigator.deviceMemory <= 2);
+      var wideVideoViewport = Boolean(window.matchMedia && window.matchMedia("(min-width: 1024px)").matches);
+      var constrainedDevice = saveData || lowMemory || effectiveType === "slow-2g" || effectiveType === "2g";
+      if (constrainedDevice) return;
+
       var playlistAttribute = video.getAttribute("data-playlist")
         || video.getAttribute("data-src")
         || video.getAttribute("src")
@@ -1426,11 +1433,14 @@ const infoPosts = [
       }
 
       if (!playlist.length) return;
+      if (!wideVideoViewport || effectiveType === "3g") playlist = [playlist[0]];
 
       var warmedVideos = {};
       var currentIndex = 0;
+      var canWarmNextVideo = playlist.length > 1 && wideVideoViewport && effectiveType !== "3g";
 
       var warmVideo = function (source) {
+        if (!canWarmNextVideo) return;
         if (!source || warmedVideos[source]) return;
         warmedVideos[source] = true;
         var head = document.head || document.getElementsByTagName("head")[0];
