@@ -11940,14 +11940,19 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
 }
 
 .premier-learning-photos {
-  position: absolute;
-  inset: clamp(28px, 4vw, 56px) clamp(-42px, -3vw, -18px) clamp(18px, 3vw, 42px);
-  z-index: 0;
+  position: relative;
+  inset: auto;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(8px, 1.1vw, 14px);
+  width: min(1040px, 100%);
+  margin: -10px auto 34px;
   pointer-events: none;
 }
 
 .premier-learning-photo {
-  position: absolute;
+  position: relative;
   margin: 0;
   overflow: hidden;
   border: 1px solid rgb(255 255 255 / 78%);
@@ -11956,6 +11961,21 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
   box-shadow: 0 24px 54px rgb(39 29 11 / 18%), 0 0 0 1px rgb(185 152 63 / 18%);
   opacity: 1;
   filter: saturate(0.96) contrast(1.04);
+}
+
+.premier-learning-photo,
+.premier-learning-photo--1,
+.premier-learning-photo--2,
+.premier-learning-photo--3,
+.premier-learning-photo--4,
+.premier-learning-photo--5 {
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  width: auto;
+  aspect-ratio: 1;
+  transform: none;
 }
 
 .premier-learning-photo::before,
@@ -11986,54 +12006,17 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
   object-fit: cover;
 }
 
-.premier-learning-photo--1 {
-  top: 30%;
-  left: -1%;
-  width: clamp(210px, 24vw, 320px);
-  aspect-ratio: 3 / 2;
-  transform: rotate(-7deg);
-}
-
 .premier-learning-photo--1 img {
   object-position: 74% 50%;
 }
 
-.premier-learning-photo--2 {
-  top: 27%;
-  right: -3%;
-  width: clamp(230px, 27vw, 360px);
-  aspect-ratio: 16 / 9;
-  transform: rotate(6deg);
-}
-
-.premier-learning-photo--3 {
-  bottom: 7%;
-  left: 3%;
-  width: clamp(210px, 23vw, 310px);
-  aspect-ratio: 3 / 2;
-  transform: rotate(5deg);
-}
-
-.premier-learning-photo--4 {
-  right: 3%;
-  bottom: 2%;
-  width: clamp(220px, 25vw, 340px);
-  aspect-ratio: 3 / 2;
-  transform: rotate(-4deg);
-}
-
 .premier-learning-photo--5 {
-  top: 48%;
-  left: 50%;
-  width: clamp(240px, 30vw, 390px);
-  aspect-ratio: 3 / 2;
   opacity: 1;
-  transform: translate(-50%, -50%) rotate(1deg);
 }
 
 .premier-learning__lead {
   width: min(720px, 100%);
-  margin: -18px auto 52px;
+  margin: 0 auto 52px;
   color: #4f4638;
   font-size: clamp(0.95rem, 1.15vw, 1.08rem);
   font-weight: 700;
@@ -12894,40 +12877,9 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
   }
 
   .premier-learning-photos {
-    inset: 52px -26px 24px;
-  }
-
-  .premier-learning-photo {
-    opacity: 1;
-  }
-
-  .premier-learning-photo--1 {
-    top: 32%;
-    left: -6%;
-    width: clamp(168px, 26vw, 220px);
-  }
-
-  .premier-learning-photo--2 {
-    top: 27%;
-    right: -8%;
-    width: clamp(190px, 30vw, 250px);
-  }
-
-  .premier-learning-photo--3 {
-    bottom: 11%;
-    left: -2%;
-    width: clamp(168px, 25vw, 214px);
-  }
-
-  .premier-learning-photo--4 {
-    right: -5%;
-    bottom: 9%;
-    width: clamp(176px, 28vw, 232px);
-  }
-
-  .premier-learning-photo--5 {
-    width: clamp(210px, 35vw, 280px);
-    opacity: 1;
+    width: min(720px, 100%);
+    gap: 8px;
+    margin: -8px auto 28px;
   }
 
   .premier-learning-orbit {
