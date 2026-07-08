@@ -782,8 +782,10 @@ body:has(.premium-hero) :is(
   line-height: 1.25;
 }
 
+/* Darkened orange/cyan (vs the --orange/--cyan accent vars used elsewhere) so
+   the stat number clears WCAG AA 3:1 on the #ececec card. Green already passes. */
 .stat-card--orange strong {
-  color: var(--orange);
+  color: #b45309;
 }
 
 .stat-card--green strong {
@@ -791,7 +793,7 @@ body:has(.premium-hero) :is(
 }
 
 .stat-card--cyan strong {
-  color: var(--cyan);
+  color: #0e7490;
 }
 
 /* Matches the /top/results/ 合格した大学一覧: a single framed grid that
@@ -1573,7 +1575,7 @@ body:has(.premium-hero) :is(
    different body length keep their buttons bottom-aligned. */
 .pillar-card__cue {
   margin: auto 0 12px;
-  color: #b0a796;
+  color: var(--muted);
   font-size: 0.92rem;
   letter-spacing: 0.12em;
   text-align: center;
@@ -1867,7 +1869,9 @@ body:has(.premium-hero) :is(
 
 .course-card__en {
   margin: 6px 0 0;
-  color: var(--gold);
+  /* Brighter than --gold so the small subtitle clears WCAG AA 4.5:1 on the
+     lightest course accent (the teal #0c5f63); --gold #d4af37 only hit ~3.5:1. */
+  color: #f5cf6a;
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.1em;

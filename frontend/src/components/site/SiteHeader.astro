@@ -39,7 +39,7 @@ const linkAttrs = (link: { target?: string; rel?: string }) => ({
         <span>{action.label}</span>
       </a>
     ))}
-    <button class="mobile-menu-button" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu-panel" data-mobile-menu-toggle>
+    <button class="mobile-menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu-panel" data-mobile-menu-toggle>
       <span class="mobile-menu-button__box" aria-hidden="true">
         <span></span>
         <span></span>
@@ -96,7 +96,6 @@ const linkAttrs = (link: { target?: string; rel?: string }) => ({
     const setOpen = (open) => {
       panel.hidden = !open;
       toggle.setAttribute("aria-expanded", String(open));
-      toggle.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
       document.documentElement.classList.toggle("mobile-menu-open", open);
     };
 
