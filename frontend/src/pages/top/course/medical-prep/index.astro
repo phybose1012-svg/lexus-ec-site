@@ -87,6 +87,15 @@ const plans = [
   },
 ];
 
+const planHrefs = [
+  "/top/course/medical-prep/top-level/",
+  "/top/course/medical-prep/high-level/",
+  "/top/course/medical-prep/standard/",
+  "/top/course/medical-prep/basic/",
+  "/top/course/medical-prep/keio-internal/",
+  "/top/course/medical-prep/nichidai-internal/",
+];
+
 const otherCourses = [
   ["◆ 既卒生・再受験生 対象フルコース ◆", "レクサス プレミア 本科", "Premier Main Course", "医学部受験を全面的にサポートする“オールインワン”コースです。各科目クラス分けあり。", "/top/course/lexus-premiere-course/"],
   ["◆ 既卒・再受験・高1〜3 対象コース ◆", "オーダーメード演習 コース", "Custom-made Course", "自分のレベルに合った演習ベースのカリキュラムで倍速学習をするコースです。", "/top/course/custom-made-course/"],
@@ -188,7 +197,7 @@ const flowActions = [
           <span>現在の学力・志望校・内部進学の有無に合わせて、学習量とサポート密度を調整します。</span>
         </div>
         <div class="prep-plan-grid">
-          {plans.map((plan) => (
+          {plans.map((plan, index) => (
             <article>
               <span class="prep-plan__tag">{plan.tag}</span>
               <h3>{plan.title}</h3>
@@ -206,6 +215,7 @@ const flowActions = [
                   <dd>{plan.price}</dd>
                 </div>
               </dl>
+              <a class="button button--blue prep-plan__link" href={planHrefs[index]}>詳しく見る</a>
             </article>
           ))}
         </div>

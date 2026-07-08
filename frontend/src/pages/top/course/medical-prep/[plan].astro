@@ -1,0 +1,14 @@
+---
+import CoursePlanDetail from "../../../../components/course/CoursePlanDetail.astro";
+import { getCoursePlanStaticPaths, type CoursePlanPage } from "../../../../data/coursePlanPages";
+
+export const getStaticPaths = () => getCoursePlanStaticPaths("medical-prep");
+
+type Props = {
+  planPage: CoursePlanPage;
+};
+
+const { planPage } = Astro.props;
+---
+
+<CoursePlanDetail planPage={planPage} />

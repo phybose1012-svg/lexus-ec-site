@@ -65,6 +65,12 @@ const plans = [
   },
 ];
 
+const planHrefs = [
+  "/top/course/medical-prep-junior/top-level/",
+  "/top/course/medical-prep-junior/high-level/",
+  "/top/course/medical-prep-junior/standard/",
+];
+
 const otherCourses = [
   ["◆ 高1・高2 対象コース ◆", "メディカル準備コース（高等部）", "Medical Prep Course", "医学部受験で優位に立つ先取り学習コースです。慶應、日大の内部進学対策も承ります。", "/top/course/medical-prep/"],
   ["◆ 既卒・再受験・高1〜3 対象コース ◆", "オーダーメード演習 コース", "Custom-made Course", "自分のレベルに合った演習ベースのカリキュラムで倍速学習をするコースです。", "/top/course/custom-made-course/"],
@@ -166,7 +172,7 @@ const flowActions = [
           <span>到達時期の目標を明確にし、無理のない先取りペースへ調整します。</span>
         </div>
         <div class="prep-plan-grid">
-          {plans.map((plan) => (
+          {plans.map((plan, index) => (
             <article>
               <span class="prep-plan__tag">{plan.tag}</span>
               <h3>{plan.title}</h3>
@@ -184,6 +190,7 @@ const flowActions = [
                   <dd>{plan.price}</dd>
                 </div>
               </dl>
+              <a class="button button--blue prep-plan__link" href={planHrefs[index]}>詳しく見る</a>
             </article>
           ))}
         </div>

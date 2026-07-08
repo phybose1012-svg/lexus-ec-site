@@ -80,6 +80,15 @@ const plans = [
   },
 ];
 
+const planHrefs = [
+  "/top/course/custom-made-course/top-level/",
+  "/top/course/custom-made-course/high-level/",
+  "/top/course/custom-made-course/standard/",
+  "/top/course/custom-made-course/basic/",
+  "/top/course/custom-made-course/beginner/",
+  "/top/course/custom-made-course/foundation/",
+];
+
 const otherCourses = [
   ["◆ 既卒生・再受験生 対象フルコース ◆", "レクサス プレミア 本科", "Premier Main Course", "医学部受験を全面的にサポートする“オールインワン”コースです。各科目クラス分けあり。", "/top/course/lexus-premiere-course/"],
   ["◆ 高1・高2 対象コース ◆", "メディカル準備コース (高等部)", "Medical Prep Course", "医学部受験で優位に立つ先取り学習コースです。慶應、日大の内部進学対策も承ります。", "/top/course/medical-prep/"],
@@ -181,7 +190,7 @@ const flowActions = [
           <span>現在の学力と目標校から、演習量・復習量・サポート密度を調整します。</span>
         </div>
         <div class="custom-made-plan-grid">
-          {plans.map((plan) => (
+          {plans.map((plan, index) => (
             <article>
               <h3>{plan.title}</h3>
               <dl>
@@ -198,6 +207,7 @@ const flowActions = [
                   <dd>{plan.price}</dd>
                 </div>
               </dl>
+              <a class="button button--blue custom-made-plan__link" href={planHrefs[index]}>詳しく見る</a>
             </article>
           ))}
         </div>
@@ -685,6 +695,11 @@ const flowActions = [
   .custom-made-plan-grid article {
     display: grid;
     gap: 16px;
+  }
+
+  .custom-made-plan__link {
+    width: 100%;
+    margin-top: 4px;
   }
 
   .custom-made-plan-grid dl {
