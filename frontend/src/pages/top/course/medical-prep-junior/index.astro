@@ -1,10 +1,11 @@
 ---
 import { seo } from "../../../../data/home";
 import SiteLayout from "../../../../layouts/SiteLayout.astro";
+import "../../../../styles/medical-prep-course.css";
 
-const title = "メディカル準備コース (中等部) - 医学部予備校 レクサス E.C.";
+const title = "メディカル準備コース（中等部） - 医学部予備校 レクサス E.C.";
 const description =
-  "中学生から始める医学部受験対策「メディカル準備コース」。中高一貫校のカリキュラムに対応し、高1までに高3範囲を修了する先取り学習も可能です。プロ講師による完全個別指導で、医学部合格に必要な基礎学力と学習習慣を確立します。";
+  "中学生から医学部受験を見据えて先取り学習を始めるメディカル準備コース（中等部）。中高一貫校の進度に合わせ、高校範囲への接続、学習習慣、基礎学力を早期から整えます。";
 
 const images = {
   logoStrip: "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png",
@@ -12,21 +13,69 @@ const images = {
   flow: "/assets/legacy/wp-content/uploads/2025/05/入学までの流れ-1-777x1024.jpg",
 };
 
-const recommend = ["将来、絶対医者になりたい。", "中高一貫校に通っている。", "早くから大学受験の準備を始めたい。", "国公立の医学部に行きたい。", "内部進学や推薦で医学部に行きたい。"];
-const plans = [
-  { title: "トップレベル先取りプラン", rows: ["【プラン概要】 高1の9月までに高3の全範囲修了", "【入学時の学力】 偏差値65相当 (目安)", "【月額料金 】 ¥28,000〜"] },
-  { title: "ハイレベル先取りプラン", rows: ["【プラン概要】 高2の4月までに高3の範囲修了", "【入学時の学力】 偏差値60相当 (目安)", "【月額料金 】 ¥28,000〜"] },
-  { title: "標準レベル先取りプラン", rows: ["【プラン概要】 高2の9月までに高3の範囲修了", "【入学時の学力】 偏差値55相当 (目安)", "【月額料金】 ¥44,000〜"] },
+const recommend = [
+  "将来、絶対医者になりたい。",
+  "中高一貫校に通っている。",
+  "早くから大学受験の準備を始めたい。",
+  "国公立の医学部に行きたい。",
+  "内部進学や推薦で医学部に行きたい。",
 ];
+
+const supports = ["中高一貫校対応", "パーソナル授業", "先取り設計", "課題管理", "効果測定", "オンライン対応"];
+
+const pillars = [
+  {
+    label: "01",
+    title: "中学内容を盤石にする",
+    body: "先取りの前提になる英数の基礎を、早い段階で丁寧に固めます。穴を残したまま高校範囲へ進ませません。",
+  },
+  {
+    label: "02",
+    title: "高校範囲へ自然につなげる",
+    body: "中高一貫校の進度に合わせ、必要な単元から高校内容へ接続。医学部受験に必要な範囲を前倒しで扱います。",
+  },
+  {
+    label: "03",
+    title: "学習習慣を固定する",
+    body: "課題、確認、復習まで管理し、勉強を日常の中へ組み込みます。早期から“続けられる強さ”を作ります。",
+  },
+];
+
+const plans = [
+  {
+    title: "トップレベル先取りプラン",
+    tag: "最速先取り",
+    outline: "高1の9月までに高3の全範囲修了",
+    level: "偏差値65相当",
+    price: "¥28,000〜",
+  },
+  {
+    title: "ハイレベル先取りプラン",
+    tag: "難関医学部へ",
+    outline: "高2の4月までに高3の範囲修了",
+    level: "偏差値60相当",
+    price: "¥28,000〜",
+  },
+  {
+    title: "標準レベル先取りプラン",
+    tag: "着実な準備",
+    outline: "高2の9月までに高3の範囲修了",
+    level: "偏差値55相当",
+    price: "¥44,000〜",
+  },
+];
+
+const otherCourses = [
+  ["◆ 高1・高2 対象コース ◆", "メディカル準備コース（高等部）", "Medical Prep Course", "医学部受験で優位に立つ先取り学習コースです。慶應、日大の内部進学対策も承ります。", "/top/course/medical-prep/"],
+  ["◆ 既卒・再受験・高1〜3 対象コース ◆", "オーダーメード演習 コース", "Custom-made Course", "自分のレベルに合った演習ベースのカリキュラムで倍速学習をするコースです。", "/top/course/custom-made-course/"],
+  ["◆ 既卒生・再受験生 対象フルコース ◆", "レクサス プレミア 本科", "Premier Main Course", "医学部受験を全面的にサポートする“オールインワン”コースです。各科目クラス分けあり。", "/top/course/lexus-premiere-course/"],
+];
+
 const heroActions = [
   { label: "体験授業はコチラ", href: "/test-entry/", tone: "red" },
   { label: "個別相談はコチラ", href: "/reservation/", tone: "blue" },
 ];
-const quickLinks = [
-  { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
-  { label: "合格体験記", href: "/top/voice/", tone: "green" },
-  { label: "理念と沿革", href: "/top/history/", tone: "red" },
-];
+
 const flowActions = [
   { label: "無料面談はコチラ", href: "/reservation/", tone: "blue" },
   { label: "無料体験はコチラ", href: "/test-entry/", tone: "red" },
@@ -34,113 +83,149 @@ const flowActions = [
 ---
 
 <SiteLayout title={title} description={description} canonical="https://lexus-ec.com/top/course/medical-prep-junior/" ogImage={seo.ogImage}>
-  <main class="course-detail-page">
-    <section class="course-detail-hero course-detail-hero--junior">
-      <div class="content course-detail-hero__intro">
-        <img class="course-detail-logo-strip" src={images.logoStrip} alt="ロゴ" width="800" height="58" decoding="async" />
-        <p class="course-detail-hero__kicker">【オンライン対応可】</p>
-        <h1>中学から始まる医学部合格への道</h1>
-        <div class="course-title-card course-title-card--junior">
-          <p class="course-title-card__jp">メディカル準備コース（中等部）</p>
-          <p class="course-title-card__en">Medical Prep Course</p>
-          <p class="course-title-card__lead">先手必勝！難関医学部を目指す中高一貫カリキュラムの先取り学習コースです。</p>
-        </div>
-        <div class="course-detail-hero__actions">
-          <a class="button button--red" href="/test-entry/">体験授業はコチラ</a>
-          <a class="button button--blue" href="/reservation/">個別相談はコチラ</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="course-detail-recommend course-detail-recommend--junior">
-      <div class="content course-detail-recommend__inner">
-        <h2>こんな中学生にオススメです！</h2>
-        <div class="course-detail-recommend__grid">
-          <img src={images.mascot} alt="" width="670" height="670" decoding="async" />
-          <ul>
-            <li>将来、絶対医者になりたい。</li>
-            <li>中高一貫校に通っている。</li>
-            <li>早くから大学受験の準備を始めたい。</li>
-            <li>国公立の医学部に行きたい。</li>
-            <li>内部進学や推薦で医学部に行きたい。</li>
-          </ul>
-        </div>
-        <p>先手必勝！難関医学部を目指す中高一貫カリキュラムの先取り学習コースです。</p>
-      </div>
-    </section>
-
-    <section class="course-detail-hero">
-      <div class="content course-detail-hero__grid">
-        <div>
-          <img class="course-detail-logo-strip" src={images.logoStrip} alt="ロゴ" width="800" height="58" decoding="async" />
-          <h2 class="course-detail-subhero-title">【オンライン対応可】<br />中学から始まる医学部合格への道</h2>
-          <p class="course-detail-course-name">メディカル準備コース (中等部)</p>
-          <p>Medical Prep Course</p>
-          <div class="fixed-hero__actions">
+  <main class="prep-course-page prep-course-page--junior">
+    <section class="prep-hero" aria-labelledby="medical-prep-junior-title">
+      <div class="content prep-hero__inner">
+        <div class="prep-hero__copy">
+          <img class="prep-logo-strip" src={images.logoStrip} alt="ロゴ" width="800" height="58" decoding="async" />
+          <p class="prep-eyebrow">Medical Prep Course / Junior</p>
+          <h1 id="medical-prep-junior-title">
+            <span>中学から始まる</span>
+            医学部合格への先取り設計
+          </h1>
+          <p class="prep-hero__lead">
+            中高一貫校の強みを活かし、早い時期から高校範囲へ接続。基礎学力と学習習慣を整え、医学部受験のスタートラインを前へ動かします。
+          </p>
+          <div class="prep-title-card" aria-label="コース名">
+            <p class="prep-title-card__jp">メディカル準備コース（中等部）</p>
+            <p class="prep-title-card__en">Medical Prep Course</p>
+            <p class="prep-title-card__lead">先手必勝。難関医学部を目指す中学生のために、早期から学習設計と習慣化を支えます。</p>
+          </div>
+          <div class="prep-actions">
             {heroActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
           </div>
-          <div class="course-detail-quick-actions">
-            {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+        </div>
+        <div class="prep-hero__visual" aria-hidden="true">
+          <div class="prep-hero__image-frame">
+            <img src={images.mascot} alt="" width="670" height="670" decoding="async" />
+          </div>
+          <div class="prep-hero__note">
+            <span>Online OK</span>
+            <strong>中高一貫校の進度にも対応</strong>
           </div>
         </div>
-        <img src={images.mascot} alt="" width="670" height="670" decoding="async" />
       </div>
     </section>
 
-    <section class="course-detail-recommend">
-      <div class="content course-detail-two-column">
-        <div>
-          <h3>こんな中学生にオススメです！</h3>
-          <ul>{recommend.map((item) => <li>{item}</li>)}</ul>
+    <section class="prep-fit" aria-labelledby="medical-prep-junior-fit-title">
+      <div class="content prep-fit__inner">
+        <div class="prep-section-head">
+          <p>Recommend</p>
+          <h2 id="medical-prep-junior-fit-title">こんな中学生にオススメです</h2>
         </div>
-        <p>先手必勝！難関医学部を目指す中高一貫カリキュラムの先取り学習コースです。</p>
-      </div>
-    </section>
-
-    <section class="course-detail-overview">
-      <div class="content">
-        <h2>コース概要</h2>
-        <div class="course-detail-overview-grid">
-          <article>
-            <h3>● メディカル準備コース とは？ ●</h3>
-            <p>医学部対策サポートの全てを受けられるコースです。これ以上の準備は不要です。</p>
-            <p>「パーソナル授業」 × 「厳しい課題管理」 × 「効果測定」</p>
-          </article>
-          <article>
-            <h3>● 万全のサポート内容 ●</h3>
-            <p>レクサス独自のプランで、合格するための学力と勉強習慣が身に付きます！</p>
-          </article>
+        <div class="prep-fit__grid">
+          <ul class="prep-check-list">
+            {recommend.map((item) => <li>{item}</li>)}
+          </ul>
+          <div class="prep-fit__message">
+            <p>
+              中学生のうちから医学部を意識できるなら、最大の武器は時間です。基礎固めと先取りを同時に設計し、学年が上がるほど余裕が出る状態を作ります。
+            </p>
+            <div class="prep-support-tags">
+              {supports.map((support) => <span>{support}</span>)}
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="course-detail-curriculum">
+    <section class="prep-system" aria-labelledby="medical-prep-junior-system-title">
       <div class="content">
-        <h2>「カリキュラム」 一覧</h2>
-        <p>まずはご希望の「カリキュラム 」を選択して下さい。カリキュラムは全部で6種類です。</p>
-        <div class="course-detail-plan-grid">
-          {plans.map((plan) => (
+        <div class="prep-section-head prep-section-head--center">
+          <p>System</p>
+          <h2 id="medical-prep-junior-system-title">メディカル準備コースとは？</h2>
+          <span>中学内容の定着、高校範囲への接続、学習習慣の固定を一体で進めます。</span>
+        </div>
+        <div class="prep-pillar-grid">
+          {pillars.map((pillar) => (
             <article>
-              <h3>{plan.title}</h3>
-              <ul>{plan.rows.map((row) => <li>{row}</li>)}</ul>
+              <p class="prep-pillar__label">{pillar.label}</p>
+              <h3>{pillar.title}</h3>
+              <p>{pillar.body}</p>
             </article>
           ))}
         </div>
       </div>
     </section>
 
-    <section class="course-detail-message">
-      <div class="content course-detail-message__grid">
+    <section class="prep-plans" aria-labelledby="medical-prep-junior-plans-title">
+      <div class="content">
+        <div class="prep-section-head">
+          <p>Plans</p>
+          <h2 id="medical-prep-junior-plans-title">カリキュラム一覧</h2>
+          <span>到達時期の目標を明確にし、無理のない先取りペースへ調整します。</span>
+        </div>
+        <div class="prep-plan-grid">
+          {plans.map((plan) => (
+            <article>
+              <span class="prep-plan__tag">{plan.tag}</span>
+              <h3>{plan.title}</h3>
+              <dl>
+                <div>
+                  <dt>プラン概要</dt>
+                  <dd>{plan.outline}</dd>
+                </div>
+                <div>
+                  <dt>入学時の目安</dt>
+                  <dd>{plan.level}</dd>
+                </div>
+                <div>
+                  <dt>月額料金</dt>
+                  <dd>{plan.price}</dd>
+                </div>
+              </dl>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="prep-message" aria-labelledby="medical-prep-junior-message-title">
+      <div class="content prep-message__grid">
         <div>
-          <h2>夢を叶えるため、 先手を打ちたい！</h2>
-          <p>その想いがあるなら、あとは正しい戦略を持つだけ。レクサス教育センターの「メディカル準備コース」は、“今”から本気になるあなたを、全力で支えるコースです。</p>
-          <h3>↓ 入学までの流れ ↓</h3>
-          <p>※ 「無料面談」の前に、「無料体験 （体験授業）」を受けることも可能です。</p>
-          <div class="fixed-hero__actions">
+          <p class="prep-eyebrow prep-eyebrow--light">Admission Flow</p>
+          <h2 id="medical-prep-junior-message-title">夢を叶えるため、先手を打ちたい。</h2>
+          <p>
+            その想いがあるなら、あとは正しい戦略を持つだけ。レクサス教育センターの「メディカル準備コース」は、“今”から本気になる中学生を、全力で支えるコースです。
+          </p>
+          <p class="prep-message__sub">無料面談の前に、無料体験を受けることも可能です。</p>
+          <div class="prep-actions prep-actions--left">
             {flowActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
           </div>
         </div>
-        <img src={images.flow} alt="入学までの流れ" width="777" height="1024" loading="lazy" decoding="async" />
+        <figure>
+          <img src={images.flow} alt="入学までの流れ" width="777" height="1024" loading="lazy" decoding="async" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="prep-other" aria-labelledby="medical-prep-junior-other-title">
+      <div class="content">
+        <div class="prep-section-head prep-section-head--center">
+          <p>Other Courses</p>
+          <h2 id="medical-prep-junior-other-title">他のコース一覧</h2>
+        </div>
+        <div class="prep-other-grid">
+          {otherCourses.map(([category, courseTitle, en, body, href]) => (
+            <article>
+              <h3>{category}</h3>
+              <h4>{courseTitle}</h4>
+              <p class="prep-other__en">{en}</p>
+              <p>{body}</p>
+              <a class="button button--blue" href={href}>コースの内容を見る</a>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   </main>
