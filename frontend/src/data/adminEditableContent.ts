@@ -76,7 +76,7 @@ const knownPages: AdminEditablePage[] = [
       field(
         "home.hero.target",
         "ヒーロー 対象",
-        "対象：既卒生（年齢制限なし）\n欠員が出た場合、6月入学可能。\n※お問合せ下さい。",
+        "対象：既卒生（年齢制限なし）\n欠員が出た場合、夏期(7・8月)入学可能。\n※お問合せ下さい。",
         "textarea",
         4,
       ),
