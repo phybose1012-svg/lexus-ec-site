@@ -580,7 +580,7 @@ export const courses: CourseCard[] = [
   },
   {
     target: "◆ 浪人・再受験・高校生 対象 個別指導コース ◆",
-    name: "オーダーメード演習 コース",
+    name: "オーダーメード演習コース",
     english: "Custom-made Course",
     href: "/top/course/custom-made-course/",
     note: "自分のレベルに合った演習ベースのカリキュラムで倍速学習をするコースです。",

@@ -42,7 +42,7 @@ export const coursePlanGroups: Record<CoursePlanGroupId, CoursePlanGroup & { pla
     id: "custom-made-course",
     tone: "custom",
     parentHref: "/top/course/custom-made-course/",
-    courseTitle: "オーダーメード演習 コース",
+    courseTitle: "オーダーメード演習コース",
     courseEnglish: "Custom-made Course",
     courseLabel: "演習中心型",
     heroLead: "授業を増やす前に、演習量・復習順・質問対応を設計する。自分の現在地から医学部合格までの距離を、毎週の課題へ落とし込みます。",
