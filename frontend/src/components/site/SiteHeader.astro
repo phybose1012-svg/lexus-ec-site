@@ -13,7 +13,7 @@ const linkAttrs = (link: { target?: string; rel?: string }) => ({
 <header class="site-header">
   <div class="top-header">
     <a class="brand" href="/" aria-label="医学部予備校 レクサス E.C.">
-      <img src={assets.logo} alt="医学部予備校 LEXUS レクサス教育センター" width="1181" height="380" fetchpriority="high" decoding="async" />
+      <img src={assets.logo} srcset={assets.logoSrcset} sizes="(max-width: 760px) 256px, 446px" alt="医学部予備校 LEXUS レクサス教育センター" width="900" height="290" fetchpriority="high" decoding="async" />
     </a>
     <div class="header-copy" aria-label="校舎の特徴">
       <span>「渋谷駅」徒歩5分</span>

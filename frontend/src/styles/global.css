@@ -163,7 +163,7 @@ li {
   z-index: 0;
   width: 100%;
   height: 156px;
-  background: url("/assets/site/header-background-desktop.jpg?v=20260702-2") top center / max(1440px, 100vw) auto no-repeat;
+  background: url("/assets/optimized/header-background-desktop-1920.webp") top center / max(1440px, 100vw) auto no-repeat;
   pointer-events: none;
 }
 
@@ -398,6 +398,16 @@ li {
   text-decoration: none;
 }
 
+/* Below-the-fold sections opt in to skipping style/layout until they approach
+   the viewport. This cuts the ~600ms initial layout long task on mobile (the
+   whole TOP page — marquee, tables, grids — used to lay out in one go).
+   contain-intrinsic-size is a rough placeholder height; Chrome replaces it
+   with the real size after first render. */
+.defer-render {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
+}
+
 .premium-hero {
   position: relative;
   isolation: isolate;
@@ -435,7 +445,9 @@ li {
   width: 100%;
   height: 100%;
   opacity: 0.68;
-  filter: blur(0.8px) saturate(82%) contrast(88%) brightness(1.08);
+  /* The old blur/saturate/contrast/brightness filter is baked into the
+     hero-washi-* assets (scripts/optimize-top-images.mjs). Keeping it out of
+     CSS lets the settle animation stay compositor-only. */
   object-fit: cover;
   object-position: center;
   transform: scale(1.012);
@@ -448,12 +460,10 @@ li {
   0% {
     opacity: 0.95;
     transform: scale(1.5) translateY(4%);
-    filter: blur(0) saturate(118%) contrast(104%) brightness(1);
   }
   100% {
     opacity: 0.68;
     transform: scale(1.012) translateY(0);
-    filter: blur(0.8px) saturate(82%) contrast(88%) brightness(1.08);
   }
 }
 
@@ -2300,7 +2310,7 @@ body:has(.premium-hero) :is(
     z-index: 0;
     width: 100%;
     height: var(--mobile-header-top-height);
-    background: url("/assets/legacy/wp-content/uploads/2024/11/背景ロゴ-縦長.png") top center / max(390px, 100vw) auto no-repeat;
+    background: url("/assets/optimized/watermark-mobile-860.webp") top center / max(390px, 100vw) auto no-repeat;
     clip-path: none;
     transform: none;
   }
@@ -2524,7 +2534,6 @@ body:has(.premium-hero) :is(
 
   .premium-hero__bg {
     opacity: 0.66;
-    filter: blur(0.65px) saturate(80%) contrast(88%) brightness(1.1);
     /* Frame the oni's face (≈15%/30% of the artwork) into the mobile viewport. */
     object-position: 15% 30%;
     /* Settle animation ends at the mobile resting values. */
@@ -2535,12 +2544,10 @@ body:has(.premium-hero) :is(
     0% {
       opacity: 0.95;
       transform: scale(1.5) translateY(4%);
-      filter: blur(0) saturate(118%) contrast(104%) brightness(1);
     }
     100% {
       opacity: 0.66;
       transform: scale(1.012) translateY(0);
-      filter: blur(0.65px) saturate(80%) contrast(88%) brightness(1.1);
     }
   }
 
