@@ -181,7 +181,6 @@ const knownLabels: Record<string, string> = {
   "/top/teacher/": "講師紹介",
   "/top/voice/": "合格体験記",
   "/top/course/custom-made-course/": "カスタムメイドコース",
-  "/top/course/high-level-geneki-course/": "ハイレベル現役コース",
   "/top/course/lexus-premiere-course/": "レクサス・プレミア本科",
   "/top/course/medical-prep/": "医学部進学準備コース",
   "/top/course/medical-prep-junior/": "医学部進学ジュニア",

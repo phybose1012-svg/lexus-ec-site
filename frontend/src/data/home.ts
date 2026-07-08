@@ -155,7 +155,6 @@ export const navGroups: NavGroup[] = [
     links: [
       { label: "医学部専門 コース一覧", href: "/top/course/" },
       { label: "レクサス プレミア本科 【既卒生専用】", href: "/lexus-premier/" },
-      { label: "ハイレベル現役合格コース 【高2・3生専用】", href: "/top/course/high-level-geneki-course/" },
       { label: "オーダーメード演習コース 【全学年対象】", href: "/top/course/custom-made-course/" },
       { label: "メディカル準備コース 【高等部】", href: "/top/course/medical-prep/" },
       { label: "メディカル準備コース 【中等部】", href: "/top/course/medical-prep-junior/" },
@@ -588,14 +587,6 @@ export const courses: CourseCard[] = [
     accent: "#0f2db8",
   },
   {
-    target: "◆ 高2生・高3生 対象 “鬼特訓”コース ◆",
-    name: "ハイレベル現役合格コース",
-    english: "High-level GENEKI Course",
-    href: "/top/course/high-level-geneki-course/",
-    note: "慶應、慈恵、順天、日医をはじめとする都内の医学部に現役合格するためのコースです。",
-    accent: "#115220",
-  },
-  {
     target: "◆ 高1・2生 対象 医学部受験 “準備”コース ◆",
     name: "メディカル準備コース (高等部)",
     english: "Medical Prep Course",
@@ -636,7 +627,6 @@ export const footerGroups: FooterGroup[] = [
     title: "コースと学費",
     links: [
       { label: "レクサス プレミア本科【既卒生専用】", href: "/top/course/lexus-premiere-course/" },
-      { label: "ハイレベル現役合格コース【高2・3専用】", href: "/top/course/high-level-geneki-course/" },
       { label: "オーダーメード演習コース【全学年対象】", href: "/top/course/custom-made-course/" },
       { label: "メディカル準備コース【高等部】", href: "/top/course/medical-prep/" },
       { label: "メディカル準備コース【中等部】", href: "/top/course/medical-prep-junior/" },
