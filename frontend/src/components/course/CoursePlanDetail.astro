@@ -1,0 +1,164 @@
+---
+import type { CoursePlanPage } from "../../data/coursePlanPages";
+import { seo } from "../../data/home";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import "../../styles/course-plan-detail.css";
+
+type Props = {
+  planPage: CoursePlanPage;
+};
+
+const { planPage } = Astro.props;
+const { group, plan, siblings } = planPage;
+const title = `${plan.title}｜${group.courseTitle} - 医学部予備校 レクサス E.C.`;
+const description = `${plan.title}は、${plan.target}を見据えた${group.courseTitle}の詳細プランです。${plan.lead}`;
+const canonical = new URL(plan.href, seo.canonical).href;
+
+const heroActions = [
+  { label: "体験授業はコチラ", href: "/test-entry/", tone: "red" },
+  { label: "個別相談はコチラ", href: "/reservation/", tone: "blue" },
+];
+---
+
+<SiteLayout title={title} description={description} canonical={canonical} ogImage={seo.ogImage}>
+  <main class={`course-plan-page course-plan-page--${group.tone}`}>
+    <section class="course-plan-hero" aria-labelledby="course-plan-title">
+      <div class="content course-plan-hero__inner">
+        <div class="course-plan-hero__copy">
+          <a class="course-plan-back" href={group.parentHref}>{group.parentLabel}</a>
+          <p class="course-plan-eyebrow">{group.courseEnglish}</p>
+          <h1 id="course-plan-title">
+            <span>{group.courseLabel}</span>
+            {plan.title}
+          </h1>
+          <p class="course-plan-hero__lead">{plan.lead}</p>
+          <div class="course-plan-summary-card">
+            <p class="course-plan-summary-card__course">{group.courseTitle}</p>
+            <p class="course-plan-summary-card__title">{plan.badge}</p>
+            <p>{group.heroLead}</p>
+          </div>
+          <div class="course-plan-actions">
+            {heroActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+          </div>
+        </div>
+        <aside class="course-plan-hero__panel" aria-label="プラン概要">
+          <dl>
+            <div>
+              <dt>目標</dt>
+              <dd>{plan.target}</dd>
+            </div>
+            <div>
+              <dt>入学時の目安</dt>
+              <dd>{plan.level}</dd>
+            </div>
+            <div>
+              <dt>料金</dt>
+              <dd>{plan.price}</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section class="course-plan-intro" aria-labelledby="course-plan-intro-title">
+      <div class="content course-plan-intro__grid">
+        <div>
+          <p class="course-plan-section-kicker">Overview</p>
+          <h2 id="course-plan-intro-title">このプランで整えること</h2>
+          <p>{plan.summary}</p>
+        </div>
+        <ul class="course-plan-fit-list">
+          {plan.bestFor.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="course-plan-outcomes" aria-labelledby="course-plan-outcomes-title">
+      <div class="content">
+        <div class="course-plan-section-head">
+          <p class="course-plan-section-kicker">Focus</p>
+          <h2 id="course-plan-outcomes-title">重点的に伸ばす力</h2>
+        </div>
+        <div class="course-plan-outcome-grid">
+          {plan.outcomes.map((item, index) => (
+            <article>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{item}</h3>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="course-plan-flow" aria-labelledby="course-plan-flow-title">
+      <div class="content course-plan-flow__grid">
+        <div class="course-plan-section-head">
+          <p class="course-plan-section-kicker">Method</p>
+          <h2 id="course-plan-flow-title">学習の進め方</h2>
+          <p>一度決めて終わりではなく、課題の進み方と理解度を見ながら、毎週の学習量を調整します。</p>
+        </div>
+        <ol class="course-plan-steps">
+          {plan.steps.map((step) => (
+            <li>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="course-plan-support" aria-labelledby="course-plan-support-title">
+      <div class="content course-plan-support__inner">
+        <div>
+          <p class="course-plan-section-kicker">Support</p>
+          <h2 id="course-plan-support-title">サポート内容</h2>
+        </div>
+        <div class="course-plan-support__tags">
+          {plan.supports.map((item) => <span>{item}</span>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="course-plan-siblings" aria-labelledby="course-plan-siblings-title">
+      <div class="content">
+        <div class="course-plan-section-head course-plan-section-head--center">
+          <p class="course-plan-section-kicker">Compare</p>
+          <h2 id="course-plan-siblings-title">同じコースの他プラン</h2>
+        </div>
+        <div class="course-plan-sibling-grid">
+          {siblings.map((item) => (
+            <article>
+              <p>{item.badge}</p>
+              <h3>{item.title}</h3>
+              <dl>
+                <div>
+                  <dt>目標</dt>
+                  <dd>{item.target}</dd>
+                </div>
+                <div>
+                  <dt>目安</dt>
+                  <dd>{item.level}</dd>
+                </div>
+              </dl>
+              <a class="button button--blue" href={item.href}>詳しく見る</a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="course-plan-cta" aria-labelledby="course-plan-cta-title">
+      <div class="content course-plan-cta__inner">
+        <div>
+          <p class="course-plan-section-kicker">Counseling</p>
+          <h2 id="course-plan-cta-title">今の学力に合うプランを一緒に決めます。</h2>
+          <p>体験授業や個別相談で、現在の学力、学校進度、志望校を確認し、最短で伸ばすための設計に落とし込みます。</p>
+        </div>
+        <div class="course-plan-actions course-plan-actions--stack">
+          {heroActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>
