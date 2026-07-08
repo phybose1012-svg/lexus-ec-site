@@ -17,6 +17,7 @@ const uniqueRedirects = [
 
 const cloudflareOnlyRedirects = [
   { from: "/reservation", to: "/top/reservation/" },
+  { from: "/wp-content/uploads/*", to: "/assets/legacy/wp-content/uploads/:splat" },
 ];
 
 await mkdir(publicDir, { recursive: true });
