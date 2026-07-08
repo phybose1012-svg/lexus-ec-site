@@ -8,6 +8,12 @@ import {
   reportSnapshots,
 } from "../../data/adminDashboard";
 
+// Admin CMS is an internal tool. Never expose it on the production domain;
+// it stays available on staging/preview builds for editors.
+if ((import.meta.env.CF_PAGES_BRANCH || "") === "main") {
+  return Astro.redirect("/", 302);
+}
+
 const highPriorityItems = contentQueue.filter((item) => item.priority === "高");
 const disconnectedReports = reportSnapshots.filter((item) => item.state === "未接続");
 ---

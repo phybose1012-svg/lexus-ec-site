@@ -1,6 +1,12 @@
 ---
 import AdminLayout from "../../../layouts/AdminLayout.astro";
 import { adminEditablePages } from "../../../data/adminEditableContent";
+
+// Admin CMS is an internal tool. Never expose it on the production domain;
+// it stays available on staging/preview builds for editors.
+if ((import.meta.env.CF_PAGES_BRANCH || "") === "main") {
+  return Astro.redirect("/", 302);
+}
 ---
 
 <AdminLayout title="ページ直接編集 | LEXUS E.C. Admin" active="editor">
