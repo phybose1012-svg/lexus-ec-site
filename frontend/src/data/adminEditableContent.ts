@@ -127,7 +127,7 @@ const knownPages: AdminEditablePage[] = [
     summary: "資料請求ページの案内文とボタン文言を編集します。フォーム外の文言も自動検出します。",
     autoDiscover: true,
     fields: [
-      field("request.intro", "導入文", "必須事項を入力して\n「送信ボタンを」押して下さい。", "textarea", 4),
+      field("request.intro", "導入文", "必須事項を入力して\n「送信ボタンを」押してください。", "textarea", 4),
       field("request.form.title", "フォーム見出し", "資料請求フォーム", "text", 1),
       field("request.form.lead", "フォーム説明", "必須項目を入力してください。"),
       field("request.submit", "送信ボタン", "送信", "text", 1),
@@ -153,7 +153,7 @@ const knownPages: AdminEditablePage[] = [
       ),
       field("reservation.mascot.left", "左キャラクター吹き出し", "お気軽にどうぞ", "text", 1),
       field("reservation.mascot.right", "右キャラクター吹き出し", "毎日実施中", "text", 1),
-      field("reservation.notice", "フォーム案内", "必須事項を入力して\n「予約する」ボタンを押して下さい。", "textarea", 4),
+      field("reservation.notice", "フォーム案内", "必須事項を入力して\n「予約する」ボタンを押してください。", "textarea", 4),
       field("reservation.submit", "送信ボタン", "予約する", "text", 1),
       field("reservation.phone.label", "電話予約見出し", "【お電話でもご予約承ります】", "text", 1),
       field("reservation.phone.hours", "電話受付時間", "受付時間：10時00分～21時00分", "text", 1),
