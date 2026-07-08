@@ -23,17 +23,19 @@ const linkAttrs = (link: { target?: string; rel?: string }) => ({
     <div class="header-actions" aria-label="固定ショートカット">
       {headerActions.map((action) => (
         <a class={`header-action header-action--${action.tone}`} href={action.href}>
-          <img src={action.icon} alt="" width="96" height="96" decoding="async" />
+          <img src={action.icon} alt="" width="96" height="96" decoding="async" aria-hidden="true" />
           <span>{action.label}</span>
         </a>
       ))}
     </div>
   </div>
+  </header>
 
+  <div class="mobile-fixed-nav-wrap">
   <div class="mobile-fixed-nav" aria-label="固定ショートカット">
     {mobilePrimaryActions.map((action) => (
       <a class={`mobile-shortcut mobile-shortcut--${action.tone}`} href={action.href}>
-        <img src={action.icon} alt="" width="96" height="96" decoding="async" />
+        <img src={action.icon} alt="" width="96" height="96" decoding="async" aria-hidden="true" />
         <span>{action.label}</span>
       </a>
     ))}
@@ -43,10 +45,11 @@ const linkAttrs = (link: { target?: string; rel?: string }) => ({
         <span></span>
         <span></span>
       </span>
+      <span class="mobile-menu-button__label">menu</span>
     </button>
     {mobileSecondaryActions.map((action) => (
       <a class={`mobile-shortcut mobile-shortcut--${action.tone}`} href={action.href}>
-        <img src={action.icon} alt="" width="96" height="96" decoding="async" />
+        <img src={action.icon} alt="" width="96" height="96" decoding="async" aria-hidden="true" />
         <span>{action.label}</span>
       </a>
     ))}
@@ -66,16 +69,19 @@ const linkAttrs = (link: { target?: string; rel?: string }) => ({
       ))}
     </nav>
   </div>
-</header>
+  </div>
 
+<p class="mega-nav-heading" aria-hidden="true">main menu</p>
 <nav class="mega-nav" aria-label="主要ナビゲーション">
   <ul>
     {headerNavGroups.map((group) => (
-      <li>
-        <a class="mega-nav__label" href={group.links[0].href} {...linkAttrs(group.links[0])}>{group.label}</a>
-        <div class="mega-panel">
-          {group.links.map((link) => <a href={link.href} {...linkAttrs(link)}>{link.label}</a>)}
-        </div>
+      <li class={group.links.length === 1 ? "mega-nav__item--single" : undefined}>
+        <a class={`mega-nav__label${group.links.length === 1 ? " mega-nav__label--single" : ""}`} href={group.links[0].href} {...linkAttrs(group.links[0])}>{group.label}</a>
+        {group.links.length > 1 && (
+          <div class="mega-panel">
+            {group.links.map((link) => <a href={link.href} {...linkAttrs(link)}>{link.label}</a>)}
+          </div>
+        )}
       </li>
     ))}
   </ul>

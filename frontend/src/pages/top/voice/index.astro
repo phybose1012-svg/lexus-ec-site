@@ -1,9 +1,66 @@
 ---
 import { seo } from "../../../data/home";
-import { getVoicePage } from "../../../lib/voiceSource";
+import VoiceSuccessCard from "../../../components/VoiceSuccessCard.astro";
+import { getVoicePage, type VoiceImage } from "../../../lib/voiceSource";
+import { marqueeThumb } from "../../../lib/marqueeThumb";
 import SiteLayout from "../../../layouts/SiteLayout.astro";
 
 const page = getVoicePage();
+
+// Success-student photos for the hero marquee (the "wall of pass").
+type MarqueeItem = { src: string; alt: string; label: string };
+const isImage = (image: VoiceImage | undefined): image is VoiceImage => Boolean(image);
+
+// A few well-known short forms; everything else falls back to a safe
+// generic shortening (医科大学→医大, 大学→大) so we never mislabel.
+const UNI_ABBR: Record<string, string> = {
+  慶應大: "慶應義塾大",
+  慶応大: "慶應義塾大",
+  慶應義塾大学: "慶應義塾大",
+  慶応義塾大学: "慶應義塾大",
+  昭和大学: "昭和医大",
+  昭和医科大学: "昭和医大",
+  聖マリアンナ医科大学: "聖マリ医大",
+  東京慈恵会医科大学: "慈恵医大",
+  東京女子医科大学: "東京女子医大",
+  東北医科薬科大学: "東北医薬大",
+  国際医療福祉大学: "国際医療福祉大",
+};
+
+// Turn an interview title ("記事タイトル｜大学名合格") into a compact
+// "〇〇大合格" badge. Without a ｜ we only override well-known legacy titles.
+const passLabelFromTitle = (title: string, href = ""): string => {
+  const legacyKey = `${title} ${href}`;
+  if (!title.includes("｜")) {
+    if (/慶應|慶応|慶大/.test(legacyKey) || href.includes("/mail-02/")) return "慶應義塾大合格";
+    return "合格";
+  }
+  let uni = title
+    .split("｜")
+    .slice(1)
+    .join("｜")
+    .split(/[、,]/)[0]
+    .replace(/他.*$/, "")
+    .replace(/合格.*$/, "")
+    .replace(/医学部医学科|医学部/g, "")
+    .replace(/^旧/, "")
+    .trim();
+  if (!uni) return "合格";
+  uni = UNI_ABBR[uni] ?? uni.replace(/医科大学/, "医大").replace(/大学$/, "大");
+  return `${uni}合格`;
+};
+
+const interviewMarquee: MarqueeItem[] = page.interviews
+  .filter((item) => isImage(item.image))
+  .map((item) => ({ src: item.image!.src, alt: item.image!.alt || item.title, label: passLabelFromTitle(item.title, item.href) }));
+const marqueeItems: MarqueeItem[] =
+  interviewMarquee.length >= 12
+    ? interviewMarquee
+    : page.successPhotos
+        .filter((story) => isImage(story.image))
+        .map((story) => ({ src: story.image.src, alt: story.image.alt || "", label: "合格" }));
+const marqueeRow1 = marqueeItems.filter((_, index) => index % 2 === 0).slice(0, 18);
+const marqueeRow2 = marqueeItems.filter((_, index) => index % 2 === 1).slice(0, 18);
 
 const topLinks = [
   { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
@@ -37,6 +94,29 @@ const successButtonLabels = [
       <div class="content voice-hero__inner">
         <p class="voice-hero__eyebrow">SUCCESS STORIES</p>
         <h1>{page.h1}</h1>
+        <p class="voice-hero__count">{page.graduateCopy}</p>
+      </div>
+      {marqueeRow1.length > 0 && (
+        <div class="voice-marquee" aria-hidden="true">
+          <div class="voice-marquee__row voice-marquee__row--left">
+            {[...marqueeRow1, ...marqueeRow1].map((item) => (
+              <span class="voice-marquee__item">
+                <img src={marqueeThumb(item.src)} alt="" width="160" height="120" loading="lazy" decoding="async" />
+                <span class="voice-marquee__tag">{item.label}</span>
+              </span>
+            ))}
+          </div>
+          <div class="voice-marquee__row voice-marquee__row--right">
+            {[...marqueeRow2, ...marqueeRow2].map((item) => (
+              <span class="voice-marquee__item">
+                <img src={marqueeThumb(item.src)} alt="" width="160" height="120" loading="lazy" decoding="async" />
+                <span class="voice-marquee__tag">{item.label}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+      <div class="content voice-hero__inner">
         <h2>{page.mainCopy}</h2>
         <p>レクサス教育センターでは、情熱と実力を兼ね備えた講師達があなたの学習を厳しく管理し、合格へ導きます。講師の指示通りに課題をこなせば、医学部に合格する実力が必ず身につきます。</p>
       </div>
@@ -49,7 +129,13 @@ const successButtonLabels = [
     <section class="voice-notice">
       <div class="content voice-notice__grid">
         <article>
-          <h2><span>最新インタビュー動画</span><span>準備中！</span></h2>
+          <h2>
+            <span class="voice-notice__eyebrow">COMING SOON</span>
+            <span class="voice-notice__line">
+              <span class="voice-notice__text">最新インタビュー動画</span>
+              <span class="voice-notice__pill">準備中</span>
+            </span>
+          </h2>
           <p>最新の合格者インタビューは、公開準備ができたものから順次追加します。</p>
           <div class="voice-notice__actions">
             <a class="button button--green" href="#voice-videos">▼ 合格者の声をもっと見る</a>
@@ -70,37 +156,8 @@ const successButtonLabels = [
           <p>RECENT RESULTS</p>
           <h2 id="voice-success-title">「厳しさ」を乗り越えた先輩の合格体験記</h2>
         </header>
-        <div class="voice-success-grid">
-          {page.successPhotos.map((story, index) => (
-            <article class="voice-success-card">
-              <h3>{story.headline}</h3>
-              <div class="voice-success-card__body">
-                <div class="voice-success-card__image">
-                  <img
-                    src={story.image.src}
-                    alt={story.image.alt}
-                    width={story.image.width || "1200"}
-                    height={story.image.height || "900"}
-                    loading={index < 3 ? undefined : "lazy"}
-                    decoding="async"
-                  />
-                </div>
-                <dl class="voice-success-card__stats">
-                  {story.stats.map((stat) => (
-                    <div>
-                      <dt>{stat.label}</dt>
-                      <dd>{stat.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-                {story.videoUrl && (
-                  <a class="voice-success-card__video" href={story.videoUrl} target="_blank" rel="noopener noreferrer">
-                    {story.videoLabel}
-                  </a>
-                )}
-              </div>
-            </article>
-          ))}
+        <div class="success-grid voice-success-grid">
+          {page.successPhotos.map((story, index) => <VoiceSuccessCard story={story} priority={index < 3} />)}
         </div>
         <div class="voice-similarity-buttons" aria-hidden="true">
           {successButtonLabels.map((label) => <a class="button" href="#voice-videos" tabindex="-1">{label}</a>)}
@@ -117,18 +174,25 @@ const successButtonLabels = [
         </header>
         <div class="voice-video-grid">
           {page.videos.map((video) => (
-            <article class="voice-video-card">
-              <a class="voice-video-card__media" href={video.url || "#voice-video-title"} target={video.url ? "_blank" : undefined} rel={video.url ? "noopener noreferrer" : undefined}>
-                {video.thumbnail ? (
+            <article class={`voice-video-card${video.url ? "" : " is-pending"}`}>
+              <a
+                class="voice-video-card__media"
+                href={video.url || "#voice-video-title"}
+                target={video.url ? "_blank" : undefined}
+                rel={video.url ? "noopener noreferrer" : undefined}
+                aria-label={video.url ? `動画を新しいタブで開く: ${video.title}` : `動画準備中: ${video.title}`}
+              >
+                {video.url && video.thumbnail ? (
                   <img src={video.thumbnail.src} alt={video.thumbnail.alt || video.title} width={video.thumbnail.width || "1280"} height={video.thumbnail.height || "720"} loading="lazy" decoding="async" />
                 ) : (
-                  <span>{video.title}</span>
+                  <span class="voice-video-card__ph">{video.title}</span>
                 )}
+                {video.url && video.duration && <span class="voice-video-card__time">{video.duration}</span>}
+                {!video.url && <span class="voice-video-card__badge">準備中</span>}
               </a>
               <div class="voice-video-card__body">
                 <h3>{video.title}</h3>
-                {video.duration && <p>{video.duration}</p>}
-                <a href={video.url || "#voice-video-title"} target={video.url ? "_blank" : undefined} rel={video.url ? "noopener noreferrer" : undefined}>{video.url ? "動画を見る" : "準備中"}</a>
+                <a class="voice-video-card__link" href={video.url || "#voice-video-title"} target={video.url ? "_blank" : undefined} rel={video.url ? "noopener noreferrer" : undefined}>{video.url ? "動画を見る" : "準備中"}</a>
               </div>
             </article>
           ))}
@@ -155,23 +219,45 @@ const successButtonLabels = [
           <p>INTERVIEW ARCHIVE</p>
           <h2 id="voice-interviews-title">合格者インタビューを公開中！</h2>
         </header>
-        <div class="voice-interview-grid">
-          {page.interviews.map((interview) => (
-            <article class="voice-interview-card">
-              {interview.image && (
-                <a class="voice-interview-card__image" href={interview.href}>
-                  <img src={interview.image.src} alt={interview.image.alt || interview.title} width={interview.image.width || "300"} height={interview.image.height || "226"} loading="lazy" decoding="async" />
-                </a>
-              )}
-              <div>
-                <h3><a href={interview.href}>{interview.title}</a></h3>
-                <a class="voice-readmore" href={interview.href}>続きを読む</a>
-              </div>
-            </article>
-          ))}
+        <div class={`voice-interview-grid${page.interviews.length > 8 ? " is-collapsed" : ""}`} data-interview-grid>
+          {page.interviews.map((interview) => {
+            const [headline, ...uniParts] = interview.title.split("｜");
+            const university = uniParts.join("｜").trim();
+            return (
+              <article class="voice-interview-card">
+                {interview.image && (
+                  <a class="voice-interview-card__image" href={interview.href} aria-label={`合格者インタビューを読む: ${interview.title}`}>
+                    <img src={interview.image.src} alt={interview.image.alt || interview.title} width={interview.image.width || "300"} height={interview.image.height || "226"} loading="lazy" decoding="async" />
+                  </a>
+                )}
+                <div class="voice-interview-card__body">
+                  {university && <p class="voice-interview-card__uni">{university}</p>}
+                  <h3><a href={interview.href}>{headline.trim()}</a></h3>
+                  <a class="voice-readmore" href={interview.href}>続きを読む</a>
+                </div>
+              </article>
+            );
+          })}
         </div>
+        {page.interviews.length > 8 && (
+          <div class="voice-interview-more">
+            <button class="button button--red" type="button" data-interview-more>合格者インタビューをもっと見る</button>
+          </div>
+        )}
       </div>
     </section>
+
+    <script is:inline>
+      (() => {
+        const btn = document.querySelector("[data-interview-more]");
+        const grid = document.querySelector("[data-interview-grid]");
+        if (!btn || !grid) return;
+        btn.addEventListener("click", () => {
+          grid.classList.remove("is-collapsed");
+          btn.parentElement?.remove();
+        });
+      })();
+    </script>
 
     <section class="voice-guide" aria-labelledby="voice-guide-title">
       <div class="content voice-guide__inner">

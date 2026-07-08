@@ -2,6 +2,8 @@
 import SectionHeading from "../components/SectionHeading.astro";
 import SuccessCard from "../components/SuccessCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getVoicePage, type VoiceImage } from "../lib/voiceSource";
+import { marqueeThumb } from "../lib/marqueeThumb";
 import {
   acceptedUniversities,
   achievementStats,
@@ -22,6 +24,59 @@ import {
   supportItems,
   supportMetrics,
 } from "../data/home";
+
+// Hero-style "wall of pass" marquee (copied from /top/voice/): scrolling
+// success-student photos, each badged with the university.
+type MarqueeItem = { src: string; alt: string; label: string };
+const voicePage = getVoicePage();
+const isImage = (image: VoiceImage | undefined): image is VoiceImage => Boolean(image);
+
+const UNI_ABBR: Record<string, string> = {
+  慶應大: "慶應義塾大",
+  慶応大: "慶應義塾大",
+  慶應義塾大学: "慶應義塾大",
+  慶応義塾大学: "慶應義塾大",
+  昭和大学: "昭和医大",
+  昭和医科大学: "昭和医大",
+  聖マリアンナ医科大学: "聖マリ医大",
+  東京慈恵会医科大学: "慈恵医大",
+  東京女子医科大学: "東京女子医大",
+  東北医科薬科大学: "東北医薬大",
+  国際医療福祉大学: "国際医療福祉大",
+};
+
+const passLabelFromTitle = (title: string, href = ""): string => {
+  const legacyKey = `${title} ${href}`;
+  if (!title.includes("｜")) {
+    if (/慶應|慶応|慶大/.test(legacyKey) || href.includes("/mail-02/")) return "慶應義塾大合格";
+    return "合格";
+  }
+  let uni = title
+    .split("｜")
+    .slice(1)
+    .join("｜")
+    .split(/[、,]/)[0]
+    .replace(/他.*$/, "")
+    .replace(/合格.*$/, "")
+    .replace(/医学部医学科|医学部/g, "")
+    .replace(/^旧/, "")
+    .trim();
+  if (!uni) return "合格";
+  uni = UNI_ABBR[uni] ?? uni.replace(/医科大学/, "医大").replace(/大学$/, "大");
+  return `${uni}合格`;
+};
+
+const interviewMarquee: MarqueeItem[] = voicePage.interviews
+  .filter((item) => isImage(item.image))
+  .map((item) => ({ src: item.image!.src, alt: item.image!.alt || item.title, label: passLabelFromTitle(item.title, item.href) }));
+const marqueeItems: MarqueeItem[] =
+  interviewMarquee.length >= 12
+    ? interviewMarquee
+    : voicePage.successPhotos
+        .filter((story) => isImage(story.image))
+        .map((story) => ({ src: story.image.src, alt: story.image.alt || "", label: "合格" }));
+const marqueeRow1 = marqueeItems.filter((_, index) => index % 2 === 0).slice(0, 12);
+const marqueeRow2 = marqueeItems.filter((_, index) => index % 2 === 1).slice(0, 12);
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
@@ -83,7 +138,9 @@ const headerNavGroups = navGroups;
         ))}
       </div>
     </div>
+  </header>
 
+  <div class="mobile-fixed-nav-wrap">
     <div class="mobile-fixed-nav" aria-label="固定ショートカット">
       {mobilePrimaryActions.map((action) => (
         <a class={`mobile-shortcut mobile-shortcut--${action.tone}`} href={action.href}>
@@ -97,6 +154,7 @@ const headerNavGroups = navGroups;
           <span></span>
           <span></span>
         </span>
+        <span class="mobile-menu-button__label">menu</span>
       </button>
       {mobileSecondaryActions.map((action) => (
         <a class={`mobile-shortcut mobile-shortcut--${action.tone}`} href={action.href}>
@@ -120,16 +178,19 @@ const headerNavGroups = navGroups;
         ))}
       </nav>
     </div>
-  </header>
+  </div>
 
+  <p class="mega-nav-heading" aria-hidden="true">main menu</p>
   <nav class="mega-nav" aria-label="主要ナビゲーション">
     <ul>
         {headerNavGroups.map((group) => (
-          <li>
-          <a class="mega-nav__label" href={group.links[0].href} {...navLinkAttrs(group.links[0])}>{group.label}</a>
-          <div class="mega-panel">
-            {group.links.map((link) => <a href={link.href} {...navLinkAttrs(link)}>{link.label}</a>)}
-          </div>
+          <li class={group.links.length === 1 ? "mega-nav__item--single" : undefined}>
+          <a class={`mega-nav__label${group.links.length === 1 ? " mega-nav__label--single" : ""}`} href={group.links[0].href} {...navLinkAttrs(group.links[0])}>{group.label}</a>
+          {group.links.length > 1 && (
+            <div class="mega-panel">
+              {group.links.map((link) => <a href={link.href} {...navLinkAttrs(link)}>{link.label}</a>)}
+            </div>
+          )}
         </li>
       ))}
     </ul>
@@ -162,10 +223,10 @@ const headerNavGroups = navGroups;
     <section class="premium-hero" aria-labelledby="premium-hero-title">
       <img class="premium-hero__bg" src={assets.heroPaper} alt="" width="1440" height="734" fetchpriority="high" decoding="async" />
       <div class="premium-hero__inner">
-        <p class="premium-hero__year">2026年度</p>
-        <p class="premium-hero__sub">最高級の医学部受験指導</p>
-        <h2 id="premium-hero-title">覚悟が決まったら<br />レクサス・プレミア本科へ<br />（開講中）</h2>
-        <p class="premium-hero__target">
+        <p class="premium-hero__year" data-admin-editable="home.hero.year">2026年度</p>
+        <p class="premium-hero__sub" data-admin-editable="home.hero.subtitle">最高級の医学部受験指導</p>
+        <h2 id="premium-hero-title" data-admin-editable="home.hero.title">覚悟が決まったら<br />レクサス・プレミア本科へ<br />（開講中）</h2>
+        <p class="premium-hero__target" data-admin-editable="home.hero.target">
           対象：既卒生（年齢制限なし）<br />
           欠員が出た場合、6月入学可能。<br />
           <span>※お問合せ下さい。</span>
@@ -175,15 +236,16 @@ const headerNavGroups = navGroups;
         </div>
         <img class="jewel-strip" src={assets.jewelPattern} alt="" width="800" height="58" decoding="async" />
       </div>
+      <p class="hero-oni-words" aria-hidden="true"><span>鬼監理</span><span class="about__mark-x">×</span><span>鬼特訓</span></p>
     </section>
 
     <section class="intro-section" aria-labelledby="home-title">
       <div class="content-narrow">
-        <h1 id="home-title">
+        <h1 id="home-title" data-admin-editable="home.intro.title">
           医学部受験 なら、<br />
           実績35年の レクサス教育センター（レクサス E.C.）にお任せください。
         </h1>
-        <p>
+        <p data-admin-editable="home.intro.body">
           偏差値50台からの合格率は88%。「緻密な“鬼特訓”メニュー」と「1日13時間の厳しい管理体制 (＝“鬼監理”)」で、医学部受験生を合格へ導きます。校舎は寮と一体型で、渋谷（東京）にあります。レクサスは日本全国の浪人生や現役生の医師への思いに応えます。
         </p>
       </div>
@@ -201,21 +263,42 @@ const headerNavGroups = navGroups;
             </article>
           ))}
         </div>
+      </div>
 
-        <h3 class="university-list__title">合格した大学一覧(医学部医学科のみ)</h3>
-        <div class="university-list" aria-label="医学部入試過去6年分の最終合格者データ">
-          {acceptedUniversities.map((column) => (
-            <ul>
-              {column.map((result) => (
-                <li>
-                  <span>{result.name}</span>
-                  <strong>{result.count}</strong>
-                </li>
+      {marqueeRow1.length > 0 && (
+        <div class="home-marquee-section">
+          <div class="home-marquee" aria-hidden="true">
+            <div class="home-marquee__row home-marquee__row--left">
+              {[...marqueeRow1, ...marqueeRow1].map((item) => (
+                <span class="home-marquee__item">
+                  <img src={marqueeThumb(item.src)} alt="" width="160" height="120" loading="lazy" decoding="async" />
+                  <span class="home-marquee__tag">{item.label}</span>
+                </span>
               ))}
-            </ul>
-          ))}
+            </div>
+            <div class="home-marquee__row home-marquee__row--right">
+              {[...marqueeRow2, ...marqueeRow2].map((item) => (
+                <span class="home-marquee__item">
+                  <img src={marqueeThumb(item.src)} alt="" width="160" height="120" loading="lazy" decoding="async" />
+                  <span class="home-marquee__tag">{item.label}</span>
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
-        <p class="note">医学部入試過去6年分（2020〜2025年度）の最終合格者データです。</p>
+      )}
+
+      <div class="content">
+        <h3 class="university-list__title">合格した大学一覧 (医学部医学科のみ)</h3>
+        <ul class="university-list" aria-label="医学部入試過去6年分の最終合格者データ">
+          {acceptedUniversities.flat().map((result) => (
+            <li>
+              <span>{result.name}</span>
+              <strong>{result.count}</strong>
+            </li>
+          ))}
+        </ul>
+        <p class="note">※過去6年分 (2021～2026年度) の最終合格者データ</p>
       </div>
     </section>
 
@@ -273,21 +356,36 @@ const headerNavGroups = navGroups;
     </section>
 
     <section class="section representative" aria-labelledby="representative-title">
-      <div class="content representative__grid">
-        <div class="representative__portrait">
-          <p>医学部合格に自信あり！</p>
-          <img src={assets.representative} alt="レクサス教育センター 代表取締役 島内義仁" width="435" height="533" loading="lazy" decoding="async" />
-          <strong>レクサスE.C. 代表　島内 義仁</strong>
-        </div>
-        <div class="representative__message">
-          <h3 class="section-label">代表よりメッセージ</h3>
-          <h2 id="representative-title">レクサスは1992年創立、1000人以上の医学部生を輩出している医学部受験の専門塾です。</h2>
-          <p>
-            レクサスは、医学部受験に必要な厳しさを日々の学習に落とし込みます。授業、課題、質問、確認、生活リズムまでを途切れさせず、受験生の一年を合格へ向けて使い切ります。
-          </p>
-          <ul class="message-list">
-            {representativeMessages.map((message) => <li><h3>{message}</h3></li>)}
-          </ul>
+      <div class="content">
+        <header class="section-heading">
+          <img src={assets.jewelPattern} alt="" width="800" height="58" loading="lazy" decoding="async" />
+          <p>代表よりメッセージ</p>
+        </header>
+        <div class="representative__grid">
+          <div class="representative__portrait">
+            <p>医学部合格に自信あり！</p>
+            <img src={assets.representative} alt="レクサス教育センター 代表取締役 島内義仁" width="435" height="533" loading="lazy" decoding="async" />
+            <strong>レクサスE.C. 代表　島内 義仁</strong>
+          </div>
+          <div class="representative__message">
+            <h2 id="representative-title" data-admin-editable="home.representative.title">レクサスは1992年創立、1000人以上の医学部生を輩出している医学部受験の専門塾です。</h2>
+            <p data-admin-editable="home.representative.body">
+              レクサスは、医学部受験に必要な厳しさを日々の学習に落とし込みます。授業、課題、質問、確認、生活リズムまでを途切れさせず、受験生の一年を合格へ向けて使い切ります。
+            </p>
+            <div class="message-list">
+              {representativeMessages.map((message, i) => (
+                <details class="message-item" name="representative-message" open={i === 0}>
+                  <summary class="message-item__summary">
+                    <h3>{message.title}</h3>
+                    <span class="message-item__icon" aria-hidden="true"></span>
+                  </summary>
+                  <div class="message-item__body">
+                    {message.body.map((para) => <p>{para}</p>)}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -332,17 +430,20 @@ const headerNavGroups = navGroups;
       <div class="content content-narrow">
         <SectionHeading id="about" label="ABOUT" title={"「レクサス」は類の無い\n医学部専門予備校です"} />
         <p class="about__lead">偶然や奇跡に頼らない逆転劇。</p>
-        <img class="about__mark" src={assets.onikanriTitle} alt="鬼監理×鬼特訓" width="1024" height="184" loading="lazy" decoding="async" />
+        <p class="about__mark" aria-label="鬼監理×鬼特訓">
+          <span>鬼監理</span><span class="about__mark-x" aria-hidden="true">×</span><span>鬼特訓</span>
+        </p>
         <p class="about__lead">の先にある、絶対の合格へ有無を言わさず連れていく。</p>
+        <picture>
+          <source media="(max-width: 700px)" srcset={assets.trainingTall} />
+          <img class="about__hero" src={assets.trainingWide} alt="年末年始医学部必勝「鬼特訓」イメージ" width="1024" height="511" loading="lazy" decoding="async" />
+        </picture>
       </div>
     </section>
 
     <section class="section reason" id="reason" aria-labelledby="reason-title">
       <div class="content">
-        <picture>
-          <source media="(max-width: 700px)" srcset={assets.trainingTall} />
-          <img class="reason__hero" src={assets.trainingWide} alt="年末年始医学部必勝「鬼特訓」イメージ" width="1024" height="511" loading="lazy" decoding="async" />
-        </picture>
+        <img class="reason__divider" src={assets.jewelPattern} alt="" width="800" height="58" loading="lazy" decoding="async" />
         <p class="section-label">REASON</p>
         <h2 id="reason-title">レクサスは他と何が違うのか？</h2>
 
@@ -374,12 +475,20 @@ const headerNavGroups = navGroups;
             <article class="pillar-card">
               <div class="pillar-card__head">
                 <img src={pillar.image} alt={pillar.imageAlt} width="234" height="260" loading="lazy" decoding="async" />
-                <h3>{pillar.title}</h3>
+                <h3 class="pillar-card__title">{pillar.title}</h3>
               </div>
-              <p class="pillar-card__subtitle">{pillar.subtitle}</p>
-              <p>{pillar.body}</p>
+              <p class="pillar-card__subtitle">
+                {pillar.subtitle.split("×").map((part, i) => (
+                  <Fragment>
+                    {i > 0 && <span class="pillar-card__times" aria-hidden="true">×</span>}
+                    <span>{part.trim()}</span>
+                  </Fragment>
+                ))}
+              </p>
+              <p class="pillar-card__body">{pillar.body}</p>
+              <p class="pillar-card__cue" aria-hidden="true">↓ 詳しくはコチラ ↓</p>
               <div class="pillar-card__actions">
-                {pillar.links.map((link) => <a class={buttonClass(link.tone)} href={link.href}>{link.label}</a>)}
+                {pillar.links.map((link) => <a class="pillar-card__button" href={link.href}>{link.label}</a>)}
               </div>
             </article>
           ))}
@@ -405,8 +514,8 @@ const headerNavGroups = navGroups;
       <div class="content">
         <SectionHeading id="method" label="METHOD" title="医学部合格メソッド" />
         <div class="method-lead">
-          <h3>「厳しさ」が最短合格の絶対条件！</h3>
-          <p>レクサス教育センターでは、情熱と実力を兼ね備えた講師達があなたの学習を厳しく管理し、独自の医学部専門カリキュラムで合格へ導きます。講師の指示通りに課題をこなせば、医学部に合格する実力が必ず身につきます。</p>
+          <h3 data-admin-editable="home.method.headline">「厳しさ」が最短合格の絶対条件！</h3>
+          <p data-admin-editable="home.method.body">レクサス教育センターでは、情熱と実力を兼ね備えた講師達があなたの学習を厳しく管理し、独自の医学部専門カリキュラムで合格へ導きます。講師の指示通りに課題をこなせば、医学部に合格する実力が必ず身につきます。</p>
         </div>
 
         <section class="support-box" aria-labelledby="support-title">
@@ -426,8 +535,9 @@ const headerNavGroups = navGroups;
           <img src={assets.teacherChemistry} alt="化学/数学講師 藤橋幹夫" width="777" height="1024" loading="lazy" decoding="async" />
         </div>
 
+        <img class="quantity-divider" src={assets.jewelPattern} alt="" width="800" height="58" loading="lazy" decoding="async" />
         <section class="quantity-box" aria-labelledby="quantity-title">
-          <h3 id="quantity-title">● 業界トップの「質」と「量」 ●</h3>
+          <h3 id="quantity-title">業界トップの「質」と「量」</h3>
           <div class="metric-grid">
             {supportMetrics.map((metric) => (
               <article>
@@ -445,16 +555,22 @@ const headerNavGroups = navGroups;
 
     <section class="section section--courses" id="courses" aria-labelledby="courses-title">
       <div class="content">
-        <h2 id="courses-title">老舗の医学部予備校だから成せる<br />「コース」と「カリキュラム」</h2>
-        <p class="courses__lead">ご自身のタイプに合った「コース選択」が合格への第一歩。</p>
+        <SectionHeading id="courses-title" label="COURSE" title={"老舗の医学部予備校\nだから成せる\n「コース」と「カリキュラム」"} editableId="home.courses.title" />
+        <p class="courses__lead" data-admin-editable="home.courses.lead">ご自身のタイプに合った「コース選択」が合格への第一歩。</p>
         <div class="course-grid">
           {courses.map((course) => (
-            <article class="course-card">
-              <h3>{course.target}</h3>
-              <h4><a href={course.href}>{course.name}</a></h4>
-              <small>{course.english}</small>
-              <p>{course.note}</p>
-              <a class="course-card__button" href={course.href}>コースの内容を見る</a>
+            <article class="course-card" style={`--card-accent: ${course.accent}`}>
+              <p class="course-card__target">{course.target}</p>
+              <div class="course-card__body">
+                <svg class="course-card__gem" viewBox="0 0 576 512" aria-hidden="true">
+                  <path d="M485.5 0L576 160H474.9L405.7 0h79.8zm-128 0l69.2 160H149.3L218.5 0h139zm-267 0h79.8l-69.2 160H0L90.5 0zM0 192h100.7l123 251.7c1.5 3.1-2.7 5.9-5 3.3L0 192zm148.2 0h279.6l-137 318.2c-1 2.4-4.5 2.4-5.5 0L148.2 192zm204.1 251.7l123-251.7H576L357.3 446.9c-2.3 2.7-6.5-.1-5-3.2z" />
+                </svg>
+                <h4 class="course-card__name"><a href={course.href}>{course.name}</a></h4>
+                <p class="course-card__en">{course.english}</p>
+                <span class="course-card__rule" aria-hidden="true"></span>
+                <p class="course-card__note">{course.note}</p>
+                <a class="course-card__button" href={course.href}>コースの内容を見る</a>
+              </div>
             </article>
           ))}
         </div>
@@ -482,22 +598,57 @@ const headerNavGroups = navGroups;
         <div class="dorm-layout">
           <div>
             <h3>生徒専用寮のご案内『LEXUS GARDEN』</h3>
+            <ul class="dorm-tags">
+              <li>渋谷駅 徒歩5分</li>
+              <li>校舎直結</li>
+              <li>オートロック</li>
+              <li>地下自習室完備</li>
+              <li>食事あり</li>
+              <li>プロ講師常駐</li>
+            </ul>
             <p>東京都渋谷の閑静な住宅街にたたずむ医学部受験に集中できる快適空間。校舎と寮が近いから、通学・質問・復習・生活管理まで途切れずに回せます。</p>
+          </div>
+          <div class="dorm-media">
+            <a class="dorm-media__image" href="/top/lexus-garden/">
+              <img src={assets.dorm} alt="寮と一体型の校舎 レクサス専用寮外観" width="1024" height="651" loading="lazy" decoding="async" />
+            </a>
             <a class="button button--blue" href="/top/lexus-garden/">生徒専用寮を見る</a>
           </div>
-          <img src={assets.dorm} alt="寮と一体型の校舎 レクサス専用寮外観" width="1024" height="651" loading="lazy" decoding="async" />
         </div>
       </div>
     </section>
 
     <section class="final-message">
-      <p>きみはできる。さあ、“勉強の鬼”になろう。</p>
+      <p data-admin-editable="home.final.message">きみはできる。<br />さあ、“勉強の鬼”になろう。</p>
     </section>
   </main>
 
+  <script is:inline>
+    // Reveal the ABOUT statement (偶然や奇跡… / 鬼監理×鬼特訓 / の先にある…) when it
+    // scrolls into view. Gated on the .anim-ready class so the text is never
+    // hidden if JS / IntersectionObserver is unavailable; skipped under
+    // reduced-motion. Disconnects after firing once — no ongoing cost.
+    (function () {
+      var about = document.querySelector(".about");
+      if (!about || !("IntersectionObserver" in window)) return;
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      about.classList.add("anim-ready");
+      var io = new IntersectionObserver(function (entries, obs) {
+        for (var i = 0; i < entries.length; i++) {
+          if (entries[i].isIntersecting) {
+            about.classList.add("is-revealed");
+            obs.disconnect();
+            break;
+          }
+        }
+      }, { threshold: 0.35 });
+      io.observe(about);
+    })();
+  </script>
+
   <footer class="site-footer">
     <div class="content">
-      <p class="site-footer__menu-title">ー MENU ー</p>
+      <p class="site-footer__menu-title">— MENU —</p>
       <div class="footer-grid">
         {navGroups.map((group) => (
           <nav aria-label={group.label}>
@@ -511,11 +662,15 @@ const headerNavGroups = navGroups;
           <a href="tel:03-3477-1306">03-3477-1306</a>
           <p class="footer-grid__label">ＡＣＣＥＳＳ</p>
           <a href="https://maps.app.goo.gl/Yo1p2wJuwUkgrNtPA">寮と一体の校舎「レクサスガーデン」</a>
-          <a class="site-footer__legal" href="/%e7%89%b9%e5%ae%9a%e5%95%86%e5%8f%96%e5%bc%95%e6%b3%95%e3%81%ab%e5%9f%ba%e3%81%a5%e3%81%8f%e8%a1%a8%e8%a8%98/">特商法に基づく表記</a>
         </address>
       </div>
+    </div>
+    <div class="footer-logo-band">
       <img class="footer-logo" src={assets.footerLogo} alt="鬼特訓する医学部予備校レクサスE.C.（レクサス教育センター）" width="1503" height="593" loading="lazy" decoding="async" />
+    </div>
+    <div class="content site-footer__base">
       <small>© LEXUS Education Center</small>
+      <a class="site-footer__legal" href="/%e7%89%b9%e5%ae%9a%e5%95%86%e5%8f%96%e5%bc%95%e6%b3%95%e3%81%ab%e5%9f%ba%e3%81%a5%e3%81%8f%e8%a1%a8%e8%a8%98/">特商法に基づく表記</a>
     </div>
   </footer>
 </BaseLayout>

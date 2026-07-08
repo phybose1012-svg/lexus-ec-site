@@ -145,6 +145,51 @@
   box-shadow: var(--shadow);
 }
 
+.article-hero__image--character {
+  align-self: stretch;
+  justify-self: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: min(100%, 340px);
+  min-height: 320px;
+  overflow: visible;
+  padding: 0;
+  background: transparent;
+}
+
+.article-hero__image--character img {
+  width: min(100%, 310px);
+  height: auto;
+  max-height: 390px;
+  aspect-ratio: auto;
+  border-radius: 0;
+  object-fit: contain;
+  object-position: center bottom;
+  box-shadow: none;
+  filter: none;
+}
+
+.article-hero--character .article-hero__inner {
+  grid-template-columns: 1fr;
+  min-height: 430px;
+}
+
+.article-hero--character .article-hero__copy {
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 340px);
+  gap: 18px clamp(28px, 6vw, 72px);
+  align-items: center;
+}
+
+.article-hero--character .article-hero__copy > :not(.article-hero__image) {
+  grid-column: 1;
+}
+
+.article-hero--character .article-hero__image {
+  grid-column: 2;
+  grid-row: 1 / span 7;
+}
+
 .article-hero--oni {
   background:
     linear-gradient(180deg, rgb(255 255 255 / 92%), rgb(255 250 239 / 96%)),
@@ -171,6 +216,8 @@
   grid-template-columns: minmax(0, 1fr) minmax(210px, 300px);
   gap: 18px clamp(28px, 6vw, 74px);
   align-items: center;
+  justify-items: center;
+  text-align: center;
 }
 
 .article-hero--oni .article-hero__copy > :not(.article-hero__image) {
@@ -179,6 +226,15 @@
 
 .article-hero--oni .article-hero__template {
   color: #7a1b17;
+}
+
+.article-hero--oni .article-hero__message,
+.article-hero--oni .article-hero__lead {
+  margin-inline: auto;
+}
+
+.article-hero--oni .article-hero__meta {
+  justify-content: center;
 }
 
 .article-hero--oni h1 {
@@ -211,6 +267,12 @@
   box-shadow: none;
 }
 
+.article-hero--oni .article-hero__image--character {
+  align-self: stretch;
+  width: min(100%, 330px);
+  min-height: 350px;
+}
+
 .article-hero--oni .article-hero__image::before {
   content: none;
 }
@@ -226,6 +288,11 @@
   box-shadow: none;
 }
 
+.article-hero--oni .article-hero__image--character img {
+  width: min(100%, 292px);
+  max-height: 390px;
+}
+
 .article-hero--interview {
   background:
     linear-gradient(180deg, rgb(248 252 255 / 96%), rgb(255 253 248 / 98%)),
@@ -238,7 +305,11 @@
 }
 
 .article-hero--interview .article-hero__copy {
+  width: 100%;
   max-width: 860px;
+  margin-inline: auto;
+  justify-items: center;
+  text-align: center;
 }
 
 .article-hero--interview .article-hero__badge {
@@ -247,6 +318,15 @@
 
 .article-hero--interview .article-hero__template {
   color: #16436f;
+}
+
+.article-hero--interview .article-hero__message,
+.article-hero--interview .article-hero__lead {
+  margin-inline: auto;
+}
+
+.article-hero--interview .article-hero__meta {
+  justify-content: center;
 }
 
 .article-hero--interview h1 {
@@ -459,6 +539,18 @@
   line-height: 1.65;
 }
 
+@media (max-width: 720px) {
+  .article-content table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .article-content :where(th, td) {
+    min-width: 8.5em;
+  }
+}
+
 .article-content :where(th, td) {
   border: 1px solid var(--line);
   padding: 12px 14px;
@@ -524,6 +616,7 @@
 .article-cta {
   background: #8b0000;
   color: #fff;
+  text-align: center;
 }
 
 .article-cta__eyebrow {
@@ -616,6 +709,94 @@
   background: #16436f;
 }
 
+.article-page--voice-interview .article-hero--interview .article-hero__inner {
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
+}
+
+.article-page--voice-interview .article-hero--interview .article-hero__inner:not(:has(.article-hero__image)) {
+  grid-template-columns: 1fr;
+}
+
+.article-page--voice-interview .article-hero--interview .article-hero__copy {
+  max-width: 760px;
+  margin-inline: 0;
+  justify-items: start;
+  text-align: left;
+}
+
+.article-page--voice-interview .article-hero--interview .article-hero__categories {
+  justify-content: flex-start;
+}
+
+.article-page--voice-interview .article-hero--interview .article-hero__message,
+.article-page--voice-interview .article-hero--interview .article-hero__lead {
+  margin-inline: 0;
+}
+
+.article-page--voice-interview .article-hero--interview .article-hero__meta {
+  justify-content: flex-start;
+}
+
+.article-page--voice-interview .article-hero--interview .article-hero__image {
+  justify-self: center;
+  width: min(100%, 320px);
+}
+
+.article-page--voice-interview .article-hero--interview .article-hero__image img {
+  aspect-ratio: 3 / 4;
+  border: 1px solid rgb(22 67 111 / 14%);
+  border-radius: 8px;
+  background: #f7f2ea;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.article-page--voice-interview .article-content {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: clamp(22px, 3vw, 36px);
+  box-shadow: 0 12px 30px rgb(57 38 12 / 6%);
+}
+
+.article-page--voice-interview .article-content h2 {
+  border-left-color: #16436f;
+  color: #16436f;
+}
+
+.article-page--voice-interview .article-content h3 {
+  border-bottom: 0;
+  border-left: 4px solid #16436f;
+  border-radius: 6px;
+  background: #f4f8fb;
+  padding: 13px 16px;
+  color: #223242;
+  font-size: 1.08rem;
+}
+
+.article-page--voice-interview .article-content figure {
+  justify-items: center;
+}
+
+.article-page--voice-interview .article-content img {
+  width: min(100%, 360px);
+  max-height: 460px;
+  margin-inline: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  object-position: center top;
+  box-shadow: 0 10px 24px rgb(22 67 111 / 10%);
+}
+
+.article-page--voice-interview .article-keypoints h2,
+.article-page--voice-interview .article-toc__title {
+  color: #16436f;
+}
+
+.article-page--voice-interview .article-keypoints li::before {
+  background: #16436f;
+}
+
 @media (max-width: 900px) {
   .article-hero__inner,
   .article-body-grid {
@@ -628,21 +809,42 @@
     padding-block: 38px;
   }
 
+  .article-hero--character .article-hero__inner,
   .article-hero--oni .article-hero__inner {
     grid-template-columns: 1fr;
     gap: 28px;
     min-height: 0;
   }
 
+  .article-hero--character .article-hero__copy,
   .article-hero--oni .article-hero__copy {
     grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
   }
 
+  .article-hero--interview .article-hero__copy {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .article-hero--character .article-hero__copy > :not(.article-hero__image),
+  .article-hero--character .article-hero__image,
   .article-hero--oni .article-hero__copy > :not(.article-hero__image),
   .article-hero--oni .article-hero__image {
     grid-column: 1;
   }
 
+  .article-hero__message,
+  .article-hero__lead {
+    margin-inline: auto;
+  }
+
+  .article-hero__meta {
+    justify-content: center;
+  }
+
+  .article-hero--character .article-hero__image,
   .article-hero--oni .article-hero__image {
     grid-row: auto;
   }
@@ -652,8 +854,47 @@
     padding: 12px;
   }
 
+  .article-hero__image--character,
+  .article-hero--oni .article-hero__image--character {
+    align-self: center;
+    width: min(250px, 64vw);
+    min-height: 0;
+    margin-top: -4px;
+    padding: 0;
+  }
+
+  .article-hero__image--character img,
+  .article-hero--oni .article-hero__image--character img {
+    width: min(250px, 64vw);
+    max-height: 300px;
+  }
+
   .article-hero--interview .article-hero__inner {
     min-height: 0;
+  }
+
+  .article-page--voice-interview .article-hero--interview .article-hero__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .article-page--voice-interview .article-hero--interview .article-hero__copy {
+    margin-inline: auto;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .article-page--voice-interview .article-hero--interview .article-hero__categories,
+  .article-page--voice-interview .article-hero--interview .article-hero__meta {
+    justify-content: center;
+  }
+
+  .article-page--voice-interview .article-hero--interview .article-hero__message,
+  .article-page--voice-interview .article-hero--interview .article-hero__lead {
+    margin-inline: auto;
+  }
+
+  .article-page--voice-interview .article-hero--interview .article-hero__image {
+    width: min(230px, 72vw);
   }
 
   .article-sidebar {
@@ -707,6 +948,17 @@
   .article-hero__lead {
     font-size: 0.98rem;
     line-height: 1.9;
+  }
+
+  .article-hero__image--character,
+  .article-hero--oni .article-hero__image--character {
+    width: min(210px, 62vw);
+  }
+
+  .article-hero__image--character img,
+  .article-hero--oni .article-hero__image--character img {
+    width: min(210px, 62vw);
+    max-height: 250px;
   }
 
   .article-body-grid {

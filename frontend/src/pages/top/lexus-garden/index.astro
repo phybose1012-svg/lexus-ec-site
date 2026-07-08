@@ -1,7 +1,10 @@
 ---
 import { defaultPageActions } from "../../../data/fixedPages";
 import { seo } from "../../../data/home";
-import SiteLayout from "../../../layouts/SiteLayout.astro";
+import SiteFooter from "../../../components/site/SiteFooter.astro";
+import SiteHeader from "../../../components/site/SiteHeader.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import "../../../styles/pages.css";
 
 const title = "医学部予備校 の 生徒専用寮- 「LEXUS GARDEN (レクサスガーデン)」｜全国対応";
 const description =
@@ -9,16 +12,45 @@ const description =
 
 const images = {
   garden: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-1-04.jpg",
-  roomIntro: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン案内-13-1024x698.jpg",
+  heroGarden: "/assets/lexus-garden/hero-exterior.webp",
+  entranceResidence: "/assets/lexus-garden/entrance-residence.webp",
   logoStrip: "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png",
   mascot: "/assets/legacy/wp-content/uploads/2025/02/新レクサスくん-指さし-2_20240826143701-899x1024.png",
   guide: "/assets/legacy/wp-content/uploads/2025/11/PR用見本2026-1024x1024.jpg",
 };
 
+const heroFacts = [
+  { value: "塾生専用", label: "一般入居者が混ざらない受験生だけの寮" },
+  { value: "校舎直結", label: "生活時間をそのまま学習時間へ" },
+  { value: "美味しい食事付き", label: "保護者も安心できる食事サポート" },
+  { value: "夜12時まで", label: "自習室と質問対応を利用可能" },
+];
+
 const quickLinks = [
   { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
   { label: "合格体験記", href: "/top/voice/", tone: "green" },
   { label: "理念と沿革", href: "/top/history/", tone: "red" },
+];
+
+const overviewPhotos = [
+  { label: "夜12時まで利用できる自習室", src: "/assets/legacy/wp-content/uploads/2024/11/DSC00015-scaled.jpg" },
+  { label: "清潔な居室", src: "/assets/legacy/wp-content/uploads/2024/11/居室内写真7-scaled.jpg" },
+  { label: "質問対応の様子", src: "/assets/legacy/wp-content/uploads/2024/11/DSC00006-scaled.jpg" },
+];
+
+const comfortHighlights = [
+  {
+    title: "安心して暮らせる管理",
+    text: "オートロック、監視カメラ、セキュリティマークを備え、受験生活に集中できる環境を整えています。",
+  },
+  {
+    title: "学習と生活の両立",
+    text: "机、椅子、ベッド、冷蔵庫、洗濯機などを標準設備として用意。入居後すぐに生活を始められます。",
+  },
+  {
+    title: "講師が近い住環境",
+    text: "学習相談やメンタル面の相談まで、校舎と寮が近いレクサスならではの距離感で支えます。",
+  },
 ];
 
 const securityItems = [
@@ -57,65 +89,175 @@ const roomItems = [
 ];
 
 const floorPlans = [
-  ["タイプA", "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-06.jpg"],
-  ["タイプB", "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-07.jpg"],
+  { label: "タイプA", src: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-06.jpg", width: 375, height: 545 },
+  { label: "タイプB", src: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-07.jpg", width: 375, height: 545 },
+  { label: "タイプC", src: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-09.jpg", width: 376, height: 545 },
+  { label: "タイプD", src: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-10.jpg", width: 601, height: 339 },
+  { label: "タイプE", src: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-08.jpg", width: 600, height: 339 },
 ];
 
 const lifeGallery = [
-  ["居室内写真", "/assets/legacy/wp-content/uploads/2024/11/居室内写真7-scaled.jpg"],
-  ["居室内写真", "/assets/legacy/wp-content/uploads/2024/11/居室内写真1-scaled.jpg"],
-  ["地下自習室", "/assets/legacy/wp-content/uploads/2024/11/DSC00015-scaled.jpg"],
-  ["内装", "/assets/legacy/wp-content/uploads/2024/11/DSC09748-scaled.jpg"],
-  ["質問対応の様子", "/assets/legacy/wp-content/uploads/2024/11/DSC00006-scaled.jpg"],
-  ["内装", "/assets/legacy/wp-content/uploads/2024/11/DSC09792-scaled.jpg"],
+  { label: "居室のミニキッチン", src: "/assets/legacy/wp-content/uploads/2024/11/居室内写真7-scaled.jpg" },
+  { label: "居室のデスクスペース", src: "/assets/legacy/wp-content/uploads/2024/11/居室内写真1-scaled.jpg" },
+  { label: "地下自習室の個別ブース", src: "/assets/legacy/wp-content/uploads/2024/11/DSC00015-scaled.jpg" },
+  { label: "居室内の洗濯機スペース", src: "/assets/legacy/wp-content/uploads/2024/11/DSC09748-scaled.jpg" },
+  { label: "講師による質問対応", src: "/assets/legacy/wp-content/uploads/2024/11/DSC00006-scaled.jpg" },
+  { label: "居室のベッド・学習机", src: "/assets/legacy/wp-content/uploads/2024/11/DSC09792-scaled.jpg" },
+  { label: "少人数の個別指導", src: "/assets/legacy/wp-content/uploads/2025/02/ガーデン質問対応.jpg" },
+  { label: "授業風景", src: "/assets/legacy/wp-content/uploads/2025/02/川島T授業.jpg" },
+  { label: "談話室・共用スペース", src: "/assets/lexus-garden/talk-lounge.jpg" },
+  { label: "館内の自動販売機", src: "/assets/lexus-garden/vending-machine.jpg", fit: "contain" },
+  { label: "軽食・お菓子コーナー", src: "/assets/lexus-garden/snacks.jpg" },
+  { label: "教室・演習スペース", src: "/assets/lexus-garden/garden-common-space.jpg" },
 ];
 
 const exteriorGallery = [
-  ["レクサスガーデン外観", images.garden],
-  ["エントランス", "/assets/legacy/wp-content/uploads/2024/11/IMG_5004-scaled.jpg"],
-  ["エントランス", "/assets/legacy/wp-content/uploads/2024/11/IMG_5025-scaled.jpg"],
-  ["玄関", "/assets/legacy/wp-content/uploads/2024/11/玄関-scaled.jpg"],
-  ["ガーデン質問対応", "/assets/legacy/wp-content/uploads/2025/02/ガーデン質問対応.jpg"],
-  ["川島T授業", "/assets/legacy/wp-content/uploads/2025/02/川島T授業.jpg"],
+  { label: "レクサスガーデン外観", src: images.garden },
+  { label: "エントランスサイン", src: "/assets/legacy/wp-content/uploads/2024/11/IMG_5004-scaled.jpg" },
+  { label: "オートロック付きエントランス", src: "/assets/legacy/wp-content/uploads/2024/11/IMG_5025-scaled.jpg" },
+  { label: "玄関まわり", src: "/assets/legacy/wp-content/uploads/2024/11/玄関-scaled.jpg" },
+  { label: "エントランスのグリーンサイン", src: "/assets/lexus-garden/entrance.jpg" },
 ];
 ---
 
-<SiteLayout title={title} description={description} canonical="https://lexus-ec.com/top/lexus-garden/" ogImage={seo.ogImage}>
+<BaseLayout title={title} description={description} canonical="https://lexus-ec.com/top/lexus-garden/" ogImage={seo.ogImage}>
+  <div class="garden-floating-header" data-garden-floating-header>
+    <SiteHeader />
+  </div>
+
   <main class="garden-page">
-    <section class="garden-hero">
-      <div class="garden-hero__title">
-        <h1>生徒専用寮 <br />『LEXUS GARDEN』 のご案内</h1>
-      </div>
-      <div class="content garden-hero__stack">
-        <img class="garden-hero__building" src={images.garden} alt="レクサスガーデン外観" width="788" height="518" decoding="async" />
-        <a
-          class="button button--green garden-view-button"
-          href="https://www.google.com/maps/@35.654961,139.6995549,3a,75y,255.71h,82.94t/data=!3m7!1e1!3m5!1s4MmKqgfWgAEElbVTY_DenA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D7.055657400941385%26panoid%3D4MmKqgfWgAEElbVTY_DenA%26yaw%3D255.71317896736466!7i16384!8i8192?hl=ja&coh=205410&entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D"
-          rel="noreferrer"
-        >
-          周りの風景を見る
+    <section class="garden-scroll-stage" data-garden-scroll-stage aria-label="レクサスガーデンのファーストビュー">
+      <div class="garden-opening">
+        <img
+          class="garden-opening__image"
+          src={images.heroGarden}
+          alt=""
+          width="1900"
+          height="1267"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+        <div class="garden-opening__mark" aria-hidden="true">RESIDENCE</div>
+        <div class="garden-opening__message" aria-label="医学部受験生だけの専用レジデンス">
+          <p class="garden-opening__eyebrow">PRIVATE RESIDENCE FOR MEDICAL STUDENTS</p>
+          <strong>
+            <span class="garden-opening__line"><span class="garden-opening__word" style="--i: 1;">医学部受験生</span></span>
+            <span class="garden-opening__line"><span class="garden-opening__word" style="--i: 2;">だけの、</span></span>
+            <span class="garden-opening__line"><span class="garden-opening__word" style="--i: 3;">専用レジデンス。</span></span>
+          </strong>
+          <span class="garden-opening__rule" aria-hidden="true"></span>
+          <p class="garden-opening__lead">渋谷の校舎と日々の生活をひとつにつなぐ、塾生だけの学習拠点。</p>
+          <ul class="garden-opening__chips" aria-label="レクサスガーデンの特徴">
+            <li>校舎直結</li>
+            <li>美味しい食事付き</li>
+            <li>一般入居者なし</li>
+          </ul>
+        </div>
+        <a class="garden-opening__cue" href="#garden-residence-intro" aria-label="レクサスガーデンの説明へ進む">
+          <span>SCROLL</span>
         </a>
-        <img class="garden-hero__room" src={images.roomIntro} alt="レクサスガーデン案内" width="800" height="545" loading="lazy" decoding="async" />
-        <div class="garden-button-row garden-button-row--center">
-          {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+      </div>
+    </section>
+
+    <section id="garden-residence-intro" class="garden-hero" aria-labelledby="garden-hero-title">
+      <div class="garden-hero__media" aria-hidden="true">
+        <img
+          class="garden-hero__image"
+          src={images.entranceResidence}
+          alt=""
+          width="1600"
+          height="1200"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="garden-hero__media-label">
+          <span>SHIBUYA / STUDENT RESIDENCE</span>
+          <strong>校舎直結の専用寮</strong>
+          <small>渋谷駅徒歩5分・食事サポート付き</small>
+        </div>
+      </div>
+      <div class="content garden-hero__content">
+        <div class="garden-hero__copy">
+          <p class="garden-section-kicker garden-hero__kicker">LEXUS GARDEN / 生徒専用寮</p>
+          <h1 id="garden-hero-title">
+            <span>全国でも希少な、</span>
+            <span>医学部受験生だけの</span>
+            <span>専用寮。</span>
+          </h1>
+          <p class="garden-hero__lead">
+            綺麗な居室、夜まで使える自習環境、プロ講師の見守り、美味しい食事。校舎と生活がつながるレクサスだけの拠点で、遠方からの一年を受験に集中できる毎日に変えます。
+          </p>
+          <p class="garden-hero__statement">
+            一般の物件紹介ではありません。塾生しか立ち入らない専用寮だから、安全・食事・生活リズムまで、予備校の指導と同じ線上で支えられます。
+          </p>
+          <div class="garden-hero__actions">
+            <a class="button button--red" href="/request-documents/">資料請求</a>
+            <a class="button button--blue" href="/reservation/">内見予約</a>
+            <a
+              class="button button--green garden-view-button"
+              href="https://www.google.com/maps/@35.654961,139.6995549,3a,75y,255.71h,82.94t/data=!3m7!1e1!3m5!1s4MmKqgfWgAEElbVTY_DenA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D7.055657400941385%26panoid%3D4MmKqgfWgAEElbVTY_DenA%26yaw%3D255.71317896736466!7i16384!8i8192?hl=ja&coh=205410&entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D"
+              rel="noreferrer"
+            >
+              周辺を見る
+            </a>
+          </div>
+        </div>
+        <div class="garden-hero__facts" aria-label="レクサスガーデンの特徴">
+          {heroFacts.map((item) => (
+            <div>
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div class="garden-logo-band" aria-hidden="true">
+      <img src={images.logoStrip} alt="" width="800" height="58" decoding="async" />
+    </div>
+
+    <section class="garden-overview" aria-labelledby="garden-overview-title">
+      <div class="content garden-overview__grid">
+        <div class="garden-overview__copy">
+          <p class="garden-section-kicker">DORM LIFE</p>
+          <h2 id="garden-overview-title">生活時間を、そのまま学習時間へ。</h2>
+          <p>
+            レクサスガーデンは、単なる寮ではなく「授業後も集中が切れない生活環境」です。移動の負担を抑え、夜の自習や質問対応まで自然につながる動線を整えています。
+          </p>
+          <div class="garden-overview__links">
+            {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+          </div>
+        </div>
+        <div class="garden-overview__photos" aria-label="レクサスガーデンの生活環境">
+          {overviewPhotos.map((photo) => (
+            <figure>
+              <img src={photo.src} alt={photo.label} width="600" height="400" loading="lazy" decoding="async" />
+              <figcaption>{photo.label}</figcaption>
+            </figure>
+          ))}
         </div>
       </div>
     </section>
 
     <section class="garden-floor" aria-labelledby="garden-floor-title">
       <div class="content">
-        <img class="garden-logo-strip" src={images.logoStrip} alt="ロゴ" width="800" height="58" loading="lazy" decoding="async" />
-        <h2 id="garden-floor-title">◇◆◇ 間取り図 ◇◆◇</h2>
-        <p>女性専用フロアあります。</p>
+        <header class="garden-section-head">
+          <p class="garden-section-kicker">ROOM PLAN</p>
+          <h2 id="garden-floor-title">間取り図</h2>
+          <p>女性専用フロアもあります。入居前の内見や詳しい費用は、個別にご案内します。</p>
+        </header>
         <figure class="garden-floor-plan">
           <div class="garden-floor-plan__grid">
-            {floorPlans.map(([label, src]) => (
-              <a href={src}>
-                <img src={src} alt={`レクサスガーデン ${label}`} width="800" height="800" loading="lazy" decoding="async" />
+            {floorPlans.map((plan) => (
+              <a href={plan.src} aria-label={`間取り図を拡大する: レクサスガーデン ${plan.label}`}>
+                <span class="garden-floor-plan__label">{plan.label}</span>
+                <img src={plan.src} alt={`レクサスガーデン ${plan.label}`} width={plan.width} height={plan.height} loading="lazy" decoding="async" />
               </a>
             ))}
           </div>
-          <figcaption>← スクロール →<br />（タップで拡大できます）</figcaption>
+          <figcaption>タップで拡大できます</figcaption>
         </figure>
         <div class="garden-button-row garden-button-row--center">
           <a class="button button--red" href="/request-documents/">資料請求</a>
@@ -126,8 +268,20 @@ const exteriorGallery = [
 
     <section class="garden-equipment" aria-labelledby="garden-equipment-title">
       <div class="content">
-        <h2 id="garden-equipment-title">◇◆◇ 安全で快適な設備 ◇◆◇</h2>
-        <p class="garden-lead">受験勉強に専念できる、安心のセキュリティー</p>
+        <header class="garden-section-head">
+          <p class="garden-section-kicker">SECURITY & ROOM</p>
+          <h2 id="garden-equipment-title">安全と生活設備</h2>
+          <p>受験勉強に専念できるよう、セキュリティと居室設備をひとつずつ整えています。</p>
+        </header>
+        <div class="garden-highlight-grid">
+          {comfortHighlights.map((item) => (
+            <article>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+        <h3 class="garden-subtitle">セキュリティ</h3>
         <div class="garden-security-grid">
           {securityItems.map((item) => (
             <figure>
@@ -136,15 +290,27 @@ const exteriorGallery = [
             </figure>
           ))}
         </div>
-        <ul class="garden-feature-list">
-          <li>◎床暖房あり</li>
-          <li>◎ウォシュレットあり</li>
-          <li>◎独立洗面台あり</li>
-          <li>◎浴室乾燥機あり</li>
-          <li>◎食事の宅配可能（オプション）</li>
-        </ul>
-        <div class="garden-room-labels">
-          {roomItems.map(([label]) => <span>{label}</span>)}
+        <h3 class="garden-subtitle">居室設備</h3>
+        <div class="garden-room-grid">
+          {roomItems.map(([label, src, alt]) => (
+            <figure>
+              <img src={src} alt={alt} width="300" height="300" loading="lazy" decoding="async" />
+              <figcaption>{label}</figcaption>
+            </figure>
+          ))}
+        </div>
+        <div class="garden-feature-panel" aria-label="居室設備の特徴">
+          <p class="garden-feature-panel__lead">
+            <span>他にも、充実の設備あり</span>
+            <small>日々の暮らしを支える仕様です</small>
+          </p>
+          <ul class="garden-feature-list">
+            <li>床暖房あり</li>
+            <li>ウォシュレットあり</li>
+            <li>独立洗面台あり</li>
+            <li>浴室乾燥機あり</li>
+            <li>食事の宅配可能（オプション）</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -153,9 +319,9 @@ const exteriorGallery = [
       <div class="content garden-location__grid">
         <img src={images.mascot} alt="レクサスくん(マスコットキャラクター)" width="800" height="911" loading="lazy" decoding="async" />
         <div>
-          <h2 id="garden-location-title">◇◆◇ 所在地 ◇◆◇</h2>
-          <p>〒150-0031 東京都渋谷区桜丘町29番7号 LEXUS GARDEN<br />★JR渋谷駅の 新南改札 から徒歩５分</p>
-          <h2>◇◆◇ Googleマップ ◇◆◇</h2>
+          <p class="garden-section-kicker">LOCATION</p>
+          <h2 id="garden-location-title">渋谷駅から徒歩5分の生活拠点。</h2>
+          <p>〒150-0031 東京都渋谷区桜丘町29番7号 LEXUS GARDEN<br />JR渋谷駅の新南改札から徒歩5分です。</p>
           <a class="garden-map-card" href="https://www.google.com/maps/search/?api=1&query=東京都渋谷区桜丘町29-7" rel="noreferrer">
             <span>東京都渋谷区桜丘町29-7</span>
             <strong>Google Mapで開く</strong>
@@ -166,12 +332,16 @@ const exteriorGallery = [
 
     <section class="garden-gallery" aria-labelledby="garden-gallery-title">
       <div class="content">
-        <h2 id="garden-gallery-title">◇◆◇ ギャラリー ◇◆◇</h2>
+        <header class="garden-section-head">
+          <p class="garden-section-kicker">GALLERY</p>
+          <h2 id="garden-gallery-title">生活環境ギャラリー</h2>
+          <p>居室、自習室、質問対応など、日々の学習を支える場を写真で確認できます。</p>
+        </header>
         <div class="garden-photo-grid">
-          {lifeGallery.map(([label, src]) => (
-            <a href={src}>
-              <img src={src} alt={label} width="600" height="400" loading="lazy" decoding="async" />
-              <span>{label}</span>
+          {lifeGallery.map((photo, index) => (
+            <a href={photo.src} data-fit={photo.fit} data-garden-gallery-trigger data-garden-gallery-group="life" data-garden-gallery-index={index}>
+              <img src={photo.src} alt={photo.label} width="600" height="400" loading="lazy" decoding="async" />
+              <span>{photo.label}</span>
             </a>
           ))}
         </div>
@@ -180,12 +350,16 @@ const exteriorGallery = [
 
     <section class="garden-gallery garden-gallery--second" aria-labelledby="garden-gallery-second-title">
       <div class="content">
-        <h2 id="garden-gallery-second-title">◇◆◇ ギャラリー ◇◆◇</h2>
+        <header class="garden-section-head">
+          <p class="garden-section-kicker">BUILDING</p>
+          <h2 id="garden-gallery-second-title">外観・エントランス</h2>
+          <p>校舎に近い立地と、落ち着いて出入りできる建物まわりの雰囲気です。</p>
+        </header>
         <div class="garden-photo-grid">
-          {exteriorGallery.map(([label, src]) => (
-            <a href={src}>
-              <img src={src} alt={label} width="600" height="400" loading="lazy" decoding="async" />
-              <span>{label}</span>
+          {exteriorGallery.map((photo, index) => (
+            <a href={photo.src} data-garden-gallery-trigger data-garden-gallery-group="exterior" data-garden-gallery-index={index}>
+              <img src={photo.src} alt={photo.label} width="600" height="400" loading="lazy" decoding="async" />
+              <span>{photo.label}</span>
             </a>
           ))}
         </div>
@@ -197,13 +371,277 @@ const exteriorGallery = [
         <img src={images.guide} alt="医学部合格読本 2026" width="800" height="800" loading="lazy" decoding="async" />
         <div>
           <h3>資料請求した方へプレゼント</h3>
-          <h2>レクサスのプロ講師と、 レクサスの卒業生が、共同で作りました。</h2>
+          <h2>レクサスのプロ講師と卒業生が、共同で作りました。</h2>
           <p>レクサスガーデンの設備や費用、通学環境については資料請求または個別相談でご確認ください。</p>
-          <div class="fixed-hero__actions">
+          <div class="garden-guide__actions">
             {defaultPageActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
           </div>
         </div>
       </div>
     </section>
   </main>
-</SiteLayout>
+
+  <script is:inline>
+    (() => {
+      const root = document.documentElement;
+      const stage = document.querySelector("[data-garden-scroll-stage]");
+      if (!(stage instanceof HTMLElement)) return;
+
+      let ticking = false;
+      const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+      const update = () => {
+        ticking = false;
+        const rect = stage.getBoundingClientRect();
+        const viewportHeight = Math.max(window.innerHeight || 1, 1);
+        const range = Math.max(stage.offsetHeight - viewportHeight, 1);
+        const progress = clamp(-rect.top / range, 0, 1);
+
+        root.classList.toggle("garden-header-visible", progress > 0.14 || window.scrollY > 96);
+        root.style.setProperty("--garden-image-scale", String((1.065 - progress * 0.045).toFixed(3)));
+        root.style.setProperty("--garden-message-y", (-28 * progress).toFixed(1) + "px");
+        const revealOpacity = String((1 - clamp((progress - 0.62) / 0.28, 0, 1)).toFixed(3));
+        root.style.setProperty("--garden-message-opacity", revealOpacity);
+        root.style.setProperty("--garden-veil-opacity", revealOpacity);
+        const isCompact = window.matchMedia("(max-width: 680px)").matches;
+        const markOffset = isCompact ? 8 - progress * 6 : 34 - progress * 22;
+        root.style.setProperty("--garden-mark-x", markOffset.toFixed(1) + "px");
+        root.style.setProperty("--garden-cue-opacity", String((1 - clamp((progress - 0.1) / 0.22, 0, 1)).toFixed(3)));
+      };
+
+      const requestUpdate = () => {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(update);
+      };
+
+      update();
+      window.addEventListener("scroll", requestUpdate, { passive: true });
+      window.addEventListener("resize", requestUpdate);
+    })();
+  </script>
+
+  <SiteFooter />
+  <dialog class="garden-gallery-dialog" data-garden-gallery-dialog aria-label="Gallery preview">
+    <div class="garden-gallery-dialog__panel">
+      <button class="garden-gallery-dialog__close" type="button" data-garden-gallery-dialog-close aria-label="Close gallery preview">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="garden-gallery-dialog__viewer">
+        <button class="garden-gallery-dialog__nav garden-gallery-dialog__nav--prev" type="button" data-garden-gallery-dialog-prev aria-label="Previous gallery image">
+          <span aria-hidden="true">&lsaquo;</span>
+        </button>
+        <img data-garden-gallery-dialog-image src={lifeGallery[0].src} alt="" width="1200" height="800" decoding="async" />
+        <button class="garden-gallery-dialog__nav garden-gallery-dialog__nav--next" type="button" data-garden-gallery-dialog-next aria-label="Next gallery image">
+          <span aria-hidden="true">&rsaquo;</span>
+        </button>
+      </div>
+      <div class="garden-gallery-dialog__footer">
+        <p data-garden-gallery-dialog-caption>{lifeGallery[0].label}</p>
+        <span data-garden-gallery-dialog-count>1 / {lifeGallery.length}</span>
+      </div>
+    </div>
+  </dialog>
+  <script>
+    (() => {
+      const dialog = document.querySelector("[data-garden-gallery-dialog]");
+      if (!(dialog instanceof HTMLDialogElement) || typeof dialog.showModal !== "function") return;
+
+      const image = dialog.querySelector("[data-garden-gallery-dialog-image]");
+      const caption = dialog.querySelector("[data-garden-gallery-dialog-caption]");
+      const count = dialog.querySelector("[data-garden-gallery-dialog-count]");
+      const closeButton = dialog.querySelector("[data-garden-gallery-dialog-close]");
+      const prevButton = dialog.querySelector("[data-garden-gallery-dialog-prev]");
+      const nextButton = dialog.querySelector("[data-garden-gallery-dialog-next]");
+      if (
+        !(image instanceof HTMLImageElement) ||
+        !(caption instanceof HTMLElement) ||
+        !(count instanceof HTMLElement) ||
+        !(closeButton instanceof HTMLButtonElement) ||
+        !(prevButton instanceof HTMLButtonElement) ||
+        !(nextButton instanceof HTMLButtonElement)
+      ) return;
+
+      const triggers = [...document.querySelectorAll("[data-garden-gallery-trigger]")].filter((trigger) => trigger instanceof HTMLAnchorElement);
+      if (!triggers.length) return;
+
+      const groups = new Map();
+      triggers.forEach((trigger) => {
+        const groupName = trigger.dataset.gardenGalleryGroup || "default";
+        const group = groups.get(groupName) || [];
+        group.push(trigger);
+        groups.set(groupName, group);
+      });
+
+      let currentGroup = triggers;
+      let currentIndex = 0;
+
+      const setImage = (index = 0) => {
+        currentIndex = (index + currentGroup.length) % currentGroup.length;
+        const trigger = currentGroup[currentIndex];
+        const thumbnail = trigger.querySelector("img");
+        const label = trigger.querySelector("span")?.textContent?.trim() || thumbnail?.alt || "ギャラリー画像";
+
+        image.src = trigger.href;
+        image.alt = label;
+        caption.textContent = label;
+        count.textContent = `${currentIndex + 1} / ${currentGroup.length}`;
+      };
+
+      triggers.forEach((trigger) => {
+        trigger.addEventListener("click", (event) => {
+          event.preventDefault();
+          const groupName = trigger.dataset.gardenGalleryGroup || "default";
+          currentGroup = groups.get(groupName) || triggers;
+          const index = currentGroup.indexOf(trigger);
+          setImage(index >= 0 ? index : 0);
+          dialog.showModal();
+          closeButton.focus();
+        });
+      });
+
+      prevButton.addEventListener("click", () => {
+        setImage(currentIndex - 1);
+      });
+
+      nextButton.addEventListener("click", () => {
+        setImage(currentIndex + 1);
+      });
+
+      closeButton.addEventListener("click", () => {
+        dialog.close();
+      });
+
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+
+      dialog.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          setImage(currentIndex - 1);
+        }
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          setImage(currentIndex + 1);
+        }
+      });
+    })();
+  </script>
+  <dialog class="garden-floor-dialog" data-garden-floor-dialog aria-label="Floor plan preview">
+    <div class="garden-floor-dialog__panel">
+      <button class="garden-floor-dialog__close" type="button" data-garden-floor-dialog-close aria-label="Close floor plan preview">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="garden-floor-dialog__viewer">
+        <button class="garden-floor-dialog__nav garden-floor-dialog__nav--prev" type="button" data-garden-floor-dialog-prev aria-label="Previous floor plan">
+          <span aria-hidden="true">&lsaquo;</span>
+        </button>
+        <img
+          data-garden-floor-dialog-image
+          src={floorPlans[0].src}
+          alt=""
+          width={floorPlans[0].width}
+          height={floorPlans[0].height}
+          decoding="async"
+        />
+        <button class="garden-floor-dialog__nav garden-floor-dialog__nav--next" type="button" data-garden-floor-dialog-next aria-label="Next floor plan">
+          <span aria-hidden="true">&rsaquo;</span>
+        </button>
+      </div>
+      <div class="garden-floor-dialog__footer">
+        <p data-garden-floor-dialog-caption>{floorPlans[0].label}</p>
+        <div class="garden-floor-dialog__types" aria-label="Select floor plan type">
+          {floorPlans.map((plan, index) => (
+            <button type="button" data-garden-floor-dialog-thumb data-garden-floor-index={index} aria-pressed={index === 0 ? "true" : "false"}>
+              {plan.label}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </dialog>
+  <script>
+    (() => {
+      const dialog = document.querySelector("[data-garden-floor-dialog]");
+      if (!(dialog instanceof HTMLDialogElement) || typeof dialog.showModal !== "function") return;
+
+      const image = dialog.querySelector("[data-garden-floor-dialog-image]");
+      const caption = dialog.querySelector("[data-garden-floor-dialog-caption]");
+      const closeButton = dialog.querySelector("[data-garden-floor-dialog-close]");
+      const prevButton = dialog.querySelector("[data-garden-floor-dialog-prev]");
+      const nextButton = dialog.querySelector("[data-garden-floor-dialog-next]");
+      if (
+        !(image instanceof HTMLImageElement) ||
+        !(caption instanceof HTMLElement) ||
+        !(closeButton instanceof HTMLButtonElement) ||
+        !(prevButton instanceof HTMLButtonElement) ||
+        !(nextButton instanceof HTMLButtonElement)
+      ) return;
+
+      const triggers = [...document.querySelectorAll(".garden-floor-plan__grid a")].filter((trigger) => trigger instanceof HTMLAnchorElement);
+      const typeButtons = [...dialog.querySelectorAll("[data-garden-floor-dialog-thumb]")].filter((button) => button instanceof HTMLButtonElement);
+      if (!triggers.length) return;
+
+      let currentIndex = 0;
+
+      const setPlan = (index = 0) => {
+        currentIndex = (index + triggers.length) % triggers.length;
+        const trigger = triggers[currentIndex];
+        const thumbnail = trigger.querySelector("img");
+        if (!(thumbnail instanceof HTMLImageElement)) return;
+
+        const label = trigger.querySelector(".garden-floor-plan__label")?.textContent?.trim() || thumbnail.alt;
+        image.src = trigger.href;
+        image.alt = thumbnail.alt;
+        image.width = Number(thumbnail.getAttribute("width")) || 1;
+        image.height = Number(thumbnail.getAttribute("height")) || 1;
+        caption.textContent = label;
+        typeButtons.forEach((button, buttonIndex) => {
+          button.setAttribute("aria-pressed", String(buttonIndex === currentIndex));
+        });
+      };
+
+      triggers.forEach((trigger, index) => {
+        trigger.addEventListener("click", (event) => {
+          event.preventDefault();
+          setPlan(index);
+          dialog.showModal();
+        });
+      });
+
+      prevButton.addEventListener("click", () => {
+        setPlan(currentIndex - 1);
+      });
+
+      nextButton.addEventListener("click", () => {
+        setPlan(currentIndex + 1);
+      });
+
+      typeButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          setPlan(Number(button.dataset.gardenFloorIndex) || 0);
+        });
+      });
+
+      closeButton.addEventListener("click", () => {
+        dialog.close();
+      });
+
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+
+      dialog.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          setPlan(currentIndex - 1);
+        }
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          setPlan(currentIndex + 1);
+        }
+      });
+    })();
+  </script>
+</BaseLayout>

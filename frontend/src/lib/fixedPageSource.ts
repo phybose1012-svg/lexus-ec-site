@@ -3,6 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { formPageConfigs } from "../data/fixedPages";
 import { seo } from "../data/home";
+import { normalizeInternalAnchorHrefs } from "./internalLinks";
 
 type PageManifestItem = {
   path: string;
@@ -39,6 +40,21 @@ const getBaselineDir = () =>
     new URL("../../../baseline/pages/", import.meta.url),
   ]);
 const dedicatedPagePaths = new Set([
+  "/past-post/",
+  "/test-entry/",
+  "/top/information-shiritsu/",
+  "/top/information-kokuritsu/",
+  "/information-faq/",
+  "/kuriage-information/",
+  "/medical-math-training/",
+  "/top/summer-plan/",
+  "/top/line/",
+  "/todai-keio-med-special/",
+  "/english-training/",
+  "/penguin-geometry/",
+  "/penguin-integral/",
+  "/voice/",
+  "/results/",
   "/top/teacher/",
   "/top/course/",
   "/top/course/lexus-premiere-course/",
@@ -61,8 +77,6 @@ const dedicatedPagePaths = new Set([
   "/top/contact/",
 ]);
 
-let knownStaticPaths: Set<string> | undefined;
-
 const routePathname = (value: string) => {
   try {
     return new URL(value).pathname;
@@ -84,20 +98,6 @@ const routeVariants = (value: string) => {
     // Keep the original encoded route when decoding is not possible.
   }
   return variants;
-};
-
-const getKnownStaticPaths = () => {
-  if (knownStaticPaths) return knownStaticPaths;
-  const baselineDir = getBaselineDir();
-  const manifest = JSON.parse(readFileSync(path.join(baselineDir, "manifest.json"), "utf8")) as PageManifestItem[];
-  knownStaticPaths = new Set(["/"]);
-  for (const item of manifest) {
-    for (const variant of routeVariants(item.path)) knownStaticPaths.add(variant);
-  }
-  for (const route of dedicatedPagePaths) {
-    for (const variant of routeVariants(route)) knownStaticPaths.add(variant);
-  }
-  return knownStaticPaths;
 };
 
 const decodeEntities = (value = "") =>
@@ -151,6 +151,10 @@ const pageDescription = (html: string) => {
 
 const pageTitle = (html: string) => cleanText(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] || "") || seo.title;
 
+const pageTitleOverrides: Record<string, string> = {
+  "/information-faq/": "医学部入試のQ&A｜倍率・学費・卒業率を医学部予備校レクサスが解説",
+};
+
 const pageCanonical = (html: string, fallbackPath: string) => {
   const tag = html.match(/<link[^>]+rel=["']canonical["'][^>]*>/i)?.[0] || "";
   return attr(tag, "href") || new URL(fallbackPath, "https://lexus-ec.com").href;
@@ -180,24 +184,37 @@ const localLegacyAssetPath = (assetPath: string) => {
 };
 
 const normalizeInternalLinks = (html: string) =>
-  html
+  normalizeInternalAnchorHrefs(html
     .replace(/<a\b([^>]*?)href=(["'])https:\/\/docs\.google\.com\/forms\/[^"']*\2([^>]*)>([\s\S]*?)<\/a>/gi, (_match, before, _quote, after, inner) =>
       `<a${before}href="${localFormPathForLink(inner)}"${after}>${inner}</a>`,
     )
     .replace(/(href|src)=(["'])https:\/\/lexus-ec\.com(\/wp-content\/uploads\/[^"']*)\2/gi, (_match, attrName, _quote, assetPath) =>
       `${attrName}="${localLegacyAssetPath(assetPath)}"`,
     )
-    .replace(/href=(["'])https:\/\/lexus-ec\.com([^"']*)\1/gi, (_match, _quote, href) => {
-      const pathname = href || "/";
-      const isMigrated = [...routeVariants(pathname)].some((variant) => getKnownStaticPaths().has(variant));
-      return isMigrated ? `href="${pathname}"` : `href="https://lexus-ec.com${pathname}"`;
-    })
-    .replace(/src=(["'])https:\/\/lexus-ec\.com([^"']*)\1/gi, (_match, _quote, src) => `src="https://lexus-ec.com${src}"`);
+    .replace(/(href|src)=(["'])(\/wp-content\/uploads\/[^"']*)\2/gi, (_match, attrName, _quote, assetPath) =>
+      `${attrName}="${localLegacyAssetPath(assetPath)}"`,
+    )
+    .replace(/src=(["'])https:\/\/lexus-ec\.com([^"']*)\1/gi, (_match, _quote, src) => `src="https://lexus-ec.com${src}"`));
 
 const replaceExternalWidgets = (html: string) =>
   html.replace(
     /<img\b[^>]*src=(["'])https:\/\/scdn\.line-apps\.com\/n\/line_add_friends\/btn\/ja\.png\1[^>]*>/gi,
     '<span class="legacy-line-button">LINE</span>',
+  );
+
+// Elementor gallery widgets set each tile's image as an inline-style
+// background-image, which stripUnsafeAttrs() later removes — leaving empty
+// tiles. The image URL still lives on the wrapping <a href>; restore it as a
+// real <img> inside the tile so the gallery renders.
+const restoreGalleryImages = (html: string) =>
+  html.replace(
+    /<a\b([^>]*e-gallery-item[^>]*)>([\s\S]*?)<div\b([^>]*elementor-gallery-item__image[^>]*)>\s*<\/div>/gi,
+    (match, aAttrs, between, imgAttrs) => {
+      const href = attr(`<a${aAttrs}>`, "href");
+      if (!href || !/\.(?:jpe?g|png|webp|gif|avif)$/i.test(href)) return match;
+      const alt = (attr(`<div${imgAttrs}>`, "aria-label") || "").replace(/"/g, "&quot;");
+      return `<a${aAttrs}>${between}<div${imgAttrs}><img src="${href}" alt="${alt}"></div>`;
+    },
   );
 
 const stripUnsafeAttrs = (html: string) =>
@@ -206,6 +223,63 @@ const stripUnsafeAttrs = (html: string) =>
     .replace(/\sstyle=(["'])(.*?)\1/gi, "")
     .replace(/\s(?:id|data-[\w:-]+)=(["'])(.*?)\1/gi, "")
     .replace(/\s(?:role|tabindex|target|rel)=(["'])(.*?)\1/gi, "");
+
+const escapeHtmlAttr = (value: string) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+const assetLabel = (href: string) => {
+  const pathname = routePathname(href).split(/[?#]/)[0] || href;
+  const fileName = pathname.split("/").filter(Boolean).pop() || "画像";
+  const decoded = decodeEntities(fileName);
+  let label = decoded;
+  try {
+    label = decodeURIComponent(decoded);
+  } catch {
+    label = decoded;
+  }
+  return label
+    .replace(/\.(?:jpe?g|png|webp|gif|avif)$/i, "")
+    .replace(/[-_]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim() || "画像";
+};
+
+const accessibleLinkLabel = (href: string) => {
+  const pathname = routePathname(href);
+  if (pathname.includes("/request-documents/")) return "資料請求ページを開く";
+  if (/\.(?:jpe?g|png|webp|gif|avif)$/i.test(pathname.split(/[?#]/)[0] || "")) {
+    return `画像を開く: ${assetLabel(href)}`;
+  }
+  return "";
+};
+
+const labelNamelessLinks = (html: string) =>
+  html.replace(
+    /<a\b([^>]*?)href=(["'])(.*?)\2([^>]*)>([\s\S]*?)<\/a>/gi,
+    (match, before, quote, href, after, inner) => {
+      if (/\saria-label=(["']).*?\1/i.test(`${before} ${after}`)) return match;
+      if (cleanText(inner)) return match;
+      const label = accessibleLinkLabel(href);
+      if (!label) return match;
+      return `<a${before}aria-label="${escapeHtmlAttr(label)}" href=${quote}${href}${quote}${after}>${inner}</a>`;
+    },
+  );
+
+const addImageAltDefaults = (html: string) =>
+  html.replace(/<img\b([^>]*)>/gi, (tag, attrs) => {
+    const src = attr(tag, "src");
+    if (!src) return tag;
+    const hasAlt = /\salt=(["'])(.*?)\1/i.test(tag);
+    if (hasAlt && !/\salt=(["'])\s*\1/i.test(tag)) return tag;
+    const alt = assetLabel(src);
+    if (hasAlt) return tag.replace(/\salt=(["'])\s*\1/i, ` alt="${escapeHtmlAttr(alt)}"`);
+    const normalizedAttrs = String(attrs).replace(/\/\s*$/, "");
+    return `<img${normalizedAttrs} alt="${escapeHtmlAttr(alt)}">`;
+  });
 
 const addMediaDefaults = (html: string) =>
   html
@@ -241,7 +315,7 @@ const sanitizeSourceHtml = (content: string, options: { removeFirstH1?: boolean 
       return `<h2${attrs}>${inner}</h2>`;
     });
 
-  return addMediaDefaults(stripUnsafeAttrs(replaceExternalWidgets(normalizeInternalLinks(normalizeAssetAttrs(withoutDynamic)))))
+  return addMediaDefaults(addImageAltDefaults(labelNamelessLinks(stripUnsafeAttrs(restoreGalleryImages(replaceExternalWidgets(normalizeInternalLinks(normalizeAssetAttrs(withoutDynamic))))))))
     .replace(/<div class=["']elementor-widget-container["']>\s*<\/div>/gi, " ")
     .replace(/<p>\s*<\/p>/gi, " ")
     .replace(/\s+([）」』】、。，．！？!?])/g, "$1")
@@ -268,7 +342,7 @@ const extractPage = (item: PageManifestItem): ExtractedPage => {
     .replace(/<iframe[\s\S]*?<\/iframe>/gi, " ")
     .replace(/<noscript[\s\S]*?<\/noscript>/gi, " ");
 
-  const title = pageTitle(html);
+  const title = pageTitleOverrides[item.path] || pageTitle(html);
   const description = pageDescription(html);
   const headingRows = [...content.matchAll(/<h([1-3])[^>]*>([\s\S]*?)<\/h\1>/gi)]
     .map((match) => ({ tag: `h${match[1]}`, text: cleanText(match[2]) }))
@@ -324,5 +398,19 @@ export const getFixedPageByPath = (targetPath: string) => {
       [...routeVariants(entry.path)].some((variant) => requestedVariants.has(variant)),
   );
 
+  return item ? extractPage(item) : undefined;
+};
+
+// Like getFixedPageByPath but ignores the dedicatedPagePaths guard, so a page
+// being promoted to a dedicated .astro can still pull its extracted legacy body.
+export const extractLegacyContentByPath = (targetPath: string) => {
+  const requestedVariants = routeVariants(targetPath);
+  const baselineDir = getBaselineDir();
+  const manifest = JSON.parse(readFileSync(path.join(baselineDir, "manifest.json"), "utf8")) as PageManifestItem[];
+  const item = manifest.find(
+    (entry) =>
+      entry.status === 200 &&
+      [...routeVariants(entry.path)].some((variant) => requestedVariants.has(variant)),
+  );
   return item ? extractPage(item) : undefined;
 };

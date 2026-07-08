@@ -168,14 +168,32 @@ const sections = [
     ],
   },
 ];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: sections.flatMap((section) =>
+    section.items.map((item) => ({
+      "@type": "Question",
+      name: item.question.replace(/^Q\d+\.\s*/, ""),
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer.replace(/^A\d+\.\s*/, ""),
+      },
+    })),
+  ),
+};
 ---
 
 <SiteLayout title={title} description={description} canonical="https://lexus-ec.com/top/faq/" ogImage={seo.ogImage}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
   <main class="faq-page">
     <section class="faq-hero">
       <div class="content faq-hero__inner">
-        <p class="faq-hero__label">FAQ</p>
-        <h1>よくある質問（FAQ）<br />入塾・授業・料金・浪人生対応など徹底解説</h1>
+        <img class="page-head__strip" src={logoStrip} alt="" width="800" height="58" decoding="async" />
+        <p class="page-head__label">FAQ</p>
+        <h1 class="page-head__title">よくある質問（FAQ）<br />入塾・授業・料金・浪人生対応など徹底解説</h1>
+        <span class="page-head__rule" aria-hidden="true"></span>
         <div class="faq-hero__mascot">
           <p>お答えします</p>
           <img src={mascot} alt="新レクサスくん_お辞儀_cropped 医学部合格 医学部受験情報 医学部予備校 レクサス教育センター" width="800" height="837" decoding="async" />

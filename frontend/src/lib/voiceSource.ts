@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { seo } from "../data/home";
+import { normalizeInternalHref } from "./internalLinks";
 
 export type VoiceImage = {
   src: string;
@@ -163,9 +164,26 @@ const metaContent = (html: string, name: string) => {
 
 const pageTitle = (html: string, h1: string) => cleanText(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] || "") || `${h1} | ${seo.title}`;
 
-const normalizeHref = (href: string) => href || "/";
+const normalizeHref = (href: string) => normalizeInternalHref(href || "/");
 
 const imageForTitle = (images: VoiceImage[], title: string) => images.find((image) => cleanText(image.alt).replace(/\s+/g, "") === title.replace(/\s+/g, ""));
+
+const normalizeVideoUrl = (url: string) => {
+  const trimmed = url.trim();
+  if (!trimmed) return "";
+  try {
+    const parsed = new URL(trimmed);
+    const isLegacyUploadVideo =
+      parsed.hostname === "lexus-ec.com" &&
+      parsed.pathname.startsWith("/wp-content/uploads/") &&
+      /\.(?:mp4|mov|webm)$/i.test(parsed.pathname);
+    if (isLegacyUploadVideo) return "";
+  } catch {
+    // Keep relative or malformed legacy values out of the rendered video links.
+    return "";
+  }
+  return trimmed;
+};
 
 const extractVideos = (html: string, images: VoiceImage[]) =>
   [...html.matchAll(/<div[^>]+data-video-url=["'][^"']*["'][^>]*data-video-title=["'][^"']*["'][^>]*>/gi)].map((match) => {
@@ -173,7 +191,7 @@ const extractVideos = (html: string, images: VoiceImage[]) =>
     const title = attr(tag, "data-video-title");
     return {
       title,
-      url: attr(tag, "data-video-url"),
+      url: normalizeVideoUrl(attr(tag, "data-video-url")),
       duration: attr(tag, "data-video-duration"),
       thumbnail: imageForTitle(images, title),
     };
@@ -288,8 +306,9 @@ export const getVoicePage = (): VoicePage => {
     headings.find((heading) => heading.text.includes("レクサスのプロ講師") && heading.tag === "h2")?.text ||
     "レクサスのプロ講師と、レクサスの卒業生が、共同で作りました。";
 
+  void pageTitle;
   return {
-    title: pageTitle(html, h1),
+    title: "医学部の合格体験記｜逆転合格した卒業生・保護者の声｜レクサスE.C.",
     description: metaContent(html, "description") || "医学部予備校レクサス教育センターの合格体験記、合格者インタビュー、保護者様の声を紹介します。",
     canonical: "https://lexus-ec.com/top/voice/",
     h1,

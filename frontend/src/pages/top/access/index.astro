@@ -2,8 +2,8 @@
 import { seo } from "../../../data/home";
 import SiteLayout from "../../../layouts/SiteLayout.astro";
 
-const title = "アクセス";
-const description = "JR渋谷駅の新南改札から徒歩5分.。校舎と寮が一体の医学部予備校です。 〒150-0031 東京都渋谷区桜丘町29-7 LEXUS GADEN";
+const title = "アクセス・校舎案内｜渋谷駅徒歩5分の医学部予備校レクサスE.C.";
+const description = "JR渋谷駅の新南改札から徒歩5分。校舎と寮が一体の医学部予備校です。 〒150-0031 東京都渋谷区桜丘町29-7 LEXUS GARDEN";
 
 const images = {
   logoStrip: "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png",
@@ -84,9 +84,36 @@ const routeSteps = [
     height: 1024,
   },
 ];
+
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": ["EducationalOrganization", "LocalBusiness"],
+  name: "医学部予備校 レクサス E.C.",
+  alternateName: "レクサス教育センター",
+  url: "https://lexus-ec.com/top/access/",
+  logo: seo.ogImage,
+  image: seo.ogImage,
+  telephone: "03-3477-1306",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "東京都渋谷区桜丘町29-7",
+    addressLocality: "渋谷区",
+    addressRegion: "東京都",
+    postalCode: "150-0031",
+    addressCountry: "JP",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 35.654961,
+    longitude: 139.6995549,
+  },
+  hasMap: "https://www.google.com/maps/search/?api=1&query=東京都渋谷区桜丘町29-7",
+  areaServed: "JP",
+};
 ---
 
 <SiteLayout title={title} description={description} canonical="https://lexus-ec.com/top/access/" ogImage={seo.ogImage}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(localBusinessJsonLd)} />
   <main class="access-page">
     <section class="access-hero">
       <div class="content access-hero__inner">
@@ -99,13 +126,13 @@ const routeSteps = [
     <section class="access-map" aria-labelledby="access-campus-title">
       <div class="content access-map__grid">
         <div>
-          <h3 id="access-campus-title">レクサスガーデン校舎</h3>
+          <h2 id="access-campus-title">レクサスガーデン校舎</h2>
           <p class="access-campus-copy">校舎と寮が一体になった、医学部受験に集中するための学習拠点です。</p>
           <p class="access-campus-address">〒150-0031 東京都渋谷区桜丘町29番7号 LEXUS GARDEN<br />★JR渋谷駅の 新南改札 から徒歩５分<br />03-3477-1306</p>
           <div class="access-button-row">
             {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
           </div>
-          <h4>Google Map</h4>
+          <h3>Google Map</h3>
           <a class="access-map-card" href="https://www.google.com/maps/search/?api=1&query=東京都渋谷区桜丘町29-7" rel="noreferrer">
             <span>東京都渋谷区桜丘町29-7</span>
             <strong>Google Mapで開く</strong>
@@ -117,7 +144,7 @@ const routeSteps = [
 
     <section class="access-route" aria-labelledby="access-route-title">
       <div class="content">
-        <h4 id="access-route-title">↓ 道案内はコチラ ↓</h4>
+        <h2 id="access-route-title">↓ 道案内はコチラ ↓</h2>
         <div class="access-route-grid">
           {routeSteps.map((step) => (
             <figure class="access-step">
@@ -139,19 +166,20 @@ const routeSteps = [
 
     <section class="access-dorm" aria-labelledby="access-dorm-title">
       <div class="content access-dorm__grid">
-        <img src={images.mascot} alt="レクサスくん(マスコットキャラクター)" width="800" height="911" loading="lazy" decoding="async" />
-        <div>
-          <h2 id="access-dorm-title">生徒専用寮</h2>
-          <h3>レクサスガーデン</h3>
-          <p>生徒専用寮 LEXUS GARDEN。校舎と一体の生活環境で、学習時間と生活リズムを守りながら医学部合格を目指せます。</p>
-          <a
-            class="button button--blue"
-            href="https://www.google.com/maps/@35.654961,139.6995549,3a,75y,255.71h,82.94t/data=!3m7!1e1!3m5!1s4MmKqgfWgAEElbVTY_DenA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D7.055657400941385%26panoid%3D4MmKqgfWgAEElbVTY_DenA%26yaw%3D255.71317896736466!7i16384!8i8192?hl=ja&coh=205410&entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D"
-            rel="noreferrer"
-          >
-            レクサスガーデン周りの風景を見る
-          </a>
-          <a class="button button--green" href="/top/lexus-garden/">設備や費用を見てみる</a>
+        <div class="access-dorm__copy">
+          <p class="access-dorm__eyebrow">DORMITORY</p>
+          <h2 id="access-dorm-title">生徒専用寮 レクサスガーデン</h2>
+          <p>校舎と一体の生活環境で、学習時間と生活リズムを守りながら医学部合格を目指せます。JR渋谷駅から徒歩5分、セキュリティも万全の専用寮です。</p>
+          <div class="access-dorm__actions">
+            <a
+              class="button button--blue"
+              href="https://www.google.com/maps/@35.654961,139.6995549,3a,75y,255.71h,82.94t/data=!3m7!1e1!3m5!1s4MmKqgfWgAEElbVTY_DenA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D7.055657400941385%26panoid%3D4MmKqgfWgAEElbVTY_DenA%26yaw%3D255.71317896736466!7i16384!8i8192?hl=ja&coh=205410&entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D"
+              rel="noreferrer"
+            >
+              周りの風景を見る
+            </a>
+            <a class="button button--green" href="/top/lexus-garden/">設備や費用を見てみる</a>
+          </div>
         </div>
         <img src={images.garden} alt="レクサスガーデン外観" width="788" height="518" loading="lazy" decoding="async" />
       </div>
@@ -166,7 +194,7 @@ const routeSteps = [
           <p>医学部入試の情報と、レクサスの学習環境を確認したい方は資料請求または個別相談をご利用ください。</p>
           <div class="fixed-hero__actions">
             <a class="button button--red" href="/request-documents/">資料請求</a>
-            {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+            <a class="button button--blue" href="/reservation/">個別相談</a>
           </div>
         </div>
       </div>

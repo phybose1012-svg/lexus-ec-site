@@ -2,7 +2,7 @@
 import { seo } from "../../data/home";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SiteHeader from "../site/SiteHeader.astro";
-import LegacyFormFooter from "./LegacyFormFooter.astro";
+import SiteFooter from "../site/SiteFooter.astro";
 import PendingFormScript from "./PendingFormScript.astro";
 
 interface Props {
@@ -15,7 +15,7 @@ const title = "個別説明会予約 - 医学部予備校 レクサス E.C.";
 const description =
   "レクサス教育センター - プロの講師が分かりやすくご説明します。 - レクサスのシステム説明- 進路相談 - 学習相談 - 気になることをお気軽にご相談ください。体験授業、特待生コースの選抜テストのお申込みも承ります。 - 医学部予備校 - 専用寮あり";
 const configuredEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT;
-const endpoint = configuredEndpoint || "/form-submit/";
+const endpoint = configuredEndpoint || "/form-submit";
 const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" };
 const mascot = "/assets/legacy/wp-content/uploads/2025/02/新レクサスくん-指さし-2_20240826143701-899x1024.png";
 const studentOptions = ["高校1年", "高校2年", "高校3年", "1浪目", "2浪目", "3浪以上", "再受験生", "大学生", "社会人", "その他"];
@@ -27,18 +27,21 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
   <SiteHeader />
   <main class="legacy-reservation-page">
     <section class="reservation-lead" aria-label="無料面談のご予約">
-      <h1 class="reservation-lead__title">無料面談のご予約</h1>
-      <p>
+      <img class="page-head__strip" src="/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png" alt="" width="800" height="58" decoding="async" />
+      <p class="page-head__label">RESERVATION</p>
+      <h1 class="reservation-lead__title page-head__title" data-admin-editable="reservation.title">無料面談のご予約</h1>
+      <span class="page-head__rule" aria-hidden="true"></span>
+      <p data-admin-editable="reservation.lead">
         体験授業や入学をご検討の方は、<br />
         まず無料面談をご予約下さい。<br />
         詳しくご説明いたします。
       </p>
       <div class="reservation-mascot-row">
-        <h2>お気軽にどうぞ</h2>
+        <h2 data-admin-editable="reservation.mascot.left">お気軽にどうぞ</h2>
         <img src={mascot} alt="レクサスくん(マスコットキャラクター)" width="899" height="1024" loading="lazy" decoding="async" />
-        <h2>毎日実施中</h2>
+        <h2 data-admin-editable="reservation.mascot.right">毎日実施中</h2>
       </div>
-      <p class="reservation-lead__notice">
+      <p class="reservation-lead__notice" data-admin-editable="reservation.notice">
         必須事項を入力して<br />
         「予約する」ボタンを押して下さい。
       </p>
@@ -48,6 +51,7 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
       <form action={endpoint} method="post" class="legacy-reservation-form" {...localFormAttrs}>
         <input type="hidden" name="formType" value="reservation" />
         <input type="hidden" name="sourcePath" value={sourcePath} />
+        <input type="text" name="websiteUrl" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;" />
 
         <label class="legacy-reservation-field">
           <span>参加者（代表者）の氏名 <em>*</em></span>
@@ -113,15 +117,15 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
           <textarea name="message" rows="4" placeholder="「こんな事を聞きたい！」など、ご要望があればご記入ください(空欄でもOKです)"></textarea>
         </label>
 
-        <button class="legacy-reservation-submit" type="submit">予約する</button>
+        <button class="legacy-reservation-submit" type="submit" data-admin-editable="reservation.submit">予約する</button>
         <p class="form-submit-note" data-local-form-status hidden></p>
       </form>
     </section>
 
     <section class="reservation-phone" aria-label="電話予約">
-      <p>【お電話でもご予約承ります】</p>
+      <p data-admin-editable="reservation.phone.label">【お電話でもご予約承ります】</p>
       <a href="tel:03-3477-1306">03-3477-1306</a>
-      <p>受付時間：10時00分～21時00分</p>
+      <p data-admin-editable="reservation.phone.hours">受付時間：10時00分～21時00分</p>
     </section>
 
     <nav class="legacy-pill-nav" aria-label="関連ページ">
@@ -131,5 +135,5 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
     </nav>
   </main>
   {!configuredEndpoint && <PendingFormScript />}
-  <LegacyFormFooter />
+  <SiteFooter />
 </BaseLayout>

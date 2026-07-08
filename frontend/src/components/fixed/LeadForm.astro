@@ -19,7 +19,7 @@ interface Props {
 
 const { formType, title, fields, submitLabel = "送信する" } = Astro.props;
 const configuredEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT;
-const endpoint = configuredEndpoint || "/form-submit/";
+const endpoint = configuredEndpoint || "/form-submit";
 const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" };
 ---
 
@@ -31,6 +31,7 @@ const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" 
   <form action={endpoint} method="post" class="lead-form__body" {...localFormAttrs}>
     <input type="hidden" name="formType" value={formType} />
     <input type="hidden" name="sourcePath" value={Astro.url.pathname} />
+    <input type="text" name="websiteUrl" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;" />
     <div class="form-grid">
       {fields.map((field) => (
         <label class={`form-field form-field--${field.type}`}>

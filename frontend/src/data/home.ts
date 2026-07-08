@@ -70,6 +70,7 @@ export type CourseCard = {
   english: string;
   href: string;
   note: string;
+  accent: string;
 };
 
 export type SupportMetric = {
@@ -108,7 +109,7 @@ export const assets = {
   onikanriTitle: "/assets/legacy/wp-content/uploads/2026/01/鬼監理×鬼特訓-1024x184.jpg",
   trainingWide: "/assets/legacy/wp-content/uploads/2025/12/レクサスくん鬼特訓中-1024x511.jpg",
   trainingTall: "/assets/legacy/wp-content/uploads/2025/12/レクサスくん鬼特訓中tate-738x1024.jpg",
-  oniCoach: "/assets/legacy/wp-content/uploads/2026/01/鬼-指示出し-e1768024719806.png",
+  oniCoach: "/illustrations/characters/yuki-sensei-default.png",
   oniTraining: "/illustrations/characters/yuki-sensei-cheer.png",
   oniMascot: "/assets/legacy/wp-content/uploads/2025/12/レクサスくん鬼-1-1024x687.jpg",
   teacherMath: "/assets/legacy/wp-content/uploads/2025/02/数学-小田Ｔ-e1739985341931-803x1024.jpg",
@@ -126,7 +127,7 @@ export const headerActions: HeaderAction[] = [
 
 export const navGroups: NavGroup[] = [
   {
-    label: "実績 / メソッド / 講師",
+    label: "実績 / メソッド",
     links: [
       { label: "合格実績", href: "/top/voice/" },
       { label: "“鬼特訓”とは？", href: "/medical-english-training/" },
@@ -138,7 +139,7 @@ export const navGroups: NavGroup[] = [
     ],
   },
   {
-    label: "体験 / ガイダンス",
+    label: "体験 / 見学",
     links: [
       { label: "体験授業", href: "/top/teacher/" },
       { label: "個別説明会", href: "/reservation/" },
@@ -179,13 +180,7 @@ export const navGroups: NavGroup[] = [
   {
     label: "法人向け開発",
     links: [
-      { label: "Lexus Online", href: "/lexus-online/", target: "_blank" },
-      { label: "AI業務改善", href: "/lexus-online/#systems", target: "_blank" },
-      { label: "Webアプリ / SaaS開発", href: "/lexus-online/#systems", target: "_blank" },
-      { label: "開発ポリシー詳細", href: "/lexus-online/policy/", target: "_blank" },
-      { label: "開発の流れ", href: "/lexus-online/development-flow/", target: "_blank" },
-      { label: "料金・相場比較", href: "/lexus-online/#pricing", target: "_blank" },
-      { label: "開発相談フォーム", href: "/lexus-online/contact/", target: "_blank" },
+      { label: "法人向け開発", href: "/lexus-online/" },
     ],
   },
 ];
@@ -460,11 +455,36 @@ export const quickLinks: ActionLink[] = [
   { label: "理念と沿革", href: "/top/history/", tone: "red" },
 ];
 
-export const representativeMessages = [
-  "見た目は高価だがコスパは良い、本物のレクサスを実際に見て欲しい。",
-  "レクサスは生徒にも求めます。この一年は真剣勝負です。",
-  "レクサスが考える効率の良い合格法",
-  "レクサスは経験も強みです",
+export const representativeMessages: { title: string; body: string[] }[] = [
+  {
+    title: "見た目は高価だがコスパは良い、本物のレクサスを実際に見て欲しい。",
+    body: [
+      "経験豊富な講師が少人数の生徒相手に徹底的に指導するという、贅沢な学習環境を提供しているからコストは掛かります。しかし、最短で合格するので、見た目は高価になってしまうが結果的にコスパは良い。レクサスが本物だという事を実際に見て欲しい。",
+    ],
+  },
+  {
+    title: "レクサスは生徒にも求めます。この一年は真剣勝負です。",
+    body: [
+      "生徒の一秒も講師の一秒も同じ一秒です。どちらも大切な時間です。レクサスは本気です。本気をムダにされたくはありません。真剣勝負の一年、生徒にもヤル気と真剣さを求めます。",
+    ],
+  },
+  {
+    title: "レクサスが考える効率の良い合格法",
+    body: [
+      "アウトプット（入試問題で正解を出すこと）に、授業が不要という事はありません。アウトプットが出来るのは、しっかり理解し効率よくポイントを押さえているからです。「授業」でその部分を効率的に学習できるのがレクサスの良いところです。",
+      "受験生には時間が無いが、演習・反復練習ばかりに偏重すると効率が落ちてしまいます。レクサスでは夜間トレーニング時、講師が待機しており生徒の学習が停滞していれば指導しています。",
+      "「理解はできているけど問題は解けない」などという事はありえません。それは、理解が足りていないという事で、どこが足りないか見つけるために演習は不可欠です。",
+    ],
+  },
+  {
+    title: "レクサスは経験も強みです",
+    body: [
+      "・レクサスの自慢は嘘のない合格実績と、長年にわたり選び抜かれた講師陣です。",
+      "・演習だけに偏ると効率が下がる。まず、無駄のないインプット（授業）でポイントを確実に理解しよう。そのバランスを上手に取るのが予備校の実力です。",
+      "・夜間トレーニングのシステムはただの問題練習ではありません。贅沢にプロ講師を利用できる高効率なシステムです。",
+      "レクサスでは機械的な処理はAIを利用し、プロ講師が担当の受験生を合格させるために全集中しています。",
+    ],
+  },
 ];
 
 export const latestPosts: LinkItem[] = [
@@ -555,6 +575,7 @@ export const courses: CourseCard[] = [
     english: "Premier Main Course",
     href: "/top/course/lexus-premiere-course/",
     note: "医学部受験を全面的にサポートする“オールインワン”コースです。各科目クラス分けあり。",
+    accent: "#0a0a0a",
   },
   {
     target: "◆ 浪人・再受験・高校生 対象 個別指導コース ◆",
@@ -562,6 +583,7 @@ export const courses: CourseCard[] = [
     english: "Custom-made Course",
     href: "/top/course/custom-made-course/",
     note: "自分のレベルに合った演習ベースのカリキュラムで倍速学習をするコースです。",
+    accent: "#0f2db8",
   },
   {
     target: "◆ 高2生・高3生 対象 “鬼特訓”コース ◆",
@@ -569,6 +591,7 @@ export const courses: CourseCard[] = [
     english: "High-level GENEKI Course",
     href: "/top/course/high-level-geneki-course/",
     note: "慶應、慈恵、順天、日医をはじめとする都内の医学部に現役合格するためのコースです。",
+    accent: "#115220",
   },
   {
     target: "◆ 高1・2生 対象 医学部受験 “準備”コース ◆",
@@ -576,6 +599,7 @@ export const courses: CourseCard[] = [
     english: "Medical Prep Course",
     href: "/top/course/medical-prep/",
     note: "医学部受験で優位に立つ先取り学習コースです。慶應、日大の内部進学対策も承ります。",
+    accent: "#5e0881",
   },
   {
     target: "◆ 中学生 対象 医学部受験 “準備”コース ◆",
@@ -583,12 +607,13 @@ export const courses: CourseCard[] = [
     english: "Medical Prep Course",
     href: "/top/course/medical-prep-junior/",
     note: "先手必勝！難関医学部を目指す中高一貫カリキュラムの先取り学習コースです。",
+    accent: "#0c5f63",
   },
 ];
 
 export const footerGroups: FooterGroup[] = [
   {
-    title: "実績 / メソッド / 講師",
+    title: "実績 / メソッド",
     links: [
       { label: "合格実績", href: "#achievements" },
       { label: "合格メソッド", href: "#method" },

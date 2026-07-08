@@ -1,35 +1,583 @@
 ---
-import { seo } from "../../data/home";
+import { acceptedUniversities, achievementStats, seo } from "../../data/home";
+import SectionHeading from "../../components/SectionHeading.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
+import { marqueeThumb } from "../../lib/marqueeThumb";
+import { getVoicePage, type VoiceImage } from "../../lib/voiceSource";
 
-const logoStrip = "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
+type PremierMarqueeItem = { src: string; alt: string; label: string };
+
+const voicePage = getVoicePage();
+const isImage = (image: VoiceImage | undefined): image is VoiceImage => Boolean(image);
+
+const universityAbbreviations: Record<string, string> = {
+  慶應大: "慶應義塾大",
+  慶応大: "慶應義塾大",
+  慶應義塾大学: "慶應義塾大",
+  慶応義塾大学: "慶應義塾大",
+  昭和大学: "昭和医大",
+  昭和医科大学: "昭和医大",
+  聖マリアンナ医科大学: "聖マリ医大",
+  東京慈恵会医科大学: "慈恵医大",
+  東京女子医科大学: "東京女子医大",
+  東北医科薬科大学: "東北医薬大",
+  国際医療福祉大学: "国際医療福祉大",
+};
+
+const passLabelFromTitle = (title: string, href = ""): string => {
+  const legacyKey = `${title} ${href}`;
+  if (!title.includes("｜")) {
+    if (/慶應|慶応|慶大/.test(legacyKey) || href.includes("/mail-02/")) return "慶應義塾大合格";
+    return "合格";
+  }
+
+  let university = title
+    .split("｜")
+    .slice(1)
+    .join("｜")
+    .split(/[、,]/)[0]
+    .replace(/他.*$/, "")
+    .replace(/合格.*$/, "")
+    .replace(/医学部医学科|医学部/g, "")
+    .replace(/^旧/, "")
+    .trim();
+
+  if (!university) return "合格";
+  university = universityAbbreviations[university] ?? university.replace(/医科大学/, "医大").replace(/大学$/, "大");
+  return `${university}合格`;
+};
+
+const interviewMarqueeItems: PremierMarqueeItem[] = voicePage.interviews
+  .filter((item) => isImage(item.image))
+  .map((item) => ({ src: item.image!.src, alt: item.image!.alt || item.title, label: passLabelFromTitle(item.title, item.href) }));
+
+const premierAchievementMarqueeItems: PremierMarqueeItem[] =
+  interviewMarqueeItems.length >= 12
+    ? interviewMarqueeItems
+    : voicePage.successPhotos
+        .filter((story) => isImage(story.image))
+        .map((story) => ({ src: story.image.src, alt: story.image.alt || "", label: "合格" }));
+
+const premierAchievementMarqueeRow1 = premierAchievementMarqueeItems.filter((_, index) => index % 2 === 0).slice(0, 12);
+const premierAchievementMarqueeRow2 = premierAchievementMarqueeItems.filter((_, index) => index % 2 === 1).slice(0, 12);
+
 const penLogo = "/assets/legacy/wp-content/uploads/2025/11/ペン先-ロゴ-4色-300x300.png";
-const resultImage = "/assets/legacy/wp-content/uploads/2026/01/2025年度-医学部入試-実績-1536x1240.jpg";
-const trainingTitle = "/assets/legacy/wp-content/uploads/2026/01/鬼監理×鬼特訓-1024x184.jpg";
-const oniKanri = "/assets/legacy/wp-content/uploads/2026/01/鬼-指示出し-e1768024719806.png";
+const oniKanri = "/illustrations/characters/yuki-sensei-default.png";
 const oniTraining = "/illustrations/characters/yuki-sensei-cheer.png";
-const classImage = "/assets/legacy/wp-content/uploads/2026/01/2026-クラス一覧.jpg";
-const annualPlan = "/assets/legacy/wp-content/uploads/2026/01/2026-パンフ-プレミア本科-年間計画-2048x1237.jpg";
 const messageImage = "/assets/legacy/wp-content/uploads/2026/01/川島先生授業風景-名前入り.jpg";
-const selectionImage = "/assets/legacy/wp-content/uploads/2026/05/レクサスの選抜テストP-1024x1024.jpg";
 const gardenImage = "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-1-04.jpg";
 
-const quickLinks = [
-  { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
-  { label: "合格体験記", href: "/top/voice/", tone: "green" },
-  { label: "理念と沿革", href: "/top/history/", tone: "red" },
+const premierHeroVideos = [
+  "/assets/lexus-premier/fiery-oni-teaches-with-passion.mp4",
+  "/assets/lexus-premier/fiery-oni-teaches-with-passion-02.mp4",
 ];
 
-const stats = [
-  { label: "偏差値60台スタート", value: "100%合格", tone: "orange" },
-  { label: "偏差値50台スタート", value: "88%合格", tone: "green" },
-  { label: "合格者の最高年齢", value: "41歳", tone: "cyan" },
+const classTiers = [
+  {
+    letter: "S",
+    word: "elective",
+    label: "CLASS S",
+    title: "頂点を極めるクラス",
+    category: "最難関医学部対策",
+    target: "偏差値60〜",
+    tone: "red",
+    programs: ["選抜テストによる精鋭クラス授業", "クラス演習", "夜間トレーニング"],
+    summary: "選抜テストを通過した精鋭が集まる最上位クラス。速度、答案精度、難問対応力を高い基準で磨きます。",
+    upgrade: "高い目標をもって努力を続ければ、Sクラスへ上がることが可能です。",
+  },
+  {
+    letter: "A",
+    word: "dvanced",
+    label: "CLASS A",
+    title: "柔軟性を鍛えるクラス",
+    category: "難関医学部対策",
+    target: "偏差値55〜",
+    tone: "gold",
+    programs: ["学力別クラス授業", "クラス演習", "夜間トレーニング"],
+    summary: "難関医学部に必要な応用力と判断力を鍛える中核クラス。基礎を得点力へつなげる訓練を重ねます。",
+    upgrade: "基礎固めが軌道に乗った生徒から、Aクラスへ上がることができます。",
+  },
+  {
+    letter: "F",
+    word: "undamental",
+    label: "CLASS F",
+    title: "思考力を高めるクラス",
+    category: "私立医学部対策",
+    target: "偏差値40台〜",
+    tone: "green",
+    programs: ["学力別クラス授業", "クラス演習", "夜間トレーニング", "補強授業"],
+    summary: "土台から医学部合格へ向かうクラス。補強授業まで含めて、理解の穴を埋めながら思考力を引き上げます。",
+  },
 ];
 
-const universities = [
-  ["千葉大学 4名", "愛媛大学 1名", "慶應義塾大学 1名", "東京慈恵会医科大学 5名", "順天堂大学 8名"],
-  ["日本大学 30名", "杏林大学 30名", "帝京大学 33名", "東京女子医科大学 18名", "北里大学 6名"],
-  ["東北医科薬科大学 12名", "岩手医科大学 50名", "愛知医科大学 10名", "金沢医科大学 45名", "近畿大学 6名"],
+const annualLevels = [
+  { level: "0", label: "高校入試レベル", schools: [] },
+  { level: "1", label: "高校教科書入門", schools: [] },
+  { level: "2", label: "高校教科書標準〜発展", schools: [] },
+  {
+    level: "3",
+    label: "歯学部基礎ライン",
+    schools: ["日大(歯)", "大阪歯科大(歯)", "日本歯科(歯)", "昭和医大(歯)"],
+  },
+  {
+    level: "4",
+    label: "歯学部上位・医学部準備",
+    schools: [
+      "川崎医大",
+      "東京歯科大(歯)",
+      "新潟大(歯)",
+      "広島大(歯)",
+      "長崎大(歯)",
+      "徳島大(歯)",
+      "鹿児島大(歯)",
+      "九州歯科大(歯)",
+      "東北大(歯)",
+      "大阪大(歯)",
+      "北海道大(歯)",
+      "九州大(歯)",
+    ],
+  },
+  {
+    level: "5",
+    label: "私立医学部標準",
+    schools: [
+      "埼玉医大",
+      "獨協医大",
+      "岩手医大",
+      "金沢医大",
+      "杏林大",
+      "帝京大",
+      "愛知医大",
+      "東海大",
+      "東京女子医大",
+      "聖マリアンナ医大",
+      "北里大",
+      "福岡大",
+      "久留米大",
+      "東京科学大(歯)",
+    ],
+  },
+  {
+    level: "6",
+    label: "私立医学部中核",
+    schools: ["日本大学", "東邦大", "東京医大", "東北医科薬科大", "近畿大", "藤田医大", "兵庫医大"],
+  },
+  {
+    level: "7",
+    label: "国公立医学部標準",
+    schools: [
+      "徳島大",
+      "佐賀大",
+      "大分大",
+      "山形大",
+      "島根大",
+      "弘前大",
+      "福島県立医大",
+      "高知大",
+      "札幌医大",
+      "香川大",
+      "富山大",
+      "秋田大",
+      "福井大",
+      "鳥取大",
+      "琉球大",
+      "関西医大",
+      "産業医大",
+      "自治医大",
+      "大阪医科薬科大",
+      "国際医療福祉大",
+      "昭和医大",
+    ],
+  },
+  {
+    level: "8",
+    label: "国公立医学部上位",
+    schools: [
+      "京都府立医大",
+      "筑波大",
+      "広島大",
+      "岡山大",
+      "山口大",
+      "浜松医大",
+      "名古屋市立大",
+      "鹿児島大",
+      "長崎大",
+      "熊本大",
+      "宮崎大",
+      "金沢大",
+      "山梨大",
+      "新潟大",
+      "防衛医大",
+      "滋賀医大",
+      "信州大",
+      "群馬大",
+      "和歌山県立医大",
+      "旭川医大",
+      "三重大",
+      "愛媛大",
+      "日本医大",
+    ],
+  },
+  {
+    level: "9",
+    label: "難関国公立・難関私立",
+    schools: [
+      "名古屋大",
+      "九州大",
+      "東北大",
+      "北海道大",
+      "奈良県立医大",
+      "横浜市立大",
+      "大阪公立大",
+      "神戸大",
+      "岐阜大",
+      "千葉大",
+      "東京慈恵会医大",
+      "順天堂大",
+    ],
+  },
+  {
+    level: "10",
+    label: "最難関医学部",
+    schools: ["東京科学大", "京都大", "大阪大", "慶應義塾大"],
+  },
+  { level: "11", label: "最高到達ライン", schools: ["東京大"] },
+];
+
+const annualLevelLabelLines: Record<string, string[]> = {
+  "0": ["高校入試", "レベル"],
+  "1": ["高校教科書", "入門"],
+  "2": ["高校教科書", "標準〜発展"],
+  "3": ["歯学部", "基礎ライン"],
+  "4": ["歯学部上位", "医学部準備"],
+  "5": ["私立医学部", "標準"],
+  "6": ["私立医学部", "中核"],
+  "7": ["国公立医学部", "標準"],
+  "8": ["国公立医学部", "上位"],
+  "9": ["難関国公立", "難関私立"],
+  "10": ["最難関", "医学部"],
+  "11": ["最高到達", "ライン"],
+};
+
+const annualTracks = [
+  {
+    tone: "red",
+    letter: "S",
+    word: "elective",
+    title: "頂点を極めるクラス",
+    category: "最難関医学部対策",
+    target: "偏差値60〜",
+    lane: "Sクラス",
+    summary: "難関大の問題処理速度と答案精度を、4クールで最高到達ラインへ近づけます。",
+    promotions: [6],
+    bars: [
+      { label: "第1クール", period: "4〜6月", start: 3, end: 5 },
+      { label: "第2クール", period: "7〜8月", start: 4, end: 7 },
+      { label: "第3クール", period: "9〜11月", start: 6, end: 9 },
+      { label: "第4クール", period: "12〜1月", start: 8, end: 12 },
+    ],
+  },
+  {
+    tone: "gold",
+    letter: "A",
+    word: "dvanced",
+    title: "柔軟性を鍛えるクラス",
+    category: "難関医学部対策",
+    target: "偏差値55〜",
+    lane: "SA・A1クラス",
+    summary: "標準から難問への接続を早め、秋以降に上位医学部へ挑む力を固めます。",
+    promotions: [4, 6],
+    bars: [
+      { label: "第1クール", period: "4〜6月", start: 2, end: 5 },
+      { label: "第2クール", period: "7〜8月", start: 4, end: 7 },
+      { label: "第3クール", period: "9〜11月", start: 5, end: 8 },
+      { label: "第4クール", period: "12〜1月", start: 7, end: 10 },
+    ],
+  },
+  {
+    tone: "gold",
+    letter: "A",
+    word: "dvanced",
+    title: "柔軟性を鍛えるクラス",
+    category: "難関医学部対策",
+    target: "偏差値55〜",
+    lane: "A2・A3クラス",
+    summary: "基礎の抜けを補いながら、得点化しやすい標準問題を確実に仕上げます。",
+    promotions: [3, 5],
+    bars: [
+      { label: "第1クール", period: "4〜6月", start: 2, end: 4 },
+      { label: "第2クール", period: "7〜8月", start: 3, end: 5 },
+      { label: "第3クール", period: "9〜11月", start: 4, end: 6 },
+      { label: "第4クール", period: "12〜1月", start: 5, end: 8 },
+    ],
+  },
+  {
+    tone: "green",
+    letter: "F",
+    word: "undamental",
+    title: "思考力を高めるクラス",
+    category: "私立医学部対策",
+    target: "偏差値50～",
+    lane: "F1クラス",
+    summary: "高校内容の再構築から始め、夏以降に医学部標準問題へ届く形へ引き上げます。",
+    promotions: [2, 4],
+    bars: [
+      { label: "第1クール", period: "4〜6月", start: 0, end: 3 },
+      { label: "第2クール", period: "7〜8月", start: 1, end: 4 },
+      { label: "第3クール", period: "9〜11月", start: 2, end: 5 },
+      { label: "第4クール", period: "12〜1月", start: 4, end: 7 },
+    ],
+  },
+  {
+    tone: "green",
+    letter: "F",
+    word: "undamental",
+    title: "思考力を高めるクラス",
+    category: "私立医学部対策",
+    target: "偏差値40台～",
+    lane: "F2・F3クラス",
+    summary: "入門内容を長めに確保し、苦手単元を残さず次のクールへつなげます。",
+    promotions: [2, 4],
+    bars: [
+      { label: "第1・第2クール", period: "4〜8月", start: 0, end: 2 },
+      { label: "第3クール", period: "9〜11月", start: 1, end: 4 },
+      { label: "第4クール", period: "12〜1月", start: 2, end: 5.5 },
+    ],
+  },
+];
+
+const planPercent = (value: number) => `${(value / 12) * 100}%`;
+const annualPlanBarTop = (index: number, total: number) => `${18 + (total - 1 - index) * 20}px`;
+
+type WeekCell = {
+  subjects?: string[];
+  label?: string;
+  note?: string;
+  variant?: string;
+};
+
+type WeeklyScheduleRow =
+  | {
+      kind: "period";
+      period: string;
+      time: string;
+      tone: string;
+      cells: WeekCell[];
+    }
+  | {
+      kind: "break";
+      label: string;
+      note?: string;
+      tone: string;
+    };
+
+const weekDays = ["月", "火", "水", "木", "金", "土", "日"];
+
+const weeklyScheduleRows: WeeklyScheduleRow[] = [
+  {
+    kind: "period",
+    period: "0",
+    time: "8:20〜9:20",
+    tone: "test",
+    cells: [
+      { subjects: ["英語", "数学"], label: "毎日テスト", variant: "test" },
+      { subjects: ["英語", "化学"], label: "毎日テスト", variant: "test" },
+      { subjects: ["数学", "物/生"], label: "毎日テスト", variant: "test" },
+      { subjects: ["数学", "化学"], label: "毎日テスト", variant: "test" },
+      { subjects: ["英語", "物/生"], label: "毎日テスト", variant: "test" },
+      { subjects: ["数学", "英語"], label: "毎日テスト", variant: "test" },
+      { label: "自習室開放", variant: "self" },
+    ],
+  },
+  { kind: "break", label: "10分 休憩", tone: "short" },
+  {
+    kind: "period",
+    period: "I",
+    time: "9:30〜10:30",
+    tone: "input",
+    cells: [
+      { subjects: ["英語"], label: "インプット", variant: "input" },
+      { subjects: ["英語"], label: "インプット", variant: "input" },
+      { subjects: ["数学"], label: "週一テスト", variant: "test" },
+      { subjects: ["数学"], label: "インプット", variant: "input" },
+      { subjects: ["英語"], label: "インプット", variant: "input" },
+      { subjects: ["数学"], label: "インプット", variant: "input" },
+      { label: "自習室開放", variant: "self" },
+    ],
+  },
+  { kind: "break", label: "10分 休憩", tone: "short" },
+  {
+    kind: "period",
+    period: "II",
+    time: "10:40〜11:40",
+    tone: "input",
+    cells: [
+      { subjects: ["英語"], label: "インプット", variant: "input" },
+      { subjects: ["英語"], label: "インプット", variant: "input" },
+      { subjects: ["数学"], label: "週一テスト", variant: "test" },
+      { subjects: ["英語"], label: "インプット", variant: "input" },
+      { subjects: ["数学"], label: "インプット", variant: "input" },
+      { subjects: ["数学"], label: "インプット", variant: "input" },
+      { label: "自習室開放", variant: "self" },
+    ],
+  },
+  { kind: "break", label: "50分 昼食", note: "美味しいお食事をご用意できます", tone: "meal" },
+  {
+    kind: "period",
+    period: "III",
+    time: "12:30〜13:30",
+    tone: "input",
+    cells: [
+      { subjects: ["数学"], label: "インプット", variant: "input" },
+      { subjects: ["化学"], label: "インプット", variant: "input" },
+      { subjects: ["物理/生物"], label: "インプット", variant: "input" },
+      { subjects: ["化学"], label: "インプット", variant: "input" },
+      { subjects: ["物理/生物"], label: "インプット", variant: "input" },
+      { subjects: ["英語"], label: "週一テスト", variant: "test" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
+    ],
+  },
+  { kind: "break", label: "10分 休憩", tone: "short" },
+  {
+    kind: "period",
+    period: "IV",
+    time: "13:40〜14:40",
+    tone: "input",
+    cells: [
+      { subjects: ["数学"], label: "インプット", variant: "input" },
+      { subjects: ["化学"], label: "インプット", variant: "input" },
+      { subjects: ["物理/生物"], label: "インプット", variant: "input" },
+      { subjects: ["化学"], label: "インプット", variant: "input" },
+      { subjects: ["物理/生物"], label: "インプット", variant: "input" },
+      { subjects: ["英語"], label: "週一テスト", variant: "test" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
+    ],
+  },
+  { kind: "break", label: "10分 休憩", tone: "short" },
+  {
+    kind: "period",
+    period: "V",
+    time: "14:50〜15:50",
+    tone: "output",
+    cells: [
+      { subjects: ["数学"], label: "アウトプット", variant: "output" },
+      { subjects: ["化学"], label: "アウトプット", variant: "output" },
+      { subjects: ["物理/生物"], label: "アウトプット", variant: "output" },
+      { subjects: ["化学"], label: "アウトプット", variant: "output" },
+      { subjects: ["物理/生物"], label: "アウトプット", variant: "output" },
+      { subjects: ["英語"], label: "アウトプット", variant: "output" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
+    ],
+  },
+  { kind: "break", label: "10分 休憩", tone: "short" },
+  {
+    kind: "period",
+    period: "VI",
+    time: "16:00〜17:00",
+    tone: "output",
+    cells: [
+      { subjects: ["英語"], label: "アウトプット", variant: "output" },
+      { subjects: ["英語"], label: "アウトプット", variant: "output" },
+      { subjects: ["数学"], label: "アウトプット", variant: "output" },
+      { subjects: ["数学"], label: "アウトプット", variant: "output" },
+      { subjects: ["英語"], label: "アウトプット", variant: "output" },
+      { subjects: ["数学"], label: "アウトプット", variant: "output" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
+    ],
+  },
+  { kind: "break", label: "10分 休憩", tone: "short" },
+  {
+    kind: "period",
+    period: "VII",
+    time: "17:10〜18:10",
+    tone: "output",
+    cells: [
+      { label: "【+α】アウトプット", note: "英語/数学・化学/生物", variant: "plus" },
+      { label: "【+α】アウトプット", note: "英語/数学・化学/物理", variant: "plus" },
+      { label: "【+α】アウトプット", note: "英語/数学・物理/生物", variant: "plus" },
+      { label: "【+α】アウトプット", note: "英語/数学・化学/物理/生物", variant: "plus" },
+      { label: "【+α】アウトプット", note: "英語/数学・物理/生物", variant: "plus" },
+      { label: "【+α】アウトプット", note: "英語/数学・化学/物理", variant: "plus" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
+    ],
+  },
+  { kind: "break", label: "50分 夕食", note: "美味しいお食事をご用意できます", tone: "meal" },
+  {
+    kind: "period",
+    period: "VIII",
+    time: "19:00〜20:00",
+    tone: "training",
+    cells: [
+      { label: "夜間トレーニング", variant: "training" },
+      { label: "夜間トレーニング", variant: "training" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
+      { label: "小論文対策", note: "選択制", variant: "essay" },
+      { label: "夜間トレーニング", variant: "training" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
+      { label: "自習室開放", variant: "self" },
+    ],
+  },
+  {
+    kind: "period",
+    period: "IX",
+    time: "20:00〜21:00",
+    tone: "training",
+    cells: [
+      { label: "夜間トレーニング", variant: "training" },
+      { label: "夜間トレーニング", variant: "training" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
+      { label: "夜間トレーニング", variant: "training" },
+      { label: "夜間トレーニング", variant: "training" },
+      { label: "自習室開放", note: "質問可能", variant: "self" },
+      { label: "自習室開放", variant: "self" },
+    ],
+  },
+];
+
+const weeklyScheduleNotes = [
+  "「【+α】アウトプット」は、やり残した課題を終わらせる時間で、記載された科目の質問も可能です。補講が行われることもあります。",
+  "「国語」・「社会」・「情報」の共通テスト対策も追加可能です。",
+  "小論文の授業は選択制です。選択しない場合は夜間個別トレーニングとなります。",
+];
+
+const weeklyCellClass = (cell: WeekCell) => `premier-week-cell premier-week-cell--${cell.variant ?? "default"}`;
+
+const achievementRows = [
+  {
+    start: "偏差値60以上スタート",
+    result: "全員合格",
+    detail: "医学部医学科",
+    rate: 100,
+    tone: "gold",
+  },
+  {
+    start: "偏差値55〜60スタート",
+    result: "83%合格",
+    detail: "6名中5名",
+    rate: 83,
+    tone: "red",
+  },
+  {
+    start: "偏差値50〜55スタート",
+    result: "75%合格",
+    detail: "8名中6名",
+    rate: 75,
+    tone: "green",
+  },
+  {
+    start: "偏差値40台スタート",
+    result: "22%合格",
+    detail: "9名中2名",
+    rate: 22,
+    tone: "blue",
+  },
+  {
+    start: "初学者・再受験生",
+    result: "60%合格",
+    detail: "5名中3名",
+    rate: 60,
+    tone: "brown",
+  },
 ];
 
 const featureCards = [
@@ -38,14 +586,17 @@ const featureCards = [
     image: oniKanri,
     lead: "プロ講師の眼力 × 医学部専門AIのデータ分析",
     body: "副代表クラスのトップ講師陣が担任となり、AIを有効活用して学習進捗、得意不得意、成長速度を監理。学習から無駄と甘えを排除します。",
-    href: "/top/results/",
+    links: [{ label: "“鬼監理”を詳しく見る", href: "/study-support-system/" }],
   },
   {
     title: "鬼特訓",
     image: oniTraining,
     lead: "プロ講師の質問対応 × 課題の具体化",
     body: "授業後の自習時間を濃厚な特訓時間へ。課題提示、即時添削、追加課題。理解できるまで帰れない夜間トレーニングです。",
-    href: "/top/teacher/",
+    links: [
+      { label: "英語の鬼特訓", href: "/medical-english-training/" },
+      { label: "数学の鬼特訓", href: "/medical-math-training/" },
+    ],
   },
 ];
 
@@ -68,7 +619,7 @@ const supportItems = [
   "後期試験対策",
 ];
 
-const learningSystems = [
+const learningSystemCore = [
   {
     label: "01",
     title: "クラス授業",
@@ -81,19 +632,32 @@ const learningSystems = [
   },
   {
     label: "03",
-    title: "“鬼特訓” 夜間トレーニング",
-    body: "指定課題と質問対応を繰り返し、「デキる」を「速くデキる」に変えます。",
+    title: "担任面談",
+    body: "勉強の仕方、復習、受験大学の決定まで、プロ講師である担任が共に歩みます。",
   },
+];
+
+const learningSystemOuter = [
   {
     label: "04",
-    title: "“鬼監理” チェックテスト",
-    body: "年間265回の試験で、わかったつもりを徹底的に排除します。",
+    title: "“鬼特訓” 夜間トレーニング",
+    body: "指定課題と質問対応を繰り返し、「デキる」を「速くデキる」に変えます。",
+    tone: "training",
   },
   {
     label: "05",
-    title: "担任はプロ講師",
-    body: "勉強の仕方、復習、受験大学の決定まで、プロ講師である担任が共に歩みます。",
+    title: "“鬼監理” チェックテスト",
+    body: "年間265回の試験で、わかったつもりを徹底的に排除します。",
+    tone: "management",
   },
+];
+
+const learningSystemPhotos = [
+  { src: "/assets/images/lexus-premier/premier-learning-01.jpg", width: 900, height: 600 },
+  { src: "/assets/images/lexus-premier/premier-learning-02.jpg", width: 900, height: 515 },
+  { src: "/assets/images/lexus-premier/premier-learning-03.jpg", width: 900, height: 600 },
+  { src: "/assets/images/lexus-premier/premier-learning-04.jpg", width: 900, height: 600 },
+  { src: "/assets/images/lexus-premier/premier-learning-05.jpg", width: 900, height: 600 },
 ];
 
 const infoPosts = [
@@ -107,121 +671,246 @@ const infoPosts = [
 ---
 
 <SiteLayout
-  title="【既卒生】1年で医学部合格へ。鬼監理×鬼特訓の「レクサスプレミア本科」｜医学部受験ならLEXUS（レクサス教育センター）"
-  description="【既卒生対象・2026年4月開講】医学部予備校レクサス教育センター「レクサスプレミア本科」のコース紹介です。「鬼監理×鬼特訓」による徹底的な学習管理と実践指導で、医学部逆転合格を「奇跡」から「必然」へ変えます。カリキュラム、学費、合格実績、専用寮の詳細はこちら。"
+  title="【既卒生】2027年度医学部合格へ。鬼監理×鬼特訓の「レクサスプレミア本科」｜医学部受験ならLEXUS（レクサス教育センター）"
+  description="【既卒生対象・2027年度入試対応】医学部予備校レクサス教育センター「レクサスプレミア本科」のコース紹介です。「鬼監理×鬼特訓」による徹底的な学習管理と実践指導で、医学部逆転合格を「奇跡」から「必然」へ変えます。カリキュラム、学費、合格実績、専用寮の詳細はこちら。"
   canonical="https://lexus-ec.com/lexus-premier/"
   ogImage={seo.ogImage}
 >
+  <style is:inline>
+    @supports (content-visibility: auto) {
+      .premier-achievement,
+      .premier-feature,
+      .premier-overview,
+      .premier-learning,
+      .premier-message,
+      .premier-contact,
+      .premier-extra,
+      .premier-info {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 920px;
+      }
+
+      .premier-overview {
+        contain-intrinsic-size: auto 2600px;
+      }
+
+      .premier-learning {
+        contain-intrinsic-size: auto 980px;
+      }
+
+      .premier-extra,
+      .premier-info {
+        contain-intrinsic-size: auto 720px;
+      }
+    }
+  </style>
+
   <main class="premier-page">
-    <section class="premier-opening">
-      <div class="content premier-opening__inner">
-        <img src={logoStrip} alt="" width="1024" height="74" decoding="async" />
-        <h1>2027年度対応<br />オールインワンの医学部受験サポート<br /><span>既卒生対象</span></h1>
+    <section class="premier-cinematic-hero" data-premier-cinematic-hero>
+      <video
+        class="premier-cinematic-hero__video"
+        muted
+        playsinline
+        preload="none"
+        data-src={premierHeroVideos[0]}
+        data-playlist={premierHeroVideos.join("|")}
+      ></video>
+      <div class="premier-cinematic-hero__fallback" aria-hidden="true"></div>
+      <div class="premier-cinematic-hero__shade" aria-hidden="true"></div>
+      <div class="content premier-cinematic-hero__inner">
+        <div class="premier-fireline-stage">
+          <div class="premier-fireline-act premier-fireline-act--first" aria-label="レクサス・プレミア本科">
+            <p class="premier-fireline-prime premier-fireline-first-item"><span class="premier-fireline-nowrap">PREMIERE MAINE COURSE</span></p>
+            <p class="premier-fireline-subtitle premier-fireline-first-item">医学部特化のオールインワン</p>
+          </div>
+
+          <div class="premier-fireline-corner-mark" aria-hidden="true">
+            <img src={penLogo} alt="" width="300" height="300" decoding="async" />
+            <span>PREMIERE MAINE COURSE</span>
+            <strong>レクサスプレミア本科</strong>
+          </div>
+
+          <div class="premier-fireline-act premier-fireline-act--second" aria-label="レクサス・プレミア本科 メッセージ">
+            <div class="premier-fireline-quote-stack">
+              <span>「今年で決める！」</span>
+              <span>「もうサボらない」</span>
+              <span>「厳しい環境に身を置こう」</span>
+            </div>
+            <p class="premier-fireline-year">2027年度入試対応 / 既卒生対象</p>
+            <h1 class="premier-fireline-title">その覚悟に、<br /><strong>レクサスが応える。</strong></h1>
+            <p class="premier-fireline-lead">授業、演習、質問対応、学習監理、生活環境まで。合格に必要な行動を、曖昧な努力で終わらせないための医学部受験フルコースです。</p>
+            <div class="premier-fireline-meta" aria-label="レクサス・プレミア本科の概要">
+              <span>夏期入学可能</span>
+              <span>定員になり次第終了</span>
+            </div>
+            <div class="premier-fireline-actions">
+              <a class="button button--red" href="/request-documents/">資料請求する</a>
+              <a class="button button--blue" href="/reservation/">個別説明会へ</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="premier-hero">
-      <div class="content premier-hero__inner">
-        <div class="premier-hero__brand">
-          <img src={penLogo} alt="レクサス教育センターロゴ" width="300" height="300" decoding="async" />
-          <p>レクサス式</p>
-        </div>
-        <p class="premier-hero__year">2026年度</p>
-        <p class="premier-hero__copy">最高級の医学部受験指導</p>
-        <h2>レクサス・プレミア本科<br />4月開講</h2>
-        <p class="premier-hero__target">対象：既卒生（年齢制限なし）</p>
-        <p class="premier-hero__period">募集期間：2月1日(日)〜4月5日(日)</p>
-        <div class="premier-hero__actions">
-          <a class="button button--red" href="/request-documents/">資料請求する</a>
-          <a class="button button--blue" href="/reservation/">個別説明会へ</a>
-        </div>
-        <div class="premier-quick-actions">
-          {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
-        </div>
-        <p class="premier-hero__limit">定員になり次第終了</p>
-      </div>
-    </section>
-
-    <section class="premier-response">
-      <div class="content-narrow">
-        <p>「もう、後がない」</p>
-        <p>「大手予備校では、何も変わらなかった」</p>
-        <p>「とにかく今年、合格させてくれ」</p>
-        <strong>レクサスが応えます。</strong>
-      </div>
-    </section>
-
-    <section class="premier-ideal" aria-labelledby="premier-ideal-title">
-      <div class="content">
-        <p class="premier-section-label">IDEAL FORM</p>
-        <h2 id="premier-ideal-title">医学部合格への 理想形。</h2>
-        <p class="premier-ideal__lead">
-          レクサス・プレミア本科は、授業を受けるだけのコースではありません。学習管理、質問対応、夜間演習、出願戦略、生活リズムまでを一体化し、医学部合格に必要な行動を毎日積み上げるための環境です。
-        </p>
-        <div class="premier-ideal-grid">
-          <article>
-            <span>01</span>
-            <h3>“鬼監理”で迷わせない</h3>
-            <p>学習計画、課題、復習、確認テストを講師側が把握し、今日やるべきことを具体化します。</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>“鬼特訓”で逃がさない</h3>
-            <p>授業後の演習と質問対応を重ね、分かったつもりを実戦で使える状態まで引き上げます。</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>寮と校舎を一体化</h3>
-            <p>移動時間と生活の乱れを減らし、医学部受験に集中するための学習生活を設計します。</p>
-          </article>
-        </div>
-        <div class="premier-ideal__actions">
-          <a class="button button--red" href="/study-support-system/">“鬼監理”を詳しく見る</a>
-          <a class="button button--blue" href="/medical-english-training/">英語の鬼特訓</a>
-          <a class="button button--green" href="/medical-math-training/">数学の鬼特訓</a>
+    <section class="premier-ideal" aria-labelledby="premier-ideal-title" data-premier-ideal>
+      <div class="content premier-ideal__content">
+        <div class="premier-ideal__panel">
+          <div class="premier-ideal__mark" aria-hidden="true">IDEAL</div>
+          <div class="premier-ideal__copy">
+            <p class="premier-ideal__eyebrow">IDEAL FORM FOR MEDICAL SUCCESS</p>
+            <h2 id="premier-ideal-title" class="premier-ideal__title" aria-label="医学部合格への理想形。">
+              <span><span>医学部合格への</span></span>
+              <span><span>理想形。</span></span>
+            </h2>
+            <div class="premier-ideal__rule" aria-hidden="true"></div>
+            <p class="premier-ideal__lead">
+              レクサス・プレミア本科は、授業を受けるだけのコースではありません。学習管理、質問対応、夜間演習、出願戦略、生活リズムまでを一体化し、医学部合格に必要な行動を毎日積み上げるための環境です。
+            </p>
+            <ul class="premier-ideal__chips" aria-label="レクサス・プレミア本科が一体化する要素">
+              <li>学習管理</li>
+              <li>質問対応</li>
+              <li>夜間演習</li>
+              <li>生活設計</li>
+            </ul>
+          </div>
+          <div class="premier-ideal-grid">
+            <article class="premier-ideal-card premier-ideal-card--primary">
+              <span class="premier-ideal-card__number">01</span>
+              <h3>“鬼監理”で迷わせない</h3>
+              <p>学習計画、課題、復習、確認テストを講師側が把握し、今日やるべきことを具体化します。</p>
+            </article>
+            <article class="premier-ideal-card">
+              <span class="premier-ideal-card__number">02</span>
+              <h3>“鬼特訓”で逃がさない</h3>
+              <p>授業後の演習と質問対応を重ね、分かったつもりを実戦で使える状態まで引き上げます。</p>
+            </article>
+            <article class="premier-ideal-card">
+              <span class="premier-ideal-card__number">03</span>
+              <h3>寮と校舎を一体化</h3>
+              <p>移動時間と生活の乱れを減らし、医学部受験に集中するための学習生活を設計します。</p>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="premier-achievement" aria-labelledby="premier-achievement-title">
       <div class="content">
-        <p class="premier-section-label">ACHIEVEMENT</p>
-        <h2 id="premier-achievement-title">2025年度の実績報告</h2>
-        <p class="premier-subtitle">～ 一年で合格する割合 ～</p>
-        <img class="premier-result-image" src={resultImage} alt="2025年度 医学部医学科 入試合格実績" width="1536" height="1240" decoding="async" />
-        <h3>累計合格実績</h3>
-        <div class="premier-stat-grid">
-          {stats.map((stat) => (
-            <article class={`premier-stat premier-stat--${stat.tone}`}>
+        {premierAchievementMarqueeRow1.length > 0 && (
+          <div class="premier-achievement-marquee" aria-hidden="true">
+            <div class="premier-achievement-marquee__row premier-achievement-marquee__row--left">
+              {[...premierAchievementMarqueeRow1, ...premierAchievementMarqueeRow1].map((item) => (
+                <span class="premier-achievement-marquee__item">
+                  <img src={marqueeThumb(item.src)} alt="" width="160" height="120" loading="lazy" decoding="async" />
+                  <span class="premier-achievement-marquee__tag">{item.label}</span>
+                </span>
+              ))}
+            </div>
+            {premierAchievementMarqueeRow2.length > 0 && (
+              <div class="premier-achievement-marquee__row premier-achievement-marquee__row--right">
+                {[...premierAchievementMarqueeRow2, ...premierAchievementMarqueeRow2].map((item) => (
+                  <span class="premier-achievement-marquee__item">
+                    <img src={marqueeThumb(item.src)} alt="" width="160" height="120" loading="lazy" decoding="async" />
+                    <span class="premier-achievement-marquee__tag">{item.label}</span>
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+        <header class="section-heading premier-achievement__heading">
+          <p>ACHIEVEMENT</p>
+          <h2 id="premier-achievement-title">2026年度実績報告</h2>
+          <small>〜 一年で合格する割合 〜</small>
+        </header>
+        <p class="premier-achievement__intro">
+          スタートラインは一人ひとり違っても、合格に必要な行動量と精度を毎日積み上げる。その結果を、入学時の偏差値帯ごとに整理しました。
+        </p>
+        <div class="premier-result-panel" aria-label="2026年度 医学部医学科 入試合格実績">
+          <div class="premier-result-panel__head">
+            <div>
+              <span class="premier-result-panel__eyebrow">2026 ENTRANCE EXAM</span>
+              <p><span>スタートライン別・</span><span>医学部医学科合格率</span></p>
+            </div>
+            <strong>医学部医学科のみ</strong>
+          </div>
+          <div class="premier-result-list">
+            {achievementRows.map((row, index) => (
+              <article
+                class={`premier-result-row premier-result-row--${row.tone}`}
+                style={`--rate: ${row.rate}%; --order: ${index};`}
+                aria-label={`${row.start}から${row.result}、${row.detail}`}
+              >
+                <div class="premier-result-row__start">
+                  <span>START</span>
+                  <strong>{row.start}</strong>
+                </div>
+                <div class="premier-result-row__meter" aria-hidden="true">
+                  <span></span>
+                </div>
+                <div class="premier-result-row__result">
+                  <span>RESULT</span>
+                  <strong>{row.result}</strong>
+                  <em>{row.detail}</em>
+                </div>
+              </article>
+            ))}
+          </div>
+          <p class="premier-result-note">※ すべて医学部医学科の合格実績です。</p>
+        </div>
+        <h3 class="university-list__title">累計合格実績</h3>
+        <div class="achievement-stats">
+          {achievementStats.map((stat) => (
+            <article class={`stat-card stat-card--${stat.tone}`}>
               <p>{stat.label}</p>
               <strong>{stat.value}</strong>
             </article>
           ))}
         </div>
-        <h3>合格した大学一覧 (医学部医学科のみ)</h3>
-        <div class="premier-university-grid">
-          {universities.map((column) => (
-            <ul>
-              {column.map((item) => <li>{item}</li>)}
-            </ul>
+        <h3 class="university-list__title">合格した大学一覧 (医学部医学科のみ)</h3>
+        <ul class="university-list" aria-label="医学部入試過去6年分の最終合格者データ">
+          {acceptedUniversities.flat().map((result) => (
+            <li>
+              <span>{result.name}</span>
+              <strong>{result.count}</strong>
+            </li>
           ))}
-        </div>
+        </ul>
+        <p class="note">※過去6年分 (2021～2026年度) の最終合格者データ</p>
       </div>
     </section>
 
     <section class="premier-feature" aria-labelledby="premier-feature-title">
       <div class="content">
-        <img class="premier-feature__title" src={trainingTitle} alt="鬼監理×鬼特訓" width="1024" height="184" loading="lazy" decoding="async" />
-        <h2 id="premier-feature-title">プレミア本科 の 特徴</h2>
-        <p class="premier-feature__lead">の先にある、絶対の合格へ有無を言わさず連れていく。</p>
+        <SectionHeading id="premier-feature-title" label="METHOD" title="プレミア本科の特徴" />
+        <div class="premier-feature__statement" aria-label="鬼監理×鬼特訓">
+          <p>偶然や奇跡に頼らない逆転劇。</p>
+          <p class="premier-feature__mark">
+            <span>鬼監理</span><span class="premier-feature__mark-x" aria-hidden="true">×</span><span>鬼特訓</span>
+          </p>
+          <p>その先にある、絶対の合格へ。</p>
+        </div>
+        <p class="premier-feature__lead">迷わせず、逃がさず、合格まで伴走します。</p>
         <div class="premier-feature-grid">
           {featureCards.map((card) => (
-            <article class="premier-feature-card">
-              <img src={card.image} alt="" width="420" height="420" loading="lazy" decoding="async" />
-              <h3>{card.title}</h3>
-              <p class="premier-feature-card__lead">{card.lead}</p>
-              <p>{card.body}</p>
-              <a href={card.href}>{card.title}を詳しく見る</a>
+            <article class="pillar-card">
+              <div class="pillar-card__head">
+                <img src={card.image} alt="" width="234" height="260" loading="lazy" decoding="async" aria-hidden="true" />
+                <h3 class="pillar-card__title">{card.title}</h3>
+              </div>
+              <p class="pillar-card__subtitle">
+                {card.lead.split("×").map((part, i) => (
+                  <Fragment>
+                    {i > 0 && <span class="pillar-card__times" aria-hidden="true">×</span>}
+                    <span>{part.trim()}</span>
+                  </Fragment>
+                ))}
+              </p>
+              <p class="pillar-card__body">{card.body}</p>
+              <p class="pillar-card__cue" aria-hidden="true">↓ 詳しくはコチラ ↓</p>
+              <div class="pillar-card__actions">
+                {card.links.map((link) => <a class="pillar-card__button" href={link.href}>{link.label}</a>)}
+              </div>
             </article>
           ))}
         </div>
@@ -236,36 +925,351 @@ const infoPosts = [
 
     <section class="premier-overview" aria-labelledby="premier-overview-title">
       <div class="content">
-        <img src={logoStrip} alt="" width="1024" height="74" loading="lazy" decoding="async" />
-        <h2 id="premier-overview-title">プレミア本科の 概要</h2>
-        <h3>クラス一覧</h3>
-        <img class="premier-wide-image" src={classImage} alt="2026レクサスプレミア本科 クラス一覧" width="1200" height="747" loading="lazy" decoding="async" />
-        <h3>年間計画イメージ</h3>
-        <img class="premier-wide-image" src={annualPlan} alt="2026レクサスプレミア本科 年間計画" width="2048" height="1237" loading="lazy" decoding="async" />
-        <h3>週間予定イメージ</h3>
-        <div class="premier-week-table">
-          <p>午前はインプット、午後はアウトプット、夜はトレーニングと質問対応。</p>
-          <p>「【+α】アウトプット」は、やり残した課題を終わらせる時間で、記載された科目の質問も可能です。</p>
-          <p>「国語」・「社会」・「情報」の共通テスト対策も追加可能です。</p>
-        </div>
-        <h3 class="premier-support-title">サポート内容 一覧</h3>
-        <ul class="premier-support-grid">
-          {supportItems.map((item) => <li>{item}</li>)}
-        </ul>
+        <SectionHeading id="premier-overview-title" label="OVERVIEW" title="プレミア本科の概要" />
+        <section class="premier-overview-block premier-overview-block--classes" aria-labelledby="premier-classes-title">
+          <header class="premier-overview-subhead">
+            <p>CLASS DESIGN</p>
+            <h3 id="premier-classes-title">クラス一覧</h3>
+            <small><span>現在地を見極め、上位クラスへの昇格まで見据えます。</span><span>授業・演習・夜間トレーニングを一体設計します。</span></small>
+          </header>
+          <div class="premier-class-board" aria-label="プレミア本科 クラス一覧">
+          {classTiers.map((tier) => (
+            <>
+              <article class={`premier-class-card premier-class-card--${tier.tone}`}>
+                <div class="premier-class-card__status">
+                  <span class="premier-class-card__mark" aria-hidden="true">{tier.letter}</span>
+                  <div class="premier-class-card__identity">
+                    <p>{tier.label}</p>
+                    <em>{tier.letter}{tier.word}</em>
+                  </div>
+                  <strong class="premier-class-card__target">{tier.target}</strong>
+                </div>
+                <div class="premier-class-card__body">
+                  <div class="premier-class-card__head">
+                    <h4>{tier.title}<span>【{tier.category}】</span></h4>
+                  </div>
+                  <ul class="premier-class-card__programs" aria-label={`${tier.title}の授業構成`}>
+                    {tier.programs.map((program) => <li>{program}</li>)}
+                  </ul>
+                  <p class="premier-class-card__summary">{tier.summary}</p>
+                </div>
+              </article>
+              {tier.upgrade && (
+                <div class={`premier-class-bridge premier-class-bridge--${tier.tone}`}>
+                  <span class="premier-class-bridge__arrows" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </span>
+                  <p>{tier.upgrade}</p>
+                </div>
+              )}
+            </>
+          ))}
+          </div>
+        </section>
+        <section class="premier-overview-block premier-overview-block--roadmap" aria-labelledby="premier-roadmap-title">
+          <header class="premier-overview-subhead">
+            <p>YEAR ROADMAP</p>
+            <h3 id="premier-roadmap-title">年間計画イメージ</h3>
+            <small>学力レベル・対応大学・クラス進行を、1年の伸び方として俯瞰できます。</small>
+          </header>
+          <section class="premier-annual-plan" aria-label="2026レクサスプレミア本科 年間計画">
+            <div class="premier-annual-plan__head">
+              <div>
+                <p class="premier-annual-plan__eyebrow">YEAR ROADMAP</p>
+                <h4>現在地と、1年後の到達ラインを同じ表で見る。</h4>
+              </div>
+              <p>学力レベル0〜11、対応大学の目安、クラス別の年間進行を1枚に統合しました。通常表示では全体像を俯瞰し、詳細は拡大表示で確認できます。</p>
+            </div>
+            <div class="premier-annual-plan__legend" aria-label="クラス色の凡例">
+              <span class="premier-annual-plan__legend-item premier-annual-plan__legend-item--red">Sクラス</span>
+              <span class="premier-annual-plan__legend-item premier-annual-plan__legend-item--gold">Aクラス</span>
+              <span class="premier-annual-plan__legend-item premier-annual-plan__legend-item--green">Fクラス</span>
+              <span class="premier-annual-plan__legend-line">昇格目安</span>
+            </div>
+            <div class="premier-annual-plan__preview">
+              <div class="premier-annual-plan__fit" data-premier-plan-fit aria-label="年間計画イメージ 縮小プレビュー">
+                <div class="premier-plan-table-shell" data-premier-plan-fit-shell>
+                  <table class="premier-plan-table">
+                    <colgroup>
+                      <col />
+                      {annualLevels.map(() => <col />)}
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th scope="col">学力レベル</th>
+                        {annualLevels.map((item) => (
+                          <th scope="col">
+                            <span class="premier-plan-level">
+                              <strong>{item.level}</strong>
+                              <small>
+                                {(annualLevelLabelLines[item.level] ?? [item.label]).map((line) => <span>{line}</span>)}
+                              </small>
+                            </span>
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="premier-plan-table__schools">
+                        <th scope="row"><span>対応大学<br />目安</span></th>
+                        {annualLevels.map((item) => (
+                          <td class="premier-plan-school-cell">
+                            {item.schools.length > 0 ? (
+                              <ul>
+                                {item.schools.map((school) => <li>{school}</li>)}
+                              </ul>
+                            ) : (
+                              <p>医学部受験に向けた基礎体力を作る期間</p>
+                            )}
+                          </td>
+                        ))}
+                      </tr>
+                      {annualTracks.map((track) => (
+                        <tr class={`premier-plan-table__track premier-plan-table__track--${track.tone}`}>
+                          <th class="premier-plan-track-head" scope="row">
+                            <span class="premier-plan-track-head__mark" aria-hidden="true">
+                              <span>{track.letter}</span><em>{track.word}</em>
+                            </span>
+                            <p>{track.lane}</p>
+                            <strong>{track.title}</strong>
+                            <small>【{track.category}】</small>
+                            <b>{track.target}</b>
+                          </th>
+                          <td class="premier-plan-lane" colspan={annualLevels.length}>
+                            {track.promotions.map((point) => (
+                              <span
+                                class="premier-plan-lane__promotion"
+                                style={`--left: ${planPercent(point)};`}
+                                aria-hidden="true"
+                              ></span>
+                            ))}
+                            {track.bars.map((bar, index) => (
+                              <span
+                                class="premier-plan-lane__bar"
+                                style={`--left: ${planPercent(bar.start)}; --width: ${planPercent(bar.end - bar.start)}; --top: ${annualPlanBarTop(index, track.bars.length)};`}
+                                aria-label={`${track.lane} ${bar.label} ${bar.period} 学力レベル${bar.start}から${bar.end}へ`}
+                              >
+                                <span>{bar.label}</span>
+                                <em>{bar.period}</em>
+                              </span>
+                            ))}
+                            <p>{track.summary}</p>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <button class="premier-annual-plan__expand" type="button" data-premier-plan-open>
+                <span>拡大して見る</span>
+                <small>固定表示で確認</small>
+              </button>
+            </div>
+            <div class="premier-plan-modal" data-premier-plan-modal hidden>
+              <div class="premier-plan-modal__panel" role="dialog" aria-modal="true" aria-labelledby="premier-plan-modal-title">
+                <header class="premier-plan-modal__bar">
+                  <p id="premier-plan-modal-title">年間計画イメージ 拡大表示</p>
+                  <div class="premier-plan-modal__zoom" aria-label="表示倍率">
+                    <button type="button" data-premier-plan-zoom-out aria-label="縮小">−</button>
+                    <button type="button" data-premier-plan-zoom-reset>100%</button>
+                    <button type="button" data-premier-plan-zoom-in aria-label="拡大">＋</button>
+                  </div>
+                  <button class="premier-plan-modal__close" type="button" data-premier-plan-close aria-label="閉じる">
+                    <span aria-hidden="true">×</span>
+                    <strong>閉じる</strong>
+                  </button>
+                </header>
+                <div class="premier-plan-modal__body" data-premier-plan-modal-scroll>
+                  <div class="premier-plan-modal__table" data-premier-plan-modal-shell></div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+        <section class="premier-overview-block premier-overview-block--weekly" aria-labelledby="premier-weekly-title">
+          <header class="premier-overview-subhead">
+            <p>WEEKLY ROUTINE</p>
+            <h3 id="premier-weekly-title">週間予定イメージ</h3>
+            <small>朝の確認テストから夜の鬼特訓まで、学習量を生活リズムごと固定します。</small>
+          </header>
+          <section class="premier-week-table" aria-label="プレミア本科 週間予定イメージ">
+          <div class="premier-week-table__head">
+            <div>
+              <p>WEEKLY ROUTINE</p>
+              <h4>朝の確認テストから、夜の鬼特訓まで。</h4>
+            </div>
+            <p>毎日テスト、インプット授業、アウトプット演習、夜間トレーニングを1日の流れに固定。学習量を気分任せにせず、生活リズムごと合格へ寄せます。</p>
+          </div>
+          <div class="premier-week-table__legend" aria-label="時間割の区分">
+            <span class="premier-week-table__legend-item premier-week-table__legend-item--test">
+              <span class="premier-week-table__legend-token">
+                <span class="premier-week-table__legend-label">テスト</span>
+              </span>
+              <span class="premier-week-table__legend-meaning">= 復習テスト（解き直しまでサポート）</span>
+            </span>
+            <span class="premier-week-table__legend-item premier-week-table__legend-item--input">
+              <span class="premier-week-table__legend-token">
+                <span class="premier-week-table__legend-label">インプット</span>
+              </span>
+              <span class="premier-week-table__legend-meaning">= クラス授業（レベル別 / 少人数制）</span>
+            </span>
+            <span class="premier-week-table__legend-item premier-week-table__legend-item--output">
+              <span class="premier-week-table__legend-token">
+                <span class="premier-week-table__legend-label">アウトプット</span>
+              </span>
+              <span class="premier-week-table__legend-meaning">= クラス演習（レベル別 / 少人数制）</span>
+            </span>
+            <span class="premier-week-table__legend-item premier-week-table__legend-item--training">
+              <span class="premier-week-table__legend-token">
+                <span class="premier-week-table__legend-label">夜間トレーニング</span>
+              </span>
+              <span class="premier-week-table__legend-meaning">= 課題＋演習質問し放題</span>
+            </span>
+            <span class="premier-week-table__legend-item premier-week-table__legend-item--self">
+              <span class="premier-week-table__legend-token">
+                <span class="premier-week-table__legend-label">自習・質問</span>
+              </span>
+              <span class="premier-week-table__legend-meaning">= 元気な生徒が自由参加</span>
+            </span>
+          </div>
+          <div class="premier-week-table__preview">
+            <div class="premier-week-table__fit" data-premier-week-fit aria-label="週間予定イメージ 縮小プレビュー">
+              <div class="premier-week-table__fit-shell" data-premier-week-fit-shell>
+                <table class="premier-week-schedule">
+                  <thead>
+                    <tr>
+                      <th scope="col">時限 / 時間</th>
+                      {weekDays.map((day) => <th scope="col">{day}</th>)}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {weeklyScheduleRows.map((row) => (
+                      row.kind === "break" ? (
+                        <tr class={`premier-week-schedule__break premier-week-schedule__break--${row.tone}`}>
+                          <th scope="row" colspan="8">
+                            <span class="premier-week-schedule__break-label">{row.label}</span>
+                            {row.note && <small class="premier-week-schedule__break-note">（{row.note}）</small>}
+                          </th>
+                        </tr>
+                      ) : (
+                        <tr class={`premier-week-schedule__period premier-week-schedule__period--${row.tone}`}>
+                          <th scope="row">
+                            <span>{row.period}</span>
+                            <small>{row.time}</small>
+                          </th>
+                          {row.cells.map((cell) => (
+                            <td class={weeklyCellClass(cell)}>
+                              {cell.subjects && (
+                                <div class="premier-week-cell__subjects" aria-label="科目">
+                                  {cell.subjects.map((subject) => <span>{subject}</span>)}
+                                </div>
+                              )}
+                              {cell.label ? <strong>{cell.label}</strong> : <span class="premier-week-cell__blank">-</span>}
+                              {cell.note && <em>{cell.note}</em>}
+                            </td>
+                          ))}
+                        </tr>
+                      )
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <button class="premier-annual-plan__expand premier-week-table__expand" type="button" data-premier-week-open>
+              <span>拡大して見る</span>
+              <small>固定表示で確認</small>
+            </button>
+          </div>
+          <ul class="premier-week-table__notes">
+            {weeklyScheduleNotes.map((note) => <li>{note}</li>)}
+          </ul>
+          <div class="premier-plan-modal premier-week-modal" data-premier-week-modal hidden>
+            <div class="premier-plan-modal__panel" role="dialog" aria-modal="true" aria-labelledby="premier-week-modal-title">
+              <header class="premier-plan-modal__bar">
+                <p id="premier-week-modal-title">週間予定イメージ 拡大表示</p>
+                <div class="premier-plan-modal__zoom" aria-label="表示倍率">
+                  <button type="button" data-premier-week-zoom-out aria-label="縮小">−</button>
+                  <button type="button" data-premier-week-zoom-reset>100%</button>
+                  <button type="button" data-premier-week-zoom-in aria-label="拡大">＋</button>
+                </div>
+                <button class="premier-plan-modal__close" type="button" data-premier-week-close aria-label="閉じる">
+                  <span aria-hidden="true">×</span>
+                  <strong>閉じる</strong>
+                </button>
+              </header>
+              <div class="premier-plan-modal__body" data-premier-week-modal-scroll>
+                <div class="premier-plan-modal__table" data-premier-week-modal-shell></div>
+              </div>
+            </div>
+          </div>
+          </section>
+        </section>
+        <section class="premier-overview-block premier-overview-block--support" aria-labelledby="premier-support-title">
+          <header class="premier-overview-subhead">
+            <p>SUPPORT</p>
+            <h3 id="premier-support-title">サポート内容 一覧</h3>
+            <small>授業外の管理・相談・演習環境まで、合格に必要な行動を支えます。</small>
+          </header>
+          <ul class="premier-support-grid">
+            {supportItems.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
       </div>
     </section>
 
     <section class="premier-learning" aria-labelledby="premier-learning-title">
-      <div class="content">
-        <h2 id="premier-learning-title">学習システム</h2>
-        <div class="premier-learning-grid">
-          {learningSystems.map((item) => (
-            <article>
-              <span>{item.label}</span>
-              <h3>{item.title}</h3>
-              <p>{item.body}</p>
-            </article>
+      <div class="content premier-learning__inner">
+        <SectionHeading id="premier-learning-title" label="SYSTEM" title="連動した学習システム" />
+        <div class="premier-learning-photos" aria-hidden="true">
+          {learningSystemPhotos.map((photo, index) => (
+            <figure class={`premier-learning-photo premier-learning-photo--${index + 1}`}>
+              <img src={photo.src} width={photo.width} height={photo.height} alt="" loading="lazy" decoding="async" />
+            </figure>
           ))}
+        </div>
+        <p class="premier-learning__lead">
+          授業、演習、面談、夜間トレーニング、チェックテストを一気通貫で連動させ、理解から定着、確認、修正までを毎日の学習サイクルに組み込みます。
+        </p>
+        <div class="premier-learning-orbit" aria-label="クラス授業、クラス演習、担任面談、鬼特訓、鬼監理が連動する学習システム">
+          <div class="premier-learning-orbit__frame" aria-hidden="true"></div>
+          <div class="premier-learning-orbit__outer">
+            <svg class="premier-learning-orbit__lines premier-learning-orbit__lines--outer" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M14 82 L50 10 L86 82 Z" />
+            </svg>
+            <span class="premier-learning-orbit__axis premier-learning-orbit__axis--outer" aria-hidden="true"></span>
+            <div class="premier-learning-orbit__cluster" aria-label="日中の学習サイクル">
+              <div class="premier-learning-orbit__cluster-face">
+                <div class="premier-learning-orbit__inner">
+                  <svg class="premier-learning-orbit__lines premier-learning-orbit__lines--inner" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                    <path class="premier-learning-orbit__line-main" d="M18 82 L50 18 L82 82 Z" />
+                    <path class="premier-learning-orbit__line-pulse" d="M18 82 L50 18 L82 82" />
+                  </svg>
+                  <span class="premier-learning-orbit__axis premier-learning-orbit__axis--inner" aria-hidden="true"></span>
+                  {learningSystemCore.map((item, index) => (
+                    <article class={`premier-learning-node premier-learning-node--${["lesson", "practice", "mentor"][index]}`}>
+                      <div class="premier-learning-card">
+                        <span>{item.label}</span>
+                        <h3>{item.title}</h3>
+                        <p>{item.body}</p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </div>
+            {learningSystemOuter.map((item) => (
+              <article class={`premier-learning-stage premier-learning-stage--${item.tone}`}>
+                <div class="premier-learning-card premier-learning-card--stage">
+                  <span>{item.label}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -273,10 +1277,9 @@ const infoPosts = [
     <section class="premier-message" aria-labelledby="premier-message-title">
       <div class="content premier-message__box">
         <div>
-          <h2 class="premier-message__label">MESSAGE</h2>
-          <h3 id="premier-message-title">お約束 します。</h3>
-          <h2>本コースの環境に食らいつき、私たちが敷いたレールを走り切った先には、必ず 「医学部合格」 という現実が待っています。</h2>
-          <p>本コースの環境に食らいつき、私たちが敷いたレールを走り切った先には、必ず「医学部合格」という現実が待っています。</p>
+          <p class="premier-message__label">MESSAGE</p>
+          <h2 id="premier-message-title">お約束します。</h2>
+          <p class="premier-message__statement">本コースの環境に食らいつき、私たちが敷いたレールを走り切った先には、必ず「医学部合格」という現実が待っています。</p>
           <h3>“今年で絶対に終わらせる”</h3>
           <p>その強い覚悟があるのなら、私たちは全身全霊をかけて、あなたを医師への道へと押し上げます。</p>
         </div>
@@ -292,33 +1295,54 @@ const infoPosts = [
           <a class="button button--red" href="/request-documents/">資料請求する</a>
           <a class="button button--blue" href="/reservation/">個別説明会へ</a>
         </div>
-        <div class="premier-quick-actions">
-          {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
-        </div>
         <p class="premier-contact__tel">【お急ぎでしたら、お電話ください】<br /><strong>03-3477-1306</strong><br />受付時間：10時00分〜21時00分</p>
       </div>
     </section>
 
-    <section class="premier-extra" id="premier-selection">
-      <div class="content premier-extra__grid">
-        <article>
-          <h2>特待生募集中</h2>
-          <img src={selectionImage} alt="特待生選抜テストのお知らせ" width="1024" height="1024" loading="lazy" decoding="async" />
-          <a class="button button--red" href="#premier-selection">選抜の詳細へ</a>
-        </article>
-        <article>
-          <h2>【さらに集中したい方へ】<br />レクサス専用寮に入居可能。<br />「10ヶ月合宿プラン」</h2>
-          <img src={gardenImage} alt="レクサスガーデン外観" width="900" height="600" loading="lazy" decoding="async" />
-          <p>地方在住の方、実家の甘えを断ち切りたい方へ。東京渋谷の高級住宅街に佇む、専用寮をご用意しました。</p>
-          <a class="button button--green" href="/top/lexus-garden/">設備や費用を見てみる</a>
+    <section class="premier-extra premier-extra--stay" id="premier-stay" aria-labelledby="premier-stay-title">
+      <div class="content">
+        <article class="premier-stay-card">
+          <div class="premier-stay-card__media">
+            <img src={gardenImage} alt="レクサスガーデン外観" width="900" height="600" loading="lazy" decoding="async" />
+            <span class="premier-stay-card__media-label">LEXUS GARDEN</span>
+          </div>
+          <div class="premier-stay-card__body">
+            <p class="premier-stay-card__eyebrow">PREMIUM STAY</p>
+            <h2 id="premier-stay-title">
+              <span class="premier-stay-card__focus">さらに集中したい方へ</span>
+              <span>レクサス専用寮に入居可能。</span>
+              <strong>「1～10ヶ月合宿プラン」</strong>
+            </h2>
+            <p class="premier-stay-card__name">
+              レクサス専用マンション寮
+              <strong>LEXUS GARDEN</strong>
+            </p>
+            <p class="premier-stay-card__lead">
+              地方在住の方、実家の甘えを断ち切りたい方へ。東京渋谷の高級住宅街に佇む、鉄筋コンクリート造・オートロック完備の専用寮をご用意しました。
+            </p>
+            <ul class="premier-stay-features" aria-label="レクサスガーデンの特徴">
+              <li>
+                <strong>静寂と安心</strong>
+                <span>内廊下設計、女性も安心のセキュリティ。</span>
+              </li>
+              <li>
+                <strong>完備設備</strong>
+                <span>ベッド、冷蔵庫、洗濯機、床暖房、浴室乾燥機。</span>
+              </li>
+              <li>
+                <strong>館内設備</strong>
+                <span>早朝から深夜まで利用可能な自習室、自販機あり。</span>
+              </li>
+            </ul>
+            <a class="button button--green" href="/top/lexus-garden/">設備や費用を見てみる</a>
+          </div>
         </article>
       </div>
     </section>
 
     <section class="premier-info" aria-labelledby="premier-info-title">
       <div class="content">
-        <img src={logoStrip} alt="" width="1024" height="74" loading="lazy" decoding="async" />
-        <h2 id="premier-info-title">最新 医学部受験情報</h2>
+        <SectionHeading id="premier-info-title" label="NEW" title="最新 医学部受験情報" />
         <div class="premier-info-grid">
           {infoPosts.map((post) => (
             <article>
@@ -329,4 +1353,384 @@ const infoPosts = [
       </div>
     </section>
   </main>
+
+  <script is:inline>
+    (function () {
+      var root = document.documentElement;
+      var hero = document.querySelector ? document.querySelector("[data-premier-cinematic-hero]") : null;
+      var ideal = document.querySelector ? document.querySelector("[data-premier-ideal]") : null;
+
+      var hasClass = function (element, name) {
+        return (" " + element.className + " ").indexOf(" " + name + " ") > -1;
+      };
+      var addClass = function (element, name) {
+        if (!element || hasClass(element, name)) return;
+        element.className = element.className ? element.className + " " + name : name;
+      };
+      var removeClass = function (element, name) {
+        if (!element) return;
+        element.className = (" " + element.className + " ")
+          .replace(" " + name + " ", " ")
+          .replace(/^\s+|\s+$/g, "");
+      };
+      var toggleClass = function (element, name, force) {
+        if (force) addClass(element, name);
+        else removeClass(element, name);
+      };
+
+      addClass(root, "premier-page-active");
+
+      var syncHeader = function () {
+        var scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+        toggleClass(root, "premier-nav-visible", scrollY > 96);
+      };
+
+      syncHeader();
+      if (window.addEventListener) window.addEventListener("scroll", syncHeader, false);
+
+      if (!hero || !document.createElement) return;
+
+      var prefersReducedMotion = false;
+      if (window.matchMedia) {
+        prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      }
+      if (prefersReducedMotion) return;
+
+      var styleProbe = document.createElement("div").style;
+      var canAnimate = ("animation" in styleProbe || "webkitAnimation" in styleProbe)
+        && ("transform" in styleProbe || "webkitTransform" in styleProbe);
+      if (!canAnimate) return;
+
+      addClass(root, "premier-enhanced");
+
+      if (ideal) {
+        var activateIdeal = function () {
+          addClass(ideal, "is-active");
+        };
+
+        if ("IntersectionObserver" in window) {
+          var idealObserver = new IntersectionObserver(function (entries) {
+            for (var entryIndex = 0; entryIndex < entries.length; entryIndex += 1) {
+              if (entries[entryIndex].isIntersecting) {
+                activateIdeal();
+                idealObserver.disconnect();
+                break;
+              }
+            }
+          }, { threshold: 0.28, rootMargin: "-8% 0px -10%" });
+
+          idealObserver.observe(ideal);
+        } else {
+          activateIdeal();
+        }
+      }
+
+      var video = hero.getElementsByTagName("video")[0];
+      var raf = window.requestAnimationFrame || function (callback) {
+        return window.setTimeout(callback, 16);
+      };
+
+      raf(function () {
+        raf(function () {
+          addClass(hero, "is-active");
+        });
+      });
+
+      if (!video) return;
+
+      var videoProbe = document.createElement("video");
+      var canVideo = Boolean(videoProbe.canPlayType && videoProbe.canPlayType("video/mp4"));
+      if (!canVideo) return;
+
+      var scheduleIdle = function (callback, timeout) {
+        if ("requestIdleCallback" in window) {
+          window.requestIdleCallback(callback, { timeout: timeout || 1600 });
+        } else {
+          window.setTimeout(callback, timeout || 900);
+        }
+      };
+      var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      var effectiveType = connection && connection.effectiveType ? String(connection.effectiveType) : "";
+      var saveData = Boolean(connection && connection.saveData);
+      var lowMemory = Boolean(navigator.deviceMemory && navigator.deviceMemory <= 2);
+      var wideVideoViewport = Boolean(window.matchMedia && window.matchMedia("(min-width: 1024px)").matches);
+      var constrainedDevice = saveData || lowMemory || effectiveType === "slow-2g" || effectiveType === "2g";
+      if (constrainedDevice) return;
+
+      var playlistAttribute = video.getAttribute("data-playlist")
+        || video.getAttribute("data-src")
+        || video.getAttribute("src")
+        || "";
+      var rawPlaylist = playlistAttribute.split("|");
+      var playlist = [];
+      for (var i = 0; i < rawPlaylist.length; i += 1) {
+        var source = rawPlaylist[i].replace(/^\s+|\s+$/g, "");
+        if (source) playlist.push(source);
+      }
+
+      if (!playlist.length) return;
+      if (!wideVideoViewport || effectiveType === "3g") playlist = [playlist[0]];
+
+      var currentIndex = 0;
+      var heroInView = true;
+      var videoStarted = false;
+      var videoStartQueued = false;
+
+      var setVideoSource = function (index) {
+        currentIndex = index % playlist.length;
+        if (video.getAttribute("src") !== playlist[currentIndex]) {
+          video.setAttribute("src", playlist[currentIndex]);
+          video.load();
+        }
+      };
+
+      var loaded = false;
+      var onLoaded = function () {
+        if (loaded) return;
+        loaded = true;
+        addClass(hero, "is-video-ready");
+        if (video.removeEventListener) video.removeEventListener("loadeddata", onLoaded, false);
+      };
+
+      var playVideo = function () {
+        if (!video.play) return;
+        var promise = video.play();
+        if (promise && promise.catch) promise.catch(function () {});
+      };
+      var pauseVideo = function () {
+        if (video.pause) video.pause();
+      };
+      var syncVideoPlayback = function () {
+        if (document.visibilityState && document.visibilityState !== "visible") {
+          pauseVideo();
+          return;
+        }
+        if (heroInView) playVideo();
+        else pauseVideo();
+      };
+      var startVideo = function () {
+        if (videoStarted) return;
+        if (!heroInView) {
+          videoStartQueued = true;
+          return;
+        }
+        videoStarted = true;
+        videoStartQueued = false;
+        setVideoSource(0);
+        if (video.readyState >= 2) onLoaded();
+        syncVideoPlayback();
+      };
+
+      video.loop = playlist.length <= 1;
+      if (video.addEventListener) {
+        video.addEventListener("loadeddata", onLoaded, false);
+        video.addEventListener("ended", function () {
+          if (playlist.length <= 1) return;
+          setVideoSource(currentIndex + 1);
+          syncVideoPlayback();
+        }, false);
+      }
+
+      if ("IntersectionObserver" in window) {
+        var heroVideoObserver = new IntersectionObserver(function (entries) {
+          if (!entries || !entries.length) return;
+          heroInView = Boolean(entries[0].isIntersecting);
+          if (videoStartQueued && heroInView) startVideo();
+          if (videoStarted) syncVideoPlayback();
+        }, { threshold: 0.08 });
+        heroVideoObserver.observe(hero);
+      }
+
+      raf(function () {
+        raf(function () {
+          window.setTimeout(function () {
+            scheduleIdle(startVideo, wideVideoViewport ? 900 : 1500);
+          }, wideVideoViewport ? 420 : 950);
+        });
+      });
+
+      if (document.addEventListener) {
+        document.addEventListener("visibilitychange", function () {
+          if (videoStarted) syncVideoPlayback();
+        }, false);
+      }
+    })();
+
+    (function () {
+      var scheduleFittedTables = function (callback) {
+        var run = function () {
+          callback();
+        };
+        if ("requestIdleCallback" in window) {
+          window.requestIdleCallback(run, { timeout: 2200 });
+        } else {
+          window.setTimeout(run, 900);
+        }
+      };
+
+      var bootFittedTables = function () {
+      var setupFittedTableModal = function (settings) {
+        var fitStage = document.querySelector(settings.fitStage);
+        var fitShell = document.querySelector(settings.fitShell);
+        var modal = document.querySelector(settings.modal);
+        var modalShell = document.querySelector(settings.modalShell);
+        var modalScroll = document.querySelector(settings.modalScroll);
+        var openButton = document.querySelector(settings.openButton);
+        var closeButton = document.querySelector(settings.closeButton);
+        var resetButton = document.querySelector(settings.resetButton);
+        var zoomInButton = document.querySelector(settings.zoomInButton);
+        var zoomOutButton = document.querySelector(settings.zoomOutButton);
+        if (!fitStage || !fitShell || !modal || !modalShell || !modalScroll || !openButton || !closeButton || !resetButton) return;
+
+        var zoom = 1;
+        var previousBodyOverflow = "";
+        var previousFocus = null;
+        var previewReady = false;
+        var resizeTimer = 0;
+
+        var fitPreview = function () {
+          var table = fitShell.querySelector(settings.table);
+          if (!table) return;
+          fitShell.style.transform = "scale(1)";
+          fitStage.style.height = "auto";
+          var availableWidth = fitStage.clientWidth;
+          var availableHeight = Math.max(settings.minHeight, Math.min(window.innerHeight * settings.heightRatio, settings.maxHeight));
+          var scale = Math.min(availableWidth / table.scrollWidth, availableHeight / table.scrollHeight, 1);
+          fitShell.style.transform = "scale(" + scale + ")";
+          fitStage.style.height = Math.ceil(table.scrollHeight * scale) + "px";
+        };
+
+        var ensureModalTable = function () {
+          if (modalShell.querySelector(settings.table)) return;
+          var sourceTable = fitShell.querySelector(settings.table);
+          if (!sourceTable) return;
+          modalShell.appendChild(sourceTable.cloneNode(true));
+        };
+
+        var applyZoom = function () {
+          modalShell.style.zoom = String(zoom);
+          resetButton.textContent = Math.round(zoom * 100) + "%";
+        };
+
+        var openModal = function () {
+          fitPreview();
+          ensureModalTable();
+          previousFocus = document.activeElement;
+          previousBodyOverflow = document.body.style.overflow || "";
+          modal.hidden = false;
+          modal.classList.add("is-open");
+          document.body.style.overflow = "hidden";
+          zoom = 1;
+          applyZoom();
+          modalScroll.scrollTo({ top: 0, left: 0 });
+          closeButton.focus();
+        };
+
+        var closeModal = function () {
+          modal.classList.remove("is-open");
+          modal.hidden = true;
+          document.body.style.overflow = previousBodyOverflow;
+          if (previousFocus && previousFocus.focus) previousFocus.focus();
+        };
+
+        openButton.addEventListener("click", openModal, false);
+        closeButton.addEventListener("click", closeModal, false);
+        if (zoomInButton) {
+          zoomInButton.addEventListener("click", function () {
+            zoom = Math.min(1.8, Math.round((zoom + 0.1) * 10) / 10);
+            applyZoom();
+          }, false);
+        }
+        if (zoomOutButton) {
+          zoomOutButton.addEventListener("click", function () {
+            zoom = Math.max(0.6, Math.round((zoom - 0.1) * 10) / 10);
+            applyZoom();
+          }, false);
+        }
+        resetButton.addEventListener("click", function () {
+          zoom = 1;
+          applyZoom();
+        }, false);
+        modal.addEventListener("click", function (event) {
+          if (event.target === modal) closeModal();
+        }, false);
+        window.addEventListener("keydown", function (event) {
+          if (event.key === "Escape" && !modal.hidden) closeModal();
+        }, false);
+        var activatePreview = function () {
+          if (previewReady) return;
+          previewReady = true;
+          fitPreview();
+          applyZoom();
+        };
+        var queuePreview = function () {
+          if (!previewReady) return;
+          if (resizeTimer) window.clearTimeout(resizeTimer);
+          resizeTimer = window.setTimeout(fitPreview, 120);
+        };
+
+        window.addEventListener("resize", queuePreview, false);
+
+        if ("IntersectionObserver" in window) {
+          var fitObserver = new IntersectionObserver(function (entries) {
+            for (var entryIndex = 0; entryIndex < entries.length; entryIndex += 1) {
+              if (entries[entryIndex].isIntersecting) {
+                activatePreview();
+                fitObserver.disconnect();
+                break;
+              }
+            }
+          }, { rootMargin: "420px 0px", threshold: 0.01 });
+          fitObserver.observe(fitStage);
+        } else {
+          window.addEventListener("load", activatePreview, false);
+        }
+      };
+
+      setupFittedTableModal({
+        fitStage: "[data-premier-plan-fit]",
+        fitShell: "[data-premier-plan-fit-shell]",
+        modal: "[data-premier-plan-modal]",
+        modalShell: "[data-premier-plan-modal-shell]",
+        modalScroll: "[data-premier-plan-modal-scroll]",
+        openButton: "[data-premier-plan-open]",
+        closeButton: "[data-premier-plan-close]",
+        resetButton: "[data-premier-plan-zoom-reset]",
+        zoomInButton: "[data-premier-plan-zoom-in]",
+        zoomOutButton: "[data-premier-plan-zoom-out]",
+        table: ".premier-plan-table",
+        minHeight: 300,
+        maxHeight: 620,
+        heightRatio: 0.68,
+      });
+
+      setupFittedTableModal({
+        fitStage: "[data-premier-week-fit]",
+        fitShell: "[data-premier-week-fit-shell]",
+        modal: "[data-premier-week-modal]",
+        modalShell: "[data-premier-week-modal-shell]",
+        modalScroll: "[data-premier-week-modal-scroll]",
+        openButton: "[data-premier-week-open]",
+        closeButton: "[data-premier-week-close]",
+        resetButton: "[data-premier-week-zoom-reset]",
+        zoomInButton: "[data-premier-week-zoom-in]",
+        zoomOutButton: "[data-premier-week-zoom-out]",
+        table: ".premier-week-schedule",
+        minHeight: 260,
+        maxHeight: 500,
+        heightRatio: 0.58,
+      });
+      };
+
+      var scheduleBoot = function () {
+        scheduleFittedTables(bootFittedTables);
+      };
+
+      if (document.readyState === "loading" && document.addEventListener) {
+        document.addEventListener("DOMContentLoaded", scheduleBoot, false);
+      } else {
+        scheduleBoot();
+      }
+    })();
+  </script>
 </SiteLayout>

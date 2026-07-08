@@ -1,0 +1,124 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import {
+  adminMetrics,
+  adminWorkflowSteps,
+  contentQueue,
+  recentActivities,
+  reportSnapshots,
+} from "../../data/adminDashboard";
+
+const highPriorityItems = contentQueue.filter((item) => item.priority === "高");
+const disconnectedReports = reportSnapshots.filter((item) => item.state === "未接続");
+---
+
+<AdminLayout title="管理ダッシュボード | LEXUS E.C." active="dashboard">
+  <section class="admin-page-head">
+    <div>
+      <p class="admin-eyebrow">Operations dashboard</p>
+      <h1>ページ更新とSEO監査の管理</h1>
+      <p>
+        固定ページ、投稿記事、ローカルAIのSEO監査結果を同じ場所で確認し、ステージング確認まで分割して進めるための画面です。
+      </p>
+    </div>
+    <div class="admin-status-card admin-status-card--warn">
+      <span>本番前設定</span>
+      <strong>Cloudflare Access</strong>
+      <p>/admin/* は本番運用前に認証保護が必要です。</p>
+    </div>
+  </section>
+
+  <section class="admin-metrics" aria-label="管理対象の概要">
+    {
+      adminMetrics.map((metric) => (
+        <article class:list={["admin-metric", `is-${metric.tone}`]}>
+          <span>{metric.label}</span>
+          <strong>{metric.value}</strong>
+          <p>{metric.detail}</p>
+        </article>
+      ))
+    }
+  </section>
+
+  <section class="admin-grid admin-grid--two">
+    <div class="admin-panel">
+      <div class="admin-panel-head">
+        <div>
+          <p class="admin-eyebrow">Workflow</p>
+          <h2>作業ステップ</h2>
+        </div>
+        <a class="admin-text-link" href="/admin/content/">対象を見る</a>
+      </div>
+      <div class="admin-step-list">
+        {
+          adminWorkflowSteps.map((step) => (
+            <article class:list={["admin-step", `is-${step.state}`]}>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.detail}</p>
+              </div>
+              <span>{step.owner}</span>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="admin-panel">
+      <div class="admin-panel-head">
+        <div>
+          <p class="admin-eyebrow">Now</p>
+          <h2>優先確認</h2>
+        </div>
+        <span class="admin-count">{highPriorityItems.length + disconnectedReports.length}</span>
+      </div>
+      <div class="admin-alert-list">
+        {
+          highPriorityItems.map((item) => (
+            <article class="admin-alert">
+              <span>{item.priority}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.nextAction}</p>
+              </div>
+            </article>
+          ))
+        }
+        {
+          disconnectedReports.map((item) => (
+            <article class="admin-alert">
+              <span>接続</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.nextAction}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="admin-panel">
+    <div class="admin-panel-head">
+      <div>
+        <p class="admin-eyebrow">Activity</p>
+        <h2>直近の状況</h2>
+      </div>
+      <a class="admin-text-link" href="/admin/reports/">レポートを見る</a>
+    </div>
+    <div class="admin-timeline">
+      {
+        recentActivities.map((activity) => (
+          <article class="admin-timeline-item">
+            <time datetime={activity.date}>{activity.date}</time>
+            <div>
+              <h3>{activity.title}</h3>
+              <p>{activity.detail}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</AdminLayout>

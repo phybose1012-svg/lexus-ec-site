@@ -10,6 +10,20 @@ interface Props {
 
 const { title, description, canonical, ogImage } = Astro.props;
 const resolvedOgImage = ogImage ? new URL(ogImage, "https://lexus-ec.com").href : undefined;
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const analyticsHostnames = (
+  import.meta.env.PUBLIC_ANALYTICS_HOSTNAMES || "lexus-ec.com,www.lexus-ec.com"
+)
+  .split(",")
+  .map((hostname: string) => hostname.trim())
+  .filter(Boolean);
+const analyticsBranch = import.meta.env.PUBLIC_ANALYTICS_BRANCH || "main";
+const deploymentBranch = import.meta.env.CF_PAGES_BRANCH || "";
+const shouldNoindex = Boolean(deploymentBranch && deploymentBranch !== analyticsBranch);
+const robotsContent = shouldNoindex ? "noindex,nofollow,max-image-preview:large" : "max-image-preview:large";
+const shouldRenderAnalytics = Boolean(
+  gaMeasurementId && analyticsHostnames.length && deploymentBranch === analyticsBranch
+);
 ---
 
 <!doctype html>
@@ -19,7 +33,7 @@ const resolvedOgImage = ogImage ? new URL(ogImage, "https://lexus-ec.com").href 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="max-image-preview:large" />
+    <meta name="robots" content={robotsContent} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="canonical" href={canonical} />
     <meta property="og:locale" content="ja_JP" />
@@ -35,6 +49,41 @@ const resolvedOgImage = ogImage ? new URL(ogImage, "https://lexus-ec.com").href 
     <meta name="twitter:description" content={description} />
     {resolvedOgImage && <meta name="twitter:image" content={resolvedOgImage} />}
     <slot name="head" />
+    {shouldRenderAnalytics && (
+      <script
+        is:inline
+        data-ga-measurement-id={gaMeasurementId}
+        data-ga-hostnames={analyticsHostnames.join(",")}
+      >
+        {`
+          (() => {
+            const currentScript = document.currentScript;
+            if (!(currentScript instanceof HTMLScriptElement)) return;
+
+            const measurementId = currentScript.dataset.gaMeasurementId;
+            const allowedHostnames = (currentScript.dataset.gaHostnames || "")
+              .split(",")
+              .map((hostname) => hostname.trim())
+              .filter(Boolean);
+
+            if (!measurementId || !allowedHostnames.includes(window.location.hostname)) return;
+
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = window.gtag || function gtag() {
+              window.dataLayer.push(arguments);
+            };
+
+            window.gtag("js", new Date());
+            window.gtag("config", measurementId);
+
+            const tag = document.createElement("script");
+            tag.async = true;
+            tag.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(measurementId);
+            document.head.appendChild(tag);
+          })();
+        `}
+      </script>
+    )}
   </head>
   <body>
     <a class="skip-link" href="#content">コンテンツにスキップ</a>

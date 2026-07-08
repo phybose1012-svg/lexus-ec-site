@@ -11,7 +11,10 @@ const page = getTeacherPage();
   <main class="teacher-page">
     <section class="teacher-hero">
       <div class="content teacher-hero__inner">
-        <h1>{page.h1}</h1>
+        {page.logoStrip && <img class="teacher-hero__strip" src={page.logoStrip} alt="" width="800" height="58" decoding="async" fetchpriority="high" aria-hidden="true" />}
+        <p class="page-head__label">TEACHERS</p>
+        <h1 class="page-head__title">{page.h1}</h1>
+        <span class="page-head__rule" aria-hidden="true"></span>
         <p class="teacher-hero__lead">{page.lead}</p>
         <div class="teacher-hero__visual" aria-label={page.confidence}>
           {page.heroPortraits[0] && (
@@ -20,7 +23,7 @@ const page = getTeacherPage();
           <p>{page.confidence}</p>
           {page.heroPortraits[1] && <img src={page.heroPortraits[1].src} alt={page.heroPortraits[1].alt} width="800" height="800" decoding="async" />}
         </div>
-        <a class="teacher-primary-button" href="/reservation/">{page.ctaLabel}</a>
+        <a class="button button--blue teacher-primary-button" href="/reservation/">{page.ctaLabel}</a>
       </div>
     </section>
 
@@ -50,7 +53,7 @@ const page = getTeacherPage();
       {page.subjects.map((subject) => (
         <section class={`teacher-subject teacher-subject--${subject.tone}`} id={subject.slug}>
           <header class="teacher-subject__head">
-            {page.logoStrip && <img src={page.logoStrip} alt="" width="1024" height="74" loading="lazy" decoding="async" />}
+            {page.logoStrip && <img src={page.logoStrip} alt="" width="1024" height="74" loading="lazy" decoding="async" aria-hidden="true" />}
             <p>{subject.english}</p>
             <h2>{subject.subject}</h2>
           </header>

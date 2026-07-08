@@ -1,0 +1,1904 @@
+---
+import AdminLayout from "../../../layouts/AdminLayout.astro";
+import { adminEditablePages } from "../../../data/adminEditableContent";
+---
+
+<AdminLayout title="ページ直接編集 | LEXUS E.C. Admin" active="editor">
+  <section class="admin-page-head admin-page-head--editor">
+    <div>
+      <p class="admin-eyebrow">Visual page editor</p>
+      <h1>ページを見ながら文言を編集</h1>
+      <p>
+        プレビュー上の見出し、本文、リスト、表セルをクリックして編集します。
+        固定ページだけでなく、サイトマップに載る移行記事ページも対象にします。
+      </p>
+    </div>
+    <div class="admin-status-card">
+      <span>保存状態</span>
+      <strong id="admin-editor-storage-state">準備中</strong>
+      <p id="admin-editor-sync-state">編集対象のページを読み込んでいます。</p>
+    </div>
+  </section>
+
+  <section class="admin-visual-editor" aria-label="ページ直接編集">
+    <div class="admin-panel admin-visual-toolbar">
+      <div class="admin-visual-target-row">
+        <div class="admin-visual-kind" aria-labelledby="admin-editor-kind-label">
+          <span id="admin-editor-kind-label">対象種別</span>
+          <div class="admin-kind-switch" role="group" aria-label="対象種別">
+            <button class="is-active" type="button" data-editor-kind="fixed-page">固定ページ</button>
+            <button type="button" data-editor-kind="post">投稿</button>
+          </div>
+        </div>
+        <label class="admin-field admin-visual-filter">
+          <span>ページ検索</span>
+          <input id="admin-editor-page-filter" type="search" placeholder="ページ名・URLで検索" autocomplete="off" />
+        </label>
+        <label class="admin-field admin-visual-target">
+          <span>対象ページ</span>
+          <select id="admin-editor-page">
+            {
+              adminEditablePages.filter((page) => page.kind === "fixed-page").map((page) => (
+                <option value={page.id} data-kind={page.kind} data-path={page.path}>
+                  {page.label}（{page.path}）
+                </option>
+              ))
+            }
+          </select>
+        </label>
+      </div>
+      <div class="admin-preview-size" aria-label="プレビュー幅">
+        <button class="is-active" type="button" data-preview-size="desktop">Desktop</button>
+        <button type="button" data-preview-size="tablet">Tablet</button>
+        <button type="button" data-preview-size="mobile">Mobile</button>
+      </div>
+      <div class="admin-preview-stepper" aria-label="Preview width">
+        <button type="button" data-preview-width-step="-1" title="Narrower">-</button>
+        <label class="admin-preview-width-field">
+          <span>Width</span>
+          <input id="admin-preview-width" type="number" inputmode="numeric" min="320" max="1920" step="10" value="1160" />
+        </label>
+        <button type="button" data-preview-width-step="1" title="Wider">+</button>
+      </div>
+      <div class="admin-preview-zoom" aria-label="Preview zoom">
+        <button type="button" id="admin-preview-zoom-out" title="Zoom out">-</button>
+        <strong id="admin-preview-zoom-value">100%</strong>
+        <button type="button" id="admin-preview-zoom-in" title="Zoom in">+</button>
+        <button type="button" id="admin-preview-zoom-reset" title="Reset zoom">Reset</button>
+      </div>
+      <div class="admin-visual-actions">
+        <button class="admin-button" type="button" id="admin-editor-publish">ページに反映</button>
+        <button class="admin-button admin-button--ghost" type="button" id="admin-editor-save-local">ローカル保存</button>
+        <button class="admin-button admin-button--ghost" type="button" id="admin-editor-refresh-preview">再読み込み</button>
+      </div>
+    </div>
+
+    <div class="admin-panel admin-git-panel" id="admin-git-panel">
+      <div>
+        <p class="admin-eyebrow">Git sync</p>
+        <h2>ステージング連携</h2>
+        <p id="admin-git-summary">ローカルGit APIを確認しています。</p>
+      </div>
+      <div class="admin-git-details" id="admin-git-details">
+        <span id="admin-git-branch">branch: -</span>
+        <span id="admin-git-dirty">changes: -</span>
+        <span id="admin-git-ahead-behind">sync: -</span>
+      </div>
+      <div class="admin-git-actions">
+        <button class="admin-button admin-button--ghost" type="button" id="admin-git-refresh">状態確認</button>
+        <button class="admin-button admin-button--ghost" type="button" id="admin-git-fetch">staging取得</button>
+        <button class="admin-button admin-button--ghost" type="button" id="admin-git-pull">staging反映</button>
+        <button class="admin-button admin-button--ghost" type="button" id="admin-git-commit">編集をコミット</button>
+        <button class="admin-button" type="button" id="admin-git-push">stagingへpush</button>
+      </div>
+    </div>
+
+    <div class="admin-visual-workspace">
+      <section class="admin-preview-stage" aria-label="ページプレビュー">
+        <div class="admin-preview-stage__head">
+          <div>
+            <p class="admin-eyebrow">Live preview</p>
+            <h2 id="admin-preview-page-title"></h2>
+            <p id="admin-preview-page-summary"></p>
+          </div>
+          <div class="admin-preview-meta">
+            <span id="admin-preview-path"></span>
+            <a id="admin-preview-open" href="/" target="_blank" rel="noreferrer">別タブで開く</a>
+          </div>
+        </div>
+        <div class="admin-preview-frame-wrap is-desktop" id="admin-preview-frame-wrap">
+          <div class="admin-preview-frame-shell">
+            <iframe id="admin-page-preview" title="編集プレビュー"></iframe>
+          </div>
+        </div>
+      </section>
+
+      <aside class="admin-panel admin-inspector" aria-label="選択中ブロックの編集">
+        <div class="admin-panel-head">
+          <div>
+            <p class="admin-eyebrow">Inspector</p>
+            <h2>選択中のブロック</h2>
+          </div>
+          <span class="admin-pill" id="admin-editor-draft-state">未選択</span>
+        </div>
+
+        <p class="admin-inspector-empty" id="admin-selected-empty">
+          左のプレビューで編集したい文言、表セル、画像をクリックしてください。
+        </p>
+
+        <div class="admin-inspector-body" id="admin-selected-panel" hidden>
+          <div class="admin-selected-summary">
+            <strong id="admin-selected-label"></strong>
+            <span id="admin-selected-id"></span>
+          </div>
+
+          <label class="admin-field" id="admin-selected-text-panel">
+            <span>文言</span>
+            <textarea id="admin-selected-content" rows="7"></textarea>
+          </label>
+
+          <section class="admin-style-section" id="admin-text-style-panel" aria-labelledby="admin-text-style-title">
+            <div class="admin-style-section__head">
+              <h3 id="admin-text-style-title">文字</h3>
+              <button class="admin-mini-button" type="button" id="admin-reset-text">初期文言に戻す</button>
+            </div>
+            <div class="admin-style-grid">
+              <label class="admin-field">
+                <span>サイズ px</span>
+                <input data-style-key="fontSize" inputmode="decimal" min="8" max="96" step="1" type="number" />
+              </label>
+              <label class="admin-field">
+                <span>太さ</span>
+                <select data-style-key="fontWeight">
+                  <option value="">標準</option>
+                  <option value="400">400</option>
+                  <option value="500">500</option>
+                  <option value="600">600</option>
+                  <option value="700">700</option>
+                  <option value="800">800</option>
+                  <option value="900">900</option>
+                </select>
+              </label>
+              <label class="admin-field">
+                <span>字間 px</span>
+                <input data-style-key="letterSpacing" inputmode="decimal" min="-4" max="16" step="0.1" type="number" />
+              </label>
+            </div>
+          </section>
+
+          <section class="admin-style-section admin-image-editor" id="admin-image-panel" aria-labelledby="admin-image-editor-title" hidden>
+            <div class="admin-style-section__head">
+              <h3 id="admin-image-editor-title">画像</h3>
+              <button class="admin-mini-button" type="button" id="admin-reset-image">初期画像に戻す</button>
+            </div>
+            <div class="admin-image-preview">
+              <img id="admin-selected-image-preview" alt="" />
+            </div>
+            <label class="admin-field">
+              <span>画像URL</span>
+              <input id="admin-selected-image-src" type="url" inputmode="url" autocomplete="off" />
+            </label>
+            <label class="admin-field">
+              <span>代替テキスト</span>
+              <input id="admin-selected-image-alt" type="text" autocomplete="off" />
+            </label>
+            <div class="admin-form-row admin-form-row--compact">
+              <label class="admin-field">
+                <span>表示幅</span>
+                <input id="admin-selected-image-width" type="number" inputmode="decimal" min="1" max="2400" step="1" />
+              </label>
+              <label class="admin-field">
+                <span>単位</span>
+                <select id="admin-selected-image-width-unit">
+                  <option value="px">px</option>
+                  <option value="%">%</option>
+                </select>
+              </label>
+            </div>
+            <label class="admin-check-field">
+              <input id="admin-selected-image-hidden" type="checkbox" />
+              <span>画像を削除（非表示）</span>
+            </label>
+          </section>
+
+          <section class="admin-style-section" aria-labelledby="admin-spacing-style-title">
+            <div class="admin-style-section__head">
+              <h3 id="admin-spacing-style-title">余白と高さ</h3>
+              <button class="admin-mini-button" type="button" id="admin-reset-style">装飾をリセット</button>
+            </div>
+            <div class="admin-spacing-grid" aria-label="パディング">
+              <span>Padding</span>
+              <input aria-label="padding top" data-style-key="paddingTop" inputmode="decimal" min="0" max="320" step="1" type="number" placeholder="上" />
+              <input aria-label="padding right" data-style-key="paddingRight" inputmode="decimal" min="0" max="320" step="1" type="number" placeholder="右" />
+              <input aria-label="padding bottom" data-style-key="paddingBottom" inputmode="decimal" min="0" max="320" step="1" type="number" placeholder="下" />
+              <input aria-label="padding left" data-style-key="paddingLeft" inputmode="decimal" min="0" max="320" step="1" type="number" placeholder="左" />
+            </div>
+            <div class="admin-spacing-grid" aria-label="マージン">
+              <span>Margin</span>
+              <input aria-label="margin top" data-style-key="marginTop" inputmode="decimal" min="-240" max="320" step="1" type="number" placeholder="上" />
+              <input aria-label="margin right" data-style-key="marginRight" inputmode="decimal" min="-240" max="320" step="1" type="number" placeholder="右" />
+              <input aria-label="margin bottom" data-style-key="marginBottom" inputmode="decimal" min="-240" max="320" step="1" type="number" placeholder="下" />
+              <input aria-label="margin left" data-style-key="marginLeft" inputmode="decimal" min="-240" max="320" step="1" type="number" placeholder="左" />
+            </div>
+            <label class="admin-field">
+              <span>高さ / スペーサー px</span>
+              <input data-style-key="minHeight" inputmode="decimal" min="0" max="720" step="1" type="number" />
+            </label>
+          </section>
+
+          <div class="admin-inspector-actions">
+            <button class="admin-button admin-button--ghost" type="button" id="admin-editor-export">JSONを書き出す</button>
+          </div>
+        </div>
+
+        <section class="admin-block-list-section" aria-labelledby="admin-block-list-title">
+          <div class="admin-fieldset-head">
+            <div>
+              <p class="admin-eyebrow">Editable blocks</p>
+              <h3 id="admin-block-list-title">編集できるブロック</h3>
+            </div>
+            <span class="admin-mini-state" id="admin-editable-count">0件</span>
+          </div>
+          <div class="admin-block-list" id="admin-block-list"></div>
+        </section>
+      </aside>
+    </div>
+  </section>
+
+  <script is:inline type="application/json" id="admin-editable-pages" set:html={JSON.stringify(adminEditablePages)} />
+  <script>
+    // @ts-nocheck
+    const pagesScript = document.getElementById("admin-editable-pages");
+    const editablePages = JSON.parse(pagesScript?.textContent || "[]");
+    const pageOverrideStorageKey = "lexus-admin-page-overrides-v1";
+    const maxAutoFields = 900;
+    const editableCandidateSelector = [
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "p",
+      "li",
+      "dt",
+      "dd",
+      "blockquote",
+      "figcaption",
+      "caption",
+      "th",
+      "td",
+      "button",
+      "label",
+      "summary",
+      "a",
+      "span",
+      "strong",
+      "em",
+    ].join(",");
+    const ancestorTextSelector = [
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "p",
+      "li",
+      "dt",
+      "dd",
+      "blockquote",
+      "figcaption",
+      "caption",
+      "th",
+      "td",
+      "button",
+      "label",
+      "summary",
+      "a",
+    ].join(",");
+    const nestedBlockSelector = [
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "p",
+      "li",
+      "dt",
+      "dd",
+      "blockquote",
+      "figure",
+      "table",
+      "ul",
+      "ol",
+      "dl",
+      "section",
+      "article",
+      "div",
+    ].join(",");
+    const ignoredCandidateSelector = [
+      "script",
+      "style",
+      "noscript",
+      "svg",
+      "path",
+      "img",
+      "picture",
+      "video",
+      "canvas",
+      "input",
+      "select",
+      "textarea",
+      "iframe",
+      "[hidden]",
+      "[aria-hidden='true']",
+      "[data-admin-editor-ignore]",
+      ".skip-link",
+      ".skip-anchor",
+    ].join(",");
+    const ignoredImageAncestorSelector = [
+      "script",
+      "style",
+      "noscript",
+      "svg",
+      "path",
+      "video",
+      "canvas",
+      "input",
+      "select",
+      "textarea",
+      "iframe",
+      "[hidden]",
+      "[aria-hidden='true']",
+      "[data-admin-editor-ignore]",
+      ".skip-link",
+      ".skip-anchor",
+    ].join(",");
+    const inlineCandidateTags = new Set(["A", "SPAN", "STRONG", "EM"]);
+    const tableCellTags = new Set(["TH", "TD", "CAPTION"]);
+    const tagLabels = {
+      H1: "H1見出し",
+      H2: "H2見出し",
+      H3: "H3見出し",
+      H4: "H4見出し",
+      H5: "H5見出し",
+      H6: "H6見出し",
+      P: "本文",
+      LI: "リスト",
+      DT: "定義見出し",
+      DD: "定義本文",
+      BLOCKQUOTE: "引用",
+      FIGCAPTION: "画像説明",
+      BUTTON: "ボタン",
+      LABEL: "フォームラベル",
+      SUMMARY: "開閉見出し",
+      A: "リンク",
+      SPAN: "短い文言",
+      STRONG: "強調文言",
+      EM: "強調文言",
+    };
+    const styleKeys = [
+      "fontSize",
+      "fontWeight",
+      "letterSpacing",
+      "marginTop",
+      "marginRight",
+      "marginBottom",
+      "marginLeft",
+      "paddingTop",
+      "paddingRight",
+      "paddingBottom",
+      "paddingLeft",
+      "minHeight",
+    ];
+    const pixelStyleKeys = new Set(styleKeys.filter((key) => key !== "fontWeight"));
+    const signedPixelStyleKeys = new Set(["letterSpacing", "marginTop", "marginRight", "marginBottom", "marginLeft"]);
+    const fontWeightValues = new Set(["", "400", "500", "600", "700", "800", "900"]);
+
+    const getElement = (id) => document.getElementById(id);
+    const elements = {
+      kindButtons: Array.from(document.querySelectorAll("[data-editor-kind]")),
+      pageFilter: getElement("admin-editor-page-filter"),
+      page: getElement("admin-editor-page"),
+      storageState: getElement("admin-editor-storage-state"),
+      syncState: getElement("admin-editor-sync-state"),
+      draftState: getElement("admin-editor-draft-state"),
+      previewTitle: getElement("admin-preview-page-title"),
+      previewSummary: getElement("admin-preview-page-summary"),
+      previewPath: getElement("admin-preview-path"),
+      previewOpen: getElement("admin-preview-open"),
+      frameWrap: getElement("admin-preview-frame-wrap"),
+      frame: getElement("admin-page-preview"),
+      previewWidth: getElement("admin-preview-width"),
+      previewZoomOut: getElement("admin-preview-zoom-out"),
+      previewZoomIn: getElement("admin-preview-zoom-in"),
+      previewZoomReset: getElement("admin-preview-zoom-reset"),
+      previewZoomValue: getElement("admin-preview-zoom-value"),
+      gitSummary: getElement("admin-git-summary"),
+      gitBranch: getElement("admin-git-branch"),
+      gitDirty: getElement("admin-git-dirty"),
+      gitAheadBehind: getElement("admin-git-ahead-behind"),
+      gitRefresh: getElement("admin-git-refresh"),
+      gitFetch: getElement("admin-git-fetch"),
+      gitPull: getElement("admin-git-pull"),
+      gitCommit: getElement("admin-git-commit"),
+      gitPush: getElement("admin-git-push"),
+      selectedEmpty: getElement("admin-selected-empty"),
+      selectedPanel: getElement("admin-selected-panel"),
+      selectedLabel: getElement("admin-selected-label"),
+      selectedId: getElement("admin-selected-id"),
+      selectedTextPanel: getElement("admin-selected-text-panel"),
+      selectedContent: getElement("admin-selected-content"),
+      textStylePanel: getElement("admin-text-style-panel"),
+      imagePanel: getElement("admin-image-panel"),
+      imagePreview: getElement("admin-selected-image-preview"),
+      imageSrc: getElement("admin-selected-image-src"),
+      imageAlt: getElement("admin-selected-image-alt"),
+      imageWidth: getElement("admin-selected-image-width"),
+      imageWidthUnit: getElement("admin-selected-image-width-unit"),
+      imageHidden: getElement("admin-selected-image-hidden"),
+      blockList: getElement("admin-block-list"),
+      editableCount: getElement("admin-editable-count"),
+    };
+
+    const state = {
+      fieldCatalog: [],
+      fieldValues: {},
+      imageValues: {},
+      styleValues: {},
+      selectors: {},
+      selectedFieldId: "",
+      currentKind: "fixed-page",
+      currentPageId: "",
+      saveTimer: 0,
+      previewStamp: 0,
+      discoveryCapped: false,
+      previewDevice: "desktop",
+      previewWidth: 1160,
+      previewZoom: 1,
+      localAdminApiBase: "",
+      gitStatus: null,
+    };
+
+    const normalizePath = (value) => {
+      const path = String(value || "/").trim();
+      if (!path || path === "/") return "/";
+      return "/" + path.replace(/^\/+|\/+$/g, "") + "/";
+    };
+
+    const readJson = (key, fallback) => {
+      try {
+        return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback));
+      } catch {
+        return fallback;
+      }
+    };
+
+    const writeJson = (key, value) => {
+      localStorage.setItem(key, JSON.stringify(value));
+    };
+
+    const readPageOverrides = () => readJson(pageOverrideStorageKey, {});
+    const writePageOverrides = (overrides) => writeJson(pageOverrideStorageKey, overrides);
+
+    const normalizePageKind = (kind) => (kind === "post" ? "post" : "fixed-page");
+    const pageKind = (page) => normalizePageKind(page?.kind);
+    const pagesForKind = (kind = state.currentKind) =>
+      editablePages.filter((page) => pageKind(page) === normalizePageKind(kind));
+
+    const pageById = (pageId) => editablePages.find((page) => page.id === pageId) || null;
+    const selectedPage = () => {
+      const selected = editablePages.find((page) => page.id === elements.page.value);
+      if (selected && pageKind(selected) === state.currentKind) return selected;
+      return pagesForKind()[0] || editablePages[0] || null;
+    };
+    const currentPage = () => pageById(state.currentPageId) || selectedPage();
+    const selectedField = () => state.fieldCatalog.find((field) => field.id === state.selectedFieldId) || null;
+
+    const defaultFieldValues = (fields = state.fieldCatalog) =>
+      Object.fromEntries((fields || []).map((field) => [field.id, field.defaultValue || ""]));
+
+    const mergedFieldValues = (fields = state.fieldCatalog) => ({
+      ...defaultFieldValues(fields),
+      ...state.fieldValues,
+    });
+
+    const cssEscapeValue = (value) => {
+      if (window.CSS?.escape) return window.CSS.escape(String(value));
+      return String(value).replace(/[^a-zA-Z0-9_-]/g, "\\$&");
+    };
+
+    const attrSelectorFor = (fieldId) => '[data-admin-editable="' + String(fieldId).replace(/\\/g, "\\\\").replace(/"/g, '\\"') + '"]';
+
+    const safeQueryAll = (doc, selector) => {
+      if (!doc || !selector) return [];
+      try {
+        return Array.from(doc.querySelectorAll(selector));
+      } catch {
+        return [];
+      }
+    };
+
+    const nodesForField = (fieldId) => {
+      const doc = previewDocument();
+      if (!doc) return [];
+      const nodes = [...safeQueryAll(doc, attrSelectorFor(fieldId))];
+      const selector = state.selectors[fieldId];
+      if (selector && selector !== attrSelectorFor(fieldId)) {
+        nodes.push(...safeQueryAll(doc, selector));
+      }
+      return [...new Set(nodes)];
+    };
+
+    const setStatus = (label, detail) => {
+      elements.storageState.textContent = label;
+      elements.syncState.textContent = detail;
+    };
+
+    const setDraftState = (label) => {
+      elements.draftState.textContent = label;
+    };
+
+    const localAdminApiPorts = Array.from({ length: 11 }, (_, index) => 4335 + index);
+    const isLocalEditorHost = () => ["127.0.0.1", "localhost", "::1"].includes(window.location.hostname);
+
+    const setGitButtonsDisabled = (disabled) => {
+      [elements.gitRefresh, elements.gitFetch, elements.gitPull, elements.gitCommit, elements.gitPush].forEach((button) => {
+        button.disabled = disabled;
+      });
+    };
+
+    const renderGitStatus = (status = state.gitStatus) => {
+      if (!state.localAdminApiBase) {
+        elements.gitSummary.textContent = isLocalEditorHost()
+          ? "ローカルGit APIが起動していません。別ターミナルで npm run admin:api を起動してください。"
+          : "Git連携はローカル開発環境専用です。";
+        elements.gitBranch.textContent = "branch: -";
+        elements.gitDirty.textContent = "changes: -";
+        elements.gitAheadBehind.textContent = "sync: -";
+        setGitButtonsDisabled(true);
+        return;
+      }
+
+      setGitButtonsDisabled(false);
+      if (!status) {
+        elements.gitSummary.textContent = "Git状態を読み込んでいます。";
+        return;
+      }
+
+      const branchLabel = status.onTargetBranch
+        ? `${status.branch}`
+        : `${status.branch || "-"} / target: ${status.targetBranch}`;
+      elements.gitBranch.textContent = `branch: ${branchLabel}`;
+      elements.gitDirty.textContent = status.dirty ? `changes: ${status.dirtyFiles.length}` : "changes: clean";
+      elements.gitAheadBehind.textContent = `sync: ahead ${status.ahead || 0} / behind ${status.behind || 0}`;
+
+      elements.gitPull.disabled = !status.onTargetBranch || status.dirty;
+      elements.gitPush.disabled = !status.onTargetBranch;
+      elements.gitSummary.textContent = status.onTargetBranch
+        ? "ステージングブランチ上です。取得、反映、コミット、pushが使えます。"
+        : "現在のブランチはstagingではありません。fetchとコミットは可能ですが、pull/pushは安全のため停止しています。";
+    };
+
+    const localAdminApiRequest = async (path, options = {}) => {
+      if (!state.localAdminApiBase) throw new Error("Local admin API is not connected.");
+      const response = await fetch(`${state.localAdminApiBase}${path}`, {
+        ...options,
+        headers: {
+          "Content-Type": "application/json",
+          ...(options.headers || {}),
+        },
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload.error || `HTTP ${response.status}`);
+      return payload;
+    };
+
+    const refreshGitStatus = async () => {
+      if (!state.localAdminApiBase) {
+        renderGitStatus();
+        return null;
+      }
+      try {
+        const status = await localAdminApiRequest("/api/git/status");
+        state.gitStatus = status;
+        renderGitStatus(status);
+        return status;
+      } catch (error) {
+        elements.gitSummary.textContent = error instanceof Error ? error.message : String(error);
+        state.gitStatus = null;
+        renderGitStatus(null);
+        return null;
+      }
+    };
+
+    const detectLocalAdminApi = async () => {
+      if (!isLocalEditorHost()) {
+        renderGitStatus();
+        return;
+      }
+      for (const port of localAdminApiPorts) {
+        const base = `http://127.0.0.1:${port}`;
+        try {
+          const response = await fetch(`${base}/api/local-admin/health`, { cache: "no-store" });
+          if (!response.ok) continue;
+          state.localAdminApiBase = base;
+          await refreshGitStatus();
+          await loadGitOverrideForPage(currentPage());
+          return;
+        } catch {
+          // Try the next local admin API port.
+        }
+      }
+      renderGitStatus();
+    };
+
+    const runGitAction = async (action, label) => {
+      if (!state.localAdminApiBase) {
+        renderGitStatus();
+        return;
+      }
+      elements.gitSummary.textContent = `${label}を実行しています。`;
+      try {
+        const payload = await localAdminApiRequest(`/api/git/${action}`, { method: "POST", body: "{}" });
+        state.gitStatus = payload.status || null;
+        renderGitStatus(state.gitStatus);
+        if (action === "pull-staging") await loadGitOverrideForPage(currentPage(), { force: true });
+      } catch (error) {
+        elements.gitSummary.textContent = error instanceof Error ? error.message : String(error);
+        await refreshGitStatus();
+      }
+    };
+
+    const clampNumber = (value, min, max) => {
+      const numeric = Number(value);
+      if (!Number.isFinite(numeric)) return "";
+      return Math.min(max, Math.max(min, numeric));
+    };
+
+    const previewPresets = {
+      desktop: { width: 1160, min: 900, max: 2560, step: 80 },
+      tablet: { width: 820, min: 600, max: 1180, step: 40 },
+      mobile: { width: 390, min: 320, max: 540, step: 10 },
+    };
+
+    const previewPreset = (device = state.previewDevice) => previewPresets[device] || previewPresets.desktop;
+
+    const normalizePreviewWidth = (value, device = state.previewDevice) => {
+      const preset = previewPreset(device);
+      const clamped = clampNumber(value, preset.min, preset.max);
+      return clamped === "" ? preset.width : Math.round(clamped);
+    };
+
+    const normalizePreviewZoom = (value) => {
+      const clamped = clampNumber(value, 0.25, 2);
+      return clamped === "" ? 1 : Number(clamped.toFixed(2));
+    };
+
+    const centerPreviewFrame = () => {
+      const scrollToCenter = () => {
+        const overflow = elements.frameWrap.scrollWidth - elements.frameWrap.clientWidth;
+        elements.frameWrap.scrollLeft = overflow > 0 ? Math.round(overflow / 2) : 0;
+      };
+      requestAnimationFrame(scrollToCenter);
+      window.setTimeout(scrollToCenter, 220);
+    };
+
+    const applyPreviewViewport = () => {
+      const preset = previewPreset();
+      state.previewWidth = normalizePreviewWidth(state.previewWidth);
+      state.previewZoom = normalizePreviewZoom(state.previewZoom);
+      elements.frameWrap.classList.remove("is-desktop", "is-tablet", "is-mobile");
+      elements.frameWrap.classList.add(`is-${state.previewDevice}`);
+      elements.frameWrap.style.setProperty("--admin-preview-width", `${state.previewWidth}px`);
+      elements.frameWrap.style.setProperty("--admin-preview-zoom", String(state.previewZoom));
+      elements.previewWidth.min = String(preset.min);
+      elements.previewWidth.max = String(preset.max);
+      elements.previewWidth.step = String(preset.step);
+      elements.previewWidth.value = String(state.previewWidth);
+      elements.previewZoomValue.textContent = `${Math.round(state.previewZoom * 100)}%`;
+      document.querySelectorAll("[data-preview-size]").forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.previewSize === state.previewDevice);
+      });
+      centerPreviewFrame();
+      if (selectedField()?.type === "image") requestAnimationFrame(() => syncImageControls(selectedField()));
+    };
+
+    const normalizePixelValue = (key, value) => {
+      const raw = String(value || "").trim();
+      if (!raw) return "";
+      const min = signedPixelStyleKeys.has(key) ? -240 : 0;
+      const max = key === "minHeight" ? 720 : key === "fontSize" ? 96 : 320;
+      const clamped = clampNumber(raw.replace(/px$/i, ""), min, max);
+      if (clamped === "") return "";
+      return Number(clamped.toFixed(2)) + "px";
+    };
+
+    const normalizeStyleValue = (key, value) => {
+      if (!styleKeys.includes(key)) return "";
+      if (key === "fontWeight") {
+        const weight = String(value || "");
+        return fontWeightValues.has(weight) ? weight : "";
+      }
+      return normalizePixelValue(key, value);
+    };
+
+    const cssPxToControlValue = (value) => {
+      const numeric = String(value || "").replace(/px$/i, "");
+      return numeric && Number.isFinite(Number(numeric)) ? numeric : "";
+    };
+
+    const cleanStyleMap = (styleMap) => {
+      const clean = {};
+      if (!styleMap || typeof styleMap !== "object") return clean;
+      Object.entries(styleMap).forEach(([fieldId, styles]) => {
+        if (!styles || typeof styles !== "object") return;
+        const nextStyles = {};
+        styleKeys.forEach((key) => {
+          const value = normalizeStyleValue(key, styles[key]);
+          if (value) nextStyles[key] = value;
+        });
+        if (Object.keys(nextStyles).length) clean[fieldId] = nextStyles;
+      });
+      return clean;
+    };
+
+    const cleanSelectorMap = (selectorMap, allowedIds = null) => {
+      const clean = {};
+      if (!selectorMap || typeof selectorMap !== "object") return clean;
+      Object.entries(selectorMap).forEach(([fieldId, selector]) => {
+        if (allowedIds && !allowedIds.has(fieldId)) return;
+        if (fieldId.length > 160 || typeof selector !== "string") return;
+        const trimmed = selector.trim();
+        if (!trimmed || trimmed.length > 1000 || /[{}<>]/.test(trimmed)) return;
+        clean[fieldId] = trimmed;
+      });
+      return clean;
+    };
+
+    const normalizeImageSrc = (value) => {
+      const src = String(value || "").trim();
+      if (!src || src.length > 2000) return "";
+      if (/^(https?:)?\/\//i.test(src) || src.startsWith("/") || src.startsWith("./") || src.startsWith("../")) return src;
+      return "";
+    };
+
+    const normalizeImageAlt = (value) => String(value || "").trim().slice(0, 300);
+
+    const normalizeImageWidth = (value) => {
+      const width = String(value || "").trim();
+      const match = width.match(/^(\d{1,4}(?:\.\d{1,2})?)(px|%)$/);
+      if (!match) return "";
+      const numeric = Number(match[1]);
+      const unit = match[2];
+      const max = unit === "%" ? 300 : 2400;
+      if (!Number.isFinite(numeric) || numeric <= 0 || numeric > max) return "";
+      return `${Number(numeric.toFixed(2))}${unit}`;
+    };
+
+    const normalizeImageValue = (value) => {
+      const clean = {};
+      if (!value || typeof value !== "object") return clean;
+      if (Object.prototype.hasOwnProperty.call(value, "src")) {
+        const src = normalizeImageSrc(value.src);
+        if (src) clean.src = src;
+      }
+      if (Object.prototype.hasOwnProperty.call(value, "alt")) clean.alt = normalizeImageAlt(value.alt);
+      if (Object.prototype.hasOwnProperty.call(value, "width")) {
+        const width = normalizeImageWidth(value.width);
+        if (width) clean.width = width;
+      }
+      if (Object.prototype.hasOwnProperty.call(value, "hidden")) clean.hidden = value.hidden === true;
+      return clean;
+    };
+
+    const cleanImageMap = (imageMap, allowedIds = null) => {
+      const clean = {};
+      if (!imageMap || typeof imageMap !== "object") return clean;
+      Object.entries(imageMap).forEach(([fieldId, image]) => {
+        if (allowedIds && !allowedIds.has(fieldId)) return;
+        if (fieldId.length > 160) return;
+        const nextImage = normalizeImageValue(image);
+        if (Object.keys(nextImage).length) clean[fieldId] = nextImage;
+      });
+      return clean;
+    };
+
+    const timestampValue = (value) => {
+      const time = Date.parse(String(value || ""));
+      return Number.isFinite(time) ? time : 0;
+    };
+
+    const applyOverrideToEditorState = (page, override, label = "Git") => {
+      if (!page || !override || normalizePath(override.path) !== normalizePath(page.path)) return false;
+      const fieldIds = new Set((page.fields || []).map((field) => field.id));
+      const defaultSelectors = Object.fromEntries((page.fields || []).filter((field) => field.selector).map((field) => [field.id, field.selector]));
+      const cleanFields = Object.fromEntries(
+        Object.entries(override.fields || {}).filter(([fieldId, value]) => fieldIds.has(fieldId) && typeof value === "string"),
+      );
+      state.fieldValues = {
+        ...defaultFieldValues(page.fields || []),
+        ...cleanFields,
+      };
+      state.imageValues = cleanImageMap(override.images || {}, fieldIds);
+      state.styleValues = cleanStyleMap(override.styles || {});
+      state.selectors = {
+        ...defaultSelectors,
+        ...cleanSelectorMap(override.selectors || {}, fieldIds),
+      };
+      renderBlockList();
+      renderInspector();
+      applyAllToPreview();
+      setStatus(`${label} loaded`, `${page.label} のGit保存済み編集を読み込みました。`);
+      return true;
+    };
+
+    const loadGitOverrideForPage = async (page = currentPage(), { force = false } = {}) => {
+      if (!state.localAdminApiBase || !page) return false;
+      try {
+        const payload = await localAdminApiRequest(`/api/content-overrides?path=${encodeURIComponent(normalizePath(page.path))}`);
+        const override = payload.override;
+        if (!override) return false;
+        if (!force) {
+          const localOverride = readPageOverrides()[normalizePath(page.path)];
+          if (localOverride && timestampValue(localOverride.updatedAt) >= timestampValue(override.updatedAt)) return false;
+        }
+        return applyOverrideToEditorState(page, override, "Git");
+      } catch (error) {
+        console.info("Git override is not available.", error);
+        return false;
+      }
+    };
+
+    const defaultImageForField = (field) => ({
+      src: normalizeImageSrc(field?.defaultImage?.src || field?.defaultValue || ""),
+      alt: normalizeImageAlt(field?.defaultImage?.alt || ""),
+      width: normalizeImageWidth(field?.defaultImage?.width || ""),
+      hidden: Boolean(field?.defaultImage?.hidden),
+    });
+
+    const mergedImageValue = (field) => ({
+      ...defaultImageForField(field),
+      ...(state.imageValues[field?.id] || {}),
+    });
+
+    const imageWidthToControls = (width) => {
+      const match = String(width || "").match(/^(\d{1,4}(?:\.\d{1,2})?)(px|%)$/);
+      return {
+        value: match ? match[1] : "",
+        unit: match ? match[2] : "px",
+      };
+    };
+
+    const measuredImageWidthForField = (fieldId) => {
+      const node = nodesForField(fieldId).find((item) => item.tagName === "IMG");
+      if (!node || !node.getClientRects || node.getClientRects().length === 0) return "";
+      const width = node.getBoundingClientRect().width / normalizePreviewZoom(state.previewZoom);
+      if (!Number.isFinite(width) || width <= 0) return "";
+      return `${Math.max(1, Math.round(width))}px`;
+    };
+
+    const getFieldStyles = (fieldId) => state.styleValues[fieldId] || {};
+
+    const updateFieldStyle = (fieldId, key, value) => {
+      const normalized = normalizeStyleValue(key, value);
+      const nextStyles = { ...(state.styleValues[fieldId] || {}) };
+      if (normalized) {
+        nextStyles[key] = normalized;
+      } else {
+        delete nextStyles[key];
+      }
+
+      if (Object.keys(nextStyles).length) {
+        state.styleValues[fieldId] = nextStyles;
+      } else {
+        delete state.styleValues[fieldId];
+      }
+    };
+
+    const renderText = (node, value) => {
+      const doc = node.ownerDocument || document;
+      const lines = String(value || "").split(/\r?\n/);
+      const fragment = doc.createDocumentFragment();
+      lines.forEach((line, index) => {
+        if (index > 0) fragment.append(doc.createElement("br"));
+        fragment.append(doc.createTextNode(line));
+      });
+      node.replaceChildren(fragment);
+    };
+
+    const readTextFromNode = (node) =>
+      String(node.innerText || node.textContent || "")
+        .replace(/\u00a0/g, " ")
+        .replace(/[ \t]+\n/g, "\n")
+        .replace(/\n{3,}/g, "\n\n")
+        .trim();
+
+    const previewDocument = () => {
+      try {
+        return elements.frame.contentDocument;
+      } catch {
+        return null;
+      }
+    };
+
+    const applyTextToPreview = (fieldId, value) => {
+      nodesForField(fieldId).forEach((node) => renderText(node, value));
+    };
+
+    const applyImageToNode = (node, image, options = {}) => {
+      if (!node || node.tagName !== "IMG") return;
+      if (image.src) node.setAttribute("src", image.src);
+      node.setAttribute("alt", image.alt || "");
+
+      if (image.width) {
+        node.style.width = image.width;
+        node.style.height = "auto";
+        node.style.maxWidth = image.width.endsWith("%") ? "100%" : "none";
+      } else {
+        node.style.width = "";
+        node.style.height = "";
+        node.style.maxWidth = "";
+      }
+
+      if (image.hidden) {
+        if (options.preview) {
+          node.classList.add("admin-preview-image-hidden");
+          node.setAttribute("data-admin-image-hidden", "true");
+        } else {
+          node.style.display = "none";
+        }
+      } else {
+        node.classList.remove("admin-preview-image-hidden");
+        node.removeAttribute("data-admin-image-hidden");
+        if (node.style.display === "none") node.style.display = "";
+      }
+    };
+
+    const applyImageToPreview = (field) => {
+      if (!field || field.type !== "image") return;
+      const image = mergedImageValue(field);
+      nodesForField(field.id).forEach((node) => applyImageToNode(node, image, { preview: true }));
+    };
+
+    const clearSupportedInlineStyles = (node) => {
+      pixelStyleKeys.forEach((key) => {
+        node.style[key] = "";
+      });
+      node.style.fontWeight = "";
+    };
+
+    const applyStylesToNode = (node, styles) => {
+      clearSupportedInlineStyles(node);
+      Object.entries(styles || {}).forEach(([key, value]) => {
+        const normalized = normalizeStyleValue(key, value);
+        if (normalized) node.style[key] = normalized;
+      });
+    };
+
+    const applyStyleToPreview = (fieldId) => {
+      const styles = getFieldStyles(fieldId);
+      nodesForField(fieldId).forEach((node) => applyStylesToNode(node, styles));
+    };
+
+    const applyAllToPreview = () => {
+      const values = mergedFieldValues();
+      state.fieldCatalog.forEach((field) => {
+        if (field.type === "image") {
+          applyImageToPreview(field);
+        } else {
+          applyTextToPreview(field.id, values[field.id] || "");
+        }
+        applyStyleToPreview(field.id);
+      });
+      updatePreviewSelection();
+    };
+
+    const changedFieldValues = () => {
+      const values = mergedFieldValues();
+      const changed = {};
+      state.fieldCatalog.forEach((field) => {
+        if (field.type === "image") return;
+        const current = values[field.id] || "";
+        if (current !== (field.defaultValue || "")) changed[field.id] = current;
+      });
+      return changed;
+    };
+
+    const changedImageValues = () => {
+      const changed = {};
+      state.fieldCatalog.forEach((field) => {
+        if (field.type !== "image") return;
+        const defaults = defaultImageForField(field);
+        const current = mergedImageValue(field);
+        const nextImage = {};
+        if ((current.src || "") !== (defaults.src || "")) nextImage.src = current.src || "";
+        if ((current.alt || "") !== (defaults.alt || "")) nextImage.alt = current.alt || "";
+        if ((current.width || "") !== (defaults.width || "")) nextImage.width = current.width || "";
+        if (Boolean(current.hidden) !== Boolean(defaults.hidden)) nextImage.hidden = Boolean(current.hidden);
+        if (Object.keys(nextImage).length) changed[field.id] = normalizeImageValue(nextImage);
+      });
+      return changed;
+    };
+
+    const currentOverride = (status = "editing", page = currentPage()) => {
+      if (!page) return null;
+      const path = normalizePath(page?.path || "/");
+      const fields = changedFieldValues();
+      const images = changedImageValues();
+      const styles = cleanStyleMap(state.styleValues);
+      const selectorIds = new Set([...Object.keys(fields), ...Object.keys(images), ...Object.keys(styles)]);
+      return {
+        id: page.id,
+        label: page.label,
+        kind: pageKind(page),
+        path,
+        fields,
+        images,
+        styles,
+        selectors: cleanSelectorMap(state.selectors, selectorIds),
+        status,
+        updatedAt: new Date().toISOString(),
+      };
+    };
+
+    const persistLocalOverride = (status = "editing", page = currentPage()) => {
+      const override = currentOverride(status, page);
+      if (!override) return null;
+      const overrides = readPageOverrides();
+      overrides[override.path] = override;
+      writePageOverrides(overrides);
+      setStatus("Local saved", "このブラウザのプレビューには保存済みの内容が反映されます。");
+      return override;
+    };
+
+    const flushPendingSave = (page = currentPage()) => {
+      window.clearTimeout(state.saveTimer);
+      state.saveTimer = 0;
+      if (!page || !state.currentPageId || !state.fieldCatalog.length) return null;
+      return persistLocalOverride("editing", page);
+    };
+
+    const scheduleLocalSave = () => {
+      window.clearTimeout(state.saveTimer);
+      setDraftState("編集中");
+      state.saveTimer = window.setTimeout(() => {
+        persistLocalOverride("editing");
+        state.saveTimer = 0;
+        setDraftState("保存済み");
+      }, 500);
+    };
+
+    const syncKindControls = () => {
+      elements.kindButtons.forEach((button) => {
+        const kind = normalizePageKind(button.dataset.editorKind);
+        const hasPages = pagesForKind(kind).length > 0;
+        button.classList.toggle("is-active", kind === state.currentKind);
+        button.disabled = !hasPages;
+        button.setAttribute("aria-pressed", String(kind === state.currentKind));
+      });
+    };
+
+    const renderPageOptions = (preferredId = elements.page.value) => {
+      const kindPages = pagesForKind();
+      const query = String(elements.pageFilter.value || "").trim().toLowerCase();
+      const matches = kindPages.filter((page) => {
+        if (!query) return true;
+        return `${page.label} ${page.path}`.toLowerCase().includes(query);
+      });
+      const visiblePages = matches.length ? matches : kindPages;
+      if (!visiblePages.length) {
+        const option = document.createElement("option");
+        option.value = "";
+        option.textContent = "対象ページがありません";
+        elements.page.replaceChildren(option);
+        elements.page.disabled = true;
+        return null;
+      }
+      elements.page.disabled = false;
+      elements.page.replaceChildren(
+        ...visiblePages.map((page) => {
+          const option = document.createElement("option");
+          option.value = page.id;
+          option.dataset.kind = pageKind(page);
+          option.dataset.path = page.path;
+          option.textContent = `${page.label}（${page.path}）`;
+          return option;
+        }),
+      );
+      const nextPage = visiblePages.find((page) => page.id === preferredId) || visiblePages[0] || kindPages[0] || null;
+      if (nextPage) elements.page.value = nextPage.id;
+      return nextPage;
+    };
+
+    const renderBlockList = () => {
+      const values = mergedFieldValues();
+      const imageChanges = changedImageValues();
+      const tableCount = state.fieldCatalog.filter((field) => field.type === "table-cell").length;
+      const imageCount = state.fieldCatalog.filter((field) => field.type === "image").length;
+      const capped = state.discoveryCapped ? " / 上限まで表示" : "";
+      elements.editableCount.textContent = `${state.fieldCatalog.length}件（表セル${tableCount}件・画像${imageCount}件）${capped}`;
+      elements.blockList.replaceChildren(
+        ...state.fieldCatalog.map((field) => {
+          const button = document.createElement("button");
+          const isSelected = field.id === state.selectedFieldId;
+          const hasStyle = Boolean(state.styleValues[field.id]);
+          const imageValue = field.type === "image" ? imageChanges[field.id] : null;
+          const hasTextChange = field.type !== "image" && (values[field.id] || "") !== (field.defaultValue || "");
+          button.type = "button";
+          button.className = "admin-block-item";
+          button.classList.toggle("is-selected", isSelected);
+          button.classList.toggle("is-edited", hasStyle || hasTextChange || Boolean(imageValue));
+          button.classList.toggle("is-table-cell", field.type === "table-cell");
+          button.classList.toggle("is-image", field.type === "image");
+          button.innerHTML = "<strong></strong><span></span>";
+          button.querySelector("strong").textContent = field.label;
+          button.querySelector("span").textContent =
+            field.type === "image"
+              ? `${mergedImageValue(field).hidden ? "非表示 / " : ""}${mergedImageValue(field).alt || mergedImageValue(field).src || "画像"}`
+              : values[field.id] || "未入力";
+          button.addEventListener("click", () => selectField(field.id, { focusPreview: true }));
+          return button;
+        }),
+      );
+    };
+
+    const syncStyleControls = () => {
+      const styles = getFieldStyles(state.selectedFieldId);
+      document.querySelectorAll("[data-style-key]").forEach((control) => {
+        const key = control.dataset.styleKey;
+        if (key === "fontWeight") {
+          control.value = styles[key] || "";
+          return;
+        }
+        control.value = cssPxToControlValue(styles[key]);
+      });
+    };
+
+    const syncImageControls = (field) => {
+      const isImage = field?.type === "image";
+      elements.selectedTextPanel.hidden = isImage;
+      elements.textStylePanel.hidden = isImage;
+      elements.imagePanel.hidden = !isImage;
+      if (!isImage) return;
+
+      const image = mergedImageValue(field);
+      const explicitWidth = image.width || "";
+      const measuredWidth = explicitWidth ? "" : measuredImageWidthForField(field.id);
+      const width = imageWidthToControls(explicitWidth || measuredWidth);
+      elements.imageSrc.value = image.src || "";
+      elements.imageAlt.value = image.alt || "";
+      elements.imageWidth.value = width.value;
+      elements.imageWidthUnit.value = width.unit;
+      elements.imageWidth.dataset.measured = !explicitWidth && measuredWidth ? "true" : "";
+      elements.imageHidden.checked = Boolean(image.hidden);
+      elements.imagePreview.src = image.src || "";
+      elements.imagePreview.alt = image.alt || "";
+      elements.imagePreview.hidden = !image.src;
+      elements.imagePreview.classList.toggle("is-hidden-image", Boolean(image.hidden));
+    };
+
+    const renderInspector = () => {
+      const field = selectedField();
+      const values = mergedFieldValues();
+      const hasField = Boolean(field);
+      elements.selectedEmpty.hidden = hasField;
+      elements.selectedPanel.hidden = !hasField;
+
+      if (!field) {
+        setDraftState("未選択");
+        return;
+      }
+
+      elements.selectedLabel.textContent = field.label;
+      elements.selectedId.textContent = field.id;
+      if (field.type !== "image") elements.selectedContent.value = values[field.id] || "";
+      setDraftState("選択中");
+      syncStyleControls();
+      syncImageControls(field);
+    };
+
+    const updatePreviewMeta = () => {
+      const page = selectedPage();
+      const path = normalizePath(page?.path || "/");
+      elements.previewTitle.textContent = page?.label || "";
+      elements.previewSummary.textContent = page?.summary || "";
+      elements.previewPath.textContent = path;
+      elements.previewOpen.href = path;
+    };
+
+    const updatePreviewSelection = () => {
+      const doc = previewDocument();
+      if (!doc) return;
+      doc.querySelectorAll("[data-admin-editable]").forEach((node) => {
+        const isSelected = node.getAttribute("data-admin-editable") === state.selectedFieldId;
+        const isImage = node.tagName === "IMG";
+        node.classList.toggle("admin-preview-editable--selected", isSelected);
+        if (isSelected && !isImage) {
+          node.setAttribute("contenteditable", "plaintext-only");
+          node.setAttribute("spellcheck", "false");
+          node.removeAttribute("tabindex");
+        } else if (isSelected && isImage) {
+          node.removeAttribute("contenteditable");
+          node.removeAttribute("spellcheck");
+          node.setAttribute("tabindex", "0");
+        } else {
+          node.removeAttribute("contenteditable");
+          node.removeAttribute("spellcheck");
+          node.removeAttribute("tabindex");
+        }
+      });
+    };
+
+    const focusSelectedPreviewNode = () => {
+      const node = nodesForField(state.selectedFieldId)[0];
+      if (!node) return;
+      updatePreviewSelection();
+      node.focus({ preventScroll: true });
+      node.scrollIntoView({ block: "center", inline: "nearest", behavior: "smooth" });
+      if (node.tagName === "IMG") return;
+
+      const doc = node.ownerDocument;
+      const selection = doc.defaultView?.getSelection();
+      if (!selection) return;
+      const range = doc.createRange();
+      range.selectNodeContents(node);
+      range.collapse(false);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    };
+
+    const selectField = (fieldId, options = {}) => {
+      state.selectedFieldId = fieldId;
+      renderInspector();
+      renderBlockList();
+      updatePreviewSelection();
+      if (options.focusPreview) focusSelectedPreviewNode();
+    };
+
+    const autoHash = (value) => {
+      let hash = 2166136261;
+      for (let index = 0; index < value.length; index += 1) {
+        hash ^= value.charCodeAt(index);
+        hash = Math.imul(hash, 16777619);
+      }
+      return (hash >>> 0).toString(36);
+    };
+
+    const nthOfTypeSegment = (node) => {
+      const tag = node.tagName.toLowerCase();
+      if (tag === "html" || tag === "body") return tag;
+      const siblings = Array.from(node.parentElement?.children || []).filter((sibling) => sibling.tagName === node.tagName);
+      if (siblings.length <= 1) return tag;
+      return `${tag}:nth-of-type(${siblings.indexOf(node) + 1})`;
+    };
+
+    const isUniqueSelector = (doc, selector, node) => {
+      const matches = safeQueryAll(doc, selector);
+      return matches.length === 1 && matches[0] === node;
+    };
+
+    const selectorForNode = (node) => {
+      const doc = node.ownerDocument || document;
+      const existingId = node.getAttribute("id");
+      if (existingId) {
+        const idSelector = `#${cssEscapeValue(existingId)}`;
+        if (isUniqueSelector(doc, idSelector, node)) return idSelector;
+      }
+
+      const segments = [];
+      let current = node;
+      while (current && current.nodeType === 1 && current !== doc.documentElement) {
+        segments.unshift(nthOfTypeSegment(current));
+        const selector = segments.join(" > ");
+        if (isUniqueSelector(doc, selector, node)) return selector;
+        current = current.parentElement;
+      }
+
+      if (current === doc.documentElement) segments.unshift("html");
+      return segments.join(" > ");
+    };
+
+    const tableCellLabel = (node, root) => {
+      const table = node.closest("table");
+      const tables = table ? Array.from(root.querySelectorAll("table")) : [];
+      const tableIndex = table ? tables.indexOf(table) + 1 : 1;
+      if (node.tagName === "CAPTION") return `表${tableIndex} キャプション`;
+      const row = node.closest("tr");
+      const rowIndex = table && row ? Array.from(table.rows).indexOf(row) + 1 : 1;
+      const cells = row ? Array.from(row.children).filter((child) => tableCellTags.has(child.tagName)) : [];
+      const cellIndex = cells.indexOf(node) + 1;
+      const kind = node.tagName === "TH" ? "見出し" : "セル";
+      return `表${tableIndex} ${kind} 行${rowIndex} 列${cellIndex || 1}`;
+    };
+
+    const hasVisibleText = (node) => {
+      const text = readTextFromNode(node);
+      if (!text || text.length > 1600) return false;
+      if (!/[^\s|｜・\-–—]/.test(text)) return false;
+      if (node.getClientRects && node.getClientRects().length === 0) return false;
+      return true;
+    };
+
+    const isEditableCandidate = (node, root) => {
+      if (!node || node.nodeType !== 1 || typeof node.matches !== "function") return false;
+      if (!node.matches(editableCandidateSelector)) return false;
+      if (node.closest(ignoredCandidateSelector)) return false;
+      if (!root.contains(node)) return false;
+      if (inlineCandidateTags.has(node.tagName)) {
+        const parentTextNode = node.parentElement?.closest(ancestorTextSelector);
+        if (parentTextNode && parentTextNode !== node && root.contains(parentTextNode)) return false;
+      }
+      if (!tableCellTags.has(node.tagName) && node.querySelector(nestedBlockSelector)) return false;
+      return hasVisibleText(node);
+    };
+
+    const labelForNode = (node, root, counters) => {
+      if (tableCellTags.has(node.tagName)) return tableCellLabel(node, root);
+      const base = tagLabels[node.tagName] || node.tagName.toLowerCase();
+      counters[base] = (counters[base] || 0) + 1;
+      return `${base} ${counters[base]}`;
+    };
+
+    const imageLabelForNode = (node, root, counters) => {
+      counters.画像 = (counters.画像 || 0) + 1;
+      const alt = normalizeImageAlt(node.getAttribute("alt") || "");
+      return alt ? `画像 ${counters.画像}: ${alt.slice(0, 32)}` : `画像 ${counters.画像}`;
+    };
+
+    const defaultImageForNode = (node) => {
+      const widthFromStyle = normalizeImageWidth(node.style.width || "");
+      const intrinsicWidth = normalizeImageWidth(node.getAttribute("width") ? `${node.getAttribute("width")}px` : "");
+      return {
+        src: normalizeImageSrc(node.getAttribute("src") || node.currentSrc || ""),
+        alt: normalizeImageAlt(node.getAttribute("alt") || ""),
+        width: widthFromStyle,
+        intrinsicWidth,
+        hidden: false,
+      };
+    };
+
+    const hasVisibleImage = (node) => {
+      if (!node || node.tagName !== "IMG") return false;
+      if (node.closest(ignoredImageAncestorSelector)) return false;
+      if (!normalizeImageSrc(node.getAttribute("src") || node.currentSrc || "")) return false;
+      if (node.getClientRects && node.getClientRects().length === 0) return false;
+      return true;
+    };
+
+    const knownFieldMapForPage = (page) => new Map((page?.fields || []).map((field) => [field.id, field]));
+
+    const collectEditableFields = (doc, page) => {
+      const root = doc.querySelector("main") || doc.body;
+      const knownFieldMap = knownFieldMapForPage(page);
+      const fields = [];
+      const selectors = {};
+      const seenIds = new Set();
+      const counters = {};
+      let tableCount = 0;
+      let capped = false;
+
+      safeQueryAll(doc, "[data-admin-editable]").forEach((node) => {
+        const id = node.getAttribute("data-admin-editable");
+        if (!id || seenIds.has(id)) return;
+        const known = knownFieldMap.get(id);
+        const selector = known?.selector || attrSelectorFor(id);
+        const isImage = node.tagName === "IMG" || known?.type === "image";
+        const defaultImage = isImage ? known?.defaultImage || defaultImageForNode(node) : undefined;
+        selectors[id] = selector;
+        seenIds.add(id);
+        fields.push({
+          id,
+          label: known?.label || (isImage ? imageLabelForNode(node, root, counters) : labelForNode(node, root, counters)),
+          type: known?.type || (isImage ? "image" : tableCellTags.has(node.tagName) ? "table-cell" : "auto"),
+          defaultValue: known?.defaultValue ?? (isImage ? defaultImage.src : readTextFromNode(node)),
+          rows: known?.rows || 4,
+          selector,
+          defaultImage,
+          kind: "explicit",
+        });
+      });
+
+      const candidates = Array.from(root.querySelectorAll(editableCandidateSelector));
+      for (const node of candidates) {
+        if (fields.length >= maxAutoFields) {
+          capped = true;
+          break;
+        }
+        const existingId = node.getAttribute("data-admin-editable");
+        if (existingId) continue;
+        if (!isEditableCandidate(node, root)) continue;
+        const selector = selectorForNode(node);
+        if (!selector || safeQueryAll(doc, selector).length !== 1) continue;
+        const id = `auto:${autoHash(`${normalizePath(page.path)}::${selector}`)}`;
+        if (seenIds.has(id)) continue;
+        const type = tableCellTags.has(node.tagName) ? "table-cell" : "auto";
+        if (type === "table-cell") tableCount += 1;
+        node.setAttribute("data-admin-editable", id);
+        node.setAttribute("data-admin-selector", selector);
+        selectors[id] = selector;
+        seenIds.add(id);
+        fields.push({
+          id,
+          label: labelForNode(node, root, counters),
+          type,
+          defaultValue: readTextFromNode(node),
+          rows: type === "table-cell" ? 3 : 4,
+          selector,
+          kind: node.tagName.toLowerCase(),
+        });
+      }
+
+      const imageCandidates = Array.from(root.querySelectorAll("img"));
+      for (const node of imageCandidates) {
+        if (fields.length >= maxAutoFields) {
+          capped = true;
+          break;
+        }
+        const existingId = node.getAttribute("data-admin-editable");
+        if (existingId) continue;
+        if (!root.contains(node) || !hasVisibleImage(node)) continue;
+        const selector = selectorForNode(node);
+        if (!selector || safeQueryAll(doc, selector).length !== 1) continue;
+        const id = `image:${autoHash(`${normalizePath(page.path)}::${selector}`)}`;
+        if (seenIds.has(id)) continue;
+        const defaultImage = defaultImageForNode(node);
+        node.setAttribute("data-admin-editable", id);
+        node.setAttribute("data-admin-selector", selector);
+        selectors[id] = selector;
+        seenIds.add(id);
+        fields.push({
+          id,
+          label: imageLabelForNode(node, root, counters),
+          type: "image",
+          defaultValue: defaultImage.src,
+          rows: 1,
+          selector,
+          defaultImage,
+          kind: "img",
+        });
+      }
+
+      return { fields, selectors, tableCount, capped };
+    };
+
+    const removeLegacyIntrinsicImageWidths = (imageValues, fields) => {
+      const clean = { ...imageValues };
+      fields.forEach((field) => {
+        if (field.type !== "image") return;
+        const image = clean[field.id];
+        const intrinsicWidth = normalizeImageWidth(field.defaultImage?.intrinsicWidth || "");
+        if (!image?.width || !intrinsicWidth || field.defaultImage?.width || image.width !== intrinsicWidth) return;
+        const nextImage = { ...image };
+        delete nextImage.width;
+        if (Object.keys(nextImage).length) {
+          clean[field.id] = nextImage;
+        } else {
+          delete clean[field.id];
+        }
+      });
+      return clean;
+    };
+
+    const mergeDiscoveredFields = (discovered) => {
+      const previousSelected = state.selectedFieldId;
+      const currentValues = state.fieldValues;
+      const currentImageValues = state.imageValues;
+      const currentSelectors = state.selectors;
+      const nextFields = [];
+      const seen = new Set();
+
+      [...(selectedPage()?.fields || []), ...discovered.fields].forEach((field) => {
+        if (!field || seen.has(field.id)) return;
+        seen.add(field.id);
+        nextFields.push(field);
+      });
+
+      state.fieldCatalog = nextFields;
+      state.selectors = {
+        ...Object.fromEntries(nextFields.filter((field) => field.selector).map((field) => [field.id, field.selector])),
+        ...currentSelectors,
+        ...discovered.selectors,
+      };
+      state.fieldValues = {
+        ...defaultFieldValues(nextFields),
+        ...currentValues,
+      };
+      state.imageValues = removeLegacyIntrinsicImageWidths(cleanImageMap(currentImageValues, seen), nextFields);
+      state.discoveryCapped = Boolean(discovered.capped);
+      if (!state.selectedFieldId || !seen.has(previousSelected)) state.selectedFieldId = nextFields[0]?.id || "";
+      renderBlockList();
+      renderInspector();
+    };
+
+    const injectPreviewEditorStyles = (doc) => {
+      if (doc.getElementById("admin-preview-editor-style")) return;
+      const style = doc.createElement("style");
+      style.id = "admin-preview-editor-style";
+      style.textContent = `
+        [data-admin-editable] {
+          cursor: text !important;
+          outline: 1px dashed rgba(15, 105, 72, 0.32);
+          outline-offset: 4px;
+          transition: outline-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+        }
+        [data-admin-editable]:hover {
+          outline-color: rgba(15, 105, 72, 0.72);
+          box-shadow: 0 0 0 4px rgba(15, 105, 72, 0.08);
+        }
+        [data-admin-editable][data-admin-selector] {
+          outline-color: rgba(34, 94, 157, 0.3);
+        }
+        img[data-admin-editable] {
+          cursor: pointer !important;
+        }
+        img.admin-preview-image-hidden {
+          opacity: 0.22;
+          filter: grayscale(1);
+        }
+        th[data-admin-editable],
+        td[data-admin-editable],
+        caption[data-admin-editable] {
+          outline-offset: -3px;
+        }
+        .admin-preview-editable--selected {
+          outline: 3px solid #d4af37 !important;
+          outline-offset: 5px;
+          box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.18) !important;
+        }
+        th.admin-preview-editable--selected,
+        td.admin-preview-editable--selected {
+          outline-offset: -5px;
+        }
+      `;
+      doc.head.appendChild(style);
+    };
+
+    const wirePreview = () => {
+      const doc = previewDocument();
+      const page = selectedPage();
+      if (!doc || !page) return;
+      injectPreviewEditorStyles(doc);
+      const discovered = collectEditableFields(doc, page);
+      mergeDiscoveredFields(discovered);
+      const nodes = Array.from(doc.querySelectorAll("[data-admin-editable]"));
+
+      nodes.forEach((node) => {
+        if (node.dataset.adminEditorWired === "true") return;
+        node.dataset.adminEditorWired = "true";
+        node.addEventListener(
+          "click",
+          (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            const fieldId = node.getAttribute("data-admin-editable");
+          if (fieldId) selectField(fieldId, { focusPreview: true });
+          },
+          true,
+        );
+
+        if (node.tagName === "IMG") {
+          node.addEventListener("load", () => {
+            if (node.getAttribute("data-admin-editable") === state.selectedFieldId) syncImageControls(selectedField());
+          });
+          return;
+        }
+
+        node.addEventListener("input", () => {
+          const fieldId = node.getAttribute("data-admin-editable");
+          if (!fieldId) return;
+          const value = readTextFromNode(node);
+          state.fieldValues[fieldId] = value;
+          if (state.selectedFieldId === fieldId) elements.selectedContent.value = value;
+          scheduleLocalSave();
+          renderBlockList();
+        });
+
+        node.addEventListener("paste", (event) => {
+          event.preventDefault();
+          const text = event.clipboardData?.getData("text/plain") || "";
+          doc.execCommand("insertText", false, text);
+        });
+      });
+
+      applyAllToPreview();
+      const tableCount = state.fieldCatalog.filter((field) => field.type === "table-cell").length;
+      const imageCount = state.fieldCatalog.filter((field) => field.type === "image").length;
+      const cappedNote = state.discoveryCapped ? " 上限件数まで表示しています。" : "";
+      setStatus("Preview ready", `${nodes.length}個のブロックを直接編集できます。表セルは${tableCount}件、画像は${imageCount}件です。${cappedNote}`);
+    };
+
+    const refreshPreview = (options = {}) => {
+      const page = selectedPage();
+      if (!page) return;
+      if (options.saveBeforeReload && state.currentPageId === page.id) flushPendingSave(page);
+      state.previewStamp += 1;
+      const path = normalizePath(page.path);
+      const separator = path.includes("?") ? "&" : "?";
+      elements.frame.src = `${path}${separator}admin_preview=${Date.now()}-${state.previewStamp}`;
+      updatePreviewMeta();
+      setStatus("Loading preview", "編集プレビューを読み込んでいます。");
+    };
+
+    const loadPage = (pageId) => {
+      const page = pageById(pageId) || pagesForKind()[0] || editablePages[0];
+      if (!page) return;
+      const previousPage = pageById(state.currentPageId);
+      if (previousPage && previousPage.id !== page.id) flushPendingSave(previousPage);
+      const overrides = readPageOverrides();
+      const localOverride = overrides[normalizePath(page.path)] || {};
+      state.currentKind = pageKind(page);
+      syncKindControls();
+      renderPageOptions(page.id);
+      elements.page.value = page.id;
+      state.currentPageId = page.id;
+      state.fieldCatalog = page.fields || [];
+      state.fieldValues = {
+        ...defaultFieldValues(state.fieldCatalog),
+        ...(localOverride.fields || {}),
+      };
+      state.imageValues = cleanImageMap(localOverride.images || {});
+      state.styleValues = cleanStyleMap(localOverride.styles || {});
+      state.selectors = {
+        ...Object.fromEntries(state.fieldCatalog.filter((field) => field.selector).map((field) => [field.id, field.selector])),
+        ...cleanSelectorMap(localOverride.selectors || {}),
+      };
+      state.discoveryCapped = false;
+      state.selectedFieldId = state.fieldCatalog[0]?.id || "";
+      renderBlockList();
+      renderInspector();
+      updatePreviewMeta();
+      refreshPreview();
+      loadGitOverrideForPage(page);
+    };
+
+    const saveLocal = () => {
+      const override = persistLocalOverride("editing");
+      if (!override) return;
+      applyAllToPreview();
+      renderBlockList();
+      setDraftState("保存済み");
+      setStatus("Local saved", `${override.label} の編集内容をローカル保存しました。`);
+    };
+
+    const publishOverride = async () => {
+      const override = persistLocalOverride("published");
+      if (!override) return;
+      setDraftState("反映中");
+      applyAllToPreview();
+
+      let lastError = null;
+      const endpoints = [
+        ...(state.localAdminApiBase ? [`${state.localAdminApiBase}/api/content-overrides`] : []),
+        "/admin/api/content-overrides",
+        "/api/content-overrides",
+      ];
+      for (const endpoint of endpoints) {
+        try {
+          const response = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(override),
+          });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          if (state.localAdminApiBase && endpoint.startsWith(state.localAdminApiBase)) await refreshGitStatus();
+          setDraftState("反映済み");
+          setStatus("API published", "サーバー側の文言・スタイル上書きにも保存しました。");
+          return;
+        } catch (error) {
+          lastError = error;
+        }
+      }
+
+      console.info("Content override API is not available; kept local override only.", lastError);
+      setDraftState("ローカル反映");
+      setStatus("Local applied", "API保存は未完了です。このブラウザでは編集内容が反映されています。");
+    };
+
+    const updateSelectedImage = () => {
+      const field = selectedField();
+      if (!field || field.type !== "image") return;
+      const shouldPersistWidth = elements.imageWidth.dataset.measured !== "true";
+      const width =
+        shouldPersistWidth && elements.imageWidth.value
+          ? normalizeImageWidth(`${elements.imageWidth.value}${elements.imageWidthUnit.value}`)
+          : "";
+      const nextImageInput = {
+        src: elements.imageSrc.value,
+        alt: elements.imageAlt.value,
+        hidden: elements.imageHidden.checked,
+      };
+      if (shouldPersistWidth) nextImageInput.width = width;
+      const nextImage = normalizeImageValue({
+        ...nextImageInput,
+      });
+      if (Object.keys(nextImage).length) {
+        state.imageValues[field.id] = nextImage;
+      } else {
+        delete state.imageValues[field.id];
+      }
+      applyImageToPreview(field);
+      const image = mergedImageValue(field);
+      elements.imagePreview.src = image.src || "";
+      elements.imagePreview.alt = image.alt || "";
+      elements.imagePreview.hidden = !image.src;
+      elements.imagePreview.classList.toggle("is-hidden-image", Boolean(image.hidden));
+      scheduleLocalSave();
+      renderBlockList();
+    };
+
+    const resetSelectedImage = () => {
+      const field = selectedField();
+      if (!field || field.type !== "image") return;
+      delete state.imageValues[field.id];
+      applyImageToPreview(field);
+      syncImageControls(field);
+      scheduleLocalSave();
+      renderBlockList();
+    };
+
+    const resetSelectedText = () => {
+      const field = selectedField();
+      if (!field || field.type === "image") return;
+      state.fieldValues[field.id] = field.defaultValue || "";
+      elements.selectedContent.value = field.defaultValue || "";
+      applyTextToPreview(field.id, field.defaultValue || "");
+      scheduleLocalSave();
+      renderBlockList();
+    };
+
+    const resetSelectedStyle = () => {
+      if (!state.selectedFieldId) return;
+      delete state.styleValues[state.selectedFieldId];
+      syncStyleControls();
+      applyStyleToPreview(state.selectedFieldId);
+      scheduleLocalSave();
+      renderBlockList();
+    };
+
+    const downloadJson = () => {
+      const payload = currentOverride("editing");
+      if (!payload) return;
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${payload.id}-content-override.json`;
+      link.click();
+      URL.revokeObjectURL(url);
+    };
+
+    elements.pageFilter.addEventListener("input", () => {
+      const previousId = elements.page.value;
+      const nextPage = renderPageOptions(previousId);
+      if (nextPage && nextPage.id !== previousId) loadPage(nextPage.id);
+    });
+    elements.kindButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const nextKind = normalizePageKind(button.dataset.editorKind);
+        if (nextKind === state.currentKind) return;
+        state.currentKind = nextKind;
+        elements.pageFilter.value = "";
+        syncKindControls();
+        const nextPage = renderPageOptions("");
+        if (nextPage) loadPage(nextPage.id);
+      });
+    });
+    elements.page.addEventListener("change", () => loadPage(elements.page.value));
+    elements.frame.addEventListener("load", wirePreview);
+    elements.selectedContent.addEventListener("input", () => {
+      const field = selectedField();
+      if (!state.selectedFieldId || field?.type === "image") return;
+      state.fieldValues[state.selectedFieldId] = elements.selectedContent.value;
+      applyTextToPreview(state.selectedFieldId, elements.selectedContent.value);
+      scheduleLocalSave();
+      renderBlockList();
+    });
+
+    [elements.imageSrc, elements.imageAlt].forEach((control) => {
+      control.addEventListener("input", updateSelectedImage);
+    });
+    elements.imageWidth.addEventListener("input", () => {
+      elements.imageWidth.dataset.measured = "";
+      updateSelectedImage();
+    });
+    elements.imageWidthUnit.addEventListener("change", () => {
+      elements.imageWidth.dataset.measured = "";
+      updateSelectedImage();
+    });
+    elements.imageHidden.addEventListener("change", updateSelectedImage);
+
+    document.querySelectorAll("[data-style-key]").forEach((control) => {
+      control.addEventListener("input", () => {
+        if (!state.selectedFieldId) return;
+        updateFieldStyle(state.selectedFieldId, control.dataset.styleKey, control.value);
+        applyStyleToPreview(state.selectedFieldId);
+        scheduleLocalSave();
+        renderBlockList();
+      });
+      control.addEventListener("change", () => {
+        if (!state.selectedFieldId) return;
+        updateFieldStyle(state.selectedFieldId, control.dataset.styleKey, control.value);
+        syncStyleControls();
+        applyStyleToPreview(state.selectedFieldId);
+        scheduleLocalSave();
+        renderBlockList();
+      });
+    });
+
+    document.querySelectorAll("[data-preview-size]").forEach((button) => {
+      button.addEventListener("click", () => {
+        state.previewDevice = button.dataset.previewSize || "desktop";
+        state.previewWidth = previewPreset(state.previewDevice).width;
+        applyPreviewViewport();
+      });
+    });
+
+    document.querySelectorAll("[data-preview-width-step]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const preset = previewPreset();
+        const direction = Number(button.dataset.previewWidthStep || 0);
+        state.previewWidth = normalizePreviewWidth(state.previewWidth + direction * preset.step);
+        applyPreviewViewport();
+      });
+    });
+
+    const updatePreviewWidthFromInput = ({ commit = false } = {}) => {
+      const rawValue = String(elements.previewWidth.value || "").trim();
+      const numericValue = Number(rawValue);
+      const preset = previewPreset();
+      if (!rawValue || !Number.isFinite(numericValue)) {
+        if (commit) applyPreviewViewport();
+        return;
+      }
+      if (!commit && (numericValue < preset.min || numericValue > preset.max)) return;
+      state.previewWidth = normalizePreviewWidth(numericValue);
+      applyPreviewViewport();
+    };
+
+    elements.previewWidth.addEventListener("input", () => updatePreviewWidthFromInput());
+    elements.previewWidth.addEventListener("change", () => updatePreviewWidthFromInput({ commit: true }));
+
+    elements.previewWidth.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") elements.previewWidth.blur();
+    });
+
+    elements.previewZoomOut.addEventListener("click", () => {
+      state.previewZoom = normalizePreviewZoom(state.previewZoom - 0.1);
+      applyPreviewViewport();
+    });
+
+    elements.previewZoomIn.addEventListener("click", () => {
+      state.previewZoom = normalizePreviewZoom(state.previewZoom + 0.1);
+      applyPreviewViewport();
+    });
+
+    elements.previewZoomReset.addEventListener("click", () => {
+      state.previewZoom = 1;
+      applyPreviewViewport();
+    });
+
+    getElement("admin-editor-save-local").addEventListener("click", saveLocal);
+    getElement("admin-editor-publish").addEventListener("click", publishOverride);
+    getElement("admin-editor-refresh-preview").addEventListener("click", () => refreshPreview({ saveBeforeReload: true }));
+    elements.gitRefresh.addEventListener("click", refreshGitStatus);
+    elements.gitFetch.addEventListener("click", () => runGitAction("fetch-staging", "staging取得"));
+    elements.gitPull.addEventListener("click", () => runGitAction("pull-staging", "staging反映"));
+    elements.gitCommit.addEventListener("click", () => runGitAction("commit-overrides", "編集コミット"));
+    elements.gitPush.addEventListener("click", () => runGitAction("push-staging", "staging push"));
+    getElement("admin-reset-text").addEventListener("click", resetSelectedText);
+    getElement("admin-reset-image").addEventListener("click", resetSelectedImage);
+    getElement("admin-reset-style").addEventListener("click", resetSelectedStyle);
+    getElement("admin-editor-export").addEventListener("click", downloadJson);
+
+    state.currentKind = pagesForKind("fixed-page").length ? "fixed-page" : pageKind(editablePages[0]);
+    renderGitStatus();
+    detectLocalAdminApi();
+    applyPreviewViewport();
+    syncKindControls();
+    const initialPage = renderPageOptions(editablePages.find((page) => pageKind(page) === state.currentKind)?.id);
+    loadPage(initialPage?.id);
+  </script>
+</AdminLayout>

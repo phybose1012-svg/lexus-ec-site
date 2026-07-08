@@ -43,7 +43,8 @@ const otherCourses = [
           <p class="course-title-card__lead">自分のレベルに合った演習ベースのカリキュラムで倍速学習をするコースです。</p>
         </div>
         <div class="course-detail-hero__actions course-detail-hero__actions--custom-made">
-          <a class="button button--red" href="/reservation/">個別相談はコチラ</a>
+          <a class="button button--red" href="/test-entry/">体験授業はコチラ</a>
+          <a class="button button--blue" href="/reservation/">個別相談はコチラ</a>
         </div>
       </div>
     </section>
@@ -68,8 +69,8 @@ const otherCourses = [
       <div class="content course-detail-hero__grid">
         <div>
           <img class="course-detail-logo-strip" src={images.logoStrip} alt="ロゴ" width="800" height="58" decoding="async" />
-          <h1>授業は最小限に<br />演習中心の学習で急成長コース</h1>
-          <h4>オーダーメード演習 コース</h4>
+          <h2 class="course-detail-subhero-title">授業は最小限に<br />演習中心の学習で急成長コース</h2>
+          <p class="course-detail-course-name">オーダーメード演習 コース</p>
           <p>Custom-made Course</p>
         </div>
         <img src={images.mascot} alt="" width="670" height="670" decoding="async" />
@@ -111,7 +112,7 @@ const otherCourses = [
         <div class="course-detail-plan-grid">
           {plans.map((plan) => (
             <article>
-              {plan.heading === "h2" ? <h2>{plan.title}</h2> : <h4>{plan.title}</h4>}
+              <h3>{plan.title}</h3>
               <ul>{plan.rows.map((row) => <li>{row}</li>)}</ul>
             </article>
           ))}

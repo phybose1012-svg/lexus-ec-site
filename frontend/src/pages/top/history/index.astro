@@ -7,6 +7,7 @@ const description =
   "レクサス教育センター - 創立から30年の沿革 - 1989年：レクサスの前身が誕生。私、島内が学生の時、知人に「息子の勉強を見てやって欲しい」と頼まれて家庭教師のアルバイトを始めた。運良く、そのご子息の大学進学が決まったところで、「ーーさんの娘さんも見てやってよ」と頼まれ、その依頼も受けることにした。";
 
 const images = {
+  logoStrip: "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png",
   representative: "/assets/legacy/wp-content/uploads/2025/02/島内T-e1725539542904.jpg",
   classScene: "/assets/legacy/wp-content/uploads/2024/11/IMG_1216-1024x685.jpg",
   oldResults: "/assets/legacy/wp-content/uploads/2024/11/IMG_1218-e1732074849531-748x1024.png",
@@ -212,8 +213,10 @@ const timeline = [
   <main class="history-page">
     <section class="history-hero">
       <div class="content history-hero__inner">
-        <p class="history-hero__label">HISTORY</p>
-        <h1>医学部予備校として躍進し続けた軌跡</h1>
+        <img class="page-head__strip" src={images.logoStrip} alt="" width="800" height="58" decoding="async" />
+        <p class="history-hero__label page-head__label">HISTORY</p>
+        <h1 class="page-head__title">医学部予備校として躍進し続けた軌跡</h1>
+        <span class="page-head__rule" aria-hidden="true"></span>
         <p class="history-hero__anniversary">おかげさまで<br />レクサスは<br /><strong>35周年を迎えます。</strong></p>
         <div class="history-button-row">
           {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}

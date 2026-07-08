@@ -3,8 +3,9 @@
 作成日: 2026-06-24  
 更新日: 2026-06-25
 
-対象: LEXUS 教育センター Astro 静的サイトを Cloudflare Pages に公開するための案内書。  
-この文書は実行手順の整理であり、本番 Pages デプロイ、Pages custom domain 切り替え、環境変数登録、外部サービス作成はまだ行っていない。
+対象: LEXUS 教育センター Astro 静的サイトを Cloudflare Pages に公開し、ローカル / staging / production の三段構えで運用するための案内書。
+
+この文書は実行手順と判断材料の整理である。production custom domain 切り替え、DNS 変更、外部サービス作成、API キー発行、環境変数追加は、ユーザー確認後に行う。
 
 ## 現状サマリー
 
@@ -13,260 +14,192 @@
 | プロジェクトルート | `C:\---hp` |
 | フロントエンド | `C:\---hp\frontend` |
 | GitHub repository | `https://github.com/phybose1012-svg/lexus-ec-site.git` |
-| Git branch | `main` = production, `staging` = 社長確認用 preview |
-| Framework | Astro 5 系の static site |
-| Astro output | `output: "static"` |
-| Astro site | `https://lexus-ec.com` |
-| ローカル開発 URL | `http://127.0.0.1:4321/` |
-| ローカル build command | `npm.cmd run build` |
-| Cloudflare Pages build command | `npm run build` |
-| build output | `frontend/dist` |
-| Cloudflare Pages 上の output directory | `dist`。`Root directory` を `frontend` にするため |
-| build 確認 | 2026-06-25 に `npm.cmd run build` 成功。Astro check は 0 errors / 0 warnings、564 pages built |
-| Cloudflare DNS | `lexus-ec.com` zone active。nameserver は `brad.ns.cloudflare.com`, `dee.ns.cloudflare.com` |
-| Cloudflare Pages project | 未作成 |
-| フォーム送信 endpoint | `PUBLIC_FORM_ENDPOINT` 未設定時は `/form-submit/` 表示だが、`data-local-form="pending"` により送信は保留表示で止まる |
-| Pages Functions | 未実装 |
-| `_headers` / `_redirects` | 未作成 |
-| `robots.txt` / `sitemap.xml` | 未作成 |
-| custom 404 | 未作成 |
-
-注意: Cloudflare Pages の build 環境は Linux なので、Windows 専用の `npm.cmd run build` は使わない。Cloudflare dashboard には `npm run build` を設定する。
-
-補足: `Root directory` を空欄のままリポジトリルートで build する構成も可能だが、その場合は build command や output directory を `frontend` 前提に調整する必要がある。誤設定を避けるため、このプロジェクトでは `Root directory=frontend` を推奨する。
+| Branch | `staging` = 社長確認用、`main` = 本番 |
+| Framework | Astro static site |
+| Local dev URL | `http://127.0.0.1:4321/` |
+| Local build command | `npm.cmd run build` |
+| Cloudflare Pages project | `lexus-ec` |
+| Staging URL | `https://staging.lexus-ec.pages.dev/` |
+| Production URL | `https://lexus-ec.com/` 予定。まだ Pages へ切り替えていない |
+| Cloudflare DNS | `lexus-ec.com` は Cloudflare 管理中 |
+| Nameserver | `brad.ns.cloudflare.com`, `dee.ns.cloudflare.com` |
+| 既存アプリ用 DNS | `front2026`, `bento-request`, `front2026.prt`, `ocean-5` は復旧済み。Base44 / Render 系は DNS only |
+| GA4 | 既存 Measurement ID `G-3VC4WYYD01` を使用 |
+| GA4 の発火条件 | Cloudflare Pages の `main` branch のみ。staging / local では発火しない |
+| robots / sitemap | 実装済み。staging で `robots.txt` と `sitemap.xml` の返却を確認済み |
+| Staging の検索除外 | `x-robots-tag: noindex` を確認済み |
+| フォーム送信 | Pages Functions の受け口は実装済み。外部送信先と環境変数は未設定 |
 
 ## Cloudflare Pages 推奨設定
 
-| Cloudflare 画面項目 | 推奨値 | 補足 |
+| Cloudflare 画面項目 | 設定値 | 状態 |
 |---|---|---|
-| Project name | `lexus-ec` | `lexus-ec.pages.dev` を取りたい。使用済みなら `lexus-ec-frontend` などに変更 |
-| Production branch | `main` | GitHub へ push 済み |
-| Framework preset | `Astro` | Cloudflare 公式の Astro preset は `npm run build` / `dist` |
-| Root directory | `frontend` | monorepo 形なので、Pages の root を Astro プロジェクトに合わせる |
-| Build command | `npm run build` | Cloudflare 用。ローカル Windows では `npm.cmd run build` |
-| Build output directory | `dist` | `frontend/dist` ではなく、root directory からの相対パス |
-| Build system / image | v3 推奨 | 2026-06 時点の Pages build image v3 は Node.js 22.16.0 が既定 |
-| Node.js version | `NODE_VERSION=22.16.0` | 既定に任せても動くが、初回公開では固定推奨 |
-| Install command | 空欄または既定 | `package-lock.json` があるため通常は npm install 系が自動で走る想定 |
-| Environment variables: 初回静的公開 | `NODE_VERSION=22.16.0` のみ | フォームをまだ送信しない場合。フォームは保留メッセージになる |
-| Environment variables: フォーム有効化時 | `NODE_VERSION=22.16.0`, `PUBLIC_FORM_ENDPOINT=/form-submit/` | `PUBLIC_FORM_ENDPOINT` を入れないと pending script が送信を止める |
+| Project name | `lexus-ec` | 設定済み |
+| Production branch | `main` | 設定済み |
+| Framework preset | `Astro` | 設定済み |
+| Root directory | `frontend` | 設定済み |
+| Build command | `npm run build` | 設定済み |
+| Build output directory | `dist` | 設定済み |
+| Build system version | Version 3 | 設定済み |
+| Node.js version | Cloudflare 既定で `22.16.0` を確認 | build log で確認済み |
+| Auto deploy | 有効 | `staging` push で preview deploy |
+| Deploy hooks | `manual-main`, `manual-staging` | 作成済み。URL は公開管理しない |
 
-Cloudflare 公式ドキュメント確認日: 2026-06-25
+Cloudflare の Variables & Secrets:
 
-- Astro guide: https://developers.cloudflare.com/pages/framework-guides/deploy-an-astro-site/
-- Build configuration: https://developers.cloudflare.com/pages/configuration/build-configuration/
-- Build image: https://developers.cloudflare.com/pages/configuration/build-image/
-- Custom domains: https://developers.cloudflare.com/pages/configuration/custom-domains/
-- Preview deployments: https://developers.cloudflare.com/pages/configuration/preview-deployments/
-- Branch deployment controls: https://developers.cloudflare.com/pages/configuration/branch-build-controls/
-- Add a custom domain to a branch: https://developers.cloudflare.com/pages/how-to/custom-branch-aliases/
-- Redirects: https://developers.cloudflare.com/pages/configuration/redirects/
-- Headers: https://developers.cloudflare.com/pages/configuration/headers/
-- Pages Functions: https://developers.cloudflare.com/pages/functions/
-- Functions bindings / variables / secrets: https://developers.cloudflare.com/pages/functions/bindings/
-- Cloudflare Access self-hosted apps: https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/self-hosted-public-app/
-
-## 三段構えの推奨運用
-
-可能。構成は「ローカル開発 → 限定公開の社内確認環境 → 本番」の 3 段にする。
-
-| 段階 | 目的 | 推奨 URL | 更新方法 | 閲覧制限 |
-|---|---|---|---|---|
-| Local | 実装・一次確認 | `http://127.0.0.1:4321/` | `npm.cmd run dev` | この PC のみ |
-| Staging / 社長確認 | 本番に近い限定公開確認 | `staging.lexus-ec.com` または `staging.lexus-ec.pages.dev` | `staging` branch に push | Cloudflare Access でメール認証 |
-| Production | 一般公開 | `https://lexus-ec.com/` | `main` branch に merge / push | 公開 |
-
-### 推奨ブランチ
-
-| Branch | 役割 | Cloudflare Pages environment |
-|---|---|---|
-| `work/*` または任意の作業 branch | Codex / ローカル作業 | Preview を自動生成するかは任意 |
-| `staging` | 社長確認用の固定 preview | Preview |
-| `main` | 本番 | Production |
-
-### 推奨構成 A: 1 つの Pages project で運用
-
-最初の候補。Cloudflare Pages の production branch を `main`、preview branch を `staging` にする。
-
-流れ:
-
-1. ローカルで `npm.cmd run build` まで確認する。
-2. 作業内容を `staging` branch に入れる。
-3. Cloudflare Pages が preview deployment を作る。
-4. 社長は `staging.<project>.pages.dev`、または branch custom domain の `staging.lexus-ec.com` を見る。
-5. OK が出たら `staging` から `main` に merge して production deploy。
-
-利点:
-
-- Pages project が 1 つで済む。
-- build 設定が本番と staging で揃いやすい。
-- Cloudflare Pages は branch alias を作るため、`staging.<project>.pages.dev` を固定確認 URL として使える。
-
-注意:
-
-- Cloudflare Pages の preview access policy は preview deployment を保護できるが、`*.pages.dev` 本体や custom domain まで同時に保護する場合は Cloudflare Access の設定範囲を別途確認する。
-- `staging.lexus-ec.com` のような custom domain を branch に割り当てる場合、Cloudflare の proxied DNS record が必要。外部 DNS または unproxied record では production branch に向く可能性がある。
-
-### 推奨構成 B: Staging と Production を別 Pages project に分ける
-
-権限や事故防止を強くしたい場合の候補。
-
-| Project | URL | branch | 用途 |
+| Name | 値 | 用途 | 状態 |
 |---|---|---|---|
-| `lexus-ec-staging` | `staging.lexus-ec.com` | `staging` | 社長確認 |
-| `lexus-ec` | `lexus-ec.com` | `main` | 本番 |
+| `PUBLIC_GA_MEASUREMENT_ID` | `G-3VC4WYYD01` | GA4 Measurement ID | 設定済み |
+| `PUBLIC_ANALYTICS_BRANCH` | 未設定 | GA を発火する branch。未設定時は `main` | 任意 |
+| `PUBLIC_ANALYTICS_HOSTNAMES` | 未設定 | GA を許可する hostname。未設定時は `lexus-ec.com,www.lexus-ec.com` | 任意 |
+| `PUBLIC_FORM_ENDPOINT` | 未設定 | フォーム送信 endpoint。設定値は `/form-submit` | 外部送信先設定後に追加 |
 
-利点:
+直近の Cloudflare 画面では `Value=22.16.0` という不要な環境変数が見えていた。これは Node.js version 固定には使われない。build は Cloudflare 既定の Node.js 22.16.0 で成功しているため緊急対応は不要だが、後で削除してよい。
 
-- staging と production の環境変数、Functions、Access policy を分離できる。
-- 本番 custom domain への誤反映リスクを下げられる。
+## 三段構えの運用
 
-注意:
+| 段階 | URL | 用途 | 更新方法 | 検索エンジン |
+|---|---|---|---|---|
+| Local | `http://127.0.0.1:4321/` | 制作・一次確認 | ローカル作業 | 公開されない |
+| Staging | `https://staging.lexus-ec.pages.dev/` | 社長確認・本番前確認 | `staging` branch へ push | `noindex`。URL を知っている人だけが閲覧 |
+| Production | `https://lexus-ec.com/` | 一般公開 | `main` branch へ merge / push | index 対象 |
 
-- Pages project が 2 つになり、設定の同期管理が必要。
-- staging と production の build command / output directory / Node.js version を必ず同じにする。
-
-### このプロジェクトでの暫定推奨
-
-初期は構成 A を推奨する。
-
-```text
-Local:      http://127.0.0.1:4321/
-Staging:    staging.lexus-ec.com
-Production: https://lexus-ec.com/
-```
-
-理由:
-
-- 現状は Astro static site で、staging / production の差分が少ない。
-- Cloudflare Pages の preview branch と branch alias が用途に合う。
-- 社長確認 URL は固定した方が運用しやすい。
-
-本番操作前の確認事項:
-
-1. `staging.lexus-ec.com` を使ってよいか。
-2. 社長確認環境は Cloudflare Access のメール認証でよいか。
-3. 許可するメールアドレス。例: 社長、担当者、制作チーム。
-4. staging でもフォーム送信を実送信するか、送信先をテスト用に分けるか。
-5. production 反映は `staging` → `main` merge を承認制にするか。
+Staging は Cloudflare Access のメールコード認証を外し、URL を知っている人のみが見られる状態にした。検索対策として、Cloudflare 側で `x-robots-tag: noindex` が返ることを確認済み。
 
 ## 初回デプロイ手順
 
-1. GitHub repository `phybose1012-svg/lexus-ec-site` と production branch `main` は確定済み。
-2. Cloudflare dashboard で `Workers & Pages` → `Create application` → `Pages` → `Connect to Git` を選ぶ。
-3. 対象リポジトリを選び、上記の Pages 推奨設定を入力する。
-4. 初回はフォーム backend を未実装のまま静的公開するなら、`PUBLIC_FORM_ENDPOINT` は設定しない。
-5. フォームも同時に有効化するなら、先に `frontend/functions/form-submit.ts` などの Pages Function を実装し、`PUBLIC_FORM_ENDPOINT=/form-submit/` を production / preview 両方に設定する。
-6. `Save and Deploy` を押す前に、設定値をユーザー確認する。
-7. Preview URL または `*.pages.dev` で主要ページを確認する。
-8. 問題がなければ custom domain 設定に進む。
+すでに `staging` までは進行済み。
+
+1. ローカルで `npm.cmd run build` を実行する。
+2. 成功した変更だけを `staging` branch に反映する。
+3. Cloudflare Pages の `staging` preview deploy を待つ。
+4. `https://staging.lexus-ec.pages.dev/` で主要ページを確認する。
+5. 社長確認で OK が出たら、`staging` を `main` に merge / push する。
+6. production deploy が成功したことを確認する。
+7. production custom domain の切り替えは、DNS 変更前チェック後に実施する。
+
+本番反映は `main` への反映がトリガーになる。production custom domain の DNS 切り替えはまだ実行しない。
 
 ## カスタムドメイン設定手順
 
-対象候補:
+対象:
 
-| Domain | 用途 | 推奨 |
+| Domain | 用途 | 方針 |
 |---|---|---|
-| `lexus-ec.com` | 本番 apex domain | primary |
-| `www.lexus-ec.com` | www alias | apex へ 301 redirect するか、同じ Pages project に割り当てる。要確認 |
+| `lexus-ec.com` | 本番 apex | Cloudflare Pages production に割り当て予定 |
+| `www.lexus-ec.com` | www alias | apex へ 301 redirect、または Pages に同時割り当て。要確認 |
 
 手順:
 
-1. Cloudflare dashboard で対象 Pages project を開く。
-2. `Custom domains` → `Set up a domain` を選ぶ。
-3. `lexus-ec.com` を追加する。
-4. `www.lexus-ec.com` も使う場合は別途追加する。
-5. 証明書発行と domain active を待つ。
-6. `*.pages.dev` のアクセスをどう扱うか決める。公開後は custom domain へ redirect する方針が望ましい。
-
-注意:
-
-- apex domain を Pages に向ける場合、Cloudflare docs では domain を Cloudflare zone として扱い、nameserver を Cloudflare に向ける手順が前提。
-- subdomain のみなら外部 DNS でも CNAME で運用できるが、apex `lexus-ec.com` は DNS provider 側の制約を確認する。
-- CAA record がある場合、Cloudflare の証明書発行が失敗することがあるため要確認。
+1. Cloudflare Pages project `lexus-ec` を開く。
+2. `カスタム ドメイン` で `lexus-ec.com` を追加する。
+3. 必要なら `www.lexus-ec.com` も追加する。
+4. Cloudflare が提示する DNS / 証明書状態を確認する。
+5. 既存 A record を Pages 向けに切り替える前に、メール系と既存アプリ系 DNS が維持されていることを確認する。
+6. ユーザー承認後に切り替える。
 
 ## DNS 切り替え手順
 
-実行前に必ず現在の DNS / 既存 WordPress / メール関連 record を棚卸しする。
+現在の `lexus-ec.com` zone では、ホームページ以外のアプリも同じドメイン配下にある。DNS を触ると別アプリが止まるため、production 切り替え時は以下を必ず確認する。
 
-| Record | 推奨設定 | 実行前確認 |
+| 種別 | 確認対象 | 方針 |
 |---|---|---|
-| `lexus-ec.com` | Cloudflare Pages が作る CNAME/flattened CNAME を使用 | 現在の A/AAAA/CNAME、既存 origin、TTL |
-| `www.lexus-ec.com` | `lexus-ec.pages.dev` への CNAME、または Pages custom domain 自動追加 | www を使うか、apex へ redirect するか |
-| MX | 既存維持 | メール停止を避けるため触らない |
-| TXT/SPF/DKIM/DMARC | 既存維持 | メール通知 provider 追加時のみ追記 |
-| CAA | Cloudflare 証明書発行を許可 | 既存 CAA の有無 |
+| Apex | `lexus-ec.com` | Pages custom domain 用に切り替える候補 |
+| www | `www.lexus-ec.com` | redirect 方針を決めてから追加 |
+| Base44 / Render 系 | `front2026`, `bento-request`, `front2026.prt`, `ocean-5` | CNAME `base44.onrender.com`、DNS only 維持 |
+| Mail | `mail`, `MX`, `TXT/SPF`, Google verification | 既存維持。メール停止を避けるため変更しない |
+| FTP | `ftp` | 使用有無を確認。不要でも即削除しない |
 
-切り替えの進め方:
+DNS 変更前の順番:
 
-1. 現 DNS record を export / screenshot で保存する。
-2. TTL を短くできる provider なら、切り替え前に短縮する。
-3. Pages preview で build、主要ページ、フォーム挙動を確認する。
-4. Cloudflare Pages の custom domain を追加し、証明書が active になるまで待つ。
-5. DNS を Pages に向ける。
-6. `https://lexus-ec.com/`, `https://www.lexus-ec.com/` の 200 / 301 / TLS / canonical を確認する。
-7. 問題が出た場合に戻せるよう、旧 origin 情報を保持しておく。
+1. Cloudflare DNS Records を export / screenshot で保存する。
+2. production Pages deploy が成功していることを確認する。
+3. `lexus-ec.com` のみ Pages に向ける変更案を作る。
+4. 既存アプリ subdomain とメール record は触らない。
+5. ユーザー確認後に変更する。
+6. 変更後、`dig` / `curl` で apex, www, mail, app subdomain を確認する。
 
-## 404 / redirects / headers / caching
+## robots / sitemap / canonical
 
-現状は `_redirects`, `_headers`, custom 404 が未作成。
+実装済み:
 
-推奨方針:
+| ファイル | 役割 |
+|---|---|
+| `frontend/src/pages/robots.txt.ts` | `robots.txt` を生成 |
+| `frontend/src/pages/sitemap.xml.ts` | `sitemap.xml` を生成 |
+| `frontend/src/lib/seoRoutes.ts` | 固定ページ、移行記事、生成ページを sitemap に集約 |
 
-| 項目 | 最小構成 | 将来対応 |
-|---|---|---|
-| 404 | Cloudflare Pages default 404 のまま初回公開可 | `frontend/src/pages/404.astro` を追加し、`dist/404.html` を生成 |
-| redirects | 既存 URL 棚卸し完了まで追加しない | `frontend/public/_redirects` に旧 URL から新 URL の 301 を定義 |
-| headers | 初回は Cloudflare default で可 | `frontend/public/_headers` で security headers と hashed asset cache を設定 |
-| caching | Pages default で可 | `/_astro/*` は長期 cache、HTML は短め cache を検討 |
+確認済み:
 
-注意:
+| URL | 結果 |
+|---|---|
+| `https://staging.lexus-ec.pages.dev/robots.txt` | `200 OK`, `Content-Type: text/plain`, `x-robots-tag: noindex` |
+| `https://staging.lexus-ec.pages.dev/sitemap.xml` | `200 OK`, `Content-Type: application/xml`, `x-robots-tag: noindex` |
 
-- Cloudflare Pages の `_redirects` と `_headers` は、Astro では `frontend/public/` に置くのが基本。build 後に `dist` へコピーされる。
-- Pages Functions が応答する route には `_headers` / `_redirects` がそのまま効かないため、Functions 側で header / redirect を実装する必要がある。
-- 既存 WordPress 由来の URL が多いため、301 は URL 棚卸し後に追加する。
+production 公開時の方針:
 
-## sitemap / robots / canonical の注意点
+- `robots.txt` は全体を許可し、sitemap を `https://lexus-ec.com/sitemap.xml` として通知する。
+- `sitemap.xml` の URL は production canonical の `https://lexus-ec.com/...` で出力する。
+- staging sitemap は Search Console に送信しない。
+- Search Console への sitemap 送信は production custom domain が Pages に向いてから行う。
 
-現状:
+## GA4 / Search Console / AI 分析
 
-- `astro.config.mjs` の `site` は `https://lexus-ec.com`。
-- 多くのページで canonical は `https://lexus-ec.com/...` に固定。
-- `BaseLayout.astro` には `meta name="robots" content="max-image-preview:large"` がある。
-- `robots.txt` と `sitemap.xml` は source / dist ともに未確認。
+GA4 は既存 property を使う。新規 property は作らない。
 
-公開前の推奨:
+現在の設定:
 
-1. `robots.txt` を作るか、既存 WordPress の robots 方針を移植する。
-2. `sitemap.xml` を生成する。Astro なら `@astrojs/sitemap` 追加が候補。
-3. `*.pages.dev` preview を index させない方針を決める。必要なら Cloudflare Access、Bulk Redirect、または header 方針を検討する。
-4. custom domain 公開後に canonical が `https://lexus-ec.com/...` で揃っているか確認する。
-5. 旧 WordPress URL から移行したページは、200 / 301 / 404 の意図を URL 単位で監査する。
+| 項目 | 値 |
+|---|---|
+| GA4 Measurement ID | `G-3VC4WYYD01` |
+| Cloudflare env | `PUBLIC_GA_MEASUREMENT_ID=G-3VC4WYYD01` |
+| 発火 branch | `main` のみ |
+| staging | GA tag 非表示 |
+| local | GA tag 非表示 |
+
+production 公開後にやること:
+
+1. GA4 のリアルタイムで `lexus-ec.com` の計測を確認する。
+2. Google Search Console に `lexus-ec.com` の Domain property があるか確認する。
+3. ない場合は Domain property を追加し、Cloudflare DNS に Google verification TXT を追加する。
+4. 確認後、`https://lexus-ec.com/sitemap.xml` を送信する。
+5. AI が閲覧する分析基盤は、GA4 Data API / Search Console API の read-only 権限で設計する。ブラウザログイン共有では運用しない。
+
+AI 分析用に後で決める項目:
+
+| 項目 | 要確認 |
+|---|---|
+| GA4 閲覧権限 | どの Google アカウントに read-only を付与するか |
+| Search Console 閲覧権限 | 同上 |
+| API 経由分析 | GA4 Data API / Search Console API を使うか |
+| レポート出力 | 月次、週次、または改善提案ベース |
+| 保存先 | Google Sheets, Markdown report, DB など |
 
 ## フォーム / バックエンド方針
 
-### 静的サイトだけで完結する箇所
+静的サイトだけで完結する箇所:
 
-通常ページ、記事ページ、固定ページ、画像/CSS/JS 配信は Cloudflare Pages の静的配信だけで公開できる。
+- 通常ページ
+- 固定ページ
+- 投稿記事ページ
+- 画像 / CSS / JS
+- sitemap / robots
+- GA4 tag の本番限定表示
 
-### バックエンドが必要な箇所
+バックエンドが必要な箇所:
 
-実送信が必要なフォームは backend が必要。
-
-検出済みフォーム:
-
-| Path | formType | 現状 |
+| Path | 用途 | 現状 |
 |---|---|---|
-| `/request-documents/` | `request-documents` | `PUBLIC_FORM_ENDPOINT` 未設定時は pending 表示 |
-| `/reservation/` | `reservation` | 同上 |
-| `/top/reservation/` | `reservation` | 同上 |
-| `/top/contact/` | `contact` | 同上 |
-| `/test-entry/` | `test-entry` | LeadForm 経由。同上 |
-| `/lexus-online/contact/` | `lexus-online-contact` | 独自 local pending 属性あり。実装時に確認対象 |
+| `/request-documents/` | 資料請求 | `/form-submit` へ送信可能。環境変数未設定時は pending |
+| `/reservation/` | 相談 / 予約 | `/form-submit` へ送信可能。環境変数未設定時は pending |
+| `/top/reservation/` | 相談 / 予約 | `/form-submit` へ送信可能。環境変数未設定時は pending |
+| `/top/contact/` | 問い合わせ | `/form-submit` へ送信可能。環境変数未設定時は pending |
+| `/test-entry/` | 体験 / 申し込み系 | `/form-submit` へ送信可能。環境変数未設定時は pending |
+| `/lexus-online/contact/` | Lexus Online 問い合わせ | `/form-submit` へ送信可能。環境変数未設定時は pending |
 
 ### 最小構成案
 
-Cloudflare Pages Functions を同じ Pages project に追加する。
+Cloudflare Pages Functions を使う。
 
 推奨 route:
 
@@ -274,110 +207,106 @@ Cloudflare Pages Functions を同じ Pages project に追加する。
 frontend/functions/form-submit.ts
 ```
 
-期待する動作:
+実装済み。Functions の対象 URL は `frontend/public/_routes.json` で `/form-submit` と `/form-submit/*` のみに限定している。
 
-1. `POST /form-submit/` のみ受け付ける。
-2. `FormData` を parse する。
-3. `formType` を allowlist で検証する。
-4. 必須項目、メール形式、本文長、電話番号長を検証する。
-5. Turnstile または honeypot / rate limit で spam を抑える。
-6. 通知メールを送る。
-7. 必要なら Google Sheets / D1 / CRM webhook に保存する。
-8. 成功時は thank-you page へ 303 redirect、または HTML response を返す。
+処理:
 
-重要:
-
-- 現在の Astro は `PUBLIC_FORM_ENDPOINT` が未設定だと `data-local-form="pending"` を付け、ブラウザ上で submit を止める。
-- Pages Function を作るだけではフォームは送信されない。
-- フォーム有効化時は Cloudflare Pages の environment variables に `PUBLIC_FORM_ENDPOINT=/form-submit/` を設定して再デプロイする。
+1. `POST /form-submit` のみ受け付ける。
+2. `formType` を allowlist で検証する。
+3. 必須項目、メール形式、電話番号、本文長を検証する。
+4. honeypot または Cloudflare Turnstile で spam を抑える。
+5. メール通知を送る。
+6. 必要に応じて Google Sheets / CRM / D1 に保存する。
+7. 成功時は thank-you page へ redirect する。
 
 ### 将来拡張案
 
 | 要件 | 候補 |
 |---|---|
-| メール通知 | Resend / SendGrid / Amazon SES などの transactional email API |
-| スプレッドシート保存 | Google Apps Script webhook、または Google Sheets API |
-| DB 保存 | Cloudflare D1。PII 保持期間と閲覧権限を決める |
-| 添付ファイル | Cloudflare R2。フォームに file input を追加する場合のみ |
-| CRM 連携 | HubSpot / Salesforce / kintone 等の webhook/API |
-| 再送・非同期処理 | Cloudflare Queues |
-| spam 対策 | Cloudflare Turnstile、IP rate limit、honeypot |
-| 管理画面 | Cloudflare Access + Workers/Pages Functions |
+| メール通知 | Resend / SendGrid / Amazon SES |
+| スプレッドシート保存 | Google Apps Script webhook / Google Sheets API |
+| DB 保存 | Cloudflare D1 |
+| 添付ファイル | Cloudflare R2 |
+| CRM 連携 | HubSpot / Salesforce / kintone |
+| 非同期処理 | Cloudflare Queues |
+| spam 対策 | Cloudflare Turnstile / rate limit / honeypot |
 
 ### 必要な環境変数
-
-初回静的公開:
-
-| Name | 種別 | 値 | 備考 |
-|---|---|---|---|
-| `NODE_VERSION` | Build variable | `22.16.0` | Pages build を固定 |
 
 フォーム有効化時:
 
 | Name | 種別 | 値 | 備考 |
 |---|---|---|---|
-| `PUBLIC_FORM_ENDPOINT` | Build variable | `/form-submit/` | client HTML に埋め込まれる。秘密情報不可 |
-| `FORM_NOTIFICATION_TO` | Runtime variable | 要確認 | 受信先メール |
-| `FORM_NOTIFICATION_FROM` | Runtime variable | 要確認 | provider 側で認証済み domain を推奨 |
-| `RESEND_API_KEY` または `SENDGRID_API_KEY` | Secret | 要発行 | 使用 provider 決定後。暗号化 secret にする |
-| `TURNSTILE_SECRET_KEY` | Secret | 要発行 | Turnstile を使う場合 |
-| `PUBLIC_TURNSTILE_SITE_KEY` | Build variable | 要発行 | client に出る公開 key |
-| `GOOGLE_SHEETS_WEBHOOK_URL` | Secret | 要確認 | Sheets 保存を使う場合。公開しない |
-| `CRM_WEBHOOK_URL` | Secret | 要確認 | CRM 連携を使う場合。公開しない |
+| `PUBLIC_FORM_ENDPOINT` | Build variable | `/form-submit` | client に出る。秘密情報不可 |
+| `FORM_NOTIFICATION_TO` | Runtime variable | 要確認 | 通知先 |
+| `FORM_NOTIFICATION_FROM` | Runtime variable | 要確認 | 送信元。認証済み domain 推奨 |
+| `RESEND_API_KEY` または `SENDGRID_API_KEY` | Secret | 要発行 | provider 決定後 |
+| `TURNSTILE_SECRET_KEY` | Secret | 要発行 | Turnstile 使用時 |
+| `PUBLIC_TURNSTILE_SITE_KEY` | Build variable | 要発行 | client に出る |
+| `GOOGLE_SHEETS_WEBHOOK_URL` | Secret | 要確認 | Sheets 保存時 |
+| `CRM_WEBHOOK_URL` | Secret | 要確認 | CRM 連携時 |
+
+現在の実装で使う主要変数:
+
+| Name | 種別 | 値 | 備考 |
+|---|---|---|---|
+| `PUBLIC_FORM_ENDPOINT` | Build variable | `/form-submit` | これを入れるとフォームが実送信モードになる |
+| `FORM_NOTIFICATION_TO` | Runtime variable | 要確認 | 通知先メール。複数はカンマ区切り |
+| `FORM_NOTIFICATION_FROM` | Runtime variable | 要確認 | Resend / SendGrid で認証済みの送信元 |
+| `RESEND_API_KEY` または `SENDGRID_API_KEY` | Secret | 要発行 | どちらか一方 |
+| `GOOGLE_SHEETS_WEBHOOK_URL` | Secret | 要作成 | Google Apps Script の Web app URL |
+| `GOOGLE_SHEETS_WEBHOOK_SECRET` | Secret | 要作成 | Apps Script と照合する共有 secret |
+| `SLACK_WEBHOOK_URL` | Secret | 要作成 | Slack Incoming Webhook URL |
+| `FORM_REQUIRED_DESTINATIONS` | Runtime variable | `email,sheets,slack` | 既定値。未設定でも同じ |
 
 ### セキュリティ注意点
 
-- `PUBLIC_` prefix の環境変数は client に露出する。API key、webhook URL、認証 token は入れない。
-- フォーム内容は個人情報を含む。保存先、閲覧権限、保持期間、削除手順を先に決める。
-- Runtime secret は Cloudflare dashboard の `Variables and Secrets` で `Encrypt` して保存する。
-- Functions では `Origin` / `Referer` の確認、method 制限、content length 制限、allowlist validation を行う。
-- ログに氏名、電話番号、メール、相談内容を丸ごと出さない。
-- メール provider を使う場合は SPF/DKIM/DMARC の DNS 追加が必要になる可能性がある。既存メール運用を壊さないよう、追加 record は事前確認する。
+- `PUBLIC_` 付きの値はブラウザに露出する。API key や webhook URL を入れない。
+- フォーム内容は個人情報を含むため、保存先、保持期間、閲覧権限、削除手順を決める。
+- Functions のログに氏名、電話番号、メール、本文を丸ごと出さない。
+- メール送信 provider を使う場合、SPF / DKIM / DMARC の DNS 追加が必要になる可能性がある。既存メール record を壊さない。
+- API / webhook 系 subdomain は原則 DNS only。Cloudflare proxy を有効にする場合は個別検証する。
 
 ## 本番公開前チェックリスト
 
-| Check | 内容 | 状態 |
-|---|---|---|
-| build | `cd frontend; npm.cmd run build` | 2026-06-24 成功 |
-| Pages preview | `*.pages.dev` で主要ページを確認 | 未実施 |
-| 主要ページ | `/`, `/request-documents/`, `/reservation/`, `/top/contact/`, `/top/reservation/`, `/top/access/`, `/top/course/`, `/top/voice/`, `/lexus-online/` | 未実施 |
-| 404 | 存在しない URL の status と見た目 | custom 404 未作成 |
-| canonical | custom domain 上で `https://lexus-ec.com/...` に揃うか | 要確認 |
-| robots | `robots.txt` の有無と index 方針 | 未作成 |
-| sitemap | `sitemap.xml` の有無と URL 集合 | 未作成 |
-| 外部リクエスト | Google accounts、Google docs support、LINE、地図/動画等の意図確認 | 要確認 |
-| フォーム送信 | pending のまま公開するか、Functions で有効化するか | 要確認 |
-| mobile 表示 | 主要導線を 390px 幅前後で確認 | 別セッションのデザイン確認に依存 |
-| DNS | apex / www / MX / TXT / CAA の棚卸し | 未実施 |
-| SSL | custom domain active、証明書エラーなし | 未実施 |
-| rollback | 旧 origin / DNS record を戻せる状態 | 未準備 |
+| Check | 状態 |
+|---|---|
+| `npm.cmd run build` | 成功 |
+| Astro check | 0 errors / 0 warnings |
+| Cloudflare staging deploy | 成功 |
+| staging URL | `https://staging.lexus-ec.pages.dev/` |
+| staging noindex | 確認済み |
+| GA4 tag | `main` branch のみ発火する実装 |
+| robots.txt | 実装・staging 確認済み |
+| sitemap.xml | 実装・staging 確認済み |
+| canonical | production domain で最終確認が必要 |
+| 404 | custom 404 は未作成。必要性を確認 |
+| redirects | 旧 URL 棚卸し後に判断 |
+| 外部リクエスト | LINE / Google / 動画 / 地図などを production 前に確認 |
+| フォーム送信 | Pages Function 実装済み。外部送信先設定と staging 実送信テストが次工程 |
+| モバイル表示 | 別セッションのデザイン確認完了後に staging で確認 |
+| DNS | 既存アプリとメール record を維持したまま本番切り替えが必要 |
+| rollback | DNS record screenshot / export を残してから実施 |
 
 ## ユーザーに確認すべき事項
 
-1. Cloudflare アカウントと zone 管理権限を誰が持つか。
-2. `lexus-ec.com` の現在の DNS provider / registrar / nameserver。
-3. 本番 branch は `main` でよいか。
-4. Pages project name は `lexus-ec` でよいか。使用済みの場合の代替名。
-5. `www.lexus-ec.com` を使うか、apex `lexus-ec.com` に 301 redirect するか。
-6. 初回公開でフォームを pending のままにするか、フォーム backend 実装後に公開するか。
-7. フォーム通知メールの受信先。
-8. フォーム送信内容をメールだけにするか、Sheets / CRM / DB にも保存するか。
-9. 利用するメール送信 provider。Resend / SendGrid / SES など。
-10. Turnstile を初回から入れるか。
-11. 旧 WordPress をいつまで fallback / rollback 用に保持するか。
-12. `robots.txt` / `sitemap.xml` の公開方針。
+1. production custom domain を Pages に切り替えるタイミング。
+2. `www.lexus-ec.com` を使うか、`lexus-ec.com` へ redirect するか。
+3. Search Console の `lexus-ec.com` property が既にあるか。
+4. Google verification TXT を Cloudflare DNS に追加してよいか。
+5. フォーム通知メールの受信先。
+6. フォーム送信内容をメールだけにするか、Sheets / CRM / DB にも保存するか。
+7. メール送信 provider を何にするか。
+8. Turnstile を初回から入れるか。
+9. AI 分析用に GA4 / Search Console の read-only 権限をどの Google アカウントへ付与するか。
 
 ## 次に実行する具体手順
 
-ユーザー確認後に進める順番:
-
-1. production branch、Cloudflare account、domain/DNS 管理者を確定する。
-2. 初回公開方式を決める。
-   - A: 静的サイトだけ先に Pages へ公開し、フォームは pending 表示のまま。
-   - B: Pages Functions の `POST /form-submit/` を実装してから公開。
-3. A の場合、Cloudflare Pages project を推奨設定で作り、preview を確認する。
-4. B の場合、先に Functions、通知 provider、必要 secret、`PUBLIC_FORM_ENDPOINT=/form-submit/` を実装・設定し、preview でフォーム送信を確認する。
-5. `robots.txt`, `sitemap.xml`, 404, redirects, headers の追加要否を決める。
-6. custom domain を Pages に追加する。
-7. DNS 切り替え前の record を保存し、ユーザー確認後に切り替える。
-8. 切り替え後、主要ページ、canonical、フォーム、TLS、www/apex redirect、404 を確認する。
+1. Search Console の現状を確認する。
+2. `lexus-ec.com` property がなければ追加し、Google verification TXT を Cloudflare DNS に追加する。
+3. production custom domain 切り替え前に、既存 DNS record を再点検する。
+4. フォーム backend の最小構成を実装する。
+5. staging でフォーム送信、通知メール、spam 対策を確認する。
+6. 社長確認後、`main` に反映する。
+7. production custom domain を Pages に切り替える。
+8. GA4、Search Console sitemap、主要ページ、canonical、フォーム送信を確認する。

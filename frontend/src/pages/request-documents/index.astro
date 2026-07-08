@@ -1,5 +1,5 @@
 ---
-import LegacyFormFooter from "../../components/fixed/LegacyFormFooter.astro";
+import SiteFooter from "../../components/site/SiteFooter.astro";
 import PendingFormScript from "../../components/fixed/PendingFormScript.astro";
 import SiteHeader from "../../components/site/SiteHeader.astro";
 import { seo } from "../../data/home";
@@ -10,7 +10,7 @@ const title = "資料請求 - 医学部予備校 レクサス E.C.";
 const description =
   "資料請求 - レクサス教育センターに関する資料をご郵送します。パンフレット / 医学部情報本 / 出願・面接試験ガイドライン / 入学をご検討中の皆様へ";
 const configuredEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT;
-const endpoint = configuredEndpoint || "/form-submit/";
+const endpoint = configuredEndpoint || "/form-submit";
 const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" };
 ---
 
@@ -19,23 +19,21 @@ const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" 
   <main class="minimal-form-page request-doc-page">
     <section class="request-doc-intro" aria-label="資料請求フォーム案内">
       <div class="logo-strip logo-strip--top" aria-hidden="true"></div>
-      <p>必須事項を入力して<br />「送信ボタンを」押して下さい。</p>
+      <p data-admin-editable="request.intro">必須事項を入力して<br />「送信ボタンを」押して下さい。</p>
     </section>
 
     <section class="google-form-lite" aria-label="資料請求フォーム">
       <form action={endpoint} method="post" class="google-form-lite__body" {...localFormAttrs}>
         <input type="hidden" name="formType" value="request-documents" />
         <input type="hidden" name="sourcePath" value="/request-documents/" />
+        <input type="text" name="websiteUrl" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;" />
 
         <div class="google-form-lite__head">
-          <h1 class="google-form-lite__title">資料請求フォーム</h1>
-          <p>必須項目を入力してください。</p>
+          <h1 class="google-form-lite__title" data-admin-editable="request.form.title">資料請求フォーム</h1>
+          <p data-admin-editable="request.form.lead">必須項目を入力してください。</p>
         </div>
 
-        <p class="google-form-lite__login">
-          <a href="https://accounts.google.com/" rel="noreferrer">Google にログイン</a>すると作業内容を保存できます。 <a href="https://support.google.com/docs/" rel="noreferrer">詳細</a>
-        </p>
-        <p class="google-form-lite__required">* 必須の質問です</p>
+        <p class="google-form-lite__required"><em>*</em> は必須項目です</p>
 
         <label class="google-question">
           <span>メールアドレス <em>*</em></span>
@@ -81,7 +79,7 @@ const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" 
           </span>
         </label>
 
-        <button class="google-form-lite__submit" type="submit">送信</button>
+        <button class="google-form-lite__submit" type="submit" data-admin-editable="request.submit">送信</button>
         <p class="form-submit-note" data-local-form-status hidden></p>
       </form>
     </section>
@@ -89,5 +87,5 @@ const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" 
     <div class="logo-strip logo-strip--bottom" aria-hidden="true"></div>
   </main>
   {!configuredEndpoint && <PendingFormScript />}
-  <LegacyFormFooter />
+  <SiteFooter />
 </BaseLayout>

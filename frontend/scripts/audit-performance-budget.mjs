@@ -37,7 +37,26 @@ const routeFor = (file) => {
   const route = `/${path.relative(root, file).replace(/\\/g, "/").replace(/index\.html$/, "")}`;
   return route || "/";
 };
-const routes = htmlFiles.map(routeFor).sort((a, b) => a.localeCompare(b));
+const allRoutes = htmlFiles.map(routeFor).sort((a, b) => a.localeCompare(b));
+const normalizeRouteArg = (route) => {
+  let normalized = route.trim();
+  if (!normalized) return "";
+  if (!normalized.startsWith("/")) normalized = `/${normalized}`;
+  if (normalized !== "/" && !normalized.endsWith("/")) normalized = `${normalized}/`;
+  return normalized;
+};
+const requestedRoutes = process.argv
+  .slice(2)
+  .filter((arg) => !arg.startsWith("--"))
+  .map(normalizeRouteArg)
+  .filter(Boolean);
+const routeSet = new Set(allRoutes);
+const missingRoutes = requestedRoutes.filter((route) => !routeSet.has(route));
+if (missingRoutes.length) {
+  console.error(`Unknown route(s): ${missingRoutes.join(", ")}`);
+  process.exit(1);
+}
+const routes = requestedRoutes.length ? requestedRoutes : allRoutes;
 
 const safeFileForRequest = (requestUrl) => {
   const url = new URL(requestUrl, "http://127.0.0.1");
@@ -88,6 +107,9 @@ const distAssets = {
   css: walk(root, (file) => file.endsWith(".css")).map(assetRecord),
   js: walk(root, (file) => file.endsWith(".js")).map(assetRecord),
 };
+const distAssetByRequestPath = new Map(
+  [...distAssets.css, ...distAssets.js].map((asset) => [`/${asset.file}`, asset]),
+);
 
 const sourceFiles = walk(srcRoot, (file) => /\.(astro|ts|tsx|js|mjs|css)$/.test(file));
 
@@ -131,6 +153,8 @@ const browser = await chromium.launch({
 const sumBytes = (items) => items.reduce((total, item) => total + (item.bytes || 0), 0);
 const sumGzipBytes = (items) => items.reduce((total, item) => total + (item.gzipBytes || 0), 0);
 const sumBrotliBytes = (items) => items.reduce((total, item) => total + (item.brotliBytes || 0), 0);
+const sumRequestAssetBytes = (requests, field) =>
+  requests.reduce((total, request) => total + (distAssetByRequestPath.get(request.pathname)?.[field] || 0), 0);
 
 const results = [];
 
@@ -239,8 +263,12 @@ for (const route of routes) {
       externalTotal: externalRequests.length,
       localCssFiles: unique(localCss.map((request) => request.pathname)).sort(),
       localCssBytes: sumBytes(localCss),
+      localCssGzipBytes: sumRequestAssetBytes(localCss, "gzipBytes"),
+      localCssBrotliBytes: sumRequestAssetBytes(localCss, "brotliBytes"),
       localJsFiles: unique(localJs.map((request) => request.pathname)).sort(),
       localJsBytes: sumBytes(localJs),
+      localJsGzipBytes: sumRequestAssetBytes(localJs, "gzipBytes"),
+      localJsBrotliBytes: sumRequestAssetBytes(localJs, "brotliBytes"),
       externalHosts: hostSummary,
       localBadResponses: localRequests
         .filter((request) => (request.status || 0) >= 400 || request.failed)
@@ -273,9 +301,11 @@ const mergeHosts = (pages) => {
 };
 
 const sortBy = (selector) => [...results].sort((a, b) => selector(b) - selector(a));
+const cssBrotliBudgetBytes = Number(process.env.CSS_BROTLI_BUDGET_BYTES || 30 * 1024);
 const report = {
   auditedAt: new Date().toISOString(),
   pages: results.length,
+  auditedRoutes: routes,
   distAssets: {
     htmlFilesTotal: distAssets.html.length,
     htmlBytesTotal: sumBytes(distAssets.html),
@@ -312,6 +342,21 @@ const report = {
       bytes: page.requestSummary.localJsBytes,
       files: page.requestSummary.localJsFiles,
     })),
+    maxLocalCssBrotliBytes: sortBy((page) => page.requestSummary.localCssBrotliBytes).slice(0, 10).map((page) => ({
+      route: page.route,
+      brotliBytes: page.requestSummary.localCssBrotliBytes,
+      gzipBytes: page.requestSummary.localCssGzipBytes,
+      rawBytes: page.requestSummary.localCssBytes,
+      files: page.requestSummary.localCssFiles,
+    })),
+    cssBrotliBudgetBytes,
+    pagesOverCssBrotliBudget: results
+      .filter((page) => page.requestSummary.localCssBrotliBytes > cssBrotliBudgetBytes)
+      .map((page) => ({
+        route: page.route,
+        brotliBytes: page.requestSummary.localCssBrotliBytes,
+        budgetBytes: cssBrotliBudgetBytes,
+      })),
     maxInlineScriptBytes: sortBy((page) => page.dom.functionalInlineScriptBytes).slice(0, 10).map((page) => ({
       route: page.route,
       functionalInlineScriptBytes: page.dom.functionalInlineScriptBytes,

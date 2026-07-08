@@ -3,6 +3,7 @@ import LeadForm from "../components/fixed/LeadForm.astro";
 import { defaultPageActions } from "../data/fixedPages";
 import { seo } from "../data/home";
 import { getFixedPageByPath, getFixedPageStaticPaths, type ExtractedPage } from "../lib/fixedPageSource";
+import { getLegacyRedirectByPath, getLegacyRedirectStaticPaths, type LegacyRedirect } from "../lib/legacyRedirects";
 import { getMigratedPostByPath, getMigratedPostStaticPaths, type MigratedPost } from "../lib/postSource";
 import ArticleLayout from "../layouts/ArticleLayout.astro";
 import SiteLayout from "../layouts/SiteLayout.astro";
@@ -10,14 +11,23 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 export const getStaticPaths = () => {
   const postPaths = getMigratedPostStaticPaths();
   const postSlugs = new Set(postPaths.map((route) => route.params.slug));
-  const fixedPaths = getFixedPageStaticPaths().filter((route) => !postSlugs.has(route.params.slug));
-  return [...fixedPaths, ...postPaths];
+  const dedicatedFixedSlugs = new Set(["study-support-system"]);
+  const fixedPaths = getFixedPageStaticPaths().filter(
+    (route) => !postSlugs.has(route.params.slug) && !dedicatedFixedSlugs.has(route.params.slug),
+  );
+  const fixedSlugs = new Set(fixedPaths.map((route) => route.params.slug));
+  const redirectPaths = getLegacyRedirectStaticPaths().filter(
+    (route) => !postSlugs.has(route.params.slug) && !fixedSlugs.has(route.params.slug),
+  );
+  return [...fixedPaths, ...postPaths, ...redirectPaths];
 };
 
-const routeProps = (Astro.props ?? {}) as { page?: ExtractedPage; post?: MigratedPost };
+const routeProps = (Astro.props ?? {}) as { page?: ExtractedPage; post?: MigratedPost; legacyRedirect?: LegacyRedirect };
 const requestedPath = Astro.url.pathname || "/";
-const post = routeProps.post ?? getMigratedPostByPath(requestedPath);
-const fixedPage = routeProps.page ?? (!post ? getFixedPageByPath(requestedPath) : undefined);
+const legacyRedirect = routeProps.legacyRedirect ?? getLegacyRedirectByPath(requestedPath);
+const post = !legacyRedirect ? (routeProps.post ?? getMigratedPostByPath(requestedPath)) : undefined;
+const fixedPage = !legacyRedirect ? (routeProps.page ?? (!post ? getFixedPageByPath(requestedPath) : undefined)) : undefined;
+const redirectCanonical = legacyRedirect ? new URL(legacyRedirect.to, seo.canonical).href : "";
 const page =
   fixedPage ??
   ({
@@ -32,6 +42,19 @@ const page =
     contentHtml: "<p>URLをご確認いただくか、トップページから目的のページをお探しください。</p>",
   } satisfies ExtractedPage);
 const routeClass = `fixed-page--${page.path.replace(/^\/|\/$/g, "").replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
+// Extracted Elementor pages with no per-section layout overrides: stack their
+// containers into one readable column instead of the squished flex-row default.
+const unstackPaths = new Set<string>([
+  "/medical-math-training/",
+]);
+const unstack = unstackPaths.has(page.path);
+// Medical-school directory pages: stack + render banded section headers and
+// boxed multi-column university link grids to match production.
+const directoryPaths = new Set<string>([
+  "/top/information-kokuritsu/",
+  "/top/information-shiritsu/",
+]);
+const directory = directoryPaths.has(page.path);
 const premierPlanPages: Record<
   string,
   { lead: string; prefix?: string; code: string; suffix?: string; meta: string }
@@ -106,16 +129,97 @@ try {
 }
 const premierPlan = premierPlanPages[page.path] ?? premierPlanPages[decodedPagePath];
 const genekiPlan = genekiPlanPages[page.path] ?? genekiPlanPages[decodedPagePath];
+const parentLetterPages: Record<
+  string,
+  { titleLines: string[]; lead: string; meta: { term: string; description: string }[]; visualCaption: string }
+> = {
+  "/mail-01/": {
+    titleLines: ["慶應医学部合格へ", "親子で走った記録"],
+    lead: "レクサスに寄せられた、先生方との出会いと合格までの歩みです。",
+    meta: [
+      { term: "合格大学", description: "慶應義塾大学医学部" },
+      { term: "寄稿", description: "神奈川県 整形外科医師 保護者様" },
+    ],
+    visualCaption: "保護者様からの手紙",
+  },
+  "/mail-02/": {
+    titleLines: ["4兄弟の医学部受験", "保護者様のメール"],
+    lead: "長い受験期を終えたご家族から届いた、レクサスでの学びと成長の記録です。",
+    meta: [
+      { term: "合格大学", description: "国立大医学部1名・私大医学部3名" },
+      { term: "寄稿", description: "都内在住 勤務医師 保護者様" },
+    ],
+    visualCaption: "保護者様からのメール",
+  },
+  "/mail-03/": {
+    titleLines: ["理系科目ほぼ初学から", "杏林医学部へ"],
+    lead: "ご家族がレクサスに寄せてくださった、受験期の歩みと合格までの記録です。",
+    meta: [
+      { term: "合格大学", description: "杏林大学医学部・岩手医科大学医学部" },
+      { term: "寄稿", description: "神奈川県在住 保護者様" },
+    ],
+    visualCaption: "保護者様からの手紙",
+  },
+};
+const parentLetterPage = parentLetterPages[page.path] ?? parentLetterPages[decodedPagePath];
 const isTestEntryPage = page.path === "/test-entry/" || decodedPagePath === "/test-entry/";
 const logoStrip = "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
 const mascotArcher = "/assets/legacy/wp-content/uploads/2025/05/レクサスくん弓.jpg";
+const parentLetterImage = "/assets/legacy/wp-content/uploads/2025/03/手紙.jpg";
 const premierPlanImage = page.images[0]?.src
   ? page.images[0].src.replace("https://lexus-ec.com/wp-content/uploads", "/assets/legacy/wp-content/uploads")
   : "";
 const isLegalPage = page.canonical.includes("%e7%89%b9") || page.h1.includes("特定商取引");
+const needsFixedSourceH1 = !page.form && !premierPlan && !genekiPlan && !isLegalPage && !parentLetterPage;
 ---
 
-{post ? (
+{legacyRedirect ? (
+  <html lang="ja">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta http-equiv="refresh" content={`0; url=${legacyRedirect.to}`} />
+      <meta name="robots" content="noindex,follow" />
+      <link rel="canonical" href={redirectCanonical} />
+      <title>Redirecting | LEXUS E.C.</title>
+      <script is:inline>
+        const canonical = document.querySelector('link[rel="canonical"]');
+        if (canonical?.href) window.location.replace(canonical.href);
+      </script>
+      <style>
+        body {
+          margin: 0;
+          min-height: 100vh;
+          display: grid;
+          place-items: center;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          color: #171717;
+          background: #faf7f2;
+        }
+        main {
+          width: min(90vw, 560px);
+          padding: 32px;
+          border: 1px solid rgba(0, 0, 0, 0.08);
+          background: #fff;
+        }
+        p {
+          margin: 0 0 14px;
+          line-height: 1.8;
+        }
+        a {
+          color: #b51223;
+          font-weight: 700;
+        }
+      </style>
+    </head>
+    <body>
+      <main>
+        <p>ページを移動しました。自動的に新しいページへ移動します。</p>
+        <p><a href={legacyRedirect.to}>新しいページを開く</a></p>
+      </main>
+    </body>
+  </html>
+) : post ? (
   <ArticleLayout
     template={post.template}
     title={post.title}
@@ -141,7 +245,35 @@ const isLegalPage = page.canonical.includes("%e7%89%b9") || page.h1.includes("�
   </ArticleLayout>
 ) : (
 <SiteLayout title={page.title} description={page.description} canonical={page.canonical} ogImage={seo.ogImage}>
-  <main class={`fixed-page ${routeClass}${page.form ? " fixed-page--form" : ""}${premierPlan ? " fixed-page--premier-plan" : ""}${genekiPlan ? " fixed-page--geneki-plan" : ""}`}>
+  <main class={`fixed-page ${routeClass}${unstack ? " fixed-page--unstack" : ""}${directory ? " fixed-page--unstack fixed-page--directory" : ""}${page.form ? " fixed-page--form" : ""}${premierPlan ? " fixed-page--premier-plan" : ""}${genekiPlan ? " fixed-page--geneki-plan" : ""}${parentLetterPage ? " fixed-page--parent-letter" : ""}`}>
+    {needsFixedSourceH1 && <h1 class="visually-hidden">{page.h1}</h1>}
+    {parentLetterPage && (
+      <section class="parent-letter-hero" aria-labelledby="parent-letter-title">
+        <div class="content parent-letter-hero__inner">
+          <div class="parent-letter-hero__copy">
+            <p class="parent-letter-hero__eyebrow">保護者様からのメッセージ</p>
+            <h1 id="parent-letter-title">
+              {parentLetterPage.titleLines.map((line) => <span>{line}</span>)}
+            </h1>
+            <p class="parent-letter-hero__lead">
+              {parentLetterPage.lead}
+            </p>
+            <dl class="parent-letter-hero__meta">
+              {parentLetterPage.meta.map((item) => (
+                <div>
+                  <dt>{item.term}</dt>
+                  <dd>{item.description}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+          <figure class="parent-letter-hero__visual">
+            <img src={parentLetterImage} alt="" width="1024" height="1024" decoding="async" />
+            <figcaption>{parentLetterPage.visualCaption}</figcaption>
+          </figure>
+        </div>
+      </section>
+    )}
     {genekiPlan && (
       <section class="geneki-plan-hero">
         <div class="content geneki-plan-hero__inner">
@@ -241,5 +373,116 @@ const isLegalPage = page.canonical.includes("%e7%89%b9") || page.h1.includes("�
       </section>
     )}
   </main>
+  {directory && (
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        const root = document.querySelector(".fixed-page--directory .fixed-source");
+        if (!root) return;
+        // 五十音 row label, e.g. ア行 / カ行 / ハ・マ行 / ヤ・ハ行.
+        const ROW_RE = /^[ァ-ヶ・ー]+行$/;
+        const findLabel = (w) => {
+          let node = w;
+          while (node && node !== root) {
+            let prev = node.previousElementSibling;
+            while (prev) {
+              const te = prev.matches(".elementor-widget-text-editor") ? prev : prev.querySelector(".elementor-widget-text-editor");
+              const el = te || prev;
+              const t = (el.textContent || "").trim();
+              if (t && t.length <= 16) return { label: t.replace(/の大学$/, ""), el };
+              prev = prev.previousElementSibling;
+            }
+            node = node.parentElement;
+          }
+          return { label: "", el: null };
+        };
+        const menuItems = (nav) => Array.from(nav.querySelectorAll(".elementor-nav-menu--main a")).map((a) => (a.textContent || "").trim()).filter(Boolean);
+        // Pass 1: from properly-labelled lists (○行の大学) build a university -> row map.
+        const nameToRow = {};
+        root.querySelectorAll(".elementor-widget-nav-menu").forEach((nav) => {
+          if (!nav.querySelector(".elementor-nav-menu--main")) return;
+          const { label } = findLabel(nav);
+          if (ROW_RE.test(label)) menuItems(nav).forEach((n) => { if (!(n in nameToRow)) nameToRow[n] = label; });
+        });
+        // Longest-first university names, for substring matching against decorated
+        // labels like "2026 大分大学 医学部｜二次試験の傾向…".
+        const rowEntries = Object.entries(nameToRow).sort((a, b) => b[0].length - a[0].length);
+        const inferRow = (text) => {
+          if (nameToRow[text]) return nameToRow[text];
+          for (const [name, row] of rowEntries) if (text.includes(name)) return row;
+          return "";
+        };
+        // Resolve a list's row label: prefer its own (○行の大学), else infer by
+        // majority vote of its universities — covers the first "共通テスト/HOT"
+        // lists (plain names) and the 二次試験 lists (decorated names) alike.
+        const resolveRow = (nav, rawLabel) => {
+          if (ROW_RE.test(rawLabel)) return rawLabel;
+          const counts = {};
+          let best = "", bestN = 0;
+          menuItems(nav).forEach((n) => {
+            const r = inferRow(n);
+            if (!r) return;
+            counts[r] = (counts[r] || 0) + 1;
+            if (counts[r] > bestN) { bestN = counts[r]; best = r; }
+          });
+          return best;
+        };
+        // Walk h2 + nav menus in document order, bucket the 五十音 lists per section.
+        const flow = Array.from(root.querySelectorAll("h2, .elementor-widget-nav-menu"));
+        const sections = new Map();
+        let current = "__top__";
+        flow.forEach((el) => {
+          if (el.tagName === "H2") { current = el; return; }
+          if (!el.querySelector(".elementor-nav-menu--main")) return;
+          const { label: rawLabel, el: labelEl } = findLabel(el);
+          const row = resolveRow(el, rawLabel);
+          if (!row) return; // not a 五十音 university list — leave it untouched
+          const ownRow = ROW_RE.test(rawLabel);
+          if (!sections.has(current)) sections.set(current, []);
+          sections.get(current).push({ widget: el, label: row, labelEl: ownRow ? labelEl : null });
+        });
+        sections.forEach((items) => {
+          if (items.length < 2) return;
+          // Safety: skip tabbing if labels failed to differentiate.
+          if (new Set(items.map((g) => g.label)).size < 2) return;
+          // Long decorated items (二次試験 links) read better as a single-column
+          // list; short university names tile into a compact grid.
+          const longText = items.some((g) => menuItems(g.widget).some((n) => n.length > 12));
+          const anchor = items[0].widget.closest(".elementor-element.e-con") || items[0].widget;
+          const bar = document.createElement("div");
+          bar.className = "dir-tabs";
+          bar.setAttribute("role", "tablist");
+          const panelWrap = document.createElement("div");
+          panelWrap.className = "dir-tab-panels";
+          items.forEach((it, i) => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "dir-tab" + (i === 0 ? " is-active" : "");
+            btn.textContent = it.label;
+            btn.setAttribute("role", "tab");
+            btn.setAttribute("aria-selected", i === 0 ? "true" : "false");
+            const panel = document.createElement("div");
+            panel.className = "dir-tab-panel" + (longText ? " dir-tab-panel--list" : "");
+            if (i !== 0) panel.hidden = true;
+            if (it.labelEl) it.labelEl.remove();
+            panel.appendChild(it.widget);
+            panelWrap.appendChild(panel);
+            btn.addEventListener("click", () => {
+              bar.querySelectorAll(".dir-tab").forEach((b) => {
+                b.classList.remove("is-active");
+                b.setAttribute("aria-selected", "false");
+              });
+              btn.classList.add("is-active");
+              btn.setAttribute("aria-selected", "true");
+              panelWrap.querySelectorAll(".dir-tab-panel").forEach((p) => { p.hidden = true; });
+              panel.hidden = false;
+            });
+            bar.appendChild(btn);
+          });
+          anchor.parentElement.insertBefore(bar, anchor);
+          anchor.parentElement.insertBefore(panelWrap, anchor);
+        });
+      });
+    </script>
+  )}
 </SiteLayout>
 )}
