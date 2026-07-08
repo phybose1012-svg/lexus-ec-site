@@ -28,7 +28,7 @@ type Submission = {
   fields: Record<string, SubmissionFieldValue>;
 };
 
-type Destination = "email" | "sheets" | "slack";
+type Destination = "sheets" | "slack";
 
 const MAX_BODY_BYTES = 64 * 1024;
 const MAX_FIELD_CHARS = 4000;
@@ -169,6 +169,15 @@ export const onRequestPost = async ({ request, env }: FunctionContext) => {
       );
     }
 
+    // 送信者への自動返信（サンキューメール）。best-effort: 送れなくても受付は成功扱い
+    // にして、ユーザーには「送信を受け付けました」を返す。
+    await sendAutoReply(submission, env).catch(() => {
+      console.error(
+        "form-submit auto-reply failure",
+        JSON.stringify({ submissionId: submission.id, formType: submission.formType }),
+      );
+    });
+
     return successResponse();
   } catch (error) {
     const message = error instanceof UserVisibleError ? error.message : "入力内容を確認して、もう一度送信してください。";
@@ -181,7 +190,6 @@ export const onRequestPost = async ({ request, env }: FunctionContext) => {
 };
 
 const sendToDestination = (destination: Destination, submission: Submission, env: Env) => {
-  if (destination === "email") return sendEmail(submission, env);
   if (destination === "sheets") return sendSheets(submission, env);
   return sendSlack(submission, env);
 };
@@ -303,43 +311,45 @@ const validateSubmission = (submission: Submission) => {
 
 const getConfiguredDestinations = (env: Env) => {
   const destinations: Destination[] = [];
-  if ((env.RESEND_API_KEY || env.SENDGRID_API_KEY) && env.FORM_NOTIFICATION_TO && env.FORM_NOTIFICATION_FROM) destinations.push("email");
   if (env.GOOGLE_SHEETS_WEBHOOK_URL) destinations.push("sheets");
   if (env.SLACK_WEBHOOK_URL) destinations.push("slack");
   return destinations;
 };
 
 const getMissingRequiredDestinations = (env: Env, configured: Destination[]) => {
-  const required = splitCsv(env.FORM_REQUIRED_DESTINATIONS || "email,sheets,slack") as Destination[];
+  const required = splitCsv(env.FORM_REQUIRED_DESTINATIONS || "sheets,slack") as Destination[];
   return required.filter((destination) => !configured.includes(destination));
 };
 
-const sendEmail = async (submission: Submission, env: Env) => {
-  if (env.RESEND_API_KEY) return sendResendEmail(submission, env);
-  if (env.SENDGRID_API_KEY) return sendSendGridEmail(submission, env);
-  throw new Error("email provider is not configured");
-};
+// 送信者本人あての自動返信（サンキューメール）。宛先はフォームに入力された
+// メールアドレス、差出人は FORM_NOTIFICATION_FROM（認証済みドメインのアドレス）。
+// メール未入力・provider 未設定なら黙ってスキップする。
+const sendAutoReply = async (submission: Submission, env: Env) => {
+  const to = stringField(submission.fields.email).trim();
+  if (!to || !env.FORM_NOTIFICATION_FROM) return;
+  if (!env.RESEND_API_KEY && !env.SENDGRID_API_KEY) return;
 
-const sendResendEmail = async (submission: Submission, env: Env) => {
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${env.RESEND_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: env.FORM_NOTIFICATION_FROM,
-      to: splitCsv(env.FORM_NOTIFICATION_TO || ""),
-      reply_to: stringField(submission.fields.email) || undefined,
-      subject: buildSubject(submission),
-      text: buildTextMessage(submission),
-      html: buildHtmlMessage(submission),
-    }),
-  });
-  await assertDestinationResponse(response, "resend");
-};
+  const mail = buildAutoReply(submission);
 
-const sendSendGridEmail = async (submission: Submission, env: Env) => {
+  if (env.RESEND_API_KEY) {
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: env.FORM_NOTIFICATION_FROM,
+        to: [to],
+        subject: mail.subject,
+        text: mail.text,
+        html: mail.html,
+      }),
+    });
+    await assertDestinationResponse(response, "auto-reply");
+    return;
+  }
+
   const response = await fetch("https://api.sendgrid.com/v3/mail/send", {
     method: "POST",
     headers: {
@@ -347,21 +357,15 @@ const sendSendGridEmail = async (submission: Submission, env: Env) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      personalizations: [
-        {
-          to: splitCsv(env.FORM_NOTIFICATION_TO || "").map((email) => ({ email })),
-          subject: buildSubject(submission),
-        },
-      ],
+      personalizations: [{ to: [{ email: to }], subject: mail.subject }],
       from: { email: env.FORM_NOTIFICATION_FROM },
-      reply_to: stringField(submission.fields.email) ? { email: stringField(submission.fields.email) } : undefined,
       content: [
-        { type: "text/plain", value: buildTextMessage(submission) },
-        { type: "text/html", value: buildHtmlMessage(submission) },
+        { type: "text/plain", value: mail.text },
+        { type: "text/html", value: mail.html },
       ],
     }),
   });
-  await assertDestinationResponse(response, "sendgrid");
+  await assertDestinationResponse(response, "auto-reply");
 };
 
 const sendSheets = async (submission: Submission, env: Env) => {
@@ -401,31 +405,95 @@ const assertDestinationResponse = async (response: Response, service: string) =>
   throw new Error(`${service} returned ${response.status}`);
 };
 
-const buildSubject = (submission: Submission) => {
-  const name = stringField(submission.fields.name);
-  return `[LEXUS EC] ${submission.formLabel}${name ? ` - ${name}` : ""}`;
+// フォーム種別ごとの件名とリード文。未知の種別は formLabel から汎用文を組む。
+const autoReplyCopy: Record<string, { subject: string; lead: string }> = {
+  "request-documents": {
+    subject: "【レクサスE.C.】資料請求を受け付けました",
+    lead: "この度は資料請求をお申し込みいただき、誠にありがとうございます。\n担当者が内容を確認のうえ、ご請求の資料をお送りいたします。今しばらくお待ちください。",
+  },
+  reservation: {
+    subject: "【レクサスE.C.】個別説明会・個別相談のお申し込みを受け付けました",
+    lead: "この度は個別説明会・個別相談にお申し込みいただき、誠にありがとうございます。\n担当者がご希望の日程を確認のうえ、折り返しご連絡いたします。",
+  },
+  contact: {
+    subject: "【レクサスE.C.】お問い合わせを受け付けました",
+    lead: "この度はお問い合わせをいただき、誠にありがとうございます。\n担当者が内容を確認のうえ、順次ご返信いたします。",
+  },
+  "test-entry": {
+    subject: "【レクサスE.C.】選抜テストのお申し込みを受け付けました",
+    lead: "この度は選抜テストにお申し込みいただき、誠にありがとうございます。\n担当者がご希望の日程を確認のうえ、折り返しご連絡いたします。",
+  },
+  "lexus-online-contact": {
+    subject: "【Lexus Online】お問い合わせを受け付けました",
+    lead: "この度は Lexus Online へお問い合わせいただき、誠にありがとうございます。\n担当者が内容を確認のうえ、順次ご返信いたします。",
+  },
 };
 
-const buildTextMessage = (submission: Submission) =>
-  [
-    `${submission.formLabel}を受け付けました。`,
+const autoReplyCopyFor = (submission: Submission) =>
+  autoReplyCopy[submission.formType] || {
+    subject: `【レクサスE.C.】${submission.formLabel}を受け付けました`,
+    lead: `この度は${submission.formLabel}をいただき、誠にありがとうございます。\n担当者が内容を確認のうえ、順次ご連絡いたします。`,
+  };
+
+const AUTO_REPLY_SIGNATURE = [
+  "───────────────",
+  "医学部予備校 レクサス E.C.",
+  "TEL: 03-3477-1306",
+  "受付時間 平日・土曜 9:00〜21:00 / 日曜 10:00〜17:00",
+  "https://lexus-ec.com/",
+  "〒150-0031 東京都渋谷区桜丘町29-7 LEXUS GARDEN",
+].join("\n");
+
+const buildAutoReply = (submission: Submission) => {
+  const copy = autoReplyCopyFor(submission);
+  const name = stringField(submission.fields.name).trim();
+  const greeting = name ? `${name} 様` : "ご担当者 様";
+  const record = formatFields(submission).filter(([label]) => label !== "送信元ページ" && label !== "個人情報同意" && label !== "同意");
+
+  const text = [
+    greeting,
     "",
+    copy.lead,
+    "",
+    "本メールは自動送信です。ご入力いただいた内容は下記のとおり承りました。",
+    "───────────────",
+    ...record.map(([label, value]) => `${label}: ${value}`),
     `受付ID: ${submission.id}`,
     `受付日時: ${formatDateTime(submission.submittedAt)}`,
-    `送信元: ${submission.pageUrl}`,
+    "───────────────",
     "",
-    ...formatFields(submission).map(([label, value]) => `${label}: ${value}`),
+    "お心当たりのない場合や、お急ぎの場合は下記までお電話ください。",
+    "",
+    AUTO_REPLY_SIGNATURE,
   ].join("\n");
 
-const buildHtmlMessage = (submission: Submission) => {
-  const rows = formatFields(submission)
-    .map(([label, value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value).replace(/\n/g, "<br>")}</td></tr>`)
+  const rows = record
+    .map(([label, value]) => `<tr><th align="left" style="padding:4px 12px 4px 0;color:#555;white-space:nowrap;vertical-align:top">${escapeHtml(label)}</th><td style="padding:4px 0">${escapeHtml(value).replace(/\n/g, "<br>")}</td></tr>`)
     .join("");
-  return `<!doctype html><html><body><h1>${escapeHtml(submission.formLabel)}</h1><p>受付ID: ${escapeHtml(
-    submission.id,
-  )}</p><p>受付日時: ${escapeHtml(formatDateTime(submission.submittedAt))}</p><p>送信元: <a href="${escapeHtml(
-    submission.pageUrl,
-  )}">${escapeHtml(submission.pageUrl)}</a></p><table border="1" cellpadding="8" cellspacing="0">${rows}</table></body></html>`;
+  const html = `<!doctype html><html><body style="margin:0;background:#f6f5f1;padding:24px;font-family:-apple-system,'Segoe UI','Hiragino Kaku Gothic ProN',Meiryo,sans-serif;color:#1f2933;line-height:1.9">
+  <div style="max-width:600px;margin:0 auto;background:#fff;border:1px solid #e5e0d5;border-radius:8px;overflow:hidden">
+    <div style="background:#111;color:#fff;padding:18px 24px;font-size:18px;font-weight:700">${escapeHtml(copy.subject.replace(/^【[^】]*】/, ""))}</div>
+    <div style="padding:24px">
+      <p style="margin:0 0 16px;font-weight:700">${escapeHtml(greeting)}</p>
+      <p style="margin:0 0 20px;white-space:pre-line">${escapeHtml(copy.lead)}</p>
+      <p style="margin:0 0 8px;color:#555;font-size:14px">ご入力いただいた内容は下記のとおり承りました。</p>
+      <table style="border-collapse:collapse;font-size:14px;margin:0 0 20px">${rows}
+        <tr><th align="left" style="padding:4px 12px 4px 0;color:#555;white-space:nowrap">受付ID</th><td style="padding:4px 0">${escapeHtml(submission.id)}</td></tr>
+        <tr><th align="left" style="padding:4px 12px 4px 0;color:#555;white-space:nowrap">受付日時</th><td style="padding:4px 0">${escapeHtml(formatDateTime(submission.submittedAt))}</td></tr>
+      </table>
+      <p style="margin:0 0 20px;color:#555;font-size:13px">本メールは自動送信です。お心当たりのない場合や、お急ぎの場合は下記までお電話ください。</p>
+      <div style="border-top:1px solid #e5e0d5;padding-top:16px;font-size:13px;color:#555">
+        <div style="font-weight:700;color:#1f2933">医学部予備校 レクサス E.C.</div>
+        <div>TEL: <a href="tel:0334771306" style="color:#b91c1c">03-3477-1306</a></div>
+        <div>受付時間 平日・土曜 9:00〜21:00 / 日曜 10:00〜17:00</div>
+        <div><a href="https://lexus-ec.com/" style="color:#b91c1c">https://lexus-ec.com/</a></div>
+        <div>〒150-0031 東京都渋谷区桜丘町29-7 LEXUS GARDEN</div>
+      </div>
+    </div>
+  </div>
+</body></html>`;
+
+  return { subject: copy.subject, text, html };
 };
 
 const buildSlackBlocks = (submission: Submission) => {
