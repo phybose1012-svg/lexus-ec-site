@@ -398,11 +398,13 @@ li {
   text-decoration: none;
 }
 
-/* Below-the-fold sections opt in to skipping style/layout until they approach
-   the viewport. This cuts the ~600ms initial layout long task on mobile (the
-   whole TOP page — marquee, tables, grids — used to lay out in one go).
-   contain-intrinsic-size is a rough placeholder height; Chrome replaces it
-   with the real size after first render. */
+/* Below-the-fold sections skip style/layout until they approach the viewport,
+   cutting the initial layout long task on mobile (keeps the perf score at 100).
+   Trade-off: while a content-visibility:auto section is off-screen it is not
+   painted, so axe-core/Lighthouse misreads the background behind its text and
+   reports false color-contrast failures on the .method metric numbers and the
+   white .section--courses card names — costing ~4 accessibility points. The
+   actual rendered colours are fine; performance is prioritised here. */
 .defer-render {
   content-visibility: auto;
   contain-intrinsic-size: auto 700px;
@@ -2123,7 +2125,9 @@ body:has(.premium-hero) :is(
 .site-footer__legal {
   display: block;
   margin-top: 8px;
-  color: rgb(255 255 255 / 40%);
+  /* 55% white ≈ #949494 on the #111 footer clears WCAG AA 4.5:1 for this small
+     link (40% was ~3.8:1). */
+  color: rgb(255 255 255 / 55%);
   font-size: 0.72rem;
   text-align: center;
   text-decoration: none;
