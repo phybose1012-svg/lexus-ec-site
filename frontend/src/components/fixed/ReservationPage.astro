@@ -27,23 +27,30 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
   <SiteHeader />
   <main class="legacy-reservation-page">
     <section class="reservation-lead" aria-label="無料面談のご予約">
-      <img class="page-head__strip" src="/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png" alt="" width="800" height="58" decoding="async" />
-      <p class="page-head__label">RESERVATION</p>
-      <h1 class="reservation-lead__title page-head__title" data-admin-editable="reservation.title">無料面談のご予約</h1>
-      <span class="page-head__rule" aria-hidden="true"></span>
-      <p data-admin-editable="reservation.lead">
-        体験授業や入学をご検討の方は、<br />
-        まず無料面談をご予約下さい。<br />
-        詳しくご説明いたします。
-      </p>
-      <div class="reservation-mascot-row">
-        <h2 data-admin-editable="reservation.mascot.left">お気軽にどうぞ</h2>
+      <div class="reservation-lead__copy">
+        <img class="page-head__strip" src="/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png" alt="" width="800" height="58" decoding="async" />
+        <p class="page-head__label">RESERVATION</p>
+        <h1 class="reservation-lead__title page-head__title" data-admin-editable="reservation.title">無料面談のご予約</h1>
+        <span class="page-head__rule" aria-hidden="true"></span>
+        <p class="reservation-lead__body" data-admin-editable="reservation.lead">
+          体験授業や入学をご検討の方は、<br />
+          まず無料面談をご予約下さい。<br />
+          詳しくご説明いたします。
+        </p>
+        <ul class="reservation-lead__tags" aria-label="ご相談内容">
+          <li>オンライン可</li>
+          <li>渋谷校舎で相談</li>
+          <li>寮の内見も相談可</li>
+        </ul>
+      </div>
+      <div class="reservation-mascot-row" aria-label="予約のご案内">
+        <p class="reservation-speech reservation-speech--left" data-admin-editable="reservation.mascot.left">お気軽にどうぞ</p>
         <img src={mascot} alt="レクサスくん(マスコットキャラクター)" width="899" height="1024" loading="lazy" decoding="async" />
-        <h2 data-admin-editable="reservation.mascot.right">毎日実施中</h2>
+        <p class="reservation-speech reservation-speech--right" data-admin-editable="reservation.mascot.right">毎日実施中</p>
       </div>
       <p class="reservation-lead__notice" data-admin-editable="reservation.notice">
         必須事項を入力して<br />
-        「予約する」ボタンを押してください。
+        「予約する」ボタンを押して下さい。
       </p>
     </section>
 
