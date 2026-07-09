@@ -12,7 +12,12 @@ const normalize = (value) => {
 };
 
 const uniqueRedirects = [
-  ...new Map(redirects.map((redirect) => [normalize(redirect.from), { from: normalize(redirect.from), to: normalize(redirect.to) }])).values(),
+  ...new Map(
+    redirects.map((redirect) => [
+      normalize(redirect.from),
+      { from: normalize(redirect.from), to: normalize(redirect.to), edge: redirect.edge !== false },
+    ]),
+  ).values(),
 ].sort((a, b) => a.from.localeCompare(b.from));
 
 // Cloudflare Pages only applies roughly the first ~100 lines of `_redirects`;
@@ -38,12 +43,26 @@ const collapsibleGroupFor = (redirect) => {
 
 // Exact placeholder rules replace the collapsible entries in `_redirects` only.
 const placeholderRules = collapsibleGroups.map((group) => `${group.prefix}:name/ ${group.dest}:name/ 301`);
-const cloudflareExactRedirects = uniqueRedirects.filter((redirect) => !collapsibleGroupFor(redirect));
+// Entries with `edge: false` are long-tail redirects served only by the static
+// stub pages ([...slug].astro meta-refresh + canonical) so they cost no
+// `_redirects` lines — Cloudflare Pages only honours ~100 of them.
+const cloudflareExactRedirects = uniqueRedirects.filter(
+  (redirect) => redirect.edge && !collapsibleGroupFor(redirect),
+);
 
 // Exact single-path rules that only exist for Cloudflare (not in the source JSON).
-const cloudflareExactExtra = [{ from: "/reservation", to: "/top/reservation/" }];
+const cloudflareExactExtra = [
+  { from: "/reservation", to: "/top/reservation/" },
+  // Old WP taxonomy: the 繰り上げ category maps to the kuriage data page.
+  { from: "/category/university/kuriage/", to: "/kuriage-information/" },
+];
 // Wildcard/splat rules must come last so more specific exact rules win first.
-const cloudflareWildcardRules = ["/wp-content/uploads/* /assets/legacy/wp-content/uploads/:splat 301"];
+const cloudflareWildcardRules = [
+  // Old WP taxonomy hubs (kokuritu/siritu trees) -> the new per-type info hubs.
+  "/category/university/kokuritu/* /top/information-kokuritsu/ 301",
+  "/category/university/siritu/* /top/information-shiritsu/ 301",
+  "/wp-content/uploads/* /assets/legacy/wp-content/uploads/:splat 301",
+];
 
 await mkdir(publicDir, { recursive: true });
 

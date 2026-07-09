@@ -3,6 +3,8 @@ import redirects from "../data/legacyRedirects.json";
 export type LegacyRedirect = {
   from: string;
   to: string;
+  /** false = stub-page redirect only (no `_redirects` line; Cloudflare caps those at ~100). */
+  edge?: boolean;
 };
 
 export const legacyRedirects = redirects as LegacyRedirect[];
