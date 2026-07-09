@@ -1,131 +1,1365 @@
 [
-  { "from": "/reservation/", "to": "/top/reservation/" },
-  { "from": "/top/information-kokuritsu/akita/", "to": "/information-akita/" },
-  { "from": "/top/information-kokuritsu/asahikawa/", "to": "/information-asahikawaika/" },
-  { "from": "/top/information-kokuritsu/chiba/", "to": "/information-chiba/" },
-  { "from": "/top/information-kokuritsu/ehime/", "to": "/information-ehime/" },
-  { "from": "/top/information-kokuritsu/fukui/", "to": "/information-fukui/" },
-  { "from": "/top/information-kokuritsu/fukushima/", "to": "/information-fukushima/" },
-  { "from": "/top/information-kokuritsu/gifu/", "to": "/information-gifu/" },
-  { "from": "/top/information-kokuritsu/gunma/", "to": "/information-gunma/" },
-  { "from": "/top/information-kokuritsu/hamamatsu/", "to": "/information-hamamatsu/" },
-  { "from": "/top/information-kokuritsu/hirosaki/", "to": "/information-hirosaki/" },
-  { "from": "/top/information-kokuritsu/hiroshima/", "to": "/information-hiroshima/" },
-  { "from": "/top/information-kokuritsu/hokkaido/", "to": "/information-hokkaido/" },
-  { "from": "/top/information-kokuritsu/kagawa/", "to": "/information-kagawa/" },
-  { "from": "/top/information-kokuritsu/kagoshima/", "to": "/information-kagoshima/" },
-  { "from": "/top/information-kokuritsu/kanazawa/", "to": "/information-kanazawa/" },
-  { "from": "/top/information-kokuritsu/kobe/", "to": "/information-kobe/" },
-  { "from": "/top/information-kokuritsu/kochi/", "to": "/information-kochi/" },
-  { "from": "/top/information-kokuritsu/kumamoto/", "to": "/information-kumamoto/" },
-  { "from": "/top/information-kokuritsu/kyoto/", "to": "/information-kyoto/" },
-  { "from": "/top/information-kokuritsu/kyotofuritu/", "to": "/information-kyotofuritsu/" },
-  { "from": "/top/information-kokuritsu/kyusyu/", "to": "/information-kyusyu/" },
-  { "from": "/top/information-kokuritsu/mie/", "to": "/information-mie/" },
-  { "from": "/top/information-kokuritsu/miyazaki/", "to": "/information-miyazaki/" },
-  { "from": "/top/information-kokuritsu/nagasaki/", "to": "/information-nagasaki/" },
-  { "from": "/top/information-kokuritsu/nagoya/", "to": "/information-nagoya/" },
-  { "from": "/top/information-kokuritsu/nagoyaichiritsu/", "to": "/information-nagoyaishiritu/" },
-  { "from": "/top/information-kokuritsu/nara/", "to": "/information-nara/" },
-  { "from": "/top/information-kokuritsu/niigata/", "to": "/information-nigata/" },
-  { "from": "/top/information-kokuritsu/okayama/", "to": "/information-okayama/" },
-  { "from": "/top/information-kokuritsu/ooita/", "to": "/information-oita/" },
-  { "from": "/top/information-kokuritsu/osaka/", "to": "/information-osaka/" },
-  { "from": "/top/information-kokuritsu/osakakouritsu/", "to": "/information-osakakouritsu/" },
-  { "from": "/top/information-kokuritsu/ryukyu/", "to": "/information-ryukyu/" },
-  { "from": "/top/information-kokuritsu/saga/", "to": "/information-saga/" },
-  { "from": "/top/information-kokuritsu/sapporo/", "to": "/information-sapporoika/" },
-  { "from": "/top/information-kokuritsu/shiga/", "to": "/information-shigaika/" },
-  { "from": "/top/information-kokuritsu/shimane/", "to": "/information-shimane/" },
-  { "from": "/top/information-kokuritsu/shinshu/", "to": "/information-shinsyu/" },
-  { "from": "/top/information-kokuritsu/tohoku-2/", "to": "/information-tohoku/" },
-  { "from": "/top/information-kokuritsu/tokushima/", "to": "/information-tokushima/" },
-  { "from": "/top/information-kokuritsu/tokyo/", "to": "/information-tokyo/" },
-  { "from": "/top/information-kokuritsu/tokyokagaku/", "to": "/information-tokyokagaku/" },
-  { "from": "/top/information-kokuritsu/tottiri/", "to": "/information-tottori/" },
-  { "from": "/top/information-kokuritsu/toyama/", "to": "/information-toyama/" },
-  { "from": "/top/information-kokuritsu/tsukuba/", "to": "/information-tsukuba/" },
-  { "from": "/top/information-kokuritsu/wakayama/", "to": "/information-wakayama/" },
-  { "from": "/top/information-kokuritsu/yamagata/", "to": "/information-yamagata/" },
-  { "from": "/top/information-kokuritsu/yamaguchi/", "to": "/information-yamaguchi/" },
-  { "from": "/top/information-kokuritsu/yamanashi/", "to": "/information-yamanashi/" },
-  { "from": "/top/information-kokuritsu/yokohama/", "to": "/information-yokohama/" },
-  { "from": "/top/information-shiritsu/aichiika/", "to": "/information-aichi/" },
-  { "from": "/top/information-shiritsu/aichiika/strategy/", "to": "/aichi-medical-university-entrance-exam2027-measures/" },
-  { "from": "/top/information-shiritsu/dokyouika/", "to": "/information-dokkyo/" },
-  { "from": "/top/information-shiritsu/dokyouika/strategy/", "to": "/dokkyouika-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/fukuoka/", "to": "/information-fukuoka/" },
-  { "from": "/top/information-shiritsu/fukuoka/strategy/", "to": "/hukuoka-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/hujitaika/", "to": "/information-fujita/" },
-  { "from": "/top/information-shiritsu/hujitaika/strategy/", "to": "/hujitaika-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/hyougoika/", "to": "/information-hyogo/" },
-  { "from": "/top/information-shiritsu/hyougoika/strategy/", "to": "/https-lexus-ec-com-hyougoika-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/iwateika/", "to": "/information-iwate/" },
-  { "from": "/top/information-shiritsu/iwateika/strategy/", "to": "/iwateika-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/jikei/", "to": "/information-jikei/" },
-  { "from": "/top/information-shiritsu/jikei/strategy/", "to": "/jikei-medical-entrance-exam2027-strategy/" },
-  { "from": "/top/information-shiritsu/kanazawaika/", "to": "/information-kanazawaika/" },
-  { "from": "/top/information-shiritsu/kanazawaika/strategy/", "to": "/kanazawaika-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/kannsaiika/", "to": "/information-kansai/" },
-  { "from": "/top/information-shiritsu/kannsaiika/strategy/", "to": "/kansaiika-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/kawasakiika/", "to": "/information-kawasaki/" },
-  { "from": "/top/information-shiritsu/kawasakiika/strategy/", "to": "/kawasakiika-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/keiou/", "to": "/information-keio/" },
-  { "from": "/top/information-shiritsu/keiou/strategy/", "to": "/keio-university-entrance-exam2027-measures/" },
-  { "from": "/top/information-shiritsu/kinnki/", "to": "/information-kinki/" },
-  { "from": "/top/information-shiritsu/kinnki/strategy/", "to": "/kinnki-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/kitasato/", "to": "/information-kitasato/" },
-  { "from": "/top/information-shiritsu/kitasato/strategy/", "to": "/kitasato-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/kokusaiiryoufukushi/", "to": "/information-kokusai/" },
-  { "from": "/top/information-shiritsu/kokusaiiryoufukushi/strategy/", "to": "/iuhw-medical-school-exam-guide-2027/" },
-  { "from": "/top/information-shiritsu/kurume/", "to": "/information-kurume/" },
-  { "from": "/top/information-shiritsu/kurume/strategy/", "to": "/kurume-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/kyourin/", "to": "/information-kyorin/" },
-  { "from": "/top/information-shiritsu/kyourin/strategy/", "to": "/kyorin-university-medicine-exam-guide2027/" },
-  { "from": "/top/information-shiritsu/nihinnika/", "to": "/information-nihonika/" },
-  { "from": "/top/information-shiritsu/nihinnika/strategy/", "to": "/nihonikadaigaku-exam-guide-2027/" },
-  { "from": "/top/information-shiritsu/nihonn/", "to": "/information-nichidai/" },
-  { "from": "/top/information-shiritsu/nihonn/strategy/", "to": "/nihon-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/oosakaikayakka/", "to": "/information-osakaika/" },
-  { "from": "/top/information-shiritsu/oosakaikayakka/strategy/", "to": "/oosakaikayakka-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/saitamaika/", "to": "/information-saitama/" },
-  { "from": "/top/information-shiritsu/saitamaika/strategy/", "to": "/saitamaika-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/sanngyouika/", "to": "/information-sangyoika/" },
-  { "from": "/top/information-shiritsu/sanngyouika/strategy/", "to": "/https-lexus-ec-com-sanngyouika-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/seimariannna/", "to": "/information-saint/" },
-  { "from": "/top/information-shiritsu/seimariannna/strategy/", "to": "/saint-marianna-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/shouwa/", "to": "/information-showa/" },
-  { "from": "/top/information-shiritsu/shouwa/strategy/", "to": "/showa-university-medicine-strategy2027/" },
-  { "from": "/top/information-shiritsu/teikyou/", "to": "/information-teikyo/" },
-  { "from": "/top/information-shiritsu/teikyou/strategy/", "to": "/teikyo-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/tohokuikaykka/", "to": "/information-tohokuika/" },
-  { "from": "/top/information-shiritsu/tohokuikaykka/strategy/", "to": "/touhokuikayakka-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/touhou/", "to": "/information-toho/" },
-  { "from": "/top/information-shiritsu/touhou/strategy/", "to": "/tohoi-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/toukai/", "to": "/information-tokai/" },
-  { "from": "/top/information-shiritsu/toukai/strategy/", "to": "/toukai-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/toukyouika/", "to": "/information-tokyoika/" },
-  { "from": "/top/information-shiritsu/toukyouika/strategy/", "to": "/tokyo-university-medicine-strategy2027/" },
-  { "from": "/top/information-shiritsu/toukyoujyoshiika/", "to": "/information-jyoshiika/" },
-  { "from": "/top/information-shiritsu/toukyoujyoshiika/strategy/", "to": "/twmu-medicine-exam-guide-2027/" },
-  { "from": "/top/information-shiritsu/zichiika/", "to": "/information-jichi/" },
-  { "from": "/top/information-shiritsu/zichiika/strategy/", "to": "/jichiika-university-entrance-exam-measures2027/" },
-  { "from": "/top/information-shiritsu/zyuntendou/", "to": "/information-jyunten/" },
-  { "from": "/top/information-shiritsu/zyuntendou/strategy/", "to": "/juntendo-medical-entrance-exam2027-measures/" },
-  { "from": "/toukyouika/", "to": "/information-tokyoika/" },
-  { "from": "/top/course/lexus-regular-course/", "to": "/top/course/medical-prep/" },
-  { "from": "/saitama-med-late-waitlist/", "to": "/kuriage-information/" },
-  { "from": "/saitama-med-waitlist-guide/", "to": "/kuriage-information/" },
-  { "from": "/nihonn-waitlist-guide/", "to": "/kuriage-information/" },
-  { "from": "/kanazawa-med-waitlist-guide/", "to": "/kuriage-information/" },
-  { "from": "/kyorin-medical-waiting-list-success/", "to": "/kuriage-information/" },
-  { "from": "/tokyo-med-waitlist-status_2026/", "to": "/kuriage-information/" },
-  { "from": "/kitasato-medicine-waitlist-success/", "to": "/kuriage-information/" },
-  { "from": "/oya-to-kodomo/", "to": "/mail-01/" },
-  { "from": "/yobikou-change/", "to": "/top/history/" },
-  { "from": "/iwate-med-biology-2025-analysis/", "to": "/iwateika-university-entrance-exam-measures2027/" },
-  { "from": "/iwate-med-physic-2025-analysis/", "to": "/iwateika-university-entrance-exam-measures2027/" },
-  { "from": "/iwate-med-chemi-2025-analysis/", "to": "/iwateika-university-entrance-exam-measures2027/" },
-  { "from": "/iwate-med-math-2025-analysis/", "to": "/iwateika-university-entrance-exam-measures2027/" },
-  { "from": "/iwate-med-english-2025-analysis/", "to": "/iwateika-university-entrance-exam-measures2027/" }
+  {
+    "from": "/reservation/",
+    "to": "/top/reservation/"
+  },
+  {
+    "from": "/top/information-kokuritsu/akita/",
+    "to": "/information-akita/"
+  },
+  {
+    "from": "/top/information-kokuritsu/asahikawa/",
+    "to": "/information-asahikawaika/"
+  },
+  {
+    "from": "/top/information-kokuritsu/chiba/",
+    "to": "/information-chiba/"
+  },
+  {
+    "from": "/top/information-kokuritsu/ehime/",
+    "to": "/information-ehime/"
+  },
+  {
+    "from": "/top/information-kokuritsu/fukui/",
+    "to": "/information-fukui/"
+  },
+  {
+    "from": "/top/information-kokuritsu/fukushima/",
+    "to": "/information-fukushima/"
+  },
+  {
+    "from": "/top/information-kokuritsu/gifu/",
+    "to": "/information-gifu/"
+  },
+  {
+    "from": "/top/information-kokuritsu/gunma/",
+    "to": "/information-gunma/"
+  },
+  {
+    "from": "/top/information-kokuritsu/hamamatsu/",
+    "to": "/information-hamamatsu/"
+  },
+  {
+    "from": "/top/information-kokuritsu/hirosaki/",
+    "to": "/information-hirosaki/"
+  },
+  {
+    "from": "/top/information-kokuritsu/hiroshima/",
+    "to": "/information-hiroshima/"
+  },
+  {
+    "from": "/top/information-kokuritsu/hokkaido/",
+    "to": "/information-hokkaido/"
+  },
+  {
+    "from": "/top/information-kokuritsu/kagawa/",
+    "to": "/information-kagawa/"
+  },
+  {
+    "from": "/top/information-kokuritsu/kagoshima/",
+    "to": "/information-kagoshima/"
+  },
+  {
+    "from": "/top/information-kokuritsu/kanazawa/",
+    "to": "/information-kanazawa/"
+  },
+  {
+    "from": "/top/information-kokuritsu/kobe/",
+    "to": "/information-kobe/"
+  },
+  {
+    "from": "/top/information-kokuritsu/kochi/",
+    "to": "/information-kochi/"
+  },
+  {
+    "from": "/top/information-kokuritsu/kumamoto/",
+    "to": "/information-kumamoto/"
+  },
+  {
+    "from": "/top/information-kokuritsu/kyoto/",
+    "to": "/information-kyoto/"
+  },
+  {
+    "from": "/top/information-kokuritsu/kyotofuritu/",
+    "to": "/information-kyotofuritsu/"
+  },
+  {
+    "from": "/top/information-kokuritsu/kyusyu/",
+    "to": "/information-kyusyu/"
+  },
+  {
+    "from": "/top/information-kokuritsu/mie/",
+    "to": "/information-mie/"
+  },
+  {
+    "from": "/top/information-kokuritsu/miyazaki/",
+    "to": "/information-miyazaki/"
+  },
+  {
+    "from": "/top/information-kokuritsu/nagasaki/",
+    "to": "/information-nagasaki/"
+  },
+  {
+    "from": "/top/information-kokuritsu/nagoya/",
+    "to": "/information-nagoya/"
+  },
+  {
+    "from": "/top/information-kokuritsu/nagoyaichiritsu/",
+    "to": "/information-nagoyaishiritu/"
+  },
+  {
+    "from": "/top/information-kokuritsu/nara/",
+    "to": "/information-nara/"
+  },
+  {
+    "from": "/top/information-kokuritsu/niigata/",
+    "to": "/information-nigata/"
+  },
+  {
+    "from": "/top/information-kokuritsu/okayama/",
+    "to": "/information-okayama/"
+  },
+  {
+    "from": "/top/information-kokuritsu/ooita/",
+    "to": "/information-oita/"
+  },
+  {
+    "from": "/top/information-kokuritsu/osaka/",
+    "to": "/information-osaka/"
+  },
+  {
+    "from": "/top/information-kokuritsu/osakakouritsu/",
+    "to": "/information-osakakouritsu/"
+  },
+  {
+    "from": "/top/information-kokuritsu/ryukyu/",
+    "to": "/information-ryukyu/"
+  },
+  {
+    "from": "/top/information-kokuritsu/saga/",
+    "to": "/information-saga/"
+  },
+  {
+    "from": "/top/information-kokuritsu/sapporo/",
+    "to": "/information-sapporoika/"
+  },
+  {
+    "from": "/top/information-kokuritsu/shiga/",
+    "to": "/information-shigaika/"
+  },
+  {
+    "from": "/top/information-kokuritsu/shimane/",
+    "to": "/information-shimane/"
+  },
+  {
+    "from": "/top/information-kokuritsu/shinshu/",
+    "to": "/information-shinsyu/"
+  },
+  {
+    "from": "/top/information-kokuritsu/tohoku-2/",
+    "to": "/information-tohoku/"
+  },
+  {
+    "from": "/top/information-kokuritsu/tokushima/",
+    "to": "/information-tokushima/"
+  },
+  {
+    "from": "/top/information-kokuritsu/tokyo/",
+    "to": "/information-tokyo/"
+  },
+  {
+    "from": "/top/information-kokuritsu/tokyokagaku/",
+    "to": "/information-tokyokagaku/"
+  },
+  {
+    "from": "/top/information-kokuritsu/tottiri/",
+    "to": "/information-tottori/"
+  },
+  {
+    "from": "/top/information-kokuritsu/toyama/",
+    "to": "/information-toyama/"
+  },
+  {
+    "from": "/top/information-kokuritsu/tsukuba/",
+    "to": "/information-tsukuba/"
+  },
+  {
+    "from": "/top/information-kokuritsu/wakayama/",
+    "to": "/information-wakayama/"
+  },
+  {
+    "from": "/top/information-kokuritsu/yamagata/",
+    "to": "/information-yamagata/"
+  },
+  {
+    "from": "/top/information-kokuritsu/yamaguchi/",
+    "to": "/information-yamaguchi/"
+  },
+  {
+    "from": "/top/information-kokuritsu/yamanashi/",
+    "to": "/information-yamanashi/"
+  },
+  {
+    "from": "/top/information-kokuritsu/yokohama/",
+    "to": "/information-yokohama/"
+  },
+  {
+    "from": "/top/information-shiritsu/aichiika/",
+    "to": "/information-aichi/"
+  },
+  {
+    "from": "/top/information-shiritsu/aichiika/strategy/",
+    "to": "/aichi-medical-university-entrance-exam2027-measures/"
+  },
+  {
+    "from": "/top/information-shiritsu/dokyouika/",
+    "to": "/information-dokkyo/"
+  },
+  {
+    "from": "/top/information-shiritsu/dokyouika/strategy/",
+    "to": "/dokkyouika-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/fukuoka/",
+    "to": "/information-fukuoka/"
+  },
+  {
+    "from": "/top/information-shiritsu/fukuoka/strategy/",
+    "to": "/hukuoka-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/hujitaika/",
+    "to": "/information-fujita/"
+  },
+  {
+    "from": "/top/information-shiritsu/hujitaika/strategy/",
+    "to": "/hujitaika-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/hyougoika/",
+    "to": "/information-hyogo/"
+  },
+  {
+    "from": "/top/information-shiritsu/hyougoika/strategy/",
+    "to": "/https-lexus-ec-com-hyougoika-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/iwateika/",
+    "to": "/information-iwate/"
+  },
+  {
+    "from": "/top/information-shiritsu/iwateika/strategy/",
+    "to": "/iwateika-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/jikei/",
+    "to": "/information-jikei/"
+  },
+  {
+    "from": "/top/information-shiritsu/jikei/strategy/",
+    "to": "/jikei-medical-entrance-exam2027-strategy/"
+  },
+  {
+    "from": "/top/information-shiritsu/kanazawaika/",
+    "to": "/information-kanazawaika/"
+  },
+  {
+    "from": "/top/information-shiritsu/kanazawaika/strategy/",
+    "to": "/kanazawaika-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/kannsaiika/",
+    "to": "/information-kansai/"
+  },
+  {
+    "from": "/top/information-shiritsu/kannsaiika/strategy/",
+    "to": "/kansaiika-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/kawasakiika/",
+    "to": "/information-kawasaki/"
+  },
+  {
+    "from": "/top/information-shiritsu/kawasakiika/strategy/",
+    "to": "/kawasakiika-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/keiou/",
+    "to": "/information-keio/"
+  },
+  {
+    "from": "/top/information-shiritsu/keiou/strategy/",
+    "to": "/keio-university-entrance-exam2027-measures/"
+  },
+  {
+    "from": "/top/information-shiritsu/kinnki/",
+    "to": "/information-kinki/"
+  },
+  {
+    "from": "/top/information-shiritsu/kinnki/strategy/",
+    "to": "/kinnki-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/kitasato/",
+    "to": "/information-kitasato/"
+  },
+  {
+    "from": "/top/information-shiritsu/kitasato/strategy/",
+    "to": "/kitasato-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/kokusaiiryoufukushi/",
+    "to": "/information-kokusai/"
+  },
+  {
+    "from": "/top/information-shiritsu/kokusaiiryoufukushi/strategy/",
+    "to": "/iuhw-medical-school-exam-guide-2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/kurume/",
+    "to": "/information-kurume/"
+  },
+  {
+    "from": "/top/information-shiritsu/kurume/strategy/",
+    "to": "/kurume-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/kyourin/",
+    "to": "/information-kyorin/"
+  },
+  {
+    "from": "/top/information-shiritsu/kyourin/strategy/",
+    "to": "/kyorin-university-medicine-exam-guide2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/nihinnika/",
+    "to": "/information-nihonika/"
+  },
+  {
+    "from": "/top/information-shiritsu/nihinnika/strategy/",
+    "to": "/nihonikadaigaku-exam-guide-2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/nihonn/",
+    "to": "/information-nichidai/"
+  },
+  {
+    "from": "/top/information-shiritsu/nihonn/strategy/",
+    "to": "/nihon-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/oosakaikayakka/",
+    "to": "/information-osakaika/"
+  },
+  {
+    "from": "/top/information-shiritsu/oosakaikayakka/strategy/",
+    "to": "/oosakaikayakka-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/saitamaika/",
+    "to": "/information-saitama/"
+  },
+  {
+    "from": "/top/information-shiritsu/saitamaika/strategy/",
+    "to": "/saitamaika-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/sanngyouika/",
+    "to": "/information-sangyoika/"
+  },
+  {
+    "from": "/top/information-shiritsu/sanngyouika/strategy/",
+    "to": "/https-lexus-ec-com-sanngyouika-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/seimariannna/",
+    "to": "/information-saint/"
+  },
+  {
+    "from": "/top/information-shiritsu/seimariannna/strategy/",
+    "to": "/saint-marianna-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/shouwa/",
+    "to": "/information-showa/"
+  },
+  {
+    "from": "/top/information-shiritsu/shouwa/strategy/",
+    "to": "/showa-university-medicine-strategy2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/teikyou/",
+    "to": "/information-teikyo/"
+  },
+  {
+    "from": "/top/information-shiritsu/teikyou/strategy/",
+    "to": "/teikyo-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/tohokuikaykka/",
+    "to": "/information-tohokuika/"
+  },
+  {
+    "from": "/top/information-shiritsu/tohokuikaykka/strategy/",
+    "to": "/touhokuikayakka-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/touhou/",
+    "to": "/information-toho/"
+  },
+  {
+    "from": "/top/information-shiritsu/touhou/strategy/",
+    "to": "/tohoi-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/toukai/",
+    "to": "/information-tokai/"
+  },
+  {
+    "from": "/top/information-shiritsu/toukai/strategy/",
+    "to": "/toukai-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/toukyouika/",
+    "to": "/information-tokyoika/"
+  },
+  {
+    "from": "/top/information-shiritsu/toukyouika/strategy/",
+    "to": "/tokyo-university-medicine-strategy2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/toukyoujyoshiika/",
+    "to": "/information-jyoshiika/"
+  },
+  {
+    "from": "/top/information-shiritsu/toukyoujyoshiika/strategy/",
+    "to": "/twmu-medicine-exam-guide-2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/zichiika/",
+    "to": "/information-jichi/"
+  },
+  {
+    "from": "/top/information-shiritsu/zichiika/strategy/",
+    "to": "/jichiika-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/top/information-shiritsu/zyuntendou/",
+    "to": "/information-jyunten/"
+  },
+  {
+    "from": "/top/information-shiritsu/zyuntendou/strategy/",
+    "to": "/juntendo-medical-entrance-exam2027-measures/"
+  },
+  {
+    "from": "/toukyouika/",
+    "to": "/information-tokyoika/"
+  },
+  {
+    "from": "/top/course/lexus-regular-course/",
+    "to": "/top/course/medical-prep/"
+  },
+  {
+    "from": "/saitama-med-late-waitlist/",
+    "to": "/kuriage-information/"
+  },
+  {
+    "from": "/saitama-med-waitlist-guide/",
+    "to": "/kuriage-information/"
+  },
+  {
+    "from": "/nihonn-waitlist-guide/",
+    "to": "/kuriage-information/"
+  },
+  {
+    "from": "/kanazawa-med-waitlist-guide/",
+    "to": "/kuriage-information/"
+  },
+  {
+    "from": "/kyorin-medical-waiting-list-success/",
+    "to": "/kuriage-information/"
+  },
+  {
+    "from": "/tokyo-med-waitlist-status_2026/",
+    "to": "/kuriage-information/"
+  },
+  {
+    "from": "/kitasato-medicine-waitlist-success/",
+    "to": "/kuriage-information/"
+  },
+  {
+    "from": "/oya-to-kodomo/",
+    "to": "/mail-01/"
+  },
+  {
+    "from": "/yobikou-change/",
+    "to": "/top/history/"
+  },
+  {
+    "from": "/iwate-med-biology-2025-analysis/",
+    "to": "/iwateika-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/iwate-med-physic-2025-analysis/",
+    "to": "/iwateika-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/iwate-med-chemi-2025-analysis/",
+    "to": "/iwateika-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/iwate-med-math-2025-analysis/",
+    "to": "/iwateika-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/iwate-med-english-2025-analysis/",
+    "to": "/iwateika-university-entrance-exam-measures2027/"
+  },
+  {
+    "from": "/2026-aichiika-ippan-bio/",
+    "to": "/aichi-medical-university-entrance-exam2027-measures/",
+    "edge": false
+  },
+  {
+    "from": "/2026-aichiika-ippan-chemi/",
+    "to": "/aichi-medical-university-entrance-exam2027-measures/",
+    "edge": false
+  },
+  {
+    "from": "/2026-aichiika-ippan-eng/",
+    "to": "/aichi-medical-university-entrance-exam2027-measures/",
+    "edge": false
+  },
+  {
+    "from": "/2026-aichiika-ippan-essay/",
+    "to": "/aichi-medical-university-entrance-exam2027-measures/",
+    "edge": false
+  },
+  {
+    "from": "/2026-aichiika-ippan-math/",
+    "to": "/aichi-medical-university-entrance-exam2027-measures/",
+    "edge": false
+  },
+  {
+    "from": "/2026-aichiika-ippan-phy/",
+    "to": "/aichi-medical-university-entrance-exam2027-measures/",
+    "edge": false
+  },
+  {
+    "from": "/2026-hujitaika-ippan-bio/",
+    "to": "/hujitaika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-hujitaika-ippan-chemi/",
+    "to": "/hujitaika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-hujitaika-ippan-eng/",
+    "to": "/hujitaika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-hujitaika-ippan-math/",
+    "to": "/hujitaika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-hujitaika-ippan-phy/",
+    "to": "/hujitaika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-hukuoka-ippan-bio/",
+    "to": "/hukuoka-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-hukuoka-ippan-chemi/",
+    "to": "/hukuoka-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-hukuoka-ippan-eng/",
+    "to": "/hukuoka-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-hukuoka-ippan-essay/",
+    "to": "/hukuoka-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-hukuoka-ippan-math/",
+    "to": "/hukuoka-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-hukuoka-ippan-phy/",
+    "to": "/hukuoka-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-hyougoika-ippan-bio/",
+    "to": "/https-lexus-ec-com-hyougoika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-hyougoika-ippan-chemi/",
+    "to": "/https-lexus-ec-com-hyougoika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-hyougoika-ippan-eng/",
+    "to": "/https-lexus-ec-com-hyougoika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-hyougoika-ippan-essay/",
+    "to": "/https-lexus-ec-com-hyougoika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-hyougoika-ippan-math/",
+    "to": "/https-lexus-ec-com-hyougoika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-hyougoika-ippan-phy/",
+    "to": "/https-lexus-ec-com-hyougoika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-iwateika-ippan-bio/",
+    "to": "/iwateika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-iwateika-ippan-chemi/",
+    "to": "/iwateika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-iwateika-ippan-math/",
+    "to": "/iwateika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-iwateika-ippan-phy/",
+    "to": "/iwateika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-jichiika-ippan-bio/",
+    "to": "/jichiika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-jichiika-ippan-chemi/",
+    "to": "/jichiika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-jichiika-ippan-eng/",
+    "to": "/jichiika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-jichiika-ippan-math/",
+    "to": "/jichiika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-jichiika-ippan-phy/",
+    "to": "/jichiika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-junntenndou-ippan-bio/",
+    "to": "/juntendo-medical-entrance-exam2027-measures/",
+    "edge": false
+  },
+  {
+    "from": "/2026-junntenndou-ippan-chemi/",
+    "to": "/juntendo-medical-entrance-exam2027-measures/",
+    "edge": false
+  },
+  {
+    "from": "/2026-junntenndou-ippan-eng/",
+    "to": "/juntendo-medical-entrance-exam2027-measures/",
+    "edge": false
+  },
+  {
+    "from": "/2026-junntenndou-ippan-math/",
+    "to": "/juntendo-medical-entrance-exam2027-measures/",
+    "edge": false
+  },
+  {
+    "from": "/2026-junntenndou-ippan-phy/",
+    "to": "/juntendo-medical-entrance-exam2027-measures/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kanazawaika-ippan-bio/",
+    "to": "/kanazawaika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kanazawaika-ippan-chemi/",
+    "to": "/kanazawaika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kanazawaika-ippan-eng/",
+    "to": "/kanazawaika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kanazawaika-ippan-math/",
+    "to": "/kanazawaika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kanazawaika-ippan-phy/",
+    "to": "/kanazawaika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kannsaiika-ippan-bio/",
+    "to": "/kansaiika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kannsaiika-ippan-chemi/",
+    "to": "/kansaiika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kannsaiika-ippan-eng/",
+    "to": "/kansaiika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kannsaiika-ippan-math/",
+    "to": "/kansaiika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kannsaiika-ippan-phy/",
+    "to": "/kansaiika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kawasakiika-ippan-bio/",
+    "to": "/kawasakiika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kawasakiika-ippan-chemi/",
+    "to": "/kawasakiika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kawasakiika-ippan-eng-2/",
+    "to": "/kawasakiika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kawasakiika-ippan-essay/",
+    "to": "/kawasakiika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kawasakiika-ippan-math/",
+    "to": "/kawasakiika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kawasakiika-ippan-phy/",
+    "to": "/kawasakiika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kinnki-ippan-bio/",
+    "to": "/kinnki-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kinnki-ippan-chemi/",
+    "to": "/kinnki-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kinnki-ippan-eng/",
+    "to": "/kinnki-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kinnki-ippan-essay/",
+    "to": "/kinnki-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kinnki-ippan-math/",
+    "to": "/kinnki-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kinnki-ippan-phy/",
+    "to": "/kinnki-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kitasato-exam/",
+    "to": "/kitasato-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kitasato-ippan-bio/",
+    "to": "/kitasato-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kitasato-ippan-chemi/",
+    "to": "/kitasato-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kitasato-ippan-eng/",
+    "to": "/kitasato-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kitasato-ippan-math/",
+    "to": "/kitasato-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kitasato-ippan-phy/",
+    "to": "/kitasato-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kokusaiiryouhukushi-ippan-bio/",
+    "to": "/iuhw-medical-school-exam-guide-2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kokusaiiryouhukushi-ippan-chemi/",
+    "to": "/iuhw-medical-school-exam-guide-2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kokusaiiryouhukushi-ippan-eng/",
+    "to": "/iuhw-medical-school-exam-guide-2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kokusaiiryouhukushi-ippan-math/",
+    "to": "/iuhw-medical-school-exam-guide-2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kokusaiiryouhukushi-ippan-phy/",
+    "to": "/iuhw-medical-school-exam-guide-2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kurume-ippan-bio/",
+    "to": "/kurume-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kurume-ippan-chemi/",
+    "to": "/kurume-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kurume-ippan-eng/",
+    "to": "/kurume-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kurume-ippan-essay/",
+    "to": "/kurume-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kurume-ippan-math/",
+    "to": "/kurume-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kurume-ippan-phy/",
+    "to": "/kurume-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kyourinn-ippan-bio/",
+    "to": "/kyorin-university-medicine-exam-guide2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kyourinn-ippan-chemi/",
+    "to": "/kyorin-university-medicine-exam-guide2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kyourinn-ippan-eng/",
+    "to": "/kyorin-university-medicine-exam-guide2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kyourinn-ippan-essay/",
+    "to": "/kyorin-university-medicine-exam-guide2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kyourinn-ippan-math/",
+    "to": "/kyorin-university-medicine-exam-guide2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-kyourinn-ippan-phy/",
+    "to": "/kyorin-university-medicine-exam-guide2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-nichidai-ippan-bio/",
+    "to": "/nihon-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-nichidai-ippan-chemi/",
+    "to": "/nihon-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-nichidai-ippan-eng/",
+    "to": "/nihon-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-nichidai-ippan-math/",
+    "to": "/nihon-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-nichidai-ippan-phy/",
+    "to": "/nihon-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-nihonnika-ippan-bio/",
+    "to": "/nihonikadaigaku-exam-guide-2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-nihonnika-ippan-chemi/",
+    "to": "/nihonikadaigaku-exam-guide-2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-nihonnika-ippan-eng/",
+    "to": "/nihonikadaigaku-exam-guide-2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-nihonnika-ippan-math/",
+    "to": "/nihonikadaigaku-exam-guide-2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-nihonnika-ippan-phy/",
+    "to": "/nihonikadaigaku-exam-guide-2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-saitamaika-ippan-math/",
+    "to": "/saitamaika-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-seimariannnaika-ippan-bio/",
+    "to": "/saint-marianna-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-seimariannnaika-ippan-chemi/",
+    "to": "/saint-marianna-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-seimariannnaika-ippan-eng/",
+    "to": "/saint-marianna-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-seimariannnaika-ippan-essay/",
+    "to": "/saint-marianna-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-seimariannnaika-ippan-math/",
+    "to": "/saint-marianna-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-seimariannnaika-ippan-phy/",
+    "to": "/saint-marianna-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-shouwaika-ippan-bio/",
+    "to": "/showa-university-medicine-strategy2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-shouwaika-ippan-chemi/",
+    "to": "/showa-university-medicine-strategy2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-shouwaika-ippan-eng/",
+    "to": "/showa-university-medicine-strategy2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-shouwaika-ippan-jpn/",
+    "to": "/showa-university-medicine-strategy2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-shouwaika-ippan-math/",
+    "to": "/showa-university-medicine-strategy2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-shouwaika-ippan-phy/",
+    "to": "/showa-university-medicine-strategy2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-teikyou-ippan-bio/",
+    "to": "/teikyo-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-teikyou-ippan-dhemi/",
+    "to": "/teikyo-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-teikyou-ippan-eng/",
+    "to": "/teikyo-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-teikyou-ippan-jpn/",
+    "to": "/teikyo-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-teikyou-ippan-math/",
+    "to": "/teikyo-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-teikyou-ippan-phy/",
+    "to": "/teikyo-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-touhokuikayakka-ippan-bio/",
+    "to": "/touhokuikayakka-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-touhokuikayakka-ippan-chemi/",
+    "to": "/touhokuikayakka-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-touhokuikayakka-ippan-eng/",
+    "to": "/touhokuikayakka-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-touhokuikayakka-ippan-phy/",
+    "to": "/touhokuikayakka-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-touhou-ippan-bio/",
+    "to": "/tohoi-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-touhou-ippan-chemi/",
+    "to": "/tohoi-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-touhou-ippan-eng/",
+    "to": "/tohoi-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-touhou-ippan-math/",
+    "to": "/tohoi-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-touhou-ippan-phy/",
+    "to": "/tohoi-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-toukai-ippan-bio/",
+    "to": "/toukai-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-toukai-ippan-chemi/",
+    "to": "/toukai-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-toukai-ippan-eng/",
+    "to": "/toukai-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-toukai-ippan-math/",
+    "to": "/toukai-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-toukai-ippan-phy/",
+    "to": "/toukai-university-entrance-exam-measures2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-toukyouika-ippan-bio/",
+    "to": "/tokyo-university-medicine-strategy2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-toukyouika-ippan-chemi/",
+    "to": "/tokyo-university-medicine-strategy2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-toukyouika-ippan-eng/",
+    "to": "/tokyo-university-medicine-strategy2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-toukyouika-ippan-essay/",
+    "to": "/tokyo-university-medicine-strategy2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-toukyouika-ippan-math/",
+    "to": "/tokyo-university-medicine-strategy2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-toukyouika-ippan-phy/",
+    "to": "/tokyo-university-medicine-strategy2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-toukyoujosiika-ippan-bio/",
+    "to": "/twmu-medicine-exam-guide-2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-toukyoujosiika-ippan-chemi/",
+    "to": "/twmu-medicine-exam-guide-2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-toukyoujosiika-ippan-eng/",
+    "to": "/twmu-medicine-exam-guide-2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-toukyoujosiika-ippan-math/",
+    "to": "/twmu-medicine-exam-guide-2027/",
+    "edge": false
+  },
+  {
+    "from": "/2026-toukyoujosiika-ippan-phy/",
+    "to": "/twmu-medicine-exam-guide-2027/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/aichiika/examination/",
+    "to": "/information-aichi/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/dokyouika/examination/",
+    "to": "/information-dokkyo/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/fukuoka/examination/",
+    "to": "/information-fukuoka/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/hujitaika/examination/",
+    "to": "/information-fujita/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/hyougoika/examination/",
+    "to": "/information-hyogo/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/iwateika/examination/",
+    "to": "/information-iwate/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/jikei/examination/",
+    "to": "/information-jikei/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/kanazawaika/examination/",
+    "to": "/information-kanazawaika/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/kannsaiika/examination/",
+    "to": "/information-kansai/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/kawasakiika/examination/",
+    "to": "/information-kawasaki/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/keiou/examination/",
+    "to": "/information-keio/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/kinnki/examination/",
+    "to": "/information-kinki/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/kitasato/examination/",
+    "to": "/information-kitasato/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/kokusaiiryoufukushi/examination/",
+    "to": "/information-kokusai/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/kurume/examination/",
+    "to": "/information-kurume/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/kyourin/examination/",
+    "to": "/information-kyorin/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/nihinnika/examination/",
+    "to": "/information-nihonika/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/nihonn/examination/",
+    "to": "/information-nichidai/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/oosakaikayakka/examination/",
+    "to": "/information-osakaika/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/saitamaika/examination/",
+    "to": "/information-saitama/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/sanngyouika/examination/",
+    "to": "/information-sangyoika/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/seimariannna/examination/",
+    "to": "/information-saint/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/shouwa/examination/",
+    "to": "/information-showa/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/teikyou/examination/",
+    "to": "/information-teikyo/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/tohokuikaykka/examination/",
+    "to": "/information-tohokuika/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/touhou/examination/",
+    "to": "/information-toho/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/toukai/examination/",
+    "to": "/information-tokai/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/toukyouika/examination/",
+    "to": "/information-tokyoika/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/toukyoujyoshiika/examination/",
+    "to": "/information-jyoshiika/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/zichiika/examination/",
+    "to": "/information-jichi/",
+    "edge": false
+  },
+  {
+    "from": "/top/information-shiritsu/zyuntendou/examination/",
+    "to": "/information-jyunten/",
+    "edge": false
+  },
+  {
+    "from": "/online/",
+    "to": "/top/course/"
+  },
+  {
+    "from": "/information/",
+    "to": "/top/information-shiritsu/"
+  },
+  {
+    "from": "/pre-exam2026/",
+    "to": "/test-entry/"
+  }
 ]
