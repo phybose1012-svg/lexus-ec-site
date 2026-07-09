@@ -2029,10 +2029,6 @@
   gap: 0;
 }
 
-.fixed-page--test-entry .lead-form__body > .button[type="submit"] {
-  margin-bottom: clamp(24px, 4vw, 40px);
-}
-
 .fixed-page--test-entry .fixed-source :where(.elementor-widget-image) {
   max-width: none;
 }
@@ -5688,6 +5684,10 @@
 .google-form-lite__body {
   display: grid;
   gap: 12px;
+}
+
+.test-entry-page .google-form-lite {
+  margin-bottom: clamp(40px, 6vw, 72px);
 }
 
 .google-form-lite__head,
