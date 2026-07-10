@@ -570,7 +570,11 @@ const formatDateTime = (iso: string) =>
     second: "2-digit",
   }).format(new Date(iso));
 
-const successResponse = () => htmlResponse("送信を受け付けました。", "内容を確認後、担当者よりご連絡します。", 200);
+const successResponse = () =>
+  new Response(
+    `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>送信ありがとうございます｜医学部予備校 レクサス E.C.</title><style>*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;margin:0;background:#faf8f3;color:#1f2933}.wrap{max-width:560px;margin:7vh auto;padding:0 20px;text-align:center}.card{background:#fff;border:1px solid #ece5d6;border-radius:20px;padding:40px 28px 34px;box-shadow:0 12px 44px rgba(80,60,20,.09)}.mascot{width:190px;height:auto;margin:0 auto 6px;display:block}h1{font-size:23px;margin:6px 0 16px;color:#1b6e48;letter-spacing:.02em}p{line-height:1.95;margin:0 0 12px;font-size:15px}.sub{color:#6b6255;font-size:13.5px}.tel{color:#b91c1c;font-weight:700;text-decoration:none;white-space:nowrap}.actions{margin-top:28px}.btn{display:inline-block;background:#b91c1c;color:#fff;text-decoration:none;font-weight:700;padding:13px 36px;border-radius:999px}</style></head><body><main class="wrap"><div class="card"><img class="mascot" src="/illustrations/characters/lexus-kun-running.png" alt="レクサスくん" width="190"><h1>送信ありがとうございます！</h1><p>送信内容を LEXUS の受付スタッフにお届けします。<br>担当者より折り返しご連絡いたしますので、少々お待ちください。</p><p class="sub">ご入力いただいたメールアドレス宛に受付確認メールをお送りしました。<br>お急ぎの場合は <a class="tel" href="tel:0334771306">03-3477-1306</a> までお電話ください。</p><div class="actions"><a class="btn" href="/">トップページへ戻る</a></div></div></main></body></html>`,
+    { status: 200, headers: htmlHeaders },
+  );
 
 const htmlResponse = (title: string, message: string, status: number) =>
   new Response(
