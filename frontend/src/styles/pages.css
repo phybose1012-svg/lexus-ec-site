@@ -6298,28 +6298,32 @@
 
 .legacy-contact-hero__mascot {
   display: grid;
-  grid-template-columns: minmax(74px, 1fr) 162px minmax(74px, 1fr);
+  grid-template-columns: max-content 162px max-content;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 20px;
+  border: 1px solid rgba(154, 116, 34, 0.22);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 18px 34px rgba(34, 25, 15, 0.09);
+  padding: 22px 24px;
 }
 
 .legacy-contact-hero__mascot span {
-  border: 1px solid rgba(154, 116, 34, 0.36);
-  border-radius: 4px;
-  background: #fff;
-  box-shadow: 0 10px 22px rgba(34, 25, 15, 0.08);
-  color: #12356a;
-  padding: 10px 9px;
+  color: #111;
+  padding: 0;
   font-size: 0.9rem;
   font-weight: 900;
-  line-height: 1.35;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
   text-align: center;
+  text-orientation: mixed;
+  writing-mode: vertical-rl;
 }
 
 .legacy-contact-hero__mascot img {
   width: min(162px, 100%);
   height: auto;
-  filter: drop-shadow(0 16px 18px rgba(34, 25, 15, 0.13));
   object-fit: contain;
 }
 
@@ -6886,14 +6890,15 @@
   }
 
   .legacy-contact-hero__mascot {
-    grid-template-columns: minmax(0, 1fr) 118px minmax(0, 1fr);
-    gap: 6px;
+    grid-template-columns: max-content 118px max-content;
+    gap: 12px;
     width: 100%;
+    padding: 16px 12px;
   }
 
   .legacy-contact-hero__mascot span {
-    padding: 8px 6px;
     font-size: 0.78rem;
+    line-height: 1.25;
   }
 
   .legacy-contact-hero__mascot img {
