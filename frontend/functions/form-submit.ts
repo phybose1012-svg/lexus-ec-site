@@ -9,6 +9,9 @@ type Env = {
   SLACK_WEBHOOK_URL?: string;
   FORM_REQUIRED_DESTINATIONS?: string;
   GEMINI_API_KEY?: string;
+  /** 省略時は gemini-3.5-flash（2026-07時点で廃止日未定の安定版）。
+   *  将来のモデル入替はこの環境変数の差し替えだけで済む。 */
+  GEMINI_MODEL?: string;
 };
 
 type FunctionContext = {
@@ -390,9 +393,10 @@ const screenContactSpam = async (submission: Submission, env: Env): Promise<Spam
 
   // AI層: ルールで白のものだけ Gemini (AI Studio) で分類。未設定・障害時は通す（フェイルオープン）。
   if (!env.GEMINI_API_KEY) return { rejected: false, reason: "" };
+  const model = env.GEMINI_MODEL || "gemini-3.5-flash";
   try {
     const response = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent",
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
       {
         method: "POST",
         headers: {
@@ -418,7 +422,9 @@ const screenContactSpam = async (submission: Submission, env: Env): Promise<Spam
           ],
           generationConfig: {
             temperature: 0,
-            maxOutputTokens: 200,
+            // 3.x flash は思考トークンを出力枠から消費するため、JSONが
+            // 切れないよう余裕を持たせる（実コストは1判定で0.1円未満）。
+            maxOutputTokens: 1000,
             responseMimeType: "application/json",
           },
         }),
