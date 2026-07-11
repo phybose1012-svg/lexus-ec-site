@@ -68,9 +68,14 @@ const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" 
           </label>
           <label class="google-question google-question--compact">
             <span>送付先住所 <em>*</em></span>
-            <textarea name="address" required rows="1"></textarea>
+            <textarea name="address" required rows="2"></textarea>
           </label>
         </div>
+
+        <label class="google-question">
+          <span>備考（任意）</span>
+          <textarea name="remarks" rows="3" placeholder="ご質問・ご要望があればご記入ください"></textarea>
+        </label>
 
         <label class="google-question google-question--compact google-question--checkbox">
           <span class="google-checkbox">
@@ -88,4 +93,37 @@ const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" 
   </main>
   {!configuredEndpoint && <PendingFormScript />}
   <SiteFooter />
+
+  <script is:inline>
+    // 郵便番号 → 住所の自動補完（zipcloud、失敗時は手入力に任せる）
+    (() => {
+      const zip = document.querySelector('.request-doc-page [name="postalCode"]');
+      const addr = document.querySelector('.request-doc-page [name="address"]');
+      if (!zip || !addr) return;
+      let last = "";
+      const lookup = async () => {
+        const code = (zip.value || "").replace(/[^0-9]/g, "");
+        if (code.length !== 7 || code === last) return;
+        last = code;
+        try {
+          const res = await fetch("https://zipcloud.ibsnet.co.jp/api/search?zipcode=" + code);
+          const data = await res.json();
+          const r = data && data.results && data.results[0];
+          if (!r) return;
+          const base = (r.address1 || "") + (r.address2 || "") + (r.address3 || "");
+          if (!base) return;
+          const cur = addr.value.trim();
+          if (!cur) addr.value = base;
+          else if (!cur.startsWith(base)) addr.value = base + cur;
+          // 続く番地入力のためカーソルを末尾へ
+          addr.focus();
+          addr.setSelectionRange(addr.value.length, addr.value.length);
+        } catch (e) {
+          /* ネットワーク不通時は手入力に任せる */
+        }
+      };
+      zip.addEventListener("input", lookup);
+      zip.addEventListener("blur", lookup);
+    })();
+  </script>
 </BaseLayout>
