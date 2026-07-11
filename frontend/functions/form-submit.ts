@@ -8,7 +8,7 @@ type Env = {
   GOOGLE_SHEETS_WEBHOOK_SECRET?: string;
   SLACK_WEBHOOK_URL?: string;
   FORM_REQUIRED_DESTINATIONS?: string;
-  ANTHROPIC_API_KEY?: string;
+  GEMINI_API_KEY?: string;
 };
 
 type FunctionContext = {
@@ -388,37 +388,48 @@ const screenContactSpam = async (submission: Submission, env: Env): Promise<Spam
     return { rejected: true, reason: `営業キーワード「${hit}」を含む` };
   }
 
-  // AI層: ルールで白のものだけ分類。未設定・障害時は通す（フェイルオープン）。
-  if (!env.ANTHROPIC_API_KEY) return { rejected: false, reason: "" };
+  // AI層: ルールで白のものだけ Gemini (AI Studio) で分類。未設定・障害時は通す（フェイルオープン）。
+  if (!env.GEMINI_API_KEY) return { rejected: false, reason: "" };
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "x-api-key": env.ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "claude-haiku-4-5-20251001",
-        max_tokens: 60,
-        system: SPAM_AI_SYSTEM,
-        messages: [
-          {
-            role: "user",
-            content: [
-              `お名前: ${name}`,
-              `メールアドレス: ${stringField(submission.fields.email)}`,
-              `学年・状況: ${stringField(submission.fields.studentType) || "(未選択)"}`,
-              `ご相談内容: ${truncate(message, 2000)}`,
-            ].join("\n"),
+    const response = await fetch(
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent",
+      {
+        method: "POST",
+        headers: {
+          "x-goog-api-key": env.GEMINI_API_KEY,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          system_instruction: { parts: [{ text: SPAM_AI_SYSTEM }] },
+          contents: [
+            {
+              role: "user",
+              parts: [
+                {
+                  text: [
+                    `お名前: ${name}`,
+                    `メールアドレス: ${stringField(submission.fields.email)}`,
+                    `学年・状況: ${stringField(submission.fields.studentType) || "(未選択)"}`,
+                    `ご相談内容: ${truncate(message, 2000)}`,
+                  ].join("\n"),
+                },
+              ],
+            },
+          ],
+          generationConfig: {
+            temperature: 0,
+            maxOutputTokens: 200,
+            responseMimeType: "application/json",
           },
-        ],
-      }),
-      signal: AbortSignal.timeout(8000),
-    });
+        }),
+        signal: AbortSignal.timeout(8000),
+      },
+    );
     if (!response.ok) return { rejected: false, reason: "" };
-    const data = (await response.json()) as { content?: { text?: string }[] };
-    const text = data.content?.[0]?.text || "";
+    const data = (await response.json()) as {
+      candidates?: { content?: { parts?: { text?: string }[] } }[];
+    };
+    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
     const json = text.match(/\{[\s\S]*\}/)?.[0];
     const parsed = json ? (JSON.parse(json) as { category?: string }) : null;
     if (parsed?.category === "sales" || parsed?.category === "prank") {
