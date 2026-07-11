@@ -60,6 +60,7 @@ const fieldLabels: Record<string, string> = {
   studentType: "学年・状況",
   postalCode: "郵便番号",
   address: "住所",
+  remarks: "備考",
   privacy: "個人情報同意",
   privacyConsent: "同意",
   style: "面談方式",
@@ -94,6 +95,7 @@ const orderedFieldNames = [
   "requestType",
   "postalCode",
   "address",
+  "remarks",
   "style",
   "participants",
   "preferredDate",
@@ -496,31 +498,47 @@ const buildAutoReply = (submission: Submission) => {
   return { subject: copy.subject, text, html };
 };
 
+// 内部フラグ（Slack に出しても意味がない項目）は除外し、入力された残り全項目を出す。
+const slackInternalLabels = new Set(["送信元ページ", "個人情報同意", "同意"]);
+
 const buildSlackBlocks = (submission: Submission) => {
-  const summaryFields = formatFields(submission)
-    .filter(([label]) => ["お名前", "メールアドレス", "電話番号", "学年・状況", "会社名・教室名", "相談内容"].includes(label))
-    .slice(0, 8)
-    .map(([label, value]) => ({
-      type: "mrkdwn",
-      text: `*${escapeSlack(label)}*\n${escapeSlack(truncate(value, 500))}`,
-    }));
+  const record = formatFields(submission).filter(([label]) => !slackInternalLabels.has(label));
+
+  // 1項目 =「*ラベル*\n値」を1カラムで縦に並べる（fields は必ず2カラム＆短文向けなので使わない）。
+  // section の text は最大3000字なので、詰めていって上限に近づいたら次の section に送る。
+  const sections: Record<string, unknown>[] = [];
+  let buffer: string[] = [];
+  let length = 0;
+  const flush = () => {
+    if (!buffer.length) return;
+    sections.push({ type: "section", text: { type: "mrkdwn", text: buffer.join("\n\n") } });
+    buffer = [];
+    length = 0;
+  };
+  for (const [label, value] of record) {
+    const chunk = `*${escapeSlack(label)}*\n${escapeSlack(truncate(value, 2800))}`;
+    if (length + chunk.length + 2 > 2900 && buffer.length) flush();
+    buffer.push(chunk);
+    length += chunk.length + 2;
+  }
+  flush();
 
   return [
     {
       type: "header",
-      text: {
-        type: "plain_text",
-        text: submission.formLabel,
-      },
+      text: { type: "plain_text", text: submission.formLabel, emoji: true },
     },
     {
       type: "section",
       text: {
         type: "mrkdwn",
-        text: `*受付ID:* ${escapeSlack(submission.id)}\n*送信元:* ${escapeSlack(submission.pageUrl)}`,
+        text: `*受付日時:* ${escapeSlack(formatDateTime(submission.submittedAt))}\n*受付ID:* ${escapeSlack(
+          submission.id,
+        )}\n*送信元:* ${escapeSlack(submission.pageUrl)}`,
       },
     },
-    ...(summaryFields.length ? [{ type: "section", fields: summaryFields }] : []),
+    { type: "divider" },
+    ...sections,
   ];
 };
 
