@@ -8,6 +8,7 @@ type Env = {
   GOOGLE_SHEETS_WEBHOOK_SECRET?: string;
   SLACK_WEBHOOK_URL?: string;
   FORM_REQUIRED_DESTINATIONS?: string;
+  ANTHROPIC_API_KEY?: string;
 };
 
 type FunctionContext = {
@@ -136,6 +137,18 @@ export const onRequestPost = async ({ request, env }: FunctionContext) => {
 
     const submission = buildSubmission(request, fields);
     validateSubmission(submission);
+
+    // 問い合わせフォームのみ: 営業・いたずらを審査し、該当したら受け付けない。
+    // 拒否内容はチューニング用にシートの「スパム拒否ログ」へだけ記録する。
+    if (submission.formType === "contact") {
+      const verdict = await screenContactSpam(submission, env);
+      if (verdict.rejected) {
+        await logSpamRejection(submission, verdict.reason, env).catch(() => {
+          console.error("form-submit spam-log failure", JSON.stringify({ submissionId: submission.id }));
+        });
+        return rejectionResponse();
+      }
+    }
 
     const destinations = getConfiguredDestinations(env);
     const missing = getMissingRequiredDestinations(env, destinations);
@@ -310,6 +323,131 @@ const validateSubmission = (submission: Submission) => {
     throw new UserVisibleError("電話番号の形式を確認してください。", 400);
   }
 };
+
+// ---- 問い合わせスパム審査 -------------------------------------------------
+
+type SpamVerdict = { rejected: boolean; reason: string };
+
+// 実際に届いている営業文の定番語。名前・本文のどちらかに含まれたら拒否。
+const SPAM_KEYWORDS = [
+  "貴社",
+  "御社",
+  "SEO",
+  "セールス",
+  "集客",
+  "マーケティング",
+  "広告運用",
+  "リスティング",
+  "MEO",
+  "ホームページ制作",
+  "Web制作",
+  "サイト制作",
+  "業務提携",
+  "協業",
+  "代理店募集",
+  "成果報酬",
+  "営業代行",
+  "テレアポ",
+  "補助金",
+  "助成金",
+  "無料診断",
+  "アクセスアップ",
+  "被リンク",
+  "人材紹介",
+  "採用支援",
+] as const;
+
+const SPAM_AI_SYSTEM = [
+  "あなたは日本の医学部予備校「レクサスE.C.」のお問い合わせフォームのスパム判定器です。",
+  "このフォームは医学部受験生・その保護者・在校生関係者のためのものです。",
+  "送信内容を次のいずれかに分類してください:",
+  '- "prospect": 受験生・保護者・在校生関係者からの正規の問い合わせ（入塾、体験授業、説明会、寮、学費、受験相談など）',
+  '- "sales": 業者からの営業・宣伝・ビジネス提案（Web制作、広告、教材、人材、提携など）',
+  '- "prank": いたずら・無意味な文字列・嫌がらせ',
+  '- "other": 上記以外（取材依頼、卒業生の連絡など、人が読むべきもの）',
+  "判断に迷う場合は必ず prospect を選んでください（本物を落とさないことを最優先）。",
+  '出力は JSON のみ: {"category":"prospect|sales|prank|other"}',
+].join("\n");
+
+const screenContactSpam = async (submission: Submission, env: Env): Promise<SpamVerdict> => {
+  const message = stringField(submission.fields.message);
+  const name = stringField(submission.fields.name);
+
+  // ルール1: 日本語（かな）を含まない本文 → 海外系の営業・スパム
+  if (message.length >= 10 && !/[ぁ-んァ-ヶ]/.test(message)) {
+    return { rejected: true, reason: "本文にかなが含まれない（外国語スパムの疑い）" };
+  }
+  // ルール2: URLが2本以上
+  const urlCount = (message.match(/https?:\/\//gi) || []).length;
+  if (urlCount >= 2) {
+    return { rejected: true, reason: `本文にURLが${urlCount}件` };
+  }
+  // ルール3: 営業キーワード
+  const hit = SPAM_KEYWORDS.find((keyword) => message.includes(keyword) || name.includes(keyword));
+  if (hit) {
+    return { rejected: true, reason: `営業キーワード「${hit}」を含む` };
+  }
+
+  // AI層: ルールで白のものだけ分類。未設定・障害時は通す（フェイルオープン）。
+  if (!env.ANTHROPIC_API_KEY) return { rejected: false, reason: "" };
+  try {
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "x-api-key": env.ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "claude-haiku-4-5-20251001",
+        max_tokens: 60,
+        system: SPAM_AI_SYSTEM,
+        messages: [
+          {
+            role: "user",
+            content: [
+              `お名前: ${name}`,
+              `メールアドレス: ${stringField(submission.fields.email)}`,
+              `学年・状況: ${stringField(submission.fields.studentType) || "(未選択)"}`,
+              `ご相談内容: ${truncate(message, 2000)}`,
+            ].join("\n"),
+          },
+        ],
+      }),
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!response.ok) return { rejected: false, reason: "" };
+    const data = (await response.json()) as { content?: { text?: string }[] };
+    const text = data.content?.[0]?.text || "";
+    const json = text.match(/\{[\s\S]*\}/)?.[0];
+    const parsed = json ? (JSON.parse(json) as { category?: string }) : null;
+    if (parsed?.category === "sales" || parsed?.category === "prank") {
+      return { rejected: true, reason: `AI判定: ${parsed.category === "sales" ? "営業・宣伝" : "いたずら"}` };
+    }
+  } catch {
+    // タイムアウト・障害時は通す
+  }
+  return { rejected: false, reason: "" };
+};
+
+// 拒否した内容はシートの「スパム拒否ログ」にだけ残す（Slack・メールは出さない）。
+const logSpamRejection = async (submission: Submission, reason: string, env: Env) => {
+  if (!env.GOOGLE_SHEETS_WEBHOOK_URL) return;
+  await sendSheets(
+    {
+      ...submission,
+      formLabel: "スパム拒否ログ",
+      fields: { ...submission.fields, 判定理由: reason },
+    },
+    env,
+  );
+};
+
+const rejectionResponse = () =>
+  new Response(
+    `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>お問い合わせについて</title><style>body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;margin:0;background:#faf8f3;color:#1f2933}.wrap{max-width:560px;margin:14vh auto;padding:0 20px;text-align:center}.card{background:#fff;border:1px solid #ece5d6;border-radius:20px;padding:36px 28px}h1{font-size:19px;margin:0 0 14px}p{line-height:1.95;margin:0 0 10px;font-size:14.5px}.sub{color:#6b6255;font-size:13px}a{color:#b91c1c}</style></head><body><main class="wrap"><div class="card"><h1>お問い合わせについて</h1><p>このフォームは医学部受験生やその保護者様のためのフォームです。それ以外の方からのお問合せはご遠慮いただいております。</p><p class="sub">医学部受験に関するお問い合わせでこの表示が出た場合は、お手数ですがお電話（<a href="tel:0334771306">03-3477-1306</a>）にてご連絡ください。</p></div></main></body></html>`,
+    { status: 403, headers: { ...htmlHeaders, "X-Form-Rejected": "1" } },
+  );
 
 const getConfiguredDestinations = (env: Env) => {
   const destinations: Destination[] = [];
