@@ -1581,6 +1581,9 @@ const infoPosts = [
         var zoomInButton = document.querySelector(settings.zoomInButton);
         var zoomOutButton = document.querySelector(settings.zoomOutButton);
         if (!fitStage || !fitShell || !modal || !modalShell || !modalScroll || !openButton || !closeButton || !resetButton) return;
+        if (modal.parentElement !== document.body) {
+          document.body.appendChild(modal);
+        }
 
         var zoom = 1;
         var previousBodyOverflow = "";
