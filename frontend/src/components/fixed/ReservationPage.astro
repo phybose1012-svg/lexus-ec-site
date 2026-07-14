@@ -166,6 +166,11 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
       background: rgba(20, 16, 10, 0.55);
     }
 
+    /* display:grid が hidden 属性(UAのdisplay:none)に勝ってしまうため明示する */
+    .reservation-reject-modal[hidden] {
+      display: none;
+    }
+
     .reservation-reject-modal__card {
       max-width: 460px;
       background: #fff;
