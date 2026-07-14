@@ -136,6 +136,11 @@ const lineUrl = "https://lin.ee/O4ik2EQ";
       background: rgba(20, 16, 10, 0.55);
     }
 
+    /* display:grid が hidden 属性(UAのdisplay:none)に勝ってしまうため明示する */
+    .contact-reject-modal[hidden] {
+      display: none;
+    }
+
     .contact-reject-modal__card {
       max-width: 460px;
       background: #fff;
