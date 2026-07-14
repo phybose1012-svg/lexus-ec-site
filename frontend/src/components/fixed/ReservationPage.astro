@@ -140,7 +140,117 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
       <a class="legacy-pill-nav__green" href="/top/voice/">合格体験記</a>
       <a class="legacy-pill-nav__red" href="/top/history/">理念と沿革</a>
     </nav>
+
+    <div class="reservation-reject-modal" id="reservation-reject-modal" role="alertdialog" aria-modal="true" aria-labelledby="reservation-reject-title" hidden>
+      <div class="reservation-reject-modal__card">
+        <h2 id="reservation-reject-title">ご予約について</h2>
+        <p>このフォームは医学部受験生やその保護者様のためのフォームです。それ以外の方からのお問合せはご遠慮いただいております。</p>
+        <p class="reservation-reject-modal__sub">
+          医学部受験に関するご予約でこの表示が出た場合は、お手数ですがお電話（<a href="tel:0334771306">03-3477-1306</a>）にてご連絡ください。
+        </p>
+        <button type="button" class="reservation-reject-modal__close">閉じる</button>
+      </div>
+    </div>
   </main>
   {!configuredEndpoint && <PendingFormScript />}
   <SiteFooter />
+
+  <style>
+    .reservation-reject-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(20, 16, 10, 0.55);
+    }
+
+    .reservation-reject-modal__card {
+      max-width: 460px;
+      background: #fff;
+      border-radius: 18px;
+      padding: 30px 26px 26px;
+      text-align: center;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .reservation-reject-modal__card h2 {
+      margin: 0 0 14px;
+      font-size: 1.1rem;
+      color: #1e1a18;
+    }
+
+    .reservation-reject-modal__card p {
+      margin: 0 0 12px;
+      line-height: 1.9;
+      font-size: 0.92rem;
+      text-align: left;
+    }
+
+    .reservation-reject-modal__sub {
+      color: #6b6255;
+      font-size: 0.82rem;
+    }
+
+    .reservation-reject-modal__sub a {
+      color: #b91c1c;
+      font-weight: 700;
+    }
+
+    .reservation-reject-modal__close {
+      margin-top: 8px;
+      border: 0;
+      border-radius: 999px;
+      background: #1a1a1a;
+      color: #fff;
+      font-weight: 700;
+      padding: 11px 40px;
+      cursor: pointer;
+    }
+  </style>
+
+  <script is:inline>
+    // 送信をいったんfetchで審査に回し、営業・いたずら判定なら受け付けずモーダルを出す。
+    (() => {
+      const form = document.querySelector(".legacy-reservation-form");
+      const modal = document.getElementById("reservation-reject-modal");
+      if (!form || !modal || form.dataset.localForm === "pending") return;
+      modal.querySelector(".reservation-reject-modal__close").addEventListener("click", () => {
+        modal.hidden = true;
+      });
+      let submitting = false;
+      form.addEventListener("submit", async (event) => {
+        if (submitting) return; // フォールバックのネイティブ送信はそのまま通す
+        event.preventDefault();
+        const button = form.querySelector('button[type="submit"]');
+        const original = button.textContent;
+        button.disabled = true;
+        button.textContent = "送信中…";
+        try {
+          const response = await fetch(form.action, {
+            method: "POST",
+            body: new URLSearchParams(new FormData(form)),
+            headers: { "X-Form-Fetch": "1" },
+          });
+          if (response.status === 403 && response.headers.get("X-Form-Rejected")) {
+            button.disabled = false;
+            button.textContent = original;
+            modal.hidden = false;
+            return;
+          }
+          const html = await response.text();
+          document.open();
+          document.write(html);
+          document.close();
+        } catch (error) {
+          // ネットワーク断などfetchが失敗したときはネイティブ送信にフォールバック
+          submitting = true;
+          button.disabled = false;
+          button.textContent = original;
+          form.submit();
+        }
+      });
+    })();
+  </script>
 </BaseLayout>
