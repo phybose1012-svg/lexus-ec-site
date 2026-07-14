@@ -141,9 +141,9 @@ export const onRequestPost = async ({ request, env }: FunctionContext) => {
     const submission = buildSubmission(request, fields);
     validateSubmission(submission);
 
-    // 問い合わせフォームのみ: 営業・いたずらを審査し、該当したら受け付けない。
+    // 問い合わせ・説明会予約: 営業・いたずらを審査し、該当したら受け付けない。
     // 拒否内容はチューニング用にシートの「スパム拒否ログ」へだけ記録する。
-    if (submission.formType === "contact") {
+    if (submission.formType === "contact" || submission.formType === "reservation") {
       const verdict = await screenContactSpam(submission, env);
       if (verdict.rejected) {
         await logSpamRejection(submission, verdict.reason, env).catch(() => {
@@ -307,7 +307,9 @@ const buildSubmission = (request: Request, fields: Record<string, SubmissionFiel
 
 const validateSubmission = (submission: Submission) => {
   const required = [...(baseRequiredFields[submission.formType] || [])];
-  if (submission.formType === "reservation" && stringField(submission.fields.preferredDate1)) {
+  // 予約はフォーム上も全て必須。無条件に要求しないと、ブラウザを介さず
+  // 直接POSTするbotが日付なしで通ってしまう（実際に営業が素通りした）。
+  if (submission.formType === "reservation") {
     required.push("kana", "studentType", "participants", "preferredDate1", "preferredTime1", "preferredDate2", "preferredTime2");
   }
 
@@ -361,7 +363,7 @@ const SPAM_KEYWORDS = [
 ] as const;
 
 const SPAM_AI_SYSTEM = [
-  "あなたは日本の医学部予備校「レクサスE.C.」のお問い合わせフォームのスパム判定器です。",
+  "あなたは日本の医学部予備校「レクサスE.C.」のお問い合わせ・説明会予約フォームのスパム判定器です。",
   "このフォームは医学部受験生・その保護者・在校生関係者のためのものです。",
   "送信内容を次のいずれかに分類してください:",
   '- "prospect": 受験生・保護者・在校生関係者からの正規の問い合わせ（入塾、体験授業、説明会、寮、学費、受験相談など）',
@@ -411,10 +413,11 @@ const screenContactSpam = async (submission: Submission, env: Env): Promise<Spam
               parts: [
                 {
                   text: [
+                    `フォーム: ${submission.formLabel}`,
                     `お名前: ${name}`,
                     `メールアドレス: ${stringField(submission.fields.email)}`,
                     `学年・状況: ${stringField(submission.fields.studentType) || "(未選択)"}`,
-                    `ご相談内容: ${truncate(message, 2000)}`,
+                    `ご相談内容: ${truncate(message, 2000) || "(本文なし)"}`,
                   ].join("\n"),
                 },
               ],
