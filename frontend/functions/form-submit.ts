@@ -47,10 +47,10 @@ const formLabels: Record<string, string> = {
 };
 
 const baseRequiredFields: Record<string, string[]> = {
-  "request-documents": ["name", "email", "tel", "studentType", "postalCode", "address", "privacy"],
+  "request-documents": ["name", "kana", "email", "tel", "studentType", "postalCode", "address", "privacy"],
   reservation: ["name", "email", "tel"],
-  contact: ["name", "email", "message", "privacy"],
-  "test-entry": ["name", "email", "tel", "studentType", "preferredDate", "privacy"],
+  contact: ["name", "kana", "email", "message", "privacy"],
+  "test-entry": ["name", "kana", "email", "tel", "studentType", "preferredDate", "privacy"],
   "lexus-online-contact": ["name", "email", "businessType", "requestType", "message", "privacyConsent"],
 };
 
@@ -58,7 +58,7 @@ const fieldLabels: Record<string, string> = {
   formType: "フォーム種別",
   sourcePath: "送信元ページ",
   name: "お名前",
-  kana: "よみがな",
+  kana: "氏名ふりがな",
   email: "メールアドレス",
   tel: "電話番号",
   studentType: "学年・状況",
