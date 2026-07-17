@@ -1,5 +1,4 @@
 ---
-import { defaultPageActions } from "../../../../data/fixedPages";
 import { seo } from "../../../../data/home";
 import SiteLayout from "../../../../layouts/SiteLayout.astro";
 
@@ -8,153 +7,265 @@ const description =
   "自学力で医学部合格を狙う、自習特化型コース誕生。参考書ルート・学習計画・進捗管理まで徹底サポート。武田塾式を進化させた、自分で学び切る医学部対策。";
 
 const images = {
-  logoStrip: "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png",
-  mascot: "/assets/legacy/wp-content/uploads/2025/05/レクサスくん弓.jpg",
   flow: "/assets/legacy/wp-content/uploads/2025/05/入学までの流れ-1-777x1024.jpg",
   garden: "/assets/legacy/wp-content/uploads/2025/12/Gemini_Generated_Image_h3qlynh3qlynh3ql-e1764922283465-1024x790.jpg",
 };
 
-const recommend = ["初歩的なレベルを一気に終わらせたい。", "反復練習が足りないとよく言われる。", "自分好みのハイペースで学習したい。", "授業はあまり必要ない。", "たくさん過去問を解きたい。"];
-const plans = [
-  { title: "トップレベル演習プラン", rows: ["【目標大学】 東大、慶應など、医学部のトップ", "【入学時の学力】 偏差値65相当 (目安)", "【月額料金 】 ¥18,000～/科目"] },
-  { title: "ハイレベル演習プラン", rows: ["【目標大学】 国公立、慈恵、順天など、難関医学部", "【入学時の学力】 偏差値60相当 (目安)", "【月額料金】 ¥22,500～/科目"] },
-  { title: "標準レベル演習プラン", rows: ["【目標大学】 昭和、東医など上位の私立医学部", "【入学時の学力】 偏差値55相当 (目安)", "【月額料金 】 ¥28,000～/科目"] },
-  { title: "基礎レベル演習プラン", rows: ["【目標大学】 都内の私立医学部など", "【入学時の学力】 偏差値50相当 (目安)", "【月額料金】 ¥30,000～/科目"] },
-  { title: "初歩レベル演習プラン", rows: ["【目標】 高校教科書レベルの知識修得", "【入学時の学力】 偏差値40台 (目安)", "【月額料金】 ¥30,000～/科目"] },
-  { title: "前提レベル演習プラン", rows: ["【目標】 高校入試レベルの知識習得", "【入学時の学力】 未習科目あり", "【月額料金】 ¥30,000～/科目"], heading: "h2" },
+const recommend = [
+  "初歩的なレベルを一気に終わらせたい。",
+  "反復練習が足りないとよく言われる。",
+  "自分好みのハイペースで学習したい。",
+  "授業はあまり必要ない。",
+  "たくさん過去問を解きたい。",
 ];
+
+const pillars = [
+  {
+    label: "01",
+    title: "演習量を、合格ルートに変える",
+    body: "参考書や過去問をただ増やすのではなく、目標校と現在地から逆算して、毎週の演習量と復習順を設計します。",
+  },
+  {
+    label: "02",
+    title: "課題管理で、自走を止めない",
+    body: "やるべき教材、提出ペース、解き直しまでを管理。自習中心でも迷いが出ないように、学習の優先順位を明確にします。",
+  },
+  {
+    label: "03",
+    title: "必要な授業だけを足す",
+    body: "授業を増やしすぎず、詰まった単元や得点源にしたい科目だけを個別授業で補強できます。",
+  },
+];
+
+const supports = ["個別カリキュラム", "課題管理", "質問し放題", "効果測定", "個別授業を追加可能", "受験校選定サポート"];
+
+const plans = [
+  {
+    title: "トップレベル演習プラン",
+    target: "東大、慶應など、医学部のトップ",
+    level: "偏差値65相当",
+    price: "¥18,000～ / 科目",
+  },
+  {
+    title: "ハイレベル演習プラン",
+    target: "国公立、慈恵、順天など、難関医学部",
+    level: "偏差値60相当",
+    price: "¥22,500～ / 科目",
+  },
+  {
+    title: "標準レベル演習プラン",
+    target: "昭和、東医など上位の私立医学部",
+    level: "偏差値55相当",
+    price: "¥28,000～ / 科目",
+  },
+  {
+    title: "基礎レベル演習プラン",
+    target: "都内の私立医学部など",
+    level: "偏差値50相当",
+    price: "¥30,000～ / 科目",
+  },
+  {
+    title: "初歩レベル演習プラン",
+    target: "高校教科書レベルの知識修得",
+    level: "偏差値40台",
+    price: "¥30,000～ / 科目",
+  },
+  {
+    title: "前提レベル演習プラン",
+    target: "高校入試レベルの知識習得",
+    level: "未習科目あり",
+    price: "¥30,000～ / 科目",
+  },
+];
+
+const planHrefs = [
+  "/top/course/custom-made-course/top-level/",
+  "/top/course/custom-made-course/high-level/",
+  "/top/course/custom-made-course/standard/",
+  "/top/course/custom-made-course/basic/",
+  "/top/course/custom-made-course/beginner/",
+  "/top/course/custom-made-course/foundation/",
+];
+
 const otherCourses = [
   ["◆ 既卒生・再受験生 対象フルコース ◆", "レクサス プレミア 本科", "Premier Main Course", "医学部受験を全面的にサポートする“オールインワン”コースです。各科目クラス分けあり。", "/top/course/lexus-premiere-course/"],
-  ["◆ 高2・高3 対象コース ◆", "ハイレベル現役合格コース", "High-level GENEKI Course", "慶應、慈恵、順天、日医をはじめとする都内の医学部に現役合格するためのコースです。", "/top/course/high-level-geneki-course/"],
   ["◆ 高1・高2 対象コース ◆", "メディカル準備コース (高等部)", "Medical Prep Course", "医学部受験で優位に立つ先取り学習コースです。慶應、日大の内部進学対策も承ります。", "/top/course/medical-prep/"],
   ["◆ 中学生 対象コース ◆", "メディカル準備コース (中等部)", "Medical Prep Course", "先手必勝！難関医学部を目指す中高一貫カリキュラムの先取り学習コースです。", "/top/course/medical-prep-junior/"],
+];
+
+const heroActions = [
+  { label: "体験授業はコチラ", href: "/test-entry/", tone: "red" },
+  { label: "個別相談はコチラ", href: "/reservation/", tone: "blue" },
+];
+
+const flowActions = [
+  { label: "無料面談はコチラ", href: "/reservation/", tone: "blue" },
+  { label: "無料体験はコチラ", href: "/test-entry/", tone: "red" },
 ];
 ---
 
 <SiteLayout title={title} description={description} canonical="https://lexus-ec.com/top/course/custom-made-course/" ogImage={seo.ogImage}>
-  <main class="course-detail-page">
-    <section class="course-detail-hero course-detail-hero--custom-made">
-      <div class="content course-detail-hero__intro course-detail-hero__intro--custom-made">
-        <img class="course-detail-logo-strip" src={images.logoStrip} alt="ロゴ" width="800" height="58" decoding="async" />
-        <h1>授業は最小限に<br />演習中心の学習で急成長コース</h1>
-        <div class="course-title-card course-title-card--custom-made">
-          <p class="course-title-card__jp">オーダーメード演習 コース</p>
-          <p class="course-title-card__en">Custom-made Course</p>
-          <p class="course-title-card__lead">自分のレベルに合った演習ベースのカリキュラムで倍速学習をするコースです。</p>
+  <main class="course-detail-page custom-made-page">
+    <section class="custom-made-summer-hero" aria-labelledby="custom-made-title" data-custom-made-summer-hero>
+      <video
+        class="custom-made-summer-hero__video"
+        src="/assets/course/custom-made-course/summer-hero.mp4"
+        muted
+        loop
+        playsinline
+        preload="none"
+      ></video>
+      <div class="custom-made-summer-hero__shade" aria-hidden="true"></div>
+
+      <div class="content custom-made-summer-act custom-made-summer-act--first" aria-hidden="true">
+        <div class="custom-made-summer-first">
+          <p class="custom-made-summer-first__eyebrow">LEXUS E.C. SUMMER MANIFESTO</p>
+          <p class="custom-made-summer-first__headline">
+            <span><span>スマホは捨てて、</span></span>
+            <span><strong>合格を掴め！</strong></span>
+          </p>
+          <div class="custom-made-summer-first__rule"></div>
         </div>
-        <div class="course-detail-hero__actions course-detail-hero__actions--custom-made">
-          <a class="button button--red" href="/test-entry/">体験授業はコチラ</a>
-          <a class="button button--blue" href="/reservation/">個別相談はコチラ</a>
+      </div>
+
+      <div class="content custom-made-summer-act custom-made-summer-act--second">
+        <div class="custom-made-summer-copy">
+          <p class="custom-made-summer-kicker">LEXUS E.C. SUMMER TRAINING</p>
+          <p class="custom-made-summer-course">オーダーメード演習コース</p>
+          <h1 id="custom-made-title">逃げ道を消して、<br /><strong>一問に燃える夏特訓。</strong></h1>
+          <p class="custom-made-summer-lead">
+            この夏は、逃げ道を減らす。目の前の一問に集中できる環境と、医学部合格から逆算した演習計画をつくります。
+          </p>
+          <div class="custom-made-actions custom-made-summer-actions">
+            {heroActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+          </div>
+          <div class="custom-made-summer-meta" aria-label="コースの特徴">
+            <span>演習特化</span>
+            <span>個別設計</span>
+            <span>医学部受験</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="course-detail-recommend course-detail-recommend--custom-made">
-      <div class="content course-detail-recommend__inner">
-        <h2>こんな受験生にオススメです！</h2>
-        <div class="course-detail-recommend__grid">
-          <img src={images.mascot} alt="" width="670" height="670" decoding="async" />
-          <ul>
-            <li>初歩的なレベルを一気に終わらせたい。</li>
-            <li>反復練習が足りないとよく言われる。</li>
-            <li>自分好みのハイペースで学習したい。</li>
-            <li>授業はあまり必要ない。</li>
-            <li>たくさん過去問を解きたい。</li>
+    <section class="custom-made-fit" aria-labelledby="custom-made-fit-title">
+      <div class="content custom-made-fit__inner">
+        <div class="custom-made-section-head">
+          <p>Recommend</p>
+          <h2 id="custom-made-fit-title">こんな受験生にオススメです</h2>
+        </div>
+        <div class="custom-made-fit__grid">
+          <ul class="custom-made-check-list">
+            {recommend.map((item) => <li>{item}</li>)}
           </ul>
+          <div class="custom-made-fit__message">
+            <p>
+              「授業を受けたのに点が伸びない」状態から抜けるには、問題演習と解き直しの設計が必要です。必要な授業だけを足し、学習の大半を得点につながる演習へ寄せます。
+            </p>
+            <div class="custom-made-support-tags">
+              {supports.map((support) => <span>{support}</span>)}
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="course-detail-hero">
-      <div class="content course-detail-hero__grid">
-        <div>
-          <img class="course-detail-logo-strip" src={images.logoStrip} alt="ロゴ" width="800" height="58" decoding="async" />
-          <h2 class="course-detail-subhero-title">授業は最小限に<br />演習中心の学習で急成長コース</h2>
-          <p class="course-detail-course-name">オーダーメード演習 コース</p>
-          <p>Custom-made Course</p>
-        </div>
-        <img src={images.mascot} alt="" width="670" height="670" decoding="async" />
-      </div>
-    </section>
-
-    <section class="course-detail-recommend">
-      <div class="content course-detail-two-column">
-        <div>
-          <h3>こんな受験生にオススメです！</h3>
-          <ul>{recommend.map((item) => <li>{item}</li>)}</ul>
-        </div>
-        <p>自分のレベルに合った演習ベースのカリキュラムで倍速学習をするコースです。</p>
-      </div>
-    </section>
-
-    <section class="course-detail-overview">
+    <section class="custom-made-system" aria-labelledby="custom-made-system-title">
       <div class="content">
-        <h2>コース概要</h2>
-        <div class="course-detail-overview-grid">
-          <article>
-            <h3>● オーダーメード演習 とは？ ●</h3>
-            <p>自分に合った学習スタイルを確立して、自習の質を極限まで高めるコースです。</p>
-            <p>「厳しい課題管理」 × 「質問し放題」 × 「効果測定」 × 「必要に応じて個別授業」</p>
-          </article>
-          <article>
-            <h3>● 万全のサポート内容 ●</h3>
-            <p>個別カリキュラムによる、倍速学習システムです。</p>
-            <div class="course-detail-supports"><span>受験校選定サポート</span></div>
-          </article>
+        <div class="custom-made-section-head custom-made-section-head--center">
+          <p>System</p>
+          <h2 id="custom-made-system-title">オーダーメード演習とは？</h2>
+          <span>厳しい課題管理 × 質問し放題 × 効果測定 × 必要に応じた個別授業</span>
         </div>
-      </div>
-    </section>
-
-    <section class="course-detail-curriculum">
-      <div class="content">
-        <h2>「合格プラン」 一覧</h2>
-        <p>まずはご希望の「合格プラン 」を選択して下さい。プランは全部で6種類です。</p>
-        <div class="course-detail-plan-grid">
-          {plans.map((plan) => (
+        <div class="custom-made-pillar-grid">
+          {pillars.map((pillar) => (
             <article>
-              <h3>{plan.title}</h3>
-              <ul>{plan.rows.map((row) => <li>{row}</li>)}</ul>
+              <p class="custom-made-pillar__label">{pillar.label}</p>
+              <h3>{pillar.title}</h3>
+              <p>{pillar.body}</p>
             </article>
           ))}
         </div>
       </div>
     </section>
 
-    <section class="course-detail-message">
-      <div class="content course-detail-message__grid">
+    <section class="custom-made-plans" aria-labelledby="custom-made-plans-title">
+      <div class="content">
+        <div class="custom-made-section-head">
+          <p>Plans</p>
+          <h2 id="custom-made-plans-title">「合格プラン」一覧</h2>
+          <span>現在の学力と目標校から、演習量・復習量・サポート密度を調整します。</span>
+        </div>
+        <div class="custom-made-plan-grid">
+          {plans.map((plan, index) => (
+            <article>
+              <h3>{plan.title}</h3>
+              <dl>
+                <div>
+                  <dt>目標</dt>
+                  <dd>{plan.target}</dd>
+                </div>
+                <div>
+                  <dt>入学時の目安</dt>
+                  <dd>{plan.level}</dd>
+                </div>
+                <div>
+                  <dt>月額料金</dt>
+                  <dd>{plan.price}</dd>
+                </div>
+              </dl>
+              <a class="button button--blue custom-made-plan__link" href={planHrefs[index]}>詳しく見る</a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="custom-made-message" aria-labelledby="custom-made-message-title">
+      <div class="content custom-made-message__grid">
         <div>
-          <h2>今は未熟でも、 “自分の医学道”を 全力で走りたい。</h2>
-          <p>その想いがあるなら、あとは正しい戦略を持つだけ。レクサス教育センターの「オーダーメード演習 コース」は、“今”から本気になるあなたを、全力で支えるプランです。</p>
-          <h3>↓ 入学までの流れ ↓</h3>
-          <p>※ 「無料面談」の前に、「無料体験 （体験授業）」を受けることも可能です。</p>
-          <div class="fixed-hero__actions">
-            {defaultPageActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
+          <p class="custom-made-eyebrow custom-made-eyebrow--light">Admission Flow</p>
+          <h2 id="custom-made-message-title">今は未熟でも、 “自分の医学道”を全力で走りたい。</h2>
+          <p>
+            その想いがあるなら、あとは正しい戦略を持つだけ。レクサス教育センターの「オーダーメード演習 コース」は、“今”から本気になるあなたを、全力で支えるプランです。
+          </p>
+          <p class="custom-made-message__sub">無料面談の前に、無料体験を受けることも可能です。</p>
+          <div class="custom-made-actions custom-made-actions--left">
+            {flowActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
           </div>
         </div>
-        <img src={images.flow} alt="入学までの流れ" width="777" height="1024" loading="lazy" decoding="async" />
+        <figure>
+          <img src={images.flow} alt="入学までの流れ" width="777" height="1024" loading="lazy" decoding="async" />
+        </figure>
       </div>
     </section>
 
-    <section class="course-detail-garden">
-      <div class="content course-detail-garden__grid">
+    <section class="custom-made-garden" aria-labelledby="custom-made-garden-title">
+      <div class="content custom-made-garden__grid">
+        <figure>
+          <img src={images.garden} alt="生徒専用寮外観" width="800" height="617" loading="lazy" decoding="async" />
+        </figure>
         <div>
-          <h2>生徒専用寮のご案内 『LEXUS GARDEN』</h2>
-          <p>長期休み中の利用など、最短3日間～の利用が可能です。</p>
+          <p class="custom-made-eyebrow">Lexus Garden</p>
+          <h2 id="custom-made-garden-title">生徒専用寮のご案内 『LEXUS GARDEN』</h2>
+          <p>長期休み中の利用など、最短3日間から利用可能です。学習時間を生活の中に組み込み、演習量を安定させたい方にも適しています。</p>
           <a class="button button--green" href="/top/lexus-garden/">設備や費用を見てみる</a>
         </div>
-        <img src={images.garden} alt="生徒専用寮外観" width="800" height="617" loading="lazy" decoding="async" />
       </div>
     </section>
 
-    <section class="course-detail-other">
+    <section class="custom-made-other" aria-labelledby="custom-made-other-title">
       <div class="content">
-        <h2>他のコース 一覧</h2>
-        <div class="course-detail-other-grid">
+        <div class="custom-made-section-head custom-made-section-head--center">
+          <p>Other Courses</p>
+          <h2 id="custom-made-other-title">他のコース一覧</h2>
+        </div>
+        <div class="custom-made-other-grid">
           {otherCourses.map(([category, courseTitle, en, body, href]) => (
             <article>
               <h3>{category}</h3>
               <h4>{courseTitle}</h4>
-              <p class="course-detail-other__en">{en}</p>
+              <p class="custom-made-other__en">{en}</p>
               <p>{body}</p>
               <a class="button button--blue" href={href}>コースの内容を見る</a>
             </article>
@@ -164,3 +275,1135 @@ const otherCourses = [
     </section>
   </main>
 </SiteLayout>
+
+<style>
+  .custom-made-page {
+    --custom-blue: #12356a;
+    --custom-blue-dark: #0d2549;
+    --custom-gold: #b9983f;
+    --custom-green: #0b5b25;
+    --custom-cream: #fff8ea;
+    --custom-paper: #fffdf8;
+    --custom-ink: #211a14;
+    background: var(--custom-paper);
+    color: var(--custom-ink);
+  }
+
+  :global(body:has(.custom-made-page) .site-header),
+  :global(body:has(.custom-made-page) .mega-nav-heading),
+  :global(html.custom-made-summer-page .site-header),
+  :global(html.custom-made-summer-page .mega-nav-heading) {
+    display: none;
+  }
+
+  :global(body:has(.custom-made-page) .mega-nav),
+  :global(body:has(.custom-made-page) .mobile-fixed-nav-wrap),
+  :global(html.custom-made-summer-page .mega-nav),
+  :global(html.custom-made-summer-page .mobile-fixed-nav-wrap) {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    inset: 0 0 auto;
+    z-index: 210;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  :global(body:has(.custom-made-page) .mega-nav),
+  :global(html.custom-made-summer-page .mega-nav) {
+    background: #fff;
+    background: rgb(255 255 255 / 96%);
+    box-shadow: 0 18px 42px rgb(17 14 10 / 14%);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+
+  .custom-made-page :global(.content) {
+    width: min(1160px, calc(100% - 48px));
+  }
+
+  .custom-made-summer-hero {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    min-height: 720px;
+    min-height: 100vh;
+    min-height: 100svh;
+    overflow: hidden;
+    margin-top: 0;
+    background: #250604;
+    background:
+      radial-gradient(circle at 74% 18%, rgb(255 205 80 / 32%), transparent 30%),
+      linear-gradient(140deg, #6d0704, #170705 52%, #06172a);
+    color: #fff8e8;
+  }
+
+  .custom-made-summer-hero::before,
+  .custom-made-summer-hero::after,
+  .custom-made-summer-hero__video,
+  .custom-made-summer-hero__shade {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    inset: 0;
+  }
+
+  .custom-made-summer-hero::before,
+  .custom-made-summer-hero::after {
+    z-index: 0;
+    pointer-events: none;
+    content: "";
+  }
+
+  .custom-made-summer-hero::before {
+    background:
+      repeating-linear-gradient(90deg, rgb(255 230 161 / 8%) 0 1px, transparent 1px 84px),
+      linear-gradient(180deg, rgb(0 0 0 / 8%), transparent 34%, rgb(0 0 0 / 54%));
+  }
+
+  .custom-made-summer-hero::after {
+    top: 24px;
+    right: 24px;
+    bottom: 24px;
+    left: 24px;
+    inset: clamp(18px, 2.5vw, 34px);
+    border: 1px solid rgb(255 232 166 / 34%);
+  }
+
+  .custom-made-summer-hero__video {
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.78;
+    filter: saturate(1.08) contrast(1.1) brightness(0.78);
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero__video {
+    opacity: 0;
+    transition: opacity 480ms ease;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-video-ready .custom-made-summer-hero__video {
+    opacity: 0.78;
+  }
+
+  .custom-made-summer-hero__shade {
+    z-index: -1;
+    background:
+      linear-gradient(180deg, rgb(0 0 0 / 18%) 0%, rgb(0 0 0 / 18%) 40%, rgb(0 0 0 / 76%) 100%),
+      linear-gradient(90deg, rgb(23 5 3 / 58%), transparent 50%, rgb(15 3 2 / 42%));
+  }
+
+  .custom-made-summer-act {
+    position: relative;
+    z-index: 2;
+    min-height: 720px;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding-top: 104px;
+    padding-bottom: 78px;
+  }
+
+  .custom-made-summer-act--first {
+    display: none;
+  }
+
+  .custom-made-summer-act--second {
+    display: grid;
+    align-items: end;
+  }
+
+  .custom-made-summer-copy {
+    display: grid;
+    justify-items: center;
+    width: 100%;
+    text-align: center;
+  }
+
+  .custom-made-summer-kicker,
+  .custom-made-summer-first__eyebrow {
+    display: inline-flex;
+    width: auto;
+    max-width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 0 0 14px;
+    color: #ffe6a1;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    line-height: 1.4;
+  }
+
+  .custom-made-summer-kicker::before,
+  .custom-made-summer-first__eyebrow::before {
+    display: block;
+    width: 52px;
+    height: 1px;
+    background: #d8b85f;
+    content: "";
+  }
+
+  .custom-made-summer-course {
+    margin: 0 0 16px;
+    color: rgb(255 248 232 / 88%);
+    font-size: 0.98rem;
+    font-weight: 900;
+    line-height: 1.5;
+  }
+
+  .custom-made-summer-hero h1 {
+    max-width: 1060px;
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    font-size: clamp(2.8rem, 8.4vw, 6.4rem);
+    font-weight: 700;
+    line-height: 1.03;
+    text-shadow: 0 18px 44px rgb(0 0 0 / 68%);
+  }
+
+  .custom-made-summer-hero h1 strong {
+    display: inline-block;
+    color: #ffe6a1;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .custom-made-summer-lead {
+    width: 690px;
+    max-width: 100%;
+    width: min(690px, 100%);
+    margin: 24px auto 0;
+    color: rgb(255 248 232 / 92%);
+    font-size: 1rem;
+    font-size: clamp(0.98rem, 1.45vw, 1.16rem);
+    font-weight: 800;
+    line-height: 1.9;
+    text-shadow: 0 10px 28px rgb(0 0 0 / 62%);
+  }
+
+  .custom-made-summer-actions {
+    justify-content: center;
+    margin-top: 28px;
+  }
+
+  .custom-made-summer-actions :global(.button) {
+    min-width: 190px;
+    border: 1px solid rgb(255 232 166 / 66%);
+    box-shadow: 0 16px 38px rgb(0 0 0 / 38%);
+  }
+
+  .custom-made-summer-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .custom-made-summer-meta span {
+    border: 1px solid rgb(255 232 166 / 36%);
+    background: rgb(6 4 3 / 44%);
+    padding: 6px 11px;
+    color: #fff4d6;
+    font-size: 0.82rem;
+    font-weight: 900;
+    line-height: 1.35;
+  }
+
+  .custom-made-summer-first {
+    width: 100%;
+    max-width: 1060px;
+    margin: auto;
+    text-align: center;
+  }
+
+  .custom-made-summer-first__eyebrow {
+    margin-bottom: 22px;
+  }
+
+  .custom-made-summer-first__headline {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    font-size: clamp(2.8rem, 8.4vw, 7.5rem);
+    font-weight: 700;
+    line-height: 1.03;
+    text-shadow: 0 18px 46px rgb(0 0 0 / 72%);
+  }
+
+  .custom-made-summer-first__headline > span {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.06em;
+  }
+
+  .custom-made-summer-first__headline > span > span,
+  .custom-made-summer-first__headline strong {
+    display: block;
+  }
+
+  .custom-made-summer-first__headline strong {
+    color: #ffe6a1;
+  }
+
+  .custom-made-summer-first__rule {
+    width: 720px;
+    max-width: 100%;
+    width: min(720px, 100%);
+    height: 2px;
+    margin: 26px auto 0;
+    background: linear-gradient(90deg, transparent, #ffe6a1, #f36b19, transparent);
+    box-shadow: 0 0 26px rgb(243 107 25 / 72%);
+    transform-origin: center;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-act--first {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    inset: 0;
+    display: grid;
+    align-items: center;
+    pointer-events: none;
+    animation: customMadeFirstAct 3.45s ease both;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-first__eyebrow {
+    animation: customMadeFirstDetail 2.85s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-first__headline > span:first-child > span {
+    animation: customMadeFirstLineA 3.05s cubic-bezier(0.16, 1, 0.3, 1) 0.14s both;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-first__headline > span:last-child > span {
+    animation: customMadeFirstLineB 2.92s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-first__rule {
+    animation: customMadeFirstRule 2.7s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero .custom-made-summer-act--second {
+    opacity: 0;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-act--second {
+    animation: customMadeSecondAct 1.05s cubic-bezier(0.12, 0.94, 0.18, 1) 3.08s both;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-copy h1 {
+    animation: customMadeSecondHeadline 1s cubic-bezier(0.12, 0.94, 0.18, 1) 3.18s both;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-course,
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-lead {
+    animation: customMadeSecondDetail 0.84s ease-out 3.42s both;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-actions,
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-meta {
+    animation: customMadeSecondDetail 0.84s ease-out 3.58s both;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-hero__video {
+    animation: customMadeVideoDrift 9s ease-out both;
+  }
+
+  @keyframes customMadeFirstAct {
+    0%, 76% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes customMadeFirstDetail {
+    0% { opacity: 1; transform: translateY(18px); }
+    18%, 82% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-14px); }
+  }
+
+  @keyframes customMadeFirstLineA {
+    0% { opacity: 1; transform: translateY(18px) skewY(4deg); }
+    18%, 82% { opacity: 1; transform: translateY(0) skewY(0); }
+    100% { opacity: 0; transform: translateY(-35%) skewY(-2deg); }
+  }
+
+  @keyframes customMadeFirstLineB {
+    0% { opacity: 1; transform: scale(1.12); }
+    20%, 82% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.96); }
+  }
+
+  @keyframes customMadeFirstRule {
+    0% { opacity: 0; transform: scaleX(0); }
+    20%, 82% { opacity: 1; transform: scaleX(1); }
+    100% { opacity: 0; transform: scaleX(0.72); }
+  }
+
+  @keyframes customMadeSecondAct {
+    from { opacity: 0; transform: translateY(38px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @keyframes customMadeSecondHeadline {
+    from { opacity: 0; filter: blur(7px); transform: translateY(30px); }
+    to { opacity: 1; filter: blur(0); transform: translateY(0); }
+  }
+
+  @keyframes customMadeSecondDetail {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes customMadeVideoDrift {
+    from { transform: scale(1.06); }
+    to { transform: scale(1); }
+  }
+
+  .custom-made-eyebrow {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    color: var(--custom-gold);
+    font-size: 0.88rem;
+    font-weight: 900;
+    line-height: 1.4;
+  }
+
+  .custom-made-eyebrow::before {
+    display: inline-block;
+    width: 34px;
+    height: 1px;
+    background: currentcolor;
+    content: "";
+  }
+
+  .custom-made-eyebrow--light {
+    color: #e6c968;
+  }
+
+  .custom-made-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .custom-made-actions :global(.button) {
+    min-width: 210px;
+  }
+
+  .custom-made-actions--left {
+    justify-content: flex-start;
+    margin-top: 10px;
+  }
+
+  .custom-made-fit,
+  .custom-made-system,
+  .custom-made-plans,
+  .custom-made-message,
+  .custom-made-garden,
+  .custom-made-other {
+    padding-block: 84px;
+  }
+
+  .custom-made-fit {
+    background: #fffdf8;
+  }
+
+  .custom-made-fit__inner,
+  .custom-made-fit__grid {
+    display: grid;
+    gap: 28px;
+  }
+
+  .custom-made-fit__grid {
+    grid-template-columns: minmax(320px, 0.86fr) minmax(0, 1.14fr);
+    align-items: stretch;
+  }
+
+  .custom-made-section-head {
+    display: grid;
+    gap: 8px;
+  }
+
+  .custom-made-section-head--center {
+    justify-items: center;
+    max-width: 780px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .custom-made-section-head p,
+  .custom-made-section-head span {
+    margin: 0;
+  }
+
+  .custom-made-section-head p {
+    color: var(--custom-gold);
+    font-size: 0.88rem;
+    font-weight: 900;
+    line-height: 1.5;
+  }
+
+  .custom-made-section-head h2 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .custom-made-section-head span {
+    color: #4a3b2a;
+    font-weight: 800;
+    line-height: 1.8;
+  }
+
+  .custom-made-check-list {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    border: 1px solid #e1d3bc;
+    border-radius: 8px;
+    background: #f8f0e2;
+    padding: 24px;
+    list-style: none;
+  }
+
+  .custom-made-check-list li {
+    position: relative;
+    margin: 0;
+    border-bottom: 1px solid rgb(185 152 63 / 26%);
+    padding: 0 0 12px 34px;
+    font-size: 1.05rem;
+    font-weight: 900;
+    line-height: 1.65;
+  }
+
+  .custom-made-check-list li:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .custom-made-check-list li::before {
+    position: absolute;
+    top: 0.38em;
+    left: 0;
+    display: grid;
+    width: 22px;
+    height: 22px;
+    place-items: center;
+    border-radius: 999px;
+    background: var(--custom-green);
+    color: #fff;
+    content: "✓";
+    font-size: 0.84rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .custom-made-fit__message {
+    display: grid;
+    align-content: center;
+    gap: 24px;
+    border: 1px solid rgb(18 53 106 / 18%);
+    border-radius: 8px;
+    background:
+      linear-gradient(135deg, rgb(18 53 106 / 8%), transparent 44%),
+      #fff;
+    padding: 30px;
+  }
+
+  .custom-made-fit__message p {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1.95;
+  }
+
+  .custom-made-support-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .custom-made-support-tags span {
+    border: 1px solid rgb(185 152 63 / 44%);
+    border-radius: 999px;
+    background: #fff8ea;
+    padding: 8px 13px;
+    color: var(--custom-blue);
+    font-size: 0.9rem;
+    font-weight: 900;
+  }
+
+  .custom-made-system {
+    background: #f7f1e4;
+  }
+
+  .custom-made-pillar-grid,
+  .custom-made-plan-grid,
+  .custom-made-other-grid {
+    display: grid;
+    gap: 20px;
+    margin-top: 34px;
+  }
+
+  .custom-made-pillar-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .custom-made-pillar-grid article,
+  .custom-made-plan-grid article,
+  .custom-made-other-grid article {
+    border: 1px solid #e1d3bc;
+    border-radius: 8px;
+    background: #fffdf8;
+    padding: 24px;
+    box-shadow: 0 12px 26px rgb(58 42 18 / 10%);
+  }
+
+  .custom-made-pillar-grid article {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .custom-made-pillar-grid article::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 5px;
+    background: linear-gradient(90deg, var(--custom-blue), var(--custom-gold));
+    content: "";
+  }
+
+  .custom-made-pillar__label {
+    margin: 0 0 24px;
+    color: rgb(18 53 106 / 18%);
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 0.9;
+  }
+
+  .custom-made-pillar-grid h3,
+  .custom-made-plan-grid h3,
+  .custom-made-other-grid h4 {
+    margin: 0 0 12px;
+    color: var(--custom-blue);
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+
+  .custom-made-pillar-grid p,
+  .custom-made-other-grid p {
+    margin: 0;
+    font-weight: 800;
+    line-height: 1.8;
+  }
+
+  .custom-made-plans {
+    background: #fffdf8;
+  }
+
+  .custom-made-plan-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .custom-made-plan-grid article {
+    display: grid;
+    gap: 16px;
+  }
+
+  .custom-made-plan__link {
+    width: 100%;
+    margin-top: 4px;
+  }
+
+  .custom-made-plan-grid dl {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+  }
+
+  .custom-made-plan-grid dl div {
+    display: grid;
+    gap: 4px;
+    border-top: 1px solid rgb(185 152 63 / 26%);
+    padding-top: 10px;
+  }
+
+  .custom-made-plan-grid dt {
+    color: #7d1712;
+    font-size: 0.82rem;
+    font-weight: 900;
+  }
+
+  .custom-made-plan-grid dd {
+    margin: 0;
+    font-weight: 900;
+    line-height: 1.55;
+  }
+
+  .custom-made-message {
+    background:
+      linear-gradient(112deg, #2d261f 0%, #2d261f 54%, #12356a 54%, #0d2549 100%);
+    color: #fffdf8;
+  }
+
+  .custom-made-message__grid,
+  .custom-made-garden__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+    gap: 42px;
+    align-items: center;
+  }
+
+  .custom-made-message h2,
+  .custom-made-garden h2 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 2.1rem;
+    font-weight: 700;
+    line-height: 1.45;
+  }
+
+  .custom-made-message p,
+  .custom-made-garden p {
+    margin: 18px 0 0;
+    font-size: 1.02rem;
+    font-weight: 800;
+    line-height: 1.9;
+  }
+
+  .custom-made-message__sub {
+    color: #f1d77a;
+  }
+
+  .custom-made-message figure,
+  .custom-made-garden figure {
+    margin: 0;
+  }
+
+  .custom-made-message img {
+    display: block;
+    width: min(330px, 100%);
+    height: auto;
+    margin-inline: auto;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 20px 44px rgb(0 0 0 / 26%);
+  }
+
+  .custom-made-garden {
+    background: #eef8ef;
+  }
+
+  .custom-made-garden figure {
+    overflow: hidden;
+    border: 1px solid rgb(185 152 63 / 35%);
+    border-radius: 8px;
+    box-shadow: 0 18px 38px rgb(58 42 18 / 14%);
+  }
+
+  .custom-made-garden img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .custom-made-garden :global(.button) {
+    margin-top: 24px;
+  }
+
+  .custom-made-other {
+    background: #fff;
+  }
+
+  .custom-made-other-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .custom-made-other-grid article {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+  }
+
+  .custom-made-other-grid h3 {
+    margin: 0;
+    color: #7d1712;
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .custom-made-other-grid h4 {
+    margin-bottom: 0;
+  }
+
+  .custom-made-other__en {
+    color: var(--custom-gold);
+  }
+
+  .custom-made-other-grid :global(.button) {
+    align-self: end;
+    margin-top: 10px;
+  }
+
+  @media (max-width: 960px) {
+    .custom-made-page :global(.content) {
+      width: min(760px, calc(100% - 40px));
+    }
+
+    .custom-made-summer-hero {
+      margin-top: 0;
+      min-height: 680px;
+      min-height: 100vh;
+      min-height: 100svh;
+    }
+
+    .custom-made-fit__grid,
+    .custom-made-message__grid,
+    .custom-made-garden__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .custom-made-summer-act {
+      min-height: 680px;
+      min-height: calc(100vh - 234px);
+      min-height: calc(100svh - 234px);
+      padding-top: 88px;
+      padding-bottom: 64px;
+    }
+
+    .custom-made-pillar-grid,
+    .custom-made-plan-grid,
+    .custom-made-other-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .custom-made-message {
+      background: #2d261f;
+    }
+  }
+
+  @media (max-width: 680px) {
+    :global(body:has(.custom-made-page) .mobile-fixed-nav-wrap),
+    :global(html.custom-made-summer-page .mobile-fixed-nav-wrap) {
+      display: block;
+      position: fixed;
+    }
+
+    :global(body:has(.custom-made-page) .mega-nav),
+    :global(html.custom-made-summer-page .mega-nav) {
+      display: none;
+    }
+
+    .custom-made-page :global(.content) {
+      width: min(100% - 28px, 420px);
+    }
+
+    .custom-made-summer-hero {
+      margin-top: 0;
+      min-height: 620px;
+      min-height: 100vh;
+      min-height: 100svh;
+    }
+
+    .custom-made-summer-hero::after {
+      top: 10px;
+      right: 10px;
+      bottom: 10px;
+      left: 10px;
+      inset: 10px;
+    }
+
+    .custom-made-summer-act {
+      min-height: 620px;
+      min-height: 100vh;
+      min-height: 100svh;
+      padding-top: 66px;
+      padding-bottom: 42px;
+    }
+
+    .custom-made-summer-hero h1 {
+      font-size: 2.45rem;
+    }
+
+    .custom-made-summer-first__headline {
+      font-size: 2.25rem;
+      font-size: clamp(2.1rem, 12vw, 3.15rem);
+      line-height: 1.08;
+    }
+
+    .custom-made-summer-kicker,
+    .custom-made-summer-first__eyebrow {
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: 0.66rem;
+      letter-spacing: 0.1em;
+    }
+
+    .custom-made-summer-kicker::before,
+    .custom-made-summer-first__eyebrow::before {
+      width: 30px;
+    }
+
+    .custom-made-summer-course {
+      margin-bottom: 12px;
+      font-size: 0.86rem;
+    }
+
+    .custom-made-summer-lead {
+      margin-top: 18px;
+      font-size: 0.92rem;
+      line-height: 1.75;
+    }
+
+    .custom-made-summer-actions {
+      margin-top: 20px;
+    }
+
+    .custom-made-actions {
+      display: grid;
+      gap: 10px;
+    }
+
+    .custom-made-actions :global(.button) {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .custom-made-summer-meta {
+      margin-top: 16px;
+    }
+
+    .custom-made-summer-meta span {
+      padding: 5px 8px;
+      font-size: 0.72rem;
+    }
+
+    .custom-made-summer-first__rule {
+      margin-top: 18px;
+    }
+
+    .custom-made-fit,
+    .custom-made-system,
+    .custom-made-plans,
+    .custom-made-message,
+    .custom-made-garden,
+    .custom-made-other {
+      padding-block: 56px;
+    }
+
+    .custom-made-section-head h2,
+    .custom-made-message h2,
+    .custom-made-garden h2 {
+      font-size: 1.55rem;
+    }
+
+    .custom-made-check-list,
+    .custom-made-fit__message,
+    .custom-made-pillar-grid article,
+    .custom-made-plan-grid article,
+    .custom-made-other-grid article {
+      padding: 18px;
+    }
+
+    .custom-made-check-list li,
+    .custom-made-fit__message p,
+    .custom-made-pillar-grid p,
+    .custom-made-message p,
+    .custom-made-garden p,
+    .custom-made-other-grid p {
+      font-size: 0.94rem;
+      line-height: 1.75;
+    }
+
+    .custom-made-support-tags {
+      gap: 8px;
+    }
+
+    .custom-made-support-tags span {
+      padding: 7px 10px;
+      font-size: 0.82rem;
+    }
+
+    .custom-made-pillar-grid,
+    .custom-made-plan-grid,
+    .custom-made-other-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .custom-made-pillar__label {
+      margin-bottom: 14px;
+      font-size: 2.2rem;
+    }
+
+    .custom-made-plan-grid h3,
+    .custom-made-pillar-grid h3,
+    .custom-made-other-grid h4 {
+      font-size: 1.05rem;
+    }
+
+    .custom-made-message img {
+      width: min(240px, 100%);
+    }
+  }
+
+  @media (max-width: 420px) {
+    .custom-made-summer-hero h1 {
+      font-size: 1.9rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .custom-made-summer-hero *,
+    .custom-made-summer-hero::before,
+    .custom-made-summer-hero::after {
+      animation: none !important;
+      transition: none !important;
+    }
+
+    .custom-made-summer-act--first {
+      display: none !important;
+      opacity: 0 !important;
+    }
+
+    .custom-made-summer-act--second,
+    .custom-made-summer-copy h1,
+    .custom-made-summer-course,
+    .custom-made-summer-lead,
+    .custom-made-summer-actions,
+    .custom-made-summer-meta {
+      opacity: 1 !important;
+      filter: none !important;
+      transform: none !important;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    if (!document.querySelector || !document.createElement) return;
+
+    var root = document.documentElement;
+    var hero = document.querySelector("[data-custom-made-summer-hero]");
+    var hasClass = function (element, name) {
+      return (" " + element.className + " ").indexOf(" " + name + " ") > -1;
+    };
+    var addClass = function (element, name) {
+      if (!element || hasClass(element, name)) return;
+      element.className = element.className ? element.className + " " + name : name;
+    };
+
+    addClass(root, "custom-made-summer-page");
+    if (!hero) return;
+    if (window.location.search && window.location.search.indexOf("static=1") > -1) return;
+
+    var reducedMotion = false;
+    if (window.matchMedia) {
+      reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    }
+    if (reducedMotion) return;
+
+    var styleProbe = document.createElement("div").style;
+    var canAnimate = ("animation" in styleProbe || "webkitAnimation" in styleProbe)
+      && ("transform" in styleProbe || "webkitTransform" in styleProbe);
+    if (!canAnimate) return;
+
+    addClass(root, "custom-made-summer-enhanced");
+    addClass(hero, "is-active");
+
+    var videos = hero.getElementsByTagName("video");
+    var video = videos.length ? videos[0] : null;
+    if (!video || !video.play) return;
+
+    var videoProbe = document.createElement("video");
+    var canVideo = Boolean(videoProbe.canPlayType && videoProbe.canPlayType("video/mp4"));
+    if (!canVideo) return;
+
+    var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    var effectiveType = connection && connection.effectiveType ? String(connection.effectiveType) : "";
+    var saveData = Boolean(connection && connection.saveData);
+    var lowMemory = Boolean(navigator.deviceMemory && navigator.deviceMemory <= 2);
+    var constrainedDevice = saveData || lowMemory || effectiveType === "slow-2g" || effectiveType === "2g";
+    if (constrainedDevice) return;
+
+    var scheduleIdle = function (callback, timeout) {
+      if (window.requestIdleCallback) {
+        window.requestIdleCallback(callback, { timeout: timeout });
+      } else {
+        window.setTimeout(callback, timeout);
+      }
+    };
+    var wideVideoViewport = Boolean(window.matchMedia && window.matchMedia("(min-width: 1024px)").matches);
+    var heroInView = true;
+    var videoStarted = false;
+    var videoStartQueued = false;
+
+    var onLoaded = function () {
+      addClass(hero, "is-video-ready");
+      if (video.removeEventListener) video.removeEventListener("loadeddata", onLoaded, false);
+    };
+    var playVideo = function () {
+      var playResult = video.play();
+      if (playResult && playResult.catch) playResult.catch(function () {});
+    };
+    var syncVideo = function () {
+      if (document.visibilityState && document.visibilityState !== "visible") {
+        if (video.pause) video.pause();
+        return;
+      }
+      if (heroInView) playVideo();
+      else if (video.pause) video.pause();
+    };
+    var startVideo = function () {
+      if (videoStarted) return;
+      if (!heroInView) {
+        videoStartQueued = true;
+        return;
+      }
+      videoStarted = true;
+      videoStartQueued = false;
+      if (video.load) video.load();
+      if (video.readyState >= 2) onLoaded();
+      syncVideo();
+    };
+
+    if (video.addEventListener) video.addEventListener("loadeddata", onLoaded, false);
+
+    if ("IntersectionObserver" in window) {
+      var heroVideoObserver = new IntersectionObserver(function (entries) {
+        if (!entries || !entries.length) return;
+        heroInView = Boolean(entries[0].isIntersecting);
+        if (videoStartQueued && heroInView) startVideo();
+        if (videoStarted) syncVideo();
+      }, { threshold: 0.08 });
+      heroVideoObserver.observe(hero);
+    }
+
+    window.setTimeout(function () {
+      scheduleIdle(startVideo, wideVideoViewport ? 900 : 1500);
+    }, wideVideoViewport ? 420 : 950);
+
+    if (document.addEventListener) {
+      document.addEventListener("visibilitychange", function () {
+        if (videoStarted) syncVideo();
+      }, false);
+    }
+  }());
+</script>
