@@ -17535,23 +17535,17 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
   font-weight: 900;
 }
 
-.access-phone-cta > a:not(.button) {
+.access-phone-cta__call {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 34px;
-  border-radius: 999px;
-  background: var(--red);
-  color: #fff;
-  padding: 7px 26px;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  text-decoration: none;
+  gap: 12px;
+  min-width: min(320px, 100%);
 }
 
-.access-phone-cta .access-button-row {
-  justify-content: center;
-  margin: 0;
+.access-phone-cta__call strong {
+  font-size: 1.04em;
+  letter-spacing: 0.04em;
 }
 
 .access-dorm {

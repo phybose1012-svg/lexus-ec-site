@@ -49,35 +49,35 @@ const routeSteps = [
     height: 1024,
   },
   {
-    text: "⑤ ガスト（から好し）の前で左へ",
+    text: "⑤ ガスト（から好し）まで直進",
     src: "/assets/legacy/wp-content/uploads/2025/09/5インフォスタワー前02-768x1024.jpg",
     alt: "道順05",
     width: 768,
     height: 1024,
   },
   {
-    text: "⑥ つき当たりを右へ",
+    text: "⑥ ガスト（から好し）の前で左へ",
     src: "/assets/legacy/wp-content/uploads/2025/09/6-ガスト-1024x1024.jpg",
     alt: "道順06",
     width: 800,
     height: 800,
   },
   {
-    text: "⑦ 右側に渋谷区文化センターがあります。",
+    text: "⑦ つき当たりを右へ",
     src: "/assets/legacy/wp-content/uploads/2025/09/7-最後の曲がり角-768x1024.jpg",
     alt: "道順07",
     width: 768,
     height: 1024,
   },
   {
-    text: "⑧ 到着です。受付はB1です。",
+    text: "⑧ 右側に渋谷区文化センターがあります。",
     src: "/assets/legacy/wp-content/uploads/2025/09/8-渋谷区文化センター裏-768x1024.jpg",
     alt: "道順08",
     width: 768,
     height: 1024,
   },
   {
-    text: "※ 分かりにくい時はお電話ください。03-3477-1306",
+    text: "⑨ 到着です。受付はB1です。",
     src: "/assets/legacy/wp-content/uploads/2025/09/9-到着-768x1024.jpg",
     alt: "道順09 到着",
     width: 768,
@@ -155,11 +155,10 @@ const localBusinessJsonLd = {
         </div>
         <div class="access-phone-cta">
           <p>※ 分かりにくい時はお電話ください。</p>
-          <a href="tel:03-3477-1306">03-3477-1306</a>
-          <a class="button button--blue" href="tel:03-3477-1306">電話をかける</a>
-          <div class="access-button-row">
-            {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
-          </div>
+          <a class="button button--blue access-phone-cta__call" href="tel:03-3477-1306">
+            <span>電話をかける</span>
+            <strong>03-3477-1306</strong>
+          </a>
         </div>
       </div>
     </section>
