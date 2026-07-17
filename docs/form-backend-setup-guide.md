@@ -56,7 +56,7 @@ function doPost(e) {
     || SpreadsheetApp.getActiveSpreadsheet().insertSheet("form_submissions");
 
   if (sheet.getLastRow() === 0) {
-    sheet.appendRow(["受付日時", "受付ID", "フォーム種別", "送信元", "名前", "メール", "電話", "内容", "JSON"]);
+    sheet.appendRow(["受付日時", "受付ID", "フォーム種別", "送信元", "名前", "ふりがな", "メール", "電話", "内容", "JSON"]);
   }
 
   sheet.appendRow([
@@ -65,6 +65,7 @@ function doPost(e) {
     submission.formLabel,
     submission.pageUrl,
     fields.name || "",
+    fields.kana || "",
     fields.email || "",
     fields.tel || "",
     fields.message || fields.requestType || "",
