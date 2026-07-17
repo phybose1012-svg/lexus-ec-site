@@ -1,5 +1,6 @@
 ---
-import { seo } from "../../../../data/home";
+import SectionHeading from "../../../../components/SectionHeading.astro";
+import { assets, seo } from "../../../../data/home";
 import SiteLayout from "../../../../layouts/SiteLayout.astro";
 
 const title = "医学部専門 オーダーメード演習コース｜すべてのレベルに対応可能な医学部受験攻略コース";
@@ -8,7 +9,6 @@ const description =
 
 const images = {
   flow: "/assets/legacy/wp-content/uploads/2025/05/入学までの流れ-1-777x1024.jpg",
-  garden: "/assets/legacy/wp-content/uploads/2025/12/Gemini_Generated_Image_h3qlynh3qlynh3ql-e1764922283465-1024x790.jpg",
 };
 
 const recommend = [
@@ -240,16 +240,28 @@ const flowActions = [
       </div>
     </section>
 
-    <section class="custom-made-garden" aria-labelledby="custom-made-garden-title">
-      <div class="content custom-made-garden__grid">
-        <figure>
-          <img src={images.garden} alt="生徒専用寮外観" width="800" height="617" loading="lazy" decoding="async" />
-        </figure>
-        <div>
-          <p class="custom-made-eyebrow">Lexus Garden</p>
-          <h2 id="custom-made-garden-title">生徒専用寮のご案内 『LEXUS GARDEN』</h2>
-          <p>長期休み中の利用など、最短3日間から利用可能です。学習時間を生活の中に組み込み、演習量を安定させたい方にも適しています。</p>
-          <a class="button button--green" href="/top/lexus-garden/">設備や費用を見てみる</a>
+    <section class="section location defer-render" aria-labelledby="location-title">
+      <div class="content">
+        <SectionHeading id="location-title" label="LOCATION" title="東京（渋谷）のレクサスには日本全国から医学部志願者が集まります！" />
+        <div class="dorm-layout">
+          <div>
+            <h3>生徒専用寮のご案内『LEXUS GARDEN』</h3>
+            <ul class="dorm-tags">
+              <li>渋谷駅 徒歩5分</li>
+              <li>校舎直結</li>
+              <li>オートロック</li>
+              <li>地下自習室完備</li>
+              <li>食事あり</li>
+              <li>プロ講師常駐</li>
+            </ul>
+            <p>東京都渋谷の閑静な住宅街にたたずむ医学部受験に集中できる快適空間。校舎と寮が近いから、通学・質問・復習・生活管理まで途切れずに回せます。</p>
+          </div>
+          <div class="dorm-media">
+            <a class="dorm-media__image" href="/top/lexus-garden/">
+              <img src={assets.dorm} alt="寮と一体型の校舎 レクサス専用寮外観" width="1024" height="651" loading="lazy" decoding="async" />
+            </a>
+            <a class="button button--blue" href="/top/lexus-garden/">生徒専用寮を見る</a>
+          </div>
         </div>
       </div>
     </section>
@@ -718,7 +730,6 @@ const flowActions = [
   .custom-made-system,
   .custom-made-plans,
   .custom-made-message,
-  .custom-made-garden,
   .custom-made-other {
     padding-block: 84px;
   }
@@ -967,16 +978,14 @@ const flowActions = [
     color: #fffdf8;
   }
 
-  .custom-made-message__grid,
-  .custom-made-garden__grid {
+  .custom-made-message__grid {
     display: grid;
     grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
     gap: 42px;
     align-items: center;
   }
 
-  .custom-made-message h2,
-  .custom-made-garden h2 {
+  .custom-made-message h2 {
     margin: 0;
     font-family: var(--font-serif);
     font-size: 2.1rem;
@@ -984,8 +993,7 @@ const flowActions = [
     line-height: 1.45;
   }
 
-  .custom-made-message p,
-  .custom-made-garden p {
+  .custom-made-message p {
     margin: 18px 0 0;
     font-size: 1.02rem;
     font-weight: 800;
@@ -996,8 +1004,7 @@ const flowActions = [
     color: #f1d77a;
   }
 
-  .custom-made-message figure,
-  .custom-made-garden figure {
+  .custom-made-message figure {
     margin: 0;
   }
 
@@ -1009,27 +1016,6 @@ const flowActions = [
     border-radius: 8px;
     background: #fff;
     box-shadow: 0 20px 44px rgb(0 0 0 / 26%);
-  }
-
-  .custom-made-garden {
-    background: #eef8ef;
-  }
-
-  .custom-made-garden figure {
-    overflow: hidden;
-    border: 1px solid rgb(185 152 63 / 35%);
-    border-radius: 8px;
-    box-shadow: 0 18px 38px rgb(58 42 18 / 14%);
-  }
-
-  .custom-made-garden img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-
-  .custom-made-garden :global(.button) {
-    margin-top: 24px;
   }
 
   .custom-made-other {
@@ -1079,8 +1065,7 @@ const flowActions = [
     }
 
     .custom-made-fit__grid,
-    .custom-made-message__grid,
-    .custom-made-garden__grid {
+    .custom-made-message__grid {
       grid-template-columns: 1fr;
     }
 
@@ -1205,14 +1190,12 @@ const flowActions = [
     .custom-made-system,
     .custom-made-plans,
     .custom-made-message,
-    .custom-made-garden,
     .custom-made-other {
       padding-block: 56px;
     }
 
     .custom-made-section-head h2,
-    .custom-made-message h2,
-    .custom-made-garden h2 {
+    .custom-made-message h2 {
       font-size: 1.55rem;
     }
 
@@ -1228,7 +1211,6 @@ const flowActions = [
     .custom-made-fit__message p,
     .custom-made-pillar-grid p,
     .custom-made-message p,
-    .custom-made-garden p,
     .custom-made-other-grid p {
       font-size: 0.94rem;
       line-height: 1.75;
