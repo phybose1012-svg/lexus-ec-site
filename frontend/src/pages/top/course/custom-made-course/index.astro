@@ -7,8 +7,6 @@ const description =
   "自学力で医学部合格を狙う、自習特化型コース誕生。参考書ルート・学習計画・進捗管理まで徹底サポート。武田塾式を進化させた、自分で学び切る医学部対策。";
 
 const images = {
-  logoStrip: "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png",
-  mascot: "/assets/legacy/wp-content/uploads/2025/05/レクサスくん弓.jpg",
   flow: "/assets/legacy/wp-content/uploads/2025/05/入学までの流れ-1-777x1024.jpg",
   garden: "/assets/legacy/wp-content/uploads/2025/12/Gemini_Generated_Image_h3qlynh3qlynh3ql-e1764922283465-1024x790.jpg",
 };
@@ -108,34 +106,43 @@ const flowActions = [
 
 <SiteLayout title={title} description={description} canonical="https://lexus-ec.com/top/course/custom-made-course/" ogImage={seo.ogImage}>
   <main class="course-detail-page custom-made-page">
-    <section class="custom-made-hero" aria-labelledby="custom-made-title">
-      <div class="content custom-made-hero__inner">
-        <div class="custom-made-hero__copy">
-          <img class="custom-made-logo-strip" src={images.logoStrip} alt="ロゴ" width="800" height="58" decoding="async" />
-          <p class="custom-made-eyebrow">Custom-made Course</p>
-          <h1 id="custom-made-title">
-            <span>授業は最小限に。</span>
-            演習中心の学習で急成長するコース
-          </h1>
-          <p class="custom-made-hero__lead">
-            自分のレベルに合った演習ベースのカリキュラムで、医学部合格までの学習量と復習精度を引き上げます。
+    <section class="custom-made-summer-hero" aria-labelledby="custom-made-title" data-custom-made-summer-hero>
+      <video
+        class="custom-made-summer-hero__video"
+        src="/assets/course/custom-made-course/summer-hero.mp4"
+        muted
+        loop
+        playsinline
+        preload="none"
+      ></video>
+      <div class="custom-made-summer-hero__shade" aria-hidden="true"></div>
+
+      <div class="content custom-made-summer-act custom-made-summer-act--first" aria-hidden="true">
+        <div class="custom-made-summer-first">
+          <p class="custom-made-summer-first__eyebrow">LEXUS E.C. SUMMER MANIFESTO</p>
+          <p class="custom-made-summer-first__headline">
+            <span><span>スマホは捨てて、</span></span>
+            <span><strong>合格を掴め！</strong></span>
           </p>
-          <div class="custom-made-title-card" aria-label="コース名">
-            <p class="custom-made-title-card__jp">オーダーメード演習コース</p>
-            <p class="custom-made-title-card__en">Custom-made Course</p>
-            <p class="custom-made-title-card__lead">課題管理・質問対応・効果測定を組み合わせた、自走型の医学部受験対策です。</p>
-          </div>
-          <div class="custom-made-actions">
+          <div class="custom-made-summer-first__rule"></div>
+        </div>
+      </div>
+
+      <div class="content custom-made-summer-act custom-made-summer-act--second">
+        <div class="custom-made-summer-copy">
+          <p class="custom-made-summer-kicker">LEXUS E.C. SUMMER TRAINING</p>
+          <p class="custom-made-summer-course">オーダーメード演習コース</p>
+          <h1 id="custom-made-title">逃げ道を消して、<br /><strong>一問に燃える夏特訓。</strong></h1>
+          <p class="custom-made-summer-lead">
+            この夏は、逃げ道を減らす。目の前の一問に集中できる環境と、医学部合格から逆算した演習計画をつくります。
+          </p>
+          <div class="custom-made-actions custom-made-summer-actions">
             {heroActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
           </div>
-        </div>
-        <div class="custom-made-hero__visual" aria-hidden="true">
-          <div class="custom-made-hero__image-frame">
-            <img src={images.mascot} alt="" width="670" height="670" decoding="async" />
-          </div>
-          <div class="custom-made-hero__note">
-            <span>授業を増やす前に</span>
-            <strong>演習と復習を設計する</strong>
+          <div class="custom-made-summer-meta" aria-label="コースの特徴">
+            <span>演習特化</span>
+            <span>個別設計</span>
+            <span>医学部受験</span>
           </div>
         </div>
       </div>
@@ -282,48 +289,384 @@ const flowActions = [
     color: var(--custom-ink);
   }
 
+  :global(body:has(.custom-made-page) .site-header),
+  :global(body:has(.custom-made-page) .mega-nav-heading),
+  :global(html.custom-made-summer-page .site-header),
+  :global(html.custom-made-summer-page .mega-nav-heading) {
+    display: none;
+  }
+
+  :global(body:has(.custom-made-page) .mega-nav),
+  :global(body:has(.custom-made-page) .mobile-fixed-nav-wrap),
+  :global(html.custom-made-summer-page .mega-nav),
+  :global(html.custom-made-summer-page .mobile-fixed-nav-wrap) {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    inset: 0 0 auto;
+    z-index: 210;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  :global(body:has(.custom-made-page) .mega-nav),
+  :global(html.custom-made-summer-page .mega-nav) {
+    background: #fff;
+    background: rgb(255 255 255 / 96%);
+    box-shadow: 0 18px 42px rgb(17 14 10 / 14%);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+
   .custom-made-page :global(.content) {
     width: min(1160px, calc(100% - 48px));
   }
 
-  .custom-made-hero {
+  .custom-made-summer-hero {
     position: relative;
+    isolation: isolate;
+    display: grid;
+    min-height: 720px;
+    min-height: 100vh;
+    min-height: 100svh;
     overflow: hidden;
-    margin-top: -35px;
+    margin-top: 0;
+    background: #250604;
     background:
-      linear-gradient(112deg, rgb(13 37 73 / 96%) 0%, rgb(18 53 106 / 94%) 61%, rgb(255 253 248 / 100%) 61%, rgb(248 240 226 / 100%) 100%);
-    padding-block: 44px 56px;
+      radial-gradient(circle at 74% 18%, rgb(255 205 80 / 32%), transparent 30%),
+      linear-gradient(140deg, #6d0704, #170705 52%, #06172a);
+    color: #fff8e8;
   }
 
-  .custom-made-hero::before {
+  .custom-made-summer-hero::before,
+  .custom-made-summer-hero::after,
+  .custom-made-summer-hero__video,
+  .custom-made-summer-hero__shade {
     position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     inset: 0;
-    background:
-      linear-gradient(90deg, rgb(185 152 63 / 28%) 0 1px, transparent 1px 100%),
-      linear-gradient(180deg, rgb(185 152 63 / 18%) 0 1px, transparent 1px 100%);
-    background-size: 80px 80px;
+  }
+
+  .custom-made-summer-hero::before,
+  .custom-made-summer-hero::after {
+    z-index: 0;
+    pointer-events: none;
     content: "";
-    opacity: 0.34;
   }
 
-  .custom-made-hero__inner {
+  .custom-made-summer-hero::before {
+    background:
+      repeating-linear-gradient(90deg, rgb(255 230 161 / 8%) 0 1px, transparent 1px 84px),
+      linear-gradient(180deg, rgb(0 0 0 / 8%), transparent 34%, rgb(0 0 0 / 54%));
+  }
+
+  .custom-made-summer-hero::after {
+    top: 24px;
+    right: 24px;
+    bottom: 24px;
+    left: 24px;
+    inset: clamp(18px, 2.5vw, 34px);
+    border: 1px solid rgb(255 232 166 / 34%);
+  }
+
+  .custom-made-summer-hero__video {
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.78;
+    filter: saturate(1.08) contrast(1.1) brightness(0.78);
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero__video {
+    opacity: 0;
+    transition: opacity 480ms ease;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-video-ready .custom-made-summer-hero__video {
+    opacity: 0.78;
+  }
+
+  .custom-made-summer-hero__shade {
+    z-index: -1;
+    background:
+      linear-gradient(180deg, rgb(0 0 0 / 18%) 0%, rgb(0 0 0 / 18%) 40%, rgb(0 0 0 / 76%) 100%),
+      linear-gradient(90deg, rgb(23 5 3 / 58%), transparent 50%, rgb(15 3 2 / 42%));
+  }
+
+  .custom-made-summer-act {
     position: relative;
+    z-index: 2;
+    min-height: 720px;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding-top: 104px;
+    padding-bottom: 78px;
+  }
+
+  .custom-made-summer-act--first {
+    display: none;
+  }
+
+  .custom-made-summer-act--second {
     display: grid;
-    grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.72fr);
-    gap: 42px;
+    align-items: end;
+  }
+
+  .custom-made-summer-copy {
+    display: grid;
+    justify-items: center;
+    width: 100%;
+    text-align: center;
+  }
+
+  .custom-made-summer-kicker,
+  .custom-made-summer-first__eyebrow {
+    display: inline-flex;
+    width: auto;
+    max-width: 100%;
     align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 0 0 14px;
+    color: #ffe6a1;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    line-height: 1.4;
   }
 
-  .custom-made-hero__copy {
+  .custom-made-summer-kicker::before,
+  .custom-made-summer-first__eyebrow::before {
+    display: block;
+    width: 52px;
+    height: 1px;
+    background: #d8b85f;
+    content: "";
+  }
+
+  .custom-made-summer-course {
+    margin: 0 0 16px;
+    color: rgb(255 248 232 / 88%);
+    font-size: 0.98rem;
+    font-weight: 900;
+    line-height: 1.5;
+  }
+
+  .custom-made-summer-hero h1 {
+    max-width: 1060px;
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    font-size: clamp(2.8rem, 8.4vw, 6.4rem);
+    font-weight: 700;
+    line-height: 1.03;
+    text-shadow: 0 18px 44px rgb(0 0 0 / 68%);
+  }
+
+  .custom-made-summer-hero h1 strong {
+    display: inline-block;
+    color: #ffe6a1;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .custom-made-summer-lead {
+    width: 690px;
+    max-width: 100%;
+    width: min(690px, 100%);
+    margin: 24px auto 0;
+    color: rgb(255 248 232 / 92%);
+    font-size: 1rem;
+    font-size: clamp(0.98rem, 1.45vw, 1.16rem);
+    font-weight: 800;
+    line-height: 1.9;
+    text-shadow: 0 10px 28px rgb(0 0 0 / 62%);
+  }
+
+  .custom-made-summer-actions {
+    justify-content: center;
+    margin-top: 28px;
+  }
+
+  .custom-made-summer-actions :global(.button) {
+    min-width: 190px;
+    border: 1px solid rgb(255 232 166 / 66%);
+    box-shadow: 0 16px 38px rgb(0 0 0 / 38%);
+  }
+
+  .custom-made-summer-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .custom-made-summer-meta span {
+    border: 1px solid rgb(255 232 166 / 36%);
+    background: rgb(6 4 3 / 44%);
+    padding: 6px 11px;
+    color: #fff4d6;
+    font-size: 0.82rem;
+    font-weight: 900;
+    line-height: 1.35;
+  }
+
+  .custom-made-summer-first {
+    width: 100%;
+    max-width: 1060px;
+    margin: auto;
+    text-align: center;
+  }
+
+  .custom-made-summer-first__eyebrow {
+    margin-bottom: 22px;
+  }
+
+  .custom-made-summer-first__headline {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    font-size: clamp(2.8rem, 8.4vw, 7.5rem);
+    font-weight: 700;
+    line-height: 1.03;
+    text-shadow: 0 18px 46px rgb(0 0 0 / 72%);
+  }
+
+  .custom-made-summer-first__headline > span {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.06em;
+  }
+
+  .custom-made-summer-first__headline > span > span,
+  .custom-made-summer-first__headline strong {
+    display: block;
+  }
+
+  .custom-made-summer-first__headline strong {
+    color: #ffe6a1;
+  }
+
+  .custom-made-summer-first__rule {
+    width: 720px;
+    max-width: 100%;
+    width: min(720px, 100%);
+    height: 2px;
+    margin: 26px auto 0;
+    background: linear-gradient(90deg, transparent, #ffe6a1, #f36b19, transparent);
+    box-shadow: 0 0 26px rgb(243 107 25 / 72%);
+    transform-origin: center;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-act--first {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    inset: 0;
     display: grid;
-    gap: 18px;
-    color: #fffdf8;
+    align-items: center;
+    pointer-events: none;
+    animation: customMadeFirstAct 3.45s ease both;
   }
 
-  .custom-made-logo-strip {
-    width: min(620px, 100%);
-    height: auto;
-    background: rgb(255 253 248 / 86%);
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-first__eyebrow {
+    animation: customMadeFirstDetail 2.85s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-first__headline > span:first-child > span {
+    animation: customMadeFirstLineA 3.05s cubic-bezier(0.16, 1, 0.3, 1) 0.14s both;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-first__headline > span:last-child > span {
+    animation: customMadeFirstLineB 2.92s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-first__rule {
+    animation: customMadeFirstRule 2.7s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero .custom-made-summer-act--second {
+    opacity: 0;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-act--second {
+    animation: customMadeSecondAct 1.05s cubic-bezier(0.12, 0.94, 0.18, 1) 3.08s both;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-copy h1 {
+    animation: customMadeSecondHeadline 1s cubic-bezier(0.12, 0.94, 0.18, 1) 3.18s both;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-course,
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-lead {
+    animation: customMadeSecondDetail 0.84s ease-out 3.42s both;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-actions,
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-meta {
+    animation: customMadeSecondDetail 0.84s ease-out 3.58s both;
+  }
+
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-hero__video {
+    animation: customMadeVideoDrift 9s ease-out both;
+  }
+
+  @keyframes customMadeFirstAct {
+    0%, 76% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes customMadeFirstDetail {
+    0% { opacity: 1; transform: translateY(18px); }
+    18%, 82% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-14px); }
+  }
+
+  @keyframes customMadeFirstLineA {
+    0% { opacity: 1; transform: translateY(18px) skewY(4deg); }
+    18%, 82% { opacity: 1; transform: translateY(0) skewY(0); }
+    100% { opacity: 0; transform: translateY(-35%) skewY(-2deg); }
+  }
+
+  @keyframes customMadeFirstLineB {
+    0% { opacity: 1; transform: scale(1.12); }
+    20%, 82% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.96); }
+  }
+
+  @keyframes customMadeFirstRule {
+    0% { opacity: 0; transform: scaleX(0); }
+    20%, 82% { opacity: 1; transform: scaleX(1); }
+    100% { opacity: 0; transform: scaleX(0.72); }
+  }
+
+  @keyframes customMadeSecondAct {
+    from { opacity: 0; transform: translateY(38px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @keyframes customMadeSecondHeadline {
+    from { opacity: 0; filter: blur(7px); transform: translateY(30px); }
+    to { opacity: 1; filter: blur(0); transform: translateY(0); }
+  }
+
+  @keyframes customMadeSecondDetail {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes customMadeVideoDrift {
+    from { transform: scale(1.06); }
+    to { transform: scale(1); }
   }
 
   .custom-made-eyebrow {
@@ -350,69 +693,6 @@ const flowActions = [
     color: #e6c968;
   }
 
-  .custom-made-hero h1 {
-    margin: 0;
-    font-family: var(--font-serif);
-    font-size: 2.72rem;
-    font-weight: 700;
-    line-height: 1.22;
-  }
-
-  .custom-made-hero h1 span {
-    display: block;
-    color: #f1d77a;
-  }
-
-  .custom-made-hero__lead {
-    width: min(580px, 100%);
-    margin: 0;
-    color: rgb(255 253 248 / 88%);
-    font-size: 1rem;
-    font-weight: 800;
-    line-height: 1.9;
-  }
-
-  .custom-made-title-card {
-    display: grid;
-    gap: 8px;
-    width: min(600px, 100%);
-    border: 1px solid rgb(233 202 108 / 76%);
-    border-left: 6px solid var(--custom-gold);
-    border-radius: 8px;
-    background:
-      linear-gradient(135deg, rgb(255 253 248 / 96%), rgb(248 240 226 / 92%)),
-      var(--custom-paper);
-    padding: 20px 22px;
-    color: var(--custom-ink);
-    box-shadow: 0 22px 52px rgb(0 0 0 / 22%);
-  }
-
-  .custom-made-title-card p {
-    margin: 0;
-  }
-
-  .custom-made-title-card__jp {
-    color: var(--custom-blue);
-    font-size: 1.25rem;
-    font-weight: 900;
-  }
-
-  .custom-made-title-card__en {
-    border-bottom: 1px solid rgb(185 152 63 / 52%);
-    padding-bottom: 8px;
-    color: #7d1712;
-    font-family: var(--font-serif);
-    font-size: 1.95rem;
-    font-weight: 700;
-    line-height: 1.1;
-  }
-
-  .custom-made-title-card__lead {
-    font-size: 0.98rem;
-    font-weight: 800;
-    line-height: 1.75;
-  }
-
   .custom-made-actions {
     display: flex;
     flex-wrap: wrap;
@@ -427,57 +707,6 @@ const flowActions = [
   .custom-made-actions--left {
     justify-content: flex-start;
     margin-top: 10px;
-  }
-
-  .custom-made-hero__visual {
-    position: relative;
-    display: grid;
-    justify-items: center;
-    align-self: stretch;
-    min-height: 450px;
-  }
-
-  .custom-made-hero__image-frame {
-    align-self: center;
-    width: min(340px, 100%);
-    border: 1px solid rgb(185 152 63 / 48%);
-    border-radius: 8px;
-    background: linear-gradient(180deg, #fffdf8, #f1e5cf);
-    padding: 18px;
-    box-shadow: 0 28px 58px rgb(58 42 18 / 18%);
-  }
-
-  .custom-made-hero__image-frame img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-  }
-
-  .custom-made-hero__note {
-    position: absolute;
-    right: 0;
-    bottom: 20px;
-    display: grid;
-    gap: 3px;
-    max-width: 260px;
-    border-left: 5px solid var(--custom-gold);
-    border-radius: 8px;
-    background: #fffdf8;
-    padding: 16px 18px;
-    box-shadow: 0 20px 42px rgb(58 42 18 / 16%);
-  }
-
-  .custom-made-hero__note span {
-    color: #7d1712;
-    font-size: 0.86rem;
-    font-weight: 900;
-  }
-
-  .custom-made-hero__note strong {
-    color: var(--custom-blue);
-    font-size: 1.06rem;
-    line-height: 1.45;
   }
 
   .custom-made-fit,
@@ -837,32 +1066,25 @@ const flowActions = [
       width: min(760px, calc(100% - 40px));
     }
 
-    .custom-made-hero {
-      margin-top: -18px;
-      background:
-        linear-gradient(180deg, rgb(13 37 73 / 98%) 0%, rgb(18 53 106 / 94%) 62%, rgb(255 253 248 / 100%) 62%, rgb(248 240 226 / 100%) 100%);
-      padding-block: 42px 56px;
+    .custom-made-summer-hero {
+      margin-top: 0;
+      min-height: 680px;
+      min-height: 100vh;
+      min-height: 100svh;
     }
 
-    .custom-made-hero__inner,
     .custom-made-fit__grid,
     .custom-made-message__grid,
     .custom-made-garden__grid {
       grid-template-columns: 1fr;
     }
 
-    .custom-made-hero__visual {
-      display: none;
-      min-height: 0;
-    }
-
-    .custom-made-hero__image-frame {
-      width: min(300px, 72vw);
-    }
-
-    .custom-made-hero__note {
-      right: 12px;
-      bottom: 8px;
+    .custom-made-summer-act {
+      min-height: 680px;
+      min-height: calc(100vh - 234px);
+      min-height: calc(100svh - 234px);
+      padding-top: 88px;
+      padding-bottom: 64px;
     }
 
     .custom-made-pillar-grid,
@@ -877,48 +1099,80 @@ const flowActions = [
   }
 
   @media (max-width: 680px) {
+    :global(body:has(.custom-made-page) .mobile-fixed-nav-wrap),
+    :global(html.custom-made-summer-page .mobile-fixed-nav-wrap) {
+      display: block;
+      position: fixed;
+    }
+
+    :global(body:has(.custom-made-page) .mega-nav),
+    :global(html.custom-made-summer-page .mega-nav) {
+      display: none;
+    }
+
     .custom-made-page :global(.content) {
       width: min(100% - 28px, 420px);
     }
 
-    .custom-made-hero {
+    .custom-made-summer-hero {
       margin-top: 0;
-      padding-block: 28px 44px;
+      min-height: 620px;
+      min-height: 100vh;
+      min-height: 100svh;
     }
 
-    .custom-made-logo-strip {
-      width: min(340px, 100%);
+    .custom-made-summer-hero::after {
+      top: 10px;
+      right: 10px;
+      bottom: 10px;
+      left: 10px;
+      inset: 10px;
     }
 
-    .custom-made-hero__copy {
-      gap: 14px;
+    .custom-made-summer-act {
+      min-height: 620px;
+      min-height: 100vh;
+      min-height: 100svh;
+      padding-top: 66px;
+      padding-bottom: 42px;
     }
 
-    .custom-made-hero h1 {
-      font-size: 1.75rem;
-      line-height: 1.32;
+    .custom-made-summer-hero h1 {
+      font-size: 2.45rem;
     }
 
-    .custom-made-hero__lead {
-      font-size: 0.96rem;
+    .custom-made-summer-first__headline {
+      font-size: 2.25rem;
+      font-size: clamp(2.1rem, 12vw, 3.15rem);
+      line-height: 1.08;
+    }
+
+    .custom-made-summer-kicker,
+    .custom-made-summer-first__eyebrow {
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: 0.66rem;
+      letter-spacing: 0.1em;
+    }
+
+    .custom-made-summer-kicker::before,
+    .custom-made-summer-first__eyebrow::before {
+      width: 30px;
+    }
+
+    .custom-made-summer-course {
+      margin-bottom: 12px;
+      font-size: 0.86rem;
+    }
+
+    .custom-made-summer-lead {
+      margin-top: 18px;
+      font-size: 0.92rem;
       line-height: 1.75;
     }
 
-    .custom-made-title-card {
-      padding: 18px;
-    }
-
-    .custom-made-title-card__jp {
-      font-size: 1rem;
-    }
-
-    .custom-made-title-card__en {
-      font-size: 1.55rem;
-    }
-
-    .custom-made-title-card__lead {
-      font-size: 0.88rem;
-      line-height: 1.65;
+    .custom-made-summer-actions {
+      margin-top: 20px;
     }
 
     .custom-made-actions {
@@ -931,16 +1185,17 @@ const flowActions = [
       min-width: 0;
     }
 
-    .custom-made-hero__image-frame {
-      width: 190px;
-      justify-self: start;
+    .custom-made-summer-meta {
+      margin-top: 16px;
     }
 
-    .custom-made-hero__note {
-      right: 0;
-      bottom: 18px;
-      max-width: 210px;
-      padding: 12px 14px;
+    .custom-made-summer-meta span {
+      padding: 5px 8px;
+      font-size: 0.72rem;
+    }
+
+    .custom-made-summer-first__rule {
+      margin-top: 18px;
     }
 
     .custom-made-fit,
@@ -1008,4 +1263,147 @@ const flowActions = [
       width: min(240px, 100%);
     }
   }
+
+  @media (max-width: 420px) {
+    .custom-made-summer-hero h1 {
+      font-size: 1.9rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .custom-made-summer-hero *,
+    .custom-made-summer-hero::before,
+    .custom-made-summer-hero::after {
+      animation: none !important;
+      transition: none !important;
+    }
+
+    .custom-made-summer-act--first {
+      display: none !important;
+      opacity: 0 !important;
+    }
+
+    .custom-made-summer-act--second,
+    .custom-made-summer-copy h1,
+    .custom-made-summer-course,
+    .custom-made-summer-lead,
+    .custom-made-summer-actions,
+    .custom-made-summer-meta {
+      opacity: 1 !important;
+      filter: none !important;
+      transform: none !important;
+    }
+  }
 </style>
+
+<script is:inline>
+  (function () {
+    if (!document.querySelector || !document.createElement) return;
+
+    var root = document.documentElement;
+    var hero = document.querySelector("[data-custom-made-summer-hero]");
+    var hasClass = function (element, name) {
+      return (" " + element.className + " ").indexOf(" " + name + " ") > -1;
+    };
+    var addClass = function (element, name) {
+      if (!element || hasClass(element, name)) return;
+      element.className = element.className ? element.className + " " + name : name;
+    };
+
+    addClass(root, "custom-made-summer-page");
+    if (!hero) return;
+    if (window.location.search && window.location.search.indexOf("static=1") > -1) return;
+
+    var reducedMotion = false;
+    if (window.matchMedia) {
+      reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    }
+    if (reducedMotion) return;
+
+    var styleProbe = document.createElement("div").style;
+    var canAnimate = ("animation" in styleProbe || "webkitAnimation" in styleProbe)
+      && ("transform" in styleProbe || "webkitTransform" in styleProbe);
+    if (!canAnimate) return;
+
+    addClass(root, "custom-made-summer-enhanced");
+    addClass(hero, "is-active");
+
+    var videos = hero.getElementsByTagName("video");
+    var video = videos.length ? videos[0] : null;
+    if (!video || !video.play) return;
+
+    var videoProbe = document.createElement("video");
+    var canVideo = Boolean(videoProbe.canPlayType && videoProbe.canPlayType("video/mp4"));
+    if (!canVideo) return;
+
+    var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    var effectiveType = connection && connection.effectiveType ? String(connection.effectiveType) : "";
+    var saveData = Boolean(connection && connection.saveData);
+    var lowMemory = Boolean(navigator.deviceMemory && navigator.deviceMemory <= 2);
+    var constrainedDevice = saveData || lowMemory || effectiveType === "slow-2g" || effectiveType === "2g";
+    if (constrainedDevice) return;
+
+    var scheduleIdle = function (callback, timeout) {
+      if (window.requestIdleCallback) {
+        window.requestIdleCallback(callback, { timeout: timeout });
+      } else {
+        window.setTimeout(callback, timeout);
+      }
+    };
+    var wideVideoViewport = Boolean(window.matchMedia && window.matchMedia("(min-width: 1024px)").matches);
+    var heroInView = true;
+    var videoStarted = false;
+    var videoStartQueued = false;
+
+    var onLoaded = function () {
+      addClass(hero, "is-video-ready");
+      if (video.removeEventListener) video.removeEventListener("loadeddata", onLoaded, false);
+    };
+    var playVideo = function () {
+      var playResult = video.play();
+      if (playResult && playResult.catch) playResult.catch(function () {});
+    };
+    var syncVideo = function () {
+      if (document.visibilityState && document.visibilityState !== "visible") {
+        if (video.pause) video.pause();
+        return;
+      }
+      if (heroInView) playVideo();
+      else if (video.pause) video.pause();
+    };
+    var startVideo = function () {
+      if (videoStarted) return;
+      if (!heroInView) {
+        videoStartQueued = true;
+        return;
+      }
+      videoStarted = true;
+      videoStartQueued = false;
+      if (video.load) video.load();
+      if (video.readyState >= 2) onLoaded();
+      syncVideo();
+    };
+
+    if (video.addEventListener) video.addEventListener("loadeddata", onLoaded, false);
+
+    if ("IntersectionObserver" in window) {
+      var heroVideoObserver = new IntersectionObserver(function (entries) {
+        if (!entries || !entries.length) return;
+        heroInView = Boolean(entries[0].isIntersecting);
+        if (videoStartQueued && heroInView) startVideo();
+        if (videoStarted) syncVideo();
+      }, { threshold: 0.08 });
+      heroVideoObserver.observe(hero);
+    }
+
+    window.setTimeout(function () {
+      scheduleIdle(startVideo, wideVideoViewport ? 900 : 1500);
+    }, wideVideoViewport ? 420 : 950);
+
+    if (document.addEventListener) {
+      document.addEventListener("visibilitychange", function () {
+        if (videoStarted) syncVideo();
+      }, false);
+    }
+  }());
+</script>
