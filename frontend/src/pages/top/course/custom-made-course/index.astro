@@ -132,7 +132,7 @@ const flowActions = [
         <div class="custom-made-summer-copy">
           <p class="custom-made-summer-kicker">LEXUS E.C. SUMMER TRAINING</p>
           <p class="custom-made-summer-course">オーダーメード演習コース</p>
-          <h1 id="custom-made-title">逃げ道を消して、<br /><strong>一問に燃える夏特訓。</strong></h1>
+          <h1 id="custom-made-title">一問に燃える<br /><strong>オーダーメード夏特訓</strong></h1>
           <p class="custom-made-summer-lead">
             この夏は、逃げ道を減らす。目の前の一問に集中できる環境と、医学部合格から逆算した演習計画をつくります。
           </p>
@@ -289,15 +289,11 @@ const flowActions = [
     color: var(--custom-ink);
   }
 
-  :global(body:has(.custom-made-page) .site-header),
-  :global(body:has(.custom-made-page) .mega-nav-heading),
   :global(html.custom-made-summer-page .site-header),
   :global(html.custom-made-summer-page .mega-nav-heading) {
     display: none;
   }
 
-  :global(body:has(.custom-made-page) .mega-nav),
-  :global(body:has(.custom-made-page) .mobile-fixed-nav-wrap),
   :global(html.custom-made-summer-page .mega-nav),
   :global(html.custom-made-summer-page .mobile-fixed-nav-wrap) {
     position: fixed;
@@ -306,18 +302,27 @@ const flowActions = [
     left: 0;
     inset: 0 0 auto;
     z-index: 210;
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-110%);
+    transition:
+      transform 520ms cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 220ms ease;
   }
 
-  :global(body:has(.custom-made-page) .mega-nav),
   :global(html.custom-made-summer-page .mega-nav) {
     background: #fff;
     background: rgb(255 255 255 / 96%);
     box-shadow: 0 18px 42px rgb(17 14 10 / 14%);
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
+  }
+
+  :global(html.custom-made-summer-nav-visible.custom-made-summer-page .mega-nav),
+  :global(html.custom-made-summer-nav-visible.custom-made-summer-page .mobile-fixed-nav-wrap) {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 
   .custom-made-page :global(.content) {
@@ -1099,13 +1104,11 @@ const flowActions = [
   }
 
   @media (max-width: 680px) {
-    :global(body:has(.custom-made-page) .mobile-fixed-nav-wrap),
     :global(html.custom-made-summer-page .mobile-fixed-nav-wrap) {
       display: block;
       position: fixed;
     }
 
-    :global(body:has(.custom-made-page) .mega-nav),
     :global(html.custom-made-summer-page .mega-nav) {
       display: none;
     }
@@ -1309,10 +1312,30 @@ const flowActions = [
       if (!element || hasClass(element, name)) return;
       element.className = element.className ? element.className + " " + name : name;
     };
+    var removeClass = function (element, name) {
+      if (!element) return;
+      element.className = (" " + element.className + " ")
+        .replace(" " + name + " ", " ")
+        .replace(/^\s+|\s+$/g, "");
+    };
+    var toggleClass = function (element, name, force) {
+      if (force) addClass(element, name);
+      else removeClass(element, name);
+    };
+
+    if (window.location.search && window.location.search.indexOf("static=1") > -1) return;
 
     addClass(root, "custom-made-summer-page");
+
+    var syncHeader = function () {
+      var scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+      toggleClass(root, "custom-made-summer-nav-visible", scrollY > 96);
+    };
+
+    syncHeader();
+    if (window.addEventListener) window.addEventListener("scroll", syncHeader, false);
+
     if (!hero) return;
-    if (window.location.search && window.location.search.indexOf("static=1") > -1) return;
 
     var reducedMotion = false;
     if (window.matchMedia) {
