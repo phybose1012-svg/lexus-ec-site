@@ -45,7 +45,6 @@ const staticPagePaths = [
   "/top/information-shiritsu/",
   "/top/line/",
   "/top/summer-plan/",
-  "/top/course/lexus-premiere-course/",
   "/top/course/medical-prep-junior/",
   "/top/course/custom-made-course/",
   "/top/course/high-level-geneki-course/",

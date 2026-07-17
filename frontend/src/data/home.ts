@@ -574,7 +574,7 @@ export const courses: CourseCard[] = [
     target: "◆ 浪人生・再受験生 対象フルコース ◆",
     name: "レクサス プレミア 本科",
     english: "Premier Main Course",
-    href: "/top/course/lexus-premiere-course/",
+    href: "/lexus-premier/",
     note: "医学部受験を全面的にサポートする“オールインワン”コースです。各科目クラス分けあり。",
     accent: "#0a0a0a",
   },
@@ -626,7 +626,7 @@ export const footerGroups: FooterGroup[] = [
   {
     title: "コースと学費",
     links: [
-      { label: "レクサス プレミア本科【既卒生専用】", href: "/top/course/lexus-premiere-course/" },
+      { label: "レクサス プレミア本科【既卒生専用】", href: "/lexus-premier/" },
       { label: "オーダーメード演習コース【全学年対象】", href: "/top/course/custom-made-course/" },
       { label: "メディカル準備コース【高等部】", href: "/top/course/medical-prep/" },
       { label: "メディカル準備コース【中等部】", href: "/top/course/medical-prep-junior/" },
