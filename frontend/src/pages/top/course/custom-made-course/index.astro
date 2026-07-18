@@ -1,5 +1,7 @@
 ---
 import SectionHeading from "../../../../components/SectionHeading.astro";
+import CurriculumPlanner from "../../../../components/course/CurriculumPlanner.astro";
+import { customMadePlanLevels } from "../../../../data/customMadeCurriculum";
 import { assets, seo } from "../../../../data/home";
 import SiteLayout from "../../../../layouts/SiteLayout.astro";
 
@@ -40,37 +42,37 @@ const plans = [
     title: "トップレベル演習プラン",
     target: "東大、慶應など、医学部のトップ",
     level: "偏差値65相当",
-    price: "¥18,000～ / 科目",
+    price: customMadePlanLevels.top.priceLabel,
   },
   {
     title: "ハイレベル演習プラン",
     target: "国公立、慈恵、順天など、難関医学部",
     level: "偏差値60相当",
-    price: "¥22,500～ / 科目",
+    price: customMadePlanLevels.high.priceLabel,
   },
   {
     title: "標準レベル演習プラン",
     target: "昭和、東医など上位の私立医学部",
     level: "偏差値55相当",
-    price: "¥28,000～ / 科目",
+    price: customMadePlanLevels.standard.priceLabel,
   },
   {
     title: "基礎レベル演習プラン",
     target: "都内の私立医学部など",
     level: "偏差値50相当",
-    price: "¥30,000～ / 科目",
+    price: customMadePlanLevels.basic.priceLabel,
   },
   {
     title: "初歩レベル演習プラン",
     target: "高校教科書レベルの知識修得",
     level: "偏差値40台",
-    price: "¥30,000～ / 科目",
+    price: customMadePlanLevels.beginner.priceLabel,
   },
   {
     title: "前提レベル演習プラン",
     target: "高校入試レベルの知識習得",
     level: "未習科目あり",
-    price: "¥30,000～ / 科目",
+    price: customMadePlanLevels.foundation.priceLabel,
   },
 ];
 
@@ -206,6 +208,8 @@ const admissionSteps = [
         </div>
       </div>
     </section>
+
+    <CurriculumPlanner />
 
     <section class="custom-made-plans" aria-labelledby="custom-made-plans-title">
       <div class="content">

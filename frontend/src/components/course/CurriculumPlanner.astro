@@ -1,0 +1,540 @@
+---
+import {
+  curriculumBudgets,
+  curriculumGrades,
+  curriculumIndividualHours,
+  curriculumPurposes,
+  curriculumStyles,
+  curriculumSubjects,
+  curriculumTargets,
+  curriculumTaskLoads,
+  customMadePlanLevelOptions,
+} from "../../data/customMadeCurriculum";
+import "../../styles/curriculum-planner.css";
+---
+
+<section class="curriculum-planner-section" id="curriculum-planner" aria-labelledby="curriculum-planner-title">
+  <div class="content curriculum-planner" data-curriculum-planner>
+    <header class="curriculum-planner__heading">
+      <p>Plan Builder</p>
+      <h2 id="curriculum-planner-title">あなた専用の仮カリキュラムを作る</h2>
+      <span>個人情報の入力なし。現在地と予算から、科目別の演習プランを約1分で組み立てます。</span>
+    </header>
+
+    <div class="curriculum-planner__shell">
+      <div class="curriculum-planner__progress" aria-label="入力の進捗">
+        <p><span data-planner-step-current>1</span> / 4</p>
+        <ol>
+          <li aria-current="step" data-progress-step="1">目的</li>
+          <li data-progress-step="2">科目</li>
+          <li data-progress-step="3">条件</li>
+          <li data-progress-step="4">仮プラン</li>
+        </ol>
+      </div>
+
+      <form class="curriculum-planner__form" data-planner-form novalidate>
+        <section class="curriculum-planner__step" data-planner-step="1" aria-labelledby="curriculum-step-goal">
+          <div class="curriculum-planner__step-head">
+            <p>STEP 01</p>
+            <h3 id="curriculum-step-goal">目的と志望校を教えてください</h3>
+          </div>
+
+          <div class="curriculum-planner__field-grid">
+            <label class="curriculum-planner__field">
+              <span>いちばん近い目的</span>
+              <select name="purpose" required data-purpose>
+                <option value="">選択してください</option>
+                {curriculumPurposes.map((purpose) => <option value={purpose.id}>{purpose.label}</option>)}
+              </select>
+            </label>
+
+            <label class="curriculum-planner__field">
+              <span>学年・状況</span>
+              <select name="grade" required data-grade>
+                <option value="">選択してください</option>
+                {curriculumGrades.map((grade) => <option value={grade.id}>{grade.label}</option>)}
+              </select>
+            </label>
+          </div>
+
+          <fieldset class="curriculum-planner__fieldset">
+            <legend>志望校帯</legend>
+            <div class="curriculum-planner__option-grid">
+              {curriculumTargets.map((target) => (
+                <label class="curriculum-planner__choice">
+                  <input type="radio" name="target" value={target.id} required />
+                  <span>{target.label}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
+          <div class="curriculum-planner__actions curriculum-planner__actions--end">
+            <button class="button button--blue" type="button" data-planner-next>科目を選ぶ</button>
+          </div>
+        </section>
+
+        <section class="curriculum-planner__step" data-planner-step="2" aria-labelledby="curriculum-step-subjects" hidden>
+          <div class="curriculum-planner__step-head">
+            <p>STEP 02</p>
+            <h3 id="curriculum-step-subjects">受講科目と現在地を選んでください</h3>
+            <span>1科目につき週1日・17:00〜21:00の4時間です。選択科目数が週の通塾日数になります。</span>
+          </div>
+
+          <div class="curriculum-planner__subject-list">
+            {curriculumSubjects.map((subject) => (
+              <article class="curriculum-planner__subject" data-subject-row={subject.id}>
+                <label class="curriculum-planner__subject-toggle">
+                  <input type="checkbox" name="subjects" value={subject.id} data-subject-toggle />
+                  <span>{subject.label}</span>
+                </label>
+                <label class="curriculum-planner__field">
+                  <span>現在地</span>
+                  <select name={`${subject.id}Level`} disabled required data-subject-level={subject.id}>
+                    <option value="">選択してください</option>
+                    {customMadePlanLevelOptions.map((level) => <option value={level.id}>{level.currentLabel}</option>)}
+                  </select>
+                </label>
+              </article>
+            ))}
+          </div>
+          <p class="curriculum-planner__error" data-subject-error hidden>1科目以上選んでください。</p>
+
+          <div class="curriculum-planner__actions">
+            <button class="curriculum-planner__back" type="button" data-planner-back>戻る</button>
+            <button class="button button--blue" type="button" data-planner-next>予算と学び方を選ぶ</button>
+          </div>
+        </section>
+
+        <section class="curriculum-planner__step" data-planner-step="3" aria-labelledby="curriculum-step-conditions" hidden>
+          <div class="curriculum-planner__step-head">
+            <p>STEP 03</p>
+            <h3 id="curriculum-step-conditions">予算と学び方を選んでください</h3>
+          </div>
+
+          <label class="curriculum-planner__field curriculum-planner__field--budget">
+            <span>月額予算の目安</span>
+            <select name="budget" required data-budget>
+              <option value="">選択してください</option>
+              {curriculumBudgets.map((budget) => <option value={budget.id}>{budget.label}</option>)}
+            </select>
+          </label>
+
+          <fieldset class="curriculum-planner__fieldset">
+            <legend>希望する学習スタイル</legend>
+            <div class="curriculum-planner__style-grid">
+              {curriculumStyles.map((style) => (
+                <label class="curriculum-planner__choice curriculum-planner__choice--detail">
+                  <input type="radio" name="style" value={style.id} required />
+                  <span>
+                    <strong>{style.label}</strong>
+                    <small>{style.description}</small>
+                  </span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
+          <aside class="curriculum-planner__included" aria-label="科目別基本料金に含まれる内容">
+            <p>科目別基本料金に含まれるもの</p>
+            <ul>
+              <li>週1回・4時間の自習室利用</li>
+              <li>課題提示</li>
+              <li>採点・添削</li>
+              <li>質問対応</li>
+            </ul>
+          </aside>
+
+          <div class="curriculum-planner__actions">
+            <button class="curriculum-planner__back" type="button" data-planner-back>戻る</button>
+            <button class="button button--blue" type="button" data-planner-generate>仮プランを作る</button>
+          </div>
+        </section>
+
+        <section class="curriculum-planner__step curriculum-planner__result" data-planner-step="4" aria-labelledby="curriculum-step-result" hidden>
+          <div class="curriculum-planner__step-head curriculum-planner__step-head--result">
+            <p>YOUR PLAN</p>
+            <h3 id="curriculum-step-result">仮カリキュラムができました</h3>
+            <span data-result-reason></span>
+          </div>
+
+          <div class="curriculum-planner__summary" aria-live="polite">
+            <div>
+              <span>通塾</span>
+              <strong data-result-days>週0日</strong>
+            </div>
+            <div>
+              <span>演習管理</span>
+              <strong data-result-weekly-hours>週0時間</strong>
+            </div>
+            <div>
+              <span>月額参考目安</span>
+              <strong data-result-total>0円〜・税別</strong>
+            </div>
+          </div>
+
+          <p class="curriculum-planner__budget-status" data-budget-status></p>
+
+          <div class="curriculum-planner__result-list">
+            {curriculumSubjects.map((subject) => (
+              <article class="curriculum-planner__result-card" data-result-subject={subject.id} hidden>
+                <header>
+                  <p>{subject.label}</p>
+                  <h4 data-result-plan-title></h4>
+                  <a href="#" data-result-plan-link>プラン詳細を見る</a>
+                </header>
+                <dl>
+                  <div>
+                    <dt>重点テーマ</dt>
+                    <dd data-result-focus></dd>
+                  </div>
+                  <div>
+                    <dt>演習管理</dt>
+                    <dd>週1日・4時間</dd>
+                  </div>
+                  <div>
+                    <dt>基本料金</dt>
+                    <dd data-result-base-price></dd>
+                  </div>
+                </dl>
+                <div class="curriculum-planner__adjustments">
+                  <label class="curriculum-planner__field">
+                    <span>課題配分</span>
+                    <select data-result-load={subject.id}>
+                      {curriculumTaskLoads.map((load) => <option value={load.id}>{load.label}</option>)}
+                    </select>
+                  </label>
+                  <label class="curriculum-planner__field">
+                    <span>個別授業</span>
+                    <select data-result-individual={subject.id}>
+                      {curriculumIndividualHours.map((hours) => <option value={hours}>月{hours}時間</option>)}
+                    </select>
+                  </label>
+                </div>
+                <p class="curriculum-planner__subject-subtotal" data-result-subtotal></p>
+              </article>
+            ))}
+          </div>
+
+          <p class="curriculum-planner__disclaimer">
+            科目別基本料金と個別授業料のみを合算した最低料金ベースの参考目安です。正式なカリキュラムと料金は、学力診断・面談後に確定します。
+          </p>
+
+          <div class="curriculum-planner__handoff-status" data-copy-status aria-live="polite"></div>
+          <div class="curriculum-planner__actions curriculum-planner__actions--result">
+            <button class="curriculum-planner__back" type="button" data-planner-adjust>入力を調整する</button>
+            <button class="curriculum-planner__copy" type="button" data-planner-copy>結果をコピー</button>
+            <button class="button button--red" type="button" data-planner-consult>この案をもとに相談する</button>
+          </div>
+        </section>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  import {
+    curriculumBudgets,
+    curriculumGrades,
+    curriculumPlannerStorageKey,
+    curriculumPurposes,
+    curriculumStyles,
+    curriculumSubjects,
+    curriculumTargets,
+    customMadePlanLevels,
+    individualLessonHourlyPrice,
+    type CurriculumSubjectId,
+    type CustomMadePlanLevelId,
+  } from "../../data/customMadeCurriculum";
+
+  type TaskLoadId = "light" | "standard" | "priority";
+
+  type SubjectSelection = {
+    id: CurriculumSubjectId;
+    label: string;
+    levelId: CustomMadePlanLevelId;
+    load: TaskLoadId;
+    individualHours: number;
+  };
+
+  const root = document.querySelector<HTMLElement>("[data-curriculum-planner]");
+
+  if (root) {
+    const form = root.querySelector<HTMLFormElement>("[data-planner-form]");
+    const stepCurrent = root.querySelector<HTMLElement>("[data-planner-step-current]");
+    const resultReason = root.querySelector<HTMLElement>("[data-result-reason]");
+    const resultDays = root.querySelector<HTMLElement>("[data-result-days]");
+    const resultWeeklyHours = root.querySelector<HTMLElement>("[data-result-weekly-hours]");
+    const resultTotal = root.querySelector<HTMLElement>("[data-result-total]");
+    const budgetStatus = root.querySelector<HTMLElement>("[data-budget-status]");
+    const copyStatus = root.querySelector<HTMLElement>("[data-copy-status]");
+    let currentStep = 1;
+
+    const yen = (value: number) => `${new Intl.NumberFormat("ja-JP").format(value)}円`;
+
+    const selectedRadioValue = (name: string) =>
+      root.querySelector<HTMLInputElement>(`input[name="${name}"]:checked`)?.value ?? "";
+
+    const selectedSubjects = (): SubjectSelection[] =>
+      curriculumSubjects.flatMap((subject) => {
+        const toggle = root.querySelector<HTMLInputElement>(`[data-subject-toggle][value="${subject.id}"]`);
+        const levelSelect = root.querySelector<HTMLSelectElement>(`[data-subject-level="${subject.id}"]`);
+        if (!toggle?.checked || !levelSelect?.value) return [];
+
+        const loadSelect = root.querySelector<HTMLSelectElement>(`[data-result-load="${subject.id}"]`);
+        const individualSelect = root.querySelector<HTMLSelectElement>(`[data-result-individual="${subject.id}"]`);
+        return [{
+          id: subject.id,
+          label: subject.label,
+          levelId: levelSelect.value as CustomMadePlanLevelId,
+          load: (loadSelect?.value || "standard") as TaskLoadId,
+          individualHours: Number(individualSelect?.value || 0),
+        }];
+      });
+
+    const validateStep = (step: number) => {
+      const panel = root.querySelector<HTMLElement>(`[data-planner-step="${step}"]`);
+      if (!panel) return false;
+
+      if (step === 2) {
+        const toggles = [...panel.querySelectorAll<HTMLInputElement>("[data-subject-toggle]")];
+        const hasSubject = toggles.some((toggle) => toggle.checked);
+        const subjectError = panel.querySelector<HTMLElement>("[data-subject-error]");
+        if (subjectError) subjectError.hidden = hasSubject;
+        if (!hasSubject) {
+          toggles[0]?.focus();
+          return false;
+        }
+      }
+
+      const requiredControls = [...panel.querySelectorAll<HTMLInputElement | HTMLSelectElement>("input[required], select[required]")]
+        .filter((control) => !control.disabled);
+      const invalid = requiredControls.find((control) => !control.checkValidity());
+      if (invalid) {
+        invalid.reportValidity();
+        return false;
+      }
+      return true;
+    };
+
+    const showStep = (step: number) => {
+      currentStep = step;
+      root.querySelectorAll<HTMLElement>("[data-planner-step]").forEach((panel) => {
+        panel.hidden = Number(panel.dataset.plannerStep) !== step;
+      });
+      root.querySelectorAll<HTMLElement>("[data-progress-step]").forEach((item) => {
+        const itemStep = Number(item.dataset.progressStep);
+        if (itemStep === step) item.setAttribute("aria-current", "step");
+        else item.removeAttribute("aria-current");
+        item.dataset.complete = itemStep < step ? "true" : "false";
+      });
+      if (stepCurrent) stepCurrent.textContent = String(step);
+      const heading = root.querySelector<HTMLElement>(`[data-planner-step="${step}"] h3`);
+      heading?.scrollIntoView({ block: "center", behavior: "smooth" });
+    };
+
+    const syncSubjectControls = () => {
+      root.querySelectorAll<HTMLInputElement>("[data-subject-toggle]").forEach((toggle) => {
+        const subjectId = toggle.value as CurriculumSubjectId;
+        const row = root.querySelector<HTMLElement>(`[data-subject-row="${subjectId}"]`);
+        const level = root.querySelector<HTMLSelectElement>(`[data-subject-level="${subjectId}"]`);
+        row?.classList.toggle("is-selected", toggle.checked);
+        if (level) level.disabled = !toggle.checked;
+      });
+      const subjectError = root.querySelector<HTMLElement>("[data-subject-error]");
+      if (subjectError) subjectError.hidden = true;
+    };
+
+    const recommendationFor = (levelId: CustomMadePlanLevelId) => {
+      const targetId = selectedRadioValue("target");
+      const styleId = selectedRadioValue("style");
+      const purposeId = root.querySelector<HTMLSelectElement>("[data-purpose]")?.value ?? "";
+      const gradeId = root.querySelector<HTMLSelectElement>("[data-grade]")?.value ?? "";
+      const level = customMadePlanLevels[levelId];
+      const target = curriculumTargets.find((item) => item.id === targetId) ?? curriculumTargets[2];
+      const grade = curriculumGrades.find((item) => item.id === gradeId) ?? curriculumGrades[0];
+      const gap = Math.max(0, target.goalRank - level.rank);
+      const loadScore = gap + grade.urgency + (purposeId === "past-paper" ? 1 : 0);
+      const load: TaskLoadId = loadScore >= 4 ? "priority" : loadScore >= 1 ? "standard" : "light";
+
+      let individualHours = styleId === "lesson" ? 2 : 0;
+      if (gap >= 3) individualHours += 2;
+      else if (gap >= 2) individualHours += 1;
+      if (purposeId === "rebuild" && level.rank <= 2) individualHours += 1;
+      if (grade.urgency >= 2 && gap >= 2) individualHours += 1;
+      individualHours = Math.min(4, individualHours);
+
+      return { load, individualHours };
+    };
+
+    const applyRecommendations = () => {
+      selectedSubjects().forEach((subject) => {
+        const recommendation = recommendationFor(subject.levelId);
+        const loadSelect = root.querySelector<HTMLSelectElement>(`[data-result-load="${subject.id}"]`);
+        const individualSelect = root.querySelector<HTMLSelectElement>(`[data-result-individual="${subject.id}"]`);
+        if (loadSelect && loadSelect.dataset.userAdjusted !== "true") loadSelect.value = recommendation.load;
+        if (individualSelect && individualSelect.dataset.userAdjusted !== "true") {
+          individualSelect.value = String(recommendation.individualHours);
+        }
+      });
+    };
+
+    const buildSummary = () => {
+      const subjects = selectedSubjects();
+      const purposeId = root.querySelector<HTMLSelectElement>("[data-purpose]")?.value ?? "";
+      const gradeId = root.querySelector<HTMLSelectElement>("[data-grade]")?.value ?? "";
+      const targetId = selectedRadioValue("target");
+      const styleId = selectedRadioValue("style");
+      const budgetId = root.querySelector<HTMLSelectElement>("[data-budget]")?.value ?? "";
+      const purpose = curriculumPurposes.find((item) => item.id === purposeId);
+      const grade = curriculumGrades.find((item) => item.id === gradeId);
+      const target = curriculumTargets.find((item) => item.id === targetId);
+      const style = curriculumStyles.find((item) => item.id === styleId);
+      const budget = curriculumBudgets.find((item) => item.id === budgetId);
+      const total = subjects.reduce((sum, subject) => {
+        const level = customMadePlanLevels[subject.levelId];
+        return sum + level.monthlyPrice + subject.individualHours * individualLessonHourlyPrice;
+      }, 0);
+      const budgetText = budget?.max == null
+        ? "ご予算に合わせて面談で調整します"
+        : total <= budget.max
+          ? "最低料金ベースでは予算内です"
+          : `最低料金ベースで予算上限を${yen(total - budget.max)}超えます`;
+
+      return [
+        "【オーダーメード演習コース・簡易カリキュラム】",
+        `目的：${purpose?.label ?? "未選択"}`,
+        `学年・状況：${grade?.label ?? "未選択"}`,
+        `志望校帯：${target?.label ?? "未選択"}`,
+        `学習スタイル：${style?.label ?? "未選択"}`,
+        `通塾：週${subjects.length}日・計${subjects.length * 4}時間`,
+        "",
+        ...subjects.map((subject) => {
+          const level = customMadePlanLevels[subject.levelId];
+          const loadLabel = subject.load === "priority" ? "重点" : subject.load === "light" ? "軽め" : "標準";
+          return `・${subject.label}：${level.title}／課題配分 ${loadLabel}／個別授業 月${subject.individualHours}時間`;
+        }),
+        "",
+        `月額参考目安：${yen(total)}〜・税別`,
+        `ご予算：${budget?.label ?? "未選択"}`,
+        `予算状況：${budgetText}`,
+        "※科目別基本料金と個別授業料のみを合算した最低料金ベースの参考目安です。",
+      ].join("\n");
+    };
+
+    const renderResult = () => {
+      const subjects = selectedSubjects();
+      const purposeId = root.querySelector<HTMLSelectElement>("[data-purpose]")?.value ?? "";
+      const gradeId = root.querySelector<HTMLSelectElement>("[data-grade]")?.value ?? "";
+      const targetId = selectedRadioValue("target");
+      const styleId = selectedRadioValue("style");
+      const budgetId = root.querySelector<HTMLSelectElement>("[data-budget]")?.value ?? "";
+      const purpose = curriculumPurposes.find((item) => item.id === purposeId);
+      const grade = curriculumGrades.find((item) => item.id === gradeId);
+      const target = curriculumTargets.find((item) => item.id === targetId);
+      const style = curriculumStyles.find((item) => item.id === styleId);
+      const budget = curriculumBudgets.find((item) => item.id === budgetId);
+
+      root.querySelectorAll<HTMLElement>("[data-result-subject]").forEach((card) => {
+        card.hidden = !subjects.some((subject) => subject.id === card.dataset.resultSubject);
+      });
+
+      let total = 0;
+      subjects.forEach((subject) => {
+        const level = customMadePlanLevels[subject.levelId];
+        const subtotal = level.monthlyPrice + subject.individualHours * individualLessonHourlyPrice;
+        total += subtotal;
+        const card = root.querySelector<HTMLElement>(`[data-result-subject="${subject.id}"]`);
+        if (!card) return;
+        const planTitle = card.querySelector<HTMLElement>("[data-result-plan-title]");
+        const planLink = card.querySelector<HTMLAnchorElement>("[data-result-plan-link]");
+        const focus = card.querySelector<HTMLElement>("[data-result-focus]");
+        const basePrice = card.querySelector<HTMLElement>("[data-result-base-price]");
+        const subtotalNode = card.querySelector<HTMLElement>("[data-result-subtotal]");
+        if (planTitle) planTitle.textContent = level.title;
+        if (planLink) planLink.href = `/top/course/custom-made-course/${level.slug}/`;
+        if (focus) focus.textContent = level.focus;
+        if (basePrice) basePrice.textContent = `${yen(level.monthlyPrice)}〜 / 月・税別`;
+        if (subtotalNode) subtotalNode.textContent = `この科目の参考目安：${yen(subtotal)}〜・税別`;
+      });
+
+      const exceedsBudget = budget?.max != null && total > budget.max;
+      if (resultDays) resultDays.textContent = `週${subjects.length}日`;
+      if (resultWeeklyHours) resultWeeklyHours.textContent = `週${subjects.length * 4}時間`;
+      if (resultTotal) resultTotal.textContent = `${yen(total)}〜・税別`;
+      if (resultReason) {
+        resultReason.textContent = `${grade?.label ?? "現在"}・${target?.shortLabel ?? "志望校"}・${style?.label ?? "学習方針"}をもとに、科目別の開始プランを組みました。`;
+      }
+      if (budgetStatus) {
+        budgetStatus.dataset.status = exceedsBudget ? "over" : "within";
+        budgetStatus.textContent = budget?.max == null
+          ? "ご予算に合わせた調整は個別相談で承ります。"
+          : exceedsBudget
+            ? `最低料金ベースで予算上限を${yen(total - budget.max)}超えます。科目または個別授業時間を調整してください。`
+            : `最低料金ベースでは「${budget.label}」の範囲内です。`;
+      }
+      if (copyStatus) copyStatus.textContent = "";
+      void purpose;
+    };
+
+    root.querySelectorAll<HTMLButtonElement>("[data-planner-next]").forEach((button) => {
+      button.addEventListener("click", () => {
+        if (!validateStep(currentStep)) return;
+        showStep(Math.min(3, currentStep + 1));
+      });
+    });
+
+    root.querySelectorAll<HTMLButtonElement>("[data-planner-back]").forEach((button) => {
+      button.addEventListener("click", () => showStep(Math.max(1, currentStep - 1)));
+    });
+
+    root.querySelectorAll<HTMLInputElement>("[data-subject-toggle]").forEach((toggle) => {
+      toggle.addEventListener("change", syncSubjectControls);
+    });
+
+    root.querySelector<HTMLButtonElement>("[data-planner-generate]")?.addEventListener("click", () => {
+      if (!validateStep(3)) return;
+      applyRecommendations();
+      renderResult();
+      showStep(4);
+    });
+
+    root.querySelector<HTMLButtonElement>("[data-planner-adjust]")?.addEventListener("click", () => showStep(3));
+
+    root.querySelectorAll<HTMLSelectElement>("[data-result-load], [data-result-individual]").forEach((select) => {
+      select.addEventListener("change", () => {
+        select.dataset.userAdjusted = "true";
+        renderResult();
+      });
+    });
+
+    root.querySelector<HTMLButtonElement>("[data-planner-copy]")?.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(buildSummary());
+        if (copyStatus) copyStatus.textContent = "仮プランをコピーしました。";
+      } catch {
+        if (copyStatus) copyStatus.textContent = "コピーできませんでした。相談ボタンから内容を引き継げます。";
+      }
+    });
+
+    root.querySelector<HTMLButtonElement>("[data-planner-consult]")?.addEventListener("click", () => {
+      const gradeId = root.querySelector<HTMLSelectElement>("[data-grade]")?.value ?? "";
+      const grade = curriculumGrades.find((item) => item.id === gradeId);
+      const payload = {
+        version: 1,
+        createdAt: Date.now(),
+        studentType: grade?.contactLabel ?? "",
+        summary: buildSummary(),
+      };
+      try {
+        window.sessionStorage.setItem(curriculumPlannerStorageKey, JSON.stringify(payload));
+      } catch {
+        // Storage is only an enhancement; the contact page remains reachable.
+      }
+      window.location.assign("/top/contact/?from=curriculum-planner#contact-form-heading");
+    });
+
+    form?.addEventListener("submit", (event) => event.preventDefault());
+    syncSubjectControls();
+  }
+</script>
