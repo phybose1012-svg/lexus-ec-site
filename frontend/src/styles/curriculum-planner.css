@@ -436,18 +436,56 @@
 
 .curriculum-planner__result-list {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-columns: 1fr;
+  gap: 14px;
 }
 
 .curriculum-planner__result-card {
+  --subject-accent: #8b6f35;
+  --subject-soft: #faf6ed;
+  --subject-line: #dfd0b5;
+
   display: grid;
-  gap: 18px;
-  border: 1px solid #dfd0b5;
+  grid-template-columns: minmax(190px, 0.72fr) minmax(0, 2fr);
+  grid-template-rows: auto auto auto;
+  gap: 16px 24px;
+  overflow: hidden;
+  border: 1px solid var(--subject-line);
+  border-left: 6px solid var(--subject-accent);
   border-radius: 8px;
-  background: #fff;
+  background: linear-gradient(100deg, var(--subject-soft) 0, #fff 38%);
   padding: 20px;
   box-shadow: 0 10px 24px rgb(58 42 18 / 8%);
+}
+
+.curriculum-planner__result-card[data-result-subject="english"] {
+  --subject-accent: #9a3d50;
+  --subject-soft: #fbf2f4;
+  --subject-line: #e5c4cc;
+}
+
+.curriculum-planner__result-card[data-result-subject="math"] {
+  --subject-accent: #245b9c;
+  --subject-soft: #f1f5fb;
+  --subject-line: #c5d5e8;
+}
+
+.curriculum-planner__result-card[data-result-subject="chemistry"] {
+  --subject-accent: #2f7667;
+  --subject-soft: #eef8f5;
+  --subject-line: #bdded5;
+}
+
+.curriculum-planner__result-card[data-result-subject="physics"] {
+  --subject-accent: #67518a;
+  --subject-soft: #f5f1fa;
+  --subject-line: #d7cbe7;
+}
+
+.curriculum-planner__result-card[data-result-subject="biology"] {
+  --subject-accent: #a06232;
+  --subject-soft: #fbf4ee;
+  --subject-line: #e7ccb6;
 }
 
 .curriculum-planner__result-card[hidden] {
@@ -459,8 +497,22 @@
   margin: 0;
 }
 
+.curriculum-planner__result-card header {
+  grid-column: 1;
+  grid-row: 1 / 4;
+  border-right: 1px solid var(--subject-line);
+  padding-right: 24px;
+}
+
 .curriculum-planner__result-card header p {
-  color: #b9983f;
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  border: 1px solid var(--subject-line);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 72%);
+  padding: 3px 12px;
+  color: var(--subject-accent);
   font-weight: 900;
 }
 
@@ -481,19 +533,23 @@
 
 .curriculum-planner__result-card dl {
   display: grid;
-  gap: 9px;
+  grid-column: 2;
+  grid-row: 1;
+  grid-template-columns: 1.5fr 0.8fr 1fr;
+  gap: 12px;
   margin: 0;
 }
 
 .curriculum-planner__result-card dl div {
   display: grid;
   gap: 3px;
-  border-top: 1px solid rgb(185 152 63 / 24%);
-  padding-top: 9px;
+  align-content: start;
+  border-left: 1px solid var(--subject-line);
+  padding-left: 12px;
 }
 
 .curriculum-planner__result-card dt {
-  color: #7d1712;
+  color: var(--subject-accent);
   font-size: 0.78rem;
   font-weight: 900;
 }
@@ -506,12 +562,20 @@
 }
 
 .curriculum-planner__subject-subtotal {
+  grid-column: 2;
+  grid-row: 3;
   margin: 0;
-  border-top: 1px solid #d8c8a9;
+  border-top: 1px solid var(--subject-line);
   padding-top: 12px;
   color: #12356a;
   font-weight: 900;
   text-align: right;
+}
+
+.curriculum-planner__result-card .curriculum-planner__adjustments {
+  grid-column: 2;
+  grid-row: 2;
+  gap: 12px;
 }
 
 .curriculum-planner__disclaimer {
@@ -545,6 +609,22 @@
 
   .curriculum-planner__result-list {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 940px) and (min-width: 681px) {
+  .curriculum-planner__result-card {
+    grid-template-columns: minmax(200px, 0.75fr) minmax(0, 1.6fr);
+    gap: 14px 20px;
+  }
+
+  .curriculum-planner__result-card header {
+    padding-right: 20px;
+  }
+
+  .curriculum-planner__result-card dl {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 }
 
@@ -651,7 +731,39 @@
   }
 
   .curriculum-planner__result-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 18px;
+    border-left-width: 1px;
+    border-top: 6px solid var(--subject-accent);
+    background: linear-gradient(180deg, var(--subject-soft) 0, #fff 180px);
     padding: 16px;
+  }
+
+  .curriculum-planner__result-card header,
+  .curriculum-planner__result-card dl,
+  .curriculum-planner__result-card .curriculum-planner__adjustments,
+  .curriculum-planner__subject-subtotal {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .curriculum-planner__result-card header {
+    border-right: 0;
+    border-bottom: 1px solid var(--subject-line);
+    padding-right: 0;
+    padding-bottom: 16px;
+  }
+
+  .curriculum-planner__result-card dl {
+    grid-template-columns: 1fr;
+  }
+
+  .curriculum-planner__result-card dl div {
+    border-top: 1px solid var(--subject-line);
+    border-left: 0;
+    padding-top: 9px;
+    padding-left: 0;
   }
 
   .curriculum-planner__handoff-status {

@@ -95,7 +95,9 @@ export const curriculumGrades = [
 export const curriculumTargets = [
   { id: "top", label: "東大・慶應など最難関医学部", shortLabel: "最難関医学部", goalRank: 5 },
   { id: "high", label: "国公立・慈恵・順天など難関医学部", shortLabel: "難関医学部", goalRank: 4 },
-  { id: "standard", label: "昭和・東医など上位私立医学部", shortLabel: "上位私立医学部", goalRank: 3 },
+  { id: "standard", label: "昭和・東医・関医など上位私立医学部", shortLabel: "上位私立医学部", goalRank: 3 },
+  { id: "tokyo-private", label: "都内の私立医学部", shortLabel: "都内の私立医学部", goalRank: 2 },
+  { id: "any-medical", label: "医学部ならどこでも", shortLabel: "医学部ならどこでも", goalRank: 2 },
   { id: "open", label: "未定・その他", shortLabel: "未定・その他", goalRank: 3 },
 ] as const;
 

@@ -77,7 +77,7 @@ import "../../styles/curriculum-planner.css";
         <section class="curriculum-planner__step" data-planner-step="2" aria-labelledby="curriculum-step-subjects" hidden>
           <div class="curriculum-planner__step-head">
             <p>STEP 02</p>
-            <h3 id="curriculum-step-subjects">受講科目と現在地を選んでください</h3>
+            <h3 id="curriculum-step-subjects">受講科目と現在の学力を選んでください</h3>
             <span>1科目につき週1日・17:00〜21:00の4時間です。選択科目数が週の通塾日数になります。</span>
           </div>
 
@@ -89,7 +89,7 @@ import "../../styles/curriculum-planner.css";
                   <span>{subject.label}</span>
                 </label>
                 <label class="curriculum-planner__field">
-                  <span>現在地</span>
+                  <span>現在の学力</span>
                   <select name={`${subject.id}Level`} disabled required data-subject-level={subject.id}>
                     <option value="">選択してください</option>
                     {customMadePlanLevelOptions.map((level) => <option value={level.id}>{level.currentLabel}</option>)}
