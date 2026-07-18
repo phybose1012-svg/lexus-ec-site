@@ -21,17 +21,32 @@ const pillars = [
   {
     label: "01",
     title: "分かるまで質問する",
-    body: "演習中に生まれた疑問は、その場で講師へ。答えだけでなく、考え方のどこでつまずいたかまで整理し、「分かったつもり」を残しません。",
+    body: [
+      "演習中の疑問は、その場で講師へ。",
+      "答えだけでなく、",
+      "考え方のつまずきまで整理します。",
+      "「分かったつもり」を残しません。",
+    ],
   },
   {
     label: "02",
     title: "できるまで手を動かす",
-    body: "理解した内容は、実際に問題を解いて使える状態へ。類題と解き直しを重ね、正解までの手順を自分の力で再現できるまで演習します。",
+    body: [
+      "理解した内容を、問題で使える状態へ。",
+      "類題と解き直しを重ね、",
+      "解法を自力で再現できるまで、",
+      "繰り返し演習します。",
+    ],
   },
   {
     label: "03",
     title: "必要な授業だけを足す",
-    body: "質問対応だけでは補いにくい単元は、1時間単位の個別授業で補強。予算や学習状況に応じて柔軟に増減できます。",
+    body: [
+      "質問だけでは補いにくい単元は、",
+      "1時間単位の個別授業で補強。",
+      "予算や学習状況に応じて、",
+      "柔軟に増減できます。",
+    ],
   },
 ];
 
@@ -156,13 +171,17 @@ const admissionSteps = [
           <p class="custom-made-summer-lead">
             この夏は、逃げ道を減らす。目の前の一問に集中できる環境と、医学部合格から逆算した演習計画をつくります。
           </p>
+          <p class="custom-made-summer-period">
+            <span>特訓期間</span>
+            <strong>8月1日（土）〜8月31日（月）</strong>
+          </p>
           <div class="custom-made-actions custom-made-summer-actions">
             {heroActions.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
           </div>
           <div class="custom-made-summer-meta" aria-label="コースの特徴">
             <span>演習特化</span>
             <span>個別設計</span>
-            <span>医学部受験</span>
+            <span>医学部特化</span>
           </div>
         </div>
       </div>
@@ -216,7 +235,7 @@ const admissionSteps = [
               <article class:list={["premier-ideal-card", { "premier-ideal-card--primary": index === 0 }]}>
                 <span class="premier-ideal-card__number">{pillar.label}</span>
                 <h3>{pillar.title}</h3>
-                <p>{pillar.body}</p>
+                <p>{pillar.body.map((line) => <span>{line}</span>)}</p>
               </article>
             ))}
           </div>
@@ -558,6 +577,35 @@ const admissionSteps = [
     text-shadow: 0 10px 28px rgb(0 0 0 / 62%);
   }
 
+  .custom-made-summer-period {
+    display: flex;
+    width: fit-content;
+    max-width: 100%;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px 12px;
+    margin: 18px auto 0;
+    border-block: 1px solid rgb(255 230 161 / 48%);
+    padding: 9px 16px;
+    color: #fff8e8;
+    line-height: 1.5;
+    text-shadow: 0 8px 22px rgb(0 0 0 / 62%);
+  }
+
+  .custom-made-summer-period span {
+    color: #ffe6a1;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+  }
+
+  .custom-made-summer-period strong {
+    font-size: 1.04rem;
+    font-weight: 900;
+    white-space: nowrap;
+  }
+
   .custom-made-summer-actions {
     justify-content: center;
     margin-top: 28px;
@@ -676,7 +724,8 @@ const admissionSteps = [
   }
 
   :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-course,
-  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-lead {
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-lead,
+  :global(html.custom-made-summer-enhanced) .custom-made-summer-hero.is-active .custom-made-summer-period {
     animation: customMadeSecondDetail 0.84s ease-out 3.42s both;
   }
 
@@ -1225,6 +1274,15 @@ const admissionSteps = [
       min-height: 100svh;
     }
 
+    .custom-made-ideal .premier-ideal-card p {
+      font-size: 0.9rem;
+      line-height: 1.72;
+    }
+
+    .custom-made-ideal .premier-ideal-card p span {
+      display: block;
+    }
+
     .custom-made-fit__grid,
     .custom-made-message__grid {
       grid-template-columns: 1fr;
@@ -1318,6 +1376,20 @@ const admissionSteps = [
       margin-top: 18px;
       font-size: 0.92rem;
       line-height: 1.75;
+    }
+
+    .custom-made-summer-period {
+      gap: 2px 9px;
+      margin-top: 14px;
+      padding: 7px 10px;
+    }
+
+    .custom-made-summer-period span {
+      font-size: 0.7rem;
+    }
+
+    .custom-made-summer-period strong {
+      font-size: 0.92rem;
     }
 
     .custom-made-summer-actions {
@@ -1462,6 +1534,7 @@ const admissionSteps = [
     .custom-made-summer-copy h1,
     .custom-made-summer-course,
     .custom-made-summer-lead,
+    .custom-made-summer-period,
     .custom-made-summer-actions,
     .custom-made-summer-meta {
       opacity: 1 !important;
