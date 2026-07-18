@@ -160,30 +160,26 @@ const admissionSteps = [
 
     {isCustomMadeCourse && (
       <section class="course-plan-admission" aria-labelledby="course-plan-admission-title">
-        <div class="content course-plan-admission__inner">
-          <div class="course-plan-section-head course-plan-section-head--center">
+        <div class="content course-plan-admission__grid">
+          <div class="course-plan-section-head">
             <p class="course-plan-section-kicker">Admission Flow</p>
             <h2 id="course-plan-admission-title">入学までの流れ</h2>
-            <p>まずは現在地の確認から。必要な演習量と授業量を整理して、納得できる形でスタートします。</p>
+            <p>お問い合わせから入学手続きまで、現在地の確認、学力診断、学習設計を順に進めます。</p>
           </div>
-          <div class="custom-made-flow-card" aria-label="入学までの流れ">
-            <div class="custom-made-flow-card__head">
-              <p>Admission Steps</p>
-              <h3>入学までの流れ</h3>
-            </div>
-            <ol class="custom-made-flow-steps">
-              {admissionSteps.map((step) => (
-                <li>
-                  <span class="custom-made-flow-steps__number">{step.number}</span>
-                  <div>
-                    <small>{step.label}</small>
-                    <h4>{step.title}</h4>
-                    <p>{step.body}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
+          <ol class="course-plan-admission-steps">
+            {admissionSteps.map((step) => (
+              <li>
+                <div class="course-plan-admission-steps__meta">
+                  <span>{step.number}</span>
+                  <small>{step.label}</small>
+                </div>
+                <div>
+                  <h3>{step.title}</h3>
+                  <p>{step.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
     )}
