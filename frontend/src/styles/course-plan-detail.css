@@ -228,6 +228,7 @@
 .course-plan-outcomes,
 .course-plan-flow,
 .course-plan-support,
+.course-plan-admission,
 .course-plan-siblings,
 .course-plan-cta {
   padding-block: 82px;
@@ -491,6 +492,149 @@
   margin-top: 4px;
 }
 
+.course-plan-admission {
+  background:
+    linear-gradient(180deg, rgb(247 241 228 / 70%), rgb(255 253 248 / 100%) 34%),
+    #fffdf8;
+}
+
+.course-plan-admission__inner {
+  display: grid;
+  gap: 28px;
+}
+
+.course-plan-admission .course-plan-section-head {
+  max-width: 820px;
+}
+
+.custom-made-flow-card {
+  width: min(920px, 100%);
+  margin-inline: auto;
+  border: 1px solid rgb(185 152 63 / 34%);
+  border-radius: 10px;
+  background:
+    linear-gradient(145deg, rgb(255 248 234 / 98%), rgb(255 255 255 / 96%)),
+    #fffdf8;
+  padding: 24px;
+  color: var(--plan-ink);
+  box-shadow: 0 18px 42px rgb(58 42 18 / 12%);
+}
+
+.custom-made-flow-card__head {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid rgb(185 152 63 / 28%);
+  padding-bottom: 14px;
+}
+
+.custom-made-flow-card__head p,
+.custom-made-flow-card__head h3 {
+  margin: 0;
+}
+
+.custom-made-flow-card__head p {
+  color: var(--plan-gold);
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.custom-made-flow-card__head h3 {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.custom-made-flow-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.custom-made-flow-steps li {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 12px;
+  border: 1px solid rgb(185 152 63 / 24%);
+  border-radius: 8px;
+  background: #fffaf0;
+  padding: 15px;
+}
+
+.custom-made-flow-steps li:not(:last-child)::after {
+  position: absolute;
+  top: 36px;
+  right: -13px;
+  z-index: 1;
+  width: 13px;
+  height: 2px;
+  background: rgb(185 152 63 / 58%);
+  content: "";
+}
+
+.custom-made-flow-steps__number {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--plan-blue), var(--plan-blue-dark));
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: 1.18rem;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 28%);
+}
+
+.custom-made-flow-steps li:nth-child(2) .custom-made-flow-steps__number {
+  background: linear-gradient(135deg, #13626c, #0d3c45);
+}
+
+.custom-made-flow-steps li:nth-child(3) .custom-made-flow-steps__number {
+  background: linear-gradient(135deg, #8d1d19, #5f120f);
+}
+
+.custom-made-flow-steps li:nth-child(4) .custom-made-flow-steps__number {
+  background: linear-gradient(135deg, var(--plan-gold), #8a650e);
+}
+
+.custom-made-flow-steps small {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--plan-gold);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.custom-made-flow-steps h4,
+.custom-made-flow-steps p {
+  margin: 0;
+}
+
+.custom-made-flow-steps h4 {
+  color: var(--plan-blue);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.custom-made-flow-steps p {
+  margin-top: 6px;
+  color: #3f3326;
+  font-size: 0.88rem;
+  font-weight: 800;
+  line-height: 1.65;
+}
+
 .course-plan-cta {
   background:
     linear-gradient(112deg, #2d261f 0%, #2d261f 54%, var(--plan-blue) 54%, var(--plan-blue-dark) 100%);
@@ -532,8 +676,13 @@
   }
 
   .course-plan-outcome-grid,
-  .course-plan-sibling-grid {
+  .course-plan-sibling-grid,
+  .custom-made-flow-steps {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .custom-made-flow-steps li:not(:last-child)::after {
+    display: none;
   }
 
   .course-plan-cta {
@@ -600,6 +749,7 @@
   .course-plan-outcomes,
   .course-plan-flow,
   .course-plan-support,
+  .course-plan-admission,
   .course-plan-siblings,
   .course-plan-cta {
     padding-block: 56px;
@@ -608,15 +758,47 @@
   .course-plan-intro h2,
   .course-plan-section-head h2,
   .course-plan-support h2,
+  .custom-made-flow-card__head h3,
   .course-plan-cta h2 {
     font-size: 1.5rem;
   }
 
   .course-plan-outcome-grid,
-  .course-plan-sibling-grid {
+  .course-plan-sibling-grid,
+  .custom-made-flow-steps {
     grid-template-columns: 1fr;
     gap: 14px;
+  }
+
+  .course-plan-outcome-grid,
+  .course-plan-sibling-grid {
     margin-top: 24px;
+  }
+
+  .custom-made-flow-card {
+    padding: 18px;
+  }
+
+  .custom-made-flow-steps li {
+    grid-template-columns: 46px minmax(0, 1fr);
+    grid-template-rows: auto;
+    gap: 12px;
+    padding: 13px;
+  }
+
+  .custom-made-flow-steps__number {
+    width: 42px;
+    height: 42px;
+    font-size: 1.02rem;
+  }
+
+  .custom-made-flow-steps h4 {
+    font-size: 0.98rem;
+  }
+
+  .custom-made-flow-steps p {
+    font-size: 0.84rem;
+    line-height: 1.62;
   }
 
   .course-plan-outcome-grid span {

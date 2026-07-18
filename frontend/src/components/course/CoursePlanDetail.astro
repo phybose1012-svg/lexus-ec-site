@@ -13,9 +13,10 @@ const { group, plan, siblings } = planPage;
 const title = `${plan.title}｜${group.courseTitle} - 医学部予備校 レクサス E.C.`;
 const description = `${plan.title}は、${plan.target}を見据えた${group.courseTitle}の詳細プランです。${plan.lead}`;
 const canonical = new URL(plan.href, seo.canonical).href;
+const isCustomMadeCourse = group.id === "custom-made-course";
 
 const primaryAction =
-  group.id === "custom-made-course"
+  isCustomMadeCourse
     ? { label: "お問い合わせはこちら", href: "/top/contact/", tone: "red" }
     : { label: "体験授業はコチラ", href: "/test-entry/", tone: "red" };
 
@@ -25,9 +26,36 @@ const heroActions = [
 ];
 
 const ctaLead =
-  group.id === "custom-made-course"
+  isCustomMadeCourse
     ? "お問い合わせや個別相談で、現在の学力、学校進度、志望校を確認し、最短で伸ばすための設計に落とし込みます。"
     : "体験授業や個別相談で、現在の学力、学校進度、志望校を確認し、最短で伸ばすための設計に落とし込みます。";
+
+const admissionSteps = [
+  {
+    number: "01",
+    label: "PLAN",
+    title: "無料面談で学習プランの相談",
+    body: "現在の学力、志望校、生活リズムを確認し、演習中心で伸ばすための方向性を整理します。",
+  },
+  {
+    number: "02",
+    label: "TRIAL",
+    title: "基礎学力テストと無料体験授業",
+    body: "弱点や処理速度を見極め、レクサスの授業・演習管理との相性を実際に確認します。",
+  },
+  {
+    number: "03",
+    label: "DESIGN",
+    title: "学習プランの決定とお見積り",
+    body: "必要な科目、演習量、個別授業の有無を決め、無理のない受講プランに落とし込みます。",
+  },
+  {
+    number: "04",
+    label: "START",
+    title: "入学手続きへ",
+    body: "開始時期と通学スタイルを確定し、医学部合格に向けた演習サイクルを始めます。",
+  },
+];
 ---
 
 <SiteLayout title={title} description={description} canonical={canonical} ogImage={seo.ogImage}>
@@ -129,6 +157,36 @@ const ctaLead =
         </div>
       </div>
     </section>
+
+    {isCustomMadeCourse && (
+      <section class="course-plan-admission" aria-labelledby="course-plan-admission-title">
+        <div class="content course-plan-admission__inner">
+          <div class="course-plan-section-head course-plan-section-head--center">
+            <p class="course-plan-section-kicker">Admission Flow</p>
+            <h2 id="course-plan-admission-title">入学までの流れ</h2>
+            <p>まずは現在地の確認から。必要な演習量と授業量を整理して、納得できる形でスタートします。</p>
+          </div>
+          <div class="custom-made-flow-card" aria-label="入学までの流れ">
+            <div class="custom-made-flow-card__head">
+              <p>Admission Steps</p>
+              <h3>入学までの流れ</h3>
+            </div>
+            <ol class="custom-made-flow-steps">
+              {admissionSteps.map((step) => (
+                <li>
+                  <span class="custom-made-flow-steps__number">{step.number}</span>
+                  <div>
+                    <small>{step.label}</small>
+                    <h4>{step.title}</h4>
+                    <p>{step.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+    )}
 
     <section class="course-plan-siblings" aria-labelledby="course-plan-siblings-title">
       <div class="content">
