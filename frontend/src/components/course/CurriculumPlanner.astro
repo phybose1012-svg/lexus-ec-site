@@ -529,9 +529,9 @@ import "../../styles/curriculum-planner.css";
       try {
         window.sessionStorage.setItem(curriculumPlannerStorageKey, JSON.stringify(payload));
       } catch {
-        // Storage is only an enhancement; the contact page remains reachable.
+        // Storage is only an enhancement; the reservation page remains reachable.
       }
-      window.location.assign("/top/contact/?from=curriculum-planner#contact-form-heading");
+      window.location.assign("/reservation/?from=curriculum-planner#reservation-form");
     });
 
     form?.addEventListener("submit", (event) => event.preventDefault());

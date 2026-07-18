@@ -1,6 +1,5 @@
 ---
 import { seo } from "../../data/home";
-import { curriculumPlannerStorageKey } from "../../data/customMadeCurriculum";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SiteHeader from "../site/SiteHeader.astro";
 import SiteFooter from "../site/SiteFooter.astro";
@@ -61,9 +60,6 @@ const lineUrl = "https://lin.ee/O4ik2EQ";
       <p class="legacy-contact-section-label">FORM</p>
       <h2 id="contact-form-heading">お問い合わせフォーム</h2>
       <p class="legacy-contact-form-block__lead">内容を確認後、担当者よりご連絡いたします。</p>
-      <p class="legacy-contact-form-block__handoff" data-curriculum-handoff-status hidden>
-        作成した仮カリキュラムを相談内容へ引き継ぎました。内容は送信前に編集できます。
-      </p>
       <form action={endpoint} method="post" class="legacy-contact-form" {...localFormAttrs}>
         <input type="hidden" name="formType" value="contact" />
         <input type="hidden" name="sourcePath" value="/top/contact/" />
@@ -191,50 +187,7 @@ const lineUrl = "https://lin.ee/O4ik2EQ";
       padding: 11px 40px;
       cursor: pointer;
     }
-
-    .legacy-contact-form-block__handoff {
-      max-width: 760px;
-      margin: 18px auto 0;
-      border: 1px solid rgba(11, 91, 37, 0.28);
-      border-radius: 8px;
-      background: #eef8ef;
-      padding: 12px 16px;
-      color: #0b5b25;
-      font-weight: 800;
-      line-height: 1.7;
-      text-align: left;
-    }
   </style>
-
-  <script is:inline define:vars={{ curriculumPlannerStorageKey }}>
-    (() => {
-      if (!window.URLSearchParams || !window.sessionStorage) return;
-      const params = new URLSearchParams(window.location.search);
-      if (params.get("from") !== "curriculum-planner") return;
-
-      let payload;
-      try {
-        payload = JSON.parse(window.sessionStorage.getItem(curriculumPlannerStorageKey) || "null");
-      } catch {
-        return;
-      }
-      if (!payload || payload.version !== 1 || typeof payload.summary !== "string") return;
-      if (!payload.summary || payload.summary.length > 6000) return;
-
-      const form = document.querySelector(".legacy-contact-form");
-      const message = form && form.querySelector('textarea[name="message"]');
-      const studentType = form && form.querySelector('select[name="studentType"]');
-      const status = document.querySelector("[data-curriculum-handoff-status]");
-      if (!message) return;
-
-      if (!message.value.trim()) message.value = payload.summary;
-      if (studentType && !studentType.value && typeof payload.studentType === "string") {
-        const hasOption = Array.from(studentType.options).some((option) => option.value === payload.studentType);
-        if (hasOption) studentType.value = payload.studentType;
-      }
-      if (status) status.hidden = false;
-    })();
-  </script>
 
   <script is:inline>
     // 送信をいったんfetchで審査に回し、営業・いたずら判定なら受け付けずモーダルを出す。
