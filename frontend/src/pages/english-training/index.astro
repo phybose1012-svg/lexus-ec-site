@@ -1,10 +1,6 @@
 ---
-import LegacyArticlePage from "../../components/fixed/LegacyArticlePage.astro";
+import VideoTrainingPage from "../../components/fixed/VideoTrainingPage.astro";
+import { videoTrainingPages } from "../../data/videoTrainingPages";
 ---
 
-<LegacyArticlePage
-  path="/english-training/"
-  eyebrow="ABOUT"
-  heading="医学部対策 英語"
-  fromHeading="英文法 再入門"
-/>
+<VideoTrainingPage page={videoTrainingPages["english-training"]} />

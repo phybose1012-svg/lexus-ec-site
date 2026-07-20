@@ -1,0 +1,159 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import type { VideoTrainingPageData } from "../../data/videoTrainingPages";
+import "../../styles/video-training.css";
+
+interface Props {
+  page: VideoTrainingPageData;
+}
+
+const { page } = Astro.props;
+const videoCount = page.sections.reduce((total, section) => total + section.videos.length, 0);
+---
+
+<SiteLayout title={page.title} description={page.description} canonical={page.canonical} ogImage={page.ogImage}>
+  <main class={`video-training video-training--${page.slug}`}>
+    <section class="vt-hero" aria-labelledby="vt-title">
+      <div class="vt-hero__inner">
+        <div class="vt-hero__copy">
+          <img
+            class="vt-logo-strip"
+            src="/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png"
+            alt=""
+            width="800"
+            height="58"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <p class="vt-eyebrow">{page.eyebrow}</p>
+          <p class="vt-label">{page.label}</p>
+          <h1 id="vt-title">{page.heading}</h1>
+          <p class="vt-lead">{page.lead}</p>
+          <div class="vt-hero__actions">
+            <a class="button button--red" href="#video-list">動画一覧を見る</a>
+            <a class="button button--blue" href="/reservation/">個別相談する</a>
+          </div>
+        </div>
+
+        <figure class="vt-hero__visual">
+          <img src={page.heroImage} alt={page.heroAlt} width="1024" height="576" fetchpriority="high" decoding="async" />
+          {page.characterImage && (
+            <img class="vt-character" src={page.characterImage} alt={page.characterAlt || ""} width="536" height="797" loading="lazy" decoding="async" />
+          )}
+        </figure>
+      </div>
+    </section>
+
+    <section class="vt-summary" aria-label="教材の概要">
+      <div class="vt-summary__inner">
+        <article>
+          <span>THEME</span>
+          <strong>{page.theme}</strong>
+        </article>
+        <article>
+          <span>VOLUME</span>
+          <strong>{page.format}</strong>
+        </article>
+        <article>
+          <span>GOAL</span>
+          <strong>{page.outcome}</strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="vt-intro" aria-labelledby="vt-intro-title">
+      <div class="vt-intro__inner">
+        <p class="vt-section-kicker">TRAINING POLICY</p>
+        <h2 id="vt-intro-title">{page.introTitle}</h2>
+        <p>{page.introBody}</p>
+        <ul class="vt-use-list">
+          <li>動画で考え方を確認</li>
+          <li>手元で同じ問題を再現</li>
+          <li>詰まった箇所を質問で解消</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="vt-library" id="video-list" aria-labelledby="vt-library-title">
+      <div class="vt-library__head">
+        <p class="vt-section-kicker">VIDEO LIBRARY</p>
+        <h2 id="vt-library-title">動画教材一覧</h2>
+        <p>{videoCount}本の動画を、単元ごとに整理しました。再生ボタンを押した動画だけを読み込む軽量仕様です。</p>
+      </div>
+
+      {page.sections.map((section) => (
+        <section class="vt-video-section" aria-labelledby={`${section.id}-title`}>
+          <div class="vt-video-section__head">
+            <span>{section.label}</span>
+            <div>
+              <h3 id={`${section.id}-title`}>{section.title}</h3>
+              <p>{section.description}</p>
+            </div>
+          </div>
+          <div class="vt-video-grid">
+            {section.videos.map((video, index) => {
+              const ordinal = String(index + 1).padStart(2, "0");
+              const watchUrl = `https://www.youtube.com/watch?v=${video.youtubeId}`;
+              return (
+                <article class="vt-video-card">
+                  <div class="vt-video-card__media" data-youtube-player>
+                    <button
+                      class="vt-video-card__play"
+                      type="button"
+                      data-youtube-id={video.youtubeId}
+                      data-youtube-title={video.title}
+                      aria-label={`${video.title} を再生する`}
+                    >
+                      <span class="vt-video-card__ordinal">{ordinal}</span>
+                      <span class="vt-video-card__play-icon" aria-hidden="true"></span>
+                      <span class="vt-video-card__play-text">再生</span>
+                    </button>
+                  </div>
+                  <div class="vt-video-card__body">
+                    <p class="vt-video-card__category">{video.category || section.title}</p>
+                    <h4>{video.title}</h4>
+                    <p>{video.note || "動画で考え方を確認し、手元で同じ手順を再現してください。"}</p>
+                    <a href={watchUrl} target="_blank" rel="noopener noreferrer">YouTubeで開く</a>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      ))}
+    </section>
+
+    <section class="vt-cta" aria-labelledby="vt-cta-title">
+      <div>
+        <p class="vt-section-kicker">NEXT STEP</p>
+        <h2 id="vt-cta-title">動画で詰まったところは、そのままにしない。</h2>
+        <p>理解できた箇所と、手が止まった箇所を整理できれば、次に伸ばすべき課題が見えます。個別相談では現在地から必要な学習を具体化します。</p>
+      </div>
+      <div class="vt-cta__actions">
+        <a class="button button--red" href="/request-documents/">資料請求</a>
+        <a class="button button--blue" href="/reservation/">個別相談</a>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline>
+    (() => {
+      const players = document.querySelectorAll("[data-youtube-player]");
+      players.forEach((player) => {
+        const button = player.querySelector("[data-youtube-id]");
+        if (!(button instanceof HTMLButtonElement)) return;
+        button.addEventListener("click", () => {
+          const id = button.dataset.youtubeId;
+          if (!id) return;
+          const iframe = document.createElement("iframe");
+          iframe.title = button.dataset.youtubeTitle || "動画";
+          iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0`;
+          iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+          iframe.allowFullscreen = true;
+          iframe.loading = "lazy";
+          player.replaceChildren(iframe);
+        }, { once: true });
+      });
+    })();
+  </script>
+</SiteLayout>
