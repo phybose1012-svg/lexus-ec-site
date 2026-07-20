@@ -1,3 +1,5 @@
+import { customMadePlanLevels } from "./customMadeCurriculum";
+
 export type CoursePlanGroupId = "custom-made-course" | "medical-prep" | "medical-prep-junior";
 
 export type CoursePlanGroup = {
@@ -54,7 +56,7 @@ export const coursePlanGroups: Record<CoursePlanGroupId, CoursePlanGroup & { pla
         badge: "最難関医学部",
         target: "東大、慶應など、医学部のトップ",
         level: "偏差値65相当",
-        price: "¥18,000〜 / 科目",
+        price: customMadePlanLevels.top.priceLabel,
         lead: "すでに高い学力がある受験生に、最難関医学部で差がつく演習と解き直しを集中的に設計します。",
         summary: "難問をただ増やすのではなく、合格点から逆算して、失点原因の分類、答案の精度、復習サイクルを整えます。",
         bestFor: ["基礎知識は固まっている", "難問演習の優先順位を整理したい", "東大・慶應レベルの答案力を鍛えたい"],
@@ -72,7 +74,7 @@ export const coursePlanGroups: Record<CoursePlanGroupId, CoursePlanGroup & { pla
         badge: "難関医学部",
         target: "国公立、慈恵、順天など、難関医学部",
         level: "偏差値60相当",
-        price: "¥22,500〜 / 科目",
+        price: customMadePlanLevels.high.priceLabel,
         lead: "難関医学部へ届かせるため、標準問題の完成度と発展問題への接続を同時に高めます。",
         summary: "解ける問題を確実に取り切り、合否を分ける上位問題へ進めるよう、単元別に演習量を配分します。",
         bestFor: ["基礎から応用への移行で止まりやすい", "国公立・上位私立を狙いたい", "自習の質を上げたい"],
@@ -90,7 +92,7 @@ export const coursePlanGroups: Record<CoursePlanGroupId, CoursePlanGroup & { pla
         badge: "上位私立医学部",
         target: "昭和、東医など上位の私立医学部",
         level: "偏差値55相当",
-        price: "¥28,000〜 / 科目",
+        price: customMadePlanLevels.standard.priceLabel,
         lead: "医学部受験の標準問題を取り切るため、単元ごとの穴を埋めながら演習量を安定させます。",
         summary: "理解したつもりで止まらないよう、問題演習、質問、解き直しを一つの流れにして管理します。",
         bestFor: ["標準問題でミスが多い", "復習が後回しになりやすい", "私立医学部の合格点を安定させたい"],
@@ -108,7 +110,7 @@ export const coursePlanGroups: Record<CoursePlanGroupId, CoursePlanGroup & { pla
         badge: "基礎再構築",
         target: "都内の私立医学部など",
         level: "偏差値50相当",
-        price: "¥30,000〜 / 科目",
+        price: customMadePlanLevels.basic.priceLabel,
         lead: "医学部受験へ向けて、教科書レベルから標準問題へつなげる演習設計を行います。",
         summary: "抜けている知識を確認しながら、基礎問題を解ける状態へ戻し、標準問題に入る準備を整えます。",
         bestFor: ["基礎の抜けが気になる", "何から手をつけるべきか迷う", "演習量を自分で維持しにくい"],
@@ -126,7 +128,7 @@ export const coursePlanGroups: Record<CoursePlanGroupId, CoursePlanGroup & { pla
         badge: "教科書レベル",
         target: "高校教科書レベルの知識修得",
         level: "偏差値40台",
-        price: "¥30,000〜 / 科目",
+        price: customMadePlanLevels.beginner.priceLabel,
         lead: "高校内容に不安がある科目を、初歩から医学部受験へ接続できる状態まで立て直します。",
         summary: "焦って難問へ進まず、定義、公式、基本例題、確認演習を順番に積み上げます。",
         bestFor: ["未完成の科目がある", "教科書内容からやり直したい", "質問できる環境で進めたい"],
@@ -144,7 +146,7 @@ export const coursePlanGroups: Record<CoursePlanGroupId, CoursePlanGroup & { pla
         badge: "未習科目対応",
         target: "高校入試レベルの知識習得",
         level: "未習科目あり",
-        price: "¥30,000〜 / 科目",
+        price: customMadePlanLevels.foundation.priceLabel,
         lead: "高校内容に入る前の前提知識から整え、医学部受験へ向かうための最初の土台を作ります。",
         summary: "未習・苦手のまま進ませず、学習の入口を明確にして、毎週続けられる課題へ落とし込みます。",
         bestFor: ["未習単元が多い", "何を理解していないか分からない", "学習ペースを作り直したい"],
