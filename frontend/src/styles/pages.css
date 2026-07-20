@@ -8956,13 +8956,15 @@ html.premier-nav-visible body:has(.premier-page) .mobile-fixed-nav-wrap {
   background: rgb(255 250 241 / 12%);
   padding: 9px 13px;
   color: #fffaf1;
-  font-size: clamp(0.95rem, 1.55vw, 1.28rem);
+  font-size: clamp(1.25rem, 2.15vw, 1.85rem);
   font-weight: 900;
-  line-height: 1.45;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
   opacity: 0;
   transform: translateX(-30px);
   clip-path: inset(0 100% 0 0);
   backdrop-filter: blur(10px);
+  white-space: nowrap;
 }
 
 .premier-cinematic-hero.is-active .premier-fireline-quote-stack span {
@@ -9001,10 +9003,10 @@ html.premier-nav-visible body:has(.premier-page) .mobile-fixed-nav-wrap {
   margin: 0;
   color: #fffaf1;
   font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", Meiryo, system-ui, sans-serif;
-  font-size: clamp(3.2rem, 6.7vw, 7rem);
+  font-size: clamp(2.8rem, 5.2vw, 5.6rem);
   font-weight: 950;
   letter-spacing: 0;
-  line-height: 0.98;
+  line-height: 1.02;
   opacity: 0;
   text-shadow: 0 18px 42px rgb(0 0 0 / 48%);
   transform: translateY(34px) scale(1.04);
@@ -9268,7 +9270,7 @@ html.premier-nav-visible body:has(.premier-page) .mobile-fixed-nav-wrap {
   }
 
   .premier-fireline-title {
-    font-size: clamp(2.7rem, 7.8vw, 5rem);
+    font-size: clamp(2.45rem, 6.4vw, 4.35rem);
   }
 }
 
@@ -9354,8 +9356,8 @@ html.premier-nav-visible body:has(.premier-page) .mobile-fixed-nav-wrap {
 
   .premier-fireline-quote-stack span {
     padding: 8px 10px;
-    font-size: 0.84rem;
-    line-height: 1.55;
+    font-size: clamp(1.06rem, 4.65vw, 1.24rem);
+    line-height: 1.45;
   }
 
   .premier-fireline-year {
@@ -9364,8 +9366,8 @@ html.premier-nav-visible body:has(.premier-page) .mobile-fixed-nav-wrap {
   }
 
   .premier-fireline-title {
-    font-size: clamp(1.78rem, 8.2vw, 2.45rem);
-    line-height: 1.08;
+    font-size: clamp(1.65rem, 7.2vw, 2.2rem);
+    line-height: 1.12;
   }
 
   .premier-fireline-lead {
@@ -9579,7 +9581,7 @@ html.premier-enhanced .premier-fireline-act--second {
   max-width: 100%;
   width: fit-content;
   font-size: 1rem;
-  font-size: clamp(0.95rem, 1.55vw, 1.28rem);
+  font-size: clamp(1.25rem, 2.15vw, 1.85rem);
   opacity: 1;
   transform: none;
   clip-path: none;
@@ -9621,7 +9623,7 @@ html.premier-enhanced .premier-fireline-quick {
 
 .premier-fireline-title {
   font-size: 5.2rem;
-  font-size: clamp(3.2rem, 6.7vw, 7rem);
+  font-size: clamp(2.8rem, 5.2vw, 5.6rem);
 }
 
 .premier-fireline-lead {
@@ -9652,7 +9654,7 @@ html.premier-enhanced .premier-fireline-quick {
 
   .premier-fireline-title {
     font-size: 3.6rem;
-    font-size: clamp(2.7rem, 7.8vw, 5rem);
+    font-size: clamp(2.45rem, 6.4vw, 4.35rem);
   }
 }
 
@@ -9698,9 +9700,13 @@ html.premier-enhanced .premier-fireline-quick {
     width: min(236px, 64vw);
   }
 
+  .premier-fireline-quote-stack span {
+    font-size: clamp(1.06rem, 4.65vw, 1.24rem);
+  }
+
   .premier-fireline-title {
     font-size: 2rem;
-    font-size: clamp(1.78rem, 8.2vw, 2.45rem);
+    font-size: clamp(1.65rem, 7.2vw, 2.2rem);
   }
 
   .premier-fireline-lead {
