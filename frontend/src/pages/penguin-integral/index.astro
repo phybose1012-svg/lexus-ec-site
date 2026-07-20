@@ -1,10 +1,6 @@
 ---
-import LegacyArticlePage from "../../components/fixed/LegacyArticlePage.astro";
+import VideoTrainingPage from "../../components/fixed/VideoTrainingPage.astro";
+import { videoTrainingPages } from "../../data/videoTrainingPages";
 ---
 
-<LegacyArticlePage
-  path="/penguin-integral/"
-  eyebrow="MATH"
-  heading="医学部数学 ペンギン積分"
-  fromHeading="積分計算 01"
-/>
+<VideoTrainingPage page={videoTrainingPages["penguin-integral"]} />
