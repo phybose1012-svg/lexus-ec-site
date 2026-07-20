@@ -131,6 +131,53 @@ const page = getTeacherPage();
         const title = document.querySelector("[data-teacher-video-title]");
         if (!(dialog instanceof HTMLDialogElement) || !(player instanceof HTMLIFrameElement) || !title) return;
 
+        const defaultVolume = 0.33;
+        const streamSdkUrl = "https://embed.cloudflarestream.com/embed/sdk.latest.js";
+        let streamSdkPromise;
+        let streamPlayer;
+
+        const loadStreamSdk = () => {
+          if (typeof window.Stream === "function") return Promise.resolve(window.Stream);
+          if (streamSdkPromise) return streamSdkPromise;
+
+          streamSdkPromise = new Promise((resolve, reject) => {
+            const script = document.createElement("script");
+            script.src = streamSdkUrl;
+            script.async = true;
+            script.addEventListener(
+              "load",
+              () => {
+                if (typeof window.Stream === "function") {
+                  resolve(window.Stream);
+                  return;
+                }
+                reject(new Error("Cloudflare Stream SDK did not initialize."));
+              },
+              { once: true },
+            );
+            script.addEventListener(
+              "error",
+              () => {
+                script.remove();
+                reject(new Error("Cloudflare Stream SDK could not be loaded."));
+              },
+              { once: true },
+            );
+            document.head.append(script);
+          }).catch((error) => {
+            streamSdkPromise = undefined;
+            throw error;
+          });
+
+          return streamSdkPromise;
+        };
+
+        const applyDefaultVolume = () => {
+          if (streamPlayer && player.hasAttribute("src")) streamPlayer.volume = defaultVolume;
+        };
+
+        player.addEventListener("load", applyDefaultVolume);
+
         document.querySelectorAll("[data-teacher-video]").forEach((link) => {
           link.addEventListener("click", (event) => {
             const src = link.getAttribute("data-teacher-video");
@@ -141,6 +188,12 @@ const page = getTeacherPage();
             player.title = `${teacherName} 先生の授業動画`;
             player.src = src;
             dialog.showModal();
+            void loadStreamSdk()
+              .then((createStreamPlayer) => {
+                streamPlayer ||= createStreamPlayer(player);
+                applyDefaultVolume();
+              })
+              .catch((error) => console.error(error));
           });
         });
 

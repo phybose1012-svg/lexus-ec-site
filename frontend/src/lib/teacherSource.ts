@@ -169,6 +169,12 @@ const teacherStreamVideoIds: Record<string, string> = {
   "川崎医科物理.mp4": "169589f2ed4854540e2f76a2cd5186bc",
 };
 
+const teacherStreamVideoIdsByTeacher: Record<string, string> = {
+  "高橋 一八": "94d5066c16f08419cd78fcd46f9863e7",
+};
+
+const streamVideoUrlFromId = (videoId: string) => `https://${streamCustomerSubdomain}/${videoId}/iframe`;
+
 const streamVideoUrl = (legacyUrl: string) => {
   const pathname = new URL(legacyUrl).pathname;
   const filename = decodeURIComponent(pathname.slice(pathname.lastIndexOf("/") + 1));
@@ -178,7 +184,7 @@ const streamVideoUrl = (legacyUrl: string) => {
     throw new Error(`Cloudflare Stream video is not mapped: ${filename}`);
   }
 
-  return `https://${streamCustomerSubdomain}/${videoId}/iframe`;
+  return streamVideoUrlFromId(videoId);
 };
 
 const sourceVideos = (html: string) =>
@@ -297,6 +303,11 @@ const extractSubjects = (html: string, headings: HeadingRow[], images: SourceIma
   for (const subject of subjects) {
     for (const teacher of subject.teachers) {
       if (teacher.videoLabel.includes("準備中")) continue;
+      const directVideoId = teacherStreamVideoIdsByTeacher[teacher.name];
+      if (directVideoId) {
+        teacher.videoUrl = streamVideoUrlFromId(directVideoId);
+        continue;
+      }
       teacher.videoUrl = videos[videoIndex];
       videoIndex += 1;
     }
