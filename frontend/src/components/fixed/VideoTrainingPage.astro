@@ -94,9 +94,21 @@ const videoCount = page.sections.reduce((total, section) => total + section.vide
             {section.videos.map((video, index) => {
               const ordinal = String(index + 1).padStart(2, "0");
               const watchUrl = `https://www.youtube.com/watch?v=${video.youtubeId}`;
+              const thumbnailUrl = `/assets/video-thumbnails/${video.youtubeId}.jpg`;
               return (
                 <article class="vt-video-card">
                   <div class="vt-video-card__media" data-youtube-player>
+                    <img
+                      class="vt-video-card__thumb"
+                      src={thumbnailUrl}
+                      alt={`${video.title}の問題サムネイル`}
+                      width="480"
+                      height="360"
+                      loading="lazy"
+                      decoding="async"
+                      data-thumbnail-fallback={thumbnailUrl}
+                    />
+                    <span class="vt-video-card__ordinal">{ordinal}</span>
                     <button
                       class="vt-video-card__play"
                       type="button"
@@ -104,9 +116,19 @@ const videoCount = page.sections.reduce((total, section) => total + section.vide
                       data-youtube-title={video.title}
                       aria-label={`${video.title} を再生する`}
                     >
-                      <span class="vt-video-card__ordinal">{ordinal}</span>
                       <span class="vt-video-card__play-icon" aria-hidden="true"></span>
                       <span class="vt-video-card__play-text">再生</span>
+                    </button>
+                    <button
+                      class="vt-video-card__zoom"
+                      type="button"
+                      data-problem-modal-trigger
+                      data-problem-src={thumbnailUrl}
+                      data-problem-fallback={thumbnailUrl}
+                      data-problem-title={video.title}
+                      aria-label={`${video.title} の問題を拡大表示する`}
+                    >
+                      問題を拡大
                     </button>
                   </div>
                   <div class="vt-video-card__body">
@@ -136,8 +158,43 @@ const videoCount = page.sections.reduce((total, section) => total + section.vide
     </section>
   </main>
 
+  <dialog class="vt-problem-dialog" data-problem-dialog aria-label="問題サムネイル拡大表示">
+    <div class="vt-problem-dialog__panel">
+      <div class="vt-problem-dialog__bar">
+        <p data-problem-dialog-title>問題</p>
+        <button class="vt-problem-dialog__close" type="button" data-problem-dialog-close aria-label="問題サムネイルを閉じる">
+          <span aria-hidden="true">&times;</span>
+          <strong>閉じる</strong>
+        </button>
+      </div>
+      <div class="vt-problem-dialog__viewer">
+        <button class="vt-problem-dialog__nav vt-problem-dialog__nav--prev" type="button" data-problem-dialog-prev aria-label="前の問題">
+          <span aria-hidden="true">&lsaquo;</span>
+        </button>
+        <img data-problem-dialog-image alt="" width="1280" height="720" decoding="async" />
+        <button class="vt-problem-dialog__nav vt-problem-dialog__nav--next" type="button" data-problem-dialog-next aria-label="次の問題">
+          <span aria-hidden="true">&rsaquo;</span>
+        </button>
+      </div>
+      <div class="vt-problem-dialog__footer">
+        <p>サムネイル画像を拡大表示しています。動画は各カードの再生ボタンから確認できます。</p>
+        <span data-problem-dialog-count></span>
+      </div>
+    </div>
+  </dialog>
+
   <script is:inline>
     (() => {
+      const installImageFallback = (image) => {
+        if (!(image instanceof HTMLImageElement)) return;
+        image.addEventListener("error", () => {
+          const fallback = image.dataset.problemFallback || image.dataset.thumbnailFallback;
+          if (fallback && image.src !== fallback) image.src = fallback;
+        });
+      };
+
+      document.querySelectorAll("[data-thumbnail-fallback]").forEach(installImageFallback);
+
       const players = document.querySelectorAll("[data-youtube-player]");
       players.forEach((player) => {
         const button = player.querySelector("[data-youtube-id]");
@@ -151,8 +208,82 @@ const videoCount = page.sections.reduce((total, section) => total + section.vide
           iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
           iframe.allowFullscreen = true;
           iframe.loading = "lazy";
+          player.classList.add("is-playing");
           player.replaceChildren(iframe);
         }, { once: true });
+      });
+
+      const dialog = document.querySelector("[data-problem-dialog]");
+      if (!(dialog instanceof HTMLDialogElement) || typeof dialog.showModal !== "function") return;
+
+      const image = dialog.querySelector("[data-problem-dialog-image]");
+      const title = dialog.querySelector("[data-problem-dialog-title]");
+      const count = dialog.querySelector("[data-problem-dialog-count]");
+      const closeButton = dialog.querySelector("[data-problem-dialog-close]");
+      const prevButton = dialog.querySelector("[data-problem-dialog-prev]");
+      const nextButton = dialog.querySelector("[data-problem-dialog-next]");
+      const triggers = [...document.querySelectorAll("[data-problem-modal-trigger]")].filter((trigger) => trigger instanceof HTMLButtonElement);
+
+      if (
+        !(image instanceof HTMLImageElement) ||
+        !(title instanceof HTMLElement) ||
+        !(count instanceof HTMLElement) ||
+        !(closeButton instanceof HTMLButtonElement) ||
+        !(prevButton instanceof HTMLButtonElement) ||
+        !(nextButton instanceof HTMLButtonElement) ||
+        !triggers.length
+      ) return;
+
+      installImageFallback(image);
+
+      let currentIndex = 0;
+
+      const setProblem = (index) => {
+        currentIndex = (index + triggers.length) % triggers.length;
+        const trigger = triggers[currentIndex];
+        const problemTitle = trigger.dataset.problemTitle || "問題";
+        const src = trigger.dataset.problemSrc || trigger.dataset.problemFallback || "";
+        const fallback = trigger.dataset.problemFallback || "";
+        image.dataset.problemFallback = fallback;
+        image.src = src;
+        image.alt = `${problemTitle}の問題サムネイル`;
+        title.textContent = problemTitle;
+        count.textContent = `${currentIndex + 1} / ${triggers.length}`;
+      };
+
+      triggers.forEach((trigger, index) => {
+        trigger.addEventListener("click", () => {
+          setProblem(index);
+          dialog.showModal();
+          closeButton.focus();
+        });
+      });
+
+      prevButton.addEventListener("click", () => {
+        setProblem(currentIndex - 1);
+      });
+
+      nextButton.addEventListener("click", () => {
+        setProblem(currentIndex + 1);
+      });
+
+      closeButton.addEventListener("click", () => {
+        dialog.close();
+      });
+
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+
+      dialog.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          setProblem(currentIndex - 1);
+        }
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          setProblem(currentIndex + 1);
+        }
       });
     })();
   </script>
