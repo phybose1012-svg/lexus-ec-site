@@ -7428,9 +7428,11 @@
   text-align: center;
 }
 
-.teacher-video-dialog video {
+.teacher-video-dialog iframe {
+  display: block;
   width: 100%;
-  max-height: 72vh;
+  aspect-ratio: 16 / 9;
+  border: 0;
   background: #000;
 }
 
@@ -7616,6 +7618,15 @@
 
   .teacher-final-cta {
     padding-block: 58px 74px;
+  }
+
+  .teacher-video-dialog {
+    width: calc(100% - 20px);
+    padding: 14px;
+  }
+
+  .teacher-video-dialog form {
+    margin-bottom: 8px;
   }
 }
 

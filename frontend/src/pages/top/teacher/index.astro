@@ -110,12 +110,18 @@ const page = getTeacherPage();
       </div>
     </section>
 
-    <dialog class="teacher-video-dialog" id="teacher-video-dialog" data-teacher-video-dialog>
+    <dialog class="teacher-video-dialog" id="teacher-video-dialog" aria-labelledby="teacher-video-title" data-teacher-video-dialog>
       <form method="dialog">
         <button type="submit" aria-label="動画を閉じる">×</button>
       </form>
-      <p data-teacher-video-title></p>
-      <video controls playsinline preload="none" data-teacher-video-player></video>
+      <p id="teacher-video-title" data-teacher-video-title></p>
+      <iframe
+        title="授業動画"
+        loading="lazy"
+        allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+        allowfullscreen
+        data-teacher-video-player
+      ></iframe>
     </dialog>
 
     <script is:inline>
@@ -123,23 +129,23 @@ const page = getTeacherPage();
         const dialog = document.querySelector("[data-teacher-video-dialog]");
         const player = document.querySelector("[data-teacher-video-player]");
         const title = document.querySelector("[data-teacher-video-title]");
-        if (!(dialog instanceof HTMLDialogElement) || !(player instanceof HTMLVideoElement) || !title) return;
+        if (!(dialog instanceof HTMLDialogElement) || !(player instanceof HTMLIFrameElement) || !title) return;
 
         document.querySelectorAll("[data-teacher-video]").forEach((link) => {
           link.addEventListener("click", (event) => {
             const src = link.getAttribute("data-teacher-video");
             if (!src) return;
             event.preventDefault();
-            title.textContent = `${link.getAttribute("data-teacher-name") || ""} 先生の授業動画`;
+            const teacherName = link.getAttribute("data-teacher-name") || "";
+            title.textContent = `${teacherName} 先生の授業動画`;
+            player.title = `${teacherName} 先生の授業動画`;
             player.src = src;
             dialog.showModal();
           });
         });
 
         dialog.addEventListener("close", () => {
-          player.pause();
           player.removeAttribute("src");
-          player.load();
         });
       })();
     </script>

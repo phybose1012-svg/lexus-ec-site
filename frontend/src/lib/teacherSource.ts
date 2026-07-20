@@ -146,10 +146,46 @@ const sourceImages = (html: string) =>
     })
     .filter((image) => image.src && !image.src.startsWith("data:image"));
 
+const streamCustomerSubdomain = "customer-306wg26hqgs83akz.cloudflarestream.com";
+
+const teacherStreamVideoIds: Record<string, string> = {
+  "東京女子医科数学.mp4": "6f895cc5eacc75d011bf697718f01a77",
+  "慶応義塾数学_1.mp4": "c14e4c331825dc7777992305f67f3b9b",
+  "順天堂数学.mp4": "65dc073022ec19528200e5c3be60d25c",
+  "東京医科英語.mp4": "ea0461d4aec3399d717eb8f40fe25450",
+  "昭和英語.mp4": "a330a69d4ff2ae89d5b181c6cee0c02a",
+  "国際医療福祉英語.mp4": "bc3e5ae09fe03ea2250407730e84d5c7",
+  "帝京英語.mp4": "74ad4c2b3bf37c56deb4833ae06557a0",
+  "東京女子医科英語.mp4": "f48052d85d951d63aa91a72962d1fe11",
+  "東京慈恵会医科英語.mp4": "582fb88f6ac0e5677131f847ef23cfc6",
+  "日本医科化学.mp4": "56b46a70990cc3b5cef23ad1b8d7e013",
+  "杏林化学.mp4": "6b35cbcd3ea6bf29f317caa0a6357223",
+  "大阪医科薬科化学.mp4": "733a9d3d518d087a792c3bef742c9e49",
+  "日本医科生物.mp4": "30d4204d1bc574e2ec79d67b4a831c0f",
+  "慶応義塾生物.mp4": "bde8995c85b6286ba4234399135b25f7",
+  "東京慈恵会医科生物.mp4": "bdb2abdd6dcd4ec79fb33ddbbb993040",
+  "順天堂物理.mp4": "f19726e3293c8d14fee3938944698a49",
+  "東京慈恵会医科物理.mp4": "19d8ff67bf573d693ce903d44109244f",
+  "川崎医科物理.mp4": "169589f2ed4854540e2f76a2cd5186bc",
+};
+
+const streamVideoUrl = (legacyUrl: string) => {
+  const pathname = new URL(legacyUrl).pathname;
+  const filename = decodeURIComponent(pathname.slice(pathname.lastIndexOf("/") + 1));
+  const videoId = teacherStreamVideoIds[filename];
+
+  if (!videoId) {
+    throw new Error(`Cloudflare Stream video is not mapped: ${filename}`);
+  }
+
+  return `https://${streamCustomerSubdomain}/${videoId}/iframe`;
+};
+
 const sourceVideos = (html: string) =>
   [...html.matchAll(/<video[\s\S]*?<\/video>/gi)]
     .flatMap((match) => [...match[0].matchAll(/(?:src|data-lazy-src)=["']([^"']+\.mp4[^"']*)/gi)].map((videoMatch) => decodeEntities(videoMatch[1])))
-    .filter(Boolean);
+    .filter(Boolean)
+    .map(streamVideoUrl);
 
 const headingRows = (html: string): HeadingRow[] =>
   [...html.matchAll(/<h([1-4])[^>]*>([\s\S]*?)<\/h\1>/gi)]
