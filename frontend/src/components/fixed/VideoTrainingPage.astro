@@ -158,7 +158,14 @@ const seriesPages = Object.values(videoTrainingPages);
                     <p class="vt-video-card__category">{video.category || section.title}</p>
                     <h4>{video.title}</h4>
                     <p>{video.note || "動画で考え方を確認し、手元で同じ手順を再現してください。"}</p>
-                    <a href={watchUrl} target="_blank" rel="noopener noreferrer">YouTubeで開く</a>
+                    <div class="vt-video-card__actions">
+                      {video.material && (
+                        <a class="vt-video-card__material" href={video.material.url} target="_blank" rel="noopener noreferrer">
+                          {video.material.label}
+                        </a>
+                      )}
+                      <a class="vt-video-card__watch" href={watchUrl} target="_blank" rel="noopener noreferrer">YouTubeで開く</a>
+                    </div>
                   </div>
                 </article>
               );
