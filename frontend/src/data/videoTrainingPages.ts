@@ -3,6 +3,10 @@ export type VideoTrainingItem = {
   youtubeId: string;
   category?: string;
   note?: string;
+  material?: {
+    label: string;
+    url: string;
+  };
 };
 
 export type VideoTrainingPageData = {
@@ -87,9 +91,14 @@ const integralVideos = numberedVideos("積分計算", [
   "rS53B6hXwWI",
 ]);
 
+const englishGrammarMaterial = {
+  label: "PDF ダウンロード",
+  url: "https://drive.google.com/file/d/1_gk05WfQQ4s-jN3mlwJcCChBpb9F1l_g/view?usp=sharing",
+};
+
 const englishGrammarVideos: VideoTrainingItem[] = [
-  { title: "英文法 SVOCと品詞 01", youtubeId: "X1-ns_nsTj8", category: "英文法" },
-  { title: "英文法 SVOCと品詞 02", youtubeId: "5cLZ1Q0ngPI", category: "英文法" },
+  { title: "英文法 SVOCと品詞 01", youtubeId: "X1-ns_nsTj8", category: "英文法", material: englishGrammarMaterial },
+  { title: "英文法 SVOCと品詞 02", youtubeId: "5cLZ1Q0ngPI", category: "英文法", material: englishGrammarMaterial },
 ];
 
 const englishReadingVideos: VideoTrainingItem[] = [
