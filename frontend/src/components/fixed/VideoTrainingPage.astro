@@ -1,6 +1,6 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
-import type { VideoTrainingPageData } from "../../data/videoTrainingPages";
+import { videoTrainingPages, type VideoTrainingPageData } from "../../data/videoTrainingPages";
 import "../../styles/video-training.css";
 
 interface Props {
@@ -9,6 +9,7 @@ interface Props {
 
 const { page } = Astro.props;
 const videoCount = page.sections.reduce((total, section) => total + section.videos.length, 0);
+const seriesPages = Object.values(videoTrainingPages);
 ---
 
 <SiteLayout title={page.title} description={page.description} canonical={page.canonical} ogImage={page.ogImage}>
@@ -60,6 +61,28 @@ const videoCount = page.sections.reduce((total, section) => total + section.vide
         </article>
       </div>
     </section>
+
+    <nav class="vt-series" aria-labelledby="vt-series-title">
+      <div class="vt-series__inner">
+        <div class="vt-series__head">
+          <p class="vt-section-kicker">VIDEO SERIES</p>
+          <h2 id="vt-series-title">関連する動画教材</h2>
+        </div>
+        <div class="vt-series__grid">
+          {seriesPages.map((seriesPage) => {
+            const isCurrent = seriesPage.slug === page.slug;
+            return (
+              <a class:list={["vt-series-card", { "is-current": isCurrent }]} href={`/${seriesPage.slug}/`} aria-current={isCurrent ? "page" : undefined}>
+                <span class="vt-series-card__status">{isCurrent ? "表示中" : "移動する"}</span>
+                <span class="vt-series-card__label">{seriesPage.label}</span>
+                <strong>{seriesPage.theme}</strong>
+                <small>{seriesPage.format} / {seriesPage.outcome}</small>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </nav>
 
     <section class="vt-intro" aria-labelledby="vt-intro-title">
       <div class="vt-intro__inner">
