@@ -1,0 +1,152 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { assets } from "../../data/home";
+import { videoTrainingPages } from "../../data/videoTrainingPages";
+import "../../styles/video-training.css";
+
+const title = "動画コンテンツ｜医学部数学・医学部英語の動画教材 - 医学部予備校 レクサスE.C.";
+const description =
+  "幾何ペンギン、ペンギン積分、医学部対策英語の動画教材をまとめたページです。平面図形、積分計算、英文法・英文解釈を短い動画で確認できます。";
+const canonical = "https://lexus-ec.com/video-content/";
+
+const countVideos = (slug: keyof typeof videoTrainingPages) =>
+  videoTrainingPages[slug].sections.reduce((total, section) => total + section.videos.length, 0);
+
+const videoCards = [
+  {
+    slug: "penguin-geometry",
+    href: "/penguin-geometry/",
+    label: "MATH VIDEO",
+    title: "幾何ペンギン",
+    theme: "平面図形",
+    body: "補助線の引き方、図形の見方、計算へ落とす手順を、単元ごとに短く確認できます。",
+    image: "/assets/legacy/wp-content/uploads/2025/08/ペンギン動画-1024x512.jpg",
+    imageAlt: "幾何ペンギン 動画コンテンツ",
+    points: ["図形問題の見方", "補助線と思考手順", "問題サムネイル拡大"],
+    tone: "blue",
+  },
+  {
+    slug: "penguin-integral",
+    href: "/penguin-integral/",
+    label: "MATH VIDEO",
+    title: "ペンギン積分",
+    theme: "積分計算",
+    body: "置換、部分積分、計算整理まで、医学部入試で崩れやすい積分を型から確認できます。",
+    image: "/assets/legacy/wp-content/uploads/2025/02/積分01サムネ-1024x576.jpg",
+    imageAlt: "ペンギン積分 動画コンテンツ",
+    points: ["計算の型を整理", "ミス防止の手順", "問題サムネイル拡大"],
+    tone: "green",
+  },
+  {
+    slug: "english-training",
+    href: "/english-training/",
+    label: "ENGLISH VIDEO",
+    title: "医学部対策 英語",
+    theme: "英文法 / 英文解釈",
+    body: "SVOC・品詞の基礎から英文解釈の読み方まで、段階的に確認できます。",
+    image: "/assets/legacy/wp-content/uploads/2025/02/英文解釈1ｰ1-1024x576.jpg",
+    imageAlt: "医学部対策英語 動画コンテンツ",
+    points: ["英文法 再入門", "英文解釈の修行", "PDF教材あり"],
+    tone: "red",
+  },
+] as const;
+
+const totalVideos = videoCards.reduce((total, card) => total + countVideos(card.slug), 0);
+---
+
+<SiteLayout title={title} description={description} canonical={canonical} ogImage={videoCards[0].image}>
+  <main class="video-content">
+    <section class="video-content-hero" aria-labelledby="video-content-title">
+      <div class="video-content-hero__inner">
+        <div class="video-content-hero__copy">
+          <img class="vt-logo-strip" src={assets.jewelPattern} alt="" width="800" height="74" fetchpriority="high" decoding="async" />
+          <p class="vt-eyebrow">VIDEO CONTENT</p>
+          <h1 id="video-content-title">動画コンテンツ</h1>
+          <p class="video-content-hero__lead">
+            医学部数学と医学部英語の要点を、短い動画で確認できる教材ページです。気になる単元から入り、問題サムネイルを拡大しながら学習できます。
+          </p>
+          <div class="video-content-hero__actions">
+            <a class="button button--red" href="#video-content-list">教材を選ぶ</a>
+            <a class="button button--blue" href="/reservation/">個別相談する</a>
+          </div>
+        </div>
+        <div class="video-content-hero__visual" aria-label="動画教材の一覧">
+          {videoCards.map((card, index) => (
+            <a class={`video-content-hero-thumb video-content-hero-thumb--${card.tone}`} href={card.href}>
+              <img src={card.image} alt={card.imageAlt} width="640" height="360" fetchpriority={index === 0 ? "high" : undefined} loading={index === 0 ? undefined : "lazy"} decoding="async" />
+              <span>{card.title}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="video-content-metrics" aria-label="動画教材の概要">
+      <div class="video-content-metrics__inner">
+        <article>
+          <span>SERIES</span>
+          <strong>{videoCards.length}シリーズ</strong>
+        </article>
+        <article>
+          <span>VIDEOS</span>
+          <strong>全{totalVideos}本</strong>
+        </article>
+        <article>
+          <span>SUBJECT</span>
+          <strong>数学 / 英語</strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="video-content-list" id="video-content-list" aria-labelledby="video-content-list-title">
+      <div class="video-content-list__head">
+        <p class="vt-section-kicker">VIDEO LIBRARY</p>
+        <h2 id="video-content-list-title">教材を選ぶ</h2>
+        <p>各ページには、動画のサムネイル、問題の拡大表示、YouTube再生リンクを整理しています。</p>
+      </div>
+
+      <div class="video-content-card-grid">
+        {videoCards.map((card) => (
+          <article class={`video-content-card video-content-card--${card.tone}`}>
+            <figure>
+              <img src={card.image} alt={card.imageAlt} width="640" height="360" loading="lazy" decoding="async" />
+            </figure>
+            <div class="video-content-card__body">
+              <p class="video-content-card__label">{card.label}</p>
+              <h2>{card.title}</h2>
+              <p>{card.body}</p>
+              <dl>
+                <div>
+                  <dt>THEME</dt>
+                  <dd>{card.theme}</dd>
+                </div>
+                <div>
+                  <dt>VOLUME</dt>
+                  <dd>全{countVideos(card.slug)}本</dd>
+                </div>
+              </dl>
+              <ul>
+                {card.points.map((point) => <li>{point}</li>)}
+              </ul>
+              <a class="button button--red" href={card.href}>ページを見る</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="video-content-cta" aria-labelledby="video-content-cta-title">
+      <div>
+        <p class="vt-section-kicker">NEXT STEP</p>
+        <h2 id="video-content-cta-title">動画で見えた弱点を、次の学習へつなげる。</h2>
+        <p>
+          どの単元で手が止まったかを整理できれば、次に必要な課題が具体化します。現在の学力や志望校に合わせて、必要な学習を個別に相談できます。
+        </p>
+      </div>
+      <div class="video-content-cta__actions">
+        <a class="button button--red" href="/request-documents/">資料請求</a>
+        <a class="button button--blue" href="/reservation/">個別相談</a>
+      </div>
+    </section>
+  </main>
+</SiteLayout>
