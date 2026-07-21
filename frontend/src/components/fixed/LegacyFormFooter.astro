@@ -1,12 +1,14 @@
 ---
 import { navGroups } from "../../data/home";
+
+const footerNavGroups = navGroups.filter((group) => group.links[0]?.href !== "/video-content/");
 ---
 
 <footer class="legacy-form-footer">
   <div class="legacy-form-footer__box">
     <p class="legacy-form-footer__title">— MENU —</p>
     <div class="legacy-form-footer__grid">
-      {navGroups.map((group) => (
+      {footerNavGroups.map((group) => (
         <nav aria-label={group.label}>
           <p>{group.label}</p>
           {group.links.map((link) => <a href={link.href}>{link.label}</a>)}

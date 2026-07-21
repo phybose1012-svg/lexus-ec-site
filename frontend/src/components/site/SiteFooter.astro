@@ -5,13 +5,14 @@ const linkAttrs = (link: { target?: string; rel?: string }) => ({
   target: link.target,
   rel: link.rel ?? (link.target === "_blank" ? "noopener" : undefined),
 });
+const footerNavGroups = navGroups.filter((group) => group.links[0]?.href !== "/video-content/");
 ---
 
 <footer class="site-footer">
   <div class="content">
     <p class="site-footer__menu-title">— MENU —</p>
     <div class="footer-grid">
-      {navGroups.map((group) => (
+      {footerNavGroups.map((group) => (
         <nav aria-label={group.label}>
           <p class="footer-grid__label">{group.label}</p>
           {group.links.map((link) => <a href={link.href} {...linkAttrs(link)}>{link.label}</a>)}

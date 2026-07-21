@@ -3,7 +3,8 @@ import { assets, headerActions, navGroups } from "../../data/home";
 
 const mobilePrimaryActions = headerActions.slice(0, 2);
 const mobileSecondaryActions = headerActions.slice(2);
-const headerNavGroups = navGroups;
+const mobileNavGroups = navGroups;
+const desktopNavGroups = navGroups.filter((group) => group.links[0]?.href !== "/video-content/");
 const linkAttrs = (link: { target?: string; rel?: string }) => ({
   target: link.target,
   rel: link.rel ?? (link.target === "_blank" ? "noopener" : undefined),
@@ -57,7 +58,7 @@ const linkAttrs = (link: { target?: string; rel?: string }) => ({
 
   <div class="mobile-menu-panel" id="mobile-menu-panel" hidden>
     <nav class="mobile-menu-panel__inner" aria-label="スマートフォンメニュー">
-      {headerNavGroups.map((group) => (
+      {mobileNavGroups.map((group) => (
         <section class="mobile-menu-group">
           <p class="mobile-menu-group__label">{group.label}</p>
           <ul>
@@ -74,7 +75,7 @@ const linkAttrs = (link: { target?: string; rel?: string }) => ({
 <p class="mega-nav-heading" aria-hidden="true">main menu</p>
 <nav class="mega-nav" aria-label="主要ナビゲーション">
   <ul>
-    {headerNavGroups.map((group) => (
+    {desktopNavGroups.map((group) => (
       <li class={group.links.length === 1 ? "mega-nav__item--single" : undefined}>
         <a class={`mega-nav__label${group.links.length === 1 ? " mega-nav__label--single" : ""}`} href={group.links[0].href} {...linkAttrs(group.links[0])}>{group.label}</a>
         {group.links.length > 1 && (
