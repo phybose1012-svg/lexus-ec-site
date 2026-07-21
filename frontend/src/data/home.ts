@@ -161,6 +161,15 @@ export const navGroups: NavGroup[] = [
     ],
   },
   {
+    label: "動画コンテンツ",
+    links: [
+      { label: "動画コンテンツ一覧", href: "/video-content/" },
+      { label: "幾何ペンギン", href: "/penguin-geometry/" },
+      { label: "ペンギン積分", href: "/penguin-integral/" },
+      { label: "医学部対策 英語", href: "/english-training/" },
+    ],
+  },
+  {
     label: "校舎 / 寮",
     links: [
       { label: "アクセス", href: "/top/access/" },
