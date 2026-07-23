@@ -295,11 +295,11 @@ li {
   position: relative;
   isolation: isolate;
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   width: min(1120px, calc(100% - 40px));
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 0 clamp(14px, 3vw, 34px);
+  padding: 0 clamp(10px, 2vw, 22px);
   border: 1px solid #222;
   background: #fff;
   list-style: none;
@@ -320,11 +320,11 @@ li {
   min-height: 48px;
   align-items: center;
   justify-content: center;
-  padding: 12px clamp(6px, 1.3vw, 14px);
+  padding: 12px clamp(4px, 0.9vw, 10px);
   border-inline: 0;
   color: #111;
   font-family: "BIZ UDPGothic", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
-  font-size: clamp(0.78rem, 1.28vw, 0.98rem);
+  font-size: clamp(0.76rem, 1.04vw, 0.94rem);
   font-weight: 600;
   line-height: 1.25;
   text-align: center;
@@ -354,7 +354,7 @@ li {
   flex: 0 0 auto;
   width: 3px;
   height: 15px;
-  margin-right: clamp(5px, 0.9vw, 10px);
+  margin-right: clamp(4px, 0.6vw, 7px);
   background: #f2a100;
   vertical-align: -2px;
 }
