@@ -1,15 +1,15 @@
 .admissions-page {
-  --admissions-ink: #13233f;
-  --admissions-navy: #112d50;
-  --admissions-blue: #1f5fa7;
-  --admissions-sky: #e9f4ff;
-  --admissions-cyan: #6fd3e6;
-  --admissions-yellow: #ffd95a;
-  --admissions-yellow-soft: #fff6ce;
-  --admissions-red: #bd3f3f;
+  --admissions-ink: #1d1b18;
+  --admissions-navy: #261a13;
+  --admissions-blue: #8b0000;
+  --admissions-sky: #fbf4e8;
+  --admissions-cyan: #d4af37;
+  --admissions-yellow: #d4af37;
+  --admissions-yellow-soft: #fff8e6;
+  --admissions-red: #8b0000;
   --admissions-green: #28735c;
-  --admissions-paper: #f7f8f5;
-  --admissions-line: #d8e0e8;
+  --admissions-paper: #fffdf8;
+  --admissions-line: #d9d1c7;
   color: var(--admissions-ink);
   background: var(--admissions-paper);
   font-feature-settings: "palt";
@@ -48,7 +48,7 @@
   right: -170px;
   width: 560px;
   height: 560px;
-  border: 90px solid rgb(111 211 230 / 13%);
+  border: 90px solid rgb(212 175 55 / 12%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -213,7 +213,7 @@
   padding: 30px;
   color: var(--admissions-navy);
   background: #fff;
-  box-shadow: 22px 22px 0 rgb(111 211 230 / 17%);
+  box-shadow: 22px 22px 0 rgb(212 175 55 / 17%);
 }
 
 .admissions-common-card::after {
@@ -254,7 +254,7 @@
   margin: 12px 0 22px;
   border-bottom: 1px solid var(--admissions-line);
   padding-bottom: 18px;
-  color: #7d8896;
+  color: #756b62;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.72rem;
   font-weight: 800;
@@ -281,7 +281,7 @@
 }
 
 .admissions-common-card dd {
-  color: #29384e;
+  color: #3f352e;
   font-size: 0.9rem;
   font-weight: 700;
 }
@@ -312,8 +312,8 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #52e5ad;
-  box-shadow: 0 0 0 5px rgb(82 229 173 / 13%);
+  background: #d4af37;
+  box-shadow: 0 0 0 5px rgb(212 175 55 / 14%);
 }
 
 .admissions-jump-nav {
@@ -390,7 +390,7 @@
 .admissions-section-heading > p:last-child:not(:first-child),
 .admissions-section-heading > div + p {
   margin-bottom: 0;
-  color: #687588;
+  color: #756b62;
   font-size: 0.96rem;
 }
 
@@ -429,7 +429,7 @@
 .admissions-stat-grid article > span {
   display: block;
   margin-bottom: 12px;
-  color: #667387;
+  color: #756b62;
   font-size: 0.75rem;
   font-weight: 800;
 }
@@ -453,7 +453,7 @@
 
 .admissions-stat-grid p {
   margin: 17px 0 0;
-  color: #798494;
+  color: #756b62;
   font-size: 0.75rem;
   line-height: 1.6;
 }
@@ -464,7 +464,7 @@
   gap: 18px;
   align-items: start;
   margin-top: 30px;
-  border: 1px solid #ead58e;
+  border: 1px solid #e4cf86;
   border-radius: 5px;
   padding: 20px 24px;
   background: var(--admissions-yellow-soft);
@@ -491,7 +491,7 @@
 
 .admissions-notice p {
   margin: 0;
-  color: #655d44;
+  color: #6d6048;
   font-size: 0.8rem;
   line-height: 1.75;
 }
@@ -554,7 +554,7 @@
   display: grid;
   grid-template-columns: 112px 1fr;
   min-height: 104px;
-  background: #17375d;
+  background: #4a1111;
 }
 
 .admissions-calendar-row[hidden] {
@@ -562,7 +562,7 @@
 }
 
 .admissions-calendar-row--common {
-  background: #1b496b;
+  background: #6b1717;
 }
 
 .admissions-calendar-date {
@@ -636,7 +636,7 @@
   position: sticky;
   top: 24px;
   overflow: hidden;
-  border: 1px solid #e6d27e;
+  border: 1px solid #e4cf86;
   border-radius: 5px;
   padding: 30px;
   background: var(--admissions-yellow-soft);
@@ -656,7 +656,7 @@
 
 .admissions-deadline-focus > span {
   display: block;
-  color: #7b6314;
+  color: #745b0d;
   font-size: 0.76rem;
   font-weight: 900;
 }
@@ -673,7 +673,7 @@
 
 .admissions-deadline-focus p {
   margin-bottom: 18px;
-  color: #544b32;
+  color: #51473d;
   font-size: 0.84rem;
   line-height: 1.75;
 }
@@ -722,13 +722,13 @@
 
 .admissions-deadline-list p {
   margin: 0;
-  color: #425169;
+  color: #4c433c;
   font-size: 0.82rem;
   line-height: 1.7;
 }
 
 .admissions-universities {
-  background: #eef2f5;
+  background: #f4f1ec;
 }
 
 .admissions-filter {
@@ -741,7 +741,7 @@
   border-radius: 5px;
   padding: 18px;
   background: #fff;
-  box-shadow: 0 8px 28px rgb(17 45 80 / 5%);
+  box-shadow: 0 8px 28px rgb(38 26 19 / 7%);
 }
 
 .admissions-filter label {
@@ -750,7 +750,7 @@
 }
 
 .admissions-filter label > span {
-  color: #6b788b;
+  color: #746c63;
   font-size: 0.67rem;
   font-weight: 900;
 }
@@ -759,7 +759,7 @@
 .admissions-filter select {
   width: 100%;
   min-height: 45px;
-  border: 1px solid #cfd8e1;
+  border: 1px solid #d9d1c7;
   border-radius: 3px;
   padding: 8px 12px;
   color: var(--admissions-navy);
@@ -770,16 +770,16 @@
 .admissions-filter input:focus,
 .admissions-filter select:focus {
   border-color: var(--admissions-blue);
-  outline: 3px solid rgb(31 95 167 / 12%);
+  outline: 3px solid rgb(139 0 0 / 12%);
 }
 
 .admissions-filter__reset {
   min-height: 45px;
-  border: 1px solid #b8c3ce;
+  border: 1px solid #cfc5ba;
   border-radius: 3px;
   padding: 8px 14px;
-  color: #536174;
-  background: #f5f7f8;
+  color: #60584f;
+  background: #faf7f2;
   font-size: 0.74rem;
   font-weight: 800;
   cursor: pointer;
@@ -792,7 +792,7 @@
 
 .admissions-filter-result {
   margin-bottom: 15px;
-  color: #647185;
+  color: #746c63;
   font-size: 0.77rem;
 }
 
@@ -813,7 +813,7 @@
   border: 1px solid var(--admissions-line);
   border-radius: 5px;
   background: #fff;
-  box-shadow: 0 5px 20px rgb(17 45 80 / 3%);
+  box-shadow: 0 5px 20px rgb(38 26 19 / 5%);
 }
 
 .admissions-university[hidden] {
@@ -836,7 +836,7 @@
 }
 
 .admissions-university > summary:hover {
-  background: #fbfcfd;
+  background: #fffdfa;
 }
 
 .admissions-university__number {
@@ -858,7 +858,7 @@
 }
 
 .admissions-university__identity small {
-  color: #7b8798;
+  color: #756b62;
   font-size: 0.67rem;
   font-weight: 700;
 }
@@ -891,13 +891,13 @@
 }
 
 .route-chip--general {
-  color: #18558f;
-  background: #e4f1ff;
+  color: #7a1515;
+  background: #f7e9e4;
 }
 
 .route-chip--common {
-  color: #176277;
-  background: #dff7fa;
+  color: #75601b;
+  background: #fff5d6;
 }
 
 .status-chip--official {
@@ -911,8 +911,8 @@
 }
 
 .status-chip--pending {
-  color: #6a7180;
-  background: #e9ebee;
+  color: #6f675f;
+  background: #eeeae5;
 }
 
 .admissions-university__open {
@@ -944,7 +944,7 @@
 .admissions-university__body {
   border-top: 1px solid var(--admissions-line);
   padding: 20px;
-  background: #fafbfd;
+  background: #faf7f2;
 }
 
 .admissions-route-head {
@@ -952,7 +952,7 @@
   grid-template-columns: 1.12fr 1.45fr 1fr 1fr 0.9fr 0.9fr;
   gap: 12px;
   padding: 0 11px 8px;
-  color: #7e8998;
+  color: #756b62;
   font-size: 0.64rem;
   font-weight: 900;
 }
@@ -973,7 +973,7 @@
 }
 
 .admissions-route--common {
-  border-left-color: #42aabc;
+  border-left-color: #d4af37;
 }
 
 .admissions-route > div:first-child {
@@ -1006,13 +1006,13 @@
 .admissions-route dt {
   display: none;
   margin-bottom: 4px;
-  color: #7d8999;
+  color: #756b62;
   font-size: 0.61rem;
   font-weight: 900;
 }
 
 .admissions-route dd {
-  color: #37465c;
+  color: #493f37;
   font-size: 0.72rem;
   font-weight: 700;
   line-height: 1.55;
@@ -1047,10 +1047,10 @@
 }
 
 .admissions-empty {
-  border: 1px dashed #afbac6;
+  border: 1px dashed #c8bdb3;
   border-radius: 5px;
   padding: 48px 24px;
-  color: #687487;
+  color: #756b62;
   background: #fff;
   text-align: center;
 }
@@ -1077,7 +1077,7 @@
   bottom: -130px;
   width: 440px;
   height: 440px;
-  border: 70px solid rgb(111 211 230 / 8%);
+  border: 70px solid rgb(212 175 55 / 9%);
   border-radius: 50%;
 }
 
@@ -1117,7 +1117,7 @@
 }
 
 .admissions-common-test__dates .is-accent span {
-  color: rgb(17 45 80 / 66%);
+  color: rgb(38 26 19 / 66%);
 }
 
 .admissions-common-test__dates strong {
@@ -1132,7 +1132,7 @@
 }
 
 .admissions-common-test__dates .is-accent small {
-  color: rgb(17 45 80 / 56%);
+  color: rgb(38 26 19 / 56%);
 }
 
 .admissions-common-grid {
@@ -1258,14 +1258,14 @@
 
 .admissions-guide__steps p {
   margin: 0;
-  color: #6d798b;
+  color: #756b62;
   font-size: 0.78rem;
   line-height: 1.75;
 }
 
 .admissions-faq {
   border-top: 1px solid var(--admissions-line);
-  background: #f7f8f5;
+  background: #fffdf8;
 }
 
 .admissions-faq__list {
@@ -1322,7 +1322,7 @@
   margin: 0;
   border-top: 1px solid var(--admissions-line);
   padding: 18px 25px 20px 58px;
-  color: #59677b;
+  color: #685f57;
   font-size: 0.82rem;
   line-height: 1.85;
 }
@@ -1548,7 +1548,7 @@
 
   .admissions-common-card {
     padding: 25px 22px;
-    box-shadow: 12px 12px 0 rgb(111 211 230 / 17%);
+    box-shadow: 12px 12px 0 rgb(212 175 55 / 17%);
   }
 
   .admissions-common-card__date span {
