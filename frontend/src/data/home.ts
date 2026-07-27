@@ -183,6 +183,7 @@ export const navGroups: NavGroup[] = [
     links: [
       { label: "国公立医学部（大学別）", href: "/top/information-kokuritsu/" },
       { label: "私立医学部（大学別）", href: "/top/information-shiritsu/" },
+      { label: "2027年度 私立医学部入試日程", href: "/private-medical-school-admissions-schedule-2027/" },
       { label: "私立医学部 入試のQ＆A", href: "/information-faq/" },
       { label: "私立医学部 繰り上げ合格データ", href: "/kuriage-information/" },
     ],

@@ -24,6 +24,7 @@ const staticPagePaths = [
   "/medical-math-training/",
   "/information-faq/",
   "/kuriage-information/",
+  "/private-medical-school-admissions-schedule-2027/",
   "/penguin-geometry/",
   "/penguin-integral/",
   "/test-entry/",
