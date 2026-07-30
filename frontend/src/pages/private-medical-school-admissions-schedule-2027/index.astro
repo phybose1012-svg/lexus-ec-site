@@ -31,9 +31,9 @@ const commonRouteCount = privateMedicalUniversities2027.reduce(
 );
 
 const statusLabels: Record<AdmissionRouteStatus, string> = {
-  official: "要項確認済",
-  preliminary: "公式日程（概要）",
-  pending: "未公表",
+  official: "詳細日程あり",
+  preliminary: "概要日程あり",
+  pending: "日程未公表",
 };
 
 const faqs = [
@@ -195,22 +195,22 @@ const faqJsonLd = {
           <article>
             <span>共通テスト利用</span>
             <strong>{commonTestUniversities.length}<small>大学</small></strong>
-            <p>全{commonRouteCount}方式を一覧化</p>
+            <p>前期・後期など全{commonRouteCount}方式</p>
           </article>
           <article>
-            <span>完全版要項を確認</span>
+            <span>確定版の募集要項が公表済み</span>
             <strong>{officialUniversities.length}<small>大学</small></strong>
-            <p>概要公表校とは分けて表示</p>
+            <p>出願から入学手続まで詳しく確認</p>
           </article>
         </div>
 
         <div class="admissions-notice" role="note">
           <span aria-hidden="true">!</span>
           <div>
-            <strong>参照データベースと大学公式資料で全31大学を再確認しました</strong>
+            <strong>大学によって、現在公表されている情報の範囲が異なります</strong>
             <p>
-              完全版の募集要項まで確認できた方式は「要項確認済」、入試概要・公式日程のみの方式は「公式日程（概要）」と区別しています。
-              公式に確認できない日付は予測せず、出願時は各行の「公式情報」から最新の学生募集要項をご確認ください。
+              「詳細日程あり」は確定版の募集要項が公表済み、「概要日程あり」は試験日などの概要が公表済みの大学です。
+              未発表の日付は公表され次第更新します。出願前には各大学の最新情報も必ずご確認ください。
             </p>
           </div>
         </div>
@@ -320,12 +320,12 @@ const faqJsonLd = {
             </select>
           </label>
           <label>
-            <span>公表状況</span>
+            <span>日程の公表状況</span>
             <select name="status" data-filter-status>
               <option value="all">すべて</option>
-              <option value="official">要項確認済</option>
-              <option value="preliminary">公式日程（概要）</option>
-              <option value="pending">未公表</option>
+              <option value="official">詳細日程あり</option>
+              <option value="preliminary">概要日程あり</option>
+              <option value="pending">日程未公表</option>
             </select>
           </label>
           <button type="reset" class="admissions-filter__reset">条件をクリア</button>
