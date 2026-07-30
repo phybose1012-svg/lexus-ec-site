@@ -561,6 +561,19 @@
   background: #fff;
 }
 
+.admissions-calendar-row--empty {
+  min-height: 64px;
+  background: #fbfaf8;
+}
+
+.admissions-calendar-row--empty .admissions-calendar-date {
+  background: #f7f4ef;
+}
+
+.admissions-calendar-row--empty .admissions-calendar-date strong {
+  color: #8f857c;
+}
+
 .admissions-calendar-row:not(:last-child) {
   border-bottom: 1px solid var(--admissions-line);
 }
@@ -1678,6 +1691,10 @@
   .admissions-calendar-exams {
     min-height: 72px;
     padding: 13px 15px;
+  }
+
+  .admissions-calendar-row--empty .admissions-calendar-exams {
+    min-height: 56px;
   }
 
   .admissions-calendar-exams::before {

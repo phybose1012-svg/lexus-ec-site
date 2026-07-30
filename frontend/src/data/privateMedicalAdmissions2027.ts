@@ -1078,16 +1078,34 @@ export const commonTestDates2027 = {
     "https://www.dnc.ac.jp/albums/abm.php?d=753&f=abm00017382.pdf&n=%E4%BB%A4%E5%92%8C9%E5%B9%B4%E5%BA%A6%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%80%85%E9%81%B8%E6%8A%9C%E3%81%AB%E4%BF%82%E3%82%8B%E5%A4%A7%E5%AD%A6%E5%85%A5%E5%AD%A6%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88%E5%AE%9F%E6%96%BD%E8%A6%81%E9%A0%85.pdf",
 };
 
-export const examCalendar2027 = [
+const examCalendarEvents2027 = [
   {
-    date: "1/16・17",
-    weekday: "土・日",
+    date: "1/16",
+    weekday: "土",
     first: ["大学入学共通テスト（共テ利用・併用方式）"],
     second: [],
   },
   {
-    date: "1/21〜23",
-    weekday: "木〜土",
+    date: "1/17",
+    weekday: "日",
+    first: ["大学入学共通テスト（共テ利用・併用方式）"],
+    second: [],
+  },
+  {
+    date: "1/21",
+    weekday: "木",
+    first: ["帝京（一般／自由選択）"],
+    second: [],
+  },
+  {
+    date: "1/22",
+    weekday: "金",
+    first: ["帝京（一般／自由選択）"],
+    second: [],
+  },
+  {
+    date: "1/23",
+    weekday: "土",
     first: ["帝京（一般／自由選択）"],
     second: [],
   },
@@ -1474,6 +1492,38 @@ export const examCalendar2027 = [
     second: ["大阪医科薬科（一般・後期）"],
   },
 ] as const;
+
+const examCalendarEventByDate2027 = new Map<
+  string,
+  (typeof examCalendarEvents2027)[number]
+>(examCalendarEvents2027.map((event) => [event.date, event]));
+const examCalendarStart2027 = Date.UTC(2027, 0, 16);
+const examCalendarEnd2027 = Date.UTC(2027, 2, 18);
+const millisecondsPerDay = 24 * 60 * 60 * 1000;
+const weekdayLabels = ["日", "月", "火", "水", "木", "金", "土"] as const;
+
+export const examCalendar2027 = Array.from(
+  {
+    length:
+      Math.floor(
+        (examCalendarEnd2027 - examCalendarStart2027) / millisecondsPerDay,
+      ) + 1,
+  },
+  (_, index) => {
+    const currentDate = new Date(
+      examCalendarStart2027 + index * millisecondsPerDay,
+    );
+    const date = `${currentDate.getUTCMonth() + 1}/${currentDate.getUTCDate()}`;
+    const event = examCalendarEventByDate2027.get(date);
+
+    return {
+      date,
+      weekday: event?.weekday ?? weekdayLabels[currentDate.getUTCDay()],
+      first: event?.first ?? [],
+      second: event?.second ?? [],
+    };
+  },
+);
 
 export const applicationDeadlineClusters2027 = [
   { date: "1/7", schools: "川崎医科・久留米（前期／共テA）・国際医療福祉（一般）" },
