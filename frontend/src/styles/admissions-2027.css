@@ -522,55 +522,47 @@
   color: #756b62;
 }
 
-.admissions-calendar-toolbar {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 24px;
-}
-
-.admissions-calendar-toolbar button {
-  min-height: 39px;
+.admissions-calendar-head {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr) minmax(0, 1fr);
+  overflow: hidden;
   border: 1px solid var(--admissions-line);
-  border-radius: 999px;
-  padding: 6px 17px;
-  color: #60584f;
-  background: #fff;
-  font-size: 0.78rem;
-  font-weight: 800;
-  cursor: pointer;
+  border-bottom: 0;
+  border-radius: 5px 5px 0 0;
+  color: #5f554c;
+  background: #f7f2eb;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
 }
 
-.admissions-calendar-toolbar button:hover,
-.admissions-calendar-toolbar button.is-active {
-  border-color: rgb(139 0 0 / 35%);
-  color: var(--admissions-blue);
-  background: #f9efea;
+.admissions-calendar-head span {
+  padding: 12px 20px;
+}
+
+.admissions-calendar-head span:not(:first-child) {
+  border-left: 1px solid var(--admissions-line);
 }
 
 .admissions-calendar-list {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1px;
+  grid-template-columns: 1fr;
   overflow: hidden;
   border: 1px solid var(--admissions-line);
-  border-radius: 5px;
-  background: var(--admissions-line);
+  border-radius: 0 0 5px 5px;
+  background: #fff;
   box-shadow: 0 14px 36px rgb(38 26 19 / 5%);
 }
 
 .admissions-calendar-row {
   display: grid;
-  grid-template-columns: 112px 1fr;
-  min-height: 104px;
+  grid-template-columns: 112px minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 88px;
   background: #fff;
 }
 
-.admissions-calendar-row[hidden] {
-  display: none;
-}
-
-.admissions-calendar-row--common {
-  background: #fffaf0;
+.admissions-calendar-row:not(:last-child) {
+  border-bottom: 1px solid var(--admissions-line);
 }
 
 .admissions-calendar-date {
@@ -594,33 +586,51 @@
   font-size: 0.66rem;
 }
 
-.admissions-calendar-event {
+.admissions-calendar-exams {
   display: grid;
   align-content: center;
-  padding: 17px 20px;
+  padding: 15px 20px;
 }
 
-.admissions-calendar-event > span {
-  justify-self: start;
-  margin-bottom: 7px;
-  border-radius: 2px;
-  padding: 2px 8px;
-  color: var(--admissions-navy);
-  background: var(--admissions-yellow);
-  font-size: 0.65rem;
-  font-weight: 900;
+.admissions-calendar-exams + .admissions-calendar-exams {
+  border-left: 1px solid var(--admissions-line);
 }
 
-.admissions-calendar-row--common .admissions-calendar-event > span {
-  background: var(--admissions-cyan);
-}
-
-.admissions-calendar-event p {
+.admissions-calendar-exams ul {
+  display: grid;
+  gap: 7px;
   margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.admissions-calendar-exams li {
+  position: relative;
+  padding-left: 13px;
   color: #493f37;
-  font-size: 0.84rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  line-height: 1.65;
+  line-height: 1.55;
+}
+
+.admissions-calendar-exams li::before {
+  position: absolute;
+  top: 0.72em;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--admissions-blue);
+  content: "";
+}
+
+.admissions-calendar-exams + .admissions-calendar-exams li::before {
+  background: #b98524;
+}
+
+.admissions-calendar-empty {
+  color: #b7aea6;
+  font-size: 0.8rem;
 }
 
 .admissions-calendar-caption {
@@ -1644,29 +1654,47 @@
     padding: 18px;
   }
 
-  .admissions-calendar-toolbar {
-    overflow-x: auto;
-    padding-bottom: 4px;
+  .admissions-calendar-head {
+    display: none;
   }
 
-  .admissions-calendar-toolbar button {
-    flex: 0 0 auto;
+  .admissions-calendar-list {
+    border-radius: 5px;
   }
 
   .admissions-calendar-row {
-    grid-template-columns: 86px 1fr;
-    min-height: 95px;
+    grid-template-columns: 82px minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .admissions-calendar-date {
+    grid-row: 1 / span 2;
   }
 
   .admissions-calendar-date strong {
     font-size: 1.08rem;
   }
 
-  .admissions-calendar-event {
+  .admissions-calendar-exams {
+    min-height: 72px;
     padding: 13px 15px;
   }
 
-  .admissions-calendar-event p {
+  .admissions-calendar-exams::before {
+    margin-bottom: 8px;
+    color: #8b8178;
+    content: attr(data-heading);
+    font-size: 0.62rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+  }
+
+  .admissions-calendar-exams + .admissions-calendar-exams {
+    border-top: 1px solid var(--admissions-line);
+    border-left: 0;
+  }
+
+  .admissions-calendar-exams li {
     font-size: 0.76rem;
   }
 
@@ -1820,7 +1848,6 @@
   .site-footer,
   .admissions-hero__actions,
   .admissions-jump-nav,
-  .admissions-calendar-toolbar,
   .admissions-filter,
   .admissions-filter-result,
   .admissions-print-button,
@@ -1863,19 +1890,19 @@
   }
 
   .admissions-calendar-list {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     border-color: #999;
-    background: #999;
-  }
-
-  .admissions-calendar-row,
-  .admissions-calendar-row--common {
-    color: #111;
     background: #fff;
   }
 
+  .admissions-calendar-row {
+    color: #111;
+    background: #fff;
+    break-inside: avoid;
+  }
+
   .admissions-calendar-date strong,
-  .admissions-calendar-event p {
+  .admissions-calendar-exams li {
     color: #111;
   }
 

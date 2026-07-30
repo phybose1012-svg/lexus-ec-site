@@ -221,33 +221,47 @@ const faqJsonLd = {
       <div class="content">
         <div class="admissions-section-heading admissions-section-heading--light">
           <p>EXAM CALENDAR</p>
-          <h2 id="calendar-title">一次試験を日付順に見る</h2>
-          <p>受験校が重なる「入試集中日」をひと目で確認できます。</p>
+          <h2 id="calendar-title">一次・二次試験を日付順に見る</h2>
+          <p>同じ日の一次試験と二次試験を並べて、受験校の重なりを確認できます。</p>
         </div>
 
-        <div class="admissions-calendar-toolbar" role="group" aria-label="カレンダーの絞り込み">
-          <button type="button" class="is-active" data-calendar-filter="all" aria-pressed="true">すべて</button>
-          <button type="button" data-calendar-filter="general" aria-pressed="false">一般選抜</button>
-          <button type="button" data-calendar-filter="common" aria-pressed="false">共テ・併用</button>
+        <div class="admissions-calendar-head" aria-hidden="true">
+          <span>日付</span>
+          <span>一次試験</span>
+          <span>二次試験</span>
         </div>
 
         <div class="admissions-calendar-list">
           {examCalendar2027.map((event) => (
-            <article class={`admissions-calendar-row admissions-calendar-row--${event.type}`} data-calendar-type={event.type}>
+            <article class="admissions-calendar-row">
               <div class="admissions-calendar-date">
                 <strong>{event.date}</strong>
                 <span>{event.weekday}</span>
               </div>
-              <div class="admissions-calendar-event">
-                <span>{event.label}</span>
-                <p>{event.schools}</p>
+              <div class="admissions-calendar-exams" data-heading="一次試験">
+                {event.first.length > 0 ? (
+                  <ul>
+                    {event.first.map((exam) => <li>{exam}</li>)}
+                  </ul>
+                ) : (
+                  <span class="admissions-calendar-empty">—</span>
+                )}
+              </div>
+              <div class="admissions-calendar-exams" data-heading="二次試験">
+                {event.second.length > 0 ? (
+                  <ul>
+                    {event.second.map((exam) => <li>{exam}</li>)}
+                  </ul>
+                ) : (
+                  <span class="admissions-calendar-empty">—</span>
+                )}
               </div>
             </article>
           ))}
         </div>
 
         <p class="admissions-calendar-caption">
-          ※主に一次試験・共通テスト本試験を掲載。二次試験は下の「大学別31校」で確認できます。
+          ※複数日から選択する試験・大学が受験日を指定する試験は、候補日すべてに掲載しています。
         </p>
       </div>
     </section>
@@ -597,25 +611,6 @@ const faqJsonLd = {
         form.addEventListener("change", applyFilters);
         form.addEventListener("reset", () => window.setTimeout(applyFilters, 0));
       }
-
-      const calendarButtons = [...document.querySelectorAll("[data-calendar-filter]")];
-      const calendarRows = [...document.querySelectorAll("[data-calendar-type]")];
-      calendarButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          if (!(button instanceof HTMLButtonElement)) return;
-          const filter = button.dataset.calendarFilter || "all";
-          calendarButtons.forEach((item) => {
-            if (!(item instanceof HTMLButtonElement)) return;
-            const active = item === button;
-            item.classList.toggle("is-active", active);
-            item.setAttribute("aria-pressed", String(active));
-          });
-          calendarRows.forEach((row) => {
-            if (!(row instanceof HTMLElement)) return;
-            row.hidden = filter !== "all" && row.dataset.calendarType !== filter;
-          });
-        });
-      });
 
       document.querySelector("[data-print-page]")?.addEventListener("click", () => window.print());
     })();
