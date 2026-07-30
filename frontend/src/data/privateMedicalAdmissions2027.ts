@@ -29,22 +29,6 @@ const officialRoute = (route: PublishedRoute): AdmissionRoute => ({
   status: "official",
 });
 
-const pendingRoute = (
-  name = "一般選抜",
-  sourceUrl?: string,
-  category: AdmissionRouteCategory = "general",
-): AdmissionRoute => ({
-  name,
-  category,
-  application: "2027年度募集要項の公表待ち",
-  firstExam: "未公表",
-  secondExam: "未公表",
-  result: "未公表",
-  procedure: "未公表",
-  status: "pending",
-  sourceUrl,
-});
-
 const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
   {
     id: "iwate-medical",
@@ -53,10 +37,16 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
     prefecture: "岩手県",
     strategyPath: "/iwateika-university-entrance-exam-measures2027/",
     routes: [
-      pendingRoute(
-        "一般選抜",
-        "https://www.iwate-med.ac.jp/education/entrance/",
-      ),
+      officialRoute({
+        name: "一般選抜",
+        category: "general",
+        application: "2026/12/4〜2027/1/8（消印有効）",
+        firstExam: "2/3",
+        secondExam: "2/12・13の選択日",
+        result: "一次 2/9・最終 2/18",
+        procedure: "2/26まで",
+        sourceUrl: "https://www.imu-admission.jp/guidelines/gl_gaiyou/",
+      }),
     ],
   },
   {
@@ -1096,7 +1086,7 @@ export const examCalendar2027 = [
   { date: "1/31", weekday: "日", type: "general", label: "一般1次", schools: "近畿（前期）" },
   { date: "2/1", weekday: "月", type: "general", label: "一般1次", schools: "川崎医科・日本・日本医科・久留米・東京女子医科" },
   { date: "2/2", weekday: "火", type: "general", label: "一般1次", schools: "杏林・関西医科・東海・福岡・北里" },
-  { date: "2/3", weekday: "水", type: "general", label: "一般1次", schools: "金沢医科・順天堂・東海" },
+  { date: "2/3", weekday: "水", type: "general", label: "一般1次", schools: "岩手医科・金沢医科・順天堂・東海" },
   { date: "2/4", weekday: "木", type: "general", label: "一般1次", schools: "東北医科薬科・藤田医科・聖マリアンナ・埼玉医科・兵庫医科・金沢医科" },
   { date: "2/5", weekday: "金", type: "general", label: "一般1次", schools: "昭和医科" },
   { date: "2/6", weekday: "土", type: "general", label: "一般1次", schools: "東京医科" },
@@ -1117,6 +1107,7 @@ export const examCalendar2027 = [
 
 export const applicationDeadlineClusters2027 = [
   { date: "1/7", schools: "川崎医科・久留米（前期／共テA）・国際医療福祉（一般）" },
+  { date: "1/8", schools: "岩手医科（一般）" },
   { date: "1/12", schools: "福岡（一般／共テ）" },
   { date: "1/13", schools: "帝京（一般）・東京医科（一般／共テ）" },
   { date: "1/14", schools: "近畿（一般前期）・国際医療福祉（共テ）・聖マリアンナ（共テ）" },
