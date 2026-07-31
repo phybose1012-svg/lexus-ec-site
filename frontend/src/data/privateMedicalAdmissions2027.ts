@@ -143,7 +143,7 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         application: "2026/12/14〜2027/1/20（書類1/21必着）",
         firstExam: "2/4",
         secondExam: "2/14",
-        result: "一次 2/10・最終 2/18",
+        result: "一次 2/10 13:00・最終 2/18 16:00",
         procedure: "2/18〜2/25",
         sourceUrl:
           "https://adm.saitama-med.ac.jp/wp-content/uploads/2026/07/fa58cf881ba4ac57b5c60b69b2ac25d2.pdf",
@@ -153,19 +153,19 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application: "2027/2/1〜2/17（書類2/18必着）",
         firstExam: "2/28",
-        secondExam: "3/7",
-        result: "一次 3/4・最終 3/11",
+        secondExam: "3/7（共テ利用と双方一次合格の場合は1回のみ）",
+        result: "一次 3/4 13:00・最終 3/11 16:00",
         procedure: "3/11〜3/17",
         sourceUrl:
           "https://adm.saitama-med.ac.jp/wp-content/uploads/2026/07/fa58cf881ba4ac57b5c60b69b2ac25d2.pdf",
       }),
       officialRoute({
-        name: "共通テスト利用",
+        name: "大学入学共通テスト利用選抜",
         category: "common",
         application: "2026/12/14〜2027/1/15（書類1/16必着）",
         firstExam: "共通テスト 1/16・17",
-        secondExam: "3/7",
-        result: "一次 3/4・最終 3/11",
+        secondExam: "3/7（一般後期と双方一次合格の場合は1回のみ）",
+        result: "一次 3/4 13:00・最終 3/11 16:00",
         procedure: "3/11〜3/17",
         sourceUrl:
           "https://adm.saitama-med.ac.jp/wp-content/uploads/2026/07/fa58cf881ba4ac57b5c60b69b2ac25d2.pdf",
@@ -1454,7 +1454,7 @@ const examCalendarEvents2027 = [
     date: "3/7",
     weekday: "日",
     first: [],
-    second: ["埼玉医科（一般・後期／共テ）"],
+    second: ["埼玉医科（一般・後期／共テ／双方一次合格者は1回のみ）"],
   },
   {
     date: "3/8",
@@ -1656,7 +1656,7 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     dateTime: "2027-01-15",
     university: "埼玉医科大学",
     routes: "共テ利用",
-    webDeadline: "1/15（時刻未公表）",
+    webDeadline: "1/15（終了時刻の記載なし）",
     documentDeadline: "1/16 必着",
     sourceUrl: "https://adm.saitama-med.ac.jp/wp-content/uploads/2026/07/fa58cf881ba4ac57b5c60b69b2ac25d2.pdf",
   },
@@ -1792,7 +1792,7 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     dateTime: "2027-01-20",
     university: "埼玉医科大学",
     routes: "一般前期",
-    webDeadline: "1/20（時刻未公表）",
+    webDeadline: "1/20（終了時刻の記載なし）",
     documentDeadline: "1/21 必着",
     sourceUrl: "https://adm.saitama-med.ac.jp/wp-content/uploads/2026/07/fa58cf881ba4ac57b5c60b69b2ac25d2.pdf",
   },
@@ -1955,7 +1955,7 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     dateTime: "2027-02-17",
     university: "埼玉医科大学",
     routes: "一般後期",
-    webDeadline: "2/17（時刻未公表）",
+    webDeadline: "2/17（終了時刻の記載なし）",
     documentDeadline: "2/18 必着",
     sourceUrl: "https://adm.saitama-med.ac.jp/wp-content/uploads/2026/07/fa58cf881ba4ac57b5c60b69b2ac25d2.pdf",
   },
@@ -2267,6 +2267,9 @@ const parseScheduleDates = (
 };
 
 const examSelectionDetail = (value: string) => {
+  if (value.includes("双方一次合格") || value.includes("1回のみ")) {
+    return "両方式一次合格者は1回のみ";
+  }
   if (value.includes("両日受験可")) return "1日または両日受験可";
   if (value.includes("指定方法未公表")) return "いずれか1日・指定方法未公表";
   if (value.includes("両日受験")) return "両日受験";
