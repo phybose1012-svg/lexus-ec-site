@@ -109,13 +109,14 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
     strategyPath: "/dokkyouika-university-entrance-exam-measures2027/",
     routes: [
       officialRoute({
-        name: "一般選抜 前期",
+        name: "一般選抜 前期（栃木県・新潟県地域枠を含む）",
         category: "general",
         application: "2026/12/23〜2027/2/1",
         firstExam: "2/12・13（両日受験可）",
-        secondExam: "2/19・20の選択日",
-        procedure: "2027年度募集要項で確認",
-        sourceUrl: "https://www.dokkyomed.ac.jp/dusm/exam/",
+        secondExam: "2/19・20のいずれか1日（指定方法未公表）",
+        result: "一次 2/16 10:00・最終 2/26 17:00",
+        procedure: "3/4",
+        sourceUrl: "https://www.dokkyomed.ac.jp/dusm/exam/entrance/",
       }),
       officialRoute({
         name: "一般選抜 後期",
@@ -123,8 +124,9 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         application: "2027/2/8〜3/1",
         firstExam: "3/8",
         secondExam: "3/15",
-        procedure: "2027年度募集要項で確認",
-        sourceUrl: "https://www.dokkyomed.ac.jp/dusm/exam/",
+        result: "一次 3/11 10:00・最終 3/17 17:00",
+        procedure: "3/24",
+        sourceUrl: "https://www.dokkyomed.ac.jp/dusm/exam/entrance/",
       }),
     ],
   },
@@ -1266,7 +1268,7 @@ const examCalendarEvents2027 = [
   {
     date: "2/12",
     weekday: "金",
-    first: ["獨協医科①（一般・前期／両日受験可）"],
+    first: ["獨協医科①（一般・前期／1日または両日受験可）"],
     second: [
       "岩手医科①（一般／①〜②から受験者が選択）",
       "杏林②（一般／①〜②から受験者が選択）",
@@ -1276,7 +1278,7 @@ const examCalendarEvents2027 = [
   {
     date: "2/13",
     weekday: "土",
-    first: ["獨協医科②（一般・前期／両日受験可）"],
+    first: ["獨協医科②（一般・前期／1日または両日受験可）"],
     second: [
       "岩手医科②（一般／①〜②から受験者が選択）",
       "昭和医科①（一般・Ⅰ期／①〜②から受験者が選択）",
@@ -1354,7 +1356,7 @@ const examCalendarEvents2027 = [
     first: [],
     second: [
       "愛知医科②（一般・共テ／①〜③から希望日を提出）",
-      "獨協医科①（一般・前期／①〜②から受験者が選択）",
+      "獨協医科①（一般・前期／①〜②のいずれか1日・指定方法未公表）",
       "大阪医科薬科（一般・前期／大阪府地域枠）",
     ],
   },
@@ -1364,7 +1366,7 @@ const examCalendarEvents2027 = [
     first: [],
     second: [
       "東北医科薬科①（一般／①〜②から大学指定）",
-      "獨協医科②（一般・前期／①〜②から受験者が選択）",
+      "獨協医科②（一般・前期／①〜②のいずれか1日・指定方法未公表）",
       "国際医療福祉②（共テ／①・②の両日受験／面接）",
       "杏林（共テ／個別テスト）",
       "東京慈恵会医科①（一般／①〜③から大学指定）",
@@ -1916,10 +1918,10 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     date: "2/1",
     dateTime: "2027-02-01",
     university: "獨協医科大学",
-    routes: "一般前期",
-    webDeadline: "2/1（時刻未公表）",
+    routes: "一般前期（栃木・新潟地域枠を含む）",
+    webDeadline: "登録方法・時刻は要項公開待ち",
     documentDeadline: "提出方法・期限は要項公開待ち",
-    sourceUrl: "https://www.dokkyomed.ac.jp/dusm/exam/",
+    sourceUrl: "https://www.dokkyomed.ac.jp/dusm/exam/entrance/",
   },
   {
     date: "2/1",
@@ -2070,9 +2072,9 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     dateTime: "2027-03-01",
     university: "獨協医科大学",
     routes: "一般後期",
-    webDeadline: "3/1（時刻未公表）",
+    webDeadline: "登録方法・時刻は要項公開待ち",
     documentDeadline: "提出方法・期限は要項公開待ち",
-    sourceUrl: "https://www.dokkyomed.ac.jp/dusm/exam/",
+    sourceUrl: "https://www.dokkyomed.ac.jp/dusm/exam/entrance/",
   },
   {
     date: "未公表",
@@ -2265,6 +2267,8 @@ const parseScheduleDates = (
 };
 
 const examSelectionDetail = (value: string) => {
+  if (value.includes("両日受験可")) return "1日または両日受験可";
+  if (value.includes("指定方法未公表")) return "いずれか1日・指定方法未公表";
   if (value.includes("両日受験")) return "両日受験";
   if (value.includes("自由選択")) return "自由選択";
   if (value.includes("希望をもとに大学が指定")) return "希望をもとに大学指定";
