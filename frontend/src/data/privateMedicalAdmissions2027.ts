@@ -766,8 +766,9 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "一般選抜 前期",
         category: "general",
         application: "Web 2026/12/14 9:00〜2027/1/15 15:00（書類消印有効）",
-        firstExam: "2/3・4（自由選択）",
-        secondExam: "2/17・18の選択日",
+        firstExam:
+          "2/3・4（1日または両日受験可・両日受験は高得点日で判定／本学・東京・大阪・名古屋・福岡）",
+        secondExam: "2/17・18のうち希望する1日（本学）",
         result: "一次 2/10 17:30・最終 2/22 17:30",
         procedure: "3/1 15:00まで",
         sourceUrl: "https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_admissionguide.pdf.pdf",
@@ -776,8 +777,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "一般選抜 後期",
         category: "general",
         application: "Web 2027/1/12 9:00〜2/24 15:00（書類消印有効）",
-        firstExam: "3/4",
-        secondExam: "3/12",
+        firstExam: "3/4（本学・東京・大阪）",
+        secondExam: "3/12（本学）",
         result: "一次 3/9 17:30・最終 3/16 17:30",
         procedure: "3/23 15:00まで",
         sourceUrl: "https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_admissionguide.pdf.pdf",
@@ -1296,7 +1297,7 @@ const examCalendarEvents2027 = [
     weekday: "水",
     first: [
       "岩手医科（一般）",
-      "金沢医科①（一般・前期／2/3・4から選択）",
+      "金沢医科①（一般・前期／①〜②の1日または両日受験可・高得点日で判定）",
       "順天堂（一般A／学力・小論文）",
       "順天堂（一般B／学力）",
       "順天堂（共テ・前期／小論文）",
@@ -1317,7 +1318,7 @@ const examCalendarEvents2027 = [
       "聖マリアンナ医科（一般・前期）",
       "埼玉医科（一般・前期）",
       "兵庫医科（一般A・B）",
-      "金沢医科②（一般・前期／2/3・4から選択）",
+      "金沢医科②（一般・前期／①〜②の1日または両日受験可・高得点日で判定）",
     ],
     second: [
       "帝京①（一般／①〜②から受験者が選択）",
@@ -1441,7 +1442,7 @@ const examCalendarEvents2027 = [
     first: [],
     second: [
       "帝京（共テ・前期）",
-      "金沢医科①（一般・前期／①〜②から受験者が選択）",
+      "金沢医科①（一般・前期／①〜②のうち受験者が希望する1日）",
       "兵庫医科①（一般A／①〜②から受験者が選択）",
     ],
   },
@@ -1450,7 +1451,7 @@ const examCalendarEvents2027 = [
     weekday: "木",
     first: [],
     second: [
-      "金沢医科②（一般・前期／①〜②から受験者が選択）",
+      "金沢医科②（一般・前期／①〜②のうち受験者が希望する1日）",
       "兵庫医科②（一般A／①〜②から受験者が選択）",
       "愛知医科①（一般・共テ／①〜③から希望日を提出）",
     ],
