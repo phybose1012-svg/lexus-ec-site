@@ -5,6 +5,7 @@ export type AdmissionRoute = {
   name: string;
   category: AdmissionRouteCategory;
   application: string;
+  applicationDeadlineDateDetails?: string[];
   firstExam: string;
   secondExam: string;
   result?: string;
@@ -1113,13 +1114,21 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
     strategyPath: "/kawasakiika-university-entrance-exam-measures2027/",
     routes: [
       officialRoute({
-        name: "一般選抜",
+        name: "一般選抜・地域枠選抜（岡山県／静岡県・長崎県は設置協議中）",
         category: "general",
-        application: "Web・書類 2026/12/1 9:00〜2027/1/7 17:00必着",
-        firstExam: "2/1",
-        secondExam: "2/10・11の指定日",
+        application:
+          "Web登録・検定料 2026/12/1 9:00〜2027/1/7 15:00（検定料は登録翌日23:59まで、最終日登録分は15:00まで）・1/7 17:00書類必着（書類受付はWeb登録と同期間）",
+        applicationDeadlineDateDetails: ["Web登録15:00・書類17:00必着"],
+        firstExam: "2/1（川崎医科大学 総合体育館等／8:00開場・9:15着席）",
+        secondExam:
+          "2/10・11のうち大学指定日（川崎医科大学 校舎棟／集合時刻は一次合格発表時に案内）",
         result: "一次 2/4 12:00・最終 2/13 12:00",
-        procedure: "2/13〜2/17",
+        procedure:
+          "入学金・学費等振込／書類郵送 2/17消印有効・諸会費振込／証明書郵送 3/31消印有効",
+        procedureDateDetails: [
+          "入学金・学費等振込／書類郵送（消印有効）",
+          "諸会費振込／証明書郵送（消印有効）",
+        ],
         sourceUrl: "https://m.kawasaki-m.ac.jp/examination/youkou.php",
       }),
     ],
@@ -1334,7 +1343,7 @@ const examCalendarEvents2027 = [
     date: "2/1",
     weekday: "月",
     first: [
-      "川崎医科（一般）",
+      "川崎医科（一般・地域枠〔静岡県・長崎県は設置協議中〕／総合体育館等）",
       "日大（N全学統一方式・第1期／全国20会場から希望受験地を選択）",
       "日本医科（一般・地域枠前期／グローバル）",
       "久留米（一般・前期）",
@@ -1422,7 +1431,7 @@ const examCalendarEvents2027 = [
     first: ["大阪医科薬科（一般・前期／大阪府地域枠）"],
     second: [
       "日本医科①（一般・地域枠前期／グローバル／①〜②から希望日を提出・東京都地域枠は①指定）",
-      "川崎医科①（一般／①〜②から大学指定）",
+      "川崎医科①（一般・地域枠〔静岡県・長崎県は設置協議中〕／①〜②から大学指定／校舎棟）",
     ],
   },
   {
@@ -1432,7 +1441,7 @@ const examCalendarEvents2027 = [
     second: [
       "日大（N全学統一方式・第1期／医学部校舎）",
       "杏林①（一般／①〜②の希望をもとに大学指定）",
-      "川崎医科②（一般／①〜②から大学指定）",
+      "川崎医科②（一般・地域枠〔静岡県・長崎県は設置協議中〕／①〜②から大学指定／校舎棟）",
     ],
   },
   {
@@ -1721,7 +1730,7 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     date: "1/7",
     dateTime: "2027-01-07",
     university: "川崎医科大学",
-    routes: "一般選抜",
+    routes: "一般選抜／地域枠（岡山県・静岡県※・長崎県※、※設置協議中）",
     webDeadline: "1/7 15:00",
     documentDeadline: "1/7 17:00 必着",
     sourceUrl: "https://m.kawasaki-m.ac.jp/examination/youkou.php",
@@ -2640,12 +2649,14 @@ privateMedicalUniversities2027.forEach((university) => {
       applicationDates.slice(1).forEach((date, index) => {
         addFullScheduleEvent2027(date, "applicationDeadline", {
           ...entryBase,
-          detail: applicationDeadlineDetail(
-            route.application,
-            date,
-            applicationDates,
-            index + 1,
-          ),
+          detail:
+            route.applicationDeadlineDateDetails?.[index] ??
+            applicationDeadlineDetail(
+              route.application,
+              date,
+              applicationDates,
+              index + 1,
+            ),
         });
       });
     } else {
