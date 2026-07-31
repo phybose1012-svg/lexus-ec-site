@@ -302,10 +302,16 @@ const faqJsonLd = {
 
     <section class="admissions-calendar-section" id="calendar" aria-labelledby="calendar-title">
       <div class="content">
-        <div class="admissions-section-heading admissions-section-heading--light">
-          <p>EXAM CALENDAR</p>
-          <h2 id="calendar-title">一次・二次試験を日付順に見る</h2>
-          <p>同じ日の一次試験と二次試験を並べて、受験校の重なりを確認できます。</p>
+        <div class="admissions-section-heading admissions-section-heading--light admissions-section-heading--printable">
+          <div>
+            <p>EXAM CALENDAR</p>
+            <h2 id="calendar-title">一次・二次試験を日付順に見る</h2>
+            <p>同じ日の一次試験と二次試験を並べて、受験校の重なりを確認できます。</p>
+          </div>
+          <button type="button" class="admissions-print-button" data-print-section="calendar">
+            <span aria-hidden="true">⎙</span>
+            このセクションを印刷
+          </button>
         </div>
 
         <div class="admissions-calendar-head" aria-hidden="true">
@@ -569,10 +575,16 @@ const faqJsonLd = {
 
     <section class="admissions-common-test" id="common-test" aria-labelledby="common-test-title">
       <div class="content">
-        <div class="admissions-section-heading admissions-section-heading--light">
-          <p>COMMON TEST ROUTES</p>
-          <h2 id="common-test-title">共通テスト利用だけを一覧</h2>
-          <p>共通テスト後に大学独自の試験・面接があるかどうかを、大学ごとに確認できます。</p>
+        <div class="admissions-section-heading admissions-section-heading--light admissions-section-heading--printable">
+          <div>
+            <p>COMMON TEST ROUTES</p>
+            <h2 id="common-test-title">共通テスト利用だけを一覧</h2>
+            <p>共通テスト後に大学独自の試験・面接があるかどうかを、大学ごとに確認できます。</p>
+          </div>
+          <button type="button" class="admissions-print-button" data-print-section="common-test">
+            <span aria-hidden="true">⎙</span>
+            このセクションを印刷
+          </button>
         </div>
 
         <div class="admissions-common-test__dates">
@@ -624,12 +636,9 @@ const faqJsonLd = {
 
     <section class="admissions-guide" aria-labelledby="guide-title">
       <div class="content">
-        <div class="admissions-section-heading admissions-section-heading--split">
-          <div>
-            <p>HOW TO USE</p>
-            <h2 id="guide-title">日程表の使い方</h2>
-          </div>
-          <button type="button" class="admissions-print-button" data-print-page>このページを印刷</button>
+        <div class="admissions-section-heading">
+          <p>HOW TO USE</p>
+          <h2 id="guide-title">日程表の使い方</h2>
         </div>
 
         <ol class="admissions-guide__steps">
@@ -687,6 +696,39 @@ const faqJsonLd = {
         </div>
       </div>
     </section>
+
+    <footer class="admissions-print-branding" aria-label="医学部予備校レクサスE.C.">
+      <img
+        class="admissions-print-branding__character"
+        src="/illustrations/characters/lexus-kun-running.png"
+        alt="レクサスくん"
+        width="1320"
+        height="1320"
+        loading="eager"
+        decoding="sync"
+      />
+      <div>
+        <img
+          class="admissions-print-branding__logo"
+          src="/assets/optimized/footer-logo-760.webp"
+          alt="鬼特訓する医学部予備校レクサスE.C."
+          width="760"
+          height="300"
+          loading="eager"
+          decoding="sync"
+        />
+        <p>2027年度 私立医学部入試日程｜最終更新：{lastUpdated}</p>
+      </div>
+      <img
+        class="admissions-print-branding__character"
+        src="/illustrations/characters/yuki-sensei-default.png"
+        alt="ゆうき先生"
+        width="395"
+        height="395"
+        loading="eager"
+        decoding="sync"
+      />
+    </footer>
   </main>
 
   <script is:inline>
@@ -731,7 +773,27 @@ const faqJsonLd = {
         form.addEventListener("reset", () => window.setTimeout(applyFilters, 0));
       }
 
-      document.querySelector("[data-print-page]")?.addEventListener("click", () => window.print());
+      const clearPrintTarget = () => {
+        document.body.classList.remove("is-printing-admissions-section");
+        document.querySelector(".is-print-target")?.classList.remove("is-print-target");
+      };
+
+      document.querySelectorAll("[data-print-section]").forEach((button) => {
+        button.addEventListener("click", () => {
+          if (!(button instanceof HTMLButtonElement)) return;
+          const targetId = button.dataset.printSection;
+          const target = targetId ? document.getElementById(targetId) : null;
+
+          if (!(target instanceof HTMLElement)) return;
+
+          clearPrintTarget();
+          target.classList.add("is-print-target");
+          document.body.classList.add("is-printing-admissions-section");
+          window.print();
+        });
+      });
+
+      window.addEventListener("afterprint", clearPrintTarget);
     })();
   </script>
 </SiteLayout>

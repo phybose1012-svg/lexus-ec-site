@@ -642,6 +642,27 @@
   color: #756b62;
 }
 
+.admissions-section-heading--printable {
+  display: flex;
+  gap: 28px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.admissions-section-heading--printable > div > p:first-child {
+  margin-bottom: 7px;
+  color: var(--admissions-blue);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+}
+
+.admissions-section-heading--printable > div > p:last-child {
+  margin-bottom: 0;
+  color: #756b62;
+}
+
 .admissions-calendar-head {
   display: grid;
   grid-template-columns: 112px minmax(0, 1fr) minmax(0, 1fr);
@@ -1457,6 +1478,11 @@
 }
 
 .admissions-print-button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
   min-height: 44px;
   border: 1px solid var(--admissions-blue);
   border-radius: 3px;
@@ -1468,13 +1494,19 @@
   cursor: pointer;
 }
 
-.admissions-print-button::before {
-  content: "↧ ";
+.admissions-print-button span {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1;
 }
 
 .admissions-print-button:hover {
   color: #fff;
   background: var(--admissions-blue);
+}
+
+.admissions-print-branding {
+  display: none;
 }
 
 .admissions-guide__steps {
@@ -2081,8 +2113,14 @@
     min-height: 0;
   }
 
-  .admissions-print-button {
-    display: none;
+  .admissions-section-heading--printable {
+    display: grid;
+    gap: 18px;
+    align-items: start;
+  }
+
+  .admissions-section-heading--printable .admissions-print-button {
+    width: 100%;
   }
 
   .admissions-faq summary {
@@ -2111,97 +2149,199 @@
   }
 }
 
+@page {
+  size: A4 landscape;
+  margin: 10mm;
+}
+
 @media print {
-  .site-header,
-  .site-footer,
-  .admissions-hero__actions,
-  .admissions-jump-nav,
-  .admissions-filter,
-  .admissions-filter-result,
-  .admissions-print-button,
-  .admissions-final-cta {
+  body.is-printing-admissions-section {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  body.is-printing-admissions-section .site-header,
+  body.is-printing-admissions-section .site-footer,
+  body.is-printing-admissions-section .admissions-print-button,
+  body.is-printing-admissions-section .admissions-page > :not(.is-print-target):not(.admissions-print-branding) {
     display: none !important;
   }
 
-  .admissions-page,
-  .admissions-calendar-section,
-  .admissions-common-test {
+  body.is-printing-admissions-section .admissions-page,
+  body.is-printing-admissions-section .admissions-page > .is-print-target {
+    display: block !important;
     color: #111;
-    background: #fff;
+    background: #fff !important;
   }
 
-  .admissions-hero {
-    color: #111;
-    background: #fff;
+  body.is-printing-admissions-section .admissions-page > .is-print-target {
+    overflow: visible;
+    padding: 0 !important;
   }
 
-  .admissions-hero::before,
-  .admissions-hero::after,
-  .admissions-common-test::after {
+  body.is-printing-admissions-section .admissions-page > .is-print-target::after {
     display: none;
   }
 
-  .admissions-hero h1,
-  .admissions-section-heading--light h2,
-  .admissions-common-grid h3 {
+  body.is-printing-admissions-section .is-print-target > .content {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  body.is-printing-admissions-section .admissions-section-heading {
+    margin-bottom: 5mm;
+    break-after: avoid;
+  }
+
+  body.is-printing-admissions-section .admissions-section-heading--printable {
+    display: block;
+  }
+
+  body.is-printing-admissions-section .admissions-section-heading--printable h2,
+  body.is-printing-admissions-section .admissions-common-grid h3 {
     color: #111;
   }
 
-  .admissions-hero__lead,
-  .admissions-section-heading--light > p:last-child:not(:first-child) {
+  body.is-printing-admissions-section .admissions-section-heading--printable > div > p:last-child {
     color: #333;
   }
 
-  .admissions-common-card {
-    border-color: #777;
+  body.is-printing-admissions-section .admissions-calendar-head {
+    grid-template-columns: 24mm minmax(0, 1fr) minmax(0, 1fr);
+    border-color: #888;
+    color: #111;
+    background: #f2f2f2;
+    font-size: 7.5pt;
+  }
+
+  body.is-printing-admissions-section .admissions-calendar-head span {
+    padding: 2mm 3mm;
+  }
+
+  body.is-printing-admissions-section .admissions-calendar-list {
+    display: block;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: #fff;
     box-shadow: none;
   }
 
-  .admissions-calendar-list {
-    grid-template-columns: 1fr;
-    border-color: #999;
-    background: #fff;
-  }
-
-  .admissions-calendar-row {
+  body.is-printing-admissions-section .admissions-calendar-row {
+    grid-template-columns: 24mm minmax(0, 1fr) minmax(0, 1fr);
+    min-height: 12mm;
+    border-right: 1px solid #888;
+    border-bottom: 1px solid #888;
+    border-left: 1px solid #888;
     color: #111;
     background: #fff;
-    break-inside: avoid;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
   }
 
-  .admissions-calendar-date strong,
-  .admissions-calendar-exams li {
+  body.is-printing-admissions-section .admissions-calendar-row--empty {
+    min-height: 8mm;
+  }
+
+  body.is-printing-admissions-section .admissions-calendar-date {
+    padding: 2mm;
+  }
+
+  body.is-printing-admissions-section .admissions-calendar-date strong {
     color: #111;
+    font-size: 11pt;
   }
 
-  .admissions-university {
-    break-inside: avoid;
+  body.is-printing-admissions-section .admissions-calendar-date span {
+    font-size: 6.5pt;
   }
 
-  .admissions-university > summary {
-    list-style: none;
+  body.is-printing-admissions-section .admissions-calendar-exams {
+    padding: 2mm 3mm;
   }
 
-  .admissions-university__body {
-    display: block !important;
+  body.is-printing-admissions-section .admissions-calendar-exams li {
+    color: #111;
+    font-size: 7.5pt;
+    line-height: 1.45;
   }
 
-  .admissions-university__open {
+  body.is-printing-admissions-section .admissions-calendar-caption {
+    color: #333;
+    font-size: 6.5pt;
+    line-height: 1.55;
+  }
+
+  body.is-printing-admissions-section .admissions-common-test__dates {
+    margin-bottom: 5mm;
+    border-color: #888;
+    box-shadow: none;
+  }
+
+  body.is-printing-admissions-section .admissions-common-test__dates article {
+    padding: 3mm 4mm;
+  }
+
+  body.is-printing-admissions-section .admissions-common-test__dates strong {
+    font-size: 12pt;
+  }
+
+  body.is-printing-admissions-section .admissions-common-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3mm;
+  }
+
+  body.is-printing-admissions-section .admissions-common-grid > article {
+    min-height: 0;
+    border-color: #888;
+    padding: 4mm;
+    color: #111;
+    background: #fff;
+    box-shadow: none;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  body.is-printing-admissions-section .admissions-common-grid :where(small, h3, li strong, li span) {
+    color: #111 !important;
+  }
+
+  body.is-printing-admissions-section .admissions-common-grid > article > a {
     display: none;
   }
 
-  .admissions-common-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .admissions-common-grid > article {
-    min-height: 0;
-    border-color: #999;
-    color: #111;
+  body.is-printing-admissions-section .admissions-print-branding {
+    display: grid !important;
+    grid-template-columns: 22mm minmax(0, 82mm) 22mm;
+    gap: 5mm;
+    align-items: end;
+    justify-content: center;
+    width: 100%;
+    margin-top: 8mm;
+    border-top: 1px solid #aaa;
+    padding-top: 4mm;
+    color: #333;
     background: #fff;
+    text-align: center;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
   }
 
-  .admissions-common-grid :where(small, h3, li strong, li span, a) {
-    color: #111 !important;
+  body.is-printing-admissions-section .admissions-print-branding__character {
+    width: 22mm;
+    height: 22mm;
+    object-fit: contain;
+  }
+
+  body.is-printing-admissions-section .admissions-print-branding__logo {
+    display: block;
+    width: 82mm;
+    height: auto;
+  }
+
+  body.is-printing-admissions-section .admissions-print-branding p {
+    margin: 1.5mm 0 0;
+    font-size: 6.5pt;
+    line-height: 1.4;
   }
 }
