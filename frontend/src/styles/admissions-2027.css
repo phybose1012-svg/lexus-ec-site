@@ -2271,6 +2271,7 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 
 @media print {
   body.is-printing-admissions-section {
+    --admissions-print-rule: 0.3mm solid #777;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
@@ -2327,24 +2328,33 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
     color: #333;
   }
 
-  body.is-printing-admissions-section .admissions-calendar-section {
-    --admissions-calendar-rule: 0.3mm solid #777;
-  }
-
   body.is-printing-admissions-section .admissions-calendar-head {
-    display: grid;
-    grid-template-columns: 20mm minmax(0, 1fr) minmax(0, 1fr);
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
     color: #111;
     background: #f2f2f2;
     font-size: 7.5pt;
   }
 
   body.is-printing-admissions-section .admissions-calendar-head span {
+    display: table-cell;
+    border: var(--admissions-print-rule);
+    border-bottom: 0;
     padding: 2mm 3mm;
+    vertical-align: middle;
+  }
+
+  body.is-printing-admissions-section .admissions-calendar-head span:first-child {
+    width: 20mm;
   }
 
   body.is-printing-admissions-section .admissions-calendar-list {
-    display: block;
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
     overflow: visible;
     border: 0;
     border-radius: 0;
@@ -2353,37 +2363,35 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   }
 
   body.is-printing-admissions-section .admissions-calendar-row {
-    grid-template-columns: 20mm minmax(0, 1fr) minmax(0, 1fr);
-    min-height: 12mm;
-    border-right: var(--admissions-calendar-rule);
-    border-bottom: var(--admissions-calendar-rule);
-    border-left: var(--admissions-calendar-rule);
+    display: table-row;
     color: #111;
     background: #fff;
     break-inside: avoid-page;
     page-break-inside: avoid;
   }
 
-  body.is-printing-admissions-section .admissions-calendar-row:first-child {
-    border-top: var(--admissions-calendar-rule);
-  }
-
-  body.is-printing-admissions-section .admissions-calendar-row--empty {
-    min-height: 8mm;
+  body.is-printing-admissions-section :where(
+    .admissions-calendar-date,
+    .admissions-calendar-exams
+  ) {
+    display: table-cell;
+    border: var(--admissions-print-rule);
+    padding: 2mm;
+    vertical-align: middle;
   }
 
   body.is-printing-admissions-section .admissions-calendar-date {
-    grid-row: auto;
-    border-right: var(--admissions-calendar-rule);
-    padding: 2mm;
+    width: 20mm;
   }
 
   body.is-printing-admissions-section .admissions-calendar-date strong {
+    display: block;
     color: #111;
     font-size: 11pt;
   }
 
   body.is-printing-admissions-section .admissions-calendar-date span {
+    display: block;
     font-size: 6.5pt;
   }
 
@@ -2396,9 +2404,11 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
     display: none;
   }
 
-  body.is-printing-admissions-section .admissions-calendar-exams + .admissions-calendar-exams {
-    border-top: 0;
-    border-left: var(--admissions-calendar-rule);
+  body.is-printing-admissions-section .admissions-calendar-row--empty :where(
+    .admissions-calendar-date,
+    .admissions-calendar-exams
+  ) {
+    padding-block: 1.5mm;
   }
 
   body.is-printing-admissions-section .admissions-calendar-exams li {
@@ -2416,19 +2426,15 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   body.is-printing-admissions-section .admissions-common-test__dates {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     margin-bottom: 5mm;
-    border: var(--admissions-common-rule);
+    border: var(--admissions-print-rule);
     box-shadow: none;
   }
 
   body.is-printing-admissions-section .admissions-common-test__dates article {
     border: 0;
-    border-right: var(--admissions-common-rule);
-    border-bottom: var(--admissions-common-rule);
+    border-right: var(--admissions-print-rule);
+    border-bottom: var(--admissions-print-rule);
     padding: 3mm 4mm;
-  }
-
-  body.is-printing-admissions-section .admissions-common-test {
-    --admissions-common-rule: 0.3mm solid #777;
   }
 
   body.is-printing-admissions-section .admissions-common-test__dates article:nth-child(2n) {
@@ -2444,13 +2450,13 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   }
 
   body.is-printing-admissions-section .admissions-common-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2.5mm;
+    display: block;
   }
 
   body.is-printing-admissions-section .admissions-common-grid > article {
     min-height: 0;
-    border: var(--admissions-common-rule);
+    margin-bottom: 2.5mm;
+    border: var(--admissions-print-rule);
     padding: 3.5mm;
     color: #111;
     background: #fff;
@@ -2459,12 +2465,16 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
     page-break-inside: avoid;
   }
 
+  body.is-printing-admissions-section .admissions-common-grid > article:last-child {
+    margin-bottom: 0;
+  }
+
   body.is-printing-admissions-section .admissions-common-grid :where(small, h3, li strong, li span) {
     color: #111 !important;
   }
 
   body.is-printing-admissions-section .admissions-common-grid li {
-    border-left: var(--admissions-common-rule);
+    border-left: var(--admissions-print-rule);
   }
 
   body.is-printing-admissions-section .admissions-common-grid > article > a {
@@ -2480,7 +2490,7 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
     overflow: visible;
     margin-bottom: 5mm;
     padding: 4mm;
-    border-color: #888;
+    border: var(--admissions-print-rule);
     background: #fffdf4;
     break-inside: avoid-page;
     page-break-inside: avoid;
@@ -2523,7 +2533,7 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   }
 
   body.is-printing-admissions-section .admissions-deadline-group > header {
-    border: 1px solid #888;
+    border: var(--admissions-print-rule);
     padding: 2.5mm 3mm;
     background: #f2f2f2;
     break-after: avoid;
@@ -2538,9 +2548,9 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   body.is-printing-admissions-section .admissions-deadline-entry {
     grid-template-columns: minmax(38mm, 0.82fr) minmax(0, 1.45fr);
     gap: 3mm;
-    border-right: 1px solid #888;
-    border-bottom: 1px solid #888;
-    border-left: 1px solid #888;
+    border-right: var(--admissions-print-rule);
+    border-bottom: var(--admissions-print-rule);
+    border-left: var(--admissions-print-rule);
     padding: 3mm;
     break-inside: avoid-page;
     page-break-inside: avoid;
@@ -2575,7 +2585,7 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
     justify-content: center;
     width: 100%;
     margin-bottom: 6mm;
-    border-bottom: 1px solid #aaa;
+    border-bottom: var(--admissions-print-rule);
     padding-bottom: 4mm;
     color: #333;
     background: #fff;
