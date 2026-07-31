@@ -116,6 +116,9 @@ const fullSchedulePendingFieldLabels: Record<FullScheduleColumnKey2027, string> 
   procedureDeadline: "入学手続き締切",
 };
 
+const shortUniversityName = (name: string) =>
+  name === "日本大学" ? "日大" : name.replace(/大学$/, "");
+
 const faqs = [
   {
     question: "2027年度の大学入学共通テストはいつですか？",
@@ -528,10 +531,10 @@ const faqJsonLd = {
                                       rel="noopener noreferrer"
                                       title={`${entry.university}の公式情報（${statusLabels[entry.status]}）`}
                                     >
-                                      {entry.university.replace(/大学$/, "")}
+                                      {shortUniversityName(entry.university)}
                                     </a>
                                   ) : (
-                                    <strong>{entry.university.replace(/大学$/, "")}</strong>
+                                    <strong>{shortUniversityName(entry.university)}</strong>
                                   )}
                                 </div>
                                 <span>{entry.routes.join("／")}</span>

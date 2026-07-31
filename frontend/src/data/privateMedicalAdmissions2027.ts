@@ -1163,7 +1163,7 @@ const examCalendarEvents2027 = [
     weekday: "月",
     first: [
       "川崎医科（一般）",
-      "日本（N方式・第1期）",
+      "日大（N方式・第1期）",
       "日本医科（一般前期・グローバル）",
       "久留米（一般・前期）",
       "東京女子医科（一般）",
@@ -1254,7 +1254,7 @@ const examCalendarEvents2027 = [
     weekday: "木・祝",
     first: ["東京慈恵会医科（一般）"],
     second: [
-      "日本（N方式・第1期）",
+      "日大（N方式・第1期）",
       "杏林①（一般／①〜②から受験者が選択）",
       "川崎医科②（一般／①〜②から大学指定）",
     ],
@@ -1435,7 +1435,7 @@ const examCalendarEvents2027 = [
   {
     date: "3/4",
     weekday: "木",
-    first: ["日本（N方式・第2期）", "金沢医科（一般・後期）"],
+    first: ["日大（N方式・第2期）", "金沢医科（一般・後期）"],
     second: [],
   },
   {
@@ -1515,7 +1515,7 @@ const examCalendarEvents2027 = [
     date: "3/17",
     weekday: "水",
     first: [],
-    second: ["日本（N方式・第2期）"],
+    second: ["日大（N方式・第2期）"],
   },
   {
     date: "3/18",
