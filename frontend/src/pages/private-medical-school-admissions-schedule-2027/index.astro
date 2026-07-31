@@ -3,9 +3,12 @@ import {
   applicationDeadlineEntries2027,
   commonTestDates2027,
   examCalendar2027,
+  fullScheduleCalendar2027,
+  fullSchedulePendingItems2027,
   privateMedicalUniversities2027,
   type ApplicationDeadlineEntry2027,
   type AdmissionRouteStatus,
+  type FullScheduleColumnKey2027,
 } from "../../data/privateMedicalAdmissions2027";
 import AdmissionsBrandDivider from "../../components/admissions/AdmissionsBrandDivider.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
@@ -87,6 +90,30 @@ const statusLabels: Record<AdmissionRouteStatus, string> = {
   official: "詳細日程あり",
   preliminary: "概要日程あり",
   pending: "日程未公表",
+};
+
+const fullScheduleColumns: Array<{
+  key: FullScheduleColumnKey2027;
+  label: string;
+  shortLabel: string;
+}> = [
+  { key: "applicationStart", label: "出願開始日", shortLabel: "出願開始" },
+  { key: "applicationDeadline", label: "出願締切", shortLabel: "出願締切" },
+  { key: "firstExam", label: "一次試験", shortLabel: "一次試験" },
+  { key: "firstResult", label: "一次合格発表", shortLabel: "一次発表" },
+  { key: "secondExam", label: "二次試験", shortLabel: "二次試験" },
+  { key: "finalResult", label: "合格発表", shortLabel: "合格発表" },
+  { key: "procedureDeadline", label: "入学手続き締切", shortLabel: "手続締切" },
+];
+
+const fullSchedulePendingFieldLabels: Record<FullScheduleColumnKey2027, string> = {
+  applicationStart: "出願開始日",
+  applicationDeadline: "出願締切",
+  firstExam: "一次試験",
+  firstResult: "一次合格発表",
+  secondExam: "二次試験",
+  finalResult: "合格発表",
+  procedureDeadline: "入学手続き締切",
 };
 
 const faqs = [
@@ -286,18 +313,23 @@ const faqJsonLd = {
           <span class="admissions-jump-nav__label admissions-jump-nav__label--long">試験日カレンダー</span>
           <span class="admissions-jump-nav__label admissions-jump-nav__label--short">試験日</span>
         </a>
-        <a href="#deadlines" aria-label="出願締切へ移動">
+        <a href="#full-schedule" aria-label="全日程カレンダーへ移動">
           <span class="admissions-jump-nav__index">02</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--long">全日程カレンダー</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--short">全日程</span>
+        </a>
+        <a href="#deadlines" aria-label="出願締切へ移動">
+          <span class="admissions-jump-nav__index">03</span>
           <span class="admissions-jump-nav__label admissions-jump-nav__label--long">出願締切</span>
           <span class="admissions-jump-nav__label admissions-jump-nav__label--short">出願</span>
         </a>
         <a href="#universities" aria-label="大学別31校へ移動">
-          <span class="admissions-jump-nav__index">03</span>
+          <span class="admissions-jump-nav__index">04</span>
           <span class="admissions-jump-nav__label admissions-jump-nav__label--long">大学別31校</span>
           <span class="admissions-jump-nav__label admissions-jump-nav__label--short">大学別</span>
         </a>
         <a href="#common-test" aria-label="共通テスト利用へ移動">
-          <span class="admissions-jump-nav__index">04</span>
+          <span class="admissions-jump-nav__index">05</span>
           <span class="admissions-jump-nav__label admissions-jump-nav__label--long">共テ利用</span>
           <span class="admissions-jump-nav__label admissions-jump-nav__label--short">共テ</span>
         </a>
@@ -412,6 +444,143 @@ const faqJsonLd = {
         <p class="admissions-calendar-caption">
           ※1/16〜3/18は、試験のない日も「—」で表示しています。大学名の後ろの①②…は、同じ選抜方式に複数ある一次・二次試験日の日付順です。「受験者が選択」は原則として日程を選択できる方式、「希望日を提出」は希望どおりにならない場合がある方式、「大学指定」は大学が受験日を決める方式です。「両日受験」は①・②の両方を受験します。
         </p>
+      </div>
+    </section>
+
+    <section class="admissions-full-schedule" id="full-schedule" aria-labelledby="full-schedule-title">
+      <div class="content">
+        <div class="admissions-section-heading admissions-section-heading--light">
+          <p>COMPLETE SCHEDULE</p>
+          <h2 id="full-schedule-title">出願から入学手続きまで、すべての日程を見る</h2>
+          <p>
+            出願開始・締切から一次／二次試験、合格発表、入学手続き締切までを同じ日付軸で確認できます。
+          </p>
+        </div>
+
+        <div class="admissions-full-schedule__guide">
+          <div class="admissions-full-schedule__legend" aria-label="選抜方式の凡例">
+            <span class="admissions-full-schedule__route admissions-full-schedule__route--general">一般</span>
+            <span class="admissions-full-schedule__route admissions-full-schedule__route--common">共テ</span>
+          </div>
+          <p>
+            ヘッダーと日付列は固定されています。表の中を上下・左右にスクロールしてご覧ください。
+          </p>
+          <span class="admissions-full-schedule__swipe" aria-hidden="true">← 左右にスクロール →</span>
+        </div>
+
+        <div
+          class="admissions-full-schedule__viewport"
+          tabindex="0"
+          role="region"
+          aria-label="2027年度私立医学部入試 全日程カレンダー"
+        >
+          <table class="admissions-full-schedule__table">
+            <caption>
+              2027年度私立医学部の一般選抜・共通テスト利用選抜について、出願から入学手続きまでの日程を日付順に掲載しています。
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col" class="admissions-full-schedule__date-head">日付</th>
+                {fullScheduleColumns.map((column) => (
+                  <th scope="col">
+                    <span>{column.label}</span>
+                    <small>{column.shortLabel}</small>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {fullScheduleCalendar2027.map((day) => (
+                <tr
+                  class:list={[
+                    {
+                      "admissions-full-schedule__row--empty": !day.hasEvents,
+                      "admissions-full-schedule__row--weekend": day.isWeekend,
+                      "admissions-full-schedule__row--month-start": day.isMonthStart,
+                    },
+                  ]}
+                >
+                  <th scope="row" class="admissions-full-schedule__date">
+                    <time datetime={day.dateTime}>
+                      <strong>{day.date}</strong>
+                      <span>{day.weekday}</span>
+                    </time>
+                  </th>
+                  {fullScheduleColumns.map((column) => {
+                    const entries = day.events[column.key];
+
+                    return (
+                      <td class:list={{ "admissions-full-schedule__cell--empty": entries.length === 0 }}>
+                        {entries.length > 0 ? (
+                          <ul class="admissions-full-schedule__entries">
+                            {entries.map((entry) => (
+                              <li class={`admissions-full-schedule__entry admissions-full-schedule__entry--${entry.category}`}>
+                                <div>
+                                  <span
+                                    class={`admissions-full-schedule__route admissions-full-schedule__route--${entry.category}`}
+                                  >
+                                    {entry.category === "general" ? "一般" : "共テ"}
+                                  </span>
+                                  {entry.sourceUrl ? (
+                                    <a
+                                      href={entry.sourceUrl}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      title={`${entry.university}の公式情報（${statusLabels[entry.status]}）`}
+                                    >
+                                      {entry.university.replace(/大学$/, "")}
+                                    </a>
+                                  ) : (
+                                    <strong>{entry.university.replace(/大学$/, "")}</strong>
+                                  )}
+                                </div>
+                                <span>{entry.routes.join("／")}</span>
+                                {entry.detail && <small>{entry.detail}</small>}
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <span class="admissions-full-schedule__empty" aria-label="該当日程なし">—</span>
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p class="admissions-full-schedule__caption">
+          出願締切は、Web登録・郵送書類などの締切が異なる場合、それぞれの日付に掲載しています。選択日・希望日・大学指定日は、候補となる各日に表示しています。
+        </p>
+
+        {fullSchedulePendingItems2027.length > 0 && (
+          <details class="admissions-full-schedule__pending">
+            <summary>
+              <span>募集要項で日付の公表を待っている項目</span>
+              <strong>{fullSchedulePendingItems2027.length}方式</strong>
+            </summary>
+            <div>
+              {fullSchedulePendingItems2027.map((item) => (
+                <article>
+                  <p>
+                    <span
+                      class={`admissions-full-schedule__route admissions-full-schedule__route--${item.category}`}
+                    >
+                      {item.category === "general" ? "一般" : "共テ"}
+                    </span>
+                    <strong>{item.university}</strong>
+                  </p>
+                  <span>{item.route}</span>
+                  <small>
+                    {item.fields.map((field) => fullSchedulePendingFieldLabels[field]).join("・")}
+                  </small>
+                </article>
+              ))}
+            </div>
+          </details>
+        )}
       </div>
     </section>
 

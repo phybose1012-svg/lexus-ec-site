@@ -469,7 +469,7 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 
 .admissions-jump-nav__inner {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .admissions-jump-nav a {
@@ -870,6 +870,356 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   margin: 18px 0 0;
   color: #756b62;
   font-size: 0.72rem;
+}
+
+.admissions-full-schedule {
+  --admissions-full-schedule-rule: #d9d2ca;
+  padding-block: 90px;
+  border-top: 1px solid #eee8e1;
+  color: var(--admissions-ink);
+  background: #fff;
+}
+
+.admissions-full-schedule__guide {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 16px;
+  border: 1px solid #e8dfd5;
+  border-radius: 5px;
+  padding: 13px 16px;
+  background: #fcfaf7;
+}
+
+.admissions-full-schedule__legend {
+  display: flex;
+  flex: none;
+  gap: 6px;
+}
+
+.admissions-full-schedule__guide p {
+  margin: 0;
+  color: #665d55;
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
+
+.admissions-full-schedule__swipe {
+  display: none;
+  margin-left: auto;
+  color: var(--admissions-blue);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.67rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.admissions-full-schedule__route {
+  display: inline-grid;
+  min-width: 36px;
+  min-height: 20px;
+  place-items: center;
+  border: 1px solid;
+  border-radius: 999px;
+  padding: 2px 7px;
+  font-size: 0.58rem;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.admissions-full-schedule__route--general {
+  border-color: #dfc2bd;
+  color: #9f3127;
+  background: #fff7f5;
+}
+
+.admissions-full-schedule__route--common {
+  border-color: #b7cfdf;
+  color: #1c5b82;
+  background: #f4f9fc;
+}
+
+.admissions-full-schedule__viewport {
+  position: relative;
+  max-height: min(74vh, 780px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--admissions-full-schedule-rule);
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 16px 38px rgb(38 26 19 / 7%);
+  scrollbar-color: #aa9e92 #f2eee9;
+  scrollbar-gutter: stable;
+}
+
+.admissions-full-schedule__viewport:focus-visible {
+  outline: 3px solid rgb(15 86 133 / 24%);
+  outline-offset: 3px;
+}
+
+.admissions-full-schedule__table {
+  width: max-content;
+  min-width: 100%;
+  border-spacing: 0;
+  border-collapse: separate;
+  table-layout: fixed;
+  color: #443b34;
+  background: #fff;
+}
+
+.admissions-full-schedule__table caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.admissions-full-schedule__table :where(th, td) {
+  box-sizing: border-box;
+  width: 214px;
+  min-width: 214px;
+  border-right: 1px solid var(--admissions-full-schedule-rule);
+  border-bottom: 1px solid var(--admissions-full-schedule-rule);
+  vertical-align: top;
+}
+
+.admissions-full-schedule__table :where(th, td):last-child {
+  border-right: 0;
+}
+
+.admissions-full-schedule__table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  height: 54px;
+  padding: 11px 12px;
+  color: #574d44;
+  background: #f5f0e9;
+  box-shadow: 0 1px 0 var(--admissions-full-schedule-rule);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-align: left;
+}
+
+.admissions-full-schedule__table thead th small {
+  display: none;
+}
+
+.admissions-full-schedule__table tbody tr:last-child :where(th, td) {
+  border-bottom: 0;
+}
+
+.admissions-full-schedule__date-head,
+.admissions-full-schedule__date {
+  left: 0;
+  width: 94px !important;
+  min-width: 94px !important;
+  max-width: 94px;
+}
+
+.admissions-full-schedule__date-head {
+  z-index: 8 !important;
+  text-align: center !important;
+}
+
+.admissions-full-schedule__date {
+  position: sticky;
+  z-index: 4;
+  padding: 11px 8px;
+  background: #fff;
+  box-shadow: 1px 0 0 var(--admissions-full-schedule-rule);
+  text-align: center;
+}
+
+.admissions-full-schedule__date time {
+  display: grid;
+  justify-items: center;
+}
+
+.admissions-full-schedule__date strong {
+  color: var(--admissions-blue);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.1;
+}
+
+.admissions-full-schedule__date span {
+  margin-top: 3px;
+  color: #877c73;
+  font-size: 0.6rem;
+}
+
+.admissions-full-schedule__table td {
+  min-height: 58px;
+  padding: 8px;
+  background: #fff;
+}
+
+.admissions-full-schedule__row--empty :where(td, .admissions-full-schedule__date) {
+  height: 42px;
+  padding-block: 7px;
+  background: #fbfaf8;
+}
+
+.admissions-full-schedule__row--empty .admissions-full-schedule__date strong {
+  color: #968d85;
+  font-size: 0.92rem;
+}
+
+.admissions-full-schedule__row--weekend .admissions-full-schedule__date {
+  background: #fffaf2;
+}
+
+.admissions-full-schedule__row--month-start .admissions-full-schedule__date {
+  background: #f0f6fa;
+}
+
+.admissions-full-schedule__entries {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.admissions-full-schedule__entry {
+  display: grid;
+  gap: 3px;
+  border: 1px solid #e9e2da;
+  border-left-width: 3px;
+  border-radius: 4px;
+  padding: 7px 8px;
+  background: #fff;
+}
+
+.admissions-full-schedule__entry--general {
+  border-left-color: #bd5147;
+}
+
+.admissions-full-schedule__entry--common {
+  border-left-color: #3a7ca5;
+}
+
+.admissions-full-schedule__entry > div {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  min-width: 0;
+}
+
+.admissions-full-schedule__entry :where(a, strong) {
+  overflow-wrap: anywhere;
+  color: #2f2924;
+  font-size: 0.69rem;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.admissions-full-schedule__entry a {
+  text-decoration-color: #c9bcb0;
+  text-underline-offset: 2px;
+}
+
+.admissions-full-schedule__entry > span {
+  color: #61574f;
+  font-size: 0.61rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.admissions-full-schedule__entry > small {
+  color: #8a5c1c;
+  font-size: 0.58rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.admissions-full-schedule__empty {
+  display: block;
+  padding-top: 8px;
+  color: #c3bbb3;
+  font-size: 0.74rem;
+  text-align: center;
+}
+
+.admissions-full-schedule__row--empty .admissions-full-schedule__empty {
+  padding-top: 0;
+}
+
+.admissions-full-schedule__caption {
+  margin: 15px 0 0;
+  color: #756b62;
+  font-size: 0.72rem;
+  line-height: 1.7;
+}
+
+.admissions-full-schedule__pending {
+  margin-top: 24px;
+  border: 1px solid #e4d8ca;
+  border-radius: 5px;
+  background: #fcfaf7;
+}
+
+.admissions-full-schedule__pending summary {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 17px 20px;
+  color: var(--admissions-navy);
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.admissions-full-schedule__pending summary strong {
+  color: var(--admissions-blue);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.7rem;
+}
+
+.admissions-full-schedule__pending > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  border-top: 1px solid #e4d8ca;
+  background: #e4d8ca;
+}
+
+.admissions-full-schedule__pending article {
+  display: grid;
+  gap: 5px;
+  padding: 15px;
+  background: #fff;
+}
+
+.admissions-full-schedule__pending article p {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  margin: 0;
+}
+
+.admissions-full-schedule__pending article strong {
+  color: #342e29;
+  font-size: 0.75rem;
+}
+
+.admissions-full-schedule__pending article > span {
+  color: #62584f;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.admissions-full-schedule__pending article > small {
+  color: #8a5c1c;
+  font-size: 0.62rem;
+  line-height: 1.5;
 }
 
 .admissions-deadlines {
@@ -1764,6 +2114,10 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .admissions-full-schedule__pending > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .admissions-final-cta__inner {
     grid-template-columns: 1fr;
   }
@@ -1792,6 +2146,7 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   .admissions-guide,
   .admissions-faq,
   .admissions-calendar-section,
+  .admissions-full-schedule,
   .admissions-common-test {
     padding-block: 70px;
   }
@@ -2004,6 +2359,7 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   .admissions-guide,
   .admissions-faq,
   .admissions-calendar-section,
+  .admissions-full-schedule,
   .admissions-common-test {
     padding-block: 55px;
   }
@@ -2096,6 +2452,78 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 
   .admissions-calendar-exams li {
     font-size: 0.76rem;
+  }
+
+  .admissions-full-schedule__guide {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 12px;
+    align-items: center;
+    padding: 12px;
+  }
+
+  .admissions-full-schedule__guide p {
+    font-size: 0.69rem;
+  }
+
+  .admissions-full-schedule__swipe {
+    display: block;
+    grid-column: 1 / -1;
+    margin-left: 0;
+    text-align: right;
+  }
+
+  .admissions-full-schedule__viewport {
+    max-height: 70vh;
+    border-radius: 3px;
+    scrollbar-gutter: auto;
+  }
+
+  .admissions-full-schedule__table :where(th, td) {
+    width: 190px;
+    min-width: 190px;
+  }
+
+  .admissions-full-schedule__table thead th {
+    height: 50px;
+    padding: 10px;
+  }
+
+  .admissions-full-schedule__table thead th span {
+    display: none;
+  }
+
+  .admissions-full-schedule__table thead th small {
+    display: block;
+    font-size: 0.66rem;
+  }
+
+  .admissions-full-schedule__date-head,
+  .admissions-full-schedule__date {
+    width: 78px !important;
+    min-width: 78px !important;
+    max-width: 78px;
+  }
+
+  .admissions-full-schedule__date {
+    padding-inline: 5px;
+  }
+
+  .admissions-full-schedule__date strong {
+    font-size: 0.92rem;
+  }
+
+  .admissions-full-schedule__entry {
+    padding: 6px 7px;
+  }
+
+  .admissions-full-schedule__pending > div {
+    grid-template-columns: 1fr;
+  }
+
+  .admissions-full-schedule__pending summary {
+    padding: 15px;
+    font-size: 0.74rem;
   }
 
   .admissions-deadline-group > header {

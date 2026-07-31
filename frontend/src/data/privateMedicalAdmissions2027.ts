@@ -2108,3 +2108,453 @@ export const examCalendar2027 = Array.from(
     };
   },
 );
+
+export type FullScheduleColumnKey2027 =
+  | "applicationStart"
+  | "applicationDeadline"
+  | "firstExam"
+  | "firstResult"
+  | "secondExam"
+  | "finalResult"
+  | "procedureDeadline";
+
+export type FullScheduleCalendarEntry2027 = {
+  university: string;
+  routes: string[];
+  category: AdmissionRouteCategory;
+  detail?: string;
+  status: AdmissionRouteStatus;
+  sourceUrl?: string;
+};
+
+export type FullScheduleCalendarDay2027 = {
+  date: string;
+  dateTime: string;
+  weekday: string;
+  isWeekend: boolean;
+  isMonthStart: boolean;
+  hasEvents: boolean;
+  events: Record<FullScheduleColumnKey2027, FullScheduleCalendarEntry2027[]>;
+};
+
+export type FullSchedulePendingItem2027 = {
+  university: string;
+  route: string;
+  category: AdmissionRouteCategory;
+  fields: FullScheduleColumnKey2027[];
+};
+
+type ParsedScheduleDate = {
+  key: string;
+  year: number;
+  month: number;
+  day: number;
+  raw: string;
+  index: number;
+  endIndex: number;
+};
+
+const fullScheduleColumnKeys2027: FullScheduleColumnKey2027[] = [
+  "applicationStart",
+  "applicationDeadline",
+  "firstExam",
+  "firstResult",
+  "secondExam",
+  "finalResult",
+  "procedureDeadline",
+];
+
+const emptyFullScheduleEvents2027 = (): Record<
+  FullScheduleColumnKey2027,
+  FullScheduleCalendarEntry2027[]
+> => ({
+  applicationStart: [],
+  applicationDeadline: [],
+  firstExam: [],
+  firstResult: [],
+  secondExam: [],
+  finalResult: [],
+  procedureDeadline: [],
+});
+
+const toScheduleDateKey = (year: number, month: number, day: number) =>
+  `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
+const parseScheduleDates = (
+  value: string | undefined,
+  expandSameMonthRanges = false,
+): ParsedScheduleDate[] => {
+  if (!value) return [];
+
+  const dates: ParsedScheduleDate[] = [];
+  const pattern =
+    /(?:(20\d{2})\/)?(\d{1,2})\/(\d{1,2})(?:\s*(・|〜|または)\s*(\d{1,2})(?![\d:/]))?/g;
+
+  for (const match of value.matchAll(pattern)) {
+    const year = Number(match[1] ?? 2027);
+    const month = Number(match[2]);
+    const day = Number(match[3]);
+    const index = match.index ?? 0;
+    const raw = match[0];
+    const baseDate = new Date(Date.UTC(year, month - 1, day));
+
+    if (
+      baseDate.getUTCFullYear() !== year ||
+      baseDate.getUTCMonth() !== month - 1 ||
+      baseDate.getUTCDate() !== day
+    ) {
+      continue;
+    }
+
+    dates.push({
+      key: toScheduleDateKey(year, month, day),
+      year,
+      month,
+      day,
+      raw,
+      index,
+      endIndex: index + raw.length,
+    });
+
+    const separator = match[4];
+    const shortDay = Number(match[5]);
+    if (!separator || !shortDay) continue;
+
+    const rangeDays =
+      separator === "〜" && expandSameMonthRanges
+        ? Array.from(
+            { length: Math.max(shortDay - day, 0) },
+            (_, rangeIndex) => day + rangeIndex + 1,
+          )
+        : [shortDay];
+
+    rangeDays.forEach((rangeDay) => {
+      const rangeDate = new Date(Date.UTC(year, month - 1, rangeDay));
+      if (
+        rangeDate.getUTCFullYear() !== year ||
+        rangeDate.getUTCMonth() !== month - 1 ||
+        rangeDate.getUTCDate() !== rangeDay
+      ) {
+        return;
+      }
+
+      dates.push({
+        key: toScheduleDateKey(year, month, rangeDay),
+        year,
+        month,
+        day: rangeDay,
+        raw: String(rangeDay),
+        index: index + raw.lastIndexOf(String(shortDay)),
+        endIndex: index + raw.length,
+      });
+    });
+  }
+
+  return dates.filter(
+    (date, dateIndex, allDates) =>
+      allDates.findIndex((candidate) => candidate.key === date.key) === dateIndex,
+  );
+};
+
+const examSelectionDetail = (value: string) => {
+  if (value.includes("両日受験")) return "両日受験";
+  if (value.includes("自由選択")) return "自由選択";
+  if (value.includes("希望をもとに大学が指定")) return "希望をもとに大学指定";
+  if (value.includes("希望日")) return "希望日を提出";
+  if (value.includes("指定日")) return "大学指定";
+  if (value.includes("選択日")) return "受験日を選択";
+  if (value.includes("または")) return "いずれかの日程";
+  return undefined;
+};
+
+const applicationStartDetail = (value: string) => {
+  const firstDateIndex = parseScheduleDates(value)[0]?.index ?? value.length;
+  const prefix = value.slice(0, firstDateIndex);
+
+  if (prefix.includes("Web・書類")) return "Web・書類受付開始";
+  if (prefix.includes("Web") || prefix.includes("登録")) return "Web出願開始";
+  if (prefix.includes("郵送")) return "郵送受付開始";
+  return "出願開始";
+};
+
+const applicationDeadlineDetail = (
+  value: string,
+  date: ParsedScheduleDate,
+  dates: ParsedScheduleDate[],
+  dateIndex: number,
+) => {
+  const previousEnd = dates[dateIndex - 1]?.endIndex ?? 0;
+  const nextStart = dates[dateIndex + 1]?.index ?? value.length;
+  const localContext = value.slice(previousEnd, nextStart);
+  const afterDate = value.slice(date.index + date.raw.length, nextStart);
+  const sourcePrefix = value.slice(0, dates[0]?.index ?? 0);
+  const labels: string[] = [];
+
+  if (
+    dateIndex === 1 &&
+    (sourcePrefix.includes("Web") || sourcePrefix.includes("登録"))
+  ) {
+    labels.push("Web登録締切");
+  } else if (dateIndex === 1 && sourcePrefix.includes("郵送")) {
+    labels.push("郵送締切");
+  }
+
+  if (/書類[^）)]*(?:必着|消印|締切)/.test(localContext)) {
+    labels.push("書類");
+  }
+
+  const time = afterDate.match(/\d{1,2}:\d{2}/)?.[0];
+  if (time) labels.push(time);
+  if (localContext.includes("消印有効") || localContext.includes("消印）")) {
+    labels.push("消印有効");
+  } else if (localContext.includes("必着")) {
+    labels.push("必着");
+  }
+
+  return labels.length > 0 ? [...new Set(labels)].join("・") : "出願締切";
+};
+
+const procedureDateDetail = (
+  value: string,
+  dates: ParsedScheduleDate[],
+  dateIndex: number,
+) => {
+  const previousEnd = dates[dateIndex - 1]?.endIndex ?? 0;
+  const nextStart = dates[dateIndex + 1]?.index ?? value.length;
+  const localContext = value
+    .slice(previousEnd, nextStart)
+    .replace(/^[〜・（(]+|[）)]+$/g, "")
+    .trim();
+
+  if (localContext.length > 0 && localContext.length <= 30) {
+    return localContext;
+  }
+
+  return value;
+};
+
+const fullScheduleEventMap2027 = new Map<
+  string,
+  Record<FullScheduleColumnKey2027, FullScheduleCalendarEntry2027[]>
+>();
+
+const addFullScheduleEvent2027 = (
+  date: ParsedScheduleDate,
+  column: FullScheduleColumnKey2027,
+  entry: Omit<FullScheduleCalendarEntry2027, "routes"> & { route: string },
+) => {
+  const dayEvents =
+    fullScheduleEventMap2027.get(date.key) ?? emptyFullScheduleEvents2027();
+  const matchingEntry = dayEvents[column].find(
+    (candidate) =>
+      candidate.university === entry.university &&
+      candidate.category === entry.category &&
+      candidate.detail === entry.detail &&
+      candidate.status === entry.status &&
+      candidate.sourceUrl === entry.sourceUrl,
+  );
+
+  if (matchingEntry) {
+    if (!matchingEntry.routes.includes(entry.route)) {
+      matchingEntry.routes.push(entry.route);
+    }
+  } else {
+    dayEvents[column].push({
+      university: entry.university,
+      routes: [entry.route],
+      category: entry.category,
+      detail: entry.detail,
+      status: entry.status,
+      sourceUrl: entry.sourceUrl,
+    });
+  }
+
+  fullScheduleEventMap2027.set(date.key, dayEvents);
+};
+
+export const fullSchedulePendingItems2027: FullSchedulePendingItem2027[] = [];
+
+privateMedicalUniversities2027.forEach((university) => {
+  university.routes.forEach((route) => {
+    const entryBase = {
+      university: university.name,
+      route: route.name,
+      category: route.category,
+      status: route.status,
+      sourceUrl: route.sourceUrl,
+    };
+    const pendingFields: FullScheduleColumnKey2027[] = [];
+    const applicationDates = parseScheduleDates(route.application);
+
+    if (applicationDates.length > 0) {
+      addFullScheduleEvent2027(applicationDates[0], "applicationStart", {
+        ...entryBase,
+        detail: applicationStartDetail(route.application),
+      });
+
+      applicationDates.slice(1).forEach((date, index) => {
+        addFullScheduleEvent2027(date, "applicationDeadline", {
+          ...entryBase,
+          detail: applicationDeadlineDetail(
+            route.application,
+            date,
+            applicationDates,
+            index + 1,
+          ),
+        });
+      });
+    } else {
+      pendingFields.push("applicationStart", "applicationDeadline");
+    }
+
+    const firstExamDates = parseScheduleDates(route.firstExam, true);
+    const individualFirstExamDates = firstExamDates.filter(
+      (date) =>
+        !(
+          route.firstExam.includes("共通テスト") &&
+          date.year === 2027 &&
+          date.month === 1 &&
+          (date.day === 16 || date.day === 17)
+        ),
+    );
+
+    individualFirstExamDates.forEach((date) => {
+      addFullScheduleEvent2027(date, "firstExam", {
+        ...entryBase,
+        detail: examSelectionDetail(route.firstExam),
+      });
+    });
+
+    if (firstExamDates.length === 0 && !route.firstExam.includes("共通テスト")) {
+      pendingFields.push("firstExam");
+    }
+
+    const secondExamDates = parseScheduleDates(route.secondExam, true);
+    secondExamDates.forEach((date) => {
+      addFullScheduleEvent2027(date, "secondExam", {
+        ...entryBase,
+        detail: examSelectionDetail(route.secondExam),
+      });
+    });
+    if (secondExamDates.length === 0) pendingFields.push("secondExam");
+
+    const resultParts = route.result?.split("最終") ?? [];
+    const firstResultDates = parseScheduleDates(resultParts[0]);
+    const finalResultDates = parseScheduleDates(resultParts.slice(1).join("最終"));
+
+    firstResultDates.forEach((date) => {
+      addFullScheduleEvent2027(date, "firstResult", {
+        ...entryBase,
+        detail: route.result?.startsWith("二次受験資格")
+          ? "二次受験資格発表"
+          : "一次合格発表",
+      });
+    });
+    finalResultDates.forEach((date) => {
+      addFullScheduleEvent2027(date, "finalResult", {
+        ...entryBase,
+        detail: "最終合格発表",
+      });
+    });
+    if (firstResultDates.length === 0) pendingFields.push("firstResult");
+    if (finalResultDates.length === 0) pendingFields.push("finalResult");
+
+    const procedureDates = parseScheduleDates(route.procedure);
+    const procedureDeadlineDates =
+      route.procedure.includes("〜") &&
+      !route.procedure.includes("・") &&
+      !route.procedure.includes("第")
+        ? procedureDates.slice(-1)
+        : procedureDates;
+
+    procedureDeadlineDates.forEach((date) => {
+      addFullScheduleEvent2027(date, "procedureDeadline", {
+        ...entryBase,
+        detail: procedureDateDetail(
+          route.procedure,
+          procedureDates,
+          procedureDates.findIndex((candidate) => candidate.key === date.key),
+        ),
+      });
+    });
+    if (procedureDates.length === 0) pendingFields.push("procedureDeadline");
+
+    if (pendingFields.length > 0) {
+      fullSchedulePendingItems2027.push({
+        university: university.name,
+        route: route.name,
+        category: route.category,
+        fields: pendingFields,
+      });
+    }
+  });
+});
+
+const commonTestCalendarEntry2027: FullScheduleCalendarEntry2027 = {
+  university: "大学入学共通テスト",
+  routes: ["共通テスト利用・併用方式"],
+  category: "common",
+  detail: "本試験",
+  status: "official",
+  sourceUrl: commonTestDates2027.sourceUrl,
+};
+
+["2027-01-16", "2027-01-17"].forEach((dateKey) => {
+  const events =
+    fullScheduleEventMap2027.get(dateKey) ?? emptyFullScheduleEvents2027();
+  events.firstExam.unshift({ ...commonTestCalendarEntry2027 });
+  fullScheduleEventMap2027.set(dateKey, events);
+});
+
+const fullScheduleDateKeys2027 = [...fullScheduleEventMap2027.keys()].sort();
+const fullScheduleStart2027 = new Date(
+  `${fullScheduleDateKeys2027[0] ?? "2026-12-01"}T00:00:00Z`,
+);
+const fullScheduleEnd2027 = new Date(
+  `${fullScheduleDateKeys2027.at(-1) ?? "2027-03-26"}T00:00:00Z`,
+);
+const holidayLabels2027 = new Map([
+  ["2027-01-01", "祝"],
+  ["2027-01-11", "祝"],
+  ["2027-02-11", "祝"],
+  ["2027-02-23", "祝"],
+  ["2027-03-20", "祝"],
+]);
+
+export const fullScheduleCalendar2027: FullScheduleCalendarDay2027[] =
+  Array.from(
+    {
+      length:
+        Math.floor(
+          (fullScheduleEnd2027.getTime() - fullScheduleStart2027.getTime()) /
+            millisecondsPerDay,
+        ) + 1,
+    },
+    (_, index) => {
+      const currentDate = new Date(
+        fullScheduleStart2027.getTime() + index * millisecondsPerDay,
+      );
+      const year = currentDate.getUTCFullYear();
+      const month = currentDate.getUTCMonth() + 1;
+      const day = currentDate.getUTCDate();
+      const dateTime = toScheduleDateKey(year, month, day);
+      const events =
+        fullScheduleEventMap2027.get(dateTime) ?? emptyFullScheduleEvents2027();
+      const holidayLabel = holidayLabels2027.get(dateTime);
+
+      return {
+        date: `${month}/${day}`,
+        dateTime,
+        weekday: `${weekdayLabels[currentDate.getUTCDay()]}${holidayLabel ? `・${holidayLabel}` : ""}`,
+        isWeekend:
+          currentDate.getUTCDay() === 0 ||
+          currentDate.getUTCDay() === 6 ||
+          Boolean(holidayLabel),
+        isMonthStart: day === 1,
+        hasEvents: fullScheduleColumnKeys2027.some(
+          (column) => events[column].length > 0,
+        ),
+        events,
+      };
+    },
+  );
