@@ -15,6 +15,36 @@ const description =
   "2027年度（令和9年度）の私立医学部31大学の一般選抜・共通テスト利用選抜を、試験日カレンダー、大学別、出願締切別に一覧化。一次・二次試験、出願期間、入学手続まで確認できます。";
 const canonical = "https://lexus-ec.com/private-medical-school-admissions-schedule-2027/";
 const lastUpdated = "2026年7月31日";
+const updateHistory = [
+  {
+    date: "2026年7月31日",
+    dateTime: "2026-07-31",
+    title: "出願締め切り一覧が詳しくなりました",
+    details: [
+      "Web登録の締め切りと、出願書類の郵送期限を分けて掲載しました。",
+      "必着・消印有効・Web出願なし・終了時刻未公表を、大学・選抜方式ごとに確認できます。",
+    ],
+  },
+  {
+    date: "2026年7月30日",
+    dateTime: "2026-07-30",
+    title: "試験日カレンダーが見やすくなりました",
+    details: [
+      "一次試験と二次試験を同じ日付の行で確認できるようにしました。",
+      "試験のない日も「—」で表示し、連日か空き日があるかを見分けやすくしました。",
+      "複数日程の番号と、二次試験日の指定・希望・選択の違いを追加しました。",
+    ],
+  },
+  {
+    date: "2026年7月30日",
+    dateTime: "2026-07-30",
+    title: "大学別の日程情報を追加しました",
+    details: [
+      "岩手医科大学の公表済み日程を反映しました。",
+      "日本医科大学のグローバル特別選抜（共通テスト利用）を追加しました。",
+    ],
+  },
+];
 const totalUniversities = privateMedicalUniversities2027.length;
 const commonTestUniversities = privateMedicalUniversities2027.filter((university) =>
   university.routes.some((route) => route.category === "common"),
@@ -179,8 +209,39 @@ const faqJsonLd = {
         <div class="admissions-update-row">
           <span class="admissions-live-dot" aria-hidden="true"></span>
           <span>最終更新：{lastUpdated}</span>
-          <span>発表済み情報から随時更新</span>
+          <a href="#updates">更新内容を見る<span aria-hidden="true">↓</span></a>
         </div>
+      </div>
+    </section>
+
+    <section class="admissions-update-history" id="updates" aria-labelledby="updates-title">
+      <div class="content admissions-update-history__inner">
+        <header class="admissions-update-history__header">
+          <p>UPDATE HISTORY</p>
+          <h2 id="updates-title">更新履歴</h2>
+          <p>このページに新しく追加・改善した内容をまとめています。</p>
+        </header>
+
+        <ol class="admissions-update-history__list">
+          {
+            updateHistory.map((update, index) => (
+              <li class:list={["admissions-update-item", { "admissions-update-item--latest": index === 0 }]}>
+                <div class="admissions-update-item__meta">
+                  {index === 0 && <span>NEW</span>}
+                  <time datetime={update.dateTime}>{update.date}</time>
+                </div>
+                <div class="admissions-update-item__body">
+                  <h3>{update.title}</h3>
+                  <ul>
+                    {update.details.map((detail) => (
+                      <li>{detail}</li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
       </div>
     </section>
 
