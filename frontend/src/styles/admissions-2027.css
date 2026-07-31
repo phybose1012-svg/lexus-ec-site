@@ -941,6 +941,7 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 }
 
 .admissions-full-schedule__viewport {
+  --admissions-full-schedule-head-height: 54px;
   position: relative;
   max-height: min(74vh, 780px);
   overflow: auto;
@@ -1037,6 +1038,9 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 }
 
 .admissions-full-schedule__date time {
+  position: sticky;
+  top: calc(var(--admissions-full-schedule-head-height) + 11px);
+  z-index: 1;
   display: grid;
   justify-items: center;
 }
@@ -2474,6 +2478,7 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   }
 
   .admissions-full-schedule__viewport {
+    --admissions-full-schedule-head-height: 50px;
     max-height: 70vh;
     border-radius: 3px;
     scrollbar-gutter: auto;
