@@ -2122,6 +2122,7 @@ export type FullScheduleCalendarEntry2027 = {
   university: string;
   routes: string[];
   category: AdmissionRouteCategory;
+  sequenceLabel?: string;
   detail?: string;
   status: AdmissionRouteStatus;
   sourceUrl?: string;
@@ -2267,6 +2268,23 @@ const examSelectionDetail = (value: string) => {
   return undefined;
 };
 
+const fullScheduleSequenceLabels = [
+  "",
+  "①",
+  "②",
+  "③",
+  "④",
+  "⑤",
+  "⑥",
+  "⑦",
+  "⑧",
+  "⑨",
+  "⑩",
+] as const;
+
+const fullScheduleSequenceLabel = (index: number) =>
+  fullScheduleSequenceLabels[index] ?? `(${index})`;
+
 const applicationStartDetail = (value: string) => {
   const firstDateIndex = parseScheduleDates(value)[0]?.index ?? value.length;
   const prefix = value.slice(0, firstDateIndex);
@@ -2349,6 +2367,7 @@ const addFullScheduleEvent2027 = (
     (candidate) =>
       candidate.university === entry.university &&
       candidate.category === entry.category &&
+      candidate.sequenceLabel === entry.sequenceLabel &&
       candidate.detail === entry.detail &&
       candidate.status === entry.status &&
       candidate.sourceUrl === entry.sourceUrl,
@@ -2363,6 +2382,7 @@ const addFullScheduleEvent2027 = (
       university: entry.university,
       routes: [entry.route],
       category: entry.category,
+      sequenceLabel: entry.sequenceLabel,
       detail: entry.detail,
       status: entry.status,
       sourceUrl: entry.sourceUrl,
@@ -2418,9 +2438,13 @@ privateMedicalUniversities2027.forEach((university) => {
         ),
     );
 
-    individualFirstExamDates.forEach((date) => {
+    individualFirstExamDates.forEach((date, dateIndex) => {
       addFullScheduleEvent2027(date, "firstExam", {
         ...entryBase,
+        sequenceLabel:
+          individualFirstExamDates.length > 1
+            ? fullScheduleSequenceLabel(dateIndex + 1)
+            : undefined,
         detail: examSelectionDetail(route.firstExam),
       });
     });
@@ -2430,9 +2454,13 @@ privateMedicalUniversities2027.forEach((university) => {
     }
 
     const secondExamDates = parseScheduleDates(route.secondExam, true);
-    secondExamDates.forEach((date) => {
+    secondExamDates.forEach((date, dateIndex) => {
       addFullScheduleEvent2027(date, "secondExam", {
         ...entryBase,
+        sequenceLabel:
+          secondExamDates.length > 1
+            ? fullScheduleSequenceLabel(dateIndex + 1)
+            : undefined,
         detail: examSelectionDetail(route.secondExam),
       });
     });
