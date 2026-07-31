@@ -19,6 +19,23 @@
   scroll-margin-top: 30px;
 }
 
+.admissions-page :where(section[id]) {
+  scroll-margin-top: 88px;
+}
+
+/* On this long-form schedule page, the site-wide header navigation scrolls
+   away. The compact four-way schedule navigation below becomes the sole
+   persistent navigation once it reaches the top of the viewport. */
+body:has(.admissions-page) .mega-nav {
+  position: relative;
+  top: auto;
+}
+
+body:has(.admissions-page) .mobile-fixed-nav-wrap {
+  position: relative;
+  top: auto;
+}
+
 .admissions-page :where(h1, h2, h3, p) {
   margin-top: 0;
 }
@@ -442,10 +459,12 @@
 }
 
 .admissions-jump-nav {
-  position: relative;
-  z-index: 3;
+  position: sticky;
+  top: 0;
+  z-index: 130;
   border-bottom: 1px solid var(--admissions-line);
   background: #fff;
+  box-shadow: 0 7px 18px rgb(38 26 19 / 7%);
 }
 
 .admissions-jump-nav__inner {
@@ -466,6 +485,10 @@
   text-decoration: none;
 }
 
+.admissions-jump-nav__label--short {
+  display: none;
+}
+
 .admissions-jump-nav a:first-child {
   border-left: 1px solid var(--admissions-line);
 }
@@ -474,11 +497,63 @@
   background: var(--admissions-yellow-soft);
 }
 
-.admissions-jump-nav span {
+.admissions-jump-nav__index {
   color: var(--admissions-blue);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.7rem;
   font-weight: 900;
+}
+
+.admissions-jump-nav__label {
+  color: var(--admissions-navy);
+}
+
+.admissions-brand-divider {
+  position: relative;
+  overflow: hidden;
+  min-height: 112px;
+  border-block: 1px solid rgb(217 209 199 / 72%);
+  background:
+    linear-gradient(90deg, #fff 0%, #fffdf8 24%, #fffaf0 50%, #fffdf8 76%, #fff 100%);
+}
+
+.admissions-brand-divider__inner {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 110px;
+}
+
+.admissions-brand-divider__strip {
+  width: min(780px, 72vw);
+  opacity: 0.58;
+}
+
+.admissions-brand-divider__character {
+  position: absolute;
+  z-index: 1;
+  bottom: -13px;
+  width: clamp(92px, 9.5vw, 128px);
+  filter: drop-shadow(0 8px 9px rgb(38 26 19 / 13%));
+}
+
+.admissions-brand-divider__character--lexus {
+  right: clamp(18px, 6vw, 94px);
+  transform: rotate(-4deg);
+}
+
+.admissions-brand-divider__character--yuki {
+  left: clamp(18px, 6vw, 94px);
+  transform: rotate(3deg);
+}
+
+.admissions-brand-divider--yuki .admissions-brand-divider__strip {
+  transform: scaleX(-1);
+}
+
+.admissions-brand-divider--duo .admissions-brand-divider__strip {
+  width: min(700px, 64vw);
+  opacity: 0.5;
 }
 
 .admissions-overview,
@@ -1711,18 +1786,6 @@
     width: min(420px, 100%);
   }
 
-  .admissions-jump-nav__inner {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .admissions-jump-nav a:nth-child(2) {
-    border-right: 1px solid var(--admissions-line);
-  }
-
-  .admissions-jump-nav a:nth-child(-n + 2) {
-    border-bottom: 1px solid var(--admissions-line);
-  }
-
   .admissions-overview,
   .admissions-deadlines,
   .admissions-universities,
@@ -1802,6 +1865,10 @@
 }
 
 @media (max-width: 620px) {
+  .admissions-page :where(section[id]) {
+    scroll-margin-top: 68px;
+  }
+
   .admissions-hero__inner {
     padding-block: 16px 48px;
   }
@@ -1878,9 +1945,52 @@
   }
 
   .admissions-jump-nav a {
-    gap: 7px;
-    min-height: 62px;
-    font-size: 0.72rem;
+    flex-direction: column;
+    gap: 1px;
+    min-height: 56px;
+    padding-inline: 2px;
+    font-size: 0.69rem;
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+
+  .admissions-jump-nav__index {
+    font-size: 0.61rem;
+  }
+
+  .admissions-jump-nav__label--long {
+    display: none;
+  }
+
+  .admissions-jump-nav__label--short {
+    display: inline;
+  }
+
+  .admissions-brand-divider {
+    min-height: 76px;
+  }
+
+  .admissions-brand-divider__inner {
+    min-height: 74px;
+  }
+
+  .admissions-brand-divider__strip,
+  .admissions-brand-divider--duo .admissions-brand-divider__strip {
+    width: 72vw;
+    opacity: 0.47;
+  }
+
+  .admissions-brand-divider__character {
+    bottom: -8px;
+    width: 72px;
+  }
+
+  .admissions-brand-divider__character--lexus {
+    right: 8px;
+  }
+
+  .admissions-brand-divider__character--yuki {
+    left: 8px;
   }
 
   .admissions-page .content,

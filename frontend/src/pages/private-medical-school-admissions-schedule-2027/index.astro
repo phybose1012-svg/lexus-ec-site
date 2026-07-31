@@ -7,6 +7,7 @@ import {
   type ApplicationDeadlineEntry2027,
   type AdmissionRouteStatus,
 } from "../../data/privateMedicalAdmissions2027";
+import AdmissionsBrandDivider from "../../components/admissions/AdmissionsBrandDivider.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import "../../styles/admissions-2027.css";
 
@@ -280,10 +281,26 @@ const faqJsonLd = {
 
     <nav class="admissions-jump-nav" aria-label="ページ内メニュー">
       <div class="content admissions-jump-nav__inner">
-        <a href="#calendar"><span>01</span>試験日カレンダー</a>
-        <a href="#deadlines"><span>02</span>出願締切</a>
-        <a href="#universities"><span>03</span>大学別31校</a>
-        <a href="#common-test"><span>04</span>共テ利用</a>
+        <a href="#calendar" aria-label="試験日カレンダーへ移動">
+          <span class="admissions-jump-nav__index">01</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--long">試験日カレンダー</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--short">試験日</span>
+        </a>
+        <a href="#deadlines" aria-label="出願締切へ移動">
+          <span class="admissions-jump-nav__index">02</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--long">出願締切</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--short">出願</span>
+        </a>
+        <a href="#universities" aria-label="大学別31校へ移動">
+          <span class="admissions-jump-nav__index">03</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--long">大学別31校</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--short">大学別</span>
+        </a>
+        <a href="#common-test" aria-label="共通テスト利用へ移動">
+          <span class="admissions-jump-nav__index">04</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--long">共テ利用</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--short">共テ</span>
+        </a>
       </div>
     </nav>
 
@@ -332,6 +349,8 @@ const faqJsonLd = {
         </div>
       </div>
     </section>
+
+    <AdmissionsBrandDivider variant="lexus" />
 
     <section class="admissions-calendar-section" id="calendar" aria-labelledby="calendar-title">
       <div class="content">
@@ -461,6 +480,8 @@ const faqJsonLd = {
         </div>
       </div>
     </section>
+
+    <AdmissionsBrandDivider variant="yuki" />
 
     <section class="admissions-universities" id="universities" aria-labelledby="universities-title">
       <div class="content">
@@ -670,6 +691,8 @@ const faqJsonLd = {
         </div>
       </div>
     </section>
+
+    <AdmissionsBrandDivider variant="duo" />
 
     <section class="admissions-guide" aria-labelledby="guide-title">
       <div class="content">
