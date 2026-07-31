@@ -350,22 +350,22 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
       officialRoute({
         name: "一般選抜",
         category: "general",
-        application: "2026/12/17〜2027/1/13（必着）",
-        firstExam: "1/21〜23（自由選択）",
+        application: "2026/12/17 9:00〜2027/1/13 16:30（必着）",
+        firstExam: "1/21〜23（自由選択・1〜3日受験可）",
         secondExam: "2/4・5の選択日",
         result: "一次 1/28・最終 2/13",
-        procedure: "2/19まで",
-        sourceUrl: "https://www.teikyo-u.ac.jp/applicants/faculty/medicine_d",
+        procedure: "2/19まで（医学部奨学特待生は3/5まで）",
+        sourceUrl: "https://www.teikyo-u.ac.jp/application/files/2417/8409/4616/02_2027.pdf",
       }),
       officialRoute({
         name: "共通テスト利用 前期",
         category: "common",
-        application: "2026/12/17〜2027/1/15（必着）",
+        application: "2026/12/17 9:00〜2027/1/15 16:30（必着）",
         firstExam: "共通テスト 1/16・17",
         secondExam: "2/17",
         result: "一次 2/13・最終 2/19",
         procedure: "3/8まで",
-        sourceUrl: "https://www.teikyo-u.ac.jp/applicants/faculty/medicine_d",
+        sourceUrl: "https://www.teikyo-u.ac.jp/application/files/2417/8409/4616/02_2027.pdf",
       }),
     ],
   },
@@ -1134,19 +1134,19 @@ const examCalendarEvents2027 = [
   {
     date: "1/21",
     weekday: "木",
-    first: ["帝京①（一般／自由選択）"],
+    first: ["帝京①（一般／①〜③から1〜3日受験可）"],
     second: [],
   },
   {
     date: "1/22",
     weekday: "金",
-    first: ["帝京②（一般／自由選択）"],
+    first: ["帝京②（一般／①〜③から1〜3日受験可）"],
     second: [],
   },
   {
     date: "1/23",
     weekday: "土",
-    first: ["帝京③（一般／自由選択）"],
+    first: ["帝京③（一般／①〜③から1〜3日受験可）"],
     second: [],
   },
   {
@@ -1609,7 +1609,7 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     routes: "一般選抜",
     webDeadline: "1/13 16:30",
     documentDeadline: "1/13 16:30 必着",
-    sourceUrl: "https://www.teikyo-u.ac.jp/applicants/faculty/medicine_d",
+    sourceUrl: "https://www.teikyo-u.ac.jp/application/files/2417/8409/4616/02_2027.pdf",
   },
   {
     date: "1/13",
@@ -1691,7 +1691,7 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     routes: "共テ利用 前期",
     webDeadline: "1/15 16:30",
     documentDeadline: "1/15 16:30 必着",
-    sourceUrl: "https://www.teikyo-u.ac.jp/applicants/faculty/medicine_d",
+    sourceUrl: "https://www.teikyo-u.ac.jp/application/files/2417/8409/4616/02_2027.pdf",
   },
   {
     date: "1/15",
@@ -2282,6 +2282,7 @@ const examSelectionDetail = (value: string) => {
     return "両日受験・一般選抜受験者は一部免除あり";
   }
   if (value.includes("両日受験")) return "両日受験";
+  if (value.includes("1〜3日受験可")) return "1〜3日受験可";
   if (value.includes("自由選択")) return "自由選択";
   if (value.includes("希望をもとに大学が指定")) return "希望をもとに大学指定";
   if (value.includes("希望日")) return "希望日を提出";
@@ -2360,6 +2361,12 @@ const procedureDateDetail = (
   dates: ParsedScheduleDate[],
   dateIndex: number,
 ) => {
+  if (value.includes("医学部奨学特待生")) {
+    return dateIndex === 0
+      ? "通常の入学手続締切"
+      : "医学部奨学特待生の入学手続締切";
+  }
+
   const previousEnd = dates[dateIndex - 1]?.endIndex ?? 0;
   const nextStart = dates[dateIndex + 1]?.index ?? value.length;
   const localContext = value
