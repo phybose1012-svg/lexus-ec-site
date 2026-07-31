@@ -1212,31 +1212,60 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
       officialRoute({
         name: "一般選抜 A方式",
         category: "common",
-        application: "2026/12/11〜2027/1/15（消印有効）",
-        firstExam: "共通テスト 1/16・17＋個別 2/14",
-        secondExam: "3/12（小論文・面接）",
-        result: "二次受験資格 2/26・最終 3/19",
-        procedure: "3/24〜3/25",
+        application:
+          "2026/12/11〜2027/1/15（郵送書類は締切日消印有効／Web終了時刻は10月上旬公開予定の学生募集要項で確認）",
+        applicationDeadlineDateDetails: [
+          "郵送書類1/15消印有効（Web終了時刻は学生募集要項公開待ち）",
+        ],
+        firstExam:
+          "大学入学共通テスト 1/16・17＋個別 2/14（北九州メッセ／ベルサール汐留から希望、東京会場超過時は一部北九州へ変更）",
+        secondExam: "3/12（本学／小論文120分・面接1人約20分）",
+        result: "二次受験資格（小論文・面接）2/26・最終 3/19",
+        procedure:
+          "入学手続期間 3/24〜3/25（時刻と方法は10月上旬公開予定の学生募集要項で確認）",
+        procedureDateDetails: [
+          "入学手続開始",
+          "入学手続締切（時刻・方法は学生募集要項公開待ち）",
+        ],
         sourceUrl: "https://www.uoeh-u.ac.jp/library/nyusi/R9_jissiyoko.pdf",
       }),
       officialRoute({
         name: "一般選抜 B方式",
         category: "general",
-        application: "2026/12/11〜2027/1/25（消印有効）",
-        firstExam: "2/14（個別学力検査）",
-        secondExam: "3/12（小論文・面接）",
-        result: "二次受験資格 2/26・最終 3/19",
-        procedure: "3/24〜3/25",
+        application:
+          "2026/12/11〜2027/1/25（郵送書類は締切日消印有効／Web終了時刻は10月上旬公開予定の学生募集要項で確認）",
+        applicationDeadlineDateDetails: [
+          "郵送書類1/25消印有効（Web終了時刻は学生募集要項公開待ち）",
+        ],
+        firstExam:
+          "2/14（個別学力検査／北九州メッセ・ベルサール汐留から希望、東京会場超過時は一部北九州へ変更）",
+        secondExam: "3/12（本学／小論文120分・面接1人約20分）",
+        result: "二次受験資格（小論文・面接）2/26・最終 3/19",
+        procedure:
+          "入学手続期間 3/24〜3/25（時刻と方法は10月上旬公開予定の学生募集要項で確認）",
+        procedureDateDetails: [
+          "入学手続開始",
+          "入学手続締切（時刻・方法は学生募集要項公開待ち）",
+        ],
         sourceUrl: "https://www.uoeh-u.ac.jp/library/nyusi/R9_jissiyoko.pdf",
       }),
       officialRoute({
         name: "一般選抜 C方式",
         category: "common",
-        application: "2026/12/11〜2027/2/21（消印有効）",
-        firstExam: "共通テスト 1/16・17",
-        secondExam: "3/12（小論文・面接）",
-        result: "二次受験資格 3/4・最終 3/19",
-        procedure: "3/24〜3/25",
+        application:
+          "2026/12/11〜2027/2/21（郵送書類は締切日消印有効／Web終了時刻は10月上旬公開予定の学生募集要項で確認）",
+        applicationDeadlineDateDetails: [
+          "郵送書類2/21消印有効（Web終了時刻は学生募集要項公開待ち）",
+        ],
+        firstExam: "大学入学共通テスト 1/16・17",
+        secondExam: "3/12（本学／小論文120分・面接1人約20分）",
+        result: "二次受験資格（小論文・面接）3/4・最終 3/19",
+        procedure:
+          "入学手続期間 3/24〜3/25（時刻と方法は10月上旬公開予定の学生募集要項で確認）",
+        procedureDateDetails: [
+          "入学手続開始",
+          "入学手続締切（時刻・方法は学生募集要項公開待ち）",
+        ],
         sourceUrl: "https://www.uoeh-u.ac.jp/library/nyusi/R9_jissiyoko.pdf",
       }),
     ],
@@ -1492,7 +1521,9 @@ const examCalendarEvents2027 = [
   {
     date: "2/14",
     weekday: "日",
-    first: ["産業医科（一般A・B／個別学力）"],
+    first: [
+      "産業医科（一般A・B／個別学力／北九州メッセ・ベルサール汐留から希望、東京会場超過時は一部北九州へ変更）",
+    ],
     second: [
       "埼玉医科（一般・前期）",
       "順天堂①（一般A・共テ前期／①〜③の希望をもとに大学が指定）",
@@ -1694,7 +1725,7 @@ const examCalendarEvents2027 = [
     second: [
       "聖マリアンナ医科（一般・後期／共テ）",
       "金沢医科（一般・後期）",
-      "産業医科（一般A・B・C／小論文・面接）",
+      "産業医科（一般A・B・C／本学・小論文120分・面接約20分）",
     ],
   },
   {
@@ -1962,7 +1993,7 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     dateTime: "2027-01-15",
     university: "産業医科大学",
     routes: "一般A方式",
-    webDeadline: "登録時刻は要項公開待ち",
+    webDeadline: "終了時刻は10月上旬公開予定の学生募集要項で確認",
     documentDeadline: "1/15 消印有効",
     sourceUrl: "https://www.uoeh-u.ac.jp/library/nyusi/R9_jissiyoko.pdf",
   },
@@ -2130,7 +2161,7 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     dateTime: "2027-01-25",
     university: "産業医科大学",
     routes: "一般B方式",
-    webDeadline: "登録時刻は要項公開待ち",
+    webDeadline: "終了時刻は10月上旬公開予定の学生募集要項で確認",
     documentDeadline: "1/25 消印有効",
     sourceUrl: "https://www.uoeh-u.ac.jp/library/nyusi/R9_jissiyoko.pdf",
   },
@@ -2220,7 +2251,7 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     dateTime: "2027-02-21",
     university: "産業医科大学",
     routes: "一般C方式",
-    webDeadline: "登録時刻は要項公開待ち",
+    webDeadline: "終了時刻は10月上旬公開予定の学生募集要項で確認",
     documentDeadline: "2/21 消印有効",
     sourceUrl: "https://www.uoeh-u.ac.jp/library/nyusi/R9_jissiyoko.pdf",
   },
