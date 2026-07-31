@@ -91,11 +91,13 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "一般選抜",
         category: "general",
         application: "2027/1/4〜1/20 17:00必着（1/19消印有効）",
-        firstExam: "1/25（学力）・1/26（面接）",
-        secondExam: "2/3",
+        firstExam:
+          "1/25（学力）・1/26（学力試験及第者のみ面接／出願都道府県指定会場）",
+        secondExam: "2/3（自治医科大学）",
         result: "一次 1/29 13:00・最終 2/12 17:00",
-        procedure: "2/25・3/12（大学指定日に来学）",
-        sourceUrl: "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+        procedure: "2/25・3/12の両日（本人が出願都道府県庁で手続）",
+        sourceUrl:
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
       }),
     ],
   },
@@ -1151,7 +1153,7 @@ const examCalendarEvents2027 = [
   {
     date: "1/26",
     weekday: "火",
-    first: ["自治医科②（一般・面接）"],
+    first: ["自治医科②（一般・面接／学力試験及第者のみ）"],
     second: [],
   },
   {
@@ -1780,7 +1782,8 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     routes: "一般選抜",
     webDeadline: "Web出願なし",
     documentDeadline: "1/20 17:00 必着（1/19消印有効）",
-    sourceUrl: "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+    sourceUrl:
+      "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
   },
   {
     date: "1/20",
