@@ -379,22 +379,22 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
       officialRoute({
         name: "一般選抜",
         category: "general",
-        application: "2026/12/14〜2027/1/13（消印有効）",
-        firstExam: "2/6",
-        secondExam: "2/13・14の指定日",
-        result: "一次 2/11・最終 2/18",
-        procedure: "2/18〜3/1 15:00",
-        sourceUrl: "https://admissions-tokyo-med.jp/med/exam/",
+        application: "2026/12/14 00:00〜2027/1/13 23:59（書類は消印有効）",
+        firstExam: "2/6（一次・小論文）",
+        secondExam: "2/13・14の指定日（出願が早い順）",
+        result: "一次 2/11 10:00・最終 2/18 10:00",
+        procedure: "2/18 10:00〜3/1 15:00（納付・書類到着）",
+        sourceUrl: "https://admissions-tokyo-med.jp/wp-content/uploads/2024/12/2027bosyuyoukou_ippan.pdf",
       }),
       officialRoute({
         name: "共通テスト利用",
         category: "common",
-        application: "2026/12/14〜2027/1/13（消印有効）",
-        firstExam: "共通テスト＋2/6（小論文）",
-        secondExam: "2/13・14の指定日",
-        result: "一次 2/11・最終 2/18",
-        procedure: "2/18〜3/1 15:00",
-        sourceUrl: "https://admissions-tokyo-med.jp/med/exam/",
+        application: "2026/12/14 00:00〜2027/1/13 23:59（書類は消印有効）",
+        firstExam: "共通テスト 1/16・17＋2/6（小論文）",
+        secondExam: "2/13・14の指定日（出願が早い順）",
+        result: "一次 2/11 10:00・最終 2/18 10:00",
+        procedure: "2/18 10:00〜3/1 15:00（納付・書類到着）",
+        sourceUrl: "https://admissions-tokyo-med.jp/wp-content/uploads/2024/12/2027bosyuyoukou_ippan.pdf",
       }),
     ],
   },
@@ -1237,7 +1237,7 @@ const examCalendarEvents2027 = [
   {
     date: "2/6",
     weekday: "土",
-    first: ["東京医科（一般）", "東京医科（共テ／小論文）"],
+    first: ["東京医科（一般／一次・小論文）", "東京医科（共テ／小論文）"],
     second: ["国際医療福祉⑥（一般／①〜⑥の希望をもとに大学指定）"],
   },
   {
@@ -1288,7 +1288,7 @@ const examCalendarEvents2027 = [
     second: [
       "岩手医科②（一般／①〜②から受験者が選択）",
       "昭和医科①（一般・Ⅰ期／①〜②から受験者が選択）",
-      "東京医科①（一般・共テ／①〜②から大学指定）",
+      "東京医科①（一般・共テ／①〜②を出願順に大学指定）",
       "東京女子医科①（一般／①〜③から大学指定）",
       "北里①（一般・共テ前期／①〜③から受験者が選択）",
       "聖マリアンナ医科①（一般・前期／①〜②から希望日を提出）",
@@ -1304,7 +1304,7 @@ const examCalendarEvents2027 = [
       "埼玉医科（一般・前期）",
       "順天堂①（一般A・共テ前期／①〜③の希望をもとに大学が指定）",
       "昭和医科②（一般・Ⅰ期／①〜②から受験者が選択）",
-      "東京医科②（一般・共テ／①〜②から大学指定）",
+      "東京医科②（一般・共テ／①〜②を出願順に大学指定）",
       "東京女子医科②（一般／①〜③から大学指定）",
       "北里②（一般・共テ前期／①〜③から受験者が選択）",
       "聖マリアンナ医科②（一般・前期／①〜②から希望日を提出）",
@@ -1618,7 +1618,7 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     routes: "一般／共テ利用",
     webDeadline: "1/13 23:59",
     documentDeadline: "1/13 消印有効",
-    sourceUrl: "https://admissions-tokyo-med.jp/med/exam/",
+    sourceUrl: "https://admissions-tokyo-med.jp/wp-content/uploads/2024/12/2027bosyuyoukou_ippan.pdf",
   },
   {
     date: "1/14",
@@ -2286,6 +2286,7 @@ const examSelectionDetail = (value: string) => {
   if (value.includes("自由選択")) return "自由選択";
   if (value.includes("希望をもとに大学が指定")) return "希望をもとに大学指定";
   if (value.includes("希望日")) return "希望日を提出";
+  if (value.includes("出願が早い順")) return "出願順に大学指定";
   if (value.includes("指定日")) return "大学指定";
   if (value.includes("選択日")) return "受験日を選択";
   if (value.includes("または")) return "いずれかの日程";
