@@ -1076,23 +1076,31 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
     strategyPath: "/https-lexus-ec-com-hyougoika-university-entrance-exam-measures2027/",
     routes: [
       officialRoute({
-        name: "一般選抜 A（4科目型）",
+        name: "一般選抜 A（4科目型／兵庫県推薦入学制度枠を含む）",
         category: "general",
-        application: "2026/12/14〜2027/1/20（消印有効）",
-        firstExam: "2/4",
-        secondExam: "2/17・18の選択日",
-        result: "一次 2/15 17:00・最終 2/24 10:00",
-        procedure: "2/24〜3/3（消印有効）",
+        application:
+          "Web・書類 2026/12/14 0:00〜2027/1/20 15:00（検定料は登録翌日23:59まで、最終日登録分は16:00まで。書類は1/20消印有効。兵庫県推薦入学制度枠は大学と県の指定書類を兵庫県へ提出し、県の2027年度受付期間は公表待ち）",
+        firstExam:
+          "2/4 9:00（大阪・東京・福岡／西宮キャンパスでは実施なし）",
+        secondExam:
+          "2/17・18の選択日（Web出願登録時に選択・検定料支払後は変更不可／西宮キャンパス／集合時刻は一次合格発表時に案内。兵庫県推薦入学制度枠は別に県選考あり・2027年度日程は公表待ち）",
+        result:
+          "一次 2/15 17:00・最終 2/24 10:00（兵庫県推薦入学制度枠の県選考結果は2027年度日程公表待ち）",
+        procedure:
+          "Post@net登録と手続金納入後に書類郵送：2/24〜3/3消印有効（正規合格者は入学金を期間内に納入すれば、残額と書類を3月10日まで猶予可）",
         sourceUrl: "https://www.hyo-med.ac.jp/files/20260703/c737f86c1b3de8f37133c3de2c8031853ac51fff.pdf",
       }),
       officialRoute({
-        name: "一般選抜 B（英語資格活用型）",
+        name: "一般選抜 B（英語資格試験活用型）",
         category: "general",
-        application: "2026/12/14〜2027/1/20（消印有効）",
-        firstExam: "2/4",
-        secondExam: "2/27",
+        application:
+          "Web・書類 2026/12/14 0:00〜2027/1/20 15:00（検定料は登録翌日23:59まで、最終日登録分は16:00まで。書類は1/20消印有効）",
+        firstExam:
+          "2/4（B単願は11:10開始・大阪／A・B併願は9:00開始・大阪・東京・福岡／西宮キャンパスでは実施なし）",
+        secondExam: "2/27 10:00（西宮キャンパス）",
         result: "一次 2/24 10:00・最終 3/5 10:00",
-        procedure: "3/5〜3/12（消印有効）",
+        procedure:
+          "Post@net登録と手続金納入後に書類郵送：3/5〜3/12消印有効",
         sourceUrl: "https://www.hyo-med.ac.jp/files/20260703/c737f86c1b3de8f37133c3de2c8031853ac51fff.pdf",
       }),
     ],
@@ -1373,7 +1381,7 @@ const examCalendarEvents2027 = [
       "藤田医科（一般）",
       "聖マリアンナ医科（一般・前期）",
       "埼玉医科（一般・前期）",
-      "兵庫医科（一般A・B）",
+      "兵庫医科（一般A〔兵庫県推薦入学制度枠含む〕・B／B単願は大阪、AまたはA・B併願は大阪・東京・福岡）",
       "金沢医科②（一般・前期／①〜②の1日または両日受験可・高得点日で判定）",
     ],
     second: [
@@ -1499,7 +1507,7 @@ const examCalendarEvents2027 = [
     second: [
       "帝京（共テ・前期）",
       "金沢医科①（一般・前期／①〜②のうち受験者が希望する1日）",
-      "兵庫医科①（一般A／①〜②から受験者が選択）",
+      "兵庫医科①（一般A／①〜②からWeb出願登録時に選択・支払後変更不可）",
     ],
   },
   {
@@ -1508,7 +1516,7 @@ const examCalendarEvents2027 = [
     first: [],
     second: [
       "金沢医科②（一般・前期／①〜②のうち受験者が希望する1日）",
-      "兵庫医科②（一般A／①〜②から受験者が選択）",
+      "兵庫医科②（一般A／①〜②からWeb出願登録時に選択・支払後変更不可）",
       "愛知医科①（一般・共テ／①〜③のうち希望する1日・両方式で二次資格なら面接1回）",
     ],
   },
@@ -2014,9 +2022,11 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     date: "1/20",
     dateTime: "2027-01-20",
     university: "兵庫医科大学",
-    routes: "一般A・B",
-    webDeadline: "1/20 15:00",
-    documentDeadline: "1/20 消印有効",
+    routes: "一般A（兵庫県推薦入学制度枠を含む）・B",
+    webDeadline:
+      "1/20 15:00（検定料は登録翌日23:59まで、最終日登録分は16:00まで）",
+    documentDeadline:
+      "1/20 消印有効（兵庫県推薦入学制度枠は大学と県の指定書類を兵庫県へ提出）",
     sourceUrl: "https://www.hyo-med.ac.jp/files/20260703/c737f86c1b3de8f37133c3de2c8031853ac51fff.pdf",
   },
   {
