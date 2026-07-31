@@ -414,7 +414,12 @@ const faqJsonLd = {
             <p class="admissions-deadline-focus__note">「時刻未公表」「要項公開待ち」は、現在の公式資料に詳細がない項目です。公表後に更新します。</p>
           </aside>
 
-          <div class="admissions-deadline-list">
+          <div
+            class="admissions-deadline-list"
+            tabindex="0"
+            role="region"
+            aria-label="2027年度私立医学部入試 出願締切一覧"
+          >
             {applicationDeadlineGroups2027.map((group) => (
               <section class="admissions-deadline-group" aria-label={`${group.date}締切`}>
                 <header>
@@ -467,47 +472,54 @@ const faqJsonLd = {
           </button>
         </div>
 
-        <div class="admissions-calendar-head" aria-hidden="true">
-          <span>日付</span>
-          <span>一次試験</span>
-          <span>二次試験</span>
-        </div>
+        <div
+          class="admissions-calendar-viewport"
+          tabindex="0"
+          role="region"
+          aria-label="2027年度私立医学部入試 一次・二次試験カレンダー"
+        >
+          <div class="admissions-calendar-head" aria-hidden="true">
+            <span>日付</span>
+            <span>一次試験</span>
+            <span>二次試験</span>
+          </div>
 
-        <div class="admissions-calendar-list">
-          {examCalendar2027.map((event) => (
-            <article
-              class:list={[
-                "admissions-calendar-row",
-                {
-                  "admissions-calendar-row--empty":
-                    event.first.length === 0 && event.second.length === 0,
-                },
-              ]}
-            >
-              <div class="admissions-calendar-date">
-                <strong>{event.date}</strong>
-                <span>{event.weekday}</span>
-              </div>
-              <div class="admissions-calendar-exams" data-heading="一次試験">
-                {event.first.length > 0 ? (
-                  <ul>
-                    {event.first.map((exam) => <li>{exam}</li>)}
-                  </ul>
-                ) : (
-                  <span class="admissions-calendar-empty">—</span>
-                )}
-              </div>
-              <div class="admissions-calendar-exams" data-heading="二次試験">
-                {event.second.length > 0 ? (
-                  <ul>
-                    {event.second.map((exam) => <li>{exam}</li>)}
-                  </ul>
-                ) : (
-                  <span class="admissions-calendar-empty">—</span>
-                )}
-              </div>
-            </article>
-          ))}
+          <div class="admissions-calendar-list">
+            {examCalendar2027.map((event) => (
+              <article
+                class:list={[
+                  "admissions-calendar-row",
+                  {
+                    "admissions-calendar-row--empty":
+                      event.first.length === 0 && event.second.length === 0,
+                  },
+                ]}
+              >
+                <div class="admissions-calendar-date">
+                  <strong>{event.date}</strong>
+                  <span>{event.weekday}</span>
+                </div>
+                <div class="admissions-calendar-exams" data-heading="一次試験">
+                  {event.first.length > 0 ? (
+                    <ul>
+                      {event.first.map((exam) => <li>{exam}</li>)}
+                    </ul>
+                  ) : (
+                    <span class="admissions-calendar-empty">—</span>
+                  )}
+                </div>
+                <div class="admissions-calendar-exams" data-heading="二次試験">
+                  {event.second.length > 0 ? (
+                    <ul>
+                      {event.second.map((exam) => <li>{exam}</li>)}
+                    </ul>
+                  ) : (
+                    <span class="admissions-calendar-empty">—</span>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
 
         <p class="admissions-calendar-caption">

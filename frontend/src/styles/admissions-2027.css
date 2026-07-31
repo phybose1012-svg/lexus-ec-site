@@ -742,13 +742,33 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   color: #756b62;
 }
 
+.admissions-calendar-viewport {
+  position: relative;
+  max-height: min(74vh, 780px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: var(--admissions-calendar-rule);
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 14px 36px rgb(38 26 19 / 5%);
+  scrollbar-color: #aa9e92 #f2eee9;
+  scrollbar-gutter: stable;
+}
+
+.admissions-calendar-viewport:focus-visible,
+.admissions-deadline-list:focus-visible {
+  outline: 3px solid rgb(15 86 133 / 24%);
+  outline-offset: 3px;
+}
+
 .admissions-calendar-head {
+  position: sticky;
+  z-index: 2;
+  top: 0;
   display: grid;
   grid-template-columns: 112px minmax(0, 1fr) minmax(0, 1fr);
   overflow: hidden;
-  border: var(--admissions-calendar-rule);
-  border-bottom: 0;
-  border-radius: 5px 5px 0 0;
+  border-bottom: var(--admissions-calendar-rule);
   color: #5f554c;
   background: #f7f2eb;
   font-size: 0.72rem;
@@ -767,11 +787,7 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 .admissions-calendar-list {
   display: grid;
   grid-template-columns: 1fr;
-  overflow: hidden;
-  border: var(--admissions-calendar-rule);
-  border-radius: 0 0 5px 5px;
   background: #fff;
-  box-shadow: 0 14px 36px rgb(38 26 19 / 5%);
 }
 
 .admissions-calendar-row {
@@ -1317,8 +1333,14 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 
 .admissions-deadline-list {
   display: grid;
+  max-height: min(74vh, 780px);
   min-width: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
   gap: 16px;
+  padding: 1px 12px 16px 1px;
+  scrollbar-color: #aa9e92 #f2eee9;
+  scrollbar-gutter: stable;
 }
 
 .admissions-deadline-group {
@@ -2414,8 +2436,22 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
     display: none;
   }
 
+  .admissions-calendar-viewport,
+  .admissions-deadline-list {
+    max-height: 70vh;
+    scrollbar-gutter: auto;
+  }
+
+  .admissions-calendar-viewport {
+    border-radius: 3px;
+  }
+
+  .admissions-deadline-list {
+    padding-right: 8px;
+  }
+
   .admissions-calendar-list {
-    border-radius: 5px;
+    border-radius: 0;
   }
 
   .admissions-calendar-row {
@@ -2761,7 +2797,24 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
     color: #333;
   }
 
+  body.is-printing-admissions-section :where(
+    .admissions-calendar-viewport,
+    .admissions-deadline-list
+  ) {
+    max-height: none;
+    overflow: visible;
+    overscroll-behavior: auto;
+    scrollbar-gutter: auto;
+  }
+
+  body.is-printing-admissions-section .admissions-calendar-viewport {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
   body.is-printing-admissions-section .admissions-calendar-head {
+    position: static;
     display: table;
     width: 100%;
     table-layout: fixed;
@@ -2970,6 +3023,7 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 
   body.is-printing-admissions-section .admissions-deadline-list {
     gap: 3mm;
+    padding: 0;
   }
 
   body.is-printing-admissions-section .admissions-deadline-group {
