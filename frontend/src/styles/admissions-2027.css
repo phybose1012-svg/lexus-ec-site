@@ -2150,8 +2150,8 @@
 }
 
 @page {
-  size: A4 landscape;
-  margin: 10mm;
+  size: A4 portrait;
+  margin: 9mm;
 }
 
 @media print {
@@ -2160,7 +2160,13 @@
     -webkit-print-color-adjust: exact;
   }
 
+  body.is-printing-admissions-section .skip-link,
+  body.is-printing-admissions-section .skip-anchor,
   body.is-printing-admissions-section .site-header,
+  body.is-printing-admissions-section .top-header,
+  body.is-printing-admissions-section .mobile-fixed-nav-wrap,
+  body.is-printing-admissions-section .mega-nav-heading,
+  body.is-printing-admissions-section .mega-nav,
   body.is-printing-admissions-section .site-footer,
   body.is-printing-admissions-section .admissions-print-button,
   body.is-printing-admissions-section .admissions-page > :not(.is-print-target):not(.admissions-print-branding) {
@@ -2207,7 +2213,7 @@
   }
 
   body.is-printing-admissions-section .admissions-calendar-head {
-    grid-template-columns: 24mm minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: 20mm minmax(0, 1fr) minmax(0, 1fr);
     border-color: #888;
     color: #111;
     background: #f2f2f2;
@@ -2228,7 +2234,7 @@
   }
 
   body.is-printing-admissions-section .admissions-calendar-row {
-    grid-template-columns: 24mm minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: 20mm minmax(0, 1fr) minmax(0, 1fr);
     min-height: 12mm;
     border-right: 1px solid #888;
     border-bottom: 1px solid #888;
@@ -2287,14 +2293,14 @@
   }
 
   body.is-printing-admissions-section .admissions-common-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3mm;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5mm;
   }
 
   body.is-printing-admissions-section .admissions-common-grid > article {
     min-height: 0;
     border-color: #888;
-    padding: 4mm;
+    padding: 3.5mm;
     color: #111;
     background: #fff;
     box-shadow: none;
@@ -2310,6 +2316,102 @@
     display: none;
   }
 
+  body.is-printing-admissions-section .admissions-deadline-layout {
+    display: block;
+  }
+
+  body.is-printing-admissions-section .admissions-deadline-focus {
+    position: static;
+    overflow: visible;
+    margin-bottom: 5mm;
+    padding: 4mm;
+    border-color: #888;
+    background: #fffdf4;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  body.is-printing-admissions-section .admissions-deadline-focus::after {
+    display: none;
+  }
+
+  body.is-printing-admissions-section .admissions-deadline-focus > strong {
+    margin: 0 0 2mm;
+    font-size: 22pt;
+  }
+
+  body.is-printing-admissions-section .admissions-deadline-focus p,
+  body.is-printing-admissions-section .admissions-deadline-focus li {
+    font-size: 7pt;
+    line-height: 1.5;
+  }
+
+  body.is-printing-admissions-section .admissions-deadline-focus ul {
+    gap: 1mm;
+  }
+
+  body.is-printing-admissions-section .admissions-deadline-focus__note {
+    margin-top: 2.5mm !important;
+    padding-top: 2.5mm;
+    font-size: 6.5pt !important;
+  }
+
+  body.is-printing-admissions-section .admissions-deadline-list {
+    gap: 3mm;
+  }
+
+  body.is-printing-admissions-section .admissions-deadline-group {
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  body.is-printing-admissions-section .admissions-deadline-group > header {
+    border: 1px solid #888;
+    padding: 2.5mm 3mm;
+    background: #f2f2f2;
+    break-after: avoid;
+  }
+
+  body.is-printing-admissions-section .admissions-deadline-group > header time,
+  body.is-printing-admissions-section .admissions-deadline-group__date {
+    color: #111;
+    font-size: 11pt;
+  }
+
+  body.is-printing-admissions-section .admissions-deadline-entry {
+    grid-template-columns: minmax(38mm, 0.82fr) minmax(0, 1.45fr);
+    gap: 3mm;
+    border-right: 1px solid #888;
+    border-bottom: 1px solid #888;
+    border-left: 1px solid #888;
+    padding: 3mm;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  body.is-printing-admissions-section .admissions-deadline-entry__school strong {
+    color: #111;
+    font-size: 7.5pt;
+  }
+
+  body.is-printing-admissions-section .admissions-deadline-entry__school span,
+  body.is-printing-admissions-section .admissions-deadline-entry dt,
+  body.is-printing-admissions-section .admissions-deadline-entry dd {
+    color: #222;
+    font-size: 6.5pt;
+    line-height: 1.45;
+  }
+
+  body.is-printing-admissions-section .admissions-deadline-entry dl > div {
+    padding: 1mm 2.5mm;
+  }
+
+  body.is-printing-admissions-section .admissions-deadline-entry > a {
+    display: none;
+  }
+
   body.is-printing-admissions-section .admissions-print-branding {
     display: grid !important;
     grid-template-columns: 22mm minmax(0, 82mm) 22mm;
@@ -2317,9 +2419,9 @@
     align-items: end;
     justify-content: center;
     width: 100%;
-    margin-top: 8mm;
-    border-top: 1px solid #aaa;
-    padding-top: 4mm;
+    margin-bottom: 6mm;
+    border-bottom: 1px solid #aaa;
+    padding-bottom: 4mm;
     color: #333;
     background: #fff;
     text-align: center;

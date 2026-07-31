@@ -161,6 +161,39 @@ const faqJsonLd = {
   </Fragment>
 
   <main class="admissions-page">
+    <header class="admissions-print-branding" aria-label="医学部予備校レクサスE.C.">
+      <img
+        class="admissions-print-branding__character"
+        src="/illustrations/characters/lexus-kun-running.png"
+        alt="レクサスくん"
+        width="1320"
+        height="1320"
+        loading="eager"
+        decoding="sync"
+      />
+      <div>
+        <img
+          class="admissions-print-branding__logo"
+          src="/assets/optimized/footer-logo-760.webp"
+          alt="鬼特訓する医学部予備校レクサスE.C."
+          width="760"
+          height="300"
+          loading="eager"
+          decoding="sync"
+        />
+        <p>2027年度 私立医学部入試日程｜最終更新：{lastUpdated}</p>
+      </div>
+      <img
+        class="admissions-print-branding__character"
+        src="/illustrations/characters/yuki-sensei-default.png"
+        alt="ゆうき先生"
+        width="395"
+        height="395"
+        loading="eager"
+        decoding="sync"
+      />
+    </header>
+
     <section class="admissions-hero">
       <div class="content admissions-hero__inner">
         <nav class="admissions-breadcrumb" aria-label="パンくずリスト">
@@ -365,12 +398,16 @@ const faqJsonLd = {
 
     <section class="admissions-deadlines" id="deadlines" aria-labelledby="deadlines-title">
       <div class="content">
-        <div class="admissions-section-heading admissions-section-heading--split">
+        <div class="admissions-section-heading admissions-section-heading--printable">
           <div>
             <p>APPLICATION DEADLINES</p>
             <h2 id="deadlines-title">出願締め切りを日付順に見る</h2>
+            <p>Web登録と郵送書類の期限を分けて確認できます。</p>
           </div>
-          <p class="admissions-heading-note">Web登録と郵送書類の期限を分けて確認</p>
+          <button type="button" class="admissions-print-button" data-print-section="deadlines">
+            <span aria-hidden="true">⎙</span>
+            このセクションを印刷
+          </button>
         </div>
 
         <div class="admissions-deadline-layout">
@@ -697,38 +734,6 @@ const faqJsonLd = {
       </div>
     </section>
 
-    <footer class="admissions-print-branding" aria-label="医学部予備校レクサスE.C.">
-      <img
-        class="admissions-print-branding__character"
-        src="/illustrations/characters/lexus-kun-running.png"
-        alt="レクサスくん"
-        width="1320"
-        height="1320"
-        loading="eager"
-        decoding="sync"
-      />
-      <div>
-        <img
-          class="admissions-print-branding__logo"
-          src="/assets/optimized/footer-logo-760.webp"
-          alt="鬼特訓する医学部予備校レクサスE.C."
-          width="760"
-          height="300"
-          loading="eager"
-          decoding="sync"
-        />
-        <p>2027年度 私立医学部入試日程｜最終更新：{lastUpdated}</p>
-      </div>
-      <img
-        class="admissions-print-branding__character"
-        src="/illustrations/characters/yuki-sensei-default.png"
-        alt="ゆうき先生"
-        width="395"
-        height="395"
-        loading="eager"
-        decoding="sync"
-      />
-    </footer>
   </main>
 
   <script is:inline>
