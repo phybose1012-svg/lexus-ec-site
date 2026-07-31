@@ -9,6 +9,7 @@ export type AdmissionRoute = {
   secondExam: string;
   result?: string;
   procedure: string;
+  procedureDateDetails?: string[];
   status: AdmissionRouteStatus;
   sourceUrl?: string;
 };
@@ -475,25 +476,41 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
     strategyPath: "/nihon-university-entrance-exam-measures2027/",
     routes: [
       officialRoute({
-        name: "N方式 第1期",
+        name: "一般選抜 N全学統一方式 第1期",
         category: "general",
-        application: "2027/1/5〜1/22（郵送必着）",
-        firstExam: "2/1",
-        secondExam: "2/11",
+        application:
+          "Web・書類 2027/1/5〜1/22（Web終了時刻未公表・書類は簡易書留で必着）",
+        firstExam: "2/1（全国20会場から希望受験地を選択・希望に添えない場合あり）",
+        secondExam: "2/11（医学部校舎）",
         result: "一次 2/8 16:00・最終 2/17 13:00",
-        procedure: "2/24まで（第2段階最終 3/11）",
+        procedure: "2/24（入学手続締切）・3/11（二段階最終入学手続締切）",
+        procedureDateDetails: ["入学手続締切", "二段階最終入学手続締切"],
         sourceUrl: "https://www.nihon-u.ac.jp/admission_info/application/general_information/general/n_system/",
       }),
       officialRoute({
-        name: "N方式 第2期",
+        name: "一般選抜 N全学統一方式 第2期",
         category: "general",
-        application: "2027/1/5〜2/25（郵送必着）",
-        firstExam: "3/4",
-        secondExam: "3/17",
+        application:
+          "Web・書類 2027/1/5〜2/25（Web終了時刻未公表・書類は簡易書留で必着）",
+        firstExam: "3/4（郡山・千葉・東京・湘南）",
+        secondExam: "3/17（医学部校舎）",
         result: "一次 3/12 16:00・最終 3/23 13:00",
-        procedure: "3/26まで",
+        procedure: "3/26（入学手続締切）",
+        procedureDateDetails: ["入学手続締切"],
         sourceUrl: "https://www.nihon-u.ac.jp/admission_info/application/general_information/general/n_system/",
       }),
+      {
+        name: "地域枠選抜（2027年度の方式・日程は未公表）",
+        category: "general",
+        application: "2027年度の方式・日程は未公表",
+        firstExam: "2027年度の方式・日程は未公表",
+        secondExam: "2027年度の方式・日程は未公表",
+        result: "2027年度の方式・日程は未公表",
+        procedure: "2027年度の方式・日程は未公表",
+        status: "pending",
+        sourceUrl:
+          "https://www.nihon-u.ac.jp/assets/%E7%AC%AC11%E5%9B%9E%E7%90%86%E4%BA%8B%E4%BC%9A%E8%AD%B0%E4%BA%8B%E9%8C%B2%E8%A6%81%E6%97%A8.pdf",
+      },
     ],
   },
   {
@@ -1175,7 +1192,7 @@ const examCalendarEvents2027 = [
     weekday: "月",
     first: [
       "川崎医科（一般）",
-      "日大（N方式・第1期）",
+      "日大（N全学統一方式・第1期／全国20会場から希望受験地を選択）",
       "日本医科（一般前期・グローバル）",
       "久留米（一般・前期）",
       "東京女子医科（一般・地域枠／学科・小論文）",
@@ -1269,7 +1286,7 @@ const examCalendarEvents2027 = [
     weekday: "木・祝",
     first: ["東京慈恵会医科（一般）"],
     second: [
-      "日大（N方式・第1期）",
+      "日大（N全学統一方式・第1期／医学部校舎）",
       "杏林①（一般／①〜②の希望をもとに大学指定）",
       "川崎医科②（一般／①〜②から大学指定）",
     ],
@@ -1450,7 +1467,10 @@ const examCalendarEvents2027 = [
   {
     date: "3/4",
     weekday: "木",
-    first: ["日大（N方式・第2期）", "金沢医科（一般・後期）"],
+    first: [
+      "日大（N全学統一方式・第2期／郡山・千葉・東京・湘南）",
+      "金沢医科（一般・後期）",
+    ],
     second: [],
   },
   {
@@ -1530,7 +1550,7 @@ const examCalendarEvents2027 = [
     date: "3/17",
     weekday: "水",
     first: [],
-    second: ["日大（N方式・第2期）"],
+    second: ["日大（N全学統一方式・第2期／医学部校舎）"],
   },
   {
     date: "3/18",
@@ -1873,9 +1893,9 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     date: "1/22",
     dateTime: "2027-01-22",
     university: "日本大学",
-    routes: "N方式 第1期",
-    webDeadline: "1/22（時刻未公表）",
-    documentDeadline: "1/22 必着",
+    routes: "一般選抜 N全学統一方式 第1期",
+    webDeadline: "1/22（終了時刻は募集要項公開待ち）",
+    documentDeadline: "1/22 必着（簡易書留）",
     sourceUrl: "https://www.nihon-u.ac.jp/admission_info/application/general_information/general/n_system/",
   },
   {
@@ -2026,9 +2046,9 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     date: "2/25",
     dateTime: "2027-02-25",
     university: "日本大学",
-    routes: "N方式 第2期",
-    webDeadline: "2/25（時刻未公表）",
-    documentDeadline: "2/25 必着",
+    routes: "一般選抜 N全学統一方式 第2期",
+    webDeadline: "2/25（終了時刻は募集要項公開待ち）",
+    documentDeadline: "2/25 必着（簡易書留）",
     sourceUrl: "https://www.nihon-u.ac.jp/admission_info/application/general_information/general/n_system/",
   },
   {
@@ -2530,13 +2550,15 @@ privateMedicalUniversities2027.forEach((university) => {
         : procedureDates;
 
     procedureDeadlineDates.forEach((date) => {
+      const procedureDateIndex = procedureDates.findIndex(
+        (candidate) => candidate.key === date.key,
+      );
+
       addFullScheduleEvent2027(date, "procedureDeadline", {
         ...entryBase,
-        detail: procedureDateDetail(
-          route.procedure,
-          procedureDates,
-          procedureDates.findIndex((candidate) => candidate.key === date.key),
-        ),
+        detail:
+          route.procedureDateDetails?.[procedureDateIndex] ??
+          procedureDateDetail(route.procedure, procedureDates, procedureDateIndex),
       });
     });
     if (procedureDates.length === 0) pendingFields.push("procedureDeadline");
