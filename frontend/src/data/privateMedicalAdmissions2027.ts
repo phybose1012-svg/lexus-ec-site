@@ -909,51 +909,68 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
       officialRoute({
         name: "一般選抜 前期",
         category: "general",
-        application: "2026/12/10〜2027/1/15（書類1/16消印）",
-        firstExam: "2/2",
-        secondExam: "2/20・21の希望をもとに大学が指定",
-        result: "一次 2/15・最終 3/1",
-        procedure: "3/8まで",
+        application: "Web 2026/12/10〜2027/1/15 23:59（書類1/16消印有効）",
+        firstExam:
+          "2/2（大阪ATC・東京TRC・名古屋コンベンションホール・福岡南近代ビル）",
+        secondExam:
+          "2/20・21から出願時に希望日を選択し大学が指定（枚方キャンパス医学部棟）",
+        result: "一次 2/15 12:00・最終 3/1 10:00",
+        procedure: "3/8 15:00まで",
         sourceUrl: "https://www.kmu.ac.jp/juk/fom/information/m3v58f00000036sx-att/R09_admission-requirements.pdf",
       }),
+      {
+        name: "地域枠一般選抜（大阪府3名予定・静岡県2名予定／臨時定員増設置構想中）",
+        category: "general",
+        application: "Web 2026/12/10〜2027/1/15 23:59（書類1/16消印有効）",
+        firstExam:
+          "2/2（一般前期と同日・同一会場／大阪ATC・東京TRC・名古屋コンベンションホール・福岡南近代ビル）",
+        secondExam: "2/20（必ず地域枠面接／枚方キャンパス医学部棟）",
+        result: "一次 2/15 12:00・最終 3/1 10:00",
+        procedure: "3/8 15:00まで",
+        status: "preliminary",
+        sourceUrl: "https://www.kmu.ac.jp/juk/fom/information/m3v58f00000036sx-att/R09_admission-requirements.pdf",
+      },
       officialRoute({
         name: "一般選抜 後期",
         category: "general",
-        application: "2027/2/1〜2/19（書類2/20消印）",
-        firstExam: "3/6",
-        secondExam: "3/16",
-        result: "一次 3/12・最終 3/19",
-        procedure: "3/25まで",
+        application: "Web 2027/2/1〜2/19 23:59（書類2/20消印有効）",
+        firstExam: "3/6（枚方キャンパス医学部棟）",
+        secondExam: "3/16（枚方キャンパス医学部棟）",
+        result: "一次 3/12 10:00・最終 3/19 10:00",
+        procedure: "3/25 15:00まで",
         sourceUrl: "https://www.kmu.ac.jp/juk/fom/information/m3v58f00000036sx-att/R09_admission-requirements.pdf",
       }),
       officialRoute({
         name: "共通テスト利用 前期",
         category: "common",
-        application: "2026/12/10〜2027/1/15（書類1/16消印）",
-        firstExam: "共通テスト 1/16・17",
-        secondExam: "2/21",
-        result: "一次 2/15・最終 3/1",
-        procedure: "3/8まで",
+        application: "Web 2026/12/10〜2027/1/15 23:59（書類1/16消印有効）",
+        firstExam: "共通テスト 1/16・17（共通テスト受験地）",
+        secondExam:
+          "2/21（一般前期にも重複合格した場合は一般前期の指定日／枚方キャンパス医学部棟）",
+        result: "一次 2/15 12:00・最終 3/1 10:00",
+        procedure: "3/8 15:00まで",
         sourceUrl: "https://www.kmu.ac.jp/juk/fom/information/m3v58f00000036sx-att/R09_admission-requirements.pdf",
       }),
       officialRoute({
         name: "共通テスト・一般併用選抜",
         category: "common",
-        application: "2026/12/10〜2027/1/15（書類1/16消印）",
-        firstExam: "共通テスト＋2/2",
-        secondExam: "2/21",
-        result: "一次 2/15・最終 3/1",
-        procedure: "3/8まで",
+        application: "Web 2026/12/10〜2027/1/15 23:59（書類1/16消印有効）",
+        firstExam:
+          "共通テスト 1/16・17＋2/2（一般前期は大阪ATC・東京TRC・名古屋コンベンションホール・福岡南近代ビル）",
+        secondExam:
+          "2/21（一般前期にも重複合格した場合は一般前期の指定日／枚方キャンパス医学部棟）",
+        result: "一次 2/15 12:00・最終 3/1 10:00",
+        procedure: "3/8 15:00まで",
         sourceUrl: "https://www.kmu.ac.jp/juk/fom/information/m3v58f00000036sx-att/R09_admission-requirements.pdf",
       }),
       officialRoute({
         name: "共通テスト利用 後期",
         category: "common",
-        application: "2027/2/1〜2/19（書類2/20消印）",
-        firstExam: "共通テスト 1/16・17",
-        secondExam: "3/16",
-        result: "一次 3/12・最終 3/19",
-        procedure: "3/25まで",
+        application: "Web 2027/2/1〜2/19 23:59（書類2/20消印有効）",
+        firstExam: "共通テスト 1/16・17（共通テスト受験地）",
+        secondExam: "3/16（枚方キャンパス医学部棟）",
+        result: "一次 3/12 10:00・最終 3/19 10:00",
+        procedure: "3/25 15:00まで",
         sourceUrl: "https://www.kmu.ac.jp/juk/fom/information/m3v58f00000036sx-att/R09_admission-requirements.pdf",
       }),
     ],
@@ -1289,6 +1306,7 @@ const examCalendarEvents2027 = [
     first: [
       "杏林（一般）",
       "関西医科（一般・前期）",
+      "関西医科（地域枠・構想中）",
       "関西医科（共テ＋一般併用）",
       "東海①（一般／①〜②の1日または両日受験可・高得点日で判定）",
       "福岡（一般）",
@@ -1481,7 +1499,8 @@ const examCalendarEvents2027 = [
       "杏林（共テ／小論文・面接）",
       "東京慈恵会医科①（一般／①〜③のいずれか1日・指定方法未公表）",
       "愛知医科③（一般・共テ／①〜③のうち希望する1日・両方式で二次資格なら面接1回）",
-      "関西医科①（一般・前期／①〜②から希望日を提出）",
+      "関西医科①（一般・前期／①〜②から出願時に希望選択・大学指定）",
+      "関西医科（地域枠・構想中／必ず地域枠面接）",
     ],
   },
   {
@@ -1491,8 +1510,8 @@ const examCalendarEvents2027 = [
     second: [
       "東北医科薬科②（一般／①〜②から大学指定）",
       "東京慈恵会医科②（一般／①〜③のいずれか1日・指定方法未公表）",
-      "関西医科②（一般・前期／①〜②から希望日を提出）",
-      "関西医科（共テ前期・共テ＋一般併用）",
+      "関西医科②（一般・前期／①〜②から出願時に希望選択・大学指定）",
+      "関西医科（共テ前期・共テ＋一般併用／一般前期と重複合格時は大学指定日）",
       "近畿（共テ・前期／中期）",
     ],
   },
@@ -1850,7 +1869,7 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     date: "1/15",
     dateTime: "2027-01-15",
     university: "関西医科大学",
-    routes: "一般前期／共テ前期／共テ・一般併用",
+    routes: "一般前期／地域枠（構想中）／共テ前期／共テ・一般併用",
     webDeadline: "1/15 23:59",
     documentDeadline: "1/16 消印有効",
     sourceUrl: "https://www.kmu.ac.jp/juk/fom/information/m3v58f00000036sx-att/R09_admission-requirements.pdf",
@@ -2405,7 +2424,11 @@ const examSelectionDetail = (value: string) => {
   if (value.includes("1〜3日受験可")) return "1〜3日受験可";
   if (value.includes("自由選択")) return "自由選択";
   if (value.includes("希望をもとに大学が指定")) return "希望をもとに大学指定";
+  if (value.includes("希望日を選択し大学が指定")) {
+    return "出願時に希望選択・大学指定";
+  }
   if (value.includes("希望日")) return "希望日を提出";
+  if (value.includes("必ず地域枠面接")) return "必ず地域枠面接";
   if (value.includes("出願が早い順")) return "出願順に大学指定";
   if (value.includes("指定日")) return "大学指定";
   if (value.includes("選択日")) return "受験日を選択";
