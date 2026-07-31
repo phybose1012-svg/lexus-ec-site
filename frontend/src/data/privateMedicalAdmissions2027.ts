@@ -868,34 +868,34 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "一般選抜 前期（大阪府地域枠含む）",
         category: "general",
         application: "2026/12/9〜2027/1/20（消印有効）",
-        firstExam: "2/10",
-        secondExam: "2/19",
+        firstExam: "2/10（大阪・愛知・東京／小論文も実施）",
+        secondExam: "2/19（本部キャンパス／面接）",
         result: "一次 2/17・最終 2/20",
         procedure: "2/27まで",
         sourceUrl:
-          "https://www.ompu.ac.jp/admission/undergraduate/medical/afif3u000000fsz9-att/afif3u000000ft1c.pdf",
+          "https://www.ompu.ac.jp/admission/undergraduate/qt931k000000801q-att/afif3u000000fsvj.pdf",
       }),
       officialRoute({
         name: "一般選抜 後期",
         category: "general",
         application: "2026/12/9〜2027/2/26（消印有効）",
-        firstExam: "3/10",
-        secondExam: "3/18",
+        firstExam: "3/10（大阪・東京）",
+        secondExam: "3/18（本部キャンパス／小論文・面接）",
         result: "一次 3/16・最終 3/19",
         procedure: "3/26まで",
         sourceUrl:
-          "https://www.ompu.ac.jp/admission/undergraduate/medical/afif3u000000fsz9-att/afif3u000000ft1c.pdf",
+          "https://www.ompu.ac.jp/admission/undergraduate/qt931k000000801q-att/afif3u000000fsvj.pdf",
       }),
       officialRoute({
-        name: "共通テスト利用",
+        name: "大学入学共通テスト利用選抜",
         category: "common",
         application: "2026/12/9〜2027/1/15（消印有効）",
-        firstExam: "共通テスト 1/16・17",
-        secondExam: "3/14",
+        firstExam: "共通テスト 1/16・17（共通テスト指定試験場）",
+        secondExam: "2/28（本部キャンパス／小論文・面接）",
         result: "一次 2/17・最終 3/1",
         procedure: "3/8まで",
         sourceUrl:
-          "https://www.ompu.ac.jp/admission/undergraduate/medical/afif3u000000fsz9-att/afif3u000000ft1c.pdf",
+          "https://www.ompu.ac.jp/admission/undergraduate/qt931k000000801q-att/afif3u000000fsvj.pdf",
       }),
     ],
   },
@@ -1522,7 +1522,7 @@ const examCalendarEvents2027 = [
       "日本医科（一般・地域枠後期）",
       "近畿（一般・後期）",
     ],
-    second: [],
+    second: ["大阪医科薬科（共テ／小論文・面接）"],
   },
   {
     date: "3/1",
@@ -1546,6 +1546,7 @@ const examCalendarEvents2027 = [
       "東北医科薬科（共テ）",
       "順天堂②（一般B・共テ併用・共テ後期／①・②の両日受験／面接）",
       "東邦（統一入試・大学独自／面接）",
+      "大阪医科薬科（一般・前期／大阪府地域枠／繰り上げ合格候補対象者のみ）",
     ],
   },
   {
@@ -1613,7 +1614,7 @@ const examCalendarEvents2027 = [
     date: "3/14",
     weekday: "日",
     first: [],
-    second: ["大阪医科薬科（共テ）"],
+    second: [],
   },
   {
     date: "3/15",
@@ -1840,7 +1841,7 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     date: "1/15",
     dateTime: "2027-01-15",
     university: "大阪医科薬科大学",
-    routes: "共テ利用",
+    routes: "大学入学共通テスト利用選抜",
     webDeadline: "登録時刻は要項公開待ち",
     documentDeadline: "1/15 消印有効",
     sourceUrl: "https://www.ompu.ac.jp/admission/undergraduate/medical/afif3u000000fsz9-att/afif3u000000ft1c.pdf",
@@ -2676,6 +2677,28 @@ privateMedicalUniversities2027.forEach((university) => {
     }
   });
 });
+
+addFullScheduleEvent2027(
+  {
+    key: "2027-03-03",
+    year: 2027,
+    month: 3,
+    day: 3,
+    raw: "3/3",
+    index: 0,
+    endIndex: 3,
+  },
+  "secondExam",
+  {
+    university: "大阪医科薬科大学",
+    route: "一般選抜 前期・大阪府地域枠（繰り上げ合格候補対象者）",
+    category: "general",
+    detail: "繰り上げ合格候補対象者のみ",
+    status: "preliminary",
+    sourceUrl:
+      "https://www.ompu.ac.jp/admission/undergraduate/qt931k000000801q-att/afif3u000000fsvj.pdf",
+  },
+);
 
 const commonTestCalendarEntry2027: FullScheduleCalendarEntry2027 = {
   university: "大学入学共通テスト",
