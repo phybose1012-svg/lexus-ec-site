@@ -182,19 +182,20 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
       officialRoute({
         name: "一般選抜",
         category: "general",
-        application: "2026/12/21〜2027/1/7（消印有効）",
+        application: "2026/12/21〜2027/1/7（国内消印有効・海外発送必着）",
         firstExam: "1/25",
-        secondExam: "2/1〜6の指定日",
+        secondExam: "2/1〜6（希望をもとに大学が指定・試験場も指定）",
         result: "一次 1/29 15:00・最終 2/12 15:00",
         procedure: "2/12〜2/18（消印有効）",
         sourceUrl: "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/doc/guideline_app.pdf?ver=3",
       }),
       officialRoute({
-        name: "共通テスト利用",
+        name: "大学入学共通テスト利用選抜",
         category: "common",
-        application: "2026/12/21〜2027/1/14（消印有効）",
+        application: "2026/12/21〜2027/1/14（国内消印有効・海外発送必着）",
         firstExam: "共通テスト 1/16・17",
-        secondExam: "2/16（学力・小論文）・2/20（面接）",
+        secondExam:
+          "2/16（学力・小論文）・2/20（面接）の両日受験（一般選抜受験者は一部免除あり）",
         result: "一次 2/12 15:00・最終 3/1 15:00",
         procedure: "3/1〜3/11（消印有効）",
         sourceUrl: "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/doc/guideline_app.pdf?ver=3",
@@ -1174,7 +1175,7 @@ const examCalendarEvents2027 = [
       "久留米（一般・前期）",
       "東京女子医科（一般）",
     ],
-    second: ["国際医療福祉①（一般／①〜⑥から大学指定）"],
+    second: ["国際医療福祉①（一般／①〜⑥の希望をもとに大学指定）"],
   },
   {
     date: "2/2",
@@ -1187,7 +1188,7 @@ const examCalendarEvents2027 = [
       "福岡（一般）",
       "北里（一般）",
     ],
-    second: ["国際医療福祉②（一般／①〜⑥から大学指定）"],
+    second: ["国際医療福祉②（一般／①〜⑥の希望をもとに大学指定）"],
   },
   {
     date: "2/3",
@@ -1201,7 +1202,10 @@ const examCalendarEvents2027 = [
       "順天堂（共テ＋一般併用）",
       "東海②（一般／2/2・3から選択）",
     ],
-    second: ["自治医科（一般）", "国際医療福祉③（一般／①〜⑥から大学指定）"],
+    second: [
+      "自治医科（一般）",
+      "国際医療福祉③（一般／①〜⑥の希望をもとに大学指定）",
+    ],
   },
   {
     date: "2/4",
@@ -1216,7 +1220,7 @@ const examCalendarEvents2027 = [
     ],
     second: [
       "帝京①（一般／①〜②から受験者が選択）",
-      "国際医療福祉④（一般／①〜⑥から大学指定）",
+      "国際医療福祉④（一般／①〜⑥の希望をもとに大学指定）",
     ],
   },
   {
@@ -1225,14 +1229,14 @@ const examCalendarEvents2027 = [
     first: ["昭和医科（一般・Ⅰ期）"],
     second: [
       "帝京②（一般／①〜②から受験者が選択）",
-      "国際医療福祉⑤（一般／①〜⑥から大学指定）",
+      "国際医療福祉⑤（一般／①〜⑥の希望をもとに大学指定）",
     ],
   },
   {
     date: "2/6",
     weekday: "土",
     first: ["東京医科（一般）", "東京医科（共テ／小論文）"],
-    second: ["国際医療福祉⑥（一般／①〜⑥から大学指定）"],
+    second: ["国際医療福祉⑥（一般／①〜⑥の希望をもとに大学指定）"],
   },
   {
     date: "2/7",
@@ -1325,7 +1329,7 @@ const examCalendarEvents2027 = [
     weekday: "火",
     first: [],
     second: [
-      "国際医療福祉①（共テ／①・②の両日受験／学力・小論文）",
+      "国際医療福祉①（共テ／①・②の両日受験／学力・小論文／一般選抜受験者は免除あり）",
       "順天堂③（一般A・共テ前期／①〜③から大学指定）",
       "東邦②（一般／①〜②から大学指定）",
     ],
@@ -1367,7 +1371,7 @@ const examCalendarEvents2027 = [
     second: [
       "東北医科薬科①（一般／①〜②から大学指定）",
       "獨協医科②（一般・前期／①〜②のいずれか1日・指定方法未公表）",
-      "国際医療福祉②（共テ／①・②の両日受験／面接）",
+      "国際医療福祉②（共テ／①・②の両日受験／面接／一般選抜受験者は免除あり）",
       "杏林（共テ／個別テスト）",
       "東京慈恵会医科①（一般／①〜③から大学指定）",
       "愛知医科③（一般・共テ／①〜③から希望日を提出）",
@@ -1575,7 +1579,7 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     university: "国際医療福祉大学",
     routes: "一般選抜",
     webDeadline: "1/7 23:00",
-    documentDeadline: "1/7 消印有効",
+    documentDeadline: "1/7 消印有効（海外発送は必着）",
     sourceUrl: "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/doc/guideline_app.pdf?ver=3",
   },
   {
@@ -1620,7 +1624,7 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     university: "国際医療福祉大学",
     routes: "共テ利用",
     webDeadline: "1/14 23:00",
-    documentDeadline: "1/14 消印有効",
+    documentDeadline: "1/14 消印有効（海外発送は必着）",
     sourceUrl: "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/doc/guideline_app.pdf?ver=3",
   },
   {
@@ -2272,6 +2276,9 @@ const examSelectionDetail = (value: string) => {
   }
   if (value.includes("両日受験可")) return "1日または両日受験可";
   if (value.includes("指定方法未公表")) return "いずれか1日・指定方法未公表";
+  if (value.includes("一般選抜受験者は一部免除")) {
+    return "両日受験・一般選抜受験者は一部免除あり";
+  }
   if (value.includes("両日受験")) return "両日受験";
   if (value.includes("自由選択")) return "自由選択";
   if (value.includes("希望をもとに大学が指定")) return "希望をもとに大学指定";
