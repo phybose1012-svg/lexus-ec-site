@@ -311,30 +311,30 @@ const faqJsonLd = {
 
     <nav class="admissions-jump-nav" aria-label="ページ内メニュー">
       <div class="content admissions-jump-nav__inner">
-        <a href="#calendar" aria-label="試験日カレンダーへ移動">
+        <a href="#deadlines" aria-label="出願締切へ移動">
           <span class="admissions-jump-nav__index">01</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--long">出願締切</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--short">出願</span>
+        </a>
+        <a href="#calendar" aria-label="試験日カレンダーへ移動">
+          <span class="admissions-jump-nav__index">02</span>
           <span class="admissions-jump-nav__label admissions-jump-nav__label--long">試験日カレンダー</span>
           <span class="admissions-jump-nav__label admissions-jump-nav__label--short">試験日</span>
         </a>
-        <a href="#full-schedule" aria-label="全日程カレンダーへ移動">
-          <span class="admissions-jump-nav__index">02</span>
-          <span class="admissions-jump-nav__label admissions-jump-nav__label--long">全日程カレンダー</span>
-          <span class="admissions-jump-nav__label admissions-jump-nav__label--short">全日程</span>
-        </a>
-        <a href="#deadlines" aria-label="出願締切へ移動">
+        <a href="#common-test" aria-label="共通テスト利用へ移動">
           <span class="admissions-jump-nav__index">03</span>
-          <span class="admissions-jump-nav__label admissions-jump-nav__label--long">出願締切</span>
-          <span class="admissions-jump-nav__label admissions-jump-nav__label--short">出願</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--long">共テ利用</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--short">共テ</span>
         </a>
         <a href="#universities" aria-label="大学別31校へ移動">
           <span class="admissions-jump-nav__index">04</span>
           <span class="admissions-jump-nav__label admissions-jump-nav__label--long">大学別31校</span>
           <span class="admissions-jump-nav__label admissions-jump-nav__label--short">大学別</span>
         </a>
-        <a href="#common-test" aria-label="共通テスト利用へ移動">
+        <a href="#full-schedule" aria-label="全日程カレンダーへ移動">
           <span class="admissions-jump-nav__index">05</span>
-          <span class="admissions-jump-nav__label admissions-jump-nav__label--long">共テ利用</span>
-          <span class="admissions-jump-nav__label admissions-jump-nav__label--short">共テ</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--long">全日程カレンダー</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--short">全日程</span>
         </a>
       </div>
     </nav>
@@ -386,6 +386,72 @@ const faqJsonLd = {
     </section>
 
     <AdmissionsBrandDivider variant="lexus" />
+
+    <section class="admissions-deadlines" id="deadlines" aria-labelledby="deadlines-title">
+      <div class="content">
+        <div class="admissions-section-heading admissions-section-heading--printable">
+          <div>
+            <p>APPLICATION DEADLINES</p>
+            <h2 id="deadlines-title">出願締め切りを日付順に見る</h2>
+            <p>Web登録と郵送書類の期限を分けて確認できます。</p>
+          </div>
+          <button type="button" class="admissions-print-button" data-print-section="deadlines">
+            <span aria-hidden="true">⎙</span>
+            このセクションを印刷
+          </button>
+        </div>
+
+        <div class="admissions-deadline-layout">
+          <aside class="admissions-deadline-focus">
+            <span>締切が集中する日</span>
+            <strong>1/15</strong>
+            <p>複数大学・方式の締め切りが重なります。登録と郵送を同じ締め切りだと思い込まないことが大切です。</p>
+            <ul>
+              <li>「Web登録締切」は、インターネット出願の登録完了期限です。</li>
+              <li>書類期限の「必着」「消印有効」を必ず確認してください。</li>
+              <li>調査書の必要部数は、出願校が固まる前に確認しておきましょう。</li>
+            </ul>
+            <p class="admissions-deadline-focus__note">「時刻未公表」「要項公開待ち」は、現在の公式資料に詳細がない項目です。公表後に更新します。</p>
+          </aside>
+
+          <div class="admissions-deadline-list">
+            {applicationDeadlineGroups2027.map((group) => (
+              <section class="admissions-deadline-group" aria-label={`${group.date}締切`}>
+                <header>
+                  {group.dateTime ? (
+                    <time datetime={group.dateTime}>{group.date}</time>
+                  ) : (
+                    <span class="admissions-deadline-group__date">{group.date}</span>
+                  )}
+                  <span>{group.entries.length}件</span>
+                </header>
+                <div>
+                  {group.entries.map((entry) => (
+                    <article class="admissions-deadline-entry">
+                      <div class="admissions-deadline-entry__school">
+                        <strong>{entry.university}</strong>
+                        <span>{entry.routes}</span>
+                      </div>
+                      <dl>
+                        <div>
+                          <dt>Web登録締切</dt>
+                          <dd>{entry.webDeadline}</dd>
+                        </div>
+                        <div>
+                          <dt>書類期限</dt>
+                          <dd>{entry.documentDeadline}</dd>
+                        </div>
+                      </dl>
+                      <a href={entry.sourceUrl} target="_blank" rel="noopener noreferrer">公式資料</a>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="admissions-calendar-section" id="calendar" aria-labelledby="calendar-title">
       <div class="content">
@@ -450,205 +516,63 @@ const faqJsonLd = {
       </div>
     </section>
 
-    <section class="admissions-full-schedule" id="full-schedule" aria-labelledby="full-schedule-title">
+    <section class="admissions-common-test" id="common-test" aria-labelledby="common-test-title">
       <div class="content">
-        <div class="admissions-section-heading admissions-section-heading--light">
-          <p>COMPLETE SCHEDULE</p>
-          <h2 id="full-schedule-title">出願から入学手続きまで、すべての日程を見る</h2>
-          <p>
-            出願開始・締切から一次／二次試験、合格発表、入学手続き締切までを同じ日付軸で確認できます。
-          </p>
-        </div>
-
-        <div class="admissions-full-schedule__guide">
-          <div class="admissions-full-schedule__legend" aria-label="選抜方式の凡例">
-            <span class="admissions-full-schedule__route admissions-full-schedule__route--general">一般</span>
-            <span class="admissions-full-schedule__route admissions-full-schedule__route--common">共テ</span>
-          </div>
-          <p>
-            ヘッダーと日付列は固定されています。表の中を上下・左右にスクロールしてご覧ください。
-          </p>
-          <span class="admissions-full-schedule__swipe" aria-hidden="true">← 左右にスクロール →</span>
-        </div>
-
-        <div
-          class="admissions-full-schedule__viewport"
-          tabindex="0"
-          role="region"
-          aria-label="2027年度私立医学部入試 全日程カレンダー"
-        >
-          <table class="admissions-full-schedule__table">
-            <caption>
-              2027年度私立医学部の一般選抜・共通テスト利用選抜について、出願から入学手続きまでの日程を日付順に掲載しています。
-            </caption>
-            <thead>
-              <tr>
-                <th scope="col" class="admissions-full-schedule__date-head">日付</th>
-                {fullScheduleColumns.map((column) => (
-                  <th scope="col">
-                    <span>{column.label}</span>
-                    <small>{column.shortLabel}</small>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {fullScheduleCalendar2027.map((day) => (
-                <tr
-                  class:list={[
-                    {
-                      "admissions-full-schedule__row--empty": !day.hasEvents,
-                      "admissions-full-schedule__row--weekend": day.isWeekend,
-                      "admissions-full-schedule__row--month-start": day.isMonthStart,
-                    },
-                  ]}
-                >
-                  <th scope="row" class="admissions-full-schedule__date">
-                    <time datetime={day.dateTime}>
-                      <strong>{day.date}</strong>
-                      <span>{day.weekday}</span>
-                    </time>
-                  </th>
-                  {fullScheduleColumns.map((column) => {
-                    const entries = day.events[column.key];
-
-                    return (
-                      <td class:list={{ "admissions-full-schedule__cell--empty": entries.length === 0 }}>
-                        {entries.length > 0 ? (
-                          <ul class="admissions-full-schedule__entries">
-                            {entries.map((entry) => (
-                              <li class={`admissions-full-schedule__entry admissions-full-schedule__entry--${entry.category}`}>
-                                <div>
-                                  <span
-                                    class={`admissions-full-schedule__route admissions-full-schedule__route--${entry.category}`}
-                                  >
-                                    {entry.category === "general" ? "一般" : "共テ"}
-                                  </span>
-                                  {entry.sourceUrl ? (
-                                    <a
-                                      href={entry.sourceUrl}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      title={`${entry.university}の公式情報（${statusLabels[entry.status]}）`}
-                                    >
-                                      {shortUniversityName(entry.university)}{entry.sequenceLabel}
-                                    </a>
-                                  ) : (
-                                    <strong>{shortUniversityName(entry.university)}{entry.sequenceLabel}</strong>
-                                  )}
-                                </div>
-                                <span>{entry.routes.join("／")}</span>
-                                {entry.detail && <small>{entry.detail}</small>}
-                              </li>
-                            ))}
-                          </ul>
-                        ) : (
-                          <span class="admissions-full-schedule__empty" aria-label="該当日程なし">—</span>
-                        )}
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <p class="admissions-full-schedule__caption">
-          出願締切は、Web登録・郵送書類などの締切が異なる場合、それぞれの日付に掲載しています。選択日・希望日・大学指定日は、候補となる各日に表示しています。
-        </p>
-
-        {fullSchedulePendingItems2027.length > 0 && (
-          <details class="admissions-full-schedule__pending">
-            <summary>
-              <span>募集要項で日付の公表を待っている項目</span>
-              <strong>{fullSchedulePendingItems2027.length}方式</strong>
-            </summary>
-            <div>
-              {fullSchedulePendingItems2027.map((item) => (
-                <article>
-                  <p>
-                    <span
-                      class={`admissions-full-schedule__route admissions-full-schedule__route--${item.category}`}
-                    >
-                      {item.category === "general" ? "一般" : "共テ"}
-                    </span>
-                    <strong>{item.university}</strong>
-                  </p>
-                  <span>{item.route}</span>
-                  <small>
-                    {item.fields.map((field) => fullSchedulePendingFieldLabels[field]).join("・")}
-                  </small>
-                </article>
-              ))}
-            </div>
-          </details>
-        )}
-      </div>
-    </section>
-
-    <section class="admissions-deadlines" id="deadlines" aria-labelledby="deadlines-title">
-      <div class="content">
-        <div class="admissions-section-heading admissions-section-heading--printable">
+        <div class="admissions-section-heading admissions-section-heading--light admissions-section-heading--printable">
           <div>
-            <p>APPLICATION DEADLINES</p>
-            <h2 id="deadlines-title">出願締め切りを日付順に見る</h2>
-            <p>Web登録と郵送書類の期限を分けて確認できます。</p>
+            <p>COMMON TEST ROUTES</p>
+            <h2 id="common-test-title">共通テスト利用だけを一覧</h2>
+            <p>共通テスト後に大学独自の試験・面接があるかどうかを、大学ごとに確認できます。</p>
           </div>
-          <button type="button" class="admissions-print-button" data-print-section="deadlines">
+          <button type="button" class="admissions-print-button" data-print-section="common-test">
             <span aria-hidden="true">⎙</span>
             このセクションを印刷
           </button>
         </div>
 
-        <div class="admissions-deadline-layout">
-          <aside class="admissions-deadline-focus">
-            <span>締切が集中する日</span>
-            <strong>1/15</strong>
-            <p>複数大学・方式の締め切りが重なります。登録と郵送を同じ締め切りだと思い込まないことが大切です。</p>
-            <ul>
-              <li>「Web登録締切」は、インターネット出願の登録完了期限です。</li>
-              <li>書類期限の「必着」「消印有効」を必ず確認してください。</li>
-              <li>調査書の必要部数は、出願校が固まる前に確認しておきましょう。</li>
-            </ul>
-            <p class="admissions-deadline-focus__note">「時刻未公表」「要項公開待ち」は、現在の公式資料に詳細がない項目です。公表後に更新します。</p>
-          </aside>
+        <div class="admissions-common-test__dates">
+          <article>
+            <span>マイページ作成</span>
+            <strong>7/1〜10/2</strong>
+            <small>2026年</small>
+          </article>
+          <article>
+            <span>出願期間</span>
+            <strong>9/15〜10/2</strong>
+            <small>2026年</small>
+          </article>
+          <article class="is-accent">
+            <span>本試験</span>
+            <strong>1/16・17</strong>
+            <small>2027年</small>
+          </article>
+          <article>
+            <span>追試験</span>
+            <strong>1/23・24</strong>
+            <small>2027年</small>
+          </article>
+        </div>
 
-          <div class="admissions-deadline-list">
-            {applicationDeadlineGroups2027.map((group) => (
-              <section class="admissions-deadline-group" aria-label={`${group.date}締切`}>
-                <header>
-                  {group.dateTime ? (
-                    <time datetime={group.dateTime}>{group.date}</time>
-                  ) : (
-                    <span class="admissions-deadline-group__date">{group.date}</span>
-                  )}
-                  <span>{group.entries.length}件</span>
-                </header>
-                <div>
-                  {group.entries.map((entry) => (
-                    <article class="admissions-deadline-entry">
-                      <div class="admissions-deadline-entry__school">
-                        <strong>{entry.university}</strong>
-                        <span>{entry.routes}</span>
-                      </div>
-                      <dl>
-                        <div>
-                          <dt>Web登録締切</dt>
-                          <dd>{entry.webDeadline}</dd>
-                        </div>
-                        <div>
-                          <dt>書類期限</dt>
-                          <dd>{entry.documentDeadline}</dd>
-                        </div>
-                      </dl>
-                      <a href={entry.sourceUrl} target="_blank" rel="noopener noreferrer">公式資料</a>
-                    </article>
+        <div class="admissions-common-grid">
+          {commonTestUniversities.map((university) => (
+            <article>
+              <div>
+                <small>{university.prefecture}</small>
+                <h3>{university.name}</h3>
+              </div>
+              <ul>
+                {university.routes
+                  .filter((route) => route.category === "common")
+                  .map((route) => (
+                    <li>
+                      <strong>{route.name}</strong>
+                      <span>{route.secondExam === "未公表" ? "詳細未公表" : `大学独自試験：${route.secondExam}`}</span>
+                    </li>
                   ))}
-                </div>
-              </section>
-            ))}
-          </div>
+              </ul>
+              <a href={`#${university.id}`}>全日程を見る</a>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -803,64 +727,140 @@ const faqJsonLd = {
       </div>
     </section>
 
-    <section class="admissions-common-test" id="common-test" aria-labelledby="common-test-title">
+    <section class="admissions-full-schedule" id="full-schedule" aria-labelledby="full-schedule-title">
       <div class="content">
-        <div class="admissions-section-heading admissions-section-heading--light admissions-section-heading--printable">
-          <div>
-            <p>COMMON TEST ROUTES</p>
-            <h2 id="common-test-title">共通テスト利用だけを一覧</h2>
-            <p>共通テスト後に大学独自の試験・面接があるかどうかを、大学ごとに確認できます。</p>
+        <div class="admissions-section-heading admissions-section-heading--light">
+          <p>COMPLETE SCHEDULE</p>
+          <h2 id="full-schedule-title">出願から入学手続きまで、すべての日程を見る</h2>
+          <p>
+            出願開始・締切から一次／二次試験、合格発表、入学手続き締切までを同じ日付軸で確認できます。
+          </p>
+        </div>
+
+        <div class="admissions-full-schedule__guide">
+          <div class="admissions-full-schedule__legend" aria-label="選抜方式の凡例">
+            <span class="admissions-full-schedule__route admissions-full-schedule__route--general">一般</span>
+            <span class="admissions-full-schedule__route admissions-full-schedule__route--common">共テ</span>
           </div>
-          <button type="button" class="admissions-print-button" data-print-section="common-test">
-            <span aria-hidden="true">⎙</span>
-            このセクションを印刷
-          </button>
+          <p>
+            ヘッダーと日付列は固定されています。表の中を上下・左右にスクロールしてご覧ください。
+          </p>
+          <span class="admissions-full-schedule__swipe" aria-hidden="true">← 左右にスクロール →</span>
         </div>
 
-        <div class="admissions-common-test__dates">
-          <article>
-            <span>マイページ作成</span>
-            <strong>7/1〜10/2</strong>
-            <small>2026年</small>
-          </article>
-          <article>
-            <span>出願期間</span>
-            <strong>9/15〜10/2</strong>
-            <small>2026年</small>
-          </article>
-          <article class="is-accent">
-            <span>本試験</span>
-            <strong>1/16・17</strong>
-            <small>2027年</small>
-          </article>
-          <article>
-            <span>追試験</span>
-            <strong>1/23・24</strong>
-            <small>2027年</small>
-          </article>
+        <div
+          class="admissions-full-schedule__viewport"
+          tabindex="0"
+          role="region"
+          aria-label="2027年度私立医学部入試 全日程カレンダー"
+        >
+          <table class="admissions-full-schedule__table">
+            <caption>
+              2027年度私立医学部の一般選抜・共通テスト利用選抜について、出願から入学手続きまでの日程を日付順に掲載しています。
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col" class="admissions-full-schedule__date-head">日付</th>
+                {fullScheduleColumns.map((column) => (
+                  <th scope="col">
+                    <span>{column.label}</span>
+                    <small>{column.shortLabel}</small>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {fullScheduleCalendar2027.map((day) => (
+                <tr
+                  class:list={[
+                    {
+                      "admissions-full-schedule__row--empty": !day.hasEvents,
+                      "admissions-full-schedule__row--weekend": day.isWeekend,
+                      "admissions-full-schedule__row--month-start": day.isMonthStart,
+                    },
+                  ]}
+                >
+                  <th scope="row" class="admissions-full-schedule__date">
+                    <time datetime={day.dateTime}>
+                      <strong>{day.date}</strong>
+                      <span>{day.weekday}</span>
+                    </time>
+                  </th>
+                  {fullScheduleColumns.map((column) => {
+                    const entries = day.events[column.key];
+
+                    return (
+                      <td class:list={{ "admissions-full-schedule__cell--empty": entries.length === 0 }}>
+                        {entries.length > 0 ? (
+                          <ul class="admissions-full-schedule__entries">
+                            {entries.map((entry) => (
+                              <li class={`admissions-full-schedule__entry admissions-full-schedule__entry--${entry.category}`}>
+                                <div>
+                                  <span
+                                    class={`admissions-full-schedule__route admissions-full-schedule__route--${entry.category}`}
+                                  >
+                                    {entry.category === "general" ? "一般" : "共テ"}
+                                  </span>
+                                  {entry.sourceUrl ? (
+                                    <a
+                                      href={entry.sourceUrl}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      title={`${entry.university}の公式情報（${statusLabels[entry.status]}）`}
+                                    >
+                                      {shortUniversityName(entry.university)}{entry.sequenceLabel}
+                                    </a>
+                                  ) : (
+                                    <strong>{shortUniversityName(entry.university)}{entry.sequenceLabel}</strong>
+                                  )}
+                                </div>
+                                <span>{entry.routes.join("／")}</span>
+                                {entry.detail && <small>{entry.detail}</small>}
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <span class="admissions-full-schedule__empty" aria-label="該当日程なし">—</span>
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
-        <div class="admissions-common-grid">
-          {commonTestUniversities.map((university) => (
-            <article>
-              <div>
-                <small>{university.prefecture}</small>
-                <h3>{university.name}</h3>
-              </div>
-              <ul>
-                {university.routes
-                  .filter((route) => route.category === "common")
-                  .map((route) => (
-                    <li>
-                      <strong>{route.name}</strong>
-                      <span>{route.secondExam === "未公表" ? "詳細未公表" : `大学独自試験：${route.secondExam}`}</span>
-                    </li>
-                  ))}
-              </ul>
-              <a href={`#${university.id}`}>全日程を見る</a>
-            </article>
-          ))}
-        </div>
+        <p class="admissions-full-schedule__caption">
+          出願締切は、Web登録・郵送書類などの締切が異なる場合、それぞれの日付に掲載しています。選択日・希望日・大学指定日は、候補となる各日に表示しています。
+        </p>
+
+        {fullSchedulePendingItems2027.length > 0 && (
+          <details class="admissions-full-schedule__pending">
+            <summary>
+              <span>募集要項で日付の公表を待っている項目</span>
+              <strong>{fullSchedulePendingItems2027.length}方式</strong>
+            </summary>
+            <div>
+              {fullSchedulePendingItems2027.map((item) => (
+                <article>
+                  <p>
+                    <span
+                      class={`admissions-full-schedule__route admissions-full-schedule__route--${item.category}`}
+                    >
+                      {item.category === "general" ? "一般" : "共テ"}
+                    </span>
+                    <strong>{item.university}</strong>
+                  </p>
+                  <span>{item.route}</span>
+                  <small>
+                    {item.fields.map((field) => fullSchedulePendingFieldLabels[field]).join("・")}
+                  </small>
+                </article>
+              ))}
+            </div>
+          </details>
+        )}
       </div>
     </section>
 
