@@ -63,8 +63,9 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         firstExam: "2/4",
         secondExam: "2/20・21の指定日",
         result: "一次 2/12・最終 2/25",
-        procedure: "納付金 3/5まで・書類 3/11必着",
-        sourceUrl: "https://www.tohoku-mpu.ac.jp/admission/medicine-application/",
+        procedure: "納付金 3/5まで・書類提出期限 3/11",
+        sourceUrl:
+          "https://www.tohoku-mpu.ac.jp/wp/wp-content/uploads/2026/05/963a4d3c20d5c1e17605bf8aa1e7293c-1.pdf",
       }),
       officialRoute({
         name: "共通テスト利用",
@@ -73,8 +74,9 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         firstExam: "共通テスト 1/16・17",
         secondExam: "3/3",
         result: "一次 2/12・最終 3/10",
-        procedure: "納付金 3/18まで・書類 3/23必着",
-        sourceUrl: "https://www.tohoku-mpu.ac.jp/admission/medicine-application/",
+        procedure: "納付金 3/18まで・書類提出期限 3/23",
+        sourceUrl:
+          "https://www.tohoku-mpu.ac.jp/wp/wp-content/uploads/2026/05/963a4d3c20d5c1e17605bf8aa1e7293c-1.pdf",
       }),
     ],
   },
@@ -1642,7 +1644,8 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     routes: "一般選抜",
     webDeadline: "1/15（時刻未公表）",
     documentDeadline: "1/17 必着",
-    sourceUrl: "https://www.tohoku-mpu.ac.jp/admission/medicine-application/",
+    sourceUrl:
+      "https://www.tohoku-mpu.ac.jp/wp/wp-content/uploads/2026/05/963a4d3c20d5c1e17605bf8aa1e7293c-1.pdf",
   },
   {
     date: "1/15",
@@ -1849,7 +1852,8 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     routes: "共テ利用",
     webDeadline: "1/22（時刻未公表）",
     documentDeadline: "1/24 必着",
-    sourceUrl: "https://www.tohoku-mpu.ac.jp/admission/medicine-application/",
+    sourceUrl:
+      "https://www.tohoku-mpu.ac.jp/wp/wp-content/uploads/2026/05/963a4d3c20d5c1e17605bf8aa1e7293c-1.pdf",
   },
   {
     date: "1/22",
