@@ -731,31 +731,131 @@
   color: var(--admissions-blue);
 }
 
+.admissions-deadline-focus__note {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid #dccb91;
+  margin: 20px 0 0 !important;
+  padding-top: 16px;
+  color: #6e624f !important;
+  font-size: 0.7rem !important;
+}
+
 .admissions-deadline-list {
-  border-top: 1px solid var(--admissions-line);
-}
-
-.admissions-deadline-list article {
   display: grid;
-  grid-template-columns: 88px 1fr;
-  gap: 20px;
-  align-items: baseline;
-  border-bottom: 1px solid var(--admissions-line);
-  padding: 16px 6px;
+  min-width: 0;
+  gap: 16px;
 }
 
-.admissions-deadline-list time {
+.admissions-deadline-group {
+  overflow: hidden;
+  border: 1px solid var(--admissions-line);
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgb(33 42 56 / 4%);
+}
+
+.admissions-deadline-group > header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--admissions-line);
+  padding: 14px 18px;
+  background: #f8f6f2;
+}
+
+.admissions-deadline-group > header time,
+.admissions-deadline-group__date {
   color: var(--admissions-blue);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   font-weight: 900;
+  letter-spacing: -0.04em;
 }
 
-.admissions-deadline-list p {
+.admissions-deadline-group > header > span:last-child {
+  border: 1px solid #d9d2c8;
+  border-radius: 999px;
+  padding: 4px 9px;
+  color: #796f65;
+  font-size: 0.65rem;
+  font-weight: 800;
+}
+
+.admissions-deadline-entry {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.85fr) minmax(320px, 1.55fr) auto;
+  gap: 18px;
+  align-items: center;
+  border-bottom: 1px solid var(--admissions-line);
+  padding: 18px;
+}
+
+.admissions-deadline-entry:last-child {
+  border-bottom: 0;
+}
+
+.admissions-deadline-entry__school {
+  min-width: 0;
+}
+
+.admissions-deadline-entry__school strong,
+.admissions-deadline-entry__school span {
+  display: block;
+}
+
+.admissions-deadline-entry__school strong {
+  color: var(--admissions-navy);
+  font-size: 0.86rem;
+  font-weight: 900;
+  line-height: 1.45;
+}
+
+.admissions-deadline-entry__school span {
+  margin-top: 4px;
+  color: #756b62;
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.admissions-deadline-entry dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-width: 0;
   margin: 0;
-  color: #4c433c;
-  font-size: 0.82rem;
-  line-height: 1.7;
+}
+
+.admissions-deadline-entry dl > div {
+  min-width: 0;
+  border-left: 1px solid var(--admissions-line);
+  padding: 2px 16px;
+}
+
+.admissions-deadline-entry dt {
+  margin-bottom: 4px;
+  color: #82786e;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.admissions-deadline-entry dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: #403832;
+  font-size: 0.76rem;
+  font-weight: 800;
+  line-height: 1.55;
+}
+
+.admissions-deadline-entry > a {
+  white-space: nowrap;
+  color: var(--admissions-blue);
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .admissions-universities {
@@ -1716,18 +1816,33 @@
     font-size: 0.76rem;
   }
 
-  .admissions-deadline-list article {
-    grid-template-columns: 64px 1fr;
-    gap: 12px;
-    padding-block: 13px;
+  .admissions-deadline-group > header {
+    padding: 12px 14px;
   }
 
-  .admissions-deadline-list time {
-    font-size: 1.16rem;
+  .admissions-deadline-group > header time,
+  .admissions-deadline-group__date {
+    font-size: 1.2rem;
   }
 
-  .admissions-deadline-list p {
-    font-size: 0.74rem;
+  .admissions-deadline-entry {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    padding: 16px 14px;
+  }
+
+  .admissions-deadline-entry dl {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .admissions-deadline-entry dl > div {
+    border-left: 3px solid #e6dfd5;
+    padding: 0 0 0 11px;
+  }
+
+  .admissions-deadline-entry > a {
+    justify-self: start;
   }
 
   .admissions-filter {

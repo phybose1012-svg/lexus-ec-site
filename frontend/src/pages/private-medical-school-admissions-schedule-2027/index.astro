@@ -1,9 +1,10 @@
 ---
 import {
-  applicationDeadlineClusters2027,
+  applicationDeadlineEntries2027,
   commonTestDates2027,
   examCalendar2027,
   privateMedicalUniversities2027,
+  type ApplicationDeadlineEntry2027,
   type AdmissionRouteStatus,
 } from "../../data/privateMedicalAdmissions2027";
 import SiteLayout from "../../layouts/SiteLayout.astro";
@@ -13,7 +14,7 @@ const title = "【2027年度】私立医学部入試日程一覧｜一般選抜�
 const description =
   "2027年度（令和9年度）の私立医学部31大学の一般選抜・共通テスト利用選抜を、試験日カレンダー、大学別、出願締切別に一覧化。一次・二次試験、出願期間、入学手続まで確認できます。";
 const canonical = "https://lexus-ec.com/private-medical-school-admissions-schedule-2027/";
-const lastUpdated = "2026年7月30日";
+const lastUpdated = "2026年7月31日";
 const totalUniversities = privateMedicalUniversities2027.length;
 const commonTestUniversities = privateMedicalUniversities2027.filter((university) =>
   university.routes.some((route) => route.category === "common"),
@@ -29,6 +30,27 @@ const commonRouteCount = privateMedicalUniversities2027.reduce(
   (count, university) => count + university.routes.filter((route) => route.category === "common").length,
   0,
 );
+const applicationDeadlineGroups2027 = applicationDeadlineEntries2027.reduce<
+  Array<{
+    date: string;
+    dateTime?: string;
+    entries: ApplicationDeadlineEntry2027[];
+  }>
+>((groups, entry) => {
+  const latestGroup = groups.at(-1);
+
+  if (latestGroup?.date === entry.date) {
+    latestGroup.entries.push(entry);
+    return groups;
+  }
+
+  groups.push({
+    date: entry.date,
+    dateTime: entry.dateTime,
+    entries: [entry],
+  });
+  return groups;
+}, []);
 
 const statusLabels: Record<AdmissionRouteStatus, string> = {
   official: "詳細日程あり",
@@ -76,7 +98,7 @@ const collectionJsonLd = {
   description,
   url: canonical,
   inLanguage: "ja",
-  dateModified: "2026-07-30",
+  dateModified: "2026-07-31",
   isPartOf: { "@type": "WebSite", name: "医学部予備校 レクサス E.C.", url: "https://lexus-ec.com/" },
   mainEntity: {
     "@type": "ItemList",
@@ -279,29 +301,57 @@ const faqJsonLd = {
         <div class="admissions-section-heading admissions-section-heading--split">
           <div>
             <p>APPLICATION DEADLINES</p>
-            <h2 id="deadlines-title">出願締切から逆算する</h2>
+            <h2 id="deadlines-title">出願締め切りを日付順に見る</h2>
           </div>
-          <p class="admissions-heading-note">年明けは1月15日前後に締切が集中</p>
+          <p class="admissions-heading-note">Web登録と郵送書類の期限を分けて確認</p>
         </div>
 
         <div class="admissions-deadline-layout">
           <aside class="admissions-deadline-focus">
-            <span>最初の山場</span>
+            <span>締切が集中する日</span>
             <strong>1/15</strong>
-            <p>杏林、関西医科、順天堂、金沢医科、北里の共テ利用などが集中します。</p>
+            <p>複数大学・方式の締め切りが重なります。登録と郵送を同じ締め切りだと思い込まないことが大切です。</p>
             <ul>
-              <li>Web登録の終了時刻を確認</li>
-              <li>「必着」と「消印有効」を区別</li>
-              <li>調査書の必要部数を早めに確保</li>
+              <li>「Web登録締切」は、インターネット出願の登録完了期限です。</li>
+              <li>書類期限の「必着」「消印有効」を必ず確認してください。</li>
+              <li>調査書の必要部数は、出願校が固まる前に確認しておきましょう。</li>
             </ul>
+            <p class="admissions-deadline-focus__note">「時刻未公表」「要項公開待ち」は、現在の公式資料に詳細がない項目です。公表後に更新します。</p>
           </aside>
 
           <div class="admissions-deadline-list">
-            {applicationDeadlineClusters2027.map((deadline) => (
-              <article>
-                <time datetime={`2027-${deadline.date.split("/").map((part) => part.padStart(2, "0")).join("-")}`}>{deadline.date}</time>
-                <p>{deadline.schools}</p>
-              </article>
+            {applicationDeadlineGroups2027.map((group) => (
+              <section class="admissions-deadline-group" aria-label={`${group.date}締切`}>
+                <header>
+                  {group.dateTime ? (
+                    <time datetime={group.dateTime}>{group.date}</time>
+                  ) : (
+                    <span class="admissions-deadline-group__date">{group.date}</span>
+                  )}
+                  <span>{group.entries.length}件</span>
+                </header>
+                <div>
+                  {group.entries.map((entry) => (
+                    <article class="admissions-deadline-entry">
+                      <div class="admissions-deadline-entry__school">
+                        <strong>{entry.university}</strong>
+                        <span>{entry.routes}</span>
+                      </div>
+                      <dl>
+                        <div>
+                          <dt>Web登録締切</dt>
+                          <dd>{entry.webDeadline}</dd>
+                        </div>
+                        <div>
+                          <dt>書類期限</dt>
+                          <dd>{entry.documentDeadline}</dd>
+                        </div>
+                      </dl>
+                      <a href={entry.sourceUrl} target="_blank" rel="noopener noreferrer">公式資料</a>
+                    </article>
+                  ))}
+                </div>
+              </section>
             ))}
           </div>
         </div>
