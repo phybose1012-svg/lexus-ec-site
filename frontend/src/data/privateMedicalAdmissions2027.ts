@@ -444,24 +444,26 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
     strategyPath: "/tohoi-university-entrance-exam-measures2027/",
     routes: [
       officialRoute({
-        name: "一般選抜",
+        name: "一般入試",
         category: "general",
-        application: "郵送 2026/12/14〜2027/1/26必着（窓口1/25・26）",
-        firstExam: "2/7",
-        secondExam: "2/15・16の指定日",
+        application:
+          "郵送 2026/12/14〜2027/1/26必着（Webは12/14 10:00開始・締切日時は要項待ち／窓口1/25・26 9:00〜17:00）",
+        firstExam: "2/7（学科・基礎学力／五反田TOCビル）",
+        secondExam: "2/15・16のいずれか1日（指定方法未公表／大森キャンパス）",
         result: "一次 2/10 12:00・最終 2/18 12:00",
-        procedure: "2/25まで",
-        sourceUrl: "https://www.toho-u.ac.jp/med/info_exam/sum.html",
+        procedure: "2/25（締切時刻・完了条件は要項公開待ち）",
+        sourceUrl: "https://www.toho-u.ac.jp/med/info_exam/ippan.html",
       }),
       officialRoute({
         name: "統一入試",
         category: "general",
-        application: "2026/12/14〜2027/2/15（必着）",
-        firstExam: "2/23",
-        secondExam: "3/3",
+        application:
+          "郵送 2026/12/14〜2027/2/15必着（Webは12/14 10:00開始・締切日時は要項待ち）",
+        firstExam: "2/23（学科・基礎学力／五反田TOCビル）",
+        secondExam: "3/3（面接／大森キャンパス）",
         result: "一次 2/26 12:00・最終 3/4 12:00",
-        procedure: "3/10まで",
-        sourceUrl: "https://www.toho-u.ac.jp/med/info_exam/sum.html",
+        procedure: "3/10（締切時刻・完了条件は要項公開待ち）",
+        sourceUrl: "https://www.toho-u.ac.jp/med/info_exam/touitsu.html",
       }),
     ],
   },
@@ -1323,7 +1325,7 @@ const examCalendarEvents2027 = [
       "順天堂②（一般A・共テ前期／①〜③の希望をもとに大学が指定）",
       "東京女子医科③（一般・地域枠／①〜③から希望日を提出・希望に添えない場合あり）",
       "北里③（一般・共テ前期／①〜③から受験者が選択）",
-      "東邦①（一般／①〜②から大学指定）",
+      "東邦①（一般入試／①〜②のいずれか1日・指定方法未公表）",
       "藤田医科②（一般・共テ／①〜②から希望日を提出）",
     ],
   },
@@ -1334,7 +1336,7 @@ const examCalendarEvents2027 = [
     second: [
       "国際医療福祉①（共テ／①・②の両日受験／学力・小論文／一般選抜受験者は免除あり）",
       "順天堂③（一般A・共テ前期／①〜③の希望をもとに大学が指定）",
-      "東邦②（一般／①〜②から大学指定）",
+      "東邦②（一般入試／①〜②のいずれか1日・指定方法未公表）",
     ],
   },
   {
@@ -1402,7 +1404,7 @@ const examCalendarEvents2027 = [
   {
     date: "2/23",
     weekday: "火・祝",
-    first: ["東邦（統一入試）"],
+    first: ["東邦（統一入試・大学独自／学科・基礎学力）"],
     second: [],
   },
   {
@@ -1442,7 +1444,7 @@ const examCalendarEvents2027 = [
     second: [
       "東北医科薬科（共テ）",
       "順天堂②（一般B・共テ併用・共テ後期／①・②の両日受験／面接）",
-      "東邦（統一入試）",
+      "東邦（統一入試・大学独自／面接）",
     ],
   },
   {
@@ -1916,10 +1918,10 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     date: "1/26",
     dateTime: "2027-01-26",
     university: "東邦大学",
-    routes: "一般選抜",
-    webDeadline: "Web出願なし",
-    documentDeadline: "1/26 必着（窓口1/25・26）",
-    sourceUrl: "https://www.toho-u.ac.jp/med/info_exam/sum.html",
+    routes: "一般入試",
+    webDeadline: "終了日時は要項公開待ち",
+    documentDeadline: "1/26 必着（窓口1/25・26 9:00〜17:00）",
+    sourceUrl: "https://www.toho-u.ac.jp/med/info_exam/ippan.html",
   },
   {
     date: "2/1",
@@ -1944,9 +1946,9 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     dateTime: "2027-02-15",
     university: "東邦大学",
     routes: "統一入試",
-    webDeadline: "Web出願なし",
+    webDeadline: "終了日時は要項公開待ち",
     documentDeadline: "2/15 必着",
-    sourceUrl: "https://www.toho-u.ac.jp/med/info_exam/sum.html",
+    sourceUrl: "https://www.toho-u.ac.jp/med/info_exam/touitsu.html",
   },
   {
     date: "2/15",
