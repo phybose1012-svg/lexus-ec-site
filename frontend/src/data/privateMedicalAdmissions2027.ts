@@ -606,29 +606,56 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
       officialRoute({
         name: "一般選抜",
         category: "general",
-        application: "2027年度学生募集要項で確認",
-        firstExam: "2/2",
-        secondExam: "2/13〜15の選択日",
-        procedure: "2027年度学生募集要項で確認",
-        sourceUrl: "https://www.kitasato-u.ac.jp/jp/goukaku/albums/abm.php?f=abm00048841.pdf",
+        application:
+          "Web・書類 2026/12/24〜2027/1/19（Web終了時刻は学生募集要項公開待ち・書類1/19消印有効／国外発送は必着）",
+        firstExam:
+          "2/2（横浜会場／定員超過時は相模原キャンパスも使用）",
+        secondExam:
+          "2/13〜15の選択日（出願時に1日選択／相模原市修学資金枠は2/13・14から選択）",
+        result: "一次 2/8 15:00・最終 2/17 15:00",
+        procedure: "2/24（入学手続期限）",
+        procedureDateDetails: ["入学手続期限"],
+        sourceUrl:
+          "https://www.kitasato-u.ac.jp/jp/goukaku/albums/abm.php?f=abm00048868.pdf",
       }),
+      {
+        name: "地域枠一般選抜（2027年度は実施未定）",
+        category: "general",
+        application: "2027年度は実施未定（実施時は大学公式サイトで公表）",
+        firstExam: "2027年度は実施未定（実施時は大学公式サイトで公表）",
+        secondExam: "2027年度は実施未定（実施時は大学公式サイトで公表）",
+        result: "2027年度は実施未定（実施時は大学公式サイトで公表）",
+        procedure: "2027年度は実施未定（実施時は大学公式サイトで公表）",
+        status: "pending",
+        sourceUrl:
+          "https://www.kitasato-u.ac.jp/jp/goukaku/albums/abm.php?f=abm00048868.pdf",
+      },
       officialRoute({
         name: "共通テスト利用 前期",
         category: "common",
-        application: "2027年度学生募集要項で確認",
+        application:
+          "Web・書類 2026/12/24〜2027/1/15（Web終了時刻は学生募集要項公開待ち・書類1/15消印有効／国外発送は必着）",
         firstExam: "共通テスト 1/16・17",
-        secondExam: "2/13〜15の選択日",
-        procedure: "2027年度学生募集要項で確認",
-        sourceUrl: "https://www.kitasato-u.ac.jp/jp/goukaku/albums/abm.php?f=abm00048841.pdf",
+        secondExam:
+          "2/13〜15の選択日（出願時に1日選択／一般選抜との併願者は同じ日を選択）",
+        result: "一次 2/8 15:00・最終 2/17 15:00",
+        procedure: "2/24（入学手続期限）",
+        procedureDateDetails: ["入学手続期限"],
+        sourceUrl:
+          "https://www.kitasato-u.ac.jp/jp/goukaku/albums/abm.php?f=abm00048868.pdf",
       }),
       officialRoute({
         name: "共通テスト利用 後期",
         category: "common",
-        application: "2027年度学生募集要項で確認",
+        application:
+          "Web・書類 2026/12/24〜2027/1/15（Web終了時刻は学生募集要項公開待ち・書類1/15消印有効／国外発送は必着）",
         firstExam: "共通テスト 1/16・17",
-        secondExam: "3/6",
-        procedure: "2027年度学生募集要項で確認",
-        sourceUrl: "https://www.kitasato-u.ac.jp/jp/goukaku/albums/abm.php?f=abm00048841.pdf",
+        secondExam: "3/6（相模原キャンパス）",
+        result: "一次 3/1 15:00・最終 3/10 15:00",
+        procedure: "3/17（入学手続期限）",
+        procedureDateDetails: ["入学手続期限"],
+        sourceUrl:
+          "https://www.kitasato-u.ac.jp/jp/goukaku/albums/abm.php?f=abm00048868.pdf",
       }),
     ],
   },
@@ -1354,7 +1381,7 @@ const examCalendarEvents2027 = [
       "昭和医科①（一般・Ⅰ期／①〜②から受験者が選択）",
       "東京医科①（一般・共テ／①〜②を出願順に大学指定）",
       "東京女子医科①（一般・地域枠／①〜③から希望日を提出・希望に添えない場合あり）",
-      "北里①（一般・共テ前期／①〜③から受験者が選択）",
+      "北里①（一般・共テ前期／①〜③から出願時選択・両方式併願は同日・相模原市枠は①〜②）",
       "聖マリアンナ医科①（一般・前期／①〜②から希望日を提出）",
       "東海①（一般・共テ・地域枠／①〜②から受験者が選択）",
       "久留米（一般・前期／共テA）",
@@ -1370,7 +1397,7 @@ const examCalendarEvents2027 = [
       "昭和医科②（一般・Ⅰ期／①〜②から受験者が選択）",
       "東京医科②（一般・共テ／①〜②を出願順に大学指定）",
       "東京女子医科②（一般・地域枠／①〜③から希望日を提出・希望に添えない場合あり）",
-      "北里②（一般・共テ前期／①〜③から受験者が選択）",
+      "北里②（一般・共テ前期／①〜③から出願時選択・両方式併願は同日・相模原市枠は①〜②）",
       "聖マリアンナ医科②（一般・前期／①〜②から希望日を提出）",
       "東海②（一般・共テ・地域枠／①〜②から受験者が選択）",
       "藤田医科①（一般・共テ／①〜②から希望日を提出）",
@@ -1385,7 +1412,7 @@ const examCalendarEvents2027 = [
     second: [
       "順天堂②（一般A・共テ前期／①〜③の希望をもとに大学が指定）",
       "東京女子医科③（一般・地域枠／①〜③から希望日を提出・希望に添えない場合あり）",
-      "北里③（一般・共テ前期／①〜③から受験者が選択）",
+      "北里③（一般・共テ前期／①〜③から出願時選択・両方式併願は同日・相模原市枠は選択不可）",
       "東邦①（一般入試／①〜②のいずれか1日・指定方法未公表）",
       "藤田医科②（一般・共テ／①〜②から希望日を提出）",
     ],
@@ -1833,6 +1860,16 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     sourceUrl: "https://www.uoeh-u.ac.jp/library/nyusi/R9_jissiyoko.pdf",
   },
   {
+    date: "1/15",
+    dateTime: "2027-01-15",
+    university: "北里大学",
+    routes: "共テ利用 前期・後期",
+    webDeadline: "1/15（終了時刻は学生募集要項公開待ち）",
+    documentDeadline: "1/15 消印有効（国外発送は必着）",
+    sourceUrl:
+      "https://www.kitasato-u.ac.jp/jp/goukaku/albums/abm.php?f=abm00048868.pdf",
+  },
+  {
     date: "1/16",
     dateTime: "2027-01-16",
     university: "東海大学",
@@ -1858,6 +1895,16 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     webDeadline: "1/18 23:00",
     documentDeadline: "1/20 必着（簡易書留）",
     sourceUrl: "https://www.twmu-u.jp/wp-content/uploads/2026/07/c9586e74cb77a02ee36ecf565fb6264f.pdf",
+  },
+  {
+    date: "1/19",
+    dateTime: "2027-01-19",
+    university: "北里大学",
+    routes: "一般選抜",
+    webDeadline: "1/19（終了時刻は学生募集要項公開待ち）",
+    documentDeadline: "1/19 消印有効（国外発送は必着）",
+    sourceUrl:
+      "https://www.kitasato-u.ac.jp/jp/goukaku/albums/abm.php?f=abm00048868.pdf",
   },
   {
     date: "1/20",
@@ -2148,14 +2195,6 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     webDeadline: "登録方法・時刻は要項公開待ち",
     documentDeadline: "提出方法・期限は要項公開待ち",
     sourceUrl: "https://www.dokkyomed.ac.jp/dusm/exam/entrance/",
-  },
-  {
-    date: "未公表",
-    university: "北里大学",
-    routes: "一般／共テ前期・後期",
-    webDeadline: "募集要項公開待ち",
-    documentDeadline: "募集要項公開待ち",
-    sourceUrl: "https://www.kitasato-u.ac.jp/jp/goukaku/undergraduate_ad/system/newfolder/changes_med.html",
   },
 ];
 
