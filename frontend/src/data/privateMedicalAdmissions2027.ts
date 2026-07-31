@@ -241,11 +241,12 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
       officialRoute({
         name: "一般選抜",
         category: "general",
-        application: "登録 2026/12/24〜2027/1/18 17:00（書類1/18消印）",
+        application:
+          "Web登録 2026/12/24 10:00〜2027/1/18 17:00（書類郵送は2027年1月4日開始・1/18消印有効）",
         firstExam: "2/9",
         secondExam: "3/1",
         result: "一次 2/19・最終 3/5",
-        procedure: "3/12まで",
+        procedure: "3/12（入学金等支払・入学手続とも締切）",
         sourceUrl: "https://www.keio.ac.jp/ja/admissions/faculty/examinations/general-admissions/",
       }),
     ],
