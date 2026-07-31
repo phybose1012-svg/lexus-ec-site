@@ -523,31 +523,75 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
       officialRoute({
         name: "一般選抜 前期",
         category: "general",
-        application: "2026/12/21〜2027/1/21（書類1/21消印有効）",
-        firstExam: "2/1",
+        application:
+          "Web登録 2026/12/21〜2027/1/21（登録終了時刻の記載なし・受験料は登録翌日23:59まで、締切日登録は当日23:59／書類1/21簡易書留・消印有効）",
+        firstExam:
+          "2/1（武蔵境校舎・ベルサール渋谷ファースト／定員超過時は千駄木校舎も使用）",
         secondExam: "2/10・12の希望日（希望に沿えない場合あり）",
         result: "一次 2/8 18:00・最終 2/16 12:00",
-        procedure: "入学金 2/19まで・学費／書類 2/24まで",
+        procedure: "入学金 2/19・初年度学費／手続書類 2/24",
+        procedureDateDetails: [
+          "入学金納入期限",
+          "初年度学費納入・手続書類提出期限",
+        ],
+        sourceUrl: "https://www.nms.ac.jp/college/nyushi-book/pdf_2027/guidelines_2027.pdf",
+      }),
+      officialRoute({
+        name: "一般選抜（地域枠）前期",
+        category: "general",
+        application:
+          "Web登録 2026/12/21〜2027/1/21（登録終了時刻の記載なし・受験料は登録翌日23:59まで、締切日登録は当日23:59／書類1/21簡易書留・消印有効）",
+        firstExam:
+          "2/1（東京・千葉・埼玉・静岡・新潟／武蔵境校舎・ベルサール渋谷ファースト、定員超過時は千駄木校舎も使用）",
+        secondExam:
+          "2/10・12の希望日（希望に沿えない場合あり／東京都地域枠は2/10指定）",
+        result: "一次 2/8 18:00・最終 2/16 12:00",
+        procedure: "入学金 2/19・学費／手続書類 2/24（東京都地域枠は納付不要）",
+        procedureDateDetails: [
+          "入学金納入期限（東京都地域枠は納付不要）",
+          "学費納入・手続書類提出期限（東京都地域枠は学費納付不要）",
+        ],
         sourceUrl: "https://www.nms.ac.jp/college/nyushi-book/pdf_2027/guidelines_2027.pdf",
       }),
       officialRoute({
         name: "グローバル特別選抜（前期）",
         category: "common",
-        application: "2026/12/21〜2027/1/21（書類1/21消印有効）",
-        firstExam: "共通テスト（国語）1/16＋個別一次 2/1",
+        application:
+          "Web登録 2026/12/21〜2027/1/21（登録終了時刻の記載なし・受験料は登録翌日23:59まで、締切日登録は当日23:59／書類1/21簡易書留・消印有効）",
+        firstExam:
+          "共通テスト（国語）1/16＋個別一次 2/1（武蔵境校舎・ベルサール渋谷ファースト／定員超過時は千駄木校舎も使用）",
         secondExam: "2/10・12の希望日（希望に沿えない場合あり）",
         result: "一次 2/8 18:00・最終 2/16 12:00",
-        procedure: "入学金 2/19まで・学費／書類 2/24まで",
+        procedure: "入学金 2/19・初年度学費／手続書類 2/24",
+        procedureDateDetails: [
+          "入学金納入期限",
+          "初年度学費納入・手続書類提出期限",
+        ],
         sourceUrl: "https://www.nms.ac.jp/college/nyushi-book/pdf_2027/guidelines_2027.pdf",
       }),
       officialRoute({
         name: "一般選抜 後期",
         category: "general",
-        application: "2027/2/1〜2/19（書類2/19消印有効）",
-        firstExam: "2/28",
-        secondExam: "3/9",
+        application:
+          "Web登録 2027/2/1〜2/19（登録終了時刻の記載なし・受験料は登録翌日23:59まで、締切日登録は当日23:59／書類2/19簡易書留・消印有効）",
+        firstExam: "2/28（武蔵境校舎／定員超過時は千駄木校舎も使用）",
+        secondExam: "3/9（千駄木校舎）",
         result: "一次 3/6 18:00・最終 3/15 12:00",
-        procedure: "入学金・学費／書類 3/18まで",
+        procedure: "入学金・初年度学費／手続書類 3/18",
+        procedureDateDetails: ["入学金・初年度学費納入／手続書類提出期限"],
+        sourceUrl: "https://www.nms.ac.jp/college/nyushi-book/pdf_2027/guidelines_2027.pdf",
+      }),
+      officialRoute({
+        name: "一般選抜（地域枠）後期",
+        category: "general",
+        application:
+          "Web登録 2027/2/1〜2/19（登録終了時刻の記載なし・受験料は登録翌日23:59まで、締切日登録は当日23:59／書類2/19簡易書留・消印有効）",
+        firstExam:
+          "2/28（千葉・埼玉・静岡・新潟／武蔵境校舎、定員超過時は千駄木校舎も使用）",
+        secondExam: "3/9（千駄木校舎）",
+        result: "一次 3/6 18:00・最終 3/15 12:00",
+        procedure: "入学金・初年度学費／手続書類 3/18",
+        procedureDateDetails: ["入学金・初年度学費納入／手続書類提出期限"],
         sourceUrl: "https://www.nms.ac.jp/college/nyushi-book/pdf_2027/guidelines_2027.pdf",
       }),
     ],
@@ -1193,7 +1237,7 @@ const examCalendarEvents2027 = [
     first: [
       "川崎医科（一般）",
       "日大（N全学統一方式・第1期／全国20会場から希望受験地を選択）",
-      "日本医科（一般前期・グローバル）",
+      "日本医科（一般・地域枠前期／グローバル）",
       "久留米（一般・前期）",
       "東京女子医科（一般・地域枠／学科・小論文）",
     ],
@@ -1277,7 +1321,7 @@ const examCalendarEvents2027 = [
     weekday: "水",
     first: ["大阪医科薬科（一般・前期／大阪府地域枠）"],
     second: [
-      "日本医科①（一般前期・グローバル／①〜②から希望日を提出）",
+      "日本医科①（一般・地域枠前期／グローバル／①〜②から希望日を提出・東京都地域枠は①指定）",
       "川崎医科①（一般／①〜②から大学指定）",
     ],
   },
@@ -1298,7 +1342,7 @@ const examCalendarEvents2027 = [
     second: [
       "岩手医科①（一般／①〜②から受験者が選択）",
       "杏林②（一般／①〜②の希望をもとに大学指定）",
-      "日本医科②（一般前期・グローバル／①〜②から希望日を提出）",
+      "日本医科②（一般・地域枠前期／グローバル／①〜②から希望日を提出）",
     ],
   },
   {
@@ -1435,7 +1479,7 @@ const examCalendarEvents2027 = [
     weekday: "日",
     first: [
       "埼玉医科（一般・後期）",
-      "日本医科（一般・後期）",
+      "日本医科（一般・地域枠後期）",
       "近畿（一般・後期）",
     ],
     second: [],
@@ -1495,7 +1539,7 @@ const examCalendarEvents2027 = [
     date: "3/9",
     weekday: "火",
     first: [],
-    second: ["日本医科（一般・後期）"],
+    second: ["日本医科（一般・地域枠後期）"],
   },
   {
     date: "3/10",
@@ -1874,9 +1918,9 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     date: "1/21",
     dateTime: "2027-01-21",
     university: "日本医科大学",
-    routes: "一般前期／グローバル特別選抜（前期）",
-    webDeadline: "1/21（時刻未公表）",
-    documentDeadline: "1/21 消印有効",
+    routes: "一般前期／地域枠前期／グローバル特別選抜（前期）",
+    webDeadline: "1/21（志願者情報登録の終了時刻は記載なし・受験料支払いは同日23:59）",
+    documentDeadline: "1/21 消印有効（簡易書留）",
     sourceUrl: "https://www.nms.ac.jp/college/nyushi-book/pdf_2027/guidelines_2027.pdf",
   },
   {
@@ -1992,9 +2036,9 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     date: "2/19",
     dateTime: "2027-02-19",
     university: "日本医科大学",
-    routes: "一般後期",
-    webDeadline: "2/19（時刻未公表）",
-    documentDeadline: "2/19 消印有効",
+    routes: "一般後期／地域枠後期",
+    webDeadline: "2/19（志願者情報登録の終了時刻は記載なし・受験料支払いは同日23:59）",
+    documentDeadline: "2/19 消印有効（簡易書留）",
     sourceUrl: "https://www.nms.ac.jp/college/nyushi-book/pdf_2027/guidelines_2027.pdf",
   },
   {
@@ -2360,7 +2404,11 @@ const applicationDeadlineDetail = (
     dateIndex === 1 &&
     (sourcePrefix.includes("Web") || sourcePrefix.includes("登録"))
   ) {
-    labels.push("Web登録締切");
+    labels.push(
+      localContext.includes("登録終了時刻の記載なし")
+        ? "Web登録締切（終了時刻記載なし）"
+        : "Web登録締切",
+    );
   } else if (dateIndex === 1 && sourcePrefix.includes("郵送")) {
     labels.push("郵送締切");
   }
@@ -2370,7 +2418,10 @@ const applicationDeadlineDetail = (
   }
 
   const time = afterDate.match(/\d{1,2}:\d{2}/)?.[0];
-  if (time) labels.push(time);
+  if (time && !localContext.includes("受験料")) labels.push(time);
+  if (localContext.includes("締切日登録は当日23:59")) {
+    labels.push("締切日登録分の受験料は23:59まで");
+  }
   if (localContext.includes("消印有効") || localContext.includes("消印）")) {
     labels.push("消印有効");
   } else if (localContext.includes("必着")) {
