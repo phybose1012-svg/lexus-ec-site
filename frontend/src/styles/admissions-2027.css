@@ -1344,6 +1344,7 @@
 }
 
 .admissions-common-test {
+  --admissions-common-rule: 1px solid var(--admissions-line);
   position: relative;
   overflow: hidden;
 }
@@ -1368,7 +1369,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-bottom: 30px;
-  border: 1px solid var(--admissions-line);
+  border: var(--admissions-common-rule);
   border-radius: 5px;
   background: #fff;
   box-shadow: 0 12px 32px rgb(38 26 19 / 4%);
@@ -1377,7 +1378,7 @@
 .admissions-common-test__dates article {
   display: grid;
   gap: 3px;
-  border-right: 1px solid var(--admissions-line);
+  border-right: var(--admissions-common-rule);
   padding: 20px 22px;
 }
 
@@ -1425,7 +1426,7 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 215px;
-  border: 1px solid var(--admissions-line);
+  border: var(--admissions-common-rule);
   border-radius: 5px;
   padding: 20px;
   background: #fff;
@@ -1792,7 +1793,7 @@
   }
 
   .admissions-common-test__dates article:nth-child(-n + 2) {
-    border-bottom: 1px solid var(--admissions-line);
+    border-bottom: var(--admissions-common-rule);
   }
 
   .admissions-guide__steps li:last-child {
@@ -2217,7 +2218,7 @@
   }
 
   body.is-printing-admissions-section .admissions-calendar-section {
-    --admissions-calendar-rule: 1px solid #888;
+    --admissions-calendar-rule: 0.3mm solid #777;
   }
 
   body.is-printing-admissions-section .admissions-calendar-head {
@@ -2303,13 +2304,29 @@
   }
 
   body.is-printing-admissions-section .admissions-common-test__dates {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     margin-bottom: 5mm;
-    border-color: #888;
+    border: var(--admissions-common-rule);
     box-shadow: none;
   }
 
   body.is-printing-admissions-section .admissions-common-test__dates article {
+    border: 0;
+    border-right: var(--admissions-common-rule);
+    border-bottom: var(--admissions-common-rule);
     padding: 3mm 4mm;
+  }
+
+  body.is-printing-admissions-section .admissions-common-test {
+    --admissions-common-rule: 0.3mm solid #777;
+  }
+
+  body.is-printing-admissions-section .admissions-common-test__dates article:nth-child(2n) {
+    border-right: 0;
+  }
+
+  body.is-printing-admissions-section .admissions-common-test__dates article:nth-last-child(-n + 2) {
+    border-bottom: 0;
   }
 
   body.is-printing-admissions-section .admissions-common-test__dates strong {
@@ -2323,7 +2340,7 @@
 
   body.is-printing-admissions-section .admissions-common-grid > article {
     min-height: 0;
-    border-color: #888;
+    border: var(--admissions-common-rule);
     padding: 3.5mm;
     color: #111;
     background: #fff;
@@ -2334,6 +2351,10 @@
 
   body.is-printing-admissions-section .admissions-common-grid :where(small, h3, li strong, li span) {
     color: #111 !important;
+  }
+
+  body.is-printing-admissions-section .admissions-common-grid li {
+    border-left: var(--admissions-common-rule);
   }
 
   body.is-printing-admissions-section .admissions-common-grid > article > a {
@@ -2438,9 +2459,9 @@
 
   body.is-printing-admissions-section .admissions-print-branding {
     display: grid !important;
-    grid-template-columns: 22mm minmax(0, 82mm) 22mm;
-    gap: 5mm;
-    align-items: end;
+    grid-template-columns: 34mm minmax(0, 82mm) 34mm;
+    gap: 3mm;
+    align-items: start;
     justify-content: center;
     width: 100%;
     margin-bottom: 6mm;
@@ -2454,9 +2475,10 @@
   }
 
   body.is-printing-admissions-section .admissions-print-branding__character {
-    width: 22mm;
-    height: 22mm;
+    width: 34mm;
+    height: 34mm;
     object-fit: contain;
+    object-position: center top;
   }
 
   body.is-printing-admissions-section .admissions-print-branding__logo {
