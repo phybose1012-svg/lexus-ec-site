@@ -124,13 +124,16 @@ const plannerPayload = JSON.stringify({
         <span>プラン名</span>
         <input type="text" maxlength="40" value="2027年度 受験プラン" data-planner-name />
       </label>
-      <button type="button" class="admissions-planner__save" data-planner-save>この端末に保存</button>
-      <button type="button" class="admissions-planner__reset" data-planner-reset>選択をリセット</button>
+      <div class="admissions-planner__save-action">
+        <button type="button" class="admissions-planner__save" data-planner-save>この内容を保存して、次回も表示</button>
+        <small>このページを閉じたり移動したあとも、次に開いたときに同じ内容を表示できます。</small>
+      </div>
+      <button type="button" class="admissions-planner__reset" data-planner-reset>選択をすべて消す</button>
       <span data-planner-save-status role="status"></span>
     </div>
 
     <p class="admissions-planner__source-note">
-      日程が未公表・大学指定・希望日制の方式は「要注意」と表示します。出願前と受験前には、必ず各大学の最新の募集要項をご確認ください。保存内容はこの端末のブラウザ内だけに保存されます。
+      日程が未公表・大学指定・希望日制の方式は「要注意」と表示します。出願前と受験前には、必ず各大学の最新の募集要項をご確認ください。保存した内容は次にこのページを開いたときに表示されますが、別のスマートフォンやパソコンには引き継がれません。
     </p>
   </div>
 
@@ -348,7 +351,7 @@ const plannerPayload = JSON.stringify({
         root
           .querySelectorAll<HTMLInputElement>("[data-planner-goal]")
           .forEach((input) => (input.checked = input.value === goal));
-        if (selections.length > 0) saveStatus.textContent = "保存済みのプランを復元しました";
+        if (selections.length > 0) saveStatus.textContent = "前回保存した内容を表示しています";
       } catch {
         localStorage.removeItem(STORAGE_KEY);
       }
@@ -590,7 +593,7 @@ const plannerPayload = JSON.stringify({
         } else {
           selections = selections.filter((selection) => selection.routeId !== routeId);
         }
-        saveStatus.textContent = "未保存の変更があります";
+        saveStatus.textContent = "内容を変更しました。次回も表示するには保存してください";
         render();
         return;
       }
@@ -601,7 +604,7 @@ const plannerPayload = JSON.stringify({
         selections = selections.map((selection) =>
           selection.routeId === routeId ? { ...selection, priority } : selection,
         );
-        saveStatus.textContent = "未保存の変更があります";
+        saveStatus.textContent = "内容を変更しました。次回も表示するには保存してください";
         render();
         return;
       }
@@ -636,14 +639,14 @@ const plannerPayload = JSON.stringify({
               }
             : item,
         );
-        saveStatus.textContent = "未保存の変更があります";
+        saveStatus.textContent = "内容を変更しました。次回も表示するには保存してください";
         render();
         return;
       }
 
       if (target.matches("[data-planner-goal]")) {
         goal = target.value === "coverage" ? "coverage" : "priority";
-        saveStatus.textContent = "未保存の変更があります";
+        saveStatus.textContent = "内容を変更しました。次回も表示するには保存してください";
         render();
         return;
       }
@@ -658,7 +661,7 @@ const plannerPayload = JSON.stringify({
         selections = selections.filter(
           (selection) => selection.routeId !== removeButton.dataset.plannerRemove,
         );
-        saveStatus.textContent = "未保存の変更があります";
+        saveStatus.textContent = "内容を変更しました。次回も表示するには保存してください";
         render();
         return;
       }
@@ -671,7 +674,7 @@ const plannerPayload = JSON.stringify({
           selections,
         };
         localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
-        saveStatus.textContent = "この端末に保存しました";
+        saveStatus.textContent = "保存しました。次にこのページを開いたときも同じ内容を表示します";
         return;
       }
 
@@ -682,14 +685,14 @@ const plannerPayload = JSON.stringify({
         root
           .querySelectorAll<HTMLInputElement>("[data-planner-goal]")
           .forEach((input) => (input.checked = input.value === goal));
-        saveStatus.textContent = "選択をリセットしました";
+        saveStatus.textContent = "選択内容をすべて消しました";
         render();
       }
     });
 
     nameInput.addEventListener("input", () => {
       if (printName) printName.textContent = nameInput.value.trim() || "2027年度 受験プラン";
-      saveStatus.textContent = "未保存の変更があります";
+      saveStatus.textContent = "内容を変更しました。次回も表示するには保存してください";
     });
 
     restore();

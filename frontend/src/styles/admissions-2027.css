@@ -3540,6 +3540,18 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   cursor: pointer;
 }
 
+.admissions-planner__save-action {
+  display: grid;
+  gap: 5px;
+}
+
+.admissions-planner__save-action small {
+  max-width: 320px;
+  color: #786b60;
+  font-size: 0.65rem;
+  line-height: 1.45;
+}
+
 .admissions-planner__reset {
   min-height: 44px;
   padding-inline: 12px;
