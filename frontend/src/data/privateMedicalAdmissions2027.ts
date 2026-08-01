@@ -2478,8 +2478,8 @@ const parseScheduleDates = (
     /(?:(20\d{2})\/)?(\d{1,2})\/(\d{1,2})(?:\s*(・|〜|または)\s*(\d{1,2})(?![\d:/]))?/g;
 
   for (const match of value.matchAll(pattern)) {
-    const year = Number(match[1] ?? 2027);
     const month = Number(match[2]);
+    const year = Number(match[1] ?? (month >= 7 ? 2026 : 2027));
     const day = Number(match[3]);
     const index = match.index ?? 0;
     const raw = match[0];

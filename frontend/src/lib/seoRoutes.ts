@@ -1,5 +1,6 @@
 import { getFixedPageStaticPaths } from "./fixedPageSource";
 import { migratedPosts } from "./postSource";
+import { privateMedicalAdmissions2027Metadata } from "../data/privateMedicalAdmissions2027Metadata";
 
 const SITE_ORIGIN = "https://lexus-ec.com";
 
@@ -54,6 +55,13 @@ const staticPagePaths = [
   "/top/course/medical-prep/",
 ];
 
+const staticPageLastmods = new Map<string, string>([
+  [
+    new URL(privateMedicalAdmissions2027Metadata.canonicalUrl).pathname,
+    privateMedicalAdmissions2027Metadata.dateModified,
+  ],
+]);
+
 const normalizeUrl = (pathOrUrl: string) => {
   const url = new URL(pathOrUrl, SITE_ORIGIN);
   const pathname = url.pathname.endsWith("/") ? url.pathname : `${url.pathname}/`;
@@ -81,7 +89,9 @@ const addEntry = (entries: Map<string, SitemapEntry>, input: SitemapEntryInput) 
 export const getSitemapEntries = () => {
   const entries = new Map<string, SitemapEntry>();
 
-  for (const path of staticPagePaths) addEntry(entries, { path });
+  for (const path of staticPagePaths) {
+    addEntry(entries, { path, lastmod: staticPageLastmods.get(path) });
+  }
 
   for (const route of getFixedPageStaticPaths()) {
     addEntry(entries, { path: route.props.page.path });

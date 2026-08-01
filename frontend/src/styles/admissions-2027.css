@@ -2078,6 +2078,41 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   line-height: 1.85;
 }
 
+.admissions-data-access {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 22px;
+  border: 1px solid var(--admissions-line);
+  border-left: 3px solid var(--admissions-yellow);
+  border-radius: 4px;
+  padding: 16px 18px;
+  background: #fff;
+}
+
+.admissions-data-access p {
+  margin: 0;
+  color: #685f57;
+  font-size: 0.74rem;
+  line-height: 1.75;
+}
+
+.admissions-data-access strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--admissions-navy);
+  font-size: 0.8rem;
+}
+
+.admissions-data-access a {
+  flex: 0 0 auto;
+  color: var(--admissions-blue);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-underline-offset: 4px;
+}
+
 .admissions-final-cta {
   border-block: 1px solid #eee4db;
   color: var(--admissions-ink);
@@ -2419,6 +2454,15 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   .admissions-section-heading > div + p {
     font-size: 0.82rem;
     line-height: 1.7;
+  }
+
+  .admissions-data-access {
+    display: grid;
+    gap: 10px;
+  }
+
+  .admissions-data-access a {
+    justify-self: start;
   }
 
   .admissions-stat-grid {

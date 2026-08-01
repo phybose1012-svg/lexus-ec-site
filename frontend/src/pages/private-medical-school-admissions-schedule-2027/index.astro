@@ -10,16 +10,22 @@ import {
   type AdmissionRouteStatus,
   type FullScheduleColumnKey2027,
 } from "../../data/privateMedicalAdmissions2027";
+import { privateMedicalAdmissions2027SourceUrls } from "../../data/privateMedicalAdmissions2027Dataset";
+import {
+  privateMedicalAdmissions2027FieldDefinitions,
+  privateMedicalAdmissions2027Metadata,
+} from "../../data/privateMedicalAdmissions2027Metadata";
 import AdmissionsBrandDivider from "../../components/admissions/AdmissionsBrandDivider.astro";
 import AdmissionPlanner from "../../components/admissions/AdmissionPlanner.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import "../../styles/admissions-2027.css";
 
-const title = "【2027年度】私立医学部入試日程一覧｜一般選抜・共通テスト利用31大学";
-const description =
-  "2027年度（令和9年度）の私立医学部31大学の一般選抜・共通テスト利用選抜を、試験日カレンダー、大学別、出願締切別に一覧化。一次・二次試験、出願期間、入学手続まで確認できます。";
-const canonical = "https://lexus-ec.com/private-medical-school-admissions-schedule-2027/";
-const lastUpdated = "2026年8月1日";
+const title = privateMedicalAdmissions2027Metadata.title;
+const description = privateMedicalAdmissions2027Metadata.description;
+const canonical = privateMedicalAdmissions2027Metadata.canonicalUrl;
+const datasetUrl = privateMedicalAdmissions2027Metadata.datasetUrl;
+const lastUpdated = privateMedicalAdmissions2027Metadata.dateModifiedLabel;
+const lastUpdatedIso = privateMedicalAdmissions2027Metadata.dateModified;
 const updateHistory = [
   {
     date: "2026年8月1日",
@@ -211,9 +217,20 @@ const faqs = [
   },
 ];
 
+const organizationId = "https://lexus-ec.com/#organization";
+const websiteId = "https://lexus-ec.com/#website";
+const webpageId = `${canonical}#webpage`;
+const breadcrumbId = `${canonical}#breadcrumb`;
+const universityListId = `${canonical}#universities`;
+const faqId = `${canonical}#faq`;
+const datasetId = privateMedicalAdmissions2027Metadata.datasetIdentifier;
+const ogImageUrl = "https://lexus-ec.com/og/private-medical-admissions-2027.png";
+const scheduleStart = fullScheduleCalendar2027.at(0)?.dateTime;
+const scheduleEnd = fullScheduleCalendar2027.at(-1)?.dateTime;
+
 const breadcrumbJsonLd = {
-  "@context": "https://schema.org",
   "@type": "BreadcrumbList",
+  "@id": breadcrumbId,
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "ホーム", item: "https://lexus-ec.com/" },
     { "@type": "ListItem", position: 2, name: "私立医学部情報", item: "https://lexus-ec.com/top/information-shiritsu/" },
@@ -221,43 +238,138 @@ const breadcrumbJsonLd = {
   ],
 };
 
-const collectionJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  name: title,
-  description,
-  url: canonical,
-  inLanguage: "ja",
-  dateModified: "2026-08-01",
-  isPartOf: { "@type": "WebSite", name: "医学部予備校 レクサス E.C.", url: "https://lexus-ec.com/" },
-  mainEntity: {
-    "@type": "ItemList",
-    numberOfItems: totalUniversities,
-    itemListElement: privateMedicalUniversities2027.map((university, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: `${university.name} 医学部 2027年度入試日程`,
+const universityListJsonLd = {
+  "@type": "ItemList",
+  "@id": universityListId,
+  name: "2027年度 私立医学部31大学 入試日程一覧",
+  numberOfItems: totalUniversities,
+  itemListOrder: "https://schema.org/ItemListOrderAscending",
+  itemListElement: privateMedicalUniversities2027.map((university, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "CollegeOrUniversity",
+      name: university.name,
       url: `${canonical}#${university.id}`,
-    })),
-  },
+      address: {
+        "@type": "PostalAddress",
+        addressRegion: university.prefecture,
+        addressCountry: "JP",
+      },
+    },
+  })),
 };
 
 const faqJsonLd = {
-  "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": faqId,
+  isPartOf: { "@id": webpageId },
   mainEntity: faqs.map((faq) => ({
     "@type": "Question",
     name: faq.question,
     acceptedAnswer: { "@type": "Answer", text: faq.answer },
   })),
 };
+
+const datasetJsonLd = {
+  "@type": "Dataset",
+  "@id": datasetId,
+  name: privateMedicalAdmissions2027Metadata.name,
+  alternateName: title,
+  description,
+  url: canonical,
+  identifier: datasetId,
+  inLanguage: "ja",
+  datePublished: privateMedicalAdmissions2027Metadata.datePublished,
+  dateModified: lastUpdatedIso,
+  version: privateMedicalAdmissions2027Metadata.version,
+  creator: { "@id": organizationId },
+  publisher: { "@id": organizationId },
+  isAccessibleForFree: true,
+  keywords: [
+    "2027年度私立医学部入試",
+    "私立医学部入試日程",
+    "一般選抜",
+    "共通テスト利用選抜",
+    "出願締切",
+    "一次試験",
+    "二次試験",
+  ],
+  spatialCoverage: { "@type": "Country", name: "日本" },
+  ...(scheduleStart && scheduleEnd
+    ? { temporalCoverage: `${scheduleStart}/${scheduleEnd}` }
+    : {}),
+  variableMeasured: privateMedicalAdmissions2027FieldDefinitions.map((field) => field.label),
+  isBasedOn: privateMedicalAdmissions2027SourceUrls,
+  distribution: {
+    "@type": "DataDownload",
+    name: "2027年度 私立医学部入試日程 JSON",
+    encodingFormat: "application/json",
+    contentUrl: datasetUrl,
+  },
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "EducationalOrganization",
+      "@id": organizationId,
+      name: privateMedicalAdmissions2027Metadata.publisher.name,
+      alternateName: privateMedicalAdmissions2027Metadata.publisher.alternateName,
+      url: privateMedicalAdmissions2027Metadata.publisher.url,
+      logo: {
+        "@type": "ImageObject",
+        url: "https://lexus-ec.com/assets/optimized/header-logo-900.webp",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: "https://lexus-ec.com/",
+      name: "医学部予備校 レクサス E.C.",
+      inLanguage: "ja",
+      publisher: { "@id": organizationId },
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": webpageId,
+      name: title,
+      description,
+      url: canonical,
+      inLanguage: "ja",
+      datePublished: privateMedicalAdmissions2027Metadata.datePublished,
+      dateModified: lastUpdatedIso,
+      isPartOf: { "@id": websiteId },
+      publisher: { "@id": organizationId },
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: ogImageUrl,
+      },
+      breadcrumb: { "@id": breadcrumbId },
+      mainEntity: { "@id": datasetId },
+      hasPart: [{ "@id": universityListId }, { "@id": faqId }],
+    },
+    datasetJsonLd,
+    universityListJsonLd,
+    breadcrumbJsonLd,
+    faqJsonLd,
+  ],
+};
 ---
 
 <SiteLayout title={title} description={description} canonical={canonical} ogImage="/og/private-medical-admissions-2027.png">
   <Fragment slot="head">
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(collectionJsonLd)} />
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+    <meta name="author" content={privateMedicalAdmissions2027Metadata.publisher.name} />
+    <meta property="og:updated_time" content={lastUpdatedIso} />
+    <meta property="og:image:alt" content="2027年度 私立医学部入試日程一覧" />
+    <link
+      rel="alternate"
+      type="application/json"
+      title="2027年度 私立医学部入試日程 JSONデータ"
+      href={datasetUrl}
+    />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </Fragment>
 
   <main class="admissions-page">
@@ -308,7 +420,7 @@ const faqJsonLd = {
           <div class="admissions-hero__copy">
             <p class="admissions-kicker"><span>2027</span> PRIVATE MEDICAL SCHOOL EXAMS</p>
             <h1>
-              私立医学部31大学<br />
+              2027年度 私立医学部31大学<br />
               <strong>入試日程まるわかり</strong>
             </h1>
             <p class="admissions-hero__lead">
@@ -994,6 +1106,14 @@ const faqJsonLd = {
             </details>
           ))}
         </div>
+
+        <aside class="admissions-data-access" aria-label="掲載データについて">
+          <p>
+            <strong>掲載データについて</strong>
+            本ページの日程は大学公式資料を優先して確認し、未公表事項は推測で補完していません。最終更新：<time datetime={lastUpdatedIso}>{lastUpdated}</time>
+          </p>
+          <a href={datasetUrl} type="application/json">機械可読JSONを見る</a>
+        </aside>
       </div>
     </section>
 
