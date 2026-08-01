@@ -13,7 +13,7 @@ export type PlannerSelection = {
   priority: PlannerPriority;
 };
 
-export type PlannerForcedChoices = Record<string, string>;
+export type PlannerForcedChoices = Record<string, string | string[]>;
 
 export type PlannerRouteReference = {
   routeId: string;
@@ -68,7 +68,14 @@ export type PlannerCalendarEvent = {
   universityName: string;
   routeNames: string[];
   detail: string;
-  state: "confirmed" | "selected" | "conditional" | "decision" | "pending";
+  state:
+    | "confirmed"
+    | "selected"
+    | "alternative"
+    | "conditional"
+    | "decision"
+    | "pending";
+  recommended?: boolean;
   sourceUrl?: string;
 };
 
@@ -142,7 +149,10 @@ const assignmentOptions = (merged: MergedGroup, forcedChoices: PlannerForcedChoi
   if (group.attendance === "all") return [[...group.dates]];
 
   const forced = forcedChoices[group.id] ?? forcedChoices[merged.key];
-  if (forced && group.dates.includes(forced)) return [[forced]];
+  const forcedDates = (Array.isArray(forced) ? forced : forced ? [forced] : []).filter(
+    (date, index, dates) => group.dates.includes(date) && dates.indexOf(date) === index,
+  );
+  if (forcedDates.length > 0) return [forcedDates.sort()];
   return group.dates.map((date) => [date]);
 };
 
@@ -374,13 +384,20 @@ const buildCalendar = (
   });
 
   assignments.forEach((assignment) => {
-    assignment.dates.forEach((date) => {
+    const calendarDates =
+      assignment.stage === "second_exam" ? assignment.availableDates : assignment.dates;
+    calendarDates.forEach((date) => {
+      const isSelectedDate = assignment.dates.includes(date);
       const conflict = conflicts.some(
         (candidate) =>
           candidate.date === date &&
           (candidate.left.groupId === assignment.groupId || candidate.right.groupId === assignment.groupId),
       );
       const firstRoute = assignment.routes[0];
+      const recommended =
+        assignment.stage === "second_exam" &&
+        isSelectedDate &&
+        assignment.availableDates.length > assignment.dates.length;
       events.push({
         id: `${assignment.groupId}--${date}`,
         date,
@@ -389,13 +406,16 @@ const buildCalendar = (
           assignment.stage === "common_test" ? "大学入学共通テスト" : firstRoute?.universityName ?? "",
         routeNames: assignment.routes.map((route) => route.routeName),
         detail: assignment.note ?? assignment.raw,
-        state: conflict
+        state: !isSelectedDate
+          ? "alternative"
+          : conflict
           ? "decision"
           : assignment.assignment === "candidate_choice"
             ? "selected"
             : uncertainAssignments.has(assignment.assignment)
               ? "conditional"
               : "confirmed",
+        recommended,
         sourceUrl: routes.find((route) => route.id === firstRoute?.routeId)?.sourceUrl,
       });
     });

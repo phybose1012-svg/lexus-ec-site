@@ -3043,6 +3043,68 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   font-size: 0.72rem;
 }
 
+.admissions-planner__date-picker {
+  grid-column: 2 / -1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3px 12px;
+  margin: 3px 0 0;
+  border: 1px solid #e3dcd4;
+  border-radius: 4px;
+  padding: 10px;
+  background: #faf8f5;
+}
+
+.admissions-planner__date-picker legend {
+  padding: 0 3px;
+  color: var(--admissions-ink);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.admissions-planner__date-picker > p {
+  align-self: center;
+  margin: 0;
+  color: #74675c;
+  font-size: 0.64rem;
+  line-height: 1.4;
+}
+
+.admissions-planner__date-picker > div {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 5px;
+}
+
+.admissions-planner__date-picker label {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  border: 1px solid #d5ccc2;
+  border-radius: 999px;
+  padding: 5px 9px;
+  color: #5e5147;
+  background: #fff;
+  font-size: 0.67rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.admissions-planner__date-picker label:has(input:checked) {
+  border-color: #1757a6;
+  color: #12467f;
+  background: #edf5ff;
+}
+
+.admissions-planner__date-picker input {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  accent-color: #1757a6;
+}
+
 .admissions-planner__selected-card button,
 .admissions-planner__reset {
   border: 0;
@@ -3235,6 +3297,18 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   --planner-event-color: #5d6230;
   --planner-event-soft: #f6f7e9;
   --planner-event-border: #d5d8ac;
+}
+
+.admissions-planner__calendar-event.is-alternative {
+  --planner-event-color: #8b8986;
+  --planner-event-soft: #f4f4f3;
+  --planner-event-border: #d8d7d5;
+  opacity: 0.78;
+}
+
+.admissions-planner__calendar-event.is-alternative > span {
+  color: #595755;
+  background: #dedddc;
 }
 
 .admissions-planner__calendar > [data-planner-calendar] {
@@ -3521,13 +3595,22 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
     grid-template-columns: 28px 1fr auto;
   }
 
-  .admissions-planner__selected-card label {
+  .admissions-planner__selected-card > .admissions-planner__priority {
     grid-column: 2 / -1;
   }
 
   .admissions-planner__selected-card button {
     grid-column: 3;
     grid-row: 1;
+  }
+
+  .admissions-planner__date-picker {
+    grid-column: 2 / -1;
+    grid-template-columns: 1fr;
+  }
+
+  .admissions-planner__date-picker > div {
+    grid-column: 1;
   }
 
   .admissions-planner__summary {

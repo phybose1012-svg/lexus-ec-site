@@ -59,6 +59,43 @@ test("受験者が選べる一次試験日は重複しない日を自動選択�
   assert.deepEqual(flexible?.dates, ["2027-02-02"]);
 });
 
+test("受験者が選んだ複数の一次試験日をプランへ反映する", () => {
+  const routes = [
+    route(
+      "a",
+      "first_exam",
+      ["2027-01-21", "2027-01-22", "2027-01-23"],
+      "candidate_choice",
+    ),
+  ];
+  const result = planAdmissionRoutes(routes, selected("a"), "priority", {
+    "a--group": ["2027-01-21", "2027-01-23"],
+  });
+
+  assert.deepEqual(result.assignments[0]?.dates, ["2027-01-21", "2027-01-23"]);
+  assert.deepEqual(
+    result.calendar.filter((event) => event.type === "firstExam").map((event) => event.date),
+    ["2027-01-21", "2027-01-23"],
+  );
+});
+
+test("複数の二次試験日は全候補を表示し推奨日だけを識別する", () => {
+  const routes = [
+    route(
+      "a",
+      "second_exam",
+      ["2027-02-14", "2027-02-15", "2027-02-16"],
+      "candidate_choice",
+    ),
+  ];
+  const result = planAdmissionRoutes(routes, selected("a"));
+  const secondEvents = result.calendar.filter((event) => event.type === "secondExam");
+
+  assert.equal(secondEvents.length, 3);
+  assert.equal(secondEvents.filter((event) => event.recommended).length, 1);
+  assert.equal(secondEvents.filter((event) => event.state === "alternative").length, 2);
+});
+
 test("二次試験同士の固定日重複は一次合格後の要判断として扱う", () => {
   const routes = [
     route("a", "second_exam", ["2027-02-14"]),

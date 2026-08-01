@@ -130,7 +130,7 @@ const plannerPayload = JSON.stringify({
     </div>
 
     <p class="admissions-planner__source-note">
-      日程が未公表・大学指定・希望日制の方式は「条件付き」と表示します。出願前と受験前には、必ず各大学の最新の募集要項をご確認ください。保存内容はこの端末のブラウザ内だけに保存されます。
+      日程が未公表・大学指定・希望日制の方式は「要注意」と表示します。出願前と受験前には、必ず各大学の最新の募集要項をご確認ください。保存内容はこの端末のブラウザ内だけに保存されます。
     </p>
   </div>
 
@@ -152,11 +152,17 @@ const plannerPayload = JSON.stringify({
     routes: AdmissionPlanningRoute2027[];
   };
 
+  type StoredSelection = {
+    routeId: string;
+    priority: PlannerPriority;
+    firstExamDates?: Record<string, string[]>;
+  };
+
   type StoredPlan = {
-    version: 2;
+    version: 2 | 3;
     name: string;
     goal: PlannerGoal;
-    selections: Array<{ routeId: string; priority: PlannerPriority }>;
+    selections: StoredSelection[];
   };
 
   const STORAGE_KEY = "lexus-admission-plan-2027-v2";
@@ -254,6 +260,31 @@ const plannerPayload = JSON.stringify({
     let goal: PlannerGoal = "priority";
     let selections: StoredPlan["selections"] = [];
 
+    const selectableFirstExamGroups = (route: AdmissionPlanningRoute2027) =>
+      route.examGroups.filter(
+        (group) =>
+          group.stage === "first_exam" &&
+          group.assignment === "candidate_choice" &&
+          group.dates.length > 1,
+      );
+
+    const normalizeFirstExamDates = (
+      route: AdmissionPlanningRoute2027,
+      storedChoices: StoredSelection["firstExamDates"] = {},
+    ) =>
+      Object.fromEntries(
+        selectableFirstExamGroups(route).map((group) => {
+          const validDates = (storedChoices[group.id] ?? []).filter(
+            (date, index, dates) => group.dates.includes(date) && dates.indexOf(date) === index,
+          );
+          const selectedDates = validDates.length > 0 ? validDates : [group.dates[0]];
+          return [
+            group.id,
+            group.optionalExtraDates ? selectedDates.sort() : selectedDates.slice(0, 1),
+          ];
+        }),
+      );
+
     const cleanSelections = (items: StoredPlan["selections"]) =>
       items
         .filter(
@@ -262,14 +293,22 @@ const plannerPayload = JSON.stringify({
             [1, 2, 3, 4].includes(item.priority) &&
             all.findIndex((candidate) => candidate.routeId === item.routeId) === index,
         )
-        .slice(0, MAX_SELECTIONS);
+        .slice(0, MAX_SELECTIONS)
+        .map((item) => {
+          const route = routeById.get(item.routeId)!;
+          return {
+            routeId: item.routeId,
+            priority: item.priority,
+            firstExamDates: normalizeFirstExamDates(route, item.firstExamDates),
+          };
+        });
 
     const restore = () => {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) return;
         const stored = JSON.parse(raw) as StoredPlan;
-        if (stored.version !== 2) return;
+        if (stored.version !== 2 && stored.version !== 3) return;
         selections = cleanSelections(stored.selections ?? []);
         goal = stored.goal === "coverage" ? "coverage" : "priority";
         nameInput.value = stored.name || "2027年度 受験プラン";
@@ -316,6 +355,34 @@ const plannerPayload = JSON.stringify({
         .map((selection, index) => {
           const route = routeById.get(selection.routeId);
           if (!route) return "";
+          const firstExamDatePickers = selectableFirstExamGroups(route)
+            .map((group) => {
+              const selectedDates = selection.firstExamDates?.[group.id] ?? [group.dates[0]];
+              const allowsMultiple = Boolean(group.optionalExtraDates);
+              return `<fieldset class="admissions-planner__date-picker">
+                <legend>一次試験日</legend>
+                <p>${allowsMultiple ? "受験する日を1日以上選択" : "受験する1日を選択"}</p>
+                <div>
+                  ${group.dates
+                    .map(
+                      (date) => `<label>
+                        <input
+                          type="${allowsMultiple ? "checkbox" : "radio"}"
+                          name="planner-first-date-${escapeHtml(group.id)}"
+                          value="${escapeHtml(date)}"
+                          data-planner-first-date
+                          data-route-id="${escapeHtml(route.id)}"
+                          data-group-id="${escapeHtml(group.id)}"
+                          ${selectedDates.includes(date) ? "checked" : ""}
+                        />
+                        <span>${formatDate(date)}</span>
+                      </label>`,
+                    )
+                    .join("")}
+                </div>
+              </fieldset>`;
+            })
+            .join("");
           return `
             <article class="admissions-planner__selected-card">
               <span class="admissions-planner__selected-number">${String(index + 1).padStart(2, "0")}</span>
@@ -323,7 +390,7 @@ const plannerPayload = JSON.stringify({
                 <strong>${escapeHtml(route.universityName)}</strong>
                 <span>${escapeHtml(route.routeName)}</span>
               </div>
-              <label>
+              <label class="admissions-planner__priority">
                 <span class="sr-only">${escapeHtml(routeLabel(route))}の志望度</span>
                 <select data-planner-priority="${escapeHtml(route.id)}">
                   ${([1, 2, 3, 4] as PlannerPriority[])
@@ -335,6 +402,7 @@ const plannerPayload = JSON.stringify({
                 </select>
               </label>
               <button type="button" data-planner-remove="${escapeHtml(route.id)}" aria-label="${escapeHtml(routeLabel(route))}を削除">削除</button>
+              ${firstExamDatePickers}
             </article>`;
         })
         .join("");
@@ -359,9 +427,13 @@ const plannerPayload = JSON.stringify({
           event.state === "decision"
             ? "要判断"
             : event.state === "conditional"
-              ? "条件付き"
+              ? "要注意"
+              : event.state === "alternative"
+                ? "候補日"
               : event.state === "selected"
-                ? "自動調整"
+                ? event.recommended
+                  ? "おすすめ"
+                  : "選択日"
                 : event.state === "pending"
                   ? "一部未公表"
                   : "確定日程";
@@ -415,7 +487,7 @@ const plannerPayload = JSON.stringify({
             <div>
               ${events
                 .map(
-                  (event) => `<div class="admissions-planner__calendar-event is-${event.state} is-type-${eventTypeClasses[event.type]}">
+                  (event) => `<div class="admissions-planner__calendar-event is-${event.state}${event.recommended ? " is-recommended" : ""} is-type-${eventTypeClasses[event.type]}">
                     <span>${eventLabels[event.type]}</span>
                     <p><strong>${escapeHtml(event.universityName)}</strong>${event.routeNames.length > 0 ? `<small>${escapeHtml(event.routeNames.join("・"))}</small>` : ""}</p>
                     ${renderEventState(event)}
@@ -475,7 +547,10 @@ const plannerPayload = JSON.stringify({
         return;
       }
 
-      const result = planAdmissionRoutes(payload.routes, selections, goal);
+      const firstExamChoices = Object.fromEntries(
+        selections.flatMap((selection) => Object.entries(selection.firstExamDates ?? {})),
+      );
+      const result = planAdmissionRoutes(payload.routes, selections, goal, firstExamChoices);
       renderSummary(result);
       renderCalendar(result);
     };
@@ -498,7 +573,13 @@ const plannerPayload = JSON.stringify({
             saveStatus.textContent = `選択できるのは${MAX_SELECTIONS}方式までです`;
             return;
           }
-          selections.push({ routeId, priority: 3 });
+          const route = routeById.get(routeId);
+          if (!route) return;
+          selections.push({
+            routeId,
+            priority: 3,
+            firstExamDates: normalizeFirstExamDates(route),
+          });
         } else {
           selections = selections.filter((selection) => selection.routeId !== routeId);
         }
@@ -512,6 +593,41 @@ const plannerPayload = JSON.stringify({
         const priority = Number(target.value) as PlannerPriority;
         selections = selections.map((selection) =>
           selection.routeId === routeId ? { ...selection, priority } : selection,
+        );
+        saveStatus.textContent = "未保存の変更があります";
+        render();
+        return;
+      }
+
+      if (target.matches("[data-planner-first-date]")) {
+        const routeId = target.dataset.routeId;
+        const groupId = target.dataset.groupId;
+        if (!routeId || !groupId) return;
+        const selection = selections.find((item) => item.routeId === routeId);
+        const route = routeById.get(routeId);
+        const group = route?.examGroups.find((item) => item.id === groupId);
+        if (!selection || !group) return;
+        const currentDates = selection.firstExamDates?.[groupId] ?? [];
+        let nextDates: string[];
+        if (target.type === "checkbox") {
+          nextDates = target.checked
+            ? [...new Set([...currentDates, target.value])].sort()
+            : currentDates.filter((date) => date !== target.value);
+          if (nextDates.length === 0) {
+            target.checked = true;
+            saveStatus.textContent = "一次試験日は少なくとも1日選択してください";
+            return;
+          }
+        } else {
+          nextDates = [target.value];
+        }
+        selections = selections.map((item) =>
+          item.routeId === routeId
+            ? {
+                ...item,
+                firstExamDates: { ...(item.firstExamDates ?? {}), [groupId]: nextDates },
+              }
+            : item,
         );
         saveStatus.textContent = "未保存の変更があります";
         render();
@@ -542,7 +658,7 @@ const plannerPayload = JSON.stringify({
 
       if (target.closest("[data-planner-save]")) {
         const stored: StoredPlan = {
-          version: 2,
+          version: 3,
           name: nameInput.value.trim() || "2027年度 受験プラン",
           goal,
           selections,
