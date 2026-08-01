@@ -47,7 +47,7 @@ const plannerPayload = JSON.stringify({
 
     <div class="admissions-planner__notice" role="note">
       <strong>使い方</strong>
-      <span>大学と入試方式を追加し、志望度を設定してください。複数日から選べる試験は、重なりが少ない日を自動で提案します。</span>
+      <span>大学と入試方式を追加し、複数日から選べる一次試験は受験日を指定してください。二次試験は、重なりが少ない日を自動で提案します。</span>
     </div>
 
     <div class="admissions-planner__workspace">
@@ -285,6 +285,39 @@ const plannerPayload = JSON.stringify({
         }),
       );
 
+    const renderFirstExamDatePickers = (
+      route: AdmissionPlanningRoute2027,
+      selection: StoredSelection,
+    ) =>
+      selectableFirstExamGroups(route)
+        .map((group) => {
+          const selectedDates = selection.firstExamDates?.[group.id] ?? [group.dates[0]];
+          const allowsMultiple = Boolean(group.optionalExtraDates);
+          return `<fieldset class="admissions-planner__date-picker">
+            <legend>受験する一次試験日</legend>
+            <p>${allowsMultiple ? "1日以上を選択（複数日受験可）" : "受験する1日を選択"}</p>
+            <div>
+              ${group.dates
+                .map(
+                  (date) => `<label>
+                    <input
+                      type="${allowsMultiple ? "checkbox" : "radio"}"
+                      name="planner-first-date-${escapeHtml(group.id)}"
+                      value="${escapeHtml(date)}"
+                      data-planner-first-date
+                      data-route-id="${escapeHtml(route.id)}"
+                      data-group-id="${escapeHtml(group.id)}"
+                      ${selectedDates.includes(date) ? "checked" : ""}
+                    />
+                    <span>${formatDate(date)}</span>
+                  </label>`,
+                )
+                .join("")}
+            </div>
+          </fieldset>`;
+        })
+        .join("");
+
     const cleanSelections = (items: StoredPlan["selections"]) =>
       items
         .filter(
@@ -325,7 +358,8 @@ const plannerPayload = JSON.stringify({
       const routes = routesByUniversity.get(universitySelect.value) ?? [];
       routeOptions.innerHTML = routes
         .map((route) => {
-          const checked = selections.some((selection) => selection.routeId === route.id);
+          const selection = selections.find((item) => item.routeId === route.id);
+          const checked = Boolean(selection);
           const disabled = !checked && selections.length >= MAX_SELECTIONS;
           const status =
             route.status === "official"
@@ -333,14 +367,16 @@ const plannerPayload = JSON.stringify({
               : route.status === "preliminary"
                 ? "公表資料あり"
                 : "一部未公表";
-          return `
-            <label class="admissions-planner__route-option${checked ? " is-selected" : ""}">
-              <input type="checkbox" value="${escapeHtml(route.id)}" data-planner-route-toggle ${checked ? "checked" : ""} ${disabled ? "disabled" : ""} />
-              <span>
-                <strong>${escapeHtml(route.routeName)}</strong>
-                <small>${route.category === "common" ? "共通テスト利用" : "一般選抜"}・${status}</small>
-              </span>
-            </label>`;
+          return `<div class="admissions-planner__route-choice${checked ? " is-selected" : ""}">
+              <label class="admissions-planner__route-option${checked ? " is-selected" : ""}">
+                <input type="checkbox" value="${escapeHtml(route.id)}" data-planner-route-toggle ${checked ? "checked" : ""} ${disabled ? "disabled" : ""} />
+                <span>
+                  <strong>${escapeHtml(route.routeName)}</strong>
+                  <small>${route.category === "common" ? "共通テスト利用" : "一般選抜"}・${status}</small>
+                </span>
+              </label>
+              ${selection ? renderFirstExamDatePickers(route, selection) : ""}
+            </div>`;
         })
         .join("");
     };
@@ -355,34 +391,6 @@ const plannerPayload = JSON.stringify({
         .map((selection, index) => {
           const route = routeById.get(selection.routeId);
           if (!route) return "";
-          const firstExamDatePickers = selectableFirstExamGroups(route)
-            .map((group) => {
-              const selectedDates = selection.firstExamDates?.[group.id] ?? [group.dates[0]];
-              const allowsMultiple = Boolean(group.optionalExtraDates);
-              return `<fieldset class="admissions-planner__date-picker">
-                <legend>一次試験日</legend>
-                <p>${allowsMultiple ? "受験する日を1日以上選択" : "受験する1日を選択"}</p>
-                <div>
-                  ${group.dates
-                    .map(
-                      (date) => `<label>
-                        <input
-                          type="${allowsMultiple ? "checkbox" : "radio"}"
-                          name="planner-first-date-${escapeHtml(group.id)}"
-                          value="${escapeHtml(date)}"
-                          data-planner-first-date
-                          data-route-id="${escapeHtml(route.id)}"
-                          data-group-id="${escapeHtml(group.id)}"
-                          ${selectedDates.includes(date) ? "checked" : ""}
-                        />
-                        <span>${formatDate(date)}</span>
-                      </label>`,
-                    )
-                    .join("")}
-                </div>
-              </fieldset>`;
-            })
-            .join("");
           return `
             <article class="admissions-planner__selected-card">
               <span class="admissions-planner__selected-number">${String(index + 1).padStart(2, "0")}</span>
@@ -402,7 +410,6 @@ const plannerPayload = JSON.stringify({
                 </select>
               </label>
               <button type="button" data-planner-remove="${escapeHtml(route.id)}" aria-label="${escapeHtml(routeLabel(route))}を削除">削除</button>
-              ${firstExamDatePickers}
             </article>`;
         })
         .join("");

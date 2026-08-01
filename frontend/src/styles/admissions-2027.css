@@ -2886,11 +2886,21 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 .admissions-planner__route-options {
   display: grid;
   gap: 8px;
-  max-height: 248px;
+  max-height: 360px;
   margin-top: 12px;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-gutter: stable;
+}
+
+.admissions-planner__route-choice {
+  display: grid;
+  gap: 7px;
+}
+
+.admissions-planner__route-choice > .admissions-planner__date-picker {
+  grid-column: 1;
+  margin: 0 8px 4px;
 }
 
 .admissions-planner__route-option {

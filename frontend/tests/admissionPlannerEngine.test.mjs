@@ -120,7 +120,7 @@ test("一次試験と別大学の二次試験が重なる場合も判断対象�
   assert.equal(result.conflicts[0]?.severity, "decision");
 });
 
-test("希望日方式は回避案があっても条件付きリスクを残す", () => {
+test("希望日方式は回避案があっても要注意リスクを残す", () => {
   const routes = [
     route("a", "first_exam", ["2027-02-14"]),
     route(
