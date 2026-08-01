@@ -1438,6 +1438,192 @@
   color: var(--red);
 }
 
+/* Featured route from the private-medical-school directory to the 2027
+   admissions calendar. Keep the directory page's white/green/cream palette;
+   the shared OG artwork is gently hue-shifted only in this placement. */
+.shiritsu-admissions-feature {
+  width: min(1040px, calc(100% - 40px));
+  margin: 14px auto 34px;
+}
+
+.shiritsu-admissions-feature__card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.28fr) minmax(290px, 0.72fr);
+  overflow: hidden;
+  border: 1px solid #d8e2da;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(29, 35, 48, 0.08);
+  color: #1d2330;
+  text-decoration: none;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.shiritsu-admissions-feature__card::before {
+  position: absolute;
+  z-index: 2;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    #1537c8 0 33.333%,
+    #0c5e23 33.333% 66.666%,
+    #a60909 66.666% 100%
+  );
+  content: "";
+}
+
+.shiritsu-admissions-feature__card:hover {
+  border-color: #b9cdbd;
+  box-shadow: 0 18px 42px rgba(29, 35, 48, 0.13);
+  transform: translateY(-2px);
+}
+
+.shiritsu-admissions-feature__card:focus-visible {
+  outline: 3px solid #1537c8;
+  outline-offset: 4px;
+}
+
+.shiritsu-admissions-feature__visual {
+  display: block;
+  min-width: 0;
+  margin: 18px 0 18px 18px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #0c2431;
+}
+
+.shiritsu-admissions-feature__visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1731 / 909;
+  object-fit: cover;
+  filter: hue-rotate(-38deg) saturate(0.78) brightness(1.04);
+  transition: transform 220ms ease;
+}
+
+.shiritsu-admissions-feature__card:hover .shiritsu-admissions-feature__visual img {
+  transform: scale(1.012);
+}
+
+.shiritsu-admissions-feature__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 34px clamp(24px, 3vw, 38px);
+  background:
+    linear-gradient(135deg, rgba(238, 245, 238, 0.92), rgba(255, 255, 255, 0.96) 58%),
+    #fff;
+}
+
+.shiritsu-admissions-feature__eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: #186a49;
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.shiritsu-admissions-feature__eyebrow > span {
+  border-radius: 999px;
+  background: #a60909;
+  padding: 5px 10px;
+  color: #fff;
+  font-size: 0.76rem;
+  line-height: 1;
+}
+
+.shiritsu-admissions-feature__title {
+  color: #1e1a18;
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 2.15vw, 1.85rem);
+  font-weight: 800;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.shiritsu-admissions-feature__description {
+  margin-top: 12px;
+  color: #516058;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.75;
+}
+
+.shiritsu-admissions-feature__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 42px;
+  margin-top: 20px;
+  border-radius: 999px;
+  background: #0c5e23;
+  padding: 9px 17px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.shiritsu-admissions-feature__link > span {
+  font-size: 1.15em;
+  transition: transform 180ms ease;
+}
+
+.shiritsu-admissions-feature__card:hover .shiritsu-admissions-feature__link > span {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shiritsu-admissions-feature__card,
+  .shiritsu-admissions-feature__visual img,
+  .shiritsu-admissions-feature__link > span {
+    transition: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .shiritsu-admissions-feature {
+    width: min(560px, calc(100% - 28px));
+    margin-block: 12px 30px;
+  }
+
+  .shiritsu-admissions-feature__card {
+    grid-template-columns: 1fr;
+  }
+
+  .shiritsu-admissions-feature__visual {
+    margin: 14px 14px 0;
+  }
+
+  .shiritsu-admissions-feature__body {
+    padding: 23px 22px 26px;
+  }
+
+  .shiritsu-admissions-feature__title {
+    font-size: clamp(1.26rem, 6vw, 1.55rem);
+  }
+
+  .shiritsu-admissions-feature__description {
+    font-size: 0.87rem;
+  }
+
+  .shiritsu-admissions-feature__link {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 /* shiritsu hero: the vertical catch-copy ("正しい情報を集めて" / "入試で優位に立とう")
    should flank the mascot as in production. The extraction lost Elementor's
    transforms and the unstack rule collapses the container to a column, scrambling

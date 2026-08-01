@@ -1,0 +1,1048 @@
+---
+import {
+  applicationDeadlineEntries2027,
+  commonTestDates2027,
+  examCalendar2027,
+  fullScheduleCalendar2027,
+  fullSchedulePendingItems2027,
+  privateMedicalUniversities2027,
+  type ApplicationDeadlineEntry2027,
+  type AdmissionRouteStatus,
+  type FullScheduleColumnKey2027,
+} from "../../data/privateMedicalAdmissions2027";
+import AdmissionsBrandDivider from "../../components/admissions/AdmissionsBrandDivider.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import "../../styles/admissions-2027.css";
+
+const title = "【2027年度】私立医学部入試日程一覧｜一般選抜・共通テスト利用31大学";
+const description =
+  "2027年度（令和9年度）の私立医学部31大学の一般選抜・共通テスト利用選抜を、試験日カレンダー、大学別、出願締切別に一覧化。一次・二次試験、出願期間、入学手続まで確認できます。";
+const canonical = "https://lexus-ec.com/private-medical-school-admissions-schedule-2027/";
+const lastUpdated = "2026年8月1日";
+const updateHistory = [
+  {
+    date: "2026年8月1日",
+    dateTime: "2026-08-01",
+    title: "帝京大学・東京医科大学・東京慈恵会医科大学・東京女子医科大学・東邦大学・日本大学・日本医科大学・北里大学・聖マリアンナ医科大学・東海大学・金沢医科大学・愛知医科大学・藤田医科大学・大阪医科薬科大学・関西医科大学・近畿大学・兵庫医科大学・川崎医科大学・久留米大学・産業医科大学・福岡大学の日程を詳しくしました",
+    details: [
+      "帝京大学は、一般選抜・共通テスト利用前期の出願時刻、一次試験を1〜3日受験できる条件、医学部奨学特待生の入学手続締切を追記しました。",
+      "東京医科大学は、一般選抜の小論文、二次試験日の割り振り方法、合格発表時刻、入学手続の完了条件を追記しました。",
+      "東京慈恵会医科大学は、二次試験日の指定方法が未公表であることと、第2段階手続書類の消印条件を追記しました。",
+      "東京女子医科大学は、一般選抜（地域枠含む）のWeb出願締切、書類必着日、二次試験日の希望条件、合格発表時刻、入学手続締切を追記しました。",
+      "東邦大学は、一般入試・統一入試のWeb出願状況、試験会場、二次試験日の公表範囲、入学手続締切の未公表項目を整理しました。",
+      "日本大学は、N全学統一方式第1期・第2期の出願書類、試験会場、合格発表時刻、入学手続締切を追記し、地域枠は2027年度の方式・日程が未公表であることを明記しました。",
+      "日本医科大学は、一般選抜の5都県地域枠、グローバル特別選抜の共通テスト国語、出願料の支払時刻、試験会場、二次試験日の希望条件を追記しました。",
+      "北里大学は、一般選抜・共通テスト利用前期／後期の出願期間、合格発表時刻、入学手続期限、二次試験日の選択条件を追記し、地域枠一般選抜は実施未定であることを明記しました。",
+      "聖マリアンナ医科大学は、一般前期・後期と共通テスト利用の合格発表時刻、入学手続の17時必着、一般前期二次の希望調査と大学指定、一般後期・共通テスト利用を併願した場合の二次試験条件を追記しました。",
+      "東海大学は、一般選抜の一次試験を1日または両日受験でき、両日受験時は高得点日で判定される条件と、二次試験日を出願時に選択する条件を追記しました。合格発表日・入学手続期限・試験会場は9月上旬公開予定の入学試験要項で公表待ちです。",
+      "金沢医科大学は、一般前期の一次試験を1日または両日受験でき、両日受験時は高得点日で判定される条件、二次試験の希望日条件、前期・後期の試験会場を追記しました。2027年度入試ガイドに共通テスト利用選抜は掲載されていません。",
+      "愛知医科大学は、一般選抜と共通テスト利用選抜の二次試験日・会場・併願時の面接条件、一般一次の試験会場、共通テスト利用地域枠Bの入学手続期間を追記しました。Web締切時刻と郵送書類期限は募集要項の公開待ちです。",
+      "藤田医科大学は、一般入試に愛知県地域枠が含まれることと、一般一次・各二次の試験会場を追記しました。二次試験日の指定方法、Web締切時刻、入学手続期限は2027年度学生募集要項の公開待ちです。",
+      "大阪医科薬科大学は、共通テスト利用選抜の二次試験日を2月28日に修正し、一般前期の繰り上げ合格候補対象者向け二次試験と、一般前期・後期・共通テスト利用の試験会場を追記しました。Web登録の締切時刻は入学試験要項の公開待ちです。",
+      "関西医科大学は、構想中の大阪府・静岡県地域枠を追加し、全方式のWeb出願・書類郵送期限、合格発表時刻、入学手続時刻、試験会場、前期二次の希望日選択と大学指定の条件を追記しました。併用試験の一次合格発表は7月28日訂正版の12時を反映しています。",
+      "近畿大学は、認可申請予定の地域枠入試（一般前期型・一般後期型）を追加し、一般・共通テスト利用の試験会場、UCAROで合格発表日前日21時から確認できること、入学手続の内容を追記しました。地域枠の入学手続期限とWeb出願の終了時刻は9月中旬公開予定の入学試験要項で公表待ちです。",
+      "兵庫医科大学は、一般選抜A・BのWeb出願開始時刻と締切時刻、書類期限、一次・二次試験会場、一般Aの二次試験日をWeb出願時に選択する条件、入学手続方法を追記しました。一般Aに含まれる兵庫県推薦入学制度枠は3名で、県が行う2027年度選考の日程と受付期間は公表待ちです。共通テスト利用選抜は実施されません。",
+      "川崎医科大学は、一般選抜と地域枠選抜（岡山県、設置協議中の静岡県・長崎県）の出願締切時刻、一次・二次試験会場、二次試験日を大学が指定する条件、二段階の入学手続期限を追記しました。共通テスト利用選抜は実施されません。",
+      "久留米大学は、一般前期・後期と共通テスト利用A・Bの日程を再確認し、一般選抜の試験会場と各方式の二次試験内容を追記しました。Web締切時刻、書類提出方法・期限、入学手続の時刻・必要書類は、10月中旬公開予定の学生募集要項で公表待ちです。",
+      "産業医科大学は、一般選抜A・B・Cの一次試験会場、東京会場の変更条件、小論文・面接の会場と所要時間、入学手続期間を追記しました。郵送書類は各締切日の消印有効で、Web締切時刻と入学手続方法は10月上旬公開予定の学生募集要項で公表待ちです。",
+      "福岡大学は、医学科の系統別日程・共通テスト利用型Ⅰ期について、一次・二次試験会場、系統別一次で実施する小論文、入学申込金・Web入学手続・併願者向け延期期限を追記しました。出願終了時刻と書類提出方法・期限は11月上旬公開予定の入学試験要項で公表待ちです。",
+    ],
+  },
+  {
+    date: "2026年7月31日",
+    dateTime: "2026-07-31",
+    title: "出願締め切り一覧が詳しくなりました",
+    details: [
+      "Web登録の締め切りと、出願書類の郵送期限を分けて掲載しました。",
+      "必着・消印有効・Web出願なし・終了時刻未公表を、大学・選抜方式ごとに確認できます。",
+      "東北医科薬科大学は、2027年度入学者選抜ガイドの一般選抜・共通テスト利用選抜の日程に更新しました。",
+      "自治医科大学は、一次面接の受験条件と、2回の入学手続の両日とも本人の手続が必要であることを追記しました。",
+      "獨協医科大学は、前期・後期の合格発表と入学手続日、地域枠の日程を追加しました。",
+      "埼玉医科大学は、合格発表時刻と、一般後期・共通テスト利用を併願した場合の二次試験条件を追加しました。",
+      "国際医療福祉大学は、一般選抜二次の日程・試験場の指定条件と、共通テスト利用選抜の試験免除条件を追記しました。",
+      "杏林大学は、出願の終了時刻・書類必着日・入学手続締切と、一般選抜二次の日程指定条件を追加しました。",
+      "慶應義塾大学は、Web出願の開始時刻と書類郵送の受付開始日、入学金等の支払期限を追記しました。",
+      "順天堂大学は、2月3日の試験内容と、一般A・共テ前期の面接日が希望調査をもとに指定される条件を修正しました。",
+      "昭和医科大学は、一般Ⅰ期・Ⅱ期の出願書類必着期限と、入学手続の書類・納付条件を最新版要項に合わせて詳しくしました。",
+    ],
+  },
+  {
+    date: "2026年7月30日",
+    dateTime: "2026-07-30",
+    title: "試験日カレンダーが見やすくなりました",
+    details: [
+      "一次試験と二次試験を同じ日付の行で確認できるようにしました。",
+      "試験のない日も「—」で表示し、連日か空き日があるかを見分けやすくしました。",
+      "複数日程の番号と、二次試験日の指定・希望・選択の違いを追加しました。",
+    ],
+  },
+  {
+    date: "2026年7月30日",
+    dateTime: "2026-07-30",
+    title: "大学別の日程情報を追加しました",
+    details: [
+      "岩手医科大学の公表済み日程を反映しました。",
+      "日本医科大学のグローバル特別選抜（共通テスト利用）を追加しました。",
+    ],
+  },
+];
+const totalUniversities = privateMedicalUniversities2027.length;
+const commonTestUniversities = privateMedicalUniversities2027.filter((university) =>
+  university.routes.some((route) => route.category === "common"),
+);
+const officialUniversities = privateMedicalUniversities2027.filter((university) =>
+  university.routes.some((route) => route.status === "official"),
+);
+const generalRouteCount = privateMedicalUniversities2027.reduce(
+  (count, university) => count + university.routes.filter((route) => route.category === "general").length,
+  0,
+);
+const commonRouteCount = privateMedicalUniversities2027.reduce(
+  (count, university) => count + university.routes.filter((route) => route.category === "common").length,
+  0,
+);
+const applicationDeadlineGroups2027 = applicationDeadlineEntries2027.reduce<
+  Array<{
+    date: string;
+    dateTime?: string;
+    entries: ApplicationDeadlineEntry2027[];
+  }>
+>((groups, entry) => {
+  const latestGroup = groups.at(-1);
+
+  if (latestGroup?.date === entry.date) {
+    latestGroup.entries.push(entry);
+    return groups;
+  }
+
+  groups.push({
+    date: entry.date,
+    dateTime: entry.dateTime,
+    entries: [entry],
+  });
+  return groups;
+}, []);
+
+const statusLabels: Record<AdmissionRouteStatus, string> = {
+  official: "詳細日程あり",
+  preliminary: "概要日程あり",
+  pending: "日程未公表",
+};
+
+const fullScheduleColumns: Array<{
+  key: FullScheduleColumnKey2027;
+  label: string;
+  shortLabel: string;
+}> = [
+  { key: "applicationStart", label: "出願開始日", shortLabel: "出願開始" },
+  { key: "applicationDeadline", label: "出願締切", shortLabel: "出願締切" },
+  { key: "firstExam", label: "一次試験", shortLabel: "一次試験" },
+  { key: "firstResult", label: "一次合格発表", shortLabel: "一次発表" },
+  { key: "secondExam", label: "二次試験", shortLabel: "二次試験" },
+  { key: "finalResult", label: "合格発表", shortLabel: "合格発表" },
+  { key: "procedureDeadline", label: "入学手続き締切", shortLabel: "手続締切" },
+];
+
+const fullSchedulePendingFieldLabels: Record<FullScheduleColumnKey2027, string> = {
+  applicationStart: "出願開始日",
+  applicationDeadline: "出願締切",
+  firstExam: "一次試験",
+  firstResult: "一次合格発表",
+  secondExam: "二次試験",
+  finalResult: "合格発表",
+  procedureDeadline: "入学手続き締切",
+};
+
+const shortUniversityName = (name: string) =>
+  name === "日本大学" ? "日大" : name.replace(/大学$/, "");
+
+const faqs = [
+  {
+    question: "2027年度の大学入学共通テストはいつですか？",
+    answer:
+      "本試験は2027年1月16日（土）・17日（日）、追試験は1月23日（土）・24日（日）です。出願期間は2026年9月15日（火）から10月2日（金）までです。",
+  },
+  {
+    question: "私立医学部の一般選抜はいつから始まりますか？",
+    answer:
+      "現時点の公表・予告情報では、1月21日から23日の帝京大学が早期日程にあたり、1月25日に国際医療福祉大学と自治医科大学、1月31日に近畿大学前期が続きます。2月1日から主要日程が集中します。",
+  },
+  {
+    question: "一般選抜と共通テスト利用選抜は併願できますか？",
+    answer:
+      "併願できる大学が多くあります。同じ大学で二次試験や面接を共通化する場合もありますが、出願期間や必要科目が方式ごとに異なるため、必ず各大学の2027年度学生募集要項で確認してください。",
+  },
+  {
+    question: "このページだけで出願手続きをしても大丈夫ですか？",
+    answer:
+      "いいえ。このページは受験計画を立てるための一覧です。締切の扱い（必着・消印有効・Web登録）や試験会場は変更される可能性があるため、出願前には必ず各大学公式サイトの学生募集要項を確認してください。",
+  },
+];
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "ホーム", item: "https://lexus-ec.com/" },
+    { "@type": "ListItem", position: 2, name: "私立医学部情報", item: "https://lexus-ec.com/top/information-shiritsu/" },
+    { "@type": "ListItem", position: 3, name: "2027年度 私立医学部入試日程", item: canonical },
+  ],
+};
+
+const collectionJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: title,
+  description,
+  url: canonical,
+  inLanguage: "ja",
+  dateModified: "2026-08-01",
+  isPartOf: { "@type": "WebSite", name: "医学部予備校 レクサス E.C.", url: "https://lexus-ec.com/" },
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: totalUniversities,
+    itemListElement: privateMedicalUniversities2027.map((university, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: `${university.name} 医学部 2027年度入試日程`,
+      url: `${canonical}#${university.id}`,
+    })),
+  },
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<SiteLayout title={title} description={description} canonical={canonical} ogImage="/og/private-medical-admissions-2027.png">
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(collectionJsonLd)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+  </Fragment>
+
+  <main class="admissions-page">
+    <header class="admissions-print-branding" aria-label="医学部予備校レクサスE.C.">
+      <img
+        class="admissions-print-branding__character"
+        src="/illustrations/characters/lexus-kun-exp.png"
+        alt="レクサスくん"
+        width="1170"
+        height="1170"
+        loading="eager"
+        decoding="sync"
+      />
+      <div>
+        <img
+          class="admissions-print-branding__logo"
+          src="/assets/optimized/footer-logo-760.webp"
+          alt="鬼特訓する医学部予備校レクサスE.C."
+          width="760"
+          height="300"
+          loading="eager"
+          decoding="sync"
+        />
+        <p>2027年度 私立医学部入試日程｜最終更新：{lastUpdated}</p>
+      </div>
+      <img
+        class="admissions-print-branding__character"
+        src="/illustrations/characters/yuki-sensei-default.png"
+        alt="ゆうき先生"
+        width="395"
+        height="395"
+        loading="eager"
+        decoding="sync"
+      />
+    </header>
+
+    <section class="admissions-hero">
+      <div class="content admissions-hero__inner">
+        <nav class="admissions-breadcrumb" aria-label="パンくずリスト">
+          <a href="/">ホーム</a>
+          <span aria-hidden="true">/</span>
+          <a href="/top/information-shiritsu/">私立医学部情報</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">2027年度 入試日程</span>
+        </nav>
+
+        <div class="admissions-hero__grid">
+          <div class="admissions-hero__copy">
+            <p class="admissions-kicker"><span>2027</span> PRIVATE MEDICAL SCHOOL EXAMS</p>
+            <h1>
+              私立医学部31大学<br />
+              <strong>入試日程まるわかり</strong>
+            </h1>
+            <p class="admissions-hero__lead">
+              一般選抜と共通テスト利用選抜を、<b>日付・大学・締切</b>の3方向から。
+              出願から入学手続まで、受験校の組み合わせを迷わず確認できます。
+            </p>
+            <div class="admissions-hero__actions">
+              <a class="admissions-primary-button" href="#calendar">日付から見る</a>
+              <a class="admissions-secondary-button" href="#universities">大学から探す</a>
+            </div>
+          </div>
+
+          <aside class="admissions-common-card" aria-label="大学入学共通テストの重要日程">
+            <p class="admissions-common-card__label">共通テスト本番</p>
+            <p class="admissions-common-card__date"><span>1</span>月<span>16</span>日・<span>17</span>日</p>
+            <p class="admissions-common-card__year">2027 SAT — SUN</p>
+            <dl>
+              <div>
+                <dt>出願</dt>
+                <dd>2026.9.15〜10.2</dd>
+              </div>
+              <div>
+                <dt>追試</dt>
+                <dd>2027.1.23・24</dd>
+              </div>
+            </dl>
+            <a href={commonTestDates2027.sourceUrl} target="_blank" rel="noreferrer">大学入試センターの実施要項 ↗</a>
+          </aside>
+        </div>
+
+        <div class="admissions-update-row">
+          <span class="admissions-live-dot" aria-hidden="true"></span>
+          <span>最終更新：{lastUpdated}</span>
+          <a href="#updates">更新内容を見る<span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="admissions-update-history" id="updates" aria-labelledby="updates-title">
+      <div class="content admissions-update-history__inner">
+        <header class="admissions-update-history__header">
+          <p>UPDATE HISTORY</p>
+          <h2 id="updates-title">更新履歴</h2>
+          <p>このページに新しく追加・改善した内容をまとめています。</p>
+        </header>
+
+        <ol class="admissions-update-history__list">
+          {
+            updateHistory.map((update, index) => (
+              <li class:list={["admissions-update-item", { "admissions-update-item--latest": index === 0 }]}>
+                <div class="admissions-update-item__meta">
+                  {index === 0 && <span>NEW</span>}
+                  <time datetime={update.dateTime}>{update.date}</time>
+                </div>
+                <div class="admissions-update-item__body">
+                  <h3>{update.title}</h3>
+                  <ul>
+                    {update.details.map((detail) => (
+                      <li>{detail}</li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </section>
+
+    <nav class="admissions-jump-nav" aria-label="ページ内メニュー">
+      <div class="content admissions-jump-nav__inner">
+        <a href="#deadlines" aria-label="出願締切へ移動">
+          <span class="admissions-jump-nav__index">01</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--long">出願締切</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--short">出願</span>
+        </a>
+        <a href="#calendar" aria-label="試験日カレンダーへ移動">
+          <span class="admissions-jump-nav__index">02</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--long">試験日カレンダー</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--short">試験日</span>
+        </a>
+        <a href="#common-test" aria-label="共通テスト利用へ移動">
+          <span class="admissions-jump-nav__index">03</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--long">共テ利用</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--short">共テ</span>
+        </a>
+        <a href="#universities" aria-label="大学別31校へ移動">
+          <span class="admissions-jump-nav__index">04</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--long">大学別31校</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--short">大学別</span>
+        </a>
+        <a href="#full-schedule" aria-label="全日程カレンダーへ移動">
+          <span class="admissions-jump-nav__index">05</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--long">全日程カレンダー</span>
+          <span class="admissions-jump-nav__label admissions-jump-nav__label--short">全日程</span>
+        </a>
+      </div>
+    </nav>
+
+    <section class="admissions-overview" aria-labelledby="overview-title">
+      <div class="content">
+        <div class="admissions-section-heading admissions-section-heading--split">
+          <div>
+            <p>AT A GLANCE</p>
+            <h2 id="overview-title">まず、全体像を30秒で</h2>
+          </div>
+          <p class="admissions-heading-note">2027年度一般選抜・共通テスト利用選抜のみ掲載</p>
+        </div>
+
+        <div class="admissions-stat-grid">
+          <article>
+            <span>全国の私立医学部</span>
+            <strong>{totalUniversities}<small>大学</small></strong>
+            <p>地域・大学名で絞り込み可能</p>
+          </article>
+          <article>
+            <span>一般選抜</span>
+            <strong>{generalRouteCount}<small>方式</small></strong>
+            <p>前期・後期・統一方式を含む</p>
+          </article>
+          <article>
+            <span>共通テスト利用</span>
+            <strong>{commonTestUniversities.length}<small>大学</small></strong>
+            <p>前期・後期など全{commonRouteCount}方式</p>
+          </article>
+          <article>
+            <span>確定版の募集要項が公表済み</span>
+            <strong>{officialUniversities.length}<small>大学</small></strong>
+            <p>出願から入学手続まで詳しく確認</p>
+          </article>
+        </div>
+
+        <div class="admissions-notice" role="note">
+          <span aria-hidden="true">!</span>
+          <div>
+            <strong>大学によって、現在公表されている情報の範囲が異なります</strong>
+            <p>
+              「詳細日程あり」は確定版の募集要項が公表済み、「概要日程あり」は試験日などの概要が公表済みの大学です。
+              未発表の日付は公表され次第更新します。出願前には各大学の最新情報も必ずご確認ください。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <AdmissionsBrandDivider variant="lexus" />
+
+    <section class="admissions-deadlines" id="deadlines" aria-labelledby="deadlines-title">
+      <div class="content">
+        <div class="admissions-section-heading admissions-section-heading--printable">
+          <div>
+            <p>APPLICATION DEADLINES</p>
+            <h2 id="deadlines-title">出願締め切りを日付順に見る</h2>
+            <p>Web登録と郵送書類の期限を分けて確認できます。</p>
+          </div>
+          <button type="button" class="admissions-print-button" data-print-section="deadlines">
+            <span aria-hidden="true">⎙</span>
+            このセクションを印刷
+          </button>
+        </div>
+
+        <div class="admissions-deadline-layout">
+          <aside class="admissions-deadline-focus">
+            <span>締切が集中する日</span>
+            <strong>1/15</strong>
+            <p>複数大学・方式の締め切りが重なります。登録と郵送を同じ締め切りだと思い込まないことが大切です。</p>
+            <ul>
+              <li>「Web登録締切」は、インターネット出願の登録完了期限です。</li>
+              <li>書類期限の「必着」「消印有効」を必ず確認してください。</li>
+              <li>調査書の必要部数は、出願校が固まる前に確認しておきましょう。</li>
+            </ul>
+            <p class="admissions-deadline-focus__note">「時刻未公表」「要項公開待ち」は、現在の公式資料に詳細がない項目です。公表後に更新します。</p>
+          </aside>
+
+          <div
+            class="admissions-deadline-list"
+            tabindex="0"
+            role="region"
+            aria-label="2027年度私立医学部入試 出願締切一覧"
+          >
+            {applicationDeadlineGroups2027.map((group) => (
+              <section class="admissions-deadline-group" aria-label={`${group.date}締切`}>
+                <header>
+                  {group.dateTime ? (
+                    <time datetime={group.dateTime}>{group.date}</time>
+                  ) : (
+                    <span class="admissions-deadline-group__date">{group.date}</span>
+                  )}
+                  <span>{group.entries.length}件</span>
+                </header>
+                <div>
+                  {group.entries.map((entry) => (
+                    <article class="admissions-deadline-entry">
+                      <div class="admissions-deadline-entry__school">
+                        <strong>{entry.university}</strong>
+                        <span>{entry.routes}</span>
+                      </div>
+                      <dl>
+                        <div>
+                          <dt>Web登録締切</dt>
+                          <dd>{entry.webDeadline}</dd>
+                        </div>
+                        <div>
+                          <dt>書類期限</dt>
+                          <dd>{entry.documentDeadline}</dd>
+                        </div>
+                      </dl>
+                      <a href={entry.sourceUrl} target="_blank" rel="noopener noreferrer">公式資料</a>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="admissions-calendar-section" id="calendar" aria-labelledby="calendar-title">
+      <div class="content">
+        <div class="admissions-section-heading admissions-section-heading--light admissions-section-heading--printable">
+          <div>
+            <p>EXAM CALENDAR</p>
+            <h2 id="calendar-title">一次・二次試験を日付順に見る</h2>
+            <p>同じ日の一次試験と二次試験を並べて、受験校の重なりを確認できます。</p>
+          </div>
+          <button type="button" class="admissions-print-button" data-print-section="calendar">
+            <span aria-hidden="true">⎙</span>
+            このセクションを印刷
+          </button>
+        </div>
+
+        <div
+          class="admissions-calendar-viewport"
+          tabindex="0"
+          role="region"
+          aria-label="2027年度私立医学部入試 一次・二次試験カレンダー"
+        >
+          <div class="admissions-calendar-head" aria-hidden="true">
+            <span>日付</span>
+            <span>一次試験</span>
+            <span>二次試験</span>
+          </div>
+
+          <div class="admissions-calendar-list">
+            {examCalendar2027.map((event) => (
+              <article
+                class:list={[
+                  "admissions-calendar-row",
+                  {
+                    "admissions-calendar-row--empty":
+                      event.first.length === 0 && event.second.length === 0,
+                  },
+                ]}
+              >
+                <div class="admissions-calendar-date">
+                  <strong>{event.date}</strong>
+                  <span>{event.weekday}</span>
+                </div>
+                <div class="admissions-calendar-exams" data-heading="一次試験">
+                  {event.first.length > 0 ? (
+                    <ul>
+                      {event.first.map((exam) => <li>{exam}</li>)}
+                    </ul>
+                  ) : (
+                    <span class="admissions-calendar-empty">—</span>
+                  )}
+                </div>
+                <div class="admissions-calendar-exams" data-heading="二次試験">
+                  {event.second.length > 0 ? (
+                    <ul>
+                      {event.second.map((exam) => <li>{exam}</li>)}
+                    </ul>
+                  ) : (
+                    <span class="admissions-calendar-empty">—</span>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <p class="admissions-calendar-caption">
+          ※1/16〜3/18は、試験のない日も「—」で表示しています。大学名の後ろの①②…は、同じ選抜方式に複数ある一次・二次試験日の日付順です。「受験者が選択」は原則として日程を選択できる方式、「希望日を提出」は希望どおりにならない場合がある方式、「大学指定」は大学が受験日を決める方式です。「両日受験」は①・②の両方を受験します。
+        </p>
+      </div>
+    </section>
+
+    <section class="admissions-common-test" id="common-test" aria-labelledby="common-test-title">
+      <div class="content">
+        <div class="admissions-section-heading admissions-section-heading--light admissions-section-heading--printable">
+          <div>
+            <p>COMMON TEST ROUTES</p>
+            <h2 id="common-test-title">共通テスト利用だけを一覧</h2>
+            <p>共通テスト後に大学独自の試験・面接があるかどうかを、大学ごとに確認できます。</p>
+          </div>
+          <button type="button" class="admissions-print-button" data-print-section="common-test">
+            <span aria-hidden="true">⎙</span>
+            このセクションを印刷
+          </button>
+        </div>
+
+        <div class="admissions-common-test__dates">
+          <article>
+            <span>マイページ作成</span>
+            <strong>7/1〜10/2</strong>
+            <small>2026年</small>
+          </article>
+          <article>
+            <span>出願期間</span>
+            <strong>9/15〜10/2</strong>
+            <small>2026年</small>
+          </article>
+          <article class="is-accent">
+            <span>本試験</span>
+            <strong>1/16・17</strong>
+            <small>2027年</small>
+          </article>
+          <article>
+            <span>追試験</span>
+            <strong>1/23・24</strong>
+            <small>2027年</small>
+          </article>
+        </div>
+
+        <div class="admissions-common-grid">
+          {commonTestUniversities.map((university) => (
+            <article>
+              <div>
+                <small>{university.prefecture}</small>
+                <h3>{university.name}</h3>
+              </div>
+              <ul>
+                {university.routes
+                  .filter((route) => route.category === "common")
+                  .map((route) => (
+                    <li>
+                      <strong>{route.name}</strong>
+                      <span>{route.secondExam === "未公表" ? "詳細未公表" : `大学独自試験：${route.secondExam}`}</span>
+                    </li>
+                  ))}
+              </ul>
+              <a href={`#${university.id}`}>全日程を見る</a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <AdmissionsBrandDivider variant="yuki" />
+
+    <section class="admissions-universities" id="universities" aria-labelledby="universities-title">
+      <div class="content">
+        <div class="admissions-section-heading">
+          <p>ALL 31 UNIVERSITIES</p>
+          <h2 id="universities-title">大学別に日程を確認</h2>
+          <p>大学名・地域・選抜方式で絞り込めます。カードを開くと、出願から入学手続までを横並びで確認できます。</p>
+        </div>
+
+        <form class="admissions-filter" data-admissions-filter>
+          <label class="admissions-search">
+            <span>大学名を検索</span>
+            <input type="search" name="query" placeholder="例：慶應、医科、福岡" autocomplete="off" data-filter-query />
+          </label>
+          <label>
+            <span>地域</span>
+            <select name="region" data-filter-region>
+              <option value="all">全国</option>
+              <option value="北海道・東北">北海道・東北</option>
+              <option value="関東">関東</option>
+              <option value="中部">中部</option>
+              <option value="近畿">近畿</option>
+              <option value="中国・四国">中国・四国</option>
+              <option value="九州">九州</option>
+            </select>
+          </label>
+          <label>
+            <span>選抜方式</span>
+            <select name="category" data-filter-category>
+              <option value="all">すべて</option>
+              <option value="general">一般選抜あり</option>
+              <option value="common">共テ利用あり</option>
+            </select>
+          </label>
+          <label>
+            <span>日程の公表状況</span>
+            <select name="status" data-filter-status>
+              <option value="all">すべて</option>
+              <option value="official">詳細日程あり</option>
+              <option value="preliminary">概要日程あり</option>
+              <option value="pending">日程未公表</option>
+            </select>
+          </label>
+          <button type="reset" class="admissions-filter__reset">条件をクリア</button>
+        </form>
+
+        <div class="admissions-filter-result" aria-live="polite">
+          <strong data-filter-count>{totalUniversities}</strong>大学を表示
+        </div>
+
+        <div class="admissions-university-list" data-university-list>
+          {privateMedicalUniversities2027.map((university, index) => {
+            const categories = [...new Set(university.routes.map((route) => route.category))];
+            const statuses = [...new Set(university.routes.map((route) => route.status))];
+            const topStatus = statuses.includes("official")
+              ? "official"
+              : statuses.includes("preliminary")
+                ? "preliminary"
+                : "pending";
+
+            return (
+              <details
+                class="admissions-university"
+                id={university.id}
+                data-university-card
+                data-name={university.name}
+                data-region={university.region}
+                data-categories={categories.join(" ")}
+                data-statuses={statuses.join(" ")}
+              >
+                <summary>
+                  <span class="admissions-university__number">{String(index + 1).padStart(2, "0")}</span>
+                  <span class="admissions-university__identity">
+                    <small>{university.region}・{university.prefecture}</small>
+                    <strong>{university.name}</strong>
+                  </span>
+                  <span class="admissions-university__chips">
+                    {categories.includes("general") && <span class="route-chip route-chip--general">一般</span>}
+                    {categories.includes("common") && <span class="route-chip route-chip--common">共テ</span>}
+                    <span class={`status-chip status-chip--${topStatus}`}>{statusLabels[topStatus]}</span>
+                  </span>
+                  <span class="admissions-university__open" aria-hidden="true"></span>
+                </summary>
+
+                <div class="admissions-university__body">
+                  <div class="admissions-route-head" aria-hidden="true">
+                    <span>選抜方式</span>
+                    <span>出願期間・締切</span>
+                    <span>一次試験</span>
+                    <span>二次試験</span>
+                    <span>合格発表</span>
+                    <span>入学手続</span>
+                  </div>
+
+                  {university.routes.map((route) => (
+                    <article class={`admissions-route admissions-route--${route.category}`}>
+                      <div>
+                        <span class={`route-chip route-chip--${route.category}`}>{route.category === "general" ? "一般" : "共テ"}</span>
+                        <strong>{route.name}</strong>
+                      </div>
+                      <dl>
+                        <div>
+                          <dt>出願</dt>
+                          <dd>{route.application}</dd>
+                        </div>
+                        <div>
+                          <dt>一次</dt>
+                          <dd>{route.firstExam}</dd>
+                        </div>
+                        <div>
+                          <dt>二次</dt>
+                          <dd>{route.secondExam}</dd>
+                        </div>
+                        <div>
+                          <dt>発表</dt>
+                          <dd>{route.result ?? "募集要項で確認"}</dd>
+                        </div>
+                        <div>
+                          <dt>手続</dt>
+                          <dd>{route.procedure}</dd>
+                        </div>
+                      </dl>
+                      <div class="admissions-route__source">
+                        <span class={`status-chip status-chip--${route.status}`}>{statusLabels[route.status]}</span>
+                        {route.sourceUrl && (
+                          <a href={route.sourceUrl} target="_blank" rel="noreferrer" aria-label={`${university.name}の公式入試情報`}>
+                            公式情報 ↗
+                          </a>
+                        )}
+                      </div>
+                    </article>
+                  ))}
+
+                  <div class="admissions-university__footer">
+                    <a href={university.strategyPath}>{university.name}の2027年度入試対策を見る →</a>
+                  </div>
+                </div>
+              </details>
+            );
+          })}
+        </div>
+
+        <div class="admissions-empty" data-filter-empty hidden>
+          <strong>該当する大学が見つかりませんでした</strong>
+          <p>検索語や絞り込み条件を変えてお試しください。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="admissions-full-schedule" id="full-schedule" aria-labelledby="full-schedule-title">
+      <div class="content">
+        <div class="admissions-section-heading admissions-section-heading--light">
+          <p>COMPLETE SCHEDULE</p>
+          <h2 id="full-schedule-title">出願から入学手続きまで、すべての日程を見る</h2>
+          <p>
+            出願開始・締切から一次／二次試験、合格発表、入学手続き締切までを同じ日付軸で確認できます。
+          </p>
+        </div>
+
+        <div class="admissions-full-schedule__guide">
+          <div class="admissions-full-schedule__legend" aria-label="選抜方式の凡例">
+            <span class="admissions-full-schedule__route admissions-full-schedule__route--general">一般</span>
+            <span class="admissions-full-schedule__route admissions-full-schedule__route--common">共テ</span>
+          </div>
+          <p>
+            ヘッダーと日付列は固定されています。表の中を上下・左右にスクロールしてご覧ください。
+          </p>
+          <span class="admissions-full-schedule__swipe" aria-hidden="true">← 左右にスクロール →</span>
+        </div>
+
+        <div
+          class="admissions-full-schedule__viewport"
+          tabindex="0"
+          role="region"
+          aria-label="2027年度私立医学部入試 全日程カレンダー"
+        >
+          <table class="admissions-full-schedule__table">
+            <caption>
+              2027年度私立医学部の一般選抜・共通テスト利用選抜について、出願から入学手続きまでの日程を日付順に掲載しています。
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col" class="admissions-full-schedule__date-head">日付</th>
+                {fullScheduleColumns.map((column) => (
+                  <th scope="col">
+                    <span>{column.label}</span>
+                    <small>{column.shortLabel}</small>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {fullScheduleCalendar2027.map((day) => (
+                <tr
+                  class:list={[
+                    {
+                      "admissions-full-schedule__row--empty": !day.hasEvents,
+                      "admissions-full-schedule__row--weekend": day.isWeekend,
+                      "admissions-full-schedule__row--month-start": day.isMonthStart,
+                    },
+                  ]}
+                >
+                  <th scope="row" class="admissions-full-schedule__date">
+                    <time datetime={day.dateTime}>
+                      <strong>{day.date}</strong>
+                      <span>{day.weekday}</span>
+                    </time>
+                  </th>
+                  {fullScheduleColumns.map((column) => {
+                    const entries = day.events[column.key];
+
+                    return (
+                      <td class:list={{ "admissions-full-schedule__cell--empty": entries.length === 0 }}>
+                        {entries.length > 0 ? (
+                          <ul class="admissions-full-schedule__entries">
+                            {entries.map((entry) => (
+                              <li class={`admissions-full-schedule__entry admissions-full-schedule__entry--${entry.category}`}>
+                                <div>
+                                  <span
+                                    class={`admissions-full-schedule__route admissions-full-schedule__route--${entry.category}`}
+                                  >
+                                    {entry.category === "general" ? "一般" : "共テ"}
+                                  </span>
+                                  {entry.sourceUrl ? (
+                                    <a
+                                      href={entry.sourceUrl}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      title={`${entry.university}の公式情報（${statusLabels[entry.status]}）`}
+                                    >
+                                      {shortUniversityName(entry.university)}{entry.sequenceLabel}
+                                    </a>
+                                  ) : (
+                                    <strong>{shortUniversityName(entry.university)}{entry.sequenceLabel}</strong>
+                                  )}
+                                </div>
+                                <span>{entry.routes.join("／")}</span>
+                                {entry.detail && <small>{entry.detail}</small>}
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <span class="admissions-full-schedule__empty" aria-label="該当日程なし">—</span>
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p class="admissions-full-schedule__caption">
+          出願締切は、Web登録・郵送書類などの締切が異なる場合、それぞれの日付に掲載しています。選択日・希望日・大学指定日は、候補となる各日に表示しています。
+        </p>
+
+        {fullSchedulePendingItems2027.length > 0 && (
+          <details class="admissions-full-schedule__pending">
+            <summary>
+              <span>募集要項で日付の公表を待っている項目</span>
+              <strong>{fullSchedulePendingItems2027.length}方式</strong>
+            </summary>
+            <div>
+              {fullSchedulePendingItems2027.map((item) => (
+                <article>
+                  <p>
+                    <span
+                      class={`admissions-full-schedule__route admissions-full-schedule__route--${item.category}`}
+                    >
+                      {item.category === "general" ? "一般" : "共テ"}
+                    </span>
+                    <strong>{item.university}</strong>
+                  </p>
+                  <span>{item.route}</span>
+                  <small>
+                    {item.fields.map((field) => fullSchedulePendingFieldLabels[field]).join("・")}
+                  </small>
+                </article>
+              ))}
+            </div>
+          </details>
+        )}
+      </div>
+    </section>
+
+    <AdmissionsBrandDivider variant="duo" />
+
+    <section class="admissions-guide" aria-labelledby="guide-title">
+      <div class="content">
+        <div class="admissions-section-heading">
+          <p>HOW TO USE</p>
+          <h2 id="guide-title">日程表の使い方</h2>
+        </div>
+
+        <ol class="admissions-guide__steps">
+          <li>
+            <span>1</span>
+            <div>
+              <h3>一次試験の重複を確認</h3>
+              <p>カレンダーで同日実施の大学を見つけ、優先順位を決めます。</p>
+            </div>
+          </li>
+          <li>
+            <span>2</span>
+            <div>
+              <h3>二次試験まで仮置き</h3>
+              <p>一次合格後の日程も含めて、移動と宿泊の余白を確保します。</p>
+            </div>
+          </li>
+          <li>
+            <span>3</span>
+            <div>
+              <h3>手続締切と学納金を確認</h3>
+              <p>併願校の合格発表前に入学金が必要か、必ず募集要項で確認します。</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="admissions-faq" aria-labelledby="faq-title">
+      <div class="content-narrow">
+        <div class="admissions-section-heading">
+          <p>FAQ</p>
+          <h2 id="faq-title">2027年度 私立医学部入試日程のよくある質問</h2>
+        </div>
+        <div class="admissions-faq__list">
+          {faqs.map((faq, index) => (
+            <details open={index === 0}>
+              <summary>{faq.question}</summary>
+              <p>{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="admissions-final-cta">
+      <div class="content admissions-final-cta__inner">
+        <div>
+          <p>受験校の組み合わせ、ひとりで悩まなくて大丈夫です。</p>
+          <h2>日程と相性から、合格可能性を最大化する併願プランへ。</h2>
+        </div>
+        <div>
+          <a class="admissions-primary-button" href="/top/reservation/">無料個別相談を予約</a>
+          <a class="admissions-secondary-button" href="/request-documents/">資料を請求する</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script is:inline>
+    (() => {
+      const form = document.querySelector("[data-admissions-filter]");
+      const cards = [...document.querySelectorAll("[data-university-card]")];
+      const count = document.querySelector("[data-filter-count]");
+      const empty = document.querySelector("[data-filter-empty]");
+
+      if (form instanceof HTMLFormElement) {
+        const query = form.querySelector("[data-filter-query]");
+        const region = form.querySelector("[data-filter-region]");
+        const category = form.querySelector("[data-filter-category]");
+        const status = form.querySelector("[data-filter-status]");
+
+        const applyFilters = () => {
+          const searchValue = query instanceof HTMLInputElement ? query.value.trim().toLowerCase() : "";
+          const regionValue = region instanceof HTMLSelectElement ? region.value : "all";
+          const categoryValue = category instanceof HTMLSelectElement ? category.value : "all";
+          const statusValue = status instanceof HTMLSelectElement ? status.value : "all";
+          let visible = 0;
+
+          cards.forEach((card) => {
+            if (!(card instanceof HTMLElement)) return;
+            const matchesQuery = !searchValue || (card.dataset.name || "").toLowerCase().includes(searchValue);
+            const matchesRegion = regionValue === "all" || card.dataset.region === regionValue;
+            const matchesCategory =
+              categoryValue === "all" || (card.dataset.categories || "").split(" ").includes(categoryValue);
+            const matchesStatus =
+              statusValue === "all" || (card.dataset.statuses || "").split(" ").includes(statusValue);
+            const matches = matchesQuery && matchesRegion && matchesCategory && matchesStatus;
+            card.hidden = !matches;
+            if (matches) visible += 1;
+          });
+
+          if (count) count.textContent = String(visible);
+          if (empty instanceof HTMLElement) empty.hidden = visible !== 0;
+        };
+
+        form.addEventListener("input", applyFilters);
+        form.addEventListener("change", applyFilters);
+        form.addEventListener("reset", () => window.setTimeout(applyFilters, 0));
+      }
+
+      const clearPrintTarget = () => {
+        document.body.classList.remove("is-printing-admissions-section");
+        document.querySelector(".is-print-target")?.classList.remove("is-print-target");
+      };
+
+      document.querySelectorAll("[data-print-section]").forEach((button) => {
+        button.addEventListener("click", () => {
+          if (!(button instanceof HTMLButtonElement)) return;
+          const targetId = button.dataset.printSection;
+          const target = targetId ? document.getElementById(targetId) : null;
+
+          if (!(target instanceof HTMLElement)) return;
+
+          clearPrintTarget();
+          target.classList.add("is-print-target");
+          document.body.classList.add("is-printing-admissions-section");
+          window.print();
+        });
+      });
+
+      window.addEventListener("afterprint", clearPrintTarget);
+    })();
+  </script>
+</SiteLayout>

@@ -72,6 +72,7 @@ const bodyClass = raw
     </section>
 
     <section class={bodyWrapClass}>
+      <slot name="before-content" />
       <div class={bodyClass} set:html={body} />
     </section>
 

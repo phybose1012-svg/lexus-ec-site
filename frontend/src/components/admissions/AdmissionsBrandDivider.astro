@@ -1,0 +1,55 @@
+---
+interface Props {
+  variant: "lexus" | "yuki" | "duo";
+}
+
+const { variant } = Astro.props;
+const logoStrip =
+  "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
+---
+
+<div
+  class:list={[
+    "admissions-brand-divider",
+    `admissions-brand-divider--${variant}`,
+  ]}
+  aria-hidden="true"
+>
+  <div class="content admissions-brand-divider__inner">
+    {
+      (variant === "lexus" || variant === "duo") && (
+        <img
+          class="admissions-brand-divider__character admissions-brand-divider__character--lexus"
+          src="/illustrations/characters/lexus-kun-exp.png"
+          alt=""
+          width="1170"
+          height="1170"
+          loading="lazy"
+          decoding="async"
+        />
+      )
+    }
+    <img
+      class="admissions-brand-divider__strip"
+      src={logoStrip}
+      alt=""
+      width="1024"
+      height="74"
+      loading="lazy"
+      decoding="async"
+    />
+    {
+      (variant === "yuki" || variant === "duo") && (
+        <img
+          class="admissions-brand-divider__character admissions-brand-divider__character--yuki"
+          src="/illustrations/characters/yuki-sensei-default.png"
+          alt=""
+          width="395"
+          height="395"
+          loading="lazy"
+          decoding="async"
+        />
+      )
+    }
+  </div>
+</div>

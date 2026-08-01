@@ -7,4 +7,44 @@ import LegacyArticlePage from "../../../components/fixed/LegacyArticlePage.astro
   eyebrow="PRIVATE MED SCHOOLS"
   heading="私立医学部情報"
   directory
-/>
+>
+  <section
+    slot="before-content"
+    class="shiritsu-admissions-feature"
+    aria-labelledby="shiritsu-admissions-feature-title"
+  >
+    <a
+      class="shiritsu-admissions-feature__card"
+      href="/private-medical-school-admissions-schedule-2027/"
+    >
+      <span class="shiritsu-admissions-feature__visual" aria-hidden="true">
+        <img
+          src="/og/private-medical-admissions-2027.png"
+          alt=""
+          width="1731"
+          height="909"
+          decoding="async"
+        />
+      </span>
+      <span class="shiritsu-admissions-feature__body">
+        <span class="shiritsu-admissions-feature__eyebrow">
+          <span>2027年度</span>
+          私立医学部入試
+        </span>
+        <span
+          id="shiritsu-admissions-feature-title"
+          class="shiritsu-admissions-feature__title"
+        >
+          全国31大学の入試日程を<br />まとめて確認
+        </span>
+        <span class="shiritsu-admissions-feature__description">
+          一般選抜・共通テスト利用選抜を、試験日や出願締切など複数の一覧でわかりやすく確認できます。
+        </span>
+        <span class="shiritsu-admissions-feature__link">
+          2027年度の入試日程を見る
+          <span aria-hidden="true">→</span>
+        </span>
+      </span>
+    </a>
+  </section>
+</LegacyArticlePage>
