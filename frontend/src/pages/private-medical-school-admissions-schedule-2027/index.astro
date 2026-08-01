@@ -86,6 +86,37 @@ const updateHistory = [
     ],
   },
 ];
+const createUniversityUpdate = (detail: string, date: string, dateTime: string) => {
+  const [university, description = "入試日程を更新しました。"] = detail.split("は、", 2);
+  const firstSentence = description.split("。")[0];
+
+  return {
+    date,
+    dateTime,
+    university,
+    summary: `${firstSentence}。`,
+  };
+};
+const universityUpdateHistory = [
+  ...updateHistory[0].details.map((detail) =>
+    createUniversityUpdate(detail, updateHistory[0].date, updateHistory[0].dateTime),
+  ),
+  ...updateHistory[1].details.slice(2).map((detail) =>
+    createUniversityUpdate(detail, updateHistory[1].date, updateHistory[1].dateTime),
+  ),
+  {
+    date: updateHistory[3].date,
+    dateTime: updateHistory[3].dateTime,
+    university: "岩手医科大学",
+    summary: "公表済みの入試日程を追加しました。",
+  },
+  {
+    date: updateHistory[3].date,
+    dateTime: updateHistory[3].dateTime,
+    university: "日本医科大学",
+    summary: "グローバル特別選抜（共通テスト利用）を追加しました。",
+  },
+];
 const totalUniversities = privateMedicalUniversities2027.length;
 const commonTestUniversities = privateMedicalUniversities2027.filter((university) =>
   university.routes.some((route) => route.category === "common"),
@@ -320,29 +351,27 @@ const faqJsonLd = {
         <header class="admissions-update-history__header">
           <p>UPDATE HISTORY</p>
           <h2 id="updates-title">更新履歴</h2>
-          <p>このページに新しく追加・改善した内容をまとめています。</p>
+          <p>大学ごとの主な更新内容を、新しい順に確認できます。</p>
         </header>
 
-        <ol class="admissions-update-history__list">
-          {
-            updateHistory.map((update, index) => (
-              <li class:list={["admissions-update-item", { "admissions-update-item--latest": index === 0 }]}>
-                <div class="admissions-update-item__meta">
-                  {index === 0 && <span>NEW</span>}
-                  <time datetime={update.dateTime}>{update.date}</time>
-                </div>
-                <div class="admissions-update-item__body">
-                  <h3>{update.title}</h3>
-                  <ul>
-                    {update.details.map((detail) => (
-                      <li>{detail}</li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-            ))
-          }
-        </ol>
+        <div class="admissions-update-history__scroll" tabindex="0" aria-label="大学別の更新履歴">
+          <ol class="admissions-update-history__list">
+            {
+              universityUpdateHistory.map((update, index) => (
+                <li class:list={["admissions-update-item", { "admissions-update-item--latest": index === 0 }]}>
+                  <div class="admissions-update-item__meta">
+                    {index === 0 && <span>NEW</span>}
+                    <time datetime={update.dateTime}>{update.date}</time>
+                  </div>
+                  <div class="admissions-update-item__body">
+                    <h3>{update.university}</h3>
+                    <p>{update.summary}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
       </div>
     </section>
 
