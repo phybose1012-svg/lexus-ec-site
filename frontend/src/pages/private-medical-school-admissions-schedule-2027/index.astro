@@ -135,7 +135,9 @@ const earliestScheduleDay = (column: FullScheduleColumnKey2027) =>
   fullScheduleCalendar2027.find((day) => day.events[column].length > 0);
 const earliestApplicationStart = earliestScheduleDay("applicationStart");
 const earliestApplicationDeadline = earliestScheduleDay("applicationDeadline");
-const earliestFirstExam = earliestScheduleDay("firstExam");
+const earliestGeneralFirstExam = fullScheduleCalendar2027.find((day) =>
+  day.events.firstExam.some((entry) => entry.category === "general"),
+);
 const overviewUniversityNames = (
   day: (typeof fullScheduleCalendar2027)[number] | undefined,
   column: FullScheduleColumnKey2027,
@@ -562,22 +564,25 @@ const structuredData = {
             <p>{overviewUniversityNames(earliestApplicationDeadline, "applicationDeadline")}</p>
           </article>
           <article class="admissions-stat-grid__date-card">
-            <span>最も早い一次試験</span>
+            <span>最も早い一般選抜の一次試験</span>
             <strong>
-              <time datetime={earliestFirstExam?.dateTime}>{earliestFirstExam?.date}</time>
+              <time datetime={earliestGeneralFirstExam?.dateTime}>{earliestGeneralFirstExam?.date}</time>
               <small>2027年</small>
             </strong>
-            <p>大学入学共通テスト本試験（1/16・17）<br />私大独自試験は1/21から</p>
+            <p>{overviewUniversityNames(earliestGeneralFirstExam, "firstExam")}・一般選抜<br />1/21〜23のうち1〜3日受験可</p>
           </article>
         </div>
 
         <div class="admissions-notice admissions-notice--guideline" role="note">
           <span aria-hidden="true">!</span>
           <div>
-            <strong>入試日程の確定情報は、「学生募集要項」で公表されます</strong>
+            <strong>「学生募集要項」は、入試の正式なルールブックです</strong>
             <p>
-              入試ガイドや予告ページで先に概要が示されても、出願方法・締切時刻・提出書類・試験会場などを確定する書類は、各大学が発行する学生募集要項です。
-              出願前には必ず最新の募集要項をご確認ください。
+              各大学が公式サイトで公開する書類で、入試日程だけでなく、出願方法・締切時刻・提出書類・試験会場などの正式な情報がまとまっています。
+              入試ガイドや予告ページに日程が載っていても、最終的な条件は学生募集要項で確認します。
+            </p>
+            <p class="admissions-notice__required">
+              出願前に、志望大学の「2027年度学生募集要項」を必ず確認してください。
             </p>
           </div>
           <div class="admissions-notice__status">

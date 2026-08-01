@@ -717,6 +717,27 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   align-items: center;
 }
 
+.admissions-notice--guideline > span {
+  color: #fff;
+  background: var(--admissions-red);
+}
+
+.admissions-notice--guideline > div > strong {
+  color: var(--admissions-red);
+  font-size: 1.02rem;
+}
+
+.admissions-notice p.admissions-notice__required {
+  margin-top: 12px;
+  border-left: 3px solid var(--admissions-red);
+  padding: 9px 12px;
+  color: var(--admissions-red);
+  background: #fff;
+  font-size: 0.82rem;
+  font-weight: 900;
+  line-height: 1.65;
+}
+
 .admissions-notice__status {
   border-left: 1px solid #dfca80;
   padding-left: 24px;
