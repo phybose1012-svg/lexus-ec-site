@@ -665,6 +665,15 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   line-height: 1.6;
 }
 
+.admissions-stat-grid__date-card strong {
+  letter-spacing: -0.04em;
+}
+
+.admissions-stat-grid__date-card strong small {
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
 .admissions-notice {
   display: grid;
   grid-template-columns: 40px 1fr;
@@ -701,6 +710,48 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   color: #6d6048;
   font-size: 0.8rem;
   line-height: 1.75;
+}
+
+.admissions-notice--guideline {
+  grid-template-columns: 40px minmax(0, 1fr) minmax(210px, auto);
+  align-items: center;
+}
+
+.admissions-notice__status {
+  border-left: 1px solid #dfca80;
+  padding-left: 24px;
+}
+
+.admissions-notice__status > span {
+  display: block;
+  margin-bottom: 6px;
+  color: #6d6048;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.admissions-notice__status strong {
+  margin: 0 0 8px;
+  color: var(--admissions-blue);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2.25rem;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.admissions-notice__status strong small {
+  margin-left: 5px;
+  color: var(--admissions-navy);
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  letter-spacing: 0;
+}
+
+.admissions-notice__status a {
+  color: var(--admissions-blue);
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-underline-offset: 4px;
 }
 
 .admissions-calendar-section,
@@ -2154,6 +2205,18 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .admissions-notice--guideline {
+    grid-template-columns: 40px minmax(0, 1fr);
+  }
+
+  .admissions-notice__status {
+    grid-column: 2;
+    border-top: 1px solid #dfca80;
+    border-left: 0;
+    padding-top: 16px;
+    padding-left: 0;
+  }
+
   .admissions-filter {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -2486,6 +2549,11 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
     grid-template-columns: 1fr;
     gap: 10px;
     padding: 18px;
+  }
+
+  .admissions-notice__status {
+    grid-column: auto;
+    margin-top: 5px;
   }
 
   .admissions-calendar-head {

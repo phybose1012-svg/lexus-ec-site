@@ -59,7 +59,7 @@ export const privateMedicalAdmissions2027FieldDefinitions = [
 ] as const;
 
 export const privateMedicalAdmissions2027StatusDefinitions = {
-  official: "2027年度の確定版募集要項または大学公式の確定情報で確認済み",
+  official: "2027年度の確定版学生募集要項で確認済み",
   preliminary: "大学公式の予告・概要・入試ガイドなどで確認済み。確定版募集要項は公表待ち",
   pending: "2027年度の公式日程が未公表",
 } as const;

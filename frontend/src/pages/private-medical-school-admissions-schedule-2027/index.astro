@@ -131,14 +131,23 @@ const commonTestUniversities = privateMedicalUniversities2027.filter((university
 const officialUniversities = privateMedicalUniversities2027.filter((university) =>
   university.routes.some((route) => route.status === "official"),
 );
-const generalRouteCount = privateMedicalUniversities2027.reduce(
-  (count, university) => count + university.routes.filter((route) => route.category === "general").length,
-  0,
-);
-const commonRouteCount = privateMedicalUniversities2027.reduce(
-  (count, university) => count + university.routes.filter((route) => route.category === "common").length,
-  0,
-);
+const earliestScheduleDay = (column: FullScheduleColumnKey2027) =>
+  fullScheduleCalendar2027.find((day) => day.events[column].length > 0);
+const earliestApplicationStart = earliestScheduleDay("applicationStart");
+const earliestApplicationDeadline = earliestScheduleDay("applicationDeadline");
+const earliestFirstExam = earliestScheduleDay("firstExam");
+const overviewUniversityNames = (
+  day: (typeof fullScheduleCalendar2027)[number] | undefined,
+  column: FullScheduleColumnKey2027,
+) =>
+  [
+    ...new Set(
+      (day?.events[column] ?? [])
+        .map((entry) => entry.university)
+        .filter((name) => name !== "大学入学共通テスト")
+        .map((name) => (name === "日本大学" ? "日大" : name.replace(/大学$/, ""))),
+    ),
+  ].join("・");
 const applicationDeadlineGroups2027 = applicationDeadlineEntries2027.reduce<
   Array<{
     date: string;
@@ -534,33 +543,47 @@ const structuredData = {
           <article>
             <span>全国の私立医学部</span>
             <strong>{totalUniversities}<small>大学</small></strong>
-            <p>地域・大学名で絞り込み可能</p>
+            <p>一般選抜・共通テスト利用選抜を掲載</p>
           </article>
-          <article>
-            <span>一般選抜</span>
-            <strong>{generalRouteCount}<small>方式</small></strong>
-            <p>前期・後期・統一方式を含む</p>
+          <article class="admissions-stat-grid__date-card">
+            <span>最も早い大学への出願開始</span>
+            <strong>
+              <time datetime={earliestApplicationStart?.dateTime}>{earliestApplicationStart?.date}</time>
+              <small>2026年</small>
+            </strong>
+            <p>{overviewUniversityNames(earliestApplicationStart, "applicationStart")}</p>
           </article>
-          <article>
-            <span>共通テスト利用</span>
-            <strong>{commonTestUniversities.length}<small>大学</small></strong>
-            <p>前期・後期など全{commonRouteCount}方式</p>
+          <article class="admissions-stat-grid__date-card">
+            <span>最も早い大学への出願締切</span>
+            <strong>
+              <time datetime={earliestApplicationDeadline?.dateTime}>{earliestApplicationDeadline?.date}</time>
+              <small>2027年</small>
+            </strong>
+            <p>{overviewUniversityNames(earliestApplicationDeadline, "applicationDeadline")}</p>
           </article>
-          <article>
-            <span>確定版の募集要項が公表済み</span>
-            <strong>{officialUniversities.length}<small>大学</small></strong>
-            <p>出願から入学手続まで詳しく確認</p>
+          <article class="admissions-stat-grid__date-card">
+            <span>最も早い一次試験</span>
+            <strong>
+              <time datetime={earliestFirstExam?.dateTime}>{earliestFirstExam?.date}</time>
+              <small>2027年</small>
+            </strong>
+            <p>大学入学共通テスト本試験（1/16・17）<br />私大独自試験は1/21から</p>
           </article>
         </div>
 
-        <div class="admissions-notice" role="note">
+        <div class="admissions-notice admissions-notice--guideline" role="note">
           <span aria-hidden="true">!</span>
           <div>
-            <strong>大学によって、現在公表されている情報の範囲が異なります</strong>
+            <strong>入試日程の確定情報は、「学生募集要項」で公表されます</strong>
             <p>
-              「詳細日程あり」は確定版の募集要項が公表済み、「概要日程あり」は試験日などの概要が公表済みの大学です。
-              未発表の日付は公表され次第更新します。出願前には各大学の最新情報も必ずご確認ください。
+              入試ガイドや予告ページで先に概要が示されても、出願方法・締切時刻・提出書類・試験会場などを確定する書類は、各大学が発行する学生募集要項です。
+              出願前には必ず最新の募集要項をご確認ください。
             </p>
+          </div>
+          <div class="admissions-notice__status">
+            <span>確定版の募集要項を公表済み</span>
+            <strong>{officialUniversities.length}<small>／{totalUniversities}大学</small></strong>
+            <a href="#universities">大学別の公表状況を見る</a>
           </div>
         </div>
       </div>
