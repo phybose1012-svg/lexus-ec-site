@@ -11,6 +11,7 @@ import {
   type FullScheduleColumnKey2027,
 } from "../../data/privateMedicalAdmissions2027";
 import AdmissionsBrandDivider from "../../components/admissions/AdmissionsBrandDivider.astro";
+import AdmissionPlanner from "../../components/admissions/AdmissionPlanner.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import "../../styles/admissions-2027.css";
 
@@ -315,7 +316,7 @@ const faqJsonLd = {
               出願から入学手続まで、受験校の組み合わせを迷わず確認できます。
             </p>
             <div class="admissions-hero__actions">
-              <a class="admissions-primary-button" href="#calendar">日付から見る</a>
+              <a class="admissions-primary-button" href="#planner">受験プランを作る</a>
               <a class="admissions-secondary-button" href="#universities">大学から探す</a>
             </div>
           </div>
@@ -374,6 +375,8 @@ const faqJsonLd = {
         </div>
       </div>
     </section>
+
+    <AdmissionPlanner />
 
     <nav class="admissions-jump-nav" aria-label="ページ内メニュー">
       <div class="content admissions-jump-nav__inner">
