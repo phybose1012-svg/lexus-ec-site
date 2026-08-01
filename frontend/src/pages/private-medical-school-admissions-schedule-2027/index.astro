@@ -604,7 +604,12 @@ const structuredData = {
             <h2 id="deadlines-title">出願締め切りを日付順に見る</h2>
             <p>Web登録と郵送書類の期限を分けて確認できます。</p>
           </div>
-          <button type="button" class="admissions-print-button" data-print-section="deadlines">
+          <button
+            type="button"
+            class="admissions-print-button"
+            data-print-section="deadlines"
+            data-print-title="2027年度 私立医学部 出願締切一覧"
+          >
             <span aria-hidden="true">⎙</span>
             このセクションを印刷
           </button>
@@ -675,7 +680,12 @@ const structuredData = {
             <h2 id="calendar-title">一次・二次試験を日付順に見る</h2>
             <p>同じ日の一次試験と二次試験を並べて、受験校の重なりを確認できます。</p>
           </div>
-          <button type="button" class="admissions-print-button" data-print-section="calendar">
+          <button
+            type="button"
+            class="admissions-print-button"
+            data-print-section="calendar"
+            data-print-title="2027年度 私立医学部 一次・二次試験日カレンダー"
+          >
             <span aria-hidden="true">⎙</span>
             このセクションを印刷
           </button>
@@ -745,7 +755,12 @@ const structuredData = {
             <h2 id="common-test-title">共通テスト利用だけを一覧</h2>
             <p>共通テスト後に大学独自の試験・面接があるかどうかを、大学ごとに確認できます。</p>
           </div>
-          <button type="button" class="admissions-print-button" data-print-section="common-test">
+          <button
+            type="button"
+            class="admissions-print-button"
+            data-print-section="common-test"
+            data-print-title="2027年度 私立医学部 共通テスト利用一覧"
+          >
             <span aria-hidden="true">⎙</span>
             このセクションを印刷
           </button>
@@ -1202,9 +1217,15 @@ const structuredData = {
         form.addEventListener("reset", () => window.setTimeout(applyFilters, 0));
       }
 
+      let titleBeforePrint = null;
+
       const clearPrintTarget = () => {
         document.body.classList.remove("is-printing-admissions-section");
         document.querySelector(".is-print-target")?.classList.remove("is-print-target");
+        if (titleBeforePrint !== null) {
+          document.title = titleBeforePrint;
+          titleBeforePrint = null;
+        }
       };
 
       document.querySelectorAll("[data-print-section]").forEach((button) => {
@@ -1218,6 +1239,8 @@ const structuredData = {
           clearPrintTarget();
           target.classList.add("is-print-target");
           document.body.classList.add("is-printing-admissions-section");
+          titleBeforePrint = document.title;
+          document.title = button.dataset.printTitle || document.title;
           window.print();
         });
       });
