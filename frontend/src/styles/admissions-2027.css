@@ -666,12 +666,18 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 }
 
 .admissions-stat-grid__date-card strong {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
   letter-spacing: -0.04em;
 }
 
 .admissions-stat-grid__date-card strong small {
+  margin-left: 0;
   font-size: 0.72rem;
   font-weight: 800;
+  line-height: 1.2;
 }
 
 .admissions-notice {

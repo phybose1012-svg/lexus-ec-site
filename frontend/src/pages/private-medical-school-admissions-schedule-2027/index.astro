@@ -550,24 +550,24 @@ const structuredData = {
           <article class="admissions-stat-grid__date-card">
             <span>出願開始</span>
             <strong>
-              <time datetime={earliestApplicationStart?.dateTime}>{earliestApplicationStart?.date}～</time>
               <small>2026年</small>
+              <time datetime={earliestApplicationStart?.dateTime}>{earliestApplicationStart?.date}～</time>
             </strong>
             <p>{overviewUniversityNames(earliestApplicationStart, "applicationStart")}（初日）</p>
           </article>
           <article class="admissions-stat-grid__date-card">
             <span>出願締切</span>
             <strong>
-              <time datetime={earliestApplicationDeadline?.dateTime}>{earliestApplicationDeadline?.date}～</time>
               <small>2027年</small>
+              <time datetime={earliestApplicationDeadline?.dateTime}>{earliestApplicationDeadline?.date}～</time>
             </strong>
             <p>{overviewUniversityNames(earliestApplicationDeadline, "applicationDeadline")}（初日）</p>
           </article>
           <article class="admissions-stat-grid__date-card">
             <span>医学部一般入試</span>
             <strong>
-              <time datetime={earliestGeneralFirstExam?.dateTime}>{earliestGeneralFirstExam?.date}～</time>
               <small>2027年</small>
+              <time datetime={earliestGeneralFirstExam?.dateTime}>{earliestGeneralFirstExam?.date}～</time>
             </strong>
             <p>{overviewUniversityNames(earliestGeneralFirstExam, "firstExam")}（初日）</p>
           </article>
