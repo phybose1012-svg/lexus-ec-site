@@ -1280,22 +1280,47 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
       officialRoute({
         name: "一般選抜 系統別日程",
         category: "general",
-        application: "2026/12/18〜2027/1/12",
-        firstExam: "2/2",
-        secondExam: "2/14",
+        application:
+          "インターネット出願 2026/12/18〜2027/1/12（終了時刻・出願書類の提出方法／期限は11月上旬公開予定の入学試験要項で確認）",
+        applicationDeadlineDateDetails: [
+          "インターネット出願締切（終了時刻・書類提出方法／期限は入学試験要項公開待ち）",
+        ],
+        firstExam:
+          "2/2（福岡・東京・名古屋・大阪／英語・数学・理科2科目＋小論文50分）",
+        secondExam:
+          "2/14（福岡会場／面接。調査書等と一次選考日に実施した小論文を面接評価に活用）",
         result: "一次 2/9・最終 2/23",
-        procedure: "WEB入学手続 3/8まで",
-        sourceUrl: "https://nyushi.fukuoka-u.ac.jp/nyushi/type-3/",
+        procedure:
+          "入学申込金 2/28・Web入学手続 3/8（他大学等との併願者は学費等納入・Web入学手続を3/23まで延期可）",
+        procedureDateDetails: [
+          "入学申込金締切",
+          "Web入学手続締切",
+          "併願者の学費等納入・Web入学手続延期期限",
+        ],
+        sourceUrl:
+          "https://nyushi.fukuoka-u.ac.jp/cms/wp-content/uploads/2026/05/guidebook-entrance-examinations2027.pdf",
       }),
       officialRoute({
         name: "共通テスト利用型 Ⅰ期",
         category: "common",
-        application: "2026/12/18〜2027/1/12",
-        firstExam: "共通テスト 1/16・17",
-        secondExam: "2/14",
+        application:
+          "インターネット出願 2026/12/18〜2027/1/12（終了時刻・出願書類の提出方法／期限は11月上旬公開予定の入学試験要項で確認）",
+        applicationDeadlineDateDetails: [
+          "インターネット出願締切（終了時刻・書類提出方法／期限は入学試験要項公開待ち）",
+        ],
+        firstExam: "大学入学共通テスト 1/16・17（700点満点）",
+        secondExam:
+          "2/14（福岡会場／面接50点。調査書等を面接評価に活用）",
         result: "一次 2/9・最終 2/23",
-        procedure: "WEB入学手続 3/8まで",
-        sourceUrl: "https://nyushi.fukuoka-u.ac.jp/nyushi/type-3/",
+        procedure:
+          "入学申込金 2/28・Web入学手続 3/8（他大学等との併願者は学費等納入・Web入学手続を3/23まで延期可）",
+        procedureDateDetails: [
+          "入学申込金締切",
+          "Web入学手続締切",
+          "併願者の学費等納入・Web入学手続延期期限",
+        ],
+        sourceUrl:
+          "https://nyushi.fukuoka-u.ac.jp/cms/wp-content/uploads/2026/05/guidebook-entrance-examinations2027.pdf",
       }),
     ],
   },
@@ -1409,7 +1434,7 @@ const examCalendarEvents2027 = [
       "関西医科（地域枠・構想中）",
       "関西医科（共テ＋一般併用）",
       "東海①（一般／①〜②の1日または両日受験可・高得点日で判定）",
-      "福岡（一般）",
+      "福岡（系統別／福岡・東京・名古屋・大阪／小論文も実施）",
       "北里（一般）",
     ],
     second: ["国際医療福祉②（一般／①〜⑥の希望をもとに大学指定）"],
@@ -1535,7 +1560,7 @@ const examCalendarEvents2027 = [
       "東海②（一般・共テ・地域枠／①〜②から出願時選択）",
       "藤田医科①（一般・共テ／①〜②のいずれか1日・指定方法未公表）",
       "近畿（一般・前期／地域枠・前期型）",
-      "福岡（一般・共テⅠ期）",
+      "福岡（系統別・共テⅠ期／福岡会場・面接）",
     ],
   },
   {
@@ -1830,9 +1855,9 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     dateTime: "2027-01-12",
     university: "福岡大学",
     routes: "一般（系統別）／共テ利用型Ⅰ期",
-    webDeadline: "1/12（時刻未公表）",
-    documentDeadline: "提出方法・期限は要項公開待ち",
-    sourceUrl: "https://nyushi.fukuoka-u.ac.jp/nyushi/type-3/",
+    webDeadline: "1/12（終了時刻は11月上旬公開予定の入学試験要項で確認）",
+    documentDeadline: "提出方法・期限は11月上旬公開予定の入学試験要項で確認",
+    sourceUrl: "https://nyushi.fukuoka-u.ac.jp/webapp/20ippan-2/",
   },
   {
     date: "1/13",
