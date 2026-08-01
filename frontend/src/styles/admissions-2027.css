@@ -2988,14 +2988,12 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   line-height: 1.45;
 }
 
-.admissions-planner__field,
-.admissions-planner__savebar label {
+.admissions-planner__field {
   display: grid;
   gap: 7px;
 }
 
-.admissions-planner__field > span,
-.admissions-planner__savebar label > span {
+.admissions-planner__field > span {
   color: #584b40;
   font-size: 0.78rem;
   font-weight: 800;
@@ -3651,14 +3649,45 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 
 .admissions-planner__savebar {
   display: grid;
-  grid-template-columns: minmax(240px, 1fr) auto auto minmax(170px, auto);
-  gap: 10px;
-  align-items: end;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px 28px;
+  align-items: center;
   margin-top: 20px;
   border: 1px solid var(--admissions-line);
   border-radius: 6px;
-  padding: 16px;
-  background: #fff;
+  padding: 18px 20px;
+  background: #fffdf9;
+}
+
+.admissions-planner__save-copy {
+  min-width: 0;
+}
+
+.admissions-planner__save-copy strong {
+  display: block;
+  color: var(--admissions-ink);
+  font-size: 0.92rem;
+}
+
+.admissions-planner__save-copy p {
+  margin: 4px 0 0;
+  color: #66594f;
+  font-size: 0.72rem;
+  line-height: 1.55;
+}
+
+.admissions-planner__save-copy [role="status"] {
+  display: block;
+  margin-top: 7px;
+  color: #8b231d;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.admissions-planner__save-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 .admissions-planner__save {
@@ -3673,27 +3702,16 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   cursor: pointer;
 }
 
-.admissions-planner__save-action {
-  display: grid;
-  gap: 5px;
-}
-
-.admissions-planner__save-action small {
-  max-width: 320px;
-  color: #786b60;
-  font-size: 0.65rem;
-  line-height: 1.45;
+.admissions-planner__save:disabled {
+  border-color: #d6cec7;
+  color: #9b9189;
+  background: #eeeae6;
+  cursor: not-allowed;
 }
 
 .admissions-planner__reset {
   min-height: 44px;
   padding-inline: 12px;
-}
-
-.admissions-planner__savebar > [role="status"] {
-  align-self: center;
-  color: #706359;
-  font-size: 0.7rem;
 }
 
 .admissions-planner__source-note {
@@ -3712,13 +3730,6 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .admissions-planner__savebar {
-    grid-template-columns: minmax(220px, 1fr) auto auto;
-  }
-
-  .admissions-planner__savebar > [role="status"] {
-    grid-column: 1 / -1;
-  }
 }
 
 @media (max-width: 720px) {
@@ -3798,12 +3809,17 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   }
 
   .admissions-planner__savebar {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 
-  .admissions-planner__savebar label,
-  .admissions-planner__savebar > [role="status"] {
-    grid-column: 1 / -1;
+  .admissions-planner__save-buttons {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .admissions-planner__save {
+    width: 100%;
   }
 }
 
@@ -3826,6 +3842,10 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   }
 
   .admissions-planner__savebar {
+    grid-template-columns: 1fr;
+  }
+
+  .admissions-planner__save-buttons {
     grid-template-columns: 1fr;
   }
 }

@@ -120,20 +120,19 @@ const plannerPayload = JSON.stringify({
     </div>
 
     <div class="admissions-planner__savebar" data-planner-controls>
-      <label>
-        <span>プラン名</span>
-        <input type="text" maxlength="40" value="2027年度 受験プラン" data-planner-name />
-      </label>
-      <div class="admissions-planner__save-action">
-        <button type="button" class="admissions-planner__save" data-planner-save>この内容を保存して、次回も表示</button>
-        <small>このページを閉じたり移動したあとも、次に開いたときに同じ内容を表示できます。</small>
+      <div class="admissions-planner__save-copy">
+        <strong>次回もこの内容を表示</strong>
+        <p>選択した大学・方式をこの端末に保存します。ほかの端末には引き継がれません。</p>
+        <span data-planner-save-status role="status">保存すると、次に開いたときも同じ内容を表示できます</span>
       </div>
-      <button type="button" class="admissions-planner__reset" data-planner-reset>選択をすべて消す</button>
-      <span data-planner-save-status role="status"></span>
+      <div class="admissions-planner__save-buttons">
+        <button type="button" class="admissions-planner__save" data-planner-save>この内容を保存</button>
+        <button type="button" class="admissions-planner__reset" data-planner-reset>選択をすべて消す</button>
+      </div>
     </div>
 
     <p class="admissions-planner__source-note">
-      日程が未公表・大学指定・希望日制の方式は「要注意」と表示します。出願前と受験前には、必ず各大学の最新の募集要項をご確認ください。保存した内容は次にこのページを開いたときに表示されますが、別のスマートフォンやパソコンには引き継がれません。
+      日程が未公表・大学指定・希望日制の方式は「要注意」と表示します。出願前と受験前には、必ず各大学の最新の募集要項をご確認ください。
     </p>
   </div>
 
@@ -162,8 +161,8 @@ const plannerPayload = JSON.stringify({
   };
 
   type StoredPlan = {
-    version: 2 | 3;
-    name: string;
+    version: 2 | 3 | 4;
+    name?: string;
     goal: PlannerGoal;
     selections: StoredSelection[];
   };
@@ -246,8 +245,7 @@ const plannerPayload = JSON.stringify({
     const summary = root.querySelector<HTMLElement>("[data-planner-summary]");
     const calendarSection = root.querySelector<HTMLElement>("[data-planner-calendar-section]");
     const calendar = root.querySelector<HTMLElement>("[data-planner-calendar]");
-    const nameInput = root.querySelector<HTMLInputElement>("[data-planner-name]");
-    const printName = root.querySelector<HTMLElement>("[data-planner-print-name]");
+    const saveButton = root.querySelector<HTMLButtonElement>("[data-planner-save]");
     const saveStatus = root.querySelector<HTMLElement>("[data-planner-save-status]");
     if (
       !universitySelect ||
@@ -256,7 +254,7 @@ const plannerPayload = JSON.stringify({
       !summary ||
       !calendarSection ||
       !calendar ||
-      !nameInput ||
+      !saveButton ||
       !saveStatus
     ) return;
 
@@ -344,10 +342,9 @@ const plannerPayload = JSON.stringify({
         const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) return;
         const stored = JSON.parse(raw) as StoredPlan;
-        if (stored.version !== 2 && stored.version !== 3) return;
+        if (stored.version !== 2 && stored.version !== 3 && stored.version !== 4) return;
         selections = cleanSelections(stored.selections ?? []);
         goal = stored.goal === "coverage" ? "coverage" : "priority";
-        nameInput.value = stored.name || "2027年度 受験プラン";
         root
           .querySelectorAll<HTMLInputElement>("[data-planner-goal]")
           .forEach((input) => (input.checked = input.value === goal));
@@ -548,7 +545,7 @@ const plannerPayload = JSON.stringify({
     };
 
     const render = () => {
-      if (printName) printName.textContent = nameInput.value.trim() || "2027年度 受験プラン";
+      saveButton.disabled = selections.length === 0;
       renderRouteOptions();
       renderSelected();
       if (selections.length === 0) {
@@ -593,7 +590,7 @@ const plannerPayload = JSON.stringify({
         } else {
           selections = selections.filter((selection) => selection.routeId !== routeId);
         }
-        saveStatus.textContent = "内容を変更しました。次回も表示するには保存してください";
+        saveStatus.textContent = "変更内容はまだ保存されていません";
         render();
         return;
       }
@@ -604,7 +601,7 @@ const plannerPayload = JSON.stringify({
         selections = selections.map((selection) =>
           selection.routeId === routeId ? { ...selection, priority } : selection,
         );
-        saveStatus.textContent = "内容を変更しました。次回も表示するには保存してください";
+        saveStatus.textContent = "変更内容はまだ保存されていません";
         render();
         return;
       }
@@ -639,14 +636,14 @@ const plannerPayload = JSON.stringify({
               }
             : item,
         );
-        saveStatus.textContent = "内容を変更しました。次回も表示するには保存してください";
+        saveStatus.textContent = "変更内容はまだ保存されていません";
         render();
         return;
       }
 
       if (target.matches("[data-planner-goal]")) {
         goal = target.value === "coverage" ? "coverage" : "priority";
-        saveStatus.textContent = "内容を変更しました。次回も表示するには保存してください";
+        saveStatus.textContent = "変更内容はまだ保存されていません";
         render();
         return;
       }
@@ -661,20 +658,19 @@ const plannerPayload = JSON.stringify({
         selections = selections.filter(
           (selection) => selection.routeId !== removeButton.dataset.plannerRemove,
         );
-        saveStatus.textContent = "内容を変更しました。次回も表示するには保存してください";
+        saveStatus.textContent = "変更内容はまだ保存されていません";
         render();
         return;
       }
 
       if (target.closest("[data-planner-save]")) {
         const stored: StoredPlan = {
-          version: 3,
-          name: nameInput.value.trim() || "2027年度 受験プラン",
+          version: 4,
           goal,
           selections,
         };
         localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
-        saveStatus.textContent = "保存しました。次にこのページを開いたときも同じ内容を表示します";
+        saveStatus.textContent = "保存しました。次回もこの内容を表示します";
         return;
       }
 
@@ -685,14 +681,9 @@ const plannerPayload = JSON.stringify({
         root
           .querySelectorAll<HTMLInputElement>("[data-planner-goal]")
           .forEach((input) => (input.checked = input.value === goal));
-        saveStatus.textContent = "選択内容をすべて消しました";
+        saveStatus.textContent = "選択内容と保存データを消しました";
         render();
       }
-    });
-
-    nameInput.addEventListener("input", () => {
-      if (printName) printName.textContent = nameInput.value.trim() || "2027年度 受験プラン";
-      saveStatus.textContent = "内容を変更しました。次回も表示するには保存してください";
     });
 
     restore();
