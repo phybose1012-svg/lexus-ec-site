@@ -105,6 +105,15 @@ const plannerPayload = JSON.stringify({
             <p>MY CALENDAR</p>
             <h3>あなたの受験カレンダー</h3>
           </div>
+          <ul class="admissions-planner__calendar-legend" aria-label="日程種別の色分け">
+            <li class="is-application-start">出願開始</li>
+            <li class="is-application-deadline">出願締切</li>
+            <li class="is-first-exam">一次試験・共通テスト</li>
+            <li class="is-first-result">一次発表</li>
+            <li class="is-second-exam">二次試験</li>
+            <li class="is-final-result">合格発表</li>
+            <li class="is-procedure-deadline">手続締切</li>
+          </ul>
           <div data-planner-calendar></div>
         </section>
       </div>
@@ -167,6 +176,21 @@ const plannerPayload = JSON.stringify({
     secondExam: "二次試験",
     finalResult: "合格発表",
     procedureDeadline: "入学手続締切",
+  } as const;
+  const eventTypeClasses: Record<keyof typeof eventLabels, string> = {
+    applicationStart: "application-start",
+    applicationDeadline: "application-deadline",
+    commonTest: "first-exam",
+    firstExam: "first-exam",
+    firstResult: "first-result",
+    secondExam: "second-exam",
+    finalResult: "final-result",
+    procedureDeadline: "procedure-deadline",
+  };
+  const examStageLabels = {
+    common_test: "共通テスト",
+    first_exam: "一次試験",
+    second_exam: "二次試験",
   } as const;
 
   const escapeHtml = (value: unknown) =>
@@ -330,6 +354,60 @@ const plannerPayload = JSON.stringify({
         eventsByDate.set(event.date, events);
       });
 
+      const renderEventState = (event: AdmissionPlanResult["calendar"][number]) => {
+        const stateLabel =
+          event.state === "decision"
+            ? "要判断"
+            : event.state === "conditional"
+              ? "条件付き"
+              : event.state === "selected"
+                ? "自動調整"
+                : event.state === "pending"
+                  ? "一部未公表"
+                  : "確定日程";
+
+        if (event.state !== "decision" && event.state !== "conditional") {
+          return `<em>${stateLabel}</em>`;
+        }
+
+        const relatedConflicts = result.conflicts.filter(
+          (conflict) =>
+            conflict.date === event.date &&
+            [conflict.left.groupId, conflict.right.groupId].some(
+              (groupId) => event.id === `${groupId}--${event.date}`,
+            ),
+        );
+        const conflictNotes = relatedConflicts.map((conflict) => {
+          const isLeft = event.id === `${conflict.left.groupId}--${event.date}`;
+          const other = isLeft ? conflict.right : conflict.left;
+          const otherRoutes = [
+            ...new Set(
+              other.routes.map((route) => `${route.universityName}（${route.routeName}）`),
+            ),
+          ].join("・");
+          const relation =
+            conflict.severity === "hard"
+              ? "と同日に実施されるため、両方は受験できません。"
+              : conflict.severity === "conditional"
+                ? "と、大学の指定結果によって同日になる可能性があります。"
+                : "と同日です。一次試験の合否などを踏まえ、受験先の判断が必要です。";
+          return `${otherRoutes}の${examStageLabels[other.stage]}${relation}`;
+        });
+        const notes = [
+          { label: "日程条件", text: event.detail },
+          ...[...new Set(conflictNotes)].map((text) => ({ label: "確認事項", text })),
+        ].filter((note) => note.text);
+
+        return `<details class="admissions-planner__event-details is-${event.state}">
+          <summary><span>${stateLabel}</span><span aria-hidden="true">⌄</span></summary>
+          <div>
+            <strong>${stateLabel}の内容</strong>
+            ${notes.map((note) => `<p><span>${note.label}</span>${escapeHtml(note.text)}</p>`).join("")}
+            ${event.sourceUrl ? `<a href="${escapeHtml(event.sourceUrl)}" target="_blank" rel="noopener noreferrer">大学公式資料を確認</a>` : ""}
+          </div>
+        </details>`;
+      };
+
       calendar.innerHTML = [...eventsByDate.entries()]
         .map(
           ([date, events]) => `<article class="admissions-planner__calendar-day">
@@ -337,10 +415,10 @@ const plannerPayload = JSON.stringify({
             <div>
               ${events
                 .map(
-                  (event) => `<div class="admissions-planner__calendar-event is-${event.state}">
+                  (event) => `<div class="admissions-planner__calendar-event is-${event.state} is-type-${eventTypeClasses[event.type]}">
                     <span>${eventLabels[event.type]}</span>
                     <p><strong>${escapeHtml(event.universityName)}</strong>${event.routeNames.length > 0 ? `<small>${escapeHtml(event.routeNames.join("・"))}</small>` : ""}</p>
-                    <em>${event.state === "decision" ? "要判断" : event.state === "conditional" ? "条件付き" : event.state === "selected" ? "自動調整" : event.state === "pending" ? "一部未公表" : "確定日程"}</em>
+                    ${renderEventState(event)}
                   </div>`,
                 )
                 .join("")}

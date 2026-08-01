@@ -3153,6 +3153,90 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   padding: 22px;
 }
 
+.admissions-planner__calendar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 12px;
+  margin: -4px 0 17px;
+  padding: 0;
+  list-style: none;
+}
+
+.admissions-planner__calendar-legend li {
+  --planner-event-color: #62574e;
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  color: #5f5349;
+  font-size: 0.65rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.admissions-planner__calendar-legend li::before {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  background: var(--planner-event-color);
+  content: "";
+}
+
+.admissions-planner__calendar-event,
+.admissions-planner__calendar-legend li {
+  --planner-event-color: #62574e;
+  --planner-event-soft: #f7f5f2;
+  --planner-event-border: #ded8d1;
+}
+
+.admissions-planner__calendar-event.is-type-application-start,
+.admissions-planner__calendar-legend .is-application-start {
+  --planner-event-color: #087568;
+  --planner-event-soft: #edf8f5;
+  --planner-event-border: #b8ddd6;
+}
+
+.admissions-planner__calendar-event.is-type-application-deadline,
+.admissions-planner__calendar-legend .is-application-deadline {
+  --planner-event-color: #a35600;
+  --planner-event-soft: #fff6e6;
+  --planner-event-border: #ecd09b;
+}
+
+.admissions-planner__calendar-event.is-type-first-exam,
+.admissions-planner__calendar-legend .is-first-exam {
+  --planner-event-color: #1757a6;
+  --planner-event-soft: #edf5ff;
+  --planner-event-border: #b7d1ef;
+}
+
+.admissions-planner__calendar-event.is-type-first-result,
+.admissions-planner__calendar-legend .is-first-result {
+  --planner-event-color: #6941a5;
+  --planner-event-soft: #f5f0fb;
+  --planner-event-border: #d5c4ea;
+}
+
+.admissions-planner__calendar-event.is-type-second-exam,
+.admissions-planner__calendar-legend .is-second-exam {
+  --planner-event-color: #a81717;
+  --planner-event-soft: #fff0ef;
+  --planner-event-border: #efc0bb;
+}
+
+.admissions-planner__calendar-event.is-type-final-result,
+.admissions-planner__calendar-legend .is-final-result {
+  --planner-event-color: #a21b5b;
+  --planner-event-soft: #fff0f6;
+  --planner-event-border: #e8bfd2;
+}
+
+.admissions-planner__calendar-event.is-type-procedure-deadline,
+.admissions-planner__calendar-legend .is-procedure-deadline {
+  --planner-event-color: #5d6230;
+  --planner-event-soft: #f6f7e9;
+  --planner-event-border: #d5d8ac;
+}
+
 .admissions-planner__calendar > [data-planner-calendar] {
   max-height: min(72vh, 760px);
   overflow-y: auto;
@@ -3192,9 +3276,11 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   grid-template-columns: 92px 1fr auto;
   gap: 10px;
   align-items: center;
-  border-radius: 4px;
-  padding: 9px 10px;
-  background: #faf8f5;
+  border: 1px solid var(--planner-event-border);
+  border-left: 4px solid var(--planner-event-color);
+  border-radius: 5px;
+  padding: 9px 10px 9px 9px;
+  background: var(--planner-event-soft);
 }
 
 .admissions-planner__calendar-event + .admissions-planner__calendar-event {
@@ -3202,9 +3288,14 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 }
 
 .admissions-planner__calendar-event > span {
-  color: var(--admissions-red);
+  width: fit-content;
+  border-radius: 3px;
+  padding: 3px 6px;
+  color: #fff;
+  background: var(--planner-event-color);
   font-size: 0.68rem;
   font-weight: 900;
+  line-height: 1.35;
 }
 
 .admissions-planner__calendar-event p {
@@ -3236,7 +3327,7 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 }
 
 .admissions-planner__calendar-event.is-decision {
-  background: #fff3ef;
+  box-shadow: inset 0 0 0 1px rgb(143 0 0 / 14%);
 }
 
 .admissions-planner__calendar-event.is-decision em {
@@ -3244,13 +3335,101 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   color: var(--admissions-red);
 }
 
-.admissions-planner__calendar-event.is-conditional,
-.admissions-planner__calendar-event.is-pending {
-  background: var(--admissions-yellow-soft);
+.admissions-planner__event-details {
+  justify-self: end;
+  min-width: 0;
+  font-size: 0.66rem;
 }
 
-.admissions-planner__calendar-event.is-selected {
-  background: #f0f7f4;
+.admissions-planner__event-details summary {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d3cac0;
+  border-radius: 999px;
+  padding: 4px 7px;
+  color: #685b50;
+  background: #fff;
+  font-weight: 900;
+  line-height: 1.2;
+  white-space: nowrap;
+  list-style: none;
+  cursor: pointer;
+}
+
+.admissions-planner__event-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.admissions-planner__event-details summary span:last-child {
+  font-size: 0.72rem;
+  transition: transform 140ms ease;
+}
+
+.admissions-planner__event-details[open] {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.admissions-planner__event-details[open] summary {
+  margin-left: auto;
+}
+
+.admissions-planner__event-details[open] summary span:last-child {
+  transform: rotate(180deg);
+}
+
+.admissions-planner__event-details.is-decision summary {
+  border-color: var(--admissions-red);
+  color: var(--admissions-red);
+}
+
+.admissions-planner__event-details.is-conditional summary {
+  border-color: #9a7217;
+  color: #79570a;
+}
+
+.admissions-planner__event-details > div {
+  margin-top: 8px;
+  border: 1px solid rgb(92 80 70 / 18%);
+  border-radius: 4px;
+  padding: 10px 11px;
+  color: #51463d;
+  background: rgb(255 255 255 / 82%);
+  line-height: 1.65;
+}
+
+.admissions-planner__event-details > div strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--admissions-ink);
+  font-size: 0.7rem;
+}
+
+.admissions-planner__event-details > div p {
+  display: block;
+  margin: 7px 0 0;
+  font-size: 0.68rem;
+}
+
+.admissions-planner__event-details > div p > span {
+  display: block;
+  margin-bottom: 1px;
+  color: #77695e;
+  font-size: 0.59rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.admissions-planner__event-details > div a {
+  display: inline-block;
+  margin-top: 7px;
+  color: var(--admissions-red);
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .admissions-planner__savebar {
@@ -3374,6 +3553,10 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   .admissions-planner__calendar-event p {
     grid-column: 1 / -1;
     grid-row: 2;
+  }
+
+  .admissions-planner__event-details[open] {
+    grid-row: 3;
   }
 
   .admissions-planner__savebar {
