@@ -74,8 +74,13 @@ test("受験者が選んだ複数の一次試験日をプランへ反映する",
 
   assert.deepEqual(result.assignments[0]?.dates, ["2027-01-21", "2027-01-23"]);
   assert.deepEqual(
-    result.calendar.filter((event) => event.type === "firstExam").map((event) => event.date),
-    ["2027-01-21", "2027-01-23"],
+    result.calendar
+      .filter((event) => event.type === "firstExam")
+      .map((event) => [event.date, event.universityName]),
+    [
+      ["2027-01-21", "a大学①"],
+      ["2027-01-23", "a大学③"],
+    ],
   );
 });
 
@@ -94,6 +99,10 @@ test("複数の二次試験日は全候補を表示し推奨日だけを識別�
   assert.equal(secondEvents.length, 3);
   assert.equal(secondEvents.filter((event) => event.recommended).length, 1);
   assert.equal(secondEvents.filter((event) => event.state === "alternative").length, 2);
+  assert.deepEqual(
+    secondEvents.map((event) => event.universityName),
+    ["a大学①", "a大学②", "a大学③"],
+  );
 });
 
 test("二次試験同士の固定日重複は一次合格後の要判断として扱う", () => {

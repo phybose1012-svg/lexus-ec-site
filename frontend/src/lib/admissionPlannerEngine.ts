@@ -358,6 +358,23 @@ const calendarTypeForStage: Record<PlanningExamStage2027, PlannerCalendarEvent["
   second_exam: "secondExam",
 };
 
+const examDateSequenceLabels = [
+  "",
+  "①",
+  "②",
+  "③",
+  "④",
+  "⑤",
+  "⑥",
+  "⑦",
+  "⑧",
+  "⑨",
+  "⑩",
+] as const;
+
+const examDateSequenceLabel = (index: number) =>
+  examDateSequenceLabels[index] ?? `(${index})`;
+
 const buildCalendar = (
   routes: AdmissionPlanningRoute2027[],
   selections: PlannerSelection[],
@@ -398,12 +415,18 @@ const buildCalendar = (
         assignment.stage === "second_exam" &&
         isSelectedDate &&
         assignment.availableDates.length > assignment.dates.length;
+      const sequence =
+        assignment.stage !== "common_test" && assignment.availableDates.length > 1
+          ? examDateSequenceLabel(assignment.availableDates.indexOf(date) + 1)
+          : "";
       events.push({
         id: `${assignment.groupId}--${date}`,
         date,
         type: calendarTypeForStage[assignment.stage],
         universityName:
-          assignment.stage === "common_test" ? "大学入学共通テスト" : firstRoute?.universityName ?? "",
+          assignment.stage === "common_test"
+            ? "大学入学共通テスト"
+            : `${firstRoute?.universityName ?? ""}${sequence}`,
         routeNames: assignment.routes.map((route) => route.routeName),
         detail: assignment.note ?? assignment.raw,
         state: !isSelectedDate
