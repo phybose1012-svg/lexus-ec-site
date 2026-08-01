@@ -2820,8 +2820,6 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 
 .admissions-planner__step,
 .admissions-planner__summary,
-.admissions-planner__choices,
-.admissions-planner__decisions,
 .admissions-planner__calendar {
   border: 1px solid var(--admissions-line);
   border-radius: 7px;
@@ -2858,14 +2856,12 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 }
 
 .admissions-planner__field,
-.admissions-planner__choice-card label,
 .admissions-planner__savebar label {
   display: grid;
   gap: 7px;
 }
 
 .admissions-planner__field > span,
-.admissions-planner__choice-card label > span,
 .admissions-planner__savebar label > span {
   color: #584b40;
   font-size: 0.78rem;
@@ -3048,7 +3044,6 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 }
 
 .admissions-planner__selected-card button,
-.admissions-planner__conflict-actions button,
 .admissions-planner__reset {
   border: 0;
   padding: 6px;
@@ -3154,145 +3149,8 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   font-size: 0.68rem;
 }
 
-.admissions-planner__choices,
-.admissions-planner__decisions,
 .admissions-planner__calendar {
   padding: 22px;
-}
-
-.admissions-planner__choice-card {
-  display: grid;
-  grid-template-columns: minmax(180px, 1fr) minmax(210px, 0.85fr);
-  gap: 8px 16px;
-  align-items: center;
-  border-top: 1px solid #e7e1da;
-  padding: 14px 0;
-}
-
-.admissions-planner__choice-card:first-child {
-  border-top: 0;
-  padding-top: 0;
-}
-
-.admissions-planner__choice-card:last-child {
-  padding-bottom: 0;
-}
-
-.admissions-planner__choice-card > strong {
-  font-size: 0.8rem;
-  line-height: 1.6;
-}
-
-.admissions-planner__choice-card > p {
-  grid-column: 1 / -1;
-  margin: 0;
-  color: #75685d;
-  font-size: 0.72rem;
-  line-height: 1.6;
-}
-
-.admissions-planner__choice-card.is-conditional,
-.admissions-planner__choice-card.is-pending {
-  border-left: 3px solid var(--admissions-yellow);
-  padding-left: 12px;
-}
-
-.admissions-planner__conflict {
-  display: grid;
-  grid-template-columns: 112px 1fr;
-  border: 1px solid #e4ddd5;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.admissions-planner__conflict + .admissions-planner__conflict {
-  margin-top: 10px;
-}
-
-.admissions-planner__conflict-date {
-  display: grid;
-  align-content: start;
-  gap: 7px;
-  padding: 15px;
-  background: #fbf7f2;
-}
-
-.admissions-planner__conflict-date span {
-  width: fit-content;
-  border-radius: 999px;
-  padding: 3px 8px;
-  color: #fff;
-  background: var(--admissions-red);
-  font-size: 0.64rem;
-  font-weight: 900;
-}
-
-.admissions-planner__conflict.is-decision .admissions-planner__conflict-date span,
-.admissions-planner__conflict.is-conditional .admissions-planner__conflict-date span {
-  color: #503c08;
-  background: #eed270;
-}
-
-.admissions-planner__conflict-date strong {
-  font-size: 0.78rem;
-  line-height: 1.5;
-}
-
-.admissions-planner__conflict-body {
-  padding: 15px;
-}
-
-.admissions-planner__conflict-body > p {
-  margin: 8px 0 0;
-  color: #65584d;
-  font-size: 0.75rem;
-  line-height: 1.65;
-}
-
-.admissions-planner__matchup {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  margin-top: 0 !important;
-  color: var(--admissions-ink) !important;
-}
-
-.admissions-planner__matchup strong {
-  font-size: 0.78rem;
-}
-
-.admissions-planner__matchup span {
-  color: var(--admissions-red);
-  font-weight: 900;
-}
-
-.admissions-planner__recommendation {
-  border-left: 3px solid var(--admissions-red);
-  padding-left: 9px;
-  color: var(--admissions-red) !important;
-  font-weight: 800;
-}
-
-.admissions-planner__conflict-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px 12px;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.admissions-planner__conflict-actions button {
-  border: 1px solid #cfc4b9;
-  border-radius: 3px;
-  padding: 6px 9px;
-  color: var(--admissions-red);
-  background: #fff;
-  text-decoration: none;
-}
-
-.admissions-planner__conflict-actions span {
-  color: #7a6e63;
-  font-size: 0.66rem;
 }
 
 .admissions-planner__calendar > [data-planner-calendar] {
@@ -3476,8 +3334,6 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 
   .admissions-planner__step,
   .admissions-planner__summary,
-  .admissions-planner__choices,
-  .admissions-planner__decisions,
   .admissions-planner__calendar {
     padding: 17px;
   }
@@ -3495,8 +3351,7 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
     grid-row: 1;
   }
 
-  .admissions-planner__summary,
-  .admissions-planner__choice-card {
+  .admissions-planner__summary {
     grid-template-columns: 1fr;
   }
 
@@ -3506,24 +3361,6 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 
   .admissions-planner__summary dl div {
     padding: 0 9px;
-  }
-
-  .admissions-planner__choice-card label {
-    grid-column: 1;
-  }
-
-  .admissions-planner__conflict {
-    grid-template-columns: 1fr;
-  }
-
-  .admissions-planner__conflict-date {
-    grid-template-columns: auto 1fr;
-    align-items: center;
-  }
-
-  .admissions-planner__matchup {
-    display: grid;
-    grid-template-columns: 1fr;
   }
 
   .admissions-planner__calendar-day {
@@ -3938,8 +3775,6 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   }
 
   body.is-printing-admissions-section .admissions-planner__summary,
-  body.is-printing-admissions-section .admissions-planner__choices,
-  body.is-printing-admissions-section .admissions-planner__decisions,
   body.is-printing-admissions-section .admissions-planner__calendar {
     margin-bottom: 4mm;
     border: var(--admissions-print-rule);
@@ -3958,9 +3793,7 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
     font-size: 14pt;
   }
 
-  body.is-printing-admissions-section .admissions-planner__summary > p,
-  body.is-printing-admissions-section .admissions-planner__choice-card > p,
-  body.is-printing-admissions-section .admissions-planner__conflict-body > p {
+  body.is-printing-admissions-section .admissions-planner__summary > p {
     font-size: 7pt;
   }
 
@@ -3968,18 +3801,10 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
     font-size: 12pt;
   }
 
-  body.is-printing-admissions-section .admissions-planner__choice-card,
-  body.is-printing-admissions-section .admissions-planner__conflict,
   body.is-printing-admissions-section .admissions-planner__calendar-day,
   body.is-printing-admissions-section .admissions-planner__calendar-event {
     break-inside: avoid-page;
     page-break-inside: avoid;
-  }
-
-  body.is-printing-admissions-section .admissions-planner__choice-card select {
-    border: 0;
-    padding: 0;
-    appearance: none;
   }
 
   body.is-printing-admissions-section .admissions-planner__calendar > [data-planner-calendar] {
