@@ -548,28 +548,28 @@ const structuredData = {
             <p>一般選抜・共通テスト利用選抜を掲載</p>
           </article>
           <article class="admissions-stat-grid__date-card">
-            <span>最も早い大学への出願開始</span>
+            <span>出願開始</span>
             <strong>
-              <time datetime={earliestApplicationStart?.dateTime}>{earliestApplicationStart?.date}</time>
+              <time datetime={earliestApplicationStart?.dateTime}>{earliestApplicationStart?.date}～</time>
               <small>2026年</small>
             </strong>
-            <p>{overviewUniversityNames(earliestApplicationStart, "applicationStart")}</p>
+            <p>{overviewUniversityNames(earliestApplicationStart, "applicationStart")}（初日）</p>
           </article>
           <article class="admissions-stat-grid__date-card">
-            <span>最も早い大学への出願締切</span>
+            <span>出願締切</span>
             <strong>
-              <time datetime={earliestApplicationDeadline?.dateTime}>{earliestApplicationDeadline?.date}</time>
+              <time datetime={earliestApplicationDeadline?.dateTime}>{earliestApplicationDeadline?.date}～</time>
               <small>2027年</small>
             </strong>
-            <p>{overviewUniversityNames(earliestApplicationDeadline, "applicationDeadline")}</p>
+            <p>{overviewUniversityNames(earliestApplicationDeadline, "applicationDeadline")}（初日）</p>
           </article>
           <article class="admissions-stat-grid__date-card">
-            <span>最も早い一般選抜の一次試験</span>
+            <span>医学部一般入試</span>
             <strong>
-              <time datetime={earliestGeneralFirstExam?.dateTime}>{earliestGeneralFirstExam?.date}</time>
+              <time datetime={earliestGeneralFirstExam?.dateTime}>{earliestGeneralFirstExam?.date}～</time>
               <small>2027年</small>
             </strong>
-            <p>{overviewUniversityNames(earliestGeneralFirstExam, "firstExam")}・一般選抜<br />1/21〜23のうち1〜3日受験可</p>
+            <p>{overviewUniversityNames(earliestGeneralFirstExam, "firstExam")}（初日）</p>
           </article>
         </div>
 
