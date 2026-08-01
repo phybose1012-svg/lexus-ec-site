@@ -636,9 +636,11 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 .admissions-stat-grid article > span {
   display: block;
   margin-bottom: 12px;
-  color: #756b62;
-  font-size: 0.75rem;
-  font-weight: 800;
+  color: #352d28;
+  font-size: 0.86rem;
+  font-weight: 900;
+  line-height: 1.45;
+  letter-spacing: 0.02em;
 }
 
 .admissions-stat-grid strong {
@@ -667,10 +669,10 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 
 .admissions-stat-grid__date-card strong {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 5px;
+  align-items: center;
+  gap: 10px;
   letter-spacing: -0.04em;
+  white-space: nowrap;
 }
 
 .admissions-stat-grid__date-card strong small {
@@ -2566,6 +2568,15 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 
   .admissions-stat-grid strong {
     font-size: 2.7rem;
+  }
+
+  .admissions-stat-grid__date-card strong {
+    gap: 4px;
+    font-size: 2.25rem;
+  }
+
+  .admissions-stat-grid__date-card strong small {
+    font-size: 0.6rem;
   }
 
   .admissions-stat-grid p {
