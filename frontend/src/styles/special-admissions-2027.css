@@ -81,7 +81,7 @@
 .special-admissions-hero__summary > a { color: var(--admissions-red); font-size: 0.82rem; font-weight: 900; }
 
 .special-admissions-jump-nav .admissions-jump-nav__inner {
-  grid-template-columns: repeat(7, minmax(92px, 1fr));
+  grid-template-columns: repeat(6, minmax(92px, 1fr));
   overflow-x: auto;
   scrollbar-width: thin;
 }
@@ -92,7 +92,11 @@
   background: #fff;
 }
 
-.special-route-types,
+.special-route-types {
+  padding: clamp(80px, 9vw, 128px) 0;
+  background: #fff;
+}
+
 .special-sources {
   padding: clamp(72px, 8vw, 120px) 0;
   background: #fff;
@@ -287,49 +291,55 @@
 
 .special-route-type-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(22px, 2.2vw, 26px);
+  scroll-margin-top: 78px;
 }
 
 .special-route-type {
-  display: flex;
-  flex-direction: column;
+  --route-accent: #8a3431;
+  --route-tint: #fff4f2;
+  display: grid;
+  grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
+  gap: 0 clamp(24px, 3vw, 40px);
+  align-items: start;
   border: 1px solid var(--special-border);
-  border-top: 4px solid #8a3431;
-  padding: 20px;
-  background: #fff;
+  border-left: 7px solid var(--route-accent);
+  border-radius: 6px;
+  padding: clamp(22px, 3vw, 32px);
+  background: linear-gradient(100deg, var(--route-tint) 0, #fff 42%);
+  box-shadow: 0 14px 34px rgba(49, 39, 31, 0.08);
 }
 
-.special-route-type--recommendation { border-top-color: #315f96; }
-.special-route-type--designated { border-top-color: #765025; }
-.special-route-type--regional { border-top-color: #2e7355; }
-.special-route-type--returnee { border-top-color: #6e4e8e; }
-.special-route-type--ib { border-top-color: #236c78; }
-.special-route-type--international { border-top-color: #8a466d; }
-.special-route-type--special { border-top-color: #575d64; }
-.special-route-type header { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
-.special-route-type header > span { font-size: 1rem; font-weight: 900; }
-.special-route-type header strong { color: var(--admissions-red); font-size: 1.8rem; }
+.special-route-type--recommendation { --route-accent: #315f96; --route-tint: #f2f7fd; }
+.special-route-type--designated { --route-accent: #765025; --route-tint: #fff8ed; }
+.special-route-type--regional { --route-accent: #2e7355; --route-tint: #f0f9f4; }
+.special-route-type--returnee { --route-accent: #6e4e8e; --route-tint: #f8f2fc; }
+.special-route-type--ib { --route-accent: #236c78; --route-tint: #eff9fa; }
+.special-route-type--international { --route-accent: #8a466d; --route-tint: #fcf2f8; }
+.special-route-type--special { --route-accent: #575d64; --route-tint: #f5f6f7; }
+.special-route-type__intro { min-width: 0; border-right: 1px solid rgba(117, 96, 79, 0.2); padding-right: clamp(20px, 2.5vw, 34px); }
+.special-route-type header { display: grid; grid-template: "number count" auto "title count" auto / minmax(0, 1fr) auto; column-gap: 14px; align-items: end; }
+.special-route-type__number { grid-area: number; color: var(--route-accent); font-size: 0.66rem; font-weight: 900; letter-spacing: 0.16em; }
+.special-route-type h3 { grid-area: title; min-width: 0; margin: 4px 0 0; color: var(--special-ink); font-size: clamp(1.2rem, 1.8vw, 1.48rem); line-height: 1.35; }
+.special-route-type header strong { grid-area: count; display: flex; align-items: baseline; gap: 4px; color: var(--route-accent); font-size: clamp(2rem, 3vw, 2.55rem); line-height: 1; }
 .special-route-type header small { color: var(--special-muted); font-size: 0.65rem; }
-.special-route-type > p { min-height: 6.5em; margin: 12px 0; color: var(--special-muted); font-size: 0.76rem; line-height: 1.7; }
+.special-route-type__intro > p { margin: 18px 0 0; color: var(--special-muted); font-size: 0.78rem; line-height: 1.75; }
 .special-route-type__university-list {
-  max-height: 360px;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-color: #b98c87 #f4efeb;
-  scrollbar-gutter: stable;
-  scrollbar-width: thin;
-  border-block: 1px solid var(--special-border);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px 18px;
+  align-content: start;
+  min-width: 0;
 }
-.special-route-type__university-list:focus-visible { outline: 3px solid rgba(138, 52, 49, 0.3); outline-offset: 2px; }
-.special-route-type__university-list > ul { margin: 0; padding: 0; list-style: none; }
-.special-route-type__university { padding: 12px 4px 12px 0; }
-.special-route-type__university + .special-route-type__university { border-top: 1px solid var(--special-border); }
-.special-route-type__university > a { color: var(--special-ink); font-size: 0.78rem; font-weight: 900; }
+.special-route-type__university-list > h4 { margin: 0; color: var(--route-accent); font-size: 0.78rem; letter-spacing: 0.08em; }
+.special-route-type__university-count { margin: 0; color: var(--special-muted); font-size: 0.68rem; font-weight: 800; text-align: right; }
+.special-route-type__university-list > ul { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 10px 12px; margin: 0; padding: 0; list-style: none; }
+.special-route-type__university { min-width: 0; border: 1px solid #e3ddd6; border-radius: 4px; padding: 12px 13px; background: rgba(255, 255, 255, 0.88); }
+.special-route-type__university > a { color: var(--special-ink); font-size: 0.82rem; font-weight: 900; line-height: 1.45; overflow-wrap: anywhere; }
 .special-route-type__route-list { display: grid; gap: 4px; margin: 7px 0 0; padding: 0; list-style: none; }
-.special-route-type__route-list li { position: relative; padding-left: 1em; color: var(--special-muted); font-size: 0.65rem; line-height: 1.5; }
+.special-route-type__route-list li { position: relative; min-width: 0; padding-left: 1em; color: var(--special-muted); font-size: 0.67rem; line-height: 1.5; overflow-wrap: anywhere; }
 .special-route-type__route-list li::before { position: absolute; left: 0; content: "・"; }
-.special-route-type__scroll-note { margin-top: 9px; color: var(--special-muted); font-size: 0.62rem; font-weight: 800; text-align: right; }
 
 .special-status,
 .special-publication {
@@ -461,19 +471,30 @@
 .special-sources li a { color: var(--admissions-red); font-size: 0.68rem; font-weight: 900; }
 
 @media (max-width: 1100px) {
-  .special-route-type-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .special-route-conditions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .special-route-conditions > div { border-bottom: 1px solid var(--special-border); }
   .special-route-milestones { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .special-route-milestone { border-bottom: 1px solid var(--special-border); }
 }
 
+@media (max-width: 900px) {
+  .special-route-type {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    background: linear-gradient(155deg, var(--route-tint) 0, #fff 34%);
+  }
+
+  .special-route-type__intro {
+    border-right: 0;
+    border-bottom: 1px solid rgba(117, 96, 79, 0.2);
+    padding: 0 0 18px;
+  }
+}
+
 @media (max-width: 760px) {
   .special-admissions-hero .admissions-hero__grid { grid-template-columns: 1fr; }
   .special-admissions-hero h1 { font-size: clamp(1.8rem, 9vw, 2.85rem); }
   .special-sources ol { grid-template-columns: 1fr; }
-  .special-route-type-grid { grid-template-columns: 1fr; }
-  .special-route-type > p { min-height: 0; }
   .special-route-card > header { display: block; }
   .special-route-card__badges { justify-content: flex-start; max-width: none; margin-top: 12px; }
   .special-route-conditions { grid-template-columns: 1fr; }
@@ -525,6 +546,17 @@
   }
 }
 
+@media (max-width: 520px) {
+  .special-route-type {
+    border-left-width: 6px;
+    padding: 18px 16px;
+  }
+
+  .special-route-type__university-list > ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 @media (max-width: 460px) {
   .special-route-milestones { grid-template-columns: 1fr; }
   .special-sources li { grid-template-columns: 32px minmax(0, 1fr); }
@@ -540,8 +572,20 @@
   body.is-printing-admissions-section .special-admissions-calendar-section .admissions-calendar-exams {
     width: calc((100% - 18mm) / 3);
   }
+  body.is-printing-admissions-section .special-route-type-grid { display: block; }
+  body.is-printing-admissions-section .special-route-type { display: block; margin-bottom: 4mm; border: var(--admissions-print-rule); border-left: 2mm solid var(--route-accent); border-radius: 0; padding: 4mm; background: #fff; box-shadow: none; break-inside: auto; page-break-inside: auto; }
+  body.is-printing-admissions-section .special-route-type__intro { border: 0; padding: 0; }
+  body.is-printing-admissions-section .special-route-type header { break-after: avoid-page; }
+  body.is-printing-admissions-section .special-route-type__intro > p { margin: 1.5mm 0 2.5mm; color: #222; font-size: 7pt; line-height: 1.5; }
+  body.is-printing-admissions-section .special-route-type__university-list { display: block; }
+  body.is-printing-admissions-section .special-route-type__university-list > h4 { margin-bottom: 1.5mm; color: #111; }
+  body.is-printing-admissions-section .special-route-type__university-count { display: none; }
+  body.is-printing-admissions-section .special-route-type__university-list > ul { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5mm; }
+  body.is-printing-admissions-section .special-route-type__university { border: var(--admissions-print-rule); border-radius: 0; padding: 2mm; background: #fff; break-inside: avoid-page; page-break-inside: avoid; }
+  body.is-printing-admissions-section .special-route-type__university > a { color: #111; font-size: 6.5pt; }
+  body.is-printing-admissions-section .special-route-type__route-list { gap: 0.5mm; margin-top: 1mm; }
+  body.is-printing-admissions-section .special-route-type__route-list li { color: #222; font-size: 5.5pt; line-height: 1.35; }
   body.is-printing-admissions-section .special-sources ol { grid-template-columns: 1fr 1fr; gap: 2.5mm; }
-  body.is-printing-admissions-section .special-route-type,
   body.is-printing-admissions-section .special-sources li { break-inside: avoid-page; box-shadow: none; }
   body.is-printing-admissions-section .special-deadline-entry__methods { gap: 0.5mm; font-size: 6.5pt; }
   body.is-printing-admissions-section .special-deadline-entry__details { grid-template-columns: repeat(2, minmax(0, 1fr)); }

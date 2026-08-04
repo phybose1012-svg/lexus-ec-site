@@ -346,6 +346,12 @@ const milestoneEvents = (events: SpecialAdmissionEvent[], stage: SpecialAdmissio
 
 const updateHistory = [
   {
+    date: "2026年8月5日",
+    iso: "2026-08-05",
+    title: "概要を方式別一覧に刷新",
+    detail: "8方式の特徴と採用大学を、内部スクロールのない横長カードで確認できる構成に変更しました。",
+  },
+  {
     date: "2026年8月4日",
     iso: "2026-08-04",
     title: "選抜方式の対象区分を再整理",
@@ -533,28 +539,56 @@ const structuredData = {
       <div class="content admissions-jump-nav__inner">
         {[
           ["summary", "概要"], ["deadlines", "出願締切"], ["exam-calendar", "試験日"],
-          ["route-types", "方式別"], ["universities", "31大学"], ["full-calendar", "全日程"], ["sources", "公式資料"],
+          ["universities", "31大学"], ["full-calendar", "全日程"], ["sources", "公式資料"],
         ].map(([id, label], index) => (
           <a href={`#${id}`}><span class="admissions-jump-nav__index">{String(index + 1).padStart(2, "0")}</span><span class="admissions-jump-nav__label">{label}</span></a>
         ))}
       </div>
     </nav>
 
-    <section class="admissions-overview" id="summary" aria-labelledby="summary-title">
+    <section class="admissions-overview special-route-types" id="summary" aria-labelledby="summary-title">
       <div class="content">
         <div class="admissions-section-heading admissions-section-heading--split">
-          <div><p>AT A GLANCE</p><h2 id="summary-title">掲載範囲と公表状況</h2></div>
-          <p class="admissions-heading-note">2027年3月卒業見込みの高校生が出願できる方式</p>
+          <div><p>ADMISSION TYPES</p><h2 id="summary-title">概要</h2></div>
+          <p class="admissions-heading-note">名称だけで判断せず、公式の出願資格と選抜区分に基づいて分類しています。</p>
         </div>
-        <div class="admissions-stat-grid special-admissions-stat-grid">
-          <article><span>全国の私立医学部</span><strong>{privateMedicalSpecialAdmissionsSummary2027.universityCount}<small>大学</small></strong><p>全校を対象方式あり・未公表・なしで分類</p></article>
-          <article><span>掲載中</span><strong>{privateMedicalSpecialAdmissionsSummary2027.routeCount}<small>方式</small></strong><p>公式方式名と出願条件を保持</p></article>
-          <article><span>日付イベント</span><strong>{privateMedicalSpecialAdmissionsCalendar2027.reduce((sum, day) => sum + day.events.length, 0)}<small>件</small></strong><p>正規化日付から各一覧を生成</p></article>
-          <article><span>公式資料</span><strong>{privateMedicalSpecialAdmissionsSourceUrls2027.length}<small>URL</small></strong><p>大学公式要項・概要を優先</p></article>
-        </div>
-        <div class="admissions-notice admissions-notice--guideline" role="note">
-          <span aria-hidden="true">!</span>
-          <div><strong>未公表の日付は、前年情報で埋めていません</strong><p>「概要公表済み」は、2027年度の大学公式概要で確認できた範囲です。必着・消印、対象校、評定、地域勤務などの正式条件は、出願前に完成版の学生募集要項で再確認してください。</p><p class="admissions-notice__required">認可申請中・予定・対象校通知のみの方式は、表示内容が変更される場合があります。</p></div>
+        <div class="special-route-type-grid" id="route-types">
+          {categoryEntries.map((entry, index) => {
+            const titleId = `route-type-${entry.category}-title`;
+            return (
+              <article
+                class={`special-route-type special-route-type--${entry.category}`}
+                data-category={entry.category}
+                data-university-count={entry.universities.length}
+                aria-labelledby={titleId}
+              >
+                <div class="special-route-type__intro">
+                  <header>
+                    <span class="special-route-type__number">{String(index + 1).padStart(2, "0")}</span>
+                    <h3 id={titleId}>{entry.label}</h3>
+                    <strong>{entry.universities.length}<small>大学</small></strong>
+                  </header>
+                  <p>{entry.description}</p>
+                </div>
+                <div class="special-route-type__university-list" data-category-university-list>
+                  <h4>採用大学と方式</h4>
+                  <p class="special-route-type__university-count">全{entry.universities.length}大学を掲載</p>
+                  <ul>
+                    {entry.universities.map(({ university, routes }) => (
+                      <li class="special-route-type__university" data-category-university>
+                        <a href={`#${university.id}`}>{university.name}</a>
+                        <ul class="special-route-type__route-list">
+                          {routes.map((route) => (
+                            <li data-category-route data-route-key={`${university.id}/${route.id}`}>{route.officialName}</li>
+                          ))}
+                        </ul>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -762,33 +796,6 @@ const structuredData = {
       </div>
     </section>
 
-    <section class="special-route-types" id="route-types" aria-labelledby="route-types-title">
-      <div class="content">
-        <div class="admissions-section-heading"><p>ROUTE TYPES</p><h2 id="route-types-title">方式別に対象大学を見る</h2><p>名称だけで判断せず、公式の出願資格と選抜区分に基づいて分類しています。</p></div>
-        <div class="special-route-type-grid">
-          {categoryEntries.map((entry) => (
-            <article class={`special-route-type special-route-type--${entry.category}`} data-category={entry.category} data-university-count={entry.universities.length}>
-              <header><span>{entry.label}</span><strong>{entry.universities.length}<small>大学</small></strong></header>
-              <p>{entry.description}</p>
-              <div class="special-route-type__university-list" data-category-university-list tabindex="0" role="region" aria-label={`${entry.label}の対象大学一覧（全${entry.universities.length}大学）`}>
-                <ul>
-                  {entry.universities.map(({ university, routes }) => (
-                    <li class="special-route-type__university" data-category-university>
-                      <a href={`#${university.id}`}>{university.name}</a>
-                      <ul class="special-route-type__route-list">
-                        {routes.map((route) => <li data-category-route>{route.officialName}</li>)}
-                      </ul>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <small class="special-route-type__scroll-note">全{entry.universities.length}大学を掲載{entry.universities.length > 5 ? "・一覧内をスクロール" : ""}</small>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
     <AdmissionsBrandDivider variant="yuki" />
 
     <section class="admissions-universities special-admissions-universities" id="universities" aria-labelledby="universities-title">
@@ -953,7 +960,7 @@ const structuredData = {
         const printHeading = document.querySelector("[data-print-document-title]");
         if (printHeading instanceof HTMLElement) {
           printHeadingBeforePrint = printHeading.textContent;
-          printHeading.textContent = `${document.title}｜最終更新：${printHeadingBeforePrint?.split("｜最終更新：")[1] || "2026年8月4日"}`;
+          printHeading.textContent = `${document.title}｜最終更新：${printHeadingBeforePrint?.split("｜最終更新：")[1] || "2026年8月5日"}`;
         }
         window.print();
       }));

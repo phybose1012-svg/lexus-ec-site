@@ -111,6 +111,9 @@ const pageSourcePath = fileURLToPath(
     import.meta.url,
   ),
 );
+const styleSourcePath = fileURLToPath(
+  new URL("../src/styles/special-admissions-2027.css", import.meta.url),
+);
 const datasetEndpointSourcePath = fileURLToPath(
   new URL(
     "../src/pages/data/private-medical-special-admissions-2027.json.ts",
@@ -686,7 +689,7 @@ test("生成ページの締切・試験日表示は集約後も全方式と選�
 
   const html = readFileSync(builtPagePath, "utf8");
   const deadlineSection = sectionBetween(html, "deadlines", "exam-calendar");
-  const examSection = sectionBetween(html, "exam-calendar", "route-types");
+  const examSection = sectionBetween(html, "exam-calendar", "universities");
   const deadlineEvents = privateMedicalSpecialAdmissionsEvents2027.filter(
     (event) => event.stage === "application-deadline",
   );
@@ -1026,16 +1029,181 @@ test("固定ページのslugとJSONエンドポイント契約が一致", () => 
   }
 });
 
-test("方式別一覧は大学単位に集約して全大学をスクロール表示する", () => {
+test("方式別一覧は01概要内で8方式・全大学・全93方式を省略せず描画する", () => {
   const pageSource = readFileSync(pageSourcePath, "utf8");
+  const summarySource = sectionBetween(pageSource, "summary", "deadlines");
+  const universityListTag = openingTagWithClass(
+    summarySource,
+    "special-route-type__university-list",
+  );
 
-  assert.match(pageSource, /方式別に対象大学を見る/);
-  assert.match(pageSource, /entry\.universities\.length}<small>大学<\/small>/);
-  assert.match(pageSource, /data-category-university-list/);
-  assert.match(pageSource, /entry\.universities\.map\(\(\{ university, routes \}\)/);
-  assert.match(pageSource, /routes\.map\(\(route\)/);
-  assert.doesNotMatch(pageSource, /entry\.routes\.slice\(/);
-  assert.doesNotMatch(pageSource, /ほか\{entry\.routes\.length/);
+  assert.equal(Object.keys(specialAdmissionCategoryLabels).length, 8);
+  assert.equal(privateMedicalSpecialAdmissionsRoutes2027.length, 93);
+  assert.match(summarySource, /<h2\b[^>]*id="summary-title"[^>]*>概要<\/h2>/u);
+  assert.match(summarySource, /class="special-route-type-grid"/u);
+  assert.match(summarySource, /categoryEntries\.map\(\(entry, index\)/u);
+  assert.match(summarySource, /\{entry\.universities\.length\}<small>大学<\/small>/u);
+  assert.match(summarySource, /entry\.universities\.map\(\(\{ university, routes \}\)/u);
+  assert.match(summarySource, /routes\.map\(\(route\)/u);
+  assert.match(summarySource, /\bdata-category-university\b/u);
+  assert.match(summarySource, /\bdata-route-key=/u);
+  assert.match(summarySource, /aria-labelledby=\{titleId\}/u);
+  assert.match(summarySource, /<h3 id=\{titleId\}>/u);
+  assert.doesNotMatch(pageSource, /<section\b[^>]*\bid="route-types"[^>]*>/u);
+  assert.doesNotMatch(summarySource, /entry\.routes\.slice\(|ほか\{entry\.routes\.length/u);
+  assert.ok(universityListTag, "方式別の大学一覧コンテナがありません");
+  assert.doesNotMatch(universityListTag, /\btabindex=/u);
+  assert.doesNotMatch(universityListTag, /\brole=/u);
+  assert.doesNotMatch(
+    summarySource,
+    /special-route-type__scroll-note|一覧内をスクロール/u,
+  );
+});
+
+test("生成ページの01概要は6項目ナビと方式別全件データを保持する", () => {
+  if (!existsSync(builtPagePath)) return;
+
+  const html = readFileSync(builtPagePath, "utf8");
+  const summaryHtml = sectionBetween(html, "summary", "deadlines");
+  const navHtml = html.match(
+    /<nav\b(?=[^>]*class="[^"]*\bspecial-admissions-jump-nav\b[^"]*")[^>]*>[\s\S]*?<\/nav>/u,
+  )?.[0];
+  const expectedNavHrefs = [
+    "#summary",
+    "#deadlines",
+    "#exam-calendar",
+    "#universities",
+    "#full-calendar",
+    "#sources",
+  ];
+
+  assert.ok(navHtml, "ページ内ナビを取得できません");
+  assert.deepEqual(attributeValues(navHtml, "href"), expectedNavHrefs);
+  assert.deepEqual(
+    [...navHtml.matchAll(
+      /<span\b[^>]*class="[^"]*\badmissions-jump-nav__index\b[^"]*"[^>]*>\s*(\d{2})\s*<\/span>/gu,
+    )].map((match) => match[1]),
+    ["01", "02", "03", "04", "05", "06"],
+  );
+  assert.doesNotMatch(navHtml, /href="#route-types"/u);
+  assert.match(summaryHtml, /class="[^"]*\bspecial-route-type-grid\b[^"]*"/u);
+  assert.doesNotMatch(html, /<section\b[^>]*\bid="route-types"[^>]*>/u);
+
+  const expectedByCategory = new Map(
+    Object.keys(specialAdmissionCategoryLabels).map((category) => [category, new Map()]),
+  );
+  for (const { university, route } of privateMedicalSpecialAdmissionsRoutes2027) {
+    const categoryUniversities = expectedByCategory.get(route.category);
+    assert.ok(categoryUniversities, `${route.category}: 未定義の方式分類です`);
+    const keys = categoryUniversities.get(university.id) ?? new Set();
+    keys.add(`${university.id}/${route.id}`);
+    categoryUniversities.set(university.id, keys);
+  }
+
+  const cards = [...summaryHtml.matchAll(
+    /(<article\b[^>]*\bdata-category="([^"]+)"[^>]*>)([\s\S]*?)<\/article>/gu,
+  )];
+  assert.equal(cards.length, 8, "概要内の方式分類カードは8件である必要があります");
+  assertSameSet(
+    new Set(cards.map((match) => match[2])),
+    new Set(expectedByCategory.keys()),
+    "生成ページの方式分類に過不足があります",
+  );
+
+  const renderedRouteKeys = [];
+  for (const [, openingTag, category, body] of cards) {
+    const expectedUniversities = expectedByCategory.get(category);
+    assert.ok(expectedUniversities, `${category}: 想定外の方式分類カードです`);
+    const declaredUniversityCount = Number(
+      openingTag.match(/\bdata-university-count="(\d+)"/u)?.[1],
+    );
+    const renderedUniversityCount = [
+      ...body.matchAll(/<li\b[^>]*\bdata-category-university(?:="[^"]*")?[^>]*>/gu),
+    ].length;
+    const categoryRouteKeys = attributeValues(body, "data-route-key");
+    const expectedRouteKeys = new Set(
+      [...expectedUniversities.values()].flatMap((keys) => [...keys]),
+    );
+
+    assert.equal(
+      declaredUniversityCount,
+      expectedUniversities.size,
+      `${category}: data-university-count が元データと一致しません`,
+    );
+    assert.equal(
+      renderedUniversityCount,
+      expectedUniversities.size,
+      `${category}: 大学を省略せず大学単位で描画してください`,
+    );
+    assertSameSet(
+      new Set(categoryRouteKeys),
+      expectedRouteKeys,
+      `${category}: 描画された方式に過不足があります`,
+    );
+    renderedRouteKeys.push(...categoryRouteKeys);
+  }
+
+  assert.equal(renderedRouteKeys.length, 93);
+  assertSameSet(
+    new Set(renderedRouteKeys),
+    new Set(
+      privateMedicalSpecialAdmissionsRoutes2027.map(({ university, route }) =>
+        `${university.id}/${route.id}`,
+      ),
+    ),
+    "概要内に全93方式を重複・省略なく描画してください",
+  );
+
+  const universityListTags = [...summaryHtml.matchAll(
+    /<div\b[^>]*class="[^"]*\bspecial-route-type__university-list\b[^"]*"[^>]*>/gu,
+  )].map((match) => match[0]);
+  assert.equal(universityListTags.length, 8);
+  for (const tag of universityListTags) {
+    assert.doesNotMatch(tag, /\btabindex=/u);
+    assert.doesNotMatch(tag, /\brole=/u);
+  }
+  assert.doesNotMatch(
+    summaryHtml,
+    /special-route-type__scroll-note|一覧内をスクロール/u,
+  );
+});
+
+test("方式別一覧のCSSは内部スクロールを設けず横長カードで表示する", () => {
+  const styleSource = readFileSync(styleSourcePath, "utf8");
+  const navRule = styleSource.match(
+    /\.special-admissions-jump-nav \.admissions-jump-nav__inner\s*\{([^}]*)\}/u,
+  )?.[1];
+  const gridRule = styleSource.match(
+    /(?:^|\n)\.special-route-type-grid\s*\{([^}]*)\}/u,
+  )?.[1];
+  const cardRule = styleSource.match(
+    /(?:^|\n)\.special-route-type\s*\{([^}]*)\}/u,
+  )?.[1];
+  const universityListRule = styleSource.match(
+    /(?:^|\n)\.special-route-type__university-list\s*\{([^}]*)\}/u,
+  )?.[1];
+
+  assert.ok(navRule, "ページ内ナビのCSSルールがありません");
+  assert.match(navRule, /grid-template-columns\s*:\s*repeat\(6,/u);
+  assert.ok(gridRule, "方式別グリッドのCSSルールがありません");
+  assert.match(gridRule, /display\s*:\s*grid/u);
+  assert.match(
+    gridRule,
+    /grid-template-columns\s*:\s*minmax\(\s*0\s*,\s*1fr\s*\)/u,
+  );
+  assert.ok(cardRule, "方式別カードのCSSルールがありません");
+  assert.match(cardRule, /display\s*:\s*grid/u);
+  const cardColumns = cardRule.match(/grid-template-columns\s*:\s*([^;]+);/u)?.[1];
+  assert.ok(cardColumns, "方式別カードに横方向の列定義がありません");
+  assert.ok(
+    (cardColumns.match(/minmax\(/gu) ?? []).length >= 2,
+    "デスクトップでは説明と大学一覧を横並びにしてください",
+  );
+  assert.ok(universityListRule, "方式別の大学一覧CSSルールがありません");
+  assert.doesNotMatch(
+    universityListRule,
+    /max-height\s*:|overflow-y\s*:\s*auto|scrollbar(?:-width|-color|-gutter)?\s*:/iu,
+  );
 });
 
 test("大学別一覧には対象外として確認した方式を表示しない", () => {
