@@ -211,6 +211,7 @@ type ExamDisplayEntry = {
   routeKeys: string[];
   routeNames: string[];
   stage: "first-exam" | "second-exam";
+  column: "single-exam" | "first-exam" | "second-exam";
   category: SpecialAdmissionCategory;
   label: string;
   sequence?: number;
@@ -218,33 +219,52 @@ type ExamDisplayEntry = {
   sourceUrl: string;
 };
 type ExamDateBucket = {
+  single: Map<string, ExamDisplayEntry>;
   first: Map<string, ExamDisplayEntry>;
   second: Map<string, ExamDisplayEntry>;
 };
 
+const examRouteKey = (entry: (typeof privateMedicalSpecialAdmissionsExamEvents2027)[number]) =>
+  `${entry.universityId}/${entry.routeId}`;
+const routesWithSecondExam = new Set(
+  privateMedicalSpecialAdmissionsExamEvents2027
+    .filter((entry) => entry.stage === "second-exam")
+    .map(examRouteKey),
+);
+
 const examDateBuckets = new Map<string, ExamDateBucket>();
 privateMedicalSpecialAdmissionsExamEvents2027.forEach((entry) => {
   const stage = entry.stage === "first-exam" ? "first-exam" : "second-exam";
+  const routeKey = examRouteKey(entry);
+  const column = routesWithSecondExam.has(routeKey) ? stage : "single-exam";
   const dateBucket = examDateBuckets.get(entry.date) ?? {
+    single: new Map<string, ExamDisplayEntry>(),
     first: new Map<string, ExamDisplayEntry>(),
     second: new Map<string, ExamDisplayEntry>(),
   };
   const eventKey = JSON.stringify([
     entry.universityId,
     stage,
+    column,
     entry.category,
     entry.label,
     entry.sequence ?? null,
     entry.choiceRule ?? null,
     entry.sourceUrl,
   ]);
-  const stageBucket = stage === "first-exam" ? dateBucket.first : dateBucket.second;
+  const stageBucket =
+    column === "single-exam"
+      ? dateBucket.single
+      : column === "first-exam"
+        ? dateBucket.first
+        : dateBucket.second;
   const displayEntry: ExamDisplayEntry = stageBucket.get(eventKey) ?? {
     universityId: entry.universityId,
     university: entry.university,
     routeKeys: [],
     routeNames: [],
     stage,
+    column,
     category: entry.category,
     label: entry.label,
     sequence: entry.sequence,
@@ -252,7 +272,6 @@ privateMedicalSpecialAdmissionsExamEvents2027.forEach((entry) => {
     sourceUrl: entry.sourceUrl,
   };
 
-  const routeKey = `${entry.universityId}/${entry.routeId}`;
   if (!displayEntry.routeKeys.includes(routeKey)) {
     displayEntry.routeKeys.push(routeKey);
   }
@@ -273,6 +292,13 @@ const examGroups = [...examDateBuckets.entries()]
   .map(([date, entries]) => ({
     date,
     ...calendarDateParts(date),
+    single: [...entries.single.values()]
+      .map((entry) => ({
+        ...entry,
+        routeKeys: [...entry.routeKeys].sort((a, b) => a.localeCompare(b)),
+        routeNames: [...entry.routeNames].sort((a, b) => a.localeCompare(b, "ja")),
+      }))
+      .sort(examEntrySort),
     first: [...entries.first.values()]
       .map((entry) => ({
         ...entry,
@@ -615,30 +641,61 @@ const structuredData = {
     <section class="admissions-calendar-section special-admissions-calendar-section" id="exam-calendar" aria-labelledby="exam-calendar-title">
       <div class="content">
         <div class="admissions-section-heading admissions-section-heading--light admissions-section-heading--printable">
-          <div><p>EXAM CALENDAR</p><h2 id="exam-calendar-title">試験日を日付順に見る</h2><p>一次、二次、共通テストを使う総合型・特別選抜も、公式の選抜段階どおりに表示します。</p></div>
+          <div><p>EXAM CALENDAR</p><h2 id="exam-calendar-title">試験日を日付順に見る</h2><p>一段階で完結する選考と、複数段階方式の一次・二次選考を分けて表示します。</p></div>
           <button type="button" class="admissions-print-button" data-print-section="exam-calendar" data-print-title="2027年度 私立医学部 総合型・学校推薦型 試験日一覧"><span aria-hidden="true">⎙</span>このセクションを印刷</button>
         </div>
         <div
           class="admissions-calendar-viewport"
           tabindex="0"
           role="region"
-          aria-label="2027年度私立医学部 総合型・学校推薦型 一次・二次試験カレンダー"
+          aria-label="2027年度私立医学部 総合型・学校推薦型 一段階・一次・二次選考カレンダー"
         >
-          <div class="admissions-calendar-head" aria-hidden="true">
-            <span>日付</span>
-            <span>一次試験</span>
-            <span>二次試験</span>
-          </div>
+          <div role="table" aria-label="試験日・選考段階別一覧">
+            <div class="admissions-calendar-head" role="row">
+              <span role="columnheader">日付</span>
+              <span role="columnheader">一段階選考</span>
+              <span role="columnheader">一次選考</span>
+              <span role="columnheader">二次選考</span>
+            </div>
 
-          <div class="admissions-calendar-list">
-            {examGroups.map((group) => (
-              <article class="admissions-calendar-row">
-                <div class="admissions-calendar-date">
+            <div class="admissions-calendar-list" role="rowgroup">
+              {examGroups.map((group) => (
+                <article class="admissions-calendar-row" role="row">
+                <time class="admissions-calendar-date" role="rowheader" datetime={group.date}>
                   <small class="special-calendar-date__year">{group.year}年</small>
                   <strong>{group.monthDay}</strong>
                   <span>{group.weekday}</span>
+                </time>
+                <div class="admissions-calendar-exams" role="cell" aria-label="一段階選考" data-heading="一段階選考" data-exam-column="single-exam" data-display-column="single-exam">
+                  {group.single.length > 0 ? (
+                    <ul>
+                      {group.single.map((entry) => (
+                        <li
+                          class="special-calendar-entry"
+                          data-exam-entry={entry.routeKeys.join(" ")}
+                          data-route-keys={entry.routeKeys.join(" ")}
+                          data-stage={entry.stage}
+                          data-display-column={entry.column}
+                        >
+                          <div class="special-calendar-entry__header">
+                            <span class={`special-category special-category--${entry.category}`}>{specialAdmissionCategoryLabels[entry.category]}</span>
+                            <a href={`#${entry.universityId}`}>{entry.university}</a>
+                          </div>
+                          <strong class="special-calendar-entry__route">{entry.routeNames.join("／")}</strong>
+                          <small class="special-calendar-entry__meta">
+                            <span>{entry.label}</span>
+                            {entry.sequence && <span>日程順：{entry.sequence}</span>}
+                            {entry.choiceRule && <span>{entry.choiceRule}</span>}
+                            <a href={entry.sourceUrl} target="_blank" rel="noopener noreferrer">公式資料</a>
+                          </small>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <span class="admissions-calendar-empty">—</span>
+                  )}
                 </div>
-                <div class="admissions-calendar-exams" data-heading="一次試験" data-exam-column="first-exam">
+                <div class="admissions-calendar-exams" role="cell" aria-label="一次選考" data-heading="一次選考" data-exam-column="first-exam" data-display-column="first-exam">
                   {group.first.length > 0 ? (
                     <ul>
                       {group.first.map((entry) => (
@@ -647,6 +704,7 @@ const structuredData = {
                           data-exam-entry={entry.routeKeys.join(" ")}
                           data-route-keys={entry.routeKeys.join(" ")}
                           data-stage={entry.stage}
+                          data-display-column={entry.column}
                         >
                           <div class="special-calendar-entry__header">
                             <span class={`special-category special-category--${entry.category}`}>{specialAdmissionCategoryLabels[entry.category]}</span>
@@ -666,7 +724,7 @@ const structuredData = {
                     <span class="admissions-calendar-empty">—</span>
                   )}
                 </div>
-                <div class="admissions-calendar-exams" data-heading="二次試験" data-exam-column="second-exam">
+                <div class="admissions-calendar-exams" role="cell" aria-label="二次選考" data-heading="二次選考" data-exam-column="second-exam" data-display-column="second-exam">
                   {group.second.length > 0 ? (
                     <ul>
                       {group.second.map((entry) => (
@@ -675,6 +733,7 @@ const structuredData = {
                           data-exam-entry={entry.routeKeys.join(" ")}
                           data-route-keys={entry.routeKeys.join(" ")}
                           data-stage={entry.stage}
+                          data-display-column={entry.column}
                         >
                           <div class="special-calendar-entry__header">
                             <span class={`special-category special-category--${entry.category}`}>{specialAdmissionCategoryLabels[entry.category]}</span>
@@ -694,11 +753,12 @@ const structuredData = {
                     <span class="admissions-calendar-empty">—</span>
                   )}
                 </div>
-              </article>
-            ))}
+                </article>
+              ))}
+            </div>
           </div>
         </div>
-        <p class="admissions-calendar-caption">※試験日が公表されている日だけを表示しています。同一大学・同一日・同一選考内容の方式はまとめて掲載し、日程順と受験日の選択条件は公式情報どおりに併記しています。</p>
+        <p class="admissions-calendar-caption">※試験日が公表されている日だけを表示しています。「一段階選考」は、試験イベントが一次選考だけで完結する方式です。書類審査などを一次選考とし、試験イベントが二次選考として公表されている方式は「二次選考」に表示します。同一大学・同一日・同一選考内容の方式はまとめ、日程順と受験日の選択条件も併記しています。</p>
       </div>
     </section>
 

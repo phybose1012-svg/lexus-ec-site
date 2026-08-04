@@ -209,13 +209,28 @@ const buildDeadlineDisplayEntries = (events) => {
 
 const buildExamDisplayEntries = (events) => {
   const groupedEntries = new Map();
-  for (const event of events.filter(
+  const examEvents = events.filter(
     (entry) => entry.stage === "first-exam" || entry.stage === "second-exam",
-  )) {
+  );
+  const routesWithSecondExam = new Set(
+    examEvents
+      .filter((entry) => entry.stage === "second-exam")
+      .map(flatEventRouteKey),
+  );
+
+  for (const event of examEvents) {
+    const eventRouteKey = flatEventRouteKey(event);
+    const displayColumn =
+      event.stage === "second-exam"
+        ? "second-exam"
+        : routesWithSecondExam.has(eventRouteKey)
+          ? "first-exam"
+          : "single-exam";
     const groupKey = [
       event.date,
       event.universityId,
       event.stage,
+      displayColumn,
       event.label,
       event.time ?? "",
       event.deadlineRule ?? "",
@@ -236,6 +251,7 @@ const buildExamDisplayEntries = (events) => {
       universityId: event.universityId,
       university: event.university,
       stage: event.stage,
+      displayColumn,
       label: event.label,
       time: event.time,
       deadlineRule: event.deadlineRule,
@@ -463,7 +479,8 @@ test("締切・試験日の表示集約で元イベントの方式を欠落さ�
     (entry) =>
       entry.date === "2026-11-21" &&
       entry.universityId === "iwate-medical" &&
-      entry.stage === "first-exam",
+      entry.stage === "first-exam" &&
+      entry.displayColumn === "single-exam",
   );
   assert.equal(
     iwateExam?.routeKeys.length,
@@ -471,10 +488,55 @@ test("締切・試験日の表示集約で元イベントの方式を欠落さ�
     "岩手医科大学の同一試験日5方式を一つの表示へ集約できません",
   );
 
+  const displayColumnsForRoute = (examRouteKey) =>
+    [...new Set(
+      examEntries
+        .filter((entry) => entry.routeKeys.includes(examRouteKey))
+        .map((entry) => entry.displayColumn),
+    )].sort((a, b) => a.localeCompare(b));
+  for (const firstOnlyRouteKey of [
+    "iwate-medical/comprehensive-regional-doctor",
+    "iwate-medical/recommendation-public",
+  ]) {
+    assert.deepEqual(
+      displayColumnsForRoute(firstOnlyRouteKey),
+      ["single-exam"],
+      `${firstOnlyRouteKey}: 二次試験がない方式は単独試験列へ表示してください`,
+    );
+  }
+  for (const secondOnlyRouteKey of [
+    "keio/international-student",
+    "jichi-medical/comprehensive-prefectural",
+    "tohoku-med-pharm/comprehensive-tohoku-retention",
+  ]) {
+    assert.deepEqual(
+      displayColumnsForRoute(secondOnlyRouteKey),
+      ["second-exam"],
+      `${secondOnlyRouteKey}: 書類一次後の試験は二次列へ表示してください`,
+    );
+  }
+  for (const twoStageRouteKey of [
+    "juntendo/international",
+    "juntendo/returnee",
+    "juntendo/research-doctor",
+  ]) {
+    assert.deepEqual(
+      displayColumnsForRoute(twoStageRouteKey),
+      ["first-exam", "second-exam"],
+      `${twoStageRouteKey}: 一次・二次の両列へ分離できていません`,
+    );
+  }
+
   for (const entry of examEntries) {
     assert.ok(
       entry.stage === "first-exam" || entry.stage === "second-exam",
-      `${entry.university} ${entry.label}: 一次・二次以外が試験日表示へ混入しています`,
+      `${entry.university} ${entry.label}: 元イベントのstageが不正です`,
+    );
+    assert.ok(
+      entry.displayColumn === "single-exam" ||
+        entry.displayColumn === "first-exam" ||
+        entry.displayColumn === "second-exam",
+      `${entry.university} ${entry.label}: 表示列が不正です`,
     );
     const sourceEvents = examEvents.filter(
       (event) =>
@@ -491,6 +553,24 @@ test("締切・試験日の表示集約で元イベントの方式を欠落さ�
       entry.routeKeys.length,
       `${entry.university} ${entry.label}: sequence・choiceRuleを変えて集約しています`,
     );
+    for (const sourceEvent of sourceEvents) {
+      const routeHasSecondExam = examEvents.some(
+        (candidate) =>
+          flatEventRouteKey(candidate) === flatEventRouteKey(sourceEvent) &&
+          candidate.stage === "second-exam",
+      );
+      const expectedColumn =
+        sourceEvent.stage === "second-exam"
+          ? "second-exam"
+          : routeHasSecondExam
+            ? "first-exam"
+            : "single-exam";
+      assert.equal(
+        entry.displayColumn,
+        expectedColumn,
+        `${flatEventRouteKey(sourceEvent)} ${sourceEvent.label}: 方式の試験段階と表示列が一致しません`,
+      );
+    }
   }
 });
 
@@ -585,9 +665,20 @@ test("締切・試験日セクションは一般選抜ページと同じ構造�
   assert.match(pageSource, /\bdata-deadline-entry\b/u);
   assert.match(pageSource, /\bdata-exam-entry\b/u);
   assert.match(pageSource, /\bdata-route-keys=/u);
+  assert.match(pageSource, /data-exam-column="single-exam"/u);
   assert.match(pageSource, /data-exam-column="first-exam"/u);
   assert.match(pageSource, /data-exam-column="second-exam"/u);
+  assert.match(pageSource, /\bdata-display-column=\{[^}]+\}/u);
   assert.match(pageSource, /\bdata-stage=\{[^}]+\}/u);
+  assert.match(pageSource, /role="table"/u);
+  assert.match(pageSource, /role="columnheader"/u);
+  assert.match(pageSource, /role="rowgroup"/u);
+  assert.match(pageSource, /role="rowheader"/u);
+  assert.match(pageSource, /role="cell"/u);
+  assert.match(pageSource, /<time\b[^>]*datetime=\{group\.date\}>/u);
+  for (const heading of ["一段階選考", "一次選考", "二次選考"]) {
+    assert.match(pageSource, new RegExp(`<span\\b[^>]*>${heading}<\\/span>`, "u"));
+  }
 });
 
 test("生成ページの締切・試験日表示は集約後も全方式と選択条件を保持", () => {
@@ -655,13 +746,85 @@ test("生成ページの締切・試験日表示は集約後も全方式と選�
   )].map((match) => match[1]);
   assert.ok(calendarRows.length > 0, "生成ページに試験日行がありません");
   for (const row of calendarRows) {
+    const singleStart = row.indexOf('data-exam-column="single-exam"');
     const firstStart = row.indexOf('data-exam-column="first-exam"');
     const secondStart = row.indexOf('data-exam-column="second-exam"');
-    assert.ok(firstStart >= 0 && secondStart > firstStart, "一次・二次の列順が不正です");
+    assert.ok(
+      singleStart >= 0 && firstStart > singleStart && secondStart > firstStart,
+      "単独試験・一次・二次の列順が不正です",
+    );
+    const singleColumn = row.slice(singleStart, firstStart);
     const firstColumn = row.slice(firstStart, secondStart);
     const secondColumn = row.slice(secondStart);
+    assert.doesNotMatch(singleColumn, /data-stage="second-exam"/u, "二次試験が単独試験列へ混入しています");
+    assert.doesNotMatch(
+      singleColumn,
+      /data-display-column="(?:first-exam|second-exam)"/u,
+      "単独試験列に別列の表示イベントが混入しています",
+    );
     assert.doesNotMatch(firstColumn, /data-stage="second-exam"/u, "二次試験が一次列へ混入しています");
+    assert.doesNotMatch(
+      firstColumn,
+      /data-display-column="(?:single-exam|second-exam)"/u,
+      "一次列に別列の表示イベントが混入しています",
+    );
     assert.doesNotMatch(secondColumn, /data-stage="first-exam"/u, "一次試験が二次列へ混入しています");
+    assert.doesNotMatch(
+      secondColumn,
+      /data-display-column="(?:single-exam|first-exam)"/u,
+      "二次列に別列の表示イベントが混入しています",
+    );
+  }
+
+  const renderedExamEntries = [...examSection.matchAll(
+    /<li\b[^>]*\bdata-exam-entry="[^"]*"[^>]*>/gu,
+  )].map((match) => ({
+    openingTag: match[0],
+    routeKeys: match[0].match(/\bdata-route-keys="([^"]*)"/u)?.[1].trim().split(/\s+/u) ?? [],
+    stage: match[0].match(/\bdata-stage="([^"]*)"/u)?.[1],
+    displayColumn: match[0].match(/\bdata-display-column="([^"]*)"/u)?.[1],
+  }));
+  assert.ok(renderedExamEntries.length > 0, "生成ページに試験イベントがありません");
+  for (const entry of renderedExamEntries) {
+    assert.ok(entry.routeKeys.length > 0, "試験イベントに方式IDがありません");
+    assert.ok(entry.displayColumn, "試験イベントに表示列がありません");
+    assert.equal(
+      entry.stage,
+      entry.displayColumn === "second-exam" ? "second-exam" : "first-exam",
+      `表示列${entry.displayColumn}と元stageが一致しません: ${entry.openingTag}`,
+    );
+  }
+
+  const renderedColumnsForRoute = (routeKeyValue) =>
+    [...new Set(
+      renderedExamEntries
+        .filter((entry) => entry.routeKeys.includes(routeKeyValue))
+        .map((entry) => entry.displayColumn),
+    )].sort((a, b) => a.localeCompare(b));
+  const routesWithSecondExam = new Set(
+    examEvents
+      .filter((event) => event.stage === "second-exam")
+      .map(flatEventRouteKey),
+  );
+  const expectedColumnsByRoute = new Map();
+  for (const event of examEvents) {
+    const eventRouteKey = flatEventRouteKey(event);
+    const expectedColumn =
+      event.stage === "second-exam"
+        ? "second-exam"
+        : routesWithSecondExam.has(eventRouteKey)
+          ? "first-exam"
+          : "single-exam";
+    const expectedColumns = expectedColumnsByRoute.get(eventRouteKey) ?? new Set();
+    expectedColumns.add(expectedColumn);
+    expectedColumnsByRoute.set(eventRouteKey, expectedColumns);
+  }
+  for (const [eventRouteKey, expectedColumns] of expectedColumnsByRoute) {
+    assert.deepEqual(
+      renderedColumnsForRoute(eventRouteKey),
+      [...expectedColumns].sort((a, b) => a.localeCompare(b)),
+      `${eventRouteKey}: 生成ページの試験日表示列が元イベントと一致しません`,
+    );
   }
 
   for (const choiceRule of new Set(examEvents.map((event) => event.choiceRule).filter(Boolean))) {

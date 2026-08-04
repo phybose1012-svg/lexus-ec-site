@@ -186,6 +186,23 @@
 .special-category--international { color: #8a466d; background: #fbedf5; }
 .special-category--special { color: #575d64; background: #f1f2f3; }
 
+.special-admissions-calendar-section .admissions-calendar-head,
+.special-admissions-calendar-section .admissions-calendar-row {
+  grid-template-columns: 100px repeat(3, minmax(0, 1fr));
+}
+
+.special-admissions-calendar-section [data-exam-column="single-exam"] li::before {
+  background: #2f7654;
+}
+
+.special-admissions-calendar-section [data-exam-column="first-exam"] li::before {
+  background: var(--admissions-blue);
+}
+
+.special-admissions-calendar-section [data-exam-column="second-exam"] li::before {
+  background: #b98524;
+}
+
 .admissions-calendar-date .special-calendar-date__year {
   display: block;
   margin-bottom: 3px;
@@ -467,6 +484,14 @@
 }
 
 @media (max-width: 620px) {
+  .special-admissions-calendar-section .admissions-calendar-row {
+    grid-template-columns: 82px minmax(0, 1fr);
+  }
+
+  .special-admissions-calendar-section .admissions-calendar-date {
+    grid-row: 1 / span 3;
+  }
+
   .admissions-deadline-entry .special-deadline-entry__details {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -507,6 +532,14 @@
 }
 
 @media print {
+  body.is-printing-admissions-section .special-admissions-calendar-section .admissions-calendar-head span:first-child,
+  body.is-printing-admissions-section .special-admissions-calendar-section .admissions-calendar-date {
+    width: 18mm;
+  }
+  body.is-printing-admissions-section .special-admissions-calendar-section .admissions-calendar-head span:not(:first-child),
+  body.is-printing-admissions-section .special-admissions-calendar-section .admissions-calendar-exams {
+    width: calc((100% - 18mm) / 3);
+  }
   body.is-printing-admissions-section .special-sources ol { grid-template-columns: 1fr 1fr; gap: 2.5mm; }
   body.is-printing-admissions-section .special-route-type,
   body.is-printing-admissions-section .special-sources li { break-inside: avoid-page; box-shadow: none; }
