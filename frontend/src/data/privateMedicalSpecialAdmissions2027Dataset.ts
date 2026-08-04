@@ -42,7 +42,11 @@ export const getPrivateMedicalSpecialAdmissions2027Dataset = () => ({
     eventStages: specialAdmissionStageLabels,
   },
   summary: privateMedicalSpecialAdmissionsSummary2027,
-  universities: privateMedicalSpecialAdmissionsUniversities2027,
+  universities: privateMedicalSpecialAdmissionsUniversities2027.map((university) => {
+    const publishedUniversity = { ...university };
+    delete publishedUniversity.excludedRoutes;
+    return publishedUniversity;
+  }),
   routes: privateMedicalSpecialAdmissionsRoutes2027.map(({ university, route }) => ({
     universityId: university.id,
     university: university.name,

@@ -31,6 +31,61 @@ const allowedCurrentStudentEligibility = new Set([
 ]);
 const excludedEffectiveGeneralSelections = [
   {
+    universityId: "kyorin",
+    routeId: "tokyo-regional",
+    officialNamePattern: /東京都地域枠選抜/u,
+  },
+  {
+    universityId: "kyorin",
+    routeId: "niigata-regional",
+    officialNamePattern: /新潟県地域枠選抜/u,
+  },
+  {
+    universityId: "kyorin",
+    routeId: "gunma-regional",
+    officialNamePattern: /群馬県地域枠選抜/u,
+  },
+  {
+    universityId: "juntendo",
+    routeId: "tokyo-regional",
+    officialNamePattern: /東京都地域枠選抜/u,
+  },
+  {
+    universityId: "juntendo",
+    routeId: "niigata-regional",
+    officialNamePattern: /新潟県地域枠選抜/u,
+  },
+  {
+    universityId: "juntendo",
+    routeId: "chiba-regional",
+    officialNamePattern: /千葉県地域枠選抜/u,
+  },
+  {
+    universityId: "juntendo",
+    routeId: "saitama-regional",
+    officialNamePattern: /埼玉県地域枠選抜/u,
+  },
+  {
+    universityId: "juntendo",
+    routeId: "shizuoka-regional",
+    officialNamePattern: /静岡県地域枠選抜/u,
+  },
+  {
+    universityId: "juntendo",
+    routeId: "ibaraki-regional",
+    officialNamePattern: /茨城県地域枠選抜/u,
+  },
+  {
+    universityId: "juntendo",
+    routeId: "gunma-regional",
+    officialNamePattern: /群馬県地域枠選抜/u,
+  },
+  {
+    universityId: "showa-medical",
+    routeId: "regional-quota",
+    officialNamePattern: /医学部地域枠選抜/u,
+  },
+  {
     universityId: "nihon",
     routeId: "alumni-quota",
     officialNamePattern: /校友枠選抜/u,
@@ -40,6 +95,15 @@ const excludedEffectiveGeneralSelections = [
     routeId: "global-special-first",
     officialNamePattern: /グローバル特別選抜/u,
   },
+];
+const commonTestUsingSpecialSelectionsToKeep = [
+  ["juntendo", "research-doctor"],
+  ["juntendo", "returnee"],
+  ["juntendo", "ib-cambridge"],
+  ["teikyo", "comprehensive"],
+  ["tokai", "star-development"],
+  ["osaka-med-pharm", "shisei-jinjutsu"],
+  ["uoeh", "ramazzini"],
 ];
 const pageSourcePath = fileURLToPath(
   new URL(
@@ -205,7 +269,7 @@ test("一般選抜・通常の共通テスト利用選抜を方式一覧へ混�
   }
 });
 
-test("実質一般選抜・共通テスト利用選抜に当たる2方式を派生データまで除外", () => {
+test("実質一般選抜・共通テスト利用選抜に当たる方式を派生データまで除外", () => {
   for (const excluded of excludedEffectiveGeneralSelections) {
     const university = privateMedicalSpecialAdmissionsUniversities2027.find(
       (entry) => entry.id === excluded.universityId,
@@ -279,6 +343,22 @@ test("実質一般選抜・共通テスト利用選抜に当たる2方式を派�
   }
 });
 
+test("共通テストを選考の一部に使う独立した総合型等は掲載を維持", () => {
+  for (const [universityId, routeId] of commonTestUsingSpecialSelectionsToKeep) {
+    const university = privateMedicalSpecialAdmissionsUniversities2027.find(
+      (entry) => entry.id === universityId,
+    );
+    const route = university?.routes.find((entry) => entry.id === routeId);
+
+    assert.ok(route, `${universityId}/${routeId}: 対象方式から誤って除外されています`);
+    assert.match(
+      route.events.map((event) => event.label).join("\n"),
+      /大学入学共通テスト/u,
+      `${universityId}/${routeId}: 共通テスト利用の根拠イベントがありません`,
+    );
+  }
+});
+
 test("全掲載方式で2027年3月卒業見込み者の出願可否を明示", () => {
   for (const { university, route } of privateMedicalSpecialAdmissionsRoutes2027) {
     const context = routeKey(university, route);
@@ -348,6 +428,11 @@ test("固定ページのslugとJSONエンドポイント契約が一致", () => 
     assert.equal(builtDataset.scope.academicYear, 2027);
     assert.equal(builtDataset.scope.universityCount, 31);
     assert.equal(builtDataset.universities.length, 31);
+    assert.equal(
+      builtDataset.universities.some((university) => Object.hasOwn(university, "excludedRoutes")),
+      false,
+      "対象外方式の内部監査記録を公開JSONへ出力しないでください",
+    );
     assert.ok(Array.isArray(builtDataset.routes));
     assert.ok(Array.isArray(builtDataset.events));
     assert.ok(Array.isArray(builtDataset.calendar));
