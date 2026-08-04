@@ -29,6 +29,18 @@ const allowedCurrentStudentEligibility = new Set([
   "conditional",
   "unconfirmed",
 ]);
+const excludedEffectiveGeneralSelections = [
+  {
+    universityId: "nihon",
+    routeId: "alumni-quota",
+    officialNamePattern: /校友枠選抜/u,
+  },
+  {
+    universityId: "nippon-medical",
+    routeId: "global-special-first",
+    officialNamePattern: /グローバル特別選抜/u,
+  },
+];
 const pageSourcePath = fileURLToPath(
   new URL(
     "../src/pages/private-medical-school-special-admissions-schedule-2027/index.astro",
@@ -190,6 +202,80 @@ test("一般選抜・通常の共通テスト利用選抜を方式一覧へ混�
       /一般選抜|(?:大学入学)?共通テスト利用選抜/u,
       `${context}: 一般選抜または通常の共通テスト利用選抜が混入しています`,
     );
+  }
+});
+
+test("実質一般選抜・共通テスト利用選抜に当たる2方式を派生データまで除外", () => {
+  for (const excluded of excludedEffectiveGeneralSelections) {
+    const university = privateMedicalSpecialAdmissionsUniversities2027.find(
+      (entry) => entry.id === excluded.universityId,
+    );
+    assert.ok(university, `${excluded.universityId}: 大学データがありません`);
+    assert.equal(
+      university.routes.some((route) => route.id === excluded.routeId),
+      false,
+      `${excluded.universityId}/${excluded.routeId}: 対象方式へ残っています`,
+    );
+    assert.doesNotMatch(
+      university.routes.map((route) => route.officialName).join("\n"),
+      excluded.officialNamePattern,
+      `${excluded.universityId}: 正式名称を変えた対象外方式が残っています`,
+    );
+    assert.match(
+      (university.excludedRoutes ?? []).join("\n"),
+      excluded.officialNamePattern,
+      `${excluded.universityId}: 対象外理由の記録がありません`,
+    );
+    assert.equal(
+      privateMedicalSpecialAdmissionsEvents2027.some(
+        (event) => event.universityId === excluded.universityId &&
+          (event.routeId === excluded.routeId || excluded.officialNamePattern.test(event.routeName)),
+      ),
+      false,
+      `${excluded.universityId}/${excluded.routeId}: 日程イベントへ残っています`,
+    );
+  }
+
+  const nihon = privateMedicalSpecialAdmissionsUniversities2027.find((entry) => entry.id === "nihon");
+  assert.equal(nihon?.scopeStatus, "available");
+  assert.ok(nihon?.routes.some((route) => route.id === "recommendation-public"));
+
+  const nipponMedical = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (entry) => entry.id === "nippon-medical",
+  );
+  assert.deepEqual(nipponMedical?.routes, []);
+  assert.equal(nipponMedical?.scopeStatus, "not-offered");
+  assert.equal(nipponMedical?.publicationStatus, "not-offered");
+  assert.doesNotMatch(nipponMedical?.statusNote ?? "", /掲載しています|特別選抜を確認/u);
+
+  if (existsSync(builtDatasetPath)) {
+    const builtDataset = JSON.parse(readFileSync(builtDatasetPath, "utf8"));
+    for (const excluded of excludedEffectiveGeneralSelections) {
+      assert.equal(
+        builtDataset.routes.some(
+          (route) => route.universityId === excluded.universityId &&
+            (route.id === excluded.routeId || excluded.officialNamePattern.test(route.officialName)),
+        ),
+        false,
+        `${excluded.universityId}/${excluded.routeId}: 生成JSONの方式一覧へ残っています`,
+      );
+      assert.equal(
+        builtDataset.events.some(
+          (event) => event.universityId === excluded.universityId &&
+            (event.routeId === excluded.routeId || excluded.officialNamePattern.test(event.routeName)),
+        ),
+        false,
+        `${excluded.universityId}/${excluded.routeId}: 生成JSONの日程一覧へ残っています`,
+      );
+      assert.equal(
+        builtDataset.calendar.some((day) => day.events.some(
+          (event) => event.universityId === excluded.universityId &&
+            (event.routeId === excluded.routeId || excluded.officialNamePattern.test(event.routeName)),
+        )),
+        false,
+        `${excluded.universityId}/${excluded.routeId}: 生成JSONのカレンダーへ残っています`,
+      );
+    }
   }
 });
 
