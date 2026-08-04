@@ -77,19 +77,217 @@ const jpDate = (iso: string, includeYear = false) => {
 const shortUniversityName = (name: string) =>
   name === "日本大学" ? "日大" : name.replace(/大学$/, "");
 
-const deadlineGroups = [...new Set(privateMedicalSpecialAdmissionsDeadlines2027.map((entry) => entry.date))].map(
-  (date) => ({
-    date,
-    entries: privateMedicalSpecialAdmissionsDeadlines2027.filter((entry) => entry.date === date),
-  }),
-);
+const calendarDateParts = (iso: string) => {
+  const [year, month, day] = iso.split("-").map(Number);
+  const weekday = new Intl.DateTimeFormat("ja-JP", {
+    weekday: "short",
+    timeZone: "Asia/Tokyo",
+  }).format(new Date(`${iso}T00:00:00+09:00`));
 
-const examGroups = [...new Set(privateMedicalSpecialAdmissionsExamEvents2027.map((entry) => entry.date))].map(
-  (date) => ({
+  return {
+    year,
+    monthDay: `${month}/${day}`,
+    weekday,
+  };
+};
+
+type DeadlineFlatEvent = (typeof privateMedicalSpecialAdmissionsDeadlines2027)[number];
+type DeadlineRouteBundle = {
+  date: string;
+  universityId: string;
+  university: string;
+  routeId: string;
+  routeName: string;
+  eventsBySignature: Map<string, DeadlineFlatEvent>;
+};
+type DeadlineDisplayEntry = {
+  universityId: string;
+  university: string;
+  routeKeys: string[];
+  routeNames: string[];
+  details: DeadlineFlatEvent[];
+  sourceUrls: string[];
+};
+
+const deadlineEventSignature = (entry: DeadlineFlatEvent) =>
+  JSON.stringify([
+    entry.label,
+    entry.time ?? null,
+    entry.deadlineRule ?? null,
+    entry.sourceUrl,
+  ]);
+const deadlineEventSort = (a: DeadlineFlatEvent, b: DeadlineFlatEvent) =>
+  a.label.localeCompare(b.label, "ja") ||
+  (a.time ?? "").localeCompare(b.time ?? "") ||
+  (a.deadlineRule ?? "").localeCompare(b.deadlineRule ?? "") ||
+  a.sourceUrl.localeCompare(b.sourceUrl);
+
+const deadlineRouteBundles = new Map<string, DeadlineRouteBundle>();
+privateMedicalSpecialAdmissionsDeadlines2027.forEach((entry) => {
+  const routeKey = JSON.stringify([entry.date, entry.universityId, entry.routeId]);
+  const routeBundle = deadlineRouteBundles.get(routeKey) ?? {
+    date: entry.date,
+    universityId: entry.universityId,
+    university: entry.university,
+    routeId: entry.routeId,
+    routeName: entry.routeName,
+    eventsBySignature: new Map<string, DeadlineFlatEvent>(),
+  };
+  routeBundle.eventsBySignature.set(deadlineEventSignature(entry), entry);
+  deadlineRouteBundles.set(routeKey, routeBundle);
+});
+
+const deadlineDateBuckets = new Map<
+  string,
+  Map<
+    string,
+    {
+      universityId: string;
+      university: string;
+      entriesByEventSet: Map<string, DeadlineDisplayEntry>;
+    }
+  >
+>();
+
+deadlineRouteBundles.forEach((routeBundle) => {
+  const events = [...routeBundle.eventsBySignature.values()].sort(deadlineEventSort);
+  const eventSetKey = JSON.stringify(events.map(deadlineEventSignature));
+  const universityBuckets = deadlineDateBuckets.get(routeBundle.date) ?? new Map();
+  const universityBucket = universityBuckets.get(routeBundle.universityId) ?? {
+    universityId: routeBundle.universityId,
+    university: routeBundle.university,
+    entriesByEventSet: new Map<string, DeadlineDisplayEntry>(),
+  };
+  const displayEntry = universityBucket.entriesByEventSet.get(eventSetKey) ?? {
+    universityId: routeBundle.universityId,
+    university: routeBundle.university,
+    routeKeys: [],
+    routeNames: [],
+    details: events,
+    sourceUrls: [...new Set(events.map((entry) => entry.sourceUrl))],
+  };
+
+  const routeKey = `${routeBundle.universityId}/${routeBundle.routeId}`;
+  if (!displayEntry.routeKeys.includes(routeKey)) {
+    displayEntry.routeKeys.push(routeKey);
+  }
+  if (!displayEntry.routeNames.includes(routeBundle.routeName)) {
+    displayEntry.routeNames.push(routeBundle.routeName);
+  }
+  universityBucket.entriesByEventSet.set(eventSetKey, displayEntry);
+  universityBuckets.set(routeBundle.universityId, universityBucket);
+  deadlineDateBuckets.set(routeBundle.date, universityBuckets);
+});
+
+const deadlineGroups = [...deadlineDateBuckets.entries()]
+  .sort(([dateA], [dateB]) => dateA.localeCompare(dateB))
+  .map(([date, universityBuckets]) => {
+    const entries = [...universityBuckets.values()]
+      .sort((a, b) => a.university.localeCompare(b.university, "ja"))
+      .flatMap((universityBucket) =>
+        [...universityBucket.entriesByEventSet.values()].map((entry) => ({
+          ...entry,
+          routeKeys: [...entry.routeKeys].sort((a, b) => a.localeCompare(b)),
+          routeNames: [...entry.routeNames].sort((a, b) => a.localeCompare(b, "ja")),
+        })),
+      );
+
+    return {
+      date,
+      dateLabel: jpDate(date, true),
+      dateParts: calendarDateParts(date),
+      entries,
+      routeCount: entries.reduce((sum, entry) => sum + entry.routeNames.length, 0),
+    };
+  });
+
+const mostCrowdedDeadlineGroup = [...deadlineGroups].sort(
+  (a, b) => b.routeCount - a.routeCount || a.date.localeCompare(b.date),
+)[0];
+
+type ExamDisplayEntry = {
+  universityId: string;
+  university: string;
+  routeKeys: string[];
+  routeNames: string[];
+  stage: "first-exam" | "second-exam";
+  category: SpecialAdmissionCategory;
+  label: string;
+  sequence?: number;
+  choiceRule?: string;
+  sourceUrl: string;
+};
+type ExamDateBucket = {
+  first: Map<string, ExamDisplayEntry>;
+  second: Map<string, ExamDisplayEntry>;
+};
+
+const examDateBuckets = new Map<string, ExamDateBucket>();
+privateMedicalSpecialAdmissionsExamEvents2027.forEach((entry) => {
+  const stage = entry.stage === "first-exam" ? "first-exam" : "second-exam";
+  const dateBucket = examDateBuckets.get(entry.date) ?? {
+    first: new Map<string, ExamDisplayEntry>(),
+    second: new Map<string, ExamDisplayEntry>(),
+  };
+  const eventKey = JSON.stringify([
+    entry.universityId,
+    stage,
+    entry.category,
+    entry.label,
+    entry.sequence ?? null,
+    entry.choiceRule ?? null,
+    entry.sourceUrl,
+  ]);
+  const stageBucket = stage === "first-exam" ? dateBucket.first : dateBucket.second;
+  const displayEntry: ExamDisplayEntry = stageBucket.get(eventKey) ?? {
+    universityId: entry.universityId,
+    university: entry.university,
+    routeKeys: [],
+    routeNames: [],
+    stage,
+    category: entry.category,
+    label: entry.label,
+    sequence: entry.sequence,
+    choiceRule: entry.choiceRule,
+    sourceUrl: entry.sourceUrl,
+  };
+
+  const routeKey = `${entry.universityId}/${entry.routeId}`;
+  if (!displayEntry.routeKeys.includes(routeKey)) {
+    displayEntry.routeKeys.push(routeKey);
+  }
+  if (!displayEntry.routeNames.includes(entry.routeName)) {
+    displayEntry.routeNames.push(entry.routeName);
+  }
+  stageBucket.set(eventKey, displayEntry);
+  examDateBuckets.set(entry.date, dateBucket);
+});
+
+const examEntrySort = (a: ExamDisplayEntry, b: ExamDisplayEntry) =>
+  a.university.localeCompare(b.university, "ja") ||
+  a.label.localeCompare(b.label, "ja") ||
+  a.routeNames[0].localeCompare(b.routeNames[0], "ja");
+
+const examGroups = [...examDateBuckets.entries()]
+  .sort(([dateA], [dateB]) => dateA.localeCompare(dateB))
+  .map(([date, entries]) => ({
     date,
-    entries: privateMedicalSpecialAdmissionsExamEvents2027.filter((entry) => entry.date === date),
-  }),
-);
+    ...calendarDateParts(date),
+    first: [...entries.first.values()]
+      .map((entry) => ({
+        ...entry,
+        routeKeys: [...entry.routeKeys].sort((a, b) => a.localeCompare(b)),
+        routeNames: [...entry.routeNames].sort((a, b) => a.localeCompare(b, "ja")),
+      }))
+      .sort(examEntrySort),
+    second: [...entries.second.values()]
+      .map((entry) => ({
+        ...entry,
+        routeKeys: [...entry.routeKeys].sort((a, b) => a.localeCompare(b)),
+        routeNames: [...entry.routeNames].sort((a, b) => a.localeCompare(b, "ja")),
+      }))
+      .sort(examEntrySort),
+  }));
 
 const categoryEntries = (Object.keys(specialAdmissionCategoryLabels) as SpecialAdmissionCategory[]).map(
   (category) => {
@@ -337,34 +535,170 @@ const structuredData = {
 
     <AdmissionsBrandDivider variant="lexus" />
 
-    <section class="special-admissions-list-section" id="deadlines" aria-labelledby="deadlines-title">
+    <section class="admissions-deadlines special-admissions-list-section" id="deadlines" aria-labelledby="deadlines-title">
       <div class="content">
         <div class="admissions-section-heading admissions-section-heading--printable">
           <div><p>APPLICATION DEADLINES</p><h2 id="deadlines-title">出願締切を日付順に見る</h2><p>Web登録、書類必着、消印有効などを同じ日付軸で確認できます。</p></div>
           <button type="button" class="admissions-print-button" data-print-section="deadlines" data-print-title="2027年度 私立医学部 総合型・学校推薦型 出願締切一覧"><span aria-hidden="true">⎙</span>このセクションを印刷</button>
         </div>
-        <div class="special-event-groups">
-          {deadlineGroups.map((group) => (
-            <article class="special-event-group">
-              <header><time datetime={group.date}>{jpDate(group.date, true)}</time><span>{group.entries.length}件</span></header>
-              <ul>{group.entries.map((entry) => <li><span class={`special-stage special-stage--${entry.stage}`}>{entry.label}</span><div><a href={`#${entry.universityId}`}>{entry.university}</a><strong>{entry.routeName}</strong><small>{[entry.time, entry.deadlineRule].filter(Boolean).join("・") || "公式日程"}</small></div></li>)}</ul>
-            </article>
-          ))}
+        <div class="admissions-deadline-layout">
+          <aside class="admissions-deadline-focus" data-deadline-focus-date={mostCrowdedDeadlineGroup?.date ?? ""}>
+            <span>締切が集中する日</span>
+            <strong>{mostCrowdedDeadlineGroup?.dateParts.monthDay ?? "—"}</strong>
+            <p>
+              {mostCrowdedDeadlineGroup
+                ? `${mostCrowdedDeadlineGroup.dateParts.year}年は、この日に${mostCrowdedDeadlineGroup.routeCount}方式の締切が集中します。同じ大学でも、方式ごとの条件を確認してください。`
+                : "公表済みの出願締切を確認でき次第、掲載します。"}
+            </p>
+            <ul>
+              <li>Web登録と出願書類は、同じ日でも締切時刻や扱いが異なる場合があります。</li>
+              <li>「必着」「消印有効」など、各方式の締切条件を確認してください。</li>
+              <li>同じ締切内容の方式は大学ごとにまとめて掲載しています。</li>
+            </ul>
+            <p class="admissions-deadline-focus__note">2026年と2027年の日程を混同しないよう、各日付に年を表示しています。</p>
+          </aside>
+
+          <div
+            class="admissions-deadline-list"
+            tabindex="0"
+            role="region"
+            aria-label="2027年度私立医学部 総合型・学校推薦型 出願締切一覧"
+          >
+            {deadlineGroups.map((group) => (
+              <section class="admissions-deadline-group" aria-label={`${group.dateLabel}締切`}>
+                <header>
+                  <time datetime={group.date}>{group.dateLabel}</time>
+                  <span>{group.entries.length}件・{group.routeCount}方式</span>
+                </header>
+                <div>
+                  {group.entries.map((entry) => (
+                    <article
+                      class="admissions-deadline-entry"
+                      data-deadline-entry={entry.routeKeys.join(" ")}
+                      data-route-keys={entry.routeKeys.join(" ")}
+                    >
+                      <div class="admissions-deadline-entry__school">
+                        <strong><a href={`#${entry.universityId}`}>{entry.university}</a></strong>
+                        <span>{entry.routeNames.join("／")}</span>
+                      </div>
+                      <dl class="special-deadline-entry__details">
+                        {entry.details.map((event) => (
+                          <div>
+                            <dt>{event.label}</dt>
+                            <dd class="special-deadline-entry__methods">
+                              {event.time && <span>{event.time}</span>}
+                              {event.deadlineRule && <span>{event.deadlineRule}</span>}
+                              {!event.time && !event.deadlineRule && <span>公式日程</span>}
+                            </dd>
+                          </div>
+                        ))}
+                      </dl>
+                      {entry.sourceUrls.length > 0 && (
+                        <div class="special-deadline-entry__sources">
+                          {entry.sourceUrls.map((sourceUrl, sourceIndex) => (
+                            <a href={sourceUrl} target="_blank" rel="noopener noreferrer">
+                              公式資料{entry.sourceUrls.length > 1 ? ` ${sourceIndex + 1}` : ""}
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                    </article>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="special-admissions-calendar-section" id="exam-calendar" aria-labelledby="exam-calendar-title">
+    <section class="admissions-calendar-section special-admissions-calendar-section" id="exam-calendar" aria-labelledby="exam-calendar-title">
       <div class="content">
-        <div class="admissions-section-heading admissions-section-heading--printable">
+        <div class="admissions-section-heading admissions-section-heading--light admissions-section-heading--printable">
           <div><p>EXAM CALENDAR</p><h2 id="exam-calendar-title">試験日を日付順に見る</h2><p>一次、二次、共通テストを使う総合型・特別選抜も、公式の選抜段階どおりに表示します。</p></div>
           <button type="button" class="admissions-print-button" data-print-section="exam-calendar" data-print-title="2027年度 私立医学部 総合型・学校推薦型 試験日一覧"><span aria-hidden="true">⎙</span>このセクションを印刷</button>
         </div>
-        <div class="special-exam-timeline">
-          {examGroups.map((group) => (
-            <article><time datetime={group.date}>{jpDate(group.date, true)}</time><ul>{group.entries.map((entry) => <li><span class={`special-category special-category--${entry.category}`}>{specialAdmissionCategoryLabels[entry.category]}</span><div><a href={`#${entry.universityId}`}>{entry.university}</a><strong>{entry.routeName}</strong><small>{entry.label}{entry.choiceRule ? `｜${entry.choiceRule}` : ""}</small></div></li>)}</ul></article>
-          ))}
+        <div
+          class="admissions-calendar-viewport"
+          tabindex="0"
+          role="region"
+          aria-label="2027年度私立医学部 総合型・学校推薦型 一次・二次試験カレンダー"
+        >
+          <div class="admissions-calendar-head" aria-hidden="true">
+            <span>日付</span>
+            <span>一次試験</span>
+            <span>二次試験</span>
+          </div>
+
+          <div class="admissions-calendar-list">
+            {examGroups.map((group) => (
+              <article class="admissions-calendar-row">
+                <div class="admissions-calendar-date">
+                  <small class="special-calendar-date__year">{group.year}年</small>
+                  <strong>{group.monthDay}</strong>
+                  <span>{group.weekday}</span>
+                </div>
+                <div class="admissions-calendar-exams" data-heading="一次試験" data-exam-column="first-exam">
+                  {group.first.length > 0 ? (
+                    <ul>
+                      {group.first.map((entry) => (
+                        <li
+                          class="special-calendar-entry"
+                          data-exam-entry={entry.routeKeys.join(" ")}
+                          data-route-keys={entry.routeKeys.join(" ")}
+                          data-stage={entry.stage}
+                        >
+                          <div class="special-calendar-entry__header">
+                            <span class={`special-category special-category--${entry.category}`}>{specialAdmissionCategoryLabels[entry.category]}</span>
+                            <a href={`#${entry.universityId}`}>{entry.university}</a>
+                          </div>
+                          <strong class="special-calendar-entry__route">{entry.routeNames.join("／")}</strong>
+                          <small class="special-calendar-entry__meta">
+                            <span>{entry.label}</span>
+                            {entry.sequence && <span>日程順：{entry.sequence}</span>}
+                            {entry.choiceRule && <span>{entry.choiceRule}</span>}
+                            <a href={entry.sourceUrl} target="_blank" rel="noopener noreferrer">公式資料</a>
+                          </small>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <span class="admissions-calendar-empty">—</span>
+                  )}
+                </div>
+                <div class="admissions-calendar-exams" data-heading="二次試験" data-exam-column="second-exam">
+                  {group.second.length > 0 ? (
+                    <ul>
+                      {group.second.map((entry) => (
+                        <li
+                          class="special-calendar-entry"
+                          data-exam-entry={entry.routeKeys.join(" ")}
+                          data-route-keys={entry.routeKeys.join(" ")}
+                          data-stage={entry.stage}
+                        >
+                          <div class="special-calendar-entry__header">
+                            <span class={`special-category special-category--${entry.category}`}>{specialAdmissionCategoryLabels[entry.category]}</span>
+                            <a href={`#${entry.universityId}`}>{entry.university}</a>
+                          </div>
+                          <strong class="special-calendar-entry__route">{entry.routeNames.join("／")}</strong>
+                          <small class="special-calendar-entry__meta">
+                            <span>{entry.label}</span>
+                            {entry.sequence && <span>日程順：{entry.sequence}</span>}
+                            {entry.choiceRule && <span>{entry.choiceRule}</span>}
+                            <a href={entry.sourceUrl} target="_blank" rel="noopener noreferrer">公式資料</a>
+                          </small>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <span class="admissions-calendar-empty">—</span>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
+        <p class="admissions-calendar-caption">※試験日が公表されている日だけを表示しています。同一大学・同一日・同一選考内容の方式はまとめて掲載し、日程順と受験日の選択条件は公式情報どおりに併記しています。</p>
       </div>
     </section>
 

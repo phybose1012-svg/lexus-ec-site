@@ -92,50 +92,68 @@
   background: #fff;
 }
 
-.special-admissions-list-section,
-.special-admissions-calendar-section,
 .special-route-types,
 .special-sources {
   padding: clamp(72px, 8vw, 120px) 0;
   background: #fff;
 }
 
-.special-admissions-calendar-section,
 .special-sources { background: #f8f5f0; }
 
-.special-event-groups {
+.admissions-deadline-entry .special-deadline-entry__methods {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  gap: 3px;
+  min-width: 0;
+  margin: 5px 0 0;
+  padding: 0;
+  color: #756b62;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  list-style: none;
 }
 
-.special-event-group {
-  overflow: hidden;
-  border: 1px solid var(--special-border);
-  border-radius: 2px;
-  background: #fff;
-  box-shadow: 0 8px 20px rgba(49, 39, 31, 0.05);
+.admissions-deadline-entry .special-deadline-entry__methods > * {
+  display: block;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
-.special-event-group > header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  border-bottom: 1px solid var(--special-border);
-  padding: 13px 16px;
-  background: #f4efe9;
+.special-admissions-page .admissions-deadline-entry__school span {
+  overflow-wrap: anywhere;
 }
 
-.special-event-group > header time { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 900; }
-.special-event-group > header span { color: var(--special-muted); font-size: 0.72rem; font-weight: 900; }
-.special-event-group ul { margin: 0; padding: 0; list-style: none; }
-.special-event-group li { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 13px; align-items: start; border-bottom: 1px solid var(--special-border); padding: 13px 16px; }
-.special-event-group li:last-child { border-bottom: 0; }
-.special-event-group li div { min-width: 0; }
-.special-event-group li a { color: var(--special-ink); font-size: 0.92rem; font-weight: 900; }
-.special-event-group li strong { display: block; margin-top: 2px; font-size: 0.74rem; line-height: 1.5; }
-.special-event-group li small { display: block; margin-top: 4px; color: var(--special-muted); font-size: 0.68rem; }
+.special-admissions-page .admissions-deadline-entry__school strong a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgb(15 86 133 / 28%);
+  text-underline-offset: 3px;
+}
+
+.admissions-deadline-entry .special-deadline-entry__details {
+  grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr));
+}
+
+.admissions-deadline-entry .special-deadline-entry__details > :nth-child(n + 3) {
+  border-top: 1px solid var(--admissions-line);
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.admissions-deadline-entry .special-deadline-entry__sources {
+  display: grid;
+  gap: 5px;
+  justify-items: end;
+  min-width: max-content;
+}
+
+.admissions-deadline-entry .special-deadline-entry__sources a {
+  color: var(--admissions-blue);
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
 
 .special-stage,
 .special-category {
@@ -168,35 +186,87 @@
 .special-category--international { color: #8a466d; background: #fbedf5; }
 .special-category--special { color: #575d64; background: #f1f2f3; }
 
-.special-exam-timeline {
-  display: grid;
-  gap: 14px;
+.admissions-calendar-date .special-calendar-date__year {
+  display: block;
+  margin-bottom: 3px;
+  color: #8b8178;
+  font-size: 0.58rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
-.special-exam-timeline > article {
-  display: grid;
-  grid-template-columns: 145px minmax(0, 1fr);
-  border: 1px solid var(--special-border);
-  background: #fff;
+.special-calendar-entry {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
-.special-exam-timeline > article > time {
-  border-right: 1px solid var(--special-border);
-  padding: 18px;
-  background: #f1ebe4;
-  font-family: var(--font-serif);
-  font-size: 1.05rem;
+.special-calendar-entry__header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 7px;
+  align-items: center;
+  min-width: 0;
+}
+
+.special-calendar-entry__header a {
+  color: var(--admissions-navy);
+  font-size: 0.8rem;
   font-weight: 900;
+  line-height: 1.4;
+  text-decoration: underline;
+  text-decoration-color: rgb(15 86 133 / 28%);
+  text-underline-offset: 3px;
 }
 
-.special-exam-timeline ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
-.special-exam-timeline li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 11px; border-right: 1px solid var(--special-border); border-bottom: 1px solid var(--special-border); padding: 13px; }
-.special-exam-timeline li:nth-child(2n) { border-right: 0; }
-.special-exam-timeline li div { min-width: 0; }
-.special-exam-timeline a { color: var(--special-ink); font-size: 0.82rem; font-weight: 900; }
-.special-exam-timeline strong, .special-exam-timeline small { display: block; }
-.special-exam-timeline strong { margin-top: 2px; font-size: 0.72rem; line-height: 1.45; }
-.special-exam-timeline small { margin-top: 3px; color: var(--special-muted); font-size: 0.66rem; }
+.special-calendar-entry__header .special-category {
+  flex: none;
+  padding: 2px 6px;
+  font-size: 0.52rem;
+}
+
+.special-calendar-entry__route {
+  display: block;
+  min-width: 0;
+  margin-top: 4px;
+  padding: 0;
+  color: #493f37;
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 1.5;
+  list-style: none;
+  overflow-wrap: anywhere;
+}
+
+.special-calendar-entry__route + .special-calendar-entry__route {
+  margin-top: 6px;
+  border-top: 1px dashed #ded7ce;
+  padding-top: 6px;
+}
+
+.special-calendar-entry__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 7px;
+  align-items: baseline;
+  min-width: 0;
+  margin-top: 2px;
+  color: var(--special-muted);
+  font-size: 0.62rem;
+  font-weight: 600;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.special-calendar-entry__meta a {
+  color: var(--admissions-blue);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+}
 
 .special-route-type-grid {
   display: grid;
@@ -384,11 +454,7 @@
 @media (max-width: 760px) {
   .special-admissions-hero .admissions-hero__grid { grid-template-columns: 1fr; }
   .special-admissions-hero h1 { font-size: clamp(1.8rem, 9vw, 2.85rem); }
-  .special-event-groups, .special-sources ol { grid-template-columns: 1fr; }
-  .special-exam-timeline > article { grid-template-columns: 1fr; }
-  .special-exam-timeline > article > time { border-right: 0; border-bottom: 1px solid var(--special-border); padding: 11px 14px; }
-  .special-exam-timeline ul { grid-template-columns: 1fr; }
-  .special-exam-timeline li { border-right: 0; }
+  .special-sources ol { grid-template-columns: 1fr; }
   .special-route-type-grid { grid-template-columns: 1fr; }
   .special-route-type > p { min-height: 0; }
   .special-route-card > header { display: block; }
@@ -400,20 +466,62 @@
   .special-admissions-related a { display: inline-block; margin-top: 14px; }
 }
 
+@media (max-width: 620px) {
+  .admissions-deadline-entry .special-deadline-entry__details {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admissions-deadline-entry .special-deadline-entry__details > :nth-child(n + 2) {
+    border-top: 0;
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .admissions-deadline-entry .special-deadline-entry__sources {
+    justify-items: start;
+    min-width: 0;
+  }
+
+  .admissions-calendar-date .special-calendar-date__year {
+    margin-bottom: 2px;
+    font-size: 0.52rem;
+  }
+
+  .special-calendar-entry__header {
+    align-items: flex-start;
+  }
+
+  .special-calendar-entry__header a {
+    font-size: 0.76rem;
+  }
+
+  .special-calendar-entry__route {
+    font-size: 0.68rem;
+  }
+}
+
 @media (max-width: 460px) {
-  .special-event-group li { grid-template-columns: 1fr; }
   .special-route-milestones { grid-template-columns: 1fr; }
   .special-sources li { grid-template-columns: 32px minmax(0, 1fr); }
   .special-sources li a { grid-column: 2; }
 }
 
 @media print {
-  body.is-printing-admissions-section .special-event-groups,
   body.is-printing-admissions-section .special-sources ol { grid-template-columns: 1fr 1fr; gap: 2.5mm; }
-  body.is-printing-admissions-section .special-event-group,
-  body.is-printing-admissions-section .special-exam-timeline > article,
   body.is-printing-admissions-section .special-route-type,
   body.is-printing-admissions-section .special-sources li { break-inside: avoid-page; box-shadow: none; }
+  body.is-printing-admissions-section .special-deadline-entry__methods { gap: 0.5mm; font-size: 6.5pt; }
+  body.is-printing-admissions-section .special-deadline-entry__details { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  body.is-printing-admissions-section .special-deadline-entry__details > :nth-child(n + 3) { border-top: var(--admissions-print-rule); margin-top: 1.5mm; padding-top: 1.5mm; }
+  body.is-printing-admissions-section .special-deadline-entry__sources { display: none; }
+  body.is-printing-admissions-section .special-calendar-date__year { margin-bottom: 0.5mm; color: #222; font-size: 5.5pt; }
+  body.is-printing-admissions-section .special-calendar-entry__header { gap: 1mm; }
+  body.is-printing-admissions-section .special-calendar-entry__header a { color: #111; font-size: 7pt; text-decoration: none; }
+  body.is-printing-admissions-section .special-calendar-entry__header .special-category { color: #111 !important; border-color: #777; padding: 0.3mm 1mm; background: #fff !important; font-size: 5pt; }
+  body.is-printing-admissions-section .special-calendar-entry__route { margin-top: 0.7mm; color: #111; font-size: 6.5pt; line-height: 1.4; }
+  body.is-printing-admissions-section .special-calendar-entry__route + .special-calendar-entry__route { margin-top: 1mm; border-top-color: #999; padding-top: 1mm; }
+  body.is-printing-admissions-section .special-calendar-entry__meta { margin-top: 0.4mm; color: #222; font-size: 5.5pt; line-height: 1.35; }
+  body.is-printing-admissions-section .special-calendar-entry__meta a { color: #111; text-decoration: none; }
   body.is-printing-admissions-section .special-full-calendar__viewport { max-height: none; overflow: visible; border: var(--admissions-print-rule); }
   body.is-printing-admissions-section .special-full-calendar table { width: 100%; min-width: 0; table-layout: fixed; }
   body.is-printing-admissions-section .special-full-calendar :where(th, td) { position: static !important; width: auto !important; border-color: #777; padding: 1.2mm; }
@@ -425,12 +533,4 @@
   body.is-printing-admissions-section .special-full-calendar td li { border: var(--admissions-print-rule); border-left-width: 1mm; padding: 1mm; }
   body.is-printing-admissions-section .special-full-calendar__legend { margin-bottom: 2mm; }
   body.is-printing-admissions-section .special-stage { color: #111 !important; border-color: #777; background: #fff !important; font-size: 5pt; }
-  body.is-printing-admissions-section .special-exam-timeline { gap: 2mm; }
-  body.is-printing-admissions-section .special-exam-timeline > article { grid-template-columns: 28mm 1fr; border: var(--admissions-print-rule); }
-  body.is-printing-admissions-section .special-exam-timeline ul { grid-template-columns: 1fr 1fr; }
-  body.is-printing-admissions-section .special-exam-timeline :where(time, li) { border-color: #777; padding: 2mm; }
-  body.is-printing-admissions-section .special-exam-timeline :where(a, strong, small) { color: #111 !important; font-size: 6pt; }
-  body.is-printing-admissions-section .special-event-group { border: var(--admissions-print-rule); }
-  body.is-printing-admissions-section .special-event-group :where(header, li) { border-color: #777; padding: 2mm; }
-  body.is-printing-admissions-section .special-event-group :where(a, strong, small) { color: #111 !important; font-size: 6pt; }
 }

@@ -126,8 +126,181 @@ const datasetModuleSourcePath = fileURLToPath(
 const builtDatasetPath = fileURLToPath(
   new URL("../dist/data/private-medical-special-admissions-2027.json", import.meta.url),
 );
+const builtPagePath = fileURLToPath(
+  new URL(
+    "../dist/private-medical-school-special-admissions-schedule-2027/index.html",
+    import.meta.url,
+  ),
+);
 
 const routeKey = (university, route) => `${university.id}/${route.id}`;
+const flatEventRouteKey = (event) => `${event.universityId}/${event.routeId}`;
+
+const addToMapArray = (map, key, value) => {
+  map.set(key, [...(map.get(key) ?? []), value]);
+};
+
+const deadlineDetailSignature = (event) =>
+  [event.label, event.time ?? "", event.deadlineRule ?? ""].join("\u0000");
+
+const buildDeadlineDisplayEntries = (events) => {
+  const eventsByRouteAndDate = new Map();
+  for (const event of events.filter((entry) => entry.stage === "application-deadline")) {
+    addToMapArray(
+      eventsByRouteAndDate,
+      `${event.date}\u0000${flatEventRouteKey(event)}`,
+      event,
+    );
+  }
+
+  const groupedEntries = new Map();
+  for (const routeEvents of eventsByRouteAndDate.values()) {
+    const firstEvent = routeEvents[0];
+    const details = routeEvents
+      .map((event) => ({
+        label: event.label,
+        time: event.time,
+        deadlineRule: event.deadlineRule,
+      }))
+      .sort((a, b) =>
+        [a.label, a.time ?? "", a.deadlineRule ?? ""]
+          .join("\u0000")
+          .localeCompare(
+            [b.label, b.time ?? "", b.deadlineRule ?? ""].join("\u0000"),
+            "ja",
+          ),
+      );
+    const detailKey = routeEvents
+      .map(deadlineDetailSignature)
+      .sort((a, b) => a.localeCompare(b, "ja"))
+      .join("\u0001");
+    const groupKey = [
+      firstEvent.date,
+      firstEvent.universityId,
+      firstEvent.sourceUrl,
+      detailKey,
+    ].join("\u0000");
+    const existing = groupedEntries.get(groupKey);
+
+    if (existing) {
+      existing.routeKeys.push(flatEventRouteKey(firstEvent));
+      existing.routeNames.push(firstEvent.routeName);
+      continue;
+    }
+
+    groupedEntries.set(groupKey, {
+      date: firstEvent.date,
+      universityId: firstEvent.universityId,
+      university: firstEvent.university,
+      sourceUrl: firstEvent.sourceUrl,
+      details,
+      routeKeys: [flatEventRouteKey(firstEvent)],
+      routeNames: [firstEvent.routeName],
+    });
+  }
+
+  return [...groupedEntries.values()].sort(
+    (a, b) =>
+      a.date.localeCompare(b.date) ||
+      a.university.localeCompare(b.university, "ja") ||
+      a.routeNames[0].localeCompare(b.routeNames[0], "ja"),
+  );
+};
+
+const buildExamDisplayEntries = (events) => {
+  const groupedEntries = new Map();
+  for (const event of events.filter(
+    (entry) => entry.stage === "first-exam" || entry.stage === "second-exam",
+  )) {
+    const groupKey = [
+      event.date,
+      event.universityId,
+      event.stage,
+      event.label,
+      event.time ?? "",
+      event.deadlineRule ?? "",
+      event.sequence ?? "",
+      event.choiceRule ?? "",
+      event.sourceUrl,
+    ].join("\u0000");
+    const existing = groupedEntries.get(groupKey);
+
+    if (existing) {
+      existing.routeKeys.push(flatEventRouteKey(event));
+      existing.routeNames.push(event.routeName);
+      continue;
+    }
+
+    groupedEntries.set(groupKey, {
+      date: event.date,
+      universityId: event.universityId,
+      university: event.university,
+      stage: event.stage,
+      label: event.label,
+      time: event.time,
+      deadlineRule: event.deadlineRule,
+      sequence: event.sequence,
+      choiceRule: event.choiceRule,
+      sourceUrl: event.sourceUrl,
+      routeKeys: [flatEventRouteKey(event)],
+      routeNames: [event.routeName],
+    });
+  }
+
+  return [...groupedEntries.values()].sort(
+    (a, b) =>
+      a.date.localeCompare(b.date) ||
+      a.stage.localeCompare(b.stage) ||
+      a.university.localeCompare(b.university, "ja") ||
+      a.routeNames[0].localeCompare(b.routeNames[0], "ja"),
+  );
+};
+
+const setFrom = (values) => new Set(values);
+const sortedSetValues = (values) => [...values].sort((a, b) => a.localeCompare(b));
+
+const assertSameSet = (actual, expected, message) => {
+  assert.deepEqual(sortedSetValues(actual), sortedSetValues(expected), message);
+};
+
+const busiestDeadlineDate = (entries) => {
+  const counts = new Map();
+  for (const entry of entries) {
+    counts.set(entry.date, (counts.get(entry.date) ?? 0) + 1);
+  }
+
+  return [...counts.entries()].sort(
+    ([dateA, countA], [dateB, countB]) => countB - countA || dateA.localeCompare(dateB),
+  )[0]?.[0];
+};
+
+const openingTagWithClass = (source, className) => {
+  const escapedClassName = className.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return source.match(
+    new RegExp(
+      `<[^>]+class="[^"]*\\b${escapedClassName}\\b[^"]*"[^>]*>`,
+      "u",
+    ),
+  )?.[0];
+};
+
+const sectionBetween = (html, startId, nextId) => {
+  const startMarker = `id="${startId}"`;
+  const endMarker = `id="${nextId}"`;
+  const start = html.lastIndexOf("<section", html.indexOf(startMarker));
+  const end = html.lastIndexOf("<section", html.indexOf(endMarker));
+
+  assert.ok(start >= 0, `${startId}: セクション開始位置を取得できません`);
+  assert.ok(end > start, `${startId}: 次セクションまでの範囲を取得できません`);
+  return html.slice(start, end);
+};
+
+const attributeValues = (html, attribute) => {
+  const escapedAttribute = attribute.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return [...html.matchAll(new RegExp(`\\b${escapedAttribute}="([^"]*)"`, "gu"))].map(
+    (match) => match[1],
+  );
+};
 
 const assertValidIsoDate = (value, context) => {
   assert.match(value, /^\d{4}-\d{2}-\d{2}$/, `${context}: ISO日付ではありません`);
@@ -246,6 +419,257 @@ test("複数試験日のsequenceが明示され連番になっている", () => 
         `${routeKey(university, route)}: 複数試験日に同じ日付が重複しています`,
       );
     }
+  }
+});
+
+test("締切・試験日の表示集約で元イベントの方式を欠落させない", () => {
+  const deadlineEvents = privateMedicalSpecialAdmissionsEvents2027.filter(
+    (event) => event.stage === "application-deadline",
+  );
+  const examEvents = privateMedicalSpecialAdmissionsEvents2027.filter(
+    (event) => event.stage === "first-exam" || event.stage === "second-exam",
+  );
+  const deadlineEntries = buildDeadlineDisplayEntries(deadlineEvents);
+  const examEntries = buildExamDisplayEntries(examEvents);
+
+  assertSameSet(
+    setFrom(deadlineEntries.flatMap((entry) => entry.routeKeys)),
+    setFrom(deadlineEvents.map(flatEventRouteKey)),
+    "締切表示の集約で方式が欠落しています",
+  );
+  assertSameSet(
+    setFrom(examEntries.flatMap((entry) => entry.routeKeys)),
+    setFrom(examEvents.map(flatEventRouteKey)),
+    "試験日表示の集約で方式が欠落しています",
+  );
+  assert.ok(
+    deadlineEntries.length < deadlineEvents.length,
+    "同一締切を共有する方式が大学単位に集約されていません",
+  );
+  assert.ok(
+    examEntries.length < examEvents.length,
+    "同一試験日程を共有する方式が大学単位に集約されていません",
+  );
+
+  const iwateDeadline = deadlineEntries.find(
+    (entry) => entry.date === "2026-11-11" && entry.universityId === "iwate-medical",
+  );
+  assert.equal(
+    iwateDeadline?.routeKeys.length,
+    5,
+    "岩手医科大学の同一締切5方式を一つの表示へ集約できません",
+  );
+  const iwateExam = examEntries.find(
+    (entry) =>
+      entry.date === "2026-11-21" &&
+      entry.universityId === "iwate-medical" &&
+      entry.stage === "first-exam",
+  );
+  assert.equal(
+    iwateExam?.routeKeys.length,
+    5,
+    "岩手医科大学の同一試験日5方式を一つの表示へ集約できません",
+  );
+
+  for (const entry of examEntries) {
+    assert.ok(
+      entry.stage === "first-exam" || entry.stage === "second-exam",
+      `${entry.university} ${entry.label}: 一次・二次以外が試験日表示へ混入しています`,
+    );
+    const sourceEvents = examEvents.filter(
+      (event) =>
+        event.date === entry.date &&
+        event.universityId === entry.universityId &&
+        event.stage === entry.stage &&
+        event.label === entry.label &&
+        (event.sequence ?? null) === (entry.sequence ?? null) &&
+        (event.choiceRule ?? null) === (entry.choiceRule ?? null) &&
+        entry.routeKeys.includes(flatEventRouteKey(event)),
+    );
+    assert.equal(
+      sourceEvents.length,
+      entry.routeKeys.length,
+      `${entry.university} ${entry.label}: sequence・choiceRuleを変えて集約しています`,
+    );
+  }
+});
+
+test("締切表示は可変detailと動的な集中日を扱える", () => {
+  const deadlineEvents = privateMedicalSpecialAdmissionsEvents2027.filter(
+    (event) => event.stage === "application-deadline",
+  );
+  const deadlineEntries = buildDeadlineDisplayEntries(deadlineEvents);
+
+  const aichiEntry = deadlineEntries.find(
+    (entry) =>
+      entry.date === "2026-11-13" &&
+      entry.universityId === "aichi-medical" &&
+      entry.routeKeys.includes("aichi-medical/recommendation-public"),
+  );
+  assert.deepEqual(
+    aichiEntry?.details.map((detail) => detail.label).sort((a, b) => a.localeCompare(b, "ja")),
+    ["Web出願締切", "出願書類締切"].sort((a, b) => a.localeCompare(b, "ja")),
+    "同日のWeb締切と書類締切を可変detailとして保持できません",
+  );
+
+  const tokaiEntries = deadlineEntries.filter((entry) =>
+    entry.routeKeys.includes("tokai/star-development"),
+  );
+  assert.deepEqual(
+    tokaiEntries.map((entry) => [entry.date, entry.details[0]?.label]),
+    [
+      ["2026-09-14", "第一次選考出願締切"],
+      ["2026-12-18", "最終選考出願締切"],
+    ],
+    "独立した複数選考フェーズの締切を一つに潰しています",
+  );
+
+  const rawFocusDate = busiestDeadlineDate(deadlineEvents);
+  const groupedFocusDate = busiestDeadlineDate(deadlineEntries);
+  assert.equal(rawFocusDate, "2026-11-13", "現在の締切集中日の基礎データが想定外です");
+  assert.equal(
+    groupedFocusDate,
+    rawFocusDate,
+    "表示集約後の件数から求めた締切集中日が元イベントと一致しません",
+  );
+});
+
+test("締切・試験日セクションは一般選抜ページと同じ構造契約を使う", () => {
+  const pageSource = readFileSync(pageSourcePath, "utf8");
+  const requiredClasses = [
+    "admissions-deadline-layout",
+    "admissions-deadline-focus",
+    "admissions-deadline-list",
+    "admissions-deadline-group",
+    "admissions-deadline-entry",
+    "admissions-calendar-viewport",
+    "admissions-calendar-head",
+    "admissions-calendar-row",
+    "admissions-calendar-date",
+    "admissions-calendar-exams",
+  ];
+
+  for (const className of requiredClasses) {
+    assert.match(
+      pageSource,
+      new RegExp(`\\b${className}\\b`, "u"),
+      `${className}: 一般選抜ページ共通の構造がありません`,
+    );
+  }
+  assert.doesNotMatch(pageSource, /\bspecial-event-groups\b/u);
+  assert.doesNotMatch(pageSource, /\bspecial-exam-timeline\b/u);
+
+  for (const className of ["admissions-deadline-list", "admissions-calendar-viewport"]) {
+    const openingTag = openingTagWithClass(pageSource, className);
+    assert.ok(openingTag, `${className}: スクロール領域の開始タグがありません`);
+    assert.match(openingTag, /\btabindex="0"/u, `${className}: キーボードでフォーカスできません`);
+    assert.match(openingTag, /\brole="region"/u, `${className}: regionランドマークがありません`);
+    assert.match(openingTag, /\baria-label=/u, `${className}: スクロール領域の名前がありません`);
+  }
+
+  assert.match(
+    pageSource,
+    /data-deadline-focus-date=\{[^}]+\}/u,
+    "締切集中日を派生値として出力する契約がありません",
+  );
+  assert.doesNotMatch(
+    pageSource,
+    /<strong>\s*11\/13\s*<\/strong>/u,
+    "締切集中日を表示へハードコードしないでください",
+  );
+  assert.match(
+    pageSource,
+    /\.details\.map\s*\(/u,
+    "締切カードが可変数のdetailを描画していません",
+  );
+  assert.match(pageSource, /\bdata-deadline-entry\b/u);
+  assert.match(pageSource, /\bdata-exam-entry\b/u);
+  assert.match(pageSource, /\bdata-route-keys=/u);
+  assert.match(pageSource, /data-exam-column="first-exam"/u);
+  assert.match(pageSource, /data-exam-column="second-exam"/u);
+  assert.match(pageSource, /\bdata-stage=\{[^}]+\}/u);
+});
+
+test("生成ページの締切・試験日表示は集約後も全方式と選択条件を保持", () => {
+  if (!existsSync(builtPagePath)) return;
+
+  const html = readFileSync(builtPagePath, "utf8");
+  const deadlineSection = sectionBetween(html, "deadlines", "exam-calendar");
+  const examSection = sectionBetween(html, "exam-calendar", "route-types");
+  const deadlineEvents = privateMedicalSpecialAdmissionsEvents2027.filter(
+    (event) => event.stage === "application-deadline",
+  );
+  const examEvents = privateMedicalSpecialAdmissionsEvents2027.filter(
+    (event) => event.stage === "first-exam" || event.stage === "second-exam",
+  );
+
+  assert.equal(
+    attributeValues(deadlineSection, "data-deadline-focus-date")[0],
+    busiestDeadlineDate(buildDeadlineDisplayEntries(deadlineEvents)),
+    "生成ページの締切集中日が動的集計結果と一致しません",
+  );
+  assert.ok(
+    attributeValues(deadlineSection, "data-deadline-entry").length < deadlineEvents.length,
+    "生成ページで同一締切を共有する方式が集約されていません",
+  );
+  assert.ok(
+    attributeValues(examSection, "data-exam-entry").length < examEvents.length,
+    "生成ページで同一試験日程を共有する方式が集約されていません",
+  );
+
+  const deadlineRouteKeys = attributeValues(deadlineSection, "data-route-keys")
+    .flatMap((value) => value.trim().split(/\s+/u))
+    .filter(Boolean);
+  const examRouteKeys = attributeValues(examSection, "data-route-keys")
+    .flatMap((value) => value.trim().split(/\s+/u))
+    .filter(Boolean);
+  assertSameSet(
+    setFrom(deadlineRouteKeys),
+    setFrom(deadlineEvents.map(flatEventRouteKey)),
+    "生成ページの締切一覧で方式が欠落しています",
+  );
+  assertSameSet(
+    setFrom(examRouteKeys),
+    setFrom(examEvents.map(flatEventRouteKey)),
+    "生成ページの試験日一覧で方式が欠落しています",
+  );
+
+  for (const label of [
+    "Web出願締切",
+    "出願書類締切",
+    "第一次選考出願締切",
+    "最終選考出願締切",
+    "出願資格事前審査締切",
+  ]) {
+    assert.match(deadlineSection, new RegExp(label, "u"), `${label}: 可変締切detailがありません`);
+  }
+  for (const routeName of new Set(deadlineEvents.map((event) => event.routeName))) {
+    assert.match(deadlineSection, new RegExp(routeName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "u"));
+  }
+  for (const routeName of new Set(examEvents.map((event) => event.routeName))) {
+    assert.match(examSection, new RegExp(routeName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "u"));
+  }
+
+  const calendarRows = [...examSection.matchAll(
+    /<article\b[^>]*class="[^"]*\badmissions-calendar-row\b[^"]*"[^>]*>([\s\S]*?)<\/article>/gu,
+  )].map((match) => match[1]);
+  assert.ok(calendarRows.length > 0, "生成ページに試験日行がありません");
+  for (const row of calendarRows) {
+    const firstStart = row.indexOf('data-exam-column="first-exam"');
+    const secondStart = row.indexOf('data-exam-column="second-exam"');
+    assert.ok(firstStart >= 0 && secondStart > firstStart, "一次・二次の列順が不正です");
+    const firstColumn = row.slice(firstStart, secondStart);
+    const secondColumn = row.slice(secondStart);
+    assert.doesNotMatch(firstColumn, /data-stage="second-exam"/u, "二次試験が一次列へ混入しています");
+    assert.doesNotMatch(secondColumn, /data-stage="first-exam"/u, "一次試験が二次列へ混入しています");
+  }
+
+  for (const choiceRule of new Set(examEvents.map((event) => event.choiceRule).filter(Boolean))) {
+    assert.match(
+      examSection,
+      new RegExp(choiceRule.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "u"),
+      `${choiceRule}: 選択条件が生成ページから欠落しています`,
+    );
   }
 });
 
