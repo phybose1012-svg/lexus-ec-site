@@ -10,10 +10,12 @@ import {
   privateMedicalSpecialAdmissionsSummary2027,
   privateMedicalSpecialAdmissionsUniversities2027,
   specialAdmissionCategoryLabels,
+  type PrivateMedicalSpecialAdmissionsUniversity2027,
   type SpecialAdmissionCategory,
   type SpecialAdmissionEvent,
   type SpecialAdmissionEventStage,
   type SpecialAdmissionPublicationStatus,
+  type SpecialAdmissionRoute,
 } from "../../data/privateMedicalSpecialAdmissions2027";
 import { privateMedicalSpecialAdmissions2027Metadata } from "../../data/privateMedicalSpecialAdmissions2027Metadata";
 import "../../styles/special-admissions-2027.css";
@@ -90,12 +92,29 @@ const examGroups = [...new Set(privateMedicalSpecialAdmissionsExamEvents2027.map
 );
 
 const categoryEntries = (Object.keys(specialAdmissionCategoryLabels) as SpecialAdmissionCategory[]).map(
-  (category) => ({
-    category,
-    label: specialAdmissionCategoryLabels[category],
-    description: categoryDescriptions[category],
-    routes: privateMedicalSpecialAdmissionsRoutes2027.filter(({ route }) => route.category === category),
-  }),
+  (category) => {
+    const routes = privateMedicalSpecialAdmissionsRoutes2027.filter(({ route }) => route.category === category);
+    const universityGroups = new Map<
+      string,
+      { university: PrivateMedicalSpecialAdmissionsUniversity2027; routes: SpecialAdmissionRoute[] }
+    >();
+
+    routes.forEach(({ university, route }) => {
+      const existing = universityGroups.get(university.id);
+      if (existing) {
+        existing.routes.push(route);
+        return;
+      }
+      universityGroups.set(university.id, { university, routes: [route] });
+    });
+
+    return {
+      category,
+      label: specialAdmissionCategoryLabels[category],
+      description: categoryDescriptions[category],
+      universities: [...universityGroups.values()],
+    };
+  },
 );
 
 const milestoneEvents = (events: SpecialAdmissionEvent[], stage: SpecialAdmissionEventStage) =>
@@ -345,14 +364,25 @@ const structuredData = {
 
     <section class="special-route-types" id="route-types" aria-labelledby="route-types-title">
       <div class="content">
-        <div class="admissions-section-heading"><p>ROUTE TYPES</p><h2 id="route-types-title">方式別に対象校を見る</h2><p>名称だけで判断せず、公式の出願資格と選抜区分に基づいて分類しています。</p></div>
+        <div class="admissions-section-heading"><p>ROUTE TYPES</p><h2 id="route-types-title">方式別に対象大学を見る</h2><p>名称だけで判断せず、公式の出願資格と選抜区分に基づいて分類しています。</p></div>
         <div class="special-route-type-grid">
           {categoryEntries.map((entry) => (
-            <article class={`special-route-type special-route-type--${entry.category}`}>
-              <header><span>{entry.label}</span><strong>{entry.routes.length}<small>方式</small></strong></header>
+            <article class={`special-route-type special-route-type--${entry.category}`} data-category={entry.category} data-university-count={entry.universities.length}>
+              <header><span>{entry.label}</span><strong>{entry.universities.length}<small>大学</small></strong></header>
               <p>{entry.description}</p>
-              <ul>{entry.routes.slice(0, 5).map(({ university, route }) => <li><a href={`#${university.id}`}>{shortUniversityName(university.name)}</a><span>{route.officialName}</span></li>)}</ul>
-              {entry.routes.length > 5 && <small>ほか{entry.routes.length - 5}方式</small>}
+              <div class="special-route-type__university-list" data-category-university-list tabindex="0" role="region" aria-label={`${entry.label}の対象大学一覧（全${entry.universities.length}大学）`}>
+                <ul>
+                  {entry.universities.map(({ university, routes }) => (
+                    <li class="special-route-type__university" data-category-university>
+                      <a href={`#${university.id}`}>{university.name}</a>
+                      <ul class="special-route-type__route-list">
+                        {routes.map((route) => <li data-category-route>{route.officialName}</li>)}
+                      </ul>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <small class="special-route-type__scroll-note">全{entry.universities.length}大学を掲載{entry.universities.length > 5 ? "・一覧内をスクロール" : ""}</small>
             </article>
           ))}
         </div>
@@ -406,7 +436,6 @@ const structuredData = {
                     <footer><span class={`special-publication special-publication--${admissionRoute.publicationStatus}`}>{publicationLabels[admissionRoute.publicationStatus]}</span>{admissionRoute.sourceUrls.map((url, sourceIndex) => <a href={url} target="_blank" rel="noopener noreferrer">公式資料{admissionRoute.sourceUrls.length > 1 ? ` ${sourceIndex + 1}` : ""} ↗</a>)}</footer>
                   </article>
                 )) : <div class="special-university__empty"><strong>{entry.scopeStatus === "not-offered" ? "対象方式は確認できません" : "2027年度情報の公表待ちです"}</strong><p>前年の日程・条件は掲載していません。公式サイトの更新をご確認ください。</p></div>}
-                {entry.excludedRoutes?.length && <aside class="special-excluded"><strong>対象外として確認した方式</strong><ul>{entry.excludedRoutes.map((reason) => <li>{reason}</li>)}</ul></aside>}
                 <div class="admissions-university__footer"><a href={entry.officialUrl} target="_blank" rel="noopener noreferrer">{entry.name}の公式入試情報 ↗</a><a href={entry.strategyPath}>{entry.name}の2027年度入試対策を見る →</a></div>
               </div>
             </details>

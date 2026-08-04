@@ -267,3 +267,22 @@ test("固定ページのslugとJSONエンドポイント契約が一致", () => 
     assert.ok(Array.isArray(builtDataset.calendar));
   }
 });
+
+test("方式別一覧は大学単位に集約して全大学をスクロール表示する", () => {
+  const pageSource = readFileSync(pageSourcePath, "utf8");
+
+  assert.match(pageSource, /方式別に対象大学を見る/);
+  assert.match(pageSource, /entry\.universities\.length}<small>大学<\/small>/);
+  assert.match(pageSource, /data-category-university-list/);
+  assert.match(pageSource, /entry\.universities\.map\(\(\{ university, routes \}\)/);
+  assert.match(pageSource, /routes\.map\(\(route\)/);
+  assert.doesNotMatch(pageSource, /entry\.routes\.slice\(/);
+  assert.doesNotMatch(pageSource, /ほか\{entry\.routes\.length/);
+});
+
+test("大学別一覧には対象外として確認した方式を表示しない", () => {
+  const pageSource = readFileSync(pageSourcePath, "utf8");
+
+  assert.doesNotMatch(pageSource, /対象外として確認した方式/);
+  assert.doesNotMatch(pageSource, /entry\.excludedRoutes/);
+});
