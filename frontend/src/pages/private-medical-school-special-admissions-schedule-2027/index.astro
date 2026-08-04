@@ -1,0 +1,534 @@
+---
+import AdmissionsBrandDivider from "../../components/admissions/AdmissionsBrandDivider.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import {
+  privateMedicalSpecialAdmissionsCalendar2027,
+  privateMedicalSpecialAdmissionsDeadlines2027,
+  privateMedicalSpecialAdmissionsExamEvents2027,
+  privateMedicalSpecialAdmissionsRoutes2027,
+  privateMedicalSpecialAdmissionsSourceUrls2027,
+  privateMedicalSpecialAdmissionsSummary2027,
+  privateMedicalSpecialAdmissionsUniversities2027,
+  specialAdmissionCategoryLabels,
+  type SpecialAdmissionCategory,
+  type SpecialAdmissionEvent,
+  type SpecialAdmissionEventStage,
+  type SpecialAdmissionPublicationStatus,
+} from "../../data/privateMedicalSpecialAdmissions2027";
+import { privateMedicalSpecialAdmissions2027Metadata } from "../../data/privateMedicalSpecialAdmissions2027Metadata";
+import "../../styles/special-admissions-2027.css";
+
+const metadata = privateMedicalSpecialAdmissions2027Metadata;
+const title = metadata.title;
+const description = metadata.description;
+const canonical = metadata.canonicalUrl;
+const datasetUrl = metadata.datasetUrl;
+const lastUpdated = metadata.dateModifiedLabel;
+
+const publicationLabels: Record<SpecialAdmissionPublicationStatus, string> = {
+  complete: "募集要項公表済み",
+  partial: "一部要項公表済み",
+  outline: "公式概要公表済み",
+  unpublished: "2027年度詳細未公表",
+  "previous-year-only": "前年度版のみ",
+  "not-offered": "対象方式なし",
+};
+
+const scopeLabels = {
+  available: "対象方式あり",
+  unpublished: "2027年度未公表",
+  "not-offered": "対象方式なし",
+} as const;
+
+const stageColumns: Array<{ key: SpecialAdmissionEventStage; short: string }> = [
+  { key: "application-start", short: "出願開始" },
+  { key: "application-deadline", short: "出願締切" },
+  { key: "first-exam", short: "一次・試験" },
+  { key: "first-result", short: "一次発表" },
+  { key: "second-exam", short: "二次" },
+  { key: "final-result", short: "最終発表" },
+  { key: "procedure-deadline", short: "手続締切" },
+];
+
+const categoryDescriptions: Record<SpecialAdmissionCategory, string> = {
+  comprehensive: "活動・志望・人物評価などを含めて総合的に選考する方式。共通テストを後段で使う方式も含みます。",
+  recommendation: "学校長推薦等を受けて出願する公募制・推薦型。専願や評定条件に注意します。",
+  designated: "大学が指定する高校・系列校の生徒だけが出願できる方式。詳細が対象校通知のみの場合があります。",
+  regional: "出身地・居住地・地域勤務・修学資金などの条件がある方式。認可申請中の人数もあります。",
+  returnee: "海外在学歴や帰国時期などの条件を満たす帰国生向け方式。",
+  ib: "国際バカロレア資格・科目・スコア等を出願条件にする方式。",
+  international: "外国籍・外国学校教育・在留資格・日本語力等の条件がある方式。",
+  special: "卒業生子女、研究医、英語資格、特定診療科など、大学独自の条件を持つ方式。",
+};
+
+const jpDate = (iso: string, includeYear = false) => {
+  const date = new Date(`${iso}T00:00:00+09:00`);
+  return new Intl.DateTimeFormat("ja-JP", {
+    ...(includeYear ? { year: "numeric" as const } : {}),
+    month: "numeric",
+    day: "numeric",
+    weekday: "short",
+    timeZone: "Asia/Tokyo",
+  }).format(date);
+};
+
+const shortUniversityName = (name: string) =>
+  name === "日本大学" ? "日大" : name.replace(/大学$/, "");
+
+const deadlineGroups = [...new Set(privateMedicalSpecialAdmissionsDeadlines2027.map((entry) => entry.date))].map(
+  (date) => ({
+    date,
+    entries: privateMedicalSpecialAdmissionsDeadlines2027.filter((entry) => entry.date === date),
+  }),
+);
+
+const examGroups = [...new Set(privateMedicalSpecialAdmissionsExamEvents2027.map((entry) => entry.date))].map(
+  (date) => ({
+    date,
+    entries: privateMedicalSpecialAdmissionsExamEvents2027.filter((entry) => entry.date === date),
+  }),
+);
+
+const categoryEntries = (Object.keys(specialAdmissionCategoryLabels) as SpecialAdmissionCategory[]).map(
+  (category) => ({
+    category,
+    label: specialAdmissionCategoryLabels[category],
+    description: categoryDescriptions[category],
+    routes: privateMedicalSpecialAdmissionsRoutes2027.filter(({ route }) => route.category === category),
+  }),
+);
+
+const milestoneEvents = (events: SpecialAdmissionEvent[], stage: SpecialAdmissionEventStage) =>
+  events.filter((entry) => entry.stage === stage);
+
+const updateHistory = [
+  {
+    date: "2026年8月4日",
+    iso: "2026-08-04",
+    title: "31大学の2027年度情報を再確認",
+    detail: "岩手医科大学、東北医科薬科大学、杏林大学などの公式情報更新を反映しました。",
+  },
+  {
+    date: "2026年8月4日",
+    iso: "2026-08-04",
+    title: "学校推薦型・総合型の日程を追加",
+    detail: "自治医科大学、東京女子医科大学、兵庫医科大学、川崎医科大学などの確定日程を追加しました。",
+  },
+  {
+    date: "2026年8月4日",
+    iso: "2026-08-04",
+    title: "現役高校生の出願可否を整理",
+    detail: "編入・学士・大学在学者限定方式を除外し、条件付き方式には資格バッジを付けました。",
+  },
+];
+
+const faqItems = [
+  {
+    question: "共通テストを使う総合型選抜は掲載されていますか？",
+    answer: "はい。総合型・推薦型・特別選抜として実施され、選考の一部に共通テストを使う方式は掲載しています。通常の共通テスト利用選抜は対象外です。",
+  },
+  {
+    question: "日程が「未公表」の大学は前年の日程を参考表示していますか？",
+    answer: "いいえ。2027年度の公式資料で確認できない日付は、前年値や推測で補わず「未公表」と表示しています。",
+  },
+  {
+    question: "指定校推薦は誰でも出願できますか？",
+    answer: "いいえ。大学が指定した高校・系列校の在籍者だけが対象です。対象校や詳細条件が一般公開されず、高校へ直接通知される場合があります。",
+  },
+];
+
+const organizationId = "https://lexus-ec.com/#organization";
+const websiteId = "https://lexus-ec.com/#website";
+const webpageId = `${canonical}#webpage`;
+const datasetId = metadata.datasetIdentifier;
+const breadcrumbId = `${canonical}#breadcrumb`;
+const itemListId = `${canonical}#universities`;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "EducationalOrganization",
+      "@id": organizationId,
+      name: metadata.publisher.name,
+      alternateName: metadata.publisher.alternateName,
+      url: metadata.publisher.url,
+      logo: { "@type": "ImageObject", url: "https://lexus-ec.com/assets/optimized/header-logo-900.webp" },
+    },
+    { "@type": "WebSite", "@id": websiteId, url: "https://lexus-ec.com/", name: "医学部予備校 レクサス E.C.", inLanguage: "ja" },
+    {
+      "@type": "CollectionPage",
+      "@id": webpageId,
+      name: title,
+      description,
+      url: canonical,
+      inLanguage: "ja",
+      datePublished: metadata.datePublished,
+      dateModified: metadata.dateModified,
+      isPartOf: { "@id": websiteId },
+      breadcrumb: { "@id": breadcrumbId },
+      mainEntity: { "@id": datasetId },
+      hasPart: { "@id": itemListId },
+    },
+    {
+      "@type": "Dataset",
+      "@id": datasetId,
+      name: metadata.name,
+      description,
+      url: canonical,
+      identifier: datasetId,
+      inLanguage: "ja",
+      datePublished: metadata.datePublished,
+      dateModified: metadata.dateModified,
+      version: metadata.version,
+      creator: { "@id": organizationId },
+      publisher: { "@id": organizationId },
+      isAccessibleForFree: true,
+      spatialCoverage: { "@type": "Country", name: "日本" },
+      temporalCoverage: privateMedicalSpecialAdmissionsCalendar2027.length
+        ? `${privateMedicalSpecialAdmissionsCalendar2027[0].date}/${privateMedicalSpecialAdmissionsCalendar2027.at(-1)?.date}`
+        : undefined,
+      isBasedOn: privateMedicalSpecialAdmissionsSourceUrls2027,
+      distribution: { "@type": "DataDownload", encodingFormat: "application/json", contentUrl: datasetUrl },
+    },
+    {
+      "@type": "ItemList",
+      "@id": itemListId,
+      name: "2027年度 私立医学部 総合型・学校推薦型選抜等 31大学一覧",
+      numberOfItems: privateMedicalSpecialAdmissionsSummary2027.universityCount,
+      itemListElement: privateMedicalSpecialAdmissionsUniversities2027.map((entry, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: { "@type": "CollegeOrUniversity", name: entry.name, url: `${canonical}#${entry.id}` },
+      })),
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": breadcrumbId,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "ホーム", item: "https://lexus-ec.com/" },
+        { "@type": "ListItem", position: 2, name: "私立医学部情報", item: "https://lexus-ec.com/top/information-shiritsu/" },
+        { "@type": "ListItem", position: 3, name: "2027年度 総合型・学校推薦型選抜日程", item: canonical },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: faqItems.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: { "@type": "Answer", text: item.answer },
+      })),
+    },
+  ],
+};
+---
+
+<SiteLayout title={title} description={description} canonical={canonical} ogImage="/og/private-medical-special-admissions-2027.png">
+  <Fragment slot="head">
+    <meta name="author" content={metadata.publisher.name} />
+    <meta property="og:updated_time" content={metadata.dateModified} />
+    <meta property="og:image:alt" content="2027年度 私立医学部 総合型・学校推薦型選抜 入試日程" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <link rel="alternate" type="application/json" title="2027年度 私立医学部 総合型・学校推薦型選抜 JSONデータ" href={datasetUrl} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </Fragment>
+
+  <main class="admissions-page special-admissions-page">
+    <header class="admissions-print-branding" aria-label="医学部予備校レクサスE.C.">
+      <img class="admissions-print-branding__character" src="/illustrations/characters/lexus-kun-exp.png" alt="レクサスくん" width="1170" height="1170" />
+      <div>
+        <img class="admissions-print-branding__logo" src="/assets/optimized/footer-logo-760.webp" alt="鬼特訓する医学部予備校レクサスE.C." width="760" height="300" />
+        <p data-print-document-title>2027年度 総合型・学校推薦型選抜日程｜最終更新：{lastUpdated}</p>
+      </div>
+      <img class="admissions-print-branding__character" src="/illustrations/characters/yuki-sensei-default.png" alt="ゆうき先生" width="395" height="395" />
+    </header>
+
+    <section class="admissions-hero special-admissions-hero">
+      <div class="content admissions-hero__inner">
+        <nav class="admissions-breadcrumb" aria-label="パンくずリスト">
+          <a href="/">ホーム</a><span aria-hidden="true">/</span>
+          <a href="/top/information-shiritsu/">私立医学部情報</a><span aria-hidden="true">/</span>
+          <span aria-current="page">2027年度 総合型・学校推薦型</span>
+        </nav>
+        <div class="admissions-hero__grid">
+          <div class="admissions-hero__copy">
+            <p class="admissions-kicker"><span>2027</span> SPECIAL ADMISSIONS</p>
+            <h1>2027年度 私立医学部 <br /><strong>総合型・学校推薦型選抜 入試日程</strong></h1>
+            <p class="admissions-hero__lead">
+              全国31大学の総合型・学校推薦型・地域枠・帰国生・IBなどを、<b>日程と出願条件</b>から確認できます。
+              一般選抜・通常の共通テスト利用選抜は別ページに分けています。
+            </p>
+            <div class="admissions-hero__actions">
+              <a class="admissions-primary-button" href="#deadlines">出願締切を見る</a>
+              <a class="admissions-secondary-button" href="#universities">31大学から探す</a>
+            </div>
+          </div>
+          <aside class="special-admissions-hero__summary" aria-label="掲載状況">
+            <p>2027年度 調査対象</p>
+            <strong><span>{privateMedicalSpecialAdmissionsSummary2027.universityCount}</span>大学</strong>
+            <dl>
+              <div><dt>掲載方式</dt><dd>{privateMedicalSpecialAdmissionsSummary2027.routeCount}方式</dd></div>
+              <div><dt>対象方式あり</dt><dd>{privateMedicalSpecialAdmissionsSummary2027.availableUniversityCount}大学</dd></div>
+              <div><dt>完成要項あり</dt><dd>{privateMedicalSpecialAdmissionsSummary2027.completeUniversityCount}大学</dd></div>
+            </dl>
+            <a href="/private-medical-school-admissions-schedule-2027/">一般・共テ利用の日程はこちら →</a>
+          </aside>
+        </div>
+        <div class="admissions-update-row"><span class="admissions-live-dot" aria-hidden="true"></span><span>最終更新：{lastUpdated}</span><a href="#updates">更新内容を見る <span aria-hidden="true">↓</span></a></div>
+      </div>
+    </section>
+
+    <nav class="admissions-jump-nav special-admissions-jump-nav" aria-label="ページ内メニュー">
+      <div class="content admissions-jump-nav__inner">
+        {[
+          ["summary", "概要"], ["deadlines", "出願締切"], ["exam-calendar", "試験日"],
+          ["route-types", "方式別"], ["universities", "31大学"], ["full-calendar", "全日程"], ["sources", "公式資料"],
+        ].map(([id, label], index) => (
+          <a href={`#${id}`}><span class="admissions-jump-nav__index">{String(index + 1).padStart(2, "0")}</span><span class="admissions-jump-nav__label">{label}</span></a>
+        ))}
+      </div>
+    </nav>
+
+    <section class="admissions-overview" id="summary" aria-labelledby="summary-title">
+      <div class="content">
+        <div class="admissions-section-heading admissions-section-heading--split">
+          <div><p>AT A GLANCE</p><h2 id="summary-title">掲載範囲と公表状況</h2></div>
+          <p class="admissions-heading-note">2027年3月卒業見込みの高校生が出願できる方式</p>
+        </div>
+        <div class="admissions-stat-grid special-admissions-stat-grid">
+          <article><span>全国の私立医学部</span><strong>{privateMedicalSpecialAdmissionsSummary2027.universityCount}<small>大学</small></strong><p>全校を対象方式あり・未公表・なしで分類</p></article>
+          <article><span>掲載中</span><strong>{privateMedicalSpecialAdmissionsSummary2027.routeCount}<small>方式</small></strong><p>公式方式名と出願条件を保持</p></article>
+          <article><span>日付イベント</span><strong>{privateMedicalSpecialAdmissionsCalendar2027.reduce((sum, day) => sum + day.events.length, 0)}<small>件</small></strong><p>正規化日付から各一覧を生成</p></article>
+          <article><span>公式資料</span><strong>{privateMedicalSpecialAdmissionsSourceUrls2027.length}<small>URL</small></strong><p>大学公式要項・概要を優先</p></article>
+        </div>
+        <div class="admissions-notice admissions-notice--guideline" role="note">
+          <span aria-hidden="true">!</span>
+          <div><strong>未公表の日付は、前年情報で埋めていません</strong><p>「概要公表済み」は、2027年度の大学公式概要で確認できた範囲です。必着・消印、対象校、評定、地域勤務などの正式条件は、出願前に完成版の学生募集要項で再確認してください。</p><p class="admissions-notice__required">認可申請中・予定・対象校通知のみの方式は、表示内容が変更される場合があります。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <AdmissionsBrandDivider variant="lexus" />
+
+    <section class="special-admissions-list-section" id="deadlines" aria-labelledby="deadlines-title">
+      <div class="content">
+        <div class="admissions-section-heading admissions-section-heading--printable">
+          <div><p>APPLICATION DEADLINES</p><h2 id="deadlines-title">出願締切を日付順に見る</h2><p>Web登録、書類必着、消印有効などを同じ日付軸で確認できます。</p></div>
+          <button type="button" class="admissions-print-button" data-print-section="deadlines" data-print-title="2027年度 私立医学部 総合型・学校推薦型 出願締切一覧"><span aria-hidden="true">⎙</span>このセクションを印刷</button>
+        </div>
+        <div class="special-event-groups">
+          {deadlineGroups.map((group) => (
+            <article class="special-event-group">
+              <header><time datetime={group.date}>{jpDate(group.date, true)}</time><span>{group.entries.length}件</span></header>
+              <ul>{group.entries.map((entry) => <li><span class={`special-stage special-stage--${entry.stage}`}>{entry.label}</span><div><a href={`#${entry.universityId}`}>{entry.university}</a><strong>{entry.routeName}</strong><small>{[entry.time, entry.deadlineRule].filter(Boolean).join("・") || "公式日程"}</small></div></li>)}</ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="special-admissions-calendar-section" id="exam-calendar" aria-labelledby="exam-calendar-title">
+      <div class="content">
+        <div class="admissions-section-heading admissions-section-heading--printable">
+          <div><p>EXAM CALENDAR</p><h2 id="exam-calendar-title">試験日を日付順に見る</h2><p>一次、二次、共通テストを使う総合型・特別選抜も、公式の選抜段階どおりに表示します。</p></div>
+          <button type="button" class="admissions-print-button" data-print-section="exam-calendar" data-print-title="2027年度 私立医学部 総合型・学校推薦型 試験日一覧"><span aria-hidden="true">⎙</span>このセクションを印刷</button>
+        </div>
+        <div class="special-exam-timeline">
+          {examGroups.map((group) => (
+            <article><time datetime={group.date}>{jpDate(group.date, true)}</time><ul>{group.entries.map((entry) => <li><span class={`special-category special-category--${entry.category}`}>{specialAdmissionCategoryLabels[entry.category]}</span><div><a href={`#${entry.universityId}`}>{entry.university}</a><strong>{entry.routeName}</strong><small>{entry.label}{entry.choiceRule ? `｜${entry.choiceRule}` : ""}</small></div></li>)}</ul></article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="special-route-types" id="route-types" aria-labelledby="route-types-title">
+      <div class="content">
+        <div class="admissions-section-heading"><p>ROUTE TYPES</p><h2 id="route-types-title">方式別に対象校を見る</h2><p>名称だけで判断せず、公式の出願資格と選抜区分に基づいて分類しています。</p></div>
+        <div class="special-route-type-grid">
+          {categoryEntries.map((entry) => (
+            <article class={`special-route-type special-route-type--${entry.category}`}>
+              <header><span>{entry.label}</span><strong>{entry.routes.length}<small>方式</small></strong></header>
+              <p>{entry.description}</p>
+              <ul>{entry.routes.slice(0, 5).map(({ university, route }) => <li><a href={`#${university.id}`}>{shortUniversityName(university.name)}</a><span>{route.officialName}</span></li>)}</ul>
+              {entry.routes.length > 5 && <small>ほか{entry.routes.length - 5}方式</small>}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <AdmissionsBrandDivider variant="yuki" />
+
+    <section class="admissions-universities special-admissions-universities" id="universities" aria-labelledby="universities-title">
+      <div class="content">
+        <div class="admissions-section-heading"><p>ALL 31 UNIVERSITIES</p><h2 id="universities-title">31大学を大学別に確認</h2><p>大学を開くと、方式名、定員、現役可否、専願、推薦、評定、地域条件、全日程を確認できます。</p></div>
+        <form class="admissions-filter" data-special-filter>
+          <label class="admissions-search"><span>大学名を検索</span><input type="search" placeholder="例：慶應、日大、福岡" autocomplete="off" data-filter-query /></label>
+          <label><span>地域</span><select data-filter-region><option value="all">全国</option>{["北海道・東北", "関東", "中部", "近畿", "中国・四国", "九州"].map((region) => <option value={region}>{region}</option>)}</select></label>
+          <label><span>方式</span><select data-filter-category><option value="all">すべて</option>{categoryEntries.map((entry) => <option value={entry.category}>{entry.label}</option>)}</select></label>
+          <label><span>公表状況</span><select data-filter-status><option value="all">すべて</option><option value="complete">募集要項公表済み</option><option value="partial">一部要項公表済み</option><option value="outline">公式概要公表済み</option><option value="unpublished">未公表・実施未定</option><option value="not-offered">対象方式なし</option></select></label>
+          <button type="reset" class="admissions-filter__reset">条件をクリア</button>
+        </form>
+        <div class="admissions-filter-result" aria-live="polite"><strong data-filter-count>{privateMedicalSpecialAdmissionsSummary2027.universityCount}</strong>大学を表示</div>
+        <div class="admissions-university-list" data-university-list>
+          {privateMedicalSpecialAdmissionsUniversities2027.map((entry, index) => (
+            <details class="admissions-university special-university" id={entry.id} data-university-card data-name={entry.name} data-region={entry.region} data-categories={entry.routes.map((route) => route.category).join(" ")} data-status={entry.publicationStatus}>
+              <summary>
+                <span class="admissions-university__number">{String(index + 1).padStart(2, "0")}</span>
+                <span class="admissions-university__identity"><small>{entry.region}・{entry.prefecture}</small><strong>{entry.name}</strong></span>
+                <span class="admissions-university__chips"><span class={`status-chip special-status special-status--${entry.scopeStatus}`}>{scopeLabels[entry.scopeStatus]}</span><span class={`status-chip special-publication special-publication--${entry.publicationStatus}`}>{publicationLabels[entry.publicationStatus]}</span></span>
+                <span class="admissions-university__open" aria-hidden="true"></span>
+              </summary>
+              <div class="admissions-university__body special-university__body">
+                <p class="special-university__status-note">{entry.statusNote}</p>
+                {entry.routes.length ? entry.routes.map((admissionRoute) => (
+                  <article class={`special-route-card special-route-card--${admissionRoute.category}`}>
+                    <header>
+                      <div><span class={`special-category special-category--${admissionRoute.category}`}>{specialAdmissionCategoryLabels[admissionRoute.category]}</span><h3>{admissionRoute.officialName}</h3></div>
+                      <div class="special-route-card__badges"><span>{admissionRoute.quota ?? "募集人員未公表"}</span><strong>{admissionRoute.currentStudentEligible === true ? "現役可" : admissionRoute.currentStudentEligible === "conditional" ? "現役可・条件あり" : "現役可否確認中"}</strong>{admissionRoute.exclusive === "専願" && <b>専願</b>}{admissionRoute.category === "designated" && <b>指定校</b>}{admissionRoute.category === "regional" && <b>地域条件</b>}</div>
+                    </header>
+                    <dl class="special-route-conditions">
+                      <div><dt>出願資格</dt><dd>{admissionRoute.eligibility}</dd></div>
+                      <div><dt>専願・併願</dt><dd>{admissionRoute.exclusive}</dd></div>
+                      <div><dt>学校長推薦</dt><dd>{admissionRoute.principalRecommendation}</dd></div>
+                      <div><dt>評定・資格</dt><dd>{admissionRoute.gradeRequirement}</dd></div>
+                      <div><dt>地域・年齢等</dt><dd>{admissionRoute.restrictions.length ? admissionRoute.restrictions.join("／") : "特記事項なし"}</dd></div>
+                    </dl>
+                    <div class="special-route-milestones">
+                      {stageColumns.map(({ key, short }) => {
+                        const events = milestoneEvents(admissionRoute.events, key);
+                        return <div class={`special-route-milestone special-route-milestone--${key}`}><span>{short}</span>{events.length ? events.map((admissionEvent) => <p><time datetime={admissionEvent.date}>{jpDate(admissionEvent.date)}</time>{admissionEvent.sequence && <b>{` ${["①", "②", "③"][admissionEvent.sequence - 1] ?? admissionEvent.sequence}`}</b>}<small>{[admissionEvent.time, admissionEvent.deadlineRule].filter(Boolean).join("・")}</small></p>) : <em>未公表</em>}</div>;
+                      })}
+                    </div>
+                    {admissionRoute.note && <p class="special-route-card__note">{admissionRoute.note}</p>}
+                    <footer><span class={`special-publication special-publication--${admissionRoute.publicationStatus}`}>{publicationLabels[admissionRoute.publicationStatus]}</span>{admissionRoute.sourceUrls.map((url, sourceIndex) => <a href={url} target="_blank" rel="noopener noreferrer">公式資料{admissionRoute.sourceUrls.length > 1 ? ` ${sourceIndex + 1}` : ""} ↗</a>)}</footer>
+                  </article>
+                )) : <div class="special-university__empty"><strong>{entry.scopeStatus === "not-offered" ? "対象方式は確認できません" : "2027年度情報の公表待ちです"}</strong><p>前年の日程・条件は掲載していません。公式サイトの更新をご確認ください。</p></div>}
+                {entry.excludedRoutes?.length && <aside class="special-excluded"><strong>対象外として確認した方式</strong><ul>{entry.excludedRoutes.map((reason) => <li>{reason}</li>)}</ul></aside>}
+                <div class="admissions-university__footer"><a href={entry.officialUrl} target="_blank" rel="noopener noreferrer">{entry.name}の公式入試情報 ↗</a><a href={entry.strategyPath}>{entry.name}の2027年度入試対策を見る →</a></div>
+              </div>
+            </details>
+          ))}
+        </div>
+        <div class="admissions-empty" data-filter-empty hidden><strong>該当する大学が見つかりませんでした</strong><p>検索語や絞り込み条件を変えてお試しください。</p></div>
+      </div>
+    </section>
+
+    <section class="admissions-full-schedule special-full-calendar" id="full-calendar" aria-labelledby="full-calendar-title">
+      <div class="content">
+        <div class="admissions-section-heading admissions-section-heading--light admissions-section-heading--printable">
+          <div><p>COMPLETE SCHEDULE</p><h2 id="full-calendar-title">出願から手続まで、全日程カレンダー</h2><p>日付は正規化データから生成。ヘッダーと左端の日付列を固定しています。</p></div>
+          <button type="button" class="admissions-print-button" data-print-section="full-calendar" data-print-title="2027年度 私立医学部 総合型・学校推薦型 全日程カレンダー"><span aria-hidden="true">⎙</span>このセクションを印刷</button>
+        </div>
+        <div class="special-full-calendar__legend">{stageColumns.map(({ key, short }) => <span class={`special-stage special-stage--${key}`}>{short}</span>)}</div>
+        <div class="special-full-calendar__viewport" tabindex="0" role="region" aria-label="2027年度私立医学部 総合型・学校推薦型選抜 全日程">
+          <table>
+            <caption>2027年度私立医学部の一般選抜・通常の共通テスト利用選抜以外について、公式に確認できた全日程を掲載しています。</caption>
+            <thead><tr><th scope="col">日付</th>{stageColumns.map(({ key, short }) => <th scope="col" class={`special-stage-head--${key}`}>{short}</th>)}</tr></thead>
+            <tbody>{privateMedicalSpecialAdmissionsCalendar2027.map((day) => <tr><th scope="row"><time datetime={day.date}>{jpDate(day.date, true)}</time></th>{stageColumns.map(({ key }) => { const events = day.events.filter((entry) => entry.stage === key); return <td class={`special-calendar-cell special-calendar-cell--${key}`}>{events.length ? <ul>{events.map((entry) => <li><a href={`#${entry.universityId}`}>{shortUniversityName(entry.university)}</a><span class={`special-category special-category--${entry.category}`}>{specialAdmissionCategoryLabels[entry.category]}</span><strong>{entry.routeName}</strong><small>{entry.label}{entry.time ? ` ${entry.time}` : ""}{entry.deadlineRule ? `・${entry.deadlineRule}` : ""}</small></li>)}</ul> : <span class="special-calendar-empty">—</span>}</td>; })}</tr>)}</tbody>
+          </table>
+        </div>
+        <p class="admissions-full-schedule__caption">複数試験日は①②③で表示し、選択日・大学指定日・両日受験の条件を大学別詳細に記載しています。会場はカレンダーに表示していません。</p>
+      </div>
+    </section>
+
+    <AdmissionsBrandDivider variant="duo" />
+
+    <section class="admissions-guide special-admissions-guide" aria-labelledby="guide-title">
+      <div class="content">
+        <div class="admissions-section-heading"><p>HOW TO READ</p><h2 id="guide-title">見方・出願前の注意</h2></div>
+        <ol class="admissions-guide__steps">
+          <li><span>1</span><div><h3>現役可否と卒業年度を確認</h3><p>「現役可・条件あり」は、海外学校歴、指定校、地域、年齢など追加条件があります。</p></div></li>
+          <li><span>2</span><div><h3>専願・推薦・評定を先に確認</h3><p>日程が合っていても、合格時の入学確約、学校長推薦、評定基準を満たさなければ出願できません。</p></div></li>
+          <li><span>3</span><div><h3>締切の種類を分けて確認</h3><p>Web登録、検定料、郵送書類の締切は別日・別時刻の場合があります。必着と消印有効も区別します。</p></div></li>
+          <li><span>4</span><div><h3>完成版募集要項で最終確認</h3><p>概要・ガイド段階の情報や認可申請中の枠は変更される可能性があります。</p></div></li>
+        </ol>
+        <aside class="special-admissions-related"><div><strong>一般選抜・共通テスト利用選抜を探す方へ</strong><p>一般・共テ利用31大学の日程は、専用ページで試験日と締切を確認できます。</p></div><a href="/private-medical-school-admissions-schedule-2027/">一般・共テ利用の日程を見る →</a></aside>
+      </div>
+    </section>
+
+    <section class="admissions-update-history" id="updates" aria-labelledby="updates-title">
+      <div class="content admissions-update-history__inner">
+        <header class="admissions-update-history__header"><p>ADMISSION UPDATES</p><h2 id="updates-title">入試情報の更新履歴</h2><p>このページの入試方式・日程・資格に関する更新だけを掲載します。</p></header>
+        <ol class="admissions-update-history__list special-update-list">{updateHistory.map((update, index) => <li class:list={["admissions-update-item", { "admissions-update-item--latest": index === 0 }]}><div class="admissions-update-item__meta">{index === 0 && <span>NEW</span>}<time datetime={update.iso}>{update.date}</time></div><div class="admissions-update-item__body"><h3>{update.title}</h3><p>{update.detail}</p></div></li>)}</ol>
+      </div>
+    </section>
+
+    <section class="special-sources" id="sources" aria-labelledby="sources-title">
+      <div class="content">
+        <div class="admissions-section-heading"><p>OFFICIAL SOURCES</p><h2 id="sources-title">31大学の公式資料</h2><p>大学公式の募集要項・入試概要・入試ガイドへのリンクです。</p></div>
+        <ol>{privateMedicalSpecialAdmissionsUniversities2027.map((entry, index) => <li><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{entry.name}</strong><small>{publicationLabels[entry.publicationStatus]}</small></div><a href={entry.officialUrl} target="_blank" rel="noopener noreferrer">公式情報 ↗</a></li>)}</ol>
+        <aside class="admissions-data-access"><p><strong>掲載データについて</strong>人が読むページとJSONは同じ正本データから生成しています。未公表事項は確定値として構造化していません。最終更新：<time datetime={metadata.dateModified}>{lastUpdated}</time></p><a href={datasetUrl} type="application/json">機械可読JSONを見る</a></aside>
+      </div>
+    </section>
+
+    <section class="admissions-faq" aria-labelledby="faq-title"><div class="content-narrow"><div class="admissions-section-heading"><p>FAQ</p><h2 id="faq-title">よくある質問</h2></div><div class="admissions-faq__list">{faqItems.map((item, index) => <details open={index === 0}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></div></section>
+
+    <section class="admissions-final-cta"><div class="content admissions-final-cta__inner"><div><p>方式が多い年内入試こそ、条件確認を早めに。</p><h2>評定・専願・地域条件まで含めて、受験プランを整理します。</h2></div><div><a class="admissions-primary-button" href="/top/reservation/">無料個別相談を予約</a><a class="admissions-secondary-button" href="/request-documents/">資料を請求する</a></div></div></section>
+  </main>
+
+  <script is:inline>
+    (() => {
+      const form = document.querySelector("[data-special-filter]");
+      const cards = [...document.querySelectorAll("[data-university-card]")];
+      const count = document.querySelector("[data-filter-count]");
+      const empty = document.querySelector("[data-filter-empty]");
+      if (form instanceof HTMLFormElement) {
+        const applyFilters = () => {
+          const query = form.querySelector("[data-filter-query]");
+          const region = form.querySelector("[data-filter-region]");
+          const category = form.querySelector("[data-filter-category]");
+          const status = form.querySelector("[data-filter-status]");
+          const q = query instanceof HTMLInputElement ? query.value.trim().toLowerCase() : "";
+          const r = region instanceof HTMLSelectElement ? region.value : "all";
+          const c = category instanceof HTMLSelectElement ? category.value : "all";
+          const s = status instanceof HTMLSelectElement ? status.value : "all";
+          let visible = 0;
+          cards.forEach((card) => {
+            if (!(card instanceof HTMLElement)) return;
+            const show = (!q || (card.dataset.name || "").toLowerCase().includes(q)) && (r === "all" || card.dataset.region === r) && (c === "all" || (card.dataset.categories || "").split(" ").includes(c)) && (s === "all" || card.dataset.status === s);
+            card.hidden = !show;
+            if (show) visible += 1;
+          });
+          if (count) count.textContent = String(visible);
+          if (empty instanceof HTMLElement) empty.hidden = visible !== 0;
+        };
+        form.addEventListener("input", applyFilters);
+        form.addEventListener("change", applyFilters);
+        form.addEventListener("reset", () => window.setTimeout(applyFilters, 0));
+      }
+
+      let titleBeforePrint = null;
+      let printHeadingBeforePrint = null;
+      const clearPrintTarget = () => {
+        document.body.classList.remove("is-printing-admissions-section");
+        document.querySelector(".is-print-target")?.classList.remove("is-print-target");
+        if (titleBeforePrint !== null) { document.title = titleBeforePrint; titleBeforePrint = null; }
+        const printHeading = document.querySelector("[data-print-document-title]");
+        if (printHeading instanceof HTMLElement && printHeadingBeforePrint !== null) {
+          printHeading.textContent = printHeadingBeforePrint;
+          printHeadingBeforePrint = null;
+        }
+      };
+      document.querySelectorAll("[data-print-section]").forEach((button) => button.addEventListener("click", () => {
+        if (!(button instanceof HTMLButtonElement)) return;
+        const target = button.dataset.printSection ? document.getElementById(button.dataset.printSection) : null;
+        if (!(target instanceof HTMLElement)) return;
+        clearPrintTarget();
+        target.classList.add("is-print-target");
+        document.body.classList.add("is-printing-admissions-section");
+        titleBeforePrint = document.title;
+        document.title = button.dataset.printTitle || document.title;
+        const printHeading = document.querySelector("[data-print-document-title]");
+        if (printHeading instanceof HTMLElement) {
+          printHeadingBeforePrint = printHeading.textContent;
+          printHeading.textContent = `${document.title}｜最終更新：${printHeadingBeforePrint?.split("｜最終更新：")[1] || "2026年8月4日"}`;
+        }
+        window.print();
+      }));
+      window.addEventListener("afterprint", clearPrintTarget);
+    })();
+  </script>
+</SiteLayout>

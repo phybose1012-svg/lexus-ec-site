@@ -1,0 +1,425 @@
+@import "./admissions-2027.css";
+
+.special-admissions-page {
+  --special-border: #d9d3cc;
+  --special-ink: #22201e;
+  --special-muted: #6d665f;
+  --special-paper: #fffdf9;
+  overflow-x: clip;
+  color: var(--special-ink);
+  background: #fff;
+}
+
+.special-admissions-hero .admissions-hero__grid {
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.72fr);
+}
+
+.special-admissions-hero h1 {
+  max-width: 820px;
+  font-size: clamp(2rem, 4.6vw, 4.15rem);
+}
+
+.special-admissions-hero h1 strong {
+  font-size: 0.76em;
+}
+
+.special-admissions-hero__summary {
+  align-self: center;
+  border: 1px solid #c9bfb4;
+  border-top: 6px solid var(--admissions-red);
+  border-radius: 2px;
+  padding: clamp(22px, 3vw, 34px);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 18px 40px rgba(75, 54, 40, 0.1);
+}
+
+.special-admissions-hero__summary > p {
+  margin: 0 0 4px;
+  color: var(--special-muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.special-admissions-hero__summary > strong {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 18px;
+  color: #2d2824;
+  font-size: 1.15rem;
+}
+
+.special-admissions-hero__summary > strong span {
+  color: var(--admissions-red);
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 6vw, 5.4rem);
+  line-height: 1;
+}
+
+.special-admissions-hero__summary dl {
+  margin: 0 0 18px;
+  border-top: 1px solid var(--special-border);
+}
+
+.special-admissions-hero__summary dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--special-border);
+  padding: 9px 0;
+}
+
+.special-admissions-hero__summary dt,
+.special-admissions-hero__summary dd {
+  margin: 0;
+  font-size: 0.86rem;
+}
+
+.special-admissions-hero__summary dt { color: var(--special-muted); }
+.special-admissions-hero__summary dd { font-weight: 900; }
+.special-admissions-hero__summary > a { color: var(--admissions-red); font-size: 0.82rem; font-weight: 900; }
+
+.special-admissions-jump-nav .admissions-jump-nav__inner {
+  grid-template-columns: repeat(7, minmax(92px, 1fr));
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.special-admissions-jump-nav a { min-width: 92px; }
+
+.special-admissions-stat-grid article {
+  background: #fff;
+}
+
+.special-admissions-list-section,
+.special-admissions-calendar-section,
+.special-route-types,
+.special-sources {
+  padding: clamp(72px, 8vw, 120px) 0;
+  background: #fff;
+}
+
+.special-admissions-calendar-section,
+.special-sources { background: #f8f5f0; }
+
+.special-event-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.special-event-group {
+  overflow: hidden;
+  border: 1px solid var(--special-border);
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(49, 39, 31, 0.05);
+}
+
+.special-event-group > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border-bottom: 1px solid var(--special-border);
+  padding: 13px 16px;
+  background: #f4efe9;
+}
+
+.special-event-group > header time { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 900; }
+.special-event-group > header span { color: var(--special-muted); font-size: 0.72rem; font-weight: 900; }
+.special-event-group ul { margin: 0; padding: 0; list-style: none; }
+.special-event-group li { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 13px; align-items: start; border-bottom: 1px solid var(--special-border); padding: 13px 16px; }
+.special-event-group li:last-child { border-bottom: 0; }
+.special-event-group li div { min-width: 0; }
+.special-event-group li a { color: var(--special-ink); font-size: 0.92rem; font-weight: 900; }
+.special-event-group li strong { display: block; margin-top: 2px; font-size: 0.74rem; line-height: 1.5; }
+.special-event-group li small { display: block; margin-top: 4px; color: var(--special-muted); font-size: 0.68rem; }
+
+.special-stage,
+.special-category {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 3px 8px;
+  font-size: 0.64rem;
+  font-weight: 900;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.special-stage--application-start { color: #2f7654; background: #eef8f2; }
+.special-stage--application-deadline { color: #a33b36; background: #fff0ee; }
+.special-stage--first-exam { color: #315f96; background: #edf4fc; }
+.special-stage--first-result { color: #26777a; background: #eaf7f7; }
+.special-stage--second-exam { color: #72528f; background: #f4effa; }
+.special-stage--final-result { color: #8c5a18; background: #fff6e8; }
+.special-stage--procedure-deadline { color: #76543e; background: #f5eee9; }
+
+.special-category--comprehensive { color: #8a3431; background: #fff1ef; }
+.special-category--recommendation { color: #315f96; background: #edf4fc; }
+.special-category--designated { color: #765025; background: #fff6e8; }
+.special-category--regional { color: #2e7355; background: #edf8f2; }
+.special-category--returnee { color: #6e4e8e; background: #f5effa; }
+.special-category--ib { color: #236c78; background: #eaf7f8; }
+.special-category--international { color: #8a466d; background: #fbedf5; }
+.special-category--special { color: #575d64; background: #f1f2f3; }
+
+.special-exam-timeline {
+  display: grid;
+  gap: 14px;
+}
+
+.special-exam-timeline > article {
+  display: grid;
+  grid-template-columns: 145px minmax(0, 1fr);
+  border: 1px solid var(--special-border);
+  background: #fff;
+}
+
+.special-exam-timeline > article > time {
+  border-right: 1px solid var(--special-border);
+  padding: 18px;
+  background: #f1ebe4;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+.special-exam-timeline ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
+.special-exam-timeline li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 11px; border-right: 1px solid var(--special-border); border-bottom: 1px solid var(--special-border); padding: 13px; }
+.special-exam-timeline li:nth-child(2n) { border-right: 0; }
+.special-exam-timeline li div { min-width: 0; }
+.special-exam-timeline a { color: var(--special-ink); font-size: 0.82rem; font-weight: 900; }
+.special-exam-timeline strong, .special-exam-timeline small { display: block; }
+.special-exam-timeline strong { margin-top: 2px; font-size: 0.72rem; line-height: 1.45; }
+.special-exam-timeline small { margin-top: 3px; color: var(--special-muted); font-size: 0.66rem; }
+
+.special-route-type-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.special-route-type {
+  border: 1px solid var(--special-border);
+  border-top: 4px solid #8a3431;
+  padding: 20px;
+  background: #fff;
+}
+
+.special-route-type--recommendation { border-top-color: #315f96; }
+.special-route-type--designated { border-top-color: #765025; }
+.special-route-type--regional { border-top-color: #2e7355; }
+.special-route-type--returnee { border-top-color: #6e4e8e; }
+.special-route-type--ib { border-top-color: #236c78; }
+.special-route-type--international { border-top-color: #8a466d; }
+.special-route-type--special { border-top-color: #575d64; }
+.special-route-type header { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.special-route-type header > span { font-size: 1rem; font-weight: 900; }
+.special-route-type header strong { color: var(--admissions-red); font-size: 1.8rem; }
+.special-route-type header small { color: var(--special-muted); font-size: 0.65rem; }
+.special-route-type > p { min-height: 6.5em; margin: 12px 0; color: var(--special-muted); font-size: 0.76rem; line-height: 1.7; }
+.special-route-type ul { margin: 0; padding: 0; list-style: none; }
+.special-route-type li { border-top: 1px solid var(--special-border); padding: 8px 0; }
+.special-route-type li a { color: var(--special-ink); font-size: 0.75rem; font-weight: 900; }
+.special-route-type li span { display: block; margin-top: 2px; color: var(--special-muted); font-size: 0.65rem; line-height: 1.45; }
+.special-route-type > small { color: var(--special-muted); font-weight: 800; }
+
+.special-status,
+.special-publication {
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 0.64rem;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.special-status--available, .special-publication--complete { color: #2f7654; background: #eef8f2; }
+.special-status--unpublished, .special-publication--unpublished, .special-publication--previous-year-only { color: #8c5a18; background: #fff6e8; }
+.special-status--not-offered, .special-publication--not-offered { color: #65615d; background: #f1f1f1; }
+.special-publication--partial { color: #315f96; background: #edf4fc; }
+.special-publication--outline { color: #72528f; background: #f4effa; }
+
+.special-university__body { padding: 20px; }
+.special-university__status-note { margin: 0 0 16px; border-left: 4px solid #a78a72; padding: 10px 14px; background: #f7f3ee; color: #514b46; font-size: 0.78rem; line-height: 1.7; }
+
+.special-route-card {
+  margin-top: 16px;
+  border: 1px solid var(--special-border);
+  border-top: 4px solid #8a3431;
+  background: #fff;
+}
+
+.special-route-card--recommendation { border-top-color: #315f96; }
+.special-route-card--designated { border-top-color: #765025; }
+.special-route-card--regional { border-top-color: #2e7355; }
+.special-route-card--returnee { border-top-color: #6e4e8e; }
+.special-route-card--ib { border-top-color: #236c78; }
+.special-route-card--international { border-top-color: #8a466d; }
+.special-route-card--special { border-top-color: #575d64; }
+
+.special-route-card > header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid var(--special-border);
+  padding: 17px 18px;
+  background: #fcfaf7;
+}
+
+.special-route-card h3 { margin: 8px 0 0; font-size: 1.05rem; line-height: 1.45; }
+.special-route-card__badges { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; max-width: 46%; }
+.special-route-card__badges :where(span, strong, b) { border: 1px solid #c8bdb2; border-radius: 999px; padding: 4px 8px; background: #fff; font-size: 0.65rem; line-height: 1.2; }
+.special-route-card__badges strong { color: #2f7654; border-color: #82b99b; background: #eef8f2; }
+.special-route-card__badges b { color: #9a342f; border-color: #d6a19d; background: #fff0ee; }
+
+.special-route-conditions {
+  display: grid;
+  grid-template-columns: 1.5fr 0.7fr 0.75fr 1fr 1.5fr;
+  margin: 0;
+  border-bottom: 1px solid var(--special-border);
+}
+
+.special-route-conditions > div { min-width: 0; border-right: 1px solid var(--special-border); padding: 12px; }
+.special-route-conditions > div:last-child { border-right: 0; }
+.special-route-conditions dt { margin-bottom: 5px; color: var(--special-muted); font-size: 0.61rem; font-weight: 900; }
+.special-route-conditions dd { margin: 0; font-size: 0.69rem; font-weight: 700; line-height: 1.55; }
+
+.special-route-milestones {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  border-bottom: 1px solid var(--special-border);
+}
+
+.special-route-milestone { min-width: 0; border-right: 1px solid var(--special-border); padding: 10px; }
+.special-route-milestone:last-child { border-right: 0; }
+.special-route-milestone > span { display: block; margin: -10px -10px 9px; border-bottom: 1px solid var(--special-border); padding: 6px 8px; background: #f6f4f1; color: var(--special-muted); font-size: 0.58rem; font-weight: 900; text-align: center; }
+.special-route-milestone p { margin: 0 0 6px; text-align: center; }
+.special-route-milestone p:last-child { margin-bottom: 0; }
+.special-route-milestone time { display: inline; font-size: 0.72rem; font-weight: 900; }
+.special-route-milestone p b { color: var(--admissions-red); font-size: 0.68rem; }
+.special-route-milestone small { display: block; margin-top: 2px; color: var(--special-muted); font-size: 0.55rem; line-height: 1.35; }
+.special-route-milestone em { display: block; color: #98918b; font-size: 0.62rem; font-style: normal; text-align: center; }
+.special-route-card__note { margin: 0; border-bottom: 1px solid var(--special-border); padding: 9px 14px; background: #fff9ea; font-size: 0.67rem; line-height: 1.55; }
+.special-route-card > footer { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 11px 14px; }
+.special-route-card > footer a { color: var(--admissions-red); font-size: 0.68rem; font-weight: 900; }
+
+.special-university__empty { border: 1px solid var(--special-border); padding: 22px; background: #f8f6f3; text-align: center; }
+.special-university__empty strong { font-size: 0.92rem; }
+.special-university__empty p { margin: 6px 0 0; color: var(--special-muted); font-size: 0.73rem; }
+.special-excluded { margin-top: 16px; border: 1px dashed #bbb0a5; padding: 14px 16px; background: #faf8f5; }
+.special-excluded strong { font-size: 0.74rem; }
+.special-excluded ul { margin: 8px 0 0; padding-left: 1.2em; color: var(--special-muted); font-size: 0.68rem; line-height: 1.7; }
+
+.special-full-calendar {
+  padding: clamp(72px, 8vw, 120px) 0;
+  color: var(--special-ink);
+  background: #f8f5f0;
+}
+
+.special-full-calendar .admissions-section-heading--light :where(p, h2) { color: var(--special-ink); }
+.special-full-calendar__legend { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+.special-full-calendar__viewport { max-height: 72vh; overflow: auto; border: 1px solid var(--special-border); background: #fff; scrollbar-gutter: stable; }
+.special-full-calendar table { width: 100%; min-width: 1420px; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
+.special-full-calendar caption { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+.special-full-calendar :where(th, td) { border-right: 1px solid var(--special-border); border-bottom: 1px solid var(--special-border); vertical-align: top; }
+.special-full-calendar thead th { position: sticky; z-index: 5; top: 0; width: 172px; padding: 11px 8px; background: #eee9e3; font-size: 0.67rem; text-align: center; }
+.special-full-calendar thead th:first-child { z-index: 7; left: 0; width: 126px; }
+.special-full-calendar tbody th { position: sticky; z-index: 4; left: 0; width: 126px; padding: 12px 8px; background: #f7f3ee; font-family: var(--font-serif); font-size: 0.78rem; text-align: center; }
+.special-full-calendar td { width: 172px; min-height: 52px; padding: 7px; background: #fff; }
+.special-full-calendar td ul { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.special-full-calendar td li { border: 1px solid #ded8d2; border-left: 3px solid #999; padding: 6px; background: #fff; }
+.special-full-calendar td a { color: var(--special-ink); font-size: 0.66rem; font-weight: 900; }
+.special-full-calendar td .special-category { float: right; padding: 2px 5px; font-size: 0.5rem; }
+.special-full-calendar td strong { display: block; clear: both; padding-top: 3px; font-size: 0.58rem; line-height: 1.42; }
+.special-full-calendar td small { display: block; margin-top: 3px; color: var(--special-muted); font-size: 0.52rem; line-height: 1.35; }
+.special-calendar-cell--application-start li { border-left-color: #2f7654; }
+.special-calendar-cell--application-deadline li { border-left-color: #a33b36; }
+.special-calendar-cell--first-exam li { border-left-color: #315f96; }
+.special-calendar-cell--first-result li { border-left-color: #26777a; }
+.special-calendar-cell--second-exam li { border-left-color: #72528f; }
+.special-calendar-cell--final-result li { border-left-color: #8c5a18; }
+.special-calendar-cell--procedure-deadline li { border-left-color: #76543e; }
+.special-calendar-empty { display: block; padding: 12px 0; color: #b9b3ad; text-align: center; }
+
+.special-admissions-related { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 34px; border: 1px solid var(--special-border); border-left: 6px solid var(--admissions-red); padding: 22px 24px; background: #fff; }
+.special-admissions-related strong { font-size: 1rem; }
+.special-admissions-related p { margin: 5px 0 0; color: var(--special-muted); font-size: 0.76rem; }
+.special-admissions-related a { flex: none; color: var(--admissions-red); font-size: 0.8rem; font-weight: 900; }
+.special-update-list { width: 100%; }
+
+.special-sources ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--special-border); border-left: 1px solid var(--special-border); }
+.special-sources li { display: grid; grid-template-columns: 38px minmax(0, 1fr) auto; gap: 12px; align-items: center; border-right: 1px solid var(--special-border); border-bottom: 1px solid var(--special-border); padding: 12px; background: #fff; }
+.special-sources li > span { color: #998d82; font-family: var(--font-serif); font-size: 0.72rem; }
+.special-sources li strong, .special-sources li small { display: block; }
+.special-sources li strong { font-size: 0.78rem; }
+.special-sources li small { margin-top: 2px; color: var(--special-muted); font-size: 0.6rem; }
+.special-sources li a { color: var(--admissions-red); font-size: 0.68rem; font-weight: 900; }
+
+@media (max-width: 1100px) {
+  .special-route-type-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .special-route-conditions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .special-route-conditions > div { border-bottom: 1px solid var(--special-border); }
+  .special-route-milestones { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .special-route-milestone { border-bottom: 1px solid var(--special-border); }
+}
+
+@media (max-width: 760px) {
+  .special-admissions-hero .admissions-hero__grid { grid-template-columns: 1fr; }
+  .special-admissions-hero h1 { font-size: clamp(1.8rem, 9vw, 2.85rem); }
+  .special-event-groups, .special-sources ol { grid-template-columns: 1fr; }
+  .special-exam-timeline > article { grid-template-columns: 1fr; }
+  .special-exam-timeline > article > time { border-right: 0; border-bottom: 1px solid var(--special-border); padding: 11px 14px; }
+  .special-exam-timeline ul { grid-template-columns: 1fr; }
+  .special-exam-timeline li { border-right: 0; }
+  .special-route-type-grid { grid-template-columns: 1fr; }
+  .special-route-type > p { min-height: 0; }
+  .special-route-card > header { display: block; }
+  .special-route-card__badges { justify-content: flex-start; max-width: none; margin-top: 12px; }
+  .special-route-conditions { grid-template-columns: 1fr; }
+  .special-route-conditions > div { border-right: 0; }
+  .special-route-milestones { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .special-admissions-related { display: block; }
+  .special-admissions-related a { display: inline-block; margin-top: 14px; }
+}
+
+@media (max-width: 460px) {
+  .special-event-group li { grid-template-columns: 1fr; }
+  .special-route-milestones { grid-template-columns: 1fr; }
+  .special-sources li { grid-template-columns: 32px minmax(0, 1fr); }
+  .special-sources li a { grid-column: 2; }
+}
+
+@media print {
+  body.is-printing-admissions-section .special-event-groups,
+  body.is-printing-admissions-section .special-sources ol { grid-template-columns: 1fr 1fr; gap: 2.5mm; }
+  body.is-printing-admissions-section .special-event-group,
+  body.is-printing-admissions-section .special-exam-timeline > article,
+  body.is-printing-admissions-section .special-route-type,
+  body.is-printing-admissions-section .special-sources li { break-inside: avoid-page; box-shadow: none; }
+  body.is-printing-admissions-section .special-full-calendar__viewport { max-height: none; overflow: visible; border: var(--admissions-print-rule); }
+  body.is-printing-admissions-section .special-full-calendar table { width: 100%; min-width: 0; table-layout: fixed; }
+  body.is-printing-admissions-section .special-full-calendar :where(th, td) { position: static !important; width: auto !important; border-color: #777; padding: 1.2mm; }
+  body.is-printing-admissions-section .special-full-calendar thead { display: table-header-group; }
+  body.is-printing-admissions-section .special-full-calendar thead th { font-size: 5.5pt; }
+  body.is-printing-admissions-section .special-full-calendar tbody th { width: 18mm !important; font-size: 5.5pt; }
+  body.is-printing-admissions-section .special-full-calendar td :where(a, strong, small) { color: #111 !important; font-size: 4.5pt; }
+  body.is-printing-admissions-section .special-full-calendar td .special-category { display: none; }
+  body.is-printing-admissions-section .special-full-calendar td li { border: var(--admissions-print-rule); border-left-width: 1mm; padding: 1mm; }
+  body.is-printing-admissions-section .special-full-calendar__legend { margin-bottom: 2mm; }
+  body.is-printing-admissions-section .special-stage { color: #111 !important; border-color: #777; background: #fff !important; font-size: 5pt; }
+  body.is-printing-admissions-section .special-exam-timeline { gap: 2mm; }
+  body.is-printing-admissions-section .special-exam-timeline > article { grid-template-columns: 28mm 1fr; border: var(--admissions-print-rule); }
+  body.is-printing-admissions-section .special-exam-timeline ul { grid-template-columns: 1fr 1fr; }
+  body.is-printing-admissions-section .special-exam-timeline :where(time, li) { border-color: #777; padding: 2mm; }
+  body.is-printing-admissions-section .special-exam-timeline :where(a, strong, small) { color: #111 !important; font-size: 6pt; }
+  body.is-printing-admissions-section .special-event-group { border: var(--admissions-print-rule); }
+  body.is-printing-admissions-section .special-event-group :where(header, li) { border-color: #777; padding: 2mm; }
+  body.is-printing-admissions-section .special-event-group :where(a, strong, small) { color: #111 !important; font-size: 6pt; }
+}

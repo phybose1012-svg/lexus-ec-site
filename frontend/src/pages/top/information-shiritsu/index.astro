@@ -11,40 +11,76 @@ import LegacyArticlePage from "../../../components/fixed/LegacyArticlePage.astro
   <section
     slot="before-content"
     class="shiritsu-admissions-feature"
-    aria-labelledby="shiritsu-admissions-feature-title"
+    aria-labelledby="shiritsu-admissions-feature-heading"
   >
-    <a
-      class="shiritsu-admissions-feature__card"
-      href="/private-medical-school-admissions-schedule-2027/"
-    >
-      <span class="shiritsu-admissions-feature__visual" aria-hidden="true">
-        <img
-          src="/og/private-medical-admissions-2027.png"
-          alt=""
-          width="1731"
-          height="909"
-          decoding="async"
-        />
-      </span>
-      <span class="shiritsu-admissions-feature__body">
-        <span class="shiritsu-admissions-feature__eyebrow">
-          <span>2027年度</span>
-          私立医学部入試
+    <header class="shiritsu-admissions-feature__header">
+      <p class="shiritsu-admissions-feature__kicker">2027 PRIVATE MEDICAL ADMISSIONS</p>
+      <h2 id="shiritsu-admissions-feature-heading">2027年度 私立医学部入試日程</h2>
+      <p>選抜区分に合わせて、全国31大学の最新日程をご確認いただけます。</p>
+    </header>
+
+    <div class="shiritsu-admissions-feature__grid">
+      <a
+        class="shiritsu-admissions-feature__card"
+        href="/private-medical-school-admissions-schedule-2027/"
+      >
+        <span class="shiritsu-admissions-feature__visual" aria-hidden="true">
+          <img
+            src="/og/private-medical-admissions-2027.png"
+            alt=""
+            width="1731"
+            height="909"
+            decoding="async"
+          />
         </span>
-        <span
-          id="shiritsu-admissions-feature-title"
-          class="shiritsu-admissions-feature__title"
-        >
-          全国31大学の入試日程を<br />まとめて確認
+        <span class="shiritsu-admissions-feature__body">
+          <span class="shiritsu-admissions-feature__eyebrow">
+            <span>2027年度</span>
+            一般選抜・共通テスト利用
+          </span>
+          <span class="shiritsu-admissions-feature__title">
+            全国31大学の入試日程を<br />まとめて確認
+          </span>
+          <span class="shiritsu-admissions-feature__description">
+            出願締切・一次試験・二次試験を、締切順・試験日順・大学別・全日程で確認できます。
+          </span>
+          <span class="shiritsu-admissions-feature__link">
+            一般選抜等の日程を見る
+            <span aria-hidden="true">→</span>
+          </span>
         </span>
-        <span class="shiritsu-admissions-feature__description">
-          一般選抜・共通テスト利用選抜を、試験日や出願締切など複数の一覧でわかりやすく確認できます。
+      </a>
+
+      <a
+        class="shiritsu-admissions-feature__card shiritsu-admissions-feature__card--special"
+        href="/private-medical-school-special-admissions-schedule-2027/"
+      >
+        <span class="shiritsu-admissions-feature__visual" aria-hidden="true">
+          <img
+            src="/og/private-medical-special-admissions-2027.png"
+            alt=""
+            width="1731"
+            height="909"
+            decoding="async"
+          />
         </span>
-        <span class="shiritsu-admissions-feature__link">
-          2027年度の入試日程を見る
-          <span aria-hidden="true">→</span>
+        <span class="shiritsu-admissions-feature__body">
+          <span class="shiritsu-admissions-feature__eyebrow">
+            <span>2027年度</span>
+            総合型・学校推薦型等
+          </span>
+          <span class="shiritsu-admissions-feature__title">
+            一般選抜以外の日程と<br />出願条件を確認
+          </span>
+          <span class="shiritsu-admissions-feature__description">
+            総合型・学校推薦型・地域枠・帰国生・IBなどを、方式別の日程と条件で確認できます。
+          </span>
+          <span class="shiritsu-admissions-feature__link">
+            総合型・推薦型等の日程を見る
+            <span aria-hidden="true">→</span>
+          </span>
         </span>
-      </span>
-    </a>
+      </a>
+    </div>
   </section>
 </LegacyArticlePage>

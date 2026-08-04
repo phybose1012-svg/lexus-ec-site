@@ -1446,6 +1446,41 @@
   margin: 14px auto 34px;
 }
 
+.shiritsu-admissions-feature__header {
+  margin: 0 auto 20px;
+  text-align: center;
+}
+
+.shiritsu-admissions-feature__header h2 {
+  margin: 4px 0 8px;
+  color: #1e1a18;
+  font-family: var(--font-serif);
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  line-height: 1.45;
+}
+
+.shiritsu-admissions-feature__header > p:last-child {
+  margin: 0;
+  color: #516058;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.shiritsu-admissions-feature__kicker {
+  margin: 0;
+  color: #186a49;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.shiritsu-admissions-feature__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
 .shiritsu-admissions-feature__card {
   position: relative;
   display: grid;
@@ -1463,6 +1498,10 @@
     transform 180ms ease;
 }
 
+.shiritsu-admissions-feature__grid .shiritsu-admissions-feature__card {
+  grid-template-columns: 1fr;
+}
+
 .shiritsu-admissions-feature__card::before {
   position: absolute;
   z-index: 2;
@@ -1475,6 +1514,15 @@
     #a60909 66.666% 100%
   );
   content: "";
+}
+
+.shiritsu-admissions-feature__card--special::before {
+  background: linear-gradient(
+    90deg,
+    #a60909 0 33.333%,
+    #a36d00 33.333% 66.666%,
+    #0c5e23 66.666% 100%
+  );
 }
 
 .shiritsu-admissions-feature__card:hover {
@@ -1495,6 +1543,10 @@
   overflow: hidden;
   border-radius: 10px;
   background: #0c2431;
+}
+
+.shiritsu-admissions-feature__grid .shiritsu-admissions-feature__visual {
+  margin: 16px 16px 0;
 }
 
 .shiritsu-admissions-feature__visual img {
@@ -1519,6 +1571,18 @@
   padding: 34px clamp(24px, 3vw, 38px);
   background:
     linear-gradient(135deg, rgba(238, 245, 238, 0.92), rgba(255, 255, 255, 0.96) 58%),
+    #fff;
+}
+
+.shiritsu-admissions-feature__grid .shiritsu-admissions-feature__body {
+  justify-content: flex-start;
+  min-height: 310px;
+  padding: 26px clamp(22px, 3vw, 32px) 30px;
+}
+
+.shiritsu-admissions-feature__card--special .shiritsu-admissions-feature__body {
+  background:
+    linear-gradient(135deg, rgba(251, 245, 231, 0.94), rgba(255, 255, 255, 0.96) 58%),
     #fff;
 }
 
@@ -1600,6 +1664,14 @@
 
   .shiritsu-admissions-feature__card {
     grid-template-columns: 1fr;
+  }
+
+  .shiritsu-admissions-feature__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shiritsu-admissions-feature__grid .shiritsu-admissions-feature__body {
+    min-height: 0;
   }
 
   .shiritsu-admissions-feature__visual {

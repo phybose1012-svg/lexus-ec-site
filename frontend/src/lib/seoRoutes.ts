@@ -1,6 +1,7 @@
 import { getFixedPageStaticPaths } from "./fixedPageSource";
 import { migratedPosts } from "./postSource";
 import { privateMedicalAdmissions2027Metadata } from "../data/privateMedicalAdmissions2027Metadata";
+import { privateMedicalSpecialAdmissions2027Metadata } from "../data/privateMedicalSpecialAdmissions2027Metadata";
 
 const SITE_ORIGIN = "https://lexus-ec.com";
 
@@ -26,6 +27,7 @@ const staticPagePaths = [
   "/information-faq/",
   "/kuriage-information/",
   "/private-medical-school-admissions-schedule-2027/",
+  "/private-medical-school-special-admissions-schedule-2027/",
   "/penguin-geometry/",
   "/penguin-integral/",
   "/test-entry/",
@@ -58,6 +60,10 @@ const staticPageLastmods = new Map<string, string>([
   [
     new URL(privateMedicalAdmissions2027Metadata.canonicalUrl).pathname,
     privateMedicalAdmissions2027Metadata.dateModified,
+  ],
+  [
+    new URL(privateMedicalSpecialAdmissions2027Metadata.canonicalUrl).pathname,
+    privateMedicalSpecialAdmissions2027Metadata.dateModified,
   ],
 ]);
 
