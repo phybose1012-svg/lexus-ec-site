@@ -1249,6 +1249,150 @@ test("順天堂大学は2027年度公式要項の対象4方式・二次免除経
   );
 });
 
+test("帝京大学は2027年度完成版要項の対象2方式・二次出願・一段階推薦を保持", () => {
+  const teikyo = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "teikyo",
+  );
+
+  assert.ok(teikyo, "帝京大学のデータがありません");
+  assert.equal(teikyo.scopeStatus, "available");
+  assert.equal(teikyo.publicationStatus, "complete");
+  assert.equal(teikyo.officialUrl, "https://www.teikyo-u.ac.jp/applicants/faculty/medicine_d");
+  assert.match(teikyo.statusNote, /完成版要項.*独自の一次選考後.*二次選考で共通テスト/u);
+  assert.deepEqual(
+    teikyo.routes.map((route) => [route.id, route.officialName, route.quota]),
+    [
+      ["comprehensive", "総合型選抜", "10名"],
+      ["recommendation-public", "学校推薦型選抜（公募制）", "15名"],
+    ],
+  );
+
+  const routeById = new Map(teikyo.routes.map((route) => [route.id, route]));
+  const comprehensive = routeById.get("comprehensive");
+  assert.ok(comprehensive, "総合型選抜がありません");
+  assert.equal(comprehensive.currentStudentEligible, true);
+  assert.equal(comprehensive.exclusive, "併願可");
+  assert.equal(comprehensive.principalRecommendation, "不要");
+  assert.match(comprehensive.eligibility, /2026年3月.*2027年3月卒業見込み.*6年間の医学教育/u);
+  assert.match(comprehensive.gradeRequirement, /数値基準なし.*調査書等は面接資料/u);
+  assert.match(
+    comprehensive.restrictions.join(" "),
+    /募集対象者A〜D.*英語必須.*数学1科目.*理科2科目.*指定校制.*他大学と併願可/u,
+  );
+  assert.deepEqual(comprehensive.sourceUrls, [
+    "https://www.teikyo-u.ac.jp/application/files/4017/8409/4615/01_2027.pdf",
+    "https://www.teikyo-u.ac.jp/applicants/faculty/medicine_d",
+    "https://www.teikyo-u.ac.jp/applicants/download",
+    "https://www.dnc.ac.jp/kyotsu/shiken_jouhou/r9/index.html",
+  ]);
+
+  const deadlineSignatures = (route, date) =>
+    new Set(
+      route.events
+        .filter((event) => event.stage === "application-deadline" && event.date === date)
+        .map((event) => `${event.label}|${event.time ?? ""}|${event.deadlineRule ?? ""}`),
+    );
+  assertSameSet(deadlineSignatures(comprehensive, "2026-10-07"), new Set([
+    "Web出願登録締切|16:30|Web登録",
+    "入学検定料納入締切|16:30|",
+    "出願書類締切|16:30|必着",
+  ]));
+  assert.ok(
+    comprehensive.events.some(
+      (event) =>
+        event.stage === "application-start" &&
+        event.date === "2026-12-14" &&
+        event.label.includes("二次選考") &&
+        event.time === "9:00",
+    ),
+    "総合型の二次選考出願開始がありません",
+  );
+  assertSameSet(deadlineSignatures(comprehensive, "2026-12-21"), new Set([
+    "二次選考 Web出願登録締切|16:30|Web登録",
+  ]));
+  assert.deepEqual(
+    comprehensive.events.find((event) => event.date === "2026-10-17"),
+    {
+      stage: "first-exam",
+      date: "2026-10-17",
+      label: "一次選考（論述課題・グループディスカッション・面接）",
+      time: "9:00〜15:30頃",
+    },
+  );
+  assert.deepEqual(
+    comprehensive.events.filter((event) => event.stage === "second-exam"),
+    [
+      {
+        stage: "second-exam",
+        date: "2027-01-16",
+        label: "大学入学共通テスト（英語）",
+        time: "15:20〜18:20",
+        sequence: 1,
+        choiceRule: "指定科目受験のため2日間とも受験",
+      },
+      {
+        stage: "second-exam",
+        date: "2027-01-17",
+        label: "大学入学共通テスト（理科2科目・数学1科目）",
+        time: "9:30〜16:10",
+        sequence: 2,
+        choiceRule: "指定科目受験のため2日間とも受験",
+      },
+    ],
+  );
+  assert.ok(
+    comprehensive.events.some(
+      (event) => event.stage === "first-result" && event.date === "2026-11-02" && event.time === "11:00",
+    ),
+  );
+  assert.ok(
+    comprehensive.events.some(
+      (event) => event.stage === "final-result" && event.date === "2027-02-13" && event.time === "11:00",
+    ),
+  );
+  assert.match(comprehensive.note ?? "", /紙の成績請求チケット.*追加の入学検定料は不要.*本学へ着金/u);
+
+  const recommendation = routeById.get("recommendation-public");
+  assert.ok(recommendation, "学校推薦型選抜（公募制）がありません");
+  assert.equal(recommendation.currentStudentEligible, true);
+  assert.equal(recommendation.exclusive, "専願");
+  assert.equal(recommendation.principalRecommendation, "必要");
+  assert.match(recommendation.eligibility, /2027年3月卒業見込み.*6年間の医学教育.*学校長.*推薦/u);
+  assert.match(recommendation.gradeRequirement, /最終学年第1学期.*調査書全体.*4\.0以上.*二期制.*第2学年後期/u);
+  assert.match(recommendation.restrictions.join(" "), /入学を確約.*共通テストは利用しない/u);
+  assertSameSet(deadlineSignatures(recommendation, "2026-11-11"), new Set([
+    "Web出願登録締切|16:30|Web登録",
+    "入学検定料納入締切|16:30|",
+    "出願書類締切|16:30|必着",
+  ]));
+  assert.deepEqual(
+    recommendation.events.find((event) => event.date === "2026-11-21"),
+    {
+      stage: "first-exam",
+      date: "2026-11-21",
+      label: "試験（基礎能力適性検査・小論文・面接・書類審査）",
+      time: "8:30〜17:00頃",
+    },
+  );
+  assert.ok(
+    recommendation.events.some(
+      (event) => event.stage === "final-result" && event.date === "2026-12-01" && event.time === "11:00",
+    ),
+  );
+  assert.match(recommendation.note ?? "", /英語・数学・理科1科目.*同日で選考.*英語外部試験.*本学へ着金/u);
+
+  assert.match(
+    teikyo.excludedRoutes?.join(" ") ?? "",
+    /一般選抜.*各特別地域枠.*一般選抜の募集人員.*大学入学共通テスト利用選抜.*対象外/u,
+  );
+  assert.ok(
+    teikyo.routes.every(
+      (route) => !route.id.includes("regional") && !route.id.includes("general") && route.id !== "common-test",
+    ),
+    "一般選抜の地域枠や通常の共通テスト利用選抜を再掲載しないでください",
+  );
+});
+
 test("すべての入試イベント日が実在するISO 8601日付", () => {
   assert.ok(privateMedicalSpecialAdmissionsEvents2027.length > 0);
 
