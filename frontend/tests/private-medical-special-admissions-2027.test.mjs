@@ -1818,17 +1818,100 @@ test("一般選抜・通常の共通テスト利用選抜を方式一覧へ混�
   }
 });
 
-test("大学独自の卒業生推薦をその他特別選抜に分類", () => {
+test("昭和医科大学の2027年度推薦2方式を公式要項どおり保持", () => {
   const showaMedical = privateMedicalSpecialAdmissionsUniversities2027.find(
     (entry) => entry.id === "showa-medical",
+  );
+  assert.ok(showaMedical, "昭和医科大学のデータがありません");
+  assert.equal(showaMedical.scopeStatus, "available");
+  assert.equal(showaMedical.publicationStatus, "complete");
+  assert.equal(showaMedical.officialUrl, "https://adm.showa-u.ac.jp/admission/info/web-apply.html");
+  assert.deepEqual(
+    showaMedical.routes.map((route) => [route.id, route.officialName, route.category, route.quota]),
+    [
+      ["school-recommendation", "学校推薦型選抜入試（公募・指定校・特別協定校）", "recommendation", "17名"],
+      ["graduate-recommendation", "卒業生推薦入試", "special", "10名"],
+    ],
+  );
+
+  const schoolRecommendation = showaMedical.routes.find(
+    (route) => route.id === "school-recommendation",
   );
   const graduateRecommendation = showaMedical?.routes.find(
     (route) => route.id === "graduate-recommendation",
   );
 
-  assert.ok(graduateRecommendation, "昭和医科大学の卒業生推薦入学試験がありません");
+  assert.ok(schoolRecommendation, "昭和医科大学の学校推薦型選抜入試がありません");
+  assert.equal(schoolRecommendation.currentStudentEligible, true);
+  assert.equal(schoolRecommendation.exclusive, "専願");
+  assert.equal(schoolRecommendation.principalRecommendation, "必要");
+  assert.match(schoolRecommendation.eligibility, /2027年3月卒業見込み.*認定在外教育施設.*学校長推薦/u);
+  assert.match(schoolRecommendation.gradeRequirement, /全体の評定平均4\.3以上.*高校1年.*中等教育学校4年/u);
+  assert.match(
+    schoolRecommendation.restrictions.join(" "),
+    /入学を確約.*卒業生推薦入試との併願不可.*対象高校へ別途通知/u,
+  );
+
+  const commonSchedule = [
+    { stage: "application-start", date: "2026-11-01", label: "Web出願登録開始", time: "10:00" },
+    {
+      stage: "application-deadline",
+      date: "2026-11-08",
+      label: "Web出願登録締切",
+      time: "16:00",
+      deadlineRule: "Web登録",
+    },
+    { stage: "application-deadline", date: "2026-11-08", label: "出願書類締切", deadlineRule: "必着" },
+    {
+      stage: "first-exam",
+      date: "2026-11-14",
+      label: "試験（基礎学力試験・小論文・面接）",
+      time: "8:30～（入場7:30～8:00）",
+    },
+    { stage: "final-result", date: "2026-12-01", label: "合格発表", time: "15:00" },
+    { stage: "procedure-deadline", date: "2026-12-08", label: "入学手続締切", time: "12:00", deadlineRule: "必着" },
+  ];
+  assert.deepEqual(schoolRecommendation.events, commonSchedule);
+
+  assert.ok(graduateRecommendation, "昭和医科大学の卒業生推薦入試がありません");
   assert.equal(graduateRecommendation.category, "special");
   assert.equal(specialAdmissionCategoryLabels[graduateRecommendation.category], "その他特別選抜");
+  assert.equal(graduateRecommendation.currentStudentEligible, true);
+  assert.equal(graduateRecommendation.exclusive, "専願");
+  assert.equal(graduateRecommendation.principalRecommendation, "不要");
+  assert.match(graduateRecommendation.eligibility, /2027年3月まで.*祖父母または両親.*昭和大学医療短期大学/u);
+  assert.match(graduateRecommendation.gradeRequirement, /数値基準なし/u);
+  assert.match(
+    graduateRecommendation.restrictions.join(" "),
+    /入学を確約.*学校推薦型選抜入試との併願不可.*2024年3月31日以前.*卒業証明書.*続柄/u,
+  );
+  assert.deepEqual(graduateRecommendation.events, [
+    {
+      stage: "application-deadline",
+      date: "2026-10-30",
+      label: "個別入学資格審査申請期限（該当者のみ）",
+      deadlineRule: "必着",
+      choiceRule: "外国の高校・中等教育学校に在籍した該当者のみ",
+    },
+    ...commonSchedule,
+  ]);
+
+  const officialSources = [
+    "https://adm.showa-u.ac.jp/albums/abm.php?d=2405&f=abm00072419.pdf",
+    "https://adm.showa-u.ac.jp/admission/info/web-apply.html",
+    "https://adm.showa-u.ac.jp/admission/info/schedule.html",
+  ];
+  assert.deepEqual(schoolRecommendation.sourceUrls, officialSources);
+  assert.deepEqual(graduateRecommendation.sourceUrls, officialSources);
+  for (const route of showaMedical.routes) {
+    assert.match(route.note ?? "", /大学入学共通テストは利用しません.*同日に実施/u);
+    assert.ok(route.events.every((event) => event.stage !== "first-result" && event.stage !== "second-exam"));
+  }
+  assert.doesNotMatch(showaMedical.routes.map((route) => route.officialName).join(" "), /地域枠/u);
+  assert.match(showaMedical.excludedRoutes?.join(" ") ?? "", /地域枠.*一般選抜.*対象外/u);
+  const pageSource = readFileSync(pageSourcePath, "utf8");
+  assert.match(pageSource, /卒業生推薦入試を、学校推薦型から「その他特別選抜」へ変更/u);
+  assert.doesNotMatch(pageSource, /卒業生推薦入学試験/u);
 });
 
 test("実質一般選抜・共通テスト利用選抜に当たる方式を派生データまで除外", () => {
