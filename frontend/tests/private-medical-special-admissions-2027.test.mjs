@@ -449,6 +449,72 @@ test("岩手医科大学は令和9年度公式概要の5方式と資格条件を
   assert.match(iwate.excludedRoutes?.join(" ") ?? "", /学士編入.*現役高校生は出願不可/u);
 });
 
+test("東北医科薬科大学は令和9年度公式資料の総合型1方式と二段階出願を保持", () => {
+  const tohoku = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "tohoku-med-pharm",
+  );
+
+  assert.ok(tohoku, "東北医科薬科大学のデータがありません");
+  assert.equal(tohoku.scopeStatus, "available");
+  assert.equal(tohoku.publicationStatus, "outline");
+  assert.equal(tohoku.routes.length, 1);
+
+  const selection = tohoku.routes[0];
+  assert.equal(selection.officialName, "総合型選抜（東北地域定着枠）");
+  assert.equal(selection.quota, "20名");
+  assert.equal(selection.currentStudentEligible, true);
+  assert.match(selection.eligibility, /2027年3月卒業見込み.*2022年3月以降.*18歳/u);
+  assert.equal(selection.exclusive, "専願");
+  assert.equal(selection.principalRecommendation, "未公表");
+  assert.match(selection.gradeRequirement, /3\.8以上.*3年次1学期・前期/u);
+  assert.match(selection.restrictions.join(" "), /宮城県以外の東北5県.*修学資金制度へ必ず応募/u);
+  assert.match(selection.restrictions.join(" "), /9年程度.*すべて不採用.*5年間勤務/u);
+  assert.match(selection.restrictions.join(" "), /推薦書の提出が必要.*推薦者要件は完成版募集要項/u);
+  assert.match(selection.note ?? "", /書類選考.*グループ面接.*大学入学共通テストは利用しません/u);
+
+  assert.deepEqual(selection.events, [
+    { stage: "application-start", date: "2026-09-14", label: "出願開始" },
+    {
+      stage: "application-deadline",
+      date: "2026-10-02",
+      label: "出願登録締切",
+      deadlineRule: "Web登録",
+    },
+    {
+      stage: "application-deadline",
+      date: "2026-10-04",
+      label: "出願書類提出期限",
+      deadlineRule: "必着",
+    },
+    { stage: "first-result", date: "2026-10-16", label: "第一次選考結果発表" },
+    {
+      stage: "second-exam",
+      date: "2026-10-24",
+      label: "第二次選考①（理科・数学・英語小論文）",
+      sequence: 1,
+      choiceRule: "2日間とも受験",
+    },
+    {
+      stage: "second-exam",
+      date: "2026-10-25",
+      label: "第二次選考②（グループ面接）",
+      sequence: 2,
+      choiceRule: "2日間とも受験",
+    },
+    { stage: "final-result", date: "2026-11-02", label: "合格発表" },
+    { stage: "procedure-deadline", date: "2026-11-16", label: "入学金等納付期限" },
+    { stage: "procedure-deadline", date: "2026-11-16", label: "手続書類提出期限" },
+  ]);
+  assert.deepEqual(selection.sourceUrls, [
+    "https://www.tohoku-mpu.ac.jp/admission/medicine-application/",
+    "https://www.tohoku-mpu.ac.jp/wp/wp-content/uploads/2026/05/963a4d3c20d5c1e17605bf8aa1e7293c-1.pdf",
+    "https://www.tohoku-mpu.ac.jp/about/information/admissions_policy/",
+    "https://www.tohoku-mpu.ac.jp/medicine/scholarship/",
+  ]);
+  assert.match(tohoku.excludedRoutes?.join(" ") ?? "", /一般選抜.*東北5県定着枠/u);
+  assert.match(tohoku.excludedRoutes?.join(" ") ?? "", /大学入学共通テスト利用選抜/u);
+});
+
 test("すべての入試イベント日が実在するISO 8601日付", () => {
   assert.ok(privateMedicalSpecialAdmissionsEvents2027.length > 0);
 
