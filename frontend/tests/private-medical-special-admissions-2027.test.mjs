@@ -1011,6 +1011,244 @@ test("慶應義塾大学は2027年度完成版要項の独立2方式・資格・
   assert.ok(keio.routes.every((route) => route.events.every((event) => !event.label.includes("共通テスト"))));
 });
 
+test("順天堂大学は2027年度公式要項の対象4方式・二次免除経路・評価材料を保持", () => {
+  const juntendo = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "juntendo",
+  );
+
+  assert.ok(juntendo, "順天堂大学のデータがありません");
+  assert.equal(juntendo.scopeStatus, "available");
+  assert.equal(juntendo.publicationStatus, "partial");
+  assert.equal(
+    juntendo.officialUrl,
+    "https://www.juntendo.ac.jp/admission/exam/nyushi/med/exam_info/boshu_youkou.html",
+  );
+  assert.match(juntendo.statusNote, /国際バカロレア.*公表済み.*研究医特別選抜.*増員認可後.*最終版/u);
+  assert.deepEqual(
+    juntendo.routes.map((route) => [route.id, route.officialName]),
+    [
+      ["research-doctor", "研究医特別選抜"],
+      ["international", "外国人選抜"],
+      ["returnee", "帰国生選抜"],
+      ["ib-cambridge", "国際バカロレア／ケンブリッジ・インターナショナル選抜（総合型選抜）"],
+    ],
+  );
+
+  const routeById = new Map(juntendo.routes.map((route) => [route.id, route]));
+  const researchDoctor = routeById.get("research-doctor");
+  assert.ok(researchDoctor, "研究医特別選抜がありません");
+  assert.equal(researchDoctor.category, "comprehensive");
+  assert.equal(researchDoctor.quota, "2名（入学定員増員認可申請予定）");
+  assert.equal(researchDoctor.publicationStatus, "outline");
+  assert.equal(researchDoctor.currentStudentEligible, true);
+  assert.equal(researchDoctor.exclusive, "専願");
+  assert.equal(researchDoctor.principalRecommendation, "不要");
+  assert.match(researchDoctor.eligibility, /2027年3月卒業見込み.*入学を確約.*特別コース.*奨学金/u);
+  assert.match(researchDoctor.gradeRequirement, /評定の数値基準なし.*共通テスト7科目.*外部英語資格.*任意.*25点/u);
+  assert.match(researchDoctor.restrictions.join(" "), /地域枠選抜との併願不可/u);
+  assert.deepEqual(researchDoctor.sourceUrls, [
+    "https://www.juntendo.ac.jp/admission/exam/nyushi/med/exam_info/boshu_youkou.html",
+    "https://www.juntendo.ac.jp/assets/2027_Juntendo_Med_NyugakuShikenYoukou.pdf",
+    "https://www.juntendo.ac.jp/kenkyui/",
+  ]);
+
+  const researchEssay = researchDoctor.events.find(
+    (event) => event.date === "2027-02-03",
+  );
+  assert.deepEqual(researchEssay, {
+    stage: "second-exam",
+    date: "2027-02-03",
+    label: "小論文試験（二次判定資料）",
+    time: "17:30～18:40",
+    sequence: 1,
+    choiceRule: "小論文は全志願者、面接・プレゼンテーションは一次合格者が受験",
+  });
+  assert.deepEqual(
+    researchDoctor.events.find((event) => event.date === "2027-02-16"),
+    {
+      stage: "second-exam",
+      date: "2027-02-16",
+      label: "二次試験（面接約20分・プレゼンテーション約20分）",
+      sequence: 2,
+      choiceRule: "小論文は全志願者、面接・プレゼンテーションは一次合格者が受験",
+    },
+  );
+  assert.match(
+    researchDoctor.note ?? "",
+    /小論文は一次合否には使いません.*未受験者は一次選抜対象外.*実施時刻は一次試験合格発表時/u,
+  );
+
+  const internationalRouteIds = ["international", "returnee", "ib-cambridge"];
+  const internationalRoutes = internationalRouteIds.map((routeId) => {
+    const route = routeById.get(routeId);
+    assert.ok(route, `${routeId}がありません`);
+    return route;
+  });
+  for (const route of internationalRoutes) {
+    assert.equal(route.publicationStatus, "complete");
+    assert.equal(route.currentStudentEligible, "conditional");
+    assert.equal(route.exclusive, "併願可");
+    assert.equal(route.principalRecommendation, "不要");
+    assert.match(route.restrictions.join(" "), /3方式から1方式のみ出願可/u);
+    assert.deepEqual(route.sourceUrls, [
+      "https://www.juntendo.ac.jp/admission/exam/nyushi/med/exam_info/boshu_youkou.html",
+      "https://www.juntendo.ac.jp/assets/2027_Juntendo_Med_GakuseiBoshuYoukou_Kokusai.pdf",
+    ]);
+    assert.ok(
+      route.events.some(
+        (event) =>
+          event.stage === "first-exam" &&
+          event.date === "2026-10-13" &&
+          event.label === "一次試験（小論文・英作文）" &&
+          event.time === "14:30～16:30",
+      ),
+    );
+    assert.ok(
+      route.events.some(
+        (event) =>
+          event.stage === "final-result" &&
+          event.date === "2026-11-01" &&
+          event.label === "二次試験免除者合格発表" &&
+          event.time === "12:00",
+      ),
+    );
+  }
+
+  const international = routeById.get("international");
+  assert.match(international.eligibility, /外国籍.*2027年3月31日.*日本の大学入学資格/u);
+  assert.match(international.gradeRequirement, /JLPT N1.*N2.*112点.*TOEFL.*IELTS.*英検.*TEAP.*GTEC.*ケンブリッジ/u);
+  assert.ok(
+    international.events.every(
+      (event) => event.stage !== "second-exam" || !event.label.includes("共通テスト"),
+    ),
+  );
+
+  const returnee = routeById.get("returnee");
+  assert.match(returnee.eligibility, /日本国籍または日本国の永住許可.*最終学年.*継続在学/u);
+  assert.match(returnee.gradeRequirement, /評定の数値基準なし.*EJUまたは大学入学共通テスト/u);
+
+  const ibCambridge = routeById.get("ib-cambridge");
+  assert.match(ibCambridge.eligibility, /IB Diploma.*物理・化学・生物.*数学.*GCE Aレベル/u);
+  assert.match(ibCambridge.gradeRequirement, /通常出願.*総合点下限なし.*TOEFL.*IELTS/u);
+  assert.match(
+    ibCambridge.restrictions.join(" "),
+    /日本の教育制度.*共通テスト必須.*外国教育制度.*共通テストまたはEJU/u,
+  );
+  for (const route of internationalRoutes) {
+    assert.match(route.note ?? "", /IB最終40点以上.*Aレベル.*SAT 1450.*ACT 33/u);
+  }
+
+  const procedureSignatures = (route) =>
+    new Set(
+      route.events
+        .filter((event) => event.stage === "procedure-deadline")
+        .map((event) => `${event.date}|${event.label}|${event.time ?? ""}`),
+    );
+  assertSameSet(procedureSignatures(researchDoctor), new Set([
+    "2027-02-26|入学手続期間最終日|17:00",
+  ]));
+  assertSameSet(procedureSignatures(international), new Set([
+    "2026-11-13|二次試験免除者 入学手続期間最終日|17:00",
+    "2027-02-02|二次試験合格者 入学手続期間最終日|17:00",
+    "2027-02-05|二次試験免除見込み者 入学手続期間最終日|17:00",
+  ]));
+  for (const route of [returnee, ibCambridge]) {
+    assertSameSet(procedureSignatures(route), new Set([
+      "2026-11-06|二次試験免除者 入学手続期間最終日|17:00",
+      "2027-01-29|二次試験免除見込み者 入学手続期間最終日|17:00",
+      "2027-02-18|二次試験合格者 入学手続期間最終日|17:00",
+    ]));
+  }
+
+  assert.ok(
+    internationalRoutes.every((route) =>
+      route.events.some(
+        (event) =>
+          event.stage === "application-deadline" &&
+          event.date === "2026-11-13" &&
+          event.label.includes("EJU第2回受験票"),
+      ),
+    ),
+  );
+  for (const route of [returnee, ibCambridge]) {
+    assert.ok(
+      route.events.some(
+        (event) =>
+          event.stage === "application-deadline" &&
+          event.date === "2026-12-23" &&
+          event.label.includes("共通テスト成績請求チケット"),
+      ),
+    );
+  }
+  assert.ok(
+    internationalRoutes.every((route) =>
+      route.events.some(
+        (event) =>
+          event.stage === "application-deadline" &&
+          event.date === "2027-01-14" &&
+          event.label === "IB取得見込みの一次合格者 最終6科目成績証明書発送期限",
+      ),
+    ),
+  );
+
+  const researchDeadlineEntries = buildDeadlineDisplayEntries(
+    privateMedicalSpecialAdmissionsEvents2027.filter(
+      (event) => event.universityId === "juntendo" && event.routeId === "research-doctor",
+    ),
+  );
+  const researchApplicationDeadline = researchDeadlineEntries.find(
+    (entry) => entry.date === "2027-01-15",
+  );
+  assert.ok(researchApplicationDeadline, "研究医特別選抜の出願締切がありません");
+  assert.deepEqual(researchApplicationDeadline.details, [
+    { label: "Web出願登録・入学検定料納入期限", time: undefined, deadlineRule: undefined },
+    { label: "出願書類締切", time: undefined, deadlineRule: "必着" },
+  ]);
+
+  const juntendoDeadlineEntries = buildDeadlineDisplayEntries(
+    privateMedicalSpecialAdmissionsEvents2027.filter(
+      (event) => event.universityId === "juntendo",
+    ),
+  );
+  const sharedApplicationDeadline = juntendoDeadlineEntries.find(
+    (entry) => entry.date === "2026-09-17",
+  );
+  assert.ok(sharedApplicationDeadline, "国際3方式の共通出願締切がありません");
+  assert.deepEqual(sharedApplicationDeadline.details, [
+    { label: "Web出願登録・入学検定料納入期限", time: undefined, deadlineRule: undefined },
+    { label: "出願書類締切", time: undefined, deadlineRule: "必着" },
+  ]);
+  assertSameSet(
+    sharedApplicationDeadline.routeKeys,
+    new Set(internationalRouteIds.map((routeId) => `juntendo/${routeId}`)),
+    "国際3方式の出願締切を大学単位にまとめてください",
+  );
+
+  const juntendoExamEntries = buildExamDisplayEntries(
+    privateMedicalSpecialAdmissionsEvents2027.filter(
+      (event) => event.universityId === "juntendo",
+    ),
+  );
+  const sharedEssayExam = juntendoExamEntries.find(
+    (entry) =>
+      entry.date === "2026-10-13" &&
+      entry.label === "一次試験（小論文・英作文）",
+  );
+  assert.ok(sharedEssayExam, "国際3方式の共通一次試験がありません");
+  assertSameSet(
+    sharedEssayExam.routeKeys,
+    new Set(internationalRouteIds.map((routeId) => `juntendo/${routeId}`)),
+    "国際3方式の一次試験を大学単位にまとめてください",
+  );
+
+  assert.equal(juntendo.excludedRoutes?.length, 7);
+  assert.match(juntendo.excludedRoutes?.join(" ") ?? "", /東京都.*新潟県.*千葉県.*埼玉県.*静岡県.*茨城県.*群馬県/u);
+  assert.ok(
+    juntendo.routes.every((route) => !route.id.endsWith("regional")),
+    "実質一般選抜の地域枠を再掲載しないでください",
+  );
+});
+
 test("すべての入試イベント日が実在するISO 8601日付", () => {
   assert.ok(privateMedicalSpecialAdmissionsEvents2027.length > 0);
 
@@ -1169,6 +1407,7 @@ test("締切・試験日の表示集約で元イベントの方式を欠落さ�
   for (const twoStageRouteKey of [
     "juntendo/international",
     "juntendo/returnee",
+    "juntendo/ib-cambridge",
     "juntendo/research-doctor",
   ]) {
     assert.deepEqual(
