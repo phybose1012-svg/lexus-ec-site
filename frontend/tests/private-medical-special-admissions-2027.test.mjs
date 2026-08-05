@@ -753,6 +753,12 @@ test("全日程カレンダーは左端の日付をスクロール中もヘッ�
   assert.ok(dateCellRule, "全日程カレンダーの日付列ルールがありません");
   assert.match(dateCellRule, /position\s*:\s*sticky/u);
   assert.match(dateCellRule, /left\s*:\s*0/u);
+  assert.match(
+    dateCellRule,
+    /font-family\s*:\s*Arial,\s*Helvetica,\s*sans-serif/u,
+    "Calendar dates must use the sans-serif date style",
+  );
+  assert.doesNotMatch(dateCellRule, /var\(--font-serif\)/u);
 
   assert.ok(dateTimeRule, "日付文字を行内で固定するルールがありません");
   assert.match(dateTimeRule, /position\s*:\s*sticky/u);

@@ -630,7 +630,7 @@
 .special-full-calendar :where(th, td) { border-right: 1px solid var(--special-border); border-bottom: 1px solid var(--special-border); vertical-align: top; }
 .special-full-calendar thead th { position: sticky; z-index: 5; top: 0; width: 172px; height: var(--admissions-full-schedule-head-height); padding: 11px 8px; background: #e3f0ed; font-size: 0.67rem; text-align: center; }
 .special-full-calendar thead th:first-child { z-index: 7; left: 0; width: 126px; }
-.special-full-calendar tbody th { position: sticky; z-index: 4; left: 0; width: 126px; padding: 12px 8px; background: #eef7f5; font-family: var(--font-serif); font-size: 0.78rem; text-align: center; }
+.special-full-calendar tbody th { position: sticky; z-index: 4; left: 0; width: 126px; padding: 12px 8px; background: #eef7f5; font-family: Arial, Helvetica, sans-serif; font-size: 0.78rem; text-align: center; }
 .special-full-calendar tbody th time {
   position: sticky;
   z-index: 1;
