@@ -1721,6 +1721,133 @@ test("東京女子医科大学は2027年度更新版要項の対象3方式・資
   );
 });
 
+test("東邦大学は2027年度公式情報の対象5方式・資格・地域枠日程を保持", () => {
+  const toho = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "toho",
+  );
+
+  assert.ok(toho, "東邦大学のデータがありません");
+  assert.equal(toho.scopeStatus, "available");
+  assert.equal(toho.publicationStatus, "partial");
+  assert.equal(toho.officialUrl, "https://www.toho-u.ac.jp/med/info_exam/sum.html");
+  assert.match(toho.statusNote, /2027年度.*対象5方式.*千葉県.*新潟県.*設置認可構想中.*完成版募集要項.*作成中/u);
+  assert.deepEqual(
+    toho.routes.map((route) => [
+      route.id,
+      route.officialName,
+      route.category,
+      route.quota,
+      route.publicationStatus,
+      route.currentStudentEligible,
+    ]),
+    [
+      ["comprehensive", "総合入試", "comprehensive", "約10名", "partial", true],
+      ["alumni-children", "同窓生子女入試", "comprehensive", "約5名", "partial", true],
+      ["affiliated-school", "推薦入試（付属校制）", "designated", "約20名", "partial", "conditional"],
+      ["chiba-regional", "推薦入試（公募制－千葉県地域枠）", "regional", "3名", "partial", true],
+      ["niigata-regional", "推薦入試（公募制－新潟県地域枠）", "regional", "5名", "partial", true],
+    ],
+  );
+
+  const routeById = new Map(toho.routes.map((route) => [route.id, route]));
+  const comprehensive = routeById.get("comprehensive");
+  const alumni = routeById.get("alumni-children");
+  const affiliated = routeById.get("affiliated-school");
+  const chiba = routeById.get("chiba-regional");
+  const niigata = routeById.get("niigata-regional");
+
+  assert.match(comprehensive?.eligibility ?? "", /2026年3月.*2027年3月卒業見込み/u);
+  assert.equal(comprehensive?.exclusive, "専願");
+  assert.equal(comprehensive?.principalRecommendation, "不要");
+  assert.match(comprehensive?.gradeRequirement ?? "", /全体.*3\.8以上.*数学・理科.*4\.0以上.*高校3年1学期/u);
+  assert.match(
+    comprehensive?.restrictions.join(" ") ?? "",
+    /入学を確約.*同窓生子女入試.*付属校制.*併願不可.*共通テストは利用しない/u,
+  );
+
+  assert.match(alumni?.eligibility ?? "", /2022年3月以降.*2027年3月卒業見込み.*医学部卒業生.*血族2親等/u);
+  assert.equal(alumni?.exclusive, "専願");
+  assert.equal(alumni?.principalRecommendation, "不要");
+  assert.match(alumni?.gradeRequirement ?? "", /数値基準の記載なし/u);
+  assert.match(
+    alumni?.restrictions.join(" ") ?? "",
+    /2024年4月1日以前.*養子縁組.*入学を確約.*総合入試.*付属校制.*併願不可.*共通テストは利用しない/u,
+  );
+
+  assert.match(affiliated?.eligibility ?? "", /東邦大学付属東邦高等学校.*駒場東邦高等学校.*推薦/u);
+  assert.equal(affiliated?.exclusive, "専願");
+  assert.equal(affiliated?.principalRecommendation, "必要");
+  assert.equal(affiliated?.gradeRequirement, "対象校へ通知");
+  assert.match(
+    affiliated?.restrictions.join(" ") ?? "",
+    /付属東邦高等学校.*駒場東邦高等学校.*学校長を経由.*入学を確約.*併願不可.*共通テストは利用しない/u,
+  );
+  assert.ok(affiliated?.events.every((event) => event.stage !== "application-start" && event.stage !== "application-deadline"));
+
+  for (const regional of [chiba, niigata]) {
+    assert.match(regional?.eligibility ?? "", /2022年3月以降.*2027年3月卒業見込み.*募集要項待ち/u);
+    assert.equal(regional?.exclusive, "未公表");
+    assert.equal(regional?.principalRecommendation, "未公表");
+    assert.equal(regional?.gradeRequirement, "未公表");
+    assert.match(
+      regional?.restrictions.join(" ") ?? "",
+      /設置認可構想中.*推薦・地域・修学資金・卒後勤務.*募集要項待ち.*共通テストは利用しない/u,
+    );
+    assert.match(regional?.note ?? "", /完成版募集要項は作成中.*前年要項.*転用していません/u);
+  }
+
+  const publishedSchedule = [
+    {
+      stage: "application-start",
+      date: "2026-11-02",
+      label: "Web出願登録・郵送受付開始",
+      time: "10:00（Web出願）",
+    },
+    { stage: "application-deadline", date: "2026-11-11", label: "郵送受付締切", deadlineRule: "必着" },
+    {
+      stage: "application-deadline",
+      date: "2026-11-11",
+      label: "窓口受付（当日のみ）",
+      time: "9:00～17:00",
+      deadlineRule: "大学指定",
+    },
+    { stage: "first-exam", date: "2026-11-20", label: "第1次試験", sequence: 1 },
+    { stage: "first-result", date: "2026-11-27", label: "第1次試験合格発表", time: "12:00" },
+    {
+      stage: "second-exam",
+      date: "2026-12-05",
+      label: "第2次試験",
+      choiceRule: "第1次試験合格者のみ",
+      sequence: 2,
+    },
+    { stage: "final-result", date: "2026-12-09", label: "最終合格発表", time: "12:00" },
+    { stage: "procedure-deadline", date: "2026-12-15", label: "入学手続期限" },
+  ];
+  for (const route of [comprehensive, alumni, chiba, niigata]) {
+    assert.deepEqual(route?.events, publishedSchedule);
+  }
+
+  const overviewUrl = "https://www.toho-u.ac.jp/med/info_exam/sum.html";
+  const changesUrl = "https://www.toho-u.ac.jp/info_exam/toho_nyushi2027_web_apply.html";
+  const guideStatusUrl = "https://www.toho-u.ac.jp/info_exam/web_apply.html";
+  for (const route of toho.routes) {
+    assert.ok(route.sourceUrls.includes(overviewUrl));
+    assert.ok(route.sourceUrls.includes(guideStatusUrl));
+  }
+  for (const route of [comprehensive, alumni, chiba, niigata]) {
+    assert.ok(route?.sourceUrls.includes(changesUrl));
+  }
+  assert.ok(comprehensive?.sourceUrls.includes("https://www.toho-u.ac.jp/med/info_exam/sogo.html"));
+  assert.ok(alumni?.sourceUrls.includes("https://www.toho-u.ac.jp/med/info_exam/doso.html"));
+  assert.ok(affiliated?.sourceUrls.includes("https://www.toho-u.ac.jp/med/info_exam/fuzoku.html"));
+
+  assert.match(toho.excludedRoutes?.join(" ") ?? "", /一般入試.*千葉県.*新潟県.*統一入試.*一般選抜/u);
+  assert.ok(
+    toho.routes.every((route) => !/一般入試|統一入試/u.test(route.officialName)),
+    "一般選抜に当たる方式を東邦大学の対象方式へ含めないでください",
+  );
+});
+
 test("すべての入試イベント日が実在するISO 8601日付", () => {
   assert.ok(privateMedicalSpecialAdmissionsEvents2027.length > 0);
 

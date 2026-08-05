@@ -214,6 +214,35 @@ const iwateOfficialSources = [
 const iwateSelectionNote =
   "選考は英語・数学、理科2科目、個人面接・課題型面接を同日に実施します。";
 
+const tohoAdmissionsOverviewUrl = "https://www.toho-u.ac.jp/med/info_exam/sum.html";
+const tohoAdmissionsChangesUrl =
+  "https://www.toho-u.ac.jp/info_exam/toho_nyushi2027_web_apply.html";
+const tohoAdmissionsGuideStatusUrl = "https://www.toho-u.ac.jp/info_exam/web_apply.html";
+const tohoPublishedSchedule: SpecialAdmissionEvent[] = [
+  event("application-start", "2026-11-02", "Web出願登録・郵送受付開始", {
+    time: "10:00（Web出願）",
+  }),
+  event("application-deadline", "2026-11-11", "郵送受付締切", { deadlineRule: "必着" }),
+  event("application-deadline", "2026-11-11", "窓口受付（当日のみ）", {
+    time: "9:00～17:00",
+    deadlineRule: "大学指定",
+  }),
+  event("first-exam", "2026-11-20", "第1次試験", { sequence: 1 }),
+  event("first-result", "2026-11-27", "第1次試験合格発表", { time: "12:00" }),
+  event("second-exam", "2026-12-05", "第2次試験", {
+    choiceRule: "第1次試験合格者のみ",
+    sequence: 2,
+  }),
+  event("final-result", "2026-12-09", "最終合格発表", { time: "12:00" }),
+  event("procedure-deadline", "2026-12-15", "入学手続期限"),
+];
+
+const tohoPublishedSources = [
+  tohoAdmissionsOverviewUrl,
+  tohoAdmissionsChangesUrl,
+  tohoAdmissionsGuideStatusUrl,
+];
+
 export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpecialAdmissionsUniversity2027[] = [
   university({
     id: "iwate-medical",
@@ -1675,72 +1704,120 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
     strategyPath: "/tohoi-university-entrance-exam-measures2027/",
     scopeStatus: "available",
     publicationStatus: "partial",
-    statusNote: "2027年度公式概要で総合入試・同窓生子女・付属校推薦・地域枠を確認。完成版要項は作成中です。",
-    officialUrl: "https://www.toho-u.ac.jp/med/info_exam/sum.html",
+    statusNote:
+      "2027年度公式情報で対象5方式を確認。千葉県・新潟県の推薦地域枠は設置認可構想中で、医学部の2027年度完成版募集要項は作成中です。",
+    officialUrl: tohoAdmissionsOverviewUrl,
     routes: [
-      ...[
-      ["comprehensive", "総合入試", "comprehensive", "約10名", "2027年3月卒業見込み者を含む。完成版要項で資格を再確認"],
-      ["alumni-children", "同窓生子女入試", "special", "約5名", "2027年3月卒業見込み者を含み、同窓生子女の条件を満たす者"],
-    ].map(([id, officialName, category, quota, eligibility]) => route({
-      id,
-      officialName,
-      category: category as SpecialAdmissionCategory,
-      quota,
-      publicationStatus: "complete",
-      currentStudentEligible: true,
-      eligibility,
-      exclusive: "条件付き",
-      principalRecommendation: "方式による",
-      gradeRequirement: "完成版要項で確認",
-      restrictions: category === "special" ? ["同窓生子女の条件"] : [],
-      events: [
-        event("application-start", "2026-11-02", "出願開始"),
-        event("application-deadline", "2026-11-11", "出願締切", { deadlineRule: "必着" }),
-        event("first-exam", "2026-11-20", "第一次選考"),
-        event("first-result", "2026-11-27", "第一次選考合格発表", { time: "12:00" }),
-        event("second-exam", "2026-12-05", "第二次選考"),
-        event("final-result", "2026-12-09", "最終合格発表", { time: "12:00" }),
-        event("procedure-deadline", "2026-12-15", "入学手続締切"),
-      ],
-      sourceUrls: ["https://www.toho-u.ac.jp/med/info_exam/sum.html"],
-    })),
+      route({
+        id: "comprehensive",
+        officialName: "総合入試",
+        category: "comprehensive",
+        quota: "約10名",
+        publicationStatus: "partial",
+        currentStudentEligible: true,
+        eligibility:
+          "高等学校・中等教育学校・所定の在外教育施設を2026年3月に卒業した者、または2027年3月卒業見込みの者",
+        exclusive: "専願",
+        principalRecommendation: "不要",
+        gradeRequirement:
+          "全体の学習成績の状況3.8以上、かつ数学・理科の学習成績の状況がそれぞれ4.0以上（卒業見込み者は高校3年1学期まで）",
+        restrictions: [
+          "合格した場合は入学を確約",
+          "同窓生子女入試・推薦入試（付属校制）との併願不可",
+          "共通テストは利用しない",
+        ],
+        events: tohoPublishedSchedule,
+        sourceUrls: ["https://www.toho-u.ac.jp/med/info_exam/sogo.html", ...tohoPublishedSources],
+        note:
+          "第1次は出願書類・適性試験・基礎学力、第2次は面接で選考します。基礎学力は70分、面接は約30分です。",
+      }),
+      route({
+        id: "alumni-children",
+        officialName: "同窓生子女入試",
+        category: "comprehensive",
+        quota: "約5名",
+        publicationStatus: "partial",
+        currentStudentEligible: true,
+        eligibility:
+          "高等学校・中等教育学校・所定の在外教育施設を2022年3月以降に卒業した者、または2027年3月卒業見込みで、本学医学部卒業生の血族2親等までの者",
+        exclusive: "専願",
+        principalRecommendation: "不要",
+        gradeRequirement: "2027年度公式情報に数値基準の記載なし",
+        restrictions: [
+          "法定血族は2024年4月1日以前に養子縁組していること",
+          "建学の精神に則り社会に貢献できる医師となる資質を有し、合格時に入学を確約",
+          "総合入試・推薦入試（付属校制）との併願不可",
+          "共通テストは利用しない",
+        ],
+        events: tohoPublishedSchedule,
+        sourceUrls: ["https://www.toho-u.ac.jp/med/info_exam/doso.html", ...tohoPublishedSources],
+        note:
+          "第1次は出願書類・適性試験・基礎学力、第2次は面接で選考します。基礎学力は70分、面接は約30分です。",
+      }),
       route({
         id: "affiliated-school",
-        officialName: "学校推薦型選抜（付属校制）",
+        officialName: "推薦入試（付属校制）",
         category: "designated",
         quota: "約20名",
         publicationStatus: "partial",
         currentStudentEligible: "conditional",
-        eligibility: "付属高等学校の2027年3月卒業見込み者。出願資格の詳細は対象校へ通知",
+        eligibility:
+          "東邦大学付属東邦高等学校または駒場東邦高等学校から推薦された者。詳細な出願資格は各付属校へ通知",
         exclusive: "専願",
         principalRecommendation: "必要",
         gradeRequirement: "対象校へ通知",
-        restrictions: ["付属校のみ", "出願日・結果通知日は学校長経由で一般非公開"],
-        events: [
-          event("first-exam", "2026-11-20", "第一次選考"),
-          event("second-exam", "2026-12-05", "第二次選考"),
-          event("procedure-deadline", "2026-12-15", "入学手続締切"),
+        restrictions: [
+          "東邦大学付属東邦高等学校・駒場東邦高等学校のみ",
+          "出願・合格発表は学校長を経由",
+          "合格した場合は入学を確約",
+          "総合入試・同窓生子女入試との併願不可",
+          "共通テストは利用しない",
         ],
-        sourceUrls: ["https://www.toho-u.ac.jp/med/info_exam/sum.html"],
+        events: [
+          event("first-exam", "2026-11-20", "第1次試験", { sequence: 1 }),
+          event("second-exam", "2026-12-05", "第2次試験", {
+            choiceRule: "第1次試験合格者のみ",
+            sequence: 2,
+          }),
+          event("procedure-deadline", "2026-12-15", "入学手続期限"),
+        ],
+        sourceUrls: [
+          "https://www.toho-u.ac.jp/med/info_exam/fuzoku.html",
+          tohoAdmissionsOverviewUrl,
+          tohoAdmissionsGuideStatusUrl,
+        ],
+        note:
+          "出願書類・適性試験・基礎学力・面接で選考します。出願日、合格発表日、評定等の詳細は対象校を通じて確認してください。",
       }),
       ...[
-        ["chiba-regional", "推薦入試（公募制－千葉県地域枠）", "千葉県"],
-        ["niigata-regional", "推薦入試（公募制－新潟県地域枠）", "新潟県"],
-      ].map(([id, officialName, prefecture]) => route({
+        ["chiba-regional", "推薦入試（公募制－千葉県地域枠）", "千葉県", "3名"],
+        ["niigata-regional", "推薦入試（公募制－新潟県地域枠）", "新潟県", "5名"],
+      ].map(([id, officialName, prefecture, quota]) => route({
         id,
         officialName,
         category: "regional",
-        quota: null,
-        publicationStatus: "unpublished",
-        currentStudentEligible: "unconfirmed",
-        eligibility: `2027年度の実施案内は公表済み。${prefecture}枠の出願資格は詳細要項公開待ち`,
+        quota,
+        publicationStatus: "partial",
+        currentStudentEligible: true,
+        eligibility:
+          "高等学校・中等教育学校・所定の在外教育施設を2022年3月以降に卒業した者、または2027年3月卒業見込みの者。そのほかの出願資格は2027年度募集要項待ち",
         exclusive: "未公表",
         principalRecommendation: "未公表",
         gradeRequirement: "未公表",
-        restrictions: [`${prefecture}地域枠`, "2026年度の定員・日程は転用していません"],
-        events: [],
-        sourceUrls: ["https://www.toho-u.ac.jp/info_exam/toho_nyushi2027_web_apply.html"],
+        restrictions: [
+          `${prefecture}地域枠（募集人員は設置認可構想中）`,
+          "推薦・地域・修学資金・卒後勤務等の詳細条件は2027年度募集要項待ち",
+          "共通テストは利用しない",
+        ],
+        events: tohoPublishedSchedule,
+        sourceUrls: tohoPublishedSources,
+        note:
+          "2027年度完成版募集要項は作成中です。前年要項の推薦条件・評定・地域要件・修学資金条件は転用していません。",
       })),
+    ],
+    excludedRoutes: [
+      "一般入試（千葉県・新潟県地域枠を含む）は対象外",
+      "統一入試は一般選抜として実施されるため対象外",
     ],
   }),
   university({
