@@ -236,6 +236,44 @@ const kitasatoRecommendationSources = [
   kitasatoAdmissionPolicyUrl,
 ];
 
+const mariannaGuideUrl =
+  "https://www.marianna-u.ac.jp/univ/ent_info/pdf/selection_guidelines_2027.pdf";
+const mariannaRecommendationUrl = "https://www.marianna-u.ac.jp/univ/ent_info/ent_exam.html";
+const mariannaAdmissionsOverviewUrl =
+  "https://www.marianna-u.ac.jp/univ/ent_info/ent_outline.html";
+const mariannaWebGuideUrl =
+  "https://www.marianna-u.ac.jp/univ/ent_info/pdf/web_entry_guide_2027.pdf";
+const mariannaRegionalProgramUrl =
+  "https://www.marianna-u.ac.jp/univ/ent_info/pdf/ent_exam_04_2026.pdf";
+const mariannaRecommendationSources = [
+  mariannaGuideUrl,
+  mariannaRecommendationUrl,
+  mariannaAdmissionsOverviewUrl,
+  mariannaWebGuideUrl,
+];
+const mariannaRecommendationSchedule: SpecialAdmissionEvent[] = [
+  event("application-deadline", "2026-10-02", "出願資格個別審査相談・書類送付期限", {
+    deadlineRule: "大学指定",
+    choiceRule: "外国12年課程・認定教育施設等の該当者のみ",
+  }),
+  event("application-start", "2026-11-02", "Web出願開始"),
+  event("application-deadline", "2026-11-05", "Web出願登録締切", {
+    deadlineRule: "Web登録",
+  }),
+  event("application-deadline", "2026-11-05", "入学検定料支払締切", { time: "23:59" }),
+  event("application-deadline", "2026-11-06", "出願書類郵送締切", {
+    deadlineRule: "必着",
+  }),
+  event("first-exam", "2026-11-14", "試験（基礎学力試験・小論文・個人面接）", {
+    time: "8:30集合",
+  }),
+  event("final-result", "2026-12-01", "合格発表", { time: "10:00" }),
+  event("procedure-deadline", "2026-12-08", "入学手続締切", {
+    time: "17:00",
+    deadlineRule: "必着",
+  }),
+];
+
 const tohoAdmissionsOverviewUrl = "https://www.toho-u.ac.jp/med/info_exam/sum.html";
 const tohoAdmissionsChangesUrl =
   "https://www.toho-u.ac.jp/info_exam/toho_nyushi2027_web_apply.html";
@@ -1998,33 +2036,61 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
     strategyPath: "/saint-marianna-university-entrance-exam-measures2027/",
     scopeStatus: "available",
     publicationStatus: "complete",
-    statusNote: "2027年度完成版要項で一般公募制と神奈川県地域枠を確認。地域枠は認可申請中です。",
-    officialUrl: "https://www.marianna-u.ac.jp/univ/ent_info/pdf/selection_guidelines_2027.pdf",
+    statusNote: "2027年度完成版要項で、一般公募制は約20名、神奈川県地域枠は7名と確認済みです。地域枠は臨時定員増認可申請中です。",
+    officialUrl: mariannaGuideUrl,
     routes: [
-      ["recommendation-public", "学校推薦型選抜（一般公募制）", "recommendation", "約20名"],
-      ["recommendation-kanagawa", "学校推薦型選抜（神奈川県地域枠）", "regional", "7名予定"],
-    ].map(([id, officialName, category, quota]) => route({
-      id,
-      officialName,
-      category: category as SpecialAdmissionCategory,
-      quota,
-      publicationStatus: "complete",
-      currentStudentEligible: true,
-      eligibility: "2027年3月卒業見込み者。全体・教科別の評定基準を満たし、入学を確約できる者",
-      exclusive: "専願",
-      principalRecommendation: "必要",
-      gradeRequirement: "全体3.8以上、数学・理科・外国語各4.0以上",
-      restrictions: category === "regional" ? ["神奈川県内に通算1年以上居住歴、または県内高校卒業見込み", "修学資金・地域勤務条件", "認可申請中"] : [],
-      events: [
-        event("application-start", "2026-11-02", "Web出願開始"),
-        event("application-deadline", "2026-11-05", "Web出願締切"),
-        event("application-deadline", "2026-11-06", "出願書類締切", { deadlineRule: "必着" }),
-        event("first-exam", "2026-11-14", "試験日"),
-        event("final-result", "2026-12-01", "合格発表", { time: "10:00" }),
-        event("procedure-deadline", "2026-12-08", "入学手続締切", { time: "17:00", deadlineRule: "必着" }),
-      ],
-      sourceUrls: ["https://www.marianna-u.ac.jp/univ/ent_info/pdf/selection_guidelines_2027.pdf"],
-    })),
+      route({
+        id: "recommendation-public",
+        officialName: "学校推薦型選抜（一般公募制）",
+        category: "recommendation",
+        quota: "約20名",
+        publicationStatus: "complete",
+        currentStudentEligible: true,
+        eligibility: "日本国内の全日制高校・中等教育学校を2027年3月卒業見込み、または外国の12年課程・認定教育施設等を2026年6月から2027年3月までに修了・修了見込みで、評定基準を満たし、合格時の入学を確約できる者",
+        exclusive: "条件付き",
+        principalRecommendation: "必要",
+        gradeRequirement: "3年1学期までの全体3.8以上、数学・理科・外国語各4.0以上",
+        restrictions: [
+          "国内課程は全日制に限り、国内既卒者は出願不可",
+          "外国12年課程・認定教育施設等の該当者は出願開始1か月前までに個別審査が必要",
+          "合格時に入学を確約",
+          "神奈川県地域枠と相互併願可。両方合格した場合は神奈川県地域枠を優先",
+        ],
+        events: [...mariannaRecommendationSchedule],
+        sourceUrls: [...mariannaRecommendationSources],
+        note: "11月14日に基礎学力試験（数学・理科、英語）、小論文、個人面接Ⅰ・Ⅱを行う一段階選考です。大学入学共通テストは利用しません。",
+      }),
+      route({
+        id: "recommendation-kanagawa",
+        officialName: "学校推薦型選抜（神奈川県地域枠）",
+        category: "regional",
+        quota: "7名（臨時定員増認可申請中）",
+        publicationStatus: "complete",
+        currentStudentEligible: true,
+        eligibility: "日本国内の全日制高校・中等教育学校を2027年3月卒業見込み、または外国の12年課程・認定教育施設等を2026年6月から2027年3月までに修了・修了見込みで、評定基準を満たし、2027年4月1日までに神奈川県内に通算1年以上の居住歴がある、または神奈川県内の高校を卒業見込みの者",
+        exclusive: "条件付き",
+        principalRecommendation: "必要",
+        gradeRequirement: "3年1学期までの全体3.8以上、数学・理科・外国語各4.0以上",
+        restrictions: [
+          "国内課程は全日制に限り、国内既卒者は出願不可",
+          "外国12年課程・認定教育施設等の該当者は出願開始1か月前までに個別審査が必要",
+          "合格時に入学を確約。一般公募制と相互併願可で、両方合格した場合は地域枠を優先",
+          "神奈川県地域医療医師修学資金（月額10万円）の利用を確約",
+          "神奈川県キャリア形成プログラム・卒前支援プランに同意",
+          "卒業直後に県内基幹型臨床研修病院で初期研修を開始し、初期研修を含め9年以上、県指定医療機関・指定診療科に継続勤務",
+          "9年間のうち4年間は、原則として卒後6年目から9年目に医師不足地域で勤務",
+          "臨時定員増認可申請中",
+        ],
+        events: [...mariannaRecommendationSchedule],
+        sourceUrls: [...mariannaRecommendationSources, mariannaRegionalProgramUrl],
+        note: "11月14日に一般公募制と同じ一段階選考を行い、大学入学共通テストは利用しません。入学後は神奈川県の修学資金制度とキャリア形成プログラムが適用されます。",
+      }),
+    ],
+    excludedRoutes: [
+      "一般選抜（前期・後期）は一般選抜のため対象外",
+      "大学入学共通テスト利用選抜は通常の共通テスト利用選抜のため対象外",
+      "学校推薦型選抜（指定校制）は2023年度入試から廃止され、2027年度も実施なし",
+    ],
   }),
   university({
     id: "tokai",

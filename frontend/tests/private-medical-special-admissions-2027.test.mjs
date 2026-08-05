@@ -2063,6 +2063,164 @@ test("北里大学は2027年度公式資料の指定校・系列校推薦と実�
   );
 });
 
+test("聖マリアンナ医科大学は2027年度完成版要項の推薦2方式と一段階選考を保持", () => {
+  const marianna = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "marianna",
+  );
+
+  assert.ok(marianna, "聖マリアンナ医科大学のデータがありません");
+  assert.equal(marianna.scopeStatus, "available");
+  assert.equal(marianna.publicationStatus, "complete");
+  assert.equal(
+    marianna.officialUrl,
+    "https://www.marianna-u.ac.jp/univ/ent_info/pdf/selection_guidelines_2027.pdf",
+  );
+  assert.match(
+    marianna.statusNote,
+    /2027年度完成版要項.*一般公募制は約20名.*神奈川県地域枠は7名.*臨時定員増認可申請中/u,
+  );
+  assert.doesNotMatch(
+    marianna.statusNote,
+    /一般選抜（前期・後期）|大学入学共通テスト利用選抜|指定校制/u,
+    "対象外として確認した方式名をページ表示用の注記へ出さないでください",
+  );
+
+  assertSameSet(
+    new Set(marianna.routes.map((route) => route.id)),
+    new Set(["recommendation-public", "recommendation-kanagawa"]),
+    "聖マリアンナ医科大学の対象2方式を保持してください",
+  );
+  const publicRecommendation = marianna.routes.find(
+    (route) => route.id === "recommendation-public",
+  );
+  const kanagawa = marianna.routes.find((route) => route.id === "recommendation-kanagawa");
+  assert.ok(publicRecommendation && kanagawa);
+
+  assert.equal(publicRecommendation.officialName, "学校推薦型選抜（一般公募制）");
+  assert.equal(publicRecommendation.category, "recommendation");
+  assert.equal(publicRecommendation.quota, "約20名");
+  assert.equal(publicRecommendation.publicationStatus, "complete");
+  assert.equal(publicRecommendation.currentStudentEligible, true);
+  assert.match(
+    publicRecommendation.eligibility,
+    /日本国内の全日制高校・中等教育学校.*2027年3月卒業見込み.*外国の12年課程・認定教育施設.*2026年6月から2027年3月.*入学を確約/u,
+  );
+  assert.equal(publicRecommendation.exclusive, "条件付き");
+  assert.equal(publicRecommendation.principalRecommendation, "必要");
+  assert.equal(
+    publicRecommendation.gradeRequirement,
+    "3年1学期までの全体3.8以上、数学・理科・外国語各4.0以上",
+  );
+  assert.match(
+    publicRecommendation.restrictions.join(" "),
+    /国内既卒者は出願不可.*出願開始1か月前までに個別審査.*合格時に入学を確約.*神奈川県地域枠と相互併願可.*地域枠を優先/u,
+  );
+  assert.match(
+    publicRecommendation.note ?? "",
+    /基礎学力試験.*小論文.*個人面接Ⅰ・Ⅱ.*一段階選考.*大学入学共通テストは利用しません/u,
+  );
+
+  assert.equal(kanagawa.officialName, "学校推薦型選抜（神奈川県地域枠）");
+  assert.equal(kanagawa.category, "regional");
+  assert.equal(kanagawa.quota, "7名（臨時定員増認可申請中）");
+  assert.equal(kanagawa.publicationStatus, "complete");
+  assert.equal(kanagawa.currentStudentEligible, true);
+  assert.equal(kanagawa.exclusive, "条件付き");
+  assert.equal(kanagawa.principalRecommendation, "必要");
+  assert.match(
+    kanagawa.eligibility,
+    /2027年4月1日まで.*神奈川県内に通算1年以上の居住歴.*神奈川県内の高校を卒業見込み/u,
+  );
+  assert.equal(kanagawa.gradeRequirement, publicRecommendation.gradeRequirement);
+  assert.match(
+    kanagawa.restrictions.join(" "),
+    /月額10万円.*キャリア形成プログラム.*卒前支援プラン.*県内基幹型臨床研修病院.*9年以上.*指定診療科.*4年間.*卒後6年目から9年目.*医師不足地域.*臨時定員増認可申請中/u,
+  );
+
+  const expectedSchedule = [
+    {
+      stage: "application-deadline",
+      date: "2026-10-02",
+      label: "出願資格個別審査相談・書類送付期限",
+      deadlineRule: "大学指定",
+      choiceRule: "外国12年課程・認定教育施設等の該当者のみ",
+    },
+    { stage: "application-start", date: "2026-11-02", label: "Web出願開始" },
+    {
+      stage: "application-deadline",
+      date: "2026-11-05",
+      label: "Web出願登録締切",
+      deadlineRule: "Web登録",
+    },
+    {
+      stage: "application-deadline",
+      date: "2026-11-05",
+      label: "入学検定料支払締切",
+      time: "23:59",
+    },
+    {
+      stage: "application-deadline",
+      date: "2026-11-06",
+      label: "出願書類郵送締切",
+      deadlineRule: "必着",
+    },
+    {
+      stage: "first-exam",
+      date: "2026-11-14",
+      label: "試験（基礎学力試験・小論文・個人面接）",
+      time: "8:30集合",
+    },
+    { stage: "final-result", date: "2026-12-01", label: "合格発表", time: "10:00" },
+    {
+      stage: "procedure-deadline",
+      date: "2026-12-08",
+      label: "入学手続締切",
+      time: "17:00",
+      deadlineRule: "必着",
+    },
+  ];
+  const scheduleProjection = ({ stage, date, label, time, deadlineRule, choiceRule }) => ({
+    stage,
+    date,
+    label,
+    ...(time === undefined ? {} : { time }),
+    ...(deadlineRule === undefined ? {} : { deadlineRule }),
+    ...(choiceRule === undefined ? {} : { choiceRule }),
+  });
+  assert.deepEqual(publicRecommendation.events.map(scheduleProjection), expectedSchedule);
+  assert.deepEqual(kanagawa.events.map(scheduleProjection), expectedSchedule);
+  assert.equal(
+    marianna.routes.some((route) => route.events.some((event) => event.stage === "second-exam")),
+    false,
+    "二次選考のない一段階選考へ架空の二次試験を追加しないでください",
+  );
+
+  const examEntry = buildExamDisplayEntries(
+    privateMedicalSpecialAdmissionsEvents2027.filter(
+      (event) => event.universityId === "marianna",
+    ),
+  ).find((entry) => entry.date === "2026-11-14");
+  assert.ok(examEntry);
+  assert.equal(examEntry.displayColumn, "single-exam");
+  assertSameSet(
+    examEntry.routeNames,
+    [publicRecommendation.officialName, kanagawa.officialName],
+    "同日の推薦2方式を大学単位にまとめてください",
+  );
+
+  for (const route of marianna.routes) {
+    assert.equal(route.sourceUrls[0], marianna.officialUrl);
+    assert.ok(route.sourceUrls.includes("https://www.marianna-u.ac.jp/univ/ent_info/ent_exam.html"));
+    assert.ok(route.sourceUrls.includes("https://www.marianna-u.ac.jp/univ/ent_info/ent_outline.html"));
+    assert.ok(route.sourceUrls.some((url) => url.includes("web_entry_guide_2027.pdf")));
+  }
+  assert.ok(kanagawa.sourceUrls.some((url) => url.includes("ent_exam_04_2026.pdf")));
+  assert.match(
+    marianna.excludedRoutes?.join(" ") ?? "",
+    /一般選抜（前期・後期）.*一般選抜.*大学入学共通テスト利用選抜.*通常の共通テスト利用選抜.*指定校制.*2023年度入試から廃止.*2027年度も実施なし/u,
+  );
+});
+
 test("すべての入試イベント日が実在するISO 8601日付", () => {
   assert.ok(privateMedicalSpecialAdmissionsEvents2027.length > 0);
 
