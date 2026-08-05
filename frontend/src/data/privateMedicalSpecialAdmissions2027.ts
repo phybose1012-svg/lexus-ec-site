@@ -1882,10 +1882,13 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
     strategyPath: "/nihonikadaigaku-exam-guide-2027/",
     scopeStatus: "not-offered",
     publicationStatus: "not-offered",
-    statusNote: "2027年度の対象方式は確認できません。一般選抜・通常の共通テスト利用選抜はこのページの対象外です。",
+    statusNote: "2027年度完成版要項の全選抜区分を確認しました。掲載対象となる独立した総合型選抜・学校推薦型選抜等はありません。",
     officialUrl: "https://www.nms.ac.jp/college/nyushi-book/pdf_2027/guidelines_2027.pdf",
     routes: [],
-    excludedRoutes: ["グローバル特別選抜（前期）は実質的に大学入学共通テスト利用選抜として実施されるため対象外"],
+    excludedRoutes: [
+      "グローバル特別選抜（前期）は公式要項の「一般入学者選抜 概要」に含まれ、共通テスト国語と一般選抜（前期）と同日・同一の英語・数学・理科試験を使うため対象外",
+      "一般選抜（前期・後期・地域枠）は一般選抜のため対象外",
+    ],
   }),
   university({
     id: "kitasato",

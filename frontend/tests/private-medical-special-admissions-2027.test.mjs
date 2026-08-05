@@ -1921,6 +1921,41 @@ test("日本大学は2027年度公式概要の公募制1方式と一段階選考
   );
 });
 
+test("日本医科大学は2027年度完成版要項を確認し実質一般・共テ併用方式を除外", () => {
+  const nipponMedical = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "nippon-medical",
+  );
+
+  assert.ok(nipponMedical, "日本医科大学のデータがありません");
+  assert.equal(nipponMedical.scopeStatus, "not-offered");
+  assert.equal(nipponMedical.publicationStatus, "not-offered");
+  assert.equal(
+    nipponMedical.officialUrl,
+    "https://www.nms.ac.jp/college/nyushi-book/pdf_2027/guidelines_2027.pdf",
+  );
+  assert.deepEqual(nipponMedical.routes, []);
+  assert.match(
+    nipponMedical.statusNote,
+    /2027年度完成版要項.*全選抜区分.*独立した総合型選抜・学校推薦型選抜等はありません/u,
+  );
+  assert.doesNotMatch(
+    nipponMedical.statusNote,
+    /グローバル特別選抜|一般選抜（前期|後期|地域枠）/u,
+    "対象外として確認した方式名をページ表示用の注記へ出さないでください",
+  );
+  assert.match(
+    nipponMedical.excludedRoutes?.join(" ") ?? "",
+    /グローバル特別選抜（前期）.*一般入学者選抜 概要.*共通テスト国語.*一般選抜（前期）.*同日・同一.*英語・数学・理科.*一般選抜（前期・後期・地域枠）.*一般選抜.*対象外/u,
+  );
+  assert.equal(
+    privateMedicalSpecialAdmissionsEvents2027.some(
+      (event) => event.universityId === "nippon-medical",
+    ),
+    false,
+    "日本医科大学の対象外方式を日程イベントへ含めないでください",
+  );
+});
+
 test("すべての入試イベント日が実在するISO 8601日付", () => {
   assert.ok(privateMedicalSpecialAdmissionsEvents2027.length > 0);
 
