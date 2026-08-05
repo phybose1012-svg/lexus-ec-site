@@ -1828,21 +1828,29 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
     strategyPath: "/nihon-university-entrance-exam-measures2027/",
     scopeStatus: "available",
     publicationStatus: "outline",
-    statusNote: "医学部GUIDEBOOK 2027で学校推薦型選抜（公募制）を確認。地域枠の掲載値は令和8年度情報のため2027年度データへ転用していません。",
-    officialUrl: "https://www.med.nihon-u.ac.jp/resource/pdf/examinee/igakubuGUIDEBOOK2027.pdf",
+    statusNote:
+      "2027年度学校推薦型選抜資料と医学部GUIDEBOOK 2027で公募制1方式を確認。詳細募集要項は未公表で、地域枠ページは令和8年度情報のため2027年度データへ転用していません。",
+    officialUrl: "https://www.nihon-u.ac.jp/assets/gakkou_i_260518.pdf",
     routes: [
       route({
         id: "recommendation-public",
         officialName: "学校推薦型選抜（公募制）",
         category: "recommendation",
-        quota: "10名予定",
+        quota: "10名",
         publicationStatus: "outline",
         currentStudentEligible: true,
-        eligibility: "2026年3月卒業または2027年3月卒業見込みで、指定理科科目を履修した者",
+        eligibility:
+          "高等学校または中等教育学校を2026年3月に卒業した者、または2027年3月卒業見込みの者",
         exclusive: "専願",
         principalRecommendation: "必要",
-        gradeRequirement: "学習成績の状況4.0以上",
-        restrictions: ["理科3科目中2科目以上を履修"],
+        gradeRequirement:
+          "全体の学習成績の状況4.0以上（2027年3月卒業見込み者は第3学年9月30日まで）",
+        restrictions: [
+          "医学科を第一志望とし、合格した場合は入学を確約",
+          "物理基礎・物理、化学基礎・化学、生物基礎・生物の3組から2組以上を履修",
+          "入学前教育を受講し、課題を提出することを確約",
+          "共通テストは利用しない",
+        ],
         events: [
           event("application-start", "2026-11-17", "出願開始"),
           event("application-deadline", "2026-11-27", "出願締切"),
@@ -1850,12 +1858,20 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
           event("final-result", "2026-12-23", "合格発表", { time: "16:00" }),
           event("procedure-deadline", "2027-01-13", "入学手続締切"),
         ],
-        sourceUrls: ["https://www.med.nihon-u.ac.jp/resource/pdf/examinee/igakubuGUIDEBOOK2027.pdf"],
+        sourceUrls: [
+          "https://www.nihon-u.ac.jp/assets/gakkou_i_260518.pdf",
+          "https://www.med.nihon-u.ac.jp/resource/pdf/examinee/igakubuGUIDEBOOK2027.pdf",
+          "https://www.nihon-u.ac.jp/admission_info/application/general_information/recommendation/",
+        ],
+        note:
+          "選考は1日・一段階で、個人面接、基礎学力検査（数学・英語）、小論文を実施します。出願時刻、必着・消印の別、選考時刻、手続締切時刻は2027年度詳細募集要項の公表待ちです。",
       }),
     ],
     excludedRoutes: [
-      "校友枠選抜は実質的に一般選抜として実施されるため対象外",
-      "地域枠選抜はGUIDEBOOK 2027内でも令和8年度情報のため、2027年度方式として掲載せず完成版要項を待つ",
+      "校友枠選抜はN全学統一方式第1期と同じ一次試験を使う実質一般選抜のため対象外",
+      "N全学統一方式第1期・第2期と地域枠選抜（一般選抜利用）は一般選抜のため対象外",
+      "学校推薦型選抜（公募制・新潟県地域枠／埼玉県地域枠）を含む地域枠情報はGUIDEBOOK 2027でも令和8年度実績のため、2027年度方式として転用しない",
+      "2027年度の医学部指定校制・付属校系推薦は公式実施一覧で確認できないため掲載しない",
     ],
   }),
   university({

@@ -1848,6 +1848,79 @@ test("東邦大学は2027年度公式情報の対象5方式・資格・地域枠
   );
 });
 
+test("日本大学は2027年度公式概要の公募制1方式と一段階選考を保持", () => {
+  const nihon = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "nihon",
+  );
+
+  assert.ok(nihon, "日本大学のデータがありません");
+  assert.equal(nihon.scopeStatus, "available");
+  assert.equal(nihon.publicationStatus, "outline");
+  assert.equal(nihon.officialUrl, "https://www.nihon-u.ac.jp/assets/gakkou_i_260518.pdf");
+  assert.match(
+    nihon.statusNote,
+    /2027年度.*公募制1方式.*詳細募集要項は未公表.*地域枠.*令和8年度.*転用していません/u,
+  );
+  assert.equal(nihon.routes.length, 1);
+
+  const recommendation = nihon.routes[0];
+  assert.deepEqual(
+    [
+      recommendation.id,
+      recommendation.officialName,
+      recommendation.category,
+      recommendation.quota,
+      recommendation.publicationStatus,
+      recommendation.currentStudentEligible,
+    ],
+    ["recommendation-public", "学校推薦型選抜（公募制）", "recommendation", "10名", "outline", true],
+  );
+  assert.match(recommendation.eligibility, /2026年3月.*2027年3月卒業見込み/u);
+  assert.equal(recommendation.exclusive, "専願");
+  assert.equal(recommendation.principalRecommendation, "必要");
+  assert.match(
+    recommendation.gradeRequirement,
+    /全体の学習成績の状況4\.0以上.*第3学年9月30日まで/u,
+  );
+  assert.match(
+    recommendation.restrictions.join(" "),
+    /第一志望.*入学を確約.*物理基礎・物理.*化学基礎・化学.*生物基礎・生物.*2組以上.*入学前教育.*課題.*共通テストは利用しない/u,
+  );
+  assert.deepEqual(recommendation.events, [
+    { stage: "application-start", date: "2026-11-17", label: "出願開始" },
+    { stage: "application-deadline", date: "2026-11-27", label: "出願締切" },
+    { stage: "first-exam", date: "2026-12-12", label: "選考日" },
+    { stage: "final-result", date: "2026-12-23", label: "合格発表", time: "16:00" },
+    { stage: "procedure-deadline", date: "2027-01-13", label: "入学手続締切" },
+  ]);
+  assert.match(
+    recommendation.note ?? "",
+    /1日・一段階.*個人面接.*基礎学力検査（数学・英語）.*小論文.*必着・消印.*公表待ち/u,
+  );
+  assert.deepEqual(recommendation.sourceUrls, [
+    "https://www.nihon-u.ac.jp/assets/gakkou_i_260518.pdf",
+    "https://www.med.nihon-u.ac.jp/resource/pdf/examinee/igakubuGUIDEBOOK2027.pdf",
+    "https://www.nihon-u.ac.jp/admission_info/application/general_information/recommendation/",
+  ]);
+
+  const examEntry = buildExamDisplayEntries(privateMedicalSpecialAdmissionsEvents2027).find(
+    (entry) => entry.universityId === "nihon" && entry.routeKeys.includes("nihon/recommendation-public"),
+  );
+  assert.ok(examEntry, "日本大学の選考日表示がありません");
+  assert.equal(examEntry.displayColumn, "single-exam");
+  assert.equal(examEntry.date, "2026-12-12");
+  assert.equal(examEntry.label, "選考日");
+
+  assert.match(
+    nihon.excludedRoutes?.join(" ") ?? "",
+    /校友枠選抜.*実質一般選抜.*N全学統一方式第1期・第2期.*地域枠選抜（一般選抜利用）.*新潟県地域枠.*埼玉県地域枠.*令和8年度.*指定校制.*付属校/u,
+  );
+  assert.ok(
+    nihon.routes.every((route) => !/校友枠|N全学統一|地域枠|指定校|付属校/u.test(route.officialName)),
+    "実質一般選抜・旧年度地域枠・付属校系を日本大学の対象方式へ含めないでください",
+  );
+});
+
 test("すべての入試イベント日が実在するISO 8601日付", () => {
   assert.ok(privateMedicalSpecialAdmissionsEvents2027.length > 0);
 
