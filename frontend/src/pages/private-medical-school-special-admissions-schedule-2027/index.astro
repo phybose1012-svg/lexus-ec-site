@@ -1,5 +1,6 @@
 ---
 import AdmissionsBrandDivider from "../../components/admissions/AdmissionsBrandDivider.astro";
+import AdmissionsScheduleSwitcher from "../../components/admissions/AdmissionsScheduleSwitcher.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import {
   privateMedicalSpecialAdmissionsCalendar2027,
@@ -508,11 +509,12 @@ const structuredData = {
 
     <section class="admissions-hero special-admissions-hero">
       <div class="content admissions-hero__inner">
-        <nav class="admissions-breadcrumb" aria-label="パンくずリスト">
+        <nav class="admissions-breadcrumb admissions-breadcrumb--with-switcher" aria-label="パンくずリスト">
           <a href="/">ホーム</a><span aria-hidden="true">/</span>
           <a href="/top/information-shiritsu/">私立医学部情報</a><span aria-hidden="true">/</span>
           <span aria-current="page">2027年度 総合型・学校推薦型</span>
         </nav>
+        <AdmissionsScheduleSwitcher current="special" />
         <div class="admissions-hero__grid">
           <div class="admissions-hero__copy">
             <p class="admissions-kicker"><span>2027</span> SPECIAL ADMISSIONS</p>
@@ -534,7 +536,6 @@ const structuredData = {
               <div><dt>対象方式あり</dt><dd>{privateMedicalSpecialAdmissionsSummary2027.availableUniversityCount}大学</dd></div>
               <div><dt>完成要項あり</dt><dd>{privateMedicalSpecialAdmissionsSummary2027.completeUniversityCount}大学</dd></div>
             </dl>
-            <a href="/private-medical-school-admissions-schedule-2027/">一般・共テ利用の日程はこちら →</a>
           </aside>
         </div>
         <div class="admissions-update-row"><span class="admissions-live-dot" aria-hidden="true"></span><span>最終更新：{lastUpdated}</span><a href="#updates">更新内容を見る <span aria-hidden="true">↓</span></a></div>
@@ -894,7 +895,7 @@ const structuredData = {
           <li><span>3</span><div><h3>締切の種類を分けて確認</h3><p>Web登録、検定料、郵送書類の締切は別日・別時刻の場合があります。必着と消印有効も区別します。</p></div></li>
           <li><span>4</span><div><h3>完成版募集要項で最終確認</h3><p>概要・ガイド段階の情報や認可申請中の枠は変更される可能性があります。</p></div></li>
         </ol>
-        <aside class="special-admissions-related"><div><strong>一般選抜・共通テスト利用選抜を探す方へ</strong><p>一般・共テ利用31大学の日程は、専用ページで試験日と締切を確認できます。</p></div><a href="/private-medical-school-admissions-schedule-2027/">一般・共テ利用の日程を見る →</a></aside>
+        <aside class="admissions-related-schedule admissions-related-schedule--general"><div><strong>一般選抜・共通テスト利用選抜を受験する方へ</strong><p>一般・共テ利用31大学の日程は、専用ページで試験日と締切を確認できます。</p></div><a href="/private-medical-school-admissions-schedule-2027/">一般・共テ利用の日程を見る →</a></aside>
       </div>
     </section>
 

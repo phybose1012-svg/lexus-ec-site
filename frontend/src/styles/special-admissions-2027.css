@@ -1,13 +1,167 @@
 @import "./admissions-2027.css";
 
 .special-admissions-page {
-  --special-border: #d9d3cc;
-  --special-ink: #22201e;
-  --special-muted: #6d665f;
-  --special-paper: #fffdf9;
+  --special-brand: #0f6b65;
+  --special-brand-dark: #073d3a;
+  --special-brand-hover: #084f4b;
+  --special-link: #0a5c57;
+  --special-tint: #e9f5f2;
+  --special-surface: #f4faf8;
+  --special-border: #c5ddd8;
+  --special-ink: #183b39;
+  --special-muted: #526b68;
+  --special-paper: #f8fcfb;
+  --admissions-ink: #183b39;
+  --admissions-navy: #073d3a;
+  --admissions-blue: #0a5c57;
+  --admissions-sky: #f4faf8;
+  --admissions-cyan: #0f6b65;
+  --admissions-yellow: #6ab8ae;
+  --admissions-yellow-soft: #e9f5f2;
+  --admissions-red: #0f6b65;
+  --admissions-line: #c5ddd8;
   overflow-x: clip;
   color: var(--special-ink);
   background: #fff;
+}
+
+.special-admissions-page .admissions-hero {
+  background:
+    radial-gradient(circle at 88% 18%, rgb(15 107 101 / 13%), transparent 31%),
+    linear-gradient(135deg, #fff 0%, var(--special-surface) 58%, var(--special-tint) 100%);
+}
+
+.special-admissions-page .admissions-hero::before {
+  border-color: rgb(15 107 101 / 7%);
+}
+
+.special-admissions-page .admissions-hero::after {
+  color: rgb(7 61 58 / 5%);
+}
+
+.special-admissions-page :where(.admissions-breadcrumb, .admissions-page-switcher__label, .admissions-hero__lead, .admissions-update-row) {
+  color: var(--special-muted);
+}
+
+.special-admissions-page .admissions-primary-button:hover {
+  background: var(--special-brand-hover);
+}
+
+.special-admissions-page .admissions-secondary-button {
+  border-color: #548f87;
+}
+
+.special-admissions-page .admissions-secondary-button:hover {
+  background: var(--special-tint);
+}
+
+.special-admissions-page .admissions-live-dot {
+  background: var(--special-brand);
+  box-shadow: 0 0 0 5px rgb(15 107 101 / 14%);
+}
+
+.special-admissions-page .admissions-update-history {
+  background: var(--special-surface);
+}
+
+.special-admissions-page .admissions-update-item--latest {
+  border-color: rgb(15 107 101 / 52%);
+  background: linear-gradient(100deg, #fff, var(--special-tint));
+}
+
+.special-admissions-page .admissions-brand-divider {
+  border-color: var(--special-border);
+  background: linear-gradient(90deg, #fff 0%, var(--special-surface) 25%, var(--special-tint) 50%, var(--special-surface) 75%, #fff 100%);
+}
+
+.special-admissions-page .admissions-calendar-section {
+  background: linear-gradient(180deg, rgb(233 245 242 / 78%), rgb(255 255 255 / 96%));
+}
+
+.special-admissions-page .admissions-calendar-head {
+  color: var(--special-muted);
+  background: #e5f1ef;
+}
+
+.special-admissions-page .admissions-calendar-viewport,
+.special-admissions-page .admissions-deadline-list {
+  scrollbar-color: #76a9a2 #e8f2f0;
+}
+
+.special-admissions-page :where(.admissions-calendar-viewport, .admissions-deadline-list):focus-visible {
+  outline-color: rgb(15 107 101 / 28%);
+}
+
+.special-admissions-page .admissions-deadline-focus {
+  border-color: #a8cec8;
+  background: var(--special-tint);
+}
+
+.special-admissions-page .admissions-deadline-focus::after {
+  border-color: var(--special-brand);
+  opacity: 0.16;
+}
+
+.special-admissions-page .admissions-deadline-focus > span,
+.special-admissions-page .admissions-deadline-focus__note {
+  color: var(--special-link) !important;
+}
+
+.special-admissions-page .admissions-deadline-focus__note {
+  border-color: #a8cec8;
+}
+
+.special-admissions-page .admissions-deadline-group > header {
+  background: var(--special-surface);
+}
+
+.special-admissions-page .admissions-universities {
+  border-color: var(--special-border);
+  background: var(--special-surface);
+}
+
+.special-admissions-page .admissions-university__body {
+  background: #eef7f5;
+}
+
+.special-admissions-page .admissions-filter input:focus,
+.special-admissions-page .admissions-filter select:focus {
+  outline-color: rgb(15 107 101 / 22%);
+}
+
+.special-admissions-page .admissions-filter__reset {
+  border-color: var(--special-border);
+  background: var(--special-surface);
+}
+
+.special-admissions-page .admissions-filter__reset:hover {
+  border-color: #548f87;
+  background: var(--special-tint);
+}
+
+.special-admissions-page .admissions-section-heading > p:last-child:not(:first-child),
+.special-admissions-page .admissions-section-heading > div + p,
+.special-admissions-page .admissions-section-heading--printable > div > p:last-child {
+  color: var(--special-muted);
+}
+
+.special-admissions-page .admissions-guide {
+  background: #fff;
+}
+
+.special-admissions-page .admissions-faq {
+  background: var(--special-surface);
+}
+
+.special-admissions-page .admissions-final-cta {
+  border-color: var(--special-border);
+  background:
+    radial-gradient(circle at 88% 50%, rgb(15 107 101 / 13%), transparent 27%),
+    linear-gradient(90deg, #fff 0%, #fff 56%, var(--special-tint) 100%);
+}
+
+.special-admissions-page :where(a, button, summary, input, select):focus-visible {
+  outline-color: rgb(15 107 101 / 36%);
 }
 
 .special-admissions-hero .admissions-hero__grid {
@@ -25,12 +179,12 @@
 
 .special-admissions-hero__summary {
   align-self: center;
-  border: 1px solid #c9bfb4;
+  border: 1px solid #acd0ca;
   border-top: 6px solid var(--admissions-red);
   border-radius: 2px;
   padding: clamp(22px, 3vw, 34px);
   background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 18px 40px rgba(75, 54, 40, 0.1);
+  box-shadow: 0 18px 40px rgb(7 61 58 / 10%);
 }
 
 .special-admissions-hero__summary > p {
@@ -46,7 +200,7 @@
   align-items: baseline;
   gap: 6px;
   margin-bottom: 18px;
-  color: #2d2824;
+  color: var(--special-brand-dark);
   font-size: 1.15rem;
 }
 
@@ -58,7 +212,7 @@
 }
 
 .special-admissions-hero__summary dl {
-  margin: 0 0 18px;
+  margin: 0;
   border-top: 1px solid var(--special-border);
 }
 
@@ -78,7 +232,11 @@
 
 .special-admissions-hero__summary dt { color: var(--special-muted); }
 .special-admissions-hero__summary dd { font-weight: 900; }
-.special-admissions-hero__summary > a { color: var(--admissions-red); font-size: 0.82rem; font-weight: 900; }
+
+.special-admissions-jump-nav {
+  border-top: 4px solid var(--special-brand);
+  box-shadow: 0 7px 20px rgb(7 61 58 / 10%);
+}
 
 .special-admissions-jump-nav .admissions-jump-nav__inner {
   grid-template-columns: repeat(6, minmax(92px, 1fr));
@@ -102,7 +260,7 @@
   background: #fff;
 }
 
-.special-sources { background: #f8f5f0; }
+.special-sources { background: var(--special-surface); }
 
 .admissions-deadline-entry .special-deadline-entry__methods {
   display: grid;
@@ -110,7 +268,7 @@
   min-width: 0;
   margin: 5px 0 0;
   padding: 0;
-  color: #756b62;
+  color: var(--special-muted);
   font-size: 0.7rem;
   line-height: 1.5;
   list-style: none;
@@ -129,7 +287,7 @@
 .special-admissions-page .admissions-deadline-entry__school strong a {
   color: inherit;
   text-decoration: underline;
-  text-decoration-color: rgb(15 86 133 / 28%);
+  text-decoration-color: rgb(15 107 101 / 32%);
   text-underline-offset: 3px;
 }
 
@@ -210,7 +368,7 @@
 .admissions-calendar-date .special-calendar-date__year {
   display: block;
   margin-bottom: 3px;
-  color: #8b8178;
+  color: var(--special-muted);
   font-size: 0.58rem;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
@@ -238,7 +396,7 @@
   font-weight: 900;
   line-height: 1.4;
   text-decoration: underline;
-  text-decoration-color: rgb(15 86 133 / 28%);
+  text-decoration-color: rgb(15 107 101 / 32%);
   text-underline-offset: 3px;
 }
 
@@ -253,7 +411,7 @@
   min-width: 0;
   margin-top: 4px;
   padding: 0;
-  color: #493f37;
+  color: #294b49;
   font-size: 0.7rem;
   font-weight: 800;
   line-height: 1.5;
@@ -263,7 +421,7 @@
 
 .special-calendar-entry__route + .special-calendar-entry__route {
   margin-top: 6px;
-  border-top: 1px dashed #ded7ce;
+  border-top: 1px dashed var(--special-border);
   padding-top: 6px;
 }
 
@@ -308,7 +466,7 @@
   border-radius: 6px;
   padding: clamp(22px, 3vw, 32px);
   background: linear-gradient(100deg, var(--route-tint) 0, #fff 42%);
-  box-shadow: 0 14px 34px rgba(49, 39, 31, 0.08);
+  box-shadow: 0 14px 34px rgb(7 61 58 / 8%);
 }
 
 .special-route-type--recommendation { --route-accent: #315f96; --route-tint: #f2f7fd; }
@@ -318,7 +476,7 @@
 .special-route-type--ib { --route-accent: #236c78; --route-tint: #eff9fa; }
 .special-route-type--international { --route-accent: #8a466d; --route-tint: #fcf2f8; }
 .special-route-type--special { --route-accent: #575d64; --route-tint: #f5f6f7; }
-.special-route-type__intro { min-width: 0; border-right: 1px solid rgba(117, 96, 79, 0.2); padding-right: clamp(20px, 2.5vw, 34px); }
+.special-route-type__intro { min-width: 0; border-right: 1px solid rgb(84 143 135 / 24%); padding-right: clamp(20px, 2.5vw, 34px); }
 .special-route-type header { display: grid; grid-template: "number count" auto "title count" auto / minmax(0, 1fr) auto; column-gap: 14px; align-items: end; }
 .special-route-type__number { grid-area: number; color: var(--route-accent); font-size: 0.66rem; font-weight: 900; letter-spacing: 0.16em; }
 .special-route-type h3 { grid-area: title; min-width: 0; margin: 4px 0 0; color: var(--special-ink); font-size: clamp(1.2rem, 1.8vw, 1.48rem); line-height: 1.35; }
@@ -326,7 +484,7 @@
 .special-route-type header small { color: var(--special-muted); font-size: 0.65rem; }
 .special-route-type__intro > p {
   margin: 20px 0 0;
-  color: #443e38;
+  color: #294b49;
   font-size: clamp(0.9rem, calc(0.86rem + 0.12vw), 0.96rem);
   font-weight: 600;
   line-height: 1.8;
@@ -359,7 +517,7 @@
 .special-route-type__university-list[open] .special-route-type__university-chevron::before { top: 10px; transform: rotate(225deg); }
 .special-route-type__university-list > ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 10px 12px; margin: 12px 0 0; padding: 0; list-style: none; }
 .special-route-type__university-list:not([open]) > ul { display: none; }
-.special-route-type__university { min-width: 0; border: 1px solid #e3ddd6; border-radius: 4px; padding: 12px 13px; background: rgba(255, 255, 255, 0.88); }
+.special-route-type__university { min-width: 0; border: 1px solid var(--special-border); border-radius: 4px; padding: 12px 13px; background: rgba(255, 255, 255, 0.9); }
 .special-route-type__university > a { color: var(--special-ink); font-size: 0.82rem; font-weight: 900; line-height: 1.45; overflow-wrap: anywhere; }
 .special-route-type__route-list { display: grid; gap: 4px; margin: 7px 0 0; padding: 0; list-style: none; }
 .special-route-type__route-list li { position: relative; min-width: 0; padding-left: 1em; color: var(--special-muted); font-size: 0.67rem; line-height: 1.5; overflow-wrap: anywhere; }
@@ -382,7 +540,7 @@
 .special-publication--outline { color: #72528f; background: #f4effa; }
 
 .special-university__body { padding: 20px; }
-.special-university__status-note { margin: 0 0 16px; border-left: 4px solid #a78a72; padding: 10px 14px; background: #f7f3ee; color: #514b46; font-size: 0.78rem; line-height: 1.7; }
+.special-university__status-note { margin: 0 0 16px; border-left: 4px solid #548f87; padding: 10px 14px; background: var(--special-surface); color: #294b49; font-size: 0.78rem; line-height: 1.7; }
 
 .special-route-card {
   margin-top: 16px;
@@ -406,7 +564,7 @@
   gap: 20px;
   border-bottom: 1px solid var(--special-border);
   padding: 17px 18px;
-  background: #fcfaf7;
+  background: var(--special-surface);
 }
 
 .special-route-card h3 { margin: 8px 0 0; font-size: 1.05rem; line-height: 1.45; }
@@ -435,7 +593,7 @@
 
 .special-route-milestone { min-width: 0; border-right: 1px solid var(--special-border); padding: 10px; }
 .special-route-milestone:last-child { border-right: 0; }
-.special-route-milestone > span { display: block; margin: -10px -10px 9px; border-bottom: 1px solid var(--special-border); padding: 6px 8px; background: #f6f4f1; color: var(--special-muted); font-size: 0.58rem; font-weight: 900; text-align: center; }
+.special-route-milestone > span { display: block; margin: -10px -10px 9px; border-bottom: 1px solid var(--special-border); padding: 6px 8px; background: var(--special-surface); color: var(--special-muted); font-size: 0.58rem; font-weight: 900; text-align: center; }
 .special-route-milestone p { margin: 0 0 6px; text-align: center; }
 .special-route-milestone p:last-child { margin-bottom: 0; }
 .special-route-milestone time { display: inline; font-size: 0.72rem; font-weight: 900; }
@@ -446,13 +604,13 @@
 .special-route-card > footer { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 11px 14px; }
 .special-route-card > footer a { color: var(--admissions-red); font-size: 0.68rem; font-weight: 900; }
 
-.special-university__empty { border: 1px solid var(--special-border); padding: 22px; background: #f8f6f3; text-align: center; }
+.special-university__empty { border: 1px solid var(--special-border); padding: 22px; background: var(--special-surface); text-align: center; }
 .special-university__empty strong { font-size: 0.92rem; }
 .special-university__empty p { margin: 6px 0 0; color: var(--special-muted); font-size: 0.73rem; }
 .special-full-calendar {
   padding: clamp(72px, 8vw, 120px) 0;
   color: var(--special-ink);
-  background: #f8f5f0;
+  background: var(--special-surface);
 }
 
 .special-full-calendar .admissions-section-heading--light :where(p, h2) { color: var(--special-ink); }
@@ -461,12 +619,12 @@
 .special-full-calendar table { width: 100%; min-width: 1420px; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
 .special-full-calendar caption { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
 .special-full-calendar :where(th, td) { border-right: 1px solid var(--special-border); border-bottom: 1px solid var(--special-border); vertical-align: top; }
-.special-full-calendar thead th { position: sticky; z-index: 5; top: 0; width: 172px; padding: 11px 8px; background: #eee9e3; font-size: 0.67rem; text-align: center; }
+.special-full-calendar thead th { position: sticky; z-index: 5; top: 0; width: 172px; padding: 11px 8px; background: #e3f0ed; font-size: 0.67rem; text-align: center; }
 .special-full-calendar thead th:first-child { z-index: 7; left: 0; width: 126px; }
-.special-full-calendar tbody th { position: sticky; z-index: 4; left: 0; width: 126px; padding: 12px 8px; background: #f7f3ee; font-family: var(--font-serif); font-size: 0.78rem; text-align: center; }
+.special-full-calendar tbody th { position: sticky; z-index: 4; left: 0; width: 126px; padding: 12px 8px; background: #eef7f5; font-family: var(--font-serif); font-size: 0.78rem; text-align: center; }
 .special-full-calendar td { width: 172px; min-height: 52px; padding: 7px; background: #fff; }
 .special-full-calendar td ul { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
-.special-full-calendar td li { border: 1px solid #ded8d2; border-left: 3px solid #999; padding: 6px; background: #fff; }
+.special-full-calendar td li { border: 1px solid var(--special-border); border-left: 3px solid #999; padding: 6px; background: #fff; }
 .special-full-calendar td a { color: var(--special-ink); font-size: 0.66rem; font-weight: 900; }
 .special-full-calendar td .special-category { float: right; padding: 2px 5px; font-size: 0.5rem; }
 .special-full-calendar td strong { display: block; clear: both; padding-top: 3px; font-size: 0.58rem; line-height: 1.42; }
@@ -480,15 +638,11 @@
 .special-calendar-cell--procedure-deadline li { border-left-color: #76543e; }
 .special-calendar-empty { display: block; padding: 12px 0; color: #b9b3ad; text-align: center; }
 
-.special-admissions-related { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 34px; border: 1px solid var(--special-border); border-left: 6px solid var(--admissions-red); padding: 22px 24px; background: #fff; }
-.special-admissions-related strong { font-size: 1rem; }
-.special-admissions-related p { margin: 5px 0 0; color: var(--special-muted); font-size: 0.76rem; }
-.special-admissions-related a { flex: none; color: var(--admissions-red); font-size: 0.8rem; font-weight: 900; }
 .special-update-list { width: 100%; }
 
 .special-sources ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--special-border); border-left: 1px solid var(--special-border); }
 .special-sources li { display: grid; grid-template-columns: 38px minmax(0, 1fr) auto; gap: 12px; align-items: center; border-right: 1px solid var(--special-border); border-bottom: 1px solid var(--special-border); padding: 12px; background: #fff; }
-.special-sources li > span { color: #998d82; font-family: var(--font-serif); font-size: 0.72rem; }
+.special-sources li > span { color: #6f8d89; font-family: var(--font-serif); font-size: 0.72rem; }
 .special-sources li strong, .special-sources li small { display: block; }
 .special-sources li strong { font-size: 0.78rem; }
 .special-sources li small { margin-top: 2px; color: var(--special-muted); font-size: 0.6rem; }
@@ -510,7 +664,7 @@
 
   .special-route-type__intro {
     border-right: 0;
-    border-bottom: 1px solid rgba(117, 96, 79, 0.2);
+    border-bottom: 1px solid rgb(84 143 135 / 24%);
     padding: 0 0 18px;
   }
 }
@@ -524,8 +678,6 @@
   .special-route-conditions { grid-template-columns: 1fr; }
   .special-route-conditions > div { border-right: 0; }
   .special-route-milestones { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .special-admissions-related { display: block; }
-  .special-admissions-related a { display: inline-block; margin-top: 14px; }
 }
 
 @media (max-width: 620px) {
@@ -534,7 +686,7 @@
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 3px 12px;
     min-height: 52px;
-    border: 1px solid rgba(117, 96, 79, 0.2);
+    border: 1px solid rgb(84 143 135 / 24%);
     border-radius: 5px;
     padding: 9px 10px 9px 12px;
     background: rgba(255, 255, 255, 0.82);

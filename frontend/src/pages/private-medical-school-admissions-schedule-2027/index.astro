@@ -16,6 +16,7 @@ import {
   privateMedicalAdmissions2027Metadata,
 } from "../../data/privateMedicalAdmissions2027Metadata";
 import AdmissionsBrandDivider from "../../components/admissions/AdmissionsBrandDivider.astro";
+import AdmissionsScheduleSwitcher from "../../components/admissions/AdmissionsScheduleSwitcher.astro";
 import AdmissionPlanner from "../../components/admissions/AdmissionPlanner.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import "../../styles/admissions-2027.css";
@@ -419,20 +420,22 @@ const structuredData = {
 
     <section class="admissions-hero">
       <div class="content admissions-hero__inner">
-        <nav class="admissions-breadcrumb" aria-label="パンくずリスト">
+        <nav class="admissions-breadcrumb admissions-breadcrumb--with-switcher" aria-label="パンくずリスト">
           <a href="/">ホーム</a>
           <span aria-hidden="true">/</span>
           <a href="/top/information-shiritsu/">私立医学部情報</a>
           <span aria-hidden="true">/</span>
-          <span aria-current="page">2027年度 入試日程</span>
+          <span aria-current="page">2027年度 一般選抜・共通テスト利用</span>
         </nav>
+
+        <AdmissionsScheduleSwitcher current="general" />
 
         <div class="admissions-hero__grid">
           <div class="admissions-hero__copy">
             <p class="admissions-kicker"><span>2027</span> PRIVATE MEDICAL SCHOOL EXAMS</p>
             <h1>
               2027年度 私立医学部31大学<br />
-              <strong>入試日程まるわかり</strong>
+              <strong>一般選抜・共テ利用 入試日程</strong>
             </h1>
             <p class="admissions-hero__lead">
               一般選抜と共通テスト利用選抜を、<b>日付・大学・締切</b>の3方向から。
@@ -1132,6 +1135,14 @@ const structuredData = {
             </div>
           </li>
         </ol>
+
+        <aside class="admissions-related-schedule admissions-related-schedule--special">
+          <div>
+            <strong>総合型・学校推薦型などを受験する方へ</strong>
+            <p>地域枠・帰国生・IBなどを含む31大学の日程と出願条件は、専用ページで確認できます。</p>
+          </div>
+          <a href="/private-medical-school-special-admissions-schedule-2027/">総合型・推薦型等の日程を見る →</a>
+        </aside>
       </div>
     </section>
 

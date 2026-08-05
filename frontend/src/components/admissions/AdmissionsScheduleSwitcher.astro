@@ -1,0 +1,58 @@
+---
+interface Props {
+  current: "general" | "special";
+}
+
+const { current } = Astro.props;
+
+const schedulePages = [
+  {
+    id: "general",
+    href: "/private-medical-school-admissions-schedule-2027/",
+    shortLabel: "一般・共テ",
+    label: "一般選抜・共通テスト利用",
+    description: "一般選抜と共テ利用の日程",
+  },
+  {
+    id: "special",
+    href: "/private-medical-school-special-admissions-schedule-2027/",
+    shortLabel: "総合型・推薦型等",
+    label: "総合型・学校推薦型など",
+    description: "地域枠・帰国生・IB等も掲載",
+  },
+] as const;
+---
+
+<nav class="admissions-page-switcher" aria-label="2027年度 私立医学部の入試区分を切り替える">
+  <p class="admissions-page-switcher__label">
+    <span aria-hidden="true">2027</span>
+    入試区分を切り替える
+  </p>
+  <div class="admissions-page-switcher__options">
+    {
+      schedulePages.map((page) => {
+        const isCurrent = current === page.id;
+        return (
+          <a
+            class:list={[
+              "admissions-page-switcher__option",
+              `admissions-page-switcher__option--${page.id}`,
+              { "is-current": isCurrent },
+            ]}
+            href={page.href}
+            aria-current={isCurrent ? "page" : undefined}
+          >
+            <span class="admissions-page-switcher__short-label">{page.shortLabel}</span>
+            <span class="admissions-page-switcher__copy">
+              <strong>{page.label}</strong>
+              <small>{page.description}</small>
+            </span>
+            <span class="admissions-page-switcher__status" aria-hidden="true">
+              {isCurrent ? "表示中" : "切替 →"}
+            </span>
+          </a>
+        );
+      })
+    }
+  </div>
+</nav>

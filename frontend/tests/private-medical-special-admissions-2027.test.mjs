@@ -111,8 +111,20 @@ const pageSourcePath = fileURLToPath(
     import.meta.url,
   ),
 );
+const generalPageSourcePath = fileURLToPath(
+  new URL(
+    "../src/pages/private-medical-school-admissions-schedule-2027/index.astro",
+    import.meta.url,
+  ),
+);
+const scheduleSwitcherSourcePath = fileURLToPath(
+  new URL("../src/components/admissions/AdmissionsScheduleSwitcher.astro", import.meta.url),
+);
 const styleSourcePath = fileURLToPath(
   new URL("../src/styles/special-admissions-2027.css", import.meta.url),
+);
+const sharedStyleSourcePath = fileURLToPath(
+  new URL("../src/styles/admissions-2027.css", import.meta.url),
 );
 const datasetEndpointSourcePath = fileURLToPath(
   new URL(
@@ -132,6 +144,12 @@ const builtDatasetPath = fileURLToPath(
 const builtPagePath = fileURLToPath(
   new URL(
     "../dist/private-medical-school-special-admissions-schedule-2027/index.html",
+    import.meta.url,
+  ),
+);
+const builtGeneralPagePath = fileURLToPath(
+  new URL(
+    "../dist/private-medical-school-admissions-schedule-2027/index.html",
     import.meta.url,
   ),
 );
@@ -1289,7 +1307,7 @@ test("概要の8方式を受験生向けの読みやすい説明文で案内す�
   assert.doesNotMatch(descriptionsSource, /後段で使う方式も含みます|条件に注意します/u);
 
   assert.ok(descriptionRule, "方式説明文のCSSルールがありません");
-  assert.match(descriptionRule, /color\s*:\s*#443e38/u);
+  assert.match(descriptionRule, /color\s*:\s*#294b49/u);
   assert.match(descriptionRule, /font-size\s*:\s*clamp\(0\.9rem,/u);
   assert.match(descriptionRule, /font-weight\s*:\s*600/u);
   assert.match(descriptionRule, /line-height\s*:\s*1\.8/u);
@@ -1301,4 +1319,92 @@ test("大学別一覧には対象外として確認した方式を表示しな�
 
   assert.doesNotMatch(pageSource, /対象外として確認した方式/);
   assert.doesNotMatch(pageSource, /entry\.excludedRoutes/);
+});
+
+test("一般・共テ利用ページと特別選抜ページを上部と本文末で相互に行き来できる", () => {
+  const generalPageSource = readFileSync(generalPageSourcePath, "utf8");
+  const specialPageSource = readFileSync(pageSourcePath, "utf8");
+  const switcherSource = readFileSync(scheduleSwitcherSourcePath, "utf8");
+
+  assert.match(generalPageSource, /<AdmissionsScheduleSwitcher current="general"\s*\/>/u);
+  assert.match(specialPageSource, /<AdmissionsScheduleSwitcher current="special"\s*\/>/u);
+  assert.match(
+    generalPageSource,
+    /一般選抜・共通テスト利用[\s\S]*?<AdmissionsScheduleSwitcher current="general"\s*\/>[\s\S]*?<div class="admissions-hero__grid">/u,
+  );
+  assert.match(
+    specialPageSource,
+    /総合型・学校推薦型[\s\S]*?<AdmissionsScheduleSwitcher current="special"\s*\/>[\s\S]*?<div class="admissions-hero__grid">/u,
+  );
+  assert.match(
+    switcherSource,
+    /href:\s*"\/private-medical-school-admissions-schedule-2027\/"/u,
+  );
+  assert.match(
+    switcherSource,
+    /href:\s*"\/private-medical-school-special-admissions-schedule-2027\/"/u,
+  );
+  assert.match(switcherSource, /aria-current=\{isCurrent \? "page" : undefined\}/u);
+  assert.match(switcherSource, /isCurrent \? "表示中" : "切替 →"/u);
+  assert.match(
+    generalPageSource,
+    /class="admissions-related-schedule admissions-related-schedule--special"[\s\S]*?href="\/private-medical-school-special-admissions-schedule-2027\/"/u,
+  );
+  assert.match(
+    specialPageSource,
+    /class="admissions-related-schedule admissions-related-schedule--general"[\s\S]*?href="\/private-medical-school-admissions-schedule-2027\/"/u,
+  );
+
+  if (!existsSync(builtGeneralPagePath) || !existsSync(builtPagePath)) return;
+  const generalHtml = readFileSync(builtGeneralPagePath, "utf8");
+  const specialHtml = readFileSync(builtPagePath, "utf8");
+  const switcherPattern = /<nav\b(?=[^>]*class="[^"]*\badmissions-page-switcher\b[^"]*")[^>]*>[\s\S]*?<\/nav>/u;
+  const generalSwitcher = generalHtml.match(switcherPattern)?.[0];
+  const specialSwitcher = specialHtml.match(switcherPattern)?.[0];
+
+  assert.ok(generalSwitcher, "一般・共テ利用ページの切替ナビがありません");
+  assert.ok(specialSwitcher, "特別選抜ページの切替ナビがありません");
+  assert.equal(attributeValues(generalSwitcher, "href").length, 2);
+  assert.equal(attributeValues(specialSwitcher, "href").length, 2);
+  assert.match(
+    generalSwitcher,
+    /href="\/private-medical-school-admissions-schedule-2027\/" aria-current="page"/u,
+  );
+  assert.match(
+    specialSwitcher,
+    /href="\/private-medical-school-special-admissions-schedule-2027\/" aria-current="page"/u,
+  );
+});
+
+test("特別選抜ページはティール系の独自配色で一般・共テ利用ページと区別する", () => {
+  const specialStyle = readFileSync(styleSourcePath, "utf8");
+  const sharedStyle = readFileSync(sharedStyleSourcePath, "utf8");
+  const rootRule = specialStyle.match(/\.special-admissions-page\s*\{([^}]*)\}/u)?.[1];
+
+  assert.ok(rootRule, "特別選抜ページのテーマ定義がありません");
+  assert.match(rootRule, /--special-brand\s*:\s*#0f6b65/u);
+  assert.match(rootRule, /--special-brand-dark\s*:\s*#073d3a/u);
+  assert.match(rootRule, /--admissions-blue\s*:\s*#0a5c57/u);
+  assert.match(rootRule, /--admissions-yellow-soft\s*:\s*#e9f5f2/u);
+  assert.match(rootRule, /--admissions-line\s*:\s*#c5ddd8/u);
+  assert.match(
+    specialStyle,
+    /\.special-admissions-page \.admissions-hero\s*\{[\s\S]*?var\(--special-tint\)/u,
+  );
+  assert.match(
+    specialStyle,
+    /\.special-admissions-jump-nav\s*\{[^}]*border-top\s*:\s*4px solid var\(--special-brand\)/u,
+  );
+  assert.match(
+    sharedStyle,
+    /\.admissions-page-switcher__option--general\.is-current\s*\{[^}]*#8b0000/u,
+  );
+  assert.match(
+    sharedStyle,
+    /\.admissions-page-switcher__option--special\.is-current\s*\{[^}]*#0f6b65/u,
+  );
+  assert.match(
+    sharedStyle,
+    /@media\s*\(max-width:\s*620px\)[\s\S]*?\.admissions-page-switcher__option\s*\{[^}]*min-height\s*:\s*96px/u,
+  );
 });
