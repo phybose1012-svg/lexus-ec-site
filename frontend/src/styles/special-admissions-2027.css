@@ -324,7 +324,15 @@
 .special-route-type h3 { grid-area: title; min-width: 0; margin: 4px 0 0; color: var(--special-ink); font-size: clamp(1.2rem, 1.8vw, 1.48rem); line-height: 1.35; }
 .special-route-type header strong { grid-area: count; display: flex; align-items: baseline; gap: 4px; color: var(--route-accent); font-size: clamp(2rem, 3vw, 2.55rem); line-height: 1; }
 .special-route-type header small { color: var(--special-muted); font-size: 0.65rem; }
-.special-route-type__intro > p { margin: 18px 0 0; color: var(--special-muted); font-size: 0.78rem; line-height: 1.75; }
+.special-route-type__intro > p {
+  margin: 20px 0 0;
+  color: #443e38;
+  font-size: clamp(0.9rem, calc(0.86rem + 0.12vw), 0.96rem);
+  font-weight: 600;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  text-wrap: pretty;
+}
 .special-route-type__university-list {
   min-width: 0;
 }

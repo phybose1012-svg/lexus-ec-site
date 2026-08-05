@@ -1266,6 +1266,36 @@ test("概要の大学一覧はスマホだけ初期状態を閉じる", () => {
   );
 });
 
+test("概要の8方式を受験生向けの読みやすい説明文で案内する", () => {
+  const pageSource = readFileSync(pageSourcePath, "utf8");
+  const styleSource = readFileSync(styleSourcePath, "utf8");
+  const descriptionsSource = pageSource.match(
+    /const categoryDescriptions:[\s\S]*?=\s*\{([\s\S]*?)\n\};/u,
+  )?.[1];
+  const descriptionRule = styleSource.match(
+    /\.special-route-type__intro\s*>\s*p\s*\{([^}]*)\}/u,
+  )?.[1];
+
+  assert.ok(descriptionsSource, "方式別の説明文定義がありません");
+  const descriptions = [...descriptionsSource.matchAll(/^\s*\w+:\s*"([^"]+)",?$/gmu)]
+    .map((match) => match[1]);
+  assert.equal(descriptions.length, 8, "8方式すべてに説明文が必要です");
+  for (const description of descriptions) {
+    assert.match(description, /選抜です。/u);
+    assert.match(description, /確認しましょう。$/u);
+  }
+  assert.match(descriptionsSource, /大学入学共通テストの得点も評価対象/u);
+  assert.match(descriptionsSource, /専願・併願の別、評定/u);
+  assert.doesNotMatch(descriptionsSource, /後段で使う方式も含みます|条件に注意します/u);
+
+  assert.ok(descriptionRule, "方式説明文のCSSルールがありません");
+  assert.match(descriptionRule, /color\s*:\s*#443e38/u);
+  assert.match(descriptionRule, /font-size\s*:\s*clamp\(0\.9rem,/u);
+  assert.match(descriptionRule, /font-weight\s*:\s*600/u);
+  assert.match(descriptionRule, /line-height\s*:\s*1\.8/u);
+  assert.doesNotMatch(descriptionRule, /var\(--special-muted\)/u);
+});
+
 test("大学別一覧には対象外として確認した方式を表示しない", () => {
   const pageSource = readFileSync(pageSourcePath, "utf8");
 
