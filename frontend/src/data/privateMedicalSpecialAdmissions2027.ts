@@ -630,7 +630,7 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
     strategyPath: "/showa-university-medicine-strategy2027/",
     scopeStatus: "available",
     publicationStatus: "complete",
-    statusNote: "2027年度要項で学校推薦型選抜を確認。指定校・特別協定校は対象校の案内も確認してください。",
+    statusNote: "2027年度公式日程で学校推薦型選抜と卒業生推薦入試を確認。指定校・特別協定校は対象校の案内も確認してください。",
     officialUrl: "https://adm.showa-u.ac.jp/admission/info/web-apply.html",
     routes: [
       route({
@@ -657,7 +657,7 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
       route({
         id: "graduate-recommendation",
         officialName: "卒業生推薦入学試験",
-        category: "recommendation",
+        category: "special",
         quota: "10名",
         publicationStatus: "complete",
         currentStudentEligible: "conditional",

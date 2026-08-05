@@ -859,6 +859,19 @@ test("一般選抜・通常の共通テスト利用選抜を方式一覧へ混�
   }
 });
 
+test("大学独自の卒業生推薦をその他特別選抜に分類", () => {
+  const showaMedical = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (entry) => entry.id === "showa-medical",
+  );
+  const graduateRecommendation = showaMedical?.routes.find(
+    (route) => route.id === "graduate-recommendation",
+  );
+
+  assert.ok(graduateRecommendation, "昭和医科大学の卒業生推薦入学試験がありません");
+  assert.equal(graduateRecommendation.category, "special");
+  assert.equal(specialAdmissionCategoryLabels[graduateRecommendation.category], "その他特別選抜");
+});
+
 test("実質一般選抜・共通テスト利用選抜に当たる方式を派生データまで除外", () => {
   for (const excluded of excludedEffectiveGeneralSelections) {
     const university = privateMedicalSpecialAdmissionsUniversities2027.find(
