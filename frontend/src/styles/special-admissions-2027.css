@@ -615,13 +615,28 @@
 
 .special-full-calendar .admissions-section-heading--light :where(p, h2) { color: var(--special-ink); }
 .special-full-calendar__legend { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
-.special-full-calendar__viewport { max-height: 72vh; overflow: auto; border: 1px solid var(--special-border); background: #fff; scrollbar-gutter: stable; }
+.special-full-calendar__viewport {
+  --admissions-full-schedule-head-height: 54px;
+  position: relative;
+  max-height: 72vh;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--special-border);
+  background: #fff;
+  scrollbar-gutter: stable;
+}
 .special-full-calendar table { width: 100%; min-width: 1420px; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
 .special-full-calendar caption { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
 .special-full-calendar :where(th, td) { border-right: 1px solid var(--special-border); border-bottom: 1px solid var(--special-border); vertical-align: top; }
-.special-full-calendar thead th { position: sticky; z-index: 5; top: 0; width: 172px; padding: 11px 8px; background: #e3f0ed; font-size: 0.67rem; text-align: center; }
+.special-full-calendar thead th { position: sticky; z-index: 5; top: 0; width: 172px; height: var(--admissions-full-schedule-head-height); padding: 11px 8px; background: #e3f0ed; font-size: 0.67rem; text-align: center; }
 .special-full-calendar thead th:first-child { z-index: 7; left: 0; width: 126px; }
 .special-full-calendar tbody th { position: sticky; z-index: 4; left: 0; width: 126px; padding: 12px 8px; background: #eef7f5; font-family: var(--font-serif); font-size: 0.78rem; text-align: center; }
+.special-full-calendar tbody th time {
+  position: sticky;
+  z-index: 1;
+  top: calc(var(--admissions-full-schedule-head-height) + 11px);
+  display: block;
+}
 .special-full-calendar td { width: 172px; min-height: 52px; padding: 7px; background: #fff; }
 .special-full-calendar td ul { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
 .special-full-calendar td li { border: 1px solid var(--special-border); border-left: 3px solid #999; padding: 6px; background: #fff; }
@@ -681,6 +696,10 @@
 }
 
 @media (max-width: 620px) {
+  .special-full-calendar__viewport {
+    --admissions-full-schedule-head-height: 50px;
+  }
+
   .special-route-type__university-summary {
     grid-template-areas: "title action" "count action";
     grid-template-columns: minmax(0, 1fr) auto;
@@ -809,6 +828,7 @@
   body.is-printing-admissions-section .special-full-calendar thead { display: table-header-group; }
   body.is-printing-admissions-section .special-full-calendar thead th { font-size: 5.5pt; }
   body.is-printing-admissions-section .special-full-calendar tbody th { width: 18mm !important; font-size: 5.5pt; }
+  body.is-printing-admissions-section .special-full-calendar tbody th time { position: static !important; top: auto; }
   body.is-printing-admissions-section .special-full-calendar td :where(a, strong, small) { color: #111 !important; font-size: 4.5pt; }
   body.is-printing-admissions-section .special-full-calendar td .special-category { display: none; }
   body.is-printing-admissions-section .special-full-calendar td li { border: var(--admissions-print-rule); border-left-width: 1mm; padding: 1mm; }

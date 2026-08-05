@@ -702,6 +702,72 @@ test("締切・試験日セクションは一般選抜ページと同じ構造�
   }
 });
 
+test("全日程カレンダーは左端の日付をスクロール中もヘッダー直下に固定する", () => {
+  const pageSource = readFileSync(pageSourcePath, "utf8");
+  const styleSource = readFileSync(styleSourcePath, "utf8");
+  const viewportRule = styleSource.match(
+    /\.special-full-calendar__viewport\s*\{([^}]*)\}/u,
+  )?.[1];
+  const headerRule = styleSource.match(
+    /\.special-full-calendar thead th\s*\{([^}]*)\}/u,
+  )?.[1];
+  const dateCellRule = styleSource.match(
+    /\.special-full-calendar tbody th\s*\{([^}]*)\}/u,
+  )?.[1];
+  const cornerRule = styleSource.match(
+    /\.special-full-calendar thead th:first-child\s*\{([^}]*)\}/u,
+  )?.[1];
+  const dateTimeRule = styleSource.match(
+    /\.special-full-calendar tbody th time\s*\{([^}]*)\}/u,
+  )?.[1];
+
+  assert.match(
+    pageSource,
+    /class="special-full-calendar__viewport"[^>]*tabindex="0"[^>]*role="region"/u,
+    "全日程カレンダーのスクロール領域がキーボード操作できません",
+  );
+  assert.match(
+    pageSource,
+    /<tbody>[\s\S]*?<th scope="row"><time datetime=\{day\.date\}>/u,
+    "日付列に行見出しとtime要素がありません",
+  );
+
+  assert.ok(viewportRule, "全日程カレンダーのviewportルールがありません");
+  assert.match(viewportRule, /--admissions-full-schedule-head-height\s*:\s*54px/u);
+  assert.match(viewportRule, /position\s*:\s*relative/u);
+  assert.match(viewportRule, /overflow\s*:\s*auto/u);
+  assert.match(viewportRule, /overscroll-behavior\s*:\s*contain/u);
+
+  assert.ok(headerRule, "全日程カレンダーのヘッダールールがありません");
+  assert.match(headerRule, /position\s*:\s*sticky/u);
+  assert.match(headerRule, /top\s*:\s*0/u);
+  assert.match(
+    headerRule,
+    /height\s*:\s*var\(--admissions-full-schedule-head-height\)/u,
+  );
+
+  assert.ok(cornerRule, "日付列ヘッダーの固定ルールがありません");
+  assert.match(cornerRule, /left\s*:\s*0/u);
+  assert.match(cornerRule, /z-index\s*:\s*7/u);
+
+  assert.ok(dateCellRule, "全日程カレンダーの日付列ルールがありません");
+  assert.match(dateCellRule, /position\s*:\s*sticky/u);
+  assert.match(dateCellRule, /left\s*:\s*0/u);
+
+  assert.ok(dateTimeRule, "日付文字を行内で固定するルールがありません");
+  assert.match(dateTimeRule, /position\s*:\s*sticky/u);
+  assert.match(
+    dateTimeRule,
+    /top\s*:\s*calc\(var\(--admissions-full-schedule-head-height\)\s*\+\s*11px\)/u,
+  );
+  assert.match(dateTimeRule, /z-index\s*:\s*1/u);
+  assert.match(
+    styleSource,
+    /@media\s*\(max-width:\s*620px\)[\s\S]*?\.special-full-calendar__viewport\s*\{[^}]*--admissions-full-schedule-head-height\s*:\s*50px/u,
+    "スマホのヘッダー高と日付固定位置が同期していません",
+  );
+});
+
 test("生成ページの締切・試験日表示は集約後も全方式と選択条件を保持", () => {
   if (!existsSync(builtPagePath)) return;
 
