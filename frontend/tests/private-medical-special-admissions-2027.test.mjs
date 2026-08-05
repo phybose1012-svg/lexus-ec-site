@@ -781,6 +781,145 @@ test("埼玉医科大学は令和9年度公式情報の年内5方式・資格・
   assert.ok(saitama.routes.every((route) => route.events.every((event) => !event.label.includes("共通テスト"))));
 });
 
+test("国際医療福祉大学は2027年度完成版要項の対象5方式・資格確認期限・専併願条件を保持", () => {
+  const iuhw = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "iuhw",
+  );
+
+  assert.ok(iuhw, "国際医療福祉大学のデータがありません");
+  assert.equal(iuhw.scopeStatus, "available");
+  assert.equal(iuhw.publicationStatus, "complete");
+  assert.equal(
+    iuhw.officialUrl,
+    "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/download.html",
+  );
+  assert.deepEqual(
+    iuhw.routes.map((route) => route.officialName),
+    [
+      "総合型選抜（専願制）",
+      "留学生特別選抜（第1回）",
+      "留学生特別選抜（第2回）",
+      "帰国生および外国人学校卒業生特別選抜（第1回）",
+      "帰国生および外国人学校卒業生特別選抜（第2回）",
+    ],
+  );
+
+  const routeById = new Map(iuhw.routes.map((route) => [route.id, route]));
+  const comprehensive = routeById.get("comprehensive-exclusive");
+  assert.ok(comprehensive, "総合型選抜（専願制）がありません");
+  assert.equal(comprehensive.quota, "10名");
+  assert.equal(comprehensive.currentStudentEligible, true);
+  assert.equal(comprehensive.exclusive, "専願");
+  assert.equal(comprehensive.principalRecommendation, "不要");
+  assert.match(comprehensive.eligibility, /2026年3月.*2027年3月卒業見込み.*第一志望/u);
+  assert.match(comprehensive.gradeRequirement, /数値基準なし.*調査書/u);
+  assert.match(
+    comprehensive.restrictions.join(" "),
+    /説明会・オープンキャンパス.*Web説明動画.*他の学校・教育課程.*他大学.*入学辞退不可/u,
+  );
+  assert.match(comprehensive.note ?? "", /大学入学共通テストは利用しません.*12月14日.*12月21日/u);
+  assert.deepEqual(comprehensive.events, [
+    { stage: "application-start", date: "2026-10-26", label: "Web出願開始", time: "9:00" },
+    { stage: "application-deadline", date: "2026-11-09", label: "Web出願登録締切", time: "23:00", deadlineRule: "Web登録" },
+    { stage: "application-deadline", date: "2026-11-09", label: "入学検定料納入締切", time: "23:59" },
+    { stage: "application-deadline", date: "2026-11-09", label: "出願書類締切", deadlineRule: "必着" },
+    { stage: "first-exam", date: "2026-11-21", label: "一次選考（学力試験・小論文・集団面接）" },
+    { stage: "first-result", date: "2026-11-30", label: "一次合格発表", time: "15:00" },
+    { stage: "second-exam", date: "2026-12-05", label: "二次選考（個別面接）" },
+    { stage: "final-result", date: "2026-12-14", label: "最終合格発表", time: "15:00" },
+    { stage: "procedure-deadline", date: "2026-12-21", label: "入学手続締切", deadlineRule: "消印有効" },
+  ]);
+  assert.deepEqual(comprehensive.sourceUrls, [
+    "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/doc/guideline_app_sogo.pdf",
+    "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/doc/guideline_app.pdf?ver=3",
+    "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/sogo.html",
+    "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/download.html",
+  ]);
+
+  const firstSchedule = [
+    { stage: "application-deadline", date: "2026-08-04", label: "出願資格確認締切", deadlineRule: "必着" },
+    { stage: "application-start", date: "2026-08-12", label: "Web出願開始", time: "9:00" },
+    { stage: "application-deadline", date: "2026-08-20", label: "Web出願登録締切", time: "23:00", deadlineRule: "Web登録" },
+    { stage: "application-deadline", date: "2026-08-20", label: "入学検定料納入締切", time: "23:59" },
+    { stage: "application-deadline", date: "2026-08-20", label: "出願書類締切", deadlineRule: "必着" },
+    { stage: "first-exam", date: "2026-09-01", label: "一次選考（学力試験・小論文）" },
+    { stage: "first-result", date: "2026-09-07", label: "一次合格発表", time: "15:00" },
+    { stage: "second-exam", date: "2026-09-12", label: "二次選考（面接試験）" },
+    { stage: "final-result", date: "2026-09-24", label: "最終合格発表", time: "15:00" },
+    { stage: "procedure-deadline", date: "2026-09-30", label: "入学手続締切", deadlineRule: "消印有効" },
+  ];
+  const secondSchedule = [
+    { stage: "application-deadline", date: "2026-10-22", label: "出願資格確認締切", deadlineRule: "必着" },
+    { stage: "application-start", date: "2026-11-02", label: "Web出願開始", time: "9:00" },
+    { stage: "application-deadline", date: "2026-11-09", label: "Web出願登録締切", time: "23:00", deadlineRule: "Web登録" },
+    { stage: "application-deadline", date: "2026-11-09", label: "入学検定料納入締切", time: "23:59" },
+    { stage: "application-deadline", date: "2026-11-09", label: "出願書類締切", deadlineRule: "必着" },
+    { stage: "first-exam", date: "2026-11-21", label: "一次選考（学力試験・小論文）" },
+    { stage: "first-result", date: "2026-11-30", label: "一次合格発表", time: "15:00" },
+    { stage: "second-exam", date: "2026-12-05", label: "二次選考（面接試験）" },
+    { stage: "final-result", date: "2026-12-14", label: "最終合格発表", time: "15:00" },
+    { stage: "procedure-deadline", date: "2026-12-21", label: "入学手続締切", deadlineRule: "消印有効" },
+  ];
+  const specialSources = [
+    "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/doc/guideline_app.pdf?ver=3",
+    "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/special.html",
+    "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/download.html",
+  ];
+
+  for (const routeId of ["international-first", "returnee-first"]) {
+    assert.deepEqual(routeById.get(routeId)?.events, firstSchedule, `${routeId}: 第1回日程が公式要項と一致しません`);
+  }
+  for (const routeId of ["international-second", "returnee-second"]) {
+    assert.deepEqual(routeById.get(routeId)?.events, secondSchedule, `${routeId}: 第2回日程が公式要項と一致しません`);
+    assert.match(routeById.get(routeId)?.note ?? "", /第1回二次選考受験者.*第2回一次選考.*免除/u);
+  }
+
+  for (const routeId of ["international-first", "international-second"]) {
+    const selection = routeById.get(routeId);
+    assert.ok(selection, `${routeId}: 留学生特別選抜がありません`);
+    assert.equal(selection.quota, "20名（第1・2回合計）");
+    assert.equal(selection.exclusive, "併願可");
+    assert.equal(selection.principalRecommendation, "不要");
+    assert.match(selection.eligibility, /日本国籍・日本の永住許可を持たず.*日本在住通算6年以内.*2027年3月31日/u);
+    assert.match(selection.gradeRequirement, /一律の評定基準なし.*TOEFL iBT 80.*IELTS 6\.0.*望ましい/u);
+    assert.match(selection.restrictions.join(" "), /在籍期間は通算3年以内.*在留資格「留学」.*事前確認/u);
+    assert.match(selection.note ?? "", /日本語または英語.*協定に基づく.*個別調整.*三次選考/u);
+    assert.deepEqual(selection.sourceUrls, specialSources);
+  }
+
+  for (const routeId of ["returnee-first", "returnee-second"]) {
+    const selection = routeById.get(routeId);
+    assert.ok(selection, `${routeId}: 帰国生・外国人学校卒業生特別選抜がありません`);
+    assert.equal(selection.quota, "若干名（第1・2回合計）");
+    assert.equal(selection.exclusive, "併願可");
+    assert.equal(selection.principalRecommendation, "不要");
+    assert.match(selection.eligibility, /日本国籍.*永住許可.*海外学校歴.*海外在住歴.*IB/u);
+    assert.match(selection.gradeRequirement, /一律の評定基準なし.*IB資格経路.*32点以上.*指定3科目/u);
+    assert.match(selection.restrictions.join(" "), /最終学年を含む4年以上.*海外大学・大学院に2年以上.*満6歳未満.*事前確認/u);
+    assert.match(selection.note ?? "", /すべて英語.*日本語での質疑応答.*三次選考/u);
+    assert.deepEqual(selection.sourceUrls, specialSources);
+  }
+
+  const iuhwDeadlineEntries = buildDeadlineDisplayEntries(
+    privateMedicalSpecialAdmissionsEvents2027.filter((event) => event.universityId === "iuhw"),
+  );
+  const firstApplicationDeadline = iuhwDeadlineEntries.find(
+    (entry) => entry.date === "2026-08-20",
+  );
+  assert.ok(firstApplicationDeadline, "第1回出願締切の表示データがありません");
+  assert.equal(firstApplicationDeadline.details.length, 3, "Web・検定料・書類の3締切を保持してください");
+  assertSameSet(
+    firstApplicationDeadline.routeNames,
+    ["留学生特別選抜（第1回）", "帰国生および外国人学校卒業生特別選抜（第1回）"],
+    "同一日程の第1回2方式を欠落なく列挙してください",
+  );
+
+  assert.match(iuhw.excludedRoutes?.join(" ") ?? "", /一般選抜は対象外/u);
+  assert.match(iuhw.excludedRoutes?.join(" ") ?? "", /大学入学共通テスト利用選抜.*通常の共通テスト利用方式/u);
+  assert.match(iuhw.excludedRoutes?.join(" ") ?? "", /国際バカロレア資格.*独立した入試方式ではない/u);
+  assert.ok(iuhw.routes.every((route) => route.events.every((event) => !event.label.includes("共通テスト"))));
+});
+
 test("すべての入試イベント日が実在するISO 8601日付", () => {
   assert.ok(privateMedicalSpecialAdmissionsEvents2027.length > 0);
 

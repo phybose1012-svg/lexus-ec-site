@@ -100,23 +100,44 @@ const saitamaFaqUrl = "https://adm.saitama-med.ac.jp/faq/";
 const saitamaScholarshipUrl = "https://adm.saitama-med.ac.jp/payment/";
 
 const iuhwInternationalFirstSchedule: SpecialAdmissionEvent[] = [
-  event("application-start", "2026-08-12", "出願開始"),
-  event("application-deadline", "2026-08-20", "出願締切", { deadlineRule: "必着" }),
-  event("first-exam", "2026-09-01", "一次選考"),
+  event("application-deadline", "2026-08-04", "出願資格確認締切", { deadlineRule: "必着" }),
+  event("application-start", "2026-08-12", "Web出願開始", { time: "9:00" }),
+  event("application-deadline", "2026-08-20", "Web出願登録締切", { time: "23:00", deadlineRule: "Web登録" }),
+  event("application-deadline", "2026-08-20", "入学検定料納入締切", { time: "23:59" }),
+  event("application-deadline", "2026-08-20", "出願書類締切", { deadlineRule: "必着" }),
+  event("first-exam", "2026-09-01", "一次選考（学力試験・小論文）"),
   event("first-result", "2026-09-07", "一次合格発表", { time: "15:00" }),
-  event("second-exam", "2026-09-12", "二次選考"),
+  event("second-exam", "2026-09-12", "二次選考（面接試験）"),
   event("final-result", "2026-09-24", "最終合格発表", { time: "15:00" }),
-  event("procedure-deadline", "2026-09-30", "入学手続書類締切", { deadlineRule: "消印有効" }),
+  event("procedure-deadline", "2026-09-30", "入学手続締切", { deadlineRule: "消印有効" }),
 ];
 
 const iuhwInternationalSecondSchedule: SpecialAdmissionEvent[] = [
-  event("application-start", "2026-11-02", "出願開始"),
-  event("application-deadline", "2026-11-09", "出願締切", { deadlineRule: "必着" }),
-  event("first-exam", "2026-11-21", "一次選考"),
+  event("application-deadline", "2026-10-22", "出願資格確認締切", { deadlineRule: "必着" }),
+  event("application-start", "2026-11-02", "Web出願開始", { time: "9:00" }),
+  event("application-deadline", "2026-11-09", "Web出願登録締切", { time: "23:00", deadlineRule: "Web登録" }),
+  event("application-deadline", "2026-11-09", "入学検定料納入締切", { time: "23:59" }),
+  event("application-deadline", "2026-11-09", "出願書類締切", { deadlineRule: "必着" }),
+  event("first-exam", "2026-11-21", "一次選考（学力試験・小論文）"),
   event("first-result", "2026-11-30", "一次合格発表", { time: "15:00" }),
-  event("second-exam", "2026-12-05", "二次選考"),
+  event("second-exam", "2026-12-05", "二次選考（面接試験）"),
   event("final-result", "2026-12-14", "最終合格発表", { time: "15:00" }),
-  event("procedure-deadline", "2026-12-21", "入学手続書類締切", { deadlineRule: "消印有効" }),
+  event("procedure-deadline", "2026-12-21", "入学手続締切", { deadlineRule: "消印有効" }),
+];
+
+const iuhwAdmissionsDownloadUrl = "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/download.html";
+const iuhwSpecialAdmissionsUrl = "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/special.html";
+const iuhwSpecialGuideUrl = "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/doc/guideline_app.pdf?ver=3";
+const iuhwComprehensiveUrl = "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/sogo.html";
+const iuhwComprehensiveGuideUrl =
+  "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/doc/guideline_app_sogo.pdf";
+
+const iuhwSpecialSources = [iuhwSpecialGuideUrl, iuhwSpecialAdmissionsUrl, iuhwAdmissionsDownloadUrl];
+const iuhwComprehensiveSources = [
+  iuhwComprehensiveGuideUrl,
+  iuhwSpecialGuideUrl,
+  iuhwComprehensiveUrl,
+  iuhwAdmissionsDownloadUrl,
 ];
 
 const tokyoMedicalBaseSchedule: SpecialAdmissionEvent[] = [
@@ -708,8 +729,8 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
     strategyPath: "/iuhw-medical-school-exam-guide-2027/",
     scopeStatus: "available",
     publicationStatus: "complete",
-    statusNote: "総合型、留学生、帰国生・外国人学校卒業生の2027年度分冊要項を確認。",
-    officialUrl: "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/download.html",
+    statusNote: "総合型選抜の分冊要項と、本冊の留学生・帰国生および外国人学校卒業生特別選抜を確認。",
+    officialUrl: iuhwAdmissionsDownloadUrl,
     routes: [
       route({
         id: "comprehensive-exclusive",
@@ -718,54 +739,100 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
         quota: "10名",
         publicationStatus: "complete",
         currentStudentEligible: true,
-        eligibility: "2027年3月卒業見込み者を含む。要項所定の出願資格を満たす者",
+        eligibility: "高等学校または中等教育学校を2026年3月に卒業、または2027年3月卒業見込みで、本学医学部を第一志望とし、指定説明会等への参加・視聴条件を満たす者",
         exclusive: "専願",
         principalRecommendation: "不要",
-        gradeRequirement: "要項で確認",
-        restrictions: [],
-        events: [
-          event("application-start", "2026-10-26", "出願開始"),
-          event("application-deadline", "2026-11-09", "出願締切", { deadlineRule: "必着" }),
-          event("first-exam", "2026-11-21", "一次選考"),
-          event("first-result", "2026-11-30", "一次合格発表", { time: "15:00" }),
-          event("second-exam", "2026-12-05", "二次選考"),
-          event("final-result", "2026-12-14", "最終合格発表", { time: "15:00" }),
-          event("procedure-deadline", "2026-12-21", "入学手続書類締切", { deadlineRule: "消印有効" }),
+        gradeRequirement: "数値基準なし（調査書を選考資料として使用）",
+        restrictions: [
+          "指定する医学部説明会・オープンキャンパスへの本人参加、または指定Web説明動画等の本人視聴が必要",
+          "高等学校・中等教育学校のみが対象で、他の学校・教育課程は含まれない",
+          "合格後は他大学および本学の他入試に出願できず、入学辞退不可",
         ],
-        sourceUrls: ["https://narita.iuhw.ac.jp/gakubu/igakubu/admission/doc/guideline_app_sogo.pdf"],
+        events: [
+          event("application-start", "2026-10-26", "Web出願開始", { time: "9:00" }),
+          event("application-deadline", "2026-11-09", "Web出願登録締切", { time: "23:00", deadlineRule: "Web登録" }),
+          event("application-deadline", "2026-11-09", "入学検定料納入締切", { time: "23:59" }),
+          event("application-deadline", "2026-11-09", "出願書類締切", { deadlineRule: "必着" }),
+          event("first-exam", "2026-11-21", "一次選考（学力試験・小論文・集団面接）"),
+          event("first-result", "2026-11-30", "一次合格発表", { time: "15:00" }),
+          event("second-exam", "2026-12-05", "二次選考（個別面接）"),
+          event("final-result", "2026-12-14", "最終合格発表", { time: "15:00" }),
+          event("procedure-deadline", "2026-12-21", "入学手続締切", { deadlineRule: "消印有効" }),
+        ],
+        sourceUrls: iuhwComprehensiveSources,
+        note: "一次選考は学力試験・小論文・集団面接、二次選考は個別面接を実施します。大学入学共通テストは利用しません。入学手続期間は2026年12月14日から12月21日です。",
       }),
       ...(["留学生特別選抜", "帰国生および外国人学校卒業生特別選抜"] as const).flatMap((officialName, routeIndex) => [
         route({
           id: routeIndex === 0 ? "international-first" : "returnee-first",
           officialName: `${officialName}（第1回）`,
           category: routeIndex === 0 ? "international" : "returnee",
-          quota: routeIndex === 0 ? "20名（第1・2回合計）" : "若干名",
+          quota: routeIndex === 0 ? "20名（第1・2回合計）" : "若干名（第1・2回合計）",
           publicationStatus: "complete",
           currentStudentEligible: "conditional",
-          eligibility: "2027年3月までの卒業見込みを含み、国籍・海外学校歴・日本語等の要件を満たす者",
-          exclusive: "条件付き",
+          eligibility: routeIndex === 0
+            ? "日本国籍・日本の永住許可を持たず、日本在住通算6年以内で、外国の12年課程を2027年3月31日までに修了見込みを含み、在留資格・英語力等の条件を満たす者"
+            : "日本国籍を有する者または日本の永住許可を得た外国人で、日本の大学入学資格があり、海外学校歴・海外在住歴・外国人学校歴・IBのいずれかの条件を満たす者（2027年3月31日までの修了・資格取得見込みを含む）",
+          exclusive: "併願可",
           principalRecommendation: "不要",
-          gradeRequirement: "要項で確認",
-          restrictions: [routeIndex === 0 ? "留学生資格" : "海外学校歴等の資格"],
+          gradeRequirement: routeIndex === 0
+            ? "一律の評定基準なし。英語力の目安はTOEFL iBT 80以上またはIELTS 6.0以上（望ましい水準）"
+            : "一律の評定基準なし（IB資格経路は総合32点以上および指定3科目の成績条件あり）",
+          restrictions: routeIndex === 0
+            ? [
+                "日本の学校教育法上の小学校・中学校・高等学校・中等教育学校の在籍期間は通算3年以内",
+                "入学までに在留資格「留学」を取得できる見込みが必要",
+                "出願資格の事前確認を完了しないと出願不可",
+              ]
+            : [
+                "外国の12年課程等に最終学年を含む4年以上、海外大学・大学院に2年以上、6年以上の海外在住、外国人学校に最終学年を含む2年以上、または所定のIB資格のいずれか",
+                "海外在住歴は満6歳未満の期間を算入しない",
+                "出願資格の事前確認を完了しないと出願不可",
+              ],
           events: iuhwInternationalFirstSchedule,
-          sourceUrls: ["https://narita.iuhw.ac.jp/gakubu/igakubu/admission/doc/guideline_app.pdf?ver=3"],
+          sourceUrls: iuhwSpecialSources,
+          note: routeIndex === 0
+            ? "数学・理科・小論文は日本語または英語を選択できます。協定に基づく自国政府等の推薦を得た者で本学が認めた場合、試験日・試験地を個別調整することがあります。二次選考後に個人面接のみの三次選考を行う場合があります。入学手続期間は2026年9月24日から9月30日です。"
+            : "筆記試験はすべて英語、面接は英語で実施し、日本語での質疑応答もあります。二次選考後に個人面接のみの三次選考を行う場合があります。入学手続期間は2026年9月24日から9月30日です。",
         }),
         route({
           id: routeIndex === 0 ? "international-second" : "returnee-second",
           officialName: `${officialName}（第2回）`,
           category: routeIndex === 0 ? "international" : "returnee",
-          quota: routeIndex === 0 ? "20名（第1・2回合計）" : "若干名",
+          quota: routeIndex === 0 ? "20名（第1・2回合計）" : "若干名（第1・2回合計）",
           publicationStatus: "complete",
           currentStudentEligible: "conditional",
-          eligibility: "2027年3月までの卒業見込みを含み、国籍・海外学校歴・日本語等の要件を満たす者",
-          exclusive: "条件付き",
+          eligibility: routeIndex === 0
+            ? "日本国籍・日本の永住許可を持たず、日本在住通算6年以内で、外国の12年課程を2027年3月31日までに修了見込みを含み、在留資格・英語力等の条件を満たす者"
+            : "日本国籍を有する者または日本の永住許可を得た外国人で、日本の大学入学資格があり、海外学校歴・海外在住歴・外国人学校歴・IBのいずれかの条件を満たす者（2027年3月31日までの修了・資格取得見込みを含む）",
+          exclusive: "併願可",
           principalRecommendation: "不要",
-          gradeRequirement: "要項で確認",
-          restrictions: [routeIndex === 0 ? "留学生資格" : "海外学校歴等の資格"],
+          gradeRequirement: routeIndex === 0
+            ? "一律の評定基準なし。英語力の目安はTOEFL iBT 80以上またはIELTS 6.0以上（望ましい水準）"
+            : "一律の評定基準なし（IB資格経路は総合32点以上および指定3科目の成績条件あり）",
+          restrictions: routeIndex === 0
+            ? [
+                "日本の学校教育法上の小学校・中学校・高等学校・中等教育学校の在籍期間は通算3年以内",
+                "入学までに在留資格「留学」を取得できる見込みが必要",
+                "出願資格の事前確認を完了しないと出願不可",
+              ]
+            : [
+                "外国の12年課程等に最終学年を含む4年以上、海外大学・大学院に2年以上、6年以上の海外在住、外国人学校に最終学年を含む2年以上、または所定のIB資格のいずれか",
+                "海外在住歴は満6歳未満の期間を算入しない",
+                "出願資格の事前確認を完了しないと出願不可",
+              ],
           events: iuhwInternationalSecondSchedule,
-          sourceUrls: ["https://narita.iuhw.ac.jp/gakubu/igakubu/admission/doc/guideline_app.pdf?ver=3"],
+          sourceUrls: iuhwSpecialSources,
+          note: routeIndex === 0
+            ? "数学・理科・小論文は日本語または英語を選択できます。協定に基づく自国政府等の推薦を得た者で本学が認めた場合、試験日・試験地を個別調整することがあります。第1回二次選考受験者が第2回一次選考に合格した場合、第2回二次選考は免除されます。二次選考後に個人面接のみの三次選考を行う場合があります。入学手続期間は2026年12月14日から12月21日です。"
+            : "筆記試験はすべて英語、面接は英語で実施し、日本語での質疑応答もあります。第1回二次選考受験者が第2回一次選考に合格した場合、第2回二次選考は免除されます。二次選考後に個人面接のみの三次選考を行う場合があります。入学手続期間は2026年12月14日から12月21日です。",
         }),
       ]),
+    ],
+    excludedRoutes: [
+      "一般選抜は対象外",
+      "大学入学共通テスト利用選抜は通常の共通テスト利用方式のため対象外",
+      "国際バカロレア資格は帰国生および外国人学校卒業生特別選抜の出願資格の一つで、独立した入試方式ではない",
     ],
   }),
   university({
