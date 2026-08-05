@@ -1557,6 +1557,170 @@ test("東京医科大学は2027年度完成版要項の推薦7方式・資格差
   );
 });
 
+test("東京女子医科大学は2027年度更新版要項の対象3方式・資格・締切・選考段階を保持", () => {
+  const twmu = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "tokyo-womens-medical",
+  );
+
+  assert.ok(twmu, "東京女子医科大学のデータがありません");
+  assert.equal(twmu.scopeStatus, "available");
+  assert.equal(twmu.publicationStatus, "partial");
+  assert.equal(
+    twmu.officialUrl,
+    "https://www.twmu-u.jp/wp-content/uploads/2026/08/30cfa9d6198a1f4ca4a002eee2df2651.pdf",
+  );
+  assert.match(twmu.statusNote, /2026年8月4日.*完成版要項.*対象3方式.*外国医療人人材育成促進事業.*詳細.*別途公表待ち/u);
+  assert.deepEqual(
+    twmu.routes.map((route) => [route.id, route.officialName, route.quota, route.publicationStatus]),
+    [
+      ["comprehensive", "総合型選抜（一般枠）", "約19名", "complete"],
+      ["foreign-healthcare-human-resources", "総合型選抜（外国医療人人材育成促進事業）", "最大1名", "partial"],
+      ["school-recommendation", "学校推薦型選抜（一般推薦）", "約40名", "complete"],
+    ],
+  );
+
+  const routeById = new Map(twmu.routes.map((route) => [route.id, route]));
+  const comprehensive = routeById.get("comprehensive");
+  const foreignHealthcare = routeById.get("foreign-healthcare-human-resources");
+  const recommendation = routeById.get("school-recommendation");
+  const guideUrl = "https://www.twmu-u.jp/wp-content/uploads/2026/08/30cfa9d6198a1f4ca4a002eee2df2651.pdf";
+  const updateNoticeUrl = "https://www.twmu-u.jp/wp-content/uploads/2026/08/4ce351a52448d061c7add286862b2e9b.pdf";
+  const admissionsUrl = "https://www.twmu-u.jp/medical-ent-suisen/";
+
+  assert.match(comprehensive?.eligibility ?? "", /2022年3月以降.*2027年3月.*IB資格/u);
+  assert.equal(comprehensive?.exclusive, "専願");
+  assert.equal(comprehensive?.principalRecommendation, "不要");
+  assert.match(comprehensive?.gradeRequirement ?? "", /3\.8以上.*IB資格.*34点以上/u);
+  assert.match(
+    comprehensive?.restrictions.join(" ") ?? "",
+    /女子に限る.*2027年4月1日.*2026年8月31日.*他大学との併願不可.*入学前教育.*共通テストは利用しない/u,
+  );
+
+  assert.match(recommendation?.eligibility ?? "", /2026年3月.*2027年3月.*出身学校長の推薦/u);
+  assert.equal(recommendation?.exclusive, "専願");
+  assert.equal(recommendation?.principalRecommendation, "必要");
+  assert.match(recommendation?.gradeRequirement ?? "", /4\.0以上/u);
+  assert.match(
+    recommendation?.restrictions.join(" ") ?? "",
+    /女子に限る.*数学III.*理科2科目.*課外活動.*2026年9月30日.*他大学との併願不可.*共通テストは利用しない/u,
+  );
+  assert.equal(foreignHealthcare?.currentStudentEligible, "conditional");
+  assert.match(foreignHealthcare?.eligibility ?? "", /ASEAN地域の大学の医学部に在籍する女子.*詳細.*別途/u);
+  assert.equal(foreignHealthcare?.exclusive, "未公表");
+  assert.equal(foreignHealthcare?.principalRecommendation, "未公表");
+  assert.equal(foreignHealthcare?.gradeRequirement, "未公表");
+  assert.match(
+    foreignHealthcare?.restrictions.join(" ") ?? "",
+    /女子に限る.*ASEAN地域の大学医学部在籍者のみ.*出願資格・選考方法.*別途.*共通テストを利用しない/u,
+  );
+  for (const route of twmu.routes) {
+    assert.ok(route.sourceUrls.includes(guideUrl));
+    assert.ok(route.sourceUrls.includes(updateNoticeUrl));
+    assert.ok(route.sourceUrls.includes(admissionsUrl));
+  }
+
+  const deadlineSet = (route) =>
+    new Set(
+      route.events
+        .filter((event) => event.stage === "application-deadline")
+        .map((event) => `${event.date}|${event.label}|${event.time ?? ""}|${event.deadlineRule ?? ""}`),
+    );
+  assertSameSet(
+    deadlineSet(comprehensive),
+    new Set([
+      "2026-08-31|外国学校課程等の出願資格事前相談書類提出期限||",
+      "2026-09-28|Web出願登録締切|23:00|Web登録",
+      "2026-09-28|入学検定料支払締切|23:00|",
+      "2026-09-30|出願書類締切||必着",
+    ]),
+    "総合型の事前相談・Web・検定料・書類締切を区別してください",
+  );
+  assertSameSet(
+    deadlineSet(recommendation),
+    new Set([
+      "2026-09-30|外国学校課程等の出願資格事前相談書類提出期限||",
+      "2026-11-10|Web出願登録締切|23:00|Web登録",
+      "2026-11-10|入学検定料支払締切|23:00|",
+      "2026-11-12|出願書類締切||必着",
+    ]),
+    "一般推薦の事前相談・Web・検定料・書類締切を区別してください",
+  );
+  assertSameSet(
+    deadlineSet(foreignHealthcare),
+    new Set(["2026-10-20|出願締切||"]),
+    "外国医療人材育成促進事業の出願締切を保持してください",
+  );
+
+  assert.deepEqual(
+    comprehensive?.events.filter(
+      (event) => event.stage === "first-result" || event.stage === "second-exam" || event.stage === "final-result",
+    ),
+    [
+      { stage: "first-result", date: "2026-10-27", label: "第1次試験合格発表", time: "14:00" },
+      {
+        stage: "second-exam",
+        date: "2026-10-31",
+        label: "第2次試験（プレゼンテーションを含む個人面接）",
+        sequence: 2,
+        choiceRule: "第1次試験合格者のみ。集合時刻は第1次試験合格発表時に通知",
+      },
+      { stage: "final-result", date: "2026-11-06", label: "最終合格発表", time: "14:00" },
+    ],
+  );
+  assert.deepEqual(
+    recommendation?.events.filter((event) => event.stage === "first-exam"),
+    [
+      {
+        stage: "first-exam",
+        date: "2026-11-21",
+        label: "選考1日目（思考力試験・小論文・小グループ討論）",
+        time: "8:40集合、9:00～17:30頃",
+        sequence: 1,
+        choiceRule: "2日間とも受験",
+      },
+      {
+        stage: "first-exam",
+        date: "2026-11-22",
+        label: "選考2日目（個人面接）",
+        sequence: 2,
+        choiceRule: "2日間とも受験。集合時刻は1日目に通知",
+      },
+    ],
+  );
+  assert.deepEqual(foreignHealthcare?.events, [
+    { stage: "application-start", date: "2026-10-01", label: "出願開始" },
+    { stage: "application-deadline", date: "2026-10-20", label: "出願締切" },
+    {
+      stage: "first-exam",
+      date: "2026-10-26",
+      label: "試験（10月26日～11月4日の間で受験生と調整した1日）",
+    },
+    { stage: "final-result", date: "2026-11-06", label: "合格発表", time: "14:00（日本時間）" },
+  ]);
+  assert.deepEqual(
+    [comprehensive, recommendation].map((route) =>
+      route?.events.find((event) => event.stage === "procedure-deadline"),
+    ),
+    [
+      { stage: "procedure-deadline", date: "2026-11-17", label: "入学手続締切", time: "16:00", deadlineRule: "必着" },
+      { stage: "procedure-deadline", date: "2026-12-15", label: "入学手続締切", time: "16:00", deadlineRule: "必着" },
+    ],
+  );
+  assert.equal(
+    foreignHealthcare?.events.find((event) => event.stage === "procedure-deadline"),
+    undefined,
+    "未公表の入学手続期限を補完しないでください",
+  );
+  assert.match(
+    twmu.excludedRoutes?.join(" ") ?? "",
+    /一般選抜.*地域枠/u,
+  );
+  assert.ok(
+    !twmu.excludedRoutes?.some((route) => route.includes("外国医療人人材育成促進事業")),
+    "一般選抜・共通テスト利用ではない総合型選抜を対象外にしないでください",
+  );
+});
+
 test("すべての入試イベント日が実在するISO 8601日付", () => {
   assert.ok(privateMedicalSpecialAdmissionsEvents2027.length > 0);
 
@@ -2400,7 +2564,7 @@ test("固定ページのslugとJSONエンドポイント契約が一致", () => 
   }
 });
 
-test("方式別一覧は01概要内で8方式・全大学・全92方式を省略せず描画する", () => {
+test("方式別一覧は01概要内で8方式・全大学・全93方式を省略せず描画する", () => {
   const pageSource = readFileSync(pageSourcePath, "utf8");
   const summarySource = sectionBetween(pageSource, "summary", "deadlines");
   const universityListTag = openingTagWithClass(
@@ -2409,7 +2573,7 @@ test("方式別一覧は01概要内で8方式・全大学・全92方式を省略
   );
 
   assert.equal(Object.keys(specialAdmissionCategoryLabels).length, 8);
-  assert.equal(privateMedicalSpecialAdmissionsRoutes2027.length, 92);
+  assert.equal(privateMedicalSpecialAdmissionsRoutes2027.length, 93);
   assert.match(summarySource, /<h2\b[^>]*id="summary-title"[^>]*>概要<\/h2>/u);
   assert.match(summarySource, /class="special-route-type-grid"/u);
   assert.match(summarySource, /categoryEntries\.map\(\(entry, index\)/u);
@@ -2521,7 +2685,7 @@ test("生成ページの01概要は6項目ナビと方式別全件データを�
     renderedRouteKeys.push(...categoryRouteKeys);
   }
 
-  assert.equal(renderedRouteKeys.length, 92);
+  assert.equal(renderedRouteKeys.length, 93);
   assertSameSet(
     new Set(renderedRouteKeys),
     new Set(
@@ -2529,7 +2693,7 @@ test("生成ページの01概要は6項目ナビと方式別全件データを�
         `${university.id}/${route.id}`,
       ),
     ),
-    "概要内に全92方式を重複・省略なく描画してください",
+    "概要内に全93方式を重複・省略なく描画してください",
   );
 
   const universityListTags = [...summaryHtml.matchAll(
