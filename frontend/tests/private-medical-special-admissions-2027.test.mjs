@@ -584,6 +584,103 @@ test("自治医科大学は令和9年度完成版要項の年内2方式と郵送
   assert.match(jichi.excludedRoutes?.join(" ") ?? "", /一般選抜.*大学入学共通テスト利用選抜の実施なし/u);
 });
 
+test("獨協医科大学は令和9年度公式情報の現役生向け推薦6方式と選考段階を保持", () => {
+  const dokkyo = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "dokkyo-medical",
+  );
+
+  assert.ok(dokkyo, "獨協医科大学のデータがありません");
+  assert.equal(dokkyo.scopeStatus, "available");
+  assert.equal(dokkyo.publicationStatus, "partial");
+  assert.equal(dokkyo.officialUrl, "https://www.dokkyomed.ac.jp/dusm/exam/entrance/");
+  assert.doesNotMatch(dokkyo.statusNote, /総合型|対象外/u);
+  assert.deepEqual(
+    dokkyo.routes.map((route) => route.officialName),
+    [
+      "学校推薦型選抜（公募（地域特別枠））",
+      "学校推薦型選抜（指定校制）",
+      "学校推薦型選抜（指定校制（栃木県地域枠））",
+      "学校推薦型選抜（指定校制（埼玉県地域枠））",
+      "学校推薦型選抜（指定校制（茨城県地域枠））",
+      "学校推薦型選抜（系列校）",
+    ],
+  );
+
+  const routeById = new Map(dokkyo.routes.map((route) => [route.id, route]));
+  const publicRegional = routeById.get("recommendation-public-regional");
+  assert.ok(publicRegional, "公募（地域特別枠）がありません");
+  assert.equal(publicRegional.category, "regional");
+  assert.equal(publicRegional.publicationStatus, "complete");
+  assert.equal(publicRegional.currentStudentEligible, true);
+  assert.equal(publicRegional.exclusive, "専願");
+  assert.match(publicRegional.eligibility, /2027年3月卒業見込み.*地域.*学校長推薦.*地域医療/u);
+  assert.match(publicRegional.gradeRequirement, /3年次は1学期まで.*4\.0以上/u);
+  assert.match(publicRegional.restrictions.join(" "), /2024年4月1日.*指定校制との併願.*県別指定校地域枠とは併願不可/u);
+  assert.deepEqual(publicRegional.events, [
+    { stage: "application-start", date: "2026-11-02", label: "出願開始" },
+    { stage: "application-deadline", date: "2026-11-09", label: "出願締切", time: "17:00", deadlineRule: "必着" },
+    { stage: "first-exam", date: "2026-11-14", label: "第1次試験（小論文・基礎適性・書類審査）", time: "8:50～12:20" },
+    { stage: "first-result", date: "2026-11-18", label: "第1次合格発表", time: "10:00" },
+    { stage: "second-exam", date: "2026-11-20", label: "第2次試験（MMI面接）", time: "9:30～" },
+    { stage: "final-result", date: "2026-12-01", label: "最終合格発表", time: "10:00" },
+    { stage: "procedure-deadline", date: "2026-12-08", label: "入学手続締切" },
+  ]);
+  assert.deepEqual(publicRegional.sourceUrls, [
+    "https://www.dokkyomed.ac.jp/dusm/exam/entrance/",
+    "https://www.dokkyomed.ac.jp/dusm/exam/entrance/recommendation.html",
+    "https://www.dokkyomed.ac.jp/files/dusm/jyuken/form_requirements-area.pdf?v=4d94d4a48697e063dd1c9cc02ae0beae",
+  ]);
+
+  const designated = routeById.get("recommendation-designated");
+  assert.ok(designated, "指定校制がありません");
+  assert.equal(designated.category, "designated");
+  assert.equal(designated.exclusive, "未公表");
+  assert.match(designated.eligibility, /出願資格の詳細は各指定校へ通知/u);
+
+  const regionalRoutes = [
+    ["recommendation-tochigi", "7名以内", "designated_tochigi.html", /通常9年.*栃木県指定/u],
+    ["recommendation-saitama", "2名", "saitama.html", /県内病院等に9年間.*特定診療科/u],
+    ["recommendation-ibaraki", "2名", "ibaraki.html", /9年間勤務.*4\.5年以上/u],
+  ];
+  for (const [routeId, quota, sourceSuffix, restrictionPattern] of regionalRoutes) {
+    const route = routeById.get(routeId);
+    assert.ok(route, `${routeId}: 県別指定校地域枠がありません`);
+    assert.equal(route.category, "regional");
+    assert.equal(route.quota, quota);
+    assert.equal(route.publicationStatus, "partial");
+    assert.equal(route.exclusive, "条件付き");
+    assert.match(route.restrictions.join(" "), restrictionPattern);
+    assert.match(route.restrictions.join(" "), /指定校制との併願可.*公募（地域特別枠）とは併願不可/u);
+    assert.ok(route.sourceUrls.some((url) => url.endsWith(sourceSuffix)));
+    assert.match(route.note ?? "", /臨時定員増の認可申請予定/u);
+  }
+
+  const ibaraki = routeById.get("recommendation-ibaraki");
+  assert.deepEqual(ibaraki?.events.slice(0, 5), [
+    { stage: "application-start", date: "2026-10-01", label: "茨城県への応募開始" },
+    { stage: "application-deadline", date: "2026-10-23", label: "茨城県への応募締切" },
+    { stage: "application-deadline", date: "2026-10-30", label: "茨城県eラーニング回答期限" },
+    { stage: "application-start", date: "2026-11-02", label: "大学出願開始" },
+    { stage: "application-deadline", date: "2026-11-09", label: "大学出願締切" },
+  ]);
+
+  const affiliated = routeById.get("recommendation-affiliated");
+  assert.ok(affiliated, "系列校推薦がありません");
+  assert.equal(affiliated.exclusive, "未公表");
+  assert.deepEqual(
+    affiliated.events.filter((event) => event.stage === "first-exam" || event.stage === "second-exam"),
+    [
+      { stage: "first-exam", date: "2026-11-14", label: "試験1日目", sequence: 1, choiceRule: "2日間とも受験" },
+      { stage: "first-exam", date: "2026-11-20", label: "試験2日目", sequence: 2, choiceRule: "2日間とも受験" },
+    ],
+  );
+
+  assert.match(dokkyo.excludedRoutes?.join(" ") ?? "", /総合型選抜.*現役高校生は出願できない/u);
+  assert.match(dokkyo.excludedRoutes?.join(" ") ?? "", /栃木県地域枠・新潟県地域枠.*一般選抜（前期）に準じる/u);
+  assert.match(dokkyo.excludedRoutes?.join(" ") ?? "", /共通テスト利用選抜.*2025年度入試から廃止/u);
+  assert.ok(dokkyo.routes.every((route) => route.events.every((event) => !event.label.includes("共通テスト"))));
+});
+
 test("すべての入試イベント日が実在するISO 8601日付", () => {
   assert.ok(privateMedicalSpecialAdmissionsEvents2027.length > 0);
 
