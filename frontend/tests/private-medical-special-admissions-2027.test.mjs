@@ -925,6 +925,92 @@ test("国際医療福祉大学は2027年度完成版要項の対象5方式・資
   assert.ok(iuhw.routes.every((route) => route.events.every((event) => !event.label.includes("共通テスト"))));
 });
 
+test("慶應義塾大学は2027年度完成版要項の独立2方式・資格・書類一次後の日程を保持", () => {
+  const keio = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "keio",
+  );
+
+  assert.ok(keio, "慶應義塾大学のデータがありません");
+  assert.equal(keio.scopeStatus, "available");
+  assert.equal(keio.publicationStatus, "complete");
+  assert.equal(keio.officialUrl, "https://www.keio.ac.jp/ja/med/admission/exam/");
+  assert.match(keio.statusNote, /2027年度完成版要項.*書類選考.*総合問題・模擬講義・面接/u);
+  assert.deepEqual(
+    keio.routes.map((route) => route.officialName),
+    ["医学部外国人留学生対象入学試験", "帰国生対象入学試験"],
+  );
+
+  const expectedSchedule = [
+    { stage: "application-start", date: "2026-07-03", label: "Webエントリー・入学検定料支払開始", time: "10:00" },
+    { stage: "application-deadline", date: "2026-07-14", label: "Webエントリー締切", time: "16:00", deadlineRule: "Web登録" },
+    { stage: "application-deadline", date: "2026-07-14", label: "入学検定料支払締切", time: "16:00" },
+    { stage: "application-deadline", date: "2026-07-15", label: "出願書類郵送締切", deadlineRule: "必着" },
+    { stage: "first-result", date: "2026-09-08", label: "第1次選考合格発表", time: "10:00" },
+    { stage: "second-exam", date: "2026-09-27", label: "第2次選考（総合問題・模擬講義・面接）", time: "9:00" },
+    { stage: "final-result", date: "2026-09-29", label: "最終合格発表", time: "10:00" },
+    { stage: "procedure-deadline", date: "2026-12-11", label: "入学手続期間最終日" },
+  ];
+  for (const route of keio.routes) {
+    assert.equal(route.quota, "若干名");
+    assert.equal(route.publicationStatus, "complete");
+    assert.equal(route.currentStudentEligible, "conditional");
+    assert.equal(route.exclusive, "併願可");
+    assert.equal(route.principalRecommendation, "不要");
+    assert.deepEqual(route.events, expectedSchedule, `${route.officialName}: 公式日程と一致しません`);
+    assert.ok(route.events.every((event) => event.stage !== "first-exam"));
+    assert.match(route.note ?? "", /第1次選考は書類選考のため試験日なし.*8:45集合・9:00開始.*11月30日～12月11日/u);
+  }
+
+  const routeById = new Map(keio.routes.map((route) => [route.id, route]));
+  const international = routeById.get("international-student");
+  assert.ok(international, "医学部外国人留学生対象入学試験がありません");
+  assert.match(international.eligibility, /2027年3月31日.*12年以上.*中高6学年.*国籍・在留資格は不問/u);
+  assert.match(international.gradeRequirement, /評定の数値基準なし.*EJU.*数学コース2.*理科2科目.*TOEFL.*IELTS.*基準点なし/u);
+  assert.match(international.restrictions.join(" "), /交換留学.*1年以内.*過去.*出願.*不可.*帰国生.*併願不可.*校長・教員・スクールカウンセラー.*2名/u);
+  assert.deepEqual(international.sourceUrls, [
+    "https://www.keio.ac.jp/ja/med/admission/exam/",
+    "https://www.keio.ac.jp/ja/admissions/faculty/examinations/international-student/",
+    "https://www.keio.ac.jp/fixed-files/ryugaku_medicine_youkou.pdf",
+  ]);
+
+  const returnee = routeById.get("returnee");
+  assert.ok(returnee, "帰国生対象入学試験がありません");
+  assert.match(returnee.eligibility, /2027年3月31日.*最終学年を含め2年以上連続.*日本国籍者・永住者・特別永住者/u);
+  assert.match(returnee.gradeRequirement, /評定・語学試験の数値基準なし.*TOEFL.*IELTS.*数学・自然科学.*確定成績/u);
+  assert.match(returnee.restrictions.join(" "), /見込み点・予測点不可.*過去.*出願.*不可.*外国人留学生.*併願不可.*校長・教員・スクールカウンセラー.*1名/u);
+  assert.deepEqual(returnee.sourceUrls, [
+    "https://www.keio.ac.jp/ja/med/admission/exam/",
+    "https://www.keio.ac.jp/ja/admissions/faculty/examinations/japanese-returnees/",
+    "https://www.keio.ac.jp/fixed-files/kikoku_youkou.pdf",
+  ]);
+
+  const keioDeadlineEntries = buildDeadlineDisplayEntries(
+    privateMedicalSpecialAdmissionsEvents2027.filter((event) => event.universityId === "keio"),
+  );
+  const webDeadline = keioDeadlineEntries.find((entry) => entry.date === "2026-07-14");
+  assert.ok(webDeadline, "Web・検定料締切の表示データがありません");
+  assert.equal(webDeadline.details.length, 2, "Webと検定料の締切を分けて保持してください");
+  assertSameSet(
+    webDeadline.routeNames,
+    keio.routes.map((route) => route.officialName),
+    "同一日程の2方式を大学単位にまとめてください",
+  );
+
+  const keioExamEntries = buildExamDisplayEntries(
+    privateMedicalSpecialAdmissionsEvents2027.filter((event) => event.universityId === "keio"),
+  );
+  assert.equal(keioExamEntries.length, 1, "同日同大学の2方式は1件にまとめてください");
+  assert.equal(keioExamEntries[0].displayColumn, "second-exam");
+  assertSameSet(
+    keioExamEntries[0].routeNames,
+    keio.routes.map((route) => route.officialName),
+    "第2次選考に2方式を欠落なく列挙してください",
+  );
+
+  assert.match(keio.excludedRoutes?.join(" ") ?? "", /栃木県地域枠.*一般選抜66名のうち1名.*対象外/u);
+  assert.ok(keio.routes.every((route) => route.events.every((event) => !event.label.includes("共通テスト"))));
+});
+
 test("すべての入試イベント日が実在するISO 8601日付", () => {
   assert.ok(privateMedicalSpecialAdmissionsEvents2027.length > 0);
 
@@ -1071,6 +1157,7 @@ test("締切・試験日の表示集約で元イベントの方式を欠落さ�
   }
   for (const secondOnlyRouteKey of [
     "keio/international-student",
+    "keio/returnee",
     "tohoku-med-pharm/comprehensive-tohoku-retention",
   ]) {
     assert.deepEqual(
