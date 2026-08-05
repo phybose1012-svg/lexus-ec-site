@@ -576,9 +576,16 @@ const structuredData = {
                   </header>
                   <p>{entry.description}</p>
                 </div>
-                <div class="special-route-type__university-list" data-category-university-list>
-                  <h4>採用大学と方式</h4>
-                  <p class="special-route-type__university-count">全{entry.universities.length}大学を掲載</p>
+                <details class="special-route-type__university-list" data-category-university-list data-route-type-disclosure open>
+                  <summary class="special-route-type__university-summary">
+                    <span class="special-route-type__university-title">採用大学と方式</span>
+                    <span class="special-route-type__university-count">全{entry.universities.length}大学を掲載</span>
+                    <span class="special-route-type__university-action" aria-hidden="true">
+                      <span class="special-route-type__action-closed">一覧を見る</span>
+                      <span class="special-route-type__action-open">閉じる</span>
+                      <span class="special-route-type__university-chevron"></span>
+                    </span>
+                  </summary>
                   <ul>
                     {entry.universities.map(({ university, routes }) => (
                       <li class="special-route-type__university" data-category-university>
@@ -591,7 +598,7 @@ const structuredData = {
                       </li>
                     ))}
                   </ul>
-                </div>
+                </details>
               </article>
             );
           })}
@@ -913,6 +920,30 @@ const structuredData = {
 
   <script is:inline>
     (() => {
+      const routeTypeDisclosures = [...document.querySelectorAll("[data-route-type-disclosure]")];
+      const mobileRouteTypeQuery = window.matchMedia("(max-width: 620px)");
+      const syncRouteTypeDisclosures = () => {
+        routeTypeDisclosures.forEach((disclosure) => {
+          if (!(disclosure instanceof HTMLDetailsElement)) return;
+          disclosure.open = !mobileRouteTypeQuery.matches;
+          const summary = disclosure.querySelector("summary");
+          if (summary instanceof HTMLElement) summary.tabIndex = mobileRouteTypeQuery.matches ? 0 : -1;
+        });
+      };
+      syncRouteTypeDisclosures();
+      mobileRouteTypeQuery.addEventListener("change", syncRouteTypeDisclosures);
+
+      let routeTypeDisclosureStatesBeforePrint = null;
+      window.addEventListener("beforeprint", () => {
+        if (routeTypeDisclosureStatesBeforePrint !== null) return;
+        routeTypeDisclosureStatesBeforePrint = routeTypeDisclosures.map((disclosure) =>
+          disclosure instanceof HTMLDetailsElement ? disclosure.open : false,
+        );
+        routeTypeDisclosures.forEach((disclosure) => {
+          if (disclosure instanceof HTMLDetailsElement) disclosure.open = true;
+        });
+      });
+
       const form = document.querySelector("[data-special-filter]");
       const cards = [...document.querySelectorAll("[data-university-card]")];
       const count = document.querySelector("[data-filter-count]");
@@ -947,6 +978,12 @@ const structuredData = {
       const clearPrintTarget = () => {
         document.body.classList.remove("is-printing-admissions-section");
         document.querySelector(".is-print-target")?.classList.remove("is-print-target");
+        if (routeTypeDisclosureStatesBeforePrint !== null) {
+          routeTypeDisclosures.forEach((disclosure, index) => {
+            if (disclosure instanceof HTMLDetailsElement) disclosure.open = routeTypeDisclosureStatesBeforePrint[index];
+          });
+          routeTypeDisclosureStatesBeforePrint = null;
+        }
         if (titleBeforePrint !== null) { document.title = titleBeforePrint; titleBeforePrint = null; }
         const printHeading = document.querySelector("[data-print-document-title]");
         if (printHeading instanceof HTMLElement && printHeadingBeforePrint !== null) {

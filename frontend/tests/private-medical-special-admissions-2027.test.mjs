@@ -1065,8 +1065,15 @@ test("方式別一覧は01概要内で8方式・全大学・全93方式を省略
   assert.doesNotMatch(pageSource, /<section\b[^>]*\bid="route-types"[^>]*>/u);
   assert.doesNotMatch(summarySource, /entry\.routes\.slice\(|ほか\{entry\.routes\.length/u);
   assert.ok(universityListTag, "方式別の大学一覧コンテナがありません");
+  assert.match(universityListTag, /^<details\b/u);
+  assert.match(universityListTag, /\bdata-route-type-disclosure\b/u);
+  assert.match(universityListTag, /\bopen\b/u);
   assert.doesNotMatch(universityListTag, /\btabindex=/u);
   assert.doesNotMatch(universityListTag, /\brole=/u);
+  assert.match(
+    summarySource,
+    /<summary\b[^>]*class="[^"]*\bspecial-route-type__university-summary\b[^"]*"[^>]*>/u,
+  );
   assert.doesNotMatch(
     summarySource,
     /special-route-type__scroll-note|一覧内をスクロール/u,
@@ -1168,13 +1175,22 @@ test("生成ページの01概要は6項目ナビと方式別全件データを�
   );
 
   const universityListTags = [...summaryHtml.matchAll(
-    /<div\b[^>]*class="[^"]*\bspecial-route-type__university-list\b[^"]*"[^>]*>/gu,
+    /<details\b[^>]*class="[^"]*\bspecial-route-type__university-list\b[^"]*"[^>]*>/gu,
   )].map((match) => match[0]);
   assert.equal(universityListTags.length, 8);
   for (const tag of universityListTags) {
+    assert.match(tag, /\bdata-route-type-disclosure(?:="[^"]*")?\b/u);
+    assert.match(tag, /\bopen(?:="[^"]*")?\b/u);
     assert.doesNotMatch(tag, /\btabindex=/u);
     assert.doesNotMatch(tag, /\brole=/u);
   }
+  assert.equal(
+    [...summaryHtml.matchAll(
+      /<summary\b[^>]*class="[^"]*\bspecial-route-type__university-summary\b[^"]*"[^>]*>/gu,
+    )].length,
+    8,
+    "8方式それぞれに大学一覧の開閉UIが必要です",
+  );
   assert.doesNotMatch(
     summaryHtml,
     /special-route-type__scroll-note|一覧内をスクロール/u,
@@ -1216,6 +1232,37 @@ test("方式別一覧のCSSは内部スクロールを設けず横長カード�
   assert.doesNotMatch(
     universityListRule,
     /max-height\s*:|overflow-y\s*:\s*auto|scrollbar(?:-width|-color|-gutter)?\s*:/iu,
+  );
+});
+
+test("概要の大学一覧はスマホだけ初期状態を閉じる", () => {
+  const pageSource = readFileSync(pageSourcePath, "utf8");
+  const styleSource = readFileSync(styleSourcePath, "utf8");
+
+  assert.match(
+    pageSource,
+    /window\.matchMedia\("\(max-width: 620px\)"\)/u,
+    "スマホ表示を判定するメディアクエリがありません",
+  );
+  assert.match(
+    pageSource,
+    /disclosure\.open\s*=\s*!mobileRouteTypeQuery\.matches/u,
+    "PCでは展開し、スマホでは閉じる初期化がありません",
+  );
+  assert.match(
+    pageSource,
+    /mobileRouteTypeQuery\.addEventListener\("change",\s*syncRouteTypeDisclosures\)/u,
+    "画面幅変更時に開閉状態を同期してください",
+  );
+  assert.match(
+    styleSource,
+    /\.special-route-type__university-list:not\(\[open\]\)\s*>\s*ul\s*\{[^}]*display\s*:\s*none/u,
+    "閉じた大学一覧を非表示にするCSSがありません",
+  );
+  assert.match(
+    styleSource,
+    /@media\s*\(max-width:\s*620px\)[\s\S]*?\.special-route-type__university-action\s*\{[^}]*display\s*:\s*flex/u,
+    "スマホで開閉操作を表示するCSSがありません",
   );
 });
 

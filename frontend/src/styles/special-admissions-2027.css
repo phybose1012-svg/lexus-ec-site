@@ -326,15 +326,31 @@
 .special-route-type header small { color: var(--special-muted); font-size: 0.65rem; }
 .special-route-type__intro > p { margin: 18px 0 0; color: var(--special-muted); font-size: 0.78rem; line-height: 1.75; }
 .special-route-type__university-list {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 12px 18px;
-  align-content: start;
   min-width: 0;
 }
-.special-route-type__university-list > h4 { margin: 0; color: var(--route-accent); font-size: 0.78rem; letter-spacing: 0.08em; }
-.special-route-type__university-count { margin: 0; color: var(--special-muted); font-size: 0.68rem; font-weight: 800; text-align: right; }
-.special-route-type__university-list > ul { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 10px 12px; margin: 0; padding: 0; list-style: none; }
+.special-route-type__university-summary {
+  display: grid;
+  grid-template-areas: "title count";
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px 18px;
+  align-items: center;
+  list-style: none;
+  cursor: default;
+  pointer-events: none;
+}
+.special-route-type__university-summary::-webkit-details-marker { display: none; }
+.special-route-type__university-summary::marker { content: ""; }
+.special-route-type__university-title { grid-area: title; color: var(--route-accent); font-size: 0.78rem; font-weight: 900; letter-spacing: 0.08em; }
+.special-route-type__university-count { grid-area: count; color: var(--special-muted); font-size: 0.68rem; font-weight: 800; text-align: right; }
+.special-route-type__university-action { display: none; grid-area: action; align-items: center; gap: 7px; color: var(--route-accent); font-size: 0.64rem; font-weight: 900; white-space: nowrap; }
+.special-route-type__action-open { display: none; }
+.special-route-type__university-list[open] .special-route-type__action-closed { display: none; }
+.special-route-type__university-list[open] .special-route-type__action-open { display: inline; }
+.special-route-type__university-chevron { position: relative; width: 24px; height: 24px; border-radius: 50%; background: var(--route-tint); }
+.special-route-type__university-chevron::before { position: absolute; top: 7px; left: 8px; width: 6px; height: 6px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; content: ""; transform: rotate(45deg); transition: transform 160ms ease, top 160ms ease; }
+.special-route-type__university-list[open] .special-route-type__university-chevron::before { top: 10px; transform: rotate(225deg); }
+.special-route-type__university-list > ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 10px 12px; margin: 12px 0 0; padding: 0; list-style: none; }
+.special-route-type__university-list:not([open]) > ul { display: none; }
 .special-route-type__university { min-width: 0; border: 1px solid #e3ddd6; border-radius: 4px; padding: 12px 13px; background: rgba(255, 255, 255, 0.88); }
 .special-route-type__university > a { color: var(--special-ink); font-size: 0.82rem; font-weight: 900; line-height: 1.45; overflow-wrap: anywhere; }
 .special-route-type__route-list { display: grid; gap: 4px; margin: 7px 0 0; padding: 0; list-style: none; }
@@ -505,6 +521,32 @@
 }
 
 @media (max-width: 620px) {
+  .special-route-type__university-summary {
+    grid-template-areas: "title action" "count action";
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 3px 12px;
+    min-height: 52px;
+    border: 1px solid rgba(117, 96, 79, 0.2);
+    border-radius: 5px;
+    padding: 9px 10px 9px 12px;
+    background: rgba(255, 255, 255, 0.82);
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  .special-route-type__university-summary:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--route-accent) 38%, transparent);
+    outline-offset: 3px;
+  }
+
+  .special-route-type__university-count {
+    text-align: left;
+  }
+
+  .special-route-type__university-action {
+    display: flex;
+  }
+
   .special-admissions-calendar-section .admissions-calendar-row {
     grid-template-columns: 82px minmax(0, 1fr);
   }
@@ -578,9 +620,11 @@
   body.is-printing-admissions-section .special-route-type header { break-after: avoid-page; }
   body.is-printing-admissions-section .special-route-type__intro > p { margin: 1.5mm 0 2.5mm; color: #222; font-size: 7pt; line-height: 1.5; }
   body.is-printing-admissions-section .special-route-type__university-list { display: block; }
-  body.is-printing-admissions-section .special-route-type__university-list > h4 { margin-bottom: 1.5mm; color: #111; }
+  body.is-printing-admissions-section .special-route-type__university-summary { display: grid; margin-bottom: 1.5mm; border: 0; padding: 0; background: transparent; cursor: default; }
+  body.is-printing-admissions-section .special-route-type__university-title { color: #111; }
+  body.is-printing-admissions-section .special-route-type__university-action { display: none; }
   body.is-printing-admissions-section .special-route-type__university-count { display: none; }
-  body.is-printing-admissions-section .special-route-type__university-list > ul { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5mm; }
+  body.is-printing-admissions-section .special-route-type__university-list > ul { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5mm; }
   body.is-printing-admissions-section .special-route-type__university { border: var(--admissions-print-rule); border-radius: 0; padding: 2mm; background: #fff; break-inside: avoid-page; page-break-inside: avoid; }
   body.is-printing-admissions-section .special-route-type__university > a { color: #111; font-size: 6.5pt; }
   body.is-printing-admissions-section .special-route-type__route-list { gap: 0.5mm; margin-top: 1mm; }
