@@ -32,6 +32,11 @@ const allowedCurrentStudentEligibility = new Set([
 const excludedEffectiveGeneralSelections = [
   {
     universityId: "kyorin",
+    routeId: "international-student",
+    officialNamePattern: /外国人留学生選抜/u,
+  },
+  {
+    universityId: "kyorin",
     routeId: "tokyo-regional",
     officialNamePattern: /東京都地域枠選抜/u,
   },
@@ -1543,6 +1548,14 @@ test("実質一般選抜・共通テスト利用選抜に当たる方式を派�
   assert.equal(nipponMedical?.publicationStatus, "not-offered");
   assert.doesNotMatch(nipponMedical?.statusNote ?? "", /掲載しています|特別選抜を確認/u);
 
+  const kyorin = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (entry) => entry.id === "kyorin",
+  );
+  assert.deepEqual(kyorin?.routes, []);
+  assert.equal(kyorin?.scopeStatus, "not-offered");
+  assert.equal(kyorin?.publicationStatus, "not-offered");
+  assert.match(kyorin?.statusNote ?? "", /一般選抜と同一日程・同一試験/u);
+
   if (existsSync(builtDatasetPath)) {
     const builtDataset = JSON.parse(readFileSync(builtDatasetPath, "utf8"));
     for (const excluded of excludedEffectiveGeneralSelections) {
@@ -1670,7 +1683,7 @@ test("固定ページのslugとJSONエンドポイント契約が一致", () => 
   }
 });
 
-test("方式別一覧は01概要内で8方式・全大学・全93方式を省略せず描画する", () => {
+test("方式別一覧は01概要内で8方式・全大学・全92方式を省略せず描画する", () => {
   const pageSource = readFileSync(pageSourcePath, "utf8");
   const summarySource = sectionBetween(pageSource, "summary", "deadlines");
   const universityListTag = openingTagWithClass(
@@ -1679,7 +1692,7 @@ test("方式別一覧は01概要内で8方式・全大学・全93方式を省略
   );
 
   assert.equal(Object.keys(specialAdmissionCategoryLabels).length, 8);
-  assert.equal(privateMedicalSpecialAdmissionsRoutes2027.length, 93);
+  assert.equal(privateMedicalSpecialAdmissionsRoutes2027.length, 92);
   assert.match(summarySource, /<h2\b[^>]*id="summary-title"[^>]*>概要<\/h2>/u);
   assert.match(summarySource, /class="special-route-type-grid"/u);
   assert.match(summarySource, /categoryEntries\.map\(\(entry, index\)/u);
@@ -1791,7 +1804,7 @@ test("生成ページの01概要は6項目ナビと方式別全件データを�
     renderedRouteKeys.push(...categoryRouteKeys);
   }
 
-  assert.equal(renderedRouteKeys.length, 93);
+  assert.equal(renderedRouteKeys.length, 92);
   assertSameSet(
     new Set(renderedRouteKeys),
     new Set(
@@ -1799,7 +1812,7 @@ test("生成ページの01概要は6項目ナビと方式別全件データを�
         `${university.id}/${route.id}`,
       ),
     ),
-    "概要内に全93方式を重複・省略なく描画してください",
+    "概要内に全92方式を重複・省略なく描画してください",
   );
 
   const universityListTags = [...summaryHtml.matchAll(
