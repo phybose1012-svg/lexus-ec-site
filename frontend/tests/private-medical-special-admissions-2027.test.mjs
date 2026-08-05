@@ -1393,6 +1393,170 @@ test("帝京大学は2027年度完成版要項の対象2方式・二次出願・
   );
 });
 
+test("東京医科大学は2027年度完成版要項の推薦7方式・資格差・締切・選考段階を保持", () => {
+  const tokyoMedical = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "tokyo-medical",
+  );
+
+  assert.ok(tokyoMedical, "東京医科大学のデータがありません");
+  assert.equal(tokyoMedical.scopeStatus, "available");
+  assert.equal(tokyoMedical.publicationStatus, "partial");
+  assert.equal(tokyoMedical.officialUrl, "https://admissions-tokyo-med.jp/med/youkou-dl/");
+  assert.match(tokyoMedical.statusNote, /募集要項.*対象7方式.*認可申請中.*変更される場合/u);
+  assert.deepEqual(
+    tokyoMedical.routes.map((route) => [route.id, route.officialName, route.quota]),
+    [
+      ["recommendation-public", "学校推薦型選抜（一般公募）", "20名以内"],
+      ["recommendation-ibaraki", "学校推薦型選抜（茨城県地域枠）", "8名以内"],
+      ["recommendation-niigata", "学校推薦型選抜（新潟県地域枠）", "3名以内"],
+      ["recommendation-saitama", "学校推薦型選抜（埼玉県地域枠）", "2名以内"],
+      ["recommendation-gunma", "学校推薦型選抜（群馬県地域枠）", "2名以内"],
+      ["recommendation-english", "学校推薦型選抜（英語検定試験利用）", "3名以内"],
+      ["recommendation-national-block", "全国ブロック別学校推薦型選抜", "12名以内（6ブロック各2名以内）"],
+    ],
+  );
+
+  const routeById = new Map(tokyoMedical.routes.map((route) => [route.id, route]));
+  const publicRecommendation = routeById.get("recommendation-public");
+  const englishRecommendation = routeById.get("recommendation-english");
+  const nationalBlock = routeById.get("recommendation-national-block");
+  const regionalRouteIds = [
+    "recommendation-ibaraki",
+    "recommendation-niigata",
+    "recommendation-saitama",
+    "recommendation-gunma",
+  ];
+
+  assert.match(publicRecommendation?.eligibility ?? "", /2026年4月1日.*2027年3月31日.*学校長推薦/u);
+  assert.match(publicRecommendation?.gradeRequirement ?? "", /4\.0以上.*第3学年第1学期/u);
+  assert.match(
+    publicRecommendation?.restrictions.join(" ") ?? "",
+    /同一高等学校等から2名以内.*県地域枠・全国ブロック別.*英語検定試験利用.*共通テストは利用しない/u,
+  );
+  assert.equal(publicRecommendation?.exclusive, "専願");
+
+  for (const routeId of regionalRouteIds) {
+    const regionalRoute = routeById.get(routeId);
+    assert.ok(regionalRoute, `${routeId}: 地域枠がありません`);
+    assert.equal(regionalRoute.publicationStatus, "partial");
+    assert.match(regionalRoute.eligibility, /2025年4月1日.*2027年3月31日/u);
+    assert.match(regionalRoute.gradeRequirement, /4\.0以上/u);
+    assert.match(
+      regionalRoute.restrictions.join(" "),
+      /出身地.*不問.*4県地域枠相互.*英語検定試験利用とは併願不可.*一般公募・全国ブロック別とは併願可.*認可申請予定.*共通テストは利用しない/u,
+    );
+  }
+  for (const routeId of ["recommendation-public", "recommendation-english", "recommendation-national-block"]) {
+    assert.equal(routeById.get(routeId)?.publicationStatus, "complete");
+  }
+  assert.match(routeById.get("recommendation-ibaraki")?.restrictions.join(" ") ?? "", /eラーニング.*9年間/u);
+  assert.match(routeById.get("recommendation-niigata")?.restrictions.join(" ") ?? "", /卒前支援プラン.*9年間/u);
+  assert.match(routeById.get("recommendation-saitama")?.restrictions.join(" ") ?? "", /特定地域.*特定・準特定診療科/u);
+  assert.match(routeById.get("recommendation-gunma")?.restrictions.join(" ") ?? "", /キャリアパス.*10年間/u);
+
+  assert.match(englishRecommendation?.eligibility ?? "", /2025年4月1日.*2027年3月31日.*CEFR B1以上/u);
+  assert.match(englishRecommendation?.gradeRequirement ?? "", /4\.0以上.*2年以内.*CEFR B1以上/u);
+  assert.match(
+    englishRecommendation?.restrictions.join(" ") ?? "",
+    /一般公募とのみ.*両方式に合格.*USMLE受験準備コース.*共通テストは利用しない/u,
+  );
+
+  assert.match(nationalBlock?.eligibility ?? "", /2025年4月1日.*2027年3月31日.*高校所在地.*保護者居住地/u);
+  assert.match(
+    nationalBlock?.restrictions.join(" ") ?? "",
+    /全国6ブロック.*卒後の勤務地・勤務年限の義務なし.*一般公募・4県地域枠とは併願可.*英語検定試験利用とは併願不可.*共通テストは利用しない/u,
+  );
+  assert.deepEqual(
+    nationalBlock?.events.filter((event) => event.stage === "first-result" || event.stage === "second-exam"),
+    [
+      {
+        stage: "first-result",
+        date: "2026-12-03",
+        label: "基礎学力検査合格発表",
+        time: "10:00",
+      },
+      {
+        stage: "second-exam",
+        date: "2026-12-12",
+        label: "面接（MMI）",
+        sequence: 2,
+        choiceRule: "基礎学力検査合格者のみ。実施時刻は合格発表時に通知",
+      },
+    ],
+  );
+
+  const deadlineSignatures = (route) =>
+    new Set(
+      route.events
+        .filter((event) => event.stage === "application-deadline" && event.date === "2026-11-13")
+        .map((event) => `${event.label}|${event.time ?? ""}|${event.deadlineRule ?? ""}`),
+    );
+  const expectedDeadlineSignatures = new Set([
+    "Web出願登録締切|23:59|Web登録",
+    "入学検定料納入締切|23:59|",
+    "出願書類郵送締切||消印有効",
+  ]);
+  for (const route of tokyoMedical.routes) {
+    assert.ok(
+      route.events.some(
+        (event) => event.stage === "application-start" && event.date === "2026-11-02" && event.time === "0:00",
+      ),
+      `${route.officialName}: Web出願開始時刻がありません`,
+    );
+    assertSameSet(
+      deadlineSignatures(route),
+      expectedDeadlineSignatures,
+      `${route.officialName}: Web・検定料・郵送の締切を区別してください`,
+    );
+    assert.ok(route.sourceUrls.includes("https://admissions-tokyo-med.jp/med/exam/"));
+    assert.ok(route.sourceUrls.includes("https://admissions-tokyo-med.jp/med/youkou-dl/"));
+  }
+
+  const examEntries = buildExamDisplayEntries(
+    privateMedicalSpecialAdmissionsEvents2027.filter(
+      (event) => event.universityId === "tokyo-medical",
+    ),
+  );
+  const sharedSingleExams = examEntries.filter(
+    (entry) =>
+      entry.date === "2026-11-28" &&
+      entry.displayColumn === "single-exam" &&
+      entry.label === "試験（日本語・英語小論文・基礎学力検査・個人面接）",
+  );
+  assert.ok(sharedSingleExams.length > 0, "一般公募・4地域枠の共通する一段階試験がありません");
+  assertSameSet(
+    sharedSingleExams.flatMap((entry) => entry.routeKeys),
+    new Set(["tokyo-medical/recommendation-public", ...regionalRouteIds.map((routeId) => `tokyo-medical/${routeId}`)]),
+    "一般公募・4地域枠の一段階試験を欠落させないでください",
+  );
+  assert.ok(
+    examEntries.some(
+      (entry) =>
+        entry.routeKeys.includes("tokyo-medical/recommendation-english") &&
+        entry.displayColumn === "single-exam" &&
+        !entry.label.includes("英語小論文"),
+    ),
+    "英語検定試験利用を英語小論文ありとして表示しないでください",
+  );
+  assert.ok(
+    examEntries.some(
+      (entry) =>
+        entry.routeKeys.includes("tokyo-medical/recommendation-national-block") &&
+        entry.displayColumn === "first-exam",
+    ),
+    "全国ブロック別の基礎学力検査を一次列に表示してください",
+  );
+
+  assert.match(
+    tokyoMedical.excludedRoutes?.join(" ") ?? "",
+    /一般選抜・共通テスト利用選抜.*学士選抜.*高校卒業見込み者は出願できない/u,
+  );
+  assert.ok(
+    tokyoMedical.routes.every((route) => route.id !== "bachelor" && !route.officialName.includes("学士選抜")),
+    "現役高校生が出願できない学士選抜を掲載しないでください",
+  );
+});
+
 test("すべての入試イベント日が実在するISO 8601日付", () => {
   assert.ok(privateMedicalSpecialAdmissionsEvents2027.length > 0);
 
