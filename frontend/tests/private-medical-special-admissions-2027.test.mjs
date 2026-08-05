@@ -383,6 +383,72 @@ test("対象は私立医学部31大学で大学IDが一意", () => {
   );
 });
 
+test("岩手医科大学は令和9年度公式概要の5方式と資格条件を保持", () => {
+  const iwate = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "iwate-medical",
+  );
+
+  assert.ok(iwate, "岩手医科大学のデータがありません");
+  assert.equal(iwate.publicationStatus, "outline");
+  assert.equal(iwate.officialUrl, "https://www.imu-admission.jp/guidelines/gl_med/");
+  assert.deepEqual(
+    iwate.routes.map((route) => route.officialName),
+    [
+      "総合型選抜（地域医療医師育成特別枠）",
+      "学校推薦型選抜（公募制）",
+      "学校推薦型選抜地域枠A（岩手県出身者枠）",
+      "学校推薦型選抜地域枠B（東北出身者枠）",
+      "学校推薦型選抜秋田県地域枠（秋田県出身者枠）",
+    ],
+  );
+
+  const routeById = new Map(iwate.routes.map((route) => [route.id, route]));
+  const comprehensive = routeById.get("comprehensive-regional-doctor");
+  const publicRecommendation = routeById.get("recommendation-public");
+  const regionalA = routeById.get("regional-a");
+  const regionalB = routeById.get("regional-b");
+  const akita = routeById.get("akita-regional");
+
+  assert.match(comprehensive?.eligibility ?? "", /2025年3月以降/u);
+  assert.match(comprehensive?.restrictions.join(" ") ?? "", /2親等以内.*7年以上/u);
+  assert.match(publicRecommendation?.eligibility ?? "", /2026年3月.*2027年3月/u);
+  assert.match(publicRecommendation?.restrictions.join(" ") ?? "", /1校2名以内/u);
+  assert.match(regionalA?.eligibility ?? "", /岩手県医師修学資金の貸与候補生/u);
+  assert.match(regionalA?.restrictions.join(" ") ?? "", /2023年12月1日以前.*11年間/u);
+  assert.equal(regionalB?.quota, "8名（岩手県4名を含む）");
+  assert.match(regionalB?.eligibility ?? "", /医療局医師奨学資金の貸与候補生/u);
+  assert.match(regionalB?.restrictions.join(" ") ?? "", /青森・秋田・宮城・山形・福島県内校.*9年間/u);
+  assert.match(akita?.eligibility ?? "", /秋田県内高校.*2027年3月卒業見込み/u);
+  assert.match(akita?.restrictions.join(" ") ?? "", /9年間勤務.*4年間/u);
+
+  const officialSources = [
+    "https://www.imu-admission.jp/guidelines/gl_med/",
+    "https://www.imu-admission.jp/guidelines/gl_gaiyou/",
+  ];
+  const expectedSchedule = [
+    { stage: "application-start", date: "2026-11-02", label: "出願開始" },
+    {
+      stage: "application-deadline",
+      date: "2026-11-11",
+      label: "出願締切",
+      deadlineRule: "消印有効",
+    },
+    { stage: "first-exam", date: "2026-11-21", label: "試験日" },
+    { stage: "final-result", date: "2026-12-02", label: "合格発表" },
+    { stage: "procedure-deadline", date: "2026-12-11", label: "入学手続締切" },
+  ];
+
+  for (const route of iwate.routes) {
+    assert.equal(route.currentStudentEligible, true);
+    assert.equal(route.exclusive, "専願");
+    assert.deepEqual(route.events, expectedSchedule);
+    assert.deepEqual(route.sourceUrls, officialSources);
+  }
+
+  assert.match(iwate.excludedRoutes?.join(" ") ?? "", /一般選抜地域枠C・D/u);
+  assert.match(iwate.excludedRoutes?.join(" ") ?? "", /学士編入.*現役高校生は出願不可/u);
+});
+
 test("すべての入試イベント日が実在するISO 8601日付", () => {
   assert.ok(privateMedicalSpecialAdmissionsEvents2027.length > 0);
 
