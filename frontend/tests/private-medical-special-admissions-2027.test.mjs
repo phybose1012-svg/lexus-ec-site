@@ -681,6 +681,106 @@ test("獨協医科大学は令和9年度公式情報の現役生向け推薦6方
   assert.ok(dokkyo.routes.every((route) => route.events.every((event) => !event.label.includes("共通テスト"))));
 });
 
+test("埼玉医科大学は令和9年度公式情報の年内5方式・資格・一段階選考を保持", () => {
+  const saitama = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "saitama-medical",
+  );
+
+  assert.ok(saitama, "埼玉医科大学のデータがありません");
+  assert.equal(saitama.scopeStatus, "available");
+  assert.equal(saitama.publicationStatus, "partial");
+  assert.equal(saitama.officialUrl, "https://adm.saitama-med.ac.jp/admission/examination/");
+  assert.match(saitama.statusNote, /地域枠19名.*認可申請予定.*参考掲載.*正式要項/u);
+  assert.deepEqual(
+    saitama.routes.map((route) => route.officialName),
+    [
+      "学校推薦型選抜（指定校枠）",
+      "学校推薦型選抜（一般公募枠）",
+      "学校推薦型選抜（埼玉県地域枠）",
+      "学校推薦型選抜（特別枠）",
+      "帰国生選抜",
+    ],
+  );
+
+  const expectedSchedule = [
+    { stage: "application-start", date: "2026-11-05", label: "Web出願開始", time: "9:00" },
+    { stage: "application-deadline", date: "2026-11-12", label: "Web出願締切" },
+    { stage: "application-deadline", date: "2026-11-13", label: "出願書類締切", deadlineRule: "必着" },
+    { stage: "first-exam", date: "2026-11-22", label: "試験（適性検査・小論文・面接）", time: "9:00～17:00頃" },
+    { stage: "final-result", date: "2026-12-01", label: "合格発表", time: "16:00" },
+    { stage: "procedure-deadline", date: "2026-12-11", label: "入学手続締切" },
+  ];
+  for (const route of saitama.routes) {
+    assert.deepEqual(route.events, expectedSchedule, `${route.officialName}: 公式日程と一致しません`);
+    assert.ok(
+      route.events.every((event) => event.stage !== "second-exam"),
+      `${route.officialName}: 一段階選考を二次試験に分割しないでください`,
+    );
+    assert.equal(
+      route.sourceUrls[0],
+      "https://adm.saitama-med.ac.jp/wp-content/uploads/2026/07/fa58cf881ba4ac57b5c60b69b2ac25d2.pdf",
+    );
+  }
+
+  const routeById = new Map(saitama.routes.map((route) => [route.id, route]));
+  const designated = routeById.get("recommendation-designated");
+  assert.ok(designated, "指定校枠がありません");
+  assert.equal(designated.currentStudentEligible, "conditional");
+  assert.match(designated.eligibility, /2026年3月卒業または2027年3月卒業見込み/u);
+  assert.match(designated.gradeRequirement, /全体.*数学・理科・外国語.*3\.8以上.*最終学年1学期/u);
+  assert.match(designated.restrictions.join(" "), /4名まで.*一般公募枠にも自動出願/u);
+
+  const publicRecommendation = routeById.get("recommendation-public");
+  assert.ok(publicRecommendation, "一般公募枠がありません");
+  assert.equal(publicRecommendation.currentStudentEligible, true);
+  assert.match(publicRecommendation.gradeRequirement, /全体.*数学・理科・外国語.*4\.0以上/u);
+  assert.match(publicRecommendation.restrictions.join(" "), /推薦できる人数は2名まで/u);
+
+  const regional = routeById.get("recommendation-saitama");
+  assert.ok(regional, "埼玉県地域枠がありません");
+  assert.equal(regional.category, "regional");
+  assert.equal(regional.quota, "19名申請予定");
+  assert.equal(regional.publicationStatus, "outline");
+  assert.match(regional.gradeRequirement, /4\.0以上.*指定校出身者.*3\.8以上/u);
+  assert.match(regional.restrictions.join(" "), /月20万円・6年間.*卒業後9年間.*準特定診療科/u);
+  assert.ok(regional.sourceUrls.includes("https://adm.saitama-med.ac.jp/payment/"));
+  assert.match(regional.note ?? "", /臨時定員増.*認可申請予定.*参考掲載/u);
+
+  const special = routeById.get("recommendation-special");
+  assert.ok(special, "特別枠がありません");
+  assert.equal(special.category, "recommendation");
+  assert.match(special.eligibility, /学校長推薦.*英語資格または科学競技/u);
+  assert.match(special.gradeRequirement, /数値基準なし.*英語資格.*科学オリンピック/u);
+  assert.match(special.restrictions.join(" "), /英検1級.*TOEFL iBT 100以上.*推薦人数に制限なし/u);
+
+  const returnee = routeById.get("returnee");
+  assert.ok(returnee, "帰国生選抜がありません");
+  assert.equal(returnee.currentStudentEligible, "conditional");
+  assert.equal(returnee.exclusive, "専願");
+  assert.equal(returnee.principalRecommendation, "不要");
+  assert.match(returnee.eligibility, /日本国籍、永住者または特別永住者.*卒業年次を含め2学年以上.*2025年4月から2027年3月/u);
+  assert.match(returnee.gradeRequirement, /数値基準なし.*成績証明書/u);
+
+  const saitamaExamEntries = buildExamDisplayEntries(
+    privateMedicalSpecialAdmissionsEvents2027.filter(
+      (event) => event.universityId === "saitama-medical",
+    ),
+  );
+  assert.equal(saitamaExamEntries.length, 1, "同日同大学の5方式は1件にまとめてください");
+  assert.equal(saitamaExamEntries[0].displayColumn, "single-exam");
+  assert.equal(saitamaExamEntries[0].date, "2026-11-22");
+  assertSameSet(
+    saitamaExamEntries[0].routeNames,
+    saitama.routes.map((route) => route.officialName),
+    "一段階選考に5方式を欠落なく列挙してください",
+  );
+
+  assert.match(saitama.excludedRoutes?.join(" ") ?? "", /一般選抜（前期・後期）は対象外/u);
+  assert.match(saitama.excludedRoutes?.join(" ") ?? "", /共通テスト利用選抜.*通常の共通テスト利用方式/u);
+  assert.match(saitama.excludedRoutes?.join(" ") ?? "", /研究医枠.*入学後に募集・選抜/u);
+  assert.ok(saitama.routes.every((route) => route.events.every((event) => !event.label.includes("共通テスト"))));
+});
+
 test("すべての入試イベント日が実在するISO 8601日付", () => {
   assert.ok(privateMedicalSpecialAdmissionsEvents2027.length > 0);
 
