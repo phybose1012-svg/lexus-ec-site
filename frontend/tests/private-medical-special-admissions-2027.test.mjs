@@ -515,6 +515,75 @@ test("東北医科薬科大学は令和9年度公式資料の総合型1方式と
   assert.match(tohoku.excludedRoutes?.join(" ") ?? "", /大学入学共通テスト利用選抜/u);
 });
 
+test("自治医科大学は令和9年度完成版要項の年内2方式と郵送締切を保持", () => {
+  const jichi = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "jichi-medical",
+  );
+
+  assert.ok(jichi, "自治医科大学のデータがありません");
+  assert.equal(jichi.scopeStatus, "available");
+  assert.equal(jichi.publicationStatus, "complete");
+  assert.equal(jichi.officialUrl, "https://www.jichi.ac.jp/exam/medicine/exam/special/");
+  assert.deepEqual(jichi.routes.map((route) => route.officialName), ["総合型選抜", "学校推薦型選抜"]);
+
+  const officialSources = [
+    "https://www.jichi.ac.jp/exam/medicine/exam/special/",
+    "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+    "https://www.jichi.ac.jp/exam/medicine/exam/",
+    "https://www.jichi.ac.jp/news/exam/2026070301/",
+  ];
+  const commonSelectionEvents = [
+    { stage: "first-result", date: "2026-11-13", label: "書類選考合格発表", time: "13:00" },
+    { stage: "first-exam", date: "2026-11-18", label: "基礎学力検査（数学・英語）・個人面接", time: "9:00～16:00" },
+    { stage: "final-result", date: "2026-12-01", label: "基礎学力検査・面接試験合格発表", time: "13:00" },
+    { stage: "procedure-deadline", date: "2027-02-25", label: "入学手続①", sequence: 1, choiceRule: "両日とも本人手続" },
+    { stage: "procedure-deadline", date: "2027-03-12", label: "入学手続②", sequence: 2, choiceRule: "両日とも本人手続" },
+  ];
+
+  const comprehensive = jichi.routes.find((route) => route.id === "comprehensive-prefectural");
+  assert.ok(comprehensive, "自治医科大学の総合型選抜がありません");
+  assert.equal(comprehensive.quota, "栃木2名・富山1名・山梨2名・山口2名・佐賀2名");
+  assert.equal(comprehensive.currentStudentEligible, true);
+  assert.match(comprehensive.eligibility, /2027年3月卒業見込み.*既卒.*対象5県/u);
+  assert.equal(comprehensive.exclusive, "条件付き");
+  assert.equal(comprehensive.principalRecommendation, "不要");
+  assert.match(comprehensive.gradeRequirement, /全体の学習成績の状況4\.0以上/u);
+  assert.match(comprehensive.restrictions.join(" "), /出願地は1県のみ.*他大学への出願自体は可/u);
+  assert.match(comprehensive.restrictions.join(" "), /2024年4月1日以前.*高卒認定.*18歳/u);
+  assert.match(comprehensive.restrictions.join(" "), /キャリア形成プログラム.*学校推薦型選抜との重複出願不可/u);
+  assert.match(comprehensive.restrictions.join(" "), /客観的に評価できる者.*志願者評価書/u);
+  assert.match(comprehensive.note ?? "", /受付8:20～8:30.*書留速達.*共通テスト利用選抜ではありません.*学力参考資料/u);
+  assert.deepEqual(comprehensive.events, [
+    { stage: "application-start", date: "2026-10-14", label: "出願開始" },
+    { stage: "application-deadline", date: "2026-10-19", label: "郵送消印有効期限", deadlineRule: "消印有効" },
+    { stage: "application-deadline", date: "2026-10-20", label: "出願締切", time: "17:00", deadlineRule: "必着" },
+    ...commonSelectionEvents,
+  ]);
+  assert.deepEqual(comprehensive.sourceUrls, officialSources);
+
+  const recommendation = jichi.routes.find((route) => route.id === "recommendation-toyama");
+  assert.ok(recommendation, "自治医科大学の学校推薦型選抜がありません");
+  assert.equal(recommendation.quota, "1名");
+  assert.match(recommendation.eligibility, /2026年3月から2027年3月.*富山県/u);
+  assert.equal(recommendation.exclusive, "条件付き");
+  assert.equal(recommendation.principalRecommendation, "必要");
+  assert.match(recommendation.gradeRequirement, /全体の学習成績の状況4\.0以上/u);
+  assert.match(recommendation.restrictions.join(" "), /富山県.*2024年4月1日以前.*1校1名.*他大学への出願自体は可/u);
+  assert.match(recommendation.note ?? "", /受付8:20～8:30.*書留速達.*大学入学共通テストは利用しません/u);
+  assert.deepEqual(recommendation.events, [
+    { stage: "application-start", date: "2026-11-01", label: "出願開始" },
+    { stage: "application-deadline", date: "2026-11-06", label: "郵送消印有効期限", deadlineRule: "消印有効" },
+    { stage: "application-deadline", date: "2026-11-07", label: "出願締切", time: "17:00", deadlineRule: "必着" },
+    ...commonSelectionEvents,
+  ]);
+  assert.deepEqual(recommendation.sourceUrls, officialSources);
+
+  for (const route of jichi.routes) {
+    assert.ok(route.events.every((event) => !event.label.includes("共通テスト")));
+  }
+  assert.match(jichi.excludedRoutes?.join(" ") ?? "", /一般選抜.*大学入学共通テスト利用選抜の実施なし/u);
+});
+
 test("すべての入試イベント日が実在するISO 8601日付", () => {
   assert.ok(privateMedicalSpecialAdmissionsEvents2027.length > 0);
 
@@ -650,6 +719,8 @@ test("締切・試験日の表示集約で元イベントの方式を欠落さ�
   for (const firstOnlyRouteKey of [
     "iwate-medical/comprehensive-regional-doctor",
     "iwate-medical/recommendation-public",
+    "jichi-medical/comprehensive-prefectural",
+    "jichi-medical/recommendation-toyama",
   ]) {
     assert.deepEqual(
       displayColumnsForRoute(firstOnlyRouteKey),
@@ -659,7 +730,6 @@ test("締切・試験日の表示集約で元イベントの方式を欠落さ�
   }
   for (const secondOnlyRouteKey of [
     "keio/international-student",
-    "jichi-medical/comprehensive-prefectural",
     "tohoku-med-pharm/comprehensive-tohoku-retention",
   ]) {
     assert.deepEqual(
