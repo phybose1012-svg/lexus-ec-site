@@ -1956,6 +1956,113 @@ test("日本医科大学は2027年度完成版要項を確認し実質一般・�
   );
 });
 
+test("北里大学は2027年度公式資料の指定校・系列校推薦と実施未定の地域枠を保持", () => {
+  const kitasato = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "kitasato",
+  );
+
+  assert.ok(kitasato, "北里大学のデータがありません");
+  assert.equal(kitasato.scopeStatus, "available");
+  assert.equal(kitasato.publicationStatus, "partial");
+  assert.equal(
+    kitasato.officialUrl,
+    "https://www.kitasato-u.ac.jp/jp/goukaku/undergraduate_ad/system/search.html",
+  );
+  assert.match(
+    kitasato.statusNote,
+    /2027年度入試ガイド・日程一覧.*指定校（38名）.*系列校推薦.*8月下旬.*対象校への通知.*地域枠指定校は実施未定/u,
+  );
+  assert.doesNotMatch(
+    kitasato.statusNote,
+    /一般選抜試験|大学入学共通テスト利用選抜試験|学士入学者選抜試験/u,
+    "対象外として確認した方式名をページ表示用の注記へ出さないでください",
+  );
+
+  assertSameSet(
+    new Set(kitasato.routes.map((route) => route.id)),
+    new Set(["recommendation-designated", "recommendation-affiliated", "regional-designated"]),
+    "北里大学の対象3方式を保持してください",
+  );
+
+  const designated = kitasato.routes.find((route) => route.id === "recommendation-designated");
+  const affiliated = kitasato.routes.find((route) => route.id === "recommendation-affiliated");
+  const regional = kitasato.routes.find((route) => route.id === "regional-designated");
+  assert.ok(designated && affiliated && regional);
+
+  assert.equal(designated.officialName, "学校推薦型選抜試験（指定校）");
+  assert.equal(designated.quota, "38名");
+  assert.equal(designated.publicationStatus, "partial");
+  assert.equal(designated.currentStudentEligible, "unconfirmed");
+  assert.match(designated.eligibility, /大学が指定する学校の生徒.*卒業見込み可否.*対象校へ通知/u);
+  assert.doesNotMatch(designated.eligibility, /2027年3月卒業見込み/u);
+  assert.equal(designated.exclusive, "専願");
+  assert.equal(designated.principalRecommendation, "未公表");
+  assert.match(designated.gradeRequirement, /対象校へ通知.*数値基準は未公表/u);
+  assert.deepEqual(
+    designated.events.map(({ stage, date, label }) => ({ stage, date, label })),
+    [
+      { stage: "application-start", date: "2026-11-02", label: "出願受付開始" },
+      { stage: "first-exam", date: "2026-11-15", label: "試験日" },
+    ],
+  );
+
+  assert.equal(affiliated.officialName, "学校推薦型選抜試験（系列校）");
+  assert.equal(affiliated.quota, null);
+  assert.equal(affiliated.publicationStatus, "partial");
+  assert.equal(affiliated.currentStudentEligible, "unconfirmed");
+  assert.match(affiliated.eligibility, /系列校の生徒.*卒業見込み可否.*対象校へ通知/u);
+  assert.doesNotMatch(affiliated.eligibility, /2027年3月卒業見込み/u);
+  assert.equal(affiliated.exclusive, "専願");
+  assert.equal(affiliated.principalRecommendation, "未公表");
+  assert.deepEqual(
+    affiliated.events.map(({ stage, date, label }) => ({ stage, date, label })),
+    designated.events.map(({ stage, date, label }) => ({ stage, date, label })),
+  );
+
+  assert.equal(regional.officialName, "学校推薦型選抜試験（地域枠指定校）");
+  assert.equal(regional.quota, null);
+  assert.equal(regional.publicationStatus, "unpublished");
+  assert.equal(regional.currentStudentEligible, "unconfirmed");
+  assert.equal(regional.exclusive, "専願");
+  assert.equal(regional.principalRecommendation, "未公表");
+  assert.match(
+    regional.restrictions.join(" "),
+    /2027年度は実施未定.*指定校のみ.*修学資金制度.*卒業後.*指定地域内の病院.*第1志望.*必ず入学/u,
+  );
+  assert.deepEqual(
+    regional.events.map(({ stage, date, label }) => ({ stage, date, label })),
+    [{ stage: "first-exam", date: "2026-11-15", label: "試験日（実施する場合）" }],
+  );
+
+  for (const route of kitasato.routes) {
+    assert.equal(route.sourceUrls[0], kitasato.officialUrl);
+    assert.ok(route.sourceUrls.some((url) => url.includes("abm00048841.pdf")));
+    assert.ok(route.sourceUrls.some((url) => url.includes("abm00048817.pdf")));
+    assert.ok(route.sourceUrls.some((url) => url.includes("abm00048736.pdf")));
+    assert.ok(route.sourceUrls.includes("https://www.kitasato-u.ac.jp/jp/goukaku/undergraduate_ad/flow/admission-policy.html"));
+  }
+  assert.ok(regional.sourceUrls.includes("https://www.kitasato-u.ac.jp/med/admission/index_1.html"));
+
+  const examEntries = buildExamDisplayEntries(
+    privateMedicalSpecialAdmissionsEvents2027.filter((event) => event.universityId === "kitasato"),
+  );
+  const confirmedExam = examEntries.find((entry) => entry.label === "試験日");
+  const provisionalExam = examEntries.find((entry) => entry.label === "試験日（実施する場合）");
+  assert.ok(confirmedExam && provisionalExam);
+  assert.equal(confirmedExam.displayColumn, "single-exam");
+  assertSameSet(
+    confirmedExam.routeNames,
+    [designated.officialName, affiliated.officialName],
+    "指定校・系列校の同日試験を大学単位にまとめてください",
+  );
+  assert.deepEqual(provisionalExam.routeNames, [regional.officialName]);
+
+  assert.match(
+    kitasato.excludedRoutes?.join(" ") ?? "",
+    /一般選抜試験.*地域枠一般選抜.*大学入学共通テスト利用選抜試験（前期・後期）.*通常の共通テスト利用選抜.*学士入学者選抜試験.*現役高校生/u,
+  );
+});
+
 test("すべての入試イベント日が実在するISO 8601日付", () => {
   assert.ok(privateMedicalSpecialAdmissionsEvents2027.length > 0);
 

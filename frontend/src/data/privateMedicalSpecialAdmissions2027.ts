@@ -214,6 +214,28 @@ const iwateOfficialSources = [
 const iwateSelectionNote =
   "選考は英語・数学、理科2科目、個人面接・課題型面接を同日に実施します。";
 
+const kitasatoAdmissionsOverviewUrl =
+  "https://www.kitasato-u.ac.jp/jp/goukaku/undergraduate_ad/system/search.html";
+const kitasatoGuideUrl =
+  "https://www.kitasato-u.ac.jp/jp/goukaku/albums/abm.php?f=abm00048841.pdf&n=%E5%85%A5%E8%A9%A6%E3%82%AC%E3%82%A4%E3%83%89_%E8%A1%A8%E7%B4%99%EF%BD%9E%E8%A9%A6%E9%A8%93%E6%95%99%E7%A7%91%E4%B8%80%E8%A6%A7.pdf";
+const kitasatoQuotaUrl =
+  "https://www.kitasato-u.ac.jp/jp/goukaku/albums/abm.php?f=abm00048736.pdf&n=2027%E5%B9%B4%E5%BA%A6%E5%85%A5%E5%AD%A6%E8%A9%A6%E9%A8%93%E5%88%B6%E5%BA%A6%E5%8F%8A%E3%81%B3%E5%8B%9F%E9%9B%86%E4%BA%BA%E5%93%A1%EF%BC%88%E5%AD%A6%E9%83%A8%EF%BC%89.pdf";
+const kitasatoScheduleUrl =
+  "https://www.kitasato-u.ac.jp/jp/goukaku/albums/abm.php?f=abm00048817.pdf&n=2027%E5%B9%B4%E5%BA%A6%E5%90%84%E5%AD%A6%E9%83%A8%E5%85%A5%E5%AD%A6%E8%A9%A6%E9%A8%93%E6%97%A5%E7%A8%8B%E4%B8%80%E8%A6%A7%EF%BC%88%E5%AD%A6%E9%83%A8%EF%BC%89.pdf";
+const kitasatoApplicationUrl =
+  "https://www.kitasato-u.ac.jp/jp/goukaku/undergraduate_ad/application/application.html";
+const kitasatoAdmissionPolicyUrl =
+  "https://www.kitasato-u.ac.jp/jp/goukaku/undergraduate_ad/flow/admission-policy.html";
+const kitasatoRegionalProgramUrl = "https://www.kitasato-u.ac.jp/med/admission/index_1.html";
+const kitasatoRecommendationSources = [
+  kitasatoAdmissionsOverviewUrl,
+  kitasatoGuideUrl,
+  kitasatoScheduleUrl,
+  kitasatoQuotaUrl,
+  kitasatoApplicationUrl,
+  kitasatoAdmissionPolicyUrl,
+];
+
 const tohoAdmissionsOverviewUrl = "https://www.toho-u.ac.jp/med/info_exam/sum.html";
 const tohoAdmissionsChangesUrl =
   "https://www.toho-u.ac.jp/info_exam/toho_nyushi2027_web_apply.html";
@@ -1898,56 +1920,75 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
     strategyPath: "/kitasato-university-entrance-exam-measures2027/",
     scopeStatus: "available",
     publicationStatus: "partial",
-    statusNote: "医学科の指定校・系列校推薦を確認。詳細は対象校への通知のみで、地域枠指定校は実施未定です。",
-    officialUrl: "https://www.kitasato-u.ac.jp/jp/goukaku/undergraduate_ad/system/search.html",
+    statusNote: "2027年度入試ガイド・日程一覧で医学科の指定校（38名）・系列校推薦を確認しました。対象校向け要項は8月下旬案内予定で、出願資格・評定・締切等の詳細は対象校への通知のみです。地域枠指定校は実施未定です。",
+    officialUrl: kitasatoAdmissionsOverviewUrl,
     routes: [
       route({
         id: "recommendation-designated",
-        officialName: "学校推薦型選抜（指定校）",
+        officialName: "学校推薦型選抜試験（指定校）",
         category: "designated",
         quota: "38名",
         publicationStatus: "partial",
-        currentStudentEligible: "conditional",
-        eligibility: "大学が指定する高等学校の2027年3月卒業見込み者。詳細は対象校へ通知",
+        currentStudentEligible: "unconfirmed",
+        eligibility: "大学が指定する学校の生徒。卒業見込み可否等の詳細は対象校へ通知",
         exclusive: "専願",
-        principalRecommendation: "必要",
-        gradeRequirement: "対象校へ通知",
-        restrictions: ["指定校のみ"],
-        events: [event("first-exam", "2026-11-15", "試験日")],
-        sourceUrls: ["https://www.kitasato-u.ac.jp/jp/goukaku/undergraduate_ad/system/search.html"],
+        principalRecommendation: "未公表",
+        gradeRequirement: "対象校へ通知（数値基準は未公表）",
+        restrictions: ["指定校のみ", "第1志望・合格時は必ず入学"],
+        events: [
+          event("application-start", "2026-11-02", "出願受付開始"),
+          event("first-exam", "2026-11-15", "試験日"),
+        ],
+        sourceUrls: [...kitasatoRecommendationSources],
+        note: "2027年度対象校向け要項は8月下旬案内予定です。選考は11月15日の1日で、一次・二次には分かれません。出願締切・合格発表・入学手続期限・選考内容は未公表です。",
       }),
       route({
         id: "recommendation-affiliated",
-        officialName: "学校推薦型選抜（系列校）",
+        officialName: "学校推薦型選抜試験（系列校）",
         category: "designated",
         quota: null,
         publicationStatus: "partial",
-        currentStudentEligible: "conditional",
-        eligibility: "系列高等学校の2027年3月卒業見込み者。詳細は対象校へ通知",
+        currentStudentEligible: "unconfirmed",
+        eligibility: "系列校の生徒。卒業見込み可否等の詳細は対象校へ通知",
         exclusive: "専願",
-        principalRecommendation: "必要",
-        gradeRequirement: "対象校へ通知",
-        restrictions: ["系列校のみ"],
-        events: [event("first-exam", "2026-11-15", "試験日")],
-        sourceUrls: ["https://www.kitasato-u.ac.jp/jp/goukaku/undergraduate_ad/system/search.html"],
+        principalRecommendation: "未公表",
+        gradeRequirement: "対象校へ通知（数値基準は未公表）",
+        restrictions: ["系列校のみ", "第1志望・合格時は必ず入学"],
+        events: [
+          event("application-start", "2026-11-02", "出願受付開始"),
+          event("first-exam", "2026-11-15", "試験日"),
+        ],
+        sourceUrls: [...kitasatoRecommendationSources],
+        note: "2027年度対象校向け要項は8月下旬案内予定です。選考は11月15日の1日で、一次・二次には分かれません。募集人員・出願締切・合格発表・入学手続期限・選考内容は未公表です。",
       }),
       route({
         id: "regional-designated",
-        officialName: "学校推薦型選抜（地域枠指定校）",
+        officialName: "学校推薦型選抜試験（地域枠指定校）",
         category: "regional",
         quota: null,
         publicationStatus: "unpublished",
         currentStudentEligible: "unconfirmed",
-        eligibility: "実施時は対象指定校へ通知",
-        exclusive: "未公表",
+        eligibility: "実施する場合は対象の指定校へ通知。卒業見込み可否等の詳細は未公表",
+        exclusive: "専願",
         principalRecommendation: "未公表",
-        gradeRequirement: "未公表",
-        restrictions: ["2027年度は実施未定", "指定校のみ"],
-        events: [],
-        sourceUrls: ["https://www.kitasato-u.ac.jp/jp/goukaku/undergraduate_ad/system/search.html"],
+        gradeRequirement: "実施する場合は対象校へ通知（数値基準は未公表）",
+        restrictions: [
+          "2027年度は実施未定",
+          "指定校のみ",
+          "当該地域の修学資金制度を利用",
+          "卒業後は指定地域内の病院で勤務",
+          "第1志望・合格時は必ず入学",
+        ],
+        events: [event("first-exam", "2026-11-15", "試験日（実施する場合）")],
+        sourceUrls: [...kitasatoRecommendationSources, kitasatoRegionalProgramUrl],
+        note: "2027年度の実施は未定です。公式日程一覧には実施する場合の試験日として11月15日が示されていますが、出願期間・募集人員・選考内容等は公表されていません。",
       }),
     ],
-    excludedRoutes: ["医学部学士入学者選抜は現役高校生が出願できないため対象外"],
+    excludedRoutes: [
+      "一般選抜試験（地域枠一般選抜を含む）は一般選抜のため対象外",
+      "大学入学共通テスト利用選抜試験（前期・後期）は通常の共通テスト利用選抜のため対象外",
+      "医学部学士入学者選抜試験は現役高校生が出願できないため対象外",
+    ],
   }),
   university({
     id: "marianna",
