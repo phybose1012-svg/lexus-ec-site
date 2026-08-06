@@ -2721,6 +2721,142 @@ test("大阪医科薬科大学は2027年度公式概要の対象4方式・英語
   );
 });
 
+test("関西医科大学は2027年度完成版要項の対象3方式・型別資格・二段階選考を保持", () => {
+  const kansai = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "kansai-medical",
+  );
+
+  assert.ok(kansai, "関西医科大学のデータがありません");
+  assert.equal(kansai.scopeStatus, "available");
+  assert.equal(kansai.publicationStatus, "complete");
+  assert.equal(
+    kansai.officialUrl,
+    "https://www.kmu.ac.jp/juk/fom/exam/i8fca0000000026n-att/R09_admission-requirements.pdf",
+  );
+  assert.match(kansai.statusNote, /2027年度完成版募集要項.*3方式.*英語型・国際型・科学型.*資格要件/u);
+  assert.doesNotMatch(
+    kansai.statusNote,
+    /一般選抜試験|大学入学共通テスト利用選抜試験|大学入学共通テスト・一般選抜試験併用試験|地域枠一般選抜試験/u,
+    "対象外として確認した方式名をページ表示用の注記へ出さないでください",
+  );
+
+  assertSameSet(
+    new Set(kansai.routes.map((route) => route.id)),
+    new Set(["recommendation-general", "recommendation-special", "distinctive"]),
+    "関西医科大学の対象3方式を保持してください",
+  );
+
+  const general = kansai.routes.find((route) => route.id === "recommendation-general");
+  const special = kansai.routes.find((route) => route.id === "recommendation-special");
+  const distinctive = kansai.routes.find((route) => route.id === "distinctive");
+  assert.ok(general && special && distinctive);
+
+  assert.deepEqual(
+    [
+      general.officialName,
+      general.category,
+      general.quota,
+      general.currentStudentEligible,
+      general.exclusive,
+      general.principalRecommendation,
+    ],
+    ["一般枠学校推薦型選抜試験", "recommendation", "8名", true, "併願可", "必要"],
+  );
+  assert.match(
+    general.eligibility,
+    /2027年3月卒業見込み.*2026年3月卒業.*認定在外教育施設.*2027年3月31日までに修了見込み.*2025年4月1日～2026年3月31日.*指定科目/u,
+  );
+  assert.equal(general.gradeRequirement, "全体の学習成績の状況3.5以上");
+  assert.match(
+    general.restrictions.join(" "),
+    /数学Ⅰ・Ⅱ・Ⅲ・A・B・C.*物理・化学・生物から2科目以上.*出願できる試験種別は1つのみ/u,
+  );
+
+  assert.deepEqual(
+    [
+      special.officialName,
+      special.category,
+      special.quota,
+      special.currentStudentEligible,
+      special.exclusive,
+      special.principalRecommendation,
+    ],
+    ["特別枠学校推薦型選抜試験（専願制）", "recommendation", "10名", true, "専願", "必要"],
+  );
+  assert.match(special.eligibility, /2027年3月卒業見込み.*2026年3月卒業.*卒後勤務条件/u);
+  assert.match(special.gradeRequirement, /全体.*6教科.*ともに4.0以上/u);
+  assert.match(
+    special.restrictions.join(" "),
+    /本人・保護者が入学を確約.*出願後の辞退不可.*臨床研修2年.*医師不足診療科.*本学に3年以上.*計5年以上.*奨学金受給の有無にかかわらず/u,
+  );
+
+  assert.deepEqual(
+    [
+      distinctive.officialName,
+      distinctive.category,
+      distinctive.quota,
+      distinctive.currentStudentEligible,
+      distinctive.exclusive,
+      distinctive.principalRecommendation,
+    ],
+    ["特色選抜試験", "special", "2名", true, "併願可", "必要"],
+  );
+  assert.match(
+    distinctive.eligibility,
+    /英語型・科学型.*2027年3月卒業見込み.*2026年3月卒業.*国際型.*IB Diploma.*2025年4月1日～2027年3月31日.*18歳.*学校長推薦/u,
+  );
+  assert.match(
+    distinctive.gradeRequirement,
+    /指定英語資格.*IB総合36点以上.*指定HL科目.*指定大会.*全体評定の数値基準なし/u,
+  );
+  assert.match(
+    distinctive.restrictions.join(" "),
+    /英検CSE 2300.*GTEC CBT 1180.*IELTS 5.5.*TEAP 309.*TOEFL iBT 4（旧表記72）.*TOEIC.*2年以内.*1種類・1回.*Home Edition.*MyBest.*IPは不可.*IB総合36点以上.*数学HL6以上.*2024年4月～2026年10月.*出願できる試験種別は1つのみ/u,
+  );
+
+  for (const route of kansai.routes) {
+    assert.equal(route.publicationStatus, "complete");
+    assert.match(route.note ?? "", /第1次試験.*小論文.*適性能力試験.*第2次試験.*個別面接.*大学入学共通テストは利用しません/u);
+    assert.deepEqual(
+      route.events.slice(0, 8).map(({ stage, date, deadlineRule, time }) => ({
+        stage,
+        date,
+        ...(deadlineRule === undefined ? {} : { deadlineRule }),
+        ...(time === undefined ? {} : { time }),
+      })),
+      [
+        { stage: "application-start", date: "2026-11-01" },
+        { stage: "application-deadline", date: "2026-11-11", deadlineRule: "Web登録" },
+        { stage: "application-deadline", date: "2026-11-12", deadlineRule: "消印有効" },
+        { stage: "first-exam", date: "2026-11-28", time: "8:00入室開始・8:45着席" },
+        { stage: "first-result", date: "2026-12-02", time: "10:00" },
+        { stage: "second-exam", date: "2026-12-05" },
+        { stage: "final-result", date: "2026-12-10", time: "10:00" },
+        { stage: "procedure-deadline", date: "2026-12-18", time: "15:00" },
+      ],
+    );
+    assert.equal(route.sourceUrls[0], kansai.officialUrl);
+    assert.ok(route.sourceUrls.includes("https://www.kmu.ac.jp/juk/fom/exam/nyushigaiyou.html"));
+    assert.ok(route.sourceUrls.every((url) => url.startsWith("https://www.kmu.ac.jp/")));
+  }
+
+  assert.match(distinctive.events[5].label, /英語型は英語面接も実施/u);
+  assert.ok(
+    distinctive.events.some(
+      (event) =>
+        event.stage === "procedure-deadline" &&
+        event.date === "2027-03-01" &&
+        /IB資格取得見込み/u.test(event.label),
+    ),
+  );
+  assert.equal(
+    privateMedicalSpecialAdmissionsEvents2027.filter(
+      (event) => event.universityId === "kansai-medical",
+    ).length,
+    25,
+  );
+});
+
 test("北里大学は2027年度公式資料の指定校・系列校推薦と実施未定の地域枠を保持", () => {
   const kitasato = privateMedicalSpecialAdmissionsUniversities2027.find(
     (university) => university.id === "kitasato",
