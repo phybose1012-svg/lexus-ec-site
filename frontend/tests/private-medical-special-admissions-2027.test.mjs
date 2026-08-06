@@ -3148,6 +3148,159 @@ test("兵庫医科大学は2027年度公式情報の対象7方式と未公表項
     58,
   );
 });
+
+test("川崎医科大学は2027年度完成版要項の対象4方式と二段階手続を保持", () => {
+  const kawasaki = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "kawasaki-medical",
+  );
+
+  assert.ok(kawasaki, "川崎医科大学のデータがありません");
+  assert.equal(kawasaki.scopeStatus, "available");
+  assert.equal(kawasaki.publicationStatus, "complete");
+  assert.equal(
+    kawasaki.officialUrl,
+    "https://m.kawasaki-m.ac.jp/examination/youkou.php",
+  );
+  assert.match(kawasaki.statusNote, /2026年6月30日.*総合型3枠.*附属高校推薦.*面接・集団討論/u);
+  assert.doesNotMatch(
+    kawasaki.statusNote,
+    /一般選抜|岡山県地域枠|静岡県地域枠|長崎県地域枠/u,
+    "対象外として確認した方式名をページ表示用の注記へ出さないでください",
+  );
+
+  assertSameSet(
+    new Set(kawasaki.routes.map((route) => route.id)),
+    new Set([
+      "chugoku-shikoku",
+      "kirishima",
+      "clinical-specialty",
+      "affiliated-high-school",
+    ]),
+    "川崎医科大学の対象4方式を保持してください",
+  );
+
+  const chugokuShikoku = kawasaki.routes.find((route) => route.id === "chugoku-shikoku");
+  const kirishima = kawasaki.routes.find((route) => route.id === "kirishima");
+  const clinical = kawasaki.routes.find((route) => route.id === "clinical-specialty");
+  const affiliated = kawasaki.routes.find((route) => route.id === "affiliated-high-school");
+  assert.ok(chugokuShikoku && kirishima && clinical && affiliated);
+
+  assert.deepEqual(
+    [chugokuShikoku.category, kirishima.category, clinical.category, affiliated.category],
+    ["regional", "regional", "special", "designated"],
+  );
+  assert.deepEqual(
+    [chugokuShikoku.quota, kirishima.quota, clinical.quota, affiliated.quota],
+    ["約20名", "約1名", "約4名", "約30名"],
+  );
+
+  const comprehensiveRoutes = [chugokuShikoku, kirishima, clinical];
+  const expectedComprehensiveSchedule = [
+    ["application-start", "2026-10-19", "9:00", undefined],
+    ["application-deadline", "2026-10-30", "15:00", undefined],
+    ["application-deadline", "2026-10-30", "17:00", "必着"],
+    ["first-exam", "2026-11-07", undefined, undefined],
+    ["first-result", "2026-11-10", "12:00", undefined],
+    ["second-exam", "2026-11-14", undefined, undefined],
+    ["final-result", "2026-11-17", "12:00", undefined],
+    ["procedure-deadline", "2026-11-25", undefined, "消印有効"],
+    ["procedure-deadline", "2027-03-31", undefined, "消印有効"],
+  ];
+  for (const route of comprehensiveRoutes) {
+    assert.equal(route.publicationStatus, "complete");
+    assert.equal(route.currentStudentEligible, true);
+    assert.equal(route.exclusive, "専願");
+    assert.equal(route.principalRecommendation, "不要");
+    assert.equal(route.gradeRequirement, "公式要項に数値評定要件の記載なし");
+    assert.match(route.eligibility, /2023年3月以降.*2027年3月卒業見込み.*18歳以上22歳以下/u);
+    assert.match(
+      route.restrictions.join(" "),
+      /1学年全寮制.*3枠のうち出願できるのは1枠のみ.*入学辞退不可.*保護者以外.*6年間研修/u,
+    );
+    assert.match(route.note, /大学入学共通テストは利用しません.*集団討論/u);
+    assert.deepEqual(
+      route.events.map(({ stage, date, time, deadlineRule }) => [
+        stage,
+        date,
+        time,
+        deadlineRule,
+      ]),
+      expectedComprehensiveSchedule,
+    );
+    assert.match(
+      route.events.find((event) => event.stage === "first-exam")?.label ?? "",
+      /総合適性試験・小論文/u,
+    );
+    assert.match(
+      route.events.find((event) => event.stage === "second-exam")?.label ?? "",
+      /面接・集団討論/u,
+    );
+    assert.ok(
+      route.sourceUrls.includes(
+        "https://pamphlet.adplat.jp/document/pamphlet/7806900-2-15-1/book.pdf",
+      ),
+    );
+    assert.ok(route.sourceUrls.includes("https://m.kawasaki-m.ac.jp/data/830/detail/"));
+  }
+
+  assert.match(
+    chugokuShikoku.restrictions.join(" "),
+    /2022年10月30日.*中国・四国地域.*地域医療/u,
+  );
+  assert.match(kirishima.restrictions.join(" "), /2022年10月30日.*霧島市.*鹿児島県内/u);
+  assert.match(
+    clinical.restrictions.join(" "),
+    /出身県等は不問.*救急科・総合診療科・麻酔／集中治療科.*離脱は不可/u,
+  );
+
+  assert.equal(affiliated.currentStudentEligible, "conditional");
+  assert.equal(affiliated.exclusive, "専願");
+  assert.equal(affiliated.principalRecommendation, "必要");
+  assert.equal(affiliated.gradeRequirement, "公式要項に数値評定要件の記載なし");
+  assert.match(affiliated.eligibility, /2027年3月卒業見込み.*2026年3月卒業.*校長推薦/u);
+  assert.match(
+    affiliated.restrictions.join(" "),
+    /附属高等学校のみ.*1学年全寮制.*総合型選抜3枠へ出願していない.*入学辞退不可/u,
+  );
+  assert.match(affiliated.note, /大学入学共通テストは利用せず.*適性試験・小論文・面接/u);
+  assert.deepEqual(
+    affiliated.events.map(({ stage, date, time, deadlineRule }) => [
+      stage,
+      date,
+      time,
+      deadlineRule,
+    ]),
+    [
+      ["application-start", "2026-12-03", "9:00", undefined],
+      ["application-deadline", "2026-12-09", "15:00", undefined],
+      ["application-deadline", "2026-12-09", "17:00", "必着"],
+      ["first-exam", "2026-12-17", undefined, undefined],
+      ["final-result", "2027-01-05", "12:00", undefined],
+      ["procedure-deadline", "2027-01-13", undefined, "消印有効"],
+      ["procedure-deadline", "2027-03-31", undefined, "消印有効"],
+    ],
+  );
+  assert.equal(affiliated.events.some((event) => event.stage === "second-exam"), false);
+
+  assert.match(
+    kawasaki.excludedRoutes.join(" "),
+    /一般選抜.*岡山県地域枠.*静岡県地域枠.*長崎県地域枠.*同一日程・同一試験問題/u,
+  );
+  for (const route of kawasaki.routes) {
+    assert.doesNotMatch(
+      route.officialName,
+      /一般選抜|岡山県地域枠|静岡県地域枠|長崎県地域枠/u,
+      "実質一般選抜を対象方式へ含めないでください",
+    );
+  }
+  assert.equal(
+    privateMedicalSpecialAdmissionsEvents2027.filter(
+      (event) => event.universityId === "kawasaki-medical",
+    ).length,
+    34,
+  );
+});
+
 test("北里大学は2027年度公式資料の指定校・系列校推薦と実施未定の地域枠を保持", () => {
   const kitasato = privateMedicalSpecialAdmissionsUniversities2027.find(
     (university) => university.id === "kitasato",

@@ -346,6 +346,80 @@ const kanazawaMedicalSchedule: SpecialAdmissionEvent[] = [
   event("procedure-deadline", "2026-12-17", "入学手続締切", { time: "15:00" }),
 ];
 
+const kawasakiMedicalAdmissionsUrl = "https://m.kawasaki-m.ac.jp/examination/youkou.php";
+const kawasakiMedicalGuideUrl =
+  "https://pamphlet.adplat.jp/document/pamphlet/7806900-2-15-1/book.pdf";
+const kawasakiMedicalChangesUrl = "https://m.kawasaki-m.ac.jp/data/830/detail/";
+const kawasakiMedicalSources = [
+  kawasakiMedicalAdmissionsUrl,
+  kawasakiMedicalGuideUrl,
+  kawasakiMedicalChangesUrl,
+];
+const kawasakiMedicalComprehensiveSchedule: SpecialAdmissionEvent[] = [
+  event("application-start", "2026-10-19", "Web出願登録・入学検定料支払開始", {
+    time: "9:00",
+  }),
+  event(
+    "application-deadline",
+    "2026-10-30",
+    "Web出願登録・締切日登録分の入学検定料支払期限",
+    { time: "15:00" },
+  ),
+  event("application-deadline", "2026-10-30", "出願書類締切", {
+    time: "17:00",
+    deadlineRule: "必着",
+  }),
+  event("first-exam", "2026-11-07", "第一次試験（総合適性試験・小論文）", {
+    sequence: 1,
+  }),
+  event("first-result", "2026-11-10", "第一次試験合格発表", { time: "12:00" }),
+  event("second-exam", "2026-11-14", "第二次試験（面接・集団討論）", {
+    sequence: 2,
+  }),
+  event("final-result", "2026-11-17", "最終合格発表", { time: "12:00" }),
+  event(
+    "procedure-deadline",
+    "2026-11-25",
+    "入学金・学費等振込および書類郵送締切",
+    { deadlineRule: "消印有効" },
+  ),
+  event(
+    "procedure-deadline",
+    "2027-03-31",
+    "諸会費振込および諸会費振込証明書郵送締切",
+    { deadlineRule: "消印有効" },
+  ),
+];
+const kawasakiMedicalAffiliatedSchedule: SpecialAdmissionEvent[] = [
+  event("application-start", "2026-12-03", "Web出願登録・入学検定料支払開始", {
+    time: "9:00",
+  }),
+  event(
+    "application-deadline",
+    "2026-12-09",
+    "Web出願登録・締切日登録分の入学検定料支払期限",
+    { time: "15:00" },
+  ),
+  event("application-deadline", "2026-12-09", "出願書類締切", {
+    time: "17:00",
+    deadlineRule: "必着",
+  }),
+  event("first-exam", "2026-12-17", "試験日（適性試験・小論文・面接）"),
+  event("final-result", "2027-01-05", "合格発表", { time: "12:00" }),
+  event(
+    "procedure-deadline",
+    "2027-01-13",
+    "入学金・学費等振込および書類郵送締切",
+    { deadlineRule: "消印有効" },
+  ),
+  event(
+    "procedure-deadline",
+    "2027-03-31",
+    "諸会費振込および諸会費振込証明書郵送締切",
+    { deadlineRule: "消印有効" },
+  ),
+];
+
 export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpecialAdmissionsUniversity2027[] = [
   university({
     id: "iwate-medical",
@@ -2961,37 +3035,71 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
     strategyPath: "/kawasakiika-university-entrance-exam-measures2027/",
     scopeStatus: "available",
     publicationStatus: "complete",
-    statusNote: "2027年度完成版要項で総合型3枠と附属高校推薦を確認。すべて専願です。",
-    officialUrl: "https://pamphlet.adplat.jp/document/pamphlet/7806900-2-15-1/book.pdf",
+    statusNote: "2026年6月30日公表の2027年度学生募集要項で総合型3枠と附属高校推薦を確認。4方式とも専願で、総合型は第二次試験に面接・集団討論を実施します。",
+    officialUrl: kawasakiMedicalAdmissionsUrl,
     routes: [
       ...[
-      ["chugoku-shikoku", "総合型選抜（中国・四国地域出身者枠）", "regional", "約20名", "2023年3月以降卒業または2027年3月卒業見込みで、年齢・地域・推薦条件を満たす者"],
-      ["kirishima", "総合型選抜（霧島市地域枠）", "regional", "約1名", "卒業年・年齢条件に加え、霧島市の出身校または住民条件等を満たす者"],
-      ["clinical-specialty", "総合型選抜（特定診療科専攻枠）", "special", "約4名", "卒業年・年齢条件に加え、指定診療科志望・推薦・勤務条件を満たす者"],
-    ].map(([id, officialName, category, quota, eligibility]) => route({
-      id,
-      officialName,
-      category: category as SpecialAdmissionCategory,
-      quota,
-      publicationStatus: "complete",
-      currentStudentEligible: true,
-      eligibility,
-      exclusive: "専願",
-      principalRecommendation: "方式による",
-      gradeRequirement: "要項で確認",
-      restrictions: ["2027年4月1日時点22歳以下", category === "regional" ? "地域条件・卒後勤務条件" : "指定診療科の勤務条件", "保護者以外の医療関係者推薦"],
-      events: [
-        event("application-start", "2026-10-19", "Web出願開始", { time: "9:00" }),
-        event("application-deadline", "2026-10-30", "Web出願締切", { time: "15:00" }),
-        event("application-deadline", "2026-10-30", "出願書類締切", { time: "17:00", deadlineRule: "必着" }),
-        event("first-exam", "2026-11-07", "第一次試験"),
-        event("first-result", "2026-11-10", "第一次試験合格発表", { time: "12:00" }),
-        event("second-exam", "2026-11-14", "第二次試験"),
-        event("final-result", "2026-11-17", "最終合格発表", { time: "12:00" }),
-        event("procedure-deadline", "2026-11-25", "入学手続締切", { deadlineRule: "消印有効" }),
-      ],
-      sourceUrls: ["https://pamphlet.adplat.jp/document/pamphlet/7806900-2-15-1/book.pdf"],
-    })),
+        {
+          id: "chugoku-shikoku",
+          officialName: "総合型選抜（中国・四国地域出身者枠）",
+          category: "regional",
+          quota: "約20名",
+          eligibility:
+            "高等学校等を2023年3月以降に卒業（2027年3月卒業見込みを含む）または同等以上の学力があり、2027年4月1日時点18歳以上22歳以下で、中国・四国地域の高校出身または所定の継続住民登録要件を満たす者",
+          restrictions: [
+            "中国・四国地域の高校出身、または志願者・一親等の尊属が2022年10月30日以前から同地域に継続して住民登録",
+            "中国・四国地域で地域医療に関わる保護者以外の者による推薦が必要",
+            "卒業後、附属3病院または本学指定病院で初期臨床研修を含む6年間研修し、将来、中国・四国地域の地域医療へ貢献することを確約",
+          ],
+        },
+        {
+          id: "kirishima",
+          officialName: "総合型選抜（霧島市地域枠）",
+          category: "regional",
+          quota: "約1名",
+          eligibility:
+            "高等学校等を2023年3月以降に卒業（2027年3月卒業見込みを含む）または同等以上の学力があり、2027年4月1日時点18歳以上22歳以下で、霧島市内の高校出身または所定の継続住民登録要件を満たす者",
+          restrictions: [
+            "霧島市内の高校出身、または志願者・一親等の尊属が2022年10月30日以前から霧島市に継続して住民登録",
+            "鹿児島県内で地域医療に関わる保護者以外の者による推薦が必要",
+            "卒業後、附属3病院または本学指定病院で初期臨床研修を含む6年間研修し、将来、霧島市の地域医療へ貢献することを確約",
+          ],
+        },
+        {
+          id: "clinical-specialty",
+          officialName: "総合型選抜（特定診療科専攻枠）",
+          category: "special",
+          quota: "約4名",
+          eligibility:
+            "高等学校等を2023年3月以降に卒業（2027年3月卒業見込みを含む）または同等以上の学力があり、2027年4月1日時点18歳以上22歳以下で、指定診療科の医師として貢献する意志を持つ者",
+          restrictions: [
+            "出身県等は不問",
+            "建学の理念と附属3病院の理念に賛同する、保護者以外の医療に関わる者による推薦が必要",
+            "卒業後、附属3病院または本学指定病院で初期臨床研修を含む6年間研修し、その後、救急科・総合診療科・麻酔／集中治療科のいずれかで後期臨床研修",
+            "特定診療科専攻枠からの離脱は不可。後期臨床研修修了後は指定3科内で変更可",
+          ],
+        },
+      ].map(({ id, officialName, category, quota, eligibility, restrictions }) => route({
+        id,
+        officialName,
+        category: category as SpecialAdmissionCategory,
+        quota,
+        publicationStatus: "complete",
+        currentStudentEligible: true,
+        eligibility,
+        exclusive: "専願",
+        principalRecommendation: "不要",
+        gradeRequirement: "公式要項に数値評定要件の記載なし",
+        restrictions: [
+          "1学年全寮制の規程を守り、共同生活・学修に積極的に取り組めること",
+          "総合型選抜3枠のうち出願できるのは1枠のみ",
+          "合格した場合は入学辞退不可",
+          ...restrictions,
+        ],
+        events: kawasakiMedicalComprehensiveSchedule,
+        sourceUrls: kawasakiMedicalSources,
+        note: "大学入学共通テストは利用しません。第一次試験で総合適性試験・小論文、第二次試験で面接・集団討論を実施します。",
+      })),
       route({
         id: "affiliated-high-school",
         officialName: "学校推薦型選抜（附属高等学校）",
@@ -3002,18 +3110,21 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
         eligibility: "川崎医科大学附属高等学校を2027年3月卒業見込み、または2026年3月卒業し、校長推薦を受ける者",
         exclusive: "専願",
         principalRecommendation: "必要",
-        gradeRequirement: "附属高校要件",
-        restrictions: ["川崎医科大学附属高等学校のみ"],
-        events: [
-          event("application-start", "2026-12-03", "Web出願開始", { time: "9:00" }),
-          event("application-deadline", "2026-12-09", "Web出願締切", { time: "15:00" }),
-          event("application-deadline", "2026-12-09", "出願書類締切", { time: "17:00", deadlineRule: "必着" }),
-          event("first-exam", "2026-12-17", "試験日"),
-          event("final-result", "2027-01-05", "合格発表", { time: "12:00" }),
-          event("procedure-deadline", "2027-01-13", "入学手続締切", { deadlineRule: "消印有効" }),
+        gradeRequirement: "公式要項に数値評定要件の記載なし",
+        restrictions: [
+          "川崎医科大学附属高等学校のみ",
+          "1学年全寮制の規程を守り、共同生活・学修に積極的に取り組めること",
+          "総合型選抜3枠へ出願していないこと",
+          "合格した場合は入学辞退不可",
         ],
-        sourceUrls: ["https://pamphlet.adplat.jp/document/pamphlet/7806900-2-15-1/book.pdf"],
+        events: kawasakiMedicalAffiliatedSchedule,
+        sourceUrls: [kawasakiMedicalAdmissionsUrl, kawasakiMedicalGuideUrl],
+        note: "大学入学共通テストは利用せず、適性試験・小論文・面接で選考します。",
       }),
+    ],
+    excludedRoutes: [
+      "一般選抜は対象外",
+      "地域枠選抜（岡山県地域枠・静岡県地域枠・長崎県地域枠）は一般選抜と同一日程・同一試験問題のため対象外",
     ],
   }),
   university({
