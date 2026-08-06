@@ -420,6 +420,34 @@ const kawasakiMedicalAffiliatedSchedule: SpecialAdmissionEvent[] = [
   ),
 ];
 
+const kurumeAdmissionsByFacultyUrl = "https://best.kurume-u.ac.jp/admissions/faculty/";
+const kurumeAdmissionsGuideUrl =
+  "https://www.d-pam.com/kurume-u/2616346/index.html?tm=1";
+const kurumeAdmissionsDescriptionUrl = "https://best.kurume-u.ac.jp/admissions/description/";
+const kurumePublicRecommendationUrl = "https://best.kurume-u.ac.jp/admissions/type/recommend/";
+const kurumeSpecialRecommendationUrl =
+  "https://best.kurume-u.ac.jp/admissions/type/recommend/k/";
+const kurumeFukuokaRecommendationUrl =
+  "https://best.kurume-u.ac.jp/admissions/type/recommend/f/";
+const kurumeRecommendationSchedule: SpecialAdmissionEvent[] = [
+  event("application-start", "2026-11-01", "出願・入学検定料納付期間開始"),
+  event("application-deadline", "2026-11-05", "出願・入学検定料納付期間締切"),
+  event(
+    "first-exam",
+    "2026-11-14",
+    "試験日（基礎学力テスト・小論文・面接／同日内段階評価）",
+  ),
+  event("final-result", "2026-12-01", "合格発表"),
+  event(
+    "procedure-deadline",
+    "2026-12-17",
+    "入学時納入金の一括納入・入学手続登録・書類提出締切",
+    { deadlineRule: "必着" },
+  ),
+];
+const kurumeRecommendationNote =
+  "大学入学共通テストは利用しません。11月14日の一日で基礎学力テスト（英語9:00〜10:00・数学10:30〜11:30）、小論文（12:00〜13:00）、面接（14:00〜）を実施し、英語・数学の合計点が基準を満たした場合のみ小論文・面接を含めて総合評価します。";
+
 export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpecialAdmissionsUniversity2027[] = [
   university({
     id: "iwate-medical",
@@ -3135,34 +3163,90 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
     strategyPath: "/kurume-university-entrance-exam-measures2027/",
     scopeStatus: "available",
     publicationStatus: "outline",
-    statusNote: "2027年度公式方式ページの日程を掲載。完成版募集要項は9月公表予定です。",
-    officialUrl: "https://best.kurume-u.ac.jp/admissions/description/",
+    statusNote: "2027年度公式入試概要・入試ガイドで現役高校生が出願できる推薦型3方式を確認。完成版学生募集要項は9月上旬公表予定です。",
+    officialUrl: kurumeAdmissionsByFacultyUrl,
     routes: [
-      ["recommendation-a", "学校推薦型選抜（公募制A日程）", "recommendation", "約8名", "2027年3月卒業見込みまたは2026年3月卒業で、学校長推薦を受ける者"],
-      ["kurume-special", "学校推薦型選抜（久留米大学特別枠）", "regional", "約20名", "2027年3月卒業見込み、または2025年・2026年3月卒業で、福岡県内での研修・勤務を確約する者"],
-      ["fukuoka-special", "学校推薦型選抜（福岡県特別枠）", "regional", "4名", "2027年3月卒業見込み、または2025年・2026年3月卒業で、県奨学金・地域医療要件を満たす者"],
-    ].map(([id, officialName, category, quota, eligibility]) => route({
-      id,
-      officialName,
-      category: category as SpecialAdmissionCategory,
-      quota,
-      publicationStatus: "outline",
-      currentStudentEligible: true,
-      eligibility,
-      exclusive: "専願",
-      principalRecommendation: "必要",
-      gradeRequirement: id === "recommendation-a" ? "学習成績の状況を出願資格としない" : "完成版要項で確認",
-      restrictions: category === "regional" ? ["福岡県内の研修・勤務または県奨学金等の条件"] : [],
-      events: [
-        event("application-start", "2026-11-01", "出願開始"),
-        event("application-deadline", "2026-11-05", "出願締切"),
-        event("first-exam", "2026-11-14", "試験日"),
-        event("final-result", "2026-12-01", "合格発表"),
-        event("procedure-deadline", "2026-12-17", "入学手続締切"),
-      ],
-      sourceUrls: [id === "recommendation-a" ? "https://best.kurume-u.ac.jp/admissions/type/recommend/a/" : id === "kurume-special" ? "https://best.kurume-u.ac.jp/admissions/type/recommend/k/" : "https://best.kurume-u.ac.jp/admissions/type/recommend/f/"],
-    })),
-    excludedRoutes: ["自己推薦型は理系大学卒業者等のみが対象で、現役高校生は出願できないため対象外"],
+      route({
+        id: "recommendation-a",
+        officialName: "学校推薦型選抜（公募）A日程",
+        category: "recommendation",
+        quota: "約8名",
+        publicationStatus: "outline",
+        currentStudentEligible: true,
+        eligibility:
+          "高等学校等を2027年3月卒業見込み、または2026年3月卒業し、本学で学ぶことを熱望して人物・学業ともに優秀で、高等学校長が推薦する者",
+        exclusive: "専願",
+        principalRecommendation: "必要",
+        gradeRequirement: "学習成績の状況を出願資格としない",
+        restrictions: [
+          "久留米大学特別枠推薦型選抜・福岡県特別枠推薦型選抜との併願可。ただし合格はいずれか1方式のみ",
+        ],
+        events: kurumeRecommendationSchedule,
+        sourceUrls: [
+          kurumeAdmissionsByFacultyUrl,
+          kurumeAdmissionsGuideUrl,
+          kurumePublicRecommendationUrl,
+          kurumeAdmissionsDescriptionUrl,
+        ],
+        note: kurumeRecommendationNote,
+      }),
+      route({
+        id: "kurume-special",
+        officialName: "久留米大学特別枠推薦型選抜",
+        category: "regional",
+        quota: "約20名",
+        publicationStatus: "outline",
+        currentStudentEligible: true,
+        eligibility:
+          "高等学校等を2027年3月卒業見込み、または2026年・2025年3月卒業し、地域医療へ貢献する強い意志を持ち、高等学校長が推薦する者",
+        exclusive: "専願",
+        principalRecommendation: "必要",
+        gradeRequirement: "2027年度公式入試概要に数値評定要件の記載なし",
+        restrictions: [
+          "卒業後、本学を含む福岡県内の病院で2年間の臨床研修を行い、その後、久留米大学病院に4年間勤務することを誓約",
+          "学校推薦型選抜（公募）A日程・福岡県特別枠推薦型選抜との併願可。ただし合格はいずれか1方式のみ",
+        ],
+        events: kurumeRecommendationSchedule,
+        sourceUrls: [
+          kurumeAdmissionsByFacultyUrl,
+          kurumeAdmissionsGuideUrl,
+          kurumeSpecialRecommendationUrl,
+          kurumeAdmissionsDescriptionUrl,
+        ],
+        note: kurumeRecommendationNote,
+      }),
+      route({
+        id: "fukuoka-special",
+        officialName: "福岡県特別枠推薦型選抜",
+        category: "regional",
+        quota: "3名",
+        publicationStatus: "outline",
+        currentStudentEligible: true,
+        eligibility:
+          "高等学校等を2027年3月卒業見込み、または2026年・2025年3月卒業し、福岡県内の地域医療へ貢献する明確な意志を持ち、高等学校長が推薦し、福岡県の奨学金制度へ応募する者",
+        exclusive: "専願",
+        principalRecommendation: "必要",
+        gradeRequirement: "2027年度公式入試概要に数値評定要件の記載なし",
+        restrictions: [
+          "福岡県内の居住・学校歴、または親権者等の県内居住に関する奨学金要件のいずれかを満たすこと",
+          "同種の貸与金を他から借りる予定がないこと",
+          "原則、貸与期間の1.5倍（通常9年間。2年間の初期臨床研修を含む）、福岡県内で指定6診療科のいずれかに勤務し、県のキャリア形成プログラム等を適用",
+          "学校推薦型選抜（公募）A日程・久留米大学特別枠推薦型選抜との併願可。ただし合格はいずれか1方式のみ",
+        ],
+        events: kurumeRecommendationSchedule,
+        sourceUrls: [
+          kurumeAdmissionsByFacultyUrl,
+          kurumeAdmissionsGuideUrl,
+          kurumeFukuokaRecommendationUrl,
+          kurumeAdmissionsDescriptionUrl,
+        ],
+        note: kurumeRecommendationNote,
+      }),
+    ],
+    excludedRoutes: [
+      "自己推薦型選抜は理系大学卒業者・卒業見込み者等のみが対象で、2027年3月卒業見込みの現役高校生は出願できないため対象外",
+      "前期・後期一般選抜と共通テスト利用選抜（A日程・B日程）は対象外",
+    ],
   }),
   university({
     id: "uoeh",

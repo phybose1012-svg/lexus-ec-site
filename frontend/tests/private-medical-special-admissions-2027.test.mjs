@@ -3301,6 +3301,125 @@ test("川崎医科大学は2027年度完成版要項の対象4方式と二段階
   );
 });
 
+test("久留米大学は2027年度公式概要の現役対象3方式と一日完結選考を保持", () => {
+  const kurume = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "kurume",
+  );
+
+  assert.ok(kurume, "久留米大学のデータがありません");
+  assert.equal(kurume.scopeStatus, "available");
+  assert.equal(kurume.publicationStatus, "outline");
+  assert.equal(
+    kurume.officialUrl,
+    "https://best.kurume-u.ac.jp/admissions/faculty/",
+  );
+  assert.match(kurume.statusNote, /現役高校生が出願できる推薦型3方式.*9月上旬/u);
+  assert.doesNotMatch(
+    kurume.statusNote,
+    /自己推薦|一般選抜|共通テスト利用選抜/u,
+    "対象外として確認した方式名をページ表示用の注記へ出さないでください",
+  );
+
+  assertSameSet(
+    new Set(kurume.routes.map((route) => route.id)),
+    new Set(["recommendation-a", "kurume-special", "fukuoka-special"]),
+    "現役高校生が出願できる推薦型3方式だけを保持してください",
+  );
+
+  const publicRecommendation = kurume.routes.find(
+    (route) => route.id === "recommendation-a",
+  );
+  const kurumeSpecial = kurume.routes.find((route) => route.id === "kurume-special");
+  const fukuokaSpecial = kurume.routes.find((route) => route.id === "fukuoka-special");
+  assert.ok(publicRecommendation && kurumeSpecial && fukuokaSpecial);
+
+  assert.deepEqual(
+    kurume.routes.map(({ officialName, category, quota }) => [officialName, category, quota]),
+    [
+      ["学校推薦型選抜（公募）A日程", "recommendation", "約8名"],
+      ["久留米大学特別枠推薦型選抜", "regional", "約20名"],
+      ["福岡県特別枠推薦型選抜", "regional", "3名"],
+    ],
+  );
+
+  assert.match(publicRecommendation.eligibility, /2027年3月卒業見込み.*2026年3月卒業.*高等学校長/u);
+  assert.equal(publicRecommendation.gradeRequirement, "学習成績の状況を出願資格としない");
+  assert.match(
+    publicRecommendation.restrictions.join(" "),
+    /久留米大学特別枠.*福岡県特別枠.*併願可.*合格はいずれか1方式/u,
+  );
+
+  assert.match(kurumeSpecial.eligibility, /2027年3月卒業見込み.*2026年・2025年3月卒業.*高等学校長/u);
+  assert.match(
+    kurumeSpecial.restrictions.join(" "),
+    /福岡県内の病院で2年間.*久留米大学病院に4年間.*併願可/u,
+  );
+  assert.match(fukuokaSpecial.eligibility, /2027年3月卒業見込み.*2026年・2025年3月卒業.*奨学金制度/u);
+  assert.match(
+    fukuokaSpecial.restrictions.join(" "),
+    /県内居住.*同種の貸与金.*通常9年間.*指定6診療科.*キャリア形成プログラム/u,
+  );
+
+  const expectedSchedule = [
+    ["application-start", "2026-11-01", undefined],
+    ["application-deadline", "2026-11-05", undefined],
+    ["first-exam", "2026-11-14", undefined],
+    ["final-result", "2026-12-01", undefined],
+    ["procedure-deadline", "2026-12-17", "必着"],
+  ];
+  for (const route of kurume.routes) {
+    assert.equal(route.publicationStatus, "outline");
+    assert.equal(route.currentStudentEligible, true);
+    assert.equal(route.exclusive, "専願");
+    assert.equal(route.principalRecommendation, "必要");
+    assert.deepEqual(
+      route.events.map(({ stage, date, deadlineRule }) => [stage, date, deadlineRule]),
+      expectedSchedule,
+    );
+    assert.equal(route.events.some((event) => event.stage === "second-exam"), false);
+    assert.match(
+      route.events.find((event) => event.stage === "first-exam")?.label ?? "",
+      /試験日.*基礎学力テスト・小論文・面接.*同日内段階評価/u,
+    );
+    assert.match(
+      route.events.find((event) => event.stage === "procedure-deadline")?.label ?? "",
+      /一括納入.*入学手続登録.*書類提出/u,
+    );
+    assert.match(
+      route.note,
+      /大学入学共通テストは利用しません.*英語9:00〜10:00.*数学10:30〜11:30.*小論文.*面接/u,
+    );
+    assert.ok(
+      route.sourceUrls.includes(
+        "https://www.d-pam.com/kurume-u/2616346/index.html?tm=1",
+      ),
+    );
+    assert.equal(
+      route.sourceUrls.some((url) => url.endsWith("/recommend/a/")),
+      false,
+      "公募Aは存在しない旧URLを参照しないでください",
+    );
+  }
+
+  assert.match(
+    kurume.excludedRoutes.join(" "),
+    /自己推薦型選抜.*理系大学卒業者.*現役高校生は出願できない.*前期・後期一般選抜.*共通テスト利用選抜/u,
+  );
+  for (const route of kurume.routes) {
+    assert.doesNotMatch(
+      route.officialName,
+      /自己推薦|一般選抜|共通テスト利用選抜/u,
+      "現役高校生対象外または一般・共テ方式を掲載しないでください",
+    );
+  }
+  assert.equal(
+    privateMedicalSpecialAdmissionsEvents2027.filter(
+      (event) => event.universityId === "kurume",
+    ).length,
+    15,
+  );
+});
+
 test("北里大学は2027年度公式資料の指定校・系列校推薦と実施未定の地域枠を保持", () => {
   const kitasato = privateMedicalSpecialAdmissionsUniversities2027.find(
     (university) => university.id === "kitasato",
