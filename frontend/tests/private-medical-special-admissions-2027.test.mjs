@@ -3520,6 +3520,154 @@ test("産業医科大学は2027年度公式実施要項の対象2方式・共通
   );
 });
 
+test("福岡大学は2027年度公式資料の推薦3方式と留学生後期を保持", () => {
+  const fukuoka = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "fukuoka",
+  );
+
+  assert.ok(fukuoka, "福岡大学のデータがありません");
+  assert.equal(fukuoka.scopeStatus, "available");
+  assert.equal(fukuoka.publicationStatus, "partial");
+  assert.equal(
+    fukuoka.officialUrl,
+    "https://www.fukuoka-u.ac.jp/pdf/entrance-examinations/guidebook-entrance-examinations2027.pdf",
+  );
+  assert.match(
+    fukuoka.statusNote,
+    /A方式推薦・地域枠推薦.*附属校推薦.*学部留学生選抜 後期日程.*9月中旬/u,
+  );
+  assertSameSet(
+    fukuoka.routes.map((route) => route.id),
+    [
+      "recommendation-a",
+      "recommendation-regional",
+      "recommendation-affiliated",
+      "international-student-late",
+    ],
+    "福岡大学の対象4方式を保持してください",
+  );
+
+  const recommendation = fukuoka.routes.find((route) => route.id === "recommendation-a");
+  const regional = fukuoka.routes.find((route) => route.id === "recommendation-regional");
+  const affiliated = fukuoka.routes.find((route) => route.id === "recommendation-affiliated");
+  const international = fukuoka.routes.find((route) => route.id === "international-student-late");
+  assert.ok(recommendation && regional && affiliated && international);
+
+  assert.equal(recommendation.quota, "40名（地域枠10名・附属校推薦最大8名を内数に含む）");
+  assert.equal(recommendation.currentStudentEligible, true);
+  assert.equal(recommendation.exclusive, "専願");
+  assert.equal(recommendation.principalRecommendation, "必要");
+  assert.match(
+    recommendation.eligibility,
+    /日本国内.*2027年3月卒業見込み.*2026年3月卒業.*学校長/u,
+  );
+  assert.match(recommendation.gradeRequirement, /全体.*3[.]7以上/u);
+  assert.deepEqual(
+    recommendation.events.map(({ stage, date, label }) => ({ stage, date, label })),
+    [
+      { stage: "application-start", date: "2026-11-01", label: "インターネット出願開始" },
+      { stage: "application-deadline", date: "2026-11-10", label: "インターネット出願締切" },
+      { stage: "first-exam", date: "2026-11-29", label: "試験（英語・数学・面接）" },
+      { stage: "final-result", date: "2026-12-09", label: "合格発表" },
+      { stage: "procedure-deadline", date: "2026-12-23", label: "入学申込金締切" },
+      { stage: "procedure-deadline", date: "2027-03-08", label: "Web入学手続締切" },
+    ],
+  );
+  assert.match(
+    recommendation.note,
+    /2科目60分.*各50点.*面接.*20点.*大学入学共通テストは使用しません.*前年度参考/u,
+  );
+
+  assert.equal(regional.quota, "10名（A方式推薦40名の内数）");
+  assert.equal(regional.currentStudentEligible, true);
+  assert.deepEqual(regional.events, recommendation.events);
+  assert.match(
+    regional.restrictions.join(" "),
+    /九州（沖縄を含む）・山口県内.*高校等出身.*本人・保護者.*離島・僻地・地域医療.*在学中の実習・研修.*卒後臨床研修プログラム.*初期2年・後期3年.*参加を確約/u,
+  );
+  assert.doesNotMatch(regional.restrictions.join(" "), /奨学金|返還免除|指定地域での勤務年限/u);
+
+  assert.equal(affiliated.quota, "最大8名（A方式推薦40名の内数）");
+  assert.equal(affiliated.currentStudentEligible, "unconfirmed");
+  assert.equal(affiliated.exclusive, "未公表");
+  assert.equal(affiliated.principalRecommendation, "未公表");
+  assert.match(affiliated.eligibility, /40名の内数.*最大8名.*詳細は対象校へ通知/u);
+  assert.doesNotMatch(affiliated.eligibility, /2027年3月卒業見込み/u);
+  assert.deepEqual(affiliated.events, []);
+  assert.match(affiliated.note, /募集人員の内数のみ公表.*日程は断定していません/u);
+
+  assert.equal(international.officialName, "学部留学生選抜 後期日程");
+  assert.equal(international.quota, "若干人");
+  assert.equal(international.publicationStatus, "complete");
+  assert.equal(international.currentStudentEligible, "conditional");
+  assert.equal(international.exclusive, "併願可");
+  assert.match(
+    international.eligibility,
+    /外国籍.*重国籍者を除く.*外国の12年課程.*国際資格.*日本国内高校.*2027年3月31日.*通算3年以内.*2026年度日本留学試験/u,
+  );
+  assert.match(
+    international.gradeRequirement,
+    /評定の数値基準なし.*B2以上.*EJUの出願基準点は設定しない/u,
+  );
+  assert.deepEqual(
+    international.events,
+    [
+      { stage: "application-start", date: "2026-11-30", label: "出願受付・検定料支払期間開始" },
+      { stage: "application-deadline", date: "2026-12-04", label: "出願書類・検定料支払締切", deadlineRule: "必着" },
+      { stage: "first-exam", date: "2027-02-08", label: "本学試験（英語・小論文・面接）", time: "9:30集合、10:00～（面接13:30～）" },
+      { stage: "final-result", date: "2027-02-23", label: "合格発表", time: "10:00" },
+      { stage: "procedure-deadline", date: "2027-03-01", label: "入学申込金納入締切" },
+      { stage: "procedure-deadline", date: "2027-03-08", label: "第一期分学費等納入・入学手続書類締切", deadlineRule: "必着" },
+    ],
+  );
+  assert.match(
+    international.note,
+    /EJU.*英語・小論文・個人面接.*書類審査.*出願基準点はなく.*大学入学共通テストは使用しません.*前期日程との併願/u,
+  );
+  assert.deepEqual(international.sourceUrls, [
+    "https://www.kokusai.fukuoka-u.ac.jp/inbound/undergraduate/undergraduate_admission/exam/",
+    "https://fukuoka-u.box.com/s/p66so67w80li2hqcvwi7sy9r5htfwcm0",
+    "https://www.kokusai.fukuoka-u.ac.jp/archives/news/2026/06/22/8994/",
+  ]);
+
+  for (const route of [recommendation, regional, affiliated]) {
+    assert.ok(route.sourceUrls.includes(fukuoka.officialUrl));
+    assert.ok(route.sourceUrls.includes("https://nyushi.fukuoka-u.ac.jp/nyushi/type-4/"));
+    assert.ok(route.sourceUrls.includes("https://nyushi.fukuoka-u.ac.jp/webapp/11suisen/"));
+  }
+  assert.match(
+    fukuoka.excludedRoutes.join(" "),
+    /総合型選抜.*帰国生徒選抜.*社会人選抜.*編転学士選抜.*アスリート特別選抜.*一般選抜.*共通テスト利用型/u,
+  );
+  assert.equal(
+    privateMedicalSpecialAdmissionsEvents2027.filter(
+      (event) => event.universityId === "fukuoka",
+    ).length,
+    18,
+  );
+
+  const examEntries = buildExamDisplayEntries(
+    privateMedicalSpecialAdmissionsEvents2027.filter(
+      (event) => event.universityId === "fukuoka",
+    ),
+  );
+  const recommendationExam = examEntries.find(
+    (entry) => entry.date === "2026-11-29" && entry.label === "試験（英語・数学・面接）",
+  );
+  const internationalExam = examEntries.find(
+    (entry) => entry.date === "2027-02-08" && entry.label === "本学試験（英語・小論文・面接）",
+  );
+  assert.ok(recommendationExam && internationalExam);
+  assert.equal(recommendationExam.displayColumn, "single-exam");
+  assertSameSet(
+    recommendationExam.routeNames,
+    [recommendation.officialName, regional.officialName],
+    "同日同内容の推薦2方式を大学単位にまとめてください",
+  );
+  assert.equal(internationalExam.displayColumn, "single-exam");
+  assert.deepEqual(internationalExam.routeNames, [international.officialName]);
+});
+
 test("北里大学は2027年度公式資料の指定校・系列校推薦と実施未定の地域枠を保持", () => {
   const kitasato = privateMedicalSpecialAdmissionsUniversities2027.find(
     (university) => university.id === "kitasato",
