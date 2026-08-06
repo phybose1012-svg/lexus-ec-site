@@ -3021,6 +3021,133 @@ test("近畿大学は2027年度公式資料の一般公募・指定校推薦と�
   );
 });
 
+test("兵庫医科大学は2027年度公式情報の対象7方式と未公表項目を保持", () => {
+  const hyogo = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "hyogo-medical",
+  );
+
+  assert.ok(hyogo, "兵庫医科大学のデータがありません");
+  assert.equal(hyogo.scopeStatus, "available");
+  assert.equal(hyogo.publicationStatus, "partial");
+  assert.equal(hyogo.officialUrl, "https://www.hyo-med.ac.jp/admission/outline/");
+  assert.match(hyogo.statusNote, /総合型4区分・学校推薦型2区分.*特別選抜1区分.*詳細要項は準備中/u);
+  assert.doesNotMatch(
+    hyogo.statusNote,
+    /一般選抜|共通テスト|県推薦制度枠/u,
+    "対象外として確認した方式名をページ表示用の注記へ出さないでください",
+  );
+
+  assertSameSet(
+    new Set(hyogo.routes.map((route) => route.id)),
+    new Set([
+      "comprehensive-general",
+      "comprehensive-alumni",
+      "comprehensive-ib",
+      "expert",
+      "recommendation-public",
+      "recommendation-regional",
+      "recommendation-special",
+    ]),
+    "兵庫医科大学の対象7方式を保持してください",
+  );
+
+  const general = hyogo.routes.find((route) => route.id === "comprehensive-general");
+  const alumni = hyogo.routes.find((route) => route.id === "comprehensive-alumni");
+  const ib = hyogo.routes.find((route) => route.id === "comprehensive-ib");
+  const expert = hyogo.routes.find((route) => route.id === "expert");
+  const publicRecommendation = hyogo.routes.find((route) => route.id === "recommendation-public");
+  const regional = hyogo.routes.find((route) => route.id === "recommendation-regional");
+  const special = hyogo.routes.find((route) => route.id === "recommendation-special");
+  assert.ok(general && alumni && ib && expert && publicRecommendation && regional && special);
+
+  for (const route of [general, alumni, expert]) {
+    assert.equal(route.category, "comprehensive");
+    assert.equal(route.exclusive, "専願");
+    assert.equal(route.principalRecommendation, "不要");
+    assert.equal(route.gradeRequirement, "数値基準なし");
+  }
+  assert.match(alumni.eligibility, /緑樹会/u);
+  assert.match(alumni.restrictions.join(" "), /2024年4月1日.*通算5年以上勤務/u);
+  assert.match(expert.eligibility, /大学入学資格.*2027年3月.*医療従事者/u);
+  assert.match(expert.restrictions.join(" "), /外科または救急科.*奨学制度.*指定診療科/u);
+
+  assert.equal(ib.category, "ib");
+  assert.equal(ib.exclusive, "条件付き");
+  assert.equal(ib.principalRecommendation, "不要");
+  assert.match(ib.gradeRequirement, /言語A.*日本語.*言語B.*日本語HL.*6以上/u);
+  assert.match(ib.restrictions.join(" "), /本学の他の総合型・学校推薦型選抜とは併願不可/u);
+  assert.ok(
+    ib.events.some(
+      (event) => event.stage === "procedure-deadline"
+        && event.date === "2027-02-26"
+        && /最終成績証明書/u.test(event.label)
+        && event.deadlineRule === "消印有効",
+    ),
+  );
+
+  assert.equal(publicRecommendation.quota, "約23名（特別選抜3名以内を含む）");
+  assert.equal(publicRecommendation.gradeRequirement, "学習成績の状況4.0以上");
+  assert.equal(regional.quota, "5名以内");
+  assert.match(regional.restrictions.join(" "), /兵庫県内.*一般公募制.*卒業後の就労義務なし/u);
+
+  assert.deepEqual(
+    [
+      special.officialName,
+      special.category,
+      special.quota,
+      special.publicationStatus,
+      special.currentStudentEligible,
+      special.exclusive,
+      special.principalRecommendation,
+      special.gradeRequirement,
+    ],
+    [
+      "学校推薦型選抜（特別選抜）",
+      "designated",
+      "3名以内（一般公募制の約23名に含む）",
+      "outline",
+      "unconfirmed",
+      "未公表",
+      "未公表",
+      "未公表",
+    ],
+  );
+  assert.match(special.eligibility, /関西学院高等部.*卒業見込み可否.*未公表/u);
+  assert.match(special.note, /2027年度入試準備中.*出願期間・試験日.*合格発表・入学手続期限.*未公表/u);
+  assert.deepEqual(
+    special.events.map(({ stage, date, label, time, deadlineRule }) => ({
+      stage,
+      date,
+      label,
+      time,
+      deadlineRule,
+    })),
+    [
+      { stage: "application-start", date: "2026-11-01", label: "Web出願登録開始", time: "0:00", deadlineRule: undefined },
+      { stage: "application-deadline", date: "2026-11-06", label: "Web出願登録締切", time: "15:00", deadlineRule: undefined },
+      { stage: "application-deadline", date: "2026-11-06", label: "入学検定料払込期限", time: "16:00", deadlineRule: undefined },
+      { stage: "application-deadline", date: "2026-11-06", label: "出願書類締切", time: undefined, deadlineRule: "消印有効" },
+      { stage: "first-exam", date: "2026-11-11", label: "試験日", time: undefined, deadlineRule: undefined },
+    ],
+  );
+  assert.equal(special.events.some((event) => event.stage === "final-result"), false);
+  assert.equal(special.events.some((event) => event.stage === "procedure-deadline"), false);
+
+  for (const route of hyogo.routes) {
+    assert.ok(route.sourceUrls.every((url) => url.startsWith("https://www.hyo-med.ac.jp/")));
+    assert.doesNotMatch(
+      `${route.id} ${route.officialName}`,
+      /一般選抜A|一般選抜B|兵庫県推薦入学制度枠|共通テスト/u,
+      "実質一般選抜・通常の共通テスト利用選抜を掲載しないでください",
+    );
+  }
+  assert.equal(
+    privateMedicalSpecialAdmissionsEvents2027.filter(
+      (event) => event.universityId === "hyogo-medical",
+    ).length,
+    58,
+  );
+});
 test("北里大学は2027年度公式資料の指定校・系列校推薦と実施未定の地域枠を保持", () => {
   const kitasato = privateMedicalSpecialAdmissionsUniversities2027.find(
     (university) => university.id === "kitasato",
@@ -4131,7 +4258,7 @@ test("固定ページのslugとJSONエンドポイント契約が一致", () => 
   }
 });
 
-test("方式別一覧は01概要内で8方式・全大学・全96方式を省略せず描画する", () => {
+test("方式別一覧は01概要内で8方式・全大学・全97方式を省略せず描画する", () => {
   const pageSource = readFileSync(pageSourcePath, "utf8");
   const summarySource = sectionBetween(pageSource, "summary", "deadlines");
   const universityListTag = openingTagWithClass(
@@ -4140,7 +4267,7 @@ test("方式別一覧は01概要内で8方式・全大学・全96方式を省略
   );
 
   assert.equal(Object.keys(specialAdmissionCategoryLabels).length, 8);
-  assert.equal(privateMedicalSpecialAdmissionsRoutes2027.length, 96);
+  assert.equal(privateMedicalSpecialAdmissionsRoutes2027.length, 97);
   assert.match(summarySource, /<h2\b[^>]*id="summary-title"[^>]*>概要<\/h2>/u);
   assert.match(summarySource, /class="special-route-type-grid"/u);
   assert.match(summarySource, /categoryEntries\.map\(\(entry, index\)/u);
@@ -4252,7 +4379,7 @@ test("生成ページの01概要は6項目ナビと方式別全件データを�
     renderedRouteKeys.push(...categoryRouteKeys);
   }
 
-  assert.equal(renderedRouteKeys.length, 96);
+  assert.equal(renderedRouteKeys.length, 97);
   assertSameSet(
     new Set(renderedRouteKeys),
     new Set(
@@ -4260,7 +4387,7 @@ test("生成ページの01概要は6項目ナビと方式別全件データを�
         `${university.id}/${route.id}`,
       ),
     ),
-    "概要内に全95方式を重複・省略なく描画してください",
+    "概要内に全97方式を重複・省略なく描画してください",
   );
 
   const universityListTags = [...summaryHtml.matchAll(

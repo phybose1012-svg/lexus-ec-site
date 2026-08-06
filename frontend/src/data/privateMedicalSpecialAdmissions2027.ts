@@ -2825,15 +2825,15 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
     prefecture: "兵庫県",
     strategyPath: "/https-lexus-ec-com-hyougoika-university-entrance-exam-measures2027/",
     scopeStatus: "available",
-    publicationStatus: "complete",
-    statusNote: "2027年度完成版要項で総合型4区分・学校推薦型2区分を確認。一般A内の県推薦制度枠は除外しています。",
-    officialUrl: "https://www.hyo-med.ac.jp/files/20260703/c737f86c1b3de8f37133c3de2c8031853ac51fff.pdf",
+    publicationStatus: "partial",
+    statusNote: "2027年度完成版要項で総合型4区分・学校推薦型2区分、Web出願ガイドで対象校限定の特別選抜1区分を確認。特別選抜の詳細要項は準備中です。",
+    officialUrl: "https://www.hyo-med.ac.jp/admission/outline/",
     routes: [
       ...[
       ["comprehensive-general", "総合型選抜（一般枠）", "comprehensive", "約5名", "2026年3月卒業または2027年3月卒業見込みで、医療従事者の推薦を受ける者"],
-      ["comprehensive-alumni", "総合型選抜（卒業生子女枠）", "special", "3名以内", "親または祖父母が本学医学部卒業生で、2026年3月卒業または2027年3月卒業見込みの者"],
+      ["comprehensive-alumni", "総合型選抜（卒業生子女枠）", "comprehensive", "3名以内", "2026年3月卒業または2027年3月卒業見込み等で、親または祖父母が本学医学部卒業生かつ緑樹会の推薦を受ける者"],
       ["comprehensive-ib", "総合型選抜（国際バカロレア枠）", "ib", "約2名", "2025年4月から2027年3月にIB取得・取得見込みで年齢・科目成績条件を満たす者"],
-      ["expert", "エキスパート養成入試（総合型選抜）", "special", "3名以内", "2027年3月卒業見込み可。指定診療科志望・医療従事者推薦等の条件を満たす者"],
+      ["expert", "エキスパート養成入試（総合型選抜）", "comprehensive", "3名以内", "大学入学資格を有する者（2027年3月までの取得見込み可）で、指定診療科を志望し、医療従事者の推薦を受ける者"],
     ].map(([id, officialName, category, quota, eligibility]) => route({
       id,
       officialName,
@@ -2842,24 +2842,52 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
       publicationStatus: "complete",
       currentStudentEligible: true,
       eligibility,
-      exclusive: "専願",
-      principalRecommendation: category === "ib" ? "不要" : "方式による",
-      gradeRequirement: category === "ib" ? "IB科目成績条件" : "要項で確認",
-      restrictions: category === "ib" ? ["IB取得時期・年齢・科目条件"] : category === "special" ? ["卒業生子女または指定診療科等の区分別条件"] : [],
+      exclusive: id === "comprehensive-ib" ? "条件付き" : "専願",
+      principalRecommendation: "不要",
+      gradeRequirement: id === "comprehensive-ib"
+        ? "言語Aを日本語で履修、または言語B（日本語HL）で成績評価6以上"
+        : "数値基準なし",
+      restrictions: id === "comprehensive-general"
+        ? ["医療従事者推薦（2親等以内の親族を除く）", "本学の学校推薦型選抜のみ併願可"]
+        : id === "comprehensive-alumni"
+          ? ["法定血族は2024年4月1日以前の養子縁組が必要", "卒業後に本学の医師として通算5年以上勤務", "本学の学校推薦型選抜のみ併願可"]
+          : id === "comprehensive-ib"
+            ? ["2027年3月31日までに18歳", "国内の連絡先が必要", "本学の他の総合型・学校推薦型選抜とは併願不可"]
+            : ["外科または救急科を志望", "特定診療科医師養成奨学制度の契約・指定診療科での勤務を確約", "本学の他の総合型・学校推薦型選抜とは併願不可"],
       events: [
-        event("application-start", "2026-10-01", "出願開始"),
-        event("application-deadline", "2026-10-15", "Web出願締切", { time: "15:00" }),
+        ...(id === "comprehensive-alumni"
+          ? [
+              event("application-start", "2026-08-25", "緑樹会推薦書申請開始"),
+              event("application-deadline", "2026-09-15", "緑樹会推薦書申請締切"),
+            ]
+          : []),
+        event("application-start", "2026-10-01", "Web出願登録開始", { time: "0:00" }),
+        event("application-deadline", "2026-10-15", "Web出願登録締切", { time: "15:00" }),
+        event("application-deadline", "2026-10-15", "入学検定料払込期限", {
+          time: "16:00",
+          choiceRule: "出願登録翌日23:59まで。ただし最終日の払込は16:00まで",
+        }),
         event("application-deadline", "2026-10-15", "出願書類締切", { deadlineRule: "消印有効" }),
         event("first-exam", "2026-11-15", "第一次試験"),
         event("first-result", "2026-12-01", "第一次試験合格発表", { time: "10:00" }),
         event("second-exam", "2026-12-06", "第二次試験"),
         event("final-result", "2026-12-11", "最終合格発表", { time: "10:00" }),
         event("procedure-deadline", "2026-12-18", "入学手続締切", { deadlineRule: "消印有効" }),
+        ...(id === "comprehensive-ib"
+          ? [event("procedure-deadline", "2027-02-26", "IB取得見込み合格者の最終成績証明書締切", { deadlineRule: "消印有効" })]
+          : []),
       ],
-      sourceUrls: ["https://www.hyo-med.ac.jp/files/20260703/c737f86c1b3de8f37133c3de2c8031853ac51fff.pdf"],
+      sourceUrls: [
+        id === "comprehensive-ib"
+          ? "https://www.hyo-med.ac.jp/admission/outline/nishinomiya/baccalaureate/"
+          : id === "expert"
+            ? "https://www.hyo-med.ac.jp/admission/outline/nishinomiya/expert/"
+            : "https://www.hyo-med.ac.jp/admission/outline/nishinomiya/ao/",
+        "https://www.hyo-med.ac.jp/files/20260703/c737f86c1b3de8f37133c3de2c8031853ac51fff.pdf",
+      ],
     })),
       ...[
-      ["recommendation-public", "学校推薦型選抜（一般公募制）", "recommendation", "約23名", "2026年3月卒業または2027年3月卒業見込みで、学校長推薦・評定要件を満たす者"],
+      ["recommendation-public", "学校推薦型選抜（一般公募制）", "recommendation", "約23名（特別選抜3名以内を含む）", "2026年3月卒業または2027年3月卒業見込みで、学校長推薦・評定要件を満たす者"],
       ["recommendation-regional", "学校推薦型選抜（地域指定制）", "regional", "5名以内", "一般公募資格に加え、兵庫県内居住または県内高校等の地域条件を満たす者"],
     ].map((item) => route({
       id: item[0] as string,
@@ -2872,17 +2900,56 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
       exclusive: "専願",
       principalRecommendation: "必要",
       gradeRequirement: "学習成績の状況4.0以上",
-      restrictions: item[2] === "regional" ? ["兵庫県内居住または県内高校条件", "一般公募制との併願可"] : [],
+      restrictions: item[2] === "regional"
+        ? ["兵庫県内居住または県内高校条件", "一般公募制の資格を満たす場合は同方式でも選考", "卒業後の就労義務なし"]
+        : ["地域指定制との併願可"],
       events: [
-        event("application-start", "2026-11-01", "出願開始"),
-        event("application-deadline", "2026-11-06", "Web出願締切", { time: "15:00" }),
+        event("application-start", "2026-11-01", "Web出願登録開始", { time: "0:00" }),
+        event("application-deadline", "2026-11-06", "Web出願登録締切", { time: "15:00" }),
+        event("application-deadline", "2026-11-06", "入学検定料払込期限", {
+          time: "16:00",
+          choiceRule: "出願登録翌日23:59まで。ただし最終日の払込は16:00まで",
+        }),
         event("application-deadline", "2026-11-06", "出願書類締切", { deadlineRule: "消印有効" }),
-        event("first-exam", "2026-11-15", "試験日"),
+        event("first-exam", "2026-11-15", "試験日（適性検査・小論文・個人面接等）"),
         event("final-result", "2026-12-01", "合格発表", { time: "10:00" }),
         event("procedure-deadline", "2026-12-08", "入学手続締切", { deadlineRule: "消印有効" }),
       ],
-      sourceUrls: ["https://www.hyo-med.ac.jp/files/20260703/c737f86c1b3de8f37133c3de2c8031853ac51fff.pdf"],
+      sourceUrls: [
+        item[2] === "regional"
+          ? "https://www.hyo-med.ac.jp/admission/outline/nishinomiya/preferred_local/"
+          : "https://www.hyo-med.ac.jp/admission/outline/nishinomiya/preferred_open/",
+        "https://www.hyo-med.ac.jp/files/20260703/c737f86c1b3de8f37133c3de2c8031853ac51fff.pdf",
+      ],
     })),
+      route({
+        id: "recommendation-special",
+        officialName: "学校推薦型選抜（特別選抜）",
+        category: "designated",
+        quota: "3名以内（一般公募制の約23名に含む）",
+        publicationStatus: "outline",
+        currentStudentEligible: "unconfirmed",
+        eligibility: "関西学院高等部の対象者。卒業見込み可否を含む詳細な出願資格は2027年度特別選抜要項で未公表",
+        exclusive: "未公表",
+        principalRecommendation: "未公表",
+        gradeRequirement: "未公表",
+        restrictions: ["関西学院高等部対象", "詳細要項は準備中"],
+        events: [
+          event("application-start", "2026-11-01", "Web出願登録開始", { time: "0:00" }),
+          event("application-deadline", "2026-11-06", "Web出願登録締切", { time: "15:00" }),
+          event("application-deadline", "2026-11-06", "入学検定料払込期限", {
+            time: "16:00",
+            choiceRule: "出願登録翌日23:59まで。ただし最終日の払込は16:00まで",
+          }),
+          event("application-deadline", "2026-11-06", "出願書類締切", { deadlineRule: "消印有効" }),
+          event("first-exam", "2026-11-11", "試験日"),
+        ],
+        sourceUrls: [
+          "https://www.hyo-med.ac.jp/admission/outline/",
+          "https://www.hyo-med.ac.jp/files/20260703/c737f86c1b3de8f37133c3de2c8031853ac51fff.pdf",
+        ],
+        note: "公式入試情報では2027年度入試準備中。Web出願ガイドに出願期間・試験日のみ掲載され、合格発表・入学手続期限等は未公表です。",
+      }),
     ],
     excludedRoutes: ["一般選抜Aに含まれる兵庫県推薦入学制度枠は選抜分類が一般選抜のため対象外"],
   }),
