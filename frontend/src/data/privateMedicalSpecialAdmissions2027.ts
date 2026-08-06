@@ -303,6 +303,49 @@ const tohoPublishedSources = [
   tohoAdmissionsGuideStatusUrl,
 ];
 
+const kanazawaMedicalGuideUrl =
+  "https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_admissionguide.pdf.pdf";
+const kanazawaMedicalOverviewNewsUrl =
+  "https://www.kanazawa-med.ac.jp/medicine_exam/news/001268.html";
+const kanazawaMedicalDownloadUrl =
+  "https://www.kanazawa-med.ac.jp/medicine_exam/application/download.html";
+const kanazawaMedicalScheduleUrl =
+  "https://www.kanazawa-med.ac.jp/medicine_exam/summary/post-3.html";
+const kanazawaMedicalChangesUrl =
+  "https://www.kanazawa-med.ac.jp/medicine_exam/summary/post-4.html";
+const kanazawaMedicalSubjectsUrl =
+  "https://www.kanazawa-med.ac.jp/medicine_exam/summary/post-5.html";
+const kanazawaMedicalQaUrl =
+  "https://www.kanazawa-med.ac.jp/medicine_exam/qa/qa.html";
+const kanazawaMedicalDesignatedRegionUrl =
+  "https://www.kanazawa-med.ac.jp/medicine_exam/guidelines/siteitiki.html";
+const kanazawaMedicalPublishedSources = [
+  kanazawaMedicalGuideUrl,
+  kanazawaMedicalOverviewNewsUrl,
+  kanazawaMedicalDownloadUrl,
+  kanazawaMedicalScheduleUrl,
+  kanazawaMedicalChangesUrl,
+  kanazawaMedicalSubjectsUrl,
+  kanazawaMedicalQaUrl,
+];
+const kanazawaMedicalSchedule: SpecialAdmissionEvent[] = [
+  event("application-start", "2026-11-09", "Web出願開始", { time: "9:00" }),
+  event("application-deadline", "2026-11-14", "Web出願締切", { time: "15:00" }),
+  event("application-deadline", "2026-11-14", "出願書類提出締切", {
+    deadlineRule: "消印有効",
+  }),
+  event("first-exam", "2026-11-21", "第1次選抜（基礎学力テスト・自己推薦書）", {
+    time: "9:30～12:40",
+    sequence: 1,
+  }),
+  event("first-result", "2026-11-26", "第1次選抜合格発表", { time: "17:30" }),
+  event("second-exam", "2026-12-06", "第2次選抜（個人面接・約15分）", {
+    sequence: 2,
+  }),
+  event("final-result", "2026-12-10", "最終合格発表", { time: "17:30" }),
+  event("procedure-deadline", "2026-12-17", "入学手続締切", { time: "15:00" }),
+];
+
 export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpecialAdmissionsUniversity2027[] = [
   university({
     id: "iwate-medical",
@@ -2160,50 +2203,133 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
     strategyPath: "/kanazawaika-university-entrance-exam-measures2027/",
     scopeStatus: "available",
     publicationStatus: "outline",
-    statusNote: "2027年度入試ガイドを掲載。AO以外の個別日程・詳細資格は完成版要項待ちです。",
-    officialUrl: "https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_admissionguide.pdf.pdf",
+    statusNote: "2027年度入試ガイドで4方式の概要と共通日程を公表しています。研究医枠・新潟県地域枠は認可申請中で、2027年度の募集人員・資格・日程は未公表です。完成版要項の公開後に必ず確認してください。",
+    officialUrl: kanazawaMedicalGuideUrl,
     routes: [
       route({
         id: "ao",
-        officialName: "総合型選抜 AO入試",
+        officialName: "総合型選抜（AO入試）",
         category: "comprehensive",
         quota: "15名",
         publicationStatus: "outline",
         currentStudentEligible: true,
-        eligibility: "2027年4月1日時点25歳以下で、2027年3月卒業見込みを含む大学入学資格を持つ者",
+        eligibility: "2026年4月1日現在25歳以下で、高校等を卒業した者、2027年3月卒業見込みの者または同等以上の学力があると認められた者",
         exclusive: "専願",
         principalRecommendation: "不要",
-        gradeRequirement: "評定要件なし",
-        restrictions: ["25歳以下", "推薦者による推薦書が必要"],
-        events: [
-          event("application-start", "2026-11-09", "Web出願開始", { time: "9:00" }),
-          event("application-deadline", "2026-11-14", "Web出願締切", { time: "15:00" }),
-          event("first-exam", "2026-11-21", "第一次選考"),
-          event("first-result", "2026-11-26", "第一次選考合格発表", { time: "17:30" }),
-          event("second-exam", "2026-12-06", "第二次選考"),
-          event("final-result", "2026-12-10", "最終合格発表", { time: "17:30" }),
-          event("procedure-deadline", "2026-12-17", "入学手続締切", { time: "15:00" }),
+        gradeRequirement: "評定の数値基準なし（調査書等を評価）",
+        restrictions: [
+          "2026年4月1日現在25歳以下",
+          "本人を熟知する者（近親者・教員等を問わず）の推薦書が必要",
+          "卒業後5年間の指定臨床研修を確約",
         ],
-        sourceUrls: ["https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_admissionguide.pdf.pdf"],
+        events: [...kanazawaMedicalSchedule],
+        sourceUrls: [...kanazawaMedicalPublishedSources],
+        note: "第1次選抜は基礎学力テスト（英語・数学・理科基礎2科目）と自己推薦書、第2次選抜は個人面接です。共通テストは使用しません。第2次選抜の集合時間は第1次選抜合格者へ通知されます。",
       }),
-      ["graduate-child", "総合型選抜 卒業生子女入試", "special", "8名", "医学部卒業生の子女で25歳以下。2027年3月卒業見込み可"],
-      ["designated-region", "総合型選抜（指定地域）", "regional", null, "氷見市在住者で氷見市長の推薦を受ける者。詳細は完成版要項待ち"],
-      ["designated-school", "学校推薦型選抜（指定校）", "designated", "4名", "指定高校を2027年3月卒業見込み、または2026年3月卒業した19歳以下の者"],
-    ].flatMap((item) => Array.isArray(item) ? [route({
-      id: item[0] as string,
-      officialName: item[1] as string,
-      category: item[2] as SpecialAdmissionCategory,
-      quota: item[3] as string | null,
-      publicationStatus: "outline",
-      currentStudentEligible: item[2] === "designated" ? "conditional" : true,
-      eligibility: item[4] as string,
-      exclusive: "専願",
-      principalRecommendation: item[2] === "designated" || item[2] === "regional" ? "必要" : "方式による",
-      gradeRequirement: "完成版要項で確認",
-      restrictions: item[2] === "regional" ? ["氷見市", "市長推薦"] : item[2] === "designated" ? ["指定校", "19歳以下"] : ["25歳以下"],
-      events: [],
-      sourceUrls: ["https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_admissionguide.pdf.pdf"],
-    })] : [item as SpecialAdmissionRoute]),
+      route({
+        id: "graduate-child",
+        officialName: "総合型選抜（卒業生子女入試）",
+        category: "comprehensive",
+        quota: "8名",
+        publicationStatus: "outline",
+        currentStudentEligible: true,
+        eligibility: "本学医学部卒業生の子女で、2026年4月1日現在25歳以下。高校等卒業者、2027年3月卒業見込みまたは同等以上の学力があると認められた者。法定血族は2024年4月1日以前の養子縁組が必要",
+        exclusive: "専願",
+        principalRecommendation: "不要",
+        gradeRequirement: "評定の数値基準なし（調査書等を評価）",
+        restrictions: [
+          "本人を熟知する者（近親者・教員等を問わず）の推薦書が必要",
+          "卒業後5年間の指定臨床研修と、その後4年間の継続勤務を確約",
+        ],
+        events: [...kanazawaMedicalSchedule],
+        sourceUrls: [...kanazawaMedicalPublishedSources],
+        note: "第1次選抜は基礎学力テストと自己推薦書、第2次選抜は個人面接です。共通テストは使用しません。第2次選抜の集合時間は第1次選抜合格者へ通知されます。",
+      }),
+      route({
+        id: "designated-region",
+        officialName: "総合型選抜（指定地域）",
+        category: "regional",
+        quota: "1名",
+        publicationStatus: "outline",
+        currentStudentEligible: true,
+        eligibility: "富山県氷見市在住で氷見市長および高校長の推薦を受け、2027年3月高校卒業見込みまたは2026年3月卒業、2027年4月1日現在19歳以下の者",
+        exclusive: "専願",
+        principalRecommendation: "必要",
+        gradeRequirement: "評定の数値基準なし（調査書等を評価）",
+        restrictions: [
+          "富山県氷見市在住",
+          "高校長・氷見市長の推薦",
+          "氷見市修学資金と指定期間の地域勤務条件",
+          "卒業後5年間の指定臨床研修を確約",
+        ],
+        events: [...kanazawaMedicalSchedule],
+        sourceUrls: [...kanazawaMedicalPublishedSources, kanazawaMedicalDesignatedRegionUrl],
+        note: "第1次選抜は基礎学力テストと自己推薦書、第2次選抜は個人面接です。共通テストは使用しません。第2次選抜の集合時間は第1次選抜合格者へ通知されます。",
+      }),
+      route({
+        id: "designated-school",
+        officialName: "学校推薦型選抜（指定校）",
+        category: "designated",
+        quota: "4名",
+        publicationStatus: "outline",
+        currentStudentEligible: true,
+        eligibility: "本学指定高校を2027年3月卒業見込み、または2026年3月卒業し、2027年4月1日現在19歳以下で、高校長から推薦された者",
+        exclusive: "専願",
+        principalRecommendation: "必要",
+        gradeRequirement: "評定の数値基準なし（調査書等を評価）",
+        restrictions: [
+          "指定高校",
+          "2027年4月1日現在19歳以下",
+          "卒業後5年間の指定臨床研修を確約",
+        ],
+        events: [...kanazawaMedicalSchedule],
+        sourceUrls: [...kanazawaMedicalPublishedSources],
+        note: "第1次選抜は基礎学力テストと自己推薦書、第2次選抜は個人面接です。共通テストは使用しません。第2次選抜の集合時間は第1次選抜合格者へ通知されます。",
+      }),
+      route({
+        id: "research-doctor",
+        officialName: "総合型選抜（研究医枠）",
+        category: "comprehensive",
+        quota: null,
+        publicationStatus: "unpublished",
+        currentStudentEligible: "unconfirmed",
+        eligibility: "2027年度は認可申請中。募集人員・出願資格は未公表",
+        exclusive: "未公表",
+        principalRecommendation: "未公表",
+        gradeRequirement: "未公表",
+        restrictions: ["認可申請中", "2027年度の募集人員・資格・日程は未公表"],
+        events: [],
+        sourceUrls: [
+          kanazawaMedicalOverviewNewsUrl,
+          kanazawaMedicalDownloadUrl,
+          kanazawaMedicalSubjectsUrl,
+          kanazawaMedicalQaUrl,
+        ],
+        note: "2027年度の実施は認可申請中です。2026年度の募集人員・資格・日程は転用していません。",
+      }),
+      route({
+        id: "niigata-regional",
+        officialName: "総合型選抜（新潟県地域枠）",
+        category: "regional",
+        quota: null,
+        publicationStatus: "unpublished",
+        currentStudentEligible: "unconfirmed",
+        eligibility: "2027年度は認可申請中。募集人員・出願資格は未公表",
+        exclusive: "未公表",
+        principalRecommendation: "未公表",
+        gradeRequirement: "未公表",
+        restrictions: ["認可申請中", "2027年度の募集人員・資格・日程は未公表"],
+        events: [],
+        sourceUrls: [
+          kanazawaMedicalOverviewNewsUrl,
+          kanazawaMedicalDownloadUrl,
+          kanazawaMedicalSubjectsUrl,
+          kanazawaMedicalQaUrl,
+        ],
+        note: "2027年度の実施は認可申請中です。2026年度の募集人員・資格・日程は転用していません。",
+      }),
+    ],
+    excludedRoutes: ["一般選抜（前期・後期）は対象外"],
   }),
   university({
     id: "aichi-medical",

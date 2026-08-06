@@ -2086,6 +2086,197 @@ test("東海大学は2027年度完成版要項の希望の星育成1方式と三
   );
 });
 
+test("金沢医科大学は2027年度公式概要の確定4方式と認可申請中2方式を保持", () => {
+  const kanazawa = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "kanazawa-medical",
+  );
+
+  assert.ok(kanazawa, "金沢医科大学のデータがありません");
+  assert.equal(kanazawa.scopeStatus, "available");
+  assert.equal(kanazawa.publicationStatus, "outline");
+  assert.equal(
+    kanazawa.officialUrl,
+    "https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_admissionguide.pdf.pdf",
+  );
+  assert.match(
+    kanazawa.statusNote,
+    /2027年度入試ガイド.*4方式.*研究医枠・新潟県地域枠.*認可申請中.*募集人員・資格・日程は未公表.*完成版要項/u,
+  );
+
+  assertSameSet(
+    new Set(kanazawa.routes.map((route) => route.id)),
+    new Set([
+      "ao",
+      "graduate-child",
+      "designated-region",
+      "designated-school",
+      "research-doctor",
+      "niigata-regional",
+    ]),
+    "金沢医科大学の確定4方式と認可申請中2方式を保持してください",
+  );
+
+  const ao = kanazawa.routes.find((route) => route.id === "ao");
+  const graduateChild = kanazawa.routes.find((route) => route.id === "graduate-child");
+  const designatedRegion = kanazawa.routes.find((route) => route.id === "designated-region");
+  const designatedSchool = kanazawa.routes.find((route) => route.id === "designated-school");
+  const researchDoctor = kanazawa.routes.find((route) => route.id === "research-doctor");
+  const niigataRegional = kanazawa.routes.find((route) => route.id === "niigata-regional");
+  assert.ok(
+    ao && graduateChild && designatedRegion && designatedSchool && researchDoctor && niigataRegional,
+  );
+
+  assert.deepEqual(
+    [ao.officialName, ao.category, ao.quota, ao.currentStudentEligible],
+    ["総合型選抜（AO入試）", "comprehensive", "15名", true],
+  );
+  assert.match(ao.eligibility, /2026年4月1日現在25歳以下.*2027年3月卒業見込み/u);
+  assert.equal(ao.exclusive, "専願");
+  assert.equal(ao.principalRecommendation, "不要");
+  assert.match(ao.gradeRequirement, /評定の数値基準なし.*調査書等を評価/u);
+  assert.match(
+    ao.restrictions.join(" "),
+    /本人を熟知する者.*近親者・教員等を問わず.*推薦書.*卒業後5年間.*指定臨床研修/u,
+  );
+
+  assert.deepEqual(
+    [
+      graduateChild.officialName,
+      graduateChild.category,
+      graduateChild.quota,
+      graduateChild.currentStudentEligible,
+    ],
+    ["総合型選抜（卒業生子女入試）", "comprehensive", "8名", true],
+  );
+  assert.match(
+    graduateChild.eligibility,
+    /本学医学部卒業生の子女.*2026年4月1日現在25歳以下.*2027年3月卒業見込み.*2024年4月1日以前の養子縁組/u,
+  );
+  assert.equal(graduateChild.principalRecommendation, "不要");
+  assert.match(
+    graduateChild.restrictions.join(" "),
+    /推薦書.*卒業後5年間.*その後4年間.*継続勤務/u,
+  );
+
+  assert.deepEqual(
+    [
+      designatedRegion.officialName,
+      designatedRegion.category,
+      designatedRegion.quota,
+      designatedRegion.currentStudentEligible,
+    ],
+    ["総合型選抜（指定地域）", "regional", "1名", true],
+  );
+  assert.match(
+    designatedRegion.eligibility,
+    /富山県氷見市在住.*氷見市長および高校長の推薦.*2027年3月高校卒業見込み.*2026年3月卒業.*2027年4月1日現在19歳以下/u,
+  );
+  assert.equal(designatedRegion.principalRecommendation, "必要");
+  assert.match(
+    designatedRegion.restrictions.join(" "),
+    /氷見市修学資金.*地域勤務条件.*卒業後5年間.*指定臨床研修/u,
+  );
+
+  assert.deepEqual(
+    [
+      designatedSchool.officialName,
+      designatedSchool.category,
+      designatedSchool.quota,
+      designatedSchool.currentStudentEligible,
+    ],
+    ["学校推薦型選抜（指定校）", "designated", "4名", true],
+  );
+  assert.match(
+    designatedSchool.eligibility,
+    /本学指定高校.*2027年3月卒業見込み.*2026年3月卒業.*2027年4月1日現在19歳以下.*高校長/u,
+  );
+  assert.equal(designatedSchool.principalRecommendation, "必要");
+
+  const publishedRoutes = [ao, graduateChild, designatedRegion, designatedSchool];
+  for (const route of publishedRoutes) {
+    assert.equal(route.publicationStatus, "outline");
+    assert.equal(route.exclusive, "専願");
+    assert.equal(route.events.length, 8);
+    assert.deepEqual(route.events[0], {
+      stage: "application-start",
+      date: "2026-11-09",
+      label: "Web出願開始",
+      time: "9:00",
+    });
+    assert.deepEqual(route.events[1], {
+      stage: "application-deadline",
+      date: "2026-11-14",
+      label: "Web出願締切",
+      time: "15:00",
+    });
+    assert.deepEqual(route.events[2], {
+      stage: "application-deadline",
+      date: "2026-11-14",
+      label: "出願書類提出締切",
+      deadlineRule: "消印有効",
+    });
+    assert.deepEqual(route.events[3], {
+      stage: "first-exam",
+      date: "2026-11-21",
+      label: "第1次選抜（基礎学力テスト・自己推薦書）",
+      time: "9:30～12:40",
+      sequence: 1,
+    });
+    assert.deepEqual(route.events[4], {
+      stage: "first-result",
+      date: "2026-11-26",
+      label: "第1次選抜合格発表",
+      time: "17:30",
+    });
+    assert.deepEqual(route.events[5], {
+      stage: "second-exam",
+      date: "2026-12-06",
+      label: "第2次選抜（個人面接・約15分）",
+      sequence: 2,
+    });
+    assert.deepEqual(route.events[6], {
+      stage: "final-result",
+      date: "2026-12-10",
+      label: "最終合格発表",
+      time: "17:30",
+    });
+    assert.deepEqual(route.events[7], {
+      stage: "procedure-deadline",
+      date: "2026-12-17",
+      label: "入学手続締切",
+      time: "15:00",
+    });
+    assert.match(route.note ?? "", /第1次選抜.*第2次選抜.*個人面接.*共通テストは使用しません/u);
+    assert.ok(route.sourceUrls.includes(kanazawa.officialUrl));
+    assert.ok(route.sourceUrls.some((url) => url.endsWith("/news/001268.html")));
+    assert.ok(route.sourceUrls.some((url) => url.endsWith("/summary/post-5.html")));
+  }
+
+  for (const route of [researchDoctor, niigataRegional]) {
+    assert.equal(route.publicationStatus, "unpublished");
+    assert.equal(route.currentStudentEligible, "unconfirmed");
+    assert.equal(route.quota, null);
+    assert.equal(route.exclusive, "未公表");
+    assert.equal(route.principalRecommendation, "未公表");
+    assert.deepEqual(route.events, []);
+    assert.match(route.eligibility, /2027年度.*認可申請中.*募集人員・出願資格は未公表/u);
+    assert.match(route.note ?? "", /2026年度.*転用していません/u);
+    assert.doesNotMatch(`${route.eligibility} ${route.restrictions.join(" ")}`, /1名|2名|2026年3月/u);
+  }
+
+  assert.equal(
+    privateMedicalSpecialAdmissionsEvents2027.filter(
+      (event) => event.universityId === "kanazawa-medical",
+    ).length,
+    32,
+  );
+  assert.match(kanazawa.excludedRoutes?.join(" ") ?? "", /一般選抜（前期・後期）は対象外/u);
+  assert.equal(
+    kanazawa.routes.some((route) => /一般選抜|共通テスト利用/u.test(route.officialName)),
+    false,
+  );
+});
+
 test("北里大学は2027年度公式資料の指定校・系列校推薦と実施未定の地域枠を保持", () => {
   const kitasato = privateMedicalSpecialAdmissionsUniversities2027.find(
     (university) => university.id === "kitasato",
@@ -3196,7 +3387,7 @@ test("固定ページのslugとJSONエンドポイント契約が一致", () => 
   }
 });
 
-test("方式別一覧は01概要内で8方式・全大学・全93方式を省略せず描画する", () => {
+test("方式別一覧は01概要内で8方式・全大学・全95方式を省略せず描画する", () => {
   const pageSource = readFileSync(pageSourcePath, "utf8");
   const summarySource = sectionBetween(pageSource, "summary", "deadlines");
   const universityListTag = openingTagWithClass(
@@ -3205,7 +3396,7 @@ test("方式別一覧は01概要内で8方式・全大学・全93方式を省略
   );
 
   assert.equal(Object.keys(specialAdmissionCategoryLabels).length, 8);
-  assert.equal(privateMedicalSpecialAdmissionsRoutes2027.length, 93);
+  assert.equal(privateMedicalSpecialAdmissionsRoutes2027.length, 95);
   assert.match(summarySource, /<h2\b[^>]*id="summary-title"[^>]*>概要<\/h2>/u);
   assert.match(summarySource, /class="special-route-type-grid"/u);
   assert.match(summarySource, /categoryEntries\.map\(\(entry, index\)/u);
@@ -3317,7 +3508,7 @@ test("生成ページの01概要は6項目ナビと方式別全件データを�
     renderedRouteKeys.push(...categoryRouteKeys);
   }
 
-  assert.equal(renderedRouteKeys.length, 93);
+  assert.equal(renderedRouteKeys.length, 95);
   assertSameSet(
     new Set(renderedRouteKeys),
     new Set(
@@ -3325,7 +3516,7 @@ test("生成ページの01概要は6項目ナビと方式別全件データを�
         `${university.id}/${route.id}`,
       ),
     ),
-    "概要内に全93方式を重複・省略なく描画してください",
+    "概要内に全95方式を重複・省略なく描画してください",
   );
 
   const universityListTags = [...summaryHtml.matchAll(
