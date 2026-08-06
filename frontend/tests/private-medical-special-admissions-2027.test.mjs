@@ -2415,6 +2415,131 @@ test("愛知医科大学は2027年度完成版要項の対象4方式と一段階
   assert.match(aichi.excludedRoutes?.join(" ") ?? "", /地域特別枠B.*共通テスト利用.*対象外/u);
 });
 
+test("藤田医科大学は2027年度公式概要の対象2方式・枠別資格・二段階選抜を保持", () => {
+  const fujita = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "fujita",
+  );
+
+  assert.ok(fujita, "藤田医科大学のデータがありません");
+  assert.equal(fujita.scopeStatus, "available");
+  assert.equal(fujita.publicationStatus, "outline");
+  assert.equal(
+    fujita.officialUrl,
+    "https://www.fujita-hu.ac.jp/admission/exam-med/dubv6r0000001ec6-att/j93sdv000000ub7q.pdf",
+  );
+  assert.match(fujita.statusNote, /2027年度入試概要.*対象2方式.*完成版学生募集要項.*8月公開予定.*入学手続日.*未公表/u);
+  assert.doesNotMatch(fujita.statusNote, /愛知県地域枠|共通テスト利用入試/u);
+
+  assertSameSet(
+    new Set(fujita.routes.map((route) => route.id)),
+    new Set(["fujita-future", "returnee-ib"]),
+    "藤田医科大学の対象2方式を保持してください",
+  );
+
+  const future = fujita.routes.find((route) => route.id === "fujita-future");
+  const returneeIb = fujita.routes.find((route) => route.id === "returnee-ib");
+  assert.ok(future && returneeIb);
+
+  assert.deepEqual(
+    [
+      future.officialName,
+      future.category,
+      future.quota,
+      future.currentStudentEligible,
+      future.exclusive,
+      future.principalRecommendation,
+    ],
+    [
+      "ふじた未来入試（一般枠／独創一理枠）",
+      "comprehensive",
+      "一般枠と独創一理枠を合わせて12名（独創一理枠は最大3名）",
+      true,
+      "条件付き",
+      "不要",
+    ],
+  );
+  assert.match(future.eligibility, /日本国内.*2027年3月.*卒業見込み.*入学確約.*卒後研修/u);
+  assert.match(future.gradeRequirement, /数値評定基準の記載なし/u);
+  assert.match(
+    future.restrictions.join(" "),
+    /現役のみ.*一般枠は入学確約.*国公立大学医学科.*独創一理枠.*本学（大学・短大）卒業生の2親等以内.*辞退例外の記載なし.*専門研修プログラム/u,
+  );
+  assert.doesNotMatch(future.restrictions.join(" "), /大学等への在籍歴なし/u);
+  assert.match(
+    future.note ?? "",
+    /大学入学共通テストは利用しません.*英語・数学の200点.*小論文.*二次判定.*辞退条件が異なります/u,
+  );
+
+  assert.deepEqual(
+    [
+      returneeIb.officialName,
+      returneeIb.category,
+      returneeIb.quota,
+      returneeIb.currentStudentEligible,
+      returneeIb.exclusive,
+      returneeIb.principalRecommendation,
+    ],
+    [
+      "帰国生・国際バカロレア入試",
+      "returnee",
+      "若干名（一般入試一般枠90名に含む）",
+      "conditional",
+      "条件付き",
+      "不要",
+    ],
+  );
+  assert.match(
+    returneeIb.eligibility,
+    /日本国籍.*永住許可.*2024年4月以降.*2027年3月.*IB資格.*英語資格.*年齢/u,
+  );
+  assert.match(returneeIb.gradeRequirement, /数値評定・IB得点基準の記載なし.*TOEFL iBT.*IELTS Academic Module/u);
+  assert.match(
+    returneeIb.restrictions.join(" "),
+    /最終学年を含め2年以上.*日本人学校等を除く.*国内外を問わず.*TOEFL iBT.*IELTS Academic Module.*2006年4月2日.*2009年4月1日.*国公立大学医学科の国際バカロレア入試/u,
+  );
+  assert.match(
+    returneeIb.note ?? "",
+    /一般入試一般枠の内数.*固有の出願資格.*独立日程.*大学入学共通テストは利用しません.*英語・数学の200点.*小論文.*二次判定.*最低点・有効期限.*入学手続日.*公表待ち/u,
+  );
+
+  for (const route of fujita.routes) {
+    assert.equal(route.publicationStatus, "outline");
+    assert.deepEqual(
+      route.events.map(({ stage, date }) => ({ stage, date })),
+      [
+        { stage: "application-start", date: "2026-10-01" },
+        {
+          stage: "application-deadline",
+          date: route.id === "fujita-future" ? "2026-10-30" : "2026-10-23",
+        },
+        {
+          stage: "application-deadline",
+          date: route.id === "fujita-future" ? "2026-11-02" : "2026-10-26",
+        },
+        { stage: "first-exam", date: "2026-11-08" },
+        { stage: "first-result", date: "2026-11-13" },
+        { stage: "second-exam", date: "2026-11-22" },
+        { stage: "final-result", date: "2026-11-30" },
+      ],
+    );
+    assert.equal(route.events[2]?.deadlineRule, "必着");
+    assert.equal(route.events.some((event) => event.stage === "procedure-deadline"), false);
+    assert.ok(route.sourceUrls.every((url) => url.startsWith("https://www.fujita-hu.ac.jp/")));
+    assert.ok(route.sourceUrls.includes("https://www.fujita-hu.ac.jp/admission/admission_infoi.html"));
+  }
+
+  assert.equal(
+    privateMedicalSpecialAdmissionsEvents2027.filter(
+      (event) => event.universityId === "fujita",
+    ).length,
+    14,
+  );
+  assert.match(
+    fujita.excludedRoutes?.join(" ") ?? "",
+    /一般入試（愛知県地域枠を含む）.*共通テスト利用入試.*対象外/u,
+  );
+});
+
 test("北里大学は2027年度公式資料の指定校・系列校推薦と実施未定の地域枠を保持", () => {
   const kitasato = privateMedicalSpecialAdmissionsUniversities2027.find(
     (university) => university.id === "kitasato",
