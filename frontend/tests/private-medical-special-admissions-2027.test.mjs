@@ -2857,6 +2857,170 @@ test("関西医科大学は2027年度完成版要項の対象3方式・型別資
   );
 });
 
+test("近畿大学は2027年度公式資料の一般公募・指定校推薦と未公表範囲を保持", () => {
+  const kindai = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "kindai",
+  );
+
+  assert.ok(kindai, "近畿大学のデータがありません");
+  assert.equal(kindai.scopeStatus, "available");
+  assert.equal(kindai.publicationStatus, "outline");
+  assert.equal(
+    kindai.officialUrl,
+    "https://kindai.jp/assets/pdf/exam/exam-guide-2027.pdf",
+  );
+  assert.match(
+    kindai.statusNote,
+    /一般公募.*指定校推薦.*2方式.*全学部対象.*専願制.*9月中旬公開予定/u,
+  );
+  assert.doesNotMatch(
+    kindai.statusNote,
+    /地域枠入試|一般入試・前期|一般入試・後期|共通テスト利用方式/u,
+    "対象外として確認した方式名をページ表示用の注記へ出さないでください",
+  );
+
+  assertSameSet(
+    new Set(kindai.routes.map((route) => route.id)),
+    new Set(["recommendation-public", "recommendation-designated"]),
+    "近畿大学の対象2方式を保持してください",
+  );
+
+  const publicRecommendation = kindai.routes.find(
+    (route) => route.id === "recommendation-public",
+  );
+  const designated = kindai.routes.find(
+    (route) => route.id === "recommendation-designated",
+  );
+  assert.ok(publicRecommendation && designated);
+
+  assert.deepEqual(
+    [
+      publicRecommendation.officialName,
+      publicRecommendation.category,
+      publicRecommendation.quota,
+      publicRecommendation.publicationStatus,
+      publicRecommendation.currentStudentEligible,
+      publicRecommendation.exclusive,
+      publicRecommendation.principalRecommendation,
+    ],
+    [
+      "推薦入試（一般公募）",
+      "recommendation",
+      "推薦入試計30名の内数（方式別人数は未公表）",
+      "outline",
+      true,
+      "併願可",
+      "必要",
+    ],
+  );
+  assert.match(
+    publicRecommendation.eligibility,
+    /特別支援学校高等部.*中等教育学校.*本学が出願資格を認定した学校.*2026年3月以降.*2027年3月卒業見込み.*高等学校長または中等教育学校長.*学業・人物ともに優秀/u,
+  );
+  assert.match(
+    publicRecommendation.gradeRequirement,
+    /数値基準は公表されていません.*選考に使用する教科・科目.*学習成績が優秀/u,
+  );
+  assert.match(
+    publicRecommendation.restrictions.join(" "),
+    /9月中旬.*完成版入学試験要項.*事前課題.*英語外部試験利用制度.*最大4日間受験.*対象外/u,
+  );
+  assert.deepEqual(
+    publicRecommendation.events.map(({ stage, date, deadlineRule, time }) => ({
+      stage,
+      date,
+      ...(deadlineRule === undefined ? {} : { deadlineRule }),
+      ...(time === undefined ? {} : { time }),
+    })),
+    [
+      { stage: "application-start", date: "2026-11-01" },
+      {
+        stage: "application-deadline",
+        date: "2026-11-13",
+        deadlineRule: "消印有効",
+      },
+      {
+        stage: "first-exam",
+        date: "2026-11-22",
+        time: "理科9:20～10:20・英語11:00～12:00・数学13:20～14:20",
+      },
+      { stage: "first-result", date: "2026-12-02" },
+      {
+        stage: "second-exam",
+        date: "2026-12-06",
+        time: "小論文10:30～11:10・面接約10分",
+      },
+      { stage: "final-result", date: "2026-12-16" },
+      { stage: "procedure-deadline", date: "2026-12-24" },
+    ],
+  );
+  assert.match(publicRecommendation.note, /第1次.*第2次.*調査書.*共通テストは利用しません/u);
+  assert.ok(publicRecommendation.sourceUrls.includes("https://kindai.jp/exam/system/recommend/"));
+  assert.ok(
+    publicRecommendation.sourceUrls.includes("https://kindai.jp/exam/system/recommend/subject/"),
+  );
+  assert.ok(publicRecommendation.sourceUrls.includes("https://kindai.jp/exam/capacity/"));
+  assert.ok(
+    publicRecommendation.sourceUrls.includes(
+      "https://kindai.jp/information/files/articles/260526.pdf",
+    ),
+  );
+
+  assert.deepEqual(
+    [
+      designated.officialName,
+      designated.category,
+      designated.quota,
+      designated.publicationStatus,
+      designated.currentStudentEligible,
+      designated.exclusive,
+      designated.principalRecommendation,
+    ],
+    [
+      "指定校推薦入試",
+      "designated",
+      "推薦入試計30名の内数（方式別人数は未公表）",
+      "outline",
+      "unconfirmed",
+      "専願",
+      "未公表",
+    ],
+  );
+  assert.match(designated.eligibility, /全学部.*対象校.*卒業見込み可否.*別途要項/u);
+  assert.match(designated.gradeRequirement, /別途要項.*数値基準は一般公開されていません/u);
+  assert.match(
+    designated.restrictions.join(" "),
+    /全学部対象.*専願制.*方式別募集人員.*出願資格.*日程.*選考方法.*別途要項/u,
+  );
+  assert.deepEqual(designated.events, []);
+  assert.match(
+    designated.note,
+    /2027年度.*全学部対象・専願制.*個別日程.*選考方法.*共通テスト利用の有無は未公表.*2026年度情報では補完していません/u,
+  );
+  assert.ok(designated.sourceUrls.includes("https://kindai.jp/exam/system/other/"));
+  assert.ok(designated.sourceUrls.includes("https://kindai.jp/exam/capacity/"));
+
+  for (const route of kindai.routes) {
+    assert.ok(
+      route.sourceUrls.every(
+        (url) => url.startsWith("https://kindai.jp/") || url.startsWith("https://www.kindai.ac.jp/"),
+      ),
+    );
+    assert.doesNotMatch(
+      `${route.id} ${route.officialName}`,
+      /地域枠|一般入試|共通テスト利用/u,
+      "実質一般選抜・通常の共通テスト利用選抜を掲載しないでください",
+    );
+  }
+
+  assert.equal(
+    privateMedicalSpecialAdmissionsEvents2027.filter(
+      (event) => event.universityId === "kindai",
+    ).length,
+    7,
+  );
+});
+
 test("北里大学は2027年度公式資料の指定校・系列校推薦と実施未定の地域枠を保持", () => {
   const kitasato = privateMedicalSpecialAdmissionsUniversities2027.find(
     (university) => university.id === "kitasato",
@@ -3967,7 +4131,7 @@ test("固定ページのslugとJSONエンドポイント契約が一致", () => 
   }
 });
 
-test("方式別一覧は01概要内で8方式・全大学・全95方式を省略せず描画する", () => {
+test("方式別一覧は01概要内で8方式・全大学・全96方式を省略せず描画する", () => {
   const pageSource = readFileSync(pageSourcePath, "utf8");
   const summarySource = sectionBetween(pageSource, "summary", "deadlines");
   const universityListTag = openingTagWithClass(
@@ -3976,7 +4140,7 @@ test("方式別一覧は01概要内で8方式・全大学・全95方式を省略
   );
 
   assert.equal(Object.keys(specialAdmissionCategoryLabels).length, 8);
-  assert.equal(privateMedicalSpecialAdmissionsRoutes2027.length, 95);
+  assert.equal(privateMedicalSpecialAdmissionsRoutes2027.length, 96);
   assert.match(summarySource, /<h2\b[^>]*id="summary-title"[^>]*>概要<\/h2>/u);
   assert.match(summarySource, /class="special-route-type-grid"/u);
   assert.match(summarySource, /categoryEntries\.map\(\(entry, index\)/u);
@@ -4088,7 +4252,7 @@ test("生成ページの01概要は6項目ナビと方式別全件データを�
     renderedRouteKeys.push(...categoryRouteKeys);
   }
 
-  assert.equal(renderedRouteKeys.length, 95);
+  assert.equal(renderedRouteKeys.length, 96);
   assertSameSet(
     new Set(renderedRouteKeys),
     new Set(

@@ -2744,31 +2744,79 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
     strategyPath: "/kinnki-university-entrance-exam-measures2027/",
     scopeStatus: "available",
     publicationStatus: "outline",
-    statusNote: "2027年度入試ガイドの予定値を掲載。完成版要項は9月公表予定です。",
+    statusNote:
+      "2027年度公式資料で一般公募と指定校推薦の2方式を確認。指定校推薦は全学部対象の専願制ですが、医学部の方式別募集人員・出願資格・日程は別途要項で案内されます。完成版入学試験要項は9月中旬公開予定です。",
     officialUrl: "https://kindai.jp/assets/pdf/exam/exam-guide-2027.pdf",
-    routes: [route({
-      id: "recommendation-public",
-      officialName: "推薦入試（一般公募）",
-      category: "recommendation",
-      quota: "30名予定",
-      publicationStatus: "outline",
-      currentStudentEligible: true,
-      eligibility: "2026年3月以降卒業、または2027年3月卒業見込みで、出身学校長の推薦を受ける者",
-      exclusive: "併願可",
-      principalRecommendation: "必要",
-      gradeRequirement: "完成版要項で確認",
-      restrictions: ["2027年度ガイドの予定情報"],
-      events: [
-        event("application-start", "2026-11-01", "出願開始"),
-        event("application-deadline", "2026-11-13", "出願締切", { deadlineRule: "消印有効" }),
-        event("first-exam", "2026-11-22", "第一次試験"),
-        event("first-result", "2026-12-02", "第一次試験合格発表"),
-        event("second-exam", "2026-12-06", "第二次試験"),
-        event("final-result", "2026-12-16", "最終合格発表"),
-        event("procedure-deadline", "2026-12-24", "入学手続締切"),
-      ],
-      sourceUrls: ["https://kindai.jp/assets/pdf/exam/exam-guide-2027.pdf"],
-    })],
+    routes: [
+      route({
+        id: "recommendation-public",
+        officialName: "推薦入試（一般公募）",
+        category: "recommendation",
+        quota: "推薦入試計30名の内数（方式別人数は未公表）",
+        publicationStatus: "outline",
+        currentStudentEligible: true,
+        eligibility:
+          "高等学校（特別支援学校高等部を含む）・中等教育学校、または本学が出願資格を認定した学校を2026年3月以降に卒業した者・2027年3月卒業見込みの者で、高等学校長または中等教育学校長が学業・人物ともに優秀として推薦する者",
+        exclusive: "併願可",
+        principalRecommendation: "必要",
+        gradeRequirement:
+          "数値基準は公表されていません。医学部が選考に使用する教科・科目の学習成績が優秀であることが望ましいとされています。",
+        restrictions: [
+          "本学が出願資格を認定した学校は、9月中旬公開予定の完成版入学試験要項で確認",
+          "医学部は事前課題（小論文）・英語外部試験利用制度・最大4日間受験の対象外",
+        ],
+        events: [
+          event("application-start", "2026-11-01", "出願開始"),
+          event("application-deadline", "2026-11-13", "出願締切", {
+            deadlineRule: "消印有効",
+          }),
+          event("first-exam", "2026-11-22", "第1次試験（理科・英語・数学）", {
+            time: "理科9:20～10:20・英語11:00～12:00・数学13:20～14:20",
+          }),
+          event("first-result", "2026-12-02", "第1次試験合格発表"),
+          event("second-exam", "2026-12-06", "第2次試験（小論文・個人面接）", {
+            time: "小論文10:30～11:10・面接約10分",
+          }),
+          event("final-result", "2026-12-16", "最終合格発表"),
+          event("procedure-deadline", "2026-12-24", "入学手続締切"),
+        ],
+        sourceUrls: [
+          "https://kindai.jp/assets/pdf/exam/exam-guide-2027.pdf",
+          "https://kindai.jp/exam/system/recommend/",
+          "https://kindai.jp/exam/system/recommend/subject/",
+          "https://kindai.jp/exam/capacity/",
+          "https://kindai.jp/information/files/articles/260526.pdf",
+        ],
+        note:
+          "第1次試験合格者に第2次試験を実施し、第1次・第2次試験の成績と調査書等を総合判定します。大学入学共通テストは利用しません。",
+      }),
+      route({
+        id: "recommendation-designated",
+        officialName: "指定校推薦入試",
+        category: "designated",
+        quota: "推薦入試計30名の内数（方式別人数は未公表）",
+        publicationStatus: "outline",
+        currentStudentEligible: "unconfirmed",
+        eligibility:
+          "全学部を対象とする指定校推薦入試です。医学部の対象校、卒業見込み可否などの出願資格は、指定校向けの別途要項で案内されます。",
+        exclusive: "専願",
+        principalRecommendation: "未公表",
+        gradeRequirement: "指定校向けの別途要項で案内（数値基準は一般公開されていません）",
+        restrictions: [
+          "全学部対象",
+          "専願制",
+          "方式別募集人員・出願資格・日程・選考方法は別途要項で案内",
+        ],
+        events: [],
+        sourceUrls: [
+          "https://kindai.jp/assets/pdf/exam/exam-guide-2027.pdf",
+          "https://kindai.jp/exam/system/other/",
+          "https://kindai.jp/exam/capacity/",
+        ],
+        note:
+          "2027年度の実施と全学部対象・専願制までは公表済みです。個別日程、選考方法、大学入学共通テスト利用の有無は未公表のため、2026年度情報では補完していません。",
+      }),
+    ],
   }),
   university({
     id: "hyogo-medical",
