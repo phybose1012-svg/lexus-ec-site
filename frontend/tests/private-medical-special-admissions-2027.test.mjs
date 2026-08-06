@@ -2540,6 +2540,187 @@ test("藤田医科大学は2027年度公式概要の対象2方式・枠別資格
   );
 });
 
+test("大阪医科薬科大学は2027年度公式概要の対象4方式・英語資格・一段階推薦選考を保持", () => {
+  const ompu = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "osaka-med-pharm",
+  );
+
+  assert.ok(ompu, "大阪医科薬科大学のデータがありません");
+  assert.equal(ompu.scopeStatus, "available");
+  assert.equal(ompu.publicationStatus, "outline");
+  assert.equal(
+    ompu.officialUrl,
+    "https://www.ompu.ac.jp/admission/undergraduate/qt931k000000801q-att/afif3u000000fsvj.pdf",
+  );
+  assert.match(
+    ompu.statusNote,
+    /2027年度入試概要・変更予告.*対象4方式.*完成版入試要項は未公表.*学習成績・指定校・推薦者.*断定していません/u,
+  );
+  assert.doesNotMatch(
+    ompu.statusNote,
+    /一般選抜（前期|大阪府地域枠|後期）|大学入学共通テスト利用選抜/u,
+    "対象外として確認した方式名をページ表示用の注記へ出さないでください",
+  );
+
+  assertSameSet(
+    new Set(ompu.routes.map((route) => route.id)),
+    new Set([
+      "shisei-jinjutsu",
+      "recommendation-public",
+      "recommendation-designated",
+      "recommendation-regional-designated",
+    ]),
+    "大阪医科薬科大学の対象4方式を保持してください",
+  );
+
+  const shisei = ompu.routes.find((route) => route.id === "shisei-jinjutsu");
+  const publicRecommendation = ompu.routes.find(
+    (route) => route.id === "recommendation-public",
+  );
+  const designated = ompu.routes.find(
+    (route) => route.id === "recommendation-designated",
+  );
+  const regionalDesignated = ompu.routes.find(
+    (route) => route.id === "recommendation-regional-designated",
+  );
+  assert.ok(shisei && publicRecommendation && designated && regionalDesignated);
+
+  assert.deepEqual(
+    [
+      shisei.officialName,
+      shisei.category,
+      shisei.quota,
+      shisei.currentStudentEligible,
+      shisei.exclusive,
+      shisei.principalRecommendation,
+    ],
+    [
+      "総合型選抜「至誠仁術」入試（併願制）",
+      "comprehensive",
+      "5名",
+      true,
+      "併願可",
+      "未公表",
+    ],
+  );
+  assert.match(shisei.eligibility, /2027年3月卒業見込み.*卒業後1年以内.*指定共通テスト科目/u);
+  assert.match(shisei.gradeRequirement, /数値基準.*2027年度概要で未公表/u);
+  assert.match(
+    shisei.restrictions.join(" "),
+    /卒業後1年以内.*共通テストを第一次選考に利用.*活動報告書.*志願者評価書2通/u,
+  );
+  assert.match(
+    shisei.note ?? "",
+    /共通テスト.*国語100点.*数学200点.*理科200点.*英語200点.*第一次選考.*第二次選考.*小論文・面接.*独立した総合型選抜.*通常の共通テスト利用選抜とは異なります/u,
+  );
+  assert.deepEqual(
+    shisei.events.map(({ stage, date, deadlineRule }) => ({
+      stage,
+      date,
+      ...(deadlineRule === undefined ? {} : { deadlineRule }),
+    })),
+    [
+      { stage: "application-start", date: "2026-12-09" },
+      { stage: "application-deadline", date: "2027-01-15", deadlineRule: "消印有効" },
+      { stage: "first-exam", date: "2027-01-16" },
+      { stage: "first-exam", date: "2027-01-17" },
+      { stage: "first-result", date: "2027-02-17" },
+      { stage: "second-exam", date: "2027-03-14" },
+      { stage: "final-result", date: "2027-03-16" },
+      { stage: "procedure-deadline", date: "2027-03-23" },
+    ],
+  );
+  assert.deepEqual(
+    shisei.events
+      .filter((event) => event.stage === "first-exam")
+      .map(({ sequence, choiceRule }) => ({ sequence, choiceRule })),
+    [
+      { sequence: 1, choiceRule: "2日間とも受験" },
+      { sequence: 2, choiceRule: "2日間とも受験" },
+    ],
+  );
+
+  const recommendationRoutes = [publicRecommendation, designated, regionalDesignated];
+  assert.deepEqual(
+    recommendationRoutes.map((route) => route.currentStudentEligible),
+    [true, "unconfirmed", "unconfirmed"],
+  );
+  assert.equal(publicRecommendation.eligibility.includes("既卒者は出願不可"), true);
+  assert.match(designated.eligibility, /本学指定の高校.*卒業見込み時期・既卒可否.*未公表/u);
+  assert.match(regionalDesignated.eligibility, /医師少数県.*本学指定の高校.*対象県.*未公表/u);
+  assert.doesNotMatch(designated.eligibility, /2027年3月卒業見込み|現役生/u);
+  assert.doesNotMatch(regionalDesignated.eligibility, /2027年3月卒業見込み|現役生/u);
+
+  for (const route of recommendationRoutes) {
+    assert.equal(route.publicationStatus, "outline");
+    assert.equal(route.exclusive, "専願");
+    assert.equal(route.principalRecommendation, "未公表");
+    assert.match(route.gradeRequirement, /学習成績の数値基準.*未公表.*2026年11月1日時点.*所定スコア/u);
+    assert.match(
+      route.restrictions.join(" "),
+      /受験後2年以内.*TOEFL iBT 3以上.*42以上.*IELTS Academic 4.0以上.*英検CSE 1980以上.*TEAP 4技能225以上.*GTEC CBT 930以上.*ケンブリッジ英語検定140以上.*MyBest.*Home Edition.*志望理由書.*入学前教育/u,
+    );
+    assert.match(route.note ?? "", /数学100点.*理科2科目150点.*小論文・面接.*一段階選考.*共通テストは利用しません/u);
+    assert.deepEqual(
+      route.events.map(({ stage, date, label, deadlineRule }) => ({
+        stage,
+        date,
+        label,
+        ...(deadlineRule === undefined ? {} : { deadlineRule }),
+      })),
+      [
+        { stage: "application-start", date: "2026-11-01", label: "出願開始" },
+        {
+          stage: "application-deadline",
+          date: "2026-11-07",
+          label: "出願締切",
+          deadlineRule: "消印有効",
+        },
+        {
+          stage: "first-exam",
+          date: "2026-11-21",
+          label: "試験（数学・理科・小論文・面接）",
+        },
+        { stage: "final-result", date: "2026-12-01", label: "合格発表" },
+        { stage: "procedure-deadline", date: "2026-12-11", label: "入学手続締切" },
+      ],
+    );
+    assert.equal(route.events.some((event) => event.stage === "first-result"), false);
+    assert.equal(route.events.some((event) => event.stage === "second-exam"), false);
+    assert.equal(route.sourceUrls[0], ompu.officialUrl);
+    assert.ok(route.sourceUrls.includes("https://www.ompu.ac.jp/admission/undergraduate/qt931k000000801q-att/hphm900000000alu.pdf"));
+    assert.ok(route.sourceUrls.includes("https://www.ompu.ac.jp/admission/undergraduate/medical.html"));
+    assert.ok(route.sourceUrls.includes("https://www.ompu.ac.jp/admission/undergraduate/medical/index.html"));
+  }
+
+  const recommendationExamEntry = buildExamDisplayEntries(
+    privateMedicalSpecialAdmissionsEvents2027.filter(
+      (event) => event.universityId === "osaka-med-pharm",
+    ),
+  ).find((entry) => entry.date === "2026-11-21");
+  assert.ok(recommendationExamEntry);
+  assert.equal(recommendationExamEntry.displayColumn, "single-exam");
+  assertSameSet(
+    recommendationExamEntry.routeNames,
+    recommendationRoutes.map((route) => route.officialName),
+    "同日の推薦3方式を大学単位にまとめ、一段階試験列へ表示してください",
+  );
+
+  for (const route of ompu.routes) {
+    assert.ok(route.sourceUrls.every((url) => url.startsWith("https://www.ompu.ac.jp/")));
+  }
+  assert.equal(
+    privateMedicalSpecialAdmissionsEvents2027.filter(
+      (event) => event.universityId === "osaka-med-pharm",
+    ).length,
+    23,
+  );
+  assert.match(
+    ompu.excludedRoutes?.join(" ") ?? "",
+    /一般選抜（前期・大阪府地域枠・後期）.*大学入学共通テスト利用選抜.*対象外/u,
+  );
+});
+
 test("北里大学は2027年度公式資料の指定校・系列校推薦と実施未定の地域枠を保持", () => {
   const kitasato = privateMedicalSpecialAdmissionsUniversities2027.find(
     (university) => university.id === "kitasato",
