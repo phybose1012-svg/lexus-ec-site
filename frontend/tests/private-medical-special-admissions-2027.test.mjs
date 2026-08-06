@@ -1956,6 +1956,136 @@ test("日本医科大学は2027年度完成版要項を確認し実質一般・�
   );
 });
 
+test("東海大学は2027年度完成版要項の希望の星育成1方式と三段階選考を保持", () => {
+  const tokai = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "tokai",
+  );
+
+  assert.ok(tokai, "東海大学のデータがありません");
+  assert.equal(tokai.scopeStatus, "available");
+  assert.equal(tokai.publicationStatus, "complete");
+  assert.equal(tokai.officialUrl, "https://www.med.u-tokai.ac.jp/faculty/medicine/exam/");
+  assert.match(
+    tokai.statusNote,
+    /2027年度完成版要項.*書類審査.*大学独自の第二次選考.*大学入学共通テスト.*総合型選抜1方式/u,
+  );
+  assert.doesNotMatch(
+    tokai.statusNote,
+    /一般選抜|地域枠|展学のすすめ|プレトク/u,
+    "対象外として確認した方式名をページ表示用の注記へ出さないでください",
+  );
+  assert.equal(tokai.routes.length, 1);
+
+  const hopeStar = tokai.routes[0];
+  assert.deepEqual(
+    [
+      hopeStar.id,
+      hopeStar.officialName,
+      hopeStar.category,
+      hopeStar.quota,
+      hopeStar.publicationStatus,
+      hopeStar.currentStudentEligible,
+    ],
+    [
+      "star-development",
+      "総合型選抜 医学部医学科（希望の星育成）",
+      "comprehensive",
+      "10名",
+      "complete",
+      true,
+    ],
+  );
+  assert.match(
+    hopeStar.eligibility,
+    /高校・中等教育学校.*2027年3月卒業見込み.*特別支援学校高等部・高等専門学校第3学年.*外国の12年課程・在外教育施設・文部科学大臣指定.*2026年4月1日～2027年3月31日.*令和9年度大学入学共通テスト/u,
+  );
+  assert.equal(hopeStar.exclusive, "併願可");
+  assert.equal(hopeStar.principalRecommendation, "不要");
+  assert.equal(hopeStar.gradeRequirement, "評定要件なし（調査書は書類審査資料）");
+  assert.match(
+    hopeStar.restrictions.join(" "),
+    /国内の高校.*2027年3月卒業見込み.*外国12年課程.*2026年4月1日～2027年3月31日.*英語（リスニングを含む）.*数学I A.*数学II B C.*物理／化学／生物から2科目.*活動報告書.*特になし.*他大学との併願可/u,
+  );
+
+  assert.deepEqual(hopeStar.events, [
+    { stage: "application-start", date: "2026-09-01", label: "第一次選考出願開始" },
+    {
+      stage: "application-deadline",
+      date: "2026-09-14",
+      label: "第一次選考出願締切",
+      deadlineRule: "必着",
+    },
+    { stage: "first-result", date: "2026-10-05", label: "第一次選考結果発表", time: "9:30" },
+    {
+      stage: "application-start",
+      date: "2026-10-05",
+      label: "第二次選考出願開始",
+      choiceRule: "第一次選考合格者のみ",
+    },
+    {
+      stage: "application-deadline",
+      date: "2026-10-12",
+      label: "第二次選考出願締切",
+      time: "23:59",
+    },
+    {
+      stage: "second-exam",
+      date: "2026-10-24",
+      label: "第二次選考（小論文・オブザベーション評価・個人面接）",
+      time: "9:00開始",
+    },
+    { stage: "final-result", date: "2026-10-30", label: "第二次選考合格発表", time: "9:30" },
+    {
+      stage: "application-start",
+      date: "2026-12-11",
+      label: "最終選考出願開始",
+      choiceRule: "第二次選考合格者のみ",
+    },
+    {
+      stage: "application-deadline",
+      date: "2026-12-18",
+      label: "最終選考出願締切",
+      deadlineRule: "必着",
+    },
+    {
+      stage: "first-exam",
+      date: "2027-01-16",
+      label: "大学入学共通テスト①",
+      sequence: 1,
+      choiceRule: "最終選考として2日間とも受験",
+    },
+    {
+      stage: "first-exam",
+      date: "2027-01-17",
+      label: "大学入学共通テスト②",
+      sequence: 2,
+      choiceRule: "最終選考として2日間とも受験",
+    },
+    { stage: "final-result", date: "2027-02-07", label: "最終合格発表", time: "9:30" },
+    {
+      stage: "procedure-deadline",
+      date: "2027-02-13",
+      label: "Web入学手続締切",
+      time: "17:00",
+      deadlineRule: "Web登録",
+    },
+  ]);
+  assert.match(
+    hopeStar.note ?? "",
+    /第一次選考.*書類審査.*第二次選考.*小論文.*オブザベーション評価.*個人面接.*最終選考.*共通テスト科目600点.*本学独自試験はありません.*2月7日.*2月13日17:00/u,
+  );
+  assert.deepEqual(hopeStar.sourceUrls, [
+    "https://www.u-tokai.ac.jp/uploads/2026/07/65834d7e0d45140addd0835093f90a58.pdf",
+    "https://www.med.u-tokai.ac.jp/faculty/medicine/exam/",
+    "https://www.u-tokai.ac.jp/examination-admissions/exam/",
+    "https://www.med.u-tokai.ac.jp/news/",
+  ]);
+  assert.match(
+    tokai.excludedRoutes?.join(" ") ?? "",
+    /一般選抜.*神奈川県地域枠選抜・静岡県地域枠選抜.*大学入学共通テスト利用型.*展学のすすめ.*大学2年以上・62単位.*プレトク.*医学部医学科を募集対象としていない/u,
+  );
+});
+
 test("北里大学は2027年度公式資料の指定校・系列校推薦と実施未定の地域枠を保持", () => {
   const kitasato = privateMedicalSpecialAdmissionsUniversities2027.find(
     (university) => university.id === "kitasato",
@@ -2461,6 +2591,7 @@ test("締切表示は可変detailと動的な集中日を扱える", () => {
     tokaiEntries.map((entry) => [entry.date, entry.details[0]?.label]),
     [
       ["2026-09-14", "第一次選考出願締切"],
+      ["2026-10-12", "第二次選考出願締切"],
       ["2026-12-18", "最終選考出願締切"],
     ],
     "独立した複数選考フェーズの締切を一つに潰しています",
@@ -2663,6 +2794,7 @@ test("生成ページの締切・試験日表示は集約後も全方式と選�
     "Web出願締切",
     "出願書類締切",
     "第一次選考出願締切",
+    "第二次選考出願締切",
     "最終選考出願締切",
     "出願資格事前審査締切",
   ]) {
