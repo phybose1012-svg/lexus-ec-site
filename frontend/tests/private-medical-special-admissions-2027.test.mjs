@@ -2277,6 +2277,144 @@ test("金沢医科大学は2027年度公式概要の確定4方式と認可申請
   );
 });
 
+test("愛知医科大学は2027年度完成版要項の対象4方式と一段階選抜を保持", () => {
+  const aichi = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "aichi-medical",
+  );
+
+  assert.ok(aichi, "愛知医科大学のデータがありません");
+  assert.equal(aichi.scopeStatus, "available");
+  assert.equal(aichi.publicationStatus, "complete");
+  assert.equal(
+    aichi.officialUrl,
+    "https://www.aichi-med-u.ac.jp/files/igaku/2027nenndogakuseibosyuuyoukou_0731.pdf",
+  );
+  assert.match(aichi.statusNote, /2027年度本冊・別冊.*4方式.*確認済み/u);
+  assert.doesNotMatch(aichi.statusNote, /地域特別枠B|共通テスト利用/u);
+
+  assertSameSet(
+    new Set(aichi.routes.map((route) => route.id)),
+    new Set(["recommendation-public", "ib", "aichi-regional-a", "foreign-roots"]),
+    "愛知医科大学の対象4方式を保持してください",
+  );
+
+  const publicRecommendation = aichi.routes.find(
+    (route) => route.id === "recommendation-public",
+  );
+  const ib = aichi.routes.find((route) => route.id === "ib");
+  const regionalA = aichi.routes.find((route) => route.id === "aichi-regional-a");
+  const foreignRoots = aichi.routes.find((route) => route.id === "foreign-roots");
+  assert.ok(publicRecommendation && ib && regionalA && foreignRoots);
+
+  assert.deepEqual(
+    [
+      publicRecommendation.officialName,
+      publicRecommendation.category,
+      publicRecommendation.quota,
+      publicRecommendation.exclusive,
+      publicRecommendation.principalRecommendation,
+    ],
+    [
+      "学校推薦型選抜（公募制）",
+      "recommendation",
+      "約20名（IB若干名を内数に含む）",
+      "専願",
+      "必要",
+    ],
+  );
+  assert.match(
+    publicRecommendation.eligibility,
+    /2026年3月.*2027年3月卒業見込み.*学校長推薦.*評定.*指定科目/u,
+  );
+  assert.match(publicRecommendation.gradeRequirement, /全体・数学・理科・外国語各3\.7以上/u);
+  assert.match(publicRecommendation.restrictions.join(" "), /指定科目.*地域特別枠A方式と併願不可/u);
+
+  assert.deepEqual(
+    [ib.officialName, ib.category, ib.quota, ib.exclusive, ib.principalRecommendation],
+    ["国際バカロレア選抜", "ib", "若干名（公募制の内数）", "未公表", "不要"],
+  );
+  assert.match(ib.eligibility, /2025年4月.*2027年3月.*18歳.*科目・成績要件/u);
+  assert.match(ib.gradeRequirement, /言語A（日本語）4以上.*1科目以上HL.*全科目5以上/u);
+  assert.match(ib.restrictions.join(" "), /英語外部試験.*IELTS.*TOEIC.*TOEFL iBT/u);
+  assert.ok(
+    ib.events.some(
+      (event) =>
+        event.stage === "application-deadline" &&
+        event.date === "2027-02-19" &&
+        /IB取得見込み合格者.*最終試験成績証明書/u.test(event.label),
+    ),
+    "IB取得見込み合格者の最終試験成績証明書期限がありません",
+  );
+  assert.match(ib.note ?? "", /日本語小論文.*個人面接.*共通テストは利用しません.*専願・併願の記載がありません/u);
+
+  assert.deepEqual(
+    [regionalA.officialName, regionalA.category, regionalA.quota, regionalA.exclusive],
+    [
+      "学校推薦型選抜（愛知県地域特別枠A方式）",
+      "regional",
+      "約5名（臨時定員増の認可申請予定）",
+      "専願",
+    ],
+  );
+  assert.match(
+    regionalA.eligibility,
+    /2026年3月.*2027年3月卒業見込み.*愛知県内校出身.*本人・保護者が県内居住.*学校長推薦/u,
+  );
+  assert.match(
+    regionalA.restrictions.join(" "),
+    /修学資金.*本学5年.*愛知県指定医療機関等5年.*公募制と併願不可.*認可申請予定/u,
+  );
+  assert.match(regionalA.note ?? "", /一段階選抜.*共通テストは利用しません.*12月11日.*12月22日/u);
+
+  assert.deepEqual(
+    [foreignRoots.officialName, foreignRoots.category, foreignRoots.quota, foreignRoots.exclusive],
+    [
+      "外国にルーツを持つ生徒特別選抜",
+      "international",
+      "若干名（一般選抜募集人員の内数）",
+      "条件付き",
+    ],
+  );
+  assert.match(foreignRoots.eligibility, /卒業または卒業見込み.*国籍.*在留資格.*科学オリンピック.*日本語能力/u);
+  assert.match(foreignRoots.gradeRequirement, /数値評定基準なし.*科学オリンピック/u);
+  assert.match(
+    foreignRoots.restrictions.join(" "),
+    /国籍取得6年以内.*在留期間が通算9年以内.*留学・短期滞在を除く.*日本語能力試験N2以上.*未取得者も受験可.*公募制.*地域特別枠A方式と併願不可/u,
+  );
+
+  for (const route of aichi.routes) {
+    assert.equal(route.publicationStatus, "complete");
+    assert.equal(route.events.some((event) => event.stage === "second-exam"), false);
+    assert.ok(
+      route.events.some(
+        (event) =>
+          event.stage === "first-exam" &&
+          event.date === "2026-11-28" &&
+          event.time === "8:30～8:45受付",
+      ),
+      `${route.officialName}の一段階試験日がありません`,
+    );
+    assert.ok(
+      route.events.some(
+        (event) =>
+          event.stage === "final-result" &&
+          event.date === "2026-12-10" &&
+          event.time === "18:00頃",
+      ),
+      `${route.officialName}の合格発表がありません`,
+    );
+    assert.ok(route.sourceUrls.every((url) => url.startsWith("https://www.aichi-med-u.ac.jp/")));
+  }
+
+  assert.equal(
+    privateMedicalSpecialAdmissionsEvents2027.filter(
+      (event) => event.universityId === "aichi-medical",
+    ).length,
+    25,
+  );
+  assert.match(aichi.excludedRoutes?.join(" ") ?? "", /地域特別枠B.*共通テスト利用.*対象外/u);
+});
+
 test("北里大学は2027年度公式資料の指定校・系列校推薦と実施未定の地域枠を保持", () => {
   const kitasato = privateMedicalSpecialAdmissionsUniversities2027.find(
     (university) => university.id === "kitasato",

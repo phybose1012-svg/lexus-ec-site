@@ -2339,13 +2339,13 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
     strategyPath: "/aichi-medical-university-entrance-exam2027-measures/",
     scopeStatus: "available",
     publicationStatus: "complete",
-    statusNote: "2027年度本冊と別冊で4方式を確認。地域特別枠Bは通常の共通テスト利用選抜のため除外しています。",
+    statusNote: "2027年度本冊・別冊で4方式の詳細を確認済みです。",
     officialUrl: "https://www.aichi-med-u.ac.jp/files/igaku/2027nenndogakuseibosyuuyoukou_0731.pdf",
     routes: [
       ...[
-      ["recommendation-public", "学校推薦型選抜（公募制）", "recommendation", "約20名（IBを内数に含む）", "2026年3月卒業または2027年3月卒業見込みで、学校長推薦・評定要件を満たす者"],
-      ["ib", "国際バカロレア選抜", "ib", "若干名（公募制の内数）", "2025年4月から2027年3月にIBフルディプロマ取得・取得見込みで、年齢・科目成績要件を満たす者"],
-      ["aichi-regional-a", "学校推薦型選抜（愛知県地域特別枠A）", "regional", "約5名予定", "2026年3月卒業または2027年3月卒業見込みで、愛知県・評定・地域医療要件を満たす者"],
+      ["recommendation-public", "学校推薦型選抜（公募制）", "recommendation", "約20名（IB若干名を内数に含む）", "日本国内の高校等を2026年3月に卒業または2027年3月卒業見込みで、学校長推薦・評定・指定科目の履修要件を満たす者"],
+      ["ib", "国際バカロレア選抜", "ib", "若干名（公募制の内数）", "2025年4月から2027年3月にIBフルディプロマを取得・取得見込みで、2027年3月31日までに18歳に達し、科目・成績要件を満たす者"],
+      ["aichi-regional-a", "学校推薦型選抜（愛知県地域特別枠A方式）", "regional", "約5名（臨時定員増の認可申請予定）", "日本国内の高校等を2026年3月に卒業または2027年3月卒業見込みで、愛知県内校出身または本人・保護者が県内居住し、学校長推薦・評定・地域医療要件を満たす者"],
     ].map(([id, officialName, category, quota, eligibility]) => route({
       id,
       officialName,
@@ -2354,19 +2354,63 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
       publicationStatus: "complete",
       currentStudentEligible: true,
       eligibility,
-      exclusive: "専願",
+      exclusive: category === "ib" ? "未公表" : "専願",
       principalRecommendation: category === "ib" ? "不要" : "必要",
-      gradeRequirement: category === "ib" ? "IB科目成績要件あり" : "全体・数学・理科・外国語各3.7以上",
-      restrictions: category === "regional" ? ["愛知県条件", "修学資金・地域勤務条件", "認可申請予定"] : category === "ib" ? ["IB取得時期・年齢・科目成績条件"] : [],
+      gradeRequirement: category === "ib"
+        ? "言語A（日本語）4以上、数学・理科2科目を履修し、計3科目中1科目以上HLかつ全科目5以上"
+        : "全体・数学・理科・外国語各3.7以上",
+      restrictions: category === "regional"
+        ? [
+            "愛知県内校出身または本人・保護者が県内居住",
+            "愛知県・本学の修学資金を受給",
+            "卒後に本学5年と愛知県指定医療機関等5年の勤務",
+            "公募制と併願不可",
+            "臨時定員増の認可申請予定",
+          ]
+        : category === "ib"
+          ? [
+              "IB取得時期・年齢・科目成績条件",
+              "英語外部試験（IELTS・TOEIC・TOEFL iBT）のスコア提出",
+            ]
+          : ["指定科目の履修要件", "愛知県地域特別枠A方式と併願不可"],
       events: [
         event("application-start", "2026-11-01", "Web出願開始", { time: "9:00" }),
         event("application-deadline", "2026-11-13", "Web出願締切", { time: "17:00" }),
         event("application-deadline", "2026-11-13", "出願書類締切", { deadlineRule: "消印有効" }),
-        event("first-exam", "2026-11-28", "試験日"),
+        event(
+          "first-exam",
+          "2026-11-28",
+          category === "ib"
+            ? "試験（日本語小論文・個人面接）"
+            : "試験（基礎学力試験・小論文・個人面接）",
+          { time: "8:30～8:45受付" },
+        ),
         event("final-result", "2026-12-10", "合格発表", { time: "18:00頃" }),
         event("procedure-deadline", "2026-12-22", "入学手続締切"),
+        ...(category === "ib"
+          ? [
+              event(
+                "application-deadline",
+                "2027-02-19",
+                "IB取得見込み合格者 最終試験成績証明書提出期限",
+              ),
+            ]
+          : []),
       ],
-      sourceUrls: ["https://www.aichi-med-u.ac.jp/files/igaku/2027nenndogakuseibosyuuyoukou_0731.pdf"],
+      sourceUrls: [
+        "https://www.aichi-med-u.ac.jp/files/igaku/2027nenndogakuseibosyuuyoukou_0731.pdf",
+        "https://www.aichi-med-u.ac.jp/su11/su1107/su110701/index.html",
+        category === "regional"
+          ? "https://www.aichi-med-u.ac.jp/su11/su1107/su110701/su11070101/1201061_2725.html"
+          : category === "ib"
+            ? "https://www.aichi-med-u.ac.jp/su11/su1107/su110701/su11070101/1201064_2725.html"
+            : "https://www.aichi-med-u.ac.jp/su11/su1107/su110701/su11070101/02.html",
+      ],
+      note: category === "ib"
+        ? "日本語小論文と個人面接による一段階選抜で、大学入学共通テストは利用しません。公式要項には専願・併願の記載がありません。"
+        : category === "regional"
+          ? "基礎学力試験（数学・外国語）、小論文、個人面接による一段階選抜で、大学入学共通テストは利用しません。入学手続期間は2026年12月11日から12月22日です。"
+          : "基礎学力試験（数学・外国語）、小論文、個人面接による一段階選抜で、大学入学共通テストは利用しません。",
     })),
       route({
         id: "foreign-roots",
@@ -2375,20 +2419,33 @@ export const privateMedicalSpecialAdmissionsUniversities2027: PrivateMedicalSpec
         quota: "若干名（一般選抜募集人員の内数）",
         publicationStatus: "complete",
         currentStudentEligible: "conditional",
-        eligibility: "日本の高校等を2027年3月卒業見込み可。国籍・在留歴・科学オリンピック等・日本語能力の条件をすべて満たす者",
+        eligibility: "日本の高校等を卒業または卒業見込みで、国籍・在留資格・在留期間、科学オリンピック等、日本語能力の要件をすべて満たす者",
         exclusive: "条件付き",
         principalRecommendation: "不要",
-        gradeRequirement: "科学オリンピック等の所定基準",
-        restrictions: ["非日本国籍または国籍取得6年以内", "在留通算9年以内", "N2相当（2027年度の経過措置あり）", "公募制・地域Aと併願不可"],
+        gradeRequirement: "数値評定基準なし（科学オリンピック等の所定成績基準あり）",
+        restrictions: [
+          "非日本国籍または2027年3月31日時点で日本国籍取得6年以内",
+          "小学校入学前を除く入国後在留期間が通算9年以内",
+          "日本国内在留・大学入学に支障のない在留資格（留学・短期滞在を除く）",
+          "日本語能力試験N2以上（2027年度に限り未取得者も受験可）",
+          "公募制・愛知県地域特別枠A方式と併願不可",
+        ],
         events: [
           event("application-deadline", "2026-10-09", "出願資格事前審査締切", { deadlineRule: "必着" }),
-          event("application-start", "2026-11-01", "出願開始"),
-          event("application-deadline", "2026-11-13", "出願締切", { deadlineRule: "消印有効" }),
-          event("first-exam", "2026-11-28", "試験日"),
+          event("application-start", "2026-11-01", "郵送出願開始"),
+          event("application-deadline", "2026-11-13", "出願書類締切", { deadlineRule: "消印有効" }),
+          event("first-exam", "2026-11-28", "試験（基礎学力試験・小論文・個人面接）", {
+            time: "8:30～8:45受付",
+          }),
           event("final-result", "2026-12-10", "合格発表", { time: "18:00頃" }),
-          event("procedure-deadline", "2026-12-22", "入学手続締切"),
+          event("procedure-deadline", "2026-12-22", "入学手続期間最終日"),
         ],
-        sourceUrls: ["https://www.aichi-med-u.ac.jp/files/igaku/2027igakubugakuseibosyuuyoukou.pdf"],
+        sourceUrls: [
+          "https://www.aichi-med-u.ac.jp/files/igaku/2027igakubugakuseibosyuuyoukou.pdf",
+          "https://www.aichi-med-u.ac.jp/su11/su1107/su110701/index.html",
+          "https://www.aichi-med-u.ac.jp/su11/su1101/su110101/1238055_1888.html",
+        ],
+        note: "科学オリンピック等の成績、基礎学力試験（数学・外国語）、小論文、個人面接、書類審査による一段階選抜で、大学入学共通テストは利用しません。入学手続期間は2026年12月11日から12月22日です。",
       }),
     ],
     excludedRoutes: ["愛知県地域特別枠Bは通常の大学入学共通テスト利用選抜のため対象外"],
