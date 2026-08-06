@@ -3420,6 +3420,106 @@ test("久留米大学は2027年度公式概要の現役対象3方式と一日完
   );
 });
 
+test("産業医科大学は2027年度公式実施要項の対象2方式・共通テストの位置づけ・推薦条件を保持", () => {
+  const uoeh = privateMedicalSpecialAdmissionsUniversities2027.find(
+    (university) => university.id === "uoeh",
+  );
+
+  assert.ok(uoeh, "産業医科大学のデータがありません");
+  assert.equal(uoeh.scopeStatus, "available");
+  assert.equal(uoeh.publicationStatus, "outline");
+  assert.match(uoeh.statusNote, /2027年度入学者選抜実施要項.*詳細募集要項は公表待ち/u);
+  assert.doesNotMatch(
+    uoeh.statusNote,
+    /一般選抜A方式|一般選抜B方式|一般選抜C方式/u,
+    "対象外として確認した一般選抜をページ表示用の注記へ出さないでください",
+  );
+
+  assert.deepEqual(
+    uoeh.routes.map(({ id, officialName, category, quota, publicationStatus }) => [
+      id,
+      officialName,
+      category,
+      quota,
+      publicationStatus,
+    ]),
+    [
+      ["ramazzini", "総合型選抜（ラマツィーニ選抜）", "comprehensive", "10名以内", "outline"],
+      ["school-recommendation", "学校推薦型選抜", "recommendation", "25名以内", "outline"],
+    ],
+  );
+
+  const ramazzini = uoeh.routes.find((route) => route.id === "ramazzini");
+  const recommendation = uoeh.routes.find((route) => route.id === "school-recommendation");
+  assert.ok(ramazzini && recommendation);
+
+  assert.equal(ramazzini.currentStudentEligible, true);
+  assert.equal(ramazzini.exclusive, "専願");
+  assert.equal(ramazzini.principalRecommendation, "不要");
+  assert.equal(ramazzini.gradeRequirement, "評定の数値基準なし");
+  assert.match(ramazzini.eligibility, /2027年3月卒業見込み.*2026年3月卒業.*入学を確約/u);
+  assert.match(
+    ramazzini.restrictions.join(" "),
+    /数学2科目.*理科2科目.*英語.*600点中480点以上.*4倍を超えた場合.*第1段階選抜.*2028年度入試から廃止予定/u,
+  );
+  assert.deepEqual(
+    ramazzini.events,
+    [
+      { stage: "application-start", date: "2026-10-01", label: "出願開始" },
+      { stage: "application-deadline", date: "2026-10-16", label: "出願締切", deadlineRule: "消印有効" },
+      { stage: "first-exam", date: "2026-11-21", label: "プレゼンテーション試験" },
+      { stage: "first-result", date: "2026-11-27", label: "プレゼンテーション試験合格発表" },
+      { stage: "second-exam", date: "2027-01-16", label: "大学入学共通テスト①", sequence: 1, choiceRule: "2日間とも受験" },
+      { stage: "second-exam", date: "2027-01-17", label: "大学入学共通テスト②", sequence: 2, choiceRule: "2日間とも受験" },
+      { stage: "final-result", date: "2027-02-12", label: "最終合格発表" },
+      { stage: "procedure-deadline", date: "2027-02-26", label: "入学手続期間最終日" },
+    ],
+  );
+  assert.match(
+    ramazzini.note,
+    /資料作成90分.*発表10分.*質疑応答約20分.*独立した総合型選抜.*2月25日・26日/u,
+  );
+
+  assert.equal(recommendation.currentStudentEligible, true);
+  assert.equal(recommendation.exclusive, "専願");
+  assert.equal(recommendation.principalRecommendation, "必要");
+  assert.match(recommendation.eligibility, /2027年3月卒業見込み.*2026年3月卒業.*学校長.*専願推薦.*入学を確約/u);
+  assert.match(
+    recommendation.gradeRequirement,
+    /全体.*国数理社英5教科平均.*数理英3教科平均.*4\.3以上.*2026年3月卒業者.*900点中720点以上/u,
+  );
+  assert.match(
+    recommendation.restrictions.join(" "),
+    /高校所在地.*全国3ブロック制.*全体で25名以内.*数学Ⅰ.*Ⅲ.*物理・化学・生物のうち2科目以上.*1校あたりの推薦人数に制限なし.*共通テストを免除/u,
+  );
+  assert.deepEqual(
+    recommendation.events,
+    [
+      { stage: "application-start", date: "2026-11-01", label: "出願開始" },
+      { stage: "application-deadline", date: "2026-11-07", label: "出願締切", deadlineRule: "消印有効" },
+      { stage: "first-exam", date: "2026-12-02", label: "総合問題・面接" },
+      { stage: "final-result", date: "2026-12-11", label: "合格発表" },
+      { stage: "procedure-deadline", date: "2026-12-17", label: "入学手続期間最終日" },
+    ],
+  );
+  assert.match(recommendation.note, /総合問題（120分）.*面接（1人約20分）.*12月16日・17日/u);
+
+  for (const route of uoeh.routes) {
+    assert.deepEqual(route.sourceUrls, [
+      "https://www.uoeh-u.ac.jp/library/nyusi/R9_jissiyoko.pdf",
+      `https://www.uoeh-u.ac.jp/Exam/${route.id === "ramazzini" ? "med03" : "med02"}.html`,
+      "https://www.uoeh-u.ac.jp/Exam/_8042.html",
+    ]);
+  }
+  assert.match(uoeh.excludedRoutes.join(" "), /一般選抜A方式・B方式・C方式は対象外/u);
+  assert.equal(
+    privateMedicalSpecialAdmissionsEvents2027.filter(
+      (event) => event.universityId === "uoeh",
+    ).length,
+    13,
+  );
+});
+
 test("北里大学は2027年度公式資料の指定校・系列校推薦と実施未定の地域枠を保持", () => {
   const kitasato = privateMedicalSpecialAdmissionsUniversities2027.find(
     (university) => university.id === "kitasato",
