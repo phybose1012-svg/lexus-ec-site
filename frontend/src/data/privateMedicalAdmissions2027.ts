@@ -324,7 +324,7 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application: "2026/12/7〜2027/1/21（Web締切時刻の記載なし・出願書類必着）",
         firstExam: "2/5",
-        secondExam: "2/13・14の選択日",
+        secondExam: "2/13・14から出願時に1日選択（出願後の変更不可）",
         result: "一次 2/10 12:00・最終 2/15 12:00",
         procedure:
           "入学手続・分納第1段階 2/22 12:00まで（書類必着）・分納第2段階 3/3 12:00まで",
@@ -1088,7 +1088,7 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         result:
           "一次 2/15 17:00・最終 2/24 10:00（兵庫県推薦入学制度枠の県選考結果は2027年度日程公表待ち）",
         procedure:
-          "Post@net登録と手続金納入後に書類郵送：2/24〜3/3消印有効（正規合格者は入学金を期間内に納入すれば、残額と書類を3月10日まで猶予可）",
+          "Post@net登録・手続金納入後、手続書類を郵送：2/24〜3/3消印有効（正規合格者は期間内に入学金を納入すれば、その他の手続時納付金と手続書類を3/10まで猶予可）",
         sourceUrl: "https://www.hyo-med.ac.jp/files/20260703/c737f86c1b3de8f37133c3de2c8031853ac51fff.pdf",
       }),
       officialRoute({
@@ -1098,7 +1098,7 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
           "Web・書類 2026/12/14 0:00〜2027/1/20 15:00（検定料は登録翌日23:59まで、最終日登録分は16:00まで。書類は1/20消印有効）",
         firstExam:
           "2/4（B単願は11:10開始・大阪／A・B併願は9:00開始・大阪・東京・福岡／西宮キャンパスでは実施なし）",
-        secondExam: "2/27 10:00（西宮キャンパス）",
+        secondExam: "2/27（集合時刻は一次合格発表時に案内）",
         result: "一次 2/24 10:00・最終 3/5 10:00",
         procedure:
           "Post@net登録と手続金納入後に書類郵送：3/5〜3/12消印有効",
@@ -2654,7 +2654,7 @@ const procedureDateDetail = (
   const nextStart = dates[dateIndex + 1]?.index ?? value.length;
   const localContext = value
     .slice(previousEnd, nextStart)
-    .replace(/^[〜・（(]+|[）)]+$/g, "")
+    .replace(/^[〜・]+/, "")
     .trim();
 
   if (localContext.length > 0 && localContext.length <= 30) {

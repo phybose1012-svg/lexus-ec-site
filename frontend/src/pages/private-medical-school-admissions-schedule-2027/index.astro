@@ -106,6 +106,18 @@ const createUniversityUpdate = (detail: string, date: string, dateTime: string) 
   };
 };
 const universityUpdateHistory = [
+  {
+    date: "2026年8月11日",
+    dateTime: "2026-08-11",
+    university: "兵庫医科大学",
+    summary: "一般選抜Bの二次試験時刻を訂正し、一般選抜Aの入学手続猶予条件を詳しくしました。",
+  },
+  {
+    date: "2026年8月11日",
+    dateTime: "2026-08-11",
+    university: "昭和医科大学",
+    summary: "一般選抜Ⅰ期の二次試験日を出願時に選択する条件を追記しました。",
+  },
   ...updateHistory[0].details.map((detail) =>
     createUniversityUpdate(detail, updateHistory[0].date, updateHistory[0].dateTime),
   ),
