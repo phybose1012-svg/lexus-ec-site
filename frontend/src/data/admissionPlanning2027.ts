@@ -52,7 +52,7 @@ export const admissionPlanningMetadata2027 = {
   academicYear: 2027,
   sourceFile: "frontend/src/data/privateMedicalAdmissions2027.ts",
   publicUrl: "https://lexus-ec.com/private-medical-school-admissions-schedule-2027/",
-  lastVerified: "2026-08-01",
+  lastVerified: "2026-08-11",
 } as const;
 
 const toDateKey = (year: number, month: number, day: number) =>
@@ -110,7 +110,16 @@ const stableHash = (value: string) => {
   return (hash >>> 0).toString(36);
 };
 
+const stableRouteIdOverrides = new Map<string, string>([
+  // Keep saved plans compatible after the 2027 official guideline clarified this route's formal name.
+  [
+    "aichi-medical::common::大学入学共通テスト利用選抜（愛知県地域特別枠B方式）",
+    "aichi-medical--common--1ynn7f9",
+  ],
+]);
+
 const routeId = (universityId: string, category: AdmissionRouteCategory, routeName: string) =>
+  stableRouteIdOverrides.get(`${universityId}::${category}::${routeName}`) ??
   `${universityId}--${category}--${stableHash(routeName)}`;
 
 const isPendingValue = (value: string) =>

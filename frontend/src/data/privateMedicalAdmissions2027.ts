@@ -93,9 +93,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "一般選抜",
         category: "general",
         application: "2027/1/4〜1/20 17:00必着（1/19消印有効）",
-        firstExam:
-          "1/25（学力）・1/26（学力試験及第者のみ面接／出願都道府県指定会場）",
-        secondExam: "2/3（自治医科大学）",
+        firstExam: "1/25（学力）・1/26（学力試験及第者のみ面接）",
+        secondExam: "2/3",
         result: "一次 1/29 13:00・最終 2/12 17:00",
         procedure: "2/25・3/12の両日（本人が出願都道府県庁で手続）",
         sourceUrl:
@@ -186,7 +185,7 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application: "2026/12/21〜2027/1/7（国内消印有効・海外発送必着）",
         firstExam: "1/25",
-        secondExam: "2/1〜6（希望をもとに大学が指定・試験場も指定）",
+        secondExam: "2/1〜6（希望をもとに大学が指定）",
         result: "一次 1/29 15:00・最終 2/12 15:00",
         procedure: "2/12〜2/18（消印有効）",
         sourceUrl: "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/doc/guideline_app.pdf?ver=3",
@@ -450,8 +449,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application:
           "郵送 2026/12/14〜2027/1/26必着（Webは12/14 10:00開始・締切日時は要項待ち／窓口1/25・26 9:00〜17:00）",
-        firstExam: "2/7（学科・基礎学力／五反田TOCビル）",
-        secondExam: "2/15・16のいずれか1日（指定方法未公表／大森キャンパス）",
+        firstExam: "2/7（学科・基礎学力）",
+        secondExam: "2/15・16のいずれか1日（指定方法未公表）",
         result: "一次 2/10 12:00・最終 2/18 12:00",
         procedure: "2/25（締切時刻・完了条件は要項公開待ち）",
         sourceUrl: "https://www.toho-u.ac.jp/med/info_exam/ippan.html",
@@ -461,8 +460,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application:
           "郵送 2026/12/14〜2027/2/15必着（Webは12/14 10:00開始・締切日時は要項待ち）",
-        firstExam: "2/23（学科・基礎学力／五反田TOCビル）",
-        secondExam: "3/3（面接／大森キャンパス）",
+        firstExam: "2/23（学科・基礎学力）",
+        secondExam: "3/3（面接）",
         result: "一次 2/26 12:00・最終 3/4 12:00",
         procedure: "3/10（締切時刻・完了条件は要項公開待ち）",
         sourceUrl: "https://www.toho-u.ac.jp/med/info_exam/touitsu.html",
@@ -481,8 +480,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application:
           "Web・書類 2027/1/5〜1/22（Web終了時刻未公表・書類は簡易書留で必着）",
-        firstExam: "2/1（全国20会場から希望受験地を選択・希望に添えない場合あり）",
-        secondExam: "2/11（医学部校舎）",
+        firstExam: "2/1",
+        secondExam: "2/11",
         result: "一次 2/8 16:00・最終 2/17 13:00",
         procedure: "2/24（入学手続締切）・3/11（二段階最終入学手続締切）",
         procedureDateDetails: ["入学手続締切", "二段階最終入学手続締切"],
@@ -493,8 +492,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application:
           "Web・書類 2027/1/5〜2/25（Web終了時刻未公表・書類は簡易書留で必着）",
-        firstExam: "3/4（郡山・千葉・東京・湘南）",
-        secondExam: "3/17（医学部校舎）",
+        firstExam: "3/4",
+        secondExam: "3/17",
         result: "一次 3/12 16:00・最終 3/23 13:00",
         procedure: "3/26（入学手続締切）",
         procedureDateDetails: ["入学手続締切"],
@@ -526,8 +525,7 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application:
           "Web登録 2026/12/21〜2027/1/21（登録終了時刻の記載なし・受験料は登録翌日23:59まで、締切日登録は当日23:59／書類1/21簡易書留・消印有効）",
-        firstExam:
-          "2/1（武蔵境校舎・ベルサール渋谷ファースト／定員超過時は千駄木校舎も使用）",
+        firstExam: "2/1",
         secondExam: "2/10・12の希望日（希望に沿えない場合あり）",
         result: "一次 2/8 18:00・最終 2/16 12:00",
         procedure: "入学金 2/19・初年度学費／手続書類 2/24",
@@ -542,8 +540,7 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application:
           "Web登録 2026/12/21〜2027/1/21（登録終了時刻の記載なし・受験料は登録翌日23:59まで、締切日登録は当日23:59／書類1/21簡易書留・消印有効）",
-        firstExam:
-          "2/1（東京・千葉・埼玉・静岡・新潟／武蔵境校舎・ベルサール渋谷ファースト、定員超過時は千駄木校舎も使用）",
+        firstExam: "2/1",
         secondExam:
           "2/10・12の希望日（希望に沿えない場合あり／東京都地域枠は2/10指定）",
         result: "一次 2/8 18:00・最終 2/16 12:00",
@@ -559,8 +556,7 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "common",
         application:
           "Web登録 2026/12/21〜2027/1/21（登録終了時刻の記載なし・受験料は登録翌日23:59まで、締切日登録は当日23:59／書類1/21簡易書留・消印有効）",
-        firstExam:
-          "共通テスト（国語）1/16＋個別一次 2/1（武蔵境校舎・ベルサール渋谷ファースト／定員超過時は千駄木校舎も使用）",
+        firstExam: "共通テスト（国語）1/16＋個別一次 2/1",
         secondExam: "2/10・12の希望日（希望に沿えない場合あり）",
         result: "一次 2/8 18:00・最終 2/16 12:00",
         procedure: "入学金 2/19・初年度学費／手続書類 2/24",
@@ -575,8 +571,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application:
           "Web登録 2027/2/1〜2/19（登録終了時刻の記載なし・受験料は登録翌日23:59まで、締切日登録は当日23:59／書類2/19簡易書留・消印有効）",
-        firstExam: "2/28（武蔵境校舎／定員超過時は千駄木校舎も使用）",
-        secondExam: "3/9（千駄木校舎）",
+        firstExam: "2/28",
+        secondExam: "3/9",
         result: "一次 3/6 18:00・最終 3/15 12:00",
         procedure: "入学金・初年度学費／手続書類 3/18",
         procedureDateDetails: ["入学金・初年度学費納入／手続書類提出期限"],
@@ -587,9 +583,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application:
           "Web登録 2027/2/1〜2/19（登録終了時刻の記載なし・受験料は登録翌日23:59まで、締切日登録は当日23:59／書類2/19簡易書留・消印有効）",
-        firstExam:
-          "2/28（千葉・埼玉・静岡・新潟／武蔵境校舎、定員超過時は千駄木校舎も使用）",
-        secondExam: "3/9（千駄木校舎）",
+        firstExam: "2/28",
+        secondExam: "3/9",
         result: "一次 3/6 18:00・最終 3/15 12:00",
         procedure: "入学金・初年度学費／手続書類 3/18",
         procedureDateDetails: ["入学金・初年度学費納入／手続書類提出期限"],
@@ -609,8 +604,7 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application:
           "Web・書類 2026/12/24〜2027/1/19（Web終了時刻は学生募集要項公開待ち・書類1/19消印有効／国外発送は必着）",
-        firstExam:
-          "2/2（横浜会場／定員超過時は相模原キャンパスも使用）",
+        firstExam: "2/2",
         secondExam:
           "2/13〜15の選択日（出願時に1日選択／相模原市修学資金枠は2/13・14から選択）",
         result: "一次 2/8 15:00・最終 2/17 15:00",
@@ -651,7 +645,7 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         application:
           "Web・書類 2026/12/24〜2027/1/15（Web終了時刻は学生募集要項公開待ち・書類1/15消印有効／国外発送は必着）",
         firstExam: "共通テスト 1/16・17",
-        secondExam: "3/6（相模原キャンパス）",
+        secondExam: "3/6",
         result: "一次 3/1 15:00・最終 3/10 15:00",
         procedure: "3/17（入学手続期限）",
         procedureDateDetails: ["入学手続期限"],
@@ -767,9 +761,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "一般選抜 前期",
         category: "general",
         application: "Web 2026/12/14 9:00〜2027/1/15 15:00（書類消印有効）",
-        firstExam:
-          "2/3・4（1日または両日受験可・両日受験は高得点日で判定／本学・東京・大阪・名古屋・福岡）",
-        secondExam: "2/17・18のうち希望する1日（本学）",
+        firstExam: "2/3・4（1日または両日受験可・両日受験は高得点日で判定）",
+        secondExam: "2/17・18のうち希望する1日",
         result: "一次 2/10 17:30・最終 2/22 17:30",
         procedure: "3/1 15:00まで",
         sourceUrl: "https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_examguidelines.pdf",
@@ -778,8 +771,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "一般選抜 後期",
         category: "general",
         application: "Web 2027/1/12 9:00〜2/24 15:00（書類消印有効）",
-        firstExam: "3/4（本学・東京・大阪）",
-        secondExam: "3/12（本学）",
+        firstExam: "3/4",
+        secondExam: "3/12",
         result: "一次 3/9 17:30・最終 3/16 17:30",
         procedure: "3/23 15:00まで",
         sourceUrl: "https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_examguidelines.pdf",
@@ -797,9 +790,9 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "一般選抜",
         category: "general",
         application: "Web 2026/12/14 9:00〜2027/1/22 17:00（書類1/22消印有効）",
-        firstExam: "2/9（名古屋・東京・大阪・福岡／小論文も実施）",
+        firstExam: "2/9（小論文も実施）",
         secondExam:
-          "2/18〜20のうち出願時に希望日を選択（本学／共テ利用と両方で二次資格を得た場合も面接は1回）",
+          "2/18〜20のうち出願時に希望日を選択（共テ利用と両方で二次資格を得た場合も面接は1回）",
         result: "一次 2/15 18:00ごろ・最終 2/24 11:00ごろ",
         procedure: "2/25〜3/3",
         sourceUrl: "https://www.aichi-med-u.ac.jp/files/igaku/2027nenndogakuseibosyuuyoukou_0731.pdf",
@@ -808,9 +801,9 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "共通テスト利用",
         category: "common",
         application: "Web 2026/12/14 9:00〜2027/1/15 17:00（書類1/15消印有効）",
-        firstExam: "共通テスト 1/16・17（共通テスト受験会場）",
+        firstExam: "共通テスト 1/16・17",
         secondExam:
-          "2/18〜20のうち希望日を選択（本学／一般選抜と両方で二次資格を得た場合も面接は1回）",
+          "2/18〜20のうち出願時に希望日を選択（一般選抜と両方で二次資格を得た場合も面接は1回）",
         result: "一次 2/15 18:00ごろ・最終 2/24 11:00ごろ",
         procedure: "2/25〜3/3",
         sourceUrl: "https://www.aichi-med-u.ac.jp/files/igaku/2027nenndogakuseibosyuuyoukou_0731.pdf",
@@ -819,8 +812,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "大学入学共通テスト利用選抜（愛知県地域特別枠B方式）",
         category: "common",
         application: "Web 2026/12/14 9:00〜2027/2/26 17:00（書類2/26消印有効）",
-        firstExam: "共通テスト 1/16・17（共通テスト受験会場）",
-        secondExam: "3/10（本学）",
+        firstExam: "共通テスト 1/16・17",
+        secondExam: "3/10",
         result: "一次 3/8 11:00ごろ・最終 3/18 18:00ごろ",
         procedure: "3/19〜3/24",
         sourceUrl: "https://www.aichi-med-u.ac.jp/files/igaku/2027nenndogakuseibosyuuyoukou_0731.pdf",
@@ -838,8 +831,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "一般入試（愛知県地域枠を含む）",
         category: "general",
         application: "2026/12/7〜2027/1/22（書類1/25必着）",
-        firstExam: "2/4（東京・名古屋・大阪）",
-        secondExam: "2/14・15のいずれか1日（本学／指定方法未公表・要項公開待ち）",
+        firstExam: "2/4",
+        secondExam: "2/14・15のいずれか1日（指定方法未公表・要項公開待ち）",
         result: "一次 2/9・最終 2/18",
         procedure: "2027年度学生募集要項で確認",
         sourceUrl:
@@ -849,8 +842,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "共通テスト利用入試",
         category: "common",
         application: "2026/12/7〜2027/1/15（書類1/18必着）",
-        firstExam: "共通テスト 1/16・17（共通テスト受験会場）",
-        secondExam: "2/14・15のいずれか1日（本学／指定方法未公表・要項公開待ち）",
+        firstExam: "共通テスト 1/16・17",
+        secondExam: "2/14・15のいずれか1日（指定方法未公表・要項公開待ち）",
         result: "一次 2/9・最終 2/18",
         procedure: "2027年度学生募集要項で確認",
         sourceUrl:
@@ -869,8 +862,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "一般選抜 前期（大阪府地域枠含む）",
         category: "general",
         application: "2026/12/9〜2027/1/20（消印有効）",
-        firstExam: "2/10（大阪・愛知・東京／小論文も実施）",
-        secondExam: "2/19（本部キャンパス／面接）",
+        firstExam: "2/10（小論文も実施）",
+        secondExam: "2/19（面接）",
         result: "一次 2/17・最終 2/20",
         procedure: "2/27まで",
         sourceUrl:
@@ -880,8 +873,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "一般選抜 後期",
         category: "general",
         application: "2026/12/9〜2027/2/26（消印有効）",
-        firstExam: "3/10（大阪・東京）",
-        secondExam: "3/18（本部キャンパス／小論文・面接）",
+        firstExam: "3/10",
+        secondExam: "3/18（小論文・面接）",
         result: "一次 3/16・最終 3/19",
         procedure: "3/26まで",
         sourceUrl:
@@ -891,8 +884,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "大学入学共通テスト利用選抜",
         category: "common",
         application: "2026/12/9〜2027/1/15（消印有効）",
-        firstExam: "共通テスト 1/16・17（共通テスト指定試験場）",
-        secondExam: "2/28（本部キャンパス／小論文・面接）",
+        firstExam: "共通テスト 1/16・17",
+        secondExam: "2/28（小論文・面接）",
         result: "一次 2/17・最終 3/1",
         procedure: "3/8まで",
         sourceUrl:
@@ -911,10 +904,9 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "一般選抜 前期",
         category: "general",
         application: "Web 2026/12/10〜2027/1/15 23:59（書類1/16消印有効）",
-        firstExam:
-          "2/2（大阪ATC・東京TRC・名古屋コンベンションホール・福岡南近代ビル）",
+        firstExam: "2/2",
         secondExam:
-          "2/20・21から出願時に希望日を選択し大学が指定（枚方キャンパス医学部棟）",
+          "2/20・21から出願時に希望日を選択し大学が指定",
         result: "一次 2/15 12:00・最終 3/1 10:00",
         procedure: "3/8 15:00まで",
         sourceUrl: "https://www.kmu.ac.jp/juk/fom/information/m3v58f00000036sx-att/R09_admission-requirements.pdf",
@@ -923,9 +915,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "地域枠一般選抜（大阪府3名予定・静岡県2名予定／臨時定員増設置構想中）",
         category: "general",
         application: "Web 2026/12/10〜2027/1/15 23:59（書類1/16消印有効）",
-        firstExam:
-          "2/2（一般前期と同日・同一会場／大阪ATC・東京TRC・名古屋コンベンションホール・福岡南近代ビル）",
-        secondExam: "2/20（必ず地域枠面接／枚方キャンパス医学部棟）",
+        firstExam: "2/2（一般前期と同日）",
+        secondExam: "2/20（必ず地域枠面接）",
         result: "一次 2/15 12:00・最終 3/1 10:00",
         procedure: "3/8 15:00まで",
         status: "preliminary",
@@ -935,8 +926,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "一般選抜 後期",
         category: "general",
         application: "Web 2027/2/1〜2/19 23:59（書類2/20消印有効）",
-        firstExam: "3/6（枚方キャンパス医学部棟）",
-        secondExam: "3/16（枚方キャンパス医学部棟）",
+        firstExam: "3/6",
+        secondExam: "3/16",
         result: "一次 3/12 10:00・最終 3/19 10:00",
         procedure: "3/25 15:00まで",
         sourceUrl: "https://www.kmu.ac.jp/juk/fom/information/m3v58f00000036sx-att/R09_admission-requirements.pdf",
@@ -945,9 +936,9 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "共通テスト利用 前期",
         category: "common",
         application: "Web 2026/12/10〜2027/1/15 23:59（書類1/16消印有効）",
-        firstExam: "共通テスト 1/16・17（共通テスト受験地）",
+        firstExam: "共通テスト 1/16・17",
         secondExam:
-          "2/21（一般前期にも重複合格した場合は一般前期の指定日／枚方キャンパス医学部棟）",
+          "2/21（一般前期にも重複合格した場合は一般前期の指定日）",
         result: "一次 2/15 12:00・最終 3/1 10:00",
         procedure: "3/8 15:00まで",
         sourceUrl: "https://www.kmu.ac.jp/juk/fom/information/m3v58f00000036sx-att/R09_admission-requirements.pdf",
@@ -956,10 +947,9 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "共通テスト・一般併用選抜",
         category: "common",
         application: "Web 2026/12/10〜2027/1/15 23:59（書類1/16消印有効）",
-        firstExam:
-          "共通テスト 1/16・17＋2/2（一般前期は大阪ATC・東京TRC・名古屋コンベンションホール・福岡南近代ビル）",
+        firstExam: "共通テスト 1/16・17＋2/2",
         secondExam:
-          "2/21（一般前期にも重複合格した場合は一般前期の指定日／枚方キャンパス医学部棟）",
+          "2/21（一般前期にも重複合格した場合は一般前期の指定日）",
         result: "一次 2/15 12:00・最終 3/1 10:00",
         procedure: "3/8 15:00まで",
         sourceUrl: "https://www.kmu.ac.jp/juk/fom/information/m3v58f00000036sx-att/R09_admission-requirements.pdf",
@@ -968,8 +958,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "共通テスト利用 後期",
         category: "common",
         application: "Web 2027/2/1〜2/19 23:59（書類2/20消印有効）",
-        firstExam: "共通テスト 1/16・17（共通テスト受験地）",
-        secondExam: "3/16（枚方キャンパス医学部棟）",
+        firstExam: "共通テスト 1/16・17",
+        secondExam: "3/16",
         result: "一次 3/12 10:00・最終 3/19 10:00",
         procedure: "3/25 15:00まで",
         sourceUrl: "https://www.kmu.ac.jp/juk/fom/information/m3v58f00000036sx-att/R09_admission-requirements.pdf",
@@ -988,8 +978,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application:
           "Web・書類 2026/12/18〜2027/1/14（Web終了時刻は入学試験要項公開待ち・書類1/14消印有効）",
-        firstExam: "1/31（大阪・東京・名古屋・広島・福岡）",
-        secondExam: "2/14（おおさかメディカルキャンパス）",
+        firstExam: "1/31",
+        secondExam: "2/14",
         result:
           "一次 2/10（前日21:00からUCARO）・最終 2/23（前日21:00からUCARO）",
         procedure: "入学時納入金・インターネット入学手続 3/5まで",
@@ -1000,8 +990,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application:
           "Web・書類 2026/12/18〜2027/1/14（Web終了時刻は入学試験要項公開待ち・書類1/14消印有効）",
-        firstExam: "1/31（一般前期と同日・同一会場／大阪・東京・名古屋・広島・福岡）",
-        secondExam: "2/14（一般前期と同日／おおさかメディカルキャンパス）",
+        firstExam: "1/31（一般前期と同日）",
+        secondExam: "2/14（一般前期と同日）",
         result:
           "一次 2/10（前日21:00からUCARO）・最終 2/23（前日21:00からUCARO）",
         procedure: "2027年度入学試験要項で公表待ち（9月中旬公開予定）",
@@ -1012,8 +1002,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application:
           "Web・書類 2027/2/1〜2/15（Web終了時刻は入学試験要項公開待ち・書類2/15消印有効）",
-        firstExam: "2/28（大阪・東京）",
-        secondExam: "3/11（おおさかメディカルキャンパス）",
+        firstExam: "2/28",
+        secondExam: "3/11",
         result:
           "一次 3/7（前日21:00からUCARO）・最終 3/19（前日21:00からUCARO）",
         procedure: "入学時納入金・インターネット入学手続 3/25まで",
@@ -1024,8 +1014,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application:
           "Web・書類 2027/2/1〜2/15（Web終了時刻は入学試験要項公開待ち・書類2/15消印有効）",
-        firstExam: "2/28（一般後期と同日・同一会場／大阪・東京）",
-        secondExam: "3/11（一般後期と同日／おおさかメディカルキャンパス）",
+        firstExam: "2/28（一般後期と同日）",
+        secondExam: "3/11（一般後期と同日）",
         result:
           "一次 3/7（前日21:00からUCARO）・最終 3/19（前日21:00からUCARO）",
         procedure: "2027年度入学試験要項で公表待ち（9月中旬公開予定）",
@@ -1036,8 +1026,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "common",
         application:
           "Web・書類 2027/1/3〜1/15（Web終了時刻は入学試験要項公開待ち・書類1/15消印有効）",
-        firstExam: "共通テスト 1/16・17（共通テスト受験地）",
-        secondExam: "2/21（おおさかメディカルキャンパス）",
+        firstExam: "共通テスト 1/16・17",
+        secondExam: "2/21",
         result:
           "一次 2/17（前日21:00からUCARO）・最終 3/2（前日21:00からUCARO）",
         procedure: "入学時納入金・インターネット入学手続 3/11まで",
@@ -1048,8 +1038,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "common",
         application:
           "Web・書類 2027/1/3〜2/1（Web終了時刻は入学試験要項公開待ち・書類2/1消印有効）",
-        firstExam: "共通テスト 1/16・17（共通テスト受験地）",
-        secondExam: "2/21（おおさかメディカルキャンパス）",
+        firstExam: "共通テスト 1/16・17",
+        secondExam: "2/21",
         result:
           "一次 2/17（前日21:00からUCARO）・最終 3/2（前日21:00からUCARO）",
         procedure: "入学時納入金・インターネット入学手続 3/11まで",
@@ -1060,8 +1050,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "common",
         application:
           "Web・書類 2027/2/3〜2/25（Web終了時刻は入学試験要項公開待ち・書類2/25消印有効）",
-        firstExam: "共通テスト 1/16・17（共通テスト受験地）",
-        secondExam: "3/11（おおさかメディカルキャンパス）",
+        firstExam: "共通テスト 1/16・17",
+        secondExam: "3/11",
         result:
           "一次 3/7（前日21:00からUCARO）・最終 3/19（前日21:00からUCARO）",
         procedure: "入学時納入金・インターネット入学手続 3/25まで",
@@ -1081,10 +1071,9 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application:
           "Web・書類 2026/12/14 0:00〜2027/1/20 15:00（検定料は登録翌日23:59まで、最終日登録分は16:00まで。書類は1/20消印有効。兵庫県推薦入学制度枠は大学と県の指定書類を兵庫県へ提出し、県の2027年度受付期間は公表待ち）",
-        firstExam:
-          "2/4 9:00（大阪・東京・福岡／西宮キャンパスでは実施なし）",
+        firstExam: "2/4 9:00",
         secondExam:
-          "2/17・18の選択日（Web出願登録時に選択・検定料支払後は変更不可／西宮キャンパス／集合時刻は一次合格発表時に案内。兵庫県推薦入学制度枠は別に県選考あり・2027年度日程は公表待ち）",
+          "2/17・18の選択日（Web出願登録時に選択・検定料支払後は変更不可／集合時刻は一次合格発表時に案内。兵庫県推薦入学制度枠は別に県選考あり・2027年度日程は公表待ち）",
         result:
           "一次 2/15 17:00・最終 2/24 10:00（兵庫県推薦入学制度枠の県選考結果は2027年度日程公表待ち）",
         procedure:
@@ -1096,8 +1085,7 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application:
           "Web・書類 2026/12/14 0:00〜2027/1/20 15:00（検定料は登録翌日23:59まで、最終日登録分は16:00まで。書類は1/20消印有効）",
-        firstExam:
-          "2/4（B単願は11:10開始・大阪／A・B併願は9:00開始・大阪・東京・福岡／西宮キャンパスでは実施なし）",
+        firstExam: "2/4（B単願は11:10開始／A・B併願は9:00開始）",
         secondExam: "2/27（集合時刻は一次合格発表時に案内）",
         result: "一次 2/24 10:00・最終 3/5 10:00",
         procedure:
@@ -1119,9 +1107,9 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         application:
           "Web登録・検定料 2026/12/1 9:00〜2027/1/7 15:00（検定料は登録翌日23:59まで、最終日登録分は15:00まで）・1/7 17:00書類必着（書類受付はWeb登録と同期間）",
         applicationDeadlineDateDetails: ["Web登録15:00・書類17:00必着"],
-        firstExam: "2/1（川崎医科大学 総合体育館等／8:00開場・9:15着席）",
+        firstExam: "2/1（8:00開場・9:15着席）",
         secondExam:
-          "2/10・11のうち大学指定日（川崎医科大学 校舎棟／集合時刻は一次合格発表時に案内）",
+          "2/10・11のうち大学指定日（集合時刻は一次合格発表時に案内）",
         result: "一次 2/4 12:00・最終 2/13 12:00",
         procedure:
           "入学金・学費等振込／書類郵送 2/17消印有効・諸会費振込／証明書郵送 3/31消印有効",
@@ -1148,8 +1136,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         applicationDeadlineDateDetails: [
           "出願・検定料納付締切（Web終了時刻・書類提出方法／期限は募集要項公開待ち）",
         ],
-        firstExam: "2/1（久留米大学 御井キャンパス・ベルサール汐留）",
-        secondExam: "2/13（久留米大学 御井キャンパス／小論文・面接）",
+        firstExam: "2/1",
+        secondExam: "2/13（小論文・面接）",
         result: "一次 2/8・最終 2/19",
         procedure: "入学申込締切 3/3・入学手続締切 3/19",
         procedureDateDetails: ["入学申込締切", "入学手続締切"],
@@ -1163,8 +1151,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         applicationDeadlineDateDetails: [
           "出願・検定料納付締切（Web終了時刻・書類提出方法／期限は募集要項公開待ち）",
         ],
-        firstExam: "3/8（久留米大学 御井キャンパス・旭町キャンパス）",
-        secondExam: "3/16（久留米大学 御井キャンパス／小論文・面接）",
+        firstExam: "3/8",
+        secondExam: "3/16（小論文・面接）",
         result: "一次 3/12・最終 3/19",
         procedure: "入学手続締切 3/24",
         procedureDateDetails: ["入学手続締切"],
@@ -1217,9 +1205,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         applicationDeadlineDateDetails: [
           "郵送書類1/15消印有効（Web終了時刻は学生募集要項公開待ち）",
         ],
-        firstExam:
-          "大学入学共通テスト 1/16・17＋個別 2/14（北九州メッセ／ベルサール汐留から希望、東京会場超過時は一部北九州へ変更）",
-        secondExam: "3/12（本学／小論文120分・面接1人約20分）",
+        firstExam: "大学入学共通テスト 1/16・17＋個別 2/14",
+        secondExam: "3/12（小論文120分・面接1人約20分）",
         result: "二次受験資格（小論文・面接）2/26・最終 3/19",
         procedure:
           "入学手続期間 3/24〜3/25（時刻と方法は10月上旬公開予定の学生募集要項で確認）",
@@ -1237,9 +1224,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         applicationDeadlineDateDetails: [
           "郵送書類1/25消印有効（Web終了時刻は学生募集要項公開待ち）",
         ],
-        firstExam:
-          "2/14（個別学力検査／北九州メッセ・ベルサール汐留から希望、東京会場超過時は一部北九州へ変更）",
-        secondExam: "3/12（本学／小論文120分・面接1人約20分）",
+        firstExam: "2/14（個別学力検査）",
+        secondExam: "3/12（小論文120分・面接1人約20分）",
         result: "二次受験資格（小論文・面接）2/26・最終 3/19",
         procedure:
           "入学手続期間 3/24〜3/25（時刻と方法は10月上旬公開予定の学生募集要項で確認）",
@@ -1258,7 +1244,7 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
           "郵送書類2/21消印有効（Web終了時刻は学生募集要項公開待ち）",
         ],
         firstExam: "大学入学共通テスト 1/16・17",
-        secondExam: "3/12（本学／小論文120分・面接1人約20分）",
+        secondExam: "3/12（小論文120分・面接1人約20分）",
         result: "二次受験資格（小論文・面接）3/4・最終 3/19",
         procedure:
           "入学手続期間 3/24〜3/25（時刻と方法は10月上旬公開予定の学生募集要項で確認）",
@@ -1285,10 +1271,9 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         applicationDeadlineDateDetails: [
           "インターネット出願締切（終了時刻・書類提出方法／期限は入学試験要項公開待ち）",
         ],
-        firstExam:
-          "2/2（福岡・東京・名古屋・大阪／英語・数学・理科2科目＋小論文50分）",
+        firstExam: "2/2（英語・数学・理科2科目＋小論文50分）",
         secondExam:
-          "2/14（福岡会場／面接。調査書等と一次選考日に実施した小論文を面接評価に活用）",
+          "2/14（面接。調査書等と一次選考日に実施した小論文を面接評価に活用）",
         result: "一次 2/9・最終 2/23",
         procedure:
           "入学申込金 2/28・Web入学手続 3/8（他大学等との併願者は学費等納入・Web入学手続を3/23まで延期可）",
@@ -1310,7 +1295,7 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         ],
         firstExam: "大学入学共通テスト 1/16・17（700点満点）",
         secondExam:
-          "2/14（福岡会場／面接50点。調査書等を面接評価に活用）",
+          "2/14（面接50点。調査書等を面接評価に活用）",
         result: "一次 2/9・最終 2/23",
         procedure:
           "入学申込金 2/28・Web入学手続 3/8（他大学等との併願者は学費等納入・Web入学手続を3/23まで延期可）",
@@ -2342,7 +2327,7 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     date: "2/26",
     dateTime: "2027-02-26",
     university: "愛知医科大学",
-    routes: "共通テスト利用（愛知県地域特別枠B方式）",
+    routes: "大学入学共通テスト利用選抜（愛知県地域特別枠B方式）",
     webDeadline: "2/26 17:00",
     documentDeadline: "2/26 消印有効",
     sourceUrl: "https://www.aichi-med-u.ac.jp/files/igaku/2027nenndogakuseibosyuuyoukou_0731.pdf",
