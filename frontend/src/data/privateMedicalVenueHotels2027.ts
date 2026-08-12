@@ -55,7 +55,7 @@ export type PrivateMedicalVenueHotel2027 = {
 
 export const hotelOperatingStatusLabels2027: Record<HotelOperatingStatus2027, string> = {
   official_site_active: "公式サイトで営業を確認",
-  opening_planned: "開業予定（再確認が必要）",
+  opening_planned: "開業・営業再開予定（再確認が必要）",
   needs_review: "営業状態を再確認中",
 };
 
@@ -110,7 +110,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
       amenity("wifi", "無料Wi-Fi", "全室で無料Wi-Fi・有線LANを利用できます。", "https://www.apahotel.com/resort/makuhari/guestroom/"),
       amenity("coin_laundry", "コインランドリー", "館内にコインランドリーがあります。", "https://www.apahotel.com/resort/makuhari/assets/pdf/apahotel_web_pf.pdf"),
       amenity("desk_lamp", "電気スタンド貸出", "電気スタンドは貸出備品です。", "https://www.apahotel.com/resort/makuhari/guestroom/"),
-      amenity("breakfast", "朝食6:30〜", "朝食は6:30〜10:00（最終入店9:45）の公式案内です。", "https://www.apahotel.com/resort/makuhari/guestroom/"),
+      amenity("breakfast", "朝食6:30〜", "朝食は6:30〜10:00（最終入店9:45）の公式案内です。", "https://www.apahotel.com/resort/makuhari/restaurant/"),
     ],
     operatingStatus: "official_site_active",
     reviewState: "verified",
@@ -143,7 +143,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     ],
     amenities: [
       amenity("wifi", "無料Wi-Fi", "客室で無料Wi-Fi・有線接続を利用できます。", "https://www.newotani.co.jp/makuhari/faq/stay/"),
-      amenity("breakfast", "朝食プランあり", "朝食の有無・会場・開始時刻は予約プランで確認してください。", "https://www.newotani.co.jp/makuhari/faq/stay/"),
+      amenity("breakfast", "朝食6:30〜", "SATSUKIの朝食は、ビュッフェ6:30〜10:00（料理終了）、セット・アラカルト6:30〜11:00です。", "https://www.newotani.co.jp/makuhari/restaurant/satsuki/"),
     ],
     operatingStatus: "official_site_active",
     reviewState: "verified",
@@ -256,9 +256,10 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
       amenity("washer_dryer", "客室内洗濯乾燥機", "全室に洗濯乾燥機があります。", "https://www.tokyustay.co.jp/hotel/GO/room/"),
       amenity("humidifier", "加湿空気清浄機", "客室設備として案内されています。", "https://www.tokyustay.co.jp/hotel/GO/room/"),
     ],
-    operatingStatus: "official_site_active",
-    reviewState: "verified",
+    operatingStatus: "opening_planned",
+    reviewState: "monitoring",
     verifiedAt: VERIFIED_AT,
+    note: "2026年5月11日からリニューアル工事のため全館休業中です。2026年11月中旬の再開予定ですが、予約受付開始日と改装後の客室設備を公式サイトで再確認してください。",
   },
   {
     hotelId: "keio-presso-inn-gotanda",
@@ -310,7 +311,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         venueId: "venue-kyorin-mitaka-campus",
         modes: ["walk", "bus"],
         routeSummary: "ホテルから三鷹駅へ徒歩7分、路線バスで杏林大学病院前へ",
-        transferCount: 1,
+        transferCount: 0,
         travelTimeLabel: "合計約30〜40分",
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat"],
@@ -396,9 +397,10 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
       },
     ],
     amenities: [
-      amenity("wifi", "無料Wi-Fi", "客室で無料Wi-Fiを利用できます。", "https://haneda.metropolitan.jp/stay/rooms/"),
-      amenity("coin_laundry", "コインランドリー", "館内にコインランドリーがあります。", "https://haneda.metropolitan.jp/faq/"),
-      amenity("breakfast", "朝食6:00〜", "朝食は6:00〜9:30、10:00閉店の公式案内です。", "https://haneda.metropolitan.jp/faq/"),
+      amenity("wifi", "無料Wi-Fi", "館内で無料Wi-Fiを利用できます。", "https://haneda.metropolitan.jp/stay/service/index.html"),
+      amenity("coin_laundry", "コインランドリー", "6階にコインランドリーがあります。", "https://haneda.metropolitan.jp/stay/service/index.html"),
+      amenity("desk_lamp", "デスクライト貸出", "無料レンタル品です。貸出状況により利用できない場合があります。", "https://haneda.metropolitan.jp/stay/service/index.html"),
+      amenity("breakfast", "朝食6:00〜", "朝食は6:00〜9:30最終入店、10:00閉店の公式案内です。", "https://haneda.metropolitan.jp/restaurant/"),
     ],
     operatingStatus: "official_site_active",
     reviewState: "verified",
@@ -467,13 +469,14 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
       },
     ],
     amenities: [
-      amenity("wifi", "無料Wi-Fi", "全室で無料Wi-Fi・有線LANを利用できます。", "https://shsg.jp/selectinn/moroyama/rooms/"),
-      amenity("coin_laundry", "コインランドリー", "2階にコインランドリー2台があります。", "https://shsg.jp/selectinn/moroyama/rooms/"),
+      amenity("wifi", "無料Wi-Fi", "全室で無料Wi-Fiを利用できます。", "https://shsg.jp/selectinn/moroyama/rooms/"),
+      amenity("coin_laundry", "コインランドリー（利用停止中）", "公式館内案内では設備不良により現在利用できないと案内されています。", "https://shsg.jp/selectinn/moroyama/facilities/"),
+      amenity("breakfast", "通常朝食6:30〜", "営業再開後の通常案内では、朝食バイキングは6:30〜9:00です。", "https://shsg.jp/selectinn/moroyama/dining/"),
     ],
-    operatingStatus: "official_site_active",
-    reviewState: "verified",
+    operatingStatus: "needs_review",
+    reviewState: "monitoring",
     verifiedAt: VERIFIED_AT,
-    note: "朝食は現行公式ページで安定した案内を確認できていないため、予約前にホテルへ確認してください。",
+    note: "設備故障により休館中です。公式のお知らせ一覧では「当面の間休館」とされ、2026年8月12日時点で営業再開を確認できていません。",
   },
   {
     hotelId: "kawagoe-tobu-hotel",
@@ -497,7 +500,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         caution: "合計時間は公式区間を基にした目安です。朝は運行本数が少ないため時刻表を確認してください。",
         evidenceUrls: [
           "https://www.tobuhotel.co.jp/kawagoe2020/access/",
-          "https://adm.saitama-med.ac.jp/access/",
+          "https://www.saitama-med.ac.jp/access.html",
         ],
       },
     ],
@@ -578,6 +581,8 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     amenities: [
       amenity("wifi", "無料Wi-Fi", "全室でWi-Fiを利用できます。", "https://sunplazahotel.co.jp/rooms.php"),
       amenity("coin_laundry", "コインランドリー", "2階にコインランドリーがあります。", "https://sunplazahotel.co.jp/rooms.php"),
+      amenity("desk_lamp", "電気スタンド", "客室設備として案内されています。", "https://sunplazahotel.co.jp/rooms.php"),
+      amenity("humidifier", "加湿空気清浄機", "客室設備として案内されています。", "https://sunplazahotel.co.jp/rooms.php"),
       amenity("breakfast", "朝食6:50〜", "朝食は6:50〜9:30の公式案内です。", "https://sunplazahotel.co.jp/rooms.php"),
     ],
     operatingStatus: "official_site_active",
@@ -757,7 +762,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
       amenity("wifi", "無料Wi-Fi", "全室で無料Wi-Fi・有線LANを利用できます。", "https://www.tokyustay.co.jp/hotel/HT/room/"),
       amenity("washer_dryer", "客室内洗濯乾燥機", "全室に洗濯乾燥機があります。", "https://www.tokyustay.co.jp/hotel/HT/room/"),
       amenity("humidifier", "加湿空気清浄機", "客室設備として案内されています。", "https://www.tokyustay.co.jp/hotel/HT/room/"),
-      amenity("breakfast", "朝食7:00〜", "朝食は7:00〜10:30（L.O.10:00）の公式案内です。", "https://www.tokyustay.co.jp/hotel/HT/room/"),
+      amenity("breakfast", "朝食7:00〜", "朝食は7:00〜10:30（L.O.10:00）の公式案内です。", "https://www.tokyustay.co.jp/hotel/HT/restaurant/"),
     ],
     operatingStatus: "official_site_active",
     reviewState: "verified",
@@ -793,7 +798,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     amenities: [
       amenity("wifi", "無料Wi-Fi", "館内で無料Wi-Fiを利用できます。", "https://www.route-inn.co.jp/hotel_list/fukuoka/index_hotel_id_208/facilitiesetc/"),
       amenity("coin_laundry", "コインランドリー", "館内に洗濯機・乾燥機があります。", "https://www.route-inn.co.jp/hotel_list/fukuoka/index_hotel_id_208/facilitiesetc/"),
-      amenity("breakfast", "無料朝食", "無料朝食の提供があります。開始時刻は予約前に最新案内を確認してください。", "https://www.route-inn.co.jp/hotel_list/fukuoka/index_hotel_id_208/facilitiesetc/"),
+      amenity("breakfast", "朝食6:45〜", "無料の和洋バイキング朝食は6:45〜9:00（宿泊者専用）です。", "https://www.route-inn.co.jp/hotel_list/fukuoka/index_hotel_id_208/restaurant/"),
     ],
     operatingStatus: "official_site_active",
     reviewState: "verified",
@@ -829,7 +834,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     amenities: [
       amenity("wifi", "無料Wi-Fi", "全室でWi-Fiを利用できます。", "https://www.hotel-hewitt.com/faq/"),
       amenity("coin_laundry", "コインランドリー", "6階にコインランドリーがあります。", "https://hotel-hewitt.com/information/"),
-      amenity("breakfast", "朝食あり", "公式ページ間で開始時刻に差があるため、宿泊前日に確認してください。", "https://www.hotel-hewitt.com/restaurant/"),
+      amenity("breakfast", "朝食6:30〜（要確認）", "公式ページ内に6:30開始と7:00開始の併記があるため、前日に確認してください（終了10:00、L.O.9:30）。", "https://www.hotel-hewitt.com/restaurant/"),
     ],
     operatingStatus: "official_site_active",
     reviewState: "verified",
@@ -865,7 +870,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     amenities: [
       amenity("wifi", "無料Wi-Fi", "客室でWi-Fiを利用できます。", "https://yshotel-amagasaki.com/facility"),
       amenity("coin_laundry", "コインランドリー", "館内にコインランドリーがあります。", "https://yshotel-amagasaki.com/facility"),
-      amenity("breakfast", "朝食6:30〜", "朝食は6:30〜9:30（最終入店9:00）の公式案内です。", "https://yshotel-amagasaki.com/food"),
+      amenity("breakfast", "朝食6:30〜", "朝食は6:30〜9:30（最終入店9:00）の公式案内です。", "https://yshotel-amagasaki.com/facility"),
     ],
     operatingStatus: "official_site_active",
     reviewState: "verified",
@@ -974,8 +979,8 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     amenities: [
       amenity("wifi", "無料Wi-Fi", "館内・客室でWi-Fiを利用できます。", "https://www.hotelmets.jp/akabane/facilities.html"),
       amenity("coin_laundry", "コインランドリー", "館内にコインランドリーがあります。", "https://www.hotelmets.jp/akabane/facilities.html"),
-      amenity("desk_lamp", "電気スタンド", "客室設備として案内されています。", "https://www.hotelmets.jp/akabane/facilities.html"),
-      amenity("humidifier", "加湿空気清浄機", "客室設備として案内されています。", "https://www.hotelmets.jp/akabane/facilities.html"),
+      amenity("desk_lamp", "電気スタンド", "全客室共通の設備として案内されています。", "https://www.hotelmets.jp/akabane/stay.html"),
+      amenity("humidifier", "加湿空気清浄機", "全客室共通の設備として案内されています。", "https://www.hotelmets.jp/akabane/stay.html"),
       amenity("breakfast", "朝食5:00〜選択可", "デニーズは5:00〜11:00、リトルマーメイドは7:00〜21:00の朝食券対象です。", "https://www.hotelmets.jp/akabane/bf.html"),
     ],
     operatingStatus: "official_site_active",

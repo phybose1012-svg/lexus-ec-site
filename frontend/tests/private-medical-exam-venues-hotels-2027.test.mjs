@@ -9,6 +9,7 @@ import {
   privateMedicalExamVenueUniversitySummaries2027,
   privateMedicalExamVenues2027,
 } from "../src/data/privateMedicalExamVenues2027.ts";
+import { getPrivateMedicalCanonicalRouteId2027 } from "../src/data/privateMedicalCanonicalRouteIds2027.ts";
 import { getPrivateMedicalExamVenuesHotels2027Dataset } from "../src/data/privateMedicalExamVenuesHotels2027Dataset.ts";
 import { privateMedicalExamVenuesHotels2027Metadata } from "../src/data/privateMedicalExamVenuesHotels2027Metadata.ts";
 import { privateMedicalVenueHotels2027 } from "../src/data/privateMedicalVenueHotels2027.ts";
@@ -115,6 +116,109 @@ test("希望日・大学指定・固定会場を方式別に混同しない", ()
   ]);
 });
 
+test("公式更新と未公表条件を前年情報で補完しない", () => {
+  const assignmentFor = (routeId, examStage) =>
+    privateMedicalExamVenueAssignments2027.find(
+      (entry) => entry.routeId === routeId && entry.examStage === examStage,
+    );
+
+  const kitasatoFirst = assignmentFor("kitasato--general--general", "first");
+  assert.equal(kitasatoFirst?.publicationState, "confirmed");
+  assert.deepEqual(kitasatoFirst?.venueLinks, [
+    { venueId: "venue-pacifico-yokohama-north", role: "primary" },
+    { venueId: "venue-kitasato-sagamihara-campus", role: "overflow" },
+  ]);
+  const kitasatoSecond = assignmentFor("kitasato--general--general", "second");
+  assert.equal(kitasatoSecond?.publicationState, "confirmed");
+  assert.deepEqual(kitasatoSecond?.venueLinks, [
+    { venueId: "venue-kitasato-sagamihara-campus", role: "fixed" },
+  ]);
+
+  assert.deepEqual(assignmentFor("nihon--general--unified-phase-2", "first")?.conditions, []);
+  for (const routeId of [
+    "fujita--general--general-regional-quota-17148",
+    "osaka-med-pharm--general--general-regional-quota-385a3-early",
+    "osaka-med-pharm--general--general-late",
+    "kindai--general--general-early",
+    "kindai--general--general-regional-quota-c5d34-385a3-3f44f-early",
+    "kindai--general--general-late",
+    "kindai--general--general-regional-quota-c5d34-late",
+  ]) {
+    assert.deepEqual(assignmentFor(routeId, "first")?.conditions, [], routeId);
+  }
+
+  assert.deepEqual(assignmentFor("fukuoka--general--general", "first")?.conditions, [
+    "applicant_preference",
+    "admission_ticket",
+    "capacity_overflow",
+  ]);
+  assert.deepEqual(assignmentFor("fukuoka--general--general", "second")?.conditions, [
+    "fixed",
+    "admission_ticket",
+  ]);
+  assert.deepEqual(assignmentFor("fukuoka--common--common-test-phase-1", "second")?.conditions, [
+    "fixed",
+    "admission_ticket",
+  ]);
+
+  assert.equal(
+    privateMedicalExamVenues2027.find((venue) => venue.venueId === "venue-makuhari-messe")?.name,
+    "幕張メッセ 国際展示場1～3ホール",
+  );
+  assert.equal(
+    privateMedicalExamVenues2027.find(
+      (venue) => venue.venueId === "venue-pacifico-yokohama-north",
+    )?.name,
+    "パシフィコ横浜ノース",
+  );
+  const bellesalleShinjuku = privateMedicalExamVenues2027.find(
+    (venue) => venue.venueId === "venue-bellesalle-shinjuku-grand",
+  );
+  assert.equal(bellesalleShinjuku?.name, "ベルサール新宿グランド イベントホール");
+  assert.match(bellesalleShinjuku?.address ?? "", /西新宿8-17-3/u);
+  const tkpShinosaka = privateMedicalExamVenues2027.find(
+    (venue) => venue.venueId === "venue-tkp-shinosaka-conference-center",
+  );
+  assert.match(tkpShinosaka?.address ?? "", /J\.NODE新大阪 4～5階/u);
+  assert.deepEqual(assignmentFor("tokyo-medical--general--general", "second")?.conditions, [
+    "fixed",
+    "university_assigned",
+  ]);
+  assert.deepEqual(assignmentFor("jikei--general--general", "second")?.conditions, ["fixed"]);
+  assert.deepEqual(assignmentFor("toho--general--general", "second")?.conditions, ["fixed"]);
+  assert.deepEqual(
+    assignmentFor("fujita--general--general-regional-quota-17148", "second")?.conditions,
+    ["fixed"],
+  );
+  assert.deepEqual(assignmentFor("fujita--common--common-test", "second")?.conditions, [
+    "fixed",
+  ]);
+  assert.deepEqual(
+    assignmentFor("tokyo-womens-medical--general--general-regional-quota", "second")
+      ?.conditions,
+    ["fixed", "applicant_preference", "university_assigned"],
+  );
+  assert.deepEqual(assignmentFor("marianna--general--general-early", "second")?.conditions, [
+    "fixed",
+    "applicant_preference",
+    "university_assigned",
+  ]);
+  const kawasakiRoute =
+    "kawasaki-medical--general--general-regional-quota-c5d34-491fd-bf01d";
+  assert.deepEqual(assignmentFor(kawasakiRoute, "first")?.conditions, ["fixed"]);
+  assert.deepEqual(assignmentFor(kawasakiRoute, "second")?.conditions, [
+    "fixed",
+    "university_assigned",
+  ]);
+  for (const routeId of [
+    "kansai-medical--general--general-early",
+    "kansai-medical--general--general-regional-quota-c5d34-385a3",
+    "kansai-medical--common--common-general-combined",
+  ]) {
+    assert.deepEqual(assignmentFor(routeId, "first")?.conditions, ["applicant_preference"]);
+  }
+});
+
 test("会場・割当・ホテル・アクセスの参照が一意かつ整合する", () => {
   const venueIds = privateMedicalExamVenues2027.map((venue) => venue.venueId);
   const hotelIds = privateMedicalVenueHotels2027.map((hotel) => hotel.hotelId);
@@ -129,6 +233,11 @@ test("会場・割当・ホテル・アクセスの参照が一意かつ整合�
   }
 
   for (const assignment of privateMedicalExamVenueAssignments2027) {
+    assert.equal(
+      assignment.routeId,
+      getPrivateMedicalCanonicalRouteId2027(assignment.universityId, assignment.routeName),
+      `${assignment.assignmentId}: canonical方式IDが日程正本と一致しません`,
+    );
     assert.ok(unique(assignment.venueLinks.map((link) => link.venueId)));
     assignment.venueLinks.forEach((link) => {
       assert.ok(venueIdSet.has(link.venueId), `${assignment.assignmentId}: ${link.venueId} が未定義です`);
@@ -140,7 +249,11 @@ test("会場・割当・ホテル・アクセスの参照が一意かつ整合�
 
   for (const hotel of privateMedicalVenueHotels2027) {
     assert.match(hotel.officialUrl, /^https:\/\//u);
-    assert.equal(hotel.operatingStatus, "official_site_active");
+    assert.ok(
+      ["official_site_active", "opening_planned", "needs_review"].includes(
+        hotel.operatingStatus,
+      ),
+    );
     assert.ok(hotel.venueAccess.length > 0);
     for (const access of hotel.venueAccess) {
       assert.ok(venueIdSet.has(access.venueId), `${hotel.hotelId}: ${access.venueId} が未定義です`);
@@ -163,10 +276,22 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
+  assert.equal(dataset.hotels.length, 24);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
+  assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
+  assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "select-inn-saitama-moroyama"), false);
 
   const serialized = JSON.stringify(dataset);
+  const serializedPublicRecords = JSON.stringify({
+    venues: dataset.venues,
+    assignments: dataset.assignments,
+    hotels: dataset.hotels,
+  });
   const keys = collectKeys(dataset);
+  assert.ok(
+    dataset.provenance.sourceUrls.every((url) => serializedPublicRecords.includes(url)),
+    "非公開レコードだけの出典URLがprovenanceへ混入しています",
+  );
   for (const hotel of dataset.hotels) {
     for (const access of hotel.venueAccess) {
       if (access.reviewState.includes("needs_route_review")) {
@@ -188,7 +313,10 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   ]) {
     assert.equal(keys.includes(forbiddenKey), false, `公開JSONに ${forbiddenKey} が含まれます`);
   }
-  assert.doesNotMatch(serialized, /C:\\|C:\/|\/Users\/|internal_only|project_internal/u);
+  assert.doesNotMatch(
+    serialized,
+    /C:\\|C:\/|\/Users\/|internal_only|project_internal|中央ナレッジDB|factとedge|(?:fact|edge):/u,
+  );
 });
 
 test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを参照する", () => {
@@ -227,6 +355,9 @@ test("ページは会場中心・31大学・組合せフィルターをSSR本文
   assert.match(source, /records\.some/u);
   assert.match(source, /data-filter-assignment-id/u);
   assert.match(source, /matchingAssignmentIds/u);
+  assert.match(source, /const searchText = \[venue\.name, venue\.shortName, venue\.address\]/u);
+  assert.match(source, /card\.dataset\.kind === "venue"[\s\S]*normalize\(card\.dataset\.search\)\.includes\(query\)/u);
+  assert.match(source, /const visible = matchingRecords\.length > 0/u);
   assert.match(source, /normalize\("NFKC"\)/u);
   assert.match(source, /privateMedicalExamVenueUniversitySummaries2027\.map/u);
   assert.match(source, /venueGroups\.map/u);

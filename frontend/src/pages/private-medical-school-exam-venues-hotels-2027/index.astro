@@ -446,7 +446,7 @@ const structuredData = {
                   const stages = [...new Set(assignments.map((assignment) => assignment.examStage))];
                   const categories = [...new Set(assignments.map((assignment) => assignment.routeCategory))];
                   const states = [...new Set(assignments.map((assignment) => assignment.publicationState))];
-                  const searchText = [venue.name, venue.shortName, venue.address, ...assignments.flatMap((assignment) => [assignment.universityName, assignment.routeName])].join(" ").toLowerCase();
+                  const searchText = [venue.name, venue.shortName, venue.address].join(" ").toLowerCase();
                   return (
               <article
                 class="venue-guide-venue"
@@ -675,7 +675,6 @@ const structuredData = {
         let visibleUniversities = 0;
 
         const matchesRecord = (record) =>
-          (!query || normalize(record.search).includes(query)) &&
           (region === "all" || normalize(record.region) === region) &&
           (prefecture === "all" || record.prefectures.map(normalize).includes(prefecture)) &&
           (stage === "all" || normalize(record.stage) === stage) &&
@@ -693,11 +692,22 @@ const structuredData = {
             card.dataset.kind !== "venue" ||
             prefecture === "all" ||
             normalize(card.dataset.prefectures).split("|").includes(prefecture);
-          const matchingRecords = cardMatchesPrefecture ? records.filter(matchesRecord) : [];
+          const cardMatchesQuery =
+            !query ||
+            (card.dataset.kind === "venue"
+              ? normalize(card.dataset.search).includes(query)
+              : records.some((record) => normalize(record.search).includes(query)));
+          const matchingRecords = cardMatchesPrefecture && cardMatchesQuery
+            ? records.filter(
+                (record) =>
+                  matchesRecord(record) &&
+                  (card.dataset.kind === "venue" || !query || normalize(record.search).includes(query)),
+              )
+            : [];
           const matchingAssignmentIds = new Set(
             matchingRecords.map((record) => record.assignmentId),
           );
-          const visible = cardMatchesPrefecture && records.some(matchesRecord);
+          const visible = matchingRecords.length > 0;
           card.hidden = !visible;
           for (const assignmentRow of card.querySelectorAll("[data-filter-assignment-id]")) {
             if (assignmentRow instanceof HTMLElement) {

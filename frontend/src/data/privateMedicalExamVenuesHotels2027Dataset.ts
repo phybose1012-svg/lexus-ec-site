@@ -11,10 +11,14 @@ import {
   privateMedicalExamVenuesHotels2027Metadata,
 } from "./privateMedicalExamVenuesHotels2027Metadata.ts";
 
+const publicHotels = privateMedicalVenueHotels2027.filter(
+  (hotel) => hotel.operatingStatus === "official_site_active" && hotel.reviewState === "verified",
+);
+
 const sourceUrls = [
   ...privateMedicalExamVenueAssignments2027.map((assignment) => assignment.officialAdmissionUrl),
   ...privateMedicalExamVenues2027.map((venue) => venue.officialUrl),
-  ...privateMedicalVenueHotels2027.flatMap((hotel) => [
+  ...publicHotels.flatMap((hotel) => [
     hotel.officialUrl,
     hotel.officialBookingUrl,
     ...hotel.amenities.map((amenity) => amenity.evidenceUrl),
@@ -23,6 +27,15 @@ const sourceUrls = [
 ].filter((url): url is string => Boolean(url));
 
 export const privateMedicalExamVenuesHotels2027SourceUrls = [...new Set(sourceUrls)];
+
+const publicFieldDefinitions = privateMedicalExamVenuesHotels2027FieldDefinitions.map((field) =>
+  field.key === "routeId"
+    ? {
+        ...field,
+        description: "大学・年度・方式を日程データと会場データの間で共有する安定ID",
+      }
+    : { ...field },
+);
 
 const toPublicVenue = (venue: (typeof privateMedicalExamVenues2027)[number]) => ({
   venueId: venue.venueId,
@@ -114,9 +127,6 @@ const toPublicHotel = (hotel: (typeof privateMedicalVenueHotels2027)[number]) =>
   ...(hotel.note ? { note: hotel.note } : {}),
 });
 
-const publicHotels = privateMedicalVenueHotels2027.filter(
-  (hotel) => hotel.operatingStatus === "official_site_active" && hotel.reviewState === "verified",
-);
 const publicHotelLinkedVenueCount = new Set(
   publicHotels.flatMap((hotel) => hotel.venueAccess.map((access) => access.venueId)),
 ).size;
@@ -135,7 +145,7 @@ export const getPrivateMedicalExamVenuesHotels2027Dataset = () => ({
       "正式会場が未公表の方式に対する推測ホテル",
     ],
   },
-  fieldDefinitions: privateMedicalExamVenuesHotels2027FieldDefinitions,
+  fieldDefinitions: publicFieldDefinitions,
   definitions: {
     publicationStates: venuePublicationStateLabels,
     assignmentConditions: venueAssignmentConditionLabels,
@@ -150,7 +160,7 @@ export const getPrivateMedicalExamVenuesHotels2027Dataset = () => ({
   hotels: publicHotels.map(toPublicHotel),
   provenance: {
     venuePolicy:
-      "2027年度の大学公式募集要項・訂正資料・公式入試ページを優先し、中央ナレッジDBのfactとedgeから公式根拠へ戻って照合します。",
+      "2027年度の大学公式募集要項・訂正資料・公式入試ページを優先し、各レコードの公式根拠へ戻って照合します。",
     hotelPolicy:
       "正式会場を確認した後に、宿泊施設と交通機関の公式サイトで名称、住所、営業状態、設備、経路を別レーンで確認します。",
     sourceUrls: privateMedicalExamVenuesHotels2027SourceUrls,

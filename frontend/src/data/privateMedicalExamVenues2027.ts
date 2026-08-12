@@ -166,7 +166,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
   {
     venueId: "venue-makuhari-messe",
     academicYear: 2027,
-    name: "幕張メッセ",
+    name: "幕張メッセ 国際展示場1～3ホール",
     shortName: "幕張メッセ",
     postalCode: "261-8550",
     address: "千葉県千葉市美浜区中瀬2-1",
@@ -281,7 +281,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
   {
     venueId: "venue-pacifico-yokohama-north",
     academicYear: 2027,
-    name: "パシフィコ横浜ノース 1階",
+    name: "パシフィコ横浜ノース",
     shortName: "パシフィコ横浜ノース",
     postalCode: "220-0012",
     address: "神奈川県横浜市西区みなとみらい1-1-2",
@@ -507,10 +507,10 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
   {
     venueId: "venue-bellesalle-shinjuku-grand",
     academicYear: 2027,
-    name: "ベルサール新宿グランド",
+    name: "ベルサール新宿グランド イベントホール",
     shortName: "ベルサール新宿グランド",
     postalCode: "160-0023",
-    address: "東京都新宿区西新宿8-17-1 住友不動産新宿グランドタワー",
+    address: "東京都新宿区西新宿8-17-3 住友不動産新宿グランドタワー1階",
     prefecture: "東京都",
     municipality: "新宿区",
     nearestStations: ["東京メトロ丸ノ内線 西新宿駅", "都営大江戸線 都庁前駅"],
@@ -944,11 +944,12 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     name: "TKP新大阪カンファレンスセンター",
     shortName: "TKP新大阪カンファレンスセンター",
     postalCode: "532-0003",
-    address: "大阪府大阪市淀川区宮原4-3-39 新大阪NKビル",
+    address: "大阪府大阪市淀川区宮原4-3-39 J.NODE新大阪 4～5階",
     prefecture: "大阪府",
     municipality: "大阪市淀川区",
     nearestStations: ["JR・Osaka Metro御堂筋線 新大阪駅"],
     officialUrl: "https://www.kashikaigishitsu.net/facilitys/cc-shinosaka/",
+    accessNote: "2026年6月30日に入居ビル名が「新大阪NKビル」から「J.NODE新大阪」へ変更されました。福岡大学の2027年度入試ガイドには旧ビル名で掲載されています。",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
@@ -1083,7 +1084,7 @@ setPlans(
   "first",
   {
     venueLinks: [link("venue-makuhari-messe")],
-    announcedVenueText: "幕張メッセ",
+    announcedVenueText: "幕張メッセ 国際展示場1～3ホール",
     publicationState: "confirmed",
     conditions: ["fixed"],
     evidenceLabel: "2027年度医学部学生募集要項 試験会場",
@@ -1179,7 +1180,7 @@ setPlans(
     venueLinks: kansaiFirstVenueLinks,
     announcedVenueText: "大阪ATCホール・東京流通センター・名古屋コンベンションホール・福岡南近代ビル",
     publicationState: "confirmed",
-    conditions: ["applicant_preference", "capacity_overflow"],
+    conditions: ["applicant_preference"],
     evidenceLabel: "2027年度入学試験要項 第1次試験会場",
     evidenceLocator: "PDF 13〜26ページの方式別会場欄",
     knowledgeBaseIds: ["fact:kansai-medical-2027--general-early--first-exam-venues"],
@@ -1455,8 +1456,8 @@ areaVenuePlan(
   "岩手医科大学 矢巾キャンパス・東京・大阪・札幌・名古屋・福岡",
   ["applicant_preference"],
   iwateVenueUrl,
-  "一般選抜概要「試験地」",
-  "矢巾キャンパス以外は都市までの公表です。出願時に試験地を選択し、学外施設は後続資料・受験票で確認してください。",
+  "一般選抜概要・FAQ「試験地」",
+  "矢巾キャンパス以外は都市までの公表です。希望する試験地を選択できますが、学外施設名は後続の公式資料で確認してください。",
   [link("venue-iwate-medical-yahaba-campus", "choice")],
 );
 areaVenuePlan(
@@ -1465,8 +1466,8 @@ areaVenuePlan(
   "岩手医科大学 矢巾キャンパス・東京・大阪",
   ["applicant_preference"],
   iwateVenueUrl,
-  "一般選抜概要「二次試験 試験地」",
-  "試験日と試験地を選択します。矢巾キャンパス以外の正式施設は未公表です。",
+  "一般選抜概要・FAQ「二次試験 試験地」",
+  "希望する試験日・試験地を選択できます。矢巾キャンパス以外の正式施設は未公表です。",
   [link("venue-iwate-medical-yahaba-campus", "choice")],
 );
 
@@ -1608,7 +1609,10 @@ officialVenuePlan(["teikyo--general--general"], "first", {
 
 const tokyoMedicalVenueUrl = "https://admissions-tokyo-med.jp/med/exam/";
 officialVenuePlan(["tokyo-medical--general--general"], "first", {
-  venueLinks: [link("venue-tokyo-medical-shinjuku-campus", "choice"), link("venue-bellesalle-shinjuku-grand", "choice")],
+  venueLinks: [
+    link("venue-tokyo-medical-shinjuku-campus", "primary"),
+    link("venue-bellesalle-shinjuku-grand", "primary"),
+  ],
   announcedVenueText: "東京医科大学 本学又はベルサール新宿グランド",
   publicationState: "ticket_assigned",
   conditions: ["university_assigned", "admission_ticket"],
@@ -1633,12 +1637,13 @@ officialVenuePlan(["tokyo-medical--general--general", "tokyo-medical--common--co
   venueLinks: [link("venue-tokyo-medical-shinjuku-campus")],
   announcedVenueText: "東京医科大学 本学",
   publicationState: "confirmed",
-  conditions: ["university_assigned", "admission_ticket"],
-  officialAdmissionUrl: tokyoMedicalVenueUrl,
-  evidenceLabel: "2027年度一般選抜・共通テスト利用選抜",
-  evidenceLocator: "公式入試ページ「二次試験」",
+  conditions: ["fixed", "university_assigned"],
+  officialAdmissionUrl:
+    "https://admissions-tokyo-med.jp/wp-content/uploads/2024/12/2027bosyuyoukou_ippan.pdf",
+  evidenceLabel: "2027年度一般選抜学生募集要項",
+  evidenceLocator: "PDF 3・12ページ「二次試験」",
   reviewState: "verified",
-  note: "面接日は出願順に大学が指定し、受験票で通知します。",
+  note: "会場は本学で固定です。面接日は出願の早い方から2月13日・14日の順に割り振られ、一次合格発表時にUCAROで日程・集合時間が通知されます。",
 });
 
 const jikeiVenueUrl = "https://www.jikei.ac.jp/university/medicine/admission/summary/";
@@ -1656,12 +1661,12 @@ officialVenuePlan(["jikei--general--general"], "second", {
   venueLinks: [link("venue-jikei-nishishimbashi-campus")],
   announcedVenueText: "東京慈恵会医科大学 西新橋キャンパス",
   publicationState: "confirmed",
-  conditions: ["university_assigned"],
+  conditions: ["fixed"],
   officialAdmissionUrl: jikeiVenueUrl,
   evidenceLabel: "2027年度医学科入学試験概要",
   evidenceLocator: "公式ページ「二次試験」",
   reviewState: "verified",
-  note: "2/20〜22のいずれか1日を大学が指定します。",
+  note: "2月20日〜22日のうち1日に実施されます。割当方法は2027年度の現行公式概要では公表されていません。",
 });
 
 const twmuVenueUrl = "https://www.twmu-u.jp/wp-content/uploads/2026/07/c9586e74cb77a02ee36ecf565fb6264f.pdf";
@@ -1679,7 +1684,7 @@ officialVenuePlan(["tokyo-womens-medical--general--general-regional-quota"], "se
   venueLinks: [link("venue-twmu-yayoi-memorial-education-building")],
   announcedVenueText: "東京女子医科大学 彌生記念教育棟",
   publicationState: "confirmed",
-  conditions: ["applicant_preference", "university_assigned"],
+  conditions: ["fixed", "applicant_preference", "university_assigned"],
   officialAdmissionUrl: twmuVenueUrl,
   evidenceLabel: "2027年度医学部学生募集要項",
   evidenceLocator: "PDF 23ページ「試験会場」",
@@ -1711,10 +1716,10 @@ areaVenuePlan(
   ["nihon--general--unified-phase-2"],
   "first",
   "郡山・千葉・東京・湘南",
-  ["applicant_preference", "university_assigned", "capacity_overflow"],
+  [],
   nihonVenueUrl,
   "N全学統一方式 第2期「試験場」",
-  "試験都市までの公表です。収容人数等により希望試験場以外に指定される場合があります。",
+  "試験都市までの公表です。個別施設名と試験場の選択・指定条件は、2027年度の現行公式資料では確認できません。",
 );
 officialVenuePlan(["nihon--general--unified-phase-1", "nihon--general--unified-phase-2"], "second", {
   venueLinks: [link("venue-nihon-medical-school-building")],
@@ -1792,16 +1797,32 @@ officialVenuePlan([...nmsEarlyRoutes, ...nmsLateRoutes], "second", {
 });
 
 const kitasatoVenueUrl = "https://www.kitasato-u.ac.jp/jp/goukaku/undergraduate_ad/system/newfolder/changes_med.html";
-areaVenuePlan(
-  ["kitasato--general--general"],
-  "first",
-  "横浜（定員超過時は相模原キャンパス）",
-  ["university_assigned", "admission_ticket", "capacity_overflow"],
-  kitasatoVenueUrl,
-  "2027年度医学部入試変更点「試験会場」",
-  "横浜は都市までの公表です。定員超過時は一部受験者を相模原キャンパスに指定します。",
-);
-unpublishedVenuePlan(["kitasato--general--general"], "second", kitasatoVenueUrl);
+officialVenuePlan(["kitasato--general--general"], "first", {
+  venueLinks: [
+    link("venue-pacifico-yokohama-north", "primary"),
+    link("venue-kitasato-sagamihara-campus", "overflow"),
+  ],
+  announcedVenueText: "パシフィコ横浜ノース（定員超過時は北里大学 相模原キャンパス）",
+  publicationState: "confirmed",
+  conditions: ["university_assigned", "admission_ticket", "capacity_overflow"],
+  officialAdmissionUrl: "https://www.kitasato-u.ac.jp/jp/goukaku/place/place/tokyo.html",
+  evidenceLabel: "北里大学公式 2027年度試験会場案内",
+  evidenceLocator: "横浜会場・医学部一般選抜一次試験欄",
+  reviewState: "verified",
+  note: "定員超過時は一部受験者を相模原キャンパスに指定します。最終会場は受験票で確認してください。",
+});
+officialVenuePlan(["kitasato--general--general"], "second", {
+  venueLinks: [link("venue-kitasato-sagamihara-campus")],
+  announcedVenueText: "北里大学 相模原キャンパス",
+  publicationState: "confirmed",
+  conditions: ["fixed", "applicant_preference"],
+  officialAdmissionUrl:
+    "https://www.kitasato-u.ac.jp/jp/goukaku/albums/abm.php?f=abm00048838.pdf&n=%E5%85%A5%E8%A9%A6%E3%82%AC%E3%82%A4%E3%83%89_%E8%A9%A6%E9%A8%93%E6%A6%82%E8%A6%81.pdf",
+  evidenceLabel: "北里大学公式 2027年度入試ガイド（試験概要）",
+  evidenceLocator: "PDF 24ページ 医学部一般選抜二次試験欄",
+  reviewState: "verified",
+  note: "会場は相模原キャンパスです。2月13日〜15日から受験日を出願時に選択します。",
+});
 unpublishedVenuePlan(
   ["kitasato--general--general-regional-quota"],
   "first",
@@ -1918,21 +1939,21 @@ areaVenuePlan(
   ["fujita--general--general-regional-quota-17148"],
   "first",
   "東京・名古屋・大阪",
-  ["applicant_preference"],
+  [],
   fujitaVenueUrl,
   "2027年度医学部入試概要「試験地」",
-  "都市までの公表です。正式施設名は完成版要項・受験票で確認してください。",
+  "都市までの公表です。正式施設名と選択・指定条件は、完成版要項等の公表後に確認してください。",
 );
 officialVenuePlan(["fujita--general--general-regional-quota-17148", "fujita--common--common-test"], "second", {
   venueLinks: [link("venue-fujita-health-toyoake-campus")],
   announcedVenueText: "藤田医科大学 本学（豊明キャンパス）",
   publicationState: "confirmed",
-  conditions: ["university_assigned"],
+  conditions: ["fixed"],
   officialAdmissionUrl: fujitaVenueUrl,
   evidenceLabel: "2027年度医学部入試概要",
   evidenceLocator: "各方式 二次試験会場欄",
   reviewState: "verified",
-  note: "試験日は大学が指定します。",
+  note: "会場は本学で固定です。2月14日・15日の割当方法は2027年度の現行公式概要では公表されていません。",
 });
 
 const ompuVenueUrl = "https://www.ompu.ac.jp/admission/undergraduate/qt931k000000801q-att/afif3u000000fsvj.pdf";
@@ -1940,19 +1961,19 @@ areaVenuePlan(
   ["osaka-med-pharm--general--general-regional-quota-385a3-early"],
   "first",
   "大阪・愛知・東京",
-  ["applicant_preference"],
+  [],
   ompuVenueUrl,
   "2027年度医学部入試概要「試験地」",
-  "都市までの公表です。正式施設名は完成版要項・受験票で確認してください。",
+  "都市までの公表です。正式施設名と選択・指定条件は、完成版要項等の公表後に確認してください。",
 );
 areaVenuePlan(
   ["osaka-med-pharm--general--general-late"],
   "first",
   "大阪・東京",
-  ["applicant_preference"],
+  [],
   ompuVenueUrl,
   "2027年度医学部入試概要「試験地」",
-  "都市までの公表です。正式施設名は完成版要項・受験票で確認してください。",
+  "都市までの公表です。正式施設名と選択・指定条件は、完成版要項等の公表後に確認してください。",
 );
 officialVenuePlan(
   [
@@ -1978,19 +1999,19 @@ areaVenuePlan(
   ["kindai--general--general-early", "kindai--general--general-regional-quota-c5d34-385a3-3f44f-early"],
   "first",
   "大阪・東京・名古屋・広島・福岡",
-  ["applicant_preference"],
+  [],
   kindaiVenueUrl,
   "2027年度入試ガイド 医学部一般前期「試験地」",
-  "都市までの公表です。正式施設名は入学試験要項・受験票で確認してください。",
+  "都市までの公表です。正式施設名と選択・指定条件は、入学試験要項の公表後に確認してください。",
 );
 areaVenuePlan(
   ["kindai--general--general-late", "kindai--general--general-regional-quota-c5d34-late"],
   "first",
   "大阪・東京",
-  ["applicant_preference"],
+  [],
   kindaiVenueUrl,
   "2027年度入試ガイド 医学部一般後期「試験地」",
-  "都市までの公表です。正式施設名は入学試験要項・受験票で確認してください。",
+  "都市までの公表です。正式施設名と選択・指定条件は、入学試験要項の公表後に確認してください。",
 );
 officialVenuePlan(
   [
@@ -2072,18 +2093,18 @@ officialVenuePlan(["kawasaki-medical--general--general-regional-quota-c5d34-491f
   venueLinks: [link("venue-kawasaki-medical-general-gymnasium")],
   announcedVenueText: "川崎医科大学 総合体育館等",
   publicationState: "confirmed",
-  conditions: ["university_assigned", "admission_ticket"],
+  conditions: ["fixed"],
   officialAdmissionUrl: kawasakiVenueUrl,
   evidenceLabel: "2027年度一般選抜・地域枠選抜要項",
   evidenceLocator: "試験会場案内「第一次試験」",
   reviewState: "verified",
-  note: "同一所在地内の総合体育館等を使用します。使用施設は受験票・当日案内を優先してください。",
+  note: "公式資料では同一所在地内の「総合体育館等」まで公表されています。使用施設の割当方法は明記されていません。",
 });
 officialVenuePlan(["kawasaki-medical--general--general-regional-quota-c5d34-491fd-bf01d"], "second", {
   venueLinks: [link("venue-kawasaki-medical-school-building")],
   announcedVenueText: "川崎医科大学 校舎棟",
   publicationState: "confirmed",
-  conditions: ["university_assigned", "admission_ticket"],
+  conditions: ["fixed", "university_assigned"],
   officialAdmissionUrl: kawasakiVenueUrl,
   evidenceLabel: "2027年度一般選抜・地域枠選抜要項",
   evidenceLocator: "試験会場案内「第二次試験」",
@@ -2182,20 +2203,21 @@ officialVenuePlan(["fukuoka--general--general"], "first", {
   ],
   announcedVenueText: "福岡大学・タイム24ビル・TKP名古屋新幹線口・TKP新大阪カンファレンスセンター",
   publicationState: "confirmed",
-  conditions: ["applicant_preference"],
+  conditions: ["applicant_preference", "admission_ticket", "capacity_overflow"],
   officialAdmissionUrl: fukuokaVenueUrl,
   evidenceLabel: "2027年度入試ガイド",
   evidenceLocator: "系統別日程 試験地・会場案内",
   reviewState: "verified",
+  note: "希望会場の収容人数を超えた場合は別会場になります。出願確認票・受験票で最終会場を確認してください。",
 });
 areaVenuePlan(
   ["fukuoka--general--general", "fukuoka--common--common-test-phase-1"],
   "second",
   "福岡",
-  ["fixed"],
+  ["fixed", "admission_ticket"],
   fukuokaVenueUrl,
   "医学部二次試験「試験地：福岡」",
-  "試験地は福岡まで公表済みですが、二次試験の正式施設名・住所は公表されていません。福岡大学本学とは推測しません。",
+  "試験地は福岡まで公表済みですが、二次試験の正式施設名・住所は公表されていません。福岡大学本学とは推測せず、受験票で最終会場を確認してください。",
 );
 
 // 会場そのものの固定／選択と、受験日だけの希望・大学指定を方式ごとに分ける。
@@ -2225,13 +2247,13 @@ refineAssignmentPlan(["teikyo--general--general"], "second", {
   conditions: ["fixed", "applicant_preference"],
 });
 refineAssignmentPlan(["jikei--general--general"], "second", {
-  conditions: ["fixed", "university_assigned"],
+  conditions: ["fixed"],
 });
 refineAssignmentPlan(["toho--general--general"], "second", {
-  conditions: ["fixed", "university_assigned"],
+  conditions: ["fixed"],
 });
 refineAssignmentPlan(["marianna--general--general-early"], "second", {
-  conditions: ["fixed", "applicant_preference"],
+  conditions: ["fixed", "applicant_preference", "university_assigned"],
 });
 refineAssignmentPlan(nmsEarlyRoutes, "second", {
   conditions: ["fixed", "applicant_preference", "university_assigned"],
@@ -2252,7 +2274,7 @@ refineAssignmentPlan(["aichi-medical--common--common-test-regional-quota"], "sec
   conditions: ["fixed"],
 });
 refineAssignmentPlan(["fujita--general--general-regional-quota-17148", "fujita--common--common-test"], "second", {
-  conditions: ["fixed", "university_assigned"],
+  conditions: ["fixed"],
 });
 refineAssignmentPlan(["kansai-medical--general--general-early"], "second", {
   conditions: ["fixed", "applicant_preference", "university_assigned"],
