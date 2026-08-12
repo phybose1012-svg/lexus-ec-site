@@ -1,5 +1,11 @@
 ---
 import LegacyArticlePage from "../../../components/fixed/LegacyArticlePage.astro";
+import { privateMedicalExamVenueSummary2027 } from "../../../data/privateMedicalExamVenues2027";
+import { privateMedicalVenueHotels2027 } from "../../../data/privateMedicalVenueHotels2027";
+
+const publishedHotelCount = privateMedicalVenueHotels2027.filter(
+  (hotel) => hotel.reviewState === "verified" && hotel.operatingStatus === "official_site_active",
+).length;
 ---
 
 <LegacyArticlePage
@@ -15,9 +21,69 @@ import LegacyArticlePage from "../../../components/fixed/LegacyArticlePage.astro
   >
     <header class="shiritsu-admissions-feature__header">
       <p class="shiritsu-admissions-feature__kicker">2027 PRIVATE MEDICAL ADMISSIONS</p>
-      <h2 id="shiritsu-admissions-feature-heading">2027年度 私立医学部入試日程</h2>
-      <p>選抜区分に合わせて、全国31大学の最新日程をご確認いただけます。</p>
+      <h2 id="shiritsu-admissions-feature-heading">2027年度 私立医学部入試情報</h2>
+      <p>全国31大学の入試日程から、試験会場・受験時の宿泊情報までご確認いただけます。</p>
     </header>
+
+    <a
+      class="shiritsu-venue-banner"
+      href="/private-medical-school-exam-venues-hotels-2027/"
+      aria-label="2027年度 私立医学部の入試会場・周辺ホテルガイドを見る"
+    >
+      <span class="shiritsu-venue-banner__content">
+        <span class="shiritsu-venue-banner__kicker">
+          <span>NEW</span>
+          EXAM VENUE &amp; HOTEL GUIDE 2027
+        </span>
+        <span class="shiritsu-venue-banner__title">
+          <small>2027年度 私立医学部</small>
+          入試会場と周辺ホテルを<br />まとめて確認
+        </span>
+        <span class="shiritsu-venue-banner__description">
+          大学公式資料に基づき、一次・二次試験の会場を区別。受験票指定や定員超過時の変更条件も確認できます。
+        </span>
+
+        <span class="shiritsu-venue-banner__stats" aria-label="掲載データ数">
+          <span><strong>{privateMedicalExamVenueSummary2027.universityCount}</strong><small>大学</small></span>
+          <span><strong>{privateMedicalExamVenueSummary2027.routeCount}</strong><small>方式</small></span>
+          <span><strong>{privateMedicalExamVenueSummary2027.uniqueVenueCount}</strong><small>会場データ</small></span>
+          <span><strong>{publishedHotelCount}</strong><small>ホテル</small></span>
+        </span>
+
+        <span class="shiritsu-venue-banner__link">
+          会場・ホテルガイドを見る
+          <span aria-hidden="true">→</span>
+        </span>
+      </span>
+
+      <span class="shiritsu-venue-banner__visual" aria-hidden="true">
+        <svg viewBox="0 0 390 270" role="presentation">
+          <path class="shiritsu-venue-banner__route" d="M60 210 C113 150 160 216 211 154 S305 101 343 55" />
+          <path class="shiritsu-venue-banner__route-dot" d="M60 210 C113 150 160 216 211 154 S305 101 343 55" />
+          <g class="shiritsu-venue-banner__calendar">
+            <rect x="34" y="35" width="108" height="82" rx="12" />
+            <path d="M35 60h106" />
+            <path d="M58 27v18M118 27v18" />
+            <text x="88" y="91" text-anchor="middle">2027</text>
+          </g>
+          <g class="shiritsu-venue-banner__pin">
+            <path d="M176 79c0-23 18-40 40-40s40 17 40 40c0 31-40 68-40 68s-40-37-40-68Z" />
+            <circle cx="216" cy="79" r="14" />
+          </g>
+          <g class="shiritsu-venue-banner__hotel">
+            <path d="M264 131h91v92h-91z" />
+            <path d="M279 99h61v124h-61z" />
+            <path d="M297 184h25v39h-25z" />
+            <path d="M291 120h12v12h-12zM316 120h12v12h-12zM291 145h12v12h-12zM316 145h12v12h-12z" />
+            <text x="309" y="114" text-anchor="middle">HOTEL</text>
+          </g>
+          <circle class="shiritsu-venue-banner__route-point" cx="60" cy="210" r="9" />
+          <circle class="shiritsu-venue-banner__route-point" cx="343" cy="55" r="9" />
+        </svg>
+        <span class="shiritsu-venue-banner__visual-label shiritsu-venue-banner__visual-label--venue">一次・二次会場</span>
+        <span class="shiritsu-venue-banner__visual-label shiritsu-venue-banner__visual-label--hotel">周辺ホテル</span>
+      </span>
+    </a>
 
     <div class="shiritsu-admissions-feature__grid">
       <a

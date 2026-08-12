@@ -27,6 +27,10 @@ const switcherSourcePath = fileURLToPath(
 const seoRoutesSourcePath = fileURLToPath(new URL("../src/lib/seoRoutes.ts", import.meta.url));
 const llmsSourcePath = fileURLToPath(new URL("../src/pages/llms.txt.ts", import.meta.url));
 const headersSourcePath = fileURLToPath(new URL("../public/_headers", import.meta.url));
+const directoryPageSourcePath = fileURLToPath(
+  new URL("../src/pages/top/information-shiritsu/index.astro", import.meta.url),
+);
+const pagesCssSourcePath = fileURLToPath(new URL("../src/styles/pages.css", import.meta.url));
 const builtPagePath = fileURLToPath(
   new URL("../dist/private-medical-school-exam-venues-hotels-2027/index.html", import.meta.url),
 );
@@ -226,6 +230,22 @@ test("ページは会場中心・31大学・組合せフィルターをSSR本文
   assert.match(source, /normalize\("NFKC"\)/u);
   assert.match(source, /privateMedicalExamVenueUniversitySummaries2027\.map/u);
   assert.doesNotMatch(source, /おすすめランキング|絶対に遅刻しない|最も安全/u);
+});
+
+test("私立医学部情報ページは会場・ホテルガイドへの専用バナーを提供する", () => {
+  const directorySource = readFileSync(directoryPageSourcePath, "utf8");
+  const cssSource = readFileSync(pagesCssSourcePath, "utf8");
+
+  assert.match(directorySource, /class="shiritsu-venue-banner"/u);
+  assert.match(directorySource, /href="\/private-medical-school-exam-venues-hotels-2027\/"/u);
+  assert.match(directorySource, /privateMedicalExamVenueSummary2027\.universityCount/u);
+  assert.match(directorySource, /privateMedicalExamVenueSummary2027\.routeCount/u);
+  assert.match(directorySource, /privateMedicalExamVenueSummary2027\.uniqueVenueCount/u);
+  assert.match(directorySource, /publishedHotelCount/u);
+  assert.match(directorySource, /一次・二次試験の会場を区別/u);
+  assert.match(cssSource, /\.shiritsu-venue-banner:focus-visible/u);
+  assert.match(cssSource, /@media \(max-width: 760px\)[\s\S]*\.shiritsu-venue-banner/u);
+  assert.match(cssSource, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.shiritsu-venue-banner/u);
 });
 
 test("build成果物のJSONと構造化データはparseでき、IDが重複しない", () => {

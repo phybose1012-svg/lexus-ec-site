@@ -1438,9 +1438,10 @@
   color: var(--red);
 }
 
-/* Featured route from the private-medical-school directory to the 2027
-   admissions calendar. Keep the directory page's white/green/cream palette;
-   the shared OG artwork is gently hue-shifted only in this placement. */
+/* Featured routes from the private-medical-school directory to the 2027
+   admissions resources. Keep the directory page's white/green/cream palette;
+   the venue banner uses a code-native map illustration while the calendar
+   cards reuse their shared OG artwork. */
 .shiritsu-admissions-feature {
   width: min(1040px, calc(100% - 40px));
   margin: 14px auto 34px;
@@ -1473,6 +1474,322 @@
   font-size: 0.72rem;
   font-weight: 900;
   letter-spacing: 0.12em;
+}
+
+.shiritsu-venue-banner {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(310px, 0.8fr);
+  min-height: 344px;
+  margin-bottom: 18px;
+  overflow: hidden;
+  border: 1px solid #c9d9cc;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 88% 8%, rgba(207, 181, 111, 0.18), transparent 29%),
+    linear-gradient(135deg, #f8fbf7 0%, #fffdf7 64%, #f4f0e5 100%);
+  box-shadow: 0 16px 38px rgba(29, 49, 38, 0.1);
+  color: #1d2a23;
+  text-decoration: none;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.shiritsu-venue-banner::before {
+  position: absolute;
+  z-index: 3;
+  inset: 0 0 auto;
+  height: 5px;
+  background: linear-gradient(90deg, #0c5e23 0 58%, #c7a653 58% 80%, #a60909 80% 100%);
+  content: "";
+}
+
+.shiritsu-venue-banner::after {
+  position: absolute;
+  z-index: -1;
+  right: 25%;
+  bottom: -130px;
+  width: 290px;
+  height: 290px;
+  border: 1px solid rgba(24, 106, 73, 0.1);
+  border-radius: 50%;
+  content: "";
+}
+
+.shiritsu-venue-banner:hover {
+  border-color: #9ebba5;
+  box-shadow: 0 20px 46px rgba(29, 49, 38, 0.15);
+  transform: translateY(-2px);
+}
+
+.shiritsu-venue-banner:focus-visible {
+  outline: 3px solid #1537c8;
+  outline-offset: 4px;
+}
+
+.shiritsu-venue-banner__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px clamp(30px, 4.5vw, 58px) 36px;
+}
+
+.shiritsu-venue-banner__kicker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 12px;
+  color: #186a49;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.shiritsu-venue-banner__kicker > span {
+  border-radius: 999px;
+  background: #a60909;
+  padding: 5px 9px;
+  color: #fff;
+  font-size: 0.68rem;
+  line-height: 1;
+  letter-spacing: 0.09em;
+}
+
+.shiritsu-venue-banner__title {
+  display: block;
+  color: #1d211e;
+  font-family: var(--font-serif);
+  font-size: clamp(1.72rem, 3.25vw, 2.55rem);
+  font-weight: 900;
+  line-height: 1.38;
+  letter-spacing: 0.015em;
+}
+
+.shiritsu-venue-banner__title > small {
+  display: block;
+  margin-bottom: 3px;
+  color: #0c5e23;
+  font-family: var(--font-sans);
+  font-size: 0.45em;
+  font-weight: 900;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+}
+
+.shiritsu-venue-banner__description {
+  max-width: 660px;
+  margin-top: 12px;
+  color: #4a5d51;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.75;
+}
+
+.shiritsu-venue-banner__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 17px;
+}
+
+.shiritsu-venue-banner__stats > span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  min-height: 31px;
+  border: 1px solid #d5e1d7;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 4px 9px;
+  color: #3f5045;
+  line-height: 1;
+}
+
+.shiritsu-venue-banner__stats strong {
+  color: #0c5e23;
+  font-family: var(--font-serif);
+  font-size: 1.16rem;
+}
+
+.shiritsu-venue-banner__stats small {
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.shiritsu-venue-banner__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  min-height: 44px;
+  margin-top: 18px;
+  border-radius: 999px;
+  background: #0c5e23;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 900;
+  line-height: 1.2;
+  box-shadow: 0 7px 16px rgba(12, 94, 35, 0.18);
+}
+
+.shiritsu-venue-banner__link > span {
+  font-size: 1.2em;
+  transition: transform 180ms ease;
+}
+
+.shiritsu-venue-banner:hover .shiritsu-venue-banner__link > span {
+  transform: translateX(3px);
+}
+
+.shiritsu-venue-banner__visual {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  margin: 28px 28px 28px 0;
+  overflow: hidden;
+  border: 1px solid rgba(24, 106, 73, 0.16);
+  border-radius: 15px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.72)),
+    repeating-linear-gradient(0deg, transparent 0 35px, rgba(24, 106, 73, 0.08) 35px 36px),
+    repeating-linear-gradient(90deg, transparent 0 35px, rgba(24, 106, 73, 0.08) 35px 36px),
+    #edf5ee;
+}
+
+.shiritsu-venue-banner__visual::before,
+.shiritsu-venue-banner__visual::after {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(207, 181, 111, 0.16);
+  content: "";
+}
+
+.shiritsu-venue-banner__visual::before {
+  top: -48px;
+  right: -44px;
+  width: 145px;
+  height: 145px;
+}
+
+.shiritsu-venue-banner__visual::after {
+  bottom: -36px;
+  left: -28px;
+  width: 112px;
+  height: 112px;
+  background: rgba(12, 94, 35, 0.08);
+}
+
+.shiritsu-venue-banner__visual svg {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: min(100%, 390px);
+  height: auto;
+}
+
+.shiritsu-venue-banner__route {
+  fill: none;
+  stroke: #d9e5dc;
+  stroke-linecap: round;
+  stroke-width: 10;
+}
+
+.shiritsu-venue-banner__route-dot {
+  fill: none;
+  stroke: #c1a557;
+  stroke-dasharray: 3 14;
+  stroke-linecap: round;
+  stroke-width: 4;
+}
+
+.shiritsu-venue-banner__route-point {
+  fill: #fff;
+  stroke: #0c5e23;
+  stroke-width: 5;
+}
+
+.shiritsu-venue-banner__calendar rect {
+  fill: #fffdf8;
+  stroke: #0c5e23;
+  stroke-width: 4;
+}
+
+.shiritsu-venue-banner__calendar path {
+  fill: none;
+  stroke: #0c5e23;
+  stroke-linecap: round;
+  stroke-width: 4;
+}
+
+.shiritsu-venue-banner__calendar text {
+  fill: #0c5e23;
+  font-family: var(--font-serif);
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.shiritsu-venue-banner__pin path {
+  fill: #a60909;
+  stroke: #fff;
+  stroke-width: 5;
+}
+
+.shiritsu-venue-banner__pin circle {
+  fill: #fff;
+}
+
+.shiritsu-venue-banner__hotel path {
+  fill: #fffdf8;
+  stroke: #0c5e23;
+  stroke-linejoin: round;
+  stroke-width: 4;
+}
+
+.shiritsu-venue-banner__hotel path:nth-of-type(n + 4) {
+  fill: #dfece1;
+  stroke-width: 2;
+}
+
+.shiritsu-venue-banner__hotel text {
+  fill: #0c5e23;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.shiritsu-venue-banner__visual-label {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid rgba(24, 106, 73, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 5px 9px;
+  color: #31513e;
+  font-size: 0.66rem;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: 0 5px 14px rgba(29, 49, 38, 0.08);
+}
+
+.shiritsu-venue-banner__visual-label--venue {
+  top: 48px;
+  right: 31%;
+}
+
+.shiritsu-venue-banner__visual-label--hotel {
+  right: 16px;
+  bottom: 17px;
 }
 
 .shiritsu-admissions-feature__grid {
@@ -1649,6 +1966,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .shiritsu-venue-banner,
+  .shiritsu-venue-banner__link > span,
   .shiritsu-admissions-feature__card,
   .shiritsu-admissions-feature__visual img,
   .shiritsu-admissions-feature__link > span {
@@ -1664,6 +1983,48 @@
 
   .shiritsu-admissions-feature__card {
     grid-template-columns: 1fr;
+  }
+
+  .shiritsu-venue-banner {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .shiritsu-venue-banner__content {
+    padding: 30px 22px 25px;
+  }
+
+  .shiritsu-venue-banner__title {
+    font-size: clamp(1.52rem, 7.4vw, 2.05rem);
+  }
+
+  .shiritsu-venue-banner__description {
+    font-size: 0.86rem;
+  }
+
+  .shiritsu-venue-banner__stats {
+    gap: 6px;
+  }
+
+  .shiritsu-venue-banner__stats > span {
+    padding-inline: 8px;
+  }
+
+  .shiritsu-venue-banner__link {
+    width: 100%;
+  }
+
+  .shiritsu-venue-banner__visual {
+    min-height: 228px;
+    margin: 0 14px 14px;
+  }
+
+  .shiritsu-venue-banner__visual svg {
+    width: min(100%, 345px);
+  }
+
+  .shiritsu-venue-banner__visual-label--venue {
+    top: 35px;
   }
 
   .shiritsu-admissions-feature__grid {
