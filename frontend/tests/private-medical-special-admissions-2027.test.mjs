@@ -5039,7 +5039,7 @@ test("大学別一覧には対象外として確認した方式を表示しな�
   assert.doesNotMatch(pageSource, /entry\.excludedRoutes/);
 });
 
-test("一般・共テ利用ページと特別選抜ページを上部と本文末で相互に行き来できる", () => {
+test("一般・特別選抜・会場ホテルの3ページを切替ナビで行き来できる", () => {
   const generalPageSource = readFileSync(generalPageSourcePath, "utf8");
   const specialPageSource = readFileSync(pageSourcePath, "utf8");
   const switcherSource = readFileSync(scheduleSwitcherSourcePath, "utf8");
@@ -5062,6 +5062,10 @@ test("一般・共テ利用ページと特別選抜ページを上部と本文�
     switcherSource,
     /href:\s*"\/private-medical-school-special-admissions-schedule-2027\/"/u,
   );
+  assert.match(
+    switcherSource,
+    /href:\s*"\/private-medical-school-exam-venues-hotels-2027\/"/u,
+  );
   assert.match(switcherSource, /aria-current=\{isCurrent \? "page" : undefined\}/u);
   assert.match(switcherSource, /isCurrent \? "表示中" : "切替 →"/u);
   assert.match(
@@ -5082,8 +5086,8 @@ test("一般・共テ利用ページと特別選抜ページを上部と本文�
 
   assert.ok(generalSwitcher, "一般・共テ利用ページの切替ナビがありません");
   assert.ok(specialSwitcher, "特別選抜ページの切替ナビがありません");
-  assert.equal(attributeValues(generalSwitcher, "href").length, 2);
-  assert.equal(attributeValues(specialSwitcher, "href").length, 2);
+  assert.equal(attributeValues(generalSwitcher, "href").length, 3);
+  assert.equal(attributeValues(specialSwitcher, "href").length, 3);
   assert.match(
     generalSwitcher,
     /href="\/private-medical-school-admissions-schedule-2027\/" aria-current="page"/u,
@@ -5123,6 +5127,6 @@ test("特別選抜ページはティール系の独自配色で一般・共テ�
   );
   assert.match(
     sharedStyle,
-    /@media\s*\(max-width:\s*620px\)[\s\S]*?\.admissions-page-switcher__option\s*\{[^}]*min-height\s*:\s*96px/u,
+    /@media\s*\(max-width:\s*620px\)[\s\S]*?\.admissions-page-switcher__options\s*\{[^}]*grid-template-columns\s*:\s*1fr[^}]*\}[\s\S]*?\.admissions-page-switcher__option\s*\{[^}]*min-height\s*:\s*74px/u,
   );
 });

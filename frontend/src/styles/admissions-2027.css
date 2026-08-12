@@ -135,7 +135,7 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 
 .admissions-page-switcher__options {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 9px;
 }
 
@@ -169,6 +169,10 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   outline-color: rgb(139 0 0 / 28%);
 }
 
+.admissions-page-switcher__option--venues:focus-visible {
+  outline-color: rgb(142 99 14 / 30%);
+}
+
 .admissions-page-switcher__short-label {
   display: inline-flex;
   align-items: center;
@@ -191,6 +195,11 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 .admissions-page-switcher__option--special .admissions-page-switcher__short-label {
   color: #0a5c57;
   background: #e9f5f2;
+}
+
+.admissions-page-switcher__option--venues .admissions-page-switcher__short-label {
+  color: #79520b;
+  background: #fff7df;
 }
 
 .admissions-page-switcher__copy {
@@ -235,6 +244,13 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   color: #fff;
   background: linear-gradient(135deg, #0f6b65, #073d3a);
   box-shadow: 0 12px 28px rgb(7 61 58 / 18%);
+}
+
+.admissions-page-switcher__option--venues.is-current {
+  border-color: #674300;
+  color: #fff;
+  background: linear-gradient(135deg, #9a6a0b, #674300);
+  box-shadow: 0 12px 28px rgb(103 67 0 / 20%);
 }
 
 .admissions-page-switcher__option.is-current :where(.admissions-page-switcher__short-label, .admissions-page-switcher__status) {
@@ -2617,6 +2633,7 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   }
 
   .admissions-page-switcher__options {
+    grid-template-columns: 1fr;
     gap: 6px;
   }
 
@@ -2625,7 +2642,7 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
     grid-template-rows: auto 1fr;
     gap: 7px 5px;
     align-items: end;
-    min-height: 96px;
+    min-height: 74px;
     border-radius: 6px;
     padding: 11px 10px;
   }

@@ -22,6 +22,18 @@ export const privateMedicalAdmissions2027Metadata = {
 
 export const privateMedicalAdmissions2027FieldDefinitions = [
   {
+    key: "canonicalRouteId",
+    label: "共通方式ID",
+    description:
+      "日程・会場など複数の公開データを同じ入試方式で結合する、中央ナレッジDB準拠の安定ID",
+  },
+  {
+    key: "admissionPlanning.routes[].id",
+    label: "受験プラン保存ID",
+    description:
+      "保存済み受験プランとの互換性を維持するplanner専用ID。データ間の結合にはcanonicalRouteIdを使用",
+  },
+  {
     key: "applicationStart",
     label: "出願開始日",
     description: "Web出願登録または出願書類受付が始まる日",

@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { privateMedicalAdmissions2027Metadata } from "../data/privateMedicalAdmissions2027Metadata";
 import { privateMedicalSpecialAdmissions2027Metadata } from "../data/privateMedicalSpecialAdmissions2027Metadata";
+import { privateMedicalExamVenuesHotels2027Metadata } from "../data/privateMedicalExamVenuesHotels2027Metadata";
 
 export const prerender = true;
 
@@ -21,6 +22,11 @@ export const GET: APIRoute = () => {
     "",
     `- [総合型・学校推薦型選抜等の日程ページ](${privateMedicalSpecialAdmissions2027Metadata.canonicalUrl}): 全国31大学について、総合型・学校推薦型・地域枠・帰国生・IBなど、一般選抜・通常の共通テスト利用選抜以外の日程と出願条件を掲載しています。`,
     `- [総合型・学校推薦型選抜等のJSONデータ](${privateMedicalSpecialAdmissions2027Metadata.datasetUrl}): ページと同一の正本から生成した方式、出願資格、日程、出典、公表状況のデータです。`,
+    "",
+    "## 2027年度 私立医学部 入試会場・周辺ホテル",
+    "",
+    `- [一般選抜・共通テスト利用選抜の会場・周辺ホテル](${privateMedicalExamVenuesHotels2027Metadata.canonicalUrl}): 全国31大学を方式・試験段階別に整理し、正式会場を確認できた地点だけ周辺ホテルと結び付けています。`,
+    `- [入試会場・周辺ホテルのJSONデータ](${privateMedicalExamVenuesHotels2027Metadata.datasetUrl}): 会場、大学・方式・試験段階との関係、宿泊施設、公式出典、公表・確認状態を含む機械可読データです。`,
     "",
     "- [サイトマップ](https://lexus-ec.com/sitemap.xml): 公開ページの一覧です。",
     "",

@@ -5,6 +5,11 @@ import {
   type AdmissionRouteStatus,
   type FullScheduleColumnKey2027,
 } from "./privateMedicalAdmissions2027";
+import {
+  getPrivateMedicalCanonicalRouteId2027,
+  privateMedicalCanonicalRouteIds2027,
+  type PrivateMedicalCanonicalRouteId2027,
+} from "./privateMedicalCanonicalRouteIds2027";
 
 export type PlanningExamStage2027 = "common_test" | "first_exam" | "second_exam";
 export type PlanningAttendance2027 = "exactly_one" | "all";
@@ -36,6 +41,7 @@ export type PlanningCalendarEvent2027 = {
 
 export type AdmissionPlanningRoute2027 = {
   id: string;
+  canonicalRouteId: PrivateMedicalCanonicalRouteId2027;
   universityId: string;
   universityName: string;
   region: string;
@@ -53,6 +59,10 @@ export const admissionPlanningMetadata2027 = {
   sourceFile: "frontend/src/data/privateMedicalAdmissions2027.ts",
   publicUrl: "https://lexus-ec.com/private-medical-school-admissions-schedule-2027/",
   lastVerified: "2026-08-11",
+  routeIdPolicy: {
+    id: "保存済み受験プランとの互換性を保つplanner専用ID",
+    canonicalRouteId: "日程・会場など複数データ間の結合に使う共通方式ID",
+  },
 } as const;
 
 const toDateKey = (year: number, month: number, day: number) =>
@@ -202,6 +212,10 @@ fullScheduleCalendar2027.forEach((day) => {
 const planningRoutes = privateMedicalUniversities2027.flatMap((university) =>
   university.routes.map((route) => {
     const id = routeId(university.id, route.category, route.name);
+    const canonicalRouteId = getPrivateMedicalCanonicalRouteId2027(
+      university.id,
+      route.name,
+    );
     const examGroups: PlanningExamGroup2027[] = [];
     const firstDates = parseDateKeys(route.firstExam, true);
     const commonTestDateSet = new Set<string>(["2027-01-16", "2027-01-17"]);
@@ -254,6 +268,7 @@ const planningRoutes = privateMedicalUniversities2027.flatMap((university) =>
 
     return {
       id,
+      canonicalRouteId,
       universityId: university.id,
       universityName: university.name,
       region: university.region,
@@ -292,6 +307,13 @@ if (universityIds.size !== 31) {
 
 if (new Set(planningRoutes.map((route) => route.id)).size !== planningRoutes.length) {
   throw new Error("受験大学プランニングの入試方式IDが重複しています");
+}
+
+if (
+  Object.keys(privateMedicalCanonicalRouteIds2027).length !== planningRoutes.length ||
+  new Set(planningRoutes.map((route) => route.canonicalRouteId)).size !== planningRoutes.length
+) {
+  throw new Error("受験大学プランニングの共通方式IDが83方式と1対1で対応していません");
 }
 
 export const admissionPlanningRoutes2027: AdmissionPlanningRoute2027[] = planningRoutes;

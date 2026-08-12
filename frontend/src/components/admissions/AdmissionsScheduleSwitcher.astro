@@ -1,6 +1,6 @@
 ---
 interface Props {
-  current: "general" | "special";
+  current: "general" | "special" | "venues";
 }
 
 const { current } = Astro.props;
@@ -20,13 +20,20 @@ const schedulePages = [
     label: "総合型・学校推薦型など",
     description: "地域枠・帰国生・IB等も掲載",
   },
+  {
+    id: "venues",
+    href: "/private-medical-school-exam-venues-hotels-2027/",
+    shortLabel: "会場・ホテル",
+    label: "入試会場・周辺ホテル",
+    description: "一般・共テの会場と宿泊計画",
+  },
 ] as const;
 ---
 
-<nav class="admissions-page-switcher" aria-label="2027年度 私立医学部の入試区分を切り替える">
+<nav class="admissions-page-switcher" aria-label="2027年度 私立医学部の入試情報を切り替える">
   <p class="admissions-page-switcher__label">
     <span aria-hidden="true">2027</span>
-    入試区分を切り替える
+    入試情報を切り替える
   </p>
   <div class="admissions-page-switcher__options">
     {

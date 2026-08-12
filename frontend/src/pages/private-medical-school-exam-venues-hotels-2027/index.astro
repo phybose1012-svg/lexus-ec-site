@@ -1,0 +1,650 @@
+---
+import AdmissionsBrandDivider from "../../components/admissions/AdmissionsBrandDivider.astro";
+import AdmissionsScheduleSwitcher from "../../components/admissions/AdmissionsScheduleSwitcher.astro";
+import {
+  privateMedicalExamVenueAssignments2027,
+  privateMedicalExamVenueSummary2027,
+  privateMedicalExamVenueUniversitySummaries2027,
+  privateMedicalExamVenues2027,
+  venueAssignmentConditionLabels,
+  venuePublicationStateLabels,
+  type PrivateMedicalExamVenueAssignment2027,
+} from "../../data/privateMedicalExamVenues2027";
+import {
+  hotelOperatingStatusLabels2027,
+  hotelVenueAccessReviewStateLabels2027,
+  privateMedicalVenueHotels2027,
+} from "../../data/privateMedicalVenueHotels2027";
+import {
+  privateMedicalExamVenuesHotels2027FieldDefinitions,
+  privateMedicalExamVenuesHotels2027Metadata,
+} from "../../data/privateMedicalExamVenuesHotels2027Metadata";
+import { privateMedicalExamVenuesHotels2027SourceUrls } from "../../data/privateMedicalExamVenuesHotels2027Dataset";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import "../../styles/admissions-2027.css";
+import "../../styles/venues-hotels-2027.css";
+
+const metadata = privateMedicalExamVenuesHotels2027Metadata;
+const title = metadata.title;
+const description = metadata.description;
+const canonical = metadata.canonicalUrl;
+const datasetUrl = metadata.datasetUrl;
+const publicHotels = privateMedicalVenueHotels2027.filter(
+  (hotel) => hotel.operatingStatus === "official_site_active" && hotel.reviewState === "verified",
+);
+const venueById = new Map(privateMedicalExamVenues2027.map((venue) => [venue.venueId, venue]));
+const hotelsByVenueId = new Map<string, typeof publicHotels>();
+
+for (const hotel of publicHotels) {
+  for (const access of hotel.venueAccess) {
+    hotelsByVenueId.set(access.venueId, [...(hotelsByVenueId.get(access.venueId) ?? []), hotel]);
+  }
+}
+
+const venueCards = privateMedicalExamVenues2027
+  .map((venue) => ({
+    venue,
+    assignments: privateMedicalExamVenueAssignments2027.filter((assignment) =>
+      assignment.venueLinks.some((link) => link.venueId === venue.venueId),
+    ),
+    hotels: hotelsByVenueId.get(venue.venueId) ?? [],
+  }))
+  .filter((entry) => entry.assignments.length > 0)
+  .sort(
+    (left, right) =>
+      left.venue.prefecture.localeCompare(right.venue.prefecture, "ja") ||
+      left.venue.name.localeCompare(right.venue.name, "ja"),
+  );
+
+const uniqueHotelIds = new Set(publicHotels.map((hotel) => hotel.hotelId));
+const hotelLinkedVenueIds = new Set(
+  publicHotels.flatMap((hotel) => hotel.venueAccess.map((access) => access.venueId)),
+);
+const venuePrefectures = [...new Set(venueCards.map((entry) => entry.venue.prefecture))].sort((a, b) =>
+  a.localeCompare(b, "ja"),
+);
+const universityRegions = ["北海道・東北", "関東", "中部", "近畿", "中国・四国", "九州"];
+
+const assignmentsForUniversity = (universityId: string) =>
+  privateMedicalExamVenueAssignments2027.filter((assignment) => assignment.universityId === universityId);
+const assignmentVenueNames = (assignment: PrivateMedicalExamVenueAssignment2027) =>
+  assignment.venueLinks
+    .map((link) => venueById.get(link.venueId)?.shortName)
+    .filter((name): name is string => Boolean(name));
+const conditionText = (assignment: PrivateMedicalExamVenueAssignment2027) =>
+  assignment.conditions.map((condition) => venueAssignmentConditionLabels[condition]).join("・");
+
+const updateHistory = [
+  {
+    date: "2026年8月12日",
+    dateTime: "2026-08-12",
+    title: "愛知医科大学が一般選抜一次の4会場を公表",
+    text: "名古屋・東京・大阪・福岡の正式施設名と、出願時に会場を選択する条件が2027年度募集要項で確定しました。",
+  },
+  {
+    date: "2026年8月12日",
+    dateTime: "2026-08-12",
+    title: "兵庫医科大学が一般選抜一次の3会場を公表",
+    text: "ATCホール・TKP新橋カンファレンスセンター・南近代ビルと、定員超過時の大阪会場への変更条件が公表されました。",
+  },
+  {
+    date: "2026年8月12日",
+    dateTime: "2026-08-12",
+    title: `正式会場${hotelLinkedVenueIds.size}地点の周辺ホテル情報を掲載`,
+    text: `${uniqueHotelIds.size}施設について、ホテル公式サイト・住所・営業状態と会場までの経路を掲載しました。`,
+  },
+].filter((update) => !update.title.includes("周辺ホテル") || uniqueHotelIds.size > 0);
+
+const withoutPrefecturePrefix = (address: string, prefecture: string) =>
+  address.startsWith(prefecture) ? address.slice(prefecture.length) : address;
+
+const filterRecords = privateMedicalExamVenueAssignments2027.map((assignment) => ({
+  assignmentId: assignment.assignmentId,
+  universityId: assignment.universityId,
+  search: [
+    assignment.universityName,
+    assignment.routeName,
+    assignment.announcedVenueText,
+    ...assignmentVenueNames(assignment),
+    ...assignment.venueLinks
+      .map((link) => venueById.get(link.venueId)?.address)
+      .filter((address): address is string => Boolean(address)),
+  ].join(" "),
+  region: assignment.region,
+  prefectures: assignment.venueLinks
+    .map((link) => venueById.get(link.venueId)?.prefecture)
+    .filter(Boolean),
+  stage: assignment.examStage,
+  category: assignment.routeCategory,
+  state: assignment.publicationState,
+  venueIds: assignment.venueLinks.map((link) => link.venueId),
+}));
+
+const organizationId = "https://lexus-ec.com/#organization";
+const websiteId = "https://lexus-ec.com/#website";
+const webpageId = `${canonical}#webpage`;
+const breadcrumbId = `${canonical}#breadcrumb`;
+const venueListId = `${canonical}#venues`;
+const datasetId = metadata.datasetIdentifier;
+const ogImageUrl = "https://lexus-ec.com/og/private-medical-exam-venues-hotels-2027.png";
+
+const breadcrumbJsonLd = {
+  "@type": "BreadcrumbList",
+  "@id": breadcrumbId,
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "ホーム", item: "https://lexus-ec.com/" },
+    { "@type": "ListItem", position: 2, name: "私立医学部情報", item: "https://lexus-ec.com/top/information-shiritsu/" },
+    { "@type": "ListItem", position: 3, name: "2027年度 入試会場・周辺ホテル", item: canonical },
+  ],
+};
+
+const venueListJsonLd = {
+  "@type": "ItemList",
+  "@id": venueListId,
+  name: "2027年度 私立医学部入試の正式会場一覧",
+  numberOfItems: venueCards.length,
+  itemListOrder: "https://schema.org/ItemListOrderAscending",
+  itemListElement: venueCards.map(({ venue }, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: { "@id": `${canonical}#place-${venue.venueId}` },
+  })),
+};
+
+const placeJsonLd = venueCards.map(({ venue }) => ({
+  "@type": "Place",
+  "@id": `${canonical}#place-${venue.venueId}`,
+  name: venue.name,
+  url: `${canonical}#venue-${venue.venueId}`,
+  sameAs: venue.officialUrl,
+  address: {
+    "@type": "PostalAddress",
+    ...(venue.postalCode ? { postalCode: venue.postalCode } : {}),
+    streetAddress: withoutPrefecturePrefix(venue.address, venue.prefecture),
+    addressLocality: venue.municipality,
+    addressRegion: venue.prefecture,
+    addressCountry: "JP",
+  },
+}));
+
+const hotelJsonLd = publicHotels.map((hotel) => ({
+  "@type": "Hotel",
+  "@id": `${canonical}#hotel-${hotel.hotelId}`,
+  name: hotel.name,
+  url: hotel.officialUrl,
+  address: {
+    "@type": "PostalAddress",
+    ...(hotel.postalCode ? { postalCode: hotel.postalCode } : {}),
+    streetAddress: withoutPrefecturePrefix(hotel.address, hotel.prefecture),
+    addressLocality: hotel.municipality,
+    addressRegion: hotel.prefecture,
+    addressCountry: "JP",
+  },
+}));
+
+const datasetJsonLd = {
+  "@type": "Dataset",
+  "@id": datasetId,
+  name: metadata.name,
+  description,
+  url: canonical,
+  identifier: datasetId,
+  inLanguage: "ja",
+  datePublished: metadata.datePublished,
+  dateModified: metadata.dateModified,
+  version: metadata.version,
+  creator: { "@id": organizationId },
+  publisher: { "@id": organizationId },
+  isAccessibleForFree: true,
+  variableMeasured: privateMedicalExamVenuesHotels2027FieldDefinitions.map((field) => field.label),
+  isBasedOn: privateMedicalExamVenuesHotels2027SourceUrls,
+  distribution: {
+    "@type": "DataDownload",
+    name: "2027年度 私立医学部入試会場・周辺ホテル JSON",
+    encodingFormat: "application/json",
+    contentUrl: datasetUrl,
+  },
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "EducationalOrganization",
+      "@id": organizationId,
+      name: metadata.publisher.name,
+      alternateName: metadata.publisher.alternateName,
+      url: metadata.publisher.url,
+      logo: { "@type": "ImageObject", url: "https://lexus-ec.com/assets/optimized/header-logo-900.webp" },
+    },
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: "https://lexus-ec.com/",
+      name: "医学部予備校 レクサス E.C.",
+      inLanguage: "ja",
+      publisher: { "@id": organizationId },
+    },
+    {
+      "@type": "WebPage",
+      "@id": webpageId,
+      name: title,
+      description,
+      url: canonical,
+      inLanguage: "ja",
+      datePublished: metadata.datePublished,
+      dateModified: metadata.dateModified,
+      isPartOf: { "@id": websiteId },
+      publisher: { "@id": organizationId },
+      breadcrumb: { "@id": breadcrumbId },
+      primaryImageOfPage: { "@type": "ImageObject", url: ogImageUrl },
+      mainEntity: { "@id": datasetId },
+      hasPart: [{ "@id": venueListId }],
+    },
+    datasetJsonLd,
+    venueListJsonLd,
+    breadcrumbJsonLd,
+    ...placeJsonLd,
+    ...hotelJsonLd,
+  ],
+};
+---
+
+<SiteLayout title={title} description={description} canonical={canonical} ogImage="/og/private-medical-exam-venues-hotels-2027.png">
+  <Fragment slot="head">
+    <meta name="author" content={metadata.publisher.name} />
+    <meta property="og:updated_time" content={metadata.dateModified} />
+    <meta property="og:image:alt" content="2027年度 私立医学部の入試会場・周辺ホテル一覧" />
+    <link rel="alternate" type="application/json" title="2027年度 私立医学部入試会場・周辺ホテル JSONデータ" href={datasetUrl} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </Fragment>
+
+  <main class="admissions-page venue-guide-page">
+    <script is:inline id="venue-filter-records" type="application/json" set:html={JSON.stringify(filterRecords).replace(/</g, "\\u003c")} />
+    <header class="admissions-print-branding" aria-label="医学部予備校レクサスE.C.">
+      <img class="admissions-print-branding__character" src="/illustrations/characters/lexus-kun-exp.png" alt="レクサスくん" width="1170" height="1170" />
+      <div>
+        <img class="admissions-print-branding__logo" src="/assets/optimized/footer-logo-760.webp" alt="鬼特訓する医学部予備校レクサスE.C." width="760" height="300" />
+        <p>2027年度 私立医学部入試会場・周辺ホテル｜最終確認：{metadata.dateModifiedLabel}</p>
+      </div>
+      <img class="admissions-print-branding__character" src="/illustrations/characters/yuki-sensei-default.png" alt="ユウキ先生" width="395" height="395" />
+    </header>
+
+    <section class="admissions-hero venue-guide-hero">
+      <div class="content admissions-hero__inner">
+        <nav class="admissions-breadcrumb admissions-breadcrumb--with-switcher" aria-label="パンくずリスト">
+          <a href="/">ホーム</a><span aria-hidden="true">/</span>
+          <a href="/top/information-shiritsu/">私立医学部情報</a><span aria-hidden="true">/</span>
+          <span aria-current="page">2027年度 入試会場・周辺ホテル</span>
+        </nav>
+
+        <AdmissionsScheduleSwitcher current="venues" />
+
+        <div class="admissions-hero__grid">
+          <div class="admissions-hero__copy">
+            <p class="admissions-kicker"><span>2027</span> VENUES &amp; STAY GUIDE</p>
+            <h1>2027年度 私立医学部31大学<br /><strong>入試会場・周辺ホテル</strong></h1>
+            <p class="admissions-hero__lead">
+              同じ大学でも、<b>方式・一次／二次・会場指定条件</b>は異なります。
+              正式会場と宿泊先を同じ文脈で確認し、受験票発行後に最終チェックできます。
+            </p>
+            <div class="admissions-hero__actions">
+              <a class="admissions-primary-button" href="#finder">会場・大学を探す</a>
+              <a class="admissions-secondary-button" href="#planning">宿泊計画の注意点</a>
+            </div>
+          </div>
+
+          <aside class="venue-guide-hero__summary" aria-label="掲載状況">
+            <p>公開台帳</p>
+            <strong><span>{privateMedicalExamVenueSummary2027.universityCount}</span>大学</strong>
+            <dl>
+              <div><dt>対象方式</dt><dd>{privateMedicalExamVenueSummary2027.routeCount}</dd></div>
+              <div><dt>固有会場</dt><dd>{venueCards.length}</dd></div>
+              <div><dt>ホテル</dt><dd>{uniqueHotelIds.size}</dd></div>
+            </dl>
+            <small>最終確認：{metadata.dateModifiedLabel}</small>
+          </aside>
+        </div>
+
+        <div class="admissions-update-row">
+          <span class="admissions-live-dot" aria-hidden="true"></span>
+          <span>会場・ホテル情報の最終確認：{metadata.dateModifiedLabel}</span>
+          <a href="#updates">更新内容を見る<span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="venue-guide-alert" aria-labelledby="final-check-title">
+      <div class="content">
+        <div class="admissions-notice admissions-notice--guideline">
+          <span aria-hidden="true">!</span>
+          <div>
+            <strong id="final-check-title">出願前と受験票発行後に、大学公式情報で最終確認してください</strong>
+            <p>希望地を選べても、定員超過や大学指定で別会場になる場合があります。会場が未確定の方式には、特定会場向けホテルを掲載していません。</p>
+            <p class="admissions-notice__required">ホテル予約時は、宿泊日・人数・キャンセル条件・朝食開始時刻を予約プランごとに確認してください。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="venue-guide-method" aria-labelledby="method-title">
+      <div class="content">
+        <header class="admissions-section-heading">
+          <p>HOW WE VERIFY</p>
+          <h2 id="method-title">会場とホテルは別レーンで確認</h2>
+          <p>大学の公式募集要項で会場を確定した後、その会場IDにホテルの公式情報を結合しています。</p>
+        </header>
+        <div class="venue-guide-method__grid">
+          <article><span>01</span><h3>入試会場</h3><p>大学×方式×試験段階×日付で分け、希望・大学指定・受験票指定・定員超過変更を保持します。</p></article>
+          <article><span>02</span><h3>宿泊施設</h3><p>ホテル公式サイトで営業・住所・設備を確認し、価格は固定情報として掲載しません。</p></article>
+          <article><span>03</span><h3>会場アクセス</h3><p>公式アクセスを優先し、徒歩・鉄道・バス・タクシーと乗換・早朝依存の注意を分けます。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <AdmissionsBrandDivider variant="duo" />
+
+    <section class="venue-guide-finder" id="finder" aria-labelledby="finder-title">
+      <div class="content">
+        <header class="admissions-section-heading admissions-section-heading--split">
+          <div><p>FIND YOUR VENUE</p><h2 id="finder-title">会場・大学を探す</h2></div>
+          <p>条件を組み合わせると、会場別一覧と大学別一覧を同時に絞り込めます。</p>
+        </header>
+
+        <form class="venue-guide-filters" data-venue-filters>
+          <label class="venue-guide-filters__search">
+            <span>大学名・会場名</span>
+            <input type="search" name="query" placeholder="例：杏林、幕張、枚方" autocomplete="off" />
+          </label>
+          <label><span>地域</span><select name="region"><option value="all">すべて</option>{universityRegions.map((region) => <option value={region}>{region}</option>)}</select></label>
+          <label><span>会場都道府県</span><select name="prefecture"><option value="all">すべて</option>{venuePrefectures.map((prefecture) => <option value={prefecture}>{prefecture}</option>)}</select></label>
+          <label><span>試験段階</span><select name="stage"><option value="all">すべて</option><option value="first">一次・大学独自試験</option><option value="second">二次・面接等</option></select></label>
+          <label><span>入試方式</span><select name="category"><option value="all">すべて</option><option value="general">一般選抜</option><option value="common">共テ利用・併用</option></select></label>
+          <label><span>公表状態</span><select name="state"><option value="all">すべて</option>{Object.entries(venuePublicationStateLabels).map(([value, label]) => <option value={value}>{label}</option>)}</select></label>
+          <button type="reset">条件をリセット</button>
+        </form>
+        <p class="venue-guide-filter-result" aria-live="polite" data-filter-result>全件を表示しています。</p>
+      </div>
+    </section>
+
+    <section class="venue-guide-venues" id="venues" aria-labelledby="venues-title">
+      <div class="content">
+        <header class="admissions-section-heading">
+          <p>BY VENUE</p>
+          <h2 id="venues-title">会場別一覧</h2>
+          <p>正式名称・住所まで確認できた会場を、利用大学・方式・試験日・周辺ホテルとまとめています。</p>
+        </header>
+
+        <div class="venue-guide-venue-list" data-filter-section="venues">
+          {venueCards.map(({ venue, assignments, hotels }, index) => {
+            const regions = [...new Set(assignments.map((assignment) => assignment.region))];
+            const stages = [...new Set(assignments.map((assignment) => assignment.examStage))];
+            const categories = [...new Set(assignments.map((assignment) => assignment.routeCategory))];
+            const states = [...new Set(assignments.map((assignment) => assignment.publicationState))];
+            const searchText = [venue.name, venue.shortName, venue.address, ...assignments.flatMap((assignment) => [assignment.universityName, assignment.routeName])].join(" ").toLowerCase();
+            return (
+              <article
+                class="venue-guide-venue"
+                id={`venue-${venue.venueId}`}
+                data-filter-card
+                data-kind="venue"
+                data-search={searchText}
+                data-regions={regions.join("|")}
+                data-prefectures={venue.prefecture}
+                data-stages={stages.join("|")}
+                data-categories={categories.join("|")}
+                data-states={states.join("|")}
+              >
+                <header class="venue-guide-venue__header">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <div><p>{venue.prefecture}・{venue.municipality}</p><h3>{venue.name}</h3></div>
+                  <a href={venue.officialUrl} target="_blank" rel="noopener noreferrer">施設公式 ↗</a>
+                </header>
+                <div class="venue-guide-venue__facts">
+                  <dl>
+                    <div><dt>住所</dt><dd>{venue.postalCode && `〒${venue.postalCode} `}{venue.address}</dd></div>
+                    <div><dt>最寄り</dt><dd>{venue.nearestStations.join("／")}</dd></div>
+                    {venue.accessNote && <div><dt>アクセス注意</dt><dd>{venue.accessNote}</dd></div>}
+                  </dl>
+                </div>
+
+                <section class="venue-guide-venue__assignments" aria-labelledby={`venue-users-${venue.venueId}`}>
+                  <h4 id={`venue-users-${venue.venueId}`}>この会場を使う大学・方式</h4>
+                  <div class="venue-guide-assignment-grid">
+                    {assignments.map((assignment) => (
+                      <article data-filter-assignment-id={assignment.assignmentId}>
+                        <div class="venue-guide-assignment__meta">
+                          <span>{assignment.examStageLabel}</span>
+                          <span class={`venue-state venue-state--${assignment.publicationState}`}>{venuePublicationStateLabels[assignment.publicationState]}</span>
+                        </div>
+                        <h5><a href={`#university-${assignment.universityId}`}>{assignment.universityName}</a></h5>
+                        <p>{assignment.routeName}</p>
+                        <dl>
+                          <div><dt>試験日</dt><dd>{assignment.examDateLabel}</dd></div>
+                          <div><dt>会場条件</dt><dd>{conditionText(assignment) || "公表待ち"}</dd></div>
+                        </dl>
+                        {assignment.note && <small>{assignment.note}</small>}
+                        {assignment.officialAdmissionUrl && <a class="venue-guide-source-link" href={assignment.officialAdmissionUrl} target="_blank" rel="noopener noreferrer">大学公式の根拠 ↗</a>}
+                      </article>
+                    ))}
+                  </div>
+                </section>
+
+                <section class="venue-guide-hotels" aria-labelledby={`hotels-${venue.venueId}`}>
+                  <div class="venue-guide-hotels__heading">
+                    <div><p>STAY NEARBY</p><h4 id={`hotels-${venue.venueId}`}>会場周辺の宿泊施設</h4></div>
+                    <span>{hotels.length}施設</span>
+                  </div>
+                  {hotels.length > 0 ? (
+                    <div class="venue-guide-hotel-grid">
+                      {hotels.map((hotel) => {
+                        const access = hotel.venueAccess.find((entry) => entry.venueId === venue.venueId);
+                        const displayableTravelTime =
+                          access && !access.reviewState.includes("needs_route_review")
+                            ? access.travelTimeLabel
+                            : undefined;
+                        return (
+                          <article id={`hotel-${hotel.hotelId}--venue-${venue.venueId}`}>
+                            <p class="venue-guide-hotel__status">{hotelOperatingStatusLabels2027[hotel.operatingStatus]}</p>
+                            <h5>{hotel.name}</h5>
+                            <p class="venue-guide-hotel__address">{hotel.address}</p>
+                            <dl>
+                              <div><dt>最寄り</dt><dd>{hotel.nearestStation}</dd></div>
+                              {access && <div><dt>会場まで</dt><dd>{access.routeSummary}{displayableTravelTime ? `（${displayableTravelTime}）` : ""}</dd></div>}
+                              {access && <div><dt>経路の確認</dt><dd>{access.reviewState.map((state) => hotelVenueAccessReviewStateLabels2027[state]).join("／")}</dd></div>}
+                              {access?.caution && <div><dt>注意</dt><dd>{access.caution}</dd></div>}
+                            </dl>
+                            {hotel.amenities.length > 0 && <ul class="venue-guide-hotel__amenities">{hotel.amenities.map((amenity) => <li title={amenity.detail}>{amenity.label}</li>)}</ul>}
+                            <div class="venue-guide-hotel__links">
+                              <a href={hotel.officialUrl} target="_blank" rel="noopener noreferrer">ホテル公式 ↗</a>
+                              {hotel.officialBookingUrl && <a href={hotel.officialBookingUrl} target="_blank" rel="noopener noreferrer">公式予約 ↗</a>}
+                            </div>
+                          </article>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <p class="venue-guide-hotels__pending">この会場は宿泊施設の公式情報・経路を確認中です。件数を埋めるための推測掲載はしていません。</p>
+                  )}
+                </section>
+              </article>
+            );
+          })}
+        </div>
+        <p class="venue-guide-empty" hidden data-filter-empty="venues">条件に合う確定会場はありません。公表状態を「すべて」に戻すか、大学別一覧で未公表項目をご確認ください。</p>
+      </div>
+    </section>
+
+    <AdmissionsBrandDivider variant="lexus" />
+
+    <section class="venue-guide-universities" id="universities" aria-labelledby="universities-title">
+      <div class="content">
+        <header class="admissions-section-heading">
+          <p>BY UNIVERSITY</p>
+          <h2 id="universities-title">大学別一覧（31大学）</h2>
+          <p>方式ごとに一次・二次を分け、会場未公表や受験票指定も省略せず表示します。</p>
+        </header>
+
+        <div class="venue-guide-university-list" data-filter-section="universities">
+          {privateMedicalExamVenueUniversitySummaries2027.map((university, index) => {
+            const assignments = assignmentsForUniversity(university.universityId);
+            const venuePrefectureValues = [...new Set(assignments.flatMap((assignment) => assignment.venueLinks.map((link) => venueById.get(link.venueId)?.prefecture).filter(Boolean)))];
+            const stages = [...new Set(assignments.map((assignment) => assignment.examStage))];
+            const categories = [...new Set(assignments.map((assignment) => assignment.routeCategory))];
+            const states = [...new Set(assignments.map((assignment) => assignment.publicationState))];
+            const searchText = [university.universityName, ...assignments.flatMap((assignment) => [assignment.routeName, assignment.announcedVenueText, ...assignmentVenueNames(assignment)])].join(" ").toLowerCase();
+            return (
+              <details
+                class="venue-guide-university"
+                id={`university-${university.universityId}`}
+                data-filter-card
+                data-kind="university"
+                data-search={searchText}
+                data-regions={university.region}
+                data-prefectures={venuePrefectureValues.join("|")}
+                data-stages={stages.join("|")}
+                data-categories={categories.join("|")}
+                data-states={states.join("|")}
+              >
+                <summary>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <div><small>{university.region}・{university.prefecture}</small><strong>{university.universityName}</strong></div>
+                  <div class="venue-guide-university__counts"><span>確定 {assignments.filter((entry) => entry.publicationState === "confirmed").length}</span><span>確認中 {assignments.filter((entry) => entry.publicationState !== "confirmed").length}</span></div>
+                  <i aria-hidden="true"></i>
+                </summary>
+                <div class="venue-guide-university__body">
+                  {assignments.map((assignment) => (
+                    <article data-filter-assignment-id={assignment.assignmentId}>
+                      <header><div><span>{assignment.examStageLabel}</span><strong>{assignment.routeName}</strong></div><span class={`venue-state venue-state--${assignment.publicationState}`}>{venuePublicationStateLabels[assignment.publicationState]}</span></header>
+                      <dl>
+                        <div><dt>試験日</dt><dd>{assignment.examDateLabel}</dd></div>
+                        <div><dt>公表会場</dt><dd>{assignment.announcedVenueText}</dd></div>
+                        <div><dt>会場条件</dt><dd>{conditionText(assignment) || "未公表"}</dd></div>
+                        <div><dt>根拠</dt><dd>{assignment.evidenceLabel}{assignment.evidenceLocator && `（${assignment.evidenceLocator}）`}</dd></div>
+                      </dl>
+                      {assignment.venueLinks.length > 0 && <p class="venue-guide-university__venue-links">{assignment.venueLinks.map((venueLink) => { const venue = venueById.get(venueLink.venueId); return venue && <a href={`#venue-${venue.venueId}`}>{venue.shortName}を見る</a>; })}</p>}
+                      {assignment.note && <p class="venue-guide-university__note">{assignment.note}</p>}
+                      {assignment.officialAdmissionUrl && <a class="venue-guide-source-link" href={assignment.officialAdmissionUrl} target="_blank" rel="noopener noreferrer">大学公式資料 ↗</a>}
+                    </article>
+                  ))}
+                  <footer><a href={university.strategyPath}>大学別の入試対策を見る →</a></footer>
+                </div>
+              </details>
+            );
+          })}
+        </div>
+        <p class="venue-guide-empty" hidden data-filter-empty="universities">条件に合う大学はありません。</p>
+      </div>
+    </section>
+
+    <section class="venue-guide-planning" id="planning" aria-labelledby="planning-title">
+      <div class="content">
+        <header class="admissions-section-heading admissions-section-heading--light">
+          <p>BEFORE YOU BOOK</p>
+          <h2 id="planning-title">受験宿泊の計画で確認すること</h2>
+          <p>所要時間の短さだけでなく、朝の交通・天候・変更条件まで確認します。</p>
+        </header>
+        <ol class="venue-guide-planning__steps">
+          <li><span>01</span><div><h3>受験票で会場を確定</h3><p>希望地と実際の指定会場が同じとは限りません。施設名・棟・入口まで確認します。</p></div></li>
+          <li><span>02</span><div><h3>前日に経路を下見</h3><p>駅出口、バス乗り場、会場入口を確認。大規模施設は敷地内移動の時間も見込みます。</p></div></li>
+          <li><span>03</span><div><h3>朝の交通を時刻表で確認</h3><p>始発・休日ダイヤ・バス依存・乗換回数を確認し、一本遅れても対応できる余裕を持ちます。</p></div></li>
+          <li><span>04</span><div><h3>雪・混雑・イベントを確認</h3><p>東北・北陸の雪、首都圏の遅延、展示場周辺の大型イベントによる混雑を想定します。</p></div></li>
+          <li><span>05</span><div><h3>予約条件を公式画面で確認</h3><p>キャンセル料、朝食時刻、チェックイン、税・サービス料はプランごとに確認します。</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="venue-guide-updates" id="updates" aria-labelledby="updates-title">
+      <div class="content">
+        <header class="admissions-section-heading"><p>UPDATE HISTORY</p><h2 id="updates-title">更新履歴</h2><p>受験生にとって変わった内容を記録します。</p></header>
+        <ol>{updateHistory.map((update, index) => <li><div>{index === 0 && <span>NEW</span>}<time datetime={update.dateTime}>{update.date}</time></div><article><h3>{update.title}</h3><p>{update.text}</p></article></li>)}</ol>
+      </div>
+    </section>
+
+    <section class="venue-guide-related" aria-labelledby="related-title">
+      <div class="content">
+        <aside class="admissions-related-schedule admissions-related-schedule--general">
+          <div><strong id="related-title">試験日・出願締切を比較する方へ</strong><p>既存の日程ページでは、一般選抜・共通テスト利用選抜31大学の日程を素早く比較できます。</p></div>
+          <a href="/private-medical-school-admissions-schedule-2027/">2027年度入試日程を見る →</a>
+        </aside>
+        <div class="venue-guide-dataset">
+          <div><p>OPEN DATA</p><h2>ページと同じ正本をJSONで公開</h2><p>会場・大学・方式・試験段階・日付・ホテル・関係・出典・確認日時・review状態を再利用できます。</p></div>
+          <a href={datasetUrl} type="application/json">機械可読JSONを見る →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline>
+    (() => {
+      const form = document.querySelector("[data-venue-filters]");
+      if (!(form instanceof HTMLFormElement)) return;
+
+      const recordElement = document.getElementById("venue-filter-records");
+      if (!(recordElement instanceof HTMLScriptElement)) return;
+      const cards = [...document.querySelectorAll("[data-filter-card]")];
+      const result = document.querySelector("[data-filter-result]");
+      const normalize = (value) => String(value || "").normalize("NFKC").trim().toLocaleLowerCase("ja");
+      let assignmentRecords = [];
+      try {
+        assignmentRecords = JSON.parse(recordElement.textContent || "[]");
+      } catch {
+        assignmentRecords = [];
+      }
+
+      const applyFilters = () => {
+        const data = new FormData(form);
+        const query = normalize(data.get("query"));
+        const region = normalize(data.get("region")) || "all";
+        const prefecture = normalize(data.get("prefecture")) || "all";
+        const stage = normalize(data.get("stage")) || "all";
+        const category = normalize(data.get("category")) || "all";
+        const state = normalize(data.get("state")) || "all";
+        let visibleVenues = 0;
+        let visibleUniversities = 0;
+
+        const matchesRecord = (record) =>
+          (!query || normalize(record.search).includes(query)) &&
+          (region === "all" || normalize(record.region) === region) &&
+          (prefecture === "all" || record.prefectures.map(normalize).includes(prefecture)) &&
+          (stage === "all" || normalize(record.stage) === stage) &&
+          (category === "all" || normalize(record.category) === category) &&
+          (state === "all" || normalize(record.state) === state);
+
+        for (const card of cards) {
+          if (!(card instanceof HTMLElement)) continue;
+          const records = assignmentRecords.filter((record) =>
+            card.dataset.kind === "venue"
+              ? record.venueIds.includes(card.id.replace(/^venue-/, ""))
+              : record.universityId === card.id.replace(/^university-/, ""),
+          );
+          const matchingAssignmentIds = new Set(
+            records.filter(matchesRecord).map((record) => record.assignmentId),
+          );
+          const visible = records.some(matchesRecord);
+          card.hidden = !visible;
+          for (const assignmentRow of card.querySelectorAll("[data-filter-assignment-id]")) {
+            if (assignmentRow instanceof HTMLElement) {
+              assignmentRow.hidden = !matchingAssignmentIds.has(
+                assignmentRow.dataset.filterAssignmentId,
+              );
+            }
+          }
+          if (visible && card.dataset.kind === "venue") visibleVenues += 1;
+          if (visible && card.dataset.kind === "university") visibleUniversities += 1;
+        }
+
+        for (const section of ["venues", "universities"]) {
+          const empty = document.querySelector(`[data-filter-empty="${section}"]`);
+          if (empty instanceof HTMLElement) empty.hidden = section === "venues" ? visibleVenues > 0 : visibleUniversities > 0;
+        }
+        if (result) result.textContent = `会場 ${visibleVenues}件・大学 ${visibleUniversities}校を表示しています。`;
+      };
+
+      form.addEventListener("input", applyFilters);
+      form.addEventListener("change", applyFilters);
+      form.addEventListener("reset", () => requestAnimationFrame(applyFilters));
+      applyFilters();
+    })();
+  </script>
+</SiteLayout>
