@@ -229,7 +229,26 @@ test("ページは会場中心・31大学・組合せフィルターをSSR本文
   assert.match(source, /matchingAssignmentIds/u);
   assert.match(source, /normalize\("NFKC"\)/u);
   assert.match(source, /privateMedicalExamVenueUniversitySummaries2027\.map/u);
+  assert.match(source, /venueGroups\.map/u);
+  assert.match(source, /data-venue-prefecture-group/u);
+  assert.match(source, /data-prefecture-link/u);
+  assert.match(source, /group\.hidden = visibleCount === 0/u);
+  assert.match(source, /cardMatchesPrefecture/u);
   assert.doesNotMatch(source, /おすすめランキング|絶対に遅刻しない|最も安全/u);
+});
+
+test("会場ページのページ内メニューは5セクションへ移動でき画面上部に追従する", () => {
+  const source = readFileSync(pageSourcePath, "utf8");
+  const cssSource = readFileSync(
+    fileURLToPath(new URL("../src/styles/venues-hotels-2027.css", import.meta.url)),
+    "utf8",
+  );
+
+  assert.match(source, /class="admissions-jump-nav venue-guide-jump-nav"/u);
+  for (const id of ["venues", "universities", "planning", "updates", "dataset"]) {
+    assert.match(source, new RegExp(`id: "${id}"`, "u"));
+  }
+  assert.match(cssSource, /\.venue-guide-jump-nav\s*\{[\s\S]*?position:\s*sticky;[\s\S]*?top:\s*0;/u);
 });
 
 test("私立医学部情報ページは会場・ホテルガイドへの専用バナーを提供する", () => {
@@ -257,6 +276,26 @@ test("build成果物のJSONと構造化データはparseでき、IDが重複し�
   assert.equal(builtDataset.scope.routeCount, 83);
 
   const html = readFileSync(builtPagePath, "utf8");
+  const groupedPrefectures = [
+    ...html.matchAll(
+      /<section\b[^>]*class="venue-guide-prefecture"[^>]*data-venue-prefecture-group="([^"]+)"/gu,
+    ),
+  ].map((match) => match[1]);
+  const expectedPrefectures = [
+    ...new Set(
+      privateMedicalExamVenues2027
+        .filter((venue) =>
+          privateMedicalExamVenueAssignments2027.some((assignment) =>
+            assignment.venueLinks.some((link) => link.venueId === venue.venueId),
+          ),
+        )
+        .map((venue) => venue.prefecture),
+    ),
+  ];
+  assert.equal(groupedPrefectures.length, expectedPrefectures.length);
+  assert.deepEqual(new Set(groupedPrefectures), new Set(expectedPrefectures));
+  assert.ok(unique(groupedPrefectures), "都道府県グループが重複しています");
+
   const jsonLdBlocks = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gu)];
   assert.ok(jsonLdBlocks.length > 0);
   const documents = jsonLdBlocks.map((match) => JSON.parse(match[1]));

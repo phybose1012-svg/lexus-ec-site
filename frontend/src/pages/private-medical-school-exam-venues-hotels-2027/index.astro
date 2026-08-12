@@ -34,6 +34,22 @@ const publicHotels = privateMedicalVenueHotels2027.filter(
 );
 const venueById = new Map(privateMedicalExamVenues2027.map((venue) => [venue.venueId, venue]));
 const hotelsByVenueId = new Map<string, typeof publicHotels>();
+const prefectureDisplayOrder = [
+  "北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県",
+  "茨城県", "栃木県", "群馬県", "埼玉県", "千葉県", "東京都", "神奈川県",
+  "新潟県", "富山県", "石川県", "福井県", "山梨県", "長野県", "岐阜県", "静岡県", "愛知県",
+  "三重県", "滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県",
+  "鳥取県", "島根県", "岡山県", "広島県", "山口県",
+  "徳島県", "香川県", "愛媛県", "高知県",
+  "福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県",
+] as const;
+const prefectureOrderIndex = new Map<string, number>(
+  prefectureDisplayOrder.map((prefecture, index) => [prefecture, index]),
+);
+const comparePrefectures = (left: string, right: string) =>
+  (prefectureOrderIndex.get(left) ?? Number.MAX_SAFE_INTEGER) -
+    (prefectureOrderIndex.get(right) ?? Number.MAX_SAFE_INTEGER) ||
+  left.localeCompare(right, "ja");
 
 for (const hotel of publicHotels) {
   for (const access of hotel.venueAccess) {
@@ -52,7 +68,7 @@ const venueCards = privateMedicalExamVenues2027
   .filter((entry) => entry.assignments.length > 0)
   .sort(
     (left, right) =>
-      left.venue.prefecture.localeCompare(right.venue.prefecture, "ja") ||
+      comparePrefectures(left.venue.prefecture, right.venue.prefecture) ||
       left.venue.name.localeCompare(right.venue.name, "ja"),
   );
 
@@ -60,8 +76,14 @@ const uniqueHotelIds = new Set(publicHotels.map((hotel) => hotel.hotelId));
 const hotelLinkedVenueIds = new Set(
   publicHotels.flatMap((hotel) => hotel.venueAccess.map((access) => access.venueId)),
 );
-const venuePrefectures = [...new Set(venueCards.map((entry) => entry.venue.prefecture))].sort((a, b) =>
-  a.localeCompare(b, "ja"),
+const venuePrefectures = [...new Set(venueCards.map((entry) => entry.venue.prefecture))].sort(comparePrefectures);
+const venueGroups = venuePrefectures.map((prefecture, index) => ({
+  prefecture,
+  id: `venue-prefecture-${index + 1}`,
+  entries: venueCards.filter((entry) => entry.venue.prefecture === prefecture),
+}));
+const venueOrderById = new Map(
+  venueCards.map((entry, index) => [entry.venue.venueId, index + 1]),
 );
 const universityRegions = ["北海道・東北", "関東", "中部", "近畿", "中国・四国", "九州"];
 
@@ -314,6 +336,24 @@ const structuredData = {
       </div>
     </section>
 
+    <nav class="admissions-jump-nav venue-guide-jump-nav" aria-label="ページ内メニュー">
+      <div class="content admissions-jump-nav__inner">
+        {[
+          { id: "venues", long: "会場別一覧", short: "会場別" },
+          { id: "universities", long: "大学別31校", short: "大学別" },
+          { id: "planning", long: "宿泊計画", short: "宿泊" },
+          { id: "updates", long: "更新履歴", short: "更新" },
+          { id: "dataset", long: "公開データ", short: "データ" },
+        ].map((item, index) => (
+          <a href={`#${item.id}`} aria-label={`${item.long}へ移動`}>
+            <span class="admissions-jump-nav__index">{String(index + 1).padStart(2, "0")}</span>
+            <span class="admissions-jump-nav__label admissions-jump-nav__label--long">{item.long}</span>
+            <span class="admissions-jump-nav__label admissions-jump-nav__label--short">{item.short}</span>
+          </a>
+        ))}
+      </div>
+    </nav>
+
     <section class="venue-guide-alert" aria-labelledby="final-check-title">
       <div class="content">
         <div class="admissions-notice admissions-notice--guideline">
@@ -372,17 +412,42 @@ const structuredData = {
         <header class="admissions-section-heading">
           <p>BY VENUE</p>
           <h2 id="venues-title">会場別一覧</h2>
-          <p>正式名称・住所まで確認できた会場を、利用大学・方式・試験日・周辺ホテルとまとめています。</p>
+          <p>正式名称・住所まで確認できた会場を都道府県別に分け、利用大学・方式・試験日・周辺ホテルとまとめています。</p>
         </header>
 
+        <nav class="venue-guide-prefecture-index" aria-label="都道府県から会場を選ぶ">
+          {venueGroups.map((group) => (
+            <a href={`#${group.id}`} data-prefecture-link={group.prefecture}>
+              <span>{group.prefecture}</span>
+              <small data-prefecture-count={group.prefecture}>{group.entries.length}会場</small>
+            </a>
+          ))}
+        </nav>
+
         <div class="venue-guide-venue-list" data-filter-section="venues">
-          {venueCards.map(({ venue, assignments, hotels }, index) => {
-            const regions = [...new Set(assignments.map((assignment) => assignment.region))];
-            const stages = [...new Set(assignments.map((assignment) => assignment.examStage))];
-            const categories = [...new Set(assignments.map((assignment) => assignment.routeCategory))];
-            const states = [...new Set(assignments.map((assignment) => assignment.publicationState))];
-            const searchText = [venue.name, venue.shortName, venue.address, ...assignments.flatMap((assignment) => [assignment.universityName, assignment.routeName])].join(" ").toLowerCase();
-            return (
+          {venueGroups.map((group) => (
+            <section
+              class="venue-guide-prefecture"
+              id={group.id}
+              aria-labelledby={`${group.id}-title`}
+              data-venue-prefecture-group={group.prefecture}
+            >
+              <header class="venue-guide-prefecture__header">
+                <div>
+                  <p>EXAM VENUES</p>
+                  <h3 id={`${group.id}-title`}>{group.prefecture}</h3>
+                </div>
+                <span data-prefecture-count={group.prefecture}>{group.entries.length}会場</span>
+              </header>
+
+              <div class="venue-guide-prefecture__list">
+                {group.entries.map(({ venue, assignments, hotels }) => {
+                  const regions = [...new Set(assignments.map((assignment) => assignment.region))];
+                  const stages = [...new Set(assignments.map((assignment) => assignment.examStage))];
+                  const categories = [...new Set(assignments.map((assignment) => assignment.routeCategory))];
+                  const states = [...new Set(assignments.map((assignment) => assignment.publicationState))];
+                  const searchText = [venue.name, venue.shortName, venue.address, ...assignments.flatMap((assignment) => [assignment.universityName, assignment.routeName])].join(" ").toLowerCase();
+                  return (
               <article
                 class="venue-guide-venue"
                 id={`venue-${venue.venueId}`}
@@ -396,7 +461,7 @@ const structuredData = {
                 data-states={states.join("|")}
               >
                 <header class="venue-guide-venue__header">
-                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <span>{String(venueOrderById.get(venue.venueId) ?? 0).padStart(2, "0")}</span>
                   <div><p>{venue.prefecture}・{venue.municipality}</p><h3>{venue.name}</h3></div>
                   <a href={venue.officialUrl} target="_blank" rel="noopener noreferrer">施設公式 ↗</a>
                 </header>
@@ -468,8 +533,11 @@ const structuredData = {
                   )}
                 </section>
               </article>
-            );
-          })}
+                  );
+                })}
+              </div>
+            </section>
+          ))}
         </div>
         <p class="venue-guide-empty" hidden data-filter-empty="venues">条件に合う確定会場はありません。公表状態を「すべて」に戻すか、大学別一覧で未公表項目をご確認ください。</p>
       </div>
@@ -561,7 +629,7 @@ const structuredData = {
       </div>
     </section>
 
-    <section class="venue-guide-related" aria-labelledby="related-title">
+    <section class="venue-guide-related" id="dataset" aria-labelledby="related-title">
       <div class="content">
         <aside class="admissions-related-schedule admissions-related-schedule--general">
           <div><strong id="related-title">試験日・出願締切を比較する方へ</strong><p>既存の日程ページでは、一般選抜・共通テスト利用選抜31大学の日程を素早く比較できます。</p></div>
@@ -583,6 +651,9 @@ const structuredData = {
       const recordElement = document.getElementById("venue-filter-records");
       if (!(recordElement instanceof HTMLScriptElement)) return;
       const cards = [...document.querySelectorAll("[data-filter-card]")];
+      const prefectureGroups = [...document.querySelectorAll("[data-venue-prefecture-group]")];
+      const prefectureLinks = [...document.querySelectorAll("[data-prefecture-link]")];
+      const prefectureCounters = [...document.querySelectorAll("[data-prefecture-count]")];
       const result = document.querySelector("[data-filter-result]");
       const normalize = (value) => String(value || "").normalize("NFKC").trim().toLocaleLowerCase("ja");
       let assignmentRecords = [];
@@ -618,10 +689,15 @@ const structuredData = {
               ? record.venueIds.includes(card.id.replace(/^venue-/, ""))
               : record.universityId === card.id.replace(/^university-/, ""),
           );
+          const cardMatchesPrefecture =
+            card.dataset.kind !== "venue" ||
+            prefecture === "all" ||
+            normalize(card.dataset.prefectures).split("|").includes(prefecture);
+          const matchingRecords = cardMatchesPrefecture ? records.filter(matchesRecord) : [];
           const matchingAssignmentIds = new Set(
-            records.filter(matchesRecord).map((record) => record.assignmentId),
+            matchingRecords.map((record) => record.assignmentId),
           );
-          const visible = records.some(matchesRecord);
+          const visible = cardMatchesPrefecture && records.some(matchesRecord);
           card.hidden = !visible;
           for (const assignmentRow of card.querySelectorAll("[data-filter-assignment-id]")) {
             if (assignmentRow instanceof HTMLElement) {
@@ -632,6 +708,26 @@ const structuredData = {
           }
           if (visible && card.dataset.kind === "venue") visibleVenues += 1;
           if (visible && card.dataset.kind === "university") visibleUniversities += 1;
+        }
+
+        for (const group of prefectureGroups) {
+          if (!(group instanceof HTMLElement)) continue;
+          const visibleCount = [...group.querySelectorAll('[data-kind="venue"]')].filter(
+            (card) => card instanceof HTMLElement && !card.hidden,
+          ).length;
+          group.hidden = visibleCount === 0;
+          const prefectureName = group.dataset.venuePrefectureGroup;
+
+          for (const link of prefectureLinks) {
+            if (link instanceof HTMLElement && link.dataset.prefectureLink === prefectureName) {
+              link.hidden = visibleCount === 0;
+            }
+          }
+          for (const counter of prefectureCounters) {
+            if (counter instanceof HTMLElement && counter.dataset.prefectureCount === prefectureName) {
+              counter.textContent = `${visibleCount}会場`;
+            }
+          }
         }
 
         for (const section of ["venues", "universities"]) {
