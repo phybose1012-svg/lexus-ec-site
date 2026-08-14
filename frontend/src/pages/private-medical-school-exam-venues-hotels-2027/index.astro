@@ -29,6 +29,7 @@ const title = metadata.title;
 const description = metadata.description;
 const canonical = metadata.canonicalUrl;
 const datasetUrl = metadata.datasetUrl;
+const datasetPath = new URL(datasetUrl).pathname;
 const publicHotels = privateMedicalVenueHotels2027.filter(
   (hotel) => hotel.operatingStatus === "official_site_active" && hotel.reviewState === "verified",
 );
@@ -76,8 +77,16 @@ const uniqueHotelIds = new Set(publicHotels.map((hotel) => hotel.hotelId));
 const hotelLinkedVenueIds = new Set(
   publicHotels.flatMap((hotel) => hotel.venueAccess.map((access) => access.venueId)),
 );
-const venuePrefectures = [...new Set(venueCards.map((entry) => entry.venue.prefecture))].sort(comparePrefectures);
-const venueGroups = venuePrefectures.map((prefecture, index) => ({
+const venueGroupPrefectures = [...new Set(venueCards.map((entry) => entry.venue.prefecture))].sort(comparePrefectures);
+const venueFilterPrefectures = [
+  ...new Set([
+    ...venueGroupPrefectures,
+    ...privateMedicalExamVenueAssignments2027.flatMap(
+      (assignment) => assignment.announcedPrefectures,
+    ),
+  ]),
+].sort(comparePrefectures);
+const venueGroups = venueGroupPrefectures.map((prefecture, index) => ({
   prefecture,
   id: `venue-prefecture-${index + 1}`,
   entries: venueCards.filter((entry) => entry.venue.prefecture === prefecture),
@@ -90,13 +99,41 @@ const universityRegions = ["北海道・東北", "関東", "中部", "近畿", "
 const assignmentsForUniversity = (universityId: string) =>
   privateMedicalExamVenueAssignments2027.filter((assignment) => assignment.universityId === universityId);
 const assignmentVenueNames = (assignment: PrivateMedicalExamVenueAssignment2027) =>
-  assignment.venueLinks
-    .map((link) => venueById.get(link.venueId)?.shortName)
-    .filter((name): name is string => Boolean(name));
+  [...new Set(
+    assignment.venueLinks
+      .map((link) => venueById.get(link.venueId)?.shortName)
+      .filter((name): name is string => Boolean(name)),
+  )];
+const assignmentLinkedVenues = (assignment: PrivateMedicalExamVenueAssignment2027) =>
+  [...new Map(
+    assignment.venueLinks
+      .map((link) => {
+        const venue = venueById.get(link.venueId);
+        return venue ? [venue.venueId, venue] as const : undefined;
+      })
+      .filter((entry): entry is readonly [string, (typeof privateMedicalExamVenues2027)[number]] => Boolean(entry)),
+  ).values()];
 const conditionText = (assignment: PrivateMedicalExamVenueAssignment2027) =>
   assignment.conditions.map((condition) => venueAssignmentConditionLabels[condition]).join("・");
+const examPartLabels = { written: "学力試験", interview: "面接試験" } as const;
+const formatRelationDate = (date: string) => {
+  const match = date.match(/^\d{4}-(\d{2})-(\d{2})$/u);
+  return match ? `${Number(match[1])}/${Number(match[2])}` : date;
+};
 
 const updateHistory = [
+  {
+    date: "2026年8月15日",
+    dateTime: "2026-08-15",
+    title: "ホテルセレクトイン埼玉毛呂山の営業再開を反映",
+    text: "公式の案内に基づき、8月12日から販売室数を限定して営業を再開したことを反映しました。予約可否は公式画面で確認し、利用停止中のコインランドリーにはご注意ください。",
+  },
+  {
+    date: "2026年8月15日",
+    dateTime: "2026-08-15",
+    title: "自治医科大学の都道府県別一次試験場を一覧に反映",
+    text: "大学が2027年度募集要項で公表済みの、47都道府県ごとの1月25日学力試験場・1月26日面接試験場を反映しました。8月15日は大学の発表日ではなく、このページへの反映日です。",
+  },
   {
     date: "2026年8月12日",
     dateTime: "2026-08-12",
@@ -117,12 +154,23 @@ const updateHistory = [
   },
 ].filter((update) => !update.title.includes("周辺ホテル") || uniqueHotelIds.size > 0);
 
-const withoutPrefecturePrefix = (address: string, prefecture: string) =>
-  address.startsWith(prefecture) ? address.slice(prefecture.length) : address;
+const withoutAdministrativePrefix = (
+  address: string,
+  prefecture: string,
+  municipality: string,
+) => {
+  const withoutPrefecture = address.startsWith(prefecture)
+    ? address.slice(prefecture.length)
+    : address;
+  return withoutPrefecture.startsWith(municipality)
+    ? withoutPrefecture.slice(municipality.length)
+    : withoutPrefecture;
+};
 
 const filterRecords = privateMedicalExamVenueAssignments2027.map((assignment) => ({
   assignmentId: assignment.assignmentId,
   universityId: assignment.universityId,
+  assignmentSearch: [assignment.universityName, assignment.routeName].join(" "),
   search: [
     assignment.universityName,
     assignment.routeName,
@@ -133,9 +181,14 @@ const filterRecords = privateMedicalExamVenueAssignments2027.map((assignment) =>
       .filter((address): address is string => Boolean(address)),
   ].join(" "),
   region: assignment.region,
-  prefectures: assignment.venueLinks
-    .map((link) => venueById.get(link.venueId)?.prefecture)
-    .filter(Boolean),
+  prefectures: [
+    ...new Set([
+      ...assignment.announcedPrefectures,
+      ...assignment.venueLinks
+        .map((link) => venueById.get(link.venueId)?.prefecture)
+        .filter((prefecture): prefecture is string => Boolean(prefecture)),
+    ]),
+  ],
   stage: assignment.examStage,
   category: assignment.routeCategory,
   state: assignment.publicationState,
@@ -178,11 +231,23 @@ const placeJsonLd = venueCards.map(({ venue }) => ({
   "@id": `${canonical}#place-${venue.venueId}`,
   name: venue.name,
   url: `${canonical}#venue-${venue.venueId}`,
-  sameAs: venue.officialUrl,
+  ...(venue.officialUrlLabel
+    ? {
+        subjectOf: {
+          "@type": "CreativeWork",
+          name: venue.officialUrlLabel,
+          url: venue.officialUrl,
+        },
+      }
+    : { sameAs: venue.officialUrl }),
   address: {
     "@type": "PostalAddress",
     ...(venue.postalCode ? { postalCode: venue.postalCode } : {}),
-    streetAddress: withoutPrefecturePrefix(venue.address, venue.prefecture),
+    streetAddress: withoutAdministrativePrefix(
+      venue.address,
+      venue.prefecture,
+      venue.municipality,
+    ),
     addressLocality: venue.municipality,
     addressRegion: venue.prefecture,
     addressCountry: "JP",
@@ -197,7 +262,11 @@ const hotelJsonLd = publicHotels.map((hotel) => ({
   address: {
     "@type": "PostalAddress",
     ...(hotel.postalCode ? { postalCode: hotel.postalCode } : {}),
-    streetAddress: withoutPrefecturePrefix(hotel.address, hotel.prefecture),
+    streetAddress: withoutAdministrativePrefix(
+      hotel.address,
+      hotel.prefecture,
+      hotel.municipality,
+    ),
     addressLocality: hotel.municipality,
     addressRegion: hotel.prefecture,
     addressCountry: "JP",
@@ -278,7 +347,7 @@ const structuredData = {
     <meta property="og:updated_time" content={metadata.dateModified} />
     <meta property="og:image:alt" content="2027年度 私立医学部の入試会場・周辺ホテル一覧" />
     <link rel="alternate" type="application/json" title="2027年度 私立医学部入試会場・周辺ホテル JSONデータ" href={datasetUrl} />
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, "\\u003c")} />
   </Fragment>
 
   <main class="admissions-page venue-guide-page">
@@ -287,7 +356,7 @@ const structuredData = {
       <img class="admissions-print-branding__character" src="/illustrations/characters/lexus-kun-exp.png" alt="レクサスくん" width="1170" height="1170" />
       <div>
         <img class="admissions-print-branding__logo" src="/assets/optimized/footer-logo-760.webp" alt="鬼特訓する医学部予備校レクサスE.C." width="760" height="300" />
-        <p>2027年度 私立医学部入試会場・周辺ホテル｜最終確認：{metadata.dateModifiedLabel}</p>
+        <p>2027年度 私立医学部入試会場・周辺ホテル｜ページ更新：{metadata.dateModifiedLabel}</p>
       </div>
       <img class="admissions-print-branding__character" src="/illustrations/characters/yuki-sensei-default.png" alt="ユウキ先生" width="395" height="395" />
     </header>
@@ -307,8 +376,8 @@ const structuredData = {
             <p class="admissions-kicker"><span>2027</span> VENUES &amp; STAY GUIDE</p>
             <h1>2027年度 私立医学部31大学<br /><strong>入試会場・周辺ホテル</strong></h1>
             <p class="admissions-hero__lead">
-              同じ大学でも、<b>方式・一次／二次・会場指定条件</b>は異なります。
-              正式会場と宿泊先を同じ文脈で確認し、受験票発行後に最終チェックできます。
+              同じ大学でも、<b>方式・一次／二次・会場や受験日の指定条件</b>は異なります。
+              方式・試験段階ごとの正式会場と、その会場に対応する宿泊先を確認し、受験票発行後の最終確認に役立てられます。
             </p>
             <div class="admissions-hero__actions">
               <a class="admissions-primary-button" href="#finder">会場・大学を探す</a>
@@ -324,13 +393,13 @@ const structuredData = {
               <div><dt>固有会場</dt><dd>{venueCards.length}</dd></div>
               <div><dt>ホテル</dt><dd>{uniqueHotelIds.size}</dd></div>
             </dl>
-            <small>最終確認：{metadata.dateModifiedLabel}</small>
+            <small>最終更新：{metadata.dateModifiedLabel}</small>
           </aside>
         </div>
 
         <div class="admissions-update-row">
           <span class="admissions-live-dot" aria-hidden="true"></span>
-          <span>会場・ホテル情報の最終確認：{metadata.dateModifiedLabel}</span>
+          <span>ページの最終更新：{metadata.dateModifiedLabel}</span>
           <a href="#updates">更新内容を見る<span aria-hidden="true">↓</span></a>
         </div>
       </div>
@@ -371,8 +440,8 @@ const structuredData = {
       <div class="content">
         <header class="admissions-section-heading">
           <p>HOW WE VERIFY</p>
-          <h2 id="method-title">会場とホテルは別レーンで確認</h2>
-          <p>大学の公式募集要項で会場を確定した後、その会場IDにホテルの公式情報を結合しています。</p>
+          <h2 id="method-title">会場情報とホテル情報を分けて確認</h2>
+          <p>大学の公式募集要項・入試ページ等で正式会場を確認した後、会場ごとにホテルの公式情報を関連付けています。</p>
         </header>
         <div class="venue-guide-method__grid">
           <article><span>01</span><h3>入試会場</h3><p>大学×方式×試験段階×日付で分け、希望・大学指定・受験票指定・定員超過変更を保持します。</p></article>
@@ -396,8 +465,8 @@ const structuredData = {
             <span>大学名・会場名</span>
             <input type="search" name="query" placeholder="例：杏林、幕張、枚方" autocomplete="off" />
           </label>
-          <label><span>地域</span><select name="region"><option value="all">すべて</option>{universityRegions.map((region) => <option value={region}>{region}</option>)}</select></label>
-          <label><span>会場都道府県</span><select name="prefecture"><option value="all">すべて</option>{venuePrefectures.map((prefecture) => <option value={prefecture}>{prefecture}</option>)}</select></label>
+          <label><span>大学の地域</span><select name="region"><option value="all">すべて</option>{universityRegions.map((region) => <option value={region}>{region}</option>)}</select></label>
+          <label><span>会場都道府県</span><select name="prefecture"><option value="all">すべて</option>{venueFilterPrefectures.map((prefecture) => <option value={prefecture}>{prefecture}</option>)}</select></label>
           <label><span>試験段階</span><select name="stage"><option value="all">すべて</option><option value="first">一次・大学独自試験</option><option value="second">二次・面接等</option></select></label>
           <label><span>入試方式</span><select name="category"><option value="all">すべて</option><option value="general">一般選抜</option><option value="common">共テ利用・併用</option></select></label>
           <label><span>公表状態</span><select name="state"><option value="all">すべて</option>{Object.entries(venuePublicationStateLabels).map(([value, label]) => <option value={value}>{label}</option>)}</select></label>
@@ -462,42 +531,69 @@ const structuredData = {
               >
                 <header class="venue-guide-venue__header">
                   <span>{String(venueOrderById.get(venue.venueId) ?? 0).padStart(2, "0")}</span>
-                  <div><p>{venue.prefecture}・{venue.municipality}</p><h3>{venue.name}</h3></div>
-                  <a href={venue.officialUrl} target="_blank" rel="noopener noreferrer">施設公式 ↗</a>
+                  <div><p>{venue.prefecture}・{venue.municipality}</p><h4>{venue.name}</h4></div>
+                  <a
+                    href={venue.officialUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={venue.officialUrlLabel}
+                    aria-label={`${venue.officialUrlLabel ?? "施設公式"}を開く`}
+                  >{venue.officialUrlLabel ? "大学公式の会場一覧" : "施設公式"} ↗</a>
                 </header>
                 <div class="venue-guide-venue__facts">
                   <dl>
                     <div><dt>住所</dt><dd>{venue.postalCode && `〒${venue.postalCode} `}{venue.address}</dd></div>
-                    <div><dt>最寄り</dt><dd>{venue.nearestStations.join("／")}</dd></div>
+                    {venue.nearestStations.length > 0 && <div><dt>最寄り</dt><dd>{venue.nearestStations.join("／")}</dd></div>}
                     {venue.accessNote && <div><dt>アクセス注意</dt><dd>{venue.accessNote}</dd></div>}
                   </dl>
                 </div>
 
                 <section class="venue-guide-venue__assignments" aria-labelledby={`venue-users-${venue.venueId}`}>
-                  <h4 id={`venue-users-${venue.venueId}`}>この会場を使う大学・方式</h4>
+                  <h5 id={`venue-users-${venue.venueId}`}>この会場を使う大学・方式</h5>
                   <div class="venue-guide-assignment-grid">
-                    {assignments.map((assignment) => (
-                      <article data-filter-assignment-id={assignment.assignmentId}>
+                    {assignments.map((assignment) => {
+                      const venueRelations = assignment.venueLinks.filter(
+                        (link) => link.venueId === venue.venueId,
+                      );
+                      const applicantPrefectures = [...new Set(
+                        venueRelations
+                          .map((link) => link.applicantPrefecture)
+                          .filter((prefecture): prefecture is string => Boolean(prefecture)),
+                      )];
+                      const examParts = [...new Set(
+                        venueRelations
+                          .map((link) => link.examPart)
+                          .filter((part): part is keyof typeof examPartLabels => Boolean(part)),
+                      )];
+                      const relationDates = [...new Set(
+                        venueRelations
+                          .map((link) => link.examDate)
+                          .filter((date): date is string => Boolean(date)),
+                      )];
+                      return <article data-filter-assignment-id={assignment.assignmentId}>
                         <div class="venue-guide-assignment__meta">
                           <span>{assignment.examStageLabel}</span>
                           <span class={`venue-state venue-state--${assignment.publicationState}`}>{venuePublicationStateLabels[assignment.publicationState]}</span>
                         </div>
-                        <h5><a href={`#university-${assignment.universityId}`}>{assignment.universityName}</a></h5>
+                        <h6><a href={`#university-${assignment.universityId}`}>{assignment.universityName}</a></h6>
                         <p>{assignment.routeName}</p>
                         <dl>
                           <div><dt>試験日</dt><dd>{assignment.examDateLabel}</dd></div>
-                          <div><dt>会場条件</dt><dd>{conditionText(assignment) || "公表待ち"}</dd></div>
+                          {applicantPrefectures.length > 0 && <div><dt>対象出願地</dt><dd>{applicantPrefectures.join("・")}</dd></div>}
+                          {examParts.length > 0 && <div><dt>試験区分</dt><dd>{examParts.map((part) => examPartLabels[part]).join("・")}</dd></div>}
+                          {relationDates.length > 0 && <div><dt>実施日</dt><dd>{relationDates.map(formatRelationDate).join("・")}</dd></div>}
+                          <div><dt>指定・選択条件</dt><dd>{conditionText(assignment) || "指定条件の記載なし"}</dd></div>
                         </dl>
                         {assignment.note && <small>{assignment.note}</small>}
                         {assignment.officialAdmissionUrl && <a class="venue-guide-source-link" href={assignment.officialAdmissionUrl} target="_blank" rel="noopener noreferrer">大学公式の根拠 ↗</a>}
-                      </article>
-                    ))}
+                      </article>;
+                    })}
                   </div>
                 </section>
 
                 <section class="venue-guide-hotels" aria-labelledby={`hotels-${venue.venueId}`}>
                   <div class="venue-guide-hotels__heading">
-                    <div><p>STAY NEARBY</p><h4 id={`hotels-${venue.venueId}`}>会場周辺の宿泊施設</h4></div>
+                    <div><p>STAY NEARBY</p><h5 id={`hotels-${venue.venueId}`}>会場周辺の宿泊施設</h5></div>
                     <span>{hotels.length}施設</span>
                   </div>
                   {hotels.length > 0 ? (
@@ -511,7 +607,7 @@ const structuredData = {
                         return (
                           <article id={`hotel-${hotel.hotelId}--venue-${venue.venueId}`}>
                             <p class="venue-guide-hotel__status">{hotelOperatingStatusLabels2027[hotel.operatingStatus]}</p>
-                            <h5>{hotel.name}</h5>
+                            <h6>{hotel.name}</h6>
                             <p class="venue-guide-hotel__address">{hotel.address}</p>
                             <dl>
                               <div><dt>最寄り</dt><dd>{hotel.nearestStation}</dd></div>
@@ -519,9 +615,10 @@ const structuredData = {
                               {access && <div><dt>経路の確認</dt><dd>{access.reviewState.map((state) => hotelVenueAccessReviewStateLabels2027[state]).join("／")}</dd></div>}
                               {access?.caution && <div><dt>注意</dt><dd>{access.caution}</dd></div>}
                             </dl>
-                            {hotel.amenities.length > 0 && <ul class="venue-guide-hotel__amenities">{hotel.amenities.map((amenity) => <li title={amenity.detail}>{amenity.label}</li>)}</ul>}
+                            {hotel.amenities.length > 0 && <ul class="venue-guide-hotel__amenities">{hotel.amenities.map((amenity) => <li title={amenity.detail} aria-label={`${amenity.label}：${amenity.detail}`}>{amenity.label}</li>)}</ul>}
                             <div class="venue-guide-hotel__links">
                               <a href={hotel.officialUrl} target="_blank" rel="noopener noreferrer">ホテル公式 ↗</a>
+                              {hotel.operatingStatusEvidenceUrl && hotel.operatingStatusEvidenceUrl !== hotel.officialUrl && <a href={hotel.operatingStatusEvidenceUrl} target="_blank" rel="noopener noreferrer">営業情報 ↗</a>}
                               {hotel.officialBookingUrl && <a href={hotel.officialBookingUrl} target="_blank" rel="noopener noreferrer">公式予約 ↗</a>}
                             </div>
                           </article>
@@ -539,7 +636,7 @@ const structuredData = {
             </section>
           ))}
         </div>
-        <p class="venue-guide-empty" hidden data-filter-empty="venues">条件に合う確定会場はありません。公表状態を「すべて」に戻すか、大学別一覧で未公表項目をご確認ください。</p>
+        <p class="venue-guide-empty" hidden data-filter-empty="venues">条件に合う会場はありません。公表状態を「すべて」に戻すか、大学別一覧で未公表項目をご確認ください。</p>
       </div>
     </section>
 
@@ -556,7 +653,12 @@ const structuredData = {
         <div class="venue-guide-university-list" data-filter-section="universities">
           {privateMedicalExamVenueUniversitySummaries2027.map((university, index) => {
             const assignments = assignmentsForUniversity(university.universityId);
-            const venuePrefectureValues = [...new Set(assignments.flatMap((assignment) => assignment.venueLinks.map((link) => venueById.get(link.venueId)?.prefecture).filter(Boolean)))];
+            const venuePrefectureValues = [...new Set(assignments.flatMap((assignment) => [
+              ...assignment.announcedPrefectures,
+              ...assignment.venueLinks
+                .map((link) => venueById.get(link.venueId)?.prefecture)
+                .filter((prefecture): prefecture is string => Boolean(prefecture)),
+            ]))];
             const stages = [...new Set(assignments.map((assignment) => assignment.examStage))];
             const categories = [...new Set(assignments.map((assignment) => assignment.routeCategory))];
             const states = [...new Set(assignments.map((assignment) => assignment.publicationState))];
@@ -576,25 +678,36 @@ const structuredData = {
               >
                 <summary>
                   <span>{String(index + 1).padStart(2, "0")}</span>
-                  <div><small>{university.region}・{university.prefecture}</small><strong>{university.universityName}</strong></div>
-                  <div class="venue-guide-university__counts"><span>確定 {assignments.filter((entry) => entry.publicationState === "confirmed").length}</span><span>確認中 {assignments.filter((entry) => entry.publicationState !== "confirmed").length}</span></div>
+                  <div role="heading" aria-level="3"><small>{university.region}・{university.prefecture}</small><strong>{university.universityName}</strong></div>
+                  <div class="venue-guide-university__counts"><span>確定 {assignments.filter((entry) => entry.publicationState === "confirmed").length}</span><span>会場未確定 {assignments.filter((entry) => entry.publicationState !== "confirmed").length}</span></div>
                   <i aria-hidden="true"></i>
                 </summary>
                 <div class="venue-guide-university__body">
-                  {assignments.map((assignment) => (
-                    <article data-filter-assignment-id={assignment.assignmentId}>
+                  {assignments.map((assignment) => {
+                    const linkedVenues = assignmentLinkedVenues(assignment);
+                    const venueLinks = linkedVenues.map((venue) => (
+                      <a href={`#venue-${venue.venueId}`}>{linkedVenues.length > 8 && `${venue.prefecture}：`}{venue.shortName}を見る</a>
+                    ));
+                    return <article data-filter-assignment-id={assignment.assignmentId}>
                       <header><div><span>{assignment.examStageLabel}</span><strong>{assignment.routeName}</strong></div><span class={`venue-state venue-state--${assignment.publicationState}`}>{venuePublicationStateLabels[assignment.publicationState]}</span></header>
                       <dl>
                         <div><dt>試験日</dt><dd>{assignment.examDateLabel}</dd></div>
                         <div><dt>公表会場</dt><dd>{assignment.announcedVenueText}</dd></div>
-                        <div><dt>会場条件</dt><dd>{conditionText(assignment) || "未公表"}</dd></div>
+                        <div><dt>指定・選択条件</dt><dd>{conditionText(assignment) || "指定条件の記載なし"}</dd></div>
                         <div><dt>根拠</dt><dd>{assignment.evidenceLabel}{assignment.evidenceLocator && `（${assignment.evidenceLocator}）`}</dd></div>
                       </dl>
-                      {assignment.venueLinks.length > 0 && <p class="venue-guide-university__venue-links">{assignment.venueLinks.map((venueLink) => { const venue = venueById.get(venueLink.venueId); return venue && <a href={`#venue-${venue.venueId}`}>{venue.shortName}を見る</a>; })}</p>}
+                      {linkedVenues.length > 8 ? (
+                        <details class="venue-guide-university__venue-disclosure">
+                          <summary>正式会場へのリンク（{linkedVenues.length}施設）</summary>
+                          <p class="venue-guide-university__venue-links">{venueLinks}</p>
+                        </details>
+                      ) : linkedVenues.length > 0 ? (
+                        <p class="venue-guide-university__venue-links">{venueLinks}</p>
+                      ) : null}
                       {assignment.note && <p class="venue-guide-university__note">{assignment.note}</p>}
                       {assignment.officialAdmissionUrl && <a class="venue-guide-source-link" href={assignment.officialAdmissionUrl} target="_blank" rel="noopener noreferrer">大学公式資料 ↗</a>}
-                    </article>
-                  ))}
+                    </article>;
+                  })}
                   <footer><a href={university.strategyPath}>大学別の入試対策を見る →</a></footer>
                 </div>
               </details>
@@ -629,15 +742,15 @@ const structuredData = {
       </div>
     </section>
 
-    <section class="venue-guide-related" id="dataset" aria-labelledby="related-title">
+    <section class="venue-guide-related" id="dataset" aria-labelledby="dataset-title">
       <div class="content">
-        <aside class="admissions-related-schedule admissions-related-schedule--general">
+        <aside class="admissions-related-schedule admissions-related-schedule--general" aria-labelledby="related-title">
           <div><strong id="related-title">試験日・出願締切を比較する方へ</strong><p>既存の日程ページでは、一般選抜・共通テスト利用選抜31大学の日程を素早く比較できます。</p></div>
           <a href="/private-medical-school-admissions-schedule-2027/">2027年度入試日程を見る →</a>
         </aside>
         <div class="venue-guide-dataset">
-          <div><p>OPEN DATA</p><h2>ページと同じ正本をJSONで公開</h2><p>会場・大学・方式・試験段階・日付・ホテル・関係・出典・確認日時・review状態を再利用できます。</p></div>
-          <a href={datasetUrl} type="application/json">機械可読JSONを見る →</a>
+          <div><p>OPEN DATA</p><h2 id="dataset-title">ページ掲載情報をJSONでも公開</h2><p>会場・大学・方式・試験段階・日付・ホテル・対応関係・出典・確認日時・確認状態を再利用できます。</p></div>
+          <a href={datasetPath} type="application/json">機械可読JSONを見る →</a>
         </div>
       </div>
     </section>
@@ -692,16 +805,23 @@ const structuredData = {
             card.dataset.kind !== "venue" ||
             prefecture === "all" ||
             normalize(card.dataset.prefectures).split("|").includes(prefecture);
+          const venueOwnQueryMatches =
+            card.dataset.kind === "venue" && normalize(card.dataset.search).includes(query);
           const cardMatchesQuery =
             !query ||
             (card.dataset.kind === "venue"
-              ? normalize(card.dataset.search).includes(query)
+              ? venueOwnQueryMatches ||
+                records.some((record) => normalize(record.assignmentSearch).includes(query))
               : records.some((record) => normalize(record.search).includes(query)));
           const matchingRecords = cardMatchesPrefecture && cardMatchesQuery
             ? records.filter(
                 (record) =>
                   matchesRecord(record) &&
-                  (card.dataset.kind === "venue" || !query || normalize(record.search).includes(query)),
+                  (!query ||
+                    (card.dataset.kind === "venue"
+                      ? venueOwnQueryMatches ||
+                        normalize(record.assignmentSearch).includes(query)
+                      : normalize(record.search).includes(query))),
               )
             : [];
           const matchingAssignmentIds = new Set(

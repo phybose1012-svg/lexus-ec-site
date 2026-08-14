@@ -2,6 +2,7 @@
   --venue-wine: #8b0000;
   --venue-wine-dark: #5f0000;
   --venue-gold: #b58a22;
+  --venue-gold-text: #76550b;
   --venue-gold-soft: #fff7df;
   --venue-ink: #261d18;
   --venue-muted: #6f655d;
@@ -16,9 +17,23 @@
   display: none !important;
 }
 
-.venue-guide-page :where(a, button, input, select):focus-visible {
-  outline: 3px solid rgb(181 138 34 / 36%);
+.venue-guide-page :where(a, button, input, select, summary):focus-visible {
+  outline: 3px solid var(--venue-gold-text);
   outline-offset: 3px;
+}
+
+.venue-guide-page :is(
+  #finder,
+  #venues,
+  #universities,
+  #planning,
+  #updates,
+  #dataset,
+  .venue-guide-prefecture,
+  .venue-guide-venue,
+  .venue-guide-university
+) {
+  scroll-margin-top: 82px;
 }
 
 .venue-guide-hero .admissions-hero__grid {
@@ -312,7 +327,7 @@
 
 .venue-guide-prefecture__header p {
   margin-bottom: 2px;
-  color: var(--venue-gold);
+  color: var(--venue-gold-text);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.66rem;
   font-weight: 900;
@@ -379,7 +394,7 @@
   font-weight: 900;
 }
 
-.venue-guide-venue__header h3 {
+.venue-guide-venue__header h4 {
   margin: 0;
   color: var(--venue-ink);
   font-size: clamp(1.2rem, 2vw, 1.65rem);
@@ -439,8 +454,8 @@
   padding: 28px clamp(22px, 3vw, 34px) 34px;
 }
 
-.venue-guide-venue__assignments > h4,
-.venue-guide-hotels__heading h4 {
+.venue-guide-venue__assignments > h5,
+.venue-guide-hotels__heading h5 {
   margin: 0 0 17px;
   color: var(--venue-ink);
   font-size: 1.05rem;
@@ -509,15 +524,15 @@
   background: #fff3f2;
 }
 
-.venue-guide-assignment-grid h5,
-.venue-guide-hotel-grid h5 {
+.venue-guide-assignment-grid h6,
+.venue-guide-hotel-grid h6 {
   margin: 0 0 6px;
   color: var(--venue-ink);
   font-size: 0.98rem;
   line-height: 1.5;
 }
 
-.venue-guide-assignment-grid h5 a {
+.venue-guide-assignment-grid h6 a {
   color: inherit;
   text-underline-offset: 4px;
 }
@@ -577,14 +592,14 @@
 
 .venue-guide-hotels__heading p {
   margin-bottom: 4px;
-  color: var(--venue-gold);
+  color: var(--venue-gold-text);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.65rem;
   font-weight: 900;
   letter-spacing: 0.17em;
 }
 
-.venue-guide-hotels__heading h4 {
+.venue-guide-hotels__heading h5 {
   margin-bottom: 0;
 }
 
@@ -832,8 +847,25 @@
 }
 
 .venue-guide-university__venue-links,
-.venue-guide-university__note {
+.venue-guide-university__note,
+.venue-guide-university__venue-disclosure {
   margin: 12px 0 0;
+}
+
+.venue-guide-university__venue-disclosure > summary {
+  width: fit-content;
+  border: 1px solid #d6c38a;
+  border-radius: 4px;
+  padding: 6px 9px;
+  color: #79570e;
+  background: var(--venue-gold-soft);
+  font-size: 0.65rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.venue-guide-university__venue-disclosure[open] > summary {
+  margin-bottom: 8px;
 }
 
 .venue-guide-university__venue-links {
@@ -1007,7 +1039,7 @@
 
 .venue-guide-dataset > div > p:first-child {
   margin-bottom: 5px;
-  color: var(--venue-gold);
+  color: var(--venue-gold-text);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.62rem;
   font-weight: 900;
@@ -1240,6 +1272,14 @@
     width: 100%;
     justify-content: center;
     text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .venue-guide-page * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
   }
 }
 

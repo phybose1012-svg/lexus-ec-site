@@ -22,6 +22,7 @@ export type VenueAssignmentCondition =
 export type VenueReviewState = "verified" | "needs_review" | "monitoring";
 export type ExamStage2027 = "first" | "second";
 export type VenueLinkRole = "fixed" | "choice" | "primary" | "overflow";
+export type JichiExamPart2027 = "written" | "interview";
 
 export type PrivateMedicalExamVenue2027 = {
   venueId: string;
@@ -34,6 +35,7 @@ export type PrivateMedicalExamVenue2027 = {
   municipality: string;
   nearestStations: string[];
   officialUrl: string;
+  officialUrlLabel?: string;
   accessNote?: string;
   reviewState: VenueReviewState;
   verifiedAt: string;
@@ -42,6 +44,18 @@ export type PrivateMedicalExamVenue2027 = {
 export type PrivateMedicalVenueLink2027 = {
   venueId: string;
   role: VenueLinkRole;
+  applicantPrefecture?: string;
+  examPart?: JichiExamPart2027;
+  examDate?: string;
+  officialVenueText?: string;
+};
+
+export type PrivateMedicalJichiVenueRelation2027 = PrivateMedicalVenueLink2027 & {
+  role: "fixed";
+  applicantPrefecture: string;
+  examPart: JichiExamPart2027;
+  examDate: "2027-01-25" | "2027-01-26";
+  officialVenueText: string;
 };
 
 export type PrivateMedicalExamVenueAssignment2027 = {
@@ -59,6 +73,7 @@ export type PrivateMedicalExamVenueAssignment2027 = {
   examStageLabel: string;
   examDateLabel: string;
   venueLinks: PrivateMedicalVenueLink2027[];
+  announcedPrefectures: string[];
   announcedVenueText: string;
   publicationState: VenuePublicationState;
   conditions: VenueAssignmentCondition[];
@@ -81,16 +96,379 @@ export const venuePublicationStateLabels: Record<VenuePublicationState, string> 
 };
 
 export const venueAssignmentConditionLabels: Record<VenueAssignmentCondition, string> = {
-  fixed: "固定会場",
-  applicant_preference: "出願時の希望・選択あり",
-  university_assigned: "大学が指定",
-  admission_ticket: "受験票で最終指定",
-  capacity_overflow: "定員超過時に変更あり",
+  fixed: "試験地・会場は固定",
+  applicant_preference: "受験日または試験地の希望・選択あり",
+  university_assigned: "大学指定あり",
+  admission_ticket: "受験票で最終確認",
+  capacity_overflow: "定員状況による制限・変更あり",
 };
 
 const VERIFIED_AT = "2026-08-12T00:00:00+09:00";
+const JICHI_VERIFIED_AT = "2026-08-15T00:00:00+09:00";
+const JICHI_2027_GUIDELINE_URL =
+  "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf";
+
+type JichiVenueSpec = {
+  venueId: string;
+  officialVenueText: string;
+  localityAddress: string;
+};
+
+type JichiVenueRelationSeed = PrivateMedicalJichiVenueRelation2027 & {
+  address: string;
+  prefecture: string;
+};
+
+const jichiVenueSpec = (
+  slug: string,
+  officialVenueText: string,
+  localityAddress: string,
+): JichiVenueSpec => ({
+  venueId: `venue-jichi-first-${slug}`,
+  officialVenueText,
+  localityAddress,
+});
+
+const jichiPrefectureVenuePair = (
+  applicantPrefecture: string,
+  writtenVenue: JichiVenueSpec,
+  interviewVenue: JichiVenueSpec = writtenVenue,
+): JichiVenueRelationSeed[] => [
+  {
+    venueId: writtenVenue.venueId,
+    role: "fixed",
+    applicantPrefecture,
+    examPart: "written",
+    examDate: "2027-01-25",
+    officialVenueText: writtenVenue.officialVenueText,
+    address: `${applicantPrefecture}${writtenVenue.localityAddress}`,
+    prefecture: applicantPrefecture,
+  },
+  {
+    venueId: interviewVenue.venueId,
+    role: "fixed",
+    applicantPrefecture,
+    examPart: "interview",
+    examDate: "2027-01-26",
+    officialVenueText: interviewVenue.officialVenueText,
+    address: `${applicantPrefecture}${interviewVenue.localityAddress}`,
+    prefecture: applicantPrefecture,
+  },
+];
+
+const jichiVenueRelationSeeds2027: JichiVenueRelationSeed[] = [
+  ...jichiPrefectureVenuePair(
+    "北海道",
+    jichiVenueSpec(
+      "hokkaido-tkp-sapporo-kita3jo",
+      "TKP札幌カンファレンスセンター北3条",
+      "札幌市中央区北3条西3丁目1-6 札幌小暮ビル",
+    ),
+    jichiVenueSpec(
+      "hokkaido-kaderu27",
+      "北海道立道民活動センター（かでる2・7）",
+      "札幌市中央区北2条西7丁目",
+    ),
+  ),
+  ...jichiPrefectureVenuePair(
+    "青森県",
+    jichiVenueSpec(
+      "aomori-toonippo-news",
+      "東奥日報新町ビルNew's TO-O・New'sホール（3階）",
+      "青森市新町2-2-11",
+    ),
+  ),
+  ...jichiPrefectureVenuePair(
+    "岩手県",
+    jichiVenueSpec("iwate-espoir", "エスポワールいわて", "盛岡市中央通1-1-38"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "宮城県",
+    jichiVenueSpec("miyagi-jichikaikan", "宮城県自治会館", "仙台市青葉区上杉1-2-3"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "秋田県",
+    jichiVenueSpec("akita-ja-building", "秋田県JAビル", "秋田市八橋南2-10-16"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "山形県",
+    jichiVenueSpec(
+      "yamagata-training-center",
+      "山形県総合研修センター",
+      "山形市松波3-7-1",
+    ),
+    jichiVenueSpec("yamagata-prefectural-office", "山形県庁", "山形市松波2-8-1"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "福島県",
+    jichiVenueSpec("fukushima-nakamachi", "ふくしま中町会館", "福島市中町7-17"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "茨城県",
+    jichiVenueSpec("ibaraki-auditorium-9f", "茨城県庁 講堂（9階）", "水戸市笠原町978-6"),
+    jichiVenueSpec(
+      "ibaraki-meeting-1101",
+      "茨城県庁 1101共用会議室（11階）",
+      "水戸市笠原町978-6",
+    ),
+  ),
+  ...jichiPrefectureVenuePair(
+    "栃木県",
+    jichiVenueSpec("tochigi-prefectural-office", "栃木県庁", "宇都宮市塙田1-1-20"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "群馬県",
+    jichiVenueSpec("gunma-meeting-291", "群馬県庁 291会議室", "前橋市大手町1-1-1"),
+    jichiVenueSpec("gunma-meeting-293", "群馬県庁 293会議室", "前橋市大手町1-1-1"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "埼玉県",
+    jichiVenueSpec("saitama-education-hall", "埼玉教育会館", "さいたま市浦和区高砂3-12-24"),
+    jichiVenueSpec(
+      "saitama-regional-medical-education-center",
+      "埼玉県総合医局機構地域医療教育センター（埼玉県立小児医療センター南玄関8階）",
+      "さいたま市中央区新都心1-2",
+    ),
+  ),
+  ...jichiPrefectureVenuePair(
+    "千葉県",
+    jichiVenueSpec("chiba-plaza-nanohana", "ホテルプラザ菜の花", "千葉市中央区長洲1-8-1"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "東京都",
+    jichiVenueSpec("tokyo-todofuken-kaikan", "都道府県会館", "千代田区平河町2-6-3"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "神奈川県",
+    jichiVenueSpec("kanagawa-workpia-yokohama", "ワークピア横浜", "横浜市中区山下町24-1"),
+    jichiVenueSpec(
+      "kanagawa-prefectural-office-new-5f",
+      "神奈川県庁 新庁舎5階会議室",
+      "横浜市中区日本大通1",
+    ),
+  ),
+  ...jichiPrefectureVenuePair(
+    "新潟県",
+    jichiVenueSpec("niigata-jichikaikan", "新潟県自治会館", "新潟市中央区新光町4-1"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "富山県",
+    jichiVenueSpec("toyama-kenminkaikan", "富山県民会館", "富山市新総曲輪4-18"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "石川県",
+    jichiVenueSpec("ishikawa-meeting-1105", "石川県庁 1105会議室（11階）", "金沢市鞍月1-1"),
+    jichiVenueSpec("ishikawa-meeting-1103", "石川県庁 1103会議室（11階）", "金沢市鞍月1-1"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "福井県",
+    jichiVenueSpec("fukui-international-exchange", "福井県国際交流会館", "福井市宝永3-1-1"),
+    jichiVenueSpec("fukui-meeting-2f", "福井県庁 2階中会議室", "福井市大手3-17-1"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "山梨県",
+    jichiVenueSpec("yamanashi-onshirin", "恩賜林記念館", "甲府市丸の内1-5-4"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "長野県",
+    jichiVenueSpec("nagano-jichikaikan", "長野県自治会館", "長野市大字西長野字加茂北143-8"),
+    jichiVenueSpec("nagano-prefectural-office", "長野県庁", "長野市大字南長野字幅下692-2"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "岐阜県",
+    jichiVenueSpec(
+      "gifu-meeting-301-302",
+      "岐阜県庁 共用会議室301・302",
+      "岐阜市薮田南2-1-1",
+    ),
+    jichiVenueSpec("gifu-meeting-301", "岐阜県庁 共用会議室301", "岐阜市薮田南2-1-1"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "静岡県",
+    jichiVenueSpec("shizuoka-prefectural-office", "静岡県庁", "静岡市葵区追手町9-6"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "愛知県",
+    jichiVenueSpec(
+      "aichi-winc-aichi",
+      "愛知県産業労働センター（ウインクあいち）",
+      "名古屋市中村区名駅4-4-38",
+    ),
+  ),
+  ...jichiPrefectureVenuePair(
+    "三重県",
+    jichiVenueSpec("mie-workers-welfare", "三重県勤労者福祉会館", "津市栄町1-891"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "滋賀県",
+    jichiVenueSpec("shiga-east-7f", "滋賀県庁東館 7階大会議室", "大津市京町4-1-1"),
+    jichiVenueSpec("shiga-collab-3f", "コラボしが21 3階中会議室2", "大津市打出浜2-1"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "京都府",
+    jichiVenueSpec("kyoto-medical-association", "京都府医師会館", "京都市中京区西ノ京東栂尾町6"),
+    jichiVenueSpec(
+      "kyoto-prefectural-office-building-3",
+      "京都府庁第3号館",
+      "京都市上京区下立売通新町西入薮ノ内町",
+    ),
+  ),
+  ...jichiPrefectureVenuePair(
+    "大阪府",
+    jichiVenueSpec("osaka-primrose", "プリムローズ大阪", "大阪市中央区大手前3-1-43"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "兵庫県",
+    jichiVenueSpec("hyogo-nosai", "兵庫県農業共済会館", "神戸市中央区下山手通4-15-3"),
+    jichiVenueSpec("hyogo-kyosai", "ひょうご共済会館", "神戸市中央区中山手通4-17-13"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "奈良県",
+    jichiVenueSpec("nara-nobotel", "ノボテル奈良", "奈良市大宮町7-1-45"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "和歌山県",
+    jichiVenueSpec("wakayama-kenmin-bunka", "和歌山県民文化会館", "和歌山市小松原通一丁目1番地"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "鳥取県",
+    jichiVenueSpec("tottori-auditorium", "鳥取県庁 講堂ほか", "鳥取市東町1-220"),
+    jichiVenueSpec(
+      "tottori-meeting-15",
+      "鳥取県庁 第15会議室（県議会棟3階）ほか",
+      "鳥取市東町1-220",
+    ),
+  ),
+  ...jichiPrefectureVenuePair(
+    "島根県",
+    jichiVenueSpec("shimane-sunport-murakumo", "サンラポーむらくも", "松江市殿町369"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "岡山県",
+    jichiVenueSpec(
+      "okayama-convention-center",
+      "岡山コンベンションセンター",
+      "岡山市北区駅元町14-1",
+    ),
+  ),
+  ...jichiPrefectureVenuePair(
+    "広島県",
+    jichiVenueSpec("hiroshima-mielparque", "ホテル メルパルク広島", "広島市中区基町6-36"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "山口県",
+    jichiVenueSpec("yamaguchi-av-room", "山口県庁 視聴覚室（1階）", "山口市滝町1-1"),
+    jichiVenueSpec(
+      "yamaguchi-meeting-2-3",
+      "山口県庁 共用第2・第3会議室（4階）",
+      "山口市滝町1-1",
+    ),
+  ),
+  ...jichiPrefectureVenuePair(
+    "徳島県",
+    jichiVenueSpec("tokushima-auditorium", "徳島県庁 講堂", "徳島市万代町1-1"),
+    jichiVenueSpec("tokushima-meeting-room", "徳島県庁 会議室", "徳島市万代町1-1"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "香川県",
+    jichiVenueSpec("kagawa-north-3f", "香川県庁 北館会議室（3階）", "高松市番町4-1-10"),
+    jichiVenueSpec("kagawa-main-12f", "香川県庁 本館会議室（12階）", "高松市番町4-1-10"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "愛媛県",
+    jichiVenueSpec("ehime-annex-2", "愛媛県庁第二別館", "松山市一番町4丁目4番地2"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "高知県",
+    jichiVenueSpec("kochi-kyosai-sakura", "高知共済会館（桜）", "高知市本町5-3-20"),
+    jichiVenueSpec("kochi-kyosai-fuji", "高知共済会館（藤）", "高知市本町5-3-20"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "福岡県",
+    jichiVenueSpec("fukuoka-yoshizuka", "吉塚合同庁舎", "福岡市博多区吉塚本町13-50"),
+    jichiVenueSpec("fukuoka-prefectural-office", "福岡県庁 行政棟", "福岡市博多区東公園7-7"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "佐賀県",
+    jichiVenueSpec("saga-prefectural-office", "佐賀県庁", "佐賀市城内1丁目1番59号"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "長崎県",
+    jichiVenueSpec("nagasaki-meeting-302-305", "長崎県庁 302～305会議室（3階）", "長崎市尾上町3-1"),
+    jichiVenueSpec("nagasaki-meeting-312", "長崎県庁 312会議室（3階）", "長崎市尾上町3-1"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "熊本県",
+    jichiVenueSpec("kumamoto-basement-hall", "熊本県庁 地下大会議室", "熊本市中央区水前寺6-18-1"),
+    jichiVenueSpec("kumamoto-hotel-terza", "ホテル熊本テルサ", "熊本市中央区水前寺公園28-51"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "大分県",
+    jichiVenueSpec("oita-new-large-meeting", "大分県庁舎・新館大会議室", "大分市大手町3-1-1"),
+    jichiVenueSpec("oita-meeting-room", "大分県庁舎・会議室", "大分市大手町3-1-1"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "宮崎県",
+    jichiVenueSpec("miyazaki-mrt-micc", "MRTmiccダイヤモンドホール（2階）", "宮崎市橘通西4-6-3"),
+    jichiVenueSpec("miyazaki-disaster-71", "宮崎県庁防災庁舎 防71号室（7階）", "宮崎市橘通東2-10-1"),
+  ),
+  ...jichiPrefectureVenuePair(
+    "鹿児島県",
+    jichiVenueSpec("kagoshima-auditorium-2f", "鹿児島県庁 行政庁舎 講堂（2階）", "鹿児島市鴨池新町10-1"),
+    jichiVenueSpec(
+      "kagoshima-meeting-16a1",
+      "鹿児島県庁 行政庁舎 16-A-1会議室（16階）",
+      "鹿児島市鴨池新町10-1",
+    ),
+  ),
+  ...jichiPrefectureVenuePair(
+    "沖縄県",
+    jichiVenueSpec("okinawa-municipal-autonomy", "沖縄県市町村自治会館", "那覇市旭町116-37"),
+  ),
+];
+
+export const privateMedicalJichiVenueRelations2027: PrivateMedicalJichiVenueRelation2027[] =
+  jichiVenueRelationSeeds2027.map(({ address: _address, prefecture: _prefecture, ...relation }) => relation);
+
+const municipalityFromAddress = (address: string, prefecture: string) => {
+  const locality = address.startsWith(prefecture) ? address.slice(prefecture.length) : address;
+  return (
+    locality.match(/^(.+?市.+?区)/u)?.[1] ??
+    locality.match(/^(.+?郡.+?[町村])/u)?.[1] ??
+    locality.match(/^(.+?[市区町村])/u)?.[1] ??
+    locality
+  );
+};
+
+const jichiVenueEntityById = new Map<string, PrivateMedicalExamVenue2027>();
+for (const seed of jichiVenueRelationSeeds2027) {
+  const existing = jichiVenueEntityById.get(seed.venueId);
+  if (existing && (existing.name !== seed.officialVenueText || existing.address !== seed.address)) {
+    throw new Error(`Conflicting Jichi venue normalization: ${seed.venueId}`);
+  }
+  if (!existing) {
+    jichiVenueEntityById.set(seed.venueId, {
+      venueId: seed.venueId,
+      academicYear: 2027,
+      name: seed.officialVenueText,
+      shortName: seed.officialVenueText,
+      address: seed.address,
+      prefecture: seed.prefecture,
+      municipality: municipalityFromAddress(seed.address, seed.prefecture),
+      nearestStations: [],
+      officialUrl: JICHI_2027_GUIDELINE_URL,
+      officialUrlLabel: "自治医科大学 2027年度募集要項（都道府県別試験場一覧）",
+      accessNote: "自治医科大学の公式募集要項に掲載された試験場です。施設個別の公式アクセスは受験票と施設案内で確認してください。",
+      reviewState: "verified",
+      verifiedAt: JICHI_VERIFIED_AT,
+    });
+  }
+}
+
+export const privateMedicalJichiExamVenues2027 = [...jichiVenueEntityById.values()];
 
 export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
+  ...privateMedicalJichiExamVenues2027,
   {
     venueId: "venue-jichi-medical-yakushiji-campus",
     academicYear: 2027,
@@ -188,7 +566,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "東京都",
     municipality: "文京区",
     nearestStations: ["JR・東京メトロ丸ノ内線 御茶ノ水駅", "東京メトロ千代田線 新御茶ノ水駅"],
-    officialUrl: "https://www.juntendo.ac.jp/about/access/",
+    officialUrl: "https://www.juntendo.ac.jp/access/index.html?newwindow=true",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
@@ -216,7 +594,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "愛知県",
     municipality: "名古屋市中村区",
     nearestStations: ["あおなみ線 ささしまライブ駅"],
-    officialUrl: "https://www.nagoya.conventionhall.jp/access/",
+    officialUrl: "https://www.nagoya.conventionhall.jp/access.html",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
@@ -317,7 +695,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "福岡県",
     municipality: "北九州市八幡西区",
     nearestStations: ["JR鹿児島本線 折尾駅から路線バス"],
-    officialUrl: "https://www.uoeh-u.ac.jp/University/Access.html",
+    officialUrl: "https://www.uoeh-u.ac.jp/University/College/access.html",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
@@ -331,7 +709,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "福岡県",
     municipality: "北九州市小倉北区",
     nearestStations: ["JR小倉駅"],
-    officialUrl: "https://messe-kitakyushu.jp/access/",
+    officialUrl: "https://hello-kitakyushu.or.jp/messe/access/",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
@@ -457,7 +835,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "大阪府",
     municipality: "大阪市都島区",
     nearestStations: ["JR大阪環状線 桜ノ宮駅"],
-    officialUrl: "https://www.kashikaigishitsu.net/facilitys/gc-osaka-riverside-hotel/",
+    officialUrl: "https://www.kashikaigishitsu.net/facilitys/gc-riverside-osaka/",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
@@ -471,7 +849,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "福岡県",
     municipality: "福岡市早良区",
     nearestStations: ["福岡市地下鉄空港線 西新駅から路線バス"],
-    officialUrl: "https://fukuoka.iuhw.ac.jp/access/",
+    officialUrl: "https://www.iuhw.ac.jp/daigakuin/access/",
     accessNote: "2027年度要項では福岡国際医療福祉大学 看護学部2号館建物内と案内されています。",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
@@ -500,7 +878,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "東京都",
     municipality: "新宿区",
     nearestStations: ["東京メトロ丸ノ内線 新宿御苑前駅", "都営新宿線 新宿三丁目駅"],
-    officialUrl: "https://www.tokyo-med.ac.jp/univ/access/shinjuku.html",
+    officialUrl: "https://www.tokyo-med.ac.jp/access/",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
@@ -528,7 +906,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "東京都",
     municipality: "港区",
     nearestStations: ["都営三田線 御成門駅", "東京メトロ日比谷線 虎ノ門ヒルズ駅"],
-    officialUrl: "https://www.jikei.ac.jp/access/nishishimbashi/",
+    officialUrl: "https://www.jikei.ac.jp/access/nishi-shimbashi/",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
@@ -556,7 +934,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "東京都",
     municipality: "新宿区",
     nearestStations: ["都営大江戸線 若松河田駅", "都営新宿線 曙橋駅"],
-    officialUrl: "https://www.twmu.ac.jp/univ/access/",
+    officialUrl: "https://twmu.ac.jp/univ/access.php",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
@@ -570,7 +948,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "東京都",
     municipality: "大田区",
     nearestStations: ["京急本線 梅屋敷駅"],
-    officialUrl: "https://www.toho-u.ac.jp/access/omori_campus.html",
+    officialUrl: "https://www.toho-u.ac.jp/accessmap/",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
@@ -654,7 +1032,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "石川県",
     municipality: "河北郡内灘町",
     nearestStations: ["北陸鉄道浅野川線 内灘駅から路線バス"],
-    officialUrl: "https://www.kanazawa-med.ac.jp/access.html",
+    officialUrl: "https://www.kanazawa-med.ac.jp/other/accessmap.html",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
@@ -808,7 +1186,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "大阪府",
     municipality: "高槻市",
     nearestStations: ["阪急京都線 高槻市駅", "JR京都線 高槻駅"],
-    officialUrl: "https://www.ompu.ac.jp/access/campus/honbu.html",
+    officialUrl: "https://www.ompu.ac.jp/access.html",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
@@ -822,7 +1200,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "大阪府",
     municipality: "堺市南区",
     nearestStations: ["南海泉北線 泉ケ丘駅"],
-    officialUrl: "https://www.kindai.ac.jp/medicine/about/access/",
+    officialUrl: "https://www.kindai.ac.jp/medicine/access/",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
@@ -836,7 +1214,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "東京都",
     municipality: "千代田区",
     nearestStations: ["都営三田線 内幸町駅", "JR・東京メトロ・都営浅草線 新橋駅"],
-    officialUrl: "https://www.kashikaigishitsu.net/facilitys/cc-shimbashi/",
+    officialUrl: "https://www.kashikaigishitsu.net/facilitys/cc-shimbashi-uchisaiwaicho/",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
@@ -878,7 +1256,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "福岡県",
     municipality: "久留米市",
     nearestStations: ["JR久大本線 久留米大学前駅"],
-    officialUrl: "https://www.kurume-u.ac.jp/about/campus/mii/",
+    officialUrl: "https://www.kurume-u.ac.jp/access/mii/",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
@@ -892,7 +1270,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "福岡県",
     municipality: "久留米市",
     nearestStations: ["JR・西鉄 久留米駅から路線バス"],
-    officialUrl: "https://www.kurume-u.ac.jp/about/campus/asahimachi/",
+    officialUrl: "https://www.kurume-u.ac.jp/access/asahi/",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
@@ -920,7 +1298,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "東京都",
     municipality: "江東区",
     nearestStations: ["ゆりかもめ テレコムセンター駅"],
-    officialUrl: "https://www.tokyo-bigsight.co.jp/visitor/buildings/time/",
+    officialUrl: "https://www.bigsight.jp/organizer/buildings/time/access/",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
@@ -934,7 +1312,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "愛知県",
     municipality: "名古屋市中村区",
     nearestStations: ["JR・名鉄・近鉄・地下鉄 名古屋駅"],
-    officialUrl: "https://www.kashikaigishitsu.net/facilitys/gcp-nagoya-shinkansenguchi/",
+    officialUrl: "https://www.kashikaigishitsu.net/facilitys/gc-nagoya-shinkansenguchi/",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
@@ -962,6 +1340,7 @@ type AssignmentPlan = Partial<
     PrivateMedicalExamVenueAssignment2027,
     | "examStageLabel"
     | "venueLinks"
+    | "announcedPrefectures"
     | "announcedVenueText"
     | "publicationState"
     | "conditions"
@@ -1431,6 +1810,7 @@ const areaVenuePlan = (
   routeIds: string[],
   examStage: ExamStage2027,
   announcedVenueText: string,
+  announcedPrefectures: string[],
   conditions: VenueAssignmentCondition[],
   officialAdmissionUrl: string,
   evidenceLocator: string,
@@ -1439,6 +1819,7 @@ const areaVenuePlan = (
 ) =>
   setPlans(routeIds, examStage, {
     venueLinks,
+    announcedPrefectures,
     announcedVenueText,
     publicationState: "city_or_campus_only",
     conditions,
@@ -1454,6 +1835,7 @@ areaVenuePlan(
   ["iwate-medical--general--general"],
   "first",
   "岩手医科大学 矢巾キャンパス・東京・大阪・札幌・名古屋・福岡",
+  ["岩手県", "東京都", "大阪府", "北海道", "愛知県", "福岡県"],
   ["applicant_preference"],
   iwateVenueUrl,
   "一般選抜概要・FAQ「試験地」",
@@ -1464,6 +1846,7 @@ areaVenuePlan(
   ["iwate-medical--general--general"],
   "second",
   "岩手医科大学 矢巾キャンパス・東京・大阪",
+  ["岩手県", "東京都", "大阪府"],
   ["applicant_preference"],
   iwateVenueUrl,
   "一般選抜概要・FAQ「二次試験 試験地」",
@@ -1505,10 +1888,12 @@ officialVenuePlan(
 );
 
 officialVenuePlan(["jichi-medical--general--general"], "first", {
-  announcedVenueText: "47都道府県別に正式施設を公表済み",
+  venueLinks: privateMedicalJichiVenueRelations2027,
+  announcedPrefectures: [...new Set(privateMedicalJichiVenueRelations2027.map((relation) => relation.applicantPrefecture))],
+  announcedVenueText: "出願都道府県別の学力試験場・面接試験場（正式施設・試験室を公表済み）",
   publicationState: "confirmed",
   conditions: ["fixed", "admission_ticket"],
-  officialAdmissionUrl: "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+  officialAdmissionUrl: JICHI_2027_GUIDELINE_URL,
   evidenceLabel: "令和9年度入学者募集要項 都道府県別試験場一覧",
   evidenceLocator: "PDF 29〜30ページ",
   knowledgeBaseIds: [
@@ -1692,6 +2077,28 @@ officialVenuePlan(["tokyo-womens-medical--general--general-regional-quota"], "se
   note: "希望日を提出しますが、大学指定日は希望に沿わない場合があります。",
 });
 
+officialVenuePlan(["toho--general--general"], "first", {
+  venueLinks: [link("venue-toc-gotanda")],
+  announcedVenueText: "五反田TOCビル",
+  publicationState: "confirmed",
+  conditions: ["fixed"],
+  officialAdmissionUrl: "https://www.toho-u.ac.jp/med/info_exam/ippan.html",
+  evidenceLabel: "大学公式2027年度一般入試概要",
+  evidenceLocator: "公式ページ「試験会場」",
+  reviewState: "verified",
+  note: "公式入試概要で五反田TOCビルまで確定しています。使用フロア・入口は受験票で確認してください。",
+});
+officialVenuePlan(["toho--general--unified"], "first", {
+  venueLinks: [link("venue-toc-gotanda")],
+  announcedVenueText: "五反田TOCビル",
+  publicationState: "confirmed",
+  conditions: ["fixed"],
+  officialAdmissionUrl: "https://www.toho-u.ac.jp/med/info_exam/sum.html",
+  evidenceLabel: "大学公式2027年度統一入試概要",
+  evidenceLocator: "公式ページ「試験会場」",
+  reviewState: "verified",
+  note: "公式入試概要で五反田TOCビルまで確定しています。使用フロア・入口は受験票で確認してください。",
+});
 officialVenuePlan(["toho--general--general", "toho--general--unified"], "second", {
   venueLinks: [link("venue-toho-omori-campus")],
   announcedVenueText: "東邦大学 大森キャンパス",
@@ -1707,6 +2114,26 @@ areaVenuePlan(
   ["nihon--general--unified-phase-1"],
   "first",
   "札幌・仙台・郡山・つくば・佐野・高崎・千葉・東京・東京（八王子）・横浜・湘南・新潟・長野・三島・名古屋・大阪・広島・福岡・長崎・宮崎",
+  [
+    "北海道",
+    "宮城県",
+    "福島県",
+    "茨城県",
+    "栃木県",
+    "群馬県",
+    "千葉県",
+    "東京都",
+    "神奈川県",
+    "新潟県",
+    "長野県",
+    "静岡県",
+    "愛知県",
+    "大阪府",
+    "広島県",
+    "福岡県",
+    "長崎県",
+    "宮崎県",
+  ],
   ["applicant_preference", "university_assigned", "capacity_overflow"],
   nihonVenueUrl,
   "N全学統一方式 第1期「試験場」",
@@ -1716,6 +2143,7 @@ areaVenuePlan(
   ["nihon--general--unified-phase-2"],
   "first",
   "郡山・千葉・東京・湘南",
+  ["福島県", "千葉県", "東京都", "神奈川県"],
   [],
   nihonVenueUrl,
   "N全学統一方式 第2期「試験場」",
@@ -1939,6 +2367,7 @@ areaVenuePlan(
   ["fujita--general--general-regional-quota-17148"],
   "first",
   "東京・名古屋・大阪",
+  ["東京都", "愛知県", "大阪府"],
   [],
   fujitaVenueUrl,
   "2027年度医学部入試概要「試験地」",
@@ -1961,6 +2390,7 @@ areaVenuePlan(
   ["osaka-med-pharm--general--general-regional-quota-385a3-early"],
   "first",
   "大阪・愛知・東京",
+  ["大阪府", "愛知県", "東京都"],
   [],
   ompuVenueUrl,
   "2027年度医学部入試概要「試験地」",
@@ -1970,6 +2400,7 @@ areaVenuePlan(
   ["osaka-med-pharm--general--general-late"],
   "first",
   "大阪・東京",
+  ["大阪府", "東京都"],
   [],
   ompuVenueUrl,
   "2027年度医学部入試概要「試験地」",
@@ -1999,6 +2430,7 @@ areaVenuePlan(
   ["kindai--general--general-early", "kindai--general--general-regional-quota-c5d34-385a3-3f44f-early"],
   "first",
   "大阪・東京・名古屋・広島・福岡",
+  ["大阪府", "東京都", "愛知県", "広島県", "福岡県"],
   [],
   kindaiVenueUrl,
   "2027年度入試ガイド 医学部一般前期「試験地」",
@@ -2008,6 +2440,7 @@ areaVenuePlan(
   ["kindai--general--general-late", "kindai--general--general-regional-quota-c5d34-late"],
   "first",
   "大阪・東京",
+  ["大阪府", "東京都"],
   [],
   kindaiVenueUrl,
   "2027年度入試ガイド 医学部一般後期「試験地」",
@@ -2214,6 +2647,7 @@ areaVenuePlan(
   ["fukuoka--general--general", "fukuoka--common--common-test-phase-1"],
   "second",
   "福岡",
+  ["福岡県"],
   ["fixed", "admission_ticket"],
   fukuokaVenueUrl,
   "医学部二次試験「試験地：福岡」",
@@ -2283,6 +2717,106 @@ refineAssignmentPlan(["hyogo-medical--general--general-regional-quota-3470a"], "
   conditions: ["fixed", "applicant_preference"],
 });
 
+// 2027年度公式要項の実ページと方式別見出しを目視照合した会場証拠位置。
+refineAssignmentPlan(["jichi-medical--general--general"], "second", {
+  evidenceLocator: "PDF 15ページ（冊子11ページ）「一般選抜／試験会場 ◆第2次試験」",
+});
+
+refineAssignmentPlan(
+  ["saitama-medical--general--general-early", "saitama-medical--general--general-late"],
+  "first",
+  { evidenceLocator: "PDF 46ページ（冊子42ページ）「一般選抜（前期・後期）7 試験会場」" },
+);
+refineAssignmentPlan(
+  ["saitama-medical--general--general-early", "saitama-medical--general--general-late"],
+  "second",
+  { evidenceLocator: "PDF 46ページ（冊子42ページ）「一般選抜（前期・後期）7 試験会場」" },
+);
+refineAssignmentPlan(["saitama-medical--common--common-test"], "second", {
+  evidenceLocator: "PDF 55ページ（冊子51ページ）「共通テスト利用選抜 7 試験会場」",
+});
+
+refineAssignmentPlan(["kyorin--general--general"], "first", {
+  evidenceLocator: "PDF 46ページ（Ⅰ-43）「医学部 一般選抜／試験会場」",
+});
+refineAssignmentPlan(["kyorin--general--general"], "second", {
+  evidenceLocator: "PDF 46ページ（Ⅰ-43）「医学部 一般選抜／試験会場」",
+});
+refineAssignmentPlan(["kyorin--common--common-test"], "second", {
+  evidenceLocator: "PDF 47ページ（Ⅰ-44）「医学部 大学入学共通テスト利用選抜／試験会場」",
+});
+
+refineAssignmentPlan(["juntendo--general--general-method-a"], "first", {
+  evidenceLocator: "PDF 31ページ（冊子29ページ）「一般選抜A方式／試験日程」",
+});
+refineAssignmentPlan(["juntendo--general--general-method-a"], "second", {
+  evidenceLocator: "PDF 31ページ（冊子29ページ）「一般選抜A方式／試験日程」",
+});
+refineAssignmentPlan(["juntendo--general--general-method-b"], "first", {
+  evidenceLocator: "PDF 36ページ（冊子34ページ）「一般選抜B方式／試験日程」",
+});
+refineAssignmentPlan(["juntendo--general--general-method-b"], "second", {
+  evidenceLocator: "PDF 36ページ（冊子34ページ）「一般選抜B方式／試験日程」",
+});
+refineAssignmentPlan(["juntendo--common--common-test-early"], "first", {
+  evidenceLocator: "PDF 33ページ（冊子31ページ）「前期共通テスト利用選抜／試験日程」",
+});
+refineAssignmentPlan(["juntendo--common--common-test-early"], "second", {
+  evidenceLocator: "PDF 33ページ（冊子31ページ）「前期共通テスト利用選抜／試験日程」",
+});
+refineAssignmentPlan(["juntendo--common--common-general-combined"], "first", {
+  evidenceLocator: "PDF 38ページ（冊子36ページ）「共通テスト・一般併用選抜／試験日程」",
+});
+refineAssignmentPlan(["juntendo--common--common-general-combined"], "second", {
+  evidenceLocator: "PDF 38ページ（冊子36ページ）「共通テスト・一般併用選抜／試験日程」",
+});
+refineAssignmentPlan(["juntendo--common--common-test-late"], "second", {
+  evidenceLocator: "PDF 41ページ（冊子39ページ）「後期共通テスト利用選抜／試験日程」",
+});
+
+refineAssignmentPlan(["teikyo--general--general"], "second", {
+  evidenceLocator: "PDF 28ページ（冊子26ページ）「医学部 一般選抜／一次選考・二次選考 1.日程」",
+});
+refineAssignmentPlan(["teikyo--common--common-test-early"], "second", {
+  evidenceLocator: "PDF 33ページ（冊子31ページ）「医学部 大学入学共通テスト利用選抜／1.日程」",
+});
+
+refineAssignmentPlan(
+  ["marianna--general--general-early", "marianna--general--general-late"],
+  "first",
+  { evidenceLocator: "PDF 23ページ（冊子22ページ）「一般選抜（前期・後期）7.試験場／8.試験期日および試験時間」" },
+);
+refineAssignmentPlan(
+  ["marianna--general--general-early", "marianna--general--general-late"],
+  "second",
+  { evidenceLocator: "PDF 23ページ（冊子22ページ）「一般選抜（前期・後期）7.試験場／8.試験期日および試験時間」" },
+);
+refineAssignmentPlan(["marianna--common--common-test"], "second", {
+  evidenceLocator: "PDF 18ページ（冊子17ページ）「大学入学共通テスト利用選抜 7.試験場／8.試験期日および試験時間」",
+});
+
+refineAssignmentPlan(["kansai-medical--general--general-early"], "second", {
+  evidenceLocator: "PDF 20ページ（冊子14ページ）「一般選抜試験（前期）／第2次試験」",
+});
+refineAssignmentPlan(["kansai-medical--general--general-regional-quota-c5d34-385a3"], "second", {
+  evidenceLocator: "PDF 27ページ（冊子21ページ）「地域枠一般選抜試験／第2次試験」",
+});
+refineAssignmentPlan(["kansai-medical--general--general-late"], "first", {
+  evidenceLocator: "PDF 21ページ（冊子15ページ）「一般選抜試験（後期）／第1次試験」",
+});
+refineAssignmentPlan(["kansai-medical--general--general-late"], "second", {
+  evidenceLocator: "PDF 21ページ（冊子15ページ）「一般選抜試験（後期）／第2次試験」",
+});
+refineAssignmentPlan(["kansai-medical--common--common-test-early"], "second", {
+  evidenceLocator: "PDF 22ページ（冊子16ページ）「大学入学共通テスト利用選抜試験（前期）／第2次試験」",
+});
+refineAssignmentPlan(["kansai-medical--common--common-general-combined"], "second", {
+  evidenceLocator: "PDF 25ページ（冊子19ページ）「大学入学共通テスト・一般選抜試験併用試験／第2次試験」",
+});
+refineAssignmentPlan(["kansai-medical--common--common-test-late"], "second", {
+  evidenceLocator: "PDF 23ページ（冊子17ページ）「大学入学共通テスト利用選抜試験（後期）／第2次試験」",
+});
+
 const allRouteRecords = privateMedicalUniversities2027.flatMap((university) =>
   university.routes.map((route) => {
     const routeKey = `${university.id}::${route.name}` as keyof typeof privateMedicalExamRouteIds2027;
@@ -2319,6 +2853,7 @@ const createAssignment = (
     examStageLabel: plan.examStageLabel ?? (examStage === "first" ? "一次試験・大学独自試験" : "二次試験・面接等"),
     examDateLabel,
     venueLinks: plan.venueLinks ?? [],
+    announcedPrefectures: plan.announcedPrefectures ?? [],
     announcedVenueText: plan.announcedVenueText ?? (isPending ? "2027年度の会場は未公表" : "正式会場名・住所を確認中"),
     publicationState: plan.publicationState ?? "unpublished",
     conditions: plan.conditions ?? [],

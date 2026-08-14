@@ -5,7 +5,10 @@ import {
   venueAssignmentConditionLabels,
   venuePublicationStateLabels,
 } from "./privateMedicalExamVenues2027.ts";
-import { privateMedicalVenueHotels2027 } from "./privateMedicalVenueHotels2027.ts";
+import {
+  hotelVenueAccessReviewStateLabels2027,
+  privateMedicalVenueHotels2027,
+} from "./privateMedicalVenueHotels2027.ts";
 import {
   privateMedicalExamVenuesHotels2027FieldDefinitions,
   privateMedicalExamVenuesHotels2027Metadata,
@@ -21,6 +24,7 @@ const sourceUrls = [
   ...publicHotels.flatMap((hotel) => [
     hotel.officialUrl,
     hotel.officialBookingUrl,
+    hotel.operatingStatusEvidenceUrl,
     ...hotel.amenities.map((amenity) => amenity.evidenceUrl),
     ...hotel.venueAccess.flatMap((access) => access.evidenceUrls),
   ]),
@@ -28,14 +32,9 @@ const sourceUrls = [
 
 export const privateMedicalExamVenuesHotels2027SourceUrls = [...new Set(sourceUrls)];
 
-const publicFieldDefinitions = privateMedicalExamVenuesHotels2027FieldDefinitions.map((field) =>
-  field.key === "routeId"
-    ? {
-        ...field,
-        description: "大学・年度・方式を日程データと会場データの間で共有する安定ID",
-      }
-    : { ...field },
-);
+const publicFieldDefinitions = privateMedicalExamVenuesHotels2027FieldDefinitions.map((field) => ({
+  ...field,
+}));
 
 const toPublicVenue = (venue: (typeof privateMedicalExamVenues2027)[number]) => ({
   venueId: venue.venueId,
@@ -48,6 +47,7 @@ const toPublicVenue = (venue: (typeof privateMedicalExamVenues2027)[number]) => 
   municipality: venue.municipality,
   nearestStations: [...venue.nearestStations],
   officialUrl: venue.officialUrl,
+  ...(venue.officialUrlLabel ? { officialUrlLabel: venue.officialUrlLabel } : {}),
   ...(venue.accessNote ? { accessNote: venue.accessNote } : {}),
   reviewState: venue.reviewState,
   verifiedAt: venue.verifiedAt,
@@ -69,9 +69,14 @@ const toPublicAssignment = (
   examStage: assignment.examStage,
   examStageLabel: assignment.examStageLabel,
   examDateLabel: assignment.examDateLabel,
+  announcedPrefectures: [...assignment.announcedPrefectures],
   venueLinks: assignment.venueLinks.map((link) => ({
     venueId: link.venueId,
     role: link.role,
+    ...(link.applicantPrefecture ? { applicantPrefecture: link.applicantPrefecture } : {}),
+    ...(link.examPart ? { examPart: link.examPart } : {}),
+    ...(link.examDate ? { examDate: link.examDate } : {}),
+    ...(link.officialVenueText ? { officialVenueText: link.officialVenueText } : {}),
   })),
   announcedVenueText: assignment.announcedVenueText,
   publicationState: assignment.publicationState,
@@ -122,6 +127,9 @@ const toPublicHotel = (hotel: (typeof privateMedicalVenueHotels2027)[number]) =>
     evidenceUrl: amenity.evidenceUrl,
   })),
   operatingStatus: hotel.operatingStatus,
+  ...(hotel.operatingStatusEvidenceUrl
+    ? { operatingStatusEvidenceUrl: hotel.operatingStatusEvidenceUrl }
+    : {}),
   reviewState: hotel.reviewState,
   verifiedAt: hotel.verifiedAt,
   ...(hotel.note ? { note: hotel.note } : {}),
@@ -132,7 +140,7 @@ const publicHotelLinkedVenueCount = new Set(
 ).size;
 
 export const getPrivateMedicalExamVenuesHotels2027Dataset = () => ({
-  schemaVersion: "1.0.0",
+  schemaVersion: "1.1.0",
   metadata: privateMedicalExamVenuesHotels2027Metadata,
   scope: {
     country: "JP",
@@ -149,6 +157,22 @@ export const getPrivateMedicalExamVenuesHotels2027Dataset = () => ({
   definitions: {
     publicationStates: venuePublicationStateLabels,
     assignmentConditions: venueAssignmentConditionLabels,
+    reviewStates: {
+      verified: "公式情報と照合済み",
+      monitoring: "公式発表の更新を継続確認中",
+      needs_review: "公式資料間の差異等を確認中",
+    },
+    venueLinkRoles: {
+      fixed: "固定会場",
+      choice: "受験生が選択できる会場",
+      primary: "原則会場",
+      overflow: "定員状況等による代替会場",
+    },
+    examParts: {
+      written: "学力試験",
+      interview: "面接試験",
+    },
+    hotelAccessReviewStates: hotelVenueAccessReviewStateLabels2027,
   },
   summary: {
     ...privateMedicalExamVenueSummary2027,
@@ -160,9 +184,9 @@ export const getPrivateMedicalExamVenuesHotels2027Dataset = () => ({
   hotels: publicHotels.map(toPublicHotel),
   provenance: {
     venuePolicy:
-      "2027年度の大学公式募集要項・訂正資料・公式入試ページを優先し、各レコードの公式根拠へ戻って照合します。",
+      "2027年度の大学公式募集要項・訂正資料・公式入試ページを優先し、各レコードに紐づく公式根拠と照合します。",
     hotelPolicy:
-      "正式会場を確認した後に、宿泊施設と交通機関の公式サイトで名称、住所、営業状態、設備、経路を別レーンで確認します。",
+      "正式会場を確認した後に、宿泊施設と交通機関の公式サイトで名称、住所、営業状態、設備、経路をそれぞれ確認します。",
     sourceUrls: privateMedicalExamVenuesHotels2027SourceUrls,
     verifiedAt: privateMedicalExamVenuesHotels2027Metadata.dateModified,
   },

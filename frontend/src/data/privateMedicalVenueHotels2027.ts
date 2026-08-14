@@ -48,6 +48,7 @@ export type PrivateMedicalVenueHotel2027 = {
   venueAccess: HotelVenueAccess2027[];
   amenities: HotelAmenity2027[];
   operatingStatus: HotelOperatingStatus2027;
+  operatingStatusEvidenceUrl?: string;
   reviewState: HotelReviewState2027;
   verifiedAt: string;
   note?: string;
@@ -71,7 +72,7 @@ export const hotelVenueAccessReviewStateLabels2027: Record<
 
 // 会場台帳と分離して管理し、正式会場名・住所を確認できた venueId にだけ結合します。
 // 宿泊料金は変動情報のため正本データへ固定値として保持しません。
-const VERIFIED_AT = "2026-08-12T00:00:00+09:00";
+const VERIFIED_AT = "2026-08-15T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -88,6 +89,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "千葉県",
     municipality: "千葉市美浜区",
     officialUrl: "https://www.apahotel.com/resort/makuhari/",
+    officialBookingUrl: "https://www.apahotel.com/resort/makuhari/calendar/",
     nearestStation: "JR京葉線 海浜幕張駅",
     venueAccess: [
       {
@@ -124,6 +126,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "千葉県",
     municipality: "千葉市美浜区",
     officialUrl: "https://www.newotani.co.jp/makuhari/",
+    officialBookingUrl: "https://go-newotani-makuhari.reservation.jp/ja/plans",
     nearestStation: "JR京葉線 海浜幕張駅南口",
     venueAccess: [
       {
@@ -196,6 +199,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "東京都",
     municipality: "文京区",
     officialUrl: "https://www.o-inn.co.jp/",
+    officialBookingUrl: "https://reserve.489ban.net/client/o-inn/0/plan",
     nearestStation: "JR・東京メトロ丸ノ内線 御茶ノ水駅",
     venueAccess: [
       {
@@ -233,6 +237,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "東京都",
     municipality: "品川区",
     officialUrl: "https://www.tokyustay.co.jp/hotel/GO/",
+    officialBookingUrl: "https://reservation.tokyustay.co.jp/ja?areaId=239&hotelCode=ed543cbcd1df8f3fe2cce0d5a92fe29f",
     nearestStation: "都営浅草線・JR・東急池上線 五反田駅",
     venueAccess: [
       {
@@ -269,6 +274,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "東京都",
     municipality: "品川区",
     officialUrl: "https://www.presso-inn.com/gotanda/",
+    officialBookingUrl: "https://book.presso-inn.com/#/booking/result/?code=d92cc3324481dfe4b57daa342fd6343f",
     nearestStation: "JR・都営浅草線・東急池上線 五反田駅西口",
     venueAccess: [
       {
@@ -305,6 +311,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "東京都",
     municipality: "武蔵野市",
     officialUrl: "https://richmondhotel.jp/musashino/",
+    officialBookingUrl: "https://booking.richmondhotel.jp/booking/result?code=0190d8cc-ef02-7663-b543-9d9953844206&type=plan",
     nearestStation: "JR中央線・総武線 三鷹駅北口",
     venueAccess: [
       {
@@ -342,6 +349,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "東京都",
     municipality: "武蔵野市",
     officialUrl: "https://www.tokyuhotels.co.jp/kichijoji-r/index.html",
+    officialBookingUrl: "https://www.tokyuhotels.co.jp/kichijoji-r/stay/plan/index.html",
     nearestStation: "JR・京王井の頭線 吉祥寺駅公園口",
     venueAccess: [
       {
@@ -378,6 +386,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "東京都",
     municipality: "大田区",
     officialUrl: "https://haneda.metropolitan.jp/index.html",
+    officialBookingUrl: "https://go-jrhotel-m.reservation.jp/ja/hotels/metro-haneda/searchInput",
     nearestStation: "京急空港線・東京モノレール 天空橋駅",
     venueAccess: [
       {
@@ -414,6 +423,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "東京都",
     municipality: "港区",
     officialUrl: "https://hoteltavinos.com/hamamatsucho/",
+    officialBookingUrl: "https://go-fujita-kanko.reservation.jp/ja/hotels/fkg005/searchInput",
     nearestStation: "ゆりかもめ 竹芝駅／JR・東京モノレール 浜松町駅",
     venueAccess: [
       {
@@ -450,6 +460,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "埼玉県",
     municipality: "入間郡毛呂山町",
     officialUrl: "https://shsg.jp/selectinn/moroyama/",
+    officialBookingUrl: "https://go-shsg.reservation.jp/ja/hotels/shsg-selectinn-moroyama/plans",
     nearestStation: "JR八高線 毛呂駅",
     venueAccess: [
       {
@@ -473,10 +484,11 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
       amenity("coin_laundry", "コインランドリー（利用停止中）", "公式館内案内では設備不良により現在利用できないと案内されています。", "https://shsg.jp/selectinn/moroyama/facilities/"),
       amenity("breakfast", "通常朝食6:30〜", "営業再開後の通常案内では、朝食バイキングは6:30〜9:00です。", "https://shsg.jp/selectinn/moroyama/dining/"),
     ],
-    operatingStatus: "needs_review",
-    reviewState: "monitoring",
+    operatingStatus: "official_site_active",
+    operatingStatusEvidenceUrl: "https://shsg.jp/selectinn/moroyama/news/342/",
+    reviewState: "verified",
     verifiedAt: VERIFIED_AT,
-    note: "設備故障により休館中です。公式のお知らせ一覧では「当面の間休館」とされ、2026年8月12日時点で営業再開を確認できていません。",
+    note: "設備故障による休館後、公式が2026年8月12日から販売室数を限定して営業を再開すると案内しています。予約可否は公式画面で確認してください。コインランドリーは引き続き設備不良で利用停止中です。",
   },
   {
     hotelId: "kawagoe-tobu-hotel",
@@ -486,6 +498,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "埼玉県",
     municipality: "川越市",
     officialUrl: "https://www.tobuhotel.co.jp/kawagoe2020/",
+    officialBookingUrl: "https://www.tobuhotel.co.jp/kawagoe2020/?tripla_booking_widget_open=search&type=plan",
     nearestStation: "JR・東武東上線 川越駅西口",
     venueAccess: [
       {
@@ -524,6 +537,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "大阪府",
     municipality: "枚方市",
     officialUrl: "https://www.candeohotels.com/ja/osaka-hirakata/",
+    officialBookingUrl: "https://go-candeohotels.reservation.jp/ja/hotels/osaka-hirakata/searchInput",
     nearestStation: "京阪本線・交野線 枚方市駅",
     venueAccess: [
       {
@@ -559,7 +573,8 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     address: "大阪府枚方市岡東町11-11",
     prefecture: "大阪府",
     municipality: "枚方市",
-    officialUrl: "https://sunplazahotel.co.jp/",
+    officialUrl: "https://www.sunplazahotel.co.jp/",
+    officialBookingUrl: "https://www.sunplazahotel.co.jp/reservation.php",
     nearestStation: "京阪本線・交野線 枚方市駅",
     venueAccess: [
       {
@@ -573,17 +588,17 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         verifiedAt: VERIFIED_AT,
         caution: "合計時間は公式区間の合算目安です。試験当日の使用入口を受験票で確認してください。",
         evidenceUrls: [
-          "https://sunplazahotel.co.jp/",
+          "https://www.sunplazahotel.co.jp/",
           "https://www.kmu.ac.jp/info/campus/access/",
         ],
       },
     ],
     amenities: [
-      amenity("wifi", "無料Wi-Fi", "全室でWi-Fiを利用できます。", "https://sunplazahotel.co.jp/rooms.php"),
-      amenity("coin_laundry", "コインランドリー", "2階にコインランドリーがあります。", "https://sunplazahotel.co.jp/rooms.php"),
-      amenity("desk_lamp", "電気スタンド", "客室設備として案内されています。", "https://sunplazahotel.co.jp/rooms.php"),
-      amenity("humidifier", "加湿空気清浄機", "客室設備として案内されています。", "https://sunplazahotel.co.jp/rooms.php"),
-      amenity("breakfast", "朝食6:50〜", "朝食は6:50〜9:30の公式案内です。", "https://sunplazahotel.co.jp/rooms.php"),
+      amenity("wifi", "無料Wi-Fi", "全室でWi-Fiを利用できます。", "https://www.sunplazahotel.co.jp/rooms.php"),
+      amenity("coin_laundry", "コインランドリー", "2階にコインランドリーがあります。", "https://www.sunplazahotel.co.jp/rooms.php"),
+      amenity("desk_lamp", "電気スタンド", "客室設備として案内されています。", "https://www.sunplazahotel.co.jp/rooms.php"),
+      amenity("humidifier", "加湿空気清浄機", "客室設備として案内されています。", "https://www.sunplazahotel.co.jp/rooms.php"),
+      amenity("breakfast", "朝食6:50〜", "朝食は6:50〜9:30の公式案内です。", "https://www.sunplazahotel.co.jp/rooms.php"),
     ],
     operatingStatus: "official_site_active",
     reviewState: "verified",
@@ -598,6 +613,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "大阪府",
     municipality: "大阪市住之江区",
     officialUrl: "https://quintessahotels.com/osaka-bay/",
+    officialBookingUrl: "https://reservation.quintessahotels.com/booking/result?code=f4402d1b-a36b-474f-be17-00d95b179f8d&type=rooms&order=price_low_to_high&is_including_occupied=false&search_type=undated&nights=1&adults=2&kids_tiers=%5B%5D&room_count=1",
     nearestStation: "Osaka Metroニュートラム 中ふ頭駅",
     venueAccess: [
       {
@@ -634,6 +650,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "大阪府",
     municipality: "大阪市住之江区",
     officialUrl: "https://www.princehotels.co.jp/osakabay/",
+    officialBookingUrl: "https://www.princehotels.co.jp/osakabay/plan/all",
     nearestStation: "Osaka Metroニュートラム 中ふ頭駅",
     venueAccess: [
       {
@@ -669,6 +686,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "愛知県",
     municipality: "名古屋市中村区",
     officialUrl: "https://www.princehotels.co.jp/nagoya/",
+    officialBookingUrl: "https://www.princehotels.co.jp/nagoya/plan/all",
     nearestStation: "あおなみ線 ささしまライブ駅",
     venueAccess: [
       {
@@ -704,6 +722,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "愛知県",
     municipality: "名古屋市中村区",
     officialUrl: "https://www.strings-group.jp/nagoya/",
+    officialBookingUrl: "https://asp.hotel-story.ne.jp/ver3d/planlist.asp?clrmode=true&hcod1=72460&hcod2=001&mode=seek&reffrom=",
     nearestStation: "あおなみ線 ささしまライブ駅",
     venueAccess: [
       {
@@ -740,6 +759,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "福岡県",
     municipality: "福岡市博多区",
     officialUrl: "https://www.tokyustay.co.jp/hotel/HT/",
+    officialBookingUrl: "https://reservation.tokyustay.co.jp/ja?areaId=244&hotelCode=a80fa2b7f7d36110ee8bf709a4631099",
     nearestStation: "福岡市地下鉄・JR 博多駅",
     venueAccess: [
       {
@@ -777,6 +797,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "福岡県",
     municipality: "福岡市博多区",
     officialUrl: "https://www.route-inn.co.jp/hotel_list/fukuoka/index_hotel_id_208/",
+    officialBookingUrl: "https://www.route-inn.co.jp/hotel_list/fukuoka/index_hotel_id_208/plan/",
     nearestStation: "JR・福岡市地下鉄 博多駅筑紫口",
     venueAccess: [
       {
@@ -813,6 +834,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "兵庫県",
     municipality: "西宮市",
     officialUrl: "https://www.hotel-hewitt.com/",
+    officialBookingUrl: "https://reservation.quintessahotels.com/booking/result?code=e1e4df81-8885-4225-99b7-0be6f93f4589&type=plan&order=price_low_to_high&is_including_occupied=false&search_type=undated&nights=1&adults=2&kids_tiers=%5B%5D&room_count=1&mcp_currency=JPY",
     nearestStation: "阪神本線 甲子園駅西口",
     venueAccess: [
       {
@@ -834,12 +856,12 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     amenities: [
       amenity("wifi", "無料Wi-Fi", "全室でWi-Fiを利用できます。", "https://www.hotel-hewitt.com/faq/"),
       amenity("coin_laundry", "コインランドリー", "6階にコインランドリーがあります。", "https://hotel-hewitt.com/information/"),
-      amenity("breakfast", "朝食6:30〜（要確認）", "公式ページ内に6:30開始と7:00開始の併記があるため、前日に確認してください（終了10:00、L.O.9:30）。", "https://www.hotel-hewitt.com/restaurant/"),
+      amenity("breakfast", "通常朝食7:00〜（要確認）", "公式本文は通常7:00開始ですが、同じページ内に6:30開始の表記もあります。宿泊状況により6:00または6:30へ前倒しする場合があるため、前日に確認してください（終了10:00、L.O.9:30）。", "https://www.hotel-hewitt.com/restaurant/"),
     ],
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
-    note: "朝食開始時刻は公式ページ間で6:30・7:00の表記差があります。",
+    note: "朝食開始時刻は公式ページ内で6:30・7:00の表記差があります。通常時刻と当日の前倒し有無を前日に確認してください。",
   },
   {
     hotelId: "ys-hotel-hanshin-amagasaki-ekimae",
@@ -849,6 +871,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "兵庫県",
     municipality: "尼崎市",
     officialUrl: "https://yshotel-amagasaki.com/",
+    officialBookingUrl: "https://www.hpdsp.net/yshotel-amagasaki/hw/hwp3100/hww3101.do?yadNo=338532",
     nearestStation: "阪神本線 尼崎駅西改札",
     venueAccess: [
       {
@@ -885,6 +908,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "神奈川県",
     municipality: "横浜市西区",
     officialUrl: "https://hiltongardeninn-yokohama.hiltonjapan.co.jp/",
+    officialBookingUrl: "https://hiltongardeninn-yokohama.hiltonjapan.co.jp/plans/rooms",
     nearestStation: "みなとみらい線 新高島駅・みなとみらい駅",
     venueAccess: [
       {
@@ -922,6 +946,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "神奈川県",
     municipality: "横浜市西区",
     officialUrl: "https://www.tokyuhotels.co.jp/yokohama-r/index.html",
+    officialBookingUrl: "https://www.tokyuhotels.co.jp/yokohama-r/stay/plan/index.html",
     nearestStation: "みなとみらい線 新高島駅",
     venueAccess: [
       {
@@ -958,6 +983,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "東京都",
     municipality: "北区",
     officialUrl: "https://www.hotelmets.jp/akabane/",
+    officialBookingUrl: "https://go-jrhotel-m.reservation.jp/ja/hotels/mets-akabane/plans",
     nearestStation: "JR赤羽駅北改札・東口",
     venueAccess: [
       {
@@ -995,6 +1021,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     prefecture: "東京都",
     municipality: "豊島区",
     officialUrl: "https://www.apahotel.com/hotel/syutoken/tokyo/tokyoitabashi/",
+    officialBookingUrl: "https://www.apahotel.com/hotel/syutoken/tokyo/tokyoitabashi/calendar/",
     nearestStation: "JR埼京線 板橋駅東口",
     venueAccess: [
       {

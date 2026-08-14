@@ -8,7 +8,8 @@ export const GET: APIRoute = () =>
   new Response(`${JSON.stringify(getPrivateMedicalExamVenuesHotels2027Dataset(), null, 2)}\n`, {
     headers: {
       "Content-Type": "application/json; charset=utf-8",
-      "Cache-Control": "public, max-age=3600",
+      "Cache-Control": "public, max-age=3600, must-revalidate",
+      "Access-Control-Allow-Origin": "*",
       "Content-Disposition":
         'inline; filename="private-medical-exam-venues-hotels-2027.json"',
       Link: `<${privateMedicalExamVenuesHotels2027Metadata.canonicalUrl}>; rel="describedby"`,

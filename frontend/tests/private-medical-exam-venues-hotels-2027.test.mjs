@@ -5,6 +5,8 @@ import { fileURLToPath } from "node:url";
 
 import {
   privateMedicalExamVenueAssignments2027,
+  privateMedicalJichiExamVenues2027,
+  privateMedicalJichiVenueRelations2027,
   privateMedicalExamVenueSummary2027,
   privateMedicalExamVenueUniversitySummaries2027,
   privateMedicalExamVenues2027,
@@ -92,7 +94,59 @@ test("共通テスト本試験だけを大学別会場として登録しない",
   }
 });
 
+test("自治医科大学一次は47都道府県の学力・面接94関係を正式会場へ結合する", () => {
+  assert.equal(privateMedicalJichiVenueRelations2027.length, 94);
+  assert.equal(privateMedicalJichiExamVenues2027.length, 71);
+
+  const relationsByPrefecture = Object.groupBy(
+    privateMedicalJichiVenueRelations2027,
+    (relation) => relation.applicantPrefecture,
+  );
+  assert.equal(Object.keys(relationsByPrefecture).length, 47);
+  for (const [prefecture, relations] of Object.entries(relationsByPrefecture)) {
+    assert.equal(relations.length, 2, `${prefecture}: 学力・面接の2関係ではありません`);
+    assert.deepEqual(
+      new Set(relations.map((relation) => relation.examPart)),
+      new Set(["written", "interview"]),
+    );
+    assert.equal(
+      relations.find((relation) => relation.examPart === "written")?.examDate,
+      "2027-01-25",
+    );
+    assert.equal(
+      relations.find((relation) => relation.examPart === "interview")?.examDate,
+      "2027-01-26",
+    );
+  }
+
+  const jichiVenueIds = new Set(privateMedicalJichiExamVenues2027.map((venue) => venue.venueId));
+  for (const venue of privateMedicalJichiExamVenues2027) {
+    assert.ok(venue.address.startsWith(venue.prefecture));
+    assert.equal(venue.nearestStations.length, 0);
+    assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
+  }
+  assert.ok(
+    privateMedicalJichiVenueRelations2027.every((relation) =>
+      jichiVenueIds.has(relation.venueId),
+    ),
+  );
+
+  const first = privateMedicalExamVenueAssignments2027.find(
+    (assignment) => assignment.assignmentId === "jichi-medical--general--general--first-venue",
+  );
+  assert.equal(first?.publicationState, "confirmed");
+  assert.equal(first?.announcedPrefectures.length, 47);
+  assert.equal(first?.venueLinks.length, 94);
+});
+
 test("希望日・大学指定・固定会場を方式別に混同しない", () => {
+  const dataset = getPrivateMedicalExamVenuesHotels2027Dataset();
+  assert.equal(dataset.definitions.assignmentConditions.fixed, "試験地・会場は固定");
+  assert.equal(
+    dataset.definitions.assignmentConditions.applicant_preference,
+    "受験日または試験地の希望・選択あり",
+  );
+  assert.equal(dataset.definitions.assignmentConditions.admission_ticket, "受験票で最終確認");
   const conditionsFor = (routeId, examStage) =>
     privateMedicalExamVenueAssignments2027.find(
       (entry) => entry.routeId === routeId && entry.examStage === examStage,
@@ -217,6 +271,30 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
   ]) {
     assert.deepEqual(assignmentFor(routeId, "first")?.conditions, ["applicant_preference"]);
   }
+
+  const venueOfficialUrls = new Set(privateMedicalExamVenues2027.map((venue) => venue.officialUrl));
+  for (const retiredUrl of [
+    "https://www.juntendo.ac.jp/about/access/",
+    "https://www.nagoya.conventionhall.jp/access/",
+    "https://www.uoeh-u.ac.jp/University/Access.html",
+    "https://www.kashikaigishitsu.net/facilitys/gc-osaka-riverside-hotel/",
+    "https://www.jikei.ac.jp/access/nishishimbashi/",
+    "https://www.ompu.ac.jp/access/campus/honbu.html",
+    "https://www.kindai.ac.jp/medicine/about/access/",
+    "https://www.kashikaigishitsu.net/facilitys/cc-shimbashi/",
+    "https://www.kurume-u.ac.jp/about/campus/mii/",
+    "https://www.kurume-u.ac.jp/about/campus/asahimachi/",
+    "https://www.kashikaigishitsu.net/facilitys/gcp-nagoya-shinkansenguchi/",
+    "https://messe-kitakyushu.jp/access/",
+    "https://www.tokyo-bigsight.co.jp/visitor/buildings/time/",
+    "https://www.toho-u.ac.jp/access/omori_campus.html",
+    "https://www.twmu.ac.jp/univ/access/",
+    "https://fukuoka.iuhw.ac.jp/access/",
+    "https://www.tokyo-med.ac.jp/univ/access/shinjuku.html",
+    "https://www.kanazawa-med.ac.jp/access.html",
+  ]) {
+    assert.equal(venueOfficialUrls.has(retiredUrl), false, `404確認済みURLが残っています: ${retiredUrl}`);
+  }
 });
 
 test("会場・割当・ホテル・アクセスの参照が一意かつ整合する", () => {
@@ -230,32 +308,80 @@ test("会場・割当・ホテル・アクセスの参照が一意かつ整合�
     assert.match(venue.officialUrl, /^https:\/\//u);
     assert.ok(venue.address.length > 5);
     assert.ok(venue.prefecture.length > 2);
+    assert.ok(unique(venue.nearestStations));
   }
 
   for (const assignment of privateMedicalExamVenueAssignments2027) {
+    assert.ok(Array.isArray(assignment.announcedPrefectures));
+    assert.ok(unique(assignment.announcedPrefectures));
     assert.equal(
       assignment.routeId,
       getPrivateMedicalCanonicalRouteId2027(assignment.universityId, assignment.routeName),
       `${assignment.assignmentId}: canonical方式IDが日程正本と一致しません`,
     );
-    assert.ok(unique(assignment.venueLinks.map((link) => link.venueId)));
+    assert.ok(
+      unique(
+        assignment.venueLinks.map((link) =>
+          [
+            link.venueId,
+            link.applicantPrefecture ?? "",
+            link.examPart ?? "",
+            link.examDate ?? "",
+          ].join("|"),
+        ),
+      ),
+      `${assignment.assignmentId}: 同じ会場関係が重複しています`,
+    );
     assignment.venueLinks.forEach((link) => {
       assert.ok(venueIdSet.has(link.venueId), `${assignment.assignmentId}: ${link.venueId} が未定義です`);
+      const hasRelationDetail = Boolean(
+        link.applicantPrefecture || link.examPart || link.examDate || link.officialVenueText,
+      );
+      if (hasRelationDetail) {
+        assert.equal(assignment.universityId, "jichi-medical");
+        assert.ok(link.applicantPrefecture && link.examPart && link.examDate && link.officialVenueText);
+      }
     });
+    if (assignment.publicationState === "confirmed") {
+      assert.ok(assignment.venueLinks.length > 0);
+    }
+    if (assignment.reviewState === "verified") {
+      assert.match(assignment.officialAdmissionUrl ?? "", /^https:\/\//u);
+      assert.ok(
+        assignment.evidenceLocator?.trim(),
+        `${assignment.assignmentId}: verifiedですが根拠位置がありません`,
+      );
+    }
     if (assignment.publicationState === "unpublished") {
       assert.equal(assignment.venueLinks.length, 0);
     }
   }
+  for (const assignment of privateMedicalExamVenueAssignments2027.filter(
+    (entry) => entry.publicationState === "city_or_campus_only",
+  )) {
+    assert.ok(
+      assignment.announcedPrefectures.length > 0,
+      `${assignment.assignmentId}: 公表済みの会場都道府県が欠落しています`,
+    );
+  }
 
   for (const hotel of privateMedicalVenueHotels2027) {
     assert.match(hotel.officialUrl, /^https:\/\//u);
+    assert.match(hotel.officialBookingUrl ?? "", /^https:\/\//u);
+    if (hotel.operatingStatusEvidenceUrl) {
+      assert.match(hotel.operatingStatusEvidenceUrl, /^https:\/\//u);
+    }
     assert.ok(
       ["official_site_active", "opening_planned", "needs_review"].includes(
         hotel.operatingStatus,
       ),
     );
     assert.ok(hotel.venueAccess.length > 0);
+    assert.ok(unique(hotel.venueAccess.map((access) => access.venueId)));
+    assert.ok(unique(hotel.amenities.map((amenity) => amenity.key)));
     for (const access of hotel.venueAccess) {
+      assert.ok(unique(access.modes));
+      assert.ok(unique(access.evidenceUrls));
       assert.ok(venueIdSet.has(access.venueId), `${hotel.hotelId}: ${access.venueId} が未定義です`);
       assert.ok(access.evidenceUrls.length > 0);
       assert.ok(
@@ -272,14 +398,48 @@ test("会場・割当・ホテル・アクセスの参照が一意かつ整合�
 
 test("公開Datasetはallowlist投影で内部項目・価格・評価を含めない", () => {
   const dataset = getPrivateMedicalExamVenuesHotels2027Dataset();
-  assert.equal(dataset.schemaVersion, "1.0.0");
+  assert.equal(dataset.schemaVersion, "1.1.0");
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 24);
+  assert.equal(dataset.hotels.length, 25);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
-  assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "select-inn-saitama-moroyama"), false);
+  assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
+  assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
+  assert.equal(dataset.definitions.examParts.written, "学力試験");
+  assert.equal(dataset.definitions.venueLinkRoles.overflow, "定員状況等による代替会場");
+  assert.ok("official_direct" in dataset.definitions.hotelAccessReviewStates);
+
+  const fieldDefinitionKeys = dataset.fieldDefinitions.map((field) => field.key);
+  assert.equal(fieldDefinitionKeys.includes("sources"), false);
+  for (const relationKey of ["announcedPrefectures", "venueLinks", "reviewState"]) {
+    assert.ok(fieldDefinitionKeys.includes(relationKey), `${relationKey} の公開項目定義がありません`);
+  }
+  for (const sourceKey of [
+    "officialUrl",
+    "officialUrlLabel",
+    "operatingStatusEvidenceUrl",
+    "officialAdmissionUrl",
+    "evidenceUrls",
+  ]) {
+    assert.ok(fieldDefinitionKeys.includes(sourceKey), `${sourceKey} の公開項目定義がありません`);
+  }
+  const selectInn = dataset.hotels.find(
+    (hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama",
+  );
+  assert.match(selectInn?.operatingStatusEvidenceUrl ?? "", /\/news\/342\//u);
+  const publicJichiFirst = dataset.assignments.find(
+    (assignment) => assignment.assignmentId === "jichi-medical--general--general--first-venue",
+  );
+  assert.equal(publicJichiFirst?.announcedPrefectures.length, 47);
+  assert.equal(publicJichiFirst?.venueLinks.length, 94);
+  assert.ok(
+    publicJichiFirst?.venueLinks.every(
+      (link) =>
+        link.applicantPrefecture && link.examPart && link.examDate && link.officialVenueText,
+    ),
+  );
 
   const serialized = JSON.stringify(dataset);
   const serializedPublicRecords = JSON.stringify({
@@ -322,6 +482,8 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
 test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを参照する", () => {
   const canonical = new URL(privateMedicalExamVenuesHotels2027Metadata.canonicalUrl);
   const datasetUrl = new URL(privateMedicalExamVenuesHotels2027Metadata.datasetUrl);
+  assert.equal(privateMedicalExamVenuesHotels2027Metadata.dateModified, "2026-08-15");
+  assert.equal(privateMedicalExamVenuesHotels2027Metadata.version, "2026-08-15");
   assert.equal(canonical.pathname, expectedPagePath);
   assert.equal(datasetUrl.pathname, expectedDatasetPath);
   assert.equal(canonical.origin, datasetUrl.origin);
@@ -335,13 +497,17 @@ test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを�
 
   assert.match(pageSource, /<AdmissionsScheduleSwitcher current="venues"\s*\/>/u);
   assert.match(pageSource, /rel="alternate" type="application\/json"/u);
+  assert.match(pageSource, /const datasetPath = new URL\(datasetUrl\)\.pathname/u);
   assert.match(pageSource, /href="\/private-medical-school-admissions-schedule-2027\/"/u);
   assert.match(switcherSource, /private-medical-school-exam-venues-hotels-2027/u);
   assert.match(endpointSource, /Content-Disposition/u);
+  assert.match(endpointSource, /Access-Control-Allow-Origin/u);
+  assert.match(endpointSource, /must-revalidate/u);
   assert.match(endpointSource, /rel="describedby"/u);
   assert.match(seoSource, /privateMedicalExamVenuesHotels2027Metadata/u);
   assert.match(llmsSource, /privateMedicalExamVenuesHotels2027Metadata/u);
   assert.match(headersSource, /\/data\/private-medical-exam-venues-hotels-2027\.json/u);
+  assert.match(headersSource, /\/data\/private-medical-exam-venues-hotels-2027\.json[\s\S]*Access-Control-Allow-Origin: \*/u);
 });
 
 test("ページは会場中心・31大学・組合せフィルターをSSR本文から提供する", () => {
@@ -356,11 +522,17 @@ test("ページは会場中心・31大学・組合せフィルターをSSR本文
   assert.match(source, /data-filter-assignment-id/u);
   assert.match(source, /matchingAssignmentIds/u);
   assert.match(source, /const searchText = \[venue\.name, venue\.shortName, venue\.address\]/u);
-  assert.match(source, /card\.dataset\.kind === "venue"[\s\S]*normalize\(card\.dataset\.search\)\.includes\(query\)/u);
+  assert.match(source, /assignmentSearch: \[assignment\.universityName, assignment\.routeName\]/u);
+  assert.match(source, /\.\.\.assignment\.announcedPrefectures/u);
+  assert.match(source, /const venueOwnQueryMatches =[\s\S]*normalize\(card\.dataset\.search\)\.includes\(query\)/u);
+  assert.match(source, /records\.some\(\(record\) => normalize\(record\.assignmentSearch\)\.includes\(query\)\)/u);
   assert.match(source, /const visible = matchingRecords\.length > 0/u);
   assert.match(source, /normalize\("NFKC"\)/u);
   assert.match(source, /privateMedicalExamVenueUniversitySummaries2027\.map/u);
+  assert.match(source, /venue-guide-university__venue-disclosure/u);
   assert.match(source, /venueGroups\.map/u);
+  assert.match(source, /const venueFilterPrefectures = \[/u);
+  assert.match(source, /venueFilterPrefectures\.map/u);
   assert.match(source, /data-venue-prefecture-group/u);
   assert.match(source, /data-prefecture-link/u);
   assert.match(source, /group\.hidden = visibleCount === 0/u);
@@ -380,6 +552,9 @@ test("会場ページのページ内メニューは5セクションへ移動で�
     assert.match(source, new RegExp(`id: "${id}"`, "u"));
   }
   assert.match(cssSource, /\.venue-guide-jump-nav\s*\{[\s\S]*?position:\s*sticky;[\s\S]*?top:\s*0;/u);
+  assert.match(cssSource, /#finder,[\s\S]*#venues,[\s\S]*#dataset,[\s\S]*scroll-margin-top:\s*82px;/u);
+  assert.match(cssSource, /:where\(a, button, input, select, summary\):focus-visible/u);
+  assert.match(cssSource, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.venue-guide-page \*/u);
 });
 
 test("私立医学部情報ページは会場・ホテルガイドへの専用バナーを提供する", () => {
@@ -430,14 +605,46 @@ test("build成果物のJSONと構造化データはparseでき、IDが重複し�
   const jsonLdBlocks = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gu)];
   assert.ok(jsonLdBlocks.length > 0);
   const documents = jsonLdBlocks.map((match) => JSON.parse(match[1]));
-  const ids = documents.flatMap((document) =>
-    (document["@graph"] ?? [document])
-      .map((entry) => entry?.["@id"])
-      .filter(Boolean),
-  );
+  const graph = documents.flatMap((document) => document["@graph"] ?? [document]);
+  const ids = graph.map((entry) => entry?.["@id"]).filter(Boolean);
   assert.ok(unique(ids), "JSON-LDの@idが重複しています");
+
+  const placeEntries = graph.filter((entry) => entry?.["@type"] === "Place");
+  const hotelEntries = graph.filter((entry) => entry?.["@type"] === "Hotel");
+  const venueList = graph.find(
+    (entry) => entry?.["@id"] === `${privateMedicalExamVenuesHotels2027Metadata.canonicalUrl}#venues`,
+  );
+  assert.equal(venueList?.numberOfItems, placeEntries.length);
+  assert.equal(hotelEntries.length, builtDataset.hotels.length);
+  for (const entry of [...placeEntries, ...hotelEntries]) {
+    assert.ok(entry.address.streetAddress.length > 0);
+    assert.equal(
+      entry.address.streetAddress.startsWith(entry.address.addressLocality),
+      false,
+      `${entry.name}: streetAddressにaddressLocalityが重複しています`,
+    );
+  }
+  const jichiPlaces = placeEntries.filter((entry) =>
+    entry["@id"].includes("#place-venue-jichi-first-"),
+  );
+  assert.equal(jichiPlaces.length, privateMedicalJichiExamVenues2027.length);
+  assert.ok(jichiPlaces.every((entry) => !("sameAs" in entry)));
+  assert.ok(
+    jichiPlaces.every(
+      (entry) => entry.subjectOf?.url === privateMedicalJichiExamVenues2027[0].officialUrl,
+    ),
+  );
 
   const domIds = [...html.matchAll(/\sid="([^"]+)"/gu)].map((match) => match[1]);
   assert.ok(unique(domIds), "HTMLのid属性が重複しています");
+  const domIdSet = new Set(domIds);
+  for (const match of html.matchAll(/\shref="#([^"]+)"/gu)) {
+    assert.ok(domIdSet.has(match[1]), `リンク先 #${match[1]} が存在しません`);
+  }
+  for (const match of html.matchAll(/\saria-labelledby="([^"]+)"/gu)) {
+    for (const id of match[1].split(/\s+/u)) {
+      assert.ok(domIdSet.has(id), `aria-labelledbyの参照先 #${id} が存在しません`);
+    }
+  }
   assert.doesNotMatch(html, /C:\\|C:\/|internal_only|project_internal/u);
 });
