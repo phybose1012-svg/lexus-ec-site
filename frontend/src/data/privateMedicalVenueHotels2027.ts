@@ -141,6 +141,7 @@ const JICHI_ISHIKAWA_MEETING_1103_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_FUKUI_INTERNATIONAL_EXCHANGE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_FUKUI_MEETING_2F_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_YAMANASHI_ONSHIRIN_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_NAGANO_JICHIKAIKAN_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -6286,5 +6287,90 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: JICHI_YAMANASHI_ONSHIRIN_VERIFIED_AT,
     note: "甲府駅徒歩5分の地域系・価格重視枠です。客室Wi-Fi・有線LAN、客室階コインランドリー、加湿機能付き空気清浄機、電気スタンド貸出、現行の無料朝食サービスを施設公式で確認しています。18歳未満だけの宿泊は、施設所定の法定代理人同意書を提出した場合に限り申込みが承諾されます。朝食開始時刻と客室机は公式本文で確認できないため、試験朝に朝食を利用する場合と椅子付き机が必要な場合は予約前にホテルへ確認してください。",
+  },
+  {
+    hotelId: "sotetsu-fresa-inn-nagano-zenkojiguchi",
+    name: "相鉄フレッサイン 長野駅善光寺口",
+    postalCode: "380-0825",
+    address: "長野県長野市南長野末広町1356",
+    prefecture: "長野県",
+    municipality: "長野市",
+    officialUrl: "https://www.sotetsu-hotels.com/fresa-inn/nagano/",
+    officialBookingUrl:
+      "https://booking.sotetsu-hotels.com/booking/result?code=11461aeab9cf20fce3c6e90f477b5f18",
+    nearestStation: "JR北陸新幹線・信越本線・篠ノ井線・しなの鉄道北しなの線 長野駅善光寺口",
+    venueAccess: [
+      {
+        venueId: "venue-jichi-first-nagano-jichikaikan",
+        modes: ["walk", "bus"],
+        routeSummary: "相鉄フレッサイン 長野駅善光寺口からホテル公式の徒歩案内を逆向きに長野駅善光寺口へ戻り、4番のりばからアルピコ交通41合同庁舎線の自治会館行きに乗車します。自治会館前で下車し、受験票、長野県から交付される試験専用案内、当日掲示に従って指定受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR長野駅は公式徒歩2分／長野駅4番のりば―自治会館前はアルピコ交通41合同庁舎線（2027年の乗車時間・待ち時間は未確定、会館公式の徒歩代替は長野駅から約30分）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_NAGANO_JICHIKAIKAN_VERIFIED_AT,
+        caution: "ホテル公式徒歩2分、アルピコ交通41合同庁舎線、会館公式の長野駅からバス約10分・徒歩約30分という別々の案内を接続した経路で、ホテルから試験室までの通し所要ではありません。41合同庁舎線は長野駅4番のりば発で土日祝運休です。試験日の2027年1月25日は月曜日ですが、当日の確定ダイヤ、積雪・道路状況による遅延、臨時運休は未公表のため直前に再確認し、徒歩約30分も代替として確認してください。学力試験は受付8:20〜8:40、試験9:00〜14:10です。会館には複数の会議室がありますが、使用階・室、受付位置、受験生入口、待機場所は未公表です。通常の施設受付は平日9:00開始で試験受付より遅いため、通常受付時刻や一般利用時の入口を試験指定とみなさないでください。翌日の面接は長野県庁という別会場です。",
+        evidenceUrls: [
+          "https://www.sotetsu-hotels.com/fresa-inn/nagano/access/",
+          "https://www.alpico.co.jp/traffic/local/nagano/godochosha/",
+          "https://convention.nagano-cvb.or.jp/modules/convention/facility/c028",
+          "https://unionnagano-map.resv.jp/reserve/res_plan_list.php?kind=main_plan&x=1648181137",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全室無料Wi-Fi・有線LAN", "全客室で無料Wi-Fiと有線LANを利用できます。", "https://www.sotetsu-hotels.com/fresa-inn/nagano/faq/"),
+      amenity("coin_laundry", "8階コインランドリー", "8階に全自動洗濯機2台があり、24時間利用できます。", "https://www.sotetsu-hotels.com/fresa-inn/nagano/faq/"),
+      amenity("breakfast", "朝食6:30〜", "5階朝食会場の和洋ビュッフェは6:30〜9:30です。", "https://www.sotetsu-hotels.com/fresa-inn/nagano/faq/"),
+      amenity("humidifier", "加湿機能付き空気清浄機", "全室に加湿機能付き空気清浄機があります。", "https://www.sotetsu-hotels.com/fresa-inn/nagano/rooms/"),
+    ],
+    operatingStatus: "official_site_active",
+    operatingStatusEvidenceUrl: "https://www.sotetsu-hotels.com/fresa-inn/nagano/",
+    reviewState: "verified",
+    verifiedAt: JICHI_NAGANO_JICHIKAIKAN_VERIFIED_AT,
+    note: "長野駅善光寺口徒歩2分で、41合同庁舎線の4番のりばへ接続しやすい堅実枠です。全室無料Wi-Fi・有線LAN、8階の24時間コインランドリー、6:30開始の朝食、加湿機能付き空気清浄機を施設公式で確認しています。18歳未満だけの宿泊は親権者等の法定代理人の同意書をチェックイン時に提出する必要があり、未提出時は宿泊を断られる場合があります。客室机は施設公式本文で確認できないため、椅子付き机が必要な場合は予約前に部屋タイプを確認してください。",
+  },
+  {
+    hotelId: "hotel-new-nagano-next",
+    name: "HOTEL NEW NAGANO NeXT",
+    postalCode: "380-0822",
+    address: "長野県長野市南千歳町828",
+    prefecture: "長野県",
+    municipality: "長野市",
+    officialUrl: "https://www.newnagano.com/",
+    officialBookingUrl:
+      "https://d-reserve.jp/GSEA001F01300/GSEA001A01?hotelCode=0000001826",
+    nearestStation: "JR北陸新幹線・信越本線・篠ノ井線・しなの鉄道北しなの線 長野駅善光寺口",
+    venueAccess: [
+      {
+        venueId: "venue-jichi-first-nagano-jichikaikan",
+        modes: ["walk", "bus"],
+        routeSummary: "HOTEL NEW NAGANO NeXTからホテル公式の徒歩案内を逆向きに長野駅善光寺口へ戻り、4番のりばからアルピコ交通41合同庁舎線の自治会館行きに乗車します。自治会館前で下車し、受験票、長野県から交付される試験専用案内、当日掲示に従って指定受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR長野駅は公式徒歩2分／長野駅4番のりば―自治会館前はアルピコ交通41合同庁舎線（2027年の乗車時間・待ち時間は未確定、会館公式の徒歩代替は長野駅から約30分）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_NAGANO_JICHIKAIKAN_VERIFIED_AT,
+        caution: "ホテル公式徒歩2分、アルピコ交通41合同庁舎線、会館公式の長野駅からバス約10分・徒歩約30分という別々の案内を接続した経路で、ホテルから試験室までの通し所要ではありません。41合同庁舎線は長野駅4番のりば発で土日祝運休です。試験日の2027年1月25日は月曜日ですが、当日の確定ダイヤ、積雪・道路状況による遅延、臨時運休は未公表のため直前に再確認し、徒歩約30分も代替として確認してください。学力試験は受付8:20〜8:40、試験9:00〜14:10です。会館には複数の会議室がありますが、使用階・室、受付位置、受験生入口、待機場所は未公表です。通常の施設受付は平日9:00開始で試験受付より遅いため、通常受付時刻や一般利用時の入口を試験指定とみなさないでください。翌日の面接は長野県庁という別会場です。",
+        evidenceUrls: [
+          "https://www.newnagano.com/access/",
+          "https://www.alpico.co.jp/traffic/local/nagano/godochosha/",
+          "https://convention.nagano-cvb.or.jp/modules/convention/facility/c028",
+          "https://unionnagano-map.resv.jp/reserve/res_plan_list.php?kind=main_plan&x=1648181137",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全室個別Wi-Fi・有線LAN", "全客室で個別アクセスポイントのWi-Fiと有線LANを利用できます。", "https://www.newnagano.com/rooms/"),
+      amenity("coin_laundry", "8階コインランドリー", "8階に洗濯機・乾燥機各2台があり、24時間利用できます。", "https://www.newnagano.com/service/"),
+      amenity("breakfast", "朝食7:00〜", "1階の宿泊者向け朝食は7:00〜10:00、ラストオーダー9:30です。", "https://www.newnagano.com/breakfast/"),
+    ],
+    operatingStatus: "official_site_active",
+    operatingStatusEvidenceUrl: "https://www.newnagano.com/news/",
+    reviewState: "verified",
+    verifiedAt: JICHI_NAGANO_JICHIKAIKAN_VERIFIED_AT,
+    note: "長野市の株式会社NAステイ＆ホテルズが運営する全115室の地域ビジネスホテル枠です。長野駅徒歩2分で、41合同庁舎線の4番のりばへ接続できます。全室個別Wi-Fi・有線LAN、8階の24時間コインランドリー、7:00開始で客室へ持ち帰れる朝食を施設公式で確認しています。客室机と18歳未満だけで宿泊する場合の可否・必要書類は施設公式本文で確認できないため、椅子付き机のある部屋と親権者手続を予約前にホテルへ確認してください。",
   },
 ];
