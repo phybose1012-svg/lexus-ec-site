@@ -408,7 +408,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 49);
+  assert.equal(dataset.hotels.length, 51);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -692,6 +692,44 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(
     dataset.hotels.filter((hotel) =>
       hotel.venueAccess.some((access) => access.venueId === "venue-kanazawa-medical-main-campus"),
+    ).length,
+    2,
+  );
+  for (const hotelId of [
+    "paradis-inn-sagamihara",
+    "toyoko-inn-jr-yokohama-line-sagamihara-ekimae",
+  ]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-kitasato-sagamihara-campus",
+    );
+    assert.ok(access, `${hotelId} が北里大学 相模原キャンパスに結合されていません`);
+    assert.equal(access.transferCount, 0);
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  assert.equal(
+    dataset.hotels
+      .find((hotel) => hotel.hotelId === "paradis-inn-sagamihara")
+      ?.venueAccess[0]?.measurementBasis,
+    "official",
+  );
+  assert.ok(
+    dataset.hotels
+      .find((hotel) => hotel.hotelId === "paradis-inn-sagamihara")
+      ?.venueAccess[0]?.reviewState.includes("official_direct"),
+  );
+  assert.equal(
+    dataset.hotels
+      .find((hotel) => hotel.hotelId === "toyoko-inn-jr-yokohama-line-sagamihara-ekimae")
+      ?.venueAccess[0]?.measurementBasis,
+    "route_only",
+  );
+  assert.equal(
+    dataset.hotels.filter((hotel) =>
+      hotel.venueAccess.some((access) => access.venueId === "venue-kitasato-sagamihara-campus"),
     ).length,
     2,
   );
