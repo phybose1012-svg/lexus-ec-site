@@ -267,6 +267,12 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "JR北陸新幹線・信越本線・篠ノ井線・しなの鉄道北しなの線 長野駅善光寺口",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式会議室案内/u);
+    } else if (venue.venueId === "venue-jichi-first-nagano-prefectural-office") {
+      assert.deepEqual(venue.nearestStations, [
+        "アルピコ交通 県庁前停留所",
+        "JR北陸新幹線・信越本線・篠ノ井線・しなの鉄道北しなの線 長野駅善光寺口",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式アクセス/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);

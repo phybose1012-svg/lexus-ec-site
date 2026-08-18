@@ -142,6 +142,7 @@ const JICHI_FUKUI_INTERNATIONAL_EXCHANGE_VERIFIED_AT = "2026-08-19T00:00:00+09:0
 const JICHI_FUKUI_MEETING_2F_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_YAMANASHI_ONSHIRIN_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_NAGANO_JICHIKAIKAN_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_NAGANO_PREFECTURAL_OFFICE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -6318,6 +6319,23 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-nagano-prefectural-office",
+        modes: ["walk"],
+        routeSummary: "相鉄フレッサイン 長野駅善光寺口からホテル公式の徒歩案内を逆向きに長野駅善光寺口へ戻り、長野県公式の徒歩経路で長野県庁へ向かいます。到着後は受験票、長野県から交付される試験専用案内、当日掲示に従って指定された庁舎・受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR長野駅は公式徒歩2分／JR長野駅―長野県庁は県公式徒歩約15分（駅周辺・信号・積雪・庁舎内・指定受付までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_NAGANO_PREFECTURAL_OFFICE_VERIFIED_AT,
+        caution: "ホテル公式徒歩2分と県公式徒歩約15分は起終点の異なる別区間で、ホテルから指定面接室までの通し所要ではありません。2027年1月26日の面接は受付9:00〜9:20、面接10:00〜16:00のうち長野県が指定する時間です。県庁は本館棟、西庁舎、議会棟などに分かれますが、試験棟・階・室、受付位置、受験生入口、待機場所は未公表です。通常開庁は8:30ですが、本館1階の受付案内・県民ホールや一般来庁者向け入口を試験指定とみなさないでください。1月の積雪・凍結、信号待ち、庁舎内移動を見込み、前日に外周経路を確認してください。前日の学力試験は長野県自治会館という別会場です。",
+        evidenceUrls: [
+          "https://www.sotetsu-hotels.com/fresa-inn/nagano/access/",
+          "https://www.pref.nagano.lg.jp/zaikatsu/kensei/gaiyo/kotsu/access.html",
+          "https://www.pref.nagano.lg.jp/zaikatsu/kensei/gaiyo/chousha/floor/index.html",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "全室無料Wi-Fi・有線LAN", "全客室で無料Wi-Fiと有線LANを利用できます。", "https://www.sotetsu-hotels.com/fresa-inn/nagano/faq/"),
@@ -6358,6 +6376,23 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.alpico.co.jp/traffic/local/nagano/godochosha/",
           "https://convention.nagano-cvb.or.jp/modules/convention/facility/c028",
           "https://unionnagano-map.resv.jp/reserve/res_plan_list.php?kind=main_plan&x=1648181137",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+      {
+        venueId: "venue-jichi-first-nagano-prefectural-office",
+        modes: ["walk"],
+        routeSummary: "HOTEL NEW NAGANO NeXTからホテル公式の徒歩案内を逆向きに長野駅善光寺口へ戻り、長野県公式の徒歩経路で長野県庁へ向かいます。到着後は受験票、長野県から交付される試験専用案内、当日掲示に従って指定された庁舎・受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR長野駅は公式徒歩2分／JR長野駅―長野県庁は県公式徒歩約15分（駅周辺・信号・積雪・庁舎内・指定受付までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_NAGANO_PREFECTURAL_OFFICE_VERIFIED_AT,
+        caution: "ホテル公式徒歩2分と県公式徒歩約15分は起終点の異なる別区間で、ホテルから指定面接室までの通し所要ではありません。2027年1月26日の面接は受付9:00〜9:20、面接10:00〜16:00のうち長野県が指定する時間です。県庁は本館棟、西庁舎、議会棟などに分かれますが、試験棟・階・室、受付位置、受験生入口、待機場所は未公表です。通常開庁は8:30ですが、本館1階の受付案内・県民ホールや一般来庁者向け入口を試験指定とみなさないでください。1月の積雪・凍結、信号待ち、庁舎内移動を見込み、前日に外周経路を確認してください。前日の学力試験は長野県自治会館という別会場です。",
+        evidenceUrls: [
+          "https://www.newnagano.com/access/",
+          "https://www.pref.nagano.lg.jp/zaikatsu/kensei/gaiyo/kotsu/access.html",
+          "https://www.pref.nagano.lg.jp/zaikatsu/kensei/gaiyo/chousha/floor/index.html",
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
