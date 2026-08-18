@@ -114,6 +114,7 @@ const TEMMA_TRAINING_CENTER_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const OMPU_TAKATSUKI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const TKP_SHIMBASHI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const KAWASAKI_GENERAL_GYM_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_HOKKAIDO_TKP_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -2611,6 +2612,23 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jrhokkaido.co.jp/construction/",
         ],
       },
+      {
+        venueId: "venue-jichi-first-hokkaido-tkp-sapporo-kita3jo",
+        modes: ["walk"],
+        routeSummary: "ホテル法華クラブ札幌から、ホテルと会場の公式住所を地図上で照合した地上の公道を直接徒歩でTKP札幌カンファレンスセンター北3条へ向かいます。札幌小暮ビル到着後は、受験票、北海道から交付される案内、当日掲示に従って指定された受付・試験室へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: JICHI_HOKKAIDO_TKP_VERIFIED_AT,
+        caution: "ホテル公式住所（札幌市中央区北2条西3丁目）と会場公式住所（同区北3条西3丁目1-6）を地図上で照合し、駅を経由しない徒歩経路が成立することを確認したものです。ホテルから指定試験室までの公式推奨経路・公式徒歩分数ではないため、通し所要は掲載しません。北海道から出願する受験者の学力試験は2027年1月25日（月）、受付8:20〜8:40、試験9:00〜14:10です。翌1月26日（火）の面接は北海道立道民活動センター（かでる2・7）で行われ、当会場ではありません。施設は札幌小暮ビル6〜7階にありますが、試験の使用階・室、受付位置、受験生入口は未公表です。施設の通常営業時間を試験の開場時刻に転用せず、名称の似たTKP札幌駅カンファレンスセンター等と取り違えないでください。積雪・凍結を見込み、受験票、北海道から交付される案内、当日掲示を確認してください。",
+        evidenceUrls: [
+          "https://www.hokke.co.jp/sapporo/access",
+          "https://www.kashikaigishitsu.net/facilitys/cc-sapporo/access/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E5%8C%97%E6%B5%B7%E9%81%93%E6%9C%AD%E5%B9%8C%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%8C%972%E6%9D%A1%E8%A5%BF3%E4%B8%81%E7%9B%AE&destination=%E5%8C%97%E6%B5%B7%E9%81%93%E6%9C%AD%E5%B9%8C%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%8C%973%E6%9D%A1%E8%A5%BF3%E4%B8%81%E7%9B%AE1-6&travelmode=walking",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "無料Wi-Fi・有線LAN", "客室で無料Wi-Fiと有線LANを利用できます。", "https://www.hokke.co.jp/sapporo/room.html"),
@@ -2622,7 +2640,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: ACU_A_SAPPORO_VERIFIED_AT,
-    note: "学習机、客室通信、コインランドリー、6:30開始の朝食、未成年手続を公式情報で確認できる地域型ホテルです。18歳未満の方1名または未成年者同士で宿泊する場合は、宿泊者全員分の親権者同意書をチェックイン時に提出してください。2027年の使用階・試験室・入口・集合時刻は未公表で、積雪・凍結と札幌駅工事も見込んでください。",
+    note: "学習机、客室通信、コインランドリー、6:30開始の朝食、未成年手続を公式情報で確認できる地域型ホテルです。18歳未満の方1名または未成年者同士で宿泊する場合は、宿泊者全員分の親権者同意書をチェックイン時に提出してください。東北医科薬科大学のACU-A会場は使用階・入口等が未公表です。自治医科大学の北海道学力試験はTKP札幌カンファレンスセンター北3条、翌日の面接はかでる2・7で、別会場です。積雪・凍結と札幌駅工事も見込んでください。",
   },
   {
     hotelId: "jr-east-hotel-mets-shibuya",
@@ -4382,5 +4400,45 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: KAWASAKI_GENERAL_GYM_VERIFIED_AT,
     note: "倉敷駅南口から徒歩4分で、山陽本線1駅の中庄駅から大学へ向かえる地域系ビジネスホテルです。全室無料Wi-Fi、1階コインランドリー、6:30開始の朝食を施設公式で確認しています。18歳未満だけ、または未成年同士で宿泊する場合は、宿泊者1名につき1枚の親権者同意書をチェックイン時に提出してください。椅子で使える客室机は公式本文で確認できないため、必要な場合は予約前に机のある部屋を確認してください。第二次試験は大学指定日と面接時刻を第一次試験合格後の案内で確認してください。",
+  },
+  {
+    hotelId: "richmond-hotel-sapporo-ekimae",
+    name: "リッチモンドホテル札幌駅前",
+    postalCode: "060-0003",
+    address: "北海道札幌市中央区北3条西1丁目1-7",
+    prefecture: "北海道",
+    municipality: "札幌市中央区",
+    officialUrl: "https://richmondhotel.jp/sapporo-ekimae/",
+    officialBookingUrl: "https://richmondhotel.jp/sapporo-ekimae/",
+    nearestStation: "札幌市営地下鉄さっぽろ駅・JR札幌駅",
+    venueAccess: [
+      {
+        venueId: "venue-jichi-first-hokkaido-tkp-sapporo-kita3jo",
+        modes: ["walk"],
+        routeSummary: "リッチモンドホテル札幌駅前から、ホテルと会場の公式住所を地図上で照合した地上の公道を直接徒歩でTKP札幌カンファレンスセンター北3条へ向かいます。札幌小暮ビル到着後は、受験票、北海道から交付される案内、当日掲示に従って指定された受付・試験室へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: JICHI_HOKKAIDO_TKP_VERIFIED_AT,
+        caution: "ホテル公式住所（札幌市中央区北3条西1丁目1-7）と会場公式住所（同区北3条西3丁目1-6）を地図上で照合し、駅を経由しない徒歩経路が成立することを確認したものです。ホテルから指定試験室までの公式推奨経路・公式徒歩分数ではないため、通し所要は掲載しません。北海道から出願する受験者の学力試験は2027年1月25日（月）、受付8:20〜8:40、試験9:00〜14:10です。翌1月26日（火）の面接は北海道立道民活動センター（かでる2・7）で行われ、当会場ではありません。施設は札幌小暮ビル6〜7階にありますが、試験の使用階・室、受付位置、受験生入口は未公表です。施設の通常営業時間を試験の開場時刻に転用せず、名称の似たTKP札幌駅カンファレンスセンター等と取り違えないでください。積雪・凍結を見込み、受験票、北海道から交付される案内、当日掲示を確認してください。",
+        evidenceUrls: [
+          "https://richmondhotel.jp/sapporo-ekimae/access/",
+          "https://www.kashikaigishitsu.net/facilitys/cc-sapporo/access/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E5%8C%97%E6%B5%B7%E9%81%93%E6%9C%AD%E5%B9%8C%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%8C%973%E6%9D%A1%E8%A5%BF1%E4%B8%81%E7%9B%AE1-7&destination=%E5%8C%97%E6%B5%B7%E9%81%93%E6%9C%AD%E5%B9%8C%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%8C%973%E6%9D%A1%E8%A5%BF3%E4%B8%81%E7%9B%AE1-6&travelmode=walking",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全室無料Wi-Fi・有線LAN", "全客室で無料Wi-Fiと有線LANを利用できます。", "https://richmondhotel.jp/sapporo-ekimae/blog/5793/"),
+      amenity("desk", "大型デスク・明るい照明", "書類とノートPCを広げられる大型デスクを備え、机上照度は1800ルクスです。", "https://richmondhotel.jp/sapporo-ekimae/rooms/"),
+      amenity("coin_laundry", "2階・9階コインランドリー", "2階と女性専用の9階に洗濯乾燥機が各2台あります。", "https://richmondhotel.jp/sapporo-ekimae/guide/"),
+      amenity("breakfast", "朝食6:30〜", "朝食は平日6:30〜10:00、土日祝6:30〜10:30です。", "https://richmondhotel.jp/sapporo-ekimae/dishes/"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: JICHI_HOKKAIDO_TKP_VERIFIED_AT,
+    note: "北3条西1丁目にある182室のビジネスホテルです。大型デスクと明るい照明、無料Wi-Fi・有線LAN、2階・9階のコインランドリー、6:30開始の朝食を施設公式で確認しています。18歳未満の方が宿泊料金を支払う場合は、宿泊者全員分の親権者同意書をチェックイン時に提出してください。自治医科大学の北海道学力試験はTKP札幌カンファレンスセンター北3条、翌日の面接はかでる2・7で、別会場です。積雪・凍結を見込んで前日に道順を確認してください。",
   },
 ];

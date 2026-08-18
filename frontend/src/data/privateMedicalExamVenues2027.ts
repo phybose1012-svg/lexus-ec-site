@@ -462,6 +462,18 @@ for (const seed of jichiVenueRelationSeeds2027) {
       accessNote: "自治医科大学の公式募集要項に掲載された試験場です。施設個別の公式アクセスは受験票と施設案内で確認してください。",
       reviewState: "verified",
       verifiedAt: JICHI_VERIFIED_AT,
+      ...(seed.venueId === "venue-jichi-first-hokkaido-tkp-sapporo-kita3jo"
+        ? {
+            postalCode: "060-0003",
+            address: "北海道札幌市中央区北3条西3丁目1-6 札幌小暮ビル6〜7階",
+            nearestStations: ["札幌市営地下鉄南北線 さっぽろ駅", "JR札幌駅"],
+            officialUrl: "https://www.kashikaigishitsu.net/facilitys/cc-sapporo/access/",
+            officialUrlLabel: "TKP札幌カンファレンスセンター北3条 公式アクセス",
+            accessNote:
+              "北海道から出願する受験者の2027年1月25日（月）の学力試験会場です。受付は8:20〜8:40、試験は9:00〜14:10です。施設公式は、さっぽろ駅地下歩行空間1番出口から徒歩1分、9番出口から徒歩4分、JR札幌駅南口から徒歩5分と案内しています。施設は札幌小暮ビル6〜7階にありますが、試験の使用階・室、受付位置、受験生入口は未公表です。翌1月26日（火）の面接は北海道立道民活動センター（かでる2・7）で行われるため、同じ会場と取り違えないでください。受験票、北海道から交付される案内、当日掲示を確認し、名称の似たTKP札幌駅カンファレンスセンター等とも取り違えないでください。",
+            verifiedAt: "2026-08-19T00:00:00+09:00",
+          }
+        : {}),
     });
   }
 }
