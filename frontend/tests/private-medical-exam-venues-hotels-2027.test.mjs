@@ -1533,6 +1533,47 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(hotel.amenities.some((item) => item.key === "breakfast"));
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
+  const temmaTrainingCenterVenue = dataset.venues.find(
+    (venue) => venue.venueId === "venue-temma-training-center",
+  );
+  assert.match(temmaTrainingCenterVenue?.accessNote ?? "", /天満駅から徒歩約2分/u);
+  const temmaTrainingCenterAssignment = dataset.assignments.find(
+    (assignment) =>
+      assignment.assignmentId === "kanazawa-medical--general--general-late--first-venue",
+  );
+  assert.equal(temmaTrainingCenterAssignment?.publicationState, "confirmed");
+  assert.ok(temmaTrainingCenterAssignment?.conditions.includes("applicant_preference"));
+  const temmaTrainingCenterHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some((access) => access.venueId === "venue-temma-training-center"),
+  );
+  assert.deepEqual(
+    temmaTrainingCenterHotels.map((hotel) => hotel.name),
+    ["SAKURA GARDEN HOTEL", "ホテルビナリオ梅田"],
+  );
+  for (const hotel of temmaTrainingCenterHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-temma-training-center",
+    );
+    assert.deepEqual(access?.modes, ["walk", "rail"]);
+    assert.equal(access?.transferCount, 0);
+    assert.equal(access?.measurementBasis, "route_only");
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.ok(hotel.amenities.some((item) => item.key === "wifi"));
+    assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
+    assert.ok(hotel.amenities.some((item) => item.key === "breakfast"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  assert.equal(
+    temmaTrainingCenterHotels
+      .find((hotel) => hotel.hotelId === "sakura-garden-hotel")
+      ?.amenities.some((item) => item.key === "desk"),
+    false,
+  );
+  assert.ok(
+    temmaTrainingCenterHotels
+      .find((hotel) => hotel.hotelId === "hotel-binario-umeda")
+      ?.amenities.some((item) => item.key === "desk"),
+  );
   assert.ok(
     dataset.hotels
       .find((hotel) => hotel.hotelId === "sakura-garden-hotel")
@@ -1640,6 +1681,7 @@ test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを�
   assert.match(pageSource, /日本大学 医学部校舎の宿泊候補2施設を追加/u);
   assert.match(pageSource, /金沢医科大学 名古屋一次会場の宿泊候補2施設を追加/u);
   assert.match(pageSource, /金沢医科大学 後期東京会場の宿泊候補2施設を追加/u);
+  assert.match(pageSource, /金沢医科大学 後期大阪会場の宿泊候補2施設を追加/u);
   assert.match(switcherSource, /private-medical-school-exam-venues-hotels-2027/u);
   assert.match(endpointSource, /Content-Disposition/u);
   assert.match(endpointSource, /Access-Control-Allow-Origin/u);

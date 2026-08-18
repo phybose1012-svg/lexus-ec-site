@@ -1115,8 +1115,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     municipality: "大阪市北区",
     nearestStations: ["JR大阪環状線 天満駅", "Osaka Metro堺筋線 扇町駅"],
     officialUrl: "https://www.temmacenter.com/tenma/access/",
+    accessNote: "金沢医科大学の2027年度ガイドは一般選抜（後期）一次の大阪会場を天満研修センターと公表しています。施設公式ではJR大阪環状線天満駅から徒歩約2分です。開場・入場時刻、使用階・室、受付位置、受験生入口は未公表のため、受験票と当日掲示を確認してください。",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: "2026-08-19T00:00:00+09:00",
   },
   {
     venueId: "venue-bellesalle-takadanobaba",

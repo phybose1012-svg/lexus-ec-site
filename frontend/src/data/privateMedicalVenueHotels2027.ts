@@ -110,6 +110,7 @@ const TOHO_OMORI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const NIHON_MEDICAL_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const TKP_PREMIUM_NAGOYA_EKIMAE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const TOKYO_RYUTSU_CENTER_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const TEMMA_TRAINING_CENTER_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -1401,6 +1402,23 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/doc/guideline_app.pdf?ver=2",
         ],
       },
+      {
+        venueId: "venue-temma-training-center",
+        modes: ["walk", "rail"],
+        routeSummary: "SAKURA GARDEN HOTELからホテル公式の経路を逆向きにたどってJR桜ノ宮駅東口南へ進みます。大阪環状線外回りで隣の天満駅へ乗換なしで移動し、施設公式の徒歩経路で天満研修センターへ向かいます。到着後は受験票・当日掲示に従って指定された受付・試験室へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR桜ノ宮駅東口南は公式徒歩6分／桜ノ宮―天満は大阪環状線で隣の1駅／JR天満駅―会場は施設公式徒歩約2分（列車待ち・駅構内・指定試験室までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: TEMMA_TRAINING_CENTER_VERIFIED_AT,
+        caution: "ホテル公式の徒歩6分と施設公式の徒歩約2分は起終点の異なる別区間で、列車の乗車・待ち時間、駅構内移動、指定試験室までを含む通し所要ではありません。2027年3月4日のJRダイヤは未公表のため、大阪環状線外回りの時刻・運行情報を直前にJR西日本公式で確認してください。金沢医科大学の一般選抜（後期）一次は大阪会場を出願時に選択した受験者が対象です。2027年度ガイドは天満研修センターまで公表していますが、開場・入場時刻、使用階・室、受付位置、受験生入口は未公表です。受験票で施設名・住所を確認してください。",
+        evidenceUrls: [
+          "https://sakuragarden-hotel.com/access",
+          "https://www.jr-odekake.net/railroad/route/files/route_osaka.pdf",
+          "https://www.temmacenter.com/tenma/access/",
+          "https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_admissionguide.pdf.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "無料Wi-Fi", "全客室で無料Wi-Fiを利用できます。", "https://sakuragarden-hotel.com/rooms"),
@@ -1410,7 +1428,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     ],
     operatingStatus: "official_site_active",
     reviewState: "verified",
-    verifiedAt: OSAKA_RIVERSIDE_VERIFIED_AT,
+    verifiedAt: TEMMA_TRAINING_CENTER_VERIFIED_AT,
     note: "客室数50室の独立系ホテルです。未成年者だけで宿泊する場合は、年齢条件を確認し、ホテル所定の親権者同意書を提出してください。客室机の仕様は公式ページで確認できないため、学習机が必要な場合は予約前にホテルへ確認してください。",
   },
   {
@@ -2894,6 +2912,22 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.aichi-med-u.ac.jp/files/igaku/2027nenndogakuseibosyuuyoukou_0731.pdf",
         ],
       },
+      {
+        venueId: "venue-temma-training-center",
+        modes: ["walk", "rail"],
+        routeSummary: "ホテルビナリオ梅田からホテル公式の経路を逆向きにたどってJR大阪駅へ徒歩で進みます。大阪環状線外回りで天満駅へ乗換なしで移動し、施設公式の徒歩経路で天満研修センターへ向かいます。到着後は受験票・当日掲示に従って指定された受付・試験室へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR大阪駅は公式徒歩10分／JR大阪―天満は大阪環状線で1駅／JR天満駅―会場は施設公式徒歩約2分（列車待ち・駅構内・指定試験室までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: TEMMA_TRAINING_CENTER_VERIFIED_AT,
+        caution: "ホテル公式の徒歩10分と施設公式の徒歩約2分は起終点の異なる別区間で、列車の乗車・待ち時間、駅構内移動、指定試験室までを含む通し所要ではありません。2027年3月4日のJRダイヤは未公表のため、大阪環状線外回りの時刻・運行情報を直前にJR西日本公式で確認してください。金沢医科大学の一般選抜（後期）一次は大阪会場を出願時に選択した受験者が対象です。2027年度ガイドは天満研修センターまで公表していますが、開場・入場時刻、使用階・室、受付位置、受験生入口は未公表です。受験票で施設名・住所を確認してください。",
+        evidenceUrls: [
+          "https://hotel-binario.jp/umeda/access/",
+          "https://www.temmacenter.com/tenma/access/",
+          "https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_admissionguide.pdf.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "無料Wi-Fi・有線LAN", "客室で無料Wi-Fiと有線LANを利用できます。", "https://hotel-binario.jp/umeda/rooms/standard/"),
@@ -2904,8 +2938,8 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     ],
     operatingStatus: "official_site_active",
     reviewState: "verified",
-    verifiedAt: CONGRES_CONVENTION_CENTER_VERIFIED_AT,
-    note: "ライティングデスク、客室通信、コイン式洗濯乾燥機、6:30開始の朝食を施設公式で確認できる実用枠です。18歳未満の方だけで宿泊する場合は親権者同意書を持参してください。ホテルから会場へは屋外歩行と大規模施設内の移動があり、朝食は3部制・朝食付きプラン優先のため予約時に希望枠を確認してください。",
+    verifiedAt: TEMMA_TRAINING_CENTER_VERIFIED_AT,
+    note: "ライティングデスク、客室通信、コイン式洗濯乾燥機、6:30開始の朝食を施設公式で確認できる実用枠です。18歳未満の方だけで宿泊する場合は親権者同意書を持参してください。コングレコンベンションセンターへは屋外歩行と大規模施設内の移動があり、天満研修センターへはJR大阪駅から大阪環状線1駅を利用します。朝食は3部制・朝食付きプラン優先のため予約時に希望枠を確認してください。",
   },
   {
     hotelId: "daiwa-roynet-hotel-hakata-gion",
