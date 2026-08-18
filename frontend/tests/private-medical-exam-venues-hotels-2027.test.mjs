@@ -408,7 +408,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 35);
+  assert.equal(dataset.hotels.length, 37);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -490,6 +490,28 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
       .find((hotel) => hotel.hotelId === "hotel-rose-garden-shinjuku")
       ?.venueAccess[0]?.reviewState.includes("verified_with_caveat"),
   );
+  for (const hotelId of ["hotel-fukuracia-osaka-bay", "family-lodge-hatagoya-osaka-port"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-osaka-academia",
+    );
+    assert.ok(access, `${hotelId} が大阪アカデミアに結合されていません`);
+    assert.equal(access.measurementBasis, "route_only");
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  const fukuraciaAccess = dataset.hotels
+    .find((hotel) => hotel.hotelId === "hotel-fukuracia-osaka-bay")
+    ?.venueAccess.find((access) => access.venueId === "venue-osaka-academia");
+  assert.equal(fukuraciaAccess?.transferCount, 0);
+  assert.equal(fukuraciaAccess?.travelTimeLabel, undefined);
+  assert.ok(fukuraciaAccess?.reviewState.includes("needs_route_review"));
+  const hatagoyaAccess = dataset.hotels
+    .find((hotel) => hotel.hotelId === "family-lodge-hatagoya-osaka-port")
+    ?.venueAccess.find((access) => access.venueId === "venue-osaka-academia");
+  assert.equal(hatagoyaAccess?.transferCount, 1);
+  assert.ok(hatagoyaAccess?.reviewState.includes("verified_with_caveat"));
   assert.ok(
     dataset.hotels
       .find((hotel) => hotel.hotelId === "sakura-garden-hotel")
