@@ -127,6 +127,7 @@ const JICHI_IBARAKI_AUDITORIUM_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_IBARAKI_MEETING_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_TOCHIGI_PREFECTURAL_OFFICE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_GUNMA_MEETING_291_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_GUNMA_MEETING_293_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -5267,6 +5268,23 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-gunma-meeting-293",
+        modes: ["walk"],
+        routeSummary: "前橋ホテルサンカントから、ホテル公式が徒歩5分と案内する群馬県庁へ徒歩で向かいます。県庁敷地に到着後は、群馬県から交付される案内、受験票、当日掲示に従って指定された受験生入口から29階293会議室の受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "群馬県庁までホテル公式徒歩5分（29階293会議室の受付までの館内時間は含みません）",
+        measurementBasis: "official",
+        reviewState: ["official_direct"],
+        verifiedAt: JICHI_GUNMA_MEETING_293_VERIFIED_AT,
+        caution: "ホテル公式の徒歩5分はホテルから群馬県庁という施設までの一般アクセスで、受験生入口、29階293会議室の受付、エレベーター待ちを含む試験室までの通し所要ではありません。2027年1月26日の面接は受付9:00〜9:20、10:00〜16:00のうち群馬県が指定する時間です。293会議室は本庁舎29階まで公式確認済みですが、受験生入口、受付位置、使用するエレベーター、待機場所は未公表です。前日の学力試験会場は同じ29階の291会議室であり、取り違えないでください。通常開庁時刻や一般来庁者向けの入口を面接日の指定動線とみなさず、群馬県から交付される試験専用案内を確認してください。",
+        evidenceUrls: [
+          "https://www.cinquante.net/access.shtml",
+          "https://www.pref.gunma.jp/page/1019.html",
+          "https://www.pref.gunma.jp/page/1023.html",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "全室無料Wi-Fi", "全客室で無料の高速無線LANを利用できます。", "https://www.cinquante.net/faq.shtml"),
@@ -5302,6 +5320,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         reviewState: ["verified_with_caveat"],
         verifiedAt: JICHI_GUNMA_MEETING_291_VERIFIED_AT,
         caution: "ホテル公式の徒歩約3分と県庁公式のバス約6分は起終点の異なる別区間で、バス待ち、道路状況、県庁内のエレベーター移動、29階291会議室の受付までを含む通し所要ではありません。2027年1月25日のバスダイヤは未公表です。学力試験は受付8:20〜8:40ですが、県庁の通常開庁は平日8:30からのため、一般来庁者用の開庁時刻・入口を試験日の入館条件とみなさず、群馬県から交付される案内を確認してください。29階291会議室までは公式確認済みですが、受験生入口、受付位置、利用するエレベーター、待機場所は未公表です。翌日の面接は29階293会議室という別会場です。",
+        evidenceUrls: [
+          "https://www.choice-hotels.jp/hotel/maebashi/access/",
+          "https://www.pref.gunma.jp/page/1019.html",
+          "https://www.pref.gunma.jp/page/753216.html",
+          "https://www.pref.gunma.jp/page/1023.html",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+      {
+        venueId: "venue-jichi-first-gunma-meeting-293",
+        modes: ["walk", "bus"],
+        routeSummary: "コンフォートホテル前橋からホテル公式の案内を逆向きにJR前橋駅北口へ徒歩で進み、県庁公式が案内する路線バスで群馬県庁へ向かいます。到着後は、群馬県から交付される案内、受験票、当日掲示に従って指定された受験生入口から29階293会議室の受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR前橋駅北口は公式徒歩約3分／JR前橋駅―群馬県庁は県庁公式バス約6分（待ち時間・道路状況・29階293会議室までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: JICHI_GUNMA_MEETING_293_VERIFIED_AT,
+        caution: "ホテル公式の徒歩約3分と県庁公式のバス約6分は起終点の異なる別区間で、バス待ち、道路状況、県庁内のエレベーター移動、29階293会議室の受付までを含む通し所要ではありません。2027年1月26日のバスダイヤは未公表です。面接は受付9:00〜9:20、10:00〜16:00のうち群馬県が指定する時間です。29階293会議室までは公式確認済みですが、受験生入口、受付位置、利用するエレベーター、待機場所は未公表です。前日の学力試験は29階291会議室という別会場です。通常開庁時刻や一般来庁者向けの入口を面接日の指定動線とみなさず、群馬県から交付される案内を確認してください。",
         evidenceUrls: [
           "https://www.choice-hotels.jp/hotel/maebashi/access/",
           "https://www.pref.gunma.jp/page/1019.html",
