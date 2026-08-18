@@ -408,7 +408,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 29);
+  assert.equal(dataset.hotels.length, 31);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -434,6 +434,19 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.equal(access?.measurementBasis, "route_only");
     assert.ok(access?.reviewState.includes("verified_with_caveat"));
     assert.ok(access?.reviewState.includes("venue_pdf_visual_review"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  for (const hotelId of ["comfort-hotel-kurosaki", "delight-stay-kurosaki-ekimae"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-uoeh-main-campus",
+    );
+    assert.ok(access, `${hotelId} が産業医科大学 本学に結合されていません`);
+    assert.equal(access.measurementBasis, "route_only");
+    assert.equal(access.transferCount, 0);
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
@@ -530,6 +543,7 @@ test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを�
   assert.match(pageSource, /const datasetPath = new URL\(datasetUrl\)\.pathname/u);
   assert.match(pageSource, /href="\/private-medical-school-admissions-schedule-2027\/"/u);
   assert.match(pageSource, /聖マリアンナ医科大学 本学校舎の周辺ホテル2施設を追加/u);
+  assert.match(pageSource, /産業医科大学 本学の周辺ホテル2施設を追加/u);
   assert.match(switcherSource, /private-medical-school-exam-venues-hotels-2027/u);
   assert.match(endpointSource, /Content-Disposition/u);
   assert.match(endpointSource, /Access-Control-Allow-Origin/u);
