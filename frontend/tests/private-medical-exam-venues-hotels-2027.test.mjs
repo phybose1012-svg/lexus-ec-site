@@ -299,6 +299,12 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
   assert.equal(tohoOmori?.officialUrl, "https://www.toho-u.ac.jp/accessmap/omori_campus.html");
   assert.match(tohoOmori?.accessNote ?? "", /梅屋敷駅から徒歩約8分/u);
   assert.match(tohoOmori?.accessNote ?? "", /使用棟・階・試験室/u);
+  const nihonMedical = privateMedicalExamVenues2027.find(
+    (venue) => venue.venueId === "venue-nihon-medical-school-building",
+  );
+  assert.equal(nihonMedical?.officialUrl, "https://www.med.nihon-u.ac.jp/access.php");
+  assert.match(nihonMedical?.accessNote ?? "", /大山駅から医学部まで徒歩約15分/u);
+  assert.match(nihonMedical?.accessNote ?? "", /使用棟・階・試験室/u);
   const tkpShinosaka = privateMedicalExamVenues2027.find(
     (venue) => venue.venueId === "venue-tkp-shinosaka-conference-center",
   );
@@ -325,6 +331,14 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
   assert.match(
     assignmentFor("toho--general--unified", "second")?.note ?? "",
     /2027年3月3日/u,
+  );
+  assert.match(
+    assignmentFor("nihon--general--unified-phase-1", "second")?.note ?? "",
+    /2027年2月11日/u,
+  );
+  assert.match(
+    assignmentFor("nihon--general--unified-phase-2", "second")?.note ?? "",
+    /2027年3月17日/u,
   );
   assert.deepEqual(
     assignmentFor("fujita--general--general-regional-quota-17148", "second")?.conditions,
@@ -496,7 +510,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 92);
+  assert.equal(dataset.hotels.length, 94);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -1415,6 +1429,37 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(hotel.amenities.some((item) => item.key === "breakfast"));
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
+  const nihonMedicalHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-nihon-medical-school-building",
+    ),
+  );
+  assert.deepEqual(
+    nihonMedicalHotels.map((hotel) => hotel.name),
+    ["the b 池袋", "ホテルニュースター池袋"],
+  );
+  const theBIkebukuro = nihonMedicalHotels.find(
+    (hotel) => hotel.hotelId === "the-b-ikebukuro",
+  );
+  const hotelNewStar = nihonMedicalHotels.find(
+    (hotel) => hotel.hotelId === "hotel-new-star-ikebukuro",
+  );
+  assert.deepEqual(theBIkebukuro?.venueAccess[0]?.modes, ["walk", "rail"]);
+  assert.deepEqual(hotelNewStar?.venueAccess[0]?.modes, ["walk", "bus"]);
+  for (const hotel of nihonMedicalHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-nihon-medical-school-building",
+    );
+    assert.equal(access?.transferCount, 0);
+    assert.equal(access?.measurementBasis, "route_only");
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.ok(hotel.amenities.some((item) => item.key === "wifi"));
+    assert.ok(hotel.amenities.some((item) => item.key === "desk"));
+    assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  assert.ok(theBIkebukuro?.amenities.some((item) => item.key === "breakfast"));
+  assert.equal(hotelNewStar?.amenities.some((item) => item.key === "breakfast"), false);
   assert.ok(
     dataset.hotels
       .find((hotel) => hotel.hotelId === "sakura-garden-hotel")
@@ -1519,6 +1564,7 @@ test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを�
   assert.match(pageSource, /ベルサール新宿グランドの宿泊候補2施設を追加/u);
   assert.match(pageSource, /東京慈恵会医科大学 西新橋キャンパスの宿泊候補2施設を追加/u);
   assert.match(pageSource, /東京女子医科大学 彌生記念教育棟の宿泊候補2施設を追加/u);
+  assert.match(pageSource, /日本大学 医学部校舎の宿泊候補2施設を追加/u);
   assert.match(switcherSource, /private-medical-school-exam-venues-hotels-2027/u);
   assert.match(endpointSource, /Content-Disposition/u);
   assert.match(endpointSource, /Access-Control-Allow-Origin/u);

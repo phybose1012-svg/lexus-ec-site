@@ -970,10 +970,11 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     address: "東京都板橋区大谷口上町30-1",
     prefecture: "東京都",
     municipality: "板橋区",
-    nearestStations: ["東武東上線 大山駅", "池袋駅から路線バス"],
-    officialUrl: "https://www.med.nihon-u.ac.jp/access/",
+    nearestStations: ["東武東上線 大山駅", "池袋駅西口から路線バス", "東京メトロ有楽町線 千川駅"],
+    officialUrl: "https://www.med.nihon-u.ac.jp/access.php",
+    accessNote: "大学公式は池袋駅から東武東上線の各駅停車で大山駅まで約5分、大山駅から医学部まで徒歩約15分と案内しています。池袋駅西口からは4番のりばの日大病院行き路線バスで終点まで約25分、千川駅からは徒歩約20分です。2027年度N方式第1期二次は2月11日、第2期二次は3月17日に医学部校舎で実施されますが、集合・入場・開始時刻、使用棟・階・試験室・受付位置・受験生入口は現時点で未公表です。日大病院停留所や通常の構内案内図上の入口を試験入口とみなさず、募集要項、受験票、一次試験合格者向け案内、当日掲示を確認してください。",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: "2026-08-19T00:00:00+09:00",
   },
   {
     venueId: "venue-nippon-medical-musashisakai-campus",
@@ -2180,15 +2181,27 @@ areaVenuePlan(
   "N全学統一方式 第2期「試験場」",
   "試験都市までの公表です。個別施設名と試験場の選択・指定条件は、2027年度の現行公式資料では確認できません。",
 );
-officialVenuePlan(["nihon--general--unified-phase-1", "nihon--general--unified-phase-2"], "second", {
+officialVenuePlan(["nihon--general--unified-phase-1"], "second", {
   venueLinks: [link("venue-nihon-medical-school-building")],
   announcedVenueText: "日本大学 医学部校舎",
   publicationState: "confirmed",
   conditions: ["fixed"],
   officialAdmissionUrl: nihonVenueUrl,
   evidenceLabel: "2027年度N全学統一方式 試験場案内",
-  evidenceLocator: "医学部 二次試験会場欄",
+  evidenceLocator: "N方式第1期 医学部二次試験日・試験場欄",
   reviewState: "verified",
+  note: "一次試験合格者を対象に、2027年2月11日に医学部校舎で実施されます。現行の2027年度N方式公式案内は、集合・入場・開始時刻、使用棟・階・試験室・受付位置・受験生入口を公表していません。募集要項、受験票、一次試験合格者向け案内、当日掲示で確認してください。",
+});
+officialVenuePlan(["nihon--general--unified-phase-2"], "second", {
+  venueLinks: [link("venue-nihon-medical-school-building")],
+  announcedVenueText: "日本大学 医学部校舎",
+  publicationState: "confirmed",
+  conditions: ["fixed"],
+  officialAdmissionUrl: nihonVenueUrl,
+  evidenceLabel: "2027年度N全学統一方式 試験場案内",
+  evidenceLocator: "N方式第2期 医学部二次試験日・試験場欄",
+  reviewState: "verified",
+  note: "一次試験合格者を対象に、2027年3月17日に医学部校舎で実施されます。現行の2027年度N方式公式案内は、集合・入場・開始時刻、使用棟・階・試験室・受付位置・受験生入口を公表していません。募集要項、受験票、一次試験合格者向け案内、当日掲示で確認してください。",
 });
 unpublishedVenuePlan(
   ["nihon--general--general-route-regional-quota"],
