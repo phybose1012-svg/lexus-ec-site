@@ -942,8 +942,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     municipality: "新宿区",
     nearestStations: ["都営大江戸線 若松河田駅", "都営新宿線 曙橋駅"],
     officialUrl: "https://twmu.ac.jp/univ/access.php",
+    accessNote: "大学公式は都営大江戸線 若松河田駅若松口から徒歩5分と案内しています。曙橋駅側は大学の公式資料に徒歩8分・約10分の表記差があるため、余裕を見込んでください。2027年度一般選抜二次は彌生記念教育棟まで確定していますが、個別の試験日・集合場所・集合時刻は一次試験合格発表時に公表され、使用階・試験室・受付位置・受験生入口は未公表です。会場の下見と写真撮影は行わず、大学の案内を確認してください。",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: "2026-08-19T00:00:00+09:00",
   },
   {
     venueId: "venue-toho-omori-campus",
@@ -2090,7 +2091,7 @@ officialVenuePlan(["tokyo-womens-medical--general--general-regional-quota"], "se
   evidenceLabel: "2027年度医学部学生募集要項",
   evidenceLocator: "PDF 23ページ「試験会場」",
   reviewState: "verified",
-  note: "希望日を提出しますが、大学指定日は希望に沿わない場合があります。",
+  note: "2027年2月13日・14日・15日のうち1日に実施されます。Web出願時に希望日を選択できますが、希望に沿わない場合があり、どの日でも受験できる場合は希望日を選択しないよう大学が案内しています。個別の試験日・集合場所・集合時刻は一次試験合格発表時に公表され、指定時刻に遅れると原則受験できません。会場は彌生記念教育棟まで確定していますが、使用階・試験室・受付位置・受験生入口は未公表です。会場の下見と写真撮影は行わず、一次試験合格発表時の案内と当日掲示を確認してください。",
 });
 
 officialVenuePlan(["toho--general--general"], "first", {
