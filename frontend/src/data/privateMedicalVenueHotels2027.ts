@@ -153,6 +153,7 @@ const JICHI_SHIGA_COLLAB_3F_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_KYOTO_MEDICAL_ASSOCIATION_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_KYOTO_PREFECTURAL_OFFICE_3_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_OSAKA_PRIMROSE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_HYOGO_NOSAI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -7135,5 +7136,85 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: JICHI_OSAKA_PRIMROSE_VERIFIED_AT,
     note: "全180室の設備・学習環境重視枠です。18㎡以上の客室と横長のワイドデスク、Wi-Fi、地下1階・5階・9階のコインランドリー、6:45開始の朝食、18歳未満だけで泊まる場合の親権者同意書を施設公式で確認しています。ホテルと会場はどちらも谷町四丁目駅1-B出口徒歩約1分ですが、別建物のため2区間を合算した通し時間として表示しません。",
+  },
+  {
+    hotelId: "hyogo-kyosai-kaikan",
+    name: "ひょうご共済会館",
+    postalCode: "650-0004",
+    address: "兵庫県神戸市中央区中山手通4丁目17番13号",
+    prefecture: "兵庫県",
+    municipality: "神戸市中央区",
+    officialUrl: "https://www.h-kyosai.or.jp/hk-kaikan/",
+    officialBookingUrl: "https://reserve.489ban.net/client/hk-kaikan/0/plan",
+    nearestStation: "神戸市営地下鉄西神・山手線 県庁前駅",
+    venueAccess: [
+      {
+        venueId: "venue-jichi-first-hyogo-nosai",
+        modes: ["walk"],
+        routeSummary: "ひょうご共済会館から、ホテルと兵庫県農業共済会館の公式住所を地図で照合した県庁前駅周辺の地上徒歩経路で学力試験会場へ向かいます。到着後は受験票、兵庫県から交付される試験専用案内、当日掲示に従って指定された受験生入口・受付へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_HYOGO_NOSAI_VERIFIED_AT,
+        caution: "ホテルは神戸市中央区中山手通4丁目17番13号、学力試験会場は同区下山手通4丁目15番3号で、別建物です。両施設の公式住所と地図上の地上徒歩経路は確認しましたが、ホテル公式は会場への推奨経路・徒歩分数を案内していないため、ホテル客室から試験室までの通し所要は掲載しません。学力試験は2027年1月25日（月）の受付8:20〜8:40・試験9:00〜14:10です。兵庫県農業共済会館の使用階・室、受付位置、受験生入口、待機場所は未公表で、会議室の通常受付9:00〜17:00、一般入口、7階大会議室・4階会議室を試験指定とみなさないでください。翌26日（火）の面接会場は宿泊施設でもあるひょうご共済会館ですが、面接の使用室・受付・館内動線も未公表です。",
+        evidenceUrls: [
+          "https://www.h-kyosai.or.jp/hk-kaikan/access/index.html",
+          "https://www.google.com/maps/dir/?api=1&origin=%E5%85%B5%E5%BA%AB%E7%9C%8C%E7%A5%9E%E6%88%B8%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E4%B8%AD%E5%B1%B1%E6%89%8B%E9%80%9A4-17-13&destination=%E5%85%B5%E5%BA%AB%E7%9C%8C%E7%A5%9E%E6%88%B8%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E4%B8%8B%E5%B1%B1%E6%89%8B%E9%80%9A4-15-3&travelmode=walking",
+          "https://www.nosai-hyogo.or.jp/i4/",
+          "https://www.hyogo-gojo-s.co.jp/company/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("breakfast", "無料朝食7:00〜", "宿泊者向けの軽朝食は7:00〜9:00で、30分交代制です。希望時間に添えない場合があります。", "https://www.h-kyosai.or.jp/hk-kaikan/price/index.html"),
+      amenity("humidifier", "加湿機能付き空気清浄機", "各客室に加湿機能付き空気清浄機があります。", "https://www.h-kyosai.or.jp/hk-kaikan/guide/index.html"),
+    ],
+    operatingStatus: "official_site_active",
+    operatingStatusEvidenceUrl: "https://www.h-kyosai.or.jp/hk-kaikan/",
+    reviewState: "verified",
+    verifiedAt: JICHI_HYOGO_NOSAI_VERIFIED_AT,
+    note: "兵庫県市町村職員共済組合が運営し、一般客向け公式予約もある地域・近接枠です。2027年1月25日の学力試験会場へ鉄道を使わず徒歩で向かえ、翌26日の面接会場はこの宿泊施設自体です。無料朝食と加湿機能付き空気清浄機を施設公式で確認しています。客室Wi-Fi、椅子付き学習机、セルフランドリー、18歳未満だけの宿泊条件は公式サイトで確認できないため、受験生だけで泊まる場合は予約前に必ず電話で確認してください。",
+  },
+  {
+    hotelId: "kobe-plaza-hotel-west",
+    name: "神戸プラザホテルウエスト",
+    postalCode: "650-0022",
+    address: "兵庫県神戸市中央区元町通3丁目4番7号",
+    prefecture: "兵庫県",
+    municipality: "神戸市中央区",
+    officialUrl: "https://www.kobeplaza.com/west/",
+    officialBookingUrl: "https://book.hiyori-hotel.jp/booking/result?code=019d9a1f-20d5-7681-bc4a-bec806eb513b",
+    nearestStation: "JR神戸線・阪神本線 元町駅西口",
+    venueAccess: [
+      {
+        venueId: "venue-jichi-first-hyogo-nosai",
+        modes: ["walk"],
+        routeSummary: "神戸プラザホテルウエストから、ホテルと兵庫県農業共済会館の公式住所を地図で照合した元町駅周辺の地上徒歩経路で学力試験会場へ向かいます。到着後は受験票、兵庫県から交付される試験専用案内、当日掲示に従って指定された受験生入口・受付へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_HYOGO_NOSAI_VERIFIED_AT,
+        caution: "ホテルは神戸市中央区元町通3丁目4番7号、会場は同区下山手通4丁目15番3号で、同一建物や専用直結動線ではありません。両施設の公式住所と地図上の地上徒歩経路は確認しましたが、ホテル公式は会場への推奨経路・徒歩分数を案内していないため、ホテル客室から試験室までの通し所要は掲載しません。学力試験は2027年1月25日（月）の受付8:20〜8:40・試験9:00〜14:10です。会場の使用階・室、受付位置、受験生入口、待機場所は未公表で、NOSAIひょうご公式の7階大会議室・4階会議室や通常受付9:00〜17:00を試験指定とみなさないでください。翌26日（火）の面接はひょうご共済会館という別会場です。",
+        evidenceUrls: [
+          "https://www.kobeplaza.com/west/access/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E5%85%B5%E5%BA%AB%E7%9C%8C%E7%A5%9E%E6%88%B8%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%85%83%E7%94%BA%E9%80%9A3-4-7&destination=%E5%85%B5%E5%BA%AB%E7%9C%8C%E7%A5%9E%E6%88%B8%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E4%B8%8B%E5%B1%B1%E6%89%8B%E9%80%9A4-15-3&travelmode=walking",
+          "https://www.nosai-hyogo.or.jp/i4/",
+          "https://www.hyogo-shunou.jp/access.html",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全室無料Wi-Fi", "全客室とロビー、宿泊者専用ラウンジで無料Wi-Fiを利用できます。", "https://www.kobeplaza.com/west/faq/"),
+      amenity("coin_laundry", "2階コインランドリー", "2階に全自動洗濯乾燥機2台があります。客室テレビから使用状況を確認できます。", "https://www.kobeplaza.com/west/service/"),
+      amenity("breakfast", "朝食7:00〜", "2階PORTの朝食は7:00〜10:00です。", "https://www.kobeplaza.com/west/breakfast/"),
+      amenity("humidifier", "客室加湿器", "客室設備に加湿器があります。", "https://www.kobeplaza.com/west/room/"),
+    ],
+    operatingStatus: "official_site_active",
+    operatingStatusEvidenceUrl: "https://www.kobeplaza.com/west/",
+    reviewState: "verified",
+    verifiedAt: JICHI_HYOGO_NOSAI_VERIFIED_AT,
+    note: "元町商店街の簡素・設備重視枠です。全室無料Wi-Fi、2階の全自動洗濯乾燥機、7:00開始の朝食、客室加湿器、18歳未満だけで泊まる場合の親権者同意書を施設公式で確認しています。客室の椅子付き学習机は公式本文で確認できないため、机を重視する場合は予約前に部屋タイプを確認してください。学力試験会場へは鉄道を使わず地上徒歩で向かいます。",
   },
 ];
