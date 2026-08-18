@@ -124,6 +124,7 @@ const JICHI_YAMAGATA_TRAINING_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_YAMAGATA_OFFICE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_FUKUSHIMA_NAKAMACHI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_IBARAKI_AUDITORIUM_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_IBARAKI_MEETING_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -5062,6 +5063,25 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-ibaraki-meeting-1101",
+        modes: ["walk", "bus"],
+        routeSummary: "ダイワロイネットホテル水戸からホテル公式の案内を逆向きにJR水戸駅南口へ進み、南口から茨城県庁公式が案内する県庁舎直行バスを利用します。県庁舎に到着後は、受験票、茨城県から交付される案内、当日掲示に従って11階1101共用会議室の指定受付・待機場所へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR水戸駅南口は公式直結徒歩約1分、水戸駅南口―県庁舎は県庁公式直行バス15〜20分（待ち時間・道路状況・11階会議室までの館内移動を除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: JICHI_IBARAKI_MEETING_VERIFIED_AT,
+        caution: "ホテル公式の徒歩約1分と県庁公式のバス15〜20分は別区間で、待ち時間、信号、道路状況、バス降車後の館内移動を含む通し所要ではありません。2027年1月26日の直行バスのダイヤ・運行状況は未公表です。面接は受付9:00〜9:20、10:00〜16:00のうち茨城県が指定する時間です。会場は11階1101共用会議室まで公表されていますが、受付位置、受験生入口、利用するエレベーター、待機場所は未公表です。県庁バスターミナル、一般来庁者入口、11階アトリウムを面接受付とみなさず、前日の学力試験会場である9階講堂とも取り違えないでください。",
+        evidenceUrls: [
+          "https://www.daiwaroynet.jp/mito/",
+          "https://www.daiwaroynet.jp/mito/assets/hotel_brochure.pdf",
+          "https://www.pref.ibaraki.jp/bugai/koho/kenmin/info/divishion/index6.html",
+          "https://www.pref.ibaraki.jp/bugai/koho/kenmin/info/divishion/sannomaru.html",
+          "https://www.pref.ibaraki.jp/somu/jinji/kikaku/documents/03_setsumei.pdf",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "無料Wi-Fi", "全客室で無料の無線LANを利用できます。", "https://www.daiwaroynet.jp/mito/room/"),
@@ -5099,6 +5119,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         evidenceUrls: [
           "https://www.mitoprince.jp/access.html",
           "https://www.pref.ibaraki.jp/bugai/koho/kenmin/info/divishion/index6.html",
+          "https://www.pref.ibaraki.jp/somu/jinji/kikaku/documents/03_setsumei.pdf",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+      {
+        venueId: "venue-jichi-first-ibaraki-meeting-1101",
+        modes: ["walk", "bus"],
+        routeSummary: "水戸プリンスホテルからホテル公式の案内を逆向きにJR水戸駅南口へ進み、南口から茨城県庁公式が案内する県庁舎直行バスを利用します。県庁舎に到着後は、受験票、茨城県から交付される案内、当日掲示に従って11階1101共用会議室の指定受付・待機場所へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR水戸駅南口は公式徒歩約3分、水戸駅南口―県庁舎は県庁公式直行バス15〜20分（待ち時間・道路状況・11階会議室までの館内移動を除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: JICHI_IBARAKI_MEETING_VERIFIED_AT,
+        caution: "ホテル公式の徒歩約3分と県庁公式のバス15〜20分は別区間で、待ち時間、信号、道路状況、バス降車後の館内移動を含む通し所要ではありません。2027年1月26日の直行バスのダイヤ・運行状況は未公表です。面接は受付9:00〜9:20、10:00〜16:00のうち茨城県が指定する時間です。会場は11階1101共用会議室まで公表されていますが、受付位置、受験生入口、利用するエレベーター、待機場所は未公表です。県庁バスターミナル、一般来庁者入口、11階アトリウムを面接受付とみなさず、前日の学力試験会場である9階講堂とも取り違えないでください。",
+        evidenceUrls: [
+          "https://www.mitoprince.jp/access.html",
+          "https://www.pref.ibaraki.jp/bugai/koho/kenmin/info/divishion/index6.html",
+          "https://www.pref.ibaraki.jp/bugai/koho/kenmin/info/divishion/sannomaru.html",
           "https://www.pref.ibaraki.jp/somu/jinji/kikaku/documents/03_setsumei.pdf",
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],

@@ -155,6 +155,9 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
     } else if (venue.venueId === "venue-jichi-first-ibaraki-auditorium-9f") {
       assert.deepEqual(venue.nearestStations, ["JR常磐線・水郡線 水戸駅"]);
       assert.match(venue.officialUrlLabel ?? "", /公式アクセス/u);
+    } else if (venue.venueId === "venue-jichi-first-ibaraki-meeting-1101") {
+      assert.deepEqual(venue.nearestStations, ["JR常磐線・水郡線 水戸駅"]);
+      assert.match(venue.officialUrlLabel ?? "", /公式フロア案内/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -2362,6 +2365,54 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(hotel.amenities.some((item) => item.key === "desk"));
     assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
     assert.ok(hotel.amenities.some((item) => item.key === "breakfast"));
+  }
+  const jichiIbarakiMeeting = dataset.venues.find(
+    (venue) => venue.venueId === "venue-jichi-first-ibaraki-meeting-1101",
+  );
+  assert.equal(
+    jichiIbarakiMeeting?.officialUrl,
+    "https://www.pref.ibaraki.jp/bugai/koho/kenmin/info/divishion/sannomaru.html",
+  );
+  assert.match(jichiIbarakiMeeting?.address ?? "", /笠原町978番6/u);
+  assert.match(jichiIbarakiMeeting?.accessNote ?? "", /11階.*1101共用会議室/u);
+  assert.match(jichiIbarakiMeeting?.accessNote ?? "", /定員.*36人/u);
+  assert.match(jichiIbarakiMeeting?.accessNote ?? "", /9階講堂/u);
+  const jichiIbarakiMeetingLinks = dataset.assignments.flatMap((assignment) =>
+    assignment.venueLinks.filter(
+      (link) => link.venueId === "venue-jichi-first-ibaraki-meeting-1101",
+    ),
+  );
+  assert.deepEqual(
+    jichiIbarakiMeetingLinks.map((link) => [
+      link.applicantPrefecture,
+      link.examPart,
+      link.examDate,
+    ]),
+    [["茨城県", "interview", "2027-01-26"]],
+  );
+  const jichiIbarakiMeetingHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-jichi-first-ibaraki-meeting-1101",
+    ),
+  );
+  assert.deepEqual(
+    jichiIbarakiMeetingHotels.map((hotel) => hotel.name),
+    ["ダイワロイネットホテル水戸", "水戸プリンスホテル"],
+  );
+  for (const hotel of jichiIbarakiMeetingHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-ibaraki-meeting-1101",
+    );
+    assert.deepEqual(access?.modes, ["walk", "bus"]);
+    assert.equal(access?.transferCount, 0);
+    assert.equal(access?.measurementBasis, "route_only");
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.equal(access?.reviewState.includes("venue_pdf_visual_review"), false);
+    assert.match(access?.travelTimeLabel ?? "", /15〜20分/u);
+    assert.match(access?.travelTimeLabel ?? "", /別区間表示/u);
+    assert.match(access?.caution ?? "", /9:00〜9:20/u);
+    assert.match(access?.caution ?? "", /11階1101共用会議室/u);
+    assert.match(access?.caution ?? "", /9階講堂/u);
   }
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
   assert.equal(dataset.definitions.examParts.written, "学力試験");
