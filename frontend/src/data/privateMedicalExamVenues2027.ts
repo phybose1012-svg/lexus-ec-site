@@ -1177,8 +1177,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     municipality: "豊明市",
     nearestStations: ["名鉄名古屋本線 前後駅から路線バス", "名古屋市営地下鉄桜通線 徳重駅から路線バス"],
     officialUrl: "https://www.fujita-hu.ac.jp/access.html",
+    accessNote: "2027年度の一般入試・共通テスト利用入試の二次は本学のみです。前後駅1番のりばから大学病院方面の対象便を利用し、学生・職員専用スクールバスは使いません。試験の使用棟・階・受付・受験生入口は未公表です。",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: "2026-08-18T00:00:00+09:00",
   },
   {
     venueId: "venue-osaka-med-pharm-takatsuki-campus",
@@ -2394,7 +2395,7 @@ officialVenuePlan(["fujita--general--general-regional-quota-17148", "fujita--com
   evidenceLabel: "2027年度医学部入試概要",
   evidenceLocator: "各方式 二次試験会場欄",
   reviewState: "verified",
-  note: "会場は本学で固定です。2月14日・15日の割当方法は2027年度の現行公式概要では公表されていません。",
+  note: "会場は本学で固定です。二次試験日は2027年2月14日または15日ですが、受験者ごとの日付・集合時刻・使用棟・受付・受験生入口は現行の公式概要では公表されていません。10月頃公開予定の学生募集要項、受験票、当日案内で確認してください。",
 });
 
 const ompuVenueUrl = "https://www.ompu.ac.jp/admission/undergraduate/qt931k000000801q-att/afif3u000000fsvj.pdf";

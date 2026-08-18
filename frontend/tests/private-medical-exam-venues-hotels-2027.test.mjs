@@ -427,7 +427,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 79);
+  assert.equal(dataset.hotels.length, 81);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -1148,6 +1148,36 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
+  const fujitaToyoakeHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-fujita-health-toyoake-campus",
+    ),
+  );
+  assert.deepEqual(
+    fujitaToyoakeHotels.map((hotel) => hotel.name),
+    ["コンフォートホテル名古屋金山", "ホテルいずみ"],
+  );
+  for (const hotel of fujitaToyoakeHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-fujita-health-toyoake-campus",
+    );
+    assert.equal(access?.measurementBasis, "route_only");
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.ok(access?.reviewState.includes("venue_pdf_visual_review"));
+    assert.ok(hotel.amenities.some((item) => item.key === "wifi"));
+    assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  assert.equal(
+    fujitaToyoakeHotels.find((hotel) => hotel.hotelId === "comfort-hotel-nagoya-kanayama")
+      ?.venueAccess[0]?.transferCount,
+    1,
+  );
+  assert.equal(
+    fujitaToyoakeHotels.find((hotel) => hotel.hotelId === "hotel-izumi-toyoake")
+      ?.venueAccess[0]?.transferCount,
+    0,
+  );
   assert.ok(
     dataset.hotels
       .find((hotel) => hotel.hotelId === "sakura-garden-hotel")
