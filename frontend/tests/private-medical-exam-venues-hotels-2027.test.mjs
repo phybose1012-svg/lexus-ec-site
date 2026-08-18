@@ -292,6 +292,12 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "JR東海道新幹線・東海道本線 静岡駅北口",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式アクセス・庁舎案内/u);
+    } else if (venue.venueId === "venue-jichi-first-aichi-winc-aichi") {
+      assert.deepEqual(venue.nearestStations, [
+        "JR東海道新幹線・東海道本線・中央本線・関西本線 名古屋駅桜通口",
+        "名古屋駅 ユニモール地下街5番出口",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式アクセス・施設案内/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -682,8 +688,21 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 147);
+  assert.equal(dataset.hotels.length, 148);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
+  for (const hotelId of [
+    "sotetsu-fresa-inn-nagoya-sakuradoriguchi",
+    "ab-hotel-nagoya-sakae",
+  ]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    assert.ok(
+      hotel.venueAccess.some(
+        (access) => access.venueId === "venue-jichi-first-aichi-winc-aichi",
+      ),
+      `${hotelId} がウインクあいちに結合されていません`,
+    );
+  }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
   for (const hotelId of ["ginza-kokusai-hotel", "hotel-check-in-shimbashi"]) {

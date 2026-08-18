@@ -146,6 +146,7 @@ const JICHI_NAGANO_PREFECTURAL_OFFICE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_GIFU_MEETING_301_302_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_GIFU_MEETING_301_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_SHIZUOKA_PREFECTURAL_OFFICE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_AICHI_WINC_AICHI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -2919,6 +2920,25 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.aichi-med-u.ac.jp/su02/su0207/index.html",
         ],
       },
+      {
+        venueId: "venue-jichi-first-aichi-winc-aichi",
+        modes: ["walk", "rail"],
+        routeSummary: "ABホテル名古屋栄からホテル公式の徒歩案内で栄駅へ向かい、地下鉄東山線の高畑方面に乗車して名古屋駅まで乗換なしで移動します。名古屋駅からはユニモール地下街5番出口へ進み、ウインクあいち公式の徒歩案内で施設へ向かいます。到着後は受験票、愛知県から交付される試験専用案内、当日掲示に従って指定された受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―栄駅は公式徒歩約6分／栄―名古屋は地下鉄東山線直通／ユニモール地下街5番出口―ウインクあいちは施設公式徒歩2分（待ち時間・駅構内・指定受付までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_AICHI_WINC_AICHI_VERIFIED_AT,
+        caution: "ホテル公式徒歩約6分、地下鉄区間、施設公式徒歩2分は起終点の異なる別区間で、ホテルから試験室までの通し所要ではありません。2027年1月25日・26日の地下鉄ダイヤ、工事による駅構内経路の変更は未確定のため、直前に名古屋市交通局公式で再確認してください。学力試験は受付8:20〜8:40・試験9:00〜14:10、面接は受付9:00〜9:20・10:00〜16:00のうち愛知県が指定する時間です。ウインクあいちは地下3階〜地上18階に複数施設を持ちますが、両日の使用階・室名、受付位置、受験生入口、待機場所は未公表です。施設の通常受付時間9:00〜20:00、1階エントランスホール、一般来館者向け受付を試験指定とみなさないでください。",
+        evidenceUrls: [
+          "https://www.ab-hotel.jp/nagoyasakae/access/",
+          "https://www.kotsu.city.nagoya.jp/rp/reader/trp0000625.htm",
+          "https://www.winc-aichi.jp/access/",
+          "https://www.winc-aichi.jp/facility/",
+          "https://www.winc-aichi.jp/facility/floor/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "無料インターネット", "客室で無線LANと有線LANを利用できます。", "https://www.ab-hotel.jp/nagoyasakae/rooms/"),
@@ -2929,8 +2949,8 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     ],
     operatingStatus: "official_site_active",
     reviewState: "verified",
-    verifiedAt: AICHI_MEDICAL_MAIN_BUILDING_VERIFIED_AT,
-    note: "愛知発の地域ビジネス系ホテルで、エコノミーシングル、広く使える机、無料通信、24時間ランドリー、6:30開始の無料朝食を公式に確認しています。18歳未満の方だけで宿泊する場合は、ABホテル名古屋栄名入りの親権者同意書を宿泊者1名につき1枚、チェックイン時に提出してください。藤が丘で地下鉄から名鉄バスへ乗り換えるため、早い午前枠では複数便分の余裕を見込んでください。",
+    verifiedAt: JICHI_AICHI_WINC_AICHI_VERIFIED_AT,
+    note: "愛知発の地域ビジネス系ホテルで、エコノミーシングル、広く使える机、無料通信、24時間ランドリー、6:30開始の無料朝食を公式に確認しています。18歳未満の方だけで宿泊する場合は、ABホテル名古屋栄名入りの親権者同意書を宿泊者1名につき1枚、チェックイン時に提出してください。ウインクあいちへは栄駅から地下鉄東山線で名古屋駅へ直通し、愛知医科大学1号館へは藤が丘で名鉄バスへ乗り換えます。いずれも2027年のダイヤと試験入口を直前に確認してください。",
   },
   {
     hotelId: "vessel-inn-takadanobaba-ekimae",
@@ -6619,5 +6639,47 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: JICHI_SHIZUOKA_PREFECTURAL_OFFICE_VERIFIED_AT,
     note: "静岡鉄道グループが運営する地域ビジネスホテル枠です。JR静岡駅南口徒歩2分で、駅の公共通路を通って県庁側へ徒歩で移動できます。幅広いライティングデスクとビジネスチェア、全室Wi-Fi・有線LAN、館内コインランドリー、6:30開始の朝食、加湿空気清浄機を施設公式で確認しています。未成年だけで宿泊する場合の可否・必要書類は静岡駅南店の公式ページで確認できないため、予約前にホテルへ確認してください。",
+  },
+  {
+    hotelId: "sotetsu-fresa-inn-nagoya-sakuradoriguchi",
+    name: "相鉄フレッサイン 名古屋駅桜通口",
+    postalCode: "450-0002",
+    address: "愛知県名古屋市中村区名駅4丁目4番15号",
+    prefecture: "愛知県",
+    municipality: "名古屋市中村区",
+    officialUrl: "https://sotetsu-hotels.com/fresa-inn/nagoya-sakuradoriguchi/",
+    officialBookingUrl: "https://sotetsu-hotels.com/fresa-inn/nagoya-sakuradoriguchi/",
+    nearestStation: "JR東海道新幹線・東海道本線・中央本線・関西本線 名古屋駅桜通口",
+    venueAccess: [
+      {
+        venueId: "venue-jichi-first-aichi-winc-aichi",
+        modes: ["walk"],
+        routeSummary: "相鉄フレッサイン 名古屋駅桜通口から、ホテルとウインクあいちの公式住所を地図で照合した地上の公道を直接徒歩で向かいます。到着後は受験票、愛知県から交付される試験専用案内、当日掲示に従って指定された受付へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_AICHI_WINC_AICHI_VERIFIED_AT,
+        caution: "ホテルは名駅4丁目4番15号、会場は同4番38号ですが、同一建物や専用直結動線ではありません。両施設の公式住所と地図上の地上徒歩経路は確認しましたが、ホテル公式は会場への推奨経路・徒歩分数を案内していないため、ホテルから試験室までの通し所要は掲載しません。学力試験は受付8:20〜8:40・試験9:00〜14:10、面接は受付9:00〜9:20・10:00〜16:00のうち愛知県が指定する時間です。ウインクあいちは地下3階〜地上18階に複数施設を持ちますが、両日の使用階・室名、受付位置、受験生入口、待機場所は未公表です。施設の通常受付時間9:00〜20:00、1階エントランスホール、一般来館者向け受付を試験指定とみなさず、横断歩道・信号待ち・館内移動を見込んでください。",
+        evidenceUrls: [
+          "https://sotetsu-hotels.com/fresa-inn/nagoya-sakuradoriguchi/access/",
+          "https://www.winc-aichi.jp/access/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E6%84%9B%E7%9F%A5%E7%9C%8C%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E4%B8%AD%E6%9D%91%E5%8C%BA%E5%90%8D%E9%A7%854%E4%B8%81%E7%9B%AE4-15&destination=%E6%84%9B%E7%9F%A5%E7%9C%8C%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E4%B8%AD%E6%9D%91%E5%8C%BA%E5%90%8D%E9%A7%854%E4%B8%81%E7%9B%AE4-38&travelmode=walking",
+          "https://www.winc-aichi.jp/facility/",
+          "https://www.winc-aichi.jp/facility/floor/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全室Wi-Fi", "全客室でWi-Fiを利用できます。", "https://sotetsu-hotels.com/fresa-inn/nagoya-sakuradoriguchi/rooms/"),
+      amenity("coin_laundry", "館内コインランドリー", "館内に洗濯乾燥機4台があります。", "https://sotetsu-hotels.com/fresa-inn/nagoya-sakuradoriguchi/facilities/"),
+      amenity("breakfast", "朝食6:30〜", "1階ミスタードーナツの朝食セットは6:30〜11:00です。", "https://sotetsu-hotels.com/fresa-inn/nagoya-sakuradoriguchi/cuisine/"),
+      amenity("humidifier", "加湿機能付き空気清浄機", "全客室に加湿機能付き空気清浄機があります。", "https://sotetsu-hotels.com/fresa-inn/nagoya-sakuradoriguchi/rooms/"),
+    ],
+    operatingStatus: "official_site_active",
+    operatingStatusEvidenceUrl: "https://sotetsu-hotels.com/fresa-inn/nagoya-sakuradoriguchi/",
+    reviewState: "verified",
+    verifiedAt: JICHI_AICHI_WINC_AICHI_VERIFIED_AT,
+    note: "会場と同じ名駅4丁目にあり、鉄道を使わず地上徒歩で向かえる近接枠です。全室Wi-Fi、館内の洗濯乾燥機、6:30開始の朝食、加湿機能付き空気清浄機を施設公式で確認しています。18歳未満の方だけで宿泊する場合は、施設名入りの親権者同意書をチェックイン時に提出してください。客室の椅子付き学習机は施設公式本文で確認できないため、机を重視する場合は予約前に部屋タイプを確認してください。",
   },
 ];
