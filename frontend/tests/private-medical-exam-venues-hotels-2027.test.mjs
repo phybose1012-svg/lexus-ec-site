@@ -1729,6 +1729,54 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.deepEqual(greenRichKurashiki?.venueAccess[0]?.modes, ["walk", "rail"]);
   assert.equal(greenRichKurashiki?.venueAccess[0]?.measurementBasis, "route_only");
   assert.equal(greenRichKurashiki?.amenities.some((item) => item.key === "desk"), false);
+  const kawasakiSchoolBuildingVenue = dataset.venues.find(
+    (venue) => venue.venueId === "venue-kawasaki-medical-school-building",
+  );
+  assert.match(kawasakiSchoolBuildingVenue?.accessNote ?? "", /2月10日・11日/u);
+  assert.match(kawasakiSchoolBuildingVenue?.accessNote ?? "", /大学が指定/u);
+  assert.match(kawasakiSchoolBuildingVenue?.accessNote ?? "", /附属病院玄関/u);
+  const kawasakiSchoolBuildingAssignments = dataset.assignments.filter((assignment) =>
+    assignment.venueLinks.some(
+      (link) => link.venueId === "venue-kawasaki-medical-school-building",
+    ),
+  );
+  assert.equal(kawasakiSchoolBuildingAssignments.length, 1);
+  assert.equal(kawasakiSchoolBuildingAssignments[0]?.publicationState, "confirmed");
+  assert.ok(kawasakiSchoolBuildingAssignments[0]?.conditions.includes("fixed"));
+  assert.ok(kawasakiSchoolBuildingAssignments[0]?.conditions.includes("university_assigned"));
+  const kawasakiSchoolBuildingHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-kawasaki-medical-school-building",
+    ),
+  );
+  assert.deepEqual(
+    kawasakiSchoolBuildingHotels.map((hotel) => hotel.name),
+    ["ベッセルホテル倉敷", "グリーンリッチホテル倉敷駅前"],
+  );
+  for (const hotel of kawasakiSchoolBuildingHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-kawasaki-medical-school-building",
+    );
+    assert.equal(access?.transferCount, 0);
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.equal(access?.reviewState.includes("venue_pdf_visual_review"), false);
+    assert.match(access?.caution ?? "", /大学指定/u);
+    assert.match(access?.caution ?? "", /附属病院玄関/u);
+  }
+  assert.equal(
+    kawasakiSchoolBuildingHotels
+      .find((hotel) => hotel.hotelId === "vessel-hotel-kurashiki")
+      ?.venueAccess.find((access) => access.venueId === "venue-kawasaki-medical-school-building")
+      ?.measurementBasis,
+    "map_route_checked",
+  );
+  assert.equal(
+    kawasakiSchoolBuildingHotels
+      .find((hotel) => hotel.hotelId === "green-rich-hotel-kurashiki-ekimae")
+      ?.venueAccess.find((access) => access.venueId === "venue-kawasaki-medical-school-building")
+      ?.measurementBasis,
+    "route_only",
+  );
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
   assert.equal(dataset.definitions.examParts.written, "学力試験");
   assert.equal(dataset.definitions.venueLinkRoles.overflow, "定員状況等による代替会場");
@@ -1834,6 +1882,7 @@ test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを�
   assert.match(pageSource, /金沢医科大学 後期大阪会場の宿泊候補2施設を追加/u);
   assert.match(pageSource, /TKP新橋カンファレンスセンターの宿泊候補2施設を追加/u);
   assert.match(pageSource, /川崎医科大学一次会場の宿泊候補2施設を追加/u);
+  assert.match(pageSource, /川崎医科大学二次会場の宿泊候補2施設を追加/u);
   assert.match(switcherSource, /private-medical-school-exam-venues-hotels-2027/u);
   assert.match(endpointSource, /Content-Disposition/u);
   assert.match(endpointSource, /Access-Control-Allow-Origin/u);

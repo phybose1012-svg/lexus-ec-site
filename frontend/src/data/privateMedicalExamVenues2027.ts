@@ -1259,9 +1259,10 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "岡山県",
     municipality: "倉敷市",
     nearestStations: ["JR山陽本線 中庄駅"],
-    officialUrl: "https://m.kawasaki-m.ac.jp/access/",
+    officialUrl: "https://m.kawasaki-m.ac.jp/outline/access.php",
+    accessNote: "川崎医科大学の2027年度一般選抜・地域枠選抜の第二次試験は2月10日・11日のうち大学が指定する1日に実施され、会場は校舎棟です。面接時刻、受付位置、使用階・室、受験生入口は未公表のため、第一次試験合格後の大学案内と受験票で確認してください。校舎棟は附属病院より東側にあり、附属病院玄関とは異なります。大学公式は中庄駅から徒歩10分と案内していますが、これは大学までの一般アクセスで、指定受付までの時間ではありません。試験会場と周辺への自家用車・タクシー・バス等の乗り入れ、無断駐車、送迎は禁止されています。",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: "2026-08-19T00:00:00+09:00",
   },
   {
     venueId: "venue-kurume-mii-campus",
@@ -2601,7 +2602,7 @@ officialVenuePlan(["kawasaki-medical--general--general-regional-quota-c5d34-491f
   evidenceLabel: "2027年度一般選抜・地域枠選抜要項",
   evidenceLocator: "試験会場案内「第二次試験」",
   reviewState: "verified",
-  note: "試験日は大学が指定します。",
+  note: "2027年2月10日・11日のうち試験日は大学が指定します。面接時刻、受付位置、使用階・室、受験生入口は未公表のため、第一次試験合格後の大学案内と受験票で確認してください。附属病院玄関は校舎棟玄関とは異なり、試験会場周辺への車・タクシー・バス等の乗り入れ、無断駐車、送迎は禁止されています。",
 });
 
 const kurumeEarlyVenueUrl = "https://best.kurume-u.ac.jp/admissions/type/exam-first/";
