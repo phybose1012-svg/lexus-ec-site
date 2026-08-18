@@ -116,6 +116,7 @@ const TKP_SHIMBASHI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const KAWASAKI_GENERAL_GYM_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_HOKKAIDO_TKP_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_HOKKAIDO_KADERU_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_AOMORI_NEWS_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -4500,5 +4501,84 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: JICHI_HOKKAIDO_TKP_VERIFIED_AT,
     note: "北3条西1丁目にある182室のビジネスホテルです。大型デスクと明るい照明、無料Wi-Fi・有線LAN、2階・9階のコインランドリー、6:30開始の朝食を施設公式で確認しています。18歳未満の方が宿泊料金を支払う場合は、宿泊者全員分の親権者同意書をチェックイン時に提出してください。自治医科大学の北海道学力試験はTKP札幌カンファレンスセンター北3条、翌日の面接はかでる2・7で、別会場です。積雪・凍結を見込んで前日に道順を確認してください。",
+  },
+  {
+    hotelId: "richmond-hotel-aomori",
+    name: "リッチモンドホテル青森",
+    postalCode: "030-0861",
+    address: "青森県青森市長島1丁目6-6",
+    prefecture: "青森県",
+    municipality: "青森市",
+    officialUrl: "https://richmondhotel.jp/aomori/",
+    officialBookingUrl: "https://richmondhotel.jp/aomori/",
+    nearestStation: "JR奥羽本線・青い森鉄道線 青森駅",
+    venueAccess: [
+      {
+        venueId: "venue-jichi-first-aomori-toonippo-news",
+        modes: ["walk"],
+        routeSummary: "リッチモンドホテル青森から、ホテルと会場の公式住所を地図上で照合した地上の公道を直接徒歩で東奥日報新町ビルNew’s TO-O・New’sホールへ向かいます。東奥日報新町ビル到着後は、受験票、青森県から交付される案内、当日掲示に従って3階の指定受付・試験室へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: JICHI_AOMORI_NEWS_VERIFIED_AT,
+        caution: "ホテル公式住所（青森市長島1丁目6-6）と会場公式住所（同市新町2丁目2-11）を地図上で照合し、駅を経由しない徒歩経路が成立することを確認したものです。ホテルから指定試験室までの公式推奨経路・公式徒歩分数ではないため、通し所要は掲載しません。青森県から出願する受験者の学力試験は2027年1月25日（月）、受付8:20〜8:40、試験9:00〜14:10です。翌1月26日（火）の面接は学力試験及第者だけが対象で、受付9:00〜9:20、10:00〜16:00のうち青森県が指定する時間に行われます。会場は3階まで公表されていますが、ホールA〜Eのどこを使うか、受付位置、受験生入口は未公表です。施設の通常利用時間9:00〜18:00を試験の開場時刻に転用せず、積雪・凍結を見込み、受験票、青森県から交付される案内、当日掲示を確認してください。",
+        evidenceUrls: [
+          "https://richmondhotel.jp/aomori/guide/",
+          "https://www.atca.info/mice-facility/mice-facility-1505/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E9%9D%92%E6%A3%AE%E7%9C%8C%E9%9D%92%E6%A3%AE%E5%B8%82%E9%95%B7%E5%B3%B61-6-6&destination=%E9%9D%92%E6%A3%AE%E7%9C%8C%E9%9D%92%E6%A3%AE%E5%B8%82%E6%96%B0%E7%94%BA2-2-11&travelmode=walking",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全室個別の高速無料Wi-Fi", "全客室に個別の高速無料Wi-Fiを備えています。", "https://richmondhotel.jp/aomori/rooms/"),
+      amenity("desk", "大型デスク・明るい照明", "PCと書類を広げられる大型デスクとLEDデスクスタンドがあります。", "https://richmondhotel.jp/aomori/rooms/"),
+      amenity("coin_laundry", "6階コインランドリー", "6階に洗剤自動投入のドラム式洗濯乾燥機があります。", "https://richmondhotel.jp/aomori/guide/"),
+      amenity("breakfast", "朝食6:30〜", "和洋ビュッフェの朝食は6:30〜10:00（最終入店9:30）です。", "https://richmondhotel.jp/aomori/dishes/"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: JICHI_AOMORI_NEWS_VERIFIED_AT,
+    note: "長島1丁目にある175室のビジネスホテルです。大型デスク、客室ごとの高速無料Wi-Fi、6階コインランドリー、6:30開始の朝食を施設公式で確認しています。18歳未満の方が宿泊料金を支払う場合は、宿泊者全員分の親権者同意書をチェックイン時に提出してください。筆記と面接は同じ東奥日報新町ビル3階ですが、面接は筆記及第者のみで個人時間を青森県が指定します。積雪・凍結を見込み、指定ホール・入口を県の案内と受験票で確認してください。",
+  },
+  {
+    hotelId: "hotel-select-inn-aomori",
+    name: "ホテルセレクトイン青森",
+    postalCode: "030-0862",
+    address: "青森県青森市古川2丁目9-1",
+    prefecture: "青森県",
+    municipality: "青森市",
+    officialUrl: "https://shsg.jp/selectinn/aomori/",
+    officialBookingUrl: "https://shsg.jp/selectinn/aomori/",
+    nearestStation: "JR奥羽本線・青い森鉄道線 青森駅",
+    venueAccess: [
+      {
+        venueId: "venue-jichi-first-aomori-toonippo-news",
+        modes: ["walk"],
+        routeSummary: "ホテルセレクトイン青森から、ホテルと会場の公式住所を地図上で照合した地上の公道を直接徒歩で東奥日報新町ビルNew’s TO-O・New’sホールへ向かいます。東奥日報新町ビル到着後は、受験票、青森県から交付される案内、当日掲示に従って3階の指定受付・試験室へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: JICHI_AOMORI_NEWS_VERIFIED_AT,
+        caution: "ホテル公式住所（青森市古川2丁目9-1）と会場公式住所（同市新町2丁目2-11）を地図上で照合し、駅を経由しない徒歩経路が成立することを確認したものです。ホテルから指定試験室までの公式推奨経路・公式徒歩分数ではないため、通し所要は掲載しません。青森県から出願する受験者の学力試験は2027年1月25日（月）、受付8:20〜8:40、試験9:00〜14:10です。翌1月26日（火）の面接は学力試験及第者だけが対象で、受付9:00〜9:20、10:00〜16:00のうち青森県が指定する時間に行われます。会場は3階まで公表されていますが、ホールA〜Eのどこを使うか、受付位置、受験生入口は未公表です。施設の通常利用時間9:00〜18:00を試験の開場時刻に転用せず、積雪・凍結を見込み、受験票、青森県から交付される案内、当日掲示を確認してください。",
+        evidenceUrls: [
+          "https://shsg.jp/selectinn/aomori/",
+          "https://www.atca.info/mice-facility/mice-facility-1505/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E9%9D%92%E6%A3%AE%E7%9C%8C%E9%9D%92%E6%A3%AE%E5%B8%82%E5%8F%A4%E5%B7%9D2-9-1&destination=%E9%9D%92%E6%A3%AE%E7%9C%8C%E9%9D%92%E6%A3%AE%E5%B8%82%E6%96%B0%E7%94%BA2-2-11&travelmode=walking",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全室無料Wi-Fi・有線LAN", "全客室で無料Wi-Fiと有線LANを利用できます。", "https://shsg.jp/selectinn/aomori/rooms/"),
+      amenity("coin_laundry", "5階コインランドリー", "5階に洗剤自動投入のコインランドリーが2台あります。", "https://shsg.jp/selectinn/aomori/faq/"),
+      amenity("breakfast", "朝食6:30〜", "朝食は6:30〜8:30に提供されます。", "https://shsg.jp/selectinn/aomori/facilities/"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: JICHI_AOMORI_NEWS_VERIFIED_AT,
+    note: "古川2丁目にある84室の小規模ビジネスホテルです。全室無料Wi-Fi・有線LAN、5階コインランドリー、6:30開始の朝食、未成年者だけで泊まる場合の公式同意書を確認しています。未成年者のみで宿泊する場合は全員分の許可書を当日持参するか事前送付してください。椅子で使える客室机は公式本文で確認できないため、学習机が必要な場合は予約前にホテルへ確認してください。面接は筆記及第者のみで、個人時間を青森県が指定します。積雪・凍結を見込み、指定ホール・入口を県の案内と受験票で確認してください。",
   },
 ];

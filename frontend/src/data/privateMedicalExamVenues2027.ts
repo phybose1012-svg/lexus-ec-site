@@ -442,11 +442,15 @@ const municipalityFromAddress = (address: string, prefecture: string) => {
 };
 
 const jichiVenueEntityById = new Map<string, PrivateMedicalExamVenue2027>();
+const jichiVenueSeedFingerprintById = new Map<string, string>();
 for (const seed of jichiVenueRelationSeeds2027) {
+  const seedFingerprint = JSON.stringify([seed.officialVenueText, seed.address]);
+  const existingSeedFingerprint = jichiVenueSeedFingerprintById.get(seed.venueId);
   const existing = jichiVenueEntityById.get(seed.venueId);
-  if (existing && (existing.name !== seed.officialVenueText || existing.address !== seed.address)) {
+  if (existingSeedFingerprint && existingSeedFingerprint !== seedFingerprint) {
     throw new Error(`Conflicting Jichi venue normalization: ${seed.venueId}`);
   }
+  jichiVenueSeedFingerprintById.set(seed.venueId, seedFingerprint);
   if (!existing) {
     jichiVenueEntityById.set(seed.venueId, {
       venueId: seed.venueId,
@@ -484,6 +488,17 @@ for (const seed of jichiVenueRelationSeeds2027) {
                 "北海道から出願し、1月25日の学力試験に合格した受験者の2027年1月26日（火）の面接会場です。受付は9:00〜9:20、面接は10:00〜16:00で、個人ごとの時間は北海道から指定されます。施設公式はJR札幌駅南口から徒歩13分、地下鉄さっぽろ駅10番出口から徒歩9分、公共地下歩道1番出口から徒歩4分と案内しています。試験の使用階・室、受付位置、受験生入口は未公表です。かでるホール・展示ホールは改修休止中ですが、自治医科大学の2027年度募集要項は北海道の面接会場を当施設と指定しています。休止中のホールを使用すると推測せず、北海道から交付される案内、受験票、当日掲示で指定室を確認してください。前日の学力試験会場TKP札幌カンファレンスセンター北3条とは別会場です。",
               verifiedAt: "2026-08-19T00:00:00+09:00",
             }
+          : seed.venueId === "venue-jichi-first-aomori-toonippo-news"
+            ? {
+                postalCode: "030-0801",
+                address: "青森県青森市新町2丁目2-11 東奥日報新町ビル3階",
+                nearestStations: ["JR奥羽本線・青い森鉄道線 青森駅"],
+                officialUrl: "https://www.atca.info/mice-facility/mice-facility-1505/",
+                officialUrlLabel: "青森観光コンベンション協会 東奥日報新町ビルNew’s 公式施設案内",
+                accessNote:
+                  "青森県から出願する受験者の2027年1月25日（月）の学力試験と、学力試験に及第した受験者の翌1月26日（火）の面接に使われる会場です。学力試験は受付8:20〜8:40、試験9:00〜14:10、面接は受付9:00〜9:20、10:00〜16:00のうち青森県が指定する時間です。施設案内はJR青森駅から徒歩10分、会場を東奥日報新町ビル3階のNew’sホールと案内しています。3階にはホールA〜Eがありますが、試験で使うホール・室、受付位置、受験生入口は未公表です。施設の通常利用時間9:00〜18:00を試験日の開場時刻とみなさず、受験票、青森県から交付される案内、当日掲示を確認してください。",
+                verifiedAt: "2026-08-19T00:00:00+09:00",
+              }
           : {}),
     });
   }

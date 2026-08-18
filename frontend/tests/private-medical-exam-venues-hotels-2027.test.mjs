@@ -131,6 +131,9 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "JR札幌駅",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式アクセス/u);
+    } else if (venue.venueId === "venue-jichi-first-aomori-toonippo-news") {
+      assert.deepEqual(venue.nearestStations, ["JR奥羽本線・青い森鉄道線 青森駅"]);
+      assert.match(venue.officialUrlLabel ?? "", /公式施設案内/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -521,7 +524,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 104);
+  assert.equal(dataset.hotels.length, 106);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -1892,6 +1895,70 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     jichiHokkaidoInterviewHotels
       .find((hotel) => hotel.hotelId === "hotel-hokke-club-sapporo")
       ?.amenities.some((item) => item.key === "desk"),
+  );
+  const jichiAomoriVenue = dataset.venues.find(
+    (venue) => venue.venueId === "venue-jichi-first-aomori-toonippo-news",
+  );
+  assert.equal(
+    jichiAomoriVenue?.officialUrl,
+    "https://www.atca.info/mice-facility/mice-facility-1505/",
+  );
+  assert.match(jichiAomoriVenue?.address ?? "", /東奥日報新町ビル3階/u);
+  assert.match(jichiAomoriVenue?.accessNote ?? "", /1月25日/u);
+  assert.match(jichiAomoriVenue?.accessNote ?? "", /1月26日/u);
+  assert.match(jichiAomoriVenue?.accessNote ?? "", /8:20〜8:40/u);
+  assert.match(jichiAomoriVenue?.accessNote ?? "", /9:00〜9:20/u);
+  assert.match(jichiAomoriVenue?.accessNote ?? "", /ホールA〜E/u);
+  const jichiAomoriLinks = dataset.assignments.flatMap((assignment) =>
+    assignment.venueLinks.filter(
+      (link) => link.venueId === "venue-jichi-first-aomori-toonippo-news",
+    ),
+  );
+  assert.equal(jichiAomoriLinks.length, 2);
+  assert.deepEqual(
+    jichiAomoriLinks.map((link) => [link.applicantPrefecture, link.examPart, link.examDate]),
+    [
+      ["青森県", "written", "2027-01-25"],
+      ["青森県", "interview", "2027-01-26"],
+    ],
+  );
+  const jichiAomoriHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-jichi-first-aomori-toonippo-news",
+    ),
+  );
+  assert.deepEqual(
+    jichiAomoriHotels.map((hotel) => hotel.name),
+    ["リッチモンドホテル青森", "ホテルセレクトイン青森"],
+  );
+  for (const hotel of jichiAomoriHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-aomori-toonippo-news",
+    );
+    assert.deepEqual(access?.modes, ["walk"]);
+    assert.equal(access?.transferCount, 0);
+    assert.equal(access?.measurementBasis, "map_route_checked");
+    assert.equal(access?.travelTimeLabel, undefined);
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.equal(access?.reviewState.includes("venue_pdf_visual_review"), false);
+    assert.match(access?.caution ?? "", /8:20〜8:40/u);
+    assert.match(access?.caution ?? "", /9:00〜9:20/u);
+    assert.match(access?.caution ?? "", /積雪・凍結/u);
+    assert.ok(hotel.amenities.some((item) => item.key === "wifi"));
+    assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
+    assert.ok(hotel.amenities.some((item) => item.key === "breakfast"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  assert.ok(
+    jichiAomoriHotels
+      .find((hotel) => hotel.hotelId === "richmond-hotel-aomori")
+      ?.amenities.some((item) => item.key === "desk"),
+  );
+  assert.equal(
+    jichiAomoriHotels
+      .find((hotel) => hotel.hotelId === "hotel-select-inn-aomori")
+      ?.amenities.some((item) => item.key === "desk"),
+    false,
   );
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
   assert.equal(dataset.definitions.examParts.written, "学力試験");
