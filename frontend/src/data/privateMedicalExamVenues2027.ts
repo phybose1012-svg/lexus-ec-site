@@ -1230,8 +1230,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     municipality: "千代田区",
     nearestStations: ["都営三田線 内幸町駅", "JR・東京メトロ・都営浅草線 新橋駅"],
     officialUrl: "https://www.kashikaigishitsu.net/facilitys/cc-shimbashi-uchisaiwaicho/",
+    accessNote: "兵庫医科大学の2027年度一般選抜A（4科目型）一次は2月4日に実施され、A・Bを両方出願する場合も東京会場を選択できます。ただし東京会場が収容定員を超えると大阪会場へ変更されるため、受験票で確定会場を確認してください。最初の英語は9:00開始で、大学の共通注意事項に従い8:45までに受験室へ入室する必要があります。施設は幸ビルディング10〜16階ですが、使用階・室、受付位置、受験生入口は当日通知です。内幸町駅A5出口から施設までは大学・施設公式徒歩1分ですが、指定受験室までの時間ではありません。下見目的で会場内へ立ち入らず、交通機関・道順だけを事前確認してください。",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: "2026-08-19T00:00:00+09:00",
   },
   {
     venueId: "venue-kawasaki-medical-general-gymnasium",

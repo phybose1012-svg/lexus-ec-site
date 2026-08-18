@@ -112,6 +112,7 @@ const TKP_PREMIUM_NAGOYA_EKIMAE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const TOKYO_RYUTSU_CENTER_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const TEMMA_TRAINING_CENTER_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const OMPU_TAKATSUKI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const TKP_SHIMBASHI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -1157,6 +1158,22 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.bellesalle.co.jp/wp-content/uploads/access_shiodome.pdf",
         ],
       },
+      {
+        venueId: "venue-tkp-shimbashi-conference-center",
+        modes: ["walk"],
+        routeSummary: "ホテルチェックイン新橋からホテル公式の案内を逆向きにたどって都営三田線内幸町駅側へ徒歩で進み、A5出口側から大学・施設公式の徒歩経路で幸ビルディングのTKP新橋カンファレンスセンターへ向かいます。到着後は受験票と当日掲示に従って指定された受付・受験室へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―内幸町駅はホテル公式徒歩3分／内幸町駅A5出口―会場は大学・施設公式徒歩1分（出口間・指定受験室までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: TKP_SHIMBASHI_VERIFIED_AT,
+        caution: "ホテル公式の徒歩3分は内幸町駅の出口を特定しておらず、会場公式の徒歩1分はA5出口から施設までの別区間です。出口間移動、信号待ち、客室階、幸ビルディング内の指定受験室までを含む通し所要ではありません。兵庫医科大学の2027年度一般選抜A一次は2月4日で、最初の英語は9:00開始、受験室へは8:45までに入室する必要があります。A・B併願者も東京を選択できますが、東京会場が収容定員を超えると大阪会場へ変更されるため、受験票を確認してください。施設は10〜16階に会議室がありますが、試験の使用階・室、受付位置、受験生入口は当日通知です。下見目的で会場内へ立ち入らず、道順のみ確認してください。",
+        evidenceUrls: [
+          "https://checkin.co.jp/shinbashi/access/",
+          "https://www.kashikaigishitsu.net/facilitys/cc-shimbashi-uchisaiwaicho/",
+          "https://www.hyo-med.ac.jp/files/20260703/c737f86c1b3de8f37133c3de2c8031853ac51fff.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "無料Wi-Fi", "全室で無料の有線LAN・Wi-Fiを利用できます。", "https://checkin.co.jp/shinbashi/faq/"),
@@ -1165,8 +1182,8 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     ],
     operatingStatus: "official_site_active",
     reviewState: "verified",
-    verifiedAt: SHIODOME_VERIFIED_AT,
-    note: "客室机の有無・大きさは部屋タイプごとに公式ページで確認できないため、学習机が必要な場合は予約前にホテルへ確認してください。",
+    verifiedAt: TKP_SHIMBASHI_VERIFIED_AT,
+    note: "新橋駅・内幸町駅から徒歩圏にある地域系の簡素なビジネスホテルです。全室の有線LAN・Wi-Fi、11階のランドリーコーナー、館内コメダ珈琲店で使える朝食券を公式確認しています。客室机の有無・大きさと、18歳未満だけで宿泊する場合の受入条件・必要書類は公式ページで確認できないため、予約前にホテルへ問い合わせてください。公式予約は3か月先の月初から受け付けるため、2027年2月分の販売開始後に在庫とキャンセル条件を確認してください。",
   },
   {
     hotelId: "forbell-stay-yurigaoka",
@@ -4210,5 +4227,44 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: OMPU_TAKATSUKI_VERIFIED_AT,
     note: "46室の地域系ホテルで、JR高槻駅・阪急高槻市駅の双方から徒歩圏です。全室Wi-Fi・有線LAN、館内コインランドリー、7:00開始の朝食を施設公式で確認しています。15歳以上18歳未満だけで宿泊する場合は、宿泊者全員分の親権者同意書をチェックイン時に提出してください。15歳未満の単独宿泊条件と、椅子で使える客室机は公式本文で確認できないため、予約前にホテルへ確認してください。公式予約は6か月先までの販売が基本のため、2027年2月・3月の販売開始後に在庫とキャンセル条件を再確認してください。",
+  },
+  {
+    hotelId: "daiwa-roynet-hotel-shimbashi",
+    name: "ダイワロイネットホテル新橋",
+    postalCode: "105-0004",
+    address: "東京都港区新橋1-17-2",
+    prefecture: "東京都",
+    municipality: "港区",
+    officialUrl: "https://www.daiwaroynet.jp/shinbashi/",
+    officialBookingUrl: "https://www.daiwaroynet.jp/shinbashi/",
+    nearestStation: "都営三田線 内幸町駅／JR・東京メトロ・都営浅草線 新橋駅",
+    venueAccess: [
+      {
+        venueId: "venue-tkp-shimbashi-conference-center",
+        modes: ["walk"],
+        routeSummary: "ダイワロイネットホテル新橋からホテル公式の案内を逆向きにたどって都営三田線内幸町駅A2出口側へ徒歩で進み、駅の案内に従ってA5出口側へ移動します。A5出口から大学・施設公式の徒歩経路で幸ビルディングのTKP新橋カンファレンスセンターへ向かい、受験票と当日掲示に従って指定された受付・受験室へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―内幸町駅A2出口は公式徒歩約2分／内幸町駅A5出口―会場は大学・施設公式徒歩1分（A2―A5間・指定受験室までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: TKP_SHIMBASHI_VERIFIED_AT,
+        caution: "ホテル公式の徒歩約2分は内幸町駅A2出口まで、会場公式の徒歩1分はA5出口から施設までで、起終点が一致しません。A2―A5間の移動、信号待ち、客室階、幸ビルディング内の指定受験室までを含む通し所要ではありません。兵庫医科大学の2027年度一般選抜A一次は2月4日で、最初の英語は9:00開始、受験室へは8:45までに入室する必要があります。A・B併願者も東京を選択できますが、東京会場が収容定員を超えると大阪会場へ変更されるため、受験票を確認してください。施設は10〜16階に会議室がありますが、試験の使用階・室、受付位置、受験生入口は当日通知です。下見目的で会場内へ立ち入らず、道順のみ確認してください。",
+        evidenceUrls: [
+          "https://www.daiwaroynet.jp/shinbashi/access/",
+          "https://www.kashikaigishitsu.net/facilitys/cc-shimbashi-uchisaiwaicho/",
+          "https://www.hyo-med.ac.jp/files/20260703/c737f86c1b3de8f37133c3de2c8031853ac51fff.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全館無料Wi-Fi", "ホテル公式が館内の無料無線LANサービスを案内しています。", "https://www.daiwaroynet.jp/shinbashi/"),
+      amenity("desk", "デスクタイプ客室", "スタンダードダブルには、ビジネス利用に適したデスクタイプとソファタイプがあります。学習用途ではデスクタイプを指定してください。", "https://www.daiwaroynet.jp/shinbashi/room/"),
+      amenity("coin_laundry", "7階24時間コインランドリー", "7階のセルフサービス式コインランドリーを24時間利用できます。", "https://www.daiwaroynet.jp/shinbashi/facilities/"),
+      amenity("breakfast", "朝食6:30〜", "1階レストランで6:30〜10:00に和洋ビュッフェを提供し、最終受付は9:30です。", "https://www.daiwaroynet.jp/shinbashi/breakfast/"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: TKP_SHIMBASHI_VERIFIED_AT,
+    note: "内幸町駅A2出口から徒歩約2分、新橋駅日比谷口から徒歩約3分の堅実なビジネスホテルです。デスクタイプのスタンダードダブル、無料Wi-Fi、7階の24時間コインランドリー、6:30開始の朝食を施設公式で確認しています。スタンダードダブルにはソファタイプもあるため、学習面を重視する場合はデスクタイプを予約時に指定してください。新橋店固有の18歳未満単独宿泊条件・同意書は公式ページで確認できないため、予約前にホテルへ問い合わせてください。東京会場が受験票で確定した場合だけ利用してください。",
   },
 ];

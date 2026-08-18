@@ -510,7 +510,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 99);
+  assert.equal(dataset.hotels.length, 100);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -1625,6 +1625,60 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
       ?.amenities.some((item) => item.key === "desk"),
     false,
   );
+  const tkpShimbashiVenue = dataset.venues.find(
+    (venue) => venue.venueId === "venue-tkp-shimbashi-conference-center",
+  );
+  assert.match(tkpShimbashiVenue?.accessNote ?? "", /2027年度一般選抜A/u);
+  assert.match(tkpShimbashiVenue?.accessNote ?? "", /8:45/u);
+  assert.match(tkpShimbashiVenue?.accessNote ?? "", /当日通知/u);
+  const tkpShimbashiAssignments = dataset.assignments.filter((assignment) =>
+    assignment.venueLinks.some(
+      (link) => link.venueId === "venue-tkp-shimbashi-conference-center",
+    ),
+  );
+  assert.equal(tkpShimbashiAssignments.length, 2);
+  assert.ok(
+    tkpShimbashiAssignments.every(
+      (assignment) =>
+        assignment.publicationState === "confirmed" &&
+        assignment.conditions.includes("applicant_preference") &&
+        assignment.conditions.includes("capacity_overflow"),
+    ),
+  );
+  const tkpShimbashiHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-tkp-shimbashi-conference-center",
+    ),
+  );
+  assert.deepEqual(
+    tkpShimbashiHotels.map((hotel) => hotel.name),
+    ["ホテルチェックイン新橋", "ダイワロイネットホテル新橋"],
+  );
+  for (const hotel of tkpShimbashiHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-tkp-shimbashi-conference-center",
+    );
+    assert.deepEqual(access?.modes, ["walk"]);
+    assert.equal(access?.transferCount, 0);
+    assert.equal(access?.measurementBasis, "route_only");
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.match(access?.caution ?? "", /8:45/u);
+    assert.ok(hotel.amenities.some((item) => item.key === "wifi"));
+    assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
+    assert.ok(hotel.amenities.some((item) => item.key === "breakfast"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  assert.ok(
+    tkpShimbashiHotels
+      .find((hotel) => hotel.hotelId === "daiwa-roynet-hotel-shimbashi")
+      ?.amenities.some((item) => item.key === "desk"),
+  );
+  assert.equal(
+    tkpShimbashiHotels
+      .find((hotel) => hotel.hotelId === "hotel-check-in-shimbashi")
+      ?.amenities.some((item) => item.key === "desk"),
+    false,
+  );
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
   assert.equal(dataset.definitions.examParts.written, "学力試験");
   assert.equal(dataset.definitions.venueLinkRoles.overflow, "定員状況等による代替会場");
@@ -1728,6 +1782,7 @@ test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを�
   assert.match(pageSource, /金沢医科大学 名古屋一次会場の宿泊候補2施設を追加/u);
   assert.match(pageSource, /金沢医科大学 後期東京会場の宿泊候補2施設を追加/u);
   assert.match(pageSource, /金沢医科大学 後期大阪会場の宿泊候補2施設を追加/u);
+  assert.match(pageSource, /TKP新橋カンファレンスセンターの宿泊候補2施設を追加/u);
   assert.match(switcherSource, /private-medical-school-exam-venues-hotels-2027/u);
   assert.match(endpointSource, /Content-Disposition/u);
   assert.match(endpointSource, /Access-Control-Allow-Origin/u);
