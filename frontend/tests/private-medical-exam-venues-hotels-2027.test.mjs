@@ -427,7 +427,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 67);
+  assert.equal(dataset.hotels.length, 69);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -1020,6 +1020,32 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     (assignment) => assignment.assignmentId === "aichi-medical--general--general--first-venue",
   );
   assert.deepEqual(aichiGeneralFirstVenue?.conditions, ["applicant_preference"]);
+  for (const hotelId of ["hotel-hankyu-respire-osaka", "hotel-binario-umeda"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-congres-convention-center",
+    );
+    assert.ok(access, `${hotelId} がコングレコンベンションセンターに結合されていません`);
+    assert.equal(access.transferCount, 0);
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  const respireOsaka = dataset.hotels.find(
+    (hotel) => hotel.hotelId === "hotel-hankyu-respire-osaka",
+  );
+  assert.equal(respireOsaka?.venueAccess[0]?.measurementBasis, "map_route_checked");
+  assert.equal(respireOsaka?.amenities.some((item) => item.key === "desk"), false);
+  const binarioUmeda = dataset.hotels.find((hotel) => hotel.hotelId === "hotel-binario-umeda");
+  assert.equal(binarioUmeda?.venueAccess[0]?.measurementBasis, "route_only");
+  assert.ok(binarioUmeda?.amenities.some((item) => item.key === "desk"));
+  assert.equal(
+    dataset.hotels.filter((hotel) =>
+      hotel.venueAccess.some((access) => access.venueId === "venue-congres-convention-center"),
+    ).length,
+    2,
+  );
   assert.ok(
     dataset.hotels
       .find((hotel) => hotel.hotelId === "sakura-garden-hotel")
