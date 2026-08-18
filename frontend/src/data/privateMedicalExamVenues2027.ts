@@ -1290,8 +1290,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     municipality: "福岡市城南区",
     nearestStations: ["福岡市地下鉄七隈線 福大前駅"],
     officialUrl: "https://www.fukuoka-u.ac.jp/help/map/",
+    accessNote: "福大前駅1番出口は入学センター・入試事務室方面の大学公式案内です。2027年度系統別日程の本学試験場は福岡大学まで確定していますが、使用棟・試験室・受付・受験生入口・集合時刻は未公表です。",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: "2026-08-18T00:00:00+09:00",
   },
   {
     venueId: "venue-time24-building",
@@ -2654,7 +2655,7 @@ officialVenuePlan(["fukuoka--general--general"], "first", {
   evidenceLabel: "2027年度入試ガイド",
   evidenceLocator: "系統別日程 試験地・会場案内",
   reviewState: "verified",
-  note: "希望会場の収容人数を超えた場合は別会場になります。出願確認票・受験票で最終会場を確認してください。",
+  note: "希望会場の収容人数を超えた場合は別会場になります。2027年度入試ガイドは本学試験場を福岡大学まで公表していますが、使用棟・試験室・受付・受験生入口・集合時刻は未公表です。完成版の入学試験要項、出願確認票、受験票、当日案内で最終会場と入室案内を確認してください。",
 });
 areaVenuePlan(
   ["fukuoka--general--general", "fukuoka--common--common-test-phase-1"],
