@@ -209,6 +209,14 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "JR京浜東北・根岸線 石川町駅",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式施設案内/u);
+    } else if (
+      venue.venueId === "venue-jichi-first-kanagawa-prefectural-office-new-5f"
+    ) {
+      assert.deepEqual(venue.nearestStations, [
+        "みなとみらい線 日本大通り駅",
+        "JR京浜東北・根岸線・横浜市営地下鉄ブルーライン 関内駅",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式新庁舎案内/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -3086,6 +3094,66 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   }
   assert.match(comfortHotelYokohamaKannai?.note ?? "", /18歳未満.*親権者同意書/u);
   assert.match(comfortHotelYokohamaKannai?.note ?? "", /2026年3月.*リニューアル/u);
+  const jichiKanagawaPrefecturalOffice = dataset.venues.find(
+    (venue) =>
+      venue.venueId === "venue-jichi-first-kanagawa-prefectural-office-new-5f",
+  );
+  assert.equal(
+    jichiKanagawaPrefecturalOffice?.officialUrl,
+    "https://www.pref.kanagawa.jp/access/new-building.html",
+  );
+  assert.match(jichiKanagawaPrefecturalOffice?.address ?? "", /日本大通1/u);
+  assert.match(jichiKanagawaPrefecturalOffice?.accessNote ?? "", /受付は9:00〜9:20/u);
+  assert.match(jichiKanagawaPrefecturalOffice?.accessNote ?? "", /新庁舎5階会議室/u);
+  assert.match(jichiKanagawaPrefecturalOffice?.accessNote ?? "", /会議室番号.*未公表/u);
+  assert.match(jichiKanagawaPrefecturalOffice?.accessNote ?? "", /QR入庁証.*入試当日/u);
+  assert.match(jichiKanagawaPrefecturalOffice?.accessNote ?? "", /前日1月25日.*別会場/u);
+  const jichiKanagawaPrefecturalOfficeLinks = dataset.assignments.flatMap((assignment) =>
+    assignment.venueLinks.filter(
+      (link) =>
+        link.venueId === "venue-jichi-first-kanagawa-prefectural-office-new-5f",
+    ),
+  );
+  assert.deepEqual(
+    jichiKanagawaPrefecturalOfficeLinks.map((link) => [
+      link.applicantPrefecture,
+      link.examPart,
+      link.examDate,
+    ]),
+    [["神奈川県", "interview", "2027-01-26"]],
+  );
+  const jichiKanagawaPrefecturalOfficeHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) =>
+        access.venueId === "venue-jichi-first-kanagawa-prefectural-office-new-5f",
+    ),
+  );
+  assert.deepEqual(
+    jichiKanagawaPrefecturalOfficeHotels.map((hotel) => hotel.name),
+    ["ダイワロイネットホテル横浜公園", "コンフォートホテル横浜関内"],
+  );
+  for (const hotel of jichiKanagawaPrefecturalOfficeHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) =>
+        entry.venueId === "venue-jichi-first-kanagawa-prefectural-office-new-5f",
+    );
+    assert.deepEqual(access?.modes, ["walk"]);
+    assert.equal(access?.transferCount, 0);
+    assert.equal(access?.measurementBasis, "map_route_checked");
+    assert.deepEqual(access?.reviewState, [
+      "verified_with_caveat",
+      "venue_pdf_visual_review",
+    ]);
+    assert.equal("travelTimeLabel" in (access ?? {}), false);
+    assert.equal("distanceLabel" in (access ?? {}), false);
+    assert.match(access?.caution ?? "", /公式.*徒歩分数はない/u);
+    assert.match(access?.caution ?? "", /会場は新庁舎5階まで公表済み/u);
+    assert.match(access?.caution ?? "", /会議室番号.*未公表/u);
+    assert.match(access?.caution ?? "", /QR入庁証.*入試当日/u);
+    assert.match(access?.caution ?? "", /前日25日.*別会場/u);
+  }
+  assert.match(daiwaRoynetYokohamaKoen?.note ?? "", /両会場/u);
+  assert.match(comfortHotelYokohamaKannai?.note ?? "", /両会場/u);
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
   assert.equal(dataset.definitions.examParts.written, "学力試験");
   assert.equal(dataset.definitions.venueLinkRoles.overflow, "定員状況等による代替会場");
