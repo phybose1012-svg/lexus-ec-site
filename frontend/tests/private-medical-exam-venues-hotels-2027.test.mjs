@@ -146,6 +146,9 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
     } else if (venue.venueId === "venue-jichi-first-yamagata-training-center") {
       assert.deepEqual(venue.nearestStations, ["JR奥羽本線・山形新幹線 山形駅"]);
       assert.match(venue.officialUrlLabel ?? "", /公式施設概要/u);
+    } else if (venue.venueId === "venue-jichi-first-yamagata-prefectural-office") {
+      assert.deepEqual(venue.nearestStations, ["JR奥羽本線・山形新幹線 山形駅"]);
+      assert.match(venue.officialUrlLabel ?? "", /公式アクセス/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -2172,6 +2175,71 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
       .find((hotel) => hotel.hotelId === "comfort-hotel-yamagata")
       ?.amenities.some((item) => item.key === "coin_laundry"),
   );
+  const jichiYamagataOfficeVenue = dataset.venues.find(
+    (venue) => venue.venueId === "venue-jichi-first-yamagata-prefectural-office",
+  );
+  assert.equal(
+    jichiYamagataOfficeVenue?.officialUrl,
+    "https://www.pref.yamagata.jp/020026/kensei/shoukai/about/access.html",
+  );
+  assert.match(jichiYamagataOfficeVenue?.address ?? "", /松波二丁目8番1号/u);
+  assert.match(jichiYamagataOfficeVenue?.accessNote ?? "", /1月26日/u);
+  assert.match(jichiYamagataOfficeVenue?.accessNote ?? "", /9:00〜9:20/u);
+  assert.match(jichiYamagataOfficeVenue?.accessNote ?? "", /10:00〜16:00/u);
+  assert.match(jichiYamagataOfficeVenue?.accessNote ?? "", /山形駅前4番/u);
+  assert.match(jichiYamagataOfficeVenue?.accessNote ?? "", /16階建て/u);
+  assert.match(jichiYamagataOfficeVenue?.accessNote ?? "", /前日1月25日.*総合研修センター/u);
+  const jichiYamagataOfficeLinks = dataset.assignments.flatMap((assignment) =>
+    assignment.venueLinks.filter(
+      (link) => link.venueId === "venue-jichi-first-yamagata-prefectural-office",
+    ),
+  );
+  assert.equal(jichiYamagataOfficeLinks.length, 1);
+  assert.deepEqual(
+    jichiYamagataOfficeLinks.map((link) => [
+      link.applicantPrefecture,
+      link.examPart,
+      link.examDate,
+    ]),
+    [["山形県", "interview", "2027-01-26"]],
+  );
+  const jichiYamagataOfficeHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-jichi-first-yamagata-prefectural-office",
+    ),
+  );
+  assert.deepEqual(
+    jichiYamagataOfficeHotels.map((hotel) => hotel.name),
+    ["山形県職員会館 あこや会館", "コンフォートホテル山形"],
+  );
+  for (const hotel of jichiYamagataOfficeHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-yamagata-prefectural-office",
+    );
+    assert.equal(access?.transferCount, 0);
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.equal(access?.reviewState.includes("venue_pdf_visual_review"), false);
+    assert.match(access?.caution ?? "", /9:00〜9:20/u);
+    assert.match(access?.caution ?? "", /16階建て/u);
+    assert.match(access?.caution ?? "", /積雪/u);
+  }
+  const akoyaOfficeAccess = jichiYamagataOfficeHotels
+    .find((hotel) => hotel.hotelId === "akoya-kaikan-yamagata")
+    ?.venueAccess.find(
+      (access) => access.venueId === "venue-jichi-first-yamagata-prefectural-office",
+    );
+  assert.deepEqual(akoyaOfficeAccess?.modes, ["walk"]);
+  assert.equal(akoyaOfficeAccess?.measurementBasis, "map_route_checked");
+  assert.equal(akoyaOfficeAccess?.travelTimeLabel, undefined);
+  assert.match(akoyaOfficeAccess?.caution ?? "", /別建物/u);
+  const comfortYamagataOfficeAccess = jichiYamagataOfficeHotels
+    .find((hotel) => hotel.hotelId === "comfort-hotel-yamagata")
+    ?.venueAccess.find(
+      (access) => access.venueId === "venue-jichi-first-yamagata-prefectural-office",
+    );
+  assert.deepEqual(comfortYamagataOfficeAccess?.modes, ["walk", "bus"]);
+  assert.equal(comfortYamagataOfficeAccess?.measurementBasis, "route_only");
+  assert.match(comfortYamagataOfficeAccess?.travelTimeLabel ?? "", /別区間表示/u);
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
   assert.equal(dataset.definitions.examParts.written, "学力試験");
   assert.equal(dataset.definitions.venueLinkRoles.overflow, "定員状況等による代替会場");

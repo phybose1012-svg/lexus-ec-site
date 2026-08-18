@@ -121,6 +121,7 @@ const JICHI_IWATE_ESPOIR_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_MIYAGI_JICHIKAIKAN_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_AKITA_JA_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_YAMAGATA_TRAINING_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_YAMAGATA_OFFICE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -4857,6 +4858,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-yamagata-prefectural-office",
+        modes: ["walk"],
+        routeSummary: "山形県職員会館 あこや会館から、宿と県庁の公式所在地を照合した徒歩経路で、別建物の山形県庁舎へ向かいます。到着後は山形県から交付される案内と当日掲示に従って指定された受付・面接室へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: JICHI_YAMAGATA_OFFICE_VERIFIED_AT,
+        caution: "宿と県庁はともに山形市松波2丁目8番1号ですが、あこや会館と県庁舎は別建物です。施設名と公式所在地を地図上で照合し、鉄道や路線バスを使わない徒歩経路が成立することを確認したもので、宿から指定面接室までの公式推奨経路・公式徒歩分数ではありません。山形県から出願して前日の学力試験に及第した受験者の面接は2027年1月26日（火）、受付9:00〜9:20、面接10:00〜16:00のうち県が指定する時間です。県庁舎は16階建てですが、面接の使用階・室、受付位置、受験生入口は未公表です。通常開庁8:30や一般玄関を面接の開場・入口とみなさず、積雪・凍結を見込み、山形県から交付される案内と当日掲示を優先してください。",
+        evidenceUrls: [
+          "https://reserve.489ban.net/client/akoya-kaikan/0/plan/search",
+          "https://www.pref.yamagata.jp/kensei/shoukai/about/index.html",
+          "https://www.pref.yamagata.jp/020026/kensei/shoukai/about/access.html",
+          "https://www.pref.yamagata.jp/020026/kensei/shoukai/about/floor.html",
+          "https://www.google.com/maps/dir/?api=1&origin=%E5%B1%B1%E5%BD%A2%E7%9C%8C%E8%81%B7%E5%93%A1%E4%BC%9A%E9%A4%A8+%E3%81%82%E3%81%93%E3%82%84%E4%BC%9A%E9%A4%A8&destination=%E5%B1%B1%E5%BD%A2%E7%9C%8C%E5%BA%81&travelmode=walking",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "全室Wi-Fi", "全客室でWi-Fiを利用できます。", "https://reserve.489ban.net/client/akoya-kaikan/0/detail/1026617"),
@@ -4867,7 +4886,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatusEvidenceUrl: "https://reserve.489ban.net/client/akoya-kaikan/0/plan/search",
     reviewState: "verified",
     verifiedAt: JICHI_YAMAGATA_TRAINING_VERIFIED_AT,
-    note: "山形県庁敷地内にある地域系の公共宿泊施設です。公式予約システムで一般向けプランと2027年3月までの販売期間を確認し、洋室シングルのデスク・椅子、全室Wi-Fi、7:00開始の朝食を確認しています。学習机を重視する場合は洋室シングルを指定してください。セルフランドリーと18歳未満だけで宿泊する場合の条件は公式ページで確認できないため、予約前に施設へ問い合わせてください。試験朝は鉄道・バスを使わず会場へ直接徒歩で向かえます。",
+    note: "山形県庁敷地内にある地域系の公共宿泊施設です。公式予約システムで一般向けプランと2027年3月までの販売期間を確認し、洋室シングルのデスク・椅子、全室Wi-Fi、7:00開始の朝食を確認しています。学習机を重視する場合は洋室シングルを指定してください。セルフランドリーと18歳未満だけで宿泊する場合の条件は公式ページで確認できないため、予約前に施設へ問い合わせてください。1月25日の筆記会場と翌26日の県庁面接会場の双方へ鉄道・バスを使わず徒歩で向かえますが、2施設を取り違えないでください。",
   },
   {
     hotelId: "comfort-hotel-yamagata",
@@ -4898,6 +4917,25 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-yamagata-prefectural-office",
+        modes: ["walk", "bus"],
+        routeSummary: "コンフォートホテル山形からホテル公式の案内を逆向きにJR山形駅東口へ戻り、山形駅前4番バス停から山形県庁公式が案内する県庁行き路線バスに乗ります。県庁前停留所で下車して県庁舎へ向かい、山形県から交付される案内と当日掲示に従って指定された受付・面接室へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR山形駅東口は公式徒歩約2分、山形駅前4番―県庁前は県庁公式バス約20分（待ち時間・道路状況・指定面接室までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: JICHI_YAMAGATA_OFFICE_VERIFIED_AT,
+        caution: "ホテル公式の徒歩約2分と県庁公式のバス約20分は別区間で、待ち時間、信号、道路状況、指定面接室までを含む通し所要ではありません。山交バスの2027年1月26日ダイヤと運行状況は未公表です。面接は受付9:00〜9:20、10:00〜16:00のうち山形県が指定する時間です。県庁舎は16階建てですが、面接の使用階・室、受付位置、受験生入口は未公表です。通常開庁8:30や一般玄関、県庁前停留所を面接の開場・入口とみなさず、積雪・道路遅延を見込んで山形県から交付される案内と当日掲示を優先してください。前日の筆記会場は別施設の山形県総合研修センターです。",
+        evidenceUrls: [
+          "https://www.choice-hotels.jp/hotel/yamagata/access/",
+          "https://www.pref.yamagata.jp/kensei/shoukai/about/index.html",
+          "https://www.pref.yamagata.jp/020026/kensei/shoukai/about/access.html",
+          "https://www.pref.yamagata.jp/020026/kensei/shoukai/about/floor.html",
+          "https://www.yamagatakotsu.jp/busroute1/k10/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "無料Wi-Fi", "全客室で無料Wi-Fiを利用できます。", "https://www.choice-hotels.jp/hotel/yamagata/rooms/"),
@@ -4908,6 +4946,6 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: JICHI_YAMAGATA_TRAINING_VERIFIED_AT,
-    note: "JR山形駅東口から徒歩約2分の設備重視のビジネスホテルです。ダブルエコノミーの広めのデスク、無料Wi-Fi、24時間コインランドリー、6:30開始の無料朝食を施設公式で確認しています。学習机を重視する場合はダブルエコノミーを指定してください。18歳未満の方が一人または未成年者だけで泊まる場合は、宿泊者全員分の保護者同意書を準備してください。試験朝は山形駅前から路線バスを利用するため、2027年のダイヤと積雪・道路状況を直前に再確認してください。",
+    note: "JR山形駅東口から徒歩約2分の設備重視のビジネスホテルです。ダブルエコノミーの広めのデスク、無料Wi-Fi、24時間コインランドリー、6:30開始の無料朝食を施設公式で確認しています。学習机を重視する場合はダブルエコノミーを指定してください。18歳未満の方が一人または未成年者だけで泊まる場合は、宿泊者全員分の保護者同意書を準備してください。1月25日の筆記・翌26日の県庁面接とも山形駅前から路線バスを利用するため、各日の2027年ダイヤと積雪・道路状況を直前に再確認し、2会場を取り違えないでください。",
   },
 ];
