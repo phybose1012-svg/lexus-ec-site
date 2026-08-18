@@ -74,6 +74,7 @@ export const hotelVenueAccessReviewStateLabels2027: Record<
 // 宿泊料金は変動情報のため正本データへ固定値として保持しません。
 const VERIFIED_AT = "2026-08-15T00:00:00+09:00";
 const SHIODOME_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
+const MARIANNA_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -1129,5 +1130,85 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: SHIODOME_VERIFIED_AT,
     note: "客室机の有無・大きさは部屋タイプごとに公式ページで確認できないため、学習机が必要な場合は予約前にホテルへ確認してください。",
+  },
+  {
+    hotelId: "forbell-stay-yurigaoka",
+    name: "フオベルステイ百合ヶ丘",
+    postalCode: "215-0003",
+    address: "神奈川県川崎市麻生区高石3-11-6",
+    prefecture: "神奈川県",
+    municipality: "川崎市麻生区",
+    officialUrl: "https://forbellstay-yurigaoka.com/",
+    officialBookingUrl: "https://forbell.rwiths.net/r-withs/tfi0010a.do",
+    nearestStation: "小田急小田原線 百合ヶ丘駅",
+    venueAccess: [
+      {
+        venueId: "venue-marianna-sugao-campus",
+        modes: ["walk", "bus"],
+        routeSummary: "ホテルから百合ヶ丘駅へ徒歩約7分。2番のりばから小田急バス百01「聖マリアンナ医科大学」行きに乗車し、終点で下車",
+        transferCount: 0,
+        travelTimeLabel: "公式区間：駅まで徒歩7分＋バス約20分（待ち時間・学内徒歩を除く目安）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: MARIANNA_VERIFIED_AT,
+        caution: "区間別の公式所要時間を組み合わせた目安で、合計所要時間の断定ではありません。大学公式も道路状況による変動を案内しています。第2次試験は8:30集合のため、試験直前に該当曜日の最新時刻表を確認し、1便以上の余裕を確保してください。本学校舎内の試験受付・入口は受験票と最新案内で確認してください。",
+        evidenceUrls: [
+          "https://forbellstay-yurigaoka.com/",
+          "https://transfer.navitime.biz/odakyubus/pc/diagram/BusAboardMap?stCode=00070535",
+          "https://transfer.navitime.biz/odakyubus/pc/diagram/BusDiagram?course=0001500038&orvCode=00070535&stopNo=1",
+          "https://www.marianna-u.ac.jp/houjin/access/univ/",
+          "https://www.marianna-u.ac.jp/univ/ent_info/pdf/selection_guidelines_2027.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "無料Wi-Fi", "全館・全室で無料Wi-Fiを利用できます。", "https://forbellstay-yurigaoka.com/faq.html"),
+      amenity("coin_laundry", "コインランドリー", "館内に有料の洗濯機・乾燥機があります。", "https://forbellstay-yurigaoka.com/"),
+      amenity("breakfast", "軽朝食6:30〜", "軽朝食は6:30〜9:30（ラストオーダー9:00）の公式案内です。", "https://forbellstay-yurigaoka.com/faq.html"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: MARIANNA_VERIFIED_AT,
+    note: "未成年者だけで宿泊する場合は保護者同意書が必要です。客室机の有無・大きさは公式ページで確認できないため、学習机が必要な場合は予約前にホテルへ確認してください。",
+  },
+  {
+    hotelId: "hotel-molino-shin-yurigaoka",
+    name: "ホテルモリノ新百合丘",
+    postalCode: "215-0021",
+    address: "神奈川県川崎市麻生区上麻生1-1-1",
+    prefecture: "神奈川県",
+    municipality: "川崎市麻生区",
+    officialUrl: "https://www.hotelmolino.co.jp/",
+    officialBookingUrl: "https://book.hotelmolino.co.jp/booking",
+    nearestStation: "小田急小田原線・多摩線 新百合ヶ丘駅",
+    venueAccess: [
+      {
+        venueId: "venue-marianna-sugao-campus",
+        modes: ["walk", "bus"],
+        routeSummary: "ホテルの歩行者用入口から新百合ヶ丘駅南口へ徒歩約1分。7番のりばから小田急バス新17「聖マリアンナ医科大学」行きに乗車し、終点で下車",
+        transferCount: 0,
+        travelTimeLabel: "公式区間：駅南口まで徒歩1分＋バス約30分（待ち時間・学内徒歩を除く目安）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: MARIANNA_VERIFIED_AT,
+        caution: "区間別の公式所要時間を組み合わせた目安で、合計所要時間の断定ではありません。ホテル正面玄関は駅側ではなく車道側ですが、南口側に歩行者用入口があります。大学公式も道路状況による変動を案内しています。第2次試験は8:30集合のため、試験直前に該当曜日の最新時刻表を確認し、1便以上の余裕を確保してください。本学校舎内の試験受付・入口は受験票と最新案内で確認してください。",
+        evidenceUrls: [
+          "https://www.hotelmolino.co.jp/access/",
+          "https://transfer.navitime.biz/odakyubus/pc/diagram/BusAboardMap?stCode=00070544",
+          "https://transfer.navitime.biz/odakyubus/pc/diagram/BusDiagram?course=0001500364&orvCode=00070544&stopNo=1",
+          "https://www.marianna-u.ac.jp/houjin/access/univ/",
+          "https://www.marianna-u.ac.jp/univ/ent_info/pdf/selection_guidelines_2027.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "無料Wi-Fi", "全室で無料Wi-Fi・有線LANを利用できます。", "https://www.hotelmolino.co.jp/guest/"),
+      amenity("humidifier", "加湿機能付き空気清浄機", "全室共通の客室設備として案内されています。", "https://www.hotelmolino.co.jp/guest/"),
+      amenity("breakfast", "朝食6:30〜", "朝食は6:30〜10:00（ラストオーダー9:45）の公式案内です。", "https://www.hotelmolino.co.jp/guest/"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: MARIANNA_VERIFIED_AT,
+    note: "客室にはティーテーブルと椅子がありますが、学習向けデスクとは断定していません。セルフ式コインランドリーではなくランドリーサービスの案内です。未成年者だけで宿泊する場合は年齢に応じて保護者同意書等の条件を予約前に確認してください。",
   },
 ];

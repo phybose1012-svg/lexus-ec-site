@@ -10,9 +10,9 @@ export const privateMedicalExamVenuesHotels2027Metadata = {
   academicYear: 2027,
   language: "ja",
   datePublished: "2026-08-12",
-  dateModified: "2026-08-15",
-  dateModifiedLabel: "2026年8月15日",
-  version: "2026-08-15",
+  dateModified: "2026-08-18",
+  dateModifiedLabel: "2026年8月18日",
+  version: "2026-08-18",
   publisher: {
     name: "医学部予備校 レクサス E.C.",
     alternateName: "レクサス教育センター",

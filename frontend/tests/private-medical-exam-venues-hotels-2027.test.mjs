@@ -234,6 +234,11 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
     (venue) => venue.venueId === "venue-tkp-shinosaka-conference-center",
   );
   assert.match(tkpShinosaka?.address ?? "", /J\.NODE新大阪 4～5階/u);
+  const mariannaCampus = privateMedicalExamVenues2027.find(
+    (venue) => venue.venueId === "venue-marianna-sugao-campus",
+  );
+  assert.equal(mariannaCampus?.name, "聖マリアンナ医科大学 本学校舎");
+  assert.equal(mariannaCampus?.officialUrl, "https://www.marianna-u.ac.jp/houjin/access/univ/");
   assert.deepEqual(assignmentFor("tokyo-medical--general--general", "second")?.conditions, [
     "fixed",
     "university_assigned",
@@ -403,7 +408,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 27);
+  assert.equal(dataset.hotels.length, 29);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -414,6 +419,21 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
       hotel.venueAccess.some((access) => access.venueId === "venue-bellesalle-shiodome"),
       `${hotelId} がベルサール汐留に結合されていません`,
     );
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  for (const hotelId of ["forbell-stay-yurigaoka", "hotel-molino-shin-yurigaoka"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    assert.ok(
+      hotel.venueAccess.some((access) => access.venueId === "venue-marianna-sugao-campus"),
+      `${hotelId} が聖マリアンナ医科大学 本学校舎に結合されていません`,
+    );
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-marianna-sugao-campus",
+    );
+    assert.equal(access?.measurementBasis, "route_only");
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.ok(access?.reviewState.includes("venue_pdf_visual_review"));
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
@@ -492,8 +512,8 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
 test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを参照する", () => {
   const canonical = new URL(privateMedicalExamVenuesHotels2027Metadata.canonicalUrl);
   const datasetUrl = new URL(privateMedicalExamVenuesHotels2027Metadata.datasetUrl);
-  assert.equal(privateMedicalExamVenuesHotels2027Metadata.dateModified, "2026-08-15");
-  assert.equal(privateMedicalExamVenuesHotels2027Metadata.version, "2026-08-15");
+  assert.equal(privateMedicalExamVenuesHotels2027Metadata.dateModified, "2026-08-18");
+  assert.equal(privateMedicalExamVenuesHotels2027Metadata.version, "2026-08-18");
   assert.equal(canonical.pathname, expectedPagePath);
   assert.equal(datasetUrl.pathname, expectedDatasetPath);
   assert.equal(canonical.origin, datasetUrl.origin);
@@ -509,6 +529,7 @@ test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを�
   assert.match(pageSource, /rel="alternate" type="application\/json"/u);
   assert.match(pageSource, /const datasetPath = new URL\(datasetUrl\)\.pathname/u);
   assert.match(pageSource, /href="\/private-medical-school-admissions-schedule-2027\/"/u);
+  assert.match(pageSource, /聖マリアンナ医科大学 本学校舎の周辺ホテル2施設を追加/u);
   assert.match(switcherSource, /private-medical-school-exam-venues-hotels-2027/u);
   assert.match(endpointSource, /Content-Disposition/u);
   assert.match(endpointSource, /Access-Control-Allow-Origin/u);

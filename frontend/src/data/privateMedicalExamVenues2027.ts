@@ -105,6 +105,7 @@ export const venueAssignmentConditionLabels: Record<VenueAssignmentCondition, st
 
 const VERIFIED_AT = "2026-08-12T00:00:00+09:00";
 const JICHI_VERIFIED_AT = "2026-08-15T00:00:00+09:00";
+const MARIANNA_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const JICHI_2027_GUIDELINE_URL =
   "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf";
 
@@ -673,17 +674,20 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
   {
     venueId: "venue-marianna-sugao-campus",
     academicYear: 2027,
-    name: "聖マリアンナ医科大学 校舎",
-    shortName: "聖マリアンナ医科大学",
+    name: "聖マリアンナ医科大学 本学校舎",
+    shortName: "聖マリアンナ医科大学 本学校舎",
     postalCode: "216-8511",
     address: "神奈川県川崎市宮前区菅生2-16-1",
     prefecture: "神奈川県",
     municipality: "川崎市宮前区",
-    nearestStations: ["向ヶ丘遊園駅・百合ヶ丘駅・あざみ野駅・宮前平駅から路線バス"],
-    officialUrl: "https://www.marianna-u.ac.jp/houjin/access/",
-    accessNote: "鉄道駅から路線バスを利用する会場です。前日に乗り場と朝の時刻を確認してください。",
+    nearestStations: [
+      "向ヶ丘遊園駅・生田駅・百合ヶ丘駅・新百合ヶ丘駅から路線バス",
+      "あざみ野駅・宮前平駅・鷺沼駅・溝の口駅から路線バス",
+    ],
+    officialUrl: "https://www.marianna-u.ac.jp/houjin/access/univ/",
+    accessNote: "各駅から路線バスを利用する会場です。道路状況による遅延を見込み、最新ダイヤと受験票記載の試験会場入口を確認してください。",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: MARIANNA_VERIFIED_AT,
   },
   {
     venueId: "venue-uoeh-main-campus",
@@ -1533,7 +1537,7 @@ setPlans(
   "second",
   {
     venueLinks: [link("venue-marianna-sugao-campus")],
-    announcedVenueText: "聖マリアンナ医科大学 校舎",
+    announcedVenueText: "聖マリアンナ医科大学 本学校舎",
     publicationState: "confirmed",
     conditions: ["fixed"],
     evidenceLabel: "2027年度選抜要項 試験会場・時間割",
