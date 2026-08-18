@@ -238,6 +238,12 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "JR北陸新幹線・IRいしかわ鉄道 金沢駅金沢港口（西口）",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式交通案内/u);
+    } else if (venue.venueId === "venue-jichi-first-ishikawa-meeting-1103") {
+      assert.deepEqual(venue.nearestStations, [
+        "北陸鉄道バス 県庁前停留所",
+        "JR北陸新幹線・IRいしかわ鉄道 金沢駅金沢港口（西口）",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式交通案内/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);

@@ -137,6 +137,7 @@ const JICHI_KANAGAWA_PREFECTURAL_OFFICE_VERIFIED_AT = "2026-08-19T00:00:00+09:00
 const JICHI_NIIGATA_JICHIKAIKAN_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_TOYAMA_KENMINKAIKAN_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_ISHIKAWA_MEETING_1105_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_ISHIKAWA_MEETING_1103_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -2098,6 +2099,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: JICHI_ISHIKAWA_MEETING_1105_VERIFIED_AT,
         caution: "ホテル公式徒歩1分と県庁公式バス約10分は別区間で、ホテルから1105会議室までの通し所要ではありません。2027年1月25日の北陸鉄道バス時刻・乗り場・積雪時運行は未公表のため、直前に石川県と北陸鉄道の公式情報を再確認してください。学力試験は受付8:20〜8:40、試験9:00〜14:10です。11階1105会議室までは2027募集要項で確定していますが、受験生入口、受付位置、待機場所、入館手順は未公表です。県庁前停留所や行政庁舎の一般入口を試験受付とみなさず、雪・凍結・道路遅延・エレベーター待ちを見込んでください。翌1月26日の面接は同庁舎11階1103会議室という別会場です。",
+        evidenceUrls: [
+          "https://www.ab-hotel.jp/kanazawa/access/",
+          "https://www.pref.ishikawa.lg.jp/kanzai/sinkentyou/sinnkenntyousya/koutuu.html",
+          "https://www.pref.ishikawa.lg.jp/shink/kentyoubus.html",
+          "https://www.pref.ishikawa.lg.jp/kanzai/sinkentyou/sinnkenntyousya/kakukahaiti.html",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+      {
+        venueId: "venue-jichi-first-ishikawa-meeting-1103",
+        modes: ["walk", "bus"],
+        routeSummary: "ABホテル金沢からホテル公式の案内を逆向きにJR金沢駅金沢港口（西口）へ徒歩で戻り、同口から北陸鉄道バスで県庁前停留所へ移動します。下車後は石川県庁行政庁舎へ入り、受験票、石川県から交付される試験専用案内、当日掲示に従って11階1103会議室の指定受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR金沢駅金沢港口（西口）は公式徒歩1分、金沢駅金沢港口（西口）―県庁前は県庁公式バス約10分（待ち時間・庁舎内・指定受付までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_ISHIKAWA_MEETING_1103_VERIFIED_AT,
+        caution: "ホテル公式徒歩1分と県庁公式バス約10分は別区間で、ホテルから1103会議室までの通し所要ではありません。2027年1月26日の北陸鉄道バス時刻・乗り場・積雪時運行は未公表のため、直前に石川県と北陸鉄道の公式情報を再確認してください。面接は受付9:00〜9:20、10:00〜16:00のうち石川県が指定する時間です。11階1103会議室までは2027募集要項で確定していますが、受験生入口、受付位置、待機場所、入館手順は未公表です。県庁前停留所や行政庁舎の一般入口を試験受付とみなさず、雪・凍結・道路遅延・エレベーター待ちを見込んでください。前日1月25日の学力試験は同庁舎11階1105会議室という別会場です。",
         evidenceUrls: [
           "https://www.ab-hotel.jp/kanazawa/access/",
           "https://www.pref.ishikawa.lg.jp/kanzai/sinkentyou/sinnkenntyousya/koutuu.html",
@@ -6028,6 +6047,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: JICHI_ISHIKAWA_MEETING_1105_VERIFIED_AT,
         caution: "ホテル公式徒歩約4分と県庁公式バス約10分は別区間で、ホテルから1105会議室までの通し所要ではありません。2027年1月25日の北陸鉄道バス時刻・乗り場・積雪時運行は未公表のため、直前に石川県と北陸鉄道の公式情報を再確認してください。学力試験は受付8:20〜8:40、試験9:00〜14:10です。11階1105会議室までは2027募集要項で確定していますが、受験生入口、受付位置、待機場所、入館手順は未公表です。県庁前停留所や行政庁舎の一般入口を試験受付とみなさず、雪・凍結・道路遅延・エレベーター待ちを見込んでください。翌1月26日の面接は同庁舎11階1103会議室という別会場です。",
+        evidenceUrls: [
+          "https://smile-hotels.com/hotels/show/kanazawanishiguchiekimae",
+          "https://www.pref.ishikawa.lg.jp/kanzai/sinkentyou/sinnkenntyousya/koutuu.html",
+          "https://www.pref.ishikawa.lg.jp/shink/kentyoubus.html",
+          "https://www.pref.ishikawa.lg.jp/kanzai/sinkentyou/sinnkenntyousya/kakukahaiti.html",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+      {
+        venueId: "venue-jichi-first-ishikawa-meeting-1103",
+        modes: ["walk", "bus"],
+        routeSummary: "スマイルホテル金沢西口駅前からホテル公式の案内を逆向きにJR金沢駅金沢港口（西口）へ徒歩で戻り、同口から北陸鉄道バスで県庁前停留所へ移動します。下車後は石川県庁行政庁舎へ入り、受験票、石川県から交付される試験専用案内、当日掲示に従って11階1103会議室の指定受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR金沢駅金沢港口（西口）は公式徒歩約4分、金沢駅金沢港口（西口）―県庁前は県庁公式バス約10分（待ち時間・庁舎内・指定受付までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_ISHIKAWA_MEETING_1103_VERIFIED_AT,
+        caution: "ホテル公式徒歩約4分と県庁公式バス約10分は別区間で、ホテルから1103会議室までの通し所要ではありません。2027年1月26日の北陸鉄道バス時刻・乗り場・積雪時運行は未公表のため、直前に石川県と北陸鉄道の公式情報を再確認してください。面接は受付9:00〜9:20、10:00〜16:00のうち石川県が指定する時間です。11階1103会議室までは2027募集要項で確定していますが、受験生入口、受付位置、待機場所、入館手順は未公表です。県庁前停留所や行政庁舎の一般入口を試験受付とみなさず、雪・凍結・道路遅延・エレベーター待ちを見込んでください。前日1月25日の学力試験は同庁舎11階1105会議室という別会場です。",
         evidenceUrls: [
           "https://smile-hotels.com/hotels/show/kanazawanishiguchiekimae",
           "https://www.pref.ishikawa.lg.jp/kanzai/sinkentyou/sinnkenntyousya/koutuu.html",
