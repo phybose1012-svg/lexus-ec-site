@@ -196,6 +196,12 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "京成千葉線・千原線 千葉中央駅",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式アクセス/u);
+    } else if (venue.venueId === "venue-jichi-first-tokyo-todofuken-kaikan") {
+      assert.deepEqual(venue.nearestStations, [
+        "東京メトロ有楽町線・半蔵門線・南北線 永田町駅",
+        "東京メトロ銀座線・丸ノ内線 赤坂見附駅",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式アクセス/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -586,7 +592,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 128);
+  assert.equal(dataset.hotels.length, 130);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -2922,6 +2928,84 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   }
   assert.match(daiwaRoynetChibaChuo?.note ?? "", /施設名入り親権者同意書/u);
   assert.match(daiwaRoynetChibaChuo?.note ?? "", /2区間の分数を単純合算せず/u);
+  const jichiTokyoTodofukenKaikan = dataset.venues.find(
+    (venue) => venue.venueId === "venue-jichi-first-tokyo-todofuken-kaikan",
+  );
+  assert.equal(
+    jichiTokyoTodofukenKaikan?.officialUrl,
+    "https://www.tkai.jp/information/access.html",
+  );
+  assert.match(jichiTokyoTodofukenKaikan?.address ?? "", /平河町2丁目6番3号/u);
+  assert.match(jichiTokyoTodofukenKaikan?.accessNote ?? "", /学力試験は受付8:20〜8:40/u);
+  assert.match(jichiTokyoTodofukenKaikan?.accessNote ?? "", /面接は受付9:00〜9:20/u);
+  assert.match(jichiTokyoTodofukenKaikan?.accessNote ?? "", /永田町駅5番出口/u);
+  assert.match(jichiTokyoTodofukenKaikan?.accessNote ?? "", /使用階・会議室.*未公表/u);
+  assert.match(jichiTokyoTodofukenKaikan?.accessNote ?? "", /地下連絡通路.*試験指定入口とみなさず/u);
+  const jichiTokyoTodofukenKaikanLinks = dataset.assignments.flatMap((assignment) =>
+    assignment.venueLinks.filter(
+      (link) => link.venueId === "venue-jichi-first-tokyo-todofuken-kaikan",
+    ),
+  );
+  assert.deepEqual(
+    jichiTokyoTodofukenKaikanLinks.map((link) => [
+      link.applicantPrefecture,
+      link.examPart,
+      link.examDate,
+    ]),
+    [
+      ["東京都", "written", "2027-01-25"],
+      ["東京都", "interview", "2027-01-26"],
+    ],
+  );
+  const jichiTokyoTodofukenKaikanHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-jichi-first-tokyo-todofuken-kaikan",
+    ),
+  );
+  assert.deepEqual(
+    jichiTokyoTodofukenKaikanHotels.map((hotel) => hotel.name),
+    ["都市センターホテル", "アパホテル〈永田町半蔵門駅前〉"],
+  );
+  for (const hotel of jichiTokyoTodofukenKaikanHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-tokyo-todofuken-kaikan",
+    );
+    assert.deepEqual(access?.modes, ["walk"]);
+    assert.equal(access?.transferCount, 0);
+    assert.equal(access?.measurementBasis, "map_route_checked");
+    assert.deepEqual(access?.reviewState, [
+      "verified_with_caveat",
+      "venue_pdf_visual_review",
+    ]);
+    assert.equal("travelTimeLabel" in (access ?? {}), false);
+    assert.equal("distanceLabel" in (access ?? {}), false);
+    assert.match(access?.caution ?? "", /公式.*徒歩分数はない/u);
+    assert.match(access?.caution ?? "", /使用階・会議室.*未公表/u);
+  }
+  const toshicenterHotel = jichiTokyoTodofukenKaikanHotels.find(
+    (hotel) => hotel.hotelId === "toshicenter-hotel",
+  );
+  for (const key of ["wifi", "coin_laundry", "desk_lamp", "breakfast", "humidifier"]) {
+    assert.ok(
+      toshicenterHotel?.amenities.some((item) => item.key === key),
+      `都市センターホテルに ${key} がありません`,
+    );
+  }
+  assert.equal(toshicenterHotel?.amenities.some((item) => item.key === "desk"), false);
+  assert.match(toshicenterHotel?.note ?? "", /常設学習机.*未成年者.*確認できない/u);
+  const apaNagatachoHanzomon = jichiTokyoTodofukenKaikanHotels.find(
+    (hotel) => hotel.hotelId === "apa-nagatacho-hanzomon-ekimae",
+  );
+  for (const key of ["wifi", "coin_laundry", "breakfast", "humidifier"]) {
+    assert.ok(
+      apaNagatachoHanzomon?.amenities.some((item) => item.key === key),
+      `アパホテル〈永田町半蔵門駅前〉に ${key} がありません`,
+    );
+  }
+  assert.equal(apaNagatachoHanzomon?.amenities.some((item) => item.key === "desk"), false);
+  assert.match(apaNagatachoHanzomon?.note ?? "", /18歳未満.*公式同意書/u);
+  assert.match(apaNagatachoHanzomon?.note ?? "", /旧称.*現行公式名/u);
+  assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyo-green-palace"), false);
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
   assert.equal(dataset.definitions.examParts.written, "学力試験");
   assert.equal(dataset.definitions.venueLinkRoles.overflow, "定員状況等による代替会場");
