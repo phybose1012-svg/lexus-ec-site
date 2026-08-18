@@ -82,6 +82,7 @@ const OSAKA_ACADEMIA_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const FUKUOKA_GARDEN_PALACE_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const SENDAGI_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const KINDAI_OSAKA_MEDICAL_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
+const MUSASHISAKAI_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -1796,5 +1797,83 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: KINDAI_OSAKA_MEDICAL_VERIFIED_AT,
     note: "全客室18㎡以上で、机・通信・朝食・洗濯設備を公式情報で確認できる堅実な候補です。未成年者だけで宿泊する場合は親権者の許可と同意書が必要なため、予約後にホテルへ提出方法を確認してください。",
+  },
+  {
+    hotelId: "jr-east-hotel-mets-musashisakai",
+    name: "JR東日本ホテルメッツ 武蔵境",
+    postalCode: "180-0023",
+    address: "東京都武蔵野市境南町2-1-8",
+    prefecture: "東京都",
+    municipality: "武蔵野市",
+    officialUrl: "https://www.hotelmets.jp/musashisakai/",
+    officialBookingUrl: "https://go-jrhotel-m.reservation.jp/ja/hotels/mets-musashisakai/searchInput",
+    nearestStation: "JR中央線・西武多摩川線 武蔵境駅南口",
+    venueAccess: [
+      {
+        venueId: "venue-nippon-medical-musashisakai-campus",
+        modes: ["walk"],
+        routeSummary: "ホテルからJR武蔵境駅南口前へ出て、2027年度要項の会場案内に従い、日本獣医生命科学大学との合同キャンパス内にある日本医科大学 武蔵境校舎へ徒歩で向かいます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル→武蔵境駅南口は徒歩約1分、駅南口→武蔵境校舎は徒歩約2分（各公式区間。通し所要ではありません）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "needs_route_review", "venue_pdf_visual_review"],
+        verifiedAt: MUSASHISAKAI_VERIFIED_AT,
+        caution: "ホテル公式約1分と大学要項約2分は別区間であり、単純加算したホテルから試験室までの所要時間ではありません。2027年2月1日の前期1次は武蔵境校舎・ベルサール渋谷ファースト・定員超過時の千駄木校舎、2月28日の後期1次は武蔵境校舎・定員超過時の千駄木校舎から大学が割り当てるため、受験票で武蔵境指定を必ず確認してください。入室は8:00から、8:30までに着席ですが、使用門・建物入口・試験室は未公表です。当日掲示と係員案内に従ってください。",
+        evidenceUrls: [
+          "https://www.hotelmets.jp/musashisakai/access.html",
+          "https://www.nms.ac.jp/college/nyushi-book/pdf_2027/guidelines_2027.pdf",
+          "https://www.nms.ac.jp/college/introduction/access/",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "無料Wi-Fi", "館内で無料Wi-Fiを利用できます。", "https://www.hotelmets.jp/musashisakai/facilities.html"),
+      amenity("coin_laundry", "コインランドリー", "館内に現金式のコインランドリーがあります。", "https://www.hotelmets.jp/musashisakai/facilities.html"),
+      amenity("breakfast", "朝食6:30〜", "1階のエクセルシオールカフェで6:30〜10:00に4種類のプレートから選べます。", "https://www.hotelmets.jp/musashisakai/bf.html"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: MUSASHISAKAI_VERIFIED_AT,
+    note: "武蔵境駅南口に近く、鉄道に乗らず会場へ向かえる候補です。公式ページで客室の学習用机を文章では確認できないため、必要な場合は予約前にホテルへ確認してください。未成年者だけで宿泊する場合は保護者の許可が必要で、同意書の様式と提出方法を事前にホテルへ確認してください。会場は大学指定のため、キャンセル条件を確認して予約し、受験票で武蔵境校舎への割当を確定してください。",
+  },
+  {
+    hotelId: "citytel-musashisakai",
+    name: "ビジネスホテル シティテル武蔵境",
+    postalCode: "180-0023",
+    address: "東京都武蔵野市境南町2-4-15",
+    prefecture: "東京都",
+    municipality: "武蔵野市",
+    officialUrl: "https://www.hotel-citytel.jp/citytel_sakai/",
+    officialBookingUrl: "https://go-citytel.reservation.jp/ja/hotels/citytelmusashi/searchInput",
+    nearestStation: "JR中央線・西武多摩川線 武蔵境駅南口",
+    venueAccess: [
+      {
+        venueId: "venue-nippon-medical-musashisakai-campus",
+        modes: ["walk"],
+        routeSummary: "ホテルからJR中央線・西武多摩川線 武蔵境駅南口前へ出て、2027年度要項の会場案内に従い、日本獣医生命科学大学との合同キャンパス内にある日本医科大学 武蔵境校舎へ徒歩で向かいます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル→武蔵境駅南口は徒歩約1分、駅南口→武蔵境校舎は徒歩約2分（各公式区間。通し所要ではありません）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "needs_route_review", "venue_pdf_visual_review"],
+        verifiedAt: MUSASHISAKAI_VERIFIED_AT,
+        caution: "シティテル公式はnonowa口徒歩30秒も案内していますが、nonowa口はICカード専用・7:00〜22:00で、大学要項の会場案内は南口基準です。公開経路は南口に統一しています。2区間の単純加算による通し分数、使用門・建物入口・試験室は断定できません。会場は大学割当のため受験票で武蔵境指定を確認し、8:00入室開始・8:30着席期限を見込んで余裕を取ってください。",
+        evidenceUrls: [
+          "https://www.hotel-citytel.jp/citytel_sakai/access.html",
+          "https://www.nms.ac.jp/college/nyushi-book/pdf_2027/guidelines_2027.pdf",
+          "https://www.nms.ac.jp/college/introduction/access/",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "無料Wi-Fi・有線LAN", "全客室で無料Wi-Fiと有線LANを利用できます。", "https://www.hotel-citytel.jp/citytel_sakai/rooms.html"),
+      amenity("washer_dryer", "全自動洗濯乾燥機", "洗剤自動投入の全自動洗濯乾燥機があります。", "https://www.hotel-citytel.jp/citytel_sakai/facilities.html"),
+      amenity("breakfast", "朝食7:00〜（営業日要確認）", "モーニングセットは7:00〜10:00ですが、営業しない日があるためチェックイン時に確認が必要です。", "https://www.hotel-citytel.jp/citytel_sakai/facilities.html"),
+      amenity("humidifier", "加湿器貸出", "加湿器は貸出備品です。", "https://www.hotel-citytel.jp/citytel_sakai/rooms.html"),
+      amenity("desk_lamp", "電気スタンド", "客室備品として電気スタンドがあり、貸出品にも案内されています。", "https://www.hotel-citytel.jp/citytel_sakai/rooms.html"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: MUSASHISAKAI_VERIFIED_AT,
+    note: "武蔵境駅南口から徒歩約1分の地域型ビジネスホテルです。公式客室ページで学習用机は文章確認できないため、必要な場合は予約前に確認してください。未成年者だけでの宿泊条件と親権者同意書は公式サイトで公表されていないため、予約前にホテルへ確認してください。朝食は営業しない日があるため、前夜の調達も準備してください。会場は大学指定のため、受験票で武蔵境校舎への割当を確定してください。",
   },
 ];

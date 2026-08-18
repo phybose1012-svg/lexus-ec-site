@@ -408,7 +408,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 43);
+  assert.equal(dataset.hotels.length, 45);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -592,6 +592,39 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     dataset.hotels
       .find((hotel) => hotel.hotelId === "daiwa-roynet-hotel-sakaihigashi")
       ?.amenities.some((item) => item.key === "desk"),
+  );
+  for (const hotelId of ["jr-east-hotel-mets-musashisakai", "citytel-musashisakai"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-nippon-medical-musashisakai-campus",
+    );
+    assert.ok(access, `${hotelId} が日本医科大学 武蔵境校舎に結合されていません`);
+    assert.equal(access.measurementBasis, "route_only");
+    assert.equal(access.transferCount, 0);
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.ok(access.reviewState.includes("needs_route_review"));
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  assert.ok(
+    dataset.hotels
+      .find((hotel) => hotel.hotelId === "jr-east-hotel-mets-musashisakai")
+      ?.amenities.some((item) => item.key === "coin_laundry"),
+  );
+  assert.ok(
+    dataset.hotels
+      .find((hotel) => hotel.hotelId === "citytel-musashisakai")
+      ?.amenities.some((item) => item.key === "washer_dryer"),
+  );
+  assert.equal(
+    dataset.hotels
+      .filter((hotel) =>
+        hotel.venueAccess.some(
+          (access) => access.venueId === "venue-nippon-medical-musashisakai-campus",
+        ),
+      ).length,
+    2,
   );
   assert.ok(
     dataset.hotels
