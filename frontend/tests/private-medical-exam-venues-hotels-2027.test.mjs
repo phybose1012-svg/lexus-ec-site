@@ -188,6 +188,25 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
     { venueId: "venue-kitasato-sagamihara-campus", role: "fixed" },
   ]);
 
+  const tohokuGeneralFirst = assignmentFor("tohoku-med-pharm--general--general", "first");
+  assert.equal(tohokuGeneralFirst?.publicationState, "city_or_campus_only");
+  assert.equal(tohokuGeneralFirst?.reviewState, "monitoring");
+  assert.deepEqual(tohokuGeneralFirst?.conditions, ["admission_ticket"]);
+  assert.deepEqual(tohokuGeneralFirst?.venueLinks, [
+    { venueId: "venue-tohoku-med-pharm-komatsushima-campus", role: "choice" },
+    { venueId: "venue-grand-cube-osaka", role: "choice" },
+    { venueId: "venue-acu-a-asty45", role: "choice" },
+  ]);
+  assert.match(tohokuGeneralFirst?.announcedVenueText ?? "", /東京：正式施設は現在調整中/u);
+  assert.doesNotMatch(
+    tohokuGeneralFirst?.venueLinks.map((link) => link.venueId).join(" ") ?? "",
+    /venue-bellesalle-shibuya-garden|venue-toc-gotanda/u,
+  );
+  assert.equal(
+    tohokuGeneralFirst?.officialAdmissionUrl,
+    "https://www.tohoku-mpu.ac.jp/admission/medicine-application/",
+  );
+
   assert.deepEqual(assignmentFor("nihon--general--unified-phase-2", "first")?.conditions, []);
   for (const routeId of [
     "fujita--general--general-regional-quota-17148",
@@ -393,10 +412,10 @@ test("会場・割当・ホテル・アクセスの参照が一意かつ整合�
       assert.ok(
         privateMedicalExamVenueAssignments2027.some(
           (assignment) =>
-            assignment.publicationState === "confirmed" &&
+            ["confirmed", "city_or_campus_only"].includes(assignment.publicationState) &&
             assignment.venueLinks.some((link) => link.venueId === access.venueId),
         ),
-        `${hotel.hotelId} が正式会場の割当に結合されていません`,
+        `${hotel.hotelId} が公表済みの具体的な会場リンクに結合されていません`,
       );
     }
   }

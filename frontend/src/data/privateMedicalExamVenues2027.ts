@@ -1860,23 +1860,22 @@ officialVenuePlan(["iwate-medical--general--general"], "second", {
   note: "矢巾キャンパスは正式会場として公表済みです。東京・大阪の正式施設と、二次試験の会場選択・指定方法は学生募集要項で確認してください。",
 });
 
-const tohokuVenueUrl = "https://www.tohoku-mpu.ac.jp/admission/medicine-venue/";
+const tohokuVenueUrl = "https://www.tohoku-mpu.ac.jp/admission/medicine-application/";
 officialVenuePlan(["tohoku-med-pharm--general--general"], "first", {
   venueLinks: [
     link("venue-tohoku-med-pharm-komatsushima-campus", "choice"),
-    link("venue-bellesalle-shibuya-garden", "choice"),
-    link("venue-toc-gotanda", "choice"),
     link("venue-grand-cube-osaka", "choice"),
     link("venue-acu-a-asty45", "choice"),
   ],
-  announcedVenueText: "小松島キャンパス・東京（ベルサール渋谷ガーデン又はTOCビル）・グランキューブ大阪・ACU-A",
-  publicationState: "confirmed",
-  conditions: ["applicant_preference", "university_assigned", "admission_ticket"],
+  announcedPrefectures: ["宮城県", "東京都", "大阪府", "北海道"],
+  announcedVenueText: "仙台：東北医科薬科大学（小松島キャンパス）／東京：正式施設は現在調整中／大阪：グランキューブ大阪（大阪府立国際会議場）／札幌：ACU-A（アスティ45）",
+  publicationState: "city_or_campus_only",
+  conditions: ["admission_ticket"],
   officialAdmissionUrl: tohokuVenueUrl,
-  evidenceLabel: "2027年度 医学部入学試験会場一覧",
-  evidenceLocator: "公式ページ「一般選抜 第1次試験」",
-  reviewState: "verified",
-  note: "出願者は試験地を選択します。東京試験地は大学が2施設のいずれかを指定し、受験票で通知します。",
+  evidenceLabel: "大学公式2027年度 医学部募集概要",
+  evidenceLocator: "一般選抜「一次試験期日」「実施都市」",
+  reviewState: "monitoring",
+  note: "2027年度入学者選抜ガイドでは一般選抜一次の試験地を宮城・東京・大阪・北海道と公表しています。募集概要で正式施設を確認できるのは小松島キャンパス、グランキューブ大阪、ACU-Aで、東京は現在調整中です。試験地の選択・指定方法と東京の正式施設は、9月頃公開予定の学生募集要項および受験票で確認してください。年次表示のない会場一覧に残るベルサール渋谷ガーデン・TOCビルは2027会場として結合していません。",
 });
 officialVenuePlan(
   ["tohoku-med-pharm--general--general", "tohoku-med-pharm--common--common-test"],
