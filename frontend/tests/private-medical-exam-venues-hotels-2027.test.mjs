@@ -427,7 +427,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 61);
+  assert.equal(dataset.hotels.length, 63);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -909,6 +909,37 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(
     dataset.hotels.filter((hotel) =>
       hotel.venueAccess.some((access) => access.venueId === "venue-acu-a-asty45"),
+    ).length,
+    2,
+  );
+  for (const hotelId of ["jr-east-hotel-mets-shibuya", "hotel-graphy-shibuya"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-bellesalle-shibuya-first",
+    );
+    assert.ok(access, `${hotelId} がベルサール渋谷ファーストに結合されていません`);
+    assert.equal(access.measurementBasis, "map_route_checked");
+    assert.equal(access.transferCount, 0);
+    assert.equal(access.travelTimeLabel, undefined);
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  assert.ok(
+    dataset.hotels
+      .find((hotel) => hotel.hotelId === "jr-east-hotel-mets-shibuya")
+      ?.amenities.some((item) => item.key === "desk"),
+  );
+  assert.equal(
+    dataset.hotels
+      .find((hotel) => hotel.hotelId === "hotel-graphy-shibuya")
+      ?.amenities.some((item) => item.key === "desk"),
+    false,
+  );
+  assert.equal(
+    dataset.hotels.filter((hotel) =>
+      hotel.venueAccess.some((access) => access.venueId === "venue-bellesalle-shibuya-first"),
     ).length,
     2,
   );

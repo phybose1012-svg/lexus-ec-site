@@ -91,6 +91,7 @@ const IWATE_MEDICAL_YAHABA_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const KITAKYUSHU_MESSE_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const GRAND_CUBE_OSAKA_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const ACU_A_SAPPORO_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
+const BELLESALLE_SHIBUYA_FIRST_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -2551,5 +2552,83 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: ACU_A_SAPPORO_VERIFIED_AT,
     note: "学習机、客室通信、コインランドリー、6:30開始の朝食、未成年手続を公式情報で確認できる地域型ホテルです。18歳未満の方1名または未成年者同士で宿泊する場合は、宿泊者全員分の親権者同意書をチェックイン時に提出してください。2027年の使用階・試験室・入口・集合時刻は未公表で、積雪・凍結と札幌駅工事も見込んでください。",
+  },
+  {
+    hotelId: "jr-east-hotel-mets-shibuya",
+    name: "JR東日本ホテルメッツ 渋谷",
+    address: "東京都渋谷区渋谷3-29-17",
+    prefecture: "東京都",
+    municipality: "渋谷区",
+    officialUrl: "https://www.hotelmets.jp/shibuya/",
+    officialBookingUrl: "https://www.hotelmets.jp/shibuya/reserve.html",
+    nearestStation: "JR渋谷駅新南改札・各線渋谷駅C2出口",
+    venueAccess: [
+      {
+        venueId: "venue-bellesalle-shibuya-first",
+        modes: ["walk"],
+        routeSummary: "JR東日本ホテルメッツ 渋谷からベルサール渋谷ファーストへ、渋谷駅構内へ戻らず地上の公道を直接徒歩で向かい、受験票・当日掲示で指定された受験生入口・試験室へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: BELLESALLE_SHIBUYA_FIRST_VERIFIED_AT,
+        caution: "ホテル公式はJR渋谷駅新南改札から徒歩4分、渋谷駅C2出口から徒歩5分と案内し、会場公式はC1出口から徒歩6分・JR東口から徒歩8分と案内していますが、駅まで戻る経路を主経路にせず、各駅区間の分数も加算しません。ホテル公式住所（渋谷3-29-17）と会場公式住所（東1-2-20）を地図上で照合し、地上の直接徒歩経路が成立することを確認したものです。ホテルから会場への公式推奨経路・公式徒歩分数はないため、信号待ち、横断、坂道、雨天、工事、指定入口から試験室までを見込み、前日に経路を確認してください。2027年2月1日（月）の一般選抜（前期・前期地域枠）およびグローバル特別選抜（前期）の第1次試験でベルサール渋谷ファーストを利用できるのは受験票で指定された場合だけです。収容人員超過時の追加会場は千駄木校舎です。8:00から入室可能、8:30までに着席・注意事項説明開始、最初の試験は9:00開始です。使用階・ホール・受付・受験生入口は未公表で、住所中のB1・2Fを試験使用階とみなさないでください。近隣のベルサール渋谷ガーデンと取り違えず、会場公式が注意する渋谷駅東口交差点周辺工事による出入口・歩行者ルート変更も直前に再確認してください。",
+        evidenceUrls: [
+          "https://www.hotelmets.jp/shibuya/access.html",
+          "https://www.bellesalle.co.jp/shisetsu/shibuya/bs_shibuyafirst/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%8B%E8%B0%B7%E5%8C%BA%E6%B8%8B%E8%B0%B73%E4%B8%81%E7%9B%AE29-17&destination=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%8B%E8%B0%B7%E5%8C%BA%E6%9D%B11%E4%B8%81%E7%9B%AE2-20&travelmode=walking",
+          "https://www.bellesalle.co.jp/download/bs_shibuyafirst/",
+          "https://www.nms.ac.jp/college/nyushi-book/pdf_2027/guidelines_2027.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全室無料Wi-Fi・有線LAN", "全客室で無料Wi-Fiと有線LANを利用できます。", "https://www.hotelmets.jp/sys/mets_faq.cgi?h=126"),
+      amenity("desk", "スーペリアシングルの広いデスク", "スーペリアシングルは広いデスクと複数のコンセントを備えています。予約時に部屋タイプを指定してください。", "https://www.hotelmets.jp/sys/mets_faq.cgi?h=126"),
+      amenity("coin_laundry", "4階コインランドリー", "4階に宿泊者用コインランドリーがあります。", "https://www.hotelmets.jp/shibuya/facilities.html"),
+      amenity("breakfast", "朝食6:30〜", "朝食は6:30〜10:30です。", "https://www.hotelmets.jp/shibuya/bf.html"),
+      amenity("humidifier", "加湿機能付き空気清浄機", "全客室に加湿機能付き空気清浄機があります。", "https://www.hotelmets.jp/sys/mets_faq.cgi?h=126"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: BELLESALLE_SHIBUYA_FIRST_VERIFIED_AT,
+    note: "渋谷駅東側にある設備の揃ったホテルです。18歳未満の方だけでも同意書なしで宿泊できますが、予約時またはチェックイン時に保護者の氏名・住所・連絡先を申告し、ホテルから確認連絡を受ける場合があります。学習机を使う場合はスーペリアシングルを指定してください。受験票でベルサール渋谷ファースト指定を確認し、前日に直接徒歩経路と当日の入口を確認してください。",
+  },
+  {
+    hotelId: "hotel-graphy-shibuya",
+    name: "HOTEL GRAPHY 渋谷",
+    address: "東京都渋谷区東1-29-3",
+    prefecture: "東京都",
+    municipality: "渋谷区",
+    officialUrl: "https://www.livelyhotels.com/ja/graphyshibuya/",
+    officialBookingUrl: "https://www.livelyhotels.com/ja/graphyshibuya/",
+    nearestStation: "JR渋谷駅新南口・各線渋谷駅C2出口",
+    venueAccess: [
+      {
+        venueId: "venue-bellesalle-shibuya-first",
+        modes: ["walk"],
+        routeSummary: "HOTEL GRAPHY 渋谷からベルサール渋谷ファーストへ、渋谷駅には戻らず地上の公道を直接徒歩で向かい、受験票・当日掲示で指定された受験生入口・試験室へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: BELLESALLE_SHIBUYA_FIRST_VERIFIED_AT,
+        caution: "ホテル公式はJR渋谷駅新南口から徒歩7分・各線C2出口から徒歩9分と案内し、会場公式はC1出口から徒歩6分・JR東口から徒歩8分と案内していますが、駅へ戻る経路を主経路にせず、各駅区間の分数も加算しません。ホテル公式住所（東1-29-3）と会場公式住所（東1-2-20）を地図上で照合し、地上の直接徒歩経路が成立することを確認したものです。ホテルから会場への公式推奨経路・公式徒歩分数はないため、信号待ち、横断、坂道、雨天、工事、指定入口から試験室までを見込み、前日に経路を確認してください。2027年2月1日（月）の一般選抜（前期・前期地域枠）およびグローバル特別選抜（前期）の第1次試験でベルサール渋谷ファーストを利用できるのは受験票で指定された場合だけです。収容人員超過時の追加会場は千駄木校舎です。8:00から入室可能、8:30までに着席・注意事項説明開始、最初の試験は9:00開始です。使用階・ホール・受付・受験生入口は未公表で、住所中のB1・2Fを試験使用階とみなさないでください。近隣のベルサール渋谷ガーデンと取り違えず、会場公式が注意する渋谷駅東口交差点周辺工事による出入口・歩行者ルート変更も直前に再確認してください。",
+        evidenceUrls: [
+          "https://www.livelyhotels.com/ja/graphyshibuya/access/",
+          "https://www.bellesalle.co.jp/shisetsu/shibuya/bs_shibuyafirst/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%8B%E8%B0%B7%E5%8C%BA%E6%9D%B11%E4%B8%81%E7%9B%AE29-3&destination=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%8B%E8%B0%B7%E5%8C%BA%E6%9D%B11%E4%B8%81%E7%9B%AE2-20&travelmode=walking",
+          "https://www.bellesalle.co.jp/download/bs_shibuyafirst/",
+          "https://www.nms.ac.jp/college/nyushi-book/pdf_2027/guidelines_2027.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全客室無料Wi-Fi", "全客室で無料Wi-Fiを利用できます。", "https://www.livelyhotels.com/ja/graphyshibuya/rooms/"),
+      amenity("coin_laundry", "隣接棟の24時間コインランドリー", "館内にはありませんが、同じ渋谷ブリッジC棟の24時間コインランドリーを利用できます。", "https://www.livelyhotels.com/ja/graphyshibuya/faq/"),
+      amenity("breakfast", "朝食7:00〜", "朝食は7:00〜10:00です。", "https://www.livelyhotels.com/ja/graphyshibuya/eat-drink/"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: BELLESALLE_SHIBUYA_FIRST_VERIFIED_AT,
+    note: "渋谷区東1丁目の全74室のホテルです。18歳未満の方だけで宿泊する場合は、予約後にホテルへ電話し、オンラインの親権者同意書を提出してください。受験用途ではドミトリーや水回り共用タイプを避け、バス・トイレ付き個室を指定してください。客室内の学習机は公式本文で確認できないため、必要な場合は電源・高速Wi-Fi付き共用ワークスペースの利用条件を予約前に確認してください。受験票で会場指定を確認し、前日に徒歩経路と入口を確認してください。",
   },
 ];
