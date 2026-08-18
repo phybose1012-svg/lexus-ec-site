@@ -328,6 +328,11 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "京都市バス 文化庁前・府庁前停留所",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式庁舎・アクセス案内/u);
+    } else if (venue.venueId === "venue-jichi-first-osaka-primrose") {
+      assert.deepEqual(venue.nearestStations, [
+        "Osaka Metro谷町線・中央線 谷町四丁目駅1-A・1-B出口",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式アクセス・施設案内/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -718,7 +723,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 156);
+  assert.equal(dataset.hotels.length, 158);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   for (const hotelId of [
     "sotetsu-fresa-inn-nagoya-sakuradoriguchi",
@@ -798,6 +803,21 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(access.reviewState.includes("verified_with_caveat"));
     assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
     assert.equal(access.travelTimeLabel, undefined);
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  for (const hotelId of [
+    "hotel-primrose-osaka",
+    "hotel-the-lutheran-osaka",
+  ]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-osaka-primrose",
+    );
+    assert.ok(access, `${hotelId} がプリムローズ大阪に結合されていません`);
+    assert.equal(access.measurementBasis, "route_only");
+    assert.equal(access.transferCount, 0);
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
