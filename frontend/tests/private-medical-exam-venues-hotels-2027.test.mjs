@@ -510,7 +510,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 94);
+  assert.equal(dataset.hotels.length, 96);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -1460,6 +1460,52 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   }
   assert.ok(theBIkebukuro?.amenities.some((item) => item.key === "breakfast"));
   assert.equal(hotelNewStar?.amenities.some((item) => item.key === "breakfast"), false);
+  const tkpNagoyaVenue = dataset.venues.find(
+    (venue) => venue.venueId === "venue-tkp-premium-nagoya-ekimae",
+  );
+  assert.equal(tkpNagoyaVenue?.reviewState, "monitoring");
+  assert.match(tkpNagoyaVenue?.accessNote ?? "", /ルーセントタワー/u);
+  const kanazawaEarlyFirst = dataset.assignments.find(
+    (assignment) =>
+      assignment.assignmentId === "kanazawa-medical--general--general-early--first-venue",
+  );
+  assert.equal(kanazawaEarlyFirst?.publicationState, "confirmed");
+  assert.equal(kanazawaEarlyFirst?.reviewState, "monitoring");
+  assert.ok(kanazawaEarlyFirst?.conditions.includes("admission_ticket"));
+  assert.match(kanazawaEarlyFirst?.note ?? "", /名古屋ルーセントタワー/u);
+  const tkpNagoyaHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-tkp-premium-nagoya-ekimae",
+    ),
+  );
+  assert.deepEqual(
+    tkpNagoyaHotels.map((hotel) => hotel.name),
+    ["コンフォートホテル名古屋新幹線口", "名鉄イン名古屋桜通"],
+  );
+  for (const hotel of tkpNagoyaHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-tkp-premium-nagoya-ekimae",
+    );
+    assert.deepEqual(access?.modes, ["walk"]);
+    assert.equal(access?.transferCount, 0);
+    assert.equal(access?.measurementBasis, "route_only");
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.match(access?.caution ?? "", /ルーセントタワー/u);
+    assert.ok(hotel.amenities.some((item) => item.key === "wifi"));
+    assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
+    assert.ok(hotel.amenities.some((item) => item.key === "breakfast"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  assert.ok(
+    tkpNagoyaHotels
+      .find((hotel) => hotel.hotelId === "comfort-hotel-nagoya-shinkansenguchi")
+      ?.amenities.some((item) => item.key === "desk"),
+  );
+  const meitetsuSakuradori = tkpNagoyaHotels.find(
+    (hotel) => hotel.hotelId === "meitetsu-inn-nagoya-sakuradori",
+  );
+  assert.ok(meitetsuSakuradori?.amenities.some((item) => item.key === "desk_lamp"));
+  assert.equal(meitetsuSakuradori?.amenities.some((item) => item.key === "desk"), false);
   assert.ok(
     dataset.hotels
       .find((hotel) => hotel.hotelId === "sakura-garden-hotel")
@@ -1565,6 +1611,7 @@ test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを�
   assert.match(pageSource, /東京慈恵会医科大学 西新橋キャンパスの宿泊候補2施設を追加/u);
   assert.match(pageSource, /東京女子医科大学 彌生記念教育棟の宿泊候補2施設を追加/u);
   assert.match(pageSource, /日本大学 医学部校舎の宿泊候補2施設を追加/u);
+  assert.match(pageSource, /金沢医科大学 名古屋一次会場の宿泊候補2施設を追加/u);
   assert.match(switcherSource, /private-medical-school-exam-venues-hotels-2027/u);
   assert.match(endpointSource, /Content-Disposition/u);
   assert.match(endpointSource, /Access-Control-Allow-Origin/u);

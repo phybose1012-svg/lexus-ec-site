@@ -1069,10 +1069,11 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     address: "愛知県名古屋市西区名駅1-1-17 名駅ダイヤメイテツビル3階",
     prefecture: "愛知県",
     municipality: "名古屋市西区",
-    nearestStations: ["JR・名鉄・近鉄・地下鉄 名古屋駅"],
+    nearestStations: ["名古屋市営地下鉄 名古屋駅10番出入口", "JR・名鉄・近鉄 名古屋駅"],
     officialUrl: "https://www.kashikaigishitsu.net/facilitys/gcp-nagoya-ekimae/",
-    reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    accessNote: "施設公式は名古屋市営地下鉄 名古屋駅10番出入口から徒歩3分、名鉄名古屋駅・近鉄名古屋駅・JR線／新幹線連絡改札口から徒歩5分と案内しています。会場は名駅ダイヤメイテツビル3階ですが、2027年度の使用室・受付位置・受験生入口・開場時刻は未公表です。大学の2027年度ガイドと『昨年度からの変更点』は本施設への変更を明記する一方、一般選抜（前期）ページには旧会場の名古屋ルーセントタワー表記が残るため、受験票で最終会場を必ず確認してください。名古屋駅周辺の別TKP施設と取り違えないでください。",
+    reviewState: "monitoring",
+    verifiedAt: "2026-08-19T00:00:00+09:00",
   },
   {
     venueId: "venue-fukuoka-garden-palace",
@@ -2339,13 +2340,14 @@ officialVenuePlan(["kanazawa-medical--general--general-early"], "first", {
     link("venue-tkp-premium-nagoya-ekimae", "choice"),
     link("venue-fukuoka-garden-palace", "choice"),
   ],
-  announcedVenueText: "金沢医科大学・TOCビル本館・大阪アカデミア・TKP名古屋駅前・福岡ガーデンパレス",
+  announcedVenueText: "金沢医科大学・TOCビル本館・大阪アカデミア・TKP名古屋駅前・福岡ガーデンパレス（名古屋は一般選抜ページに旧会場表記が残るため受験票確認）",
   publicationState: "confirmed",
-  conditions: ["applicant_preference"],
+  conditions: ["applicant_preference", "admission_ticket"],
   officialAdmissionUrl: kanazawaVenueUrl,
   evidenceLabel: "金沢医科大学 医学部guide2027",
   evidenceLocator: "PDF 3ページ「一般選抜 前期 試験場」",
-  reviewState: "verified",
+  reviewState: "monitoring",
+  note: "2027年度医学部ガイドと大学公式『昨年度からの変更点』は、名古屋試験場をTKPガーデンシティPREMIUM名古屋駅前へ変更すると明記しています。一方、一般選抜（前期）の大学公式ページには旧会場のTKPガーデンシティPREMIUM名古屋ルーセントタワー表記が残っています。名古屋会場は出願時と受験票で施設名・住所を再確認し、駅前会場が指定された場合だけ本ページの宿泊候補を利用してください。2027年度の開場・入場時刻、使用室・受付位置・受験生入口は未公表です。",
 });
 officialVenuePlan(["kanazawa-medical--general--general-late"], "first", {
   venueLinks: [
