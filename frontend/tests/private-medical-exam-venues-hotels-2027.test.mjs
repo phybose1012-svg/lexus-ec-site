@@ -273,6 +273,13 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "JR北陸新幹線・信越本線・篠ノ井線・しなの鉄道北しなの線 長野駅善光寺口",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式アクセス/u);
+    } else if (venue.venueId === "venue-jichi-first-gifu-meeting-301-302") {
+      assert.deepEqual(venue.nearestStations, [
+        "岐阜バス 県庁停留所",
+        "JR東海道本線・高山本線 岐阜駅",
+        "名鉄名古屋本線・各務原線 名鉄岐阜駅",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式庁舎・アクセス案内/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -663,7 +670,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 143);
+  assert.equal(dataset.hotels.length, 145);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
