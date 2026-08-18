@@ -224,6 +224,14 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "JR越後線 関屋駅",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式施設案内/u);
+    } else if (venue.venueId === "venue-jichi-first-toyama-kenminkaikan") {
+      assert.deepEqual(venue.nearestStations, [
+        "JR北陸新幹線・高山本線 富山駅南口",
+        "あいの風とやま鉄道 富山駅南口",
+        "富山地方鉄道 電鉄富山駅",
+        "富山地方鉄道バス 富山市役所前停留所",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式アクセス/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -614,7 +622,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 134);
+  assert.equal(dataset.hotels.length, 136);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -3232,6 +3240,77 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   }
   assert.match(comfortHotelNiigataStation?.note ?? "", /18歳未満.*親権者同意書/u);
   assert.match(comfortHotelNiigataStation?.note ?? "", /降雪・道路遅延/u);
+  const jichiToyamaKenminkaikan = dataset.venues.find(
+    (venue) => venue.venueId === "venue-jichi-first-toyama-kenminkaikan",
+  );
+  assert.equal(
+    jichiToyamaKenminkaikan?.officialUrl,
+    "https://www.bunka-toyama.jp/kenminkaikan/access-parking/index.html",
+  );
+  assert.match(jichiToyamaKenminkaikan?.address ?? "", /新総曲輪4番18号/u);
+  assert.match(jichiToyamaKenminkaikan?.accessNote ?? "", /学力試験.*受付8:20〜8:40/u);
+  assert.match(jichiToyamaKenminkaikan?.accessNote ?? "", /面接は受付9:00〜9:20/u);
+  assert.match(jichiToyamaKenminkaikan?.accessNote ?? "", /使用階・室.*未公表/u);
+  assert.match(jichiToyamaKenminkaikan?.accessNote ?? "", /通常開館時間は9:00/u);
+  const jichiToyamaLinks = dataset.assignments.flatMap((assignment) =>
+    assignment.venueLinks.filter(
+      (link) => link.venueId === "venue-jichi-first-toyama-kenminkaikan",
+    ),
+  );
+  assert.deepEqual(
+    jichiToyamaLinks.map((link) => [link.applicantPrefecture, link.examPart, link.examDate]),
+    [
+      ["富山県", "written", "2027-01-25"],
+      ["富山県", "interview", "2027-01-26"],
+    ],
+  );
+  const jichiToyamaHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-jichi-first-toyama-kenminkaikan",
+    ),
+  );
+  assert.deepEqual(
+    jichiToyamaHotels.map((hotel) => hotel.name),
+    ["コンフォートホテル富山駅前", "ダイワロイネットホテル富山駅前"],
+  );
+  for (const hotel of jichiToyamaHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-toyama-kenminkaikan",
+    );
+    assert.deepEqual(access?.modes, ["walk"]);
+    assert.equal(access?.transferCount, 0);
+    assert.equal(access?.measurementBasis, "route_only");
+    assert.deepEqual(access?.reviewState, [
+      "verified_with_caveat",
+      "venue_pdf_visual_review",
+    ]);
+    assert.match(access?.travelTimeLabel ?? "", /別区間表示/u);
+    assert.match(access?.caution ?? "", /通し所要ではなく.*単純合算しません/u);
+    assert.match(access?.caution ?? "", /使用階・室.*未公表/u);
+    assert.match(access?.caution ?? "", /通常開館時間.*9:00/u);
+    assert.match(access?.caution ?? "", /積雪・凍結/u);
+  }
+  const comfortHotelToyamaStation = jichiToyamaHotels.find(
+    (hotel) => hotel.hotelId === "comfort-hotel-toyama-station",
+  );
+  for (const key of ["wifi", "desk", "coin_laundry", "breakfast", "humidifier"]) {
+    assert.ok(
+      comfortHotelToyamaStation?.amenities.some((item) => item.key === key),
+      `コンフォートホテル富山駅前に ${key} がありません`,
+    );
+  }
+  assert.match(comfortHotelToyamaStation?.note ?? "", /18歳未満.*親権者同意書/u);
+  const daiwaRoynetToyamaStation = jichiToyamaHotels.find(
+    (hotel) => hotel.hotelId === "daiwa-roynet-hotel-toyama-station",
+  );
+  for (const key of ["wifi", "desk", "coin_laundry", "breakfast"]) {
+    assert.ok(
+      daiwaRoynetToyamaStation?.amenities.some((item) => item.key === key),
+      `ダイワロイネットホテル富山駅前に ${key} がありません`,
+    );
+  }
+  assert.match(daiwaRoynetToyamaStation?.note ?? "", /バリューツインを避け/u);
+  assert.match(daiwaRoynetToyamaStation?.note ?? "", /未成年者だけ.*宿泊同意書/u);
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
   assert.equal(dataset.definitions.examParts.written, "学力試験");
   assert.equal(dataset.definitions.venueLinkRoles.overflow, "定員状況等による代替会場");
