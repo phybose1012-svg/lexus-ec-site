@@ -408,7 +408,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 53);
+  assert.equal(dataset.hotels.length, 55);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -762,6 +762,39 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
       hotel.venueAccess.some(
         (access) => access.venueId === "venue-tohoku-med-pharm-komatsushima-campus",
       ),
+    ).length,
+    2,
+  );
+  const iwateYahabaVenue = dataset.venues.find(
+    (venue) => venue.venueId === "venue-iwate-medical-yahaba-campus",
+  );
+  assert.equal(iwateYahabaVenue?.address, "岩手県紫波郡矢巾町医大通1-1-1");
+  for (const hotelId of ["hotel-route-inn-yahaba", "super-hotel-yahaba-station-east"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-iwate-medical-yahaba-campus",
+    );
+    assert.ok(access, `${hotelId} が岩手医科大学 矢巾キャンパスに結合されていません`);
+    assert.equal(access.measurementBasis, "route_only");
+    assert.equal(access.transferCount, 0);
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  assert.ok(
+    dataset.hotels
+      .find((hotel) => hotel.hotelId === "hotel-route-inn-yahaba")
+      ?.venueAccess[0]?.reviewState.includes("needs_route_review"),
+  );
+  assert.equal(
+    dataset.hotels
+      .find((hotel) => hotel.hotelId === "super-hotel-yahaba-station-east")
+      ?.amenities.some((item) => item.key === "desk"),
+    false,
+  );
+  assert.equal(
+    dataset.hotels.filter((hotel) =>
+      hotel.venueAccess.some((access) => access.venueId === "venue-iwate-medical-yahaba-campus"),
     ).length,
     2,
   );

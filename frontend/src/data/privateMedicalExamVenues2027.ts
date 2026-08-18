@@ -737,7 +737,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     name: "岩手医科大学 矢巾キャンパス",
     shortName: "岩手医科大学 矢巾キャンパス",
     postalCode: "028-3694",
-    address: "岩手県紫波郡矢巾町医大通2-1-1",
+    address: "岩手県紫波郡矢巾町医大通1-1-1",
     prefecture: "岩手県",
     municipality: "紫波郡矢巾町",
     nearestStations: ["JR東北本線 矢幅駅"],
@@ -1835,28 +1835,30 @@ const areaVenuePlan = (
   });
 
 const iwateVenueUrl = "https://www.imu-admission.jp/guidelines/gl_gaiyou/";
-areaVenuePlan(
-  ["iwate-medical--general--general"],
-  "first",
-  "岩手医科大学 矢巾キャンパス・東京・大阪・札幌・名古屋・福岡",
-  ["岩手県", "東京都", "大阪府", "北海道", "愛知県", "福岡県"],
-  ["applicant_preference"],
-  iwateVenueUrl,
-  "一般選抜概要・FAQ「試験地」",
-  "矢巾キャンパス以外は都市までの公表です。希望する試験地を選択できますが、学外施設名は後続の公式資料で確認してください。",
-  [link("venue-iwate-medical-yahaba-campus", "choice")],
-);
-areaVenuePlan(
-  ["iwate-medical--general--general"],
-  "second",
-  "岩手医科大学 矢巾キャンパス・東京・大阪",
-  ["岩手県", "東京都", "大阪府"],
-  ["applicant_preference"],
-  iwateVenueUrl,
-  "一般選抜概要・FAQ「二次試験 試験地」",
-  "希望する試験日・試験地を選択できます。矢巾キャンパス以外の正式施設は未公表です。",
-  [link("venue-iwate-medical-yahaba-campus", "choice")],
-);
+officialVenuePlan(["iwate-medical--general--general"], "first", {
+  venueLinks: [link("venue-iwate-medical-yahaba-campus", "choice")],
+  announcedPrefectures: ["岩手県", "東京都", "大阪府", "北海道", "愛知県", "福岡県"],
+  announcedVenueText: "岩手医科大学 矢巾キャンパス・東京・大阪・札幌・名古屋・福岡",
+  publicationState: "confirmed",
+  conditions: ["applicant_preference"],
+  officialAdmissionUrl: iwateVenueUrl,
+  evidenceLabel: "大学公式2027年度入試概要・FAQ",
+  evidenceLocator: "医学部 一般選抜一次「試験会場」・FAQ「希望の会場で受験できるか」",
+  reviewState: "verified",
+  note: "矢巾キャンパスは正式会場として公表済みです。東京・大阪・札幌・名古屋・福岡は都市までの公表で、学外施設名は後続の公式資料で確認してください。",
+});
+officialVenuePlan(["iwate-medical--general--general"], "second", {
+  venueLinks: [link("venue-iwate-medical-yahaba-campus", "choice")],
+  announcedPrefectures: ["岩手県", "東京都", "大阪府"],
+  announcedVenueText: "岩手医科大学 矢巾キャンパス・東京・大阪",
+  publicationState: "confirmed",
+  conditions: ["applicant_preference"],
+  officialAdmissionUrl: iwateVenueUrl,
+  evidenceLabel: "大学公式2027年度入試概要・FAQ",
+  evidenceLocator: "医学部 一般選抜二次「試験会場」・FAQ「二次試験の受験日・試験地」",
+  reviewState: "verified",
+  note: "矢巾キャンパスは正式会場として公表済みです。東京・大阪の正式施設と、二次試験の会場選択・指定方法は学生募集要項で確認してください。",
+});
 
 const tohokuVenueUrl = "https://www.tohoku-mpu.ac.jp/admission/medicine-venue/";
 officialVenuePlan(["tohoku-med-pharm--general--general"], "first", {
