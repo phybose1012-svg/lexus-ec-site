@@ -118,6 +118,7 @@ const JICHI_HOKKAIDO_TKP_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_HOKKAIDO_KADERU_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_AOMORI_NEWS_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_IWATE_ESPOIR_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_MIYAGI_JICHIKAIKAN_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -4662,5 +4663,85 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: JICHI_IWATE_ESPOIR_VERIFIED_AT,
     note: "大通1丁目にある全194室の設備重視のビジネスホテルです。ワイドデスクと240ルクスの室内照明、無料Wi-Fi、5階の24時間コインランドリー、6:30開始の朝食、加湿機能付空気清浄機を施設公式で確認しています。盛岡駅へ戻らず会場へ直接徒歩で向かえるため、冬季も鉄道・バスの待ち時間を避けられます。ダイワロイネットホテル盛岡固有の18歳未満単独宿泊条件・同意書は公式ページで確認できないため、予約前にホテルへ問い合わせてください。同名の『ダイワロイネットホテル盛岡駅前』と取り違えないでください。",
+  },
+  {
+    hotelId: "hotel-green-selec-sendai",
+    name: "ホテルグリーンセレク",
+    postalCode: "980-0014",
+    address: "宮城県仙台市青葉区本町2丁目9-14",
+    prefecture: "宮城県",
+    municipality: "仙台市青葉区",
+    officialUrl: "https://www.bh-green.co.jp/selec/",
+    officialBookingUrl: "https://www.bh-green.co.jp/selec/",
+    nearestStation: "仙台市営地下鉄南北線 勾当台公園駅・広瀬通駅",
+    venueAccess: [
+      {
+        venueId: "venue-jichi-first-miyagi-jichikaikan",
+        modes: ["walk"],
+        routeSummary: "ホテルグリーンセレクから、ホテルと会場の公式住所を照合した地上の公道を直接徒歩で宮城県自治会館へ向かいます。到着後は受験票、宮城県から交付される案内、当日掲示に従って指定された受付・試験室へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: JICHI_MIYAGI_JICHIKAIKAN_VERIFIED_AT,
+        caution: "ホテル公式住所（仙台市青葉区本町2丁目9-14）と会場公式住所（同区上杉1丁目2番3号）を地図上で照合し、駅を経由しない徒歩経路が成立することを確認したものです。ホテルから指定試験室までの公式推奨経路・公式徒歩分数ではないため、通し所要は掲載しません。宮城県から出願する受験者の学力試験は2027年1月25日（月）、受付8:20〜8:40、試験9:00〜14:10です。翌1月26日（火）の面接は学力試験及第者だけが対象で、受付9:00〜9:20、10:00〜16:00のうち宮城県が指定する時間に行われます。試験の使用階・室、受付位置、受験生入口は未公表です。宮城県市長会の通常受付時間を試験の開場時刻に転用せず、積雪・凍結を見込み、受験票、宮城県から交付される案内、当日掲示を確認してください。",
+        evidenceUrls: [
+          "https://www.bh-green.co.jp/selec/",
+          "https://miyagi-mayors.jp/access/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E5%AE%AE%E5%9F%8E%E7%9C%8C%E4%BB%99%E5%8F%B0%E5%B8%82%E9%9D%92%E8%91%89%E5%8C%BA%E6%9C%AC%E7%94%BA2-9-14&destination=%E5%AE%AE%E5%9F%8E%E7%9C%8C%E4%BB%99%E5%8F%B0%E5%B8%82%E9%9D%92%E8%91%89%E5%8C%BA%E4%B8%8A%E6%9D%891-2-3&travelmode=walking",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全館無料Wi-Fi", "館内で無料Wi-Fiを利用でき、客室は有線LANにも対応しています。", "https://www.bh-green.co.jp/selec/"),
+      amenity("coin_laundry", "予約制ランドリー", "乾燥機付きランドリーを予約制で利用できます。", "https://www.bh-green.co.jp/selec/"),
+      amenity("breakfast", "朝食7:00〜", "朝食は7:00〜10:00で、最終入店は9:30です。", "https://www.bh-green.co.jp/info/houseguide_selec.htm"),
+      amenity("desk_lamp", "電気スタンド貸出", "電気スタンドを数量限定で貸し出しています。", "https://www.bh-green.co.jp/info/houseguide_selec.htm"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: JICHI_MIYAGI_JICHIKAIKAN_VERIFIED_AT,
+    note: "仙台の地場運営会社が展開する地域系ビジネスホテルです。全館無料Wi-Fi、予約制の乾燥機付きランドリー、7:00開始の朝食、貸出電気スタンドを公式確認しています。18歳未満の方だけで泊まる場合は全員分の親権者同意書をチェックイン前日までに予約したホテルへ送り、内容確認を受けてください。椅子で使える客室机は公式本文で確認できないため、学習机が必要な場合は予約前にホテルへ確認してください。試験朝は鉄道・バスを使わず会場へ直接徒歩で向かえます。",
+  },
+  {
+    hotelId: "mitsui-garden-hotel-sendai",
+    name: "三井ガーデンホテル仙台",
+    postalCode: "980-0014",
+    address: "宮城県仙台市青葉区本町2丁目4-6",
+    prefecture: "宮城県",
+    municipality: "仙台市青葉区",
+    officialUrl: "https://www.gardenhotels.co.jp/sendai/",
+    officialBookingUrl: "https://www.gardenhotels.co.jp/sendai/",
+    nearestStation: "仙台市営地下鉄南北線 広瀬通駅",
+    venueAccess: [
+      {
+        venueId: "venue-jichi-first-miyagi-jichikaikan",
+        modes: ["walk"],
+        routeSummary: "三井ガーデンホテル仙台から、ホテルと会場の公式住所を照合した地上の公道を直接徒歩で宮城県自治会館へ向かいます。到着後は受験票、宮城県から交付される案内、当日掲示に従って指定された受付・試験室へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: JICHI_MIYAGI_JICHIKAIKAN_VERIFIED_AT,
+        caution: "ホテル公式住所（仙台市青葉区本町2丁目4-6）と会場公式住所（同区上杉1丁目2番3号）を地図上で照合し、駅を経由しない徒歩経路が成立することを確認したものです。ホテルから指定試験室までの公式推奨経路・公式徒歩分数ではないため、通し所要は掲載しません。宮城県から出願する受験者の学力試験は2027年1月25日（月）、受付8:20〜8:40、試験9:00〜14:10です。翌1月26日（火）の面接は学力試験及第者だけが対象で、受付9:00〜9:20、10:00〜16:00のうち宮城県が指定する時間に行われます。試験の使用階・室、受付位置、受験生入口は未公表です。宮城県市長会の通常受付時間を試験の開場時刻に転用せず、積雪・凍結を見込み、受験票、宮城県から交付される案内、当日掲示を確認してください。",
+        evidenceUrls: [
+          "https://www.gardenhotels.co.jp/sendai/",
+          "https://miyagi-mayors.jp/access/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E5%AE%AE%E5%9F%8E%E7%9C%8C%E4%BB%99%E5%8F%B0%E5%B8%82%E9%9D%92%E8%91%89%E5%8C%BA%E6%9C%AC%E7%94%BA2-4-6&destination=%E5%AE%AE%E5%9F%8E%E7%9C%8C%E4%BB%99%E5%8F%B0%E5%B8%82%E9%9D%92%E8%91%89%E5%8C%BA%E4%B8%8A%E6%9D%891-2-3&travelmode=walking",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全室無料Wi-Fi", "全客室で無料Wi-Fiを利用できます。", "https://www.gardenhotels.co.jp/sendai/room/"),
+      amenity("desk", "スタンダードダブルのライティングデスク", "スタンダードダブルには大きめのライティングデスクがあります。机を重視する場合はこの客室タイプを指定してください。", "https://www.gardenhotels.co.jp/brochure/sendai/sendai.pdf"),
+      amenity("coin_laundry", "18階コインランドリー", "18階に宿泊者用コインランドリーがあります。", "https://www.gardenhotels.co.jp/sendai/room/"),
+      amenity("breakfast", "朝食6:30〜", "和洋ビュッフェの朝食は6:30〜10:00で、最終入店は9:30です。", "https://www.gardenhotels.co.jp/sendai/breakfast/"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: JICHI_MIYAGI_JICHIKAIKAN_VERIFIED_AT,
+    note: "本町2丁目にある設備重視のホテルです。スタンダードダブルの大きめのライティングデスク、全室無料Wi-Fi、18階コインランドリー、6:30開始の朝食を公式確認しています。机のない客室タイプもあるため、学習机を重視する場合はスタンダードダブルを指定してください。15〜17歳だけで宿泊する場合は親権者同意書を準備し、15歳未満の単独宿泊可否は予約前にホテルへ確認してください。試験朝は鉄道・バスを使わず会場へ直接徒歩で向かえます。",
   },
 ];
