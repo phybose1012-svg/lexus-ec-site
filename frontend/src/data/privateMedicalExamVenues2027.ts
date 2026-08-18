@@ -2351,21 +2351,28 @@ officialVenuePlan(["aichi-medical--general--general"], "first", {
   reviewState: "verified",
   note: "出願時に試験会場を選択し、検定料支払後は変更できません。",
 });
-officialVenuePlan(
-  ["aichi-medical--general--general", "aichi-medical--common--common-test", "aichi-medical--common--common-test-regional-quota"],
-  "second",
-  {
-    venueLinks: [link("venue-aichi-medical-main-building")],
-    announcedVenueText: "愛知医科大学 1号館（大学本館）",
-    publicationState: "confirmed",
-    conditions: ["fixed", "applicant_preference"],
-    officialAdmissionUrl: aichiVenueUrl,
-    evidenceLabel: "2027年度医学部学生募集要項（7月31日訂正版）",
-    evidenceLocator: "PDF 11・25ページ",
-    reviewState: "verified",
-    note: "一般・共通テスト利用は出願時に希望日を選択します。地域特別枠B方式は指定日です。会場は1号館で固定です。",
-  },
-);
+officialVenuePlan(["aichi-medical--general--general", "aichi-medical--common--common-test"], "second", {
+  venueLinks: [link("venue-aichi-medical-main-building")],
+  announcedVenueText: "愛知医科大学 1号館（大学本館）",
+  publicationState: "confirmed",
+  conditions: ["fixed", "applicant_preference", "university_assigned"],
+  officialAdmissionUrl: aichiVenueUrl,
+  evidenceLabel: "2027年度医学部学生募集要項（7月31日訂正版）",
+  evidenceLocator: "PDF 11・25ページ",
+  reviewState: "verified",
+  note: "2027年2月18日・19日・20日から出願時に希望日を1日選び、出願後は変更できません。午前・午後の部は大学がPost@netで通知します。会場は1号館で固定です。",
+});
+officialVenuePlan(["aichi-medical--common--common-test-regional-quota"], "second", {
+  venueLinks: [link("venue-aichi-medical-main-building")],
+  announcedVenueText: "愛知医科大学 1号館（大学本館）",
+  publicationState: "confirmed",
+  conditions: ["fixed"],
+  officialAdmissionUrl: aichiVenueUrl,
+  evidenceLabel: "2027年度医学部学生募集要項（7月31日訂正版）",
+  evidenceLocator: "PDF 11・25ページ",
+  reviewState: "verified",
+  note: "愛知県地域特別枠B方式の第2次は2027年3月10日で、受付8:30〜8:45、面接9:00開始です。会場は1号館で固定です。",
+});
 
 const fujitaVenueUrl = "https://www.fujita-hu.ac.jp/admission/exam-med/dubv6r0000001ec6-att/j93sdv000000ub7u.pdf";
 areaVenuePlan(
@@ -2707,7 +2714,7 @@ refineAssignmentPlan(["kanazawa-medical--general--general-early"], "second", {
 refineAssignmentPlan(
   ["aichi-medical--general--general", "aichi-medical--common--common-test"],
   "second",
-  { conditions: ["fixed", "applicant_preference"] },
+  { conditions: ["fixed", "applicant_preference", "university_assigned"] },
 );
 refineAssignmentPlan(["aichi-medical--common--common-test-regional-quota"], "second", {
   conditions: ["fixed"],
