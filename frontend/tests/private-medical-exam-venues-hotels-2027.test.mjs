@@ -140,6 +140,9 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
     } else if (venue.venueId === "venue-jichi-first-miyagi-jichikaikan") {
       assert.deepEqual(venue.nearestStations, ["仙台市営地下鉄南北線 勾当台公園駅"]);
       assert.match(venue.officialUrlLabel ?? "", /公式アクセス/u);
+    } else if (venue.venueId === "venue-jichi-first-akita-ja-building") {
+      assert.deepEqual(venue.nearestStations, ["JR奥羽本線・秋田新幹線 秋田駅"]);
+      assert.match(venue.officialUrlLabel ?? "", /公式アクセス/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -530,7 +533,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 110);
+  assert.equal(dataset.hotels.length, 112);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -2027,6 +2030,67 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
       .find((hotel) => hotel.hotelId === "mitsui-garden-hotel-sendai")
       ?.amenities.some((item) => item.key === "desk"),
   );
+  const jichiAkitaVenue = dataset.venues.find(
+    (venue) => venue.venueId === "venue-jichi-first-akita-ja-building",
+  );
+  assert.equal(jichiAkitaVenue?.officialUrl, "https://www.akita-jab.co.jp/access/");
+  assert.match(jichiAkitaVenue?.address ?? "", /八橋南二丁目10番16号/u);
+  assert.match(jichiAkitaVenue?.accessNote ?? "", /1月25日/u);
+  assert.match(jichiAkitaVenue?.accessNote ?? "", /1月26日/u);
+  assert.match(jichiAkitaVenue?.accessNote ?? "", /8:20〜8:40/u);
+  assert.match(jichiAkitaVenue?.accessNote ?? "", /9:00〜9:20/u);
+  assert.match(jichiAkitaVenue?.accessNote ?? "", /山王交番前/u);
+  assert.match(jichiAkitaVenue?.accessNote ?? "", /階・室/u);
+  const jichiAkitaLinks = dataset.assignments.flatMap((assignment) =>
+    assignment.venueLinks.filter(
+      (link) => link.venueId === "venue-jichi-first-akita-ja-building",
+    ),
+  );
+  assert.equal(jichiAkitaLinks.length, 2);
+  assert.deepEqual(
+    jichiAkitaLinks.map((link) => [link.applicantPrefecture, link.examPart, link.examDate]),
+    [
+      ["秋田県", "written", "2027-01-25"],
+      ["秋田県", "interview", "2027-01-26"],
+    ],
+  );
+  const jichiAkitaHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-jichi-first-akita-ja-building",
+    ),
+  );
+  assert.deepEqual(
+    jichiAkitaHotels.map((hotel) => hotel.name),
+    ["ホテルアルファイン秋田", "コンフォートホテル秋田"],
+  );
+  for (const hotel of jichiAkitaHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-akita-ja-building",
+    );
+    assert.equal(access?.transferCount, 0);
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.equal(access?.reviewState.includes("venue_pdf_visual_review"), false);
+    assert.match(access?.caution ?? "", /8:20〜8:40/u);
+    assert.match(access?.caution ?? "", /9:00〜9:20/u);
+    assert.match(access?.caution ?? "", /積雪/u);
+    assert.ok(hotel.amenities.some((item) => item.key === "wifi"));
+    assert.ok(hotel.amenities.some((item) => item.key === "desk"));
+    assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
+    assert.ok(hotel.amenities.some((item) => item.key === "breakfast"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  const alphaInnAccess = jichiAkitaHotels
+    .find((hotel) => hotel.hotelId === "hotel-alpha-inn-akita")
+    ?.venueAccess.find((access) => access.venueId === "venue-jichi-first-akita-ja-building");
+  assert.deepEqual(alphaInnAccess?.modes, ["walk"]);
+  assert.equal(alphaInnAccess?.measurementBasis, "map_route_checked");
+  assert.equal(alphaInnAccess?.travelTimeLabel, undefined);
+  const comfortAkitaAccess = jichiAkitaHotels
+    .find((hotel) => hotel.hotelId === "comfort-hotel-akita")
+    ?.venueAccess.find((access) => access.venueId === "venue-jichi-first-akita-ja-building");
+  assert.deepEqual(comfortAkitaAccess?.modes, ["walk", "bus"]);
+  assert.equal(comfortAkitaAccess?.measurementBasis, "route_only");
+  assert.match(comfortAkitaAccess?.travelTimeLabel ?? "", /別区間表示/u);
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
   assert.equal(dataset.definitions.examParts.written, "学力試験");
   assert.equal(dataset.definitions.venueLinkRoles.overflow, "定員状況等による代替会場");
