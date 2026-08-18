@@ -408,7 +408,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 41);
+  assert.equal(dataset.hotels.length, 43);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -558,6 +558,40 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
       .find((hotel) => hotel.hotelId === "hotel-livemax-budget-nippori")
       ?.amenities.some((item) => item.key === "desk"),
     false,
+  );
+  for (const hotelId of [
+    "big-i-international-communication-center",
+    "daiwa-roynet-hotel-sakaihigashi",
+  ]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-kindai-osaka-medical-campus",
+    );
+    assert.ok(access, `${hotelId} が近畿大学 おおさかメディカルキャンパスに結合されていません`);
+    assert.equal(access.measurementBasis, "route_only");
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  const bigIAccess = dataset.hotels
+    .find((hotel) => hotel.hotelId === "big-i-international-communication-center")
+    ?.venueAccess.find((access) => access.venueId === "venue-kindai-osaka-medical-campus");
+  assert.equal(bigIAccess?.transferCount, 0);
+  assert.ok(bigIAccess?.reviewState.includes("needs_route_review"));
+  const sakaihigashiAccess = dataset.hotels
+    .find((hotel) => hotel.hotelId === "daiwa-roynet-hotel-sakaihigashi")
+    ?.venueAccess.find((access) => access.venueId === "venue-kindai-osaka-medical-campus");
+  assert.equal(sakaihigashiAccess?.transferCount, 1);
+  const kindaiVenue = dataset.venues.find(
+    (venue) => venue.venueId === "venue-kindai-osaka-medical-campus",
+  );
+  assert.equal(kindaiVenue?.postalCode, "590-0197");
+  assert.equal(kindaiVenue?.address, "大阪府堺市南区三原台1丁14番1号");
+  assert.ok(
+    dataset.hotels
+      .find((hotel) => hotel.hotelId === "daiwa-roynet-hotel-sakaihigashi")
+      ?.amenities.some((item) => item.key === "desk"),
   );
   assert.ok(
     dataset.hotels
