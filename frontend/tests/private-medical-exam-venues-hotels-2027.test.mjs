@@ -158,6 +158,12 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
     } else if (venue.venueId === "venue-jichi-first-ibaraki-meeting-1101") {
       assert.deepEqual(venue.nearestStations, ["JR常磐線・水郡線 水戸駅"]);
       assert.match(venue.officialUrlLabel ?? "", /公式フロア案内/u);
+    } else if (venue.venueId === "venue-jichi-first-tochigi-prefectural-office") {
+      assert.deepEqual(venue.nearestStations, [
+        "JR宇都宮線・東北新幹線 宇都宮駅",
+        "東武宇都宮線 東武宇都宮駅",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式アクセス/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -548,7 +554,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 118);
+  assert.equal(dataset.hotels.length, 120);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -2413,6 +2419,85 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.match(access?.caution ?? "", /9:00〜9:20/u);
     assert.match(access?.caution ?? "", /11階1101共用会議室/u);
     assert.match(access?.caution ?? "", /9階講堂/u);
+  }
+  const jichiTochigiOffice = dataset.venues.find(
+    (venue) => venue.venueId === "venue-jichi-first-tochigi-prefectural-office",
+  );
+  assert.equal(
+    jichiTochigiOffice?.officialUrl,
+    "https://www.pref.tochigi.lg.jp/b06/system/gaido/annai/access.html",
+  );
+  assert.match(jichiTochigiOffice?.address ?? "", /塙田1丁目1番20号/u);
+  assert.match(jichiTochigiOffice?.accessNote ?? "", /1月25日.*学力試験/u);
+  assert.match(jichiTochigiOffice?.accessNote ?? "", /1月26日.*面接/u);
+  assert.match(jichiTochigiOffice?.accessNote ?? "", /本館、東館、北別館、研修館/u);
+  assert.match(jichiTochigiOffice?.accessNote ?? "", /試験で使う棟・階・室.*未公表/u);
+  const jichiTochigiOfficeLinks = dataset.assignments.flatMap((assignment) =>
+    assignment.venueLinks.filter(
+      (link) => link.venueId === "venue-jichi-first-tochigi-prefectural-office",
+    ),
+  );
+  assert.deepEqual(
+    jichiTochigiOfficeLinks.map((link) => [
+      link.applicantPrefecture,
+      link.examPart,
+      link.examDate,
+    ]),
+    [
+      ["栃木県", "written", "2027-01-25"],
+      ["栃木県", "interview", "2027-01-26"],
+    ],
+  );
+  const jichiTochigiOfficeHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-jichi-first-tochigi-prefectural-office",
+    ),
+  );
+  assert.deepEqual(
+    jichiTochigiOfficeHotels.map((hotel) => hotel.name),
+    ["ホテル・ザ・セントレ宇都宮", "リッチモンドホテル宇都宮駅前"],
+  );
+  const theCentre = jichiTochigiOfficeHotels.find(
+    (hotel) => hotel.hotelId === "hotel-the-centre-utsunomiya",
+  );
+  const theCentreAccess = theCentre?.venueAccess.find(
+    (entry) => entry.venueId === "venue-jichi-first-tochigi-prefectural-office",
+  );
+  assert.deepEqual(theCentreAccess?.modes, ["walk"]);
+  assert.equal(theCentreAccess?.transferCount, 0);
+  assert.equal(theCentreAccess?.measurementBasis, "official");
+  assert.deepEqual(theCentreAccess?.reviewState, ["official_direct"]);
+  assert.match(theCentreAccess?.travelTimeLabel ?? "", /公式徒歩約2分/u);
+  assert.match(theCentreAccess?.caution ?? "", /8:20〜8:40/u);
+  assert.match(theCentreAccess?.caution ?? "", /9:00〜9:20/u);
+  assert.match(theCentreAccess?.caution ?? "", /使用棟・階・室.*未公表/u);
+  assert.equal(theCentre?.amenities.some((item) => item.key === "desk"), false);
+  assert.ok(theCentre?.amenities.some((item) => item.key === "wifi"));
+  assert.ok(theCentre?.amenities.some((item) => item.key === "coin_laundry"));
+  assert.ok(theCentre?.amenities.some((item) => item.key === "breakfast"));
+  const richmondUtsunomiya = jichiTochigiOfficeHotels.find(
+    (hotel) => hotel.hotelId === "richmond-hotel-utsunomiya-ekimae",
+  );
+  const richmondUtsunomiyaAccess = richmondUtsunomiya?.venueAccess.find(
+    (entry) => entry.venueId === "venue-jichi-first-tochigi-prefectural-office",
+  );
+  assert.deepEqual(richmondUtsunomiyaAccess?.modes, ["walk", "bus"]);
+  assert.equal(richmondUtsunomiyaAccess?.transferCount, 0);
+  assert.equal(richmondUtsunomiyaAccess?.measurementBasis, "route_only");
+  assert.ok(richmondUtsunomiyaAccess?.reviewState.includes("verified_with_caveat"));
+  assert.equal(
+    richmondUtsunomiyaAccess?.reviewState.includes("venue_pdf_visual_review"),
+    false,
+  );
+  assert.match(richmondUtsunomiyaAccess?.travelTimeLabel ?? "", /下車後徒歩5分/u);
+  assert.match(richmondUtsunomiyaAccess?.travelTimeLabel ?? "", /別区間表示/u);
+  assert.match(richmondUtsunomiyaAccess?.caution ?? "", /2027年1月25日・26日/u);
+  assert.match(richmondUtsunomiyaAccess?.caution ?? "", /使用棟・階・室.*未公表/u);
+  for (const key of ["wifi", "desk", "coin_laundry", "breakfast", "humidifier"]) {
+    assert.ok(
+      richmondUtsunomiya?.amenities.some((item) => item.key === key),
+      `リッチモンドホテル宇都宮駅前に ${key} がありません`,
+    );
   }
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
   assert.equal(dataset.definitions.examParts.written, "学力試験");
