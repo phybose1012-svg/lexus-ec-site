@@ -811,7 +811,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "千葉県",
     municipality: "成田市",
     nearestStations: ["京成本線 公津の杜駅"],
-    officialUrl: "https://narita.iuhw.ac.jp/access/",
+    officialUrl: "https://narita.iuhw.ac.jp/about/map/index.html",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
