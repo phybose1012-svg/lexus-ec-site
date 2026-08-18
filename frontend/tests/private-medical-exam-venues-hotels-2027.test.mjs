@@ -293,6 +293,12 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
   );
   assert.match(twmuYayoi?.accessNote ?? "", /若松河田駅若松口から徒歩5分/u);
   assert.match(twmuYayoi?.accessNote ?? "", /下見と写真撮影/u);
+  const tohoOmori = privateMedicalExamVenues2027.find(
+    (venue) => venue.venueId === "venue-toho-omori-campus",
+  );
+  assert.equal(tohoOmori?.officialUrl, "https://www.toho-u.ac.jp/accessmap/omori_campus.html");
+  assert.match(tohoOmori?.accessNote ?? "", /梅屋敷駅から徒歩約8分/u);
+  assert.match(tohoOmori?.accessNote ?? "", /使用棟・階・試験室/u);
   const tkpShinosaka = privateMedicalExamVenues2027.find(
     (venue) => venue.venueId === "venue-tkp-shinosaka-conference-center",
   );
@@ -312,6 +318,14 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
     /2027年度学生募集要項/u,
   );
   assert.deepEqual(assignmentFor("toho--general--general", "second")?.conditions, ["fixed"]);
+  assert.match(
+    assignmentFor("toho--general--general", "second")?.note ?? "",
+    /学生募集要項は作成中/u,
+  );
+  assert.match(
+    assignmentFor("toho--general--unified", "second")?.note ?? "",
+    /2027年3月3日/u,
+  );
   assert.deepEqual(
     assignmentFor("fujita--general--general-regional-quota-17148", "second")?.conditions,
     ["fixed"],
@@ -482,7 +496,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 90);
+  assert.equal(dataset.hotels.length, 92);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -1369,6 +1383,34 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(access?.reviewState.includes("verified_with_caveat"));
     assert.ok(access?.reviewState.includes("venue_pdf_visual_review"));
     assert.ok(hotel.amenities.some((item) => item.key === "wifi"));
+    assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
+    assert.ok(hotel.amenities.some((item) => item.key === "breakfast"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  const tohoOmoriHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some((access) => access.venueId === "venue-toho-omori-campus"),
+  );
+  assert.deepEqual(
+    tohoOmoriHotels.map((hotel) => hotel.name),
+    ["京急 EXイン 京急蒲田駅前", "グランパークホテル パネックス東京"],
+  );
+  const keikyuExInnKamata = tohoOmoriHotels.find(
+    (hotel) => hotel.hotelId === "keikyu-ex-inn-keikyu-kamata-ekimae",
+  );
+  const grandParkPanexTokyo = tohoOmoriHotels.find(
+    (hotel) => hotel.hotelId === "grand-park-hotel-panex-tokyo",
+  );
+  assert.deepEqual(keikyuExInnKamata?.venueAccess[0]?.modes, ["walk", "rail"]);
+  assert.deepEqual(grandParkPanexTokyo?.venueAccess[0]?.modes, ["walk", "bus"]);
+  for (const hotel of tohoOmoriHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-toho-omori-campus",
+    );
+    assert.equal(access?.transferCount, 0);
+    assert.equal(access?.measurementBasis, "route_only");
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.ok(hotel.amenities.some((item) => item.key === "wifi"));
+    assert.ok(hotel.amenities.some((item) => item.key === "desk"));
     assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
     assert.ok(hotel.amenities.some((item) => item.key === "breakfast"));
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);

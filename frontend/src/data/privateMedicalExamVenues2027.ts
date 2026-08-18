@@ -955,10 +955,11 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     address: "東京都大田区大森西5-21-16",
     prefecture: "東京都",
     municipality: "大田区",
-    nearestStations: ["京急本線 梅屋敷駅"],
-    officialUrl: "https://www.toho-u.ac.jp/accessmap/",
+    nearestStations: ["京急本線 梅屋敷駅", "京急本線 大森町駅", "JR京浜東北線 蒲田駅から路線バス"],
+    officialUrl: "https://www.toho-u.ac.jp/accessmap/omori_campus.html",
+    accessNote: "大学公式は京急本線 梅屋敷駅から徒歩約8分、大森町駅から徒歩約10分と案内しています。JR蒲田駅東口からは2番のりばの大森駅行きバスで約4分、『東邦大学』下車後徒歩約2分です。2027年度医学部一般入試二次は2月15日・16日のいずれか1日、統一入試二次は3月3日に大森キャンパスで実施されますが、一般入試二次の日付決定方法、集合・入場時刻、使用棟・階・試験室・受付位置・受験生入口は現時点で未公表です。附属病院の入口や通常のキャンパスマップ上の門を試験入口とみなさず、後日公開される学生募集要項、受験票、一次試験合格者向け案内、当日掲示を確認してください。",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: "2026-08-19T00:00:00+09:00",
   },
   {
     venueId: "venue-nihon-medical-school-building",
@@ -2116,14 +2117,27 @@ officialVenuePlan(["toho--general--unified"], "first", {
   reviewState: "verified",
   note: "公式入試概要で五反田TOCビルまで確定しています。使用フロア・入口は受験票で確認してください。",
 });
-officialVenuePlan(["toho--general--general", "toho--general--unified"], "second", {
+officialVenuePlan(["toho--general--general"], "second", {
   venueLinks: [link("venue-toho-omori-campus")],
   announcedVenueText: "東邦大学 大森キャンパス",
   publicationState: "confirmed",
   conditions: ["fixed"],
-  evidenceLabel: "大学公式2027年度入試概要",
-  evidenceLocator: "各方式公式ページ「試験会場」",
+  officialAdmissionUrl: "https://www.toho-u.ac.jp/med/info_exam/ippan.html",
+  evidenceLabel: "大学公式2027年度一般入試概要",
+  evidenceLocator: "公式ページ「試験日」「試験場」",
   reviewState: "verified",
+  note: "2027年2月15日・16日のいずれか1日に大森キャンパスで実施されます。現時点の公式入試概要は、受験者ごとの日付決定方法、集合・入場時刻、使用棟・階・試験室・受付位置・受験生入口を公表していません。医学部の2027年度学生募集要項は作成中のため、公開後の要項、受験票、一次試験合格者向け案内、当日掲示で確認してください。",
+});
+officialVenuePlan(["toho--general--unified"], "second", {
+  venueLinks: [link("venue-toho-omori-campus")],
+  announcedVenueText: "東邦大学 大森キャンパス",
+  publicationState: "confirmed",
+  conditions: ["fixed"],
+  officialAdmissionUrl: "https://www.toho-u.ac.jp/med/info_exam/sum.html",
+  evidenceLabel: "大学公式2027年度統一入試概要",
+  evidenceLocator: "公式ページ「試験日」「試験場」",
+  reviewState: "verified",
+  note: "2027年3月3日に大森キャンパスで実施されます。現時点の公式入試概要は、集合・入場時刻、使用棟・階・試験室・受付位置・受験生入口を公表していません。医学部の2027年度学生募集要項は作成中のため、公開後の要項、受験票、一次試験合格者向け案内、当日掲示で確認してください。",
 });
 
 const nihonVenueUrl = "https://www.nihon-u.ac.jp/admission_info/application/general_information/general/n_system/";
