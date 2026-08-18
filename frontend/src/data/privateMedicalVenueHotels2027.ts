@@ -130,6 +130,7 @@ const JICHI_GUNMA_MEETING_291_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_GUNMA_MEETING_293_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_SAITAMA_EDUCATION_HALL_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_SAITAMA_MEDICAL_EDUCATION_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_CHIBA_NANOHANA_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -5527,5 +5528,85 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: JICHI_SAITAMA_MEDICAL_EDUCATION_VERIFIED_AT,
     note: "JRさいたま新都心駅から公式徒歩1分の設備重視枠です。無料Wi-Fi、6階コインランドリー、6:30開始の朝食、加湿機能付き空気清浄機、デスクスタンドを施設公式で確認しています。一部シングルにはデスクがないため、学習机を重視する場合はデスク付き客室を指定してください。未成年者だけの宿泊可否・必要書類は施設公式サイトで確認できないため、予約前にホテルへ確認してください。",
+  },
+  {
+    hotelId: "hotel-plaza-nanohana",
+    name: "ホテルプラザ菜の花",
+    postalCode: "260-0854",
+    address: "千葉県千葉市中央区長洲1丁目8番1号",
+    prefecture: "千葉県",
+    municipality: "千葉市中央区",
+    officialUrl: "https://www.hotelplaza-nanohana.com/",
+    officialBookingUrl: "https://www.hotelplaza-nanohana.com/",
+    nearestStation: "千葉都市モノレール1号線 県庁前駅",
+    venueAccess: [
+      {
+        venueId: "venue-jichi-first-chiba-plaza-nanohana",
+        modes: ["walk"],
+        routeSummary: "ホテルプラザ菜の花の宿泊客室から、同じ建物内に設けられる自治医科大学の千葉県学力・面接会場へ移動します。受験票、千葉県から交付される試験専用案内、当日掲示で指定された受験生入口、受付、会議室へ進みます。",
+        transferCount: 0,
+        measurementBasis: "official",
+        reviewState: ["official_direct", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_CHIBA_NANOHANA_VERIFIED_AT,
+        caution: "自治医科大学の2027年度募集要項が試験会場として示すホテルプラザ菜の花と、宿泊施設の公式名称・住所が一致するため、鉄道・バスを使わない同一建物内の移動です。ただし客室から試験受付までの公式所要時間、学力・面接それぞれの使用階・会議室、受付位置、受験生入口、待機場所は未公表です。ホテル公式に掲載される大会議室「菜の花」などを入試会場とみなさないでください。2027年1月25日の学力試験は受付8:20〜8:40、翌26日の面接は受付9:00〜9:20で、2日間の案内を取り違えず、ホテルの一般宿泊動線ではなく千葉県の試験専用案内を優先してください。",
+        evidenceUrls: [
+          "https://www.hotelplaza-nanohana.com/",
+          "https://www.hotelplaza-nanohana.com/smart/detail.php?pg=category01",
+          "https://www.hotelplaza-nanohana.com/category02/",
+          "https://www.pref.chiba.lg.jp/jinji/ninyou/goukakuhappyou/documents/r6kaijou-nanohana.pdf",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "客室Wi-Fi", "全客室でWi-Fiを利用できます。", "https://www.hotelplaza-nanohana.com/smart/detail.php?pg=category01"),
+    ],
+    operatingStatus: "official_site_active",
+    operatingStatusEvidenceUrl: "https://www.hotelplaza-nanohana.com/",
+    reviewState: "verified",
+    verifiedAt: JICHI_CHIBA_NANOHANA_VERIFIED_AT,
+    note: "試験会場と同じ建物に泊まるため、試験朝に公共交通機関を使わない最優先枠です。客室Wi-Fiと、未成年者1人または未成年者同士の宿泊時に1人1枚の親権者同意書をチェックイン時に提出する手続きを施設公式で確認しています。客室の常設学習机、館内セルフランドリー、現在の朝食提供は公式サイトで確認できないため、机のある部屋と洗濯方法を予約前に確認し、朝食は前夜までに別途用意してください。",
+  },
+  {
+    hotelId: "daiwa-roynet-hotel-chiba-chuo",
+    name: "ダイワロイネットホテル千葉中央",
+    postalCode: "260-0014",
+    address: "千葉県千葉市中央区本千葉町2番11号",
+    prefecture: "千葉県",
+    municipality: "千葉市中央区",
+    officialUrl: "https://www.daiwaroynet.jp/chiba-chuo/",
+    officialBookingUrl: "https://www.daiwaroynet.jp/chiba-chuo/?tripla_booking_widget_open=search",
+    nearestStation: "京成千葉線・千原線 千葉中央駅東口",
+    venueAccess: [
+      {
+        venueId: "venue-jichi-first-chiba-plaza-nanohana",
+        modes: ["walk"],
+        routeSummary: "ダイワロイネットホテル千葉中央からホテル公式案内を逆向きに京成千葉中央駅東口へ徒歩で進み、千葉県の公的会場図が示す地上徒歩経路でホテルプラザ菜の花へ向かいます。到着後は受験票、千葉県から交付される試験専用案内、当日掲示に従って指定受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―京成千葉中央駅東口はホテル公式徒歩約1分／同駅―ホテルプラザ菜の花は千葉県公的会場図徒歩約15分（信号・指定受付までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_CHIBA_NANOHANA_VERIFIED_AT,
+        caution: "ホテル公式の徒歩約1分は千葉中央駅東口からホテルまでの案内を逆方向に用い、千葉県公的会場図の徒歩約15分は駅からホテルプラザ菜の花までの別区間です。信号待ち、横断、ホテル客室階、指定受付までを含む通し所要として単純合算しません。学力試験は2027年1月25日受付8:20〜8:40、面接は翌26日受付9:00〜9:20です。学力・面接それぞれの使用階・会議室、受付位置、受験生入口、待機場所は未公表で、ホテル公式に掲載される大会議室「菜の花」などを入試会場とみなさず、千葉県から交付される試験専用案内を確認してください。",
+        evidenceUrls: [
+          "https://www.daiwaroynet.jp/chiba-chuo/access/",
+          "https://www.pref.chiba.lg.jp/jinji/ninyou/goukakuhappyou/documents/r6kaijou-nanohana.pdf",
+          "https://www.hotelplaza-nanohana.com/access/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全室無料Wi-Fi", "全客室で無料の無線LANを利用できます。", "https://www.daiwaroynet.jp/chiba-chuo/room/"),
+      amenity("desk", "ワイドデスク", "デスクワークに十分な広さのワイドデスクがあります。", "https://www.daiwaroynet.jp/chiba-chuo/room/"),
+      amenity("desk_lamp", "明るいデスクライト", "デスクワーク向けの明るいデスクライトがあります。", "https://www.daiwaroynet.jp/chiba-chuo/room/"),
+      amenity("coin_laundry", "24時間コインランドリー", "9階・11階の洗剤自動投入式コインランドリーを24時間利用できます。", "https://www.daiwaroynet.jp/chiba-chuo/facilities/"),
+      amenity("breakfast", "朝食6:30〜", "和洋ビュッフェ朝食は6:30〜10:00で、最終入店は9:30です。", "https://www.daiwaroynet.jp/chiba-chuo/breakfast/"),
+    ],
+    operatingStatus: "official_site_active",
+    operatingStatusEvidenceUrl: "https://www.daiwaroynet.jp/chiba-chuo/",
+    reviewState: "verified",
+    verifiedAt: JICHI_CHIBA_NANOHANA_VERIFIED_AT,
+    note: "京成千葉中央駅東口から公式徒歩約1分の設備重視枠です。全室無料Wi-Fi、ワイドデスクと明るいデスクライト、24時間コインランドリー、6:30開始の朝食を施設公式で確認しています。18歳未満だけ、または未成年者同士で宿泊する場合は、宿泊者全員分の施設名入り親権者同意書をチェックイン時に提出してください。試験会場へは鉄道を使わず地上徒歩で向かえますが、2区間の分数を単純合算せず、信号と未公表の試験受付までの時間を加えてください。",
   },
 ];

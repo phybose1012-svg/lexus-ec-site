@@ -189,6 +189,13 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "JR埼京線 北与野駅",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式アクセス・利用時間/u);
+    } else if (venue.venueId === "venue-jichi-first-chiba-plaza-nanohana") {
+      assert.deepEqual(venue.nearestStations, [
+        "千葉都市モノレール1号線 県庁前駅",
+        "JR内房線・外房線 本千葉駅",
+        "京成千葉線・千原線 千葉中央駅",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式アクセス/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -579,7 +586,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 126);
+  assert.equal(dataset.hotels.length, 128);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -2827,6 +2834,94 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   }
   assert.match(hotelMetropolitanShintoshin?.note ?? "", /一部シングルにはデスクがない/u);
   assert.match(hotelMetropolitanShintoshin?.note ?? "", /未成年者.*公式サイトで確認できない/u);
+  const jichiChibaPlazaNanohana = dataset.venues.find(
+    (venue) => venue.venueId === "venue-jichi-first-chiba-plaza-nanohana",
+  );
+  assert.equal(
+    jichiChibaPlazaNanohana?.officialUrl,
+    "https://www.hotelplaza-nanohana.com/access/",
+  );
+  assert.match(jichiChibaPlazaNanohana?.address ?? "", /長洲1丁目8番1号/u);
+  assert.match(jichiChibaPlazaNanohana?.accessNote ?? "", /県庁前駅.*徒歩1分/u);
+  assert.match(jichiChibaPlazaNanohana?.accessNote ?? "", /本千葉駅.*徒歩3分/u);
+  assert.match(jichiChibaPlazaNanohana?.accessNote ?? "", /千葉中央駅.*徒歩約15分/u);
+  assert.match(jichiChibaPlazaNanohana?.accessNote ?? "", /使用階・会議室.*未公表/u);
+  assert.match(jichiChibaPlazaNanohana?.accessNote ?? "", /大会議室「菜の花」.*みなさず/u);
+  const jichiChibaPlazaNanohanaLinks = dataset.assignments.flatMap((assignment) =>
+    assignment.venueLinks.filter(
+      (link) => link.venueId === "venue-jichi-first-chiba-plaza-nanohana",
+    ),
+  );
+  assert.deepEqual(
+    jichiChibaPlazaNanohanaLinks.map((link) => [
+      link.applicantPrefecture,
+      link.examPart,
+      link.examDate,
+    ]),
+    [
+      ["千葉県", "written", "2027-01-25"],
+      ["千葉県", "interview", "2027-01-26"],
+    ],
+  );
+  const jichiChibaPlazaNanohanaHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-jichi-first-chiba-plaza-nanohana",
+    ),
+  );
+  assert.deepEqual(
+    jichiChibaPlazaNanohanaHotels.map((hotel) => hotel.name),
+    ["ホテルプラザ菜の花", "ダイワロイネットホテル千葉中央"],
+  );
+  const hotelPlazaNanohana = jichiChibaPlazaNanohanaHotels.find(
+    (hotel) => hotel.hotelId === "hotel-plaza-nanohana",
+  );
+  const hotelPlazaNanohanaAccess = hotelPlazaNanohana?.venueAccess.find(
+    (entry) => entry.venueId === "venue-jichi-first-chiba-plaza-nanohana",
+  );
+  assert.deepEqual(hotelPlazaNanohanaAccess?.modes, ["walk"]);
+  assert.equal(hotelPlazaNanohanaAccess?.transferCount, 0);
+  assert.equal(hotelPlazaNanohanaAccess?.measurementBasis, "official");
+  assert.deepEqual(hotelPlazaNanohanaAccess?.reviewState, [
+    "official_direct",
+    "venue_pdf_visual_review",
+  ]);
+  assert.equal("travelTimeLabel" in (hotelPlazaNanohanaAccess ?? {}), false);
+  assert.equal("distanceLabel" in (hotelPlazaNanohanaAccess ?? {}), false);
+  assert.match(hotelPlazaNanohanaAccess?.caution ?? "", /同一建物内/u);
+  assert.match(hotelPlazaNanohanaAccess?.caution ?? "", /使用階・会議室.*未公表/u);
+  assert.match(hotelPlazaNanohanaAccess?.caution ?? "", /2日間の案内を取り違えず/u);
+  assert.ok(hotelPlazaNanohana?.amenities.some((item) => item.key === "wifi"));
+  assert.equal(hotelPlazaNanohana?.amenities.some((item) => item.key === "desk"), false);
+  assert.equal(hotelPlazaNanohana?.amenities.some((item) => item.key === "breakfast"), false);
+  assert.equal(hotelPlazaNanohana?.amenities.some((item) => item.key === "coin_laundry"), false);
+  assert.match(hotelPlazaNanohana?.note ?? "", /親権者同意書/u);
+  assert.match(hotelPlazaNanohana?.note ?? "", /朝食は前夜までに別途用意/u);
+  const daiwaRoynetChibaChuo = jichiChibaPlazaNanohanaHotels.find(
+    (hotel) => hotel.hotelId === "daiwa-roynet-hotel-chiba-chuo",
+  );
+  const daiwaRoynetChibaChuoAccess = daiwaRoynetChibaChuo?.venueAccess.find(
+    (entry) => entry.venueId === "venue-jichi-first-chiba-plaza-nanohana",
+  );
+  assert.deepEqual(daiwaRoynetChibaChuoAccess?.modes, ["walk"]);
+  assert.equal(daiwaRoynetChibaChuoAccess?.transferCount, 0);
+  assert.equal(daiwaRoynetChibaChuoAccess?.measurementBasis, "route_only");
+  assert.deepEqual(daiwaRoynetChibaChuoAccess?.reviewState, [
+    "verified_with_caveat",
+    "venue_pdf_visual_review",
+  ]);
+  assert.match(daiwaRoynetChibaChuoAccess?.travelTimeLabel ?? "", /公式徒歩約1分/u);
+  assert.match(daiwaRoynetChibaChuoAccess?.travelTimeLabel ?? "", /徒歩約15分/u);
+  assert.match(daiwaRoynetChibaChuoAccess?.travelTimeLabel ?? "", /別区間表示/u);
+  assert.match(daiwaRoynetChibaChuoAccess?.caution ?? "", /通し所要として単純合算しません/u);
+  assert.match(daiwaRoynetChibaChuoAccess?.caution ?? "", /使用階・会議室.*未公表/u);
+  for (const key of ["wifi", "desk", "desk_lamp", "coin_laundry", "breakfast"]) {
+    assert.ok(
+      daiwaRoynetChibaChuo?.amenities.some((item) => item.key === key),
+      `ダイワロイネットホテル千葉中央に ${key} がありません`,
+    );
+  }
+  assert.match(daiwaRoynetChibaChuo?.note ?? "", /施設名入り親権者同意書/u);
+  assert.match(daiwaRoynetChibaChuo?.note ?? "", /2区間の分数を単純合算せず/u);
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
   assert.equal(dataset.definitions.examParts.written, "学力試験");
   assert.equal(dataset.definitions.venueLinkRoles.overflow, "定員状況等による代替会場");
