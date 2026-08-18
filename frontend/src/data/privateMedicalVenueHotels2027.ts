@@ -73,6 +73,7 @@ export const hotelVenueAccessReviewStateLabels2027: Record<
 // 会場台帳と分離して管理し、正式会場名・住所を確認できた venueId にだけ結合します。
 // 宿泊料金は変動情報のため正本データへ固定値として保持しません。
 const VERIFIED_AT = "2026-08-15T00:00:00+09:00";
+const SHIODOME_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -1050,5 +1051,83 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
     note: "客室机の仕様は公式ページで明確に確認できていません。",
+  },
+  {
+    hotelId: "ginza-kokusai-hotel",
+    name: "銀座国際ホテル",
+    postalCode: "104-0061",
+    address: "東京都中央区銀座8-7-13",
+    prefecture: "東京都",
+    municipality: "中央区",
+    officialUrl: "https://www.ginkoku.co.jp/",
+    officialBookingUrl: "https://www.ginkoku.co.jp/?tripla_booking_widget_open=search",
+    nearestStation: "JR・東京メトロ・都営浅草線 新橋駅／都営大江戸線 汐留駅",
+    venueAccess: [
+      {
+        venueId: "venue-bellesalle-shiodome",
+        modes: ["walk"],
+        routeSummary: "ホテルから汐留駅まで徒歩5分、汐留駅5番出口から会場まで徒歩4分と各公式が案内",
+        transferCount: 0,
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "needs_route_review", "venue_pdf_visual_review"],
+        verifiedAt: SHIODOME_VERIFIED_AT,
+        caution: "汐留駅までのホテル公式案内は出口を特定しておらず、直接徒歩の総所要時間は未計測です。試験当日の使用階・入口を受験票で確認し、別施設のベルサール東京汐留と取り違えないでください。",
+        evidenceUrls: [
+          "https://www.ginkoku.co.jp/access/",
+          "https://www.kotsu.metro.tokyo.jp/subway/stations/shiodome.html",
+          "https://www.bellesalle.co.jp/shisetsu/higashiginza/bs_shiodome/",
+          "https://www.bellesalle.co.jp/wp-content/uploads/access_shiodome.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "無料Wi-Fi", "全室で無料Wi-Fiを利用できます。", "https://www.ginkoku.co.jp/room/"),
+      amenity("desk", "客室デスク", "スモールシングルには広めのデスクがあると公式案内されています。", "https://www.ginkoku.co.jp/room/"),
+      amenity("coin_laundry", "コインランドリー", "4階ベンダールームにコインランドリーがあります。", "https://www.ginkoku.co.jp/service/"),
+      amenity("humidifier", "加湿器貸出", "加湿器はフロント貸出品です。", "https://www.ginkoku.co.jp/room/"),
+      amenity("desk_lamp", "電気スタンド貸出", "電気スタンドはフロント貸出品です。", "https://www.ginkoku.co.jp/room/"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: SHIODOME_VERIFIED_AT,
+    note: "朝食の提供状況は利用前にホテルへ確認してください。",
+  },
+  {
+    hotelId: "hotel-check-in-shimbashi",
+    name: "ホテルチェックイン新橋",
+    postalCode: "105-0004",
+    address: "東京都港区新橋2-15-17",
+    prefecture: "東京都",
+    municipality: "港区",
+    officialUrl: "https://checkin.co.jp/shinbashi/",
+    officialBookingUrl: "https://checkin.co.jp/shinbashi/reservation/",
+    nearestStation: "JR・東京メトロ・都営浅草線 新橋駅",
+    venueAccess: [
+      {
+        venueId: "venue-bellesalle-shiodome",
+        modes: ["walk"],
+        routeSummary: "ホテルからJR新橋駅烏森口まで徒歩3分、JR新橋駅汐留口から会場まで徒歩7分と各公式が案内",
+        transferCount: 0,
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "needs_route_review", "venue_pdf_visual_review"],
+        verifiedAt: SHIODOME_VERIFIED_AT,
+        caution: "烏森口と汐留口の間には駅横断があります。横断・信号待ちを含む総所要時間は未計測です。試験当日の使用階・入口を受験票で確認し、別施設のベルサール東京汐留と取り違えないでください。",
+        evidenceUrls: [
+          "https://checkin.co.jp/shinbashi/access/",
+          "https://www.jreast.co.jp/estation/station/info.aspx?StationCd=877",
+          "https://www.bellesalle.co.jp/shisetsu/higashiginza/bs_shiodome/",
+          "https://www.bellesalle.co.jp/wp-content/uploads/access_shiodome.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "無料Wi-Fi", "全室で無料の有線LAN・Wi-Fiを利用できます。", "https://checkin.co.jp/shinbashi/faq/"),
+      amenity("coin_laundry", "ランドリーコーナー", "11階の洗濯機は無料、乾燥機は有料です。", "https://checkin.co.jp/shinbashi/facility/"),
+      amenity("breakfast", "朝食券（コメダ7:00〜）", "朝食券は館内のコメダ珈琲店などで利用でき、素泊まりの場合もフロントで購入できます。", "https://checkin.co.jp/shinbashi/"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: SHIODOME_VERIFIED_AT,
+    note: "客室机の有無・大きさは部屋タイプごとに公式ページで確認できないため、学習机が必要な場合は予約前にホテルへ確認してください。",
   },
 ];

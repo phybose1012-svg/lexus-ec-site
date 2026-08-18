@@ -292,6 +292,7 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
     "https://fukuoka.iuhw.ac.jp/access/",
     "https://www.tokyo-med.ac.jp/univ/access/shinjuku.html",
     "https://www.kanazawa-med.ac.jp/access.html",
+    "https://www.bellesalle.co.jp/shisetsu/shiodome/bs_shiodome/",
   ]) {
     assert.equal(venueOfficialUrls.has(retiredUrl), false, `404確認済みURLが残っています: ${retiredUrl}`);
   }
@@ -402,10 +403,19 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 25);
+  assert.equal(dataset.hotels.length, 27);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
+  for (const hotelId of ["ginza-kokusai-hotel", "hotel-check-in-shimbashi"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    assert.ok(
+      hotel.venueAccess.some((access) => access.venueId === "venue-bellesalle-shiodome"),
+      `${hotelId} がベルサール汐留に結合されていません`,
+    );
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
   assert.equal(dataset.definitions.examParts.written, "学力試験");
   assert.equal(dataset.definitions.venueLinkRoles.overflow, "定員状況等による代替会場");
