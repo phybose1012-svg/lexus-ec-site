@@ -217,6 +217,13 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "JR京浜東北・根岸線・横浜市営地下鉄ブルーライン 関内駅",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式新庁舎案内/u);
+    } else if (venue.venueId === "venue-jichi-first-niigata-jichikaikan") {
+      assert.deepEqual(venue.nearestStations, [
+        "新潟交通 C1県庁線 県庁停留所",
+        "新潟交通 C1県庁線 県庁前停留所",
+        "JR越後線 関屋駅",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式施設案内/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -607,7 +614,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 132);
+  assert.equal(dataset.hotels.length, 134);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -3154,6 +3161,77 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   }
   assert.match(daiwaRoynetYokohamaKoen?.note ?? "", /両会場/u);
   assert.match(comfortHotelYokohamaKannai?.note ?? "", /両会場/u);
+  const jichiNiigataJichikaikan = dataset.venues.find(
+    (venue) => venue.venueId === "venue-jichi-first-niigata-jichikaikan",
+  );
+  assert.equal(jichiNiigataJichikaikan?.officialUrl, "https://ngtsogo.jp/facility/");
+  assert.match(jichiNiigataJichikaikan?.address ?? "", /新光町4番地1/u);
+  assert.match(jichiNiigataJichikaikan?.accessNote ?? "", /学力試験.*受付8:20〜8:40/u);
+  assert.match(jichiNiigataJichikaikan?.accessNote ?? "", /面接は受付9:00〜9:20/u);
+  assert.match(jichiNiigataJichikaikan?.accessNote ?? "", /使用棟・階・室.*未公表/u);
+  assert.match(jichiNiigataJichikaikan?.accessNote ?? "", /201会議室.*流用せず/u);
+  assert.match(jichiNiigataJichikaikan?.accessNote ?? "", /新潟自治労会館.*別施設/u);
+  const jichiNiigataLinks = dataset.assignments.flatMap((assignment) =>
+    assignment.venueLinks.filter(
+      (link) => link.venueId === "venue-jichi-first-niigata-jichikaikan",
+    ),
+  );
+  assert.deepEqual(
+    jichiNiigataLinks.map((link) => [link.applicantPrefecture, link.examPart, link.examDate]),
+    [
+      ["新潟県", "written", "2027-01-25"],
+      ["新潟県", "interview", "2027-01-26"],
+    ],
+  );
+  const jichiNiigataHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-jichi-first-niigata-jichikaikan",
+    ),
+  );
+  assert.deepEqual(
+    jichiNiigataHotels.map((hotel) => hotel.name),
+    ["アートホテル新潟駅前", "コンフォートホテル新潟駅前"],
+  );
+  for (const hotel of jichiNiigataHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-niigata-jichikaikan",
+    );
+    assert.deepEqual(access?.modes, ["walk", "bus"]);
+    assert.equal(access?.transferCount, 0);
+    assert.equal(access?.measurementBasis, "route_only");
+    assert.deepEqual(access?.reviewState, [
+      "verified_with_caveat",
+      "venue_pdf_visual_review",
+    ]);
+    assert.match(access?.caution ?? "", /通し所要ではありません/u);
+    assert.match(access?.caution ?? "", /2027年.*バス時刻.*未公表/u);
+    assert.match(access?.caution ?? "", /使用棟・階・室.*未公表/u);
+    assert.match(access?.caution ?? "", /201会議室.*流用せず/u);
+    assert.match(access?.caution ?? "", /新潟自治労会館.*別施設/u);
+  }
+  const artHotelNiigataStation = jichiNiigataHotels.find(
+    (hotel) => hotel.hotelId === "art-hotel-niigata-station",
+  );
+  for (const key of ["wifi", "coin_laundry", "desk_lamp", "breakfast", "humidifier"]) {
+    assert.ok(
+      artHotelNiigataStation?.amenities.some((item) => item.key === key),
+      `アートホテル新潟駅前に ${key} がありません`,
+    );
+  }
+  assert.equal(artHotelNiigataStation?.amenities.some((item) => item.key === "desk"), false);
+  assert.match(artHotelNiigataStation?.note ?? "", /18歳未満.*親権者同意書/u);
+  assert.match(artHotelNiigataStation?.note ?? "", /常設学習机.*確認できない/u);
+  const comfortHotelNiigataStation = jichiNiigataHotels.find(
+    (hotel) => hotel.hotelId === "comfort-hotel-niigata-station",
+  );
+  for (const key of ["wifi", "desk", "coin_laundry", "breakfast", "desk_lamp"]) {
+    assert.ok(
+      comfortHotelNiigataStation?.amenities.some((item) => item.key === key),
+      `コンフォートホテル新潟駅前に ${key} がありません`,
+    );
+  }
+  assert.match(comfortHotelNiigataStation?.note ?? "", /18歳未満.*親権者同意書/u);
+  assert.match(comfortHotelNiigataStation?.note ?? "", /降雪・道路遅延/u);
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
   assert.equal(dataset.definitions.examParts.written, "学力試験");
   assert.equal(dataset.definitions.venueLinkRoles.overflow, "定員状況等による代替会場");
