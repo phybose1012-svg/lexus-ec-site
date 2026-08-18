@@ -427,7 +427,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 77);
+  assert.equal(dataset.hotels.length, 79);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -1125,6 +1125,26 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(access?.reviewState.includes("verified_with_caveat"));
     assert.ok(access?.reviewState.includes("venue_pdf_visual_review"));
     assert.ok(hotel.amenities.some((item) => item.key === "desk"));
+    assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  const iuhwFukuokaHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-iuhw-graduate-school-fukuoka-campus",
+    ),
+  );
+  assert.deepEqual(
+    iuhwFukuokaHotels.map((hotel) => hotel.name),
+    ["シーサイドホテルツインズももち", "平和台ホテル5"],
+  );
+  for (const hotel of iuhwFukuokaHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-iuhw-graduate-school-fukuoka-campus",
+    );
+    assert.equal(access?.measurementBasis, "route_only");
+    assert.equal(access?.transferCount, 0);
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.ok(access?.reviewState.includes("venue_pdf_visual_review"));
     assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
