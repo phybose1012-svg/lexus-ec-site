@@ -125,6 +125,12 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
     if (venue.venueId === "venue-jichi-first-hokkaido-tkp-sapporo-kita3jo") {
       assert.deepEqual(venue.nearestStations, ["札幌市営地下鉄南北線 さっぽろ駅", "JR札幌駅"]);
       assert.match(venue.officialUrlLabel ?? "", /公式アクセス/u);
+    } else if (venue.venueId === "venue-jichi-first-hokkaido-kaderu27") {
+      assert.deepEqual(venue.nearestStations, [
+        "札幌市営地下鉄南北線・東豊線 さっぽろ駅",
+        "JR札幌駅",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式アクセス/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -515,7 +521,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 103);
+  assert.equal(dataset.hotels.length, 104);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -1830,6 +1836,63 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(hotel.amenities.some((item) => item.key === "breakfast"));
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
+  const jichiHokkaidoInterviewVenue = dataset.venues.find(
+    (venue) => venue.venueId === "venue-jichi-first-hokkaido-kaderu27",
+  );
+  assert.equal(
+    jichiHokkaidoInterviewVenue?.officialUrl,
+    "https://homepage.kaderu27.or.jp/intoro/access/index.html",
+  );
+  assert.match(jichiHokkaidoInterviewVenue?.address ?? "", /道民活動センタービル/u);
+  assert.match(jichiHokkaidoInterviewVenue?.accessNote ?? "", /1月26日/u);
+  assert.match(jichiHokkaidoInterviewVenue?.accessNote ?? "", /9:00〜9:20/u);
+  assert.match(jichiHokkaidoInterviewVenue?.accessNote ?? "", /個人ごとの時間/u);
+  assert.match(jichiHokkaidoInterviewVenue?.accessNote ?? "", /改修休止/u);
+  const jichiHokkaidoInterviewLinks = dataset.assignments.flatMap((assignment) =>
+    assignment.venueLinks.filter(
+      (link) => link.venueId === "venue-jichi-first-hokkaido-kaderu27",
+    ),
+  );
+  assert.equal(jichiHokkaidoInterviewLinks.length, 1);
+  assert.equal(jichiHokkaidoInterviewLinks[0]?.applicantPrefecture, "北海道");
+  assert.equal(jichiHokkaidoInterviewLinks[0]?.examPart, "interview");
+  assert.equal(jichiHokkaidoInterviewLinks[0]?.examDate, "2027-01-26");
+  const jichiHokkaidoInterviewHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-jichi-first-hokkaido-kaderu27",
+    ),
+  );
+  assert.deepEqual(
+    jichiHokkaidoInterviewHotels.map((hotel) => hotel.name),
+    ["ホテル札幌ガーデンパレス", "ホテル法華クラブ札幌"],
+  );
+  for (const hotel of jichiHokkaidoInterviewHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-hokkaido-kaderu27",
+    );
+    assert.deepEqual(access?.modes, ["walk"]);
+    assert.equal(access?.transferCount, 0);
+    assert.equal(access?.measurementBasis, "map_route_checked");
+    assert.equal(access?.travelTimeLabel, undefined);
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.equal(access?.reviewState.includes("venue_pdf_visual_review"), false);
+    assert.match(access?.caution ?? "", /9:00〜9:20/u);
+    assert.match(access?.caution ?? "", /改修休止/u);
+    assert.match(access?.caution ?? "", /積雪・凍結/u);
+    assert.ok(hotel.amenities.some((item) => item.key === "wifi"));
+    assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
+    assert.ok(hotel.amenities.some((item) => item.key === "breakfast"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  const gardenPalaceSapporo = jichiHokkaidoInterviewHotels.find(
+    (hotel) => hotel.hotelId === "hotel-sapporo-garden-palace",
+  );
+  assert.equal(gardenPalaceSapporo?.amenities.some((item) => item.key === "desk"), false);
+  assert.ok(
+    jichiHokkaidoInterviewHotels
+      .find((hotel) => hotel.hotelId === "hotel-hokke-club-sapporo")
+      ?.amenities.some((item) => item.key === "desk"),
+  );
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
   assert.equal(dataset.definitions.examParts.written, "学力試験");
   assert.equal(dataset.definitions.venueLinkRoles.overflow, "定員状況等による代替会場");
@@ -1937,6 +2000,7 @@ test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを�
   assert.match(pageSource, /川崎医科大学一次会場の宿泊候補2施設を追加/u);
   assert.match(pageSource, /川崎医科大学二次会場の宿泊候補2施設を追加/u);
   assert.match(pageSource, /自治医科大学 北海道学力試験会場の宿泊候補2施設を追加/u);
+  assert.match(pageSource, /自治医科大学 北海道面接会場の宿泊候補2施設を追加/u);
   assert.match(switcherSource, /private-medical-school-exam-venues-hotels-2027/u);
   assert.match(endpointSource, /Content-Disposition/u);
   assert.match(endpointSource, /Access-Control-Allow-Origin/u);

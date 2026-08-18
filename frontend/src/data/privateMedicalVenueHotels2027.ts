@@ -115,6 +115,7 @@ const OMPU_TAKATSUKI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const TKP_SHIMBASHI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const KAWASAKI_GENERAL_GYM_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_HOKKAIDO_TKP_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_HOKKAIDO_KADERU_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -2584,6 +2585,47 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     note: "札幌駅地下街APIAに直結し、積雪時の地上歩行を抑えやすい候補です。18歳未満の方だけで宿泊する場合は、宿泊者全員分の親権者同意書をチェックイン時に提出してください。客室の学習用机は公式本文で確認できないため、必要な場合は予約前にホテルへ確認してください。地下街から試験入口までの完全屋内動線と早朝通行は保証されず、2027年の使用階・試験室・入口・集合時刻も未公表です。",
   },
   {
+    hotelId: "hotel-sapporo-garden-palace",
+    name: "ホテル札幌ガーデンパレス",
+    postalCode: "060-0001",
+    address: "北海道札幌市中央区北1条西6丁目3-1",
+    prefecture: "北海道",
+    municipality: "札幌市中央区",
+    officialUrl: "https://www.hotelgp-sapporo.com/",
+    officialBookingUrl: "https://www.hotelgp-sapporo.com/stay/",
+    nearestStation: "札幌市営地下鉄大通駅・JR札幌駅",
+    venueAccess: [
+      {
+        venueId: "venue-jichi-first-hokkaido-kaderu27",
+        modes: ["walk"],
+        routeSummary: "ホテル札幌ガーデンパレスから、ホテルと会場の公式住所を地図上で照合した地上の公道を直接徒歩で北海道立道民活動センター（かでる2・7）へ向かいます。道民活動センタービル到着後は、北海道から交付される案内、受験票、当日掲示に従って指定された受付・面接室へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: JICHI_HOKKAIDO_KADERU_VERIFIED_AT,
+        caution: "ホテル公式住所（札幌市中央区北1条西6丁目3-1）と会場公式住所（同区北2条西7丁目）を地図上で照合し、駅を経由しない徒歩経路が成立することを確認したものです。ホテルから指定面接室までの公式推奨経路・公式徒歩分数ではないため、通し所要は掲載しません。1月25日の学力試験に合格した北海道の受験者は、2027年1月26日（火）9:00〜9:20に受付し、10:00〜16:00のうち北海道が指定する時間に面接を受けます。試験の使用階・室、受付位置、受験生入口は未公表です。かでるホール・展示ホールは改修休止中ですが、大学は当施設を面接会場として指定しており、休止中のホールを使うとは限りません。前日のTKP札幌カンファレンスセンター北3条と取り違えず、北海道から交付される案内、受験票、当日掲示を確認してください。積雪・凍結を見込んでください。",
+        evidenceUrls: [
+          "https://www.hotelgp-sapporo.com/access/",
+          "https://homepage.kaderu27.or.jp/intoro/access/index.html",
+          "https://www.google.com/maps/dir/?api=1&origin=%E5%8C%97%E6%B5%B7%E9%81%93%E6%9C%AD%E5%B9%8C%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%8C%971%E6%9D%A1%E8%A5%BF6%E4%B8%81%E7%9B%AE3-1&destination=%E5%8C%97%E6%B5%B7%E9%81%93%E6%9C%AD%E5%B9%8C%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%8C%972%E6%9D%A1%E8%A5%BF7%E4%B8%81%E7%9B%AE&travelmode=walking",
+          "https://homepage.kaderu27.or.jp/topics/o036760000000653.html",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全室無料Wi-Fi", "全客室で無料Wi-Fiを利用できます。", "https://www.hotelgp-sapporo.com/stay/rooms/"),
+      amenity("coin_laundry", "地下1階コインランドリー", "地下1階のセルフ式コインランドリーを7:00〜23:00に利用できます。", "https://www.hotelgp-sapporo.com/facility/"),
+      amenity("breakfast", "朝食7:00〜", "1階レストランで7:00〜10:00に朝食ブッフェを提供します。", "https://www.hotelgp-sapporo.com/stay/breakfast/"),
+      amenity("humidifier", "加湿空気清浄機", "客室に加湿空気清浄機があります。", "https://www.hotelgp-sapporo.com/stay/rooms/"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: JICHI_HOKKAIDO_KADERU_VERIFIED_AT,
+    note: "北1条西6丁目にある164室の地域型ホテルで、鉄道に乗らず面接会場へ向かえます。全室無料Wi-Fi、地下1階のコインランドリー、7:00開始の朝食、加湿空気清浄機を施設公式で確認しています。椅子で使える客室机と18歳未満だけで宿泊する場合の条件・同意書は公式本文で確認できないため、予約前にホテルへ確認してください。面接の個人時間・使用室は北海道から交付される案内で確認し、積雪・凍結を見込んで前日に道順を確認してください。",
+  },
+  {
     hotelId: "hotel-hokke-club-sapporo",
     name: "ホテル法華クラブ札幌",
     postalCode: "060-0002",
@@ -2629,6 +2671,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-hokkaido-kaderu27",
+        modes: ["walk"],
+        routeSummary: "ホテル法華クラブ札幌から、ホテルと会場の公式住所を地図上で照合した地上の公道を直接徒歩で北海道立道民活動センター（かでる2・7）へ向かいます。道民活動センタービル到着後は、北海道から交付される案内、受験票、当日掲示に従って指定された受付・面接室へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: JICHI_HOKKAIDO_KADERU_VERIFIED_AT,
+        caution: "ホテル公式住所（札幌市中央区北2条西3丁目）と会場公式住所（同区北2条西7丁目）を地図上で照合し、駅を経由しない徒歩経路が成立することを確認したものです。ホテルから指定面接室までの公式推奨経路・公式徒歩分数ではないため、通し所要は掲載しません。1月25日の学力試験に合格した北海道の受験者は、2027年1月26日（火）9:00〜9:20に受付し、10:00〜16:00のうち北海道が指定する時間に面接を受けます。試験の使用階・室、受付位置、受験生入口は未公表です。かでるホール・展示ホールは改修休止中ですが、大学は当施設を面接会場として指定しており、休止中のホールを使うとは限りません。前日のTKP札幌カンファレンスセンター北3条と取り違えず、北海道から交付される案内、受験票、当日掲示を確認してください。積雪・凍結を見込んでください。",
+        evidenceUrls: [
+          "https://www.hokke.co.jp/sapporo/access",
+          "https://homepage.kaderu27.or.jp/intoro/access/index.html",
+          "https://www.google.com/maps/dir/?api=1&origin=%E5%8C%97%E6%B5%B7%E9%81%93%E6%9C%AD%E5%B9%8C%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%8C%972%E6%9D%A1%E8%A5%BF3%E4%B8%81%E7%9B%AE&destination=%E5%8C%97%E6%B5%B7%E9%81%93%E6%9C%AD%E5%B9%8C%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%8C%972%E6%9D%A1%E8%A5%BF7%E4%B8%81%E7%9B%AE&travelmode=walking",
+          "https://homepage.kaderu27.or.jp/topics/o036760000000653.html",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "無料Wi-Fi・有線LAN", "客室で無料Wi-Fiと有線LANを利用できます。", "https://www.hokke.co.jp/sapporo/room.html"),
@@ -2640,7 +2700,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: ACU_A_SAPPORO_VERIFIED_AT,
-    note: "学習机、客室通信、コインランドリー、6:30開始の朝食、未成年手続を公式情報で確認できる地域型ホテルです。18歳未満の方1名または未成年者同士で宿泊する場合は、宿泊者全員分の親権者同意書をチェックイン時に提出してください。東北医科薬科大学のACU-A会場は使用階・入口等が未公表です。自治医科大学の北海道学力試験はTKP札幌カンファレンスセンター北3条、翌日の面接はかでる2・7で、別会場です。積雪・凍結と札幌駅工事も見込んでください。",
+    note: "学習机、客室通信、コインランドリー、6:30開始の朝食、未成年手続を公式情報で確認できる地域型ホテルです。18歳未満の方1名または未成年者同士で宿泊する場合は、宿泊者全員分の親権者同意書をチェックイン時に提出してください。東北医科薬科大学のACU-A会場は使用階・入口等が未公表です。自治医科大学の北海道学力試験はTKP札幌カンファレンスセンター北3条、翌日の面接はかでる2・7で、別会場です。面接の個人時間・使用室は北海道から交付される案内で確認してください。積雪・凍結と札幌駅工事も見込んでください。",
   },
   {
     hotelId: "jr-east-hotel-mets-shibuya",
