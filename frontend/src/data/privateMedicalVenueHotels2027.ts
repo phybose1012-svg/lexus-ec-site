@@ -93,6 +93,7 @@ const GRAND_CUBE_OSAKA_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const ACU_A_SAPPORO_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const BELLESALLE_SHIBUYA_FIRST_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const AICHI_MEDICAL_MAIN_BUILDING_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
+const BELLESALLE_TAKADANOBABA_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -2717,5 +2718,79 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: AICHI_MEDICAL_MAIN_BUILDING_VERIFIED_AT,
     note: "愛知発の地域ビジネス系ホテルで、エコノミーシングル、広く使える机、無料通信、24時間ランドリー、6:30開始の無料朝食を公式に確認しています。18歳未満の方だけで宿泊する場合は、ABホテル名古屋栄名入りの親権者同意書を宿泊者1名につき1枚、チェックイン時に提出してください。藤が丘で地下鉄から名鉄バスへ乗り換えるため、早い午前枠では複数便分の余裕を見込んでください。",
+  },
+  {
+    hotelId: "vessel-inn-takadanobaba-ekimae",
+    name: "ベッセルイン高田馬場駅前",
+    postalCode: "169-0075",
+    address: "東京都新宿区高田馬場2-17-4",
+    prefecture: "東京都",
+    municipality: "新宿区",
+    officialUrl: "https://www.vessel-hotel.jp/inn/takadanobaba/",
+    officialBookingUrl: "https://go-vesselhotels.reservation.jp/ja/hotels/go-vitakadanobaba/plans",
+    nearestStation: "東京メトロ東西線・JR山手線・西武新宿線 高田馬場駅",
+    venueAccess: [
+      {
+        venueId: "venue-bellesalle-takadanobaba",
+        modes: ["walk"],
+        routeSummary: "ベッセルイン高田馬場駅前から、ホテル・会場の公式住所と大学要項の会場案内図を照合した地上徒歩経路で、戸山公園側のベルサール高田馬場へ向かいます。到着後は受験票・当日掲示に従って指定された受付へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: BELLESALLE_TAKADANOBABA_VERIFIED_AT,
+        caution: "ホテル公式の『東京メトロ高田馬場駅4番出口直結』はホテルへのアクセス表示で、会場入口までの公式通し案内ではありません。地上の直接徒歩経路は住所・公式地図で確認しましたが、通し所要時間は掲載しません。2027年の試験用入口、受付、使用階・ホールは未公表で、『B2・1F』は施設所在地・構成の表記です。受付は8:10開始予定で状況により早まる場合があり、8:40までに入室・着席します。工事・横断箇所を含め前日に経路を確認し、当日は余裕を持ってください。",
+        evidenceUrls: [
+          "https://www.vessel-hotel.jp/inn/takadanobaba/access/",
+          "https://www.aichi-med-u.ac.jp/files/igaku/2027nenndogakuseibosyuuyoukou_0731.pdf",
+          "https://www.bellesalle.co.jp/shisetsu/shinjuku/bs_takadanobaba/",
+          "https://www.bellesalle.co.jp/wp-content/uploads/access_takadanobaba.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全室無料Wi-Fi・有線LAN", "全客室で無料Wi-Fiと有線LANを利用できます。", "https://www.vessel-hotel.jp/inn/takadanobaba/room/"),
+      amenity("coin_laundry", "24時間コインランドリー", "館内のコインランドリーを24時間利用できます。", "https://www.vessel-hotel.jp/inn/takadanobaba/service/"),
+      amenity("breakfast", "朝食6:00〜", "朝食は6:00〜9:30です。", "https://www.vessel-hotel.jp/inn/takadanobaba/breakfast/"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: BELLESALLE_TAKADANOBABA_VERIFIED_AT,
+    note: "高田馬場駅前から鉄道を使わず会場へ向かえる候補で、客室通信、24時間コインランドリー、6:00開始の朝食が揃います。18歳未満または高校生以下の方だけで宿泊する場合は、宿泊者全員分の親権者同意書をチェックイン時に提出してください。客室の学習机は公式本文で確認できないため、必要な場合は予約前にホテルへ確認してください。",
+  },
+  {
+    hotelId: "hotel-new-takada",
+    name: "ホテルニュー高田",
+    postalCode: "169-0075",
+    address: "東京都新宿区高田馬場3-2-8",
+    prefecture: "東京都",
+    municipality: "新宿区",
+    officialUrl: "https://www.hotel-newtakada.com/",
+    officialBookingUrl: "https://www.489pro.com/asp/489/menu.asp?id=13000059&lan=JPN&ty=ser",
+    nearestStation: "JR山手線・西武新宿線・東京メトロ東西線 高田馬場駅",
+    venueAccess: [
+      {
+        venueId: "venue-bellesalle-takadanobaba",
+        modes: ["walk"],
+        routeSummary: "ホテルニュー高田から、ホテル・会場の公式住所を地図照合した駅外の地上徒歩経路で、高田馬場駅周辺を経て戸山公園側のベルサール高田馬場へ向かいます。到着後は受験票・当日掲示に従って指定された受付へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: BELLESALLE_TAKADANOBABA_VERIFIED_AT,
+        caution: "ホテル公式の徒歩約2分はJR・西武の早稲田口または東西線1番出口までで、会場公式のJR最短案内は戸山口から徒歩4分です。各駅区間を単純加算した通し時間ではありません。直接徒歩は駅の有料区域を通らない地上経路として住所・公式地図で確認しましたが、所要分数は掲載しません。2027年の試験用入口、受付、使用階・ホールは未公表です。受付8:10開始予定、8:40までに入室・着席のため、前日に地上経路を確認してください。",
+        evidenceUrls: [
+          "https://www.hotel-newtakada.com/access/",
+          "https://www.aichi-med-u.ac.jp/files/igaku/2027nenndogakuseibosyuuyoukou_0731.pdf",
+          "https://www.bellesalle.co.jp/shisetsu/shinjuku/bs_takadanobaba/",
+          "https://www.bellesalle.co.jp/wp-content/uploads/access_takadanobaba.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全客室無料Wi-Fi", "全客室で無料Wi-Fiを利用できます。", "https://www.hotel-newtakada.com/rooms/"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: BELLESALLE_TAKADANOBABA_VERIFIED_AT,
+    note: "全29室、24時間スタッフ常駐の地域型ホテルです。未成年者だけで宿泊する場合は親権者同意書が必要です。ホテル公式は食事を提供していないと明記しているため、朝食は前夜に用意してください。客室の学習机とコインランドリーは公式設備一覧で確認できないため、必要な場合は予約前にホテルへ確認してください。",
   },
 ];

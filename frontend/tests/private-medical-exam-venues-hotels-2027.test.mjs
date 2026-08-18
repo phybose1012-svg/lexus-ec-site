@@ -427,7 +427,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 65);
+  assert.equal(dataset.hotels.length, 67);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -984,6 +984,42 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     (assignment) => assignment.assignmentId === "aichi-medical--common--common-test-regional-quota--second-venue",
   );
   assert.deepEqual(aichiRegionalSecondVenue?.conditions, ["fixed"]);
+  for (const hotelId of ["vessel-inn-takadanobaba-ekimae", "hotel-new-takada"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-bellesalle-takadanobaba",
+    );
+    assert.ok(access, `${hotelId} がベルサール高田馬場に結合されていません`);
+    assert.equal(access.measurementBasis, "map_route_checked");
+    assert.equal(access.transferCount, 0);
+    assert.equal(access.travelTimeLabel, undefined);
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+    assert.equal(hotel.amenities.some((item) => item.key === "desk"), false);
+  }
+  assert.ok(
+    dataset.hotels
+      .find((hotel) => hotel.hotelId === "vessel-inn-takadanobaba-ekimae")
+      ?.amenities.some((item) => item.key === "coin_laundry"),
+  );
+  assert.equal(
+    dataset.hotels
+      .find((hotel) => hotel.hotelId === "hotel-new-takada")
+      ?.amenities.some((item) => item.key === "coin_laundry"),
+    false,
+  );
+  assert.equal(
+    dataset.hotels.filter((hotel) =>
+      hotel.venueAccess.some((access) => access.venueId === "venue-bellesalle-takadanobaba"),
+    ).length,
+    2,
+  );
+  const aichiGeneralFirstVenue = dataset.assignments.find(
+    (assignment) => assignment.assignmentId === "aichi-medical--general--general--first-venue",
+  );
+  assert.deepEqual(aichiGeneralFirstVenue?.conditions, ["applicant_preference"]);
   assert.ok(
     dataset.hotels
       .find((hotel) => hotel.hotelId === "sakura-garden-hotel")
