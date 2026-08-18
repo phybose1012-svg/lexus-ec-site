@@ -427,7 +427,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 69);
+  assert.equal(dataset.hotels.length, 71);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -1045,6 +1045,28 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
       hotel.venueAccess.some((access) => access.venueId === "venue-congres-convention-center"),
     ).length,
     2,
+  );
+  for (const hotelId of ["daiwa-roynet-hotel-hakata-gion", "skyheart-hotel-hakata"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-fukuoka-fashion-building",
+    );
+    assert.ok(access, `${hotelId} が福岡ファッションビルに結合されていません`);
+    assert.equal(access.transferCount, 0);
+    assert.equal(access.measurementBasis, "route_only");
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    assert.ok(hotel.amenities.some((item) => item.key === "desk"));
+    assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  const fashionBuildingHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some((access) => access.venueId === "venue-fukuoka-fashion-building"),
+  );
+  assert.deepEqual(
+    fashionBuildingHotels.map((hotel) => hotel.name),
+    ["ダイワロイネットホテル博多祇園", "スカイハートホテル博多"],
   );
   assert.ok(
     dataset.hotels
