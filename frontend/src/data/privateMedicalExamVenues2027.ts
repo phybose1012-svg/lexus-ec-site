@@ -1201,8 +1201,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     municipality: "高槻市",
     nearestStations: ["阪急京都線 高槻市駅", "JR京都線 高槻駅"],
     officialUrl: "https://www.ompu.ac.jp/access.html",
+    accessNote: "2027年度医学部一般選抜（前期・大阪府地域枠）の二次は2月19日、一般選抜（後期）の二次は3月16日、共通テスト利用選抜の二次は2月28日に本部キャンパスで実施予定です。一般前期の繰上合格候補対象者の二次は3月3日です。阪急高槻市駅出口1からは大学公式で『すぐ』、JR高槻駅南口からは徒歩8分ですが、出口1は試験当日の受験生入口ではありません。2027年度の開場・集合・開始時刻、使用棟・階・試験室、受付位置、受験生入口は未公表です。完成版募集要項、受験票、一次試験合格者向け案内、当日掲示を確認し、大学病院の入口と取り違えないでください。",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: "2026-08-19T00:00:00+09:00",
   },
   {
     venueId: "venue-kindai-osaka-medical-campus",
@@ -2477,6 +2478,7 @@ officialVenuePlan(
     evidenceLabel: "2027年度医学部入試概要",
     evidenceLocator: "各方式 二次試験会場欄",
     reviewState: "verified",
+    note: "一般選抜（前期・大阪府地域枠）の二次は2027年2月19日、一般選抜（後期）の二次は3月16日、共通テスト利用選抜の二次は2月28日で、会場は本部キャンパスに固定されています。一般前期の繰上合格候補対象者の二次は3月3日です。開場・集合・開始時刻、使用棟・階・試験室、受付位置、受験生入口は現行の入試概要では未公表のため、完成版募集要項、受験票、一次試験合格者向け案内、当日掲示を確認してください。",
   },
 );
 

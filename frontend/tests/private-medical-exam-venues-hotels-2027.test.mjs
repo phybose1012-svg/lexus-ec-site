@@ -510,7 +510,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 97);
+  assert.equal(dataset.hotels.length, 99);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -1578,6 +1578,52 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     dataset.hotels
       .find((hotel) => hotel.hotelId === "sakura-garden-hotel")
       ?.venueAccess[0]?.reviewState.includes("verified_with_caveat"),
+  );
+  const ompuTakatsukiVenue = dataset.venues.find(
+    (venue) => venue.venueId === "venue-osaka-med-pharm-takatsuki-campus",
+  );
+  assert.match(ompuTakatsukiVenue?.accessNote ?? "", /出口1/u);
+  assert.match(ompuTakatsukiVenue?.accessNote ?? "", /受験生入口/u);
+  const ompuTakatsukiAssignments = dataset.assignments.filter((assignment) =>
+    assignment.venueLinks.some(
+      (link) => link.venueId === "venue-osaka-med-pharm-takatsuki-campus",
+    ),
+  );
+  assert.equal(ompuTakatsukiAssignments.length, 3);
+  assert.ok(ompuTakatsukiAssignments.every((assignment) => assignment.publicationState === "confirmed"));
+  assert.ok(ompuTakatsukiAssignments.every((assignment) => assignment.conditions.includes("fixed")));
+  const ompuTakatsukiHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-osaka-med-pharm-takatsuki-campus",
+    ),
+  );
+  assert.deepEqual(
+    ompuTakatsukiHotels.map((hotel) => hotel.name),
+    ["ホテルトレンド高槻", "ワークホテルアネックス 高槻天然温泉 天神の湯"],
+  );
+  for (const hotel of ompuTakatsukiHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-osaka-med-pharm-takatsuki-campus",
+    );
+    assert.deepEqual(access?.modes, ["walk"]);
+    assert.equal(access?.transferCount, 0);
+    assert.equal(access?.measurementBasis, "route_only");
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.ok(hotel.amenities.some((item) => item.key === "wifi"));
+    assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
+    assert.ok(hotel.amenities.some((item) => item.key === "breakfast"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  assert.ok(
+    ompuTakatsukiHotels
+      .find((hotel) => hotel.hotelId === "hotel-trend-takatsuki")
+      ?.amenities.some((item) => item.key === "desk"),
+  );
+  assert.equal(
+    ompuTakatsukiHotels
+      .find((hotel) => hotel.hotelId === "work-hotel-annex-takatsuki")
+      ?.amenities.some((item) => item.key === "desk"),
+    false,
   );
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
   assert.equal(dataset.definitions.examParts.written, "学力試験");
