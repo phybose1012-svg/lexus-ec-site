@@ -408,7 +408,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 51);
+  assert.equal(dataset.hotels.length, 53);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -730,6 +730,38 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(
     dataset.hotels.filter((hotel) =>
       hotel.venueAccess.some((access) => access.venueId === "venue-kitasato-sagamihara-campus"),
+    ).length,
+    2,
+  );
+  for (const hotelId of ["comfort-hotel-sendai-west", "hotel-green-city-sendai"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-tohoku-med-pharm-komatsushima-campus",
+    );
+    assert.ok(access, `${hotelId} が東北医科薬科大学 小松島キャンパスに結合されていません`);
+    assert.equal(access.measurementBasis, "route_only");
+    assert.equal(access.transferCount, 0);
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  assert.ok(
+    dataset.hotels
+      .find((hotel) => hotel.hotelId === "comfort-hotel-sendai-west")
+      ?.amenities.some((item) => item.key === "desk"),
+  );
+  assert.equal(
+    dataset.hotels
+      .find((hotel) => hotel.hotelId === "hotel-green-city-sendai")
+      ?.amenities.some((item) => item.key === "desk"),
+    false,
+  );
+  assert.equal(
+    dataset.hotels.filter((hotel) =>
+      hotel.venueAccess.some(
+        (access) => access.venueId === "venue-tohoku-med-pharm-komatsushima-campus",
+      ),
     ).length,
     2,
   );
