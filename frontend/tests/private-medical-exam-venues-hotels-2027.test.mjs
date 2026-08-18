@@ -230,6 +230,16 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
     assert.ok(showaSecond?.conditions.includes("admission_ticket"));
   }
 
+  const tokyoMedicalFirst = assignmentFor("tokyo-medical--general--general", "first");
+  assert.equal(tokyoMedicalFirst?.publicationState, "ticket_assigned");
+  assert.deepEqual(tokyoMedicalFirst?.venueLinks, [
+    { venueId: "venue-tokyo-medical-shinjuku-campus", role: "primary" },
+    { venueId: "venue-bellesalle-shinjuku-grand", role: "primary" },
+  ]);
+  assert.deepEqual(tokyoMedicalFirst?.conditions, ["university_assigned", "admission_ticket"]);
+  assert.match(tokyoMedicalFirst?.officialAdmissionUrl ?? "", /2027bosyuyoukou_ippan\.pdf$/u);
+  assert.match(tokyoMedicalFirst?.note ?? "", /受験番号/u);
+
   assert.deepEqual(assignmentFor("nihon--general--unified-phase-2", "first")?.conditions, []);
   for (const routeId of [
     "fujita--general--general-regional-quota-17148",
@@ -272,6 +282,7 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
   );
   assert.equal(bellesalleShinjuku?.name, "ベルサール新宿グランド イベントホール");
   assert.match(bellesalleShinjuku?.address ?? "", /西新宿8-17-3/u);
+  assert.match(bellesalleShinjuku?.accessNote ?? "", /1階のイベントホール/u);
   const tkpShinosaka = privateMedicalExamVenues2027.find(
     (venue) => venue.venueId === "venue-tkp-shinosaka-conference-center",
   );
@@ -435,7 +446,9 @@ test("会場・割当・ホテル・アクセスの参照が一意かつ整合�
       assert.ok(
         privateMedicalExamVenueAssignments2027.some(
           (assignment) =>
-            ["confirmed", "city_or_campus_only"].includes(assignment.publicationState) &&
+            ["confirmed", "city_or_campus_only", "ticket_assigned"].includes(
+              assignment.publicationState,
+            ) &&
             assignment.venueLinks.some((link) => link.venueId === access.venueId),
         ),
         `${hotel.hotelId} が公表済みの具体的な会場リンクに結合されていません`,
@@ -450,7 +463,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 85);
+  assert.equal(dataset.hotels.length, 86);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -1253,6 +1266,36 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(hotel.amenities.some((item) => item.key === "breakfast"));
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
+  const bellesalleShinjukuHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-bellesalle-shinjuku-grand",
+    ),
+  );
+  assert.deepEqual(
+    bellesalleShinjukuHotels.map((hotel) => hotel.name),
+    ["ホテルローズガーデン新宿", "ダイワロイネットホテル西新宿 PREMIER"],
+  );
+  const daiwaNishiShinjuku = bellesalleShinjukuHotels.find(
+    (hotel) => hotel.hotelId === "daiwa-roynet-hotel-nishi-shinjuku-premier",
+  );
+  const roseGardenShinjuku = bellesalleShinjukuHotels.find(
+    (hotel) => hotel.hotelId === "hotel-rose-garden-shinjuku",
+  );
+  assert.equal(daiwaNishiShinjuku?.venueAccess[0]?.measurementBasis, "map_route_checked");
+  assert.equal(roseGardenShinjuku?.venueAccess[0]?.measurementBasis, "route_only");
+  for (const hotel of bellesalleShinjukuHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-bellesalle-shinjuku-grand",
+    );
+    assert.deepEqual(access?.modes, ["walk"]);
+    assert.equal(access?.transferCount, 0);
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.ok(access?.reviewState.includes("venue_pdf_visual_review"));
+    assert.ok(hotel.amenities.some((item) => item.key === "wifi"));
+    assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
+    assert.ok(hotel.amenities.some((item) => item.key === "breakfast"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
   assert.ok(
     dataset.hotels
       .find((hotel) => hotel.hotelId === "sakura-garden-hotel")
@@ -1354,6 +1397,7 @@ test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを�
   assert.match(pageSource, /聖マリアンナ医科大学 本学校舎の周辺ホテル2施設を追加/u);
   assert.match(pageSource, /産業医科大学 本学の周辺ホテル2施設を追加/u);
   assert.match(pageSource, /昭和医科大学 旗の台キャンパスの宿泊候補2施設を追加/u);
+  assert.match(pageSource, /ベルサール新宿グランドの宿泊候補2施設を追加/u);
   assert.match(switcherSource, /private-medical-school-exam-venues-hotels-2027/u);
   assert.match(endpointSource, /Content-Disposition/u);
   assert.match(endpointSource, /Access-Control-Allow-Origin/u);

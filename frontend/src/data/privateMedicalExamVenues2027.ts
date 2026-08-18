@@ -898,8 +898,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     municipality: "新宿区",
     nearestStations: ["東京メトロ丸ノ内線 西新宿駅", "都営大江戸線 都庁前駅"],
     officialUrl: "https://www.bellesalle.co.jp/shisetsu/shinjuku/bs_shinjukugrand/",
+    accessNote: "東京メトロ丸ノ内線の西新宿駅1番出口から徒歩約4分です。東京医科大学の2027年度一般選抜一次では、受験番号によって本学またはベルサール新宿グランドが指定されます。施設は住友不動産新宿グランドタワー1階のイベントホールですが、使用区画・受付位置・受験生入口は未公表です。受験票と当日案内を確認し、同施設の5階会議室や近隣の別ベルサールと取り違えないでください。",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: "2026-08-19T00:00:00+09:00",
   },
   {
     venueId: "venue-jikei-nishishimbashi-campus",
@@ -2005,7 +2006,8 @@ officialVenuePlan(["teikyo--general--general"], "first", {
   note: "一般選抜は1〜3日を自由選択できますが、会場は板橋キャンパスで固定です。",
 });
 
-const tokyoMedicalVenueUrl = "https://admissions-tokyo-med.jp/med/exam/";
+const tokyoMedicalVenueUrl =
+  "https://admissions-tokyo-med.jp/wp-content/uploads/2024/12/2027bosyuyoukou_ippan.pdf";
 officialVenuePlan(["tokyo-medical--general--general"], "first", {
   venueLinks: [
     link("venue-tokyo-medical-shinjuku-campus", "primary"),
@@ -2015,17 +2017,17 @@ officialVenuePlan(["tokyo-medical--general--general"], "first", {
   publicationState: "ticket_assigned",
   conditions: ["university_assigned", "admission_ticket"],
   officialAdmissionUrl: tokyoMedicalVenueUrl,
-  evidenceLabel: "2027年度一般選抜・共通テスト利用選抜",
-  evidenceLocator: "公式入試ページ「試験会場」",
+  evidenceLabel: "2027年度一般選抜・共通テスト利用選抜 学生募集要項",
+  evidenceLocator: "PDF 3・14〜15ページ「一般選抜 第1次試験」「試験会場」「受験にあたっての主な注意事項」",
   reviewState: "verified",
-  note: "大学が会場を指定し、受験票に表示します。",
+  note: "一次は2027年2月6日で、8:30開門、9:10集合です。大学が受験番号で本学またはベルサール新宿グランドを指定するため、受験票に記載された会場を確認してください。ベルサールは1階イベントホールまで公表されていますが、使用区画・受付位置・受験生入口は未公表です。",
 });
 officialVenuePlan(["tokyo-medical--common--common-test"], "first", {
   venueLinks: [link("venue-tokyo-medical-shinjuku-campus")],
   announcedVenueText: "東京医科大学 本学（大学実施の小論文）",
   publicationState: "confirmed",
   conditions: ["fixed"],
-  officialAdmissionUrl: tokyoMedicalVenueUrl,
+  officialAdmissionUrl: "https://admissions-tokyo-med.jp/med/exam/",
   evidenceLabel: "2027年度一般選抜・共通テスト利用選抜",
   evidenceLocator: "公式入試ページ「共通テスト利用選抜 試験会場」",
   reviewState: "verified",

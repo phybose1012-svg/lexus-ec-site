@@ -103,6 +103,7 @@ const IUHW_FUKUOKA_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const FUJITA_TOYOAKE_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const FUKUOKA_UNIVERSITY_NANAKUMA_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const SHOWA_HATANODAI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const BELLESALLE_SHINJUKU_GRAND_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -1475,6 +1476,22 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.twmu-u.jp/medical-ent-ippan99/",
         ],
       },
+      {
+        venueId: "venue-bellesalle-shinjuku-grand",
+        modes: ["walk"],
+        routeSummary: "ホテルローズガーデン新宿からホテル公式案内を逆向きにたどって西新宿駅1番出口側へ進み、同じ出口を接続点に、会場公式の徒歩経路で住友不動産新宿グランドタワー1階のベルサール新宿グランド イベントホールへ向かいます。到着後は受験票と当日案内に従って指定された受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―西新宿駅1番出口はホテル公式『駅前』／同出口―会場は会場公式徒歩約4分（客室階・信号待ち・試験室までを除く区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: BELLESALLE_SHINJUKU_GRAND_VERIFIED_AT,
+        caution: "ホテル公式の『西新宿駅1番出口を出て左側』という案内と、会場公式の同出口から徒歩約4分を接続した経路で、ホテルから試験室までの通し所要ではありません。東京医科大学の2027年度一般選抜一次は2月6日、8:30開門・9:10集合で、受験番号により本学またはベルサール新宿グランドが指定されます。ベルサールは1階イベントホールまで公表されていますが、使用区画・受付位置・受験生入口は未公表です。受験票で会場を確認し、同施設5階の会議室や近隣のベルサール新宿セントラルパークなどと取り違えないでください。",
+        evidenceUrls: [
+          "https://hotel-rosegarden.jp/access/",
+          "https://www.bellesalle.co.jp/shisetsu/shinjuku/bs_shinjukugrand/",
+          "https://admissions-tokyo-med.jp/wp-content/uploads/2024/12/2027bosyuyoukou_ippan.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "無料Wi-Fi", "全客室で無料Wi-Fiを利用できます。", "https://hotel-rosegarden.jp/accommodation/"),
@@ -1484,8 +1501,8 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     ],
     operatingStatus: "official_site_active",
     reviewState: "verified",
-    verifiedAt: KEIO_PLAZA_VERIFIED_AT,
-    note: "未成年者だけで宿泊する場合は、宿泊者全員分の保護者同意書をチェックイン時に提出します。客室机の仕様は公式ページで確認できないため、学習机が必要な場合は予約前にホテルへ確認してください。",
+    verifiedAt: BELLESALLE_SHINJUKU_GRAND_VERIFIED_AT,
+    note: "公式サイトが『西新宿の小さなホテル』と案内する地域ホテルで、ベルサール新宿グランドまで鉄道に乗らず歩けます。全室無料Wi-Fi、電気スタンド貸出、館内コインランドリー、7:00開始の朝食を公式確認しています。未成年者だけで宿泊する場合は、宿泊者全員分の保護者同意書をチェックイン時に提出します。客室机の仕様は公式ページで確認できないため、学習机が必要な場合は予約前にホテルへ確認してください。東京医科大学一般一次は受験票でベルサール新宿グランド指定を確認した場合だけ利用してください。",
   },
   {
     hotelId: "hotel-fukuracia-osaka-bay",
@@ -3557,5 +3574,45 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: SHOWA_HATANODAI_VERIFIED_AT,
     note: "東急大井町線で旗の台駅まで乗換なしの、客室供給が多い堅実候補です。無料Wi-Fi、24時間コインランドリー、6:30開始の朝食を公式確認しています。客室の机は公式本文で保証されていないため、椅子で使える机が必要な場合は予約前に部屋タイプを確認してください。18歳未満の方だけで宿泊する場合は法定代理人の同意を求められることがあるため、ホテルへ事前に連絡してください。一次は受験票で旗の台キャンパス指定を確認した場合だけ利用してください。",
+  },
+  {
+    hotelId: "daiwa-roynet-hotel-nishi-shinjuku-premier",
+    name: "ダイワロイネットホテル西新宿 PREMIER",
+    postalCode: "160-0023",
+    address: "東京都新宿区西新宿6-12-39",
+    prefecture: "東京都",
+    municipality: "新宿区",
+    officialUrl: "https://www.daiwaroynet.jp/nishi-shinjuku/",
+    officialBookingUrl: "https://www.daiwaroynet.jp/nishi-shinjuku/",
+    nearestStation: "東京メトロ丸ノ内線 西新宿駅",
+    venueAccess: [
+      {
+        venueId: "venue-bellesalle-shinjuku-grand",
+        modes: ["walk"],
+        routeSummary: "ダイワロイネットホテル西新宿 PREMIERから、ホテルと会場の公式住所を地図上で照合した地上の公道を徒歩で進み、住友不動産新宿グランドタワー1階のベルサール新宿グランド イベントホールへ向かいます。到着後は受験票と当日案内に従って指定された受付へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: BELLESALLE_SHINJUKU_GRAND_VERIFIED_AT,
+        caution: "ホテル公式は西新宿駅2番出口から徒歩約5分、会場公式は同駅1番出口から徒歩約4分と案内していますが、別出口を基準にした区間のため合算しません。両施設の公式住所を地図上で照合し、駅の有料区域を通らない直接徒歩経路が成立することを確認しましたが、ホテルから試験室までの公式通し所要はありません。東京医科大学の2027年度一般選抜一次は2月6日、8:30開門・9:10集合で、受験番号により本学またはベルサール新宿グランドが指定されます。ベルサールは1階イベントホールまで公表されていますが、使用区画・受付位置・受験生入口は未公表です。受験票で会場を確認し、近隣の別ベルサールや同施設5階の会議室と取り違えないでください。",
+        evidenceUrls: [
+          "https://www.daiwaroynet.jp/nishi-shinjuku/access/",
+          "https://www.bellesalle.co.jp/shisetsu/shinjuku/bs_shinjukugrand/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%B0%E5%AE%BF%E5%8C%BA%E8%A5%BF%E6%96%B0%E5%AE%BF6-12-39&destination=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%B0%E5%AE%BF%E5%8C%BA%E8%A5%BF%E6%96%B0%E5%AE%BF8-17-3&travelmode=walking",
+          "https://admissions-tokyo-med.jp/wp-content/uploads/2024/12/2027bosyuyoukou_ippan.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全室無料Wi-Fi", "全客室で無料Wi-Fiを利用できます。", "https://www.daiwaroynet.jp/nishi-shinjuku/room/"),
+      amenity("desk", "ワイドデスク", "PCと書類を広げて勉強・作業に使えるワイドデスクがあります。", "https://www.daiwaroynet.jp/nishi-shinjuku/room/"),
+      amenity("coin_laundry", "24時間コインランドリー", "5階・10階のセルフランドリーを24時間利用できます。", "https://www.daiwaroynet.jp/nishi-shinjuku/facilities/"),
+      amenity("breakfast", "朝食7:00〜", "ホテル1階で7:00〜10:00に朝食を提供し、最終入店は9:30です。", "https://www.daiwaroynet.jp/nishi-shinjuku/breakfast/"),
+      amenity("humidifier", "加湿機能付き空気清浄機", "全客室に加湿機能付き空気清浄機があります。", "https://www.daiwaroynet.jp/nishi-shinjuku/room/"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: BELLESALLE_SHINJUKU_GRAND_VERIFIED_AT,
+    note: "会場まで鉄道に乗らず歩け、ワイドデスク、無料Wi-Fi、24時間コインランドリー、7:00開始の朝食を施設公式で確認できる堅実候補です。ホテル利用規則は、保護者の許可がない未成年者だけの宿泊を断る場合があり、同意書提出と保護者への連絡を求めるとしています。18歳未満の方は予約前に西新宿店へ受入可否と所定書式を確認してください。一般一次は受験票でベルサール新宿グランド指定を確認した場合だけ利用してください。",
   },
 ];
