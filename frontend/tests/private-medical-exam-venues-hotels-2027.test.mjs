@@ -408,7 +408,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 45);
+  assert.equal(dataset.hotels.length, 47);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -625,6 +625,40 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
         ),
       ).length,
     2,
+  );
+  for (const hotelId of ["apa-hotel-shinjuku-gyoemmae", "shinjuku-city-hotel-nuts-tokyo"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-tokyo-medical-shinjuku-campus",
+    );
+    assert.ok(access, `${hotelId} が東京医科大学 新宿キャンパスに結合されていません`);
+    assert.equal(access.measurementBasis, "route_only");
+    assert.equal(access.transferCount, 0);
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.ok(access.reviewState.includes("needs_route_review"));
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  assert.equal(
+    dataset.hotels
+      .filter((hotel) =>
+        hotel.venueAccess.some(
+          (access) => access.venueId === "venue-tokyo-medical-shinjuku-campus",
+        ),
+      ).length,
+    2,
+  );
+  assert.equal(
+    dataset.hotels
+      .find((hotel) => hotel.hotelId === "apa-hotel-shinjuku-gyoemmae")
+      ?.amenities.some((item) => item.key === "desk"),
+    false,
+  );
+  assert.ok(
+    dataset.hotels
+      .find((hotel) => hotel.hotelId === "shinjuku-city-hotel-nuts-tokyo")
+      ?.amenities.some((item) => item.key === "desk"),
   );
   assert.ok(
     dataset.hotels
