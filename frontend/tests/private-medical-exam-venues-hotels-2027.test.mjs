@@ -408,7 +408,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 37);
+  assert.equal(dataset.hotels.length, 39);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -512,6 +512,28 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     ?.venueAccess.find((access) => access.venueId === "venue-osaka-academia");
   assert.equal(hatagoyaAccess?.transferCount, 1);
   assert.ok(hatagoyaAccess?.reviewState.includes("verified_with_caveat"));
+  for (const hotelId of ["fukuoka-garden-palace", "hotel-reference-tenjin-iii"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-fukuoka-garden-palace",
+    );
+    assert.ok(access, `${hotelId} が福岡ガーデンパレスに結合されていません`);
+    assert.equal(access.transferCount, 0);
+    assert.equal(access.travelTimeLabel, undefined);
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  const gardenPalaceAccess = dataset.hotels
+    .find((hotel) => hotel.hotelId === "fukuoka-garden-palace")
+    ?.venueAccess.find((access) => access.venueId === "venue-fukuoka-garden-palace");
+  assert.equal(gardenPalaceAccess?.measurementBasis, "route_only");
+  assert.ok(gardenPalaceAccess?.reviewState.includes("official_direct"));
+  const referenceTenjinAccess = dataset.hotels
+    .find((hotel) => hotel.hotelId === "hotel-reference-tenjin-iii")
+    ?.venueAccess.find((access) => access.venueId === "venue-fukuoka-garden-palace");
+  assert.equal(referenceTenjinAccess?.measurementBasis, "map_route_checked");
+  assert.ok(referenceTenjinAccess?.reviewState.includes("verified_with_caveat"));
   assert.ok(
     dataset.hotels
       .find((hotel) => hotel.hotelId === "sakura-garden-hotel")
