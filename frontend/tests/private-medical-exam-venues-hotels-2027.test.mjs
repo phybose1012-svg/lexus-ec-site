@@ -510,7 +510,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 96);
+  assert.equal(dataset.hotels.length, 97);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -1506,6 +1506,33 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   );
   assert.ok(meitetsuSakuradori?.amenities.some((item) => item.key === "desk_lamp"));
   assert.equal(meitetsuSakuradori?.amenities.some((item) => item.key === "desk"), false);
+  const tokyoRyutsuCenterVenue = dataset.venues.find(
+    (venue) => venue.venueId === "venue-tokyo-ryutsu-center-center-building",
+  );
+  assert.match(tokyoRyutsuCenterVenue?.accessNote ?? "", /流通センター駅から徒歩1分/u);
+  const tokyoRyutsuCenterHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-tokyo-ryutsu-center-center-building",
+    ),
+  );
+  assert.deepEqual(
+    tokyoRyutsuCenterHotels.map((hotel) => hotel.name),
+    ["リッチモンドホテル東京芝", "相鉄フレッサイン 浜松町大門"],
+  );
+  for (const hotel of tokyoRyutsuCenterHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-tokyo-ryutsu-center-center-building",
+    );
+    assert.deepEqual(access?.modes, ["walk", "rail"]);
+    assert.equal(access?.transferCount, 0);
+    assert.equal(access?.measurementBasis, "route_only");
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.ok(hotel.amenities.some((item) => item.key === "wifi"));
+    assert.ok(hotel.amenities.some((item) => item.key === "desk"));
+    assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
+    assert.ok(hotel.amenities.some((item) => item.key === "breakfast"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
   assert.ok(
     dataset.hotels
       .find((hotel) => hotel.hotelId === "sakura-garden-hotel")
@@ -1612,6 +1639,7 @@ test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを�
   assert.match(pageSource, /東京女子医科大学 彌生記念教育棟の宿泊候補2施設を追加/u);
   assert.match(pageSource, /日本大学 医学部校舎の宿泊候補2施設を追加/u);
   assert.match(pageSource, /金沢医科大学 名古屋一次会場の宿泊候補2施設を追加/u);
+  assert.match(pageSource, /金沢医科大学 後期東京会場の宿泊候補2施設を追加/u);
   assert.match(switcherSource, /private-medical-school-exam-venues-hotels-2027/u);
   assert.match(endpointSource, /Content-Disposition/u);
   assert.match(endpointSource, /Access-Control-Allow-Origin/u);

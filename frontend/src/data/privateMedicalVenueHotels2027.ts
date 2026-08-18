@@ -109,6 +109,7 @@ const TWMU_YAYOI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const TOHO_OMORI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const NIHON_MEDICAL_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const TKP_PREMIUM_NAGOYA_EKIMAE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const TOKYO_RYUTSU_CENTER_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -3689,6 +3690,23 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jikei.ac.jp/university/medicine/admission/application-guidelines/",
         ],
       },
+      {
+        venueId: "venue-tokyo-ryutsu-center-center-building",
+        modes: ["walk", "rail"],
+        routeSummary: "リッチモンドホテル東京芝からホテル公式の経路を逆向きにたどり、東京モノレール浜松町駅へ徒歩で進みます。流通センター駅に停車する羽田空港方面の列車で乗換なしで移動し、東京流通センター公式の徒歩経路でセンタービルへ向かいます。到着後は受験票・当日掲示に従って指定された受付・試験室へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―東京モノレール浜松町駅は公式徒歩8分／流通センター駅―東京流通センターは施設公式徒歩1分（列車乗車・待ち時間、駅構内、センタービル内の指定試験室までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: TOKYO_RYUTSU_CENTER_VERIFIED_AT,
+        caution: "ホテル公式の徒歩8分と施設公式の徒歩1分は起終点の異なる別区間で、東京モノレールの乗車・待ち時間、駅構内移動、センタービル内の指定試験室までを含む通し所要ではありません。2027年3月4日のダイヤは未公表のため、流通センター駅に停車する列車の時刻・運行情報を直前に東京モノレール公式で確認してください。金沢医科大学の一般選抜（後期）一次は東京会場を出願時に選択した受験者が対象です。2027年度ガイドは東京流通センター センタービルまで公表していますが、開場・入場時刻、使用階・室、受付位置、受験生入口は未公表です。東京流通センター内の別棟と取り違えず、受験票で施設名・住所を確認してください。",
+        evidenceUrls: [
+          "https://richmondhotel.jp/tokyo-shiba/access/",
+          "https://www.tokyo-monorail.co.jp/guidance/index.html",
+          "https://www.trc-inc.co.jp/access/",
+          "https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_admissionguide.pdf.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "全室無料Wi-Fi", "全客室で無料Wi-Fiを利用できます。", "https://richmondhotel.jp/tokyo-shiba/rooms/"),
@@ -3699,8 +3717,8 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     ],
     operatingStatus: "official_site_active",
     reviewState: "verified",
-    verifiedAt: JIKEI_NISHISHIMBASHI_VERIFIED_AT,
-    note: "御成門駅を介して鉄道に乗らず会場へ向かえ、客室の大型デスク、無料Wi-Fi、24時間コインランドリーを公式確認できる学習設備優先の候補です。朝食店舗は平日6:30、土日祝7:00開始のため、2月20日・21日・22日のどの日に指定されるか確認して利用可否を判断してください。18歳未満の方が本人支払いで宿泊する場合は、宿泊者全員分の親権者同意書をチェックイン時に提出してください。",
+    verifiedAt: TOKYO_RYUTSU_CENTER_VERIFIED_AT,
+    note: "客室の大型デスク、無料Wi-Fi、24時間コインランドリーを公式確認できる学習設備優先の候補です。東京慈恵会医科大学 西新橋キャンパスへは御成門駅を介した徒歩、東京流通センターへは東京モノレール浜松町駅から乗換なしで向かえます。朝食店舗は平日6:30、土日祝7:00開始です。2027年3月4日は木曜日ですが、営業時間を宿泊前に再確認してください。18歳未満の方が本人支払いで宿泊する場合は、宿泊者全員分の親権者同意書をチェックイン時に提出してください。",
   },
   {
     hotelId: "pearl-hotel-shinjuku-akebonobashi",
@@ -4035,5 +4053,45 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: TKP_PREMIUM_NAGOYA_EKIMAE_VERIFIED_AT,
     note: "名古屋駅桜通口側にある98室の地域系ビジネスホテルです。客室Wi-Fi・有線LAN、4階コインランドリー、6:30開始の朝定食、デスクスタンドを公式確認しています。未成年者だけで宿泊する場合は親権者同意書をチェックインまでに提出してください。客室内の椅子で使える学習机は公式本文で確認できないため、必要な場合は予約前に机のある部屋を確認してください。朝食は注文後に魚を焼く方式なので、9:30開始の試験に向けて短時間で利用できるかを前日に確認してください。名古屋会場は大学公式内に表記差があるため、受験票で駅前会場が指定された場合だけ利用してください。",
+  },
+  {
+    hotelId: "sotetsu-fresa-inn-hamamatsucho-daimon",
+    name: "相鉄フレッサイン 浜松町大門",
+    postalCode: "105-0012",
+    address: "東京都港区芝大門1-2-7",
+    prefecture: "東京都",
+    municipality: "港区",
+    officialUrl: "https://sotetsu-hotels.com/fresa-inn/daimon/",
+    officialBookingUrl: "https://sotetsu-hotels.com/fresa-inn/daimon/",
+    nearestStation: "東京モノレール 浜松町駅",
+    venueAccess: [
+      {
+        venueId: "venue-tokyo-ryutsu-center-center-building",
+        modes: ["walk", "rail"],
+        routeSummary: "相鉄フレッサイン 浜松町大門からホテル公式の経路を逆向きにたどり、東京モノレール浜松町駅へ徒歩で進みます。流通センター駅に停車する羽田空港方面の列車で乗換なしで移動し、東京流通センター公式の徒歩経路でセンタービルへ向かいます。到着後は受験票・当日掲示に従って指定された受付・試験室へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―東京モノレール浜松町駅は公式徒歩8分／流通センター駅―東京流通センターは施設公式徒歩1分（列車乗車・待ち時間、駅構内、センタービル内の指定試験室までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: TOKYO_RYUTSU_CENTER_VERIFIED_AT,
+        caution: "ホテル公式の徒歩8分と施設公式の徒歩1分は起終点の異なる別区間で、東京モノレールの乗車・待ち時間、駅構内移動、センタービル内の指定試験室までを含む通し所要ではありません。2027年3月4日のダイヤは未公表のため、流通センター駅に停車する列車の時刻・運行情報を直前に東京モノレール公式で確認してください。金沢医科大学の一般選抜（後期）一次は東京会場を出願時に選択した受験者が対象です。2027年度ガイドは東京流通センター センタービルまで公表していますが、開場・入場時刻、使用階・室、受付位置、受験生入口は未公表です。近隣の「相鉄フレッサイン 大門駅前」および東京流通センター内の別棟と取り違えず、予約内容と受験票を確認してください。",
+        evidenceUrls: [
+          "https://sotetsu-hotels.com/fresa-inn/daimon/access/",
+          "https://www.tokyo-monorail.co.jp/guidance/index.html",
+          "https://www.trc-inc.co.jp/access/",
+          "https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_admissionguide.pdf.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全館・全室無料Wi-Fi", "館内と全客室で無料Wi-Fiを利用できます。", "https://sotetsu-hotels.com/fresa-inn/daimon/facilities/"),
+      amenity("desk", "客室デスク", "公式FAQが客室デスクの棚を案内しています。学習に必要な机面の広さは予約前に確認してください。", "https://sotetsu-hotels.com/fresa-inn/daimon/faq/"),
+      amenity("coin_laundry", "2階コインランドリー", "2階にドラム式洗濯乾燥機2台があります。", "https://sotetsu-hotels.com/fresa-inn/daimon/facilities/"),
+      amenity("breakfast", "朝食6:30〜", "朝食は6:30〜10:00に提供され、最終入店は9:30です。", "https://sotetsu-hotels.com/fresa-inn/daimon/cuisine/"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: TOKYO_RYUTSU_CENTER_VERIFIED_AT,
+    note: "浜松町駅から東京モノレールで流通センター駅へ乗換なしで向かえる190室のビジネスホテルです。全館・全室無料Wi-Fi、2階のドラム式コインランドリー、6:30開始の朝食を公式確認しています。客室デスクの存在は公式FAQで確認できますが、学習に使える面の広さは予約時に確認してください。18歳未満の方だけで宿泊する場合は、宿泊者全員分の親権者同意書をチェックイン時に提出してください。近隣の別施設「相鉄フレッサイン 大門駅前」と取り違えないよう、住所を確認してください。",
   },
 ];

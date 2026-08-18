@@ -1100,8 +1100,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     municipality: "大田区",
     nearestStations: ["東京モノレール 流通センター駅"],
     officialUrl: "https://www.trc-inc.co.jp/access/",
+    accessNote: "金沢医科大学の2027年度ガイドは一般選抜（後期）一次の東京会場を東京流通センター センタービルと公表しています。施設公式では東京モノレール流通センター駅から徒歩1分です。開場・入場時刻、使用階・室、受付位置、受験生入口は未公表のため、受験票と当日掲示を確認し、東京流通センター内の別棟と取り違えないでください。",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: "2026-08-19T00:00:00+09:00",
   },
   {
     venueId: "venue-temma-training-center",
