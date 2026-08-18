@@ -178,6 +178,9 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "上毛電気鉄道 中央前橋駅",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式フロア案内/u);
+    } else if (venue.venueId === "venue-jichi-first-saitama-education-hall") {
+      assert.deepEqual(venue.nearestStations, ["JR京浜東北線・宇都宮線・高崎線 浦和駅"]);
+      assert.match(venue.officialUrlLabel ?? "", /公式施設案内/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -568,7 +571,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 122);
+  assert.equal(dataset.hotels.length, 124);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -2643,6 +2646,86 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.match(comfortMaebashiMeeting293Access?.travelTimeLabel ?? "", /別区間表示/u);
   assert.match(comfortMaebashiMeeting293Access?.caution ?? "", /2027年1月26日.*未公表/u);
   assert.match(comfortMaebashiMeeting293Access?.caution ?? "", /291会議室/u);
+  const jichiSaitamaEducationHall = dataset.venues.find(
+    (venue) => venue.venueId === "venue-jichi-first-saitama-education-hall",
+  );
+  assert.equal(
+    jichiSaitamaEducationHall?.officialUrl,
+    "https://stib.jp/convention/conventions/271/",
+  );
+  assert.match(jichiSaitamaEducationHall?.address ?? "", /高砂3丁目12番24号/u);
+  assert.match(jichiSaitamaEducationHall?.accessNote ?? "", /浦和駅西口.*徒歩10分/u);
+  assert.match(jichiSaitamaEducationHall?.accessNote ?? "", /通常開館9:00.*受付8:20/u);
+  assert.match(jichiSaitamaEducationHall?.accessNote ?? "", /階・室.*未公表/u);
+  assert.match(jichiSaitamaEducationHall?.accessNote ?? "", /201会議室.*みなさない/u);
+  assert.match(jichiSaitamaEducationHall?.accessNote ?? "", /小児医療センター.*別会場/u);
+  const jichiSaitamaEducationHallLinks = dataset.assignments.flatMap((assignment) =>
+    assignment.venueLinks.filter(
+      (link) => link.venueId === "venue-jichi-first-saitama-education-hall",
+    ),
+  );
+  assert.deepEqual(
+    jichiSaitamaEducationHallLinks.map((link) => [
+      link.applicantPrefecture,
+      link.examPart,
+      link.examDate,
+    ]),
+    [["埼玉県", "written", "2027-01-25"]],
+  );
+  const jichiSaitamaEducationHallHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-jichi-first-saitama-education-hall",
+    ),
+  );
+  assert.deepEqual(
+    jichiSaitamaEducationHallHotels.map((hotel) => hotel.name),
+    ["ロイヤルパインズホテル浦和", "ダイワロイネットホテル大宮西口"],
+  );
+  const royalPinesUrawa = jichiSaitamaEducationHallHotels.find(
+    (hotel) => hotel.hotelId === "royal-pines-hotel-urawa",
+  );
+  const royalPinesUrawaAccess = royalPinesUrawa?.venueAccess.find(
+    (entry) => entry.venueId === "venue-jichi-first-saitama-education-hall",
+  );
+  assert.deepEqual(royalPinesUrawaAccess?.modes, ["walk"]);
+  assert.equal(royalPinesUrawaAccess?.transferCount, 0);
+  assert.equal(royalPinesUrawaAccess?.measurementBasis, "map_route_checked");
+  assert.deepEqual(royalPinesUrawaAccess?.reviewState, ["verified_with_caveat"]);
+  assert.equal("travelTimeLabel" in (royalPinesUrawaAccess ?? {}), false);
+  assert.equal("distanceLabel" in (royalPinesUrawaAccess ?? {}), false);
+  assert.match(royalPinesUrawaAccess?.caution ?? "", /通常開館9:00.*受付開始/u);
+  assert.match(royalPinesUrawaAccess?.caution ?? "", /階・室.*未公表/u);
+  assert.match(royalPinesUrawaAccess?.caution ?? "", /201会議室/u);
+  assert.ok(royalPinesUrawa?.amenities.some((item) => item.key === "wifi"));
+  assert.ok(royalPinesUrawa?.amenities.some((item) => item.key === "breakfast"));
+  assert.ok(royalPinesUrawa?.amenities.some((item) => item.key === "desk_lamp"));
+  assert.equal(royalPinesUrawa?.amenities.some((item) => item.key === "desk"), false);
+  assert.equal(royalPinesUrawa?.amenities.some((item) => item.key === "coin_laundry"), false);
+  assert.match(royalPinesUrawa?.note ?? "", /親権者同意書/u);
+  assert.match(royalPinesUrawa?.note ?? "", /机.*洗濯方法/u);
+  const daiwaRoynetOmiya = jichiSaitamaEducationHallHotels.find(
+    (hotel) => hotel.hotelId === "daiwa-roynet-hotel-omiya-nishiguchi",
+  );
+  const daiwaRoynetOmiyaAccess = daiwaRoynetOmiya?.venueAccess.find(
+    (entry) => entry.venueId === "venue-jichi-first-saitama-education-hall",
+  );
+  assert.deepEqual(daiwaRoynetOmiyaAccess?.modes, ["walk", "rail"]);
+  assert.equal(daiwaRoynetOmiyaAccess?.transferCount, 0);
+  assert.equal(daiwaRoynetOmiyaAccess?.measurementBasis, "route_only");
+  assert.deepEqual(daiwaRoynetOmiyaAccess?.reviewState, ["verified_with_caveat"]);
+  assert.match(daiwaRoynetOmiyaAccess?.travelTimeLabel ?? "", /公式徒歩約6分/u);
+  assert.match(daiwaRoynetOmiyaAccess?.travelTimeLabel ?? "", /徒歩10分/u);
+  assert.match(daiwaRoynetOmiyaAccess?.travelTimeLabel ?? "", /別区間表示/u);
+  assert.match(daiwaRoynetOmiyaAccess?.caution ?? "", /2027年1月25日.*未公表/u);
+  assert.match(daiwaRoynetOmiyaAccess?.caution ?? "", /通常開館9:00/u);
+  for (const key of ["wifi", "desk", "coin_laundry", "breakfast", "humidifier"]) {
+    assert.ok(
+      daiwaRoynetOmiya?.amenities.some((item) => item.key === key),
+      `ダイワロイネットホテル大宮西口に ${key} がありません`,
+    );
+  }
+  assert.match(daiwaRoynetOmiya?.note ?? "", /モデレートダブル/u);
+  assert.match(daiwaRoynetOmiya?.note ?? "", /宿泊同意書/u);
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
   assert.equal(dataset.definitions.examParts.written, "学力試験");
   assert.equal(dataset.definitions.venueLinkRoles.overflow, "定員状況等による代替会場");
