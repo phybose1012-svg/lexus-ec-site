@@ -136,6 +136,7 @@ const JICHI_KANAGAWA_WORKPIA_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_KANAGAWA_PREFECTURAL_OFFICE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_NIIGATA_JICHIKAIKAN_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_TOYAMA_KENMINKAIKAN_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_ISHIKAWA_MEETING_1105_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -2087,6 +2088,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.kanazawa-med.ac.jp/other/accessmap.html",
         ],
       },
+      {
+        venueId: "venue-jichi-first-ishikawa-meeting-1105",
+        modes: ["walk", "bus"],
+        routeSummary: "ABホテル金沢からホテル公式の案内を逆向きにJR金沢駅金沢港口（西口）へ徒歩で戻り、同口から北陸鉄道バスで県庁前停留所へ移動します。下車後は石川県庁行政庁舎へ入り、受験票、石川県から交付される試験専用案内、当日掲示に従って11階1105会議室の指定受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR金沢駅金沢港口（西口）は公式徒歩1分、金沢駅金沢港口（西口）―県庁前は県庁公式バス約10分（待ち時間・庁舎内・指定受付までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_ISHIKAWA_MEETING_1105_VERIFIED_AT,
+        caution: "ホテル公式徒歩1分と県庁公式バス約10分は別区間で、ホテルから1105会議室までの通し所要ではありません。2027年1月25日の北陸鉄道バス時刻・乗り場・積雪時運行は未公表のため、直前に石川県と北陸鉄道の公式情報を再確認してください。学力試験は受付8:20〜8:40、試験9:00〜14:10です。11階1105会議室までは2027募集要項で確定していますが、受験生入口、受付位置、待機場所、入館手順は未公表です。県庁前停留所や行政庁舎の一般入口を試験受付とみなさず、雪・凍結・道路遅延・エレベーター待ちを見込んでください。翌1月26日の面接は同庁舎11階1103会議室という別会場です。",
+        evidenceUrls: [
+          "https://www.ab-hotel.jp/kanazawa/access/",
+          "https://www.pref.ishikawa.lg.jp/kanzai/sinkentyou/sinnkenntyousya/koutuu.html",
+          "https://www.pref.ishikawa.lg.jp/shink/kentyoubus.html",
+          "https://www.pref.ishikawa.lg.jp/kanzai/sinkentyou/sinnkenntyousya/kakukahaiti.html",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "無料Wi-Fi・有線LAN", "全客室で無料Wi-Fiと有線LANを利用できます。", "https://www.ab-hotel.jp/kanazawa/faq/"),
@@ -2098,7 +2117,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: KANAZAWA_MEDICAL_VERIFIED_AT,
-    note: "金沢駅西口から徒歩約1分で、試験日専用無料バスを利用しやすい堅実な候補です。18歳未満の方だけで宿泊する場合は保護者の宿泊同意書が必要です。公式予約は毎月初めに5か月先まで順次開くため、2027年2月分は2026年10月初旬、3月分は11月初旬から確認してください。専用バスの対象外となる第2次や乗り遅れ時に備え、通常の浅野川線・路線バス経路も確認してください。",
+    note: "金沢駅西口から徒歩約1分で、金沢医科大学の試験日専用バスと石川県庁前行きの路線バスへ接続しやすい堅実な候補です。全客室の無料Wi-Fi・有線LAN、資料を広げられる机、24時間コインランドリー、6:00開始の朝食、加湿器を施設公式で確認しています。18歳未満の方だけで宿泊する場合は保護者の宿泊同意書が必要です。公式予約は毎月初めに5か月先まで順次開くため、対象月の販売開始後に在庫を確認してください。自治医科大学石川県会場へ向かう場合は、2027年1月25日の県庁前行きバス時刻と積雪時運行を直前に再確認してください。",
   },
   {
     hotelId: "hotel-livemax-budget-kanazawa-idaimae",
@@ -5987,5 +6006,48 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: JICHI_TOYAMA_KENMINKAIKAN_VERIFIED_AT,
     note: "JR富山駅南口から徒歩約3分で、6:00開始の朝食と学習設備を優先した枠です。全室無料無線LAN、24時間コインランドリーを公式確認し、バリューツイン以外にはデスクワークに十分な大型デスクと明るいデスクライトがあります。学習机を重視する場合はバリューツインを避け、デスク付き客室を指定してください。公式宿泊約款では、未成年者だけの宿泊は保護者の許可と宿泊同意書が必要です。1月の積雪・凍結を見込み、前日に会場までの徒歩経路を確認してください。",
+  },
+  {
+    hotelId: "smile-hotel-kanazawa-west-exit",
+    name: "スマイルホテル金沢西口駅前",
+    postalCode: "920-0031",
+    address: "石川県金沢市広岡3丁目2番37号",
+    prefecture: "石川県",
+    municipality: "金沢市",
+    officialUrl: "https://smile-hotels.com/hotels/show/kanazawanishiguchiekimae",
+    officialBookingUrl: "https://smile-hotels.com/hotels/show/kanazawanishiguchiekimae",
+    nearestStation: "JR北陸新幹線・IRいしかわ鉄道 金沢駅金沢港口（西口）",
+    venueAccess: [
+      {
+        venueId: "venue-jichi-first-ishikawa-meeting-1105",
+        modes: ["walk", "bus"],
+        routeSummary: "スマイルホテル金沢西口駅前からホテル公式の案内を逆向きにJR金沢駅金沢港口（西口）へ徒歩で戻り、同口から北陸鉄道バスで県庁前停留所へ移動します。下車後は石川県庁行政庁舎へ入り、受験票、石川県から交付される試験専用案内、当日掲示に従って11階1105会議室の指定受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR金沢駅金沢港口（西口）は公式徒歩約4分、金沢駅金沢港口（西口）―県庁前は県庁公式バス約10分（待ち時間・庁舎内・指定受付までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_ISHIKAWA_MEETING_1105_VERIFIED_AT,
+        caution: "ホテル公式徒歩約4分と県庁公式バス約10分は別区間で、ホテルから1105会議室までの通し所要ではありません。2027年1月25日の北陸鉄道バス時刻・乗り場・積雪時運行は未公表のため、直前に石川県と北陸鉄道の公式情報を再確認してください。学力試験は受付8:20〜8:40、試験9:00〜14:10です。11階1105会議室までは2027募集要項で確定していますが、受験生入口、受付位置、待機場所、入館手順は未公表です。県庁前停留所や行政庁舎の一般入口を試験受付とみなさず、雪・凍結・道路遅延・エレベーター待ちを見込んでください。翌1月26日の面接は同庁舎11階1103会議室という別会場です。",
+        evidenceUrls: [
+          "https://smile-hotels.com/hotels/show/kanazawanishiguchiekimae",
+          "https://www.pref.ishikawa.lg.jp/kanzai/sinkentyou/sinnkenntyousya/koutuu.html",
+          "https://www.pref.ishikawa.lg.jp/shink/kentyoubus.html",
+          "https://www.pref.ishikawa.lg.jp/kanzai/sinkentyou/sinnkenntyousya/kakukahaiti.html",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全館無料Wi-Fi", "館内で無料Wi-Fiを利用できます。", "https://smile-hotels.com/hotels/show/kanazawanishiguchiekimae"),
+      amenity("desk", "全室ライティングデスク", "全客室にライティングデスクがあります。", "https://smile-hotels.com/hotels/show/kanazawanishiguchiekimae"),
+      amenity("coin_laundry", "2階コインランドリー", "2階に洗濯機・乾燥機が各4台あります。", "https://smile-hotels.com/hotels/show/kanazawanishiguchiekimae"),
+      amenity("breakfast", "朝食6:30〜", "朝食は6:30〜10:00で、最終入場は9:30です。", "https://smile-hotels.com/hotels/show/kanazawanishiguchiekimae"),
+      amenity("humidifier", "全室加湿空気清浄機", "全客室に加湿機能付き空気清浄機があります。", "https://smile-hotels.com/hotels/show/kanazawanishiguchiekimae"),
+    ],
+    operatingStatus: "official_site_active",
+    operatingStatusEvidenceUrl: "https://smile-hotels.com/hotels/show/kanazawanishiguchiekimae",
+    reviewState: "verified",
+    verifiedAt: JICHI_ISHIKAWA_MEETING_1105_VERIFIED_AT,
+    note: "JR金沢駅金沢港口（西口）徒歩約4分で、設備根拠の確実性を優先した枠です。無料Wi-Fi、全室ライティングデスク、2階コインランドリー、6:30開始の朝食、全室加湿空気清浄機を施設公式で確認しています。18歳未満だけ、または未成年者同士で泊まる場合は、宿泊者全員分の施設名入り親権者同意書をチェックイン時に提出してください。2027年1月25日のバス時刻と積雪時運行も直前に再確認してください。",
   },
 ];
