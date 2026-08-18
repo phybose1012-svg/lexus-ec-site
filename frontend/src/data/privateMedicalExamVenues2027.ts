@@ -1237,16 +1237,17 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
   {
     venueId: "venue-kawasaki-medical-general-gymnasium",
     academicYear: 2027,
-    name: "川崎医科大学 総合体育館",
-    shortName: "川崎医科大学 総合体育館",
+    name: "川崎医科大学 総合体育館等",
+    shortName: "川崎医科大学 総合体育館等",
     postalCode: "701-0192",
     address: "岡山県倉敷市松島577",
     prefecture: "岡山県",
     municipality: "倉敷市",
     nearestStations: ["JR山陽本線 中庄駅"],
-    officialUrl: "https://m.kawasaki-m.ac.jp/access/",
+    officialUrl: "https://m.kawasaki-m.ac.jp/outline/access.php",
+    accessNote: "川崎医科大学の2027年度一般選抜・地域枠選抜の第一次試験は2月1日に実施され、公式会場表記は『総合体育館等』です。使用施設、受付位置、受験生入口、受験室は未公表のため、受験票と大学の受験生向け案内・当日掲示で確認してください。大学公式はJR山陽本線・伯備線の中庄駅から徒歩10分と案内していますが、これは大学までの一般アクセスで、指定受験室までの時間ではありません。試験会場と周辺への自家用車・タクシー・バス等の乗り入れ、無断駐車、送迎は禁止されています。",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: "2026-08-19T00:00:00+09:00",
   },
   {
     venueId: "venue-kawasaki-medical-school-building",
@@ -2589,7 +2590,7 @@ officialVenuePlan(["kawasaki-medical--general--general-regional-quota-c5d34-491f
   evidenceLabel: "2027年度一般選抜・地域枠選抜要項",
   evidenceLocator: "試験会場案内「第一次試験」",
   reviewState: "verified",
-  note: "公式資料では同一所在地内の「総合体育館等」まで公表されています。使用施設の割当方法は明記されていません。",
+  note: "公式資料では同一所在地内の『総合体育館等』まで公表されています。使用施設、受付位置、受験生入口、受験室と割当方法は未公表のため、受験票と大学案内で確認してください。試験会場と周辺への車・タクシー・バス等の乗り入れ、無断駐車、送迎は禁止されています。",
 });
 officialVenuePlan(["kawasaki-medical--general--general-regional-quota-c5d34-491fd-bf01d"], "second", {
   venueLinks: [link("venue-kawasaki-medical-school-building")],
