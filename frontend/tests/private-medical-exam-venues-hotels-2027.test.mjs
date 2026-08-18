@@ -408,7 +408,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 31);
+  assert.equal(dataset.hotels.length, 33);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -449,6 +449,29 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
+  for (const hotelId of ["osaka-riverside-hotel", "sakura-garden-hotel"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-tkp-osaka-riverside-hotel",
+    );
+    assert.ok(access, `${hotelId} がTKPガーデンシティ大阪リバーサイドホテルに結合されていません`);
+    assert.equal(access.measurementBasis, "route_only");
+    assert.equal(access.transferCount, 0);
+    assert.equal(access.travelTimeLabel, undefined);
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  assert.ok(
+    dataset.hotels
+      .find((hotel) => hotel.hotelId === "osaka-riverside-hotel")
+      ?.venueAccess[0]?.reviewState.includes("official_direct"),
+  );
+  assert.ok(
+    dataset.hotels
+      .find((hotel) => hotel.hotelId === "sakura-garden-hotel")
+      ?.venueAccess[0]?.reviewState.includes("verified_with_caveat"),
+  );
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
   assert.equal(dataset.definitions.examParts.written, "学力試験");
   assert.equal(dataset.definitions.venueLinkRoles.overflow, "定員状況等による代替会場");

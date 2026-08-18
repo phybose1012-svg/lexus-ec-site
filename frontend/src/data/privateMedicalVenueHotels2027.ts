@@ -76,6 +76,7 @@ const VERIFIED_AT = "2026-08-15T00:00:00+09:00";
 const SHIODOME_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const MARIANNA_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const UOEH_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
+const OSAKA_RIVERSIDE_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -1298,5 +1299,85 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: UOEH_VERIFIED_AT,
     note: "ホテル客室は6室の小規模な宿泊施設です。朝食提供と未成年者だけで宿泊する場合の条件は公式サイトで確認できないため、予約前にホテルへ直接確認してください。",
+  },
+  {
+    hotelId: "osaka-riverside-hotel",
+    name: "大阪リバーサイドホテル",
+    postalCode: "534-0027",
+    address: "大阪府大阪市都島区中野町5-12-30",
+    prefecture: "大阪府",
+    municipality: "大阪市都島区",
+    officialUrl: "https://skhotel-group.com/osaka-riverside-hotel/",
+    officialBookingUrl: "https://www6.489pro.com/asp/489/menu.asp?id=27163521&list=YES&ty=ser",
+    nearestStation: "JR大阪環状線 桜ノ宮駅西口",
+    venueAccess: [
+      {
+        venueId: "venue-tkp-osaka-riverside-hotel",
+        modes: ["walk"],
+        routeSummary: "ホテル棟2階の会議室連絡通路から会館棟へ移動し、受験票・当日案内で指定された試験室へ",
+        transferCount: 0,
+        measurementBasis: "route_only",
+        reviewState: ["official_direct", "venue_pdf_visual_review"],
+        verifiedAt: OSAKA_RIVERSIDE_VERIFIED_AT,
+        caution: "客室のあるホテル棟と試験会場の会館棟は別区分です。ホテル公式は2階の会議室連絡通路を案内していますが、客室からの館内所要時間、2027年1月25日の指定入口・試験室・連絡通路の運用は公表されていません。入室時間は8:40〜9:10で、入室開始前は試験場に入れません。徒歩0分とはせず、必ず受験票と当日案内を確認してください。",
+        evidenceUrls: [
+          "https://skhotel-group.com/osaka-riverside-hotel/facilities/",
+          "https://www.kashikaigishitsu.net/facilitys/gc-riverside-osaka/",
+          "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/doc/guideline_app_10.pdf",
+          "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/doc/guideline_app.pdf?ver=2",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "無料Wi-Fi", "客室・フロント・レストランで無料Wi-Fiを利用できます。", "https://skhotel-group.com/osaka-riverside-hotel/facilities/"),
+      amenity("coin_laundry", "コインランドリー", "9階のコインランドリーは7:00〜24:00に利用できます。", "https://skhotel-group.com/osaka-riverside-hotel/facilities/"),
+      amenity("humidifier", "加湿機能付き空気清浄機", "客室設備として加湿機能付き空気清浄機が案内されています。", "https://skhotel-group.com/osaka-riverside-hotel/rooms/"),
+      amenity("desk_lamp", "スタンドライト貸出", "スタンドライトは貸出備品です。", "https://skhotel-group.com/osaka-riverside-hotel/rooms/"),
+      amenity("breakfast", "朝食7:00〜", "朝食は7:00〜9:30（ラストオーダー9:00）の公式案内です。", "https://skhotel-group.com/osaka-riverside-hotel/facilities/"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: OSAKA_RIVERSIDE_VERIFIED_AT,
+    note: "18歳未満または高校生以下の方だけで宿泊する場合は、ホテル所定の親権者同意書が必要です。朝食を利用する場合も、8:40の入室開始に余裕を持って終えてください。",
+  },
+  {
+    hotelId: "sakura-garden-hotel",
+    name: "SAKURA GARDEN HOTEL",
+    postalCode: "534-0027",
+    address: "大阪府大阪市都島区中野町4-1-23",
+    prefecture: "大阪府",
+    municipality: "大阪市都島区",
+    officialUrl: "https://sakuragarden-hotel.com/",
+    officialBookingUrl: "https://sakuragarden-hotel.com/?locale=ja&tripla_booking_widget_open=search",
+    nearestStation: "JR大阪環状線 桜ノ宮駅東口南",
+    venueAccess: [
+      {
+        venueId: "venue-tkp-osaka-riverside-hotel",
+        modes: ["walk"],
+        routeSummary: "ホテルから公式アクセスルートを逆方向にJR桜ノ宮駅東口南へ進み、TKP公式の桜ノ宮駅東口経路で会場へ（電車には乗車しません）",
+        transferCount: 0,
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: OSAKA_RIVERSIDE_VERIFIED_AT,
+        caution: "ホテル公式の徒歩6分は桜ノ宮駅東口南とホテル間、会場公式の徒歩3分は桜ノ宮駅と会場間の案内で、出入口が異なるため単純合算できません。TKP公式には東口からの経路も掲載されていますが、ホテルから会場までの通しの所要時間は公表されていません。2027年1月25日は天候と駅周辺の経路確認に余裕を持ち、8:40〜9:10の入室時間、受験票記載の試験場・入口・試験室を必ず確認してください。",
+        evidenceUrls: [
+          "https://sakuragarden-hotel.com/access",
+          "https://sakuragarden-hotel.com/wp-content/themes/sakuragarden-hotel_new/assets/pdf/access_map.pdf",
+          "https://www.kashikaigishitsu.net/facilitys/gc-riverside-osaka/access/",
+          "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/doc/guideline_app_10.pdf",
+          "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/doc/guideline_app.pdf?ver=2",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "無料Wi-Fi", "全客室で無料Wi-Fiを利用できます。", "https://sakuragarden-hotel.com/rooms"),
+      amenity("coin_laundry", "コインランドリー", "館内に有料のコインランドリーがあります。", "https://sakuragarden-hotel.com/rooms"),
+      amenity("humidifier", "客室加湿器", "客室設備として加湿器が案内されています。", "https://sakuragarden-hotel.com/rooms"),
+      amenity("breakfast", "軽朝食7:00〜", "軽食ビュッフェは7:00〜9:00の公式案内です。", "https://sakuragarden-hotel.com/plan"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: OSAKA_RIVERSIDE_VERIFIED_AT,
+    note: "客室数50室の独立系ホテルです。未成年者だけで宿泊する場合は、年齢条件を確認し、ホテル所定の親権者同意書を提出してください。客室机の仕様は公式ページで確認できないため、学習机が必要な場合は予約前にホテルへ確認してください。",
   },
 ];
