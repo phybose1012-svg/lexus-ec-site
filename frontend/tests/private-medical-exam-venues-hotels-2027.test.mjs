@@ -427,7 +427,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 57);
+  assert.equal(dataset.hotels.length, 59);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -844,6 +844,36 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(
     dataset.hotels.filter((hotel) =>
       hotel.venueAccess.some((access) => access.venueId === "venue-kitakyushu-messe"),
+    ).length,
+    2,
+  );
+  const grandCubeOsakaVenue = dataset.venues.find(
+    (venue) => venue.venueId === "venue-grand-cube-osaka",
+  );
+  assert.equal(grandCubeOsakaVenue?.officialUrl, "https://www.gco.co.jp/visitor/access/");
+  for (const hotelId of ["hotel-ncb", "smile-hotel-osaka-nakanoshima"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-grand-cube-osaka",
+    );
+    assert.ok(access, `${hotelId} がグランキューブ大阪に結合されていません`);
+    assert.equal(access.transferCount, 0);
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  const hotelNcb = dataset.hotels.find((hotel) => hotel.hotelId === "hotel-ncb");
+  assert.equal(hotelNcb?.venueAccess[0]?.measurementBasis, "official");
+  assert.ok(hotelNcb?.venueAccess[0]?.reviewState.includes("official_direct"));
+  assert.ok(hotelNcb?.amenities.some((item) => item.key === "desk"));
+  const smileNakanoshima = dataset.hotels.find(
+    (hotel) => hotel.hotelId === "smile-hotel-osaka-nakanoshima",
+  );
+  assert.equal(smileNakanoshima?.venueAccess[0]?.measurementBasis, "route_only");
+  assert.ok(smileNakanoshima?.venueAccess[0]?.reviewState.includes("verified_with_caveat"));
+  assert.equal(smileNakanoshima?.amenities.some((item) => item.key === "desk"), false);
+  assert.equal(
+    dataset.hotels.filter((hotel) =>
+      hotel.venueAccess.some((access) => access.venueId === "venue-grand-cube-osaka"),
     ).length,
     2,
   );

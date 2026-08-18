@@ -783,7 +783,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "大阪府",
     municipality: "大阪市北区",
     nearestStations: ["京阪中之島線 中之島駅"],
-    officialUrl: "https://www.gco.co.jp/access/",
+    officialUrl: "https://www.gco.co.jp/visitor/access/",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },
