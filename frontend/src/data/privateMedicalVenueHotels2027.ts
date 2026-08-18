@@ -144,6 +144,7 @@ const JICHI_YAMANASHI_ONSHIRIN_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_NAGANO_JICHIKAIKAN_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_NAGANO_PREFECTURAL_OFFICE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_GIFU_MEETING_301_302_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_GIFU_MEETING_301_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -6439,6 +6440,25 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-gifu-meeting-301",
+        modes: ["walk", "bus"],
+        routeSummary: "コンフォートホテル岐阜からホテル公式の徒歩案内を逆向きにJR岐阜駅へ戻り、5番のりばから岐阜バス加納島線のE31県庁行き、または県庁を経由するE32・W32 OKBふれあい会館行きに乗車します。県庁停留所で下車し、受験票、岐阜県から交付される試験専用案内、当日掲示に従って3階共用会議室301の指定受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR岐阜駅は公式徒歩約3分／JR岐阜5番のりば―県庁停留所は岐阜バス公式の現行目安約20分（2027年の待ち時間・乗車時間、庁舎内・指定受付までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_GIFU_MEETING_301_VERIFIED_AT,
+        caution: "ホテル公式徒歩約3分と岐阜バス公式の現行約20分は別区間で、ホテルから面接室までの通し所要ではありません。2027年1月26日の確定ダイヤ、道路状況による遅延、臨時運行は未公表のため、試験日前に岐阜バス公式で利用便・乗り場を再確認してください。面接は受付9:00〜9:20、10:00〜16:00のうち岐阜県が指定する時間です。共用会議室301までは公表済みですが、受験生入口、受付位置、待機列、入庁手順は未公表です。県庁停留所、一般来庁者向け入口、入庁証手続、通常開庁8:30、他催事の3階経路を試験指定とみなさないでください。前日の学力試験は共用会議室301・302という別会場扱いです。",
+        evidenceUrls: [
+          "https://www.choice-hotels.jp/hotel/gifu/access/",
+          "https://www.gifubus.co.jp/rosen/sightseeing.html",
+          "https://www.gifubus.co.jp/rosen/noriba.html",
+          "https://www.pref.gifu.lg.jp/site/ken-shisetsu/2965.html",
+          "https://www.pref.gifu.lg.jp/uploaded/attachment/470933.pdf",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "全室無料Wi-Fi", "全客室で無料Wi-Fiを利用できます。", "https://www.choice-hotels.jp/hotel/gifu/"),
@@ -6474,6 +6494,25 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: JICHI_GIFU_MEETING_301_302_VERIFIED_AT,
         caution: "ホテル公式徒歩約5分と岐阜バス公式の現行約20分は別区間で、ホテルから試験室までの通し所要ではありません。2027年1月25日の確定ダイヤ、道路状況による遅延、臨時運行は未公表のため、試験日前に岐阜バス公式で利用便・乗り場を再確認してください。学力試験は受付8:20〜8:40、試験9:00〜14:10です。共用会議室301・302までは公表済みですが、受験生入口、受付位置、待機列、入庁手順は未公表です。県庁停留所、一般来庁者向け入口、入庁証手続、通常開庁8:30、他催事の3階経路を試験指定とみなさないでください。翌日の面接は共用会議室301のみを使う別会場扱いです。",
+        evidenceUrls: [
+          "https://www.ab-hotel.jp/gifu/access/",
+          "https://www.gifubus.co.jp/rosen/sightseeing.html",
+          "https://www.gifubus.co.jp/rosen/noriba.html",
+          "https://www.pref.gifu.lg.jp/site/ken-shisetsu/2965.html",
+          "https://www.pref.gifu.lg.jp/uploaded/attachment/470933.pdf",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+      {
+        venueId: "venue-jichi-first-gifu-meeting-301",
+        modes: ["walk", "bus"],
+        routeSummary: "ABホテル岐阜からホテル公式の徒歩案内を逆向きにJR岐阜駅へ戻り、5番のりばから岐阜バス加納島線のE31県庁行き、または県庁を経由するE32・W32 OKBふれあい会館行きに乗車します。県庁停留所で下車し、受験票、岐阜県から交付される試験専用案内、当日掲示に従って3階共用会議室301の指定受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR岐阜駅は公式徒歩約5分／JR岐阜5番のりば―県庁停留所は岐阜バス公式の現行目安約20分（2027年の待ち時間・乗車時間、庁舎内・指定受付までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_GIFU_MEETING_301_VERIFIED_AT,
+        caution: "ホテル公式徒歩約5分と岐阜バス公式の現行約20分は別区間で、ホテルから面接室までの通し所要ではありません。2027年1月26日の確定ダイヤ、道路状況による遅延、臨時運行は未公表のため、試験日前に岐阜バス公式で利用便・乗り場を再確認してください。面接は受付9:00〜9:20、10:00〜16:00のうち岐阜県が指定する時間です。共用会議室301までは公表済みですが、受験生入口、受付位置、待機列、入庁手順は未公表です。県庁停留所、一般来庁者向け入口、入庁証手続、通常開庁8:30、他催事の3階経路を試験指定とみなさないでください。前日の学力試験は共用会議室301・302という別会場扱いです。",
         evidenceUrls: [
           "https://www.ab-hotel.jp/gifu/access/",
           "https://www.gifubus.co.jp/rosen/sightseeing.html",
