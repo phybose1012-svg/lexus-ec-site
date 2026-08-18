@@ -139,6 +139,7 @@ const JICHI_TOYAMA_KENMINKAIKAN_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_ISHIKAWA_MEETING_1105_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_ISHIKAWA_MEETING_1103_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_FUKUI_INTERNATIONAL_EXCHANGE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_FUKUI_MEETING_2F_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -6116,6 +6117,23 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-fukui-meeting-2f",
+        modes: ["walk"],
+        routeSummary: "ホテルルートイン福井駅前からホテル公式の案内を逆向きにJR福井駅西口へ徒歩で戻り、福井県庁公式の徒歩経路で県庁へ向かいます。到着後は受験票、福井県から交付される試験専用案内、当日掲示に従って2階中会議室の指定受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR福井駅西口は公式徒歩2分。JR福井駅西口―福井県庁は県庁公式経路あり・徒歩分数未公表（信号・積雪・庁舎内・指定受付までを除く区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_FUKUI_MEETING_2F_VERIFIED_AT,
+        caution: "ホテル公式徒歩2分は福井駅西口までで、県庁2階中会議室までの通し所要ではありません。2027年1月26日の面接は受付9:00〜9:20、面接10:00〜16:00のうち福井県が指定する時間です。2階中会議室までは公表済みですが、受験生入口、受付位置、待機場所、入庁手順は未公表です。通常の開庁時間、1階の総合案内・県庁ホール、一般来庁者向け入口を試験指定とみなさず、1月の積雪・凍結、信号待ち、庁舎内移動を見込んで、受験票と福井県の試験専用案内を確認してください。前日の学力試験は福井県国際交流会館という別会場です。",
+        evidenceUrls: [
+          "https://www.route-inn.co.jp/hotel_list/fukui/index_hotel_id_532/parking/",
+          "https://www.pref.fukui.lg.jp/doc/about/map.html",
+          "https://www.pref.fukui.lg.jp/doc/zaisankastuyou/annai.html",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "全館無料Wi-Fi", "全客室で無料Wi-Fiを利用できます。", "https://www.route-inn.co.jp/hotel_list/fukui/index_hotel_id_532/price/"),
@@ -6154,6 +6172,23 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.keifuku-hotels.com/access/",
           "https://www.f-i-a.or.jp/ja/plaza/facilitys/facilitys/about/",
           "https://www.f-i-a.or.jp/ja/plaza/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+      {
+        venueId: "venue-jichi-first-fukui-meeting-2f",
+        modes: ["walk"],
+        routeSummary: "ホテル京福 福井駅前からホテル公式の案内を逆向きにJR福井駅東口へ徒歩で戻り、駅の公共歩行経路で西口側へ移動して福井県庁公式の徒歩経路に接続します。到着後は受験票、福井県から交付される試験専用案内、当日掲示に従って2階中会議室の指定受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR福井駅東口は公式徒歩1分。駅東口―西口の横断と福井駅西口―福井県庁の徒歩分数は未公表（信号・積雪・庁舎内・指定受付までを除く区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_FUKUI_MEETING_2F_VERIFIED_AT,
+        caution: "ホテル公式徒歩1分は福井駅東口までで、駅横断や県庁2階中会議室までを含む通し所要ではありません。2027年1月26日の面接は受付9:00〜9:20、面接10:00〜16:00のうち福井県が指定する時間です。2階中会議室までは公表済みですが、受験生入口、受付位置、待機場所、入庁手順は未公表です。通常の開庁時間、1階の総合案内・県庁ホール、一般来庁者向け入口を試験指定とみなさず、1月の積雪・凍結、駅横断、信号待ち、庁舎内移動を見込んで、受験票と福井県の試験専用案内を確認してください。前日の学力試験は福井県国際交流会館という別会場です。",
+        evidenceUrls: [
+          "https://www.keifuku-hotels.com/access/",
+          "https://www.pref.fukui.lg.jp/doc/about/map.html",
+          "https://www.pref.fukui.lg.jp/doc/zaisankastuyou/annai.html",
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },

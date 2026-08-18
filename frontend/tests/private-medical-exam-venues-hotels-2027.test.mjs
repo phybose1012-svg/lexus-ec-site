@@ -250,6 +250,12 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "ハピラインふくい 福井駅",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式施設案内/u);
+    } else if (venue.venueId === "venue-jichi-first-fukui-meeting-2f") {
+      assert.deepEqual(venue.nearestStations, [
+        "JR北陸新幹線・越美北線 福井駅西口",
+        "ハピラインふくい 福井駅西口",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式アクセス/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
