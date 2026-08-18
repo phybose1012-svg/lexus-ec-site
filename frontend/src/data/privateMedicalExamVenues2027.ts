@@ -869,8 +869,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     municipality: "品川区",
     nearestStations: ["東急大井町線・池上線 旗の台駅"],
     officialUrl: "https://www.showa-u.ac.jp/access/hatanodai.html",
+    accessNote: "東急大井町線・池上線の旗の台駅東口から徒歩5分です。医学部一般選抜Ⅰ期・Ⅱ期の一次では五反田TOCビルの定員超過時に限り受験票で割り当てられる可能性があり、二次は同キャンパスで固定です。試験室は当日朝掲示で、使用棟・受付位置・受験生入口は未公表です。",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: "2026-08-19T00:00:00+09:00",
   },
   {
     venueId: "venue-tokyo-medical-shinjuku-campus",
@@ -1968,24 +1969,29 @@ unpublishedVenuePlan(["keio--general--general"], "second", keioVenueUrl);
 const showaVenueUrl = "https://adm.showa-u.ac.jp/albums/abm.php?d=2405&f=abm00072419.pdf";
 const showaRoutes = ["showa-medical--general--general-phase-1", "showa-medical--general--general-phase-1-phase-2"];
 officialVenuePlan(showaRoutes, "first", {
-  venueLinks: [link("venue-toc-gotanda")],
-  announcedVenueText: "五反田TOCビル",
+  venueLinks: [
+    link("venue-toc-gotanda", "primary"),
+    link("venue-showa-medical-hatanodai-campus", "overflow"),
+  ],
+  announcedVenueText: "五反田TOCビル（定員超過時は昭和医科大学 旗の台キャンパス）",
   publicationState: "confirmed",
-  conditions: ["fixed"],
+  conditions: ["university_assigned", "admission_ticket", "capacity_overflow"],
   officialAdmissionUrl: showaVenueUrl,
   evidenceLabel: "2027年度入学試験要項",
-  evidenceLocator: "PDF 試験会場欄（一般選抜Ⅰ期・Ⅱ期）",
+  evidenceLocator: "PDF 13ページ（冊子10ページ）医学部一般選抜Ⅰ期・Ⅱ期〈一次試験〉試験場",
   reviewState: "verified",
+  note: "試験場は選択できません。五反田TOCビルの定員を超過した場合に旗の台キャンパスとなる可能性があるため、受験票で指定会場を確認してください。",
 });
 officialVenuePlan(showaRoutes, "second", {
-  venueLinks: [link("venue-showa-medical-hatanodai-campus")],
+  venueLinks: [link("venue-showa-medical-hatanodai-campus", "fixed")],
   announcedVenueText: "昭和医科大学 旗の台キャンパス",
   publicationState: "confirmed",
-  conditions: ["fixed"],
+  conditions: ["fixed", "admission_ticket"],
   officialAdmissionUrl: showaVenueUrl,
   evidenceLabel: "2027年度入学試験要項",
-  evidenceLocator: "PDF 試験会場欄（一般選抜Ⅰ期・Ⅱ期）",
+  evidenceLocator: "PDF 14ページ（冊子11ページ）医学部一般選抜Ⅰ期・Ⅱ期〈二次試験〉",
   reviewState: "verified",
+  note: "Ⅰ期は2月13日または14日を出願時に選択し、Ⅱ期は3月13日です。試験室は当日朝掲示のため、受験票と現地案内を確認してください。",
 });
 officialVenuePlan(["teikyo--general--general"], "first", {
   venueLinks: [link("venue-teikyo-itabashi-campus")],
@@ -2689,7 +2695,7 @@ refineAssignmentPlan(
   { conditions: ["fixed", "applicant_preference", "university_assigned"] },
 );
 refineAssignmentPlan(["showa-medical--general--general-phase-1"], "second", {
-  conditions: ["fixed", "applicant_preference"],
+  conditions: ["fixed", "applicant_preference", "admission_ticket"],
 });
 refineAssignmentPlan(["teikyo--general--general"], "second", {
   conditions: ["fixed", "applicant_preference"],

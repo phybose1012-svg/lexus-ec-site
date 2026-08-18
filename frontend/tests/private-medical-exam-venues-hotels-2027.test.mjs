@@ -155,10 +155,11 @@ test("希望日・大学指定・固定会場を方式別に混同しない", ()
   assert.deepEqual(conditionsFor("showa-medical--general--general-phase-1", "second"), [
     "fixed",
     "applicant_preference",
+    "admission_ticket",
   ]);
   assert.deepEqual(
     conditionsFor("showa-medical--general--general-phase-1-phase-2", "second"),
-    ["fixed"],
+    ["fixed", "admission_ticket"],
   );
   assert.deepEqual(conditionsFor("hyogo-medical--general--general-regional-quota-3470a", "second"), [
     "fixed",
@@ -206,6 +207,28 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
     tohokuGeneralFirst?.officialAdmissionUrl,
     "https://www.tohoku-mpu.ac.jp/admission/medicine-application/",
   );
+
+  for (const routeId of [
+    "showa-medical--general--general-phase-1",
+    "showa-medical--general--general-phase-1-phase-2",
+  ]) {
+    const showaFirst = assignmentFor(routeId, "first");
+    assert.deepEqual(showaFirst?.venueLinks, [
+      { venueId: "venue-toc-gotanda", role: "primary" },
+      { venueId: "venue-showa-medical-hatanodai-campus", role: "overflow" },
+    ]);
+    assert.deepEqual(showaFirst?.conditions, [
+      "university_assigned",
+      "admission_ticket",
+      "capacity_overflow",
+    ]);
+    assert.match(showaFirst?.note ?? "", /五反田TOCビルの定員を超過/u);
+    const showaSecond = assignmentFor(routeId, "second");
+    assert.deepEqual(showaSecond?.venueLinks, [
+      { venueId: "venue-showa-medical-hatanodai-campus", role: "fixed" },
+    ]);
+    assert.ok(showaSecond?.conditions.includes("admission_ticket"));
+  }
 
   assert.deepEqual(assignmentFor("nihon--general--unified-phase-2", "first")?.conditions, []);
   for (const routeId of [
@@ -427,7 +450,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 83);
+  assert.equal(dataset.hotels.length, 85);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -1199,6 +1222,37 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
+  const showaHatanodaiHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-showa-medical-hatanodai-campus",
+    ),
+  );
+  assert.deepEqual(
+    showaHatanodaiHotels.map((hotel) => hotel.name),
+    ["東横INN品川旗の台駅南口", "アワーズイン阪急"],
+  );
+  const toyokoHatanodai = showaHatanodaiHotels.find(
+    (hotel) => hotel.hotelId === "toyoko-inn-shinagawa-hatanodai-eki-minami-guchi",
+  );
+  const oursInnHankyu = showaHatanodaiHotels.find(
+    (hotel) => hotel.hotelId === "ours-inn-hankyu",
+  );
+  assert.equal(toyokoHatanodai?.venueAccess[0]?.measurementBasis, "map_route_checked");
+  assert.deepEqual(toyokoHatanodai?.venueAccess[0]?.modes, ["walk"]);
+  assert.equal(oursInnHankyu?.venueAccess[0]?.measurementBasis, "route_only");
+  assert.deepEqual(oursInnHankyu?.venueAccess[0]?.modes, ["walk", "rail"]);
+  for (const hotel of showaHatanodaiHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-showa-medical-hatanodai-campus",
+    );
+    assert.equal(access?.transferCount, 0);
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.ok(access?.reviewState.includes("venue_pdf_visual_review"));
+    assert.ok(hotel.amenities.some((item) => item.key === "wifi"));
+    assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
+    assert.ok(hotel.amenities.some((item) => item.key === "breakfast"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
   assert.ok(
     dataset.hotels
       .find((hotel) => hotel.hotelId === "sakura-garden-hotel")
@@ -1280,8 +1334,8 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
 test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを参照する", () => {
   const canonical = new URL(privateMedicalExamVenuesHotels2027Metadata.canonicalUrl);
   const datasetUrl = new URL(privateMedicalExamVenuesHotels2027Metadata.datasetUrl);
-  assert.equal(privateMedicalExamVenuesHotels2027Metadata.dateModified, "2026-08-18");
-  assert.equal(privateMedicalExamVenuesHotels2027Metadata.version, "2026-08-18");
+  assert.equal(privateMedicalExamVenuesHotels2027Metadata.dateModified, "2026-08-19");
+  assert.equal(privateMedicalExamVenuesHotels2027Metadata.version, "2026-08-19");
   assert.equal(canonical.pathname, expectedPagePath);
   assert.equal(datasetUrl.pathname, expectedDatasetPath);
   assert.equal(canonical.origin, datasetUrl.origin);
@@ -1299,6 +1353,7 @@ test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを�
   assert.match(pageSource, /href="\/private-medical-school-admissions-schedule-2027\/"/u);
   assert.match(pageSource, /聖マリアンナ医科大学 本学校舎の周辺ホテル2施設を追加/u);
   assert.match(pageSource, /産業医科大学 本学の周辺ホテル2施設を追加/u);
+  assert.match(pageSource, /昭和医科大学 旗の台キャンパスの宿泊候補2施設を追加/u);
   assert.match(switcherSource, /private-medical-school-exam-venues-hotels-2027/u);
   assert.match(endpointSource, /Content-Disposition/u);
   assert.match(endpointSource, /Access-Control-Allow-Origin/u);
