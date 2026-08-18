@@ -913,8 +913,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     municipality: "港区",
     nearestStations: ["都営三田線 御成門駅", "東京メトロ日比谷線 虎ノ門ヒルズ駅"],
     officialUrl: "https://www.jikei.ac.jp/access/nishi-shimbashi/",
+    accessNote: "大学公式アクセス図では、都営三田線の御成門駅A5出口から徒歩約3分、東京メトロ日比谷線の神谷町駅3番出口から徒歩約7分、虎ノ門ヒルズ駅A1出口から徒歩約9分などと案内しています。2027年度一般選抜二次の会場は西新橋キャンパスで確定していますが、個別の試験日・集合時刻、使用棟・階・試験室・受付位置・受験生入口は未公表です。現行キャンパスマップの大学1号館や附属病院入口を試験会場・入口とみなさず、学生募集要項・受験票・当日案内を確認してください。",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: "2026-08-19T00:00:00+09:00",
   },
   {
     venueId: "venue-keio-plaza-hotel-tokyo",
@@ -2066,7 +2067,7 @@ officialVenuePlan(["jikei--general--general"], "second", {
   evidenceLabel: "2027年度医学科入学試験概要",
   evidenceLocator: "公式ページ「二次試験」",
   reviewState: "verified",
-  note: "2月20日〜22日のうち1日に実施されます。割当方法は2027年度の現行公式概要では公表されていません。",
+  note: "2027年2月20日・21日・22日のうち1日に西新橋キャンパスで実施されます。個別の試験日・集合時刻、使用棟・階・試験室・受付位置・受験生入口は現行の2027年度入試概要では未公表です。医学科の学生募集要項ページには2026年度版だけが掲載されているため、後日公開される2027年度学生募集要項と受験票を確認してください。",
 });
 
 const twmuVenueUrl = "https://www.twmu-u.jp/wp-content/uploads/2026/07/c9586e74cb77a02ee36ecf565fb6264f.pdf";
