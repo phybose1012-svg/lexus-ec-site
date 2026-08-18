@@ -164,6 +164,13 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "東武宇都宮線 東武宇都宮駅",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式アクセス/u);
+    } else if (venue.venueId === "venue-jichi-first-gunma-meeting-291") {
+      assert.deepEqual(venue.nearestStations, [
+        "JR両毛線 前橋駅",
+        "JR上越線・両毛線 新前橋駅",
+        "上毛電気鉄道 中央前橋駅",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式フロア案内/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -554,7 +561,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 120);
+  assert.equal(dataset.hotels.length, 122);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -2499,6 +2506,81 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
       `リッチモンドホテル宇都宮駅前に ${key} がありません`,
     );
   }
+  const jichiGunmaMeeting291 = dataset.venues.find(
+    (venue) => venue.venueId === "venue-jichi-first-gunma-meeting-291",
+  );
+  assert.equal(jichiGunmaMeeting291?.officialUrl, "https://www.pref.gunma.jp/page/1023.html");
+  assert.match(jichiGunmaMeeting291?.address ?? "", /大手町1丁目1番1号/u);
+  assert.match(jichiGunmaMeeting291?.accessNote ?? "", /29階.*291会議室/u);
+  assert.match(jichiGunmaMeeting291?.accessNote ?? "", /通常開庁.*8:30/u);
+  assert.match(jichiGunmaMeeting291?.accessNote ?? "", /受付.*8:20〜8:40/u);
+  assert.match(jichiGunmaMeeting291?.accessNote ?? "", /293会議室.*別会場/u);
+  const jichiGunmaMeeting291Links = dataset.assignments.flatMap((assignment) =>
+    assignment.venueLinks.filter(
+      (link) => link.venueId === "venue-jichi-first-gunma-meeting-291",
+    ),
+  );
+  assert.deepEqual(
+    jichiGunmaMeeting291Links.map((link) => [
+      link.applicantPrefecture,
+      link.examPart,
+      link.examDate,
+    ]),
+    [["群馬県", "written", "2027-01-25"]],
+  );
+  const jichiGunmaMeeting291Hotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-jichi-first-gunma-meeting-291",
+    ),
+  );
+  assert.deepEqual(
+    jichiGunmaMeeting291Hotels.map((hotel) => hotel.name),
+    ["前橋ホテルサンカント", "コンフォートホテル前橋"],
+  );
+  const hotelCinquante = jichiGunmaMeeting291Hotels.find(
+    (hotel) => hotel.hotelId === "hotel-cinquante-maebashi",
+  );
+  const hotelCinquanteAccess = hotelCinquante?.venueAccess.find(
+    (entry) => entry.venueId === "venue-jichi-first-gunma-meeting-291",
+  );
+  assert.deepEqual(hotelCinquanteAccess?.modes, ["walk"]);
+  assert.equal(hotelCinquanteAccess?.transferCount, 0);
+  assert.equal(hotelCinquanteAccess?.measurementBasis, "official");
+  assert.deepEqual(hotelCinquanteAccess?.reviewState, ["official_direct"]);
+  assert.match(hotelCinquanteAccess?.travelTimeLabel ?? "", /公式徒歩5分/u);
+  assert.match(hotelCinquanteAccess?.caution ?? "", /通常開庁.*8:30/u);
+  assert.match(hotelCinquanteAccess?.caution ?? "", /受験生入口.*未公表/u);
+  assert.match(hotelCinquanteAccess?.caution ?? "", /293会議室/u);
+  for (const key of ["wifi", "desk", "coin_laundry", "breakfast", "desk_lamp"]) {
+    assert.ok(
+      hotelCinquante?.amenities.some((item) => item.key === key),
+      `前橋ホテルサンカントに ${key} がありません`,
+    );
+  }
+  assert.match(hotelCinquante?.note ?? "", /18歳未満.*書面/u);
+  const comfortMaebashi = jichiGunmaMeeting291Hotels.find(
+    (hotel) => hotel.hotelId === "comfort-hotel-maebashi",
+  );
+  const comfortMaebashiAccess = comfortMaebashi?.venueAccess.find(
+    (entry) => entry.venueId === "venue-jichi-first-gunma-meeting-291",
+  );
+  assert.deepEqual(comfortMaebashiAccess?.modes, ["walk", "bus"]);
+  assert.equal(comfortMaebashiAccess?.transferCount, 0);
+  assert.equal(comfortMaebashiAccess?.measurementBasis, "route_only");
+  assert.ok(comfortMaebashiAccess?.reviewState.includes("verified_with_caveat"));
+  assert.equal(comfortMaebashiAccess?.reviewState.includes("venue_pdf_visual_review"), false);
+  assert.match(comfortMaebashiAccess?.travelTimeLabel ?? "", /公式徒歩約3分/u);
+  assert.match(comfortMaebashiAccess?.travelTimeLabel ?? "", /公式バス約6分/u);
+  assert.match(comfortMaebashiAccess?.travelTimeLabel ?? "", /別区間表示/u);
+  assert.match(comfortMaebashiAccess?.caution ?? "", /2027年1月25日.*未公表/u);
+  assert.match(comfortMaebashiAccess?.caution ?? "", /通常開庁.*8:30/u);
+  for (const key of ["wifi", "desk", "coin_laundry", "breakfast"]) {
+    assert.ok(
+      comfortMaebashi?.amenities.some((item) => item.key === key),
+      `コンフォートホテル前橋に ${key} がありません`,
+    );
+  }
+  assert.match(comfortMaebashi?.note ?? "", /18歳未満.*保護者同意書/u);
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
   assert.equal(dataset.definitions.examParts.written, "学力試験");
   assert.equal(dataset.definitions.venueLinkRoles.overflow, "定員状況等による代替会場");
