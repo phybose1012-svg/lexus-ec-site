@@ -129,6 +129,7 @@ const JICHI_TOCHIGI_PREFECTURAL_OFFICE_VERIFIED_AT = "2026-08-19T00:00:00+09:00"
 const JICHI_GUNMA_MEETING_291_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_GUNMA_MEETING_293_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_SAITAMA_EDUCATION_HALL_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_SAITAMA_MEDICAL_EDUCATION_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -5442,5 +5443,89 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: JICHI_SAITAMA_EDUCATION_HALL_VERIFIED_AT,
     note: "大宮駅西口側の設備重視枠です。学習机を重視する場合は、公式にワイドデスクを確認できるモデレートダブルを指定してください。全室無料Wi-Fi、24時間コインランドリー、6:30開始の朝食を施設公式で確認しています。未成年者だけの宿泊は保護者の許可と宿泊同意書が必要で、ホテルから保護者へ確認する場合があります。試験朝はJRで浦和駅へ乗換なしですが、2027年の列車時刻と停車列車を直前に確認してください。",
+  },
+  {
+    hotelId: "hotel-brillante-musashino",
+    name: "ホテル ブリランテ武蔵野",
+    postalCode: "330-0081",
+    address: "埼玉県さいたま市中央区新都心2番地2",
+    prefecture: "埼玉県",
+    municipality: "さいたま市中央区",
+    officialUrl: "https://www.hotel-brillante.com/",
+    officialBookingUrl:
+      "https://asp.hotel-story.ne.jp/ver3d/planlist.asp?chkpsn=0&hcod1=YD090&hidSELECTchildc=0",
+    nearestStation: "JR京浜東北線・宇都宮線・高崎線 さいたま新都心駅",
+    venueAccess: [
+      {
+        venueId: "venue-jichi-first-saitama-regional-medical-education-center",
+        modes: ["walk"],
+        routeSummary: "ホテル ブリランテ武蔵野から、ホテルと地域医療教育センターの公式住所を地図上で照合した歩行者用デッキ・公道の徒歩経路で、埼玉県立小児医療センター南玄関へ向かいます。南玄関から会場公式案内どおりエレベーターで8階へ上がり、受験票、埼玉県から交付される案内、当日掲示に従って指定受付へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_SAITAMA_MEDICAL_EDUCATION_VERIFIED_AT,
+        caution: "ホテル公式住所と会場公式住所を地図上で照合し、鉄道・バスを使わない徒歩経路が成立することを確認した案内です。ホテルから面接受付までの公式通し所要はなく、ホテル客室階、歩行者用デッキ、信号、南玄関から8階までの移動を含む分数は掲載しません。地域医療教育センター公式は南玄関がホテル ブリランテ武蔵野側にあり、病院正面玄関からは入れないと明記しています。南玄関側8階までは公表済みですが、使用する研修室、試験受付、待機場所は未公表です。通常利用時間の平日9:00〜21:00を面接日の入館条件とみなさず、受付9:00〜9:20に間に合う入館方法を埼玉県の試験専用案内で確認してください。前日の学力試験は浦和の埼玉教育会館です。",
+        evidenceUrls: [
+          "https://www.hotel-brillante.com/access",
+          "https://kobaton-med.jp/educationcenter/",
+          "https://www.pref.saitama.lg.jp/documents/24106/kaijyouannaizu.pdf",
+          "https://www.google.com/maps/dir/?api=1&origin=埼玉県さいたま市中央区新都心2-2&destination=埼玉県さいたま市中央区新都心1-2&travelmode=walking",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全室無料Wi-Fi", "全客室で無料Wi-Fiを利用できます。", "https://www.hotel-brillante.com/stay"),
+      amenity("breakfast", "予約制朝食7:00〜", "朝食は7:00〜9:00で、朝食付きプランまたは宿泊2日前までの予約が必要です。", "https://www.hotel-brillante.com/restaurant/french/french-breakfast"),
+      amenity("humidifier", "加湿機能付き空気清浄機", "全客室に加湿機能付き空気清浄機があります。", "https://www.hotel-brillante.com/stay"),
+    ],
+    operatingStatus: "official_site_active",
+    operatingStatusEvidenceUrl: "https://www.hotel-brillante.com/",
+    reviewState: "verified",
+    verifiedAt: JICHI_SAITAMA_MEDICAL_EDUCATION_VERIFIED_AT,
+    note: "面接会場の南玄関と同じホテル ブリランテ武蔵野側にあり、鉄道・バスを使わない近接枠です。全室無料Wi-Fi、加湿機能付き空気清浄機、7:00開始の予約制朝食を施設公式で確認しています。館内にコインランドリーはなく有料ランドリーサービスは休業日があるため、洗濯が必要なら前日までに方法を決めてください。常設学習机と未成年者だけの宿泊条件は公式サイトで確認できないため、椅子で使える机のある部屋、親権者同意書などの必要手続きを予約前にホテルへ確認してください。",
+  },
+  {
+    hotelId: "hotel-metropolitan-saitama-shintoshin",
+    name: "ホテルメトロポリタンさいたま新都心",
+    postalCode: "330-0081",
+    address: "埼玉県さいたま市中央区新都心11番地1",
+    prefecture: "埼玉県",
+    municipality: "さいたま市中央区",
+    officialUrl: "https://saitama-shintoshin.hotel-metropolitan.com/",
+    officialBookingUrl: "https://saitama-shintoshin.hotel-metropolitan.com/stay/plan/",
+    nearestStation: "JR京浜東北線・宇都宮線・高崎線 さいたま新都心駅",
+    venueAccess: [
+      {
+        venueId: "venue-jichi-first-saitama-regional-medical-education-center",
+        modes: ["walk"],
+        routeSummary: "ホテルメトロポリタンさいたま新都心からホテル公式案内を逆向きにJRさいたま新都心駅へ徒歩で戻り、地域医療教育センター公式の徒歩経路で埼玉県立小児医療センター南玄関へ向かいます。南玄関からエレベーターで8階へ上がり、受験票、埼玉県から交付される案内、当日掲示に従って指定受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JRさいたま新都心駅はホテル公式徒歩1分／同駅―地域医療教育センターは会場公式徒歩5分（南玄関から8階・指定受付までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_SAITAMA_MEDICAL_EDUCATION_VERIFIED_AT,
+        caution: "ホテル公式徒歩1分と会場公式徒歩5分は起終点の異なる別区間で、ホテル客室階、駅周辺の歩行、信号、南玄関から8階の指定受付までを含む通し所要ではありません。ホテルと駅の間は屋根付き動線ですが、会場までの全行程が完全屋内とは断定しません。地域医療教育センター公式は南玄関がホテル ブリランテ武蔵野側にあり、病院正面玄関からは入れないと明記しています。南玄関側8階までは公表済みですが、使用する研修室、試験受付、待機場所は未公表です。通常利用時間の平日9:00〜21:00を面接日の入館条件とみなさず、受付9:00〜9:20に間に合う入館方法を埼玉県の試験専用案内で確認してください。前日の学力試験は浦和の埼玉教育会館です。",
+        evidenceUrls: [
+          "https://saitama-shintoshin.hotel-metropolitan.com/access/",
+          "https://kobaton-med.jp/educationcenter/",
+          "https://www.pref.saitama.lg.jp/documents/24106/kaijyouannaizu.pdf",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全室無料Wi-Fi", "全客室で無料Wi-Fiと有線LANを利用できます。", "https://saitama-shintoshin.hotel-metropolitan.com/faq/FAQ.html"),
+      amenity("desk", "客室デスク", "一部シングルを除き、ビジネス利用向けのデスクがあります。", "https://saitama-shintoshin.hotel-metropolitan.com/stay/plan/stay_smartstay.html"),
+      amenity("coin_laundry", "館内コインランドリー", "宿泊者専用コインランドリーが6階にあります。", "https://saitama-shintoshin.hotel-metropolitan.com/faq/FAQ.html"),
+      amenity("breakfast", "朝食6:30〜", "和洋ビュッフェ朝食は6:30〜10:00です。", "https://saitama-shintoshin.hotel-metropolitan.com/faq/FAQ.html"),
+      amenity("humidifier", "加湿機能付き空気清浄機", "客室に加湿機能付き空気清浄機があります。", "https://saitama-shintoshin.hotel-metropolitan.com/stay/plan/stay_smartstay.html"),
+      amenity("desk_lamp", "デスクスタンド", "客室設備としてデスクスタンドがあります。", "https://saitama-shintoshin.hotel-metropolitan.com/stay/plan/stay_smartstay.html"),
+    ],
+    operatingStatus: "official_site_active",
+    operatingStatusEvidenceUrl: "https://saitama-shintoshin.hotel-metropolitan.com/",
+    reviewState: "verified",
+    verifiedAt: JICHI_SAITAMA_MEDICAL_EDUCATION_VERIFIED_AT,
+    note: "JRさいたま新都心駅から公式徒歩1分の設備重視枠です。無料Wi-Fi、6階コインランドリー、6:30開始の朝食、加湿機能付き空気清浄機、デスクスタンドを施設公式で確認しています。一部シングルにはデスクがないため、学習机を重視する場合はデスク付き客室を指定してください。未成年者だけの宿泊可否・必要書類は施設公式サイトで確認できないため、予約前にホテルへ確認してください。",
   },
 ];

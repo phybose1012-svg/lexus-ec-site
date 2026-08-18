@@ -181,6 +181,14 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
     } else if (venue.venueId === "venue-jichi-first-saitama-education-hall") {
       assert.deepEqual(venue.nearestStations, ["JR京浜東北線・宇都宮線・高崎線 浦和駅"]);
       assert.match(venue.officialUrlLabel ?? "", /公式施設案内/u);
+    } else if (
+      venue.venueId === "venue-jichi-first-saitama-regional-medical-education-center"
+    ) {
+      assert.deepEqual(venue.nearestStations, [
+        "JR京浜東北線・宇都宮線・高崎線 さいたま新都心駅",
+        "JR埼京線 北与野駅",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式アクセス・利用時間/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -571,7 +579,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 124);
+  assert.equal(dataset.hotels.length, 126);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -2726,6 +2734,99 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   }
   assert.match(daiwaRoynetOmiya?.note ?? "", /モデレートダブル/u);
   assert.match(daiwaRoynetOmiya?.note ?? "", /宿泊同意書/u);
+  const jichiSaitamaMedicalEducation = dataset.venues.find(
+    (venue) =>
+      venue.venueId === "venue-jichi-first-saitama-regional-medical-education-center",
+  );
+  assert.equal(
+    jichiSaitamaMedicalEducation?.officialUrl,
+    "https://kobaton-med.jp/educationcenter/",
+  );
+  assert.match(jichiSaitamaMedicalEducation?.address ?? "", /小児医療センター南玄関側8階/u);
+  assert.match(jichiSaitamaMedicalEducation?.accessNote ?? "", /さいたま新都心駅.*徒歩5分/u);
+  assert.match(jichiSaitamaMedicalEducation?.accessNote ?? "", /北与野駅.*徒歩6分/u);
+  assert.match(jichiSaitamaMedicalEducation?.accessNote ?? "", /正面玄関からは入れない/u);
+  assert.match(jichiSaitamaMedicalEducation?.accessNote ?? "", /研修室.*未公表/u);
+  assert.match(jichiSaitamaMedicalEducation?.accessNote ?? "", /通常.*平日9:00〜21:00/u);
+  assert.match(jichiSaitamaMedicalEducation?.accessNote ?? "", /埼玉教育会館.*別会場/u);
+  const jichiSaitamaMedicalEducationLinks = dataset.assignments.flatMap((assignment) =>
+    assignment.venueLinks.filter(
+      (link) =>
+        link.venueId === "venue-jichi-first-saitama-regional-medical-education-center",
+    ),
+  );
+  assert.deepEqual(
+    jichiSaitamaMedicalEducationLinks.map((link) => [
+      link.applicantPrefecture,
+      link.examPart,
+      link.examDate,
+    ]),
+    [["埼玉県", "interview", "2027-01-26"]],
+  );
+  const jichiSaitamaMedicalEducationHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) =>
+        access.venueId === "venue-jichi-first-saitama-regional-medical-education-center",
+    ),
+  );
+  assert.deepEqual(
+    jichiSaitamaMedicalEducationHotels.map((hotel) => hotel.name),
+    ["ホテル ブリランテ武蔵野", "ホテルメトロポリタンさいたま新都心"],
+  );
+  const hotelBrillante = jichiSaitamaMedicalEducationHotels.find(
+    (hotel) => hotel.hotelId === "hotel-brillante-musashino",
+  );
+  const hotelBrillanteAccess = hotelBrillante?.venueAccess.find(
+    (entry) =>
+      entry.venueId === "venue-jichi-first-saitama-regional-medical-education-center",
+  );
+  assert.deepEqual(hotelBrillanteAccess?.modes, ["walk"]);
+  assert.equal(hotelBrillanteAccess?.transferCount, 0);
+  assert.equal(hotelBrillanteAccess?.measurementBasis, "map_route_checked");
+  assert.deepEqual(hotelBrillanteAccess?.reviewState, [
+    "verified_with_caveat",
+    "venue_pdf_visual_review",
+  ]);
+  assert.equal("travelTimeLabel" in (hotelBrillanteAccess ?? {}), false);
+  assert.equal("distanceLabel" in (hotelBrillanteAccess ?? {}), false);
+  assert.match(hotelBrillanteAccess?.caution ?? "", /正面玄関からは入れない/u);
+  assert.match(hotelBrillanteAccess?.caution ?? "", /研修室.*未公表/u);
+  assert.match(hotelBrillanteAccess?.caution ?? "", /受付9:00〜9:20/u);
+  assert.ok(hotelBrillante?.amenities.some((item) => item.key === "wifi"));
+  assert.ok(hotelBrillante?.amenities.some((item) => item.key === "breakfast"));
+  assert.ok(hotelBrillante?.amenities.some((item) => item.key === "humidifier"));
+  assert.equal(hotelBrillante?.amenities.some((item) => item.key === "desk"), false);
+  assert.equal(hotelBrillante?.amenities.some((item) => item.key === "coin_laundry"), false);
+  assert.match(hotelBrillante?.note ?? "", /コインランドリーはなく/u);
+  assert.match(hotelBrillante?.note ?? "", /未成年者.*公式サイトで確認できない/u);
+  const hotelMetropolitanShintoshin = jichiSaitamaMedicalEducationHotels.find(
+    (hotel) => hotel.hotelId === "hotel-metropolitan-saitama-shintoshin",
+  );
+  const hotelMetropolitanShintoshinAccess = hotelMetropolitanShintoshin?.venueAccess.find(
+    (entry) =>
+      entry.venueId === "venue-jichi-first-saitama-regional-medical-education-center",
+  );
+  assert.deepEqual(hotelMetropolitanShintoshinAccess?.modes, ["walk"]);
+  assert.equal(hotelMetropolitanShintoshinAccess?.transferCount, 0);
+  assert.equal(hotelMetropolitanShintoshinAccess?.measurementBasis, "route_only");
+  assert.deepEqual(hotelMetropolitanShintoshinAccess?.reviewState, [
+    "verified_with_caveat",
+    "venue_pdf_visual_review",
+  ]);
+  assert.match(hotelMetropolitanShintoshinAccess?.travelTimeLabel ?? "", /公式徒歩1分/u);
+  assert.match(hotelMetropolitanShintoshinAccess?.travelTimeLabel ?? "", /公式徒歩5分/u);
+  assert.match(hotelMetropolitanShintoshinAccess?.travelTimeLabel ?? "", /別区間表示/u);
+  assert.match(hotelMetropolitanShintoshinAccess?.caution ?? "", /完全屋内とは断定しません/u);
+  assert.match(hotelMetropolitanShintoshinAccess?.caution ?? "", /正面玄関からは入れない/u);
+  assert.match(hotelMetropolitanShintoshinAccess?.caution ?? "", /受付9:00〜9:20/u);
+  for (const key of ["wifi", "desk", "coin_laundry", "breakfast", "humidifier", "desk_lamp"]) {
+    assert.ok(
+      hotelMetropolitanShintoshin?.amenities.some((item) => item.key === key),
+      `ホテルメトロポリタンさいたま新都心に ${key} がありません`,
+    );
+  }
+  assert.match(hotelMetropolitanShintoshin?.note ?? "", /一部シングルにはデスクがない/u);
+  assert.match(hotelMetropolitanShintoshin?.note ?? "", /未成年者.*公式サイトで確認できない/u);
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
   assert.equal(dataset.definitions.examParts.written, "学力試験");
   assert.equal(dataset.definitions.venueLinkRoles.overflow, "定員状況等による代替会場");
