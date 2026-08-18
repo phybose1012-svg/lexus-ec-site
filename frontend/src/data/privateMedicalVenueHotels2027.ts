@@ -84,6 +84,7 @@ const SENDAGI_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const KINDAI_OSAKA_MEDICAL_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const MUSASHISAKAI_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const TOKYO_MEDICAL_SHINJUKU_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
+const KANAZAWA_MEDICAL_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -1958,5 +1959,85 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: TOKYO_MEDICAL_SHINJUKU_VERIFIED_AT,
     note: "1フロア6室以下の地域型ホテルで、シングル客室の机・デスクライト、通信、洗濯設備、部屋食の朝食を公式情報で確認しました。総客室数は公式非公表です。未成年者だけでの宿泊可否と親権者同意書は公式サイトで確認できないため、18歳未満の方は予約前にホテル（03-5379-1041）へ必ず確認してください。一般選抜第1次は受験番号で会場が指定されるため、キャンセル条件を確認して予約し、受験票で新宿キャンパスへの割当を確定してください。",
+  },
+  {
+    hotelId: "ab-hotel-kanazawa",
+    name: "ABホテル金沢",
+    postalCode: "920-0031",
+    address: "石川県金沢市広岡1-9-25",
+    prefecture: "石川県",
+    municipality: "金沢市",
+    officialUrl: "https://ab-hotel.jp/kanazawa/",
+    officialBookingUrl: "https://asp.hotel-story.ne.jp/ver3d/planlist.asp?clrmode=true&hcod1=BH100&hcod2=001&mode=seek&reffrom=",
+    nearestStation: "JR金沢駅 金沢港口（西口）",
+    venueAccess: [
+      {
+        venueId: "venue-kanazawa-medical-main-campus",
+        modes: ["walk", "bus", "rail"],
+        routeSummary: "ホテルからJR金沢駅金沢港口（西口）へ徒歩で移動し、第1次選抜日は出口付近の係員案内に従って金沢医科大学「大学前」行きの試験日専用無料バスへ。専用バス対象外・乗り遅れ時は、駅反対側の北陸鉄道金沢駅から浅野川線で内灘駅へ行き、路線バスで「大学前」へ向かいます。",
+        transferCount: 0,
+        travelTimeLabel: "金沢港口まで徒歩約1分／専用バスの所要時間は公式非公表",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: KANAZAWA_MEDICAL_VERIFIED_AT,
+        caution: "主経路の乗換回数は0回、通常の浅野川線と路線バスを使う代替経路は乗換1回です。第1次専用バスは、2027年2月3日・4日が8:10、3月4日が8:40に金沢港口（西口）を出発する各日1本の公式案内です。余裕をもって係員の案内位置へ向かってください。第2次の発車時刻等は第1次合格者へ後日案内されるため、現時点では断定しません。試験会場は本部棟まで公表されていますが、受験生入口・階・室は未公表です。受験票・当日案内を確認し、積雪や路面凍結も見込んでください。",
+        evidenceUrls: [
+          "https://ab-hotel.jp/kanazawa/",
+          "https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_examguidelines.pdf",
+          "https://www.kanazawa-med.ac.jp/other/accessmap.html",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "無料Wi-Fi・有線LAN", "全客室で無料Wi-Fiと有線LANを利用できます。", "https://www.ab-hotel.jp/kanazawa/faq/"),
+      amenity("desk", "資料を広げられる机", "公式のビジネス利用案内で、資料を広げて作業できる机を案内しています。", "https://www.ab-hotel.jp/kanazawa/business/"),
+      amenity("coin_laundry", "24時間コインランドリー", "3階のコインランドリーを24時間利用できます。", "https://www.ab-hotel.jp/kanazawa/facilities/"),
+      amenity("breakfast", "朝食6:00〜", "和洋バイキングの朝食は6:00〜9:30（最終補充9:00）です。", "https://www.ab-hotel.jp/kanazawa/facilities/"),
+      amenity("humidifier", "客室加湿器", "客室設備として加湿器があります。", "https://ab-hotel.jp/kanazawa/rooms/"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: KANAZAWA_MEDICAL_VERIFIED_AT,
+    note: "金沢駅西口から徒歩約1分で、試験日専用無料バスを利用しやすい堅実な候補です。18歳未満の方だけで宿泊する場合は保護者の宿泊同意書が必要です。公式予約は毎月初めに5か月先まで順次開くため、2027年2月分は2026年10月初旬、3月分は11月初旬から確認してください。専用バスの対象外となる第2次や乗り遅れ時に備え、通常の浅野川線・路線バス経路も確認してください。",
+  },
+  {
+    hotelId: "hotel-livemax-budget-kanazawa-idaimae",
+    name: "ホテルリブマックスBUDGET金沢医大前",
+    postalCode: "920-0265",
+    address: "石川県河北郡内灘町大学2-216",
+    prefecture: "石川県",
+    municipality: "河北郡内灘町",
+    officialUrl: "https://www.hotel-livemax.com/ishikawa/kanazawaidaimae/",
+    officialBookingUrl: "https://go-hotel-livemax.reservation.jp/ja/hotels/livemax-ishikawa-kanazawaidaimae/searchInput",
+    nearestStation: "北鉄バス 医大病院停留所",
+    venueAccess: [
+      {
+        venueId: "venue-kanazawa-medical-main-campus",
+        modes: ["walk"],
+        routeSummary: "ホテルから金沢医科大学キャンパスへ徒歩で向かい、受験票・当日案内で指定された本部棟の受験生入口へ進みます。前日の明るいうちにホテルから本部棟周辺までの歩行動線を確認してください。",
+        transferCount: 0,
+        travelTimeLabel: "徒歩（通し所要時間は公式非公表）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "needs_route_review", "venue_pdf_visual_review"],
+        verifiedAt: KANAZAWA_MEDICAL_VERIFIED_AT,
+        caution: "大学公式はこのホテルを「本学周辺」の宿泊施設として掲載していますが、ホテルから試験用入口までの公式徒歩時間・公式歩行経路は示していません。ホテル公式の「医大病院」停留所から徒歩約2分はホテルへの案内であり、大学本部棟までの所要時間には転用しません。受験生入口・階・室は未公表です。受験票で入口を確認し、積雪・凍結時は十分な余裕を持ってください。",
+        evidenceUrls: [
+          "https://www.hotel-livemax.com/ishikawa/kanazawaidaimae/",
+          "https://www.hotel-livemax.com/ishikawa/kanazawaidaimae/access/",
+          "https://www.kanazawa-med.ac.jp/other/accessmap.html",
+          "https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_examguidelines.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "無料Wi-Fi・有線回線", "客室で無料Wi-Fiと有線のインターネット回線を利用できます。", "https://www.hotel-livemax.com/ishikawa/kanazawaidaimae/facilities/"),
+      amenity("coin_laundry", "コインランドリー", "館内にセルフサービスのコインランドリーがあります。", "https://www.hotel-livemax.com/ishikawa/kanazawaidaimae/facilities/"),
+      amenity("humidifier", "加湿機能付き空気清浄機", "客室設備として加湿機能付き空気清浄機があります。", "https://www.hotel-livemax.com/ishikawa/kanazawaidaimae/facilities/"),
+      amenity("desk_lamp", "卓上ライト貸出", "卓上ライトは先着順の貸出備品です。", "https://www.hotel-livemax.com/ishikawa/kanazawaidaimae/facilities/"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: KANAZAWA_MEDICAL_VERIFIED_AT,
+    note: "大学公式が唯一「本学周辺」として掲載する全24室の小規模ホテルです。2026年2月までの館内改装後も公式予約導線が稼働しています。未成年者は親権者同意書を持参してください。館内朝食と客室の学習用机は公式情報で確認できないため、朝食は前夜に用意し、机が必要な場合は予約前にホテルへ確認してください。最終チェックインは22:00です。",
   },
 ];
