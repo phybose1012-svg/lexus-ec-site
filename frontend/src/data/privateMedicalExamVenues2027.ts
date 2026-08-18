@@ -825,7 +825,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     prefecture: "東京都",
     municipality: "港区",
     nearestStations: ["東京メトロ 赤坂見附駅", "東京メトロ 赤坂駅"],
-    officialUrl: "https://akasaka.iuhw.ac.jp/access/",
+    officialUrl: "https://akasaka.iuhw.ac.jp/about/access/",
     reviewState: "verified",
     verifiedAt: VERIFIED_AT,
   },

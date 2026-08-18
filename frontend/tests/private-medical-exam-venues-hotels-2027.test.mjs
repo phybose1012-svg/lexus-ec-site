@@ -427,7 +427,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 75);
+  assert.equal(dataset.hotels.length, 77);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
@@ -1100,6 +1100,28 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     );
     assert.equal(access?.measurementBasis, "route_only");
     assert.equal(access?.transferCount, 0);
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.ok(access?.reviewState.includes("venue_pdf_visual_review"));
+    assert.ok(hotel.amenities.some((item) => item.key === "desk"));
+    assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  const iuhwAkasakaHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-iuhw-tokyo-akasaka-campus",
+    ),
+  );
+  assert.deepEqual(
+    iuhwAkasakaHotels.map((hotel) => hotel.name),
+    ["the b 赤坂見附", "変なホテル東京 赤坂"],
+  );
+  for (const hotel of iuhwAkasakaHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-iuhw-tokyo-akasaka-campus",
+    );
+    assert.equal(access?.measurementBasis, "route_only");
+    assert.equal(access?.transferCount, 0);
+    assert.deepEqual(access?.modes, ["walk"]);
     assert.ok(access?.reviewState.includes("verified_with_caveat"));
     assert.ok(access?.reviewState.includes("venue_pdf_visual_review"));
     assert.ok(hotel.amenities.some((item) => item.key === "desk"));
