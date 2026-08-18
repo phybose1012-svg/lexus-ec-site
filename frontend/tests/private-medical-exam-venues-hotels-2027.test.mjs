@@ -310,6 +310,12 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "京阪石山坂本線 島ノ関駅",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式アクセス・庁舎案内/u);
+    } else if (venue.venueId === "venue-jichi-first-shiga-collab-3f") {
+      assert.deepEqual(venue.nearestStations, [
+        "京阪石山坂本線 石場駅",
+        "JR琵琶湖線 膳所駅",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式施設・アクセス案内/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -738,6 +744,15 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
     assert.equal(access.travelTimeLabel, undefined);
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+    const interviewAccess = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-shiga-collab-3f",
+    );
+    assert.ok(interviewAccess, `${hotelId} がコラボしが21 3階中会議室2に結合されていません`);
+    assert.equal(interviewAccess.measurementBasis, "map_route_checked");
+    assert.equal(interviewAccess.transferCount, 0);
+    assert.ok(interviewAccess.reviewState.includes("verified_with_caveat"));
+    assert.ok(interviewAccess.reviewState.includes("venue_pdf_visual_review"));
+    assert.equal(interviewAccess.travelTimeLabel, undefined);
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);

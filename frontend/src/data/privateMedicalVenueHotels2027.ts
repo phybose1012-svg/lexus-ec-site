@@ -149,6 +149,7 @@ const JICHI_SHIZUOKA_PREFECTURAL_OFFICE_VERIFIED_AT = "2026-08-19T00:00:00+09:00
 const JICHI_AICHI_WINC_AICHI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_MIE_WORKERS_WELFARE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_SHIGA_EAST_7F_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_SHIGA_COLLAB_3F_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -6796,6 +6797,23 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-shiga-collab-3f",
+        modes: ["walk"],
+        routeSummary: "スーパーホテル大津駅前から、ホテルとコラボしが21の公式住所を地図で照合した地上の公道を直接徒歩で向かいます。到着後は受験票、滋賀県から交付される試験専用案内、当日掲示に従って指定された受験生入口・受付から3階中会議室2へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_SHIGA_COLLAB_3F_VERIFIED_AT,
+        caution: "ホテルは大津市京町3丁目2番7号、会場は同市打出浜2番1号で、同一建物や専用直結動線ではありません。両施設の公式住所と地図上の地上徒歩経路は確認しましたが、ホテル公式は会場への推奨経路・徒歩分数を案内していないため、ホテルから中会議室2までの通し所要は掲載しません。面接は2027年1月26日（火）の受付9:00〜9:20・10:00〜16:00のうち滋賀県が指定する時間で、3階中会議室2までは公表済みです。ただし受験生入口、受付位置、待機場所、入館手順は未公表です。1階Biz Baseの一般利用入口・受付や貸会議室の通常利用時間を試験指定とみなさず、横断歩道・信号待ち・館内移動を見込んでください。前日の学力試験会場は滋賀県庁東館7階大会議室で、同じ場所ではありません。",
+        evidenceUrls: [
+          "https://www.superhotel.co.jp/s_hotels/otsu/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%A4%A7%E6%B4%A5%E5%B8%82%E4%BA%AC%E7%94%BA3%E4%B8%81%E7%9B%AE2%E7%95%AA7%E5%8F%B7&destination=%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%A4%A7%E6%B4%A5%E5%B8%82%E6%89%93%E5%87%BA%E6%B5%9C2%E7%95%AA1%E5%8F%B7&travelmode=walking",
+          "https://www.shigaplaza.or.jp/service/bizbase-collabo21-top/bizbase-collabo21-access/",
+          "https://www.shigaplaza.or.jp/service/bizbase-collabo21-top/bizbase-collabo21-main/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "館内Wi-Fi・客室有線LAN", "館内Wi-Fiと客室の有線LANを利用できます。", "https://www.superhotel.co.jp/s_hotels/otsu/"),
@@ -6837,6 +6855,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://eki.jr-odekake.net/premises?id=0610114",
           "https://www.pref.shiga.lg.jp/kensei/gaiyou/annai/300434.html",
           "https://www.pref.shiga.lg.jp/kensei/gaiyou/annai/18717.html",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+      {
+        venueId: "venue-jichi-first-shiga-collab-3f",
+        modes: ["walk"],
+        routeSummary: "ホテルテトラ大津.京都から、ホテルとコラボしが21の公式住所を地図で照合した大津駅周辺の地上徒歩経路で会場へ向かいます。到着後は受験票、滋賀県から交付される試験専用案内、当日掲示に従って指定された受験生入口・受付から3階中会議室2へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_SHIGA_COLLAB_3F_VERIFIED_AT,
+        caution: "ホテルは大津駅南口側の逢坂1丁目1番1号、会場は打出浜2番1号で、同一建物や専用直結動線ではありません。両施設の公式住所と地図上の地上徒歩経路は確認しましたが、ホテル公式は会場への推奨経路・徒歩分数を案内していないため、ホテルから中会議室2までの通し所要は掲載しません。JR大津駅の有料区域を通り抜ける前提にせず、前日に地上経路を確認してください。面接は2027年1月26日（火）の受付9:00〜9:20・10:00〜16:00のうち滋賀県が指定する時間で、3階中会議室2までは公表済みですが、受験生入口、受付位置、待機場所、入館手順は未公表です。1階Biz Baseの一般利用入口・受付や貸会議室の通常利用時間を試験指定とみなさず、横断歩道・信号待ち・館内移動を見込んでください。前日の学力試験会場は滋賀県庁東館7階大会議室です。",
+        evidenceUrls: [
+          "https://otsu.e-tetora.com/room/",
+          "https://otsu.e-tetora.com/feature/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%A4%A7%E6%B4%A5%E5%B8%82%E9%80%A2%E5%9D%821%E4%B8%81%E7%9B%AE1%E7%95%AA1%E5%8F%B7&destination=%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%A4%A7%E6%B4%A5%E5%B8%82%E6%89%93%E5%87%BA%E6%B5%9C2%E7%95%AA1%E5%8F%B7&travelmode=walking",
+          "https://www.shigaplaza.or.jp/service/bizbase-collabo21-top/bizbase-collabo21-access/",
+          "https://www.shigaplaza.or.jp/service/bizbase-collabo21-top/bizbase-collabo21-main/",
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
