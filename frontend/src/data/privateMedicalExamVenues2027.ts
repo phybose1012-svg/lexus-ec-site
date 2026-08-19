@@ -1506,9 +1506,10 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     municipality: "品川区",
     nearestStations: ["東急池上線 大崎広小路駅", "東急目黒線 不動前駅", "JR・都営浅草線 五反田駅"],
     officialUrl: "https://www.toc.co.jp/new1/access.html",
-    accessNote: "施設公式では大崎広小路駅から徒歩5分、不動前駅から徒歩6分、五反田駅から徒歩8分。土日祝は五反田駅発の直通バスが運休です。",
+    officialUrlLabel: "TOCビル 公式アクセス",
+    accessNote: "施設公式では大崎広小路駅から徒歩5分、不動前駅から徒歩6分、五反田駅から徒歩8分。五反田駅発の直通バスは平日のみで、土日祝・年末年始は運休です。TOCビルを使う大学・方式・日程ごとに会場指定条件が異なり、使用階・受付・受験生入口も一律には公表されていないため、受験票と大学の最終案内を必ず確認してください。",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: "2026-08-19T00:00:00+09:00",
   },
   {
     venueId: "venue-kyorin-mitaka-campus",

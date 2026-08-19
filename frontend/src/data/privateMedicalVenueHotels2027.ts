@@ -102,6 +102,7 @@ const IUHW_AKASAKA_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const IUHW_FUKUOKA_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const FUJITA_TOYOAKE_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const FUKUOKA_UNIVERSITY_NANAKUMA_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
+const TOC_GOTANDA_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const SHOWA_HATANODAI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const BELLESALLE_SHINJUKU_GRAND_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JIKEI_NISHISHIMBASHI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
@@ -396,16 +397,16 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
       {
         venueId: "venue-toc-gotanda",
         modes: ["walk"],
-        routeSummary: "ホテルからTOCビルまで徒歩",
+        routeSummary: "京王プレッソイン五反田から、ホテル・会場の公式住所を照合した地上徒歩経路でTOCビルへ向かいます。到着後は受験票・大学の最終案内・当日掲示に従って指定された入口、受付、試験室へ進みます。",
         transferCount: 0,
-        travelTimeLabel: "約8〜10分",
         measurementBasis: "map_route_checked",
-        reviewState: ["needs_route_review"],
-        verifiedAt: VERIFIED_AT,
-        caution: "徒歩時間は地図経路による確認値です。TOC無料シャトルの休日運休に注意してください。",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: TOC_GOTANDA_VERIFIED_AT,
+        caution: "ホテルからTOCビルへの公式通し経路・所要時間はなく、両施設の公式住所を地図上で照合した徒歩経路です。信号待ち、混雑、客室階からの移動、TOCビル内の指定試験室までを別に見込んでください。五反田駅発のTOC直通バスは施設公式で平日のみ運行のため、土日祝の入試では利用を前提にしません。TOCビルを使う大学・方式・日程ごとに会場指定条件が異なり、使用階・受付・受験生入口も一律には公表されていないため、受験票と大学の最終案内を必ず確認してください。",
         evidenceUrls: [
-          "https://www.presso-inn.com/gotanda/access/",
+          "https://www.presso-inn.com/gotanda/map/?hotelName=gotanda&access=walk",
           "https://www.toc.co.jp/new1/access.html",
+          "https://www.google.com/maps/dir/?api=1&origin=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%93%81%E5%B7%9D%E5%8C%BA%E8%A5%BF%E4%BA%94%E5%8F%8D%E7%94%B02-17-12&destination=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%93%81%E5%B7%9D%E5%8C%BA%E8%A5%BF%E4%BA%94%E5%8F%8D%E7%94%B07-22-17&travelmode=walking",
         ],
       },
     ],
@@ -417,7 +418,46 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     ],
     operatingStatus: "official_site_active",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: TOC_GOTANDA_VERIFIED_AT,
+  },
+  {
+    hotelId: "jr-east-hotel-mets-premier-gotanda",
+    name: "JR東日本ホテルメッツ プレミア 五反田",
+    postalCode: "141-0022",
+    address: "東京都品川区東五反田1-26-3",
+    prefecture: "東京都",
+    municipality: "品川区",
+    officialUrl: "https://www.hotelmets.jp/gotanda/",
+    officialBookingUrl: "https://go-jrhotel-m.reservation.jp/ja/hotels/mets-gotanda/searchInput",
+    nearestStation: "JR山手線 五反田駅",
+    venueAccess: [
+      {
+        venueId: "venue-toc-gotanda",
+        modes: ["walk"],
+        routeSummary: "JR東日本ホテルメッツ プレミア 五反田からJR五反田駅へ徒歩で進み、同駅を接続点にTOCビル公式の一般来館徒歩経路で会場へ向かいます。到着後は受験票・大学の最終案内・当日掲示に従って指定された入口、受付、試験室へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR五反田駅はホテル公式徒歩1分／JR五反田駅―TOCビルは施設公式徒歩8分（駅構内・指定入口・試験室までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: TOC_GOTANDA_VERIFIED_AT,
+        caution: "ホテル公式の徒歩1分とTOC公式の徒歩8分は起終点の異なる別区間で、単純合算したホテルから試験室までの通し所要ではありません。ホテル側の駅直結動線、JR五反田駅西口側への移動、信号待ち、混雑、TOCビル内の指定試験室までを別に見込んでください。五反田駅発のTOC直通バスは施設公式で平日のみ運行のため、土日祝の入試では利用を前提にしません。TOCビルを使う大学・方式・日程ごとに会場指定条件が異なり、使用階・受付・受験生入口も一律には公表されていないため、受験票と大学の最終案内を必ず確認してください。",
+        evidenceUrls: [
+          "https://www.hotelmets.jp/gotanda/access.html",
+          "https://www.toc.co.jp/new1/access.html",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "無料Wi-Fi", "全客室で無料Wi-Fiを利用できます。", "https://www.hotelmets.jp/sys/mets_faq.cgi?h=183"),
+      amenity("desk", "ゆったりとしたデスク", "スーペリアシングルは、ホテルワーク向けのゆったりとしたデスクを公式FAQで確認できます。", "https://www.hotelmets.jp/sys/mets_faq.cgi?h=183"),
+      amenity("coin_laundry", "コインランドリー", "8階にコインランドリー3台があります。", "https://www.hotelmets.jp/sys/mets_faq.cgi?h=183"),
+      amenity("humidifier", "加湿空気清浄機", "全客室に加湿機能付き空気清浄機があります。", "https://www.hotelmets.jp/sys/mets_faq.cgi?h=183"),
+      amenity("breakfast", "朝食6:30〜", "朝食は6:30〜10:30（L.O.10:00）の公式案内です。", "https://www.hotelmets.jp/gotanda/bf.html"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: TOC_GOTANDA_VERIFIED_AT,
+    note: "学習机を重視する場合は、ゆったりとしたデスクを公式確認できるスーペリアシングルを指定してください。18歳未満だけの宿泊も同意書は不要ですが、予約時またはチェックイン時に保護者の氏名・住所・連絡先の申告が必要で、ホテルから保護者へ連絡する場合があります。",
   },
   {
     hotelId: "richmond-hotel-tokyo-musashino",

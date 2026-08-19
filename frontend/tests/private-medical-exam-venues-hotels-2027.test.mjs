@@ -930,7 +930,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 206);
+  assert.equal(dataset.hotels.length, 207);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   for (const hotelId of [
     "sotetsu-fresa-inn-nagoya-sakuradoriguchi",
@@ -1715,6 +1715,40 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     dataset.hotels.find((hotel) => hotel.hotelId === "karaksa-hotel-grande-shin-osaka-tower")?.note ?? "",
     /スタンダードダブル/u,
   );
+  const tocGotanda = dataset.venues.find((venue) => venue.venueId === "venue-toc-gotanda");
+  assert.ok(tocGotanda, "TOCビルが公開Datasetにありません");
+  assert.match(tocGotanda.officialUrlLabel ?? "", /公式アクセス/u);
+  assert.match(tocGotanda.accessNote ?? "", /平日のみ/u);
+  assert.match(tocGotanda.accessNote ?? "", /使用階・受付・受験生入口/u);
+  const tocGotandaHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some((access) => access.venueId === "venue-toc-gotanda"),
+  );
+  assert.deepEqual(
+    tocGotandaHotels.map((hotel) => hotel.hotelId),
+    ["keio-presso-inn-gotanda", "jr-east-hotel-mets-premier-gotanda"],
+  );
+  const keioPressoInnGotanda = tocGotandaHotels.find(
+    (hotel) => hotel.hotelId === "keio-presso-inn-gotanda",
+  );
+  assert.equal(keioPressoInnGotanda?.venueAccess[0]?.measurementBasis, "map_route_checked");
+  assert.equal(keioPressoInnGotanda?.venueAccess[0]?.travelTimeLabel, undefined);
+  assert.ok(keioPressoInnGotanda?.venueAccess[0]?.reviewState.includes("verified_with_caveat"));
+  const hotelMetsGotanda = tocGotandaHotels.find(
+    (hotel) => hotel.hotelId === "jr-east-hotel-mets-premier-gotanda",
+  );
+  assert.ok(hotelMetsGotanda, "ホテルメッツ プレミア 五反田が公開Datasetにありません");
+  assert.equal(hotelMetsGotanda.venueAccess[0]?.measurementBasis, "route_only");
+  assert.deepEqual(hotelMetsGotanda.venueAccess[0]?.modes, ["walk"]);
+  assert.equal(hotelMetsGotanda.venueAccess[0]?.transferCount, 0);
+  assert.ok(hotelMetsGotanda.venueAccess[0]?.reviewState.includes("verified_with_caveat"));
+  assert.match(hotelMetsGotanda.venueAccess[0]?.travelTimeLabel ?? "", /別区間表示/u);
+  assert.match(hotelMetsGotanda.venueAccess[0]?.caution ?? "", /平日のみ/u);
+  assert.match(hotelMetsGotanda.venueAccess[0]?.caution ?? "", /使用階・受付・受験生入口/u);
+  assert.ok(hotelMetsGotanda.amenities.some((amenity) => amenity.key === "desk"));
+  assert.ok(hotelMetsGotanda.amenities.some((amenity) => amenity.key === "coin_laundry"));
+  assert.ok(hotelMetsGotanda.amenities.some((amenity) => amenity.key === "breakfast"));
+  assert.match(hotelMetsGotanda.note ?? "", /スーペリアシングル/u);
+  assert.match(hotelMetsGotanda.note ?? "", /18歳未満/u);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
   for (const hotelId of ["ginza-kokusai-hotel", "hotel-check-in-shimbashi"]) {
@@ -4475,6 +4509,36 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   );
 });
 
+test("正式施設へ結合済みの全131会場に公開ホテル2件を保持し、未公表会場へ推測結合しない", () => {
+  const dataset = getPrivateMedicalExamVenuesHotels2027Dataset();
+  const assignedVenueIds = new Set(
+    dataset.assignments.flatMap((assignment) => assignment.venueLinks.map((link) => link.venueId)),
+  );
+  const hotelLinkedVenueIds = new Set(
+    dataset.hotels.flatMap((hotel) => hotel.venueAccess.map((access) => access.venueId)),
+  );
+
+  assert.equal(assignedVenueIds.size, 131);
+  assert.equal(dataset.summary.hotelLinkedVenueCount, 131);
+  assert.deepEqual(hotelLinkedVenueIds, assignedVenueIds);
+
+  for (const venueId of assignedVenueIds) {
+    const hotels = dataset.hotels.filter((hotel) =>
+      hotel.venueAccess.some((access) => access.venueId === venueId),
+    );
+    assert.equal(hotels.length, 2, `${venueId}: 公開ホテルが2件ではありません`);
+  }
+
+  for (const assignment of dataset.assignments.filter(
+    (entry) => entry.venueLinks.length === 0,
+  )) {
+    assert.ok(
+      ["unpublished", "city_or_campus_only", "conflict"].includes(assignment.publicationState),
+      `${assignment.assignmentId}: 会場リンクなしの公開状態が不正です`,
+    );
+  }
+});
+
 test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを参照する", () => {
   const canonical = new URL(privateMedicalExamVenuesHotels2027Metadata.canonicalUrl);
   const datasetUrl = new URL(privateMedicalExamVenuesHotels2027Metadata.datasetUrl);
@@ -4499,6 +4563,7 @@ test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを�
   assert.match(pageSource, /産業医科大学 本学の周辺ホテル2施設を追加/u);
   assert.match(pageSource, /昭和医科大学 旗の台キャンパスの宿泊候補2施設を追加/u);
   assert.match(pageSource, /ベルサール新宿グランドの宿泊候補2施設を追加/u);
+  assert.match(pageSource, /TOCビル（五反田）の宿泊候補2施設を再監査/u);
   assert.match(pageSource, /東京慈恵会医科大学 西新橋キャンパスの宿泊候補2施設を追加/u);
   assert.match(pageSource, /東京女子医科大学 彌生記念教育棟の宿泊候補2施設を追加/u);
   assert.match(pageSource, /日本大学 医学部校舎の宿泊候補2施設を追加/u);
