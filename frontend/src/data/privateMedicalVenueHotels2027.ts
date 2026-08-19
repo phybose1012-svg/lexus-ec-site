@@ -100,7 +100,8 @@ const JICHI_MEDICAL_YAKUSHIJI_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const IUHW_NARITA_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const IUHW_AKASAKA_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const IUHW_FUKUOKA_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
-const FUJITA_TOYOAKE_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
+const FUJITA_TOYOAKE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const FUJITA_EXTERNAL_VENUES_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const FUKUOKA_UNIVERSITY_NANAKUMA_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const TOC_GOTANDA_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const SHOWA_HATANODAI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
@@ -3137,6 +3138,22 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.aichi-med-u.ac.jp/files/igaku/2027nenndogakuseibosyuuyoukou_0731.pdf",
         ],
       },
+      {
+        venueId: "venue-congress-square-grand-green-osaka",
+        modes: ["walk"],
+        routeSummary: "ホテル阪急レスパイア大阪からホテル公式案内を逆向きにJR大阪駅3階連絡橋口方面へ進み、駅構内表示に従ってうめきた地下口へ移動します。会場公式の直結動線からグラングリーン大阪南館へ入り、4階のコングレスクエアへ向かいます。到着後は受験票・当日掲示で指定された受付・試験室を確認します。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR大阪駅3階連絡橋口は公式徒歩約3分／JR大阪駅うめきた地下口―会場は施設公式直結（駅構内・客室階・南館4階・指定試験室までを含む通し所要ではありません）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: FUJITA_EXTERNAL_VENUES_VERIFIED_AT,
+        caution: "ホテル公式の徒歩約3分はJR大阪駅3階連絡橋口まで、会場の直結案内はうめきた地下口から南館4階までで、駅内の接続移動を含む公式通し時間ではありません。藤田医科大学医学部一般入試一次の大阪会場は2027年2月4日のコングレスクエア グラングリーン大阪と確認済みですが、出願時選択・収容条件は10月頃公開予定の同要項該当章待ちです。受験票で最終会場を確認してください。南館4階までは確定していますが、使用ルーム・試験受付・受験生入口・入室時刻は未公表です。",
+        evidenceUrls: [
+          "https://www.hankyu-hotel.com/hotel/respire/osaka/access",
+          "https://osaka.congres-square.jp/grandgreen/access/",
+          "https://www.fujita-hu.ac.jp/admission/vsfo8q0000007l3n-att/tedb9e000000p7j6.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "客室Wi-Fi", "客室でWi-Fiを利用できます。", "https://www.hankyu-hotel.com/hotel/respire/osaka/accommodation/double"),
@@ -3175,6 +3192,22 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.congre-cc.jp/facilities/",
           "https://www.grandfront-osaka.jp/about/access/",
           "https://www.aichi-med-u.ac.jp/files/igaku/2027nenndogakuseibosyuuyoukou_0731.pdf",
+        ],
+      },
+      {
+        venueId: "venue-congress-square-grand-green-osaka",
+        modes: ["walk"],
+        routeSummary: "ホテルビナリオ梅田からホテル公式の徒歩経路を逆向きに阪急大阪梅田駅茶屋町口方面へ進みます。大学要項の一般アクセスに従ってグラングリーン大阪南館へ向かい、4階のコングレスクエアに到着後、受験票・当日掲示で指定された受付・試験室を確認します。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―阪急大阪梅田駅茶屋町口は公式徒歩5分／阪急大阪梅田駅―会場は大学要項徒歩12分（起終点・南館4階・指定試験室までを含む通し計測ではないため合算しません）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: FUJITA_EXTERNAL_VENUES_VERIFIED_AT,
+        caution: "ホテル公式5分と大学要項12分は起終点の異なる別区間で、信号、商業施設内の分岐、南館4階、指定試験室までを含む通し所要ではありません。藤田医科大学医学部一般入試一次の大阪会場は2027年2月4日のコングレスクエア グラングリーン大阪と確認済みですが、出願時選択・収容条件は10月頃公開予定の同要項該当章待ちです。受験票で最終会場を確認してください。南館4階までは確定していますが、使用ルーム・試験受付・受験生入口・入室時刻は未公表です。",
+        evidenceUrls: [
+          "https://hotel-binario.jp/umeda/access/",
+          "https://osaka.congres-square.jp/grandgreen/access/",
+          "https://www.fujita-hu.ac.jp/admission/vsfo8q0000007l3n-att/tedb9e000000p7j6.pdf",
         ],
       },
       {
@@ -9587,6 +9620,22 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.fukuoka-u.ac.jp/pdf/entrance-examinations/guidebook-entrance-examinations2027.pdf",
         ],
       },
+      {
+        venueId: "venue-ariake-toc-building",
+        modes: ["walk"],
+        routeSummary: "東京ベイ有明ワシントンホテルから、ホテル・有明TOCビルの公式住所と大学要項の会場図を照合した地上徒歩経路で有明TOCビルへ向かいます。到着後は受験票・当日掲示で指定された受付・試験室へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: FUJITA_EXTERNAL_VENUES_VERIFIED_AT,
+        caution: "ホテルから有明TOCビルへの公式直通案内・徒歩分数はなく、両施設の公式住所と大学要項の会場図で地上徒歩経路を確認したものです。通し所要は掲載しません。藤田医科大学医学部一般入試一次の東京会場は2027年2月4日の有明TOCビルと確認済みですが、出願時選択・収容条件は10月頃公開予定の同要項該当章待ちです。受験票で最終会場を確認してください。使用階・試験室・受付・受験生入口・入室時刻は未公表です。大学要項と施設公式で駅徒歩分数に差があるため、前日に地上経路を確認してください。",
+        evidenceUrls: [
+          "https://washington-hotels.jp/ariake/access/",
+          "https://www.saiji2.toc.co.jp/ariake/access/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B1%9F%E6%9D%B1%E5%8C%BA%E6%9C%89%E6%98%8E3%E4%B8%81%E7%9B%AE7%E7%95%AA11%E5%8F%B7&destination=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B1%9F%E6%9D%B1%E5%8C%BA%E6%9C%89%E6%98%8E3%E4%B8%81%E7%9B%AE5%E7%95%AA7%E5%8F%B7&travelmode=walking",
+          "https://www.fujita-hu.ac.jp/admission/vsfo8q0000007l3n-att/tedb9e000000p7j6.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "全客室無料Wi-Fi・有線LAN", "全客室で無料Wi-Fiと有線LANを利用できます。", "https://washington-hotels.jp/ariake/faq/"),
@@ -9630,6 +9679,22 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.bigsight.jp/organizer/buildings/time/access/",
           "https://www.bigsight.jp/organizer/buildings/time/floormap/",
           "https://www.fukuoka-u.ac.jp/pdf/entrance-examinations/guidebook-entrance-examinations2027.pdf",
+        ],
+      },
+      {
+        venueId: "venue-ariake-toc-building",
+        modes: ["walk"],
+        routeSummary: "ホテルトラスティ東京ベイサイドから、ホテル・有明TOCビルの公式住所と大学要項の会場図を照合した地上徒歩経路で有明TOCビルへ向かいます。到着後は受験票・当日掲示で指定された受付・試験室へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: FUJITA_EXTERNAL_VENUES_VERIFIED_AT,
+        caution: "ホテルから有明TOCビルへの公式直通案内・徒歩分数はなく、両施設の公式住所と大学要項の会場図で地上徒歩経路を確認したものです。通し所要は掲載しません。藤田医科大学医学部一般入試一次の東京会場は2027年2月4日の有明TOCビルと確認済みですが、出願時選択・収容条件は10月頃公開予定の同要項該当章待ちです。受験票で最終会場を確認してください。使用階・試験室・受付・受験生入口・入室時刻は未公表です。大学要項と施設公式で駅徒歩分数に差があるため、前日に地上経路を確認してください。",
+        evidenceUrls: [
+          "https://www.rtg.jp/hotels/trusty/tokyo_bs/",
+          "https://www.saiji2.toc.co.jp/ariake/access/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B1%9F%E6%9D%B1%E5%8C%BA%E6%9C%89%E6%98%8E3%E4%B8%81%E7%9B%AE1%E7%95%AA15%E5%8F%B7&destination=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B1%9F%E6%9D%B1%E5%8C%BA%E6%9C%89%E6%98%8E3%E4%B8%81%E7%9B%AE5%E7%95%AA7%E5%8F%B7&travelmode=walking",
+          "https://www.fujita-hu.ac.jp/admission/vsfo8q0000007l3n-att/tedb9e000000p7j6.pdf",
         ],
       },
     ],

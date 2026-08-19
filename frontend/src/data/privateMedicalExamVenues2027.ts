@@ -2162,17 +2162,49 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
   {
     venueId: "venue-fujita-health-toyoake-campus",
     academicYear: 2027,
-    name: "藤田医科大学 豊明キャンパス",
-    shortName: "藤田医科大学 本学",
+    name: "藤田医科大学 豊明キャンパス 大学2号館",
+    shortName: "藤田医科大学 大学2号館",
     postalCode: "470-1192",
     address: "愛知県豊明市沓掛町田楽ケ窪1-98",
     prefecture: "愛知県",
     municipality: "豊明市",
     nearestStations: ["名鉄名古屋本線 前後駅から路線バス", "名古屋市営地下鉄桜通線 徳重駅から路線バス"],
     officialUrl: "https://www.fujita-hu.ac.jp/access.html",
-    accessNote: "2027年度の一般入試・共通テスト利用入試の二次は本学のみです。前後駅1番のりばから大学病院方面の対象便を利用し、学生・職員専用スクールバスは使いません。試験の使用棟・階・受付・受験生入口は未公表です。",
+    accessNote: "2027年度の一般入試・共通テスト利用入試の二次は大学2号館で実施されます。前後駅1番のりばから大学病院方面の対象便を利用し、学生・職員専用スクールバスは使いません。使用階・試験室・受付・受験生入口は未公表です。",
     reviewState: "verified",
-    verifiedAt: "2026-08-18T00:00:00+09:00",
+    verifiedAt: "2026-08-19T00:00:00+09:00",
+  },
+  {
+    venueId: "venue-ariake-toc-building",
+    academicYear: 2027,
+    name: "有明TOCビル",
+    shortName: "有明TOCビル",
+    postalCode: "135-0063",
+    address: "東京都江東区有明3-5-7",
+    prefecture: "東京都",
+    municipality: "江東区",
+    nearestStations: ["りんかい線 国際展示場駅", "ゆりかもめ 東京ビッグサイト駅・有明駅"],
+    officialUrl: "https://www.saiji2.toc.co.jp/ariake/access/",
+    officialUrlLabel: "TOC有明Convention Hall 公式アクセス",
+    accessNote: "藤田医科大学医学部の2027年度一般入試一次は2027年2月4日に実施され、東京会場は有明TOCビルです。大学要項は国際展示場駅から徒歩3分、東京ビッグサイト駅・有明駅から徒歩4分と案内する一方、施設公式はそれぞれ徒歩5分・6分とするため、移動計画では施設公式の保守的な分数を優先してください。使用階・試験室・受付・受験生入口・入室時刻は未公表です。一般入試の選択・収容条件は10月頃公開予定の同要項該当章と受験票で確認してください。",
+    reviewState: "verified",
+    verifiedAt: "2026-08-19T00:00:00+09:00",
+  },
+  {
+    venueId: "venue-congress-square-grand-green-osaka",
+    academicYear: 2027,
+    name: "コングレスクエア グラングリーン大阪",
+    shortName: "コングレスクエア グラングリーン大阪",
+    postalCode: "530-0011",
+    address: "大阪府大阪市北区大深町5-54 グラングリーン大阪 南館4階",
+    prefecture: "大阪府",
+    municipality: "大阪市北区",
+    nearestStations: ["JR大阪駅 うめきた地下口", "Osaka Metro梅田駅", "阪急・阪神 大阪梅田駅"],
+    officialUrl: "https://osaka.congres-square.jp/grandgreen/access/",
+    officialUrlLabel: "コングレスクエア グラングリーン大阪 公式アクセス",
+    accessNote: "藤田医科大学医学部の2027年度一般入試一次は2027年2月4日に実施され、大阪会場はグラングリーン大阪南館4階のコングレスクエアです。南館4階までは確定していますが、使用ルーム・試験受付・受験生入口・入室時刻は未公表です。施設通常の営業時間を試験日の開場時刻に転用せず、一般入試の選択・収容条件は10月頃公開予定の同要項該当章と受験票で確認してください。",
+    reviewState: "verified",
+    verifiedAt: "2026-08-19T00:00:00+09:00",
   },
   {
     venueId: "venue-osaka-med-pharm-takatsuki-campus",
@@ -2330,7 +2362,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     nearestStations: ["JR・名鉄・近鉄・地下鉄 名古屋駅"],
     officialUrl: "https://www.kashikaigishitsu.net/facilitys/gc-nagoya-shinkansenguchi/",
     officialUrlLabel: "TKPガーデンシティPREMIUM名古屋新幹線口 公式アクセス",
-    accessNote: "福岡大学医学部医学科の2027年度一般選抜・系統別日程一次選考は2月2日（火）に実施され、名古屋試験場はTKPガーデンシティPREMIUM名古屋新幹線口です。希望会場の収容人数を超えた場合は別会場になるため、出願確認票・受験票で最終会場を確認してください。一般選抜の入試要項は9月下旬公開予定で、現時点では開場・入室・集合・試験開始時刻、使用階・会議室、受付位置、受験生入口は未公表です。施設は井門名古屋ビル2～9階にあり、JR名古屋駅太閤通口から徒歩3分と公式案内されていますが、特定階・一般受付・通常利用時間を入試の試験室・入口・開場時刻に転用しないでください。入試要項、受験票、当日案内で確認してください。",
+    accessNote: "福岡大学医学部の2027年度系統別日程一次（2月2日（火））と、藤田医科大学医学部の一般入試一次（2月4日（木））の名古屋会場です。施設は井門名古屋ビル2～9階にあり、JR名古屋駅太閤通口から徒歩3分と公式案内されています。両入試とも使用階・会議室、受付位置、受験生入口は未公表です。福岡大学は希望会場の収容人数を超えた場合に別会場となる可能性があり、入試要項は9月下旬公開予定です。藤田医科大学は一般入試の選択・収容条件を10月頃公開予定の要項該当章で案内するため、それぞれ出願確認票・受験票・当日案内を確認してください。",
     reviewState: "verified",
     verifiedAt: "2026-08-19T00:00:00+09:00",
   },
@@ -3437,27 +3469,44 @@ officialVenuePlan(["aichi-medical--common--common-test-regional-quota"], "second
   note: "愛知県地域特別枠B方式の第2次は2027年3月10日で、受付8:30〜8:45、面接9:00開始です。会場は1号館で固定です。",
 });
 
-const fujitaVenueUrl = "https://www.fujita-hu.ac.jp/admission/exam-med/dubv6r0000001ec6-att/j93sdv000000ub7u.pdf";
-areaVenuePlan(
-  ["fujita--general--general-regional-quota-17148"],
-  "first",
-  "東京・名古屋・大阪",
-  ["東京都", "愛知県", "大阪府"],
-  [],
-  fujitaVenueUrl,
-  "2027年度医学部入試概要「試験地」",
-  "都市までの公表です。正式施設名と選択・指定条件は、完成版要項等の公表後に確認してください。",
-);
-officialVenuePlan(["fujita--general--general-regional-quota-17148", "fujita--common--common-test"], "second", {
+const fujitaVenueUrl = "https://www.fujita-hu.ac.jp/admission/vsfo8q0000007l3n-att/tedb9e000000p7j6.pdf";
+officialVenuePlan(["fujita--general--general-regional-quota-17148"], "first", {
+  venueLinks: [
+    link("venue-tkp-premium-nagoya-shinkansenguchi", "announced"),
+    link("venue-ariake-toc-building", "announced"),
+    link("venue-congress-square-grand-green-osaka", "announced"),
+  ],
+  announcedPrefectures: ["愛知県", "東京都", "大阪府"],
+  announcedVenueText: "TKPガーデンシティPREMIUM名古屋新幹線口・有明TOCビル・コングレスクエア グラングリーン大阪",
+  publicationState: "confirmed",
+  conditions: ["admission_ticket"],
+  officialAdmissionUrl: fujitaVenueUrl,
+  evidenceLabel: "2027年度医学部医学科学生募集要項",
+  evidenceLocator: "PDF 30ページ（冊子36ページ）",
+  reviewState: "verified",
+  note: "3施設の正式名・住所は大学公式要項で確認済みです。一般入試の出願時選択・収容上限・入室時刻は10月頃公開予定の同要項該当章ではじめて確定するため、現時点では選択制と断定せず、受験票で最終会場を確認してください。",
+});
+officialVenuePlan(["fujita--general--general-regional-quota-17148"], "second", {
   venueLinks: [link("venue-fujita-health-toyoake-campus")],
-  announcedVenueText: "藤田医科大学 本学（豊明キャンパス）",
+  announcedVenueText: "藤田医科大学 豊明キャンパス 大学2号館",
   publicationState: "confirmed",
   conditions: ["fixed"],
   officialAdmissionUrl: fujitaVenueUrl,
-  evidenceLabel: "2027年度医学部入試概要",
-  evidenceLocator: "各方式 二次試験会場欄",
+  evidenceLabel: "2027年度医学部医学科学生募集要項",
+  evidenceLocator: "PDF 7・29ページ（冊子6・35ページ）",
   reviewState: "verified",
-  note: "会場は本学で固定です。二次試験日は2027年2月14日または15日ですが、受験者ごとの日付・集合時刻・使用棟・受付・受験生入口は現行の公式概要では公表されていません。10月頃公開予定の学生募集要項、受験票、当日案内で確認してください。",
+  note: "会場は大学2号館で固定です。二次試験日は2027年2月14日または15日ですが、一般入試の受験者ごとの日付・集合時刻は10月頃公開予定の同要項該当章、受験票、当日案内で確認してください。使用階・試験室・受付・受験生入口は未公表です。",
+});
+officialVenuePlan(["fujita--common--common-test"], "second", {
+  venueLinks: [link("venue-fujita-health-toyoake-campus")],
+  announcedVenueText: "藤田医科大学 豊明キャンパス 大学2号館",
+  publicationState: "confirmed",
+  conditions: ["fixed", "applicant_preference", "university_assigned"],
+  officialAdmissionUrl: fujitaVenueUrl,
+  evidenceLabel: "2027年度医学部医学科学生募集要項",
+  evidenceLocator: "PDF 19・29ページ（冊子25・35ページ）",
+  reviewState: "verified",
+  note: "会場は大学2号館で固定です。2月14日午前・午後、15日午前・午後の第1〜第4希望を出願時に登録し、一次結果発表時に希望順と上限人数に基づいて面接日時が決まります。決定後は変更できません。使用階・試験室・受付・受験生入口は未公表です。",
 });
 
 const ompuVenueUrl = "https://www.ompu.ac.jp/admission/undergraduate/qt931k000000801q-att/afif3u000000fsvj.pdf";
@@ -3783,8 +3832,11 @@ refineAssignmentPlan(
 refineAssignmentPlan(["aichi-medical--common--common-test-regional-quota"], "second", {
   conditions: ["fixed"],
 });
-refineAssignmentPlan(["fujita--general--general-regional-quota-17148", "fujita--common--common-test"], "second", {
+refineAssignmentPlan(["fujita--general--general-regional-quota-17148"], "second", {
   conditions: ["fixed"],
+});
+refineAssignmentPlan(["fujita--common--common-test"], "second", {
+  conditions: ["fixed", "applicant_preference", "university_assigned"],
 });
 refineAssignmentPlan(["kansai-medical--general--general-early"], "second", {
   conditions: ["fixed", "applicant_preference", "university_assigned"],

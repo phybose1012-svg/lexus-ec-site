@@ -758,7 +758,6 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
 
   assert.deepEqual(assignmentFor("nihon--general--unified-phase-2", "first")?.conditions, []);
   for (const routeId of [
-    "fujita--general--general-regional-quota-17148",
     "osaka-med-pharm--general--general-regional-quota-385a3-early",
     "osaka-med-pharm--general--general-late",
     "kindai--general--general-early",
@@ -768,6 +767,18 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
   ]) {
     assert.deepEqual(assignmentFor(routeId, "first")?.conditions, [], routeId);
   }
+  const fujitaGeneralFirst = assignmentFor(
+    "fujita--general--general-regional-quota-17148",
+    "first",
+  );
+  assert.equal(fujitaGeneralFirst?.publicationState, "confirmed");
+  assert.deepEqual(fujitaGeneralFirst?.conditions, ["admission_ticket"]);
+  assert.deepEqual(fujitaGeneralFirst?.venueLinks, [
+    { venueId: "venue-tkp-premium-nagoya-shinkansenguchi", role: "announced" },
+    { venueId: "venue-ariake-toc-building", role: "announced" },
+    { venueId: "venue-congress-square-grand-green-osaka", role: "announced" },
+  ]);
+  assert.match(fujitaGeneralFirst?.evidenceLocator ?? "", /PDF 30ページ（冊子36ページ）/u);
 
   assert.deepEqual(assignmentFor("fukuoka--general--general", "first")?.conditions, [
     "applicant_preference",
@@ -876,7 +887,13 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
   );
   assert.deepEqual(assignmentFor("fujita--common--common-test", "second")?.conditions, [
     "fixed",
+    "applicant_preference",
+    "university_assigned",
   ]);
+  assert.match(
+    assignmentFor("fujita--common--common-test", "second")?.evidenceLocator ?? "",
+    /PDF 19・29ページ（冊子25・35ページ）/u,
+  );
   assert.deepEqual(
     assignmentFor("tokyo-womens-medical--general--general-regional-quota", "second")
       ?.conditions,
@@ -2610,6 +2627,44 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
       ?.venueAccess[0]?.transferCount,
     0,
   );
+  assert.equal(
+    privateMedicalExamVenues2027.find(
+      (venue) => venue.venueId === "venue-fujita-health-toyoake-campus",
+    )?.name,
+    "藤田医科大学 豊明キャンパス 大学2号館",
+  );
+  const fujitaAriakeHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some((access) => access.venueId === "venue-ariake-toc-building"),
+  );
+  assert.deepEqual(
+    fujitaAriakeHotels.map((hotel) => hotel.name),
+    ["東京ベイ有明ワシントンホテル", "ホテルトラスティ東京ベイサイド"],
+  );
+  for (const hotel of fujitaAriakeHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-ariake-toc-building",
+    );
+    assert.equal(access?.measurementBasis, "map_route_checked");
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.ok(access?.reviewState.includes("venue_pdf_visual_review"));
+  }
+  const fujitaGrandGreenHotels = dataset.hotels.filter((hotel) =>
+    hotel.venueAccess.some(
+      (access) => access.venueId === "venue-congress-square-grand-green-osaka",
+    ),
+  );
+  assert.deepEqual(
+    fujitaGrandGreenHotels.map((hotel) => hotel.name),
+    ["ホテル阪急レスパイア大阪", "ホテルビナリオ梅田"],
+  );
+  for (const hotel of fujitaGrandGreenHotels) {
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-congress-square-grand-green-osaka",
+    );
+    assert.equal(access?.measurementBasis, "route_only");
+    assert.ok(access?.reviewState.includes("verified_with_caveat"));
+    assert.ok(access?.reviewState.includes("venue_pdf_visual_review"));
+  }
   const fukuokaUniversityHotels = dataset.hotels.filter((hotel) =>
     hotel.venueAccess.some(
       (access) => access.venueId === "venue-fukuoka-university-nanakuma-campus",
@@ -4629,7 +4684,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   );
 });
 
-test("正式施設へ結合済みの全131会場に公開ホテル2件を保持し、未公表会場へ推測結合しない", () => {
+test("正式施設へ結合済みの全133会場に公開ホテル2件を保持し、未公表会場へ推測結合しない", () => {
   const dataset = getPrivateMedicalExamVenuesHotels2027Dataset();
   const assignedVenueIds = new Set(
     dataset.assignments.flatMap((assignment) => assignment.venueLinks.map((link) => link.venueId)),
@@ -4638,8 +4693,8 @@ test("正式施設へ結合済みの全131会場に公開ホテル2件を保持�
     dataset.hotels.flatMap((hotel) => hotel.venueAccess.map((access) => access.venueId)),
   );
 
-  assert.equal(assignedVenueIds.size, 131);
-  assert.equal(dataset.summary.hotelLinkedVenueCount, 131);
+  assert.equal(assignedVenueIds.size, 133);
+  assert.equal(dataset.summary.hotelLinkedVenueCount, 133);
   assert.deepEqual(hotelLinkedVenueIds, assignedVenueIds);
 
   for (const venueId of assignedVenueIds) {
