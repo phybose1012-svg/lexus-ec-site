@@ -930,7 +930,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 201);
+  assert.equal(dataset.hotels.length, 203);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   for (const hotelId of [
     "sotetsu-fresa-inn-nagoya-sakuradoriguchi",
@@ -1607,6 +1607,38 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
       assert.match(access.travelTimeLabel ?? "", /大学公式約15分/u);
     } else {
       assert.match(access.travelTimeLabel ?? "", /大学公式約7分/u);
+    }
+  }
+  const time24 = dataset.venues.find((entry) => entry.venueId === "venue-time24-building");
+  assert.ok(time24, "タイム24ビルが公開Datasetにありません");
+  assert.equal(time24.postalCode, "135-0064");
+  assert.match(time24.accessNote ?? "", /2月2日（火）/u);
+  assert.match(time24.accessNote ?? "", /9月下旬公開予定/u);
+  assert.match(time24.accessNote ?? "", /使用階・研修室・会議室/u);
+  for (const hotelId of [
+    "tokyo-bay-ariake-washington-hotel",
+    "hotel-trusty-tokyo-bayside",
+  ]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find((entry) => entry.venueId === "venue-time24-building");
+    assert.ok(access, `${hotelId} がタイム24ビルに結合されていません`);
+    assert.deepEqual(access.modes, ["walk", "rail"]);
+    assert.equal(access.transferCount, 0);
+    assert.equal(access.measurementBasis, "route_only");
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.match(access.travelTimeLabel ?? "", /ゆりかもめ2駅/u);
+    assert.match(access.caution ?? "", /収容人数により別会場/u);
+    assert.match(access.caution ?? "", /使用階・研修室・会議室/u);
+    assert.match(access.caution ?? "", /試験入口・開場時刻とみなさない/u);
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+    if (hotelId === "tokyo-bay-ariake-washington-hotel") {
+      assert.ok(hotel.amenities.some((amenity) => amenity.key === "coin_laundry"));
+      assert.equal(hotel.amenities.some((amenity) => amenity.key === "desk"), false);
+    } else {
+      assert.ok(hotel.amenities.some((amenity) => amenity.key === "desk"));
+      assert.equal(hotel.amenities.some((amenity) => amenity.key === "coin_laundry"), false);
+      assert.match(hotel.note ?? "", /スタンダードダブル/u);
     }
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
