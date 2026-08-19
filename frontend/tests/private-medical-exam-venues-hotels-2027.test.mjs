@@ -362,6 +362,13 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "日本交通・日ノ丸自動車 県庁日赤前停留所",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式本庁舎・アクセス案内/u);
+    } else if (venue.venueId === "venue-jichi-first-tottori-meeting-15") {
+      assert.deepEqual(venue.nearestStations, [
+        "JR山陰本線・因美線 鳥取駅",
+        "日本交通・日ノ丸自動車 県庁前停留所",
+        "日本交通・日ノ丸自動車 県庁日赤前停留所",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式議会棟・議会棟別館案内/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -932,6 +939,15 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(access.reviewState.includes("verified_with_caveat"));
     assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
     assert.equal(access.travelTimeLabel, undefined);
+    const interviewAccess = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-tottori-meeting-15",
+    );
+    assert.ok(interviewAccess, `${hotelId} が鳥取県庁第15会議室に結合されていません`);
+    assert.equal(interviewAccess.transferCount, 0);
+    assert.equal(interviewAccess.measurementBasis, "map_route_checked");
+    assert.ok(interviewAccess.reviewState.includes("verified_with_caveat"));
+    assert.ok(interviewAccess.reviewState.includes("venue_pdf_visual_review"));
+    assert.equal(interviewAccess.travelTimeLabel, undefined);
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);

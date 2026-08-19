@@ -158,6 +158,7 @@ const JICHI_HYOGO_KYOSAI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_NARA_NOVOTEL_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_WAKAYAMA_KENMIN_BUNKA_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_TOTTORI_AUDITORIUM_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_TOTTORI_MEETING_15_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -7452,6 +7453,25 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-tottori-meeting-15",
+        modes: ["walk"],
+        routeSummary: "鳥取シティホテルから、ホテルと鳥取県庁の公式住所を地図で照合した若桜街道周辺の地上徒歩経路で県庁敷地へ向かい、県公式の庁舎案内で議会棟本館を確認します。受験票、鳥取県から交付される面接専用案内、当日掲示に従って指定された受験生入口・受付へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_TOTTORI_MEETING_15_VERIFIED_AT,
+        caution: "ホテルは鳥取市戎町471番地、会場は同市東町一丁目220番地の県庁敷地内にある議会棟本館3階です。公式住所と地上徒歩経路は確認しましたが、地図の到着地点は県庁敷地までで、議会棟の受験生入口や第15会議室までの通し所要ではありません。2027年1月26日（火）の面接は受付9:00〜9:20、10:00〜16:00のうち鳥取県が指定する時間です。第15会議室が議会棟本館3階にあることは県公式で確認できますが、募集要項の『ほか』に含まれる室、受付位置、入口、待機場所、面接順は未公表です。議会棟別館、本庁舎、一般来庁者・傍聴者向け動線と取り違えず、1月下旬の積雪・凍結も見込んで余裕を取ってください。",
+        evidenceUrls: [
+          "https://tottori-cityhotel.jp/access",
+          "https://www.google.com/maps/dir/?api=1&origin=%E9%B3%A5%E5%8F%96%E7%9C%8C%E9%B3%A5%E5%8F%96%E5%B8%82%E6%88%8E%E7%94%BA471&destination=%E9%B3%A5%E5%8F%96%E7%9C%8C%E9%B3%A5%E5%8F%96%E5%B8%82%E6%9D%B1%E7%94%BA1-220&travelmode=walking",
+          "https://www.pref.tottori.lg.jp/9064.htm",
+          "https://www.pref.tottori.lg.jp/81443.htm",
+          "https://www.pref.tottori.lg.jp/secure/739768/BCPkenchou_No.11.pdf",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "全客室無料Wi-Fi", "全客室で無料の無線LANを利用できます。", "https://tottori-cityhotel.jp/room"),
@@ -7492,6 +7512,25 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.pref.tottori.lg.jp/9064.htm",
           "https://www.pref.tottori.lg.jp/125199.htm",
           "https://www.pref.tottori.lg.jp/82429.htm",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+      {
+        venueId: "venue-jichi-first-tottori-meeting-15",
+        modes: ["walk"],
+        routeSummary: "グリーンリッチホテル鳥取駅前から、ホテルと鳥取県庁の公式住所を地図で照合した鳥取駅北口・若桜街道周辺の地上徒歩経路で県庁敷地へ向かい、県公式の庁舎案内で議会棟本館を確認します。受験票、鳥取県から交付される面接専用案内、当日掲示に従って指定された受験生入口・受付へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_TOTTORI_MEETING_15_VERIFIED_AT,
+        caution: "ホテルは鳥取市永楽温泉町102番6号、会場は同市東町一丁目220番地の県庁敷地内にある議会棟本館3階です。ホテル公式はJR鳥取駅北口から徒歩3分、県公式は鳥取駅から県庁まで徒歩約20分と案内していますが、ホテルから議会棟への公式通し案内ではないため各分数を加算せず、直接の地上徒歩経路を住所地図で確認しました。2027年1月26日（火）の面接は受付9:00〜9:20、10:00〜16:00のうち鳥取県が指定する時間です。第15会議室は県公式で確認できますが、『ほか』の室、受付位置、入口、待機場所、面接順は未公表です。議会棟別館、本庁舎、一般来庁者・傍聴者向け動線と取り違えず、積雪・凍結を見込んで前日に県庁敷地と議会棟の位置関係を確認してください。",
+        evidenceUrls: [
+          "https://greenrichhotels.jp/tottori/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E9%B3%A5%E5%8F%96%E7%9C%8C%E9%B3%A5%E5%8F%96%E5%B8%82%E6%B0%B8%E6%A5%BD%E6%B8%A9%E6%B3%89%E7%94%BA102-6&destination=%E9%B3%A5%E5%8F%96%E7%9C%8C%E9%B3%A5%E5%8F%96%E5%B8%82%E6%9D%B1%E7%94%BA1-220&travelmode=walking",
+          "https://www.pref.tottori.lg.jp/9064.htm",
+          "https://www.pref.tottori.lg.jp/81443.htm",
+          "https://www.pref.tottori.lg.jp/secure/739768/BCPkenchou_No.11.pdf",
           "https://www.jichi.ac.jp/exam/medicine/exam/general/",
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
