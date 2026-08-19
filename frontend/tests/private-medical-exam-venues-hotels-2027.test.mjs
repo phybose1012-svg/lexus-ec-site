@@ -487,6 +487,13 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式本館・新館地下配置図/u);
       assert.match(venue.accessNote ?? "", /本館地下1階/u);
+    } else if (venue.venueId === "venue-jichi-first-kumamoto-hotel-terza") {
+      assert.deepEqual(venue.nearestStations, [
+        "熊本市電 市立体育館前停留場",
+        "路線バス・空港リムジンバス 熊本県庁前停留所",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式フロア・館内案内/u);
+      assert.match(venue.accessNote ?? "", /使用室、受付位置、受験生入口/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -1351,6 +1358,16 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(["official", "route_only"].includes(access.measurementBasis));
     assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
     assert.match(access.travelTimeLabel ?? "", /徒歩/u);
+    const interviewAccess = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-kumamoto-hotel-terza",
+    );
+    assert.ok(interviewAccess, `${hotelId} がホテル熊本テルサに結合されていません`);
+    assert.equal(interviewAccess.transferCount, 0);
+    assert.deepEqual(interviewAccess.modes, ["walk"]);
+    assert.equal(interviewAccess.measurementBasis, "route_only");
+    assert.ok(interviewAccess.reviewState.includes("verified_with_caveat"));
+    assert.ok(interviewAccess.reviewState.includes("venue_pdf_visual_review"));
+    assert.match(interviewAccess.travelTimeLabel ?? "", /徒歩/u);
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);

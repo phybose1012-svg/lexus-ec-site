@@ -177,6 +177,7 @@ const JICHI_SAGA_PREFECTURAL_OFFICE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_NAGASAKI_MEETING_302_305_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_NAGASAKI_MEETING_312_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_KUMAMOTO_BASEMENT_HALL_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_KUMAMOTO_HOTEL_TERSA_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -8756,6 +8757,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-kumamoto-hotel-terza",
+        modes: ["walk"],
+        routeSummary: "県庁前グリーンホテルから、ホテル公式が徒歩約5分と案内する熊本県庁前停留所へ向かい、同じ停留所を接続点にホテル熊本テルサ公式の徒歩約5分の一般来館経路で会場へ進みます。到着後は受験票、熊本県から交付される面接専用案内、当日掲示に従って指定受付・面接室へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―熊本県庁前停留所は公式徒歩約5分／同停留所―ホテル熊本テルサは会場公式徒歩約5分（信号待ち・館内・指定受付までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_KUMAMOTO_HOTEL_TERSA_VERIFIED_AT,
+        caution: "ホテル公式と会場公式の2区間を熊本県庁前停留所で接続した徒歩経路案で、客室から指定面接室までの通し所要ではありません。バスには乗らず、停留所を現地の接続点として使います。2027年1月26日（火）の面接は受付9:00〜9:20、面接10:00〜16:00のうち熊本県指定時刻です。会場はホテル熊本テルサまで公表済みですが、施設内の使用室、受付位置、受験生入口、待機場所、面接順、エレベーター、指定動線は未公表です。テルサホール、会議室、宴会場、一般フロントのいずれかを面接会場・受付とみなさず、受験票、熊本県からの面接専用案内、当日掲示を確認してください。前日の学力試験は熊本県庁本館地下1階の地下大会議室です。",
+        evidenceUrls: [
+          "https://greenrichhotels.jp/kenchomae/faq/",
+          "https://kumamoto-terrsa.com/",
+          "https://kumamoto-terrsa.com/floor",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "全館無料Wi-Fi", "全館でパスワード不要の無料Wi-Fiを利用できます。", "https://greenrichhotels.jp/kenchomae/faq/"),
@@ -8795,6 +8814,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://greenrichhotels.jp/suizenji/",
           "https://www.pref.kumamoto.jp/soshiki/1/56085.html",
           "https://www.pref.kumamoto.jp/uploaded/attachment/303254.pdf",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+      {
+        venueId: "venue-jichi-first-kumamoto-hotel-terza",
+        modes: ["walk"],
+        routeSummary: "グリーンリッチホテル水前寺から、ホテル正面の熊本市電・市立体育館前停留場を接続点に、ホテル熊本テルサ公式が案内する徒歩経路で会場へ向かいます。到着後は受験票、熊本県から交付される面接専用案内、当日掲示に従って指定受付・面接室へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―市立体育館前停留場はホテル公式『目の前』／同停留場―ホテル熊本テルサは会場公式徒歩約10分（信号待ち・館内・指定受付までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_KUMAMOTO_HOTEL_TERSA_VERIFIED_AT,
+        caution: "ホテル公式の『目の前』と会場公式の徒歩約10分を市立体育館前停留場で接続した徒歩経路案で、客室から指定面接室までの通し所要ではありません。路面電車には乗らず、停留場からホテル熊本テルサまで徒歩で向かいます。2027年1月26日（火）の面接は受付9:00〜9:20、面接10:00〜16:00のうち熊本県指定時刻です。会場はホテル熊本テルサまで公表済みですが、施設内の使用室、受付位置、受験生入口、待機場所、面接順、エレベーター、指定動線は未公表です。テルサホール、会議室、宴会場、一般フロントのいずれかを面接会場・受付とみなさず、受験票、熊本県からの面接専用案内、当日掲示を確認してください。前日の学力試験は熊本県庁本館地下1階の地下大会議室です。",
+        evidenceUrls: [
+          "https://greenrichhotels.jp/suizenji/",
+          "https://kumamoto-terrsa.com/",
+          "https://kumamoto-terrsa.com/floor",
           "https://www.jichi.ac.jp/exam/medicine/exam/general/",
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
