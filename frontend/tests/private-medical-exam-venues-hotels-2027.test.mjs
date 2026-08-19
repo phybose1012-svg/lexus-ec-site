@@ -501,6 +501,13 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式県庁舎新館フロア案内/u);
       assert.match(venue.accessNote ?? "", /新館14階/u);
+    } else if (venue.venueId === "venue-jichi-first-oita-meeting-room") {
+      assert.deepEqual(venue.nearestStations, [
+        "JR日豊本線・久大本線・豊肥本線 大分駅",
+        "大分バス・大分交通 県庁前停留所",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式県庁舎配置図・館内案内/u);
+      assert.match(venue.accessNote ?? "", /使用館・階・室名/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -1390,6 +1397,16 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(access.reviewState.includes("verified_with_caveat"));
     assert.equal(access.reviewState.includes("venue_pdf_visual_review"), false);
     assert.equal(access.travelTimeLabel, undefined);
+    const interviewAccess = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-oita-meeting-room",
+    );
+    assert.ok(interviewAccess, `${hotelId} が大分県庁舎会議室に結合されていません`);
+    assert.equal(interviewAccess.transferCount, 0);
+    assert.deepEqual(interviewAccess.modes, ["walk"]);
+    assert.equal(interviewAccess.measurementBasis, "map_route_checked");
+    assert.ok(interviewAccess.reviewState.includes("verified_with_caveat"));
+    assert.equal(interviewAccess.reviewState.includes("venue_pdf_visual_review"), false);
+    assert.equal(interviewAccess.travelTimeLabel, undefined);
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);

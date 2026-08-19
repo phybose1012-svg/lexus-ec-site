@@ -179,6 +179,7 @@ const JICHI_NAGASAKI_MEETING_312_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_KUMAMOTO_BASEMENT_HALL_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_KUMAMOTO_HOTEL_TERSA_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_OITA_NEW_LARGE_MEETING_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_OITA_MEETING_ROOM_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -8882,6 +8883,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-oita-meeting-room",
+        modes: ["walk"],
+        routeSummary: "ダイワロイネットホテル大分から、ホテルと大分県庁舎の公式住所を照合した地上の公道を徒歩で進み、大分県庁舎へ向かいます。到着後は受験票、大分県から交付される面接専用案内、当日掲示に従って指定された館・階・受付・面接室へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: JICHI_OITA_MEETING_ROOM_VERIFIED_AT,
+        caution: "ホテル公式住所（荷揚町2番3号）と大分県公式の県庁舎住所（大手町3丁目1番1号）を固定し、地上の直接徒歩経路が成立することを地図で確認した案内です。ホテルから面接室への公式推奨経路・公式徒歩分数はないため、信号待ち、天候、客室階からの移動、県庁舎内の指定受付までを含む通し所要は掲載しません。2027年1月26日（火）の面接は受付9:00〜9:20、面接10:00〜16:00のうち大分県指定時刻です。公開要項は会場を『大分県庁舎 会議室』とだけ示し、使用館・階・室名、受付位置、受験生入口、待機場所、面接順、エレベーター・階段、指定動線は未公表です。前日の学力試験会場である新館14階大会議室を面接室とみなさず、受験票、大分県からの面接専用案内、当日掲示を確認してください。",
+        evidenceUrls: [
+          "https://www.daiwaroynet.jp/oita/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E5%A4%A7%E5%88%86%E7%9C%8C%E5%A4%A7%E5%88%86%E5%B8%82%E8%8D%B7%E6%8F%9A%E7%94%BA2-3&destination=%E5%A4%A7%E5%88%86%E7%9C%8C%E5%A4%A7%E5%88%86%E5%B8%82%E5%A4%A7%E6%89%8B%E7%94%BA3-1-1&travelmode=walking",
+          "https://www.pref.oita.jp/site/chosha/chosha-access.html",
+          "https://www.pref.oita.jp/site/chosha/list69-167.html",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "全客室無料Wi-Fi", "全客室で無料Wi-Fiを利用できます。", "https://www.daiwaroynet.jp/oita/room/"),
@@ -8921,6 +8940,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.pref.oita.jp/site/chosha/chosha-access.html",
           "https://www.pref.oita.jp/site/chosha/chosha-b.html",
           "https://www.pref.oita.jp/uploaded/life/2300471_4486156_misc.pdf",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+      {
+        venueId: "venue-jichi-first-oita-meeting-room",
+        modes: ["walk"],
+        routeSummary: "ホテルエリアワン大分から、ホテルと大分県庁舎の公式住所を照合した地上の公道を徒歩で進み、大分県庁舎へ向かいます。到着後は受験票、大分県から交付される面接専用案内、当日掲示に従って指定された館・階・受付・面接室へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: JICHI_OITA_MEETING_ROOM_VERIFIED_AT,
+        caution: "ホテル公式住所（府内町3丁目3番7号）と大分県公式の県庁舎住所（大手町3丁目1番1号）を固定し、地上の直接徒歩経路が成立することを地図で確認した案内です。ホテルから面接室への公式推奨経路・公式徒歩分数はないため、信号待ち、天候、客室階からの移動、県庁舎内の指定受付までを含む通し所要は掲載しません。2027年1月26日（火）の面接は受付9:00〜9:20、面接10:00〜16:00のうち大分県指定時刻です。公開要項は会場を『大分県庁舎 会議室』とだけ示し、使用館・階・室名、受付位置、受験生入口、待機場所、面接順、エレベーター・階段、指定動線は未公表です。前日の学力試験会場である新館14階大会議室を面接室とみなさず、受験票、大分県からの面接専用案内、当日掲示を確認してください。",
+        evidenceUrls: [
+          "https://www.hotel-areaone.com/oita/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E5%A4%A7%E5%88%86%E7%9C%8C%E5%A4%A7%E5%88%86%E5%B8%82%E5%BA%9C%E5%86%85%E7%94%BA3-3-7&destination=%E5%A4%A7%E5%88%86%E7%9C%8C%E5%A4%A7%E5%88%86%E5%B8%82%E5%A4%A7%E6%89%8B%E7%94%BA3-1-1&travelmode=walking",
+          "https://www.pref.oita.jp/site/chosha/chosha-access.html",
+          "https://www.pref.oita.jp/site/chosha/list69-167.html",
           "https://www.jichi.ac.jp/exam/medicine/exam/general/",
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
