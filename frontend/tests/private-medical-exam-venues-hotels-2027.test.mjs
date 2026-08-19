@@ -930,7 +930,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 199);
+  assert.equal(dataset.hotels.length, 201);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   for (const hotelId of [
     "sotetsu-fresa-inn-nagoya-sakuradoriguchi",
@@ -1546,6 +1546,39 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.match(access.caution ?? "", /自治会館側入口は一般来館入口/u);
     assert.match(access.caution ?? "", /使用階・ホール・会議室/u);
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  const kurumeMii = dataset.venues.find(
+    (entry) => entry.venueId === "venue-kurume-mii-campus",
+  );
+  assert.ok(kurumeMii, "久留米大学 御井キャンパスが公開Datasetにありません");
+  assert.equal(kurumeMii.officialUrl, "https://www.kurume-u.ac.jp/access/");
+  assert.match(kurumeMii.accessNote ?? "", /10月中旬公開予定/u);
+  assert.match(kurumeMii.accessNote ?? "", /使用棟・階・試験室/u);
+  for (const hotelId of ["the-celecton-kurume", "kurume-station-hotel"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-kurume-mii-campus",
+    );
+    assert.ok(access, `${hotelId} が久留米大学 御井キャンパスに結合されていません`);
+    assert.equal(access.transferCount, 0);
+    assert.equal(access.measurementBasis, "route_only");
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.match(access.caution ?? "", /2月1日（月）/u);
+    assert.match(access.caution ?? "", /2月13日（土）/u);
+    assert.match(access.caution ?? "", /3月8日（月）/u);
+    assert.match(access.caution ?? "", /使用棟・階・試験室/u);
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+    if (hotelId === "the-celecton-kurume") {
+      assert.deepEqual(access.modes, ["walk", "bus"]);
+      assert.match(access.travelTimeLabel ?? "", /大学公式約15分/u);
+      assert.equal(hotel.amenities.some((amenity) => amenity.key === "desk"), false);
+    } else {
+      assert.deepEqual(access.modes, ["walk", "rail"]);
+      assert.match(access.travelTimeLabel ?? "", /久大本線で乗換なし/u);
+      assert.ok(hotel.amenities.some((amenity) => amenity.key === "desk"));
+      assert.match(hotel.note ?? "", /未成年.*公式サイトで確認できない/u);
+    }
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);

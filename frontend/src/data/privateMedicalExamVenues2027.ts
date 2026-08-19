@@ -2256,10 +2256,15 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     address: "福岡県久留米市御井町1635",
     prefecture: "福岡県",
     municipality: "久留米市",
-    nearestStations: ["JR久大本線 久留米大学前駅"],
-    officialUrl: "https://www.kurume-u.ac.jp/access/mii/",
+    nearestStations: [
+      "JR久大本線 久留米大学前駅",
+      "西鉄バス 朝妻・久留米大学前・久留米大学南門停留所",
+    ],
+    officialUrl: "https://www.kurume-u.ac.jp/access/",
+    officialUrlLabel: "久留米大学 公式アクセス・キャンパス案内",
+    accessNote: "久留米大学医学部医学科の2027年度前期一般選抜は、一次試験が2月1日（月）に御井キャンパスまたはベルサール汐留、二次試験が2月13日（土）に御井キャンパスで実施されます。後期一般選抜の一次試験は3月8日（月）に御井キャンパスで実施されます。前期一次は出願・受験票で御井キャンパスの指定を確認してください。前期・後期一般選抜の学生募集要項は10月中旬公開予定で、現時点では開場・入室・集合・試験開始時刻、使用棟・階・試験室、受付位置、受験生入口は未公表です。大学公式はJR久大本線久留米大学前駅から徒歩約3分、または西鉄久留米駅から西鉄バス1・2・7・9・9-1番で朝妻・久留米大学前・久留米大学南門の各停留所まで約15分と案内しています。いずれもキャンパスまでの一般アクセスで指定試験室までの時間ではないため、10月中旬公開予定の学生募集要項、受験票、当日案内を確認してください。",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: "2026-08-19T00:00:00+09:00",
   },
   {
     venueId: "venue-kurume-asahimachi-campus",
