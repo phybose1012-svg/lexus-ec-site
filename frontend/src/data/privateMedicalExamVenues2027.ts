@@ -3005,7 +3005,7 @@ officialVenuePlan(showaRoutes, "first", {
   conditions: ["university_assigned", "admission_ticket", "capacity_overflow"],
   officialAdmissionUrl: showaVenueUrl,
   evidenceLabel: "2027年度入学試験要項",
-  evidenceLocator: "PDF 13ページ（冊子10ページ）医学部一般選抜Ⅰ期・Ⅱ期〈一次試験〉試験場",
+  evidenceLocator: "PDF 14ページ（冊子10ページ）医学部一般選抜Ⅰ期・Ⅱ期〈一次試験〉試験場",
   reviewState: "verified",
   note: "試験場は選択できません。五反田TOCビルの定員を超過した場合に旗の台キャンパスとなる可能性があるため、受験票で指定会場を確認してください。",
 });
@@ -3016,7 +3016,7 @@ officialVenuePlan(showaRoutes, "second", {
   conditions: ["fixed", "admission_ticket"],
   officialAdmissionUrl: showaVenueUrl,
   evidenceLabel: "2027年度入学試験要項",
-  evidenceLocator: "PDF 14ページ（冊子11ページ）医学部一般選抜Ⅰ期・Ⅱ期〈二次試験〉",
+  evidenceLocator: "PDF 15ページ（冊子11ページ）医学部一般選抜Ⅰ期・Ⅱ期〈二次試験〉",
   reviewState: "verified",
   note: "Ⅰ期は2月13日または14日を出願時に選択し、Ⅱ期は3月13日です。試験室は当日朝掲示のため、受験票と現地案内を確認してください。",
 });

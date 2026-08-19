@@ -708,11 +708,13 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
       "admission_ticket",
       "capacity_overflow",
     ]);
+    assert.match(showaFirst?.evidenceLocator ?? "", /PDF 14ページ（冊子10ページ）/u);
     assert.match(showaFirst?.note ?? "", /五反田TOCビルの定員を超過/u);
     const showaSecond = assignmentFor(routeId, "second");
     assert.deepEqual(showaSecond?.venueLinks, [
       { venueId: "venue-showa-medical-hatanodai-campus", role: "fixed" },
     ]);
+    assert.match(showaSecond?.evidenceLocator ?? "", /PDF 15ページ（冊子11ページ）/u);
     assert.ok(showaSecond?.conditions.includes("admission_ticket"));
   }
 
