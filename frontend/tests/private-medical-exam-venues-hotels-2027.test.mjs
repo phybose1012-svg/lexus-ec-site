@@ -384,6 +384,12 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "広島バスセンター",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式施設・交通アクセス/u);
+    } else if (venue.venueId === "venue-jichi-first-yamaguchi-av-room") {
+      assert.deepEqual(venue.nearestStations, [
+        "防長交通・中国JRバス 県庁前停留所",
+        "JR山口線 山口駅",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式庁舎フロア案内/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -774,7 +780,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 172);
+  assert.equal(dataset.hotels.length, 174);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   for (const hotelId of [
     "sotetsu-fresa-inn-nagoya-sakuradoriguchi",
@@ -1023,6 +1029,29 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
       assert.equal(access.measurementBasis, "map_route_checked");
       assert.ok(access.reviewState.includes("verified_with_caveat"));
       assert.equal(hotel.address, "広島県広島市中区大手町2丁目10番23号");
+    }
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  for (const hotelId of ["kokusai-hotel-yamaguchi", "green-rich-hotel-yamaguchi-yuda-onsen"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-yamaguchi-av-room",
+    );
+    assert.ok(access, `${hotelId} が山口県庁 視聴覚室に結合されていません`);
+    assert.equal(access.transferCount, 0);
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    assert.equal(access.travelTimeLabel, undefined);
+    if (hotelId === "kokusai-hotel-yamaguchi") {
+      assert.equal(access.measurementBasis, "map_route_checked");
+      assert.ok(access.reviewState.includes("verified_with_caveat"));
+      assert.deepEqual(access.modes, ["walk"]);
+      assert.equal(hotel.address, "山口県山口市中河原町1番1号");
+    } else {
+      assert.equal(access.measurementBasis, "route_only");
+      assert.ok(access.reviewState.includes("verified_with_caveat"));
+      assert.deepEqual(access.modes, ["walk", "bus"]);
+      assert.equal(hotel.address, "山口県山口市湯田温泉4丁目7番11号");
     }
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
