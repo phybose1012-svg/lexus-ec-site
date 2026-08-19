@@ -175,6 +175,7 @@ const JICHI_FUKUOKA_YOSHIZUKA_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_FUKUOKA_PREFECTURAL_OFFICE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_SAGA_PREFECTURAL_OFFICE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_NAGASAKI_MEETING_302_305_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_NAGASAKI_MEETING_312_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -8629,6 +8630,25 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-nagasaki-meeting-312",
+        modes: ["walk"],
+        routeSummary: "ホテルクオーレ長崎駅前からホテル公式案内を逆向きにJR長崎駅東口へ徒歩で戻ります。長崎駅を接続点に、長崎県公式の徒歩約10分案内に従って長崎県庁へ向かい、受験票、長崎県から交付される面接専用案内、当日掲示に従って3階312会議室の指定受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR長崎駅東口は公式徒歩約5分／JR長崎駅―県庁は県公式徒歩約10分（信号待ち・庁舎内・指定受付までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_NAGASAKI_MEETING_312_VERIFIED_AT,
+        caution: "ホテル公式の徒歩約5分と長崎県公式の徒歩約10分は別区間で、客室から指定受付・面接室までの通し所要ではありません。2027年1月26日（火）の面接は受付9:00〜9:20、実施10:00〜16:00のうち長崎県が指定する時間です。会場は長崎県庁3階312会議室まで公表済みですが、受付位置、受験生入口、待機場所、面接順、エレベーター、指定動線は未公表です。1階の一般総合案内や公開会議の来庁手順を面接動線とみなさず、受験票、長崎県からの面接専用案内、当日掲示を確認してください。前日1月25日（月）の学力試験は同じ3階の302～305会議室という別会場です。",
+        evidenceUrls: [
+          "https://www.hotel-cuore.com/access.html",
+          "https://www.pref.nagasaki.jp/pages/guide_map.html",
+          "https://www.pref.nagasaki.jp/pages/page-319423.html",
+          "https://www.pref.nagasaki.jp/press-contents/50230.html",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "全館Wi-Fi・有線LAN", "全館の高速Wi-Fiと客室の有線LANを利用できます。", "https://www.hotel-cuore.com/service.html"),
@@ -8669,6 +8689,26 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://coruscant-hotel.com/access/",
           "https://www.pref.nagasaki.jp/pages/guide_map.html",
           "https://www.pref.nagasaki.jp/pages/page-319423.html",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+      {
+        venueId: "venue-jichi-first-nagasaki-meeting-312",
+        modes: ["walk"],
+        routeSummary: "Coruscant Hotel 長崎駅Ⅰからホテル公式案内を逆向きにJR長崎駅へ徒歩で戻ります。長崎駅を接続点に、長崎県公式の徒歩約10分案内に従って長崎県庁へ向かい、受験票、長崎県から交付される面接専用案内、当日掲示に従って3階312会議室の指定受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR長崎駅は公式徒歩約6分／JR長崎駅―県庁は県公式徒歩約10分（信号待ち・庁舎内・指定受付までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_NAGASAKI_MEETING_312_VERIFIED_AT,
+        caution: "ホテル公式の徒歩約6分と長崎県公式の徒歩約10分は別区間で、客室から指定受付・面接室までの通し所要ではありません。チェックインは宿泊棟ではなく大黒町4番26号の長崎チェックインセンターで行います。2027年1月26日（火）の面接は受付9:00〜9:20、実施10:00〜16:00のうち長崎県が指定する時間です。会場は長崎県庁3階312会議室まで公表済みですが、受付位置、受験生入口、待機場所、面接順、エレベーター、指定動線は未公表です。1階の一般総合案内や公開会議の来庁手順を面接動線とみなさず、受験票、長崎県からの面接専用案内、当日掲示を確認してください。前日1月25日（月）の学力試験は同じ3階の302～305会議室という別会場です。",
+        evidenceUrls: [
+          "https://coruscant-hotel.com/hotel1/",
+          "https://coruscant-hotel.com/access/",
+          "https://www.pref.nagasaki.jp/pages/guide_map.html",
+          "https://www.pref.nagasaki.jp/pages/page-319423.html",
+          "https://www.pref.nagasaki.jp/press-contents/50230.html",
           "https://www.jichi.ac.jp/exam/medicine/exam/general/",
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],

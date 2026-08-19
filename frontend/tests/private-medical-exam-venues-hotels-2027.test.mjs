@@ -476,6 +476,10 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
       assert.deepEqual(venue.nearestStations, ["JR西九州新幹線・長崎本線 長崎駅"]);
       assert.match(venue.officialUrlLabel ?? "", /公式県庁舎フロア案内/u);
       assert.match(venue.accessNote ?? "", /302～305会議室/u);
+    } else if (venue.venueId === "venue-jichi-first-nagasaki-meeting-312") {
+      assert.deepEqual(venue.nearestStations, ["JR西九州新幹線・長崎本線 長崎駅"]);
+      assert.match(venue.officialUrlLabel ?? "", /公式県庁舎フロア案内/u);
+      assert.match(venue.accessNote ?? "", /312会議室/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -1316,6 +1320,16 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(access.reviewState.includes("verified_with_caveat"));
     assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
     assert.match(access.travelTimeLabel ?? "", /徒歩約10分/u);
+    const interviewAccess = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-nagasaki-meeting-312",
+    );
+    assert.ok(interviewAccess, `${hotelId} が長崎県庁312会議室に結合されていません`);
+    assert.equal(interviewAccess.transferCount, 0);
+    assert.deepEqual(interviewAccess.modes, ["walk"]);
+    assert.equal(interviewAccess.measurementBasis, "route_only");
+    assert.ok(interviewAccess.reviewState.includes("verified_with_caveat"));
+    assert.ok(interviewAccess.reviewState.includes("venue_pdf_visual_review"));
+    assert.match(interviewAccess.travelTimeLabel ?? "", /徒歩約10分/u);
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
