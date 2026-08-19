@@ -163,6 +163,7 @@ const JICHI_SHIMANE_SUNRAPPORT_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_OKAYAMA_CONVENTION_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_HIROSHIMA_MIELPARQUE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_YAMAGUCHI_AV_ROOM_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_YAMAGUCHI_MEETING_2_3_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -7827,6 +7828,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-yamaguchi-meeting-2-3",
+        modes: ["walk"],
+        routeSummary: "国際ホテル山口から、ホテルと山口県庁の公式住所を地図で照合した中河原町・滝町方面への地上徒歩経路で会場へ向かい、受験票、山口県から交付される面接専用案内、当日掲示に従って低層棟4階の指定受付へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_YAMAGUCHI_MEETING_2_3_VERIFIED_AT,
+        caution: "ホテル公式住所（山口市中河原町1番1号）と会場公式住所（同市滝町1番1号）を地図上で照合し、鉄道やバスを使わない地上徒歩経路が成立することを確認したものです。ホテルから指定面接室までの公式推奨経路・公式徒歩分数ではないため、通し所要は掲載しません。面接は2027年1月26日（火）の受付9:00〜9:20、10:00〜16:00のうち山口県指定時刻です。共用第2・第3会議室は本館低層棟4階にありますが、室の使い分け、受付位置、受験生入口、待機場所、面接順、指定動線は未公表です。低層棟1階の一般受付・正面玄関を面接指定とみなさず、信号、横断、冬季の路面、庁舎内移動を見込んで前日に建物までの経路を確認してください。",
+        evidenceUrls: [
+          "https://www.apahotel.com/hotel/partners/chushikoku/yamaguchi/kokusaihotel-yamaguchi/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E5%B1%B1%E5%8F%A3%E7%9C%8C%E5%B1%B1%E5%8F%A3%E5%B8%82%E4%B8%AD%E6%B2%B3%E5%8E%9F%E7%94%BA1-1&destination=%E5%B1%B1%E5%8F%A3%E7%9C%8C%E5%B1%B1%E5%8F%A3%E5%B8%82%E6%BB%9D%E7%94%BA1-1&travelmode=walking",
+          "https://www.pref.yamaguchi.lg.jp/soshiki/4/12333.html",
+          "https://www.pref.yamaguchi.lg.jp/soshiki/21/26952.html",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "客室Wi-Fi・有線LAN", "客室設備としてWi-Fiと有線LANを利用できます。", "https://www.apahotel.com/hotel/partners/chushikoku/yamaguchi/kokusaihotel-yamaguchi/"),
@@ -7860,6 +7879,25 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: JICHI_YAMAGUCHI_AV_ROOM_VERIFIED_AT,
         caution: "ホテルから湯田温泉通停留所までの徒歩、現行2026年の湯田温泉地区から県庁前を経由する路線バス、県庁前から県庁舎玄関までの県公式約300mを接続した経路案で、ホテルから指定試験室までの公式通し所要ではありません。2027年1月25日のバスダイヤ・運行会社・乗り場・行先は未公表のため、直前に山口市総合時刻表と運行会社公式で、利用便が県庁前に停車することを再確認してください。受付8:20〜8:40に対し朝食は7:00開始のため、バスの余裕を優先して短時間利用または前夜準備を検討してください。視聴覚室は本館高層棟1階ですが、受付位置、受験生入口、待機場所、指定動線は未公表です。県庁前停留所や低層棟1階の一般受付・正面玄関を試験入口とみなさないでください。",
+        evidenceUrls: [
+          "https://greenrichhotels.jp/yuda/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E5%B1%B1%E5%8F%A3%E7%9C%8C%E5%B1%B1%E5%8F%A3%E5%B8%82%E6%B9%AF%E7%94%B0%E6%B8%A9%E6%B3%894%E4%B8%81%E7%9B%AE7-11&destination=%E6%B9%AF%E7%94%B0%E6%B8%A9%E6%B3%89%E9%80%9A%E3%83%90%E3%82%B9%E5%81%9C&travelmode=walking",
+          "https://www.city.yamaguchi.lg.jp/soshiki/73/108923.html",
+          "https://www.pref.yamaguchi.lg.jp/soshiki/21/26952.html",
+          "https://www.pref.yamaguchi.lg.jp/soshiki/4/12333.html",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+      {
+        venueId: "venue-jichi-first-yamaguchi-meeting-2-3",
+        modes: ["walk", "bus"],
+        routeSummary: "グリーンリッチホテル山口湯田温泉から、ホテル公式住所と停留所位置を地図で照合した徒歩経路で湯田温泉通停留所へ向かいます。山口市の現行総合時刻表で県庁前を経由する便を選び、県庁前で下車後、県公式案内の約300mを歩いて山口県庁へ進みます。到着後は受験票、山口県から交付される面接専用案内、当日掲示に従って低層棟4階の指定受付へ向かいます。",
+        transferCount: 0,
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_YAMAGUCHI_MEETING_2_3_VERIFIED_AT,
+        caution: "ホテルから湯田温泉通停留所までの徒歩、現行2026年の湯田温泉地区から県庁前を経由する路線バス、県庁前から県庁舎玄関までの県公式約300mを接続した経路案で、ホテルから指定面接室までの公式通し所要ではありません。2027年1月26日のバスダイヤ・運行会社・乗り場・行先は未公表のため、直前に山口市総合時刻表と運行会社公式で、利用便が県庁前に停車することを再確認してください。面接は受付9:00〜9:20、10:00〜16:00のうち山口県指定時刻です。朝食は7:00開始ですが、バスの余裕を優先してください。共用第2・第3会議室は本館低層棟4階にありますが、室の使い分け、受付位置、受験生入口、待機場所、面接順、指定動線は未公表です。県庁前停留所や低層棟1階の一般受付・正面玄関を面接入口とみなさないでください。",
         evidenceUrls: [
           "https://greenrichhotels.jp/yuda/",
           "https://www.google.com/maps/dir/?api=1&origin=%E5%B1%B1%E5%8F%A3%E7%9C%8C%E5%B1%B1%E5%8F%A3%E5%B8%82%E6%B9%AF%E7%94%B0%E6%B8%A9%E6%B3%894%E4%B8%81%E7%9B%AE7-11&destination=%E6%B9%AF%E7%94%B0%E6%B8%A9%E6%B3%89%E9%80%9A%E3%83%90%E3%82%B9%E5%81%9C&travelmode=walking",

@@ -390,6 +390,12 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "JR山口線 山口駅",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式庁舎フロア案内/u);
+    } else if (venue.venueId === "venue-jichi-first-yamaguchi-meeting-2-3") {
+      assert.deepEqual(venue.nearestStations, [
+        "防長交通・中国JRバス 県庁前停留所",
+        "JR山口線 山口駅",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式庁舎フロア案内/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -1054,6 +1060,25 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
       assert.equal(hotel.address, "山口県山口市湯田温泉4丁目7番11号");
     }
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  for (const hotelId of ["kokusai-hotel-yamaguchi", "green-rich-hotel-yamaguchi-yuda-onsen"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-yamaguchi-meeting-2-3",
+    );
+    assert.ok(access, `${hotelId} が山口県庁 共用第2・第3会議室に結合されていません`);
+    assert.equal(access.transferCount, 0);
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.equal(access.travelTimeLabel, undefined);
+    if (hotelId === "kokusai-hotel-yamaguchi") {
+      assert.equal(access.measurementBasis, "map_route_checked");
+      assert.deepEqual(access.modes, ["walk"]);
+    } else {
+      assert.equal(access.measurementBasis, "route_only");
+      assert.deepEqual(access.modes, ["walk", "bus"]);
+    }
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
