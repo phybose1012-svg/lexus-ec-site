@@ -416,6 +416,14 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式県庁アクセス案内/u);
       assert.match(venue.accessNote ?? "", /北館3階/u);
+    } else if (venue.venueId === "venue-jichi-first-kagawa-main-12f") {
+      assert.deepEqual(venue.nearestStations, [
+        "ことでんバス 県庁・日赤前停留所",
+        "高松琴平電気鉄道 瓦町駅",
+        "JR予讃線・高徳線 高松駅",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式県庁内フロア案内/u);
+      assert.match(venue.accessNote ?? "", /本館12階/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -1148,6 +1156,16 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(access.reviewState.includes("verified_with_caveat"));
     assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
     assert.equal(access.travelTimeLabel, undefined);
+    const interviewAccess = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-kagawa-main-12f",
+    );
+    assert.ok(interviewAccess, `${hotelId} が香川県庁 本館会議室（12階）に結合されていません`);
+    assert.equal(interviewAccess.transferCount, 0);
+    assert.deepEqual(interviewAccess.modes, ["walk"]);
+    assert.equal(interviewAccess.measurementBasis, "map_route_checked");
+    assert.ok(interviewAccess.reviewState.includes("verified_with_caveat"));
+    assert.ok(interviewAccess.reviewState.includes("venue_pdf_visual_review"));
+    assert.equal(interviewAccess.travelTimeLabel, undefined);
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);

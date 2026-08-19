@@ -167,6 +167,7 @@ const JICHI_YAMAGUCHI_MEETING_2_3_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_TOKUSHIMA_AUDITORIUM_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_TOKUSHIMA_MEETING_ROOM_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_KAGAWA_NORTH_3F_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_KAGAWA_MAIN_12F_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -8075,6 +8076,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-kagawa-main-12f",
+        modes: ["walk"],
+        routeSummary: "コンフォートホテル高松から香川県庁へ、ホテルと県庁の公式住所を地図上で照合した公道の徒歩経路で向かいます。到着後は受験票、香川県から交付される面接専用案内、当日掲示に従い、指定された受験生入口・受付から本館12階の面接室へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_KAGAWA_MAIN_12F_VERIFIED_AT,
+        caution: "ホテル公式住所（高松市中新町2番10号）と県庁公式住所（同市番町4丁目1番10号）の間に地上の直接徒歩経路が成立することを地図で確認した案で、ホテル公式が県庁への推奨経路・所要時間を案内したものではありません。客室から指定受付・本館12階の面接室までの通し所要は掲載せず、信号、横断、雨天、庁舎内移動を別に見込んでください。面接は2027年1月26日（火）の受付9:00〜9:20、実施は10:00〜16:00のうち香川県が指定する時間です。本館12階までは公表済みですが、使用する個別会議室、受付位置、受験生入口、待機場所、面接順、エレベーター、指定動線は未公表です。県公式フロア案内に見える大会議室・第1〜第7会議室のいずれかを面接室と推定せず、前日に本館の建物位置を確認してください。",
+        evidenceUrls: [
+          "https://www.choice-hotels.jp/hotel/takamatsu/access/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E9%A6%99%E5%B7%9D%E7%9C%8C%E9%AB%98%E6%9D%BE%E5%B8%82%E4%B8%AD%E6%96%B0%E7%94%BA2%E7%95%AA10%E5%8F%B7&destination=%E9%A6%99%E5%B7%9D%E7%9C%8C%E9%AB%98%E6%9D%BE%E5%B8%82%E7%95%AA%E7%94%BA4%E4%B8%81%E7%9B%AE1%E7%95%AA10%E5%8F%B7&travelmode=walking",
+          "https://www.pref.kagawa.lg.jp/kocho/shokai/kencho/accessmap.html",
+          "https://www.pref.kagawa.lg.jp/kocho/shokai/kencho/haichizu.html",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "全室無料Wi-Fi", "全客室で無料Wi-Fiを利用できます。", "https://www.choice-hotels.jp/hotel/takamatsu/rooms/"),
@@ -8113,6 +8132,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.google.com/maps/dir/?api=1&origin=%E9%A6%99%E5%B7%9D%E7%9C%8C%E9%AB%98%E6%9D%BE%E5%B8%82%E7%99%BE%E9%96%93%E7%94%BA1%E7%95%AA2%E5%8F%B7&destination=%E9%A6%99%E5%B7%9D%E7%9C%8C%E9%AB%98%E6%9D%BE%E5%B8%82%E7%95%AA%E7%94%BA4%E4%B8%81%E7%9B%AE1%E7%95%AA10%E5%8F%B7&travelmode=walking",
           "https://www.pref.kagawa.lg.jp/kocho/shokai/kencho/accessmap.html",
           "https://www.pref.kagawa.lg.jp/documents/15170/r7zentai.pdf",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+      {
+        venueId: "venue-jichi-first-kagawa-main-12f",
+        modes: ["walk"],
+        routeSummary: "ホテル川六 エルステージ高松から香川県庁へ、ホテルと県庁の公式住所を地図上で照合した公道の徒歩経路で向かいます。到着後は受験票、香川県から交付される面接専用案内、当日掲示に従い、指定された受験生入口・受付から本館12階の面接室へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_KAGAWA_MAIN_12F_VERIFIED_AT,
+        caution: "ホテル公式住所（高松市百間町1番2号）と県庁公式住所（同市番町4丁目1番10号）の間に地上の直接徒歩経路が成立することを地図で確認した案で、ホテル公式が県庁への推奨経路・所要時間を案内したものではありません。客室から指定受付・本館12階の面接室までの通し所要は掲載せず、信号、横断、雨天、庁舎内移動を別に見込んでください。面接は2027年1月26日（火）の受付9:00〜9:20、実施は10:00〜16:00のうち香川県が指定する時間です。本館12階までは公表済みですが、使用する個別会議室、受付位置、受験生入口、待機場所、面接順、エレベーター、指定動線は未公表です。県公式フロア案内に見える大会議室・第1〜第7会議室のいずれかを面接室と推定せず、前日に本館の建物位置を確認してください。",
+        evidenceUrls: [
+          "https://kawaroku.co.jp/erta/access/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E9%A6%99%E5%B7%9D%E7%9C%8C%E9%AB%98%E6%9D%BE%E5%B8%82%E7%99%BE%E9%96%93%E7%94%BA1%E7%95%AA2%E5%8F%B7&destination=%E9%A6%99%E5%B7%9D%E7%9C%8C%E9%AB%98%E6%9D%BE%E5%B8%82%E7%95%AA%E7%94%BA4%E4%B8%81%E7%9B%AE1%E7%95%AA10%E5%8F%B7&travelmode=walking",
+          "https://www.pref.kagawa.lg.jp/kocho/shokai/kencho/accessmap.html",
+          "https://www.pref.kagawa.lg.jp/kocho/shokai/kencho/haichizu.html",
           "https://www.jichi.ac.jp/exam/medicine/exam/general/",
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
