@@ -378,6 +378,12 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
     } else if (venue.venueId === "venue-jichi-first-okayama-convention-center") {
       assert.deepEqual(venue.nearestStations, ["JR山陽本線・山陽新幹線 岡山駅"]);
       assert.match(venue.officialUrlLabel ?? "", /公式交通アクセス/u);
+    } else if (venue.venueId === "venue-jichi-first-hiroshima-mielparque") {
+      assert.deepEqual(venue.nearestStations, [
+        "広島電鉄 紙屋町西停留場",
+        "広島バスセンター",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式施設・交通アクセス/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -768,7 +774,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 170);
+  assert.equal(dataset.hotels.length, 172);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   for (const hotelId of [
     "sotetsu-fresa-inn-nagoya-sakuradoriguchi",
@@ -996,6 +1002,27 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
       assert.equal(access.measurementBasis, "map_route_checked");
       assert.ok(access.reviewState.includes("verified_with_caveat"));
       assert.equal(hotel.address, "岡山県岡山市北区駅元町29番4号");
+    }
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  for (const hotelId of ["hotel-mielparque-hiroshima", "hotel-livemax-hiroshima-heiwa-koen"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-hiroshima-mielparque",
+    );
+    assert.ok(access, `${hotelId} がホテルメルパルク広島に結合されていません`);
+    assert.equal(access.transferCount, 0);
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    assert.equal(access.travelTimeLabel, undefined);
+    if (hotelId === "hotel-mielparque-hiroshima") {
+      assert.equal(access.measurementBasis, "route_only");
+      assert.ok(access.reviewState.includes("official_direct"));
+      assert.equal(hotel.address, "広島県広島市中区基町6番36号");
+    } else {
+      assert.equal(access.measurementBasis, "map_route_checked");
+      assert.ok(access.reviewState.includes("verified_with_caveat"));
+      assert.equal(hotel.address, "広島県広島市中区大手町2丁目10番23号");
     }
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
