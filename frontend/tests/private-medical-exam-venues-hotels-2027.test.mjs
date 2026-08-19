@@ -396,6 +396,12 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "JR山口線 山口駅",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式庁舎フロア案内/u);
+    } else if (venue.venueId === "venue-jichi-first-tokushima-auditorium") {
+      assert.deepEqual(venue.nearestStations, [
+        "徳島バス・徳島市営バス 県庁前停留所",
+        "JR高徳線・牟岐線 徳島駅",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式県庁内フロアマップ/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -786,7 +792,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 174);
+  assert.equal(dataset.hotels.length, 176);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   for (const hotelId of [
     "sotetsu-fresa-inn-nagoya-sakuradoriguchi",
@@ -1078,6 +1084,27 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     } else {
       assert.equal(access.measurementBasis, "route_only");
       assert.deepEqual(access.modes, ["walk", "bus"]);
+    }
+  }
+  for (const hotelId of [
+    "hotel-taiyo-noen-tokushima-kenchomae",
+    "daiwa-roynet-hotel-tokushima-ekimae",
+  ]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-tokushima-auditorium",
+    );
+    assert.ok(access, `${hotelId} が徳島県庁 講堂に結合されていません`);
+    assert.equal(access.transferCount, 0);
+    assert.deepEqual(access.modes, ["walk"]);
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    if (hotelId === "hotel-taiyo-noen-tokushima-kenchomae") {
+      assert.equal(access.measurementBasis, "official");
+      assert.ok(access.reviewState.includes("official_direct"));
+    } else {
+      assert.equal(access.measurementBasis, "route_only");
+      assert.ok(access.reviewState.includes("verified_with_caveat"));
     }
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
