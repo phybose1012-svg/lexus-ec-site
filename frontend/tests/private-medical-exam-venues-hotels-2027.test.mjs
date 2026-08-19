@@ -534,7 +534,7 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式県庁舎フロア・アクセス案内/u);
       assert.match(venue.accessNote ?? "", /行政庁舎 16-A-1会議室（16階）/u);
-      assert.match(venue.accessNote ?? "", /面接は10:00〜16:00のうち鹿児島県が指定/u);
+      assert.match(venue.accessNote ?? "", /面接は10:10〜16:00のうち鹿児島県が指定/u);
     } else if (venue.venueId === "venue-jichi-first-okinawa-municipal-autonomy") {
       assert.deepEqual(venue.nearestStations, ["沖縄都市モノレール 旭橋駅"]);
       assert.match(venue.officialUrlLabel ?? "", /公式交通アクセス/u);
@@ -551,12 +551,31 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
     ),
   );
 
+  const jichiInterviewVenueIds = new Set(
+    privateMedicalJichiVenueRelations2027
+      .filter((relation) => relation.examPart === "interview")
+      .map((relation) => relation.venueId),
+  );
+  for (const venueId of jichiInterviewVenueIds) {
+    const venue = privateMedicalJichiExamVenues2027.find((entry) => entry.venueId === venueId);
+    assert.match(venue?.accessNote ?? "", /面接.*10:10〜16:00/u, `${venueId} の面接時間が公式要項と一致しません`);
+    assert.doesNotMatch(venue?.accessNote ?? "", /10:00〜16:00/u, `${venueId} に旧時刻が残っています`);
+  }
+
   const first = privateMedicalExamVenueAssignments2027.find(
     (assignment) => assignment.assignmentId === "jichi-medical--general--general--first-venue",
   );
   assert.equal(first?.publicationState, "confirmed");
   assert.equal(first?.announcedPrefectures.length, 47);
   assert.equal(first?.venueLinks.length, 94);
+  assert.match(first?.announcedVenueText ?? "", /一部会場は試験室まで公表/u);
+
+  const second = privateMedicalExamVenueAssignments2027.find(
+    (assignment) => assignment.assignmentId === "jichi-medical--general--general--second-venue",
+  );
+  assert.deepEqual(second?.conditions, ["fixed", "university_assigned", "admission_ticket"]);
+  assert.match(second?.note ?? "", /出願都道府県により第1・第2グループ/u);
+  assert.match(second?.note ?? "", /試験棟・試験室・受付位置・受験生入口/u);
 });
 
 test("希望日・大学指定・固定会場を方式別に混同しない", () => {
@@ -1541,7 +1560,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.deepEqual(access.modes, ["walk"]);
     assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
     assert.match(access.caution ?? "", /行政庁舎16階16-A-1会議室/u);
-    assert.match(access.caution ?? "", /面接10:00〜16:00のうち鹿児島県指定時間/u);
+    assert.match(access.caution ?? "", /面接10:10〜16:00のうち鹿児島県指定時間/u);
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
     if (hotelId === "art-hotel-kagoshima") {
       assert.equal(access.measurementBasis, "map_route_checked");
@@ -3419,7 +3438,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.match(jichiYamagataOfficeVenue?.address ?? "", /松波二丁目8番1号/u);
   assert.match(jichiYamagataOfficeVenue?.accessNote ?? "", /1月26日/u);
   assert.match(jichiYamagataOfficeVenue?.accessNote ?? "", /9:00〜9:20/u);
-  assert.match(jichiYamagataOfficeVenue?.accessNote ?? "", /10:00〜16:00/u);
+  assert.match(jichiYamagataOfficeVenue?.accessNote ?? "", /10:10〜16:00/u);
   assert.match(jichiYamagataOfficeVenue?.accessNote ?? "", /山形駅前4番/u);
   assert.match(jichiYamagataOfficeVenue?.accessNote ?? "", /16階建て/u);
   assert.match(jichiYamagataOfficeVenue?.accessNote ?? "", /前日1月25日.*総合研修センター/u);
