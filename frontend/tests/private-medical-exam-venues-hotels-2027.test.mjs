@@ -628,6 +628,22 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
     "https://www.tohoku-mpu.ac.jp/admission/medicine-application/",
   );
 
+  const iwateGeneralFirst = assignmentFor("iwate-medical--general--general", "first");
+  assert.equal(iwateGeneralFirst?.publicationState, "city_or_campus_only");
+  assert.equal(iwateGeneralFirst?.reviewState, "monitoring");
+  assert.deepEqual(iwateGeneralFirst?.conditions, ["applicant_preference", "admission_ticket"]);
+  assert.match(iwateGeneralFirst?.note ?? "", /東京・大阪・札幌・名古屋・福岡は都市まで/u);
+
+  const iwateGeneralSecond = assignmentFor("iwate-medical--general--general", "second");
+  assert.equal(iwateGeneralSecond?.publicationState, "city_or_campus_only");
+  assert.equal(iwateGeneralSecond?.reviewState, "monitoring");
+  assert.deepEqual(iwateGeneralSecond?.conditions, [
+    "applicant_preference",
+    "university_assigned",
+    "admission_ticket",
+  ]);
+  assert.match(iwateGeneralSecond?.note ?? "", /面接時刻は大学が指定/u);
+
   for (const routeId of [
     "showa-medical--general--general-phase-1",
     "showa-medical--general--general-phase-1-phase-2",
