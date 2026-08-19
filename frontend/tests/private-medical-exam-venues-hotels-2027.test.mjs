@@ -1580,6 +1580,35 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
       assert.match(hotel.note ?? "", /未成年.*公式サイトで確認できない/u);
     }
   }
+  const kurumeAsahimachi = dataset.venues.find(
+    (entry) => entry.venueId === "venue-kurume-asahimachi-campus",
+  );
+  assert.ok(kurumeAsahimachi, "久留米大学 旭町キャンパスが公開Datasetにありません");
+  assert.equal(kurumeAsahimachi.officialUrl, "https://www.kurume-u.ac.jp/access/");
+  assert.match(kurumeAsahimachi.accessNote ?? "", /3月16日（火）/u);
+  assert.match(kurumeAsahimachi.accessNote ?? "", /10月中旬公開予定/u);
+  assert.match(kurumeAsahimachi.accessNote ?? "", /使用棟・階・試験室/u);
+  for (const hotelId of ["the-celecton-kurume", "kurume-station-hotel"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-kurume-asahimachi-campus",
+    );
+    assert.ok(access, `${hotelId} が久留米大学 旭町キャンパスに結合されていません`);
+    assert.deepEqual(access.modes, ["walk", "bus"]);
+    assert.equal(access.transferCount, 0);
+    assert.equal(access.measurementBasis, "route_only");
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.match(access.caution ?? "", /3月16日（火）/u);
+    assert.match(access.caution ?? "", /使用棟・階・試験室/u);
+    assert.match(access.caution ?? "", /試験入口とみなさない/u);
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+    if (hotelId === "the-celecton-kurume") {
+      assert.match(access.travelTimeLabel ?? "", /大学公式約15分/u);
+    } else {
+      assert.match(access.travelTimeLabel ?? "", /大学公式約7分/u);
+    }
+  }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
   for (const hotelId of ["ginza-kokusai-hotel", "hotel-check-in-shimbashi"]) {
