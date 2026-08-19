@@ -441,6 +441,14 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式会議室案内/u);
       assert.match(venue.accessNote ?? "", /3階の大ホール/u);
+    } else if (venue.venueId === "venue-jichi-first-kochi-kyosai-fuji") {
+      assert.deepEqual(venue.nearestStations, [
+        "とさでん交通 グランド通停留場",
+        "とさでん交通 県庁前停留場",
+        "JR土讃線 高知駅",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式会議室案内/u);
+      assert.match(venue.accessNote ?? "", /3階の中会議室/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -1213,6 +1221,16 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(access.reviewState.includes("verified_with_caveat"));
     assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
     assert.equal(access.travelTimeLabel, undefined);
+    const interviewAccess = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-kochi-kyosai-fuji",
+    );
+    assert.ok(interviewAccess, `${hotelId} が高知共済会館（藤）に結合されていません`);
+    assert.equal(interviewAccess.transferCount, 0);
+    assert.deepEqual(interviewAccess.modes, ["walk"]);
+    assert.equal(interviewAccess.measurementBasis, "map_route_checked");
+    assert.ok(interviewAccess.reviewState.includes("verified_with_caveat"));
+    assert.ok(interviewAccess.reviewState.includes("venue_pdf_visual_review"));
+    assert.equal(interviewAccess.travelTimeLabel, undefined);
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);

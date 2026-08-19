@@ -170,6 +170,7 @@ const JICHI_KAGAWA_NORTH_3F_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_KAGAWA_MAIN_12F_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_EHIME_ANNEX_2_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_KOCHI_KYOSAI_SAKURA_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_KOCHI_KYOSAI_FUJI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -8283,6 +8284,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-kochi-kyosai-fuji",
+        modes: ["walk"],
+        routeSummary: "オリエントホテル高知から高知共済会館へ、ホテルと会場の公式住所を地図上で照合した公道の徒歩経路で向かいます。到着後は受験票、高知県から交付される面接専用案内、当日掲示に従い、指定された受験生入口・受付から3階の中会議室『藤』へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_KOCHI_KYOSAI_FUJI_VERIFIED_AT,
+        caution: "ホテル公式住所（高知市升形5-37）と高知共済会館公式住所（同市本町5丁目3-20）の間に地上の直接徒歩経路が成立することを地図で確認した案で、ホテル公式が会場への推奨経路・所要時間を案内したものではありません。客室から指定受付・3階中会議室『藤』までの通し所要は掲載せず、信号、横断、雨天、会館内移動を別に見込んでください。2027年1月26日（火）の面接は受付9:00〜9:20、実施は10:00〜16:00のうち高知県が指定する時間です。3階の『藤』までは公表済みですが、全室・1/2のどの区画を使うか、受付位置、受験生入口、待機場所、面接順、エレベーター、指定動線は未公表です。前日25日（月）の学力試験は同じ3階の大ホール『桜』という別会場で、『桜』へ向かわないよう面接専用案内を確認してください。",
+        evidenceUrls: [
+          "https://www.orienthotel.jp/access/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E9%AB%98%E7%9F%A5%E7%9C%8C%E9%AB%98%E7%9F%A5%E5%B8%82%E5%8D%87%E5%BD%A25-37&destination=%E9%AB%98%E7%9F%A5%E7%9C%8C%E9%AB%98%E7%9F%A5%E5%B8%82%E6%9C%AC%E7%94%BA5%E4%B8%81%E7%9B%AE3-20&travelmode=walking",
+          "https://www.kochi-cs.jp/access.html",
+          "https://www.kochi-cs.jp/meeting-rooms/index.html",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "全客室Wi-Fi・有線LAN", "全客室でWi-Fiと有線LANを利用できます。", "https://www.orienthotel.jp/faq/"),
@@ -8317,6 +8336,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: JICHI_KOCHI_KYOSAI_SAKURA_VERIFIED_AT,
         caution: "ホテル公式住所（高知市本町2丁目2-31）と高知共済会館公式住所（同市本町5丁目3-20）の間に地上の直接徒歩経路が成立することを地図で確認した案で、ホテル公式が会場への推奨経路・所要時間を案内したものではありません。客室から指定受付・3階大ホール『桜』までの通し所要は掲載せず、信号、横断、雨天、会館内移動を別に見込んでください。2027年1月25日（月）の学力試験は受付8:20〜8:40、試験9:00〜14:10です。3階の『桜』までは公表済みですが、全室・2/3・1/3のどの区画を使うか、受付位置、受験生入口、待機場所、エレベーター、指定動線は未公表です。翌26日（火）の面接は同じ3階の中会議室『藤』という別会場で、『藤』へ向かわないよう受験票を確認してください。",
+        evidenceUrls: [
+          "https://kochi-sunrise.com/access/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E9%AB%98%E7%9F%A5%E7%9C%8C%E9%AB%98%E7%9F%A5%E5%B8%82%E6%9C%AC%E7%94%BA2%E4%B8%81%E7%9B%AE2-31&destination=%E9%AB%98%E7%9F%A5%E7%9C%8C%E9%AB%98%E7%9F%A5%E5%B8%82%E6%9C%AC%E7%94%BA5%E4%B8%81%E7%9B%AE3-20&travelmode=walking",
+          "https://www.kochi-cs.jp/access.html",
+          "https://www.kochi-cs.jp/meeting-rooms/index.html",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+      {
+        venueId: "venue-jichi-first-kochi-kyosai-fuji",
+        modes: ["walk"],
+        routeSummary: "高知サンライズホテルから高知共済会館へ、ホテルと会場の公式住所を地図上で照合した公道の徒歩経路で向かいます。到着後は受験票、高知県から交付される面接専用案内、当日掲示に従い、指定された受験生入口・受付から3階の中会議室『藤』へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_KOCHI_KYOSAI_FUJI_VERIFIED_AT,
+        caution: "ホテル公式住所（高知市本町2丁目2-31）と高知共済会館公式住所（同市本町5丁目3-20）の間に地上の直接徒歩経路が成立することを地図で確認した案で、ホテル公式が会場への推奨経路・所要時間を案内したものではありません。客室から指定受付・3階中会議室『藤』までの通し所要は掲載せず、信号、横断、雨天、会館内移動を別に見込んでください。2027年1月26日（火）の面接は受付9:00〜9:20、実施は10:00〜16:00のうち高知県が指定する時間です。3階の『藤』までは公表済みですが、全室・1/2のどの区画を使うか、受付位置、受験生入口、待機場所、面接順、エレベーター、指定動線は未公表です。前日25日（月）の学力試験は同じ3階の大ホール『桜』という別会場で、『桜』へ向かわないよう面接専用案内を確認してください。",
         evidenceUrls: [
           "https://kochi-sunrise.com/access/",
           "https://www.google.com/maps/dir/?api=1&origin=%E9%AB%98%E7%9F%A5%E7%9C%8C%E9%AB%98%E7%9F%A5%E5%B8%82%E6%9C%AC%E7%94%BA2%E4%B8%81%E7%9B%AE2-31&destination=%E9%AB%98%E7%9F%A5%E7%9C%8C%E9%AB%98%E7%9F%A5%E5%B8%82%E6%9C%AC%E7%94%BA5%E4%B8%81%E7%9B%AE3-20&travelmode=walking",
