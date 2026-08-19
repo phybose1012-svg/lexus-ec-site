@@ -165,6 +165,7 @@ const JICHI_HIROSHIMA_MIELPARQUE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_YAMAGUCHI_AV_ROOM_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_YAMAGUCHI_MEETING_2_3_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_TOKUSHIMA_AUDITORIUM_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_TOKUSHIMA_MEETING_ROOM_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -7952,6 +7953,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-tokushima-meeting-room",
+        modes: ["walk"],
+        routeSummary: "ホテルたいよう農園 徳島県庁前から、ホテル公式が徒歩約1分と案内する徳島県庁へ徒歩で向かい、受験票、徳島県から交付される面接専用案内、当日掲示に従って指定された受験生入口・受付・面接室へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "徳島県庁までホテル公式徒歩約1分（指定受付・面接室までの庁舎内時間を除く）",
+        measurementBasis: "official",
+        reviewState: ["official_direct", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_TOKUSHIMA_MEETING_ROOM_VERIFIED_AT,
+        caution: "ホテル公式の徒歩約1分は徳島県庁という施設までの案内で、客室から指定受付・面接室までの通し所要ではありません。面接は2027年1月26日（火）の受付9:00〜9:20、10:00〜16:00のうち徳島県指定時刻です。自治医科大学の公開募集要項は会場を『徳島県庁 会議室』とのみ示し、使用階・室名、受付位置、受験生入口、待機場所、面接順、エレベーター、指定動線は未公表です。県公式フロアマップにある多数の会議室を面接会場と推定せず、前日の学力試験会場である11階講堂にも向かわないでください。庁舎内移動とエレベーター待ちを別に見込み、徳島県の面接専用案内を最優先してください。",
+        evidenceUrls: [
+          "https://hotel.taiyo-noen.com/tokushima/access/",
+          "https://www.pref.tokushima.lg.jp/access/",
+          "https://www.pref.tokushima.lg.jp/floormap/",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "全室高速無線LAN", "全室で高速無線LANを利用でき、客室でのデスクワーク向けと案内されています。", "https://hotel.taiyo-noen.com/tokushima/rooms/"),
@@ -7987,6 +8006,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: JICHI_TOKUSHIMA_AUDITORIUM_VERIFIED_AT,
         caution: "ホテル公式の徒歩約1分と県公式の徒歩約20分はJR徳島駅を接続点にした別区間で、客室から指定受付・11階講堂までの通し所要ではありません。学力試験は2027年1月25日（月）の受付8:20〜8:40・試験9:00〜14:10です。県公式は徳島駅から県庁前停留所までバス約7分の代替も案内していますが、2027年1月25日のダイヤ・乗り場・運行事業者は未公表です。徒歩を基本経路とし、バスを使う場合は直前に公式時刻表と県庁前停車を確認してください。講堂は11階北側ですが、受付位置、受験生入口、待機場所、エレベーター、指定動線は未公表です。雨天、信号、横断、庁舎内移動を見込み、前日に建物までの経路を確認してください。",
+        evidenceUrls: [
+          "https://www.daiwaroynet.jp/tokushimaekimae/access/",
+          "https://www.pref.tokushima.lg.jp/access/",
+          "https://www.pref.tokushima.lg.jp/floormap/",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+      {
+        venueId: "venue-jichi-first-tokushima-meeting-room",
+        modes: ["walk"],
+        routeSummary: "ダイワロイネットホテル徳島駅前からホテル公式の徒歩経路を逆向きにたどってJR徳島駅へ戻り、同駅を接続点に徳島県公式の徒歩約20分の一般来庁経路で県庁へ向かいます。到着後は受験票、徳島県から交付される面接専用案内、当日掲示に従って指定受付・面接室へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR徳島駅はホテル公式徒歩約1分／JR徳島駅―徳島県庁は県公式徒歩約20分（別区間表示。指定面接室までの通し所要ではありません）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_TOKUSHIMA_MEETING_ROOM_VERIFIED_AT,
+        caution: "ホテル公式の徒歩約1分と県公式の徒歩約20分はJR徳島駅を接続点にした別区間で、客室から指定受付・面接室までの通し所要ではありません。面接は2027年1月26日（火）の受付9:00〜9:20、10:00〜16:00のうち徳島県指定時刻です。県公式は徳島駅から県庁前停留所までバス約7分の代替も案内していますが、2027年1月26日のダイヤ・乗り場・運行事業者は未公表です。徒歩を基本経路とし、バスを使う場合は直前に公式時刻表と県庁前停車を確認してください。公開募集要項は使用階・室名、受付位置、入口、待機場所、面接順、指定動線を公表していません。前日の11階講堂を面接室とみなさず、徳島県の面接専用案内を最優先してください。",
         evidenceUrls: [
           "https://www.daiwaroynet.jp/tokushimaekimae/access/",
           "https://www.pref.tokushima.lg.jp/access/",

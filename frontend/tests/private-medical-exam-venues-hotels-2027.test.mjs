@@ -402,6 +402,12 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "JR高徳線・牟岐線 徳島駅",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式県庁内フロアマップ/u);
+    } else if (venue.venueId === "venue-jichi-first-tokushima-meeting-room") {
+      assert.deepEqual(venue.nearestStations, [
+        "徳島バス・徳島市営バス 県庁前停留所",
+        "JR高徳線・牟岐線 徳島駅",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式県庁内フロアマップ/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -1105,6 +1111,20 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     } else {
       assert.equal(access.measurementBasis, "route_only");
       assert.ok(access.reviewState.includes("verified_with_caveat"));
+    }
+    const interviewAccess = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-tokushima-meeting-room",
+    );
+    assert.ok(interviewAccess, `${hotelId} が徳島県庁 会議室に結合されていません`);
+    assert.equal(interviewAccess.transferCount, 0);
+    assert.deepEqual(interviewAccess.modes, ["walk"]);
+    assert.ok(interviewAccess.reviewState.includes("venue_pdf_visual_review"));
+    if (hotelId === "hotel-taiyo-noen-tokushima-kenchomae") {
+      assert.equal(interviewAccess.measurementBasis, "official");
+      assert.ok(interviewAccess.reviewState.includes("official_direct"));
+    } else {
+      assert.equal(interviewAccess.measurementBasis, "route_only");
+      assert.ok(interviewAccess.reviewState.includes("verified_with_caveat"));
     }
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
