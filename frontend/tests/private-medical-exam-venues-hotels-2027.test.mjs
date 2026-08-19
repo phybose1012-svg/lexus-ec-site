@@ -825,6 +825,16 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
     assignmentFor("jikei--general--general", "second")?.note ?? "",
     /2027年度学生募集要項/u,
   );
+  assert.match(
+    assignmentFor("tokyo-womens-medical--general--general-regional-quota", "first")
+      ?.evidenceLocator ?? "",
+    /PDF 24・25・35ページ（冊子21・22・32ページ）/u,
+  );
+  assert.match(
+    assignmentFor("tokyo-womens-medical--general--general-regional-quota", "second")
+      ?.evidenceLocator ?? "",
+    /PDF 24・27・36ページ（冊子21・24・33ページ）/u,
+  );
   assert.deepEqual(assignmentFor("toho--general--general", "second")?.conditions, ["fixed"]);
   assert.match(
     assignmentFor("toho--general--general", "second")?.note ?? "",

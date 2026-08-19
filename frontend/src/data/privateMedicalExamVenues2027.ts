@@ -3102,7 +3102,7 @@ officialVenuePlan(["tokyo-womens-medical--general--general-regional-quota"], "fi
   conditions: ["fixed"],
   officialAdmissionUrl: twmuVenueUrl,
   evidenceLabel: "2027年度医学部学生募集要項",
-  evidenceLocator: "PDF 23ページ「試験会場」",
+  evidenceLocator: "PDF 24・25・35ページ（冊子21・22・32ページ）「試験日時 試験会場」「試験に関わる注意事項」「一般選抜 第1次試験会場」",
   reviewState: "verified",
 });
 officialVenuePlan(["tokyo-womens-medical--general--general-regional-quota"], "second", {
@@ -3112,7 +3112,7 @@ officialVenuePlan(["tokyo-womens-medical--general--general-regional-quota"], "se
   conditions: ["fixed", "applicant_preference", "university_assigned"],
   officialAdmissionUrl: twmuVenueUrl,
   evidenceLabel: "2027年度医学部学生募集要項",
-  evidenceLocator: "PDF 23ページ「試験会場」",
+  evidenceLocator: "PDF 24・27・36ページ（冊子21・24・33ページ）「試験日時 試験会場」「第2次試験」「一般選抜 第2次試験会場」",
   reviewState: "verified",
   note: "2027年2月13日・14日・15日のうち1日に実施されます。Web出願時に希望日を選択できますが、希望に沿わない場合があり、どの日でも受験できる場合は希望日を選択しないよう大学が案内しています。個別の試験日・集合場所・集合時刻は一次試験合格発表時に公表され、指定時刻に遅れると原則受験できません。会場は彌生記念教育棟まで確定していますが、使用階・試験室・受付位置・受験生入口は未公表です。会場の下見と写真撮影は行わず、一次試験合格発表時の案内と当日掲示を確認してください。",
 });
