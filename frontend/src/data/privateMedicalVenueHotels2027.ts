@@ -172,6 +172,7 @@ const JICHI_EHIME_ANNEX_2_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_KOCHI_KYOSAI_SAKURA_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_KOCHI_KYOSAI_FUJI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_FUKUOKA_YOSHIZUKA_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_FUKUOKA_PREFECTURAL_OFFICE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -8409,6 +8410,26 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-fukuoka-prefectural-office",
+        modes: ["walk", "rail"],
+        routeSummary: "マースガーデンホテル博多からホテル公式案内を逆向きにJR博多駅筑紫口へ徒歩で進みます。博多駅からJR鹿児島本線または福北ゆたか線の列車で吉塚駅へ乗換なしで移動し、県公式の徒歩8分案内に従って福岡県庁行政棟へ向かいます。到着後は受験票、福岡県から交付される面接専用案内、当日掲示に従って指定受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR博多駅筑紫口は公式徒歩約1分／博多―吉塚はJRで1駅／JR吉塚駅―県庁舎は県公式徒歩8分（待ち時間・駅構内・指定面接室までを除く区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_FUKUOKA_PREFECTURAL_OFFICE_VERIFIED_AT,
+        caution: "ホテル公式の徒歩約1分、博多―吉塚の1駅、福岡県公式の徒歩8分は別区間で、客室から指定面接室までの通し所要ではありません。2027年1月26日（火）のJRダイヤは未公表のため、列車種別、ホーム、発着時刻、運行情報を直前にJR九州公式で再確認してください。面接は受付9:00〜9:20、実施は10:00〜16:00のうち福岡県が指定する時間です。自治医科大学の募集要項は会場を福岡県庁行政棟とのみ公表しており、県庁舎公式案内にある地下1階・8階・10階などの会議室のうち、使用階・面接室、受付位置、受験生入口、待機場所、面接順、エレベーター、指定動線は未公表です。県庁バス通り側・東公園側の一般出入口や個別会議室を面接入口・面接室とみなさず、受験票と福岡県の面接専用案内を確認してください。前日25日（月）の学力試験は吉塚合同庁舎という別会場です。",
+        evidenceUrls: [
+          "https://www.mars-gardenhotel.jp/access/",
+          "https://www.jrkyushu.co.jp/railway/station/1191771_1601.html",
+          "https://www.jrkyushu.co.jp/railway/station/1191932_1601.html",
+          "https://www.pref.fukuoka.lg.jp/contents/koutuu-kenntyousha.html",
+          "https://www.pref.fukuoka.lg.jp/contents/kenntyousyaannnair7.html",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "全館無料Wi-Fi", "全客室を含む館内で高速Wi-Fiを無料で利用できます。", "https://www.mars-gardenhotel.jp/rooms/"),
@@ -8449,6 +8470,26 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jrkyushu.co.jp/railway/station/1191932_1601.html",
           "https://www.pref.fukuoka.lg.jp/contents/koutsu-yoshiduka.html",
           "https://www.pref.fukuoka.lg.jp/uploaded/attachment/236273.pdf",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+      {
+        venueId: "venue-jichi-first-fukuoka-prefectural-office",
+        modes: ["walk", "rail"],
+        routeSummary: "the b 博多からホテル公式案内を逆向きにJR博多駅筑紫口へ徒歩で進みます。博多駅からJR鹿児島本線または福北ゆたか線の列車で吉塚駅へ乗換なしで移動し、県公式の徒歩8分案内に従って福岡県庁行政棟へ向かいます。到着後は受験票、福岡県から交付される面接専用案内、当日掲示に従って指定受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR博多駅筑紫口は公式徒歩4分／博多―吉塚はJRで1駅／JR吉塚駅―県庁舎は県公式徒歩8分（待ち時間・駅構内・指定面接室までを除く区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_FUKUOKA_PREFECTURAL_OFFICE_VERIFIED_AT,
+        caution: "ホテル公式の徒歩4分、博多―吉塚の1駅、福岡県公式の徒歩8分は別区間で、客室から指定面接室までの通し所要ではありません。2027年1月26日（火）のJRダイヤは未公表のため、列車種別、ホーム、発着時刻、運行情報を直前にJR九州公式で再確認してください。面接は受付9:00〜9:20、実施は10:00〜16:00のうち福岡県が指定する時間です。自治医科大学の募集要項は会場を福岡県庁行政棟とのみ公表しており、県庁舎公式案内にある地下1階・8階・10階などの会議室のうち、使用階・面接室、受付位置、受験生入口、待機場所、面接順、エレベーター、指定動線は未公表です。県庁バス通り側・東公園側の一般出入口や個別会議室を面接入口・面接室とみなさず、受験票と福岡県の面接専用案内を確認してください。前日25日（月）の学力試験は吉塚合同庁舎という別会場です。",
+        evidenceUrls: [
+          "https://www.theb-hotels.com/theb/hakata",
+          "https://www.jrkyushu.co.jp/railway/station/1191771_1601.html",
+          "https://www.jrkyushu.co.jp/railway/station/1191932_1601.html",
+          "https://www.pref.fukuoka.lg.jp/contents/koutuu-kenntyousha.html",
+          "https://www.pref.fukuoka.lg.jp/contents/kenntyousyaannnair7.html",
           "https://www.jichi.ac.jp/exam/medicine/exam/general/",
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],

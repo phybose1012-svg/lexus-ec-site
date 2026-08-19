@@ -457,6 +457,14 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式吉塚合同庁舎アクセス/u);
       assert.match(venue.accessNote ?? "", /使用階・試験室/u);
+    } else if (venue.venueId === "venue-jichi-first-fukuoka-prefectural-office") {
+      assert.deepEqual(venue.nearestStations, [
+        "JR鹿児島本線・福北ゆたか線 吉塚駅",
+        "福岡市地下鉄箱崎線 馬出九大病院前駅",
+        "西鉄バス 県庁前停留所",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式県庁舎アクセス/u);
+      assert.match(venue.accessNote ?? "", /使用階・面接室/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -1254,6 +1262,16 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(access.reviewState.includes("verified_with_caveat"));
     assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
     assert.match(access.travelTimeLabel ?? "", /吉塚/u);
+    const interviewAccess = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-fukuoka-prefectural-office",
+    );
+    assert.ok(interviewAccess, `${hotelId} が福岡県庁行政棟に結合されていません`);
+    assert.equal(interviewAccess.transferCount, 0);
+    assert.deepEqual(interviewAccess.modes, ["walk", "rail"]);
+    assert.equal(interviewAccess.measurementBasis, "route_only");
+    assert.ok(interviewAccess.reviewState.includes("verified_with_caveat"));
+    assert.ok(interviewAccess.reviewState.includes("venue_pdf_visual_review"));
+    assert.match(interviewAccess.travelTimeLabel ?? "", /徒歩8分/u);
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
