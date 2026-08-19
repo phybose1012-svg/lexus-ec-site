@@ -181,6 +181,7 @@ const JICHI_KUMAMOTO_HOTEL_TERSA_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_OITA_NEW_LARGE_MEETING_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_OITA_MEETING_ROOM_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_MIYAZAKI_MRT_MICC_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_MIYAZAKI_DISASTER_71_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -9005,6 +9006,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-miyazaki-disaster-71",
+        modes: ["walk"],
+        routeSummary: "コンフォートホテル宮崎から、ホテルと宮崎県庁の公式住所を照合した地上の公道を徒歩で進み、宮崎県庁防災庁舎へ向かいます。到着後は受験票、宮崎県から交付される面接専用案内、当日掲示に従って7階防71号室の指定受付へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: JICHI_MIYAZAKI_DISASTER_71_VERIFIED_AT,
+        caution: "ホテル公式住所（中央通3番49号）と自治医科大学の2027年度募集要項・宮崎県公式が示す県庁住所（橘通東2丁目10番1号）を固定し、地上の直接徒歩経路が成立することを地図で確認した案内です。ホテルから防71号室への公式推奨経路・公式徒歩分数はないため、信号待ち、天候、客室階からの移動、防災庁舎7階の指定受付までを含む通し所要は掲載しません。2027年1月26日（火）の面接は受付9:00〜9:20、面接10:00〜16:00のうち宮崎県指定時刻です。会場は防災庁舎7階の防71号室まで公表済みですが、受付位置、受験生入口、待機場所、面接順、使用するエレベーター・階段、指定動線は未公表です。1階屋外エントランス、守衛室、一般来庁動線を面接入口・受付とみなさず、受験票、宮崎県からの面接専用案内、当日掲示を確認してください。前日の学力試験はMRT micc・ダイヤモンドホール2階という別会場です。",
+        evidenceUrls: [
+          "https://www.choice-hotels.jp/hotel/miyazaki/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E5%AE%AE%E5%B4%8E%E7%9C%8C%E5%AE%AE%E5%B4%8E%E5%B8%82%E4%B8%AD%E5%A4%AE%E9%80%9A3-49&destination=%E5%AE%AE%E5%B4%8E%E7%9C%8C%E5%AE%AE%E5%B4%8E%E5%B8%82%E6%A9%98%E9%80%9A%E6%9D%B12-10-1&travelmode=walking",
+          "https://www.pref.miyazaki.lg.jp/zaisansogokanri/kense/koho/index.html",
+          "https://www.pref.miyazaki.lg.jp/zaisansogokanri/kense/koho/20200804180651.html",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "全客室無料Wi-Fi", "全客室で無料Wi-Fiを利用できます。", "https://www.choice-hotels.jp/hotel/miyazaki/rooms/"),
@@ -9016,7 +9035,49 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatusEvidenceUrl: "https://www.choice-hotels.jp/hotel/miyazaki/",
     reviewState: "verified",
     verifiedAt: JICHI_MIYAZAKI_MRT_MICC_VERIFIED_AT,
-    note: "MRT miccと同じ中心市街地にある堅実なビジネスホテル枠です。レイアウト変更可能な客室デスク、全客室無料Wi-Fi、24時間ランドリーコーナー、6:30開始の無料朝食を施設公式で確認しています。18歳未満だけで宿泊する場合は宿泊者全員分の保護者同意書を提出してください。試験朝は鉄道・バスを使わない直接徒歩を基本とし、ホテルから会場までの公式通し所要はないため、前日に公道経路と当日指定入口を確認してください。",
+    note: "MRT miccと宮崎県庁の双方へ徒歩で向かえる中心市街地の堅実なビジネスホテル枠です。レイアウト変更可能な客室デスク、全客室無料Wi-Fi、24時間ランドリーコーナー、6:30開始の無料朝食を施設公式で確認しています。18歳未満だけで宿泊する場合は宿泊者全員分の保護者同意書を提出してください。学力試験・面接の朝はいずれも鉄道・バスを使わない直接徒歩を基本とし、ホテルから各会場までの公式通し所要はないため、前日に公道経路と当日指定入口を確認してください。",
+  },
+  {
+    hotelId: "green-rich-hotel-miyazaki-tachibanadori-2",
+    name: "グリーンリッチホテル宮崎橘通2",
+    postalCode: "880-0805",
+    address: "宮崎県宮崎市橘通東3丁目1番2号",
+    prefecture: "宮崎県",
+    municipality: "宮崎市",
+    officialUrl: "https://greenrichhotels.jp/miyazaki-tachibanadori/",
+    officialBookingUrl: "https://www.rj-win.jp/v3/237/reserve",
+    nearestStation: "JR日豊本線・日南線 宮崎駅",
+    venueAccess: [
+      {
+        venueId: "venue-jichi-first-miyazaki-disaster-71",
+        modes: ["walk"],
+        routeSummary: "グリーンリッチホテル宮崎橘通2から、ホテルと宮崎県庁の公式住所を照合した地上の公道を徒歩で進み、宮崎県庁防災庁舎へ向かいます。到着後は受験票、宮崎県から交付される面接専用案内、当日掲示に従って7階防71号室の指定受付へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: JICHI_MIYAZAKI_DISASTER_71_VERIFIED_AT,
+        caution: "ホテル公式住所（橘通東3丁目1番2号）と自治医科大学の2027年度募集要項・宮崎県公式が示す県庁住所（橘通東2丁目10番1号）を固定し、地上の直接徒歩経路が成立することを地図で確認した案内です。ホテルから防71号室への公式推奨経路・公式徒歩分数はないため、信号待ち、天候、客室階からの移動、防災庁舎7階の指定受付までを含む通し所要は掲載しません。2027年1月26日（火）の面接は受付9:00〜9:20、面接10:00〜16:00のうち宮崎県指定時刻です。会場は防災庁舎7階の防71号室まで公表済みですが、受付位置、受験生入口、待機場所、面接順、使用するエレベーター・階段、指定動線は未公表です。1階屋外エントランス、守衛室、一般来庁動線を面接入口・受付とみなさず、受験票、宮崎県からの面接専用案内、当日掲示を確認してください。前日の学力試験はMRT micc・ダイヤモンドホール2階という別会場です。",
+        evidenceUrls: [
+          "https://greenrichhotels.jp/miyazaki-tachibanadori/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E5%AE%AE%E5%B4%8E%E7%9C%8C%E5%AE%AE%E5%B4%8E%E5%B8%82%E6%A9%98%E9%80%9A%E6%9D%B13-1-2&destination=%E5%AE%AE%E5%B4%8E%E7%9C%8C%E5%AE%AE%E5%B4%8E%E5%B8%82%E6%A9%98%E9%80%9A%E6%9D%B12-10-1&travelmode=walking",
+          "https://www.pref.miyazaki.lg.jp/zaisansogokanri/kense/koho/index.html",
+          "https://www.pref.miyazaki.lg.jp/zaisansogokanri/kense/koho/20200804180651.html",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全客室Wi-Fi・有線LAN", "全客室でWi-Fiと有線LANを無料で利用できます。", "https://greenrichhotels.jp/miyazaki-tachibanadori/faq/"),
+      amenity("coin_laundry", "2階コインランドリー", "2階にコインランドリーがあります。", "https://greenrichhotels.jp/miyazaki-tachibanadori/"),
+      amenity("breakfast", "朝食6:30〜", "2階レストランで6:30〜10:00（最終入場9:30）に朝食を提供しています。", "https://greenrichhotels.jp/miyazaki-tachibanadori/"),
+      amenity("humidifier", "加湿空気清浄機", "全客室に加湿空気清浄機を備えています。", "https://greenrichhotels.jp/miyazaki-tachibanadori/faq/"),
+    ],
+    operatingStatus: "official_site_active",
+    operatingStatusEvidenceUrl: "https://greenrichhotels.jp/miyazaki-tachibanadori/",
+    reviewState: "verified",
+    verifiedAt: JICHI_MIYAZAKI_DISASTER_71_VERIFIED_AT,
+    note: "宮崎県庁と同じ橘通東にあるビジネスホテル枠です。全客室Wi-Fi・有線LAN、2階コインランドリー、6:30開始の朝食、全客室の加湿空気清浄機を施設公式で確認しています。18歳未満だけで宿泊する場合は宿泊者全員分の保護者同意書をチェックイン時に提出してください。客室机は公式本文で確認できないため、学習に使える椅子付きの机がある部屋を予約前にホテルへ確認してください。面接朝は鉄道・バスを使わない直接徒歩を基本とし、防災庁舎7階の指定受付までの余裕を取ってください。",
   },
   {
     hotelId: "miyazaki-green-hotel",

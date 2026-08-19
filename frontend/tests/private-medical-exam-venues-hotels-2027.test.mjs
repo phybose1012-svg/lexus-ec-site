@@ -513,6 +513,13 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
       assert.match(venue.officialUrlLabel ?? "", /MRT宮崎放送 公式イベント案内/u);
       assert.match(venue.accessNote ?? "", /ダイヤモンドホール（2階）/u);
       assert.match(venue.accessNote ?? "", /旧会場サイト/u);
+    } else if (venue.venueId === "venue-jichi-first-miyazaki-disaster-71") {
+      assert.deepEqual(venue.nearestStations, [
+        "JR日豊本線・日南線 宮崎駅",
+        "宮崎交通 橘通2丁目停留所",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式防災庁舎フロア案内/u);
+      assert.match(venue.accessNote ?? "", /防71号室（7階）/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -903,7 +910,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 194);
+  assert.equal(dataset.hotels.length, 195);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   for (const hotelId of [
     "sotetsu-fresa-inn-nagoya-sakuradoriguchi",
@@ -1428,6 +1435,25 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.equal(access.reviewState.includes("venue_pdf_visual_review"), false);
     assert.equal(access.travelTimeLabel, undefined);
     assert.match(access.caution ?? "", /ダイヤモンドホール2階/u);
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  for (const hotelId of [
+    "comfort-hotel-miyazaki",
+    "green-rich-hotel-miyazaki-tachibanadori-2",
+  ]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-miyazaki-disaster-71",
+    );
+    assert.ok(access, `${hotelId} が宮崎県庁防災庁舎の防71号室に結合されていません`);
+    assert.equal(access.transferCount, 0);
+    assert.deepEqual(access.modes, ["walk"]);
+    assert.equal(access.measurementBasis, "map_route_checked");
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.equal(access.reviewState.includes("venue_pdf_visual_review"), false);
+    assert.equal(access.travelTimeLabel, undefined);
+    assert.match(access.caution ?? "", /防災庁舎7階の防71号室/u);
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
