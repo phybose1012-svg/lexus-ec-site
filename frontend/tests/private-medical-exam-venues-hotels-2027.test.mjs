@@ -4825,6 +4825,29 @@ test("会場ページのページ内メニューは5セクションへ移動で�
   assert.match(cssSource, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.venue-guide-page \*/u);
 });
 
+test("会場ページは長い一覧を段階開示しPC・タブレット・モバイルでコンパクトに表示する", () => {
+  const source = readFileSync(pageSourcePath, "utf8");
+  const cssSource = readFileSync(
+    fileURLToPath(new URL("../src/styles/venues-hotels-2027.css", import.meta.url)),
+    "utf8",
+  );
+
+  assert.match(source, /<details class="venue-guide-method__disclosure">/u);
+  assert.match(source, /<details class="venue-guide-filters__advanced">/u);
+  assert.match(source, /data-filter-advanced-status/u);
+  assert.match(source, /<details[\s\S]*class="venue-guide-prefecture"[\s\S]*data-venue-prefecture-group/u);
+  assert.match(source, /<details[\s\S]*class="venue-guide-venue"[\s\S]*data-filter-card/u);
+  assert.match(source, /class="venue-guide-list-toolbar"/u);
+  assert.match(source, /aria-label="大学別31校の一覧。縦にスクロールできます"/u);
+  assert.match(source, /const revealHashTarget = \(\) =>/u);
+  assert.match(source, /details\.open = true/u);
+  assert.match(cssSource, /\.venue-guide-university-list\s*\{[\s\S]*?max-height:[\s\S]*?overflow-y:\s*auto;/u);
+  assert.match(cssSource, /\.venue-guide-prefecture__list\s*\{[\s\S]*?max-height:[\s\S]*?overflow-y:\s*auto;/u);
+  assert.match(cssSource, /\.venue-guide-updates > \.content > ol\s*\{[\s\S]*?max-height:[\s\S]*?overflow-y:\s*auto;/u);
+  assert.match(cssSource, /@media \(max-width: 900px\)[\s\S]*?\.venue-guide-planning__steps\s*\{[\s\S]*?display:\s*flex;[\s\S]*?overflow-x:\s*auto;/u);
+  assert.match(cssSource, /@media \(max-width: 620px\)[\s\S]*?\.venue-guide-filters__advanced-grid\s*\{[\s\S]*?grid-template-columns:\s*1fr;/u);
+});
+
 test("私立医学部情報ページは会場・ホテルガイドへの専用バナーを提供する", () => {
   const directorySource = readFileSync(directoryPageSourcePath, "utf8");
   const cssSource = readFileSync(pagesCssSourcePath, "utf8");
@@ -4852,7 +4875,7 @@ test("build成果物のJSONと構造化データはparseでき、IDが重複し�
   const html = readFileSync(builtPagePath, "utf8");
   const groupedPrefectures = [
     ...html.matchAll(
-      /<section\b[^>]*class="venue-guide-prefecture"[^>]*data-venue-prefecture-group="([^"]+)"/gu,
+      /<details\b[^>]*class="venue-guide-prefecture"[^>]*data-venue-prefecture-group="([^"]+)"/gu,
     ),
   ].map((match) => match[1]);
   const expectedPrefectures = [

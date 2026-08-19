@@ -714,16 +714,22 @@ const structuredData = {
 
     <section class="venue-guide-method" aria-labelledby="method-title">
       <div class="content">
-        <header class="admissions-section-heading">
-          <p>HOW WE VERIFY</p>
-          <h2 id="method-title">会場情報とホテル情報を分けて確認</h2>
-          <p>大学の公式募集要項・入試ページ等で正式会場を確認した後、会場ごとにホテルの公式情報を関連付けています。</p>
-        </header>
-        <div class="venue-guide-method__grid">
-          <article><span>01</span><h3>入試会場</h3><p>大学×方式×試験段階×日付で分け、希望・大学指定・受験票指定・定員超過変更を保持します。</p></article>
-          <article><span>02</span><h3>宿泊施設</h3><p>ホテル公式サイトで営業・住所・設備を確認し、価格は固定情報として掲載しません。</p></article>
-          <article><span>03</span><h3>会場アクセス</h3><p>公式アクセスを優先し、徒歩・鉄道・バス・タクシーと乗換・早朝依存の注意を分けます。</p></article>
-        </div>
+        <details class="venue-guide-method__disclosure">
+          <summary>
+            <div>
+              <p>HOW WE VERIFY</p>
+              <h2 id="method-title">会場・ホテル情報の確認方法</h2>
+              <span>公式資料の扱いと掲載基準を確認できます。</span>
+            </div>
+            <b>確認方法を見る</b>
+            <i aria-hidden="true"></i>
+          </summary>
+          <div class="venue-guide-method__grid">
+            <article><span>01</span><h3>入試会場</h3><p>大学×方式×試験段階×日付で分け、希望・大学指定・受験票指定・定員超過変更を保持します。</p></article>
+            <article><span>02</span><h3>宿泊施設</h3><p>ホテル公式サイトで営業・住所・設備を確認し、価格は固定情報として掲載しません。</p></article>
+            <article><span>03</span><h3>会場アクセス</h3><p>公式アクセスを優先し、徒歩・鉄道・バス・タクシーと乗換・早朝依存の注意を分けます。</p></article>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -737,16 +743,27 @@ const structuredData = {
         </header>
 
         <form class="venue-guide-filters" data-venue-filters>
-          <label class="venue-guide-filters__search">
-            <span>大学名・会場名</span>
-            <input type="search" name="query" placeholder="例：杏林、幕張、枚方" autocomplete="off" />
-          </label>
-          <label><span>大学の地域</span><select name="region"><option value="all">すべて</option>{universityRegions.map((region) => <option value={region}>{region}</option>)}</select></label>
-          <label><span>会場都道府県</span><select name="prefecture"><option value="all">すべて</option>{venueFilterPrefectures.map((prefecture) => <option value={prefecture}>{prefecture}</option>)}</select></label>
-          <label><span>試験段階</span><select name="stage"><option value="all">すべて</option><option value="first">一次・大学独自試験</option><option value="second">二次・面接等</option></select></label>
-          <label><span>入試方式</span><select name="category"><option value="all">すべて</option><option value="general">一般選抜</option><option value="common">共テ利用・併用</option></select></label>
-          <label><span>公表状態</span><select name="state"><option value="all">すべて</option>{Object.entries(venuePublicationStateLabels).map(([value, label]) => <option value={value}>{label}</option>)}</select></label>
-          <button type="reset">条件をリセット</button>
+          <div class="venue-guide-filters__primary">
+            <label class="venue-guide-filters__search">
+              <span>大学名・会場名から検索</span>
+              <input type="search" name="query" placeholder="例：杏林、幕張、枚方" autocomplete="off" />
+            </label>
+            <details class="venue-guide-filters__advanced">
+              <summary>
+                <span>詳細条件で絞り込む</span>
+                <small data-filter-advanced-status>地域・都道府県・試験段階など</small>
+                <i aria-hidden="true"></i>
+              </summary>
+              <div class="venue-guide-filters__advanced-grid">
+                <label><span>大学の地域</span><select name="region"><option value="all">すべて</option>{universityRegions.map((region) => <option value={region}>{region}</option>)}</select></label>
+                <label><span>会場都道府県</span><select name="prefecture"><option value="all">すべて</option>{venueFilterPrefectures.map((prefecture) => <option value={prefecture}>{prefecture}</option>)}</select></label>
+                <label><span>試験段階</span><select name="stage"><option value="all">すべて</option><option value="first">一次・大学独自試験</option><option value="second">二次・面接等</option></select></label>
+                <label><span>入試方式</span><select name="category"><option value="all">すべて</option><option value="general">一般選抜</option><option value="common">共テ利用・併用</option></select></label>
+                <label><span>公表状態</span><select name="state"><option value="all">すべて</option>{Object.entries(venuePublicationStateLabels).map(([value, label]) => <option value={value}>{label}</option>)}</select></label>
+                <button type="reset">条件をリセット</button>
+              </div>
+            </details>
+          </div>
         </form>
         <p class="venue-guide-filter-result" aria-live="polite" data-filter-result>全件を表示しています。</p>
       </div>
@@ -755,7 +772,11 @@ const structuredData = {
     <section class="venue-guide-updates" id="updates" aria-labelledby="updates-title">
       <div class="content">
         <header class="admissions-section-heading"><p>UPDATE HISTORY</p><h2 id="updates-title">更新履歴</h2><p>受験生にとって変わった内容を記録します。</p></header>
-        <ol>{updateHistory.map((update, index) => <li><div>{index === 0 && <span>NEW</span>}<time datetime={update.dateTime}>{update.date}</time></div><article><h3>{update.title}</h3><p>{update.text}</p></article></li>)}</ol>
+        <div class="venue-guide-list-toolbar">
+          <p><strong>{updateHistory.length}件</strong> 新しい更新から順に掲載</p>
+          <span>一覧を縦にスクロール <b aria-hidden="true">↕</b></span>
+        </div>
+        <ol tabindex="0" aria-label="更新履歴。縦にスクロールできます">{updateHistory.map((update, index) => <li><div>{index === 0 && <span>NEW</span>}<time datetime={update.dateTime}>{update.date}</time></div><article><h3>{update.title}</h3><p>{update.text}</p></article></li>)}</ol>
       </div>
     </section>
 
@@ -769,7 +790,11 @@ const structuredData = {
           <p>方式ごとに一次・二次を分け、会場未公表や受験票指定も省略せず表示します。</p>
         </header>
 
-        <div class="venue-guide-university-list" data-filter-section="universities">
+        <div class="venue-guide-list-toolbar">
+          <p><strong>31大学</strong> 大学名を選ぶと、方式・試験日・会場を表示</p>
+          <span>一覧を縦にスクロール <b aria-hidden="true">↕</b></span>
+        </div>
+        <div class="venue-guide-university-list" data-filter-section="universities" tabindex="0" aria-label="大学別31校の一覧。縦にスクロールできます">
           {privateMedicalExamVenueUniversitySummaries2027.map((university, index) => {
             const assignments = assignmentsForUniversity(university.universityId);
             const venuePrefectureValues = [...new Set(assignments.flatMap((assignment) => [
@@ -856,21 +881,22 @@ const structuredData = {
 
         <div class="venue-guide-venue-list" data-filter-section="venues">
           {venueGroups.map((group) => (
-            <section
+            <details
               class="venue-guide-prefecture"
               id={group.id}
               aria-labelledby={`${group.id}-title`}
               data-venue-prefecture-group={group.prefecture}
             >
-              <header class="venue-guide-prefecture__header">
+              <summary class="venue-guide-prefecture__header">
                 <div>
                   <p>EXAM VENUES</p>
                   <h3 id={`${group.id}-title`}>{group.prefecture}</h3>
                 </div>
                 <span data-prefecture-count={group.prefecture}>{group.entries.length}会場</span>
-              </header>
+                <i aria-hidden="true"></i>
+              </summary>
 
-              <div class="venue-guide-prefecture__list">
+              <div class="venue-guide-prefecture__list" role="region" aria-label={`${group.prefecture}の試験会場一覧`}>
                 {group.entries.map(({ venue, assignments, hotels }) => {
                   const regions = [...new Set(assignments.map((assignment) => assignment.region))];
                   const stages = [...new Set(assignments.map((assignment) => assignment.examStage))];
@@ -878,7 +904,7 @@ const structuredData = {
                   const states = [...new Set(assignments.map((assignment) => assignment.publicationState))];
                   const searchText = [venue.name, venue.shortName, venue.address].join(" ").toLowerCase();
                   return (
-              <article
+              <details
                 class="venue-guide-venue"
                 id={`venue-${venue.venueId}`}
                 data-filter-card
@@ -890,9 +916,15 @@ const structuredData = {
                 data-categories={categories.join("|")}
                 data-states={states.join("|")}
               >
-                <header class="venue-guide-venue__header">
+                <summary class="venue-guide-venue__header">
                   <span>{String(venueOrderById.get(venue.venueId) ?? 0).padStart(2, "0")}</span>
                   <div><p>{venue.prefecture}・{venue.municipality}</p><h4>{venue.name}</h4></div>
+                  <div class="venue-guide-venue__counts"><span>{assignments.length}方式</span><span>{hotels.length}宿</span></div>
+                  <i aria-hidden="true"></i>
+                </summary>
+                <div class="venue-guide-venue__body">
+                  <div class="venue-guide-venue__toolbar">
+                    <span>住所・利用大学・周辺ホテルを表示しています</span>
                   <a
                     href={venue.officialUrl}
                     target="_blank"
@@ -900,7 +932,7 @@ const structuredData = {
                     title={venue.officialUrlLabel}
                     aria-label={`${venue.officialUrlLabel ?? "施設公式"}を開く`}
                   >{venue.officialUrlLabel ? "大学公式の会場一覧" : "施設公式"} ↗</a>
-                </header>
+                  </div>
                 <div class="venue-guide-venue__facts">
                   <dl>
                     <div><dt>住所</dt><dd>{venue.postalCode && `〒${venue.postalCode} `}{venue.address}</dd></div>
@@ -990,11 +1022,12 @@ const structuredData = {
                     <p class="venue-guide-hotels__pending">この会場は宿泊施設の公式情報・経路を確認中です。件数を埋めるための推測掲載はしていません。</p>
                   )}
                 </section>
-              </article>
+                </div>
+              </details>
                   );
                 })}
               </div>
-            </section>
+            </details>
           ))}
         </div>
         <p class="venue-guide-empty" hidden data-filter-empty="venues">条件に合う会場はありません。公表状態を「すべて」に戻すか、大学別一覧で未公表項目をご確認ください。</p>
@@ -1021,7 +1054,7 @@ const structuredData = {
           <h2 id="planning-title">受験宿泊の計画で確認すること</h2>
           <p>所要時間の短さだけでなく、朝の交通・天候・変更条件まで確認します。</p>
         </header>
-        <ol class="venue-guide-planning__steps">
+        <ol class="venue-guide-planning__steps" tabindex="0" aria-label="受験宿泊の5つの確認事項。タブレットとモバイルでは横にスクロールできます">
           <li><span>01</span><div><h3>受験票で会場を確定</h3><p>希望地と実際の指定会場が同じとは限りません。施設名・棟・入口まで確認します。</p></div></li>
           <li><span>02</span><div><h3>前日に経路を下見</h3><p>駅出口、バス乗り場、会場入口を確認。大規模施設は敷地内移動の時間も見込みます。</p></div></li>
           <li><span>03</span><div><h3>朝の交通を時刻表で確認</h3><p>始発・休日ダイヤ・バス依存・乗換回数を確認し、一本遅れても対応できる余裕を持ちます。</p></div></li>
@@ -1044,6 +1077,7 @@ const structuredData = {
       const prefectureLinks = [...document.querySelectorAll("[data-prefecture-link]")];
       const prefectureCounters = [...document.querySelectorAll("[data-prefecture-count]")];
       const result = document.querySelector("[data-filter-result]");
+      const advancedFilterStatus = document.querySelector("[data-filter-advanced-status]");
       const normalize = (value) => String(value || "").normalize("NFKC").trim().toLocaleLowerCase("ja");
       let assignmentRecords = [];
       try {
@@ -1060,6 +1094,9 @@ const structuredData = {
         const stage = normalize(data.get("stage")) || "all";
         const category = normalize(data.get("category")) || "all";
         const state = normalize(data.get("state")) || "all";
+        const activeAdvancedFilterCount = [region, prefecture, stage, category, state].filter(
+          (value) => value !== "all",
+        ).length;
         let visibleVenues = 0;
         let visibleUniversities = 0;
 
@@ -1122,6 +1159,9 @@ const structuredData = {
             (card) => card instanceof HTMLElement && !card.hidden,
           ).length;
           group.hidden = visibleCount === 0;
+          if (group instanceof HTMLDetailsElement && visibleCount > 0 && (query || prefecture !== "all")) {
+            group.open = true;
+          }
           const prefectureName = group.dataset.venuePrefectureGroup;
 
           for (const link of prefectureLinks) {
@@ -1141,12 +1181,43 @@ const structuredData = {
           if (empty instanceof HTMLElement) empty.hidden = section === "venues" ? visibleVenues > 0 : visibleUniversities > 0;
         }
         if (result) result.textContent = `会場 ${visibleVenues}件・大学 ${visibleUniversities}校を表示しています。`;
+        if (advancedFilterStatus) {
+          advancedFilterStatus.textContent = activeAdvancedFilterCount > 0
+            ? `${activeAdvancedFilterCount}件の条件を適用中`
+            : "地域・都道府県・試験段階など";
+        }
+      };
+
+      const revealHashTarget = () => {
+        if (!window.location.hash) return;
+        let targetId = window.location.hash.slice(1);
+        try {
+          targetId = decodeURIComponent(targetId);
+        } catch {
+          return;
+        }
+        const target = document.getElementById(targetId);
+        if (!target) return;
+        const disclosures = [];
+        for (let node = target; node; node = node.parentElement) {
+          if (node instanceof HTMLDetailsElement) disclosures.push(node);
+        }
+        disclosures.reverse().forEach((details) => {
+          details.open = true;
+        });
+        requestAnimationFrame(() => target.scrollIntoView({ block: "start" }));
       };
 
       form.addEventListener("input", applyFilters);
       form.addEventListener("change", applyFilters);
       form.addEventListener("reset", () => requestAnimationFrame(applyFilters));
+      document.addEventListener("click", (event) => {
+        const link = event.target instanceof Element ? event.target.closest('a[href^="#"]') : null;
+        if (link) requestAnimationFrame(revealHashTarget);
+      });
+      window.addEventListener("hashchange", revealHashTarget);
       applyFilters();
+      revealHashTarget();
     })();
   </script>
 </SiteLayout>
