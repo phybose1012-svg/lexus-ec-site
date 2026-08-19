@@ -3421,7 +3421,7 @@ officialVenuePlan(["aichi-medical--general--general", "aichi-medical--common--co
   conditions: ["fixed", "applicant_preference", "university_assigned"],
   officialAdmissionUrl: aichiVenueUrl,
   evidenceLabel: "2027年度医学部学生募集要項（7月31日訂正版）",
-  evidenceLocator: "PDF 11・25ページ",
+  evidenceLocator: "PDF 12・15・25ページ",
   reviewState: "verified",
   note: "2027年2月18日・19日・20日から出願時に希望日を1日選び、出願後は変更できません。午前・午後の部は大学がPost@netで通知します。会場は1号館で固定です。",
 });
@@ -3432,7 +3432,7 @@ officialVenuePlan(["aichi-medical--common--common-test-regional-quota"], "second
   conditions: ["fixed"],
   officialAdmissionUrl: aichiVenueUrl,
   evidenceLabel: "2027年度医学部学生募集要項（7月31日訂正版）",
-  evidenceLocator: "PDF 11・25ページ",
+  evidenceLocator: "PDF 20・25ページ",
   reviewState: "verified",
   note: "愛知県地域特別枠B方式の第2次は2027年3月10日で、受付8:30〜8:45、面接9:00開始です。会場は1号館で固定です。",
 });

@@ -2405,6 +2405,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   const aichiGeneralSecondVenue = dataset.assignments.find(
     (assignment) => assignment.assignmentId === "aichi-medical--general--general--second-venue",
   );
+  assert.equal(aichiGeneralSecondVenue?.evidenceLocator, "PDF 12・15・25ページ");
   assert.deepEqual(aichiGeneralSecondVenue?.conditions, [
     "fixed",
     "applicant_preference",
@@ -2413,6 +2414,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   const aichiRegionalSecondVenue = dataset.assignments.find(
     (assignment) => assignment.assignmentId === "aichi-medical--common--common-test-regional-quota--second-venue",
   );
+  assert.equal(aichiRegionalSecondVenue?.evidenceLocator, "PDF 20・25ページ");
   assert.deepEqual(aichiRegionalSecondVenue?.conditions, ["fixed"]);
   for (const hotelId of ["vessel-inn-takadanobaba-ekimae", "hotel-new-takada"]) {
     const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
