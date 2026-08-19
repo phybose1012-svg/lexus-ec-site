@@ -2342,11 +2342,15 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     address: "大阪府大阪市淀川区宮原4-3-39 J.NODE新大阪 4～5階",
     prefecture: "大阪府",
     municipality: "大阪市淀川区",
-    nearestStations: ["JR・Osaka Metro御堂筋線 新大阪駅"],
+    nearestStations: [
+      "JR東海道本線・東海道新幹線 新大阪駅北口",
+      "Osaka Metro御堂筋線 新大阪駅4番出口",
+    ],
     officialUrl: "https://www.kashikaigishitsu.net/facilitys/cc-shinosaka/",
-    accessNote: "2026年6月30日に入居ビル名が「新大阪NKビル」から「J.NODE新大阪」へ変更されました。福岡大学の2027年度入試ガイドには旧ビル名で掲載されています。",
+    officialUrlLabel: "TKP新大阪カンファレンスセンター 公式アクセス",
+    accessNote: "福岡大学医学部医学科の2027年度一般選抜・系統別日程一次選考は2月2日（火）に実施され、大阪試験場はTKP新大阪カンファレンスセンターです。希望会場の収容人数を超えた場合は別会場になるため、出願確認票・受験票で最終会場を確認してください。一般選抜の入試要項は9月下旬公開予定で、現時点では開場・入室・集合・試験開始時刻、4～5階の使用会議室、受付位置、受験生入口は未公表です。施設公式はJR新大阪駅北口から徒歩6分、Osaka Metro御堂筋線新大阪駅4番出口から徒歩5分と案内しています。2026年6月30日に入居ビル名が「新大阪NKビル」から「J.NODE新大阪」へ変更され、福岡大学の2027年度入試ガイドには旧ビル名で掲載されています。施設の通常利用時間や一般受付を入試の開場時刻・入口に転用せず、入試要項、受験票、当日案内で確認してください。",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: "2026-08-19T00:00:00+09:00",
   },
 ];
 

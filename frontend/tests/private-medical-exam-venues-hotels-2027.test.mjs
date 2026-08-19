@@ -930,7 +930,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 204);
+  assert.equal(dataset.hotels.length, 206);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   for (const hotelId of [
     "sotetsu-fresa-inn-nagoya-sakuradoriguchi",
@@ -1675,6 +1675,46 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(hotel.amenities.some((amenity) => amenity.key === "coin_laundry"));
     assert.ok(hotel.amenities.some((amenity) => amenity.key === "breakfast"));
   }
+  const fukuokaShinOsaka = dataset.venues.find(
+    (entry) => entry.venueId === "venue-tkp-shinosaka-conference-center",
+  );
+  assert.ok(fukuokaShinOsaka, "TKP新大阪カンファレンスセンターが公開Datasetにありません");
+  assert.match(fukuokaShinOsaka.address ?? "", /J\.NODE新大阪 4～5階/u);
+  assert.deepEqual(fukuokaShinOsaka.nearestStations, [
+    "JR東海道本線・東海道新幹線 新大阪駅北口",
+    "Osaka Metro御堂筋線 新大阪駅4番出口",
+  ]);
+  assert.match(fukuokaShinOsaka.accessNote ?? "", /2月2日（火）/u);
+  assert.match(fukuokaShinOsaka.accessNote ?? "", /9月下旬公開予定/u);
+  assert.match(fukuokaShinOsaka.accessNote ?? "", /新大阪NKビル/u);
+  assert.match(fukuokaShinOsaka.accessNote ?? "", /使用会議室、受付位置、受験生入口は未公表/u);
+  for (const hotelId of [
+    "karaksa-hotel-grande-shin-osaka-tower",
+    "comfort-hotel-shin-osaka",
+  ]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-tkp-shinosaka-conference-center",
+    );
+    assert.ok(access, `${hotelId} がTKP新大阪カンファレンスセンターに結合されていません`);
+    assert.deepEqual(access.modes, ["walk"]);
+    assert.equal(access.transferCount, 0);
+    assert.equal(access.measurementBasis, "route_only");
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.match(access.travelTimeLabel ?? "", /別区間表示/u);
+    assert.match(access.caution ?? "", /収容人数により別会場/u);
+    assert.match(access.caution ?? "", /J\.NODE新大阪/u);
+    assert.match(access.caution ?? "", /使用会議室、受付位置、受験生入口は未公表/u);
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+    assert.ok(hotel.amenities.some((amenity) => amenity.key === "desk"));
+    assert.ok(hotel.amenities.some((amenity) => amenity.key === "coin_laundry"));
+    assert.ok(hotel.amenities.some((amenity) => amenity.key === "breakfast"));
+  }
+  assert.match(
+    dataset.hotels.find((hotel) => hotel.hotelId === "karaksa-hotel-grande-shin-osaka-tower")?.note ?? "",
+    /スタンダードダブル/u,
+  );
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
   for (const hotelId of ["ginza-kokusai-hotel", "hotel-check-in-shimbashi"]) {
