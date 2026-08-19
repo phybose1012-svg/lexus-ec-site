@@ -930,7 +930,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 203);
+  assert.equal(dataset.hotels.length, 204);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   for (const hotelId of [
     "sotetsu-fresa-inn-nagoya-sakuradoriguchi",
@@ -1640,6 +1640,40 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
       assert.equal(hotel.amenities.some((amenity) => amenity.key === "coin_laundry"), false);
       assert.match(hotel.note ?? "", /スタンダードダブル/u);
     }
+  }
+  const fukuokaNagoya = dataset.venues.find(
+    (entry) => entry.venueId === "venue-tkp-premium-nagoya-shinkansenguchi",
+  );
+  assert.ok(fukuokaNagoya, "TKP名古屋新幹線口が公開Datasetにありません");
+  assert.equal(
+    fukuokaNagoya.officialUrl,
+    "https://www.kashikaigishitsu.net/facilitys/gc-nagoya-shinkansenguchi/",
+  );
+  assert.match(fukuokaNagoya.accessNote ?? "", /2月2日（火）/u);
+  assert.match(fukuokaNagoya.accessNote ?? "", /9月下旬公開予定/u);
+  assert.match(fukuokaNagoya.accessNote ?? "", /使用階・会議室/u);
+  for (const hotelId of [
+    "comfort-hotel-nagoya-shinkansenguchi",
+    "daiwa-roynet-hotel-nagoya-shinkansenguchi",
+  ]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-tkp-premium-nagoya-shinkansenguchi",
+    );
+    assert.ok(access, `${hotelId} がTKP名古屋新幹線口に結合されていません`);
+    assert.deepEqual(access.modes, ["walk"]);
+    assert.equal(access.transferCount, 0);
+    assert.equal(access.measurementBasis, "route_only");
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.match(access.travelTimeLabel ?? "", /太閤通口/u);
+    assert.match(access.caution ?? "", /収容人数により別会場/u);
+    assert.match(access.caution ?? "", /使用階・会議室/u);
+    assert.match(access.caution ?? "", /一般受付/u);
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+    assert.ok(hotel.amenities.some((amenity) => amenity.key === "desk"));
+    assert.ok(hotel.amenities.some((amenity) => amenity.key === "coin_laundry"));
+    assert.ok(hotel.amenities.some((amenity) => amenity.key === "breakfast"));
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);

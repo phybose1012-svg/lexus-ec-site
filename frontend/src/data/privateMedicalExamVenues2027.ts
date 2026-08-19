@@ -2328,8 +2328,10 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     municipality: "名古屋市中村区",
     nearestStations: ["JR・名鉄・近鉄・地下鉄 名古屋駅"],
     officialUrl: "https://www.kashikaigishitsu.net/facilitys/gc-nagoya-shinkansenguchi/",
+    officialUrlLabel: "TKPガーデンシティPREMIUM名古屋新幹線口 公式アクセス",
+    accessNote: "福岡大学医学部医学科の2027年度一般選抜・系統別日程一次選考は2月2日（火）に実施され、名古屋試験場はTKPガーデンシティPREMIUM名古屋新幹線口です。希望会場の収容人数を超えた場合は別会場になるため、出願確認票・受験票で最終会場を確認してください。一般選抜の入試要項は9月下旬公開予定で、現時点では開場・入室・集合・試験開始時刻、使用階・会議室、受付位置、受験生入口は未公表です。施設は井門名古屋ビル2～9階にあり、JR名古屋駅太閤通口から徒歩3分と公式案内されていますが、特定階・一般受付・通常利用時間を入試の試験室・入口・開場時刻に転用しないでください。入試要項、受験票、当日案内で確認してください。",
     reviewState: "verified",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: "2026-08-19T00:00:00+09:00",
   },
   {
     venueId: "venue-tkp-shinosaka-conference-center",

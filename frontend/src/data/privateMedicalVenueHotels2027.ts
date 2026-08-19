@@ -187,6 +187,7 @@ const JICHI_KAGOSHIMA_MEETING_16A1_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_OKINAWA_MUNICIPAL_AUTONOMY_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const KURUME_MII_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const FUKUOKA_TIME24_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const FUKUOKA_NAGOYA_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -4257,6 +4258,23 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.kanazawa-med.ac.jp/medicine_exam/guidelines/general-1.html",
         ],
       },
+      {
+        venueId: "venue-tkp-premium-nagoya-shinkansenguchi",
+        modes: ["walk"],
+        routeSummary: "コンフォートホテル名古屋新幹線口からホテル公式のアクセス経路を逆向きにたどり、JR名古屋駅太閤通口へ徒歩で進みます。同出口を接続点に、TKP公式の徒歩経路で井門名古屋ビルのTKPガーデンシティPREMIUM名古屋新幹線口へ向かい、入試要項・受験票・当日掲示に従って指定受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR名古屋駅太閤通口は公式徒歩約5分／同出口―会場は施設公式徒歩3分（客室階・指定試験室までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: FUKUOKA_NAGOYA_VERIFIED_AT,
+        caution: "ホテル公式の徒歩約5分と施設公式の徒歩3分は太閤通口を接続点とする別区間で、ホテルから指定試験室までの通し所要ではありません。客室階からの移動、横断・信号待ち、井門名古屋ビル内の移動を別に見込んでください。福岡大学医学部医学科の系統別日程一次は2027年2月2日（火）です。名古屋会場を希望しても収容人数により別会場になる場合があるため、出願確認票・受験票で本施設の指定を確認してください。2027年度入試要項は9月下旬公開予定で、開場・入室・集合・試験開始時刻、使用階・会議室、受付位置、受験生入口は未公表です。施設の通常利用時間や一般受付を試験の開場時刻・入口とみなさず、入試要項、受験票、当日案内を確認してください。",
+        evidenceUrls: [
+          "https://www.choice-hotels.jp/hotel/nagoyashinkansenguchi/access/",
+          "https://www.kashikaigishitsu.net/facilitys/gc-nagoya-shinkansenguchi/access/",
+          "https://www.kashikaigishitsu.net/facilitys/gc-nagoya-shinkansenguchi/",
+          "https://www.fukuoka-u.ac.jp/pdf/entrance-examinations/guidebook-entrance-examinations2027.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "全室無料Wi-Fi", "全客室で無料Wi-Fiを利用できます。", "https://www.choice-hotels.jp/hotel/nagoyashinkansenguchi/"),
@@ -4267,7 +4285,48 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: TKP_PREMIUM_NAGOYA_EKIMAE_VERIFIED_AT,
-    note: "名古屋駅太閤通口側の設備が揃った候補です。可動式デスク、無料Wi-Fi、2階の24時間コインランドリー、6:30開始の無料朝食を公式確認しています。18歳未満だけ、または未成年者同士で宿泊する場合は、宿泊者全員分の保護者同意書を準備してください。学習面を優先する場合は、ソファーデスクとなるクイーンエコノミー以外の机仕様も予約時に確認してください。名古屋会場は大学公式内に表記差があるため、受験票でTKPガーデンシティPREMIUM名古屋駅前が指定された場合だけ利用してください。",
+    note: "名古屋駅太閤通口側の設備が揃った候補です。可動式デスク、無料Wi-Fi、2階の24時間コインランドリー、6:30開始の無料朝食を公式確認しています。18歳未満だけ、または未成年者同士で宿泊する場合は、宿泊者全員分の保護者同意書を準備してください。学習面を優先する場合は、ソファーデスクとなるクイーンエコノミー以外の机仕様も予約時に確認してください。各大学の出願確認票・受験票で指定された名古屋会場の施設名・住所を確認し、名称の似たTKP施設を取り違えないでください。",
+  },
+  {
+    hotelId: "daiwa-roynet-hotel-nagoya-shinkansenguchi",
+    name: "ダイワロイネットホテル名古屋新幹線口",
+    postalCode: "453-0015",
+    address: "愛知県名古屋市中村区椿町1-23",
+    prefecture: "愛知県",
+    municipality: "名古屋市中村区",
+    officialUrl: "https://www.daiwaroynet.jp/nagoya-shinkansenguchi/",
+    officialBookingUrl: "https://www.daiwaroynet.jp/nagoya-shinkansenguchi/",
+    nearestStation: "JR・名鉄・近鉄・地下鉄 名古屋駅",
+    venueAccess: [
+      {
+        venueId: "venue-tkp-premium-nagoya-shinkansenguchi",
+        modes: ["walk"],
+        routeSummary: "ダイワロイネットホテル名古屋新幹線口からホテル公式のアクセス経路を逆向きにたどり、JR名古屋駅太閤通口へ徒歩で進みます。同出口を接続点に、TKP公式の徒歩経路で井門名古屋ビルのTKPガーデンシティPREMIUM名古屋新幹線口へ向かい、入試要項・受験票・当日掲示に従って指定受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "ホテル―JR名古屋駅太閤通口は公式徒歩約3分／同出口―会場は施設公式徒歩3分（客室階・指定試験室までを除く別区間表示）",
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat"],
+        verifiedAt: FUKUOKA_NAGOYA_VERIFIED_AT,
+        caution: "ホテル公式の徒歩約3分と施設公式の徒歩3分は太閤通口を接続点とする別区間で、ホテルから指定試験室までの通し所要ではありません。客室階からの移動、横断・信号待ち、井門名古屋ビル内の移動を別に見込んでください。福岡大学医学部医学科の系統別日程一次は2027年2月2日（火）です。名古屋会場を希望しても収容人数により別会場になる場合があるため、出願確認票・受験票で本施設の指定を確認してください。2027年度入試要項は9月下旬公開予定で、開場・入室・集合・試験開始時刻、使用階・会議室、受付位置、受験生入口は未公表です。施設の通常利用時間や一般受付を試験の開場時刻・入口とみなさず、入試要項、受験票、当日案内を確認してください。",
+        evidenceUrls: [
+          "https://www.daiwaroynet.jp/nagoya-shinkansenguchi/access/",
+          "https://www.kashikaigishitsu.net/facilitys/gc-nagoya-shinkansenguchi/access/",
+          "https://www.kashikaigishitsu.net/facilitys/gc-nagoya-shinkansenguchi/",
+          "https://www.fukuoka-u.ac.jp/pdf/entrance-examinations/guidebook-entrance-examinations2027.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "全室無料Wi-Fi", "全客室で無料Wi-Fiを利用できます。", "https://www.daiwaroynet.jp/nagoya-shinkansenguchi/room/"),
+      amenity("desk", "明るいワイドデスク", "デスクワークに十分な広さの大型デスクと明るいデスクライトを備えています。", "https://www.daiwaroynet.jp/nagoya-shinkansenguchi/room/"),
+      amenity("coin_laundry", "3階24時間コインランドリー", "3階の洗濯乾燥機2台を24時間利用できます。", "https://www.daiwaroynet.jp/nagoya-shinkansenguchi/facilities/"),
+      amenity("breakfast", "朝食6:30〜", "1階レストランで6:30〜10:00（最終入店9:30）に和洋ビュッフェを提供しています。", "https://www.daiwaroynet.jp/nagoya-shinkansenguchi/breakfast/"),
+      amenity("humidifier", "加湿機能付き空気清浄機", "客室に加湿機能付き空気清浄機を備えています。", "https://www.daiwaroynet.jp/nagoya-shinkansenguchi/room/"),
+    ],
+    operatingStatus: "official_site_active",
+    reviewState: "verified",
+    verifiedAt: FUKUOKA_NAGOYA_VERIFIED_AT,
+    note: "名古屋駅太閤通口側の堅実枠です。明るいワイドデスク、無料Wi-Fi、3階の24時間コインランドリー、6:30開始の朝食、加湿機能付き空気清浄機を公式確認しています。18歳未満だけ、または未成年者同士で宿泊する場合は、宿泊者全員分のホテル名入り親権者同意書を提出してください。福岡大学の名古屋会場は希望者数により変更される場合があるため、出願確認票・受験票で本施設が指定された場合だけ利用してください。",
   },
   {
     hotelId: "meitetsu-inn-nagoya-sakuradori",
