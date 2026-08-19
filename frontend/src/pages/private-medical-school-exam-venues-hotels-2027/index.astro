@@ -684,11 +684,11 @@ const structuredData = {
     <nav class="admissions-jump-nav venue-guide-jump-nav" aria-label="ページ内メニュー">
       <div class="content admissions-jump-nav__inner">
         {[
-          { id: "venues", long: "会場別一覧", short: "会場別" },
-          { id: "universities", long: "大学別31校", short: "大学別" },
-          { id: "planning", long: "宿泊計画", short: "宿泊" },
           { id: "updates", long: "更新履歴", short: "更新" },
+          { id: "universities", long: "大学別31校", short: "大学別" },
+          { id: "venues", long: "会場別一覧", short: "会場別" },
           { id: "dataset", long: "公開データ", short: "データ" },
+          { id: "planning", long: "宿泊計画", short: "宿泊" },
         ].map((item, index) => (
           <a href={`#${item.id}`} aria-label={`${item.long}へ移動`}>
             <span class="admissions-jump-nav__index">{String(index + 1).padStart(2, "0")}</span>
@@ -749,6 +749,91 @@ const structuredData = {
           <button type="reset">条件をリセット</button>
         </form>
         <p class="venue-guide-filter-result" aria-live="polite" data-filter-result>全件を表示しています。</p>
+      </div>
+    </section>
+
+    <section class="venue-guide-updates" id="updates" aria-labelledby="updates-title">
+      <div class="content">
+        <header class="admissions-section-heading"><p>UPDATE HISTORY</p><h2 id="updates-title">更新履歴</h2><p>受験生にとって変わった内容を記録します。</p></header>
+        <ol>{updateHistory.map((update, index) => <li><div>{index === 0 && <span>NEW</span>}<time datetime={update.dateTime}>{update.date}</time></div><article><h3>{update.title}</h3><p>{update.text}</p></article></li>)}</ol>
+      </div>
+    </section>
+
+    <AdmissionsBrandDivider variant="lexus" />
+
+    <section class="venue-guide-universities" id="universities" aria-labelledby="universities-title">
+      <div class="content">
+        <header class="admissions-section-heading">
+          <p>BY UNIVERSITY</p>
+          <h2 id="universities-title">大学別一覧（31大学）</h2>
+          <p>方式ごとに一次・二次を分け、会場未公表や受験票指定も省略せず表示します。</p>
+        </header>
+
+        <div class="venue-guide-university-list" data-filter-section="universities">
+          {privateMedicalExamVenueUniversitySummaries2027.map((university, index) => {
+            const assignments = assignmentsForUniversity(university.universityId);
+            const venuePrefectureValues = [...new Set(assignments.flatMap((assignment) => [
+              ...assignment.announcedPrefectures,
+              ...assignment.venueLinks
+                .map((link) => venueById.get(link.venueId)?.prefecture)
+                .filter((prefecture): prefecture is string => Boolean(prefecture)),
+            ]))];
+            const stages = [...new Set(assignments.map((assignment) => assignment.examStage))];
+            const categories = [...new Set(assignments.map((assignment) => assignment.routeCategory))];
+            const states = [...new Set(assignments.map((assignment) => assignment.publicationState))];
+            const searchText = [university.universityName, ...assignments.flatMap((assignment) => [assignment.routeName, assignment.announcedVenueText, ...assignmentVenueNames(assignment)])].join(" ").toLowerCase();
+            return (
+              <details
+                class="venue-guide-university"
+                id={`university-${university.universityId}`}
+                data-filter-card
+                data-kind="university"
+                data-search={searchText}
+                data-regions={university.region}
+                data-prefectures={venuePrefectureValues.join("|")}
+                data-stages={stages.join("|")}
+                data-categories={categories.join("|")}
+                data-states={states.join("|")}
+              >
+                <summary>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <div role="heading" aria-level="3"><small>{university.region}・{university.prefecture}</small><strong>{university.universityName}</strong></div>
+                  <div class="venue-guide-university__counts"><span>確定 {assignments.filter((entry) => entry.publicationState === "confirmed").length}</span><span>会場未確定 {assignments.filter((entry) => entry.publicationState !== "confirmed").length}</span></div>
+                  <i aria-hidden="true"></i>
+                </summary>
+                <div class="venue-guide-university__body">
+                  {assignments.map((assignment) => {
+                    const linkedVenues = assignmentLinkedVenues(assignment);
+                    const venueLinks = linkedVenues.map((venue) => (
+                      <a href={`#venue-${venue.venueId}`}>{linkedVenues.length > 8 && `${venue.prefecture}：`}{venue.shortName}を見る</a>
+                    ));
+                    return <article data-filter-assignment-id={assignment.assignmentId}>
+                      <header><div><span>{assignment.examStageLabel}</span><strong>{assignment.routeName}</strong></div><span class={`venue-state venue-state--${assignment.publicationState}`}>{venuePublicationStateLabels[assignment.publicationState]}</span></header>
+                      <dl>
+                        <div><dt>試験日</dt><dd>{assignment.examDateLabel}</dd></div>
+                        <div><dt>公表会場</dt><dd>{assignment.announcedVenueText}</dd></div>
+                        <div><dt>指定・選択条件</dt><dd>{conditionText(assignment) || "指定条件の記載なし"}</dd></div>
+                        <div><dt>根拠</dt><dd>{assignment.evidenceLabel}{assignment.evidenceLocator && `（${assignment.evidenceLocator}）`}</dd></div>
+                      </dl>
+                      {linkedVenues.length > 8 ? (
+                        <details class="venue-guide-university__venue-disclosure">
+                          <summary>正式会場へのリンク（{linkedVenues.length}施設）</summary>
+                          <p class="venue-guide-university__venue-links">{venueLinks}</p>
+                        </details>
+                      ) : linkedVenues.length > 0 ? (
+                        <p class="venue-guide-university__venue-links">{venueLinks}</p>
+                      ) : null}
+                      {assignment.note && <p class="venue-guide-university__note">{assignment.note}</p>}
+                      {assignment.officialAdmissionUrl && <a class="venue-guide-source-link" href={assignment.officialAdmissionUrl} target="_blank" rel="noopener noreferrer">大学公式資料 ↗</a>}
+                    </article>;
+                  })}
+                  <footer><a href={university.strategyPath}>大学別の入試対策を見る →</a></footer>
+                </div>
+              </details>
+            );
+          })}
+        </div>
+        <p class="venue-guide-empty" hidden data-filter-empty="universities">条件に合う大学はありません。</p>
       </div>
     </section>
 
@@ -916,81 +1001,16 @@ const structuredData = {
       </div>
     </section>
 
-    <AdmissionsBrandDivider variant="lexus" />
-
-    <section class="venue-guide-universities" id="universities" aria-labelledby="universities-title">
+    <section class="venue-guide-related" id="dataset" aria-labelledby="dataset-title">
       <div class="content">
-        <header class="admissions-section-heading">
-          <p>BY UNIVERSITY</p>
-          <h2 id="universities-title">大学別一覧（31大学）</h2>
-          <p>方式ごとに一次・二次を分け、会場未公表や受験票指定も省略せず表示します。</p>
-        </header>
-
-        <div class="venue-guide-university-list" data-filter-section="universities">
-          {privateMedicalExamVenueUniversitySummaries2027.map((university, index) => {
-            const assignments = assignmentsForUniversity(university.universityId);
-            const venuePrefectureValues = [...new Set(assignments.flatMap((assignment) => [
-              ...assignment.announcedPrefectures,
-              ...assignment.venueLinks
-                .map((link) => venueById.get(link.venueId)?.prefecture)
-                .filter((prefecture): prefecture is string => Boolean(prefecture)),
-            ]))];
-            const stages = [...new Set(assignments.map((assignment) => assignment.examStage))];
-            const categories = [...new Set(assignments.map((assignment) => assignment.routeCategory))];
-            const states = [...new Set(assignments.map((assignment) => assignment.publicationState))];
-            const searchText = [university.universityName, ...assignments.flatMap((assignment) => [assignment.routeName, assignment.announcedVenueText, ...assignmentVenueNames(assignment)])].join(" ").toLowerCase();
-            return (
-              <details
-                class="venue-guide-university"
-                id={`university-${university.universityId}`}
-                data-filter-card
-                data-kind="university"
-                data-search={searchText}
-                data-regions={university.region}
-                data-prefectures={venuePrefectureValues.join("|")}
-                data-stages={stages.join("|")}
-                data-categories={categories.join("|")}
-                data-states={states.join("|")}
-              >
-                <summary>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <div role="heading" aria-level="3"><small>{university.region}・{university.prefecture}</small><strong>{university.universityName}</strong></div>
-                  <div class="venue-guide-university__counts"><span>確定 {assignments.filter((entry) => entry.publicationState === "confirmed").length}</span><span>会場未確定 {assignments.filter((entry) => entry.publicationState !== "confirmed").length}</span></div>
-                  <i aria-hidden="true"></i>
-                </summary>
-                <div class="venue-guide-university__body">
-                  {assignments.map((assignment) => {
-                    const linkedVenues = assignmentLinkedVenues(assignment);
-                    const venueLinks = linkedVenues.map((venue) => (
-                      <a href={`#venue-${venue.venueId}`}>{linkedVenues.length > 8 && `${venue.prefecture}：`}{venue.shortName}を見る</a>
-                    ));
-                    return <article data-filter-assignment-id={assignment.assignmentId}>
-                      <header><div><span>{assignment.examStageLabel}</span><strong>{assignment.routeName}</strong></div><span class={`venue-state venue-state--${assignment.publicationState}`}>{venuePublicationStateLabels[assignment.publicationState]}</span></header>
-                      <dl>
-                        <div><dt>試験日</dt><dd>{assignment.examDateLabel}</dd></div>
-                        <div><dt>公表会場</dt><dd>{assignment.announcedVenueText}</dd></div>
-                        <div><dt>指定・選択条件</dt><dd>{conditionText(assignment) || "指定条件の記載なし"}</dd></div>
-                        <div><dt>根拠</dt><dd>{assignment.evidenceLabel}{assignment.evidenceLocator && `（${assignment.evidenceLocator}）`}</dd></div>
-                      </dl>
-                      {linkedVenues.length > 8 ? (
-                        <details class="venue-guide-university__venue-disclosure">
-                          <summary>正式会場へのリンク（{linkedVenues.length}施設）</summary>
-                          <p class="venue-guide-university__venue-links">{venueLinks}</p>
-                        </details>
-                      ) : linkedVenues.length > 0 ? (
-                        <p class="venue-guide-university__venue-links">{venueLinks}</p>
-                      ) : null}
-                      {assignment.note && <p class="venue-guide-university__note">{assignment.note}</p>}
-                      {assignment.officialAdmissionUrl && <a class="venue-guide-source-link" href={assignment.officialAdmissionUrl} target="_blank" rel="noopener noreferrer">大学公式資料 ↗</a>}
-                    </article>;
-                  })}
-                  <footer><a href={university.strategyPath}>大学別の入試対策を見る →</a></footer>
-                </div>
-              </details>
-            );
-          })}
+        <aside class="admissions-related-schedule admissions-related-schedule--general" aria-labelledby="related-title">
+          <div><strong id="related-title">試験日・出願締切を比較する方へ</strong><p>既存の日程ページでは、一般選抜・共通テスト利用選抜31大学の日程を素早く比較できます。</p></div>
+          <a href="/private-medical-school-admissions-schedule-2027/">2027年度入試日程を見る →</a>
+        </aside>
+        <div class="venue-guide-dataset">
+          <div><p>OPEN DATA</p><h2 id="dataset-title">ページ掲載情報をJSONでも公開</h2><p>会場・大学・方式・試験段階・日付・ホテル・対応関係・出典・確認日時・確認状態を再利用できます。</p></div>
+          <a href={datasetPath} type="application/json">機械可読JSONを見る →</a>
         </div>
-        <p class="venue-guide-empty" hidden data-filter-empty="universities">条件に合う大学はありません。</p>
       </div>
     </section>
 
@@ -1008,26 +1028,6 @@ const structuredData = {
           <li><span>04</span><div><h3>雪・混雑・イベントを確認</h3><p>東北・北陸の雪、首都圏の遅延、展示場周辺の大型イベントによる混雑を想定します。</p></div></li>
           <li><span>05</span><div><h3>予約条件を公式画面で確認</h3><p>キャンセル料、朝食時刻、チェックイン、税・サービス料はプランごとに確認します。</p></div></li>
         </ol>
-      </div>
-    </section>
-
-    <section class="venue-guide-updates" id="updates" aria-labelledby="updates-title">
-      <div class="content">
-        <header class="admissions-section-heading"><p>UPDATE HISTORY</p><h2 id="updates-title">更新履歴</h2><p>受験生にとって変わった内容を記録します。</p></header>
-        <ol>{updateHistory.map((update, index) => <li><div>{index === 0 && <span>NEW</span>}<time datetime={update.dateTime}>{update.date}</time></div><article><h3>{update.title}</h3><p>{update.text}</p></article></li>)}</ol>
-      </div>
-    </section>
-
-    <section class="venue-guide-related" id="dataset" aria-labelledby="dataset-title">
-      <div class="content">
-        <aside class="admissions-related-schedule admissions-related-schedule--general" aria-labelledby="related-title">
-          <div><strong id="related-title">試験日・出願締切を比較する方へ</strong><p>既存の日程ページでは、一般選抜・共通テスト利用選抜31大学の日程を素早く比較できます。</p></div>
-          <a href="/private-medical-school-admissions-schedule-2027/">2027年度入試日程を見る →</a>
-        </aside>
-        <div class="venue-guide-dataset">
-          <div><p>OPEN DATA</p><h2 id="dataset-title">ページ掲載情報をJSONでも公開</h2><p>会場・大学・方式・試験段階・日付・ホテル・対応関係・出典・確認日時・確認状態を再利用できます。</p></div>
-          <a href={datasetPath} type="application/json">機械可読JSONを見る →</a>
-        </div>
       </div>
     </section>
   </main>

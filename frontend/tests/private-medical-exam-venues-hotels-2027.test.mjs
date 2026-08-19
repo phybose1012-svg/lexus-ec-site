@@ -4797,10 +4797,27 @@ test("会場ページのページ内メニューは5セクションへ移動で�
     fileURLToPath(new URL("../src/styles/venues-hotels-2027.css", import.meta.url)),
     "utf8",
   );
+  const expectedSectionOrder = [
+    ["updates", "venue-guide-updates"],
+    ["universities", "venue-guide-universities"],
+    ["venues", "venue-guide-venues"],
+    ["dataset", "venue-guide-related"],
+    ["planning", "venue-guide-planning"],
+  ];
 
   assert.match(source, /class="admissions-jump-nav venue-guide-jump-nav"/u);
-  for (const id of ["venues", "universities", "planning", "updates", "dataset"]) {
-    assert.match(source, new RegExp(`id: "${id}"`, "u"));
+  const jumpNavStart = source.indexOf('<nav class="admissions-jump-nav venue-guide-jump-nav"');
+  const jumpNavEnd = source.indexOf("</nav>", jumpNavStart);
+  const jumpNavSource = source.slice(jumpNavStart, jumpNavEnd);
+  let previousJumpIndex = -1;
+  let previousSectionIndex = -1;
+  for (const [id, className] of expectedSectionOrder) {
+    const jumpIndex = jumpNavSource.indexOf(`id: "${id}"`);
+    const sectionIndex = source.indexOf(`<section class="${className}" id="${id}"`);
+    assert.ok(jumpIndex > previousJumpIndex, `${id}のページ内メニュー順が正しくありません`);
+    assert.ok(sectionIndex > previousSectionIndex, `${id}の本文セクション順が正しくありません`);
+    previousJumpIndex = jumpIndex;
+    previousSectionIndex = sectionIndex;
   }
   assert.match(cssSource, /\.venue-guide-jump-nav\s*\{[\s\S]*?position:\s*sticky;[\s\S]*?top:\s*0;/u);
   assert.match(cssSource, /#finder,[\s\S]*#venues,[\s\S]*#dataset,[\s\S]*scroll-margin-top:\s*82px;/u);
