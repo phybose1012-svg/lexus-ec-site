@@ -29,7 +29,6 @@ const title = metadata.title;
 const description = metadata.description;
 const canonical = metadata.canonicalUrl;
 const datasetUrl = metadata.datasetUrl;
-const datasetPath = new URL(datasetUrl).pathname;
 const publicHotels = privateMedicalVenueHotels2027.filter(
   (hotel) => hotel.operatingStatus === "official_site_active" && hotel.reviewState === "verified",
 );
@@ -687,7 +686,7 @@ const structuredData = {
           { id: "updates", long: "更新履歴", short: "更新" },
           { id: "universities", long: "大学別31校", short: "大学別" },
           { id: "venues", long: "会場別一覧", short: "会場別" },
-          { id: "dataset", long: "公開データ", short: "データ" },
+          { id: "dataset", long: "入試日程", short: "日程" },
           { id: "planning", long: "宿泊計画", short: "宿泊" },
         ].map((item, index) => (
           <a href={`#${item.id}`} aria-label={`${item.long}へ移動`}>
@@ -1036,13 +1035,28 @@ const structuredData = {
 
     <section class="venue-guide-related" id="dataset" aria-labelledby="dataset-title">
       <div class="content">
-        <aside class="admissions-related-schedule admissions-related-schedule--general" aria-labelledby="related-title">
-          <div><strong id="related-title">試験日・出願締切を比較する方へ</strong><p>既存の日程ページでは、一般選抜・共通テスト利用選抜31大学の日程を素早く比較できます。</p></div>
-          <a href="/private-medical-school-admissions-schedule-2027/">2027年度入試日程を見る →</a>
-        </aside>
-        <div class="venue-guide-dataset">
-          <div><p>OPEN DATA</p><h2 id="dataset-title">ページ掲載情報をJSONでも公開</h2><p>会場・大学・方式・試験段階・日付・ホテル・対応関係・出典・確認日時・確認状態を再利用できます。</p></div>
-          <a href={datasetPath} type="application/json">機械可読JSONを見る →</a>
+        <header class="admissions-section-heading">
+          <p>ADMISSIONS SCHEDULE</p>
+          <h2 id="dataset-title">2027年度 私立医学部の入試日程</h2>
+          <p>受験する選抜方式に合わせて、試験日・出願期間・合格発表日を確認できます。</p>
+        </header>
+        <div class="venue-guide-schedule-grid">
+          <aside class="admissions-related-schedule admissions-related-schedule--general" aria-labelledby="general-schedule-title">
+            <div>
+              <span class="venue-guide-schedule-card__label">GENERAL / COMMON TEST</span>
+              <strong id="general-schedule-title">一般選抜・共通テスト利用</strong>
+              <p>全国31大学の出願締切、一次・二次試験日、合格発表日を大学別・日付別に比較できます。</p>
+            </div>
+            <a href="/private-medical-school-admissions-schedule-2027/">一般選抜等の日程を見る →</a>
+          </aside>
+          <aside class="admissions-related-schedule admissions-related-schedule--special" aria-labelledby="special-schedule-title">
+            <div>
+              <span class="venue-guide-schedule-card__label">COMPREHENSIVE / RECOMMENDATION</span>
+              <strong id="special-schedule-title">総合型選抜・学校推薦型選抜等</strong>
+              <p>総合型・学校推薦型・地域枠・帰国生・IBなどを、方式ごとの日程と出願条件から確認できます。</p>
+            </div>
+            <a href="/private-medical-school-special-admissions-schedule-2027/">総合型・推薦型等の日程を見る →</a>
+          </aside>
         </div>
       </div>
     </section>

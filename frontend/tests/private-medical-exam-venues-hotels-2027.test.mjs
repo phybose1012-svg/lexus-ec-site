@@ -4732,8 +4732,11 @@ test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを�
 
   assert.match(pageSource, /<AdmissionsScheduleSwitcher current="venues"\s*\/>/u);
   assert.match(pageSource, /rel="alternate" type="application\/json"/u);
-  assert.match(pageSource, /const datasetPath = new URL\(datasetUrl\)\.pathname/u);
   assert.match(pageSource, /href="\/private-medical-school-admissions-schedule-2027\/"/u);
+  assert.match(pageSource, /href="\/private-medical-school-special-admissions-schedule-2027\/"/u);
+  assert.match(pageSource, /一般選抜・共通テスト利用/u);
+  assert.match(pageSource, /総合型選抜・学校推薦型選抜等/u);
+  assert.doesNotMatch(pageSource, /機械可読JSONを見る|ページ掲載情報をJSONでも公開/u);
   assert.match(pageSource, /聖マリアンナ医科大学 本学校舎の周辺ホテル2施設を追加/u);
   assert.match(pageSource, /産業医科大学 本学の周辺ホテル2施設を追加/u);
   assert.match(pageSource, /昭和医科大学 旗の台キャンパスの宿泊候補2施設を追加/u);

@@ -1298,21 +1298,21 @@
   margin-top: 0;
 }
 
-.venue-guide-dataset {
-  display: flex;
-  gap: 28px;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 16px;
-  border: 1px solid var(--venue-line);
-  border-left: 6px solid var(--venue-gold);
-  border-radius: 4px;
-  padding: 24px;
-  background: linear-gradient(110deg, var(--venue-gold-soft), #fff 68%);
+.venue-guide-schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
 }
 
-.venue-guide-dataset > div > p:first-child {
-  margin-bottom: 5px;
+.venue-guide-schedule-grid .admissions-related-schedule {
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 196px;
+}
+
+.venue-guide-schedule-card__label {
+  display: block;
+  margin-bottom: 7px;
   color: var(--venue-gold-text);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.62rem;
@@ -1320,33 +1320,8 @@
   letter-spacing: 0.16em;
 }
 
-.venue-guide-dataset h2 {
-  margin-bottom: 5px;
-  font-size: 1.05rem;
-}
-
-.venue-guide-dataset h2 + p {
-  margin: 0;
-  color: var(--venue-muted);
-  font-size: 0.75rem;
-  line-height: 1.7;
-}
-
-.venue-guide-dataset > a {
-  flex: none;
-  border: 1px solid var(--venue-gold);
-  border-radius: 4px;
-  padding: 11px 15px;
-  color: #74520a;
-  background: #fff;
-  font-size: 0.72rem;
-  font-weight: 900;
-  text-decoration: none;
-}
-
-.venue-guide-dataset > a:hover {
-  color: #fff;
-  background: #8d6915;
+.venue-guide-schedule-grid .admissions-related-schedule a {
+  margin-top: auto;
 }
 
 @media (max-width: 1180px) {
@@ -1418,6 +1393,10 @@
   }
 
   .venue-guide-hotel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .venue-guide-schedule-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -1594,12 +1573,11 @@
     text-align: right;
   }
 
-  .venue-guide-dataset,
   .venue-guide-related .admissions-related-schedule {
     display: grid;
+    min-height: 0;
   }
 
-  .venue-guide-dataset > a,
   .venue-guide-related .admissions-related-schedule a {
     width: 100%;
     justify-content: center;
