@@ -535,6 +535,11 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
       assert.match(venue.officialUrlLabel ?? "", /公式県庁舎フロア・アクセス案内/u);
       assert.match(venue.accessNote ?? "", /行政庁舎 16-A-1会議室（16階）/u);
       assert.match(venue.accessNote ?? "", /面接は10:00〜16:00のうち鹿児島県が指定/u);
+    } else if (venue.venueId === "venue-jichi-first-okinawa-municipal-autonomy") {
+      assert.deepEqual(venue.nearestStations, ["沖縄都市モノレール 旭橋駅"]);
+      assert.match(venue.officialUrlLabel ?? "", /公式交通アクセス/u);
+      assert.match(venue.accessNote ?? "", /学力試験と.*面接の共通会場/u);
+      assert.match(venue.accessNote ?? "", /使用する階・ホール・会議室/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -925,7 +930,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 197);
+  assert.equal(dataset.hotels.length, 199);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   for (const hotelId of [
     "sotetsu-fresa-inn-nagoya-sakuradoriguchi",
@@ -1521,6 +1526,26 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
       assert.ok(access.reviewState.includes("official_direct"));
       assert.match(access.travelTimeLabel ?? "", /公式徒歩約3分/u);
     }
+  }
+  for (const hotelId of [
+    "hotel-yuquesta-asahibashi",
+    "grg-hotel-naha-higashimachi",
+  ]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-okinawa-municipal-autonomy",
+    );
+    assert.ok(access, `${hotelId} が沖縄県市町村自治会館に結合されていません`);
+    assert.equal(access.transferCount, 0);
+    assert.deepEqual(access.modes, ["walk"]);
+    assert.equal(access.measurementBasis, "route_only");
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    assert.match(access.travelTimeLabel ?? "", /旭橋駅/u);
+    assert.match(access.caution ?? "", /自治会館側入口は一般来館入口/u);
+    assert.match(access.caution ?? "", /使用階・ホール・会議室/u);
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
