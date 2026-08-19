@@ -339,6 +339,12 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "JR神戸線・阪神本線 元町駅",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式会館・会議室案内/u);
+    } else if (venue.venueId === "venue-jichi-first-hyogo-kyosai") {
+      assert.deepEqual(venue.nearestStations, [
+        "神戸市営地下鉄西神・山手線 県庁前駅",
+        "JR神戸線・阪神本線 元町駅",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式施設・アクセス案内/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -839,6 +845,24 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
     assert.equal(access.travelTimeLabel, undefined);
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  for (const hotelId of ["hyogo-kyosai-kaikan", "kobe-plaza-hotel-west"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-hyogo-kyosai",
+    );
+    assert.ok(access, `${hotelId} がひょうご共済会館に結合されていません`);
+    assert.equal(access.transferCount, 0);
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    if (hotelId === "hyogo-kyosai-kaikan") {
+      assert.equal(access.measurementBasis, "route_only");
+      assert.ok(access.reviewState.includes("official_direct"));
+    } else {
+      assert.equal(access.measurementBasis, "map_route_checked");
+      assert.ok(access.reviewState.includes("verified_with_caveat"));
+    }
+    assert.equal(access.travelTimeLabel, undefined);
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);

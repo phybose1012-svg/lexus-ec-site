@@ -154,6 +154,7 @@ const JICHI_KYOTO_MEDICAL_ASSOCIATION_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_KYOTO_PREFECTURAL_OFFICE_3_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_OSAKA_PRIMROSE_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_HYOGO_NOSAI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_HYOGO_KYOSAI_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -7165,6 +7166,23 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-hyogo-kyosai",
+        modes: ["walk"],
+        routeSummary: "ひょうご共済会館の宿泊客室フロアから館内共用部へ移動し、受験票、兵庫県から交付される試験専用案内、当日掲示に従って指定された面接受付・待機場所・面接室へ進みます。",
+        transferCount: 0,
+        measurementBasis: "route_only",
+        reviewState: ["official_direct", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_HYOGO_KYOSAI_VERIFIED_AT,
+        caution: "宿泊先と面接会場は同じひょうご共済会館ですが、2027年1月26日（火）の使用階・室名、受付位置、受験生入口、待機場所、宿泊客室からの館内経路は未公表です。徒歩0分・同一階とは案内せず、施設公式にある正面玄関、宿泊フロント、ツツジ・リンドウ等の一般会議室を面接受付・面接室とみなさないでください。受付は9:00〜9:20、面接は10:00〜16:00のうち兵庫県が指定する時間です。前日の学力試験及第発表と兵庫県からの案内を確認し、前夜にフロントへ試験朝の館内通行方法だけを確認してください。",
+        evidenceUrls: [
+          "https://www.h-kyosai.or.jp/hk-kaikan/guide/index.html",
+          "https://www.h-kyosai.or.jp/hk-kaikan/price/index.html",
+          "https://www.h-kyosai.or.jp/hk-kaikan/access/index.html",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("breakfast", "無料朝食7:00〜", "宿泊者向けの軽朝食は7:00〜9:00で、30分交代制です。希望時間に添えない場合があります。", "https://www.h-kyosai.or.jp/hk-kaikan/price/index.html"),
@@ -7201,6 +7219,24 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.google.com/maps/dir/?api=1&origin=%E5%85%B5%E5%BA%AB%E7%9C%8C%E7%A5%9E%E6%88%B8%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%85%83%E7%94%BA%E9%80%9A3-4-7&destination=%E5%85%B5%E5%BA%AB%E7%9C%8C%E7%A5%9E%E6%88%B8%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E4%B8%8B%E5%B1%B1%E6%89%8B%E9%80%9A4-15-3&travelmode=walking",
           "https://www.nosai-hyogo.or.jp/i4/",
           "https://www.hyogo-shunou.jp/access.html",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+      {
+        venueId: "venue-jichi-first-hyogo-kyosai",
+        modes: ["walk"],
+        routeSummary: "神戸プラザホテルウエストから、ホテルとひょうご共済会館の公式住所を地図で照合した元町駅周辺の地上徒歩経路で面接会場へ向かいます。到着後は受験票、兵庫県から交付される試験専用案内、当日掲示に従って指定された受験生入口・受付へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_HYOGO_KYOSAI_VERIFIED_AT,
+        caution: "ホテルは神戸市中央区元町通3丁目4番7号、面接会場は同区中山手通4丁目17番13号で、同一建物や専用直結動線ではありません。両施設の公式住所と地図上の地上徒歩経路は確認しましたが、ホテル公式は会場への推奨経路・徒歩分数を案内していないため、ホテル客室から面接室までの通し所要は掲載しません。面接は2027年1月26日（火）の受付9:00〜9:20、10:00〜16:00のうち兵庫県指定時間です。使用階・室、受付位置、受験生入口、待機場所は未公表で、施設公式の正面玄関、宿泊フロント、一般会議室を試験指定とみなさないでください。",
+        evidenceUrls: [
+          "https://www.kobeplaza.com/west/access/",
+          "https://www.google.com/maps/dir/?api=1&origin=%E5%85%B5%E5%BA%AB%E7%9C%8C%E7%A5%9E%E6%88%B8%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%85%83%E7%94%BA%E9%80%9A3-4-7&destination=%E5%85%B5%E5%BA%AB%E7%9C%8C%E7%A5%9E%E6%88%B8%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E4%B8%AD%E5%B1%B1%E6%89%8B%E9%80%9A4-17-13&travelmode=walking",
+          "https://www.h-kyosai.or.jp/hk-kaikan/access/index.html",
+          "https://www.h-kyosai.or.jp/hk-kaikan/guide/index.html",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
