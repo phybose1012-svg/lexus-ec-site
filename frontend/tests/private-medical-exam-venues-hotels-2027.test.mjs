@@ -614,9 +614,9 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
   assert.equal(tohokuGeneralFirst?.reviewState, "monitoring");
   assert.deepEqual(tohokuGeneralFirst?.conditions, ["admission_ticket"]);
   assert.deepEqual(tohokuGeneralFirst?.venueLinks, [
-    { venueId: "venue-tohoku-med-pharm-komatsushima-campus", role: "choice" },
-    { venueId: "venue-grand-cube-osaka", role: "choice" },
-    { venueId: "venue-acu-a-asty45", role: "choice" },
+    { venueId: "venue-tohoku-med-pharm-komatsushima-campus", role: "announced" },
+    { venueId: "venue-grand-cube-osaka", role: "announced" },
+    { venueId: "venue-acu-a-asty45", role: "announced" },
   ]);
   assert.match(tohokuGeneralFirst?.announcedVenueText ?? "", /東京：正式施設は現在調整中/u);
   assert.doesNotMatch(
@@ -627,6 +627,16 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
     tohokuGeneralFirst?.officialAdmissionUrl,
     "https://www.tohoku-mpu.ac.jp/admission/medicine-application/",
   );
+  const tohokuGeneralSecond = assignmentFor("tohoku-med-pharm--general--general", "second");
+  assert.deepEqual(tohokuGeneralSecond?.conditions, [
+    "fixed",
+    "university_assigned",
+    "admission_ticket",
+  ]);
+  assert.match(tohokuGeneralSecond?.note ?? "", /2月20日・21日.*大学が指定/u);
+  const tohokuCommonSecond = assignmentFor("tohoku-med-pharm--common--common-test", "second");
+  assert.deepEqual(tohokuCommonSecond?.conditions, ["fixed", "admission_ticket"]);
+  assert.match(tohokuCommonSecond?.note ?? "", /3月3日.*小松島キャンパス/u);
 
   const iwateGeneralFirst = assignmentFor("iwate-medical--general--general", "first");
   assert.equal(iwateGeneralFirst?.publicationState, "city_or_campus_only");
@@ -4453,6 +4463,10 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.match(daiwaRoynetToyamaStation?.note ?? "", /バリューツインを避け/u);
   assert.match(daiwaRoynetToyamaStation?.note ?? "", /未成年者だけ.*宿泊同意書/u);
   assert.equal(dataset.definitions.reviewStates.verified, "公式情報と照合済み");
+  assert.equal(
+    dataset.definitions.venueLinkRoles.announced,
+    "公表済み会場（選択方法は未公表）",
+  );
   assert.equal(dataset.definitions.examParts.written, "学力試験");
   assert.equal(dataset.definitions.venueLinkRoles.overflow, "定員状況等による代替会場");
   assert.ok("official_direct" in dataset.definitions.hotelAccessReviewStates);

@@ -165,6 +165,7 @@ export const getPrivateMedicalExamVenuesHotels2027Dataset = () => ({
     venueLinkRoles: {
       fixed: "固定会場",
       choice: "受験生が選択できる会場",
+      announced: "公表済み会場（選択方法は未公表）",
       primary: "原則会場",
       overflow: "定員状況等による代替会場",
     },

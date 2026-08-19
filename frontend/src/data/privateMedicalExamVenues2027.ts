@@ -21,7 +21,7 @@ export type VenueAssignmentCondition =
 
 export type VenueReviewState = "verified" | "needs_review" | "monitoring";
 export type ExamStage2027 = "first" | "second";
-export type VenueLinkRole = "fixed" | "choice" | "primary" | "overflow";
+export type VenueLinkRole = "fixed" | "choice" | "announced" | "primary" | "overflow";
 export type JichiExamPart2027 = "written" | "interview";
 
 export type PrivateMedicalExamVenue2027 = {
@@ -2881,9 +2881,9 @@ officialVenuePlan(["iwate-medical--general--general"], "second", {
 const tohokuVenueUrl = "https://www.tohoku-mpu.ac.jp/admission/medicine-application/";
 officialVenuePlan(["tohoku-med-pharm--general--general"], "first", {
   venueLinks: [
-    link("venue-tohoku-med-pharm-komatsushima-campus", "choice"),
-    link("venue-grand-cube-osaka", "choice"),
-    link("venue-acu-a-asty45", "choice"),
+    link("venue-tohoku-med-pharm-komatsushima-campus", "announced"),
+    link("venue-grand-cube-osaka", "announced"),
+    link("venue-acu-a-asty45", "announced"),
   ],
   announcedPrefectures: ["宮城県", "東京都", "大阪府", "北海道"],
   announcedVenueText: "仙台：東北医科薬科大学（小松島キャンパス）／東京：正式施設は現在調整中／大阪：グランキューブ大阪（大阪府立国際会議場）／札幌：ACU-A（アスティ45）",
@@ -2895,20 +2895,28 @@ officialVenuePlan(["tohoku-med-pharm--general--general"], "first", {
   reviewState: "monitoring",
   note: "2027年度入学者選抜ガイドでは一般選抜一次の試験地を宮城・東京・大阪・北海道と公表しています。募集概要で正式施設を確認できるのは小松島キャンパス、グランキューブ大阪、ACU-Aで、東京は現在調整中です。試験地の選択・指定方法と東京の正式施設は、9月頃公開予定の学生募集要項および受験票で確認してください。年次表示のない会場一覧に残るベルサール渋谷ガーデン・TOCビルは2027会場として結合していません。",
 });
-officialVenuePlan(
-  ["tohoku-med-pharm--general--general", "tohoku-med-pharm--common--common-test"],
-  "second",
-  {
-    venueLinks: [link("venue-tohoku-med-pharm-komatsushima-campus")],
-    announcedVenueText: "東北医科薬科大学 小松島キャンパス",
-    publicationState: "confirmed",
-    conditions: ["fixed"],
-    officialAdmissionUrl: tohokuVenueUrl,
-    evidenceLabel: "2027年度 医学部入学試験会場一覧",
-    evidenceLocator: "公式ページ「一般選抜 第2次試験」「大学入学共通テスト利用選抜 第2次試験」",
-    reviewState: "verified",
-  },
-);
+officialVenuePlan(["tohoku-med-pharm--general--general"], "second", {
+  venueLinks: [link("venue-tohoku-med-pharm-komatsushima-campus")],
+  announcedVenueText: "東北医科薬科大学 小松島キャンパス",
+  publicationState: "confirmed",
+  conditions: ["fixed", "university_assigned", "admission_ticket"],
+  officialAdmissionUrl: tohokuVenueUrl,
+  evidenceLabel: "大学公式2027年度 医学部募集概要",
+  evidenceLocator: "一般選抜「二次試験期日」「二次試験会場」",
+  reviewState: "verified",
+  note: "二次試験会場は小松島キャンパスで固定です。試験日は2月20日・21日のいずれか1日を大学が指定し、一次試験合格発表時に通知します。使用棟・階・試験室・受験生入口は未公表のため、学生募集要項、受験票、当日案内で確認してください。",
+});
+officialVenuePlan(["tohoku-med-pharm--common--common-test"], "second", {
+  venueLinks: [link("venue-tohoku-med-pharm-komatsushima-campus")],
+  announcedVenueText: "東北医科薬科大学 小松島キャンパス",
+  publicationState: "confirmed",
+  conditions: ["fixed", "admission_ticket"],
+  officialAdmissionUrl: tohokuVenueUrl,
+  evidenceLabel: "大学公式2027年度 医学部募集概要",
+  evidenceLocator: "大学入学共通テスト利用選抜「二次試験期日」「二次試験会場」",
+  reviewState: "verified",
+  note: "二次試験は3月3日に小松島キャンパスで実施されます。使用棟・階・試験室・受験生入口は未公表のため、学生募集要項、受験票、当日案内で確認してください。",
+});
 
 officialVenuePlan(["jichi-medical--general--general"], "first", {
   venueLinks: privateMedicalJichiVenueRelations2027,
