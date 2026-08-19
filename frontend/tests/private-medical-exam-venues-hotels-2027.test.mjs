@@ -527,6 +527,14 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式県庁舎フロア・アクセス案内/u);
       assert.match(venue.accessNote ?? "", /行政庁舎 講堂（2階）/u);
+    } else if (venue.venueId === "venue-jichi-first-kagoshima-meeting-16a1") {
+      assert.deepEqual(venue.nearestStations, [
+        "鹿児島市営バス・鹿児島交通 県庁前停留所",
+        "鹿児島市電 郡元電停",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式県庁舎フロア・アクセス案内/u);
+      assert.match(venue.accessNote ?? "", /行政庁舎 16-A-1会議室（16階）/u);
+      assert.match(venue.accessNote ?? "", /面接は10:00〜16:00のうち鹿児島県が指定/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -1477,6 +1485,32 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.deepEqual(access.modes, ["walk"]);
     assert.equal(access.reviewState.includes("venue_pdf_visual_review"), false);
     assert.match(access.caution ?? "", /行政庁舎2階講堂/u);
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+    if (hotelId === "art-hotel-kagoshima") {
+      assert.equal(access.measurementBasis, "map_route_checked");
+      assert.ok(access.reviewState.includes("verified_with_caveat"));
+      assert.equal(access.travelTimeLabel, undefined);
+    } else {
+      assert.equal(access.measurementBasis, "official");
+      assert.ok(access.reviewState.includes("official_direct"));
+      assert.match(access.travelTimeLabel ?? "", /公式徒歩約3分/u);
+    }
+  }
+  for (const hotelId of [
+    "art-hotel-kagoshima",
+    "kagoshima-daiichi-hotel-kamoike",
+  ]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-kagoshima-meeting-16a1",
+    );
+    assert.ok(access, `${hotelId} が鹿児島県庁行政庁舎16階16-A-1会議室に結合されていません`);
+    assert.equal(access.transferCount, 0);
+    assert.deepEqual(access.modes, ["walk"]);
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    assert.match(access.caution ?? "", /行政庁舎16階16-A-1会議室/u);
+    assert.match(access.caution ?? "", /面接10:00〜16:00のうち鹿児島県指定時間/u);
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
     if (hotelId === "art-hotel-kagoshima") {
       assert.equal(access.measurementBasis, "map_route_checked");

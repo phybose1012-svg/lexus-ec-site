@@ -183,6 +183,7 @@ const JICHI_OITA_MEETING_ROOM_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_MIYAZAKI_MRT_MICC_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_MIYAZAKI_DISASTER_71_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const JICHI_KAGOSHIMA_AUDITORIUM_2F_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const JICHI_KAGOSHIMA_MEETING_16A1_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -9152,6 +9153,23 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
           "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
         ],
       },
+      {
+        venueId: "venue-jichi-first-kagoshima-meeting-16a1",
+        modes: ["walk"],
+        routeSummary: "アートホテル鹿児島から、ホテルと鹿児島県庁の公式住所を照合した地上の公道を徒歩で進み、鹿児島県庁行政庁舎へ向かいます。到着後は受験票、鹿児島県から交付される面接専用案内、当日掲示に従って16階16-A-1会議室の指定受付へ進みます。",
+        transferCount: 0,
+        measurementBasis: "map_route_checked",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_KAGOSHIMA_MEETING_16A1_VERIFIED_AT,
+        caution: "ホテル公式住所（鴨池新町22番1号）と自治医科大学の2027年度募集要項・鹿児島県公式が示す県庁住所（鴨池新町10番1号）を固定し、地上の直接徒歩経路が成立することを地図で確認した案内です。ホテルグループ公式も鹿児島県庁を徒歩圏内と案内していますが、ホテルから行政庁舎16階16-A-1会議室への公式推奨経路・公式徒歩分数はありません。信号待ち、天候、客室階からの移動、16階の指定受付までを含む通し所要は掲載しません。2027年1月26日（火）の面接は受付9:00〜9:20、面接10:00〜16:00のうち鹿児島県指定時間です。会場は行政庁舎16階16-A-1会議室まで公表済みですが、受付位置、受験生入口、待機場所、面接順、使用するエレベーター・階段、指定動線は未公表です。一般来庁入口や1階総合案内を面接入口・受付とみなさず、受験票、鹿児島県からの面接専用案内、当日掲示を確認してください。前日の学力試験は同じ行政庁舎2階の講堂という別会場です。",
+        evidenceUrls: [
+          "https://iconia.co.jp/hotel-art-hotel-kagoshima-kagoshima",
+          "https://www.google.com/maps/dir/?api=1&origin=%E9%B9%BF%E5%85%90%E5%B3%B6%E7%9C%8C%E9%B9%BF%E5%85%90%E5%B3%B6%E5%B8%82%E9%B4%A8%E6%B1%A0%E6%96%B0%E7%94%BA22-1&destination=%E9%B9%BF%E5%85%90%E5%B3%B6%E7%9C%8C%E9%B9%BF%E5%85%90%E5%B3%B6%E5%B8%82%E9%B4%A8%E6%B1%A0%E6%96%B0%E7%94%BA10-1&travelmode=walking",
+          "https://www.pref.kagoshima.jp/aa02/chosha.html",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
     ],
     amenities: [
       amenity("wifi", "全客室無料Wi-Fi・LAN", "スタンダード客室で無料Wi-FiとLANを利用できます。", "https://www.art-kagoshima.com/rooms/standard/"),
@@ -9187,6 +9205,23 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         reviewState: ["official_direct"],
         verifiedAt: JICHI_KAGOSHIMA_AUDITORIUM_2F_VERIFIED_AT,
         caution: "ホテル公式の徒歩約3分はホテルから鹿児島県庁という施設までの一般案内で、行政庁舎2階講堂の試験室までの通し所要ではありません。2027年1月25日（月）の学力試験は受付8:20〜8:40、試験9:00〜14:10です。会場は行政庁舎2階講堂まで公表済みですが、受付位置、受験生入口、待機場所、使用するエレベーター・階段、指定動線は未公表です。一般来庁入口や1階総合案内を入試入口・受付とみなさず、受験票、鹿児島県からの試験専用案内、当日掲示を確認してください。翌1月26日（火）の面接は同じ行政庁舎16階の16-A-1会議室という別会場です。",
+        evidenceUrls: [
+          "https://www.kagoshima-daiichi.jp/kamoike/location/",
+          "https://www.pref.kagoshima.jp/aa02/chosha.html",
+          "https://www.jichi.ac.jp/exam/medicine/exam/general/",
+          "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_R9.pdf",
+        ],
+      },
+      {
+        venueId: "venue-jichi-first-kagoshima-meeting-16a1",
+        modes: ["walk"],
+        routeSummary: "かごしま第一ホテル鴨池から、ホテル公式が徒歩約3分と案内する鹿児島県庁へ徒歩で移動し、行政庁舎へ向かいます。到着後は受験票、鹿児島県から交付される面接専用案内、当日掲示に従って16階16-A-1会議室の指定受付へ進みます。",
+        transferCount: 0,
+        travelTimeLabel: "鹿児島県庁までホテル公式徒歩約3分（行政庁舎16階の指定受付までの館内時間は含みません）",
+        measurementBasis: "official",
+        reviewState: ["official_direct", "venue_pdf_visual_review"],
+        verifiedAt: JICHI_KAGOSHIMA_MEETING_16A1_VERIFIED_AT,
+        caution: "ホテル公式の徒歩約3分はホテルから鹿児島県庁という施設までの一般案内で、行政庁舎16階16-A-1会議室までの通し所要ではありません。2027年1月26日（火）の面接は受付9:00〜9:20、面接10:00〜16:00のうち鹿児島県指定時間です。会場は行政庁舎16階16-A-1会議室まで公表済みですが、受付位置、受験生入口、待機場所、面接順、使用するエレベーター・階段、指定動線は未公表です。一般来庁入口や1階総合案内を面接入口・受付とみなさず、受験票、鹿児島県からの面接専用案内、当日掲示を確認してください。前日の学力試験は同じ行政庁舎2階の講堂という別会場です。",
         evidenceUrls: [
           "https://www.kagoshima-daiichi.jp/kamoike/location/",
           "https://www.pref.kagoshima.jp/aa02/chosha.html",
