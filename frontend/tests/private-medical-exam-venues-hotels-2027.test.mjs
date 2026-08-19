@@ -494,6 +494,13 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式フロア・館内案内/u);
       assert.match(venue.accessNote ?? "", /使用室、受付位置、受験生入口/u);
+    } else if (venue.venueId === "venue-jichi-first-oita-new-large-meeting") {
+      assert.deepEqual(venue.nearestStations, [
+        "JR日豊本線・久大本線・豊肥本線 大分駅",
+        "大分バス・大分交通 県庁前停留所",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式県庁舎新館フロア案内/u);
+      assert.match(venue.accessNote ?? "", /新館14階/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -884,7 +891,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 190);
+  assert.equal(dataset.hotels.length, 192);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   for (const hotelId of [
     "sotetsu-fresa-inn-nagoya-sakuradoriguchi",
@@ -1368,6 +1375,21 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.ok(interviewAccess.reviewState.includes("verified_with_caveat"));
     assert.ok(interviewAccess.reviewState.includes("venue_pdf_visual_review"));
     assert.match(interviewAccess.travelTimeLabel ?? "", /徒歩/u);
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  for (const hotelId of ["daiwa-roynet-hotel-oita", "hotel-areaone-oita"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-oita-new-large-meeting",
+    );
+    assert.ok(access, `${hotelId} が大分県庁舎新館大会議室に結合されていません`);
+    assert.equal(access.transferCount, 0);
+    assert.deepEqual(access.modes, ["walk"]);
+    assert.equal(access.measurementBasis, "map_route_checked");
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.equal(access.reviewState.includes("venue_pdf_visual_review"), false);
+    assert.equal(access.travelTimeLabel, undefined);
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
