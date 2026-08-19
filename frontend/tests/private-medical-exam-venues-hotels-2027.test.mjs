@@ -721,12 +721,22 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
   const tokyoMedicalFirst = assignmentFor("tokyo-medical--general--general", "first");
   assert.equal(tokyoMedicalFirst?.publicationState, "ticket_assigned");
   assert.deepEqual(tokyoMedicalFirst?.venueLinks, [
-    { venueId: "venue-tokyo-medical-shinjuku-campus", role: "primary" },
-    { venueId: "venue-bellesalle-shinjuku-grand", role: "primary" },
+    { venueId: "venue-tokyo-medical-shinjuku-campus", role: "assigned" },
+    { venueId: "venue-bellesalle-shinjuku-grand", role: "assigned" },
   ]);
   assert.deepEqual(tokyoMedicalFirst?.conditions, ["university_assigned", "admission_ticket"]);
   assert.match(tokyoMedicalFirst?.officialAdmissionUrl ?? "", /2027bosyuyoukou_ippan\.pdf$/u);
+  assert.match(tokyoMedicalFirst?.evidenceLocator ?? "", /PDF 10・15ページ（冊子9・14ページ）/u);
   assert.match(tokyoMedicalFirst?.note ?? "", /受験番号/u);
+  const tokyoMedicalCommonEssay = assignmentFor(
+    "tokyo-medical--common--common-test",
+    "first",
+  );
+  assert.match(tokyoMedicalCommonEssay?.officialAdmissionUrl ?? "", /2027bosyuyoukou_ippan\.pdf$/u);
+  assert.match(
+    tokyoMedicalCommonEssay?.evidenceLocator ?? "",
+    /PDF 13・15ページ（冊子12・14ページ）/u,
+  );
 
   assert.deepEqual(assignmentFor("nihon--general--unified-phase-2", "first")?.conditions, []);
   for (const routeId of [
@@ -806,6 +816,10 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
     "fixed",
     "university_assigned",
   ]);
+  assert.match(
+    assignmentFor("tokyo-medical--general--general", "second")?.evidenceLocator ?? "",
+    /PDF 10・13・15ページ（冊子9・12・14ページ）/u,
+  );
   assert.deepEqual(assignmentFor("jikei--general--general", "second")?.conditions, ["fixed"]);
   assert.match(
     assignmentFor("jikei--general--general", "second")?.note ?? "",

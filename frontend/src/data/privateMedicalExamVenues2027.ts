@@ -3036,15 +3036,15 @@ const tokyoMedicalVenueUrl =
   "https://admissions-tokyo-med.jp/wp-content/uploads/2024/12/2027bosyuyoukou_ippan.pdf";
 officialVenuePlan(["tokyo-medical--general--general"], "first", {
   venueLinks: [
-    link("venue-tokyo-medical-shinjuku-campus", "primary"),
-    link("venue-bellesalle-shinjuku-grand", "primary"),
+    link("venue-tokyo-medical-shinjuku-campus", "assigned"),
+    link("venue-bellesalle-shinjuku-grand", "assigned"),
   ],
   announcedVenueText: "東京医科大学 本学又はベルサール新宿グランド",
   publicationState: "ticket_assigned",
   conditions: ["university_assigned", "admission_ticket"],
   officialAdmissionUrl: tokyoMedicalVenueUrl,
   evidenceLabel: "2027年度一般選抜・共通テスト利用選抜 学生募集要項",
-  evidenceLocator: "PDF 3・14〜15ページ「一般選抜 第1次試験」「試験会場」「受験にあたっての主な注意事項」",
+  evidenceLocator: "PDF 10・15ページ（冊子9・14ページ）「試験会場」「試験日程」",
   reviewState: "verified",
   note: "一次は2027年2月6日で、8:30開門、9:10集合です。大学が受験番号で本学またはベルサール新宿グランドを指定するため、受験票に記載された会場を確認してください。ベルサールは1階イベントホールまで公表されていますが、使用区画・受付位置・受験生入口は未公表です。",
 });
@@ -3053,9 +3053,9 @@ officialVenuePlan(["tokyo-medical--common--common-test"], "first", {
   announcedVenueText: "東京医科大学 本学（大学実施の小論文）",
   publicationState: "confirmed",
   conditions: ["fixed"],
-  officialAdmissionUrl: "https://admissions-tokyo-med.jp/med/exam/",
-  evidenceLabel: "2027年度一般選抜・共通テスト利用選抜",
-  evidenceLocator: "公式入試ページ「共通テスト利用選抜 試験会場」",
+  officialAdmissionUrl: tokyoMedicalVenueUrl,
+  evidenceLabel: "2027年度一般選抜・共通テスト利用選抜 学生募集要項",
+  evidenceLocator: "PDF 13・15ページ（冊子12・14ページ）「試験会場」「試験日程」",
   reviewState: "verified",
   note: "共通テスト本試験会場はこの台帳の対象外です。大学が実施する2/6の小論文会場のみ収録しています。",
 });
@@ -3064,10 +3064,9 @@ officialVenuePlan(["tokyo-medical--general--general", "tokyo-medical--common--co
   announcedVenueText: "東京医科大学 本学",
   publicationState: "confirmed",
   conditions: ["fixed", "university_assigned"],
-  officialAdmissionUrl:
-    "https://admissions-tokyo-med.jp/wp-content/uploads/2024/12/2027bosyuyoukou_ippan.pdf",
-  evidenceLabel: "2027年度一般選抜学生募集要項",
-  evidenceLocator: "PDF 3・12ページ「二次試験」",
+  officialAdmissionUrl: tokyoMedicalVenueUrl,
+  evidenceLabel: "2027年度一般選抜・共通テスト利用選抜 学生募集要項",
+  evidenceLocator: "PDF 10・13・15ページ（冊子9・12・14ページ）「試験会場」「試験日程」",
   reviewState: "verified",
   note: "会場は本学で固定です。面接日は出願の早い方から2月13日・14日の順に割り振られ、一次合格発表時にUCAROで日程・集合時間が通知されます。",
 });
