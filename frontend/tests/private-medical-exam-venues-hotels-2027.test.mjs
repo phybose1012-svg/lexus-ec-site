@@ -673,6 +673,27 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
   ]);
   assert.match(iwateGeneralSecond?.note ?? "", /面接時刻は大学が指定/u);
 
+  const iuhwGeneralFirst = assignmentFor("iuhw--general--general", "first");
+  assert.deepEqual(iuhwGeneralFirst?.venueLinks, [
+    { venueId: "venue-iuhw-narita-campus", role: "choice" },
+    { venueId: "venue-toc-gotanda", role: "choice" },
+    { venueId: "venue-iuhw-tokyo-akasaka-campus", role: "overflow" },
+    { venueId: "venue-tkp-osaka-riverside-hotel", role: "choice" },
+    { venueId: "venue-iuhw-graduate-school-fukuoka-campus", role: "choice" },
+  ]);
+  const iuhwGeneralSecond = assignmentFor("iuhw--general--general", "second");
+  assert.equal(iuhwGeneralSecond?.publicationState, "ticket_assigned");
+  assert.deepEqual(iuhwGeneralSecond?.venueLinks, [
+    { venueId: "venue-iuhw-narita-campus", role: "assigned" },
+    { venueId: "venue-iuhw-tokyo-akasaka-campus", role: "assigned" },
+  ]);
+  assert.deepEqual(iuhwGeneralSecond?.conditions, [
+    "applicant_preference",
+    "university_assigned",
+    "admission_ticket",
+  ]);
+  assert.match(iuhwGeneralSecond?.announcedVenueText ?? "", /希望順位.*大学が指定/u);
+
   for (const routeId of [
     "showa-medical--general--general-phase-1",
     "showa-medical--general--general-phase-1-phase-2",
@@ -4485,6 +4506,10 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(
     dataset.definitions.venueLinkRoles.announced,
     "公表済み会場（選択方法は未公表）",
+  );
+  assert.equal(
+    dataset.definitions.venueLinkRoles.assigned,
+    "希望等を踏まえて大学が指定する候補会場",
   );
   assert.equal(dataset.definitions.examParts.written, "学力試験");
   assert.equal(dataset.definitions.venueLinkRoles.overflow, "定員状況等による代替会場");

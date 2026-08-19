@@ -21,7 +21,7 @@ export type VenueAssignmentCondition =
 
 export type VenueReviewState = "verified" | "needs_review" | "monitoring";
 export type ExamStage2027 = "first" | "second";
-export type VenueLinkRole = "fixed" | "choice" | "announced" | "primary" | "overflow";
+export type VenueLinkRole = "fixed" | "choice" | "assigned" | "announced" | "primary" | "overflow";
 export type JichiExamPart2027 = "written" | "interview";
 
 export type PrivateMedicalExamVenue2027 = {
@@ -2963,8 +2963,11 @@ officialVenuePlan(["iuhw--general--general"], "first", {
   note: "出願時に試験地を選択します。収容人数を超えた場合は東京赤坂キャンパス又は選択地域近隣へ変更されるため、受験票で最終確認してください。",
 });
 officialVenuePlan(["iuhw--general--general"], "second", {
-  venueLinks: [link("venue-iuhw-narita-campus", "choice"), link("venue-iuhw-tokyo-akasaka-campus", "choice")],
-  announcedVenueText: "成田キャンパス又は東京赤坂キャンパス",
+  venueLinks: [
+    link("venue-iuhw-narita-campus", "assigned"),
+    link("venue-iuhw-tokyo-akasaka-campus", "assigned"),
+  ],
+  announcedVenueText: "希望順位を考慮して大学が指定する成田キャンパス又は東京赤坂キャンパス",
   publicationState: "ticket_assigned",
   conditions: ["applicant_preference", "university_assigned", "admission_ticket"],
   officialAdmissionUrl: iuhwVenueUrl,
