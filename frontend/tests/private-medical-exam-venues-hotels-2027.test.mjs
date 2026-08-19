@@ -375,6 +375,9 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "JR山陰本線 松江駅",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式施設案内/u);
+    } else if (venue.venueId === "venue-jichi-first-okayama-convention-center") {
+      assert.deepEqual(venue.nearestStations, ["JR山陽本線・山陽新幹線 岡山駅"]);
+      assert.match(venue.officialUrlLabel ?? "", /公式交通アクセス/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -765,7 +768,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 168);
+  assert.equal(dataset.hotels.length, 170);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   for (const hotelId of [
     "sotetsu-fresa-inn-nagoya-sakuradoriguchi",
@@ -973,6 +976,26 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     } else {
       assert.equal(access.measurementBasis, "map_route_checked");
       assert.ok(access.reviewState.includes("verified_with_caveat"));
+    }
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
+  }
+  for (const hotelId of ["ana-crowne-plaza-okayama", "hotel-livemax-okayama-west"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-okayama-convention-center",
+    );
+    assert.ok(access, `${hotelId} が岡山コンベンションセンターに結合されていません`);
+    assert.equal(access.transferCount, 0);
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    assert.equal(access.travelTimeLabel, undefined);
+    if (hotelId === "ana-crowne-plaza-okayama") {
+      assert.equal(access.measurementBasis, "official");
+      assert.ok(access.reviewState.includes("official_direct"));
+    } else {
+      assert.equal(access.measurementBasis, "map_route_checked");
+      assert.ok(access.reviewState.includes("verified_with_caveat"));
+      assert.equal(hotel.address, "岡山県岡山市北区駅元町29番4号");
     }
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
