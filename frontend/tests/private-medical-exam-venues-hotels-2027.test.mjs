@@ -345,6 +345,13 @@ test("自治医科大学一次は47都道府県の学力・面接94関係を正�
         "JR神戸線・阪神本線 元町駅",
       ]);
       assert.match(venue.officialUrlLabel ?? "", /公式施設・アクセス案内/u);
+    } else if (venue.venueId === "venue-jichi-first-nara-nobotel") {
+      assert.deepEqual(venue.nearestStations, [
+        "近鉄奈良線 新大宮駅",
+        "奈良交通 奈良市庁前停留所",
+        "JR関西本線 奈良駅",
+      ]);
+      assert.match(venue.officialUrlLabel ?? "", /公式施設・アクセス案内/u);
     } else {
       assert.equal(venue.nearestStations.length, 0);
       assert.match(venue.officialUrlLabel ?? "", /募集要項/u);
@@ -735,7 +742,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 160);
+  assert.equal(dataset.hotels.length, 162);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   for (const hotelId of [
     "sotetsu-fresa-inn-nagoya-sakuradoriguchi",
@@ -863,6 +870,25 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
       assert.ok(access.reviewState.includes("verified_with_caveat"));
     }
     assert.equal(access.travelTimeLabel, undefined);
+  }
+  for (const hotelId of ["novotel-nara", "nara-royal-hotel"]) {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
+    const access = hotel.venueAccess.find(
+      (entry) => entry.venueId === "venue-jichi-first-nara-nobotel",
+    );
+    assert.ok(access, `${hotelId} がノボテル奈良に結合されていません`);
+    assert.equal(access.transferCount, 0);
+    assert.ok(access.reviewState.includes("venue_pdf_visual_review"));
+    if (hotelId === "novotel-nara") {
+      assert.equal(access.measurementBasis, "route_only");
+      assert.ok(access.reviewState.includes("official_direct"));
+    } else {
+      assert.equal(access.measurementBasis, "map_route_checked");
+      assert.ok(access.reviewState.includes("verified_with_caveat"));
+    }
+    assert.equal(access.travelTimeLabel, undefined);
+    assert.match(hotel.officialBookingUrl, /^https:\/\//u);
   }
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "tokyu-stay-gotanda"), false);
   assert.equal(dataset.hotels.some((hotel) => hotel.hotelId === "hotel-select-inn-saitama-moroyama"), true);
