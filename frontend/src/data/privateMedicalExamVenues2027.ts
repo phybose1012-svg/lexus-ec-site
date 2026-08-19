@@ -3290,6 +3290,8 @@ officialVenuePlan([...nmsEarlyRoutes, ...nmsLateRoutes], "second", {
 });
 
 const kitasatoVenueUrl = "https://www.kitasato-u.ac.jp/jp/goukaku/undergraduate_ad/system/newfolder/changes_med.html";
+const kitasatoGuideUrl =
+  "https://www.kitasato-u.ac.jp/jp/goukaku/albums/abm.php?f=abm00048838.pdf&n=%E5%85%A5%E8%A9%A6%E3%82%AC%E3%82%A4%E3%83%89_%E8%A9%A6%E9%A8%93%E6%A6%82%E8%A6%81.pdf";
 officialVenuePlan(["kitasato--general--general"], "first", {
   venueLinks: [
     link("venue-pacifico-yokohama-north", "primary"),
@@ -3309,10 +3311,9 @@ officialVenuePlan(["kitasato--general--general"], "second", {
   announcedVenueText: "北里大学 相模原キャンパス",
   publicationState: "confirmed",
   conditions: ["fixed", "applicant_preference"],
-  officialAdmissionUrl:
-    "https://www.kitasato-u.ac.jp/jp/goukaku/albums/abm.php?f=abm00048838.pdf&n=%E5%85%A5%E8%A9%A6%E3%82%AC%E3%82%A4%E3%83%89_%E8%A9%A6%E9%A8%93%E6%A6%82%E8%A6%81.pdf",
+  officialAdmissionUrl: kitasatoGuideUrl,
   evidenceLabel: "北里大学公式 2027年度入試ガイド（試験概要）",
-  evidenceLocator: "PDF 24ページ 医学部一般選抜二次試験欄",
+  evidenceLocator: "PDF 25ページ（冊子33ページ） 医学部一般選抜二次試験欄",
   reviewState: "verified",
   note: "会場は相模原キャンパスです。2月13日〜15日から受験日を出願時に選択します。",
 });
@@ -3335,10 +3336,11 @@ officialVenuePlan(["kitasato--common--common-test-early", "kitasato--common--com
   announcedVenueText: "北里大学 相模原キャンパス",
   publicationState: "confirmed",
   conditions: ["fixed"],
-  officialAdmissionUrl: kitasatoVenueUrl,
-  evidenceLabel: "2027年度医学部入試変更点",
-  evidenceLocator: "大学入学共通テスト利用選抜 二次試験会場欄",
+  officialAdmissionUrl: kitasatoGuideUrl,
+  evidenceLabel: "北里大学公式 2027年度入試ガイド（試験概要）",
+  evidenceLocator: "PDF 26ページ（冊子34ページ） 医学部共通テスト利用選抜二次試験欄",
   reviewState: "verified",
+  note: "前期は2月13日〜15日から受験日を出願時に選択し、後期は3月6日指定です。いずれも会場は相模原キャンパスです。",
 });
 
 const tokaiVenueUrl = "https://www.u-tokai.ac.jp/examination-admissions/examination-system/undergraduate-academic-medicine/";

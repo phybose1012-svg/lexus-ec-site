@@ -627,6 +627,24 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
   assert.deepEqual(kitasatoSecond?.venueLinks, [
     { venueId: "venue-kitasato-sagamihara-campus", role: "fixed" },
   ]);
+  assert.equal(
+    kitasatoSecond?.evidenceLocator,
+    "PDF 25ページ（冊子33ページ） 医学部一般選抜二次試験欄",
+  );
+  for (const routeId of [
+    "kitasato--common--common-test-early",
+    "kitasato--common--common-test-late",
+  ]) {
+    const commonSecond = assignmentFor(routeId, "second");
+    assert.equal(
+      commonSecond?.officialAdmissionUrl,
+      "https://www.kitasato-u.ac.jp/jp/goukaku/albums/abm.php?f=abm00048838.pdf&n=%E5%85%A5%E8%A9%A6%E3%82%AC%E3%82%A4%E3%83%89_%E8%A9%A6%E9%A8%93%E6%A6%82%E8%A6%81.pdf",
+    );
+    assert.equal(
+      commonSecond?.evidenceLocator,
+      "PDF 26ページ（冊子34ページ） 医学部共通テスト利用選抜二次試験欄",
+    );
+  }
 
   const tohokuGeneralFirst = assignmentFor("tohoku-med-pharm--general--general", "first");
   assert.equal(tohokuGeneralFirst?.publicationState, "city_or_campus_only");
