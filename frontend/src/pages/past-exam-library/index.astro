@@ -1,0 +1,312 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import "../../styles/past-exam-library.css";
+
+const title = "私立医学部の過去問ライブラリー｜数学・化学・物理・生物｜レクサス教育センター";
+const description =
+  "私立医学部の過去問を大学・年度・科目から探せるライブラリーを準備中です。数学・化学・物理・生物から、内容・権利・表示の確認が完了したものを順次掲載します。";
+const canonical = "https://lexus-ec.com/past-exam-library/";
+
+const subjects = [
+  {
+    id: "mathematics",
+    name: "数学",
+    english: "MATHEMATICS",
+    symbol: "∫",
+    description: "数式やグラフを、画面でも追いやすい形に整えて掲載予定です。",
+  },
+  {
+    id: "chemistry",
+    name: "化学",
+    english: "CHEMISTRY",
+    symbol: "H₂O",
+    description: "化学式・構造式・表を確認し、読みやすい形で掲載予定です。",
+  },
+  {
+    id: "physics",
+    name: "物理",
+    english: "PHYSICS",
+    symbol: "F=ma",
+    description: "図や数式を含む問題を、見やすい形に整えて掲載予定です。",
+  },
+  {
+    id: "biology",
+    name: "生物",
+    english: "BIOLOGY",
+    symbol: "DNA",
+    description: "長文・図表・考察問題を、読み進めやすく整理して掲載予定です。",
+  },
+] as const;
+
+const reviewSteps = [
+  {
+    number: "01",
+    title: "内容確認",
+    description: "問題文・数式・選択肢を原本と照合します。",
+  },
+  {
+    number: "02",
+    title: "権利確認",
+    description: "問題文や図版を公開できる状態か確認します。",
+  },
+  {
+    number: "03",
+    title: "表示確認",
+    description: "PCとスマートフォンで読みやすさを確認します。",
+  },
+] as const;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${canonical}#webpage`,
+      url: canonical,
+      name: title,
+      description,
+      inLanguage: "ja",
+      isPartOf: {
+        "@type": "WebSite",
+        "@id": "https://lexus-ec.com/#website",
+        url: "https://lexus-ec.com/",
+        name: "医学部予備校 レクサス E.C.",
+      },
+      publisher: {
+        "@type": "EducationalOrganization",
+        "@id": "https://lexus-ec.com/#organization",
+        name: "レクサス教育センター",
+        url: "https://lexus-ec.com/",
+      },
+      breadcrumb: { "@id": `${canonical}#breadcrumb` },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${canonical}#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "ホーム",
+          item: "https://lexus-ec.com/",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "私立医学部情報",
+          item: "https://lexus-ec.com/top/information-shiritsu/",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: "過去問ライブラリー",
+          item: canonical,
+        },
+      ],
+    },
+  ],
+};
+---
+
+<SiteLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  ogImage="/assets/legacy/wp-content/uploads/2024/09/新レクサス1-e1726564535383.png"
+>
+  <Fragment slot="head">
+    <meta name="author" content="医学部予備校 レクサス E.C." />
+    <meta property="og:image:alt" content="医学部予備校レクサス E.C.のキャラクター" />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </Fragment>
+
+  <main class="exam-library-page">
+    <section class="exam-library-hero" aria-labelledby="exam-library-title">
+      <div class="content exam-library-hero__inner">
+        <nav class="exam-library-breadcrumb" aria-label="パンくずリスト">
+          <a href="/">ホーム</a>
+          <span aria-hidden="true">/</span>
+          <a href="/top/information-shiritsu/">私立医学部情報</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">過去問ライブラリー</span>
+        </nav>
+
+        <div class="exam-library-hero__grid">
+          <div class="exam-library-hero__copy">
+            <div class="exam-library-status-row">
+              <p class="exam-library-kicker">PAST EXAM LIBRARY</p>
+              <span class="exam-library-status">公開準備中</span>
+            </div>
+            <h1 id="exam-library-title">
+              私立医学部<br />
+              <strong>過去問ライブラリー</strong>
+            </h1>
+            <p class="exam-library-hero__lead">
+              志望校対策に必要な過去問を、大学・年度・科目から探せるライブラリーを準備しています。
+              まずは数学・化学・物理・生物から、公開確認が完了したものを順次追加します。
+            </p>
+            <div class="exam-library-hero__actions">
+              <a class="exam-library-button exam-library-button--primary" href="#subjects">収録予定科目を見る</a>
+              <a class="exam-library-button exam-library-button--secondary" href="#library-status">公開状況を見る</a>
+            </div>
+          </div>
+
+          <aside class="exam-library-hero__visual" aria-label="過去問ライブラリーの公開方針">
+            <div class="exam-library-hero__character">
+              <img
+                src="/assets/optimized/yuki-sensei-default-480.webp"
+                alt="問題集に向かって勉強するゆうき先生"
+                width="480"
+                height="444"
+                loading="eager"
+                decoding="sync"
+              />
+            </div>
+            <p>考えるための、<br /><strong>読める過去問</strong>へ。</p>
+            <dl>
+              <div>
+                <dt>対象</dt>
+                <dd>私立医学部</dd>
+              </div>
+              <div>
+                <dt>科目</dt>
+                <dd>数学・理科</dd>
+              </div>
+              <div>
+                <dt>形式</dt>
+                <dd>読みやすいHTML</dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <nav class="exam-library-jump-nav" aria-label="ページ内メニュー">
+      <div class="content exam-library-jump-nav__inner">
+        <a href="#subjects"><span>01</span>収録予定科目</a>
+        <a href="#library-status"><span>02</span>公開状況</a>
+        <a href="#quality"><span>03</span>公開品質</a>
+      </div>
+    </nav>
+
+    <section class="exam-library-subjects" id="subjects" aria-labelledby="subjects-title">
+      <div class="content">
+        <header class="exam-library-section-heading">
+          <p>SUBJECTS</p>
+          <h2 id="subjects-title">数学・化学・物理・生物から順次公開</h2>
+          <p>数式や図表も画面で読みやすい形に整え、確認が完了した科目から掲載します。</p>
+        </header>
+
+        <div class="exam-library-subject-grid">
+          {
+            subjects.map((subject, index) => (
+              <article class={`exam-library-subject-card exam-library-subject-card--${subject.id}`}>
+                <div class="exam-library-subject-card__topline">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <small>{subject.english}</small>
+                </div>
+                <p class="exam-library-subject-card__symbol" aria-hidden="true">{subject.symbol}</p>
+                <h3>{subject.name}</h3>
+                <p>{subject.description}</p>
+                <span class="exam-library-subject-card__status">公開準備中</span>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="exam-library-empty" id="library-status" aria-labelledby="library-status-title">
+      <div class="content exam-library-empty__inner">
+        <header class="exam-library-section-heading exam-library-section-heading--light">
+          <p>LIBRARY STATUS</p>
+          <h2 id="library-status-title">過去問は現在準備中です</h2>
+          <p>
+            現在、閲覧できる過去問はありません。数学・化学・物理・生物を中心に、
+            確認が完了した大学・年度から順次公開します。
+          </p>
+        </header>
+
+        <div class="exam-library-empty__panel">
+          <div class="exam-library-empty__signal" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <div>
+            <p class="exam-library-empty__eyebrow">NEXT UPDATE</p>
+            <h3>最初の公開データを準備しています</h3>
+            <p>
+              公開後は、大学・年度・科目から目的の問題を探せるようになります。
+              公開時期が確定するまで、未確認の問題や件数は表示しません。
+            </p>
+          </div>
+          <span class="exam-library-empty__badge">COMING SOON</span>
+        </div>
+
+        <ol class="exam-library-future-flow" aria-label="公開後の探し方">
+          <li><span>1</span><strong>大学を選ぶ</strong><small>志望校から探す</small></li>
+          <li><span>2</span><strong>年度を選ぶ</strong><small>出題傾向を比べる</small></li>
+          <li><span>3</span><strong>科目を選ぶ</strong><small>重点科目に取り組む</small></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="exam-library-quality" id="quality" aria-labelledby="quality-title">
+      <div class="content">
+        <header class="exam-library-section-heading">
+          <p>PUBLICATION POLICY</p>
+          <h2 id="quality-title">安心して使える情報を目指して</h2>
+          <p>
+            科目にかかわらず、内容の正確性、権利関係、PC・スマートフォンでの読みやすさを確認し、
+            公開可能と判断したコンテンツのみ掲載します。
+          </p>
+        </header>
+
+        <div class="exam-library-review-grid">
+          {
+            reviewSteps.map((step) => (
+              <article>
+                <span>{step.number}</span>
+                <div>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+
+        <aside class="exam-library-note">
+          <strong>公開前の確認について</strong>
+          <p>
+            「HTML化済み」や「公開候補」は、一般公開済みという意味ではありません。
+            内容・権利・表示の確認をすべて終えたものだけを、このページから案内します。
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="exam-library-related" aria-labelledby="related-title">
+      <div class="content exam-library-related__inner">
+        <div>
+          <p>WHILE YOU WAIT</p>
+          <h2 id="related-title">公開までの間は、入試情報もご活用ください</h2>
+        </div>
+        <div class="exam-library-related__links">
+          <a href="/top/information-shiritsu/">
+            <span>大学別情報</span>
+            <strong>私立医学部の大学別情報を見る</strong>
+          </a>
+          <a href="/private-medical-school-admissions-schedule-2027/">
+            <span>2027年度</span>
+            <strong>私立医学部の入試日程を見る</strong>
+          </a>
+          <a href="/reservation/">
+            <span>受験相談</span>
+            <strong>医学部受験について相談する</strong>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>
