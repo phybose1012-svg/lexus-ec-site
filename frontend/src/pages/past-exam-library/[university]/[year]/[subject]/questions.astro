@@ -1,0 +1,215 @@
+---
+import SiteLayout from "../../../../../layouts/SiteLayout.astro";
+import "../../../../../styles/past-exam-library.css";
+import "../../../../../styles/past-exam-question.css";
+
+type QuestionPageData = {
+  schemaVersion: string;
+  packageId: string;
+  route: { university: string; year: string; subject: string; path: string };
+  university: { id: string; name: string };
+  exam: { year: string; label: string; stage: string; duration: string };
+  subject: { id: string; name: string; english: string };
+  document: {
+    role: "questions";
+    pageUnit: string;
+    sharedInstructionsHtml: string;
+    questions: Array<{
+      id: string;
+      label: string;
+      order: number;
+      sourcePageIds: string[];
+      html: string;
+    }>;
+  };
+  source: {
+    reference: string;
+    buildKind: string;
+    contentProvenance: string;
+    publicationCandidate: boolean;
+    rightsStatus: string;
+    needsHumanReview: boolean;
+  };
+  links: {
+    universityLibrary: string;
+    analysis: string | null;
+    universityInformation: string | null;
+  };
+};
+
+export function getStaticPaths() {
+  const questionPageModules = import.meta.glob(
+    "../../../../../data/generated/pastExamQuestions/*.json",
+    { eager: true, import: "default" },
+  );
+  const questionPages = Object.values(questionPageModules) as QuestionPageData[];
+  return questionPages.map((page) => ({
+    params: {
+      university: page.route.university,
+      year: page.route.year,
+      subject: page.route.subject,
+    },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props as { page: QuestionPageData };
+const title = `${page.university.name} ${page.exam.year}年度 ${page.subject.name}の問題｜過去問ライブラリー｜レクサス教育センター`;
+const description = `${page.university.name}医学部 ${page.exam.year}年度${page.exam.label}・${page.subject.name}の問題です。共通注意と全${page.document.questions.length}題を大問別に確認できます。`;
+const canonical = `https://lexus-ec.com${page.route.path}`;
+const reviewRequired = page.source.rightsStatus !== "approved" || page.source.needsHumanReview;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LearningResource",
+      "@id": `${canonical}#learning-resource`,
+      url: canonical,
+      name: title,
+      description,
+      inLanguage: "ja",
+      learningResourceType: "過去問",
+      about: `${page.university.name}医学部 ${page.exam.year}年度 ${page.subject.name}`,
+      provider: {
+        "@type": "EducationalOrganization",
+        "@id": "https://lexus-ec.com/#organization",
+        name: "レクサス教育センター",
+        url: "https://lexus-ec.com/",
+      },
+      breadcrumb: { "@id": `${canonical}#breadcrumb` },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${canonical}#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "ホーム", item: "https://lexus-ec.com/" },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "過去問ライブラリー",
+          item: "https://lexus-ec.com/past-exam-library/",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: page.university.name,
+          item: `https://lexus-ec.com${page.links.universityLibrary}`,
+        },
+        { "@type": "ListItem", position: 4, name: `${page.exam.year}年度 ${page.subject.name} 問題`, item: canonical },
+      ],
+    },
+  ],
+};
+---
+
+<SiteLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  ogImage="/assets/legacy/wp-content/uploads/2024/09/新レクサス1-e1726564535383.png"
+>
+  <Fragment slot="head">
+    <meta name="author" content="医学部予備校 レクサス E.C." />
+    <meta name="robots" content="noindex,follow" />
+    <meta property="og:image:alt" content="医学部予備校レクサス E.C.のキャラクター" />
+    <link rel="stylesheet" href="/assets/vendor/katex/katex.min.css" />
+    <script is:inline defer src="/assets/vendor/katex/katex.min.js"></script>
+    <script is:inline defer src="/assets/past-exam/math-render.js"></script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </Fragment>
+
+  <main class="past-exam-question-page">
+    <header class="past-exam-question-header">
+      <div class="content">
+        <nav class="exam-library-breadcrumb" aria-label="パンくずリスト">
+          <a href="/">ホーム</a>
+          <span aria-hidden="true">/</span>
+          <a href="/past-exam-library/">過去問ライブラリー</a>
+          <span aria-hidden="true">/</span>
+          <a href={page.links.universityLibrary}>{page.university.name}</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">{page.exam.year}年度 {page.subject.name} 問題</span>
+        </nav>
+
+        <div class="past-exam-question-header__grid">
+          <div>
+            <p class="past-exam-question-kicker">PAST EXAM / QUESTION</p>
+            <h1>{page.university.name}<span>{page.exam.year}年度 {page.subject.name}の問題</span></h1>
+          </div>
+          <a class="past-exam-question-back" href={`${page.links.universityLibrary}#year-${page.exam.year}`}>
+            <span aria-hidden="true">←</span> 年度・科目一覧へ
+          </a>
+        </div>
+
+        <dl class="past-exam-question-meta" aria-label="試験情報">
+          <div><dt>年度</dt><dd>{page.exam.year}年度</dd></div>
+          <div><dt>入試区分</dt><dd>{page.exam.label}</dd></div>
+          <div><dt>試験段階</dt><dd>{page.exam.stage}</dd></div>
+          <div><dt>科目</dt><dd>{page.subject.name}</dd></div>
+          <div><dt>試験時間</dt><dd>{page.exam.duration}</dd></div>
+          <div><dt>大問</dt><dd>{page.document.questions.length}題</dd></div>
+        </dl>
+      </div>
+    </header>
+
+    <div class:list={["past-exam-question-review", { "is-required": reviewRequired }]}>
+      <div class="content">
+        <strong>{reviewRequired ? "ステージング確認用" : "掲載内容確認済み"}</strong>
+        <span>{reviewRequired ? "内容・権利・表示の最終確認中です。" : "公開承認済みの問題です。"}</span>
+      </div>
+    </div>
+
+    <nav class="past-exam-question-mode" aria-label="問題・解答・分析">
+      <div class="content">
+        <span class="is-current" aria-current="page"><small>01</small><strong>問題</strong><em>表示中</em></span>
+        <span><small>02</small><strong>解答</strong><em>準備中</em></span>
+        {
+          page.links.analysis ? (
+            <a href={page.links.analysis}><small>03</small><strong>分析</strong><em>閲覧する</em></a>
+          ) : (
+            <span><small>03</small><strong>分析</strong><em>準備中</em></span>
+          )
+        }
+      </div>
+    </nav>
+
+    <div class="past-exam-question-reader content">
+      <nav class="past-exam-question-index" aria-label="問題内の目次">
+        <a href="#instructions"><strong>共通注意</strong><small>解答方法</small></a>
+        {
+          page.document.questions.map((question) => (
+            <a href={`#${question.id}`}><strong>{question.label}</strong><small>問題を見る</small></a>
+          ))
+        }
+      </nav>
+
+      <details class="past-exam-question-instructions" id="instructions">
+        <summary>
+          <span><small>INSTRUCTIONS</small><strong>解答上の注意</strong></span>
+          <em>開いて確認</em>
+        </summary>
+        <div class="past-exam-question-instructions__body">
+          <Fragment set:html={page.document.sharedInstructionsHtml} />
+        </div>
+      </details>
+
+      <section class="past-exam-question-list" aria-label={`${page.exam.year}年度 ${page.subject.name}の問題`}>
+        {page.document.questions.map((question) => <Fragment set:html={question.html} />)}
+      </section>
+
+      <aside class="past-exam-question-note">
+        <strong>問題文について</strong>
+        <p>元の試験問題を読みやすいHTMLへ再構成しています。数式は画面幅に合わせて表示されます。</p>
+      </aside>
+    </div>
+
+    <nav class="past-exam-question-links" aria-label={`${page.university.name}の関連情報`}>
+      <div class="content">
+        <a href={page.links.universityLibrary}><span>過去問</span><strong>年度・科目一覧</strong></a>
+        {page.links.analysis && <a href={page.links.analysis}><span>傾向と対策</span><strong>{page.subject.name}の分析</strong></a>}
+        {page.links.universityInformation && <a href={page.links.universityInformation}><span>大学情報</span><strong>入試情報を見る</strong></a>}
+      </div>
+    </nav>
+  </main>
+</SiteLayout>

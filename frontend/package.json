@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "admin:api": "node ./scripts/admin-local-api.mjs",
+    "past-exam:import": "node ../.agents/skills/past-exam-question-importer/scripts/import-question-page.mjs",
     "dev": "node ./scripts/astro-command.mjs dev --host 127.0.0.1",
     "build": "node ./scripts/verify-build-inputs.mjs && node ./scripts/astro-command.mjs check && node ./scripts/astro-command.mjs build",
     "preview": "node ./scripts/astro-command.mjs preview --host 127.0.0.1"

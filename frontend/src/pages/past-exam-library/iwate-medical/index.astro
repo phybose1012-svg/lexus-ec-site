@@ -11,7 +11,7 @@ const canonical = "https://lexus-ec.com/past-exam-library/iwate-medical/";
 const librarySteps = [
   { number: "01", label: "年度", value: "5年分", href: "#years", tone: "selected" },
   { number: "02", label: "科目", value: "4科目", href: "#subjects", tone: "selected" },
-  { number: "03", label: "問題", value: "確認中", href: "#subjects", tone: "waiting" },
+  { number: "03", label: "問題", value: "1科目", href: "#year-2025", tone: "ready" },
   { number: "04", label: "解答", value: "準備中", href: "#subjects", tone: "waiting" },
   { number: "05", label: "分析", value: "閲覧可", href: "#subjects", tone: "ready" },
 ] as const;
@@ -22,7 +22,8 @@ type SubjectRow = {
   english: string;
   tone: string;
   problem: string;
-  problemTone: "waiting" | "empty";
+  problemTone: "ready" | "waiting" | "empty";
+  problemPath?: string;
   answer: string;
   answerTone: "waiting" | "empty";
   analysis: string;
@@ -43,8 +44,9 @@ const subjects2025: SubjectRow[] = [
     name: "数学",
     english: "MATHEMATICS",
     tone: "mathematics",
-    problem: "確認中",
-    problemTone: "waiting",
+    problem: "問題を見る",
+    problemTone: "ready",
+    problemPath: "/past-exam-library/iwate-medical/2025/mathematics/questions/",
     answer: "準備中",
     answerTone: "waiting",
     analysis: "分析を見る",
@@ -104,7 +106,7 @@ const placeholderSubjects: SubjectRow[] = subjectDefinitions.map((subject) => ({
 
 const examYears = [
   { year: "2026", label: "最新年度", tone: "latest", subjects: placeholderSubjects },
-  { year: "2025", label: "一部準備中", tone: "active", subjects: subjects2025 },
+  { year: "2025", label: "一部公開中", tone: "active", subjects: subjects2025 },
   { year: "2024", label: "掲載準備中", tone: "placeholder", subjects: placeholderSubjects },
   { year: "2023", label: "掲載準備中", tone: "placeholder", subjects: placeholderSubjects },
   { year: "2022", label: "掲載準備中", tone: "placeholder", subjects: placeholderSubjects },
@@ -195,7 +197,7 @@ const structuredData = {
           <aside class="exam-university-current" aria-label="現在の公開状況">
             <span>現在の公開状況</span>
             <strong>5年分の掲載枠を用意しました</strong>
-            <small>2025年度は科目別分析を閲覧できます</small>
+            <small>2025年度数学の問題と科目別分析を閲覧できます</small>
           </aside>
         </div>
       </div>
@@ -287,7 +289,17 @@ const structuredData = {
                             </span>
                           </th>
                           <td data-label="問題">
-                            <span class={`exam-university-state is-${subject.problemTone}`}>{subject.problem}</span>
+                            {subject.problemPath ? (
+                              <a
+                                class="exam-university-question-link"
+                                href={subject.problemPath}
+                                aria-label={`${examYear.year}年度 ${subject.name}の問題を見る`}
+                              >
+                                {subject.problem} <span aria-hidden="true">→</span>
+                              </a>
+                            ) : (
+                              <span class={`exam-university-state is-${subject.problemTone}`}>{subject.problem}</span>
+                            )}
                           </td>
                           <td data-label="解答">
                             <span class={`exam-university-state is-${subject.answerTone}`}>{subject.answer}</span>
