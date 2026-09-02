@@ -3,22 +3,30 @@
   --subject-chemistry: #2c6f55;
   --subject-physics: #5a4d91;
   --subject-biology: #745c31;
+  background: #fff;
 }
 
 .exam-university-page :where(section[id]) {
   scroll-margin-top: 24px;
 }
 
+.exam-university-page a:focus-visible {
+  outline: 3px solid #18779b;
+  outline-offset: 3px;
+}
+
 .exam-university-hero {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  color: #fff;
+  border-bottom: 1px solid #dfe5e8;
+  color: #142b49;
   background:
-    linear-gradient(90deg, rgb(255 255 255 / 4%) 1px, transparent 1px) 0 0 / 40px 40px,
-    linear-gradient(rgb(255 255 255 / 4%) 1px, transparent 1px) 0 0 / 40px 40px,
-    radial-gradient(circle at 86% 20%, rgb(47 154 184 / 22%), transparent 30%),
-    linear-gradient(135deg, #06162d 0%, #0a2445 58%, #071a33 100%);
+    linear-gradient(90deg, rgb(18 53 106 / 3.5%) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(rgb(18 53 106 / 3.5%) 1px, transparent 1px) 0 0 / 40px 40px,
+    radial-gradient(circle at 86% 18%, rgb(76 173 198 / 13%), transparent 31%),
+    radial-gradient(circle at 8% 82%, rgb(212 175 55 / 9%), transparent 25%),
+    linear-gradient(145deg, #fff 0%, #fbfdff 68%, #fffdf7 100%);
 }
 
 .exam-university-hero::after {
@@ -27,7 +35,7 @@
   right: -1vw;
   bottom: -0.33em;
   z-index: -1;
-  color: rgb(255 255 255 / 3.5%);
+  color: rgb(7 26 51 / 3.8%);
   font-family: Georgia, serif;
   font-size: clamp(10rem, 27vw, 27rem);
   font-weight: 900;
@@ -47,7 +55,7 @@
 }
 
 .exam-university-kicker {
-  color: #70d8f2;
+  color: #0b6684;
   font-size: 0.75rem;
   font-weight: 950;
   letter-spacing: 0.2em;
@@ -65,7 +73,7 @@
 .exam-university-hero h1 span {
   display: block;
   margin-bottom: 12px;
-  color: #ffdf79;
+  color: #74520d;
   font-family: var(--font-sans);
   font-size: 0.92rem;
   font-weight: 900;
@@ -75,7 +83,7 @@
 .exam-university-hero__lead {
   max-width: 720px;
   margin-top: 28px !important;
-  color: rgb(255 255 255 / 82%);
+  color: #59646f;
   font-size: 0.98rem;
   font-weight: 600;
   line-height: 2;
@@ -88,15 +96,43 @@
   margin-top: 32px;
 }
 
+.exam-university-hero .exam-library-breadcrumb {
+  color: #68717b;
+}
+
+.exam-university-hero .exam-library-breadcrumb a {
+  color: #17345d;
+}
+
+.exam-university-hero .exam-library-button--primary {
+  color: #fff;
+  background: #12356a;
+  box-shadow: 0 10px 24px rgb(18 53 106 / 18%);
+}
+
+.exam-university-hero .exam-library-button--primary:hover {
+  background: #0b294f;
+}
+
+.exam-university-hero .exam-library-button--secondary {
+  border-color: #9daab7;
+  color: #17345d;
+  background: #fff;
+}
+
+.exam-university-hero .exam-library-button--secondary:hover {
+  border-color: #17345d;
+  background: #f4f7fa;
+}
+
 .exam-university-summary {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgb(255 255 255 / 19%);
+  border: 1px solid #d8dfe5;
   border-radius: 5px 5px 24px 5px;
   padding: 30px;
-  background: rgb(255 255 255 / 8%);
-  box-shadow: 0 26px 58px rgb(0 0 0 / 25%);
-  backdrop-filter: blur(10px);
+  background: #fff;
+  box-shadow: 0 22px 48px rgb(28 47 69 / 11%);
 }
 
 .exam-university-summary::before {
@@ -108,7 +144,7 @@
 }
 
 .exam-university-summary > p:first-child {
-  color: #70d8f2;
+  color: #0b6684;
   font-size: 0.68rem;
   font-weight: 950;
   letter-spacing: 0.18em;
@@ -116,6 +152,7 @@
 
 .exam-university-summary h2 {
   margin-top: 8px;
+  color: #142b49;
   font-family: var(--font-serif);
   font-size: 1.42rem;
   font-weight: 900;
@@ -126,7 +163,7 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 24px;
-  border-block: 1px solid rgb(255 255 255 / 17%);
+  border-block: 1px solid #e2e7eb;
 }
 
 .exam-university-summary dl > div {
@@ -135,12 +172,12 @@
 }
 
 .exam-university-summary dl > div + div {
-  border-left: 1px solid rgb(255 255 255 / 17%);
+  border-left: 1px solid #e2e7eb;
 }
 
 .exam-university-summary dt {
   min-height: 2.8em;
-  color: rgb(255 255 255 / 68%);
+  color: #616b75;
   font-size: 0.66rem;
   font-weight: 800;
   line-height: 1.4;
@@ -148,13 +185,14 @@
 
 .exam-university-summary dd {
   margin-top: 5px;
+  color: #142b49;
   font-size: 0.74rem;
   font-weight: 900;
 }
 
 .exam-university-summary dd strong {
   margin-right: 3px;
-  color: #ffdf79;
+  color: #74520d;
   font-family: Georgia, serif;
   font-size: 1.85rem;
   line-height: 1;
@@ -162,7 +200,7 @@
 
 .exam-university-summary__note {
   margin-top: 18px !important;
-  color: rgb(255 255 255 / 72%);
+  color: #616b75;
   font-size: 0.76rem;
   line-height: 1.7;
 }
@@ -171,7 +209,7 @@
   padding-block: 92px 100px;
   background:
     linear-gradient(90deg, transparent 49.8%, rgb(212 175 55 / 10%) 50%, transparent 50.2%) center / 180px 100%,
-    #fffdf8;
+    #fff;
 }
 
 .exam-university-year__meta {
@@ -404,23 +442,36 @@
 .exam-university-policy {
   position: relative;
   overflow: hidden;
+  border-block: 1px solid #dfe5e8;
   padding-block: 92px;
-  color: #fff;
+  color: #142b49;
   background:
-    radial-gradient(circle at 9% 8%, rgb(49 153 181 / 20%), transparent 25%),
-    linear-gradient(145deg, #071a33, #102d54);
+    radial-gradient(circle at 9% 8%, rgb(49 153 181 / 8%), transparent 25%),
+    linear-gradient(145deg, #fff, #fbfdff);
 }
 
 .exam-university-policy::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(0deg, transparent 0 47px, rgb(255 255 255 / 4%) 47px 48px);
+  background: repeating-linear-gradient(0deg, transparent 0 47px, rgb(18 53 106 / 3.5%) 47px 48px);
   pointer-events: none;
 }
 
 .exam-university-policy .content {
   position: relative;
+}
+
+.exam-university-policy .exam-library-section-heading--light h2 {
+  color: #102848;
+}
+
+.exam-university-policy .exam-library-section-heading--light > p:first-child {
+  color: #0b6684;
+}
+
+.exam-university-policy .exam-library-section-heading--light > p:last-child {
+  color: #625d56;
 }
 
 .exam-university-policy__steps {
@@ -434,10 +485,11 @@
   grid-template-columns: auto 1fr;
   gap: 16px;
   align-items: start;
-  border: 1px solid rgb(255 255 255 / 17%);
+  border: 1px solid #dce3e8;
   border-radius: 6px 6px 16px 6px;
   padding: 25px 22px;
-  background: rgb(255 255 255 / 8%);
+  background: #fff;
+  box-shadow: 0 14px 32px rgb(28 47 69 / 7%);
 }
 
 .exam-university-policy__steps li > span {
@@ -445,15 +497,17 @@
   place-items: center;
   width: 46px;
   height: 46px;
-  border: 1px solid rgb(112 216 242 / 48%);
+  border: 1px solid #12356a;
   border-radius: 50%;
-  color: #8ce7fa;
+  color: #fff;
+  background: #12356a;
   font-family: Georgia, serif;
   font-size: 0.74rem;
   font-weight: 900;
 }
 
 .exam-university-policy__steps h3 {
+  color: #142b49;
   font-family: var(--font-serif);
   font-size: 1.1rem;
   font-weight: 900;
@@ -461,9 +515,13 @@
 
 .exam-university-policy__steps p {
   margin-top: 6px !important;
-  color: rgb(255 255 255 / 70%);
+  color: #616b75;
   font-size: 0.78rem;
   line-height: 1.7;
+}
+
+.exam-university-page .exam-library-related {
+  background: #fff;
 }
 
 @media (max-width: 960px) {
@@ -554,7 +612,7 @@
   }
 
   .exam-university-summary dl > div + div {
-    border-top: 1px solid rgb(255 255 255 / 17%);
+    border-top: 1px solid #e2e7eb;
     border-left: 0;
   }
 
