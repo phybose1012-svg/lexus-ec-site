@@ -683,7 +683,9 @@
   }
 
   body.is-printing-past-exam-document .past-exam-print-branding {
-    display: flex !important;
+    display: grid !important;
+    grid-template-columns: 27mm 64mm 27mm;
+    gap: 5mm;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -695,9 +697,17 @@
     page-break-inside: avoid;
   }
 
+  body.is-printing-past-exam-document .past-exam-print-branding__character {
+    display: block;
+    width: 27mm;
+    height: 27mm;
+    object-fit: contain;
+    object-position: center;
+  }
+
   body.is-printing-past-exam-document .past-exam-print-branding__logo {
     display: block;
-    width: 62mm;
+    width: 64mm;
     height: auto;
   }
 
