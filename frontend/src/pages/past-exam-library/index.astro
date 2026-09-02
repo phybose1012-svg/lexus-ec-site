@@ -21,7 +21,13 @@ const regionDefinitions = [
 
 const universityGroups = regionDefinitions.map((region) => ({
   ...region,
-  universities: privateMedicalUniversities2027.filter((university) => university.region === region.name),
+  universities: privateMedicalUniversities2027
+    .filter((university) => university.region === region.name)
+    .map((university) => ({
+      ...university,
+      libraryPath:
+        university.id === "iwate-medical" ? "/past-exam-library/iwate-medical/" : undefined,
+    })),
 }));
 
 const reviewSteps = [
@@ -218,19 +224,40 @@ const structuredData = {
                 </header>
 
                 <div class="exam-library-university-grid">
-                  {group.universities.map((university) => (
-                    <article class="exam-library-university-card">
-                      <div class="exam-library-university-card__topline">
-                        <span>{university.prefecture}</span>
-                        <small>公開準備中</small>
-                      </div>
-                      <h4>{university.name}</h4>
-                      <p>年度・科目別に掲載予定</p>
-                      <div class="exam-library-university-card__path" aria-hidden="true">
-                        <span>大学</span><i>→</i><span>年度</span><i>→</i><span>科目</span>
-                      </div>
-                    </article>
-                  ))}
+                  {group.universities.map((university) =>
+                    university.libraryPath ? (
+                      <a
+                        class="exam-library-university-card exam-library-university-card--linked"
+                        href={university.libraryPath}
+                        aria-label={`${university.name}の過去問準備状況を見る`}
+                      >
+                        <div class="exam-library-university-card__topline">
+                          <span>{university.prefecture}</span>
+                          <small>準備状況を公開</small>
+                        </div>
+                        <h4>{university.name}</h4>
+                        <p>2025年度の科目別準備状況を見る</p>
+                        <div class="exam-library-university-card__footer" aria-hidden="true">
+                          <div class="exam-library-university-card__path">
+                            <span>大学</span><i>→</i><span>年度</span><i>→</i><span>科目</span>
+                          </div>
+                          <strong>詳しく見る <i>→</i></strong>
+                        </div>
+                      </a>
+                    ) : (
+                      <article class="exam-library-university-card">
+                        <div class="exam-library-university-card__topline">
+                          <span>{university.prefecture}</span>
+                          <small>公開準備中</small>
+                        </div>
+                        <h4>{university.name}</h4>
+                        <p>年度・科目別に掲載予定</p>
+                        <div class="exam-library-university-card__path" aria-hidden="true">
+                          <span>大学</span><i>→</i><span>年度</span><i>→</i><span>科目</span>
+                        </div>
+                      </article>
+                    )
+                  )}
                 </div>
               </section>
             ))
