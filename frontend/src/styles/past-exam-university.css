@@ -211,6 +211,101 @@
     #fff;
 }
 
+.exam-university-year-index-heading {
+  display: flex;
+  gap: 24px;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.exam-university-year-index-heading p {
+  color: var(--university-blue);
+  font-size: 0.64rem;
+  font-weight: 950;
+  letter-spacing: 0.16em;
+}
+
+.exam-university-year-index-heading h2 {
+  margin-top: 3px;
+  color: #102848;
+  font-family: var(--font-serif);
+  font-size: clamp(1.45rem, 2.7vw, 1.95rem);
+  font-weight: 900;
+}
+
+.exam-university-year-index-heading > a {
+  color: #234f79;
+  font-size: 0.74rem;
+  font-weight: 900;
+  text-underline-offset: 4px;
+}
+
+.exam-university-year-nav {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: 16px;
+  overflow: hidden;
+  border: 1px solid #d5dde4;
+  border-radius: 6px 6px 14px 6px;
+  background: #fff;
+  box-shadow: 0 12px 28px rgb(28 47 69 / 7%);
+}
+
+.exam-university-year-nav a {
+  position: relative;
+  min-height: 78px;
+  border-top: 3px solid #9faab4;
+  padding: 13px 12px 11px;
+  color: #142b49;
+  text-decoration: none;
+}
+
+.exam-university-year-nav a + a {
+  border-left: 1px solid #e0e5e9;
+}
+
+.exam-university-year-nav a.is-latest {
+  border-top-color: var(--university-navy);
+}
+
+.exam-university-year-nav a.is-active {
+  border-top-color: #2c6f55;
+}
+
+.exam-university-year-nav a:hover {
+  background: #f6f8fa;
+}
+
+.exam-university-year-nav strong {
+  font-family: Georgia, serif;
+  font-size: 1.32rem;
+  line-height: 1;
+}
+
+.exam-university-year-nav span {
+  margin-left: 2px;
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.exam-university-year-nav small {
+  display: block;
+  margin-top: 5px;
+  color: #68727c;
+  font-size: 0.62rem;
+  font-weight: 800;
+}
+
+.exam-university-year-list {
+  display: grid;
+  gap: 38px;
+  margin-top: 40px;
+}
+
+.exam-university-year-section {
+  scroll-margin-top: 24px;
+}
+
 .exam-university-toolbar {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
@@ -232,7 +327,8 @@
   letter-spacing: 0.12em;
 }
 
-.exam-university-year-label h2 {
+.exam-university-year-label h3 {
+  margin: 0;
   color: #102848;
   font-family: var(--font-serif);
   font-size: clamp(1.55rem, 3vw, 2.15rem);
@@ -263,11 +359,28 @@
   font-weight: 900;
 }
 
-.exam-university-toolbar > a {
-  color: #234f79;
-  font-size: 0.74rem;
+.exam-university-year-status {
+  justify-self: end;
+  border: 1px solid #cfd6dc;
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: #5d6670;
+  background: #f6f7f8;
+  font-size: 0.64rem;
   font-weight: 900;
-  text-underline-offset: 4px;
+  white-space: nowrap;
+}
+
+.exam-university-year-status.is-latest {
+  border-color: #a7b8ca;
+  color: #17345d;
+  background: #f2f6fa;
+}
+
+.exam-university-year-status.is-active {
+  border-color: #a9cabd;
+  color: #255d49;
+  background: #f0f8f4;
 }
 
 .exam-university-table-wrap {
@@ -583,7 +696,7 @@
     gap: 14px 24px;
   }
 
-  .exam-university-toolbar > a {
+  .exam-university-year-status {
     grid-column: 1 / -1;
     justify-self: start;
   }
@@ -691,6 +804,34 @@
     padding-block: 44px 52px;
   }
 
+  .exam-university-year-index-heading {
+    align-items: center;
+  }
+
+  .exam-university-year-nav a {
+    min-height: 70px;
+    padding: 11px 3px 9px;
+    text-align: center;
+  }
+
+  .exam-university-year-nav strong {
+    font-size: 1.05rem;
+  }
+
+  .exam-university-year-nav span {
+    font-size: 0.58rem;
+  }
+
+  .exam-university-year-nav small {
+    font-size: 0.52rem;
+    line-height: 1.25;
+  }
+
+  .exam-university-year-list {
+    gap: 32px;
+    margin-top: 32px;
+  }
+
   .exam-university-toolbar {
     grid-template-columns: 1fr;
     gap: 12px;
@@ -700,7 +841,7 @@
     gap: 12px;
   }
 
-  .exam-university-toolbar > a {
+  .exam-university-year-status {
     grid-column: auto;
   }
 

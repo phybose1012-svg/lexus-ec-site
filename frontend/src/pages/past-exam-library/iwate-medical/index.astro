@@ -5,18 +5,39 @@ import "../../../styles/past-exam-university.css";
 
 const title = "岩手医科大学 医学部の過去問｜年度・科目から探す｜レクサス教育センター";
 const description =
-  "岩手医科大学医学部の過去問を年度・科目別に整理しています。2025年度一般選抜の問題・解答の公開状況と、科目別分析をご案内します。";
+  "岩手医科大学医学部の過去問を2026年度から2022年度まで年度・科目別に整理しています。問題・解答の公開状況と科目別分析をご案内します。";
 const canonical = "https://lexus-ec.com/past-exam-library/iwate-medical/";
 
 const librarySteps = [
-  { number: "01", label: "年度", value: "2025年度", href: "#year-2025", tone: "selected" },
+  { number: "01", label: "年度", value: "5年分", href: "#years", tone: "selected" },
   { number: "02", label: "科目", value: "4科目", href: "#subjects", tone: "selected" },
   { number: "03", label: "問題", value: "確認中", href: "#subjects", tone: "waiting" },
   { number: "04", label: "解答", value: "準備中", href: "#subjects", tone: "waiting" },
   { number: "05", label: "分析", value: "閲覧可", href: "#subjects", tone: "ready" },
 ] as const;
 
-const subjects = [
+type SubjectRow = {
+  index: string;
+  name: string;
+  english: string;
+  tone: string;
+  problem: string;
+  problemTone: "waiting" | "empty";
+  answer: string;
+  answerTone: "waiting" | "empty";
+  analysis: string;
+  analysisTone: "ready" | "empty";
+  analysisPath?: string;
+};
+
+const subjectDefinitions = [
+  { index: "01", name: "数学", english: "MATHEMATICS", tone: "mathematics" },
+  { index: "02", name: "化学", english: "CHEMISTRY", tone: "chemistry" },
+  { index: "03", name: "物理", english: "PHYSICS", tone: "physics" },
+  { index: "04", name: "生物", english: "BIOLOGY", tone: "biology" },
+] as const;
+
+const subjects2025: SubjectRow[] = [
   {
     index: "01",
     name: "数学",
@@ -26,6 +47,8 @@ const subjects = [
     problemTone: "waiting",
     answer: "準備中",
     answerTone: "waiting",
+    analysis: "分析を見る",
+    analysisTone: "ready",
     analysisPath: "/iwateika-university-entrance-exam-measures2027/#数学",
   },
   {
@@ -37,6 +60,8 @@ const subjects = [
     problemTone: "waiting",
     answer: "準備中",
     answerTone: "waiting",
+    analysis: "分析を見る",
+    analysisTone: "ready",
     analysisPath: "/iwateika-university-entrance-exam-measures2027/#化学",
   },
   {
@@ -48,6 +73,8 @@ const subjects = [
     problemTone: "waiting",
     answer: "準備中",
     answerTone: "waiting",
+    analysis: "分析を見る",
+    analysisTone: "ready",
     analysisPath: "/iwateika-university-entrance-exam-measures2027/#物理",
   },
   {
@@ -59,8 +86,28 @@ const subjects = [
     problemTone: "empty",
     answer: "未収録",
     answerTone: "empty",
+    analysis: "分析を見る",
+    analysisTone: "ready",
     analysisPath: "/iwateika-university-entrance-exam-measures2027/#生物",
   },
+];
+
+const placeholderSubjects: SubjectRow[] = subjectDefinitions.map((subject) => ({
+  ...subject,
+  problem: "準備中",
+  problemTone: "empty",
+  answer: "準備中",
+  answerTone: "empty",
+  analysis: "準備中",
+  analysisTone: "empty",
+}));
+
+const examYears = [
+  { year: "2026", label: "最新年度", tone: "latest", subjects: placeholderSubjects },
+  { year: "2025", label: "一部準備中", tone: "active", subjects: subjects2025 },
+  { year: "2024", label: "掲載準備中", tone: "placeholder", subjects: placeholderSubjects },
+  { year: "2023", label: "掲載準備中", tone: "placeholder", subjects: placeholderSubjects },
+  { year: "2022", label: "掲載準備中", tone: "placeholder", subjects: placeholderSubjects },
 ] as const;
 
 const structuredData = {
@@ -142,13 +189,13 @@ const structuredData = {
               岩手医科大学
               <span>過去問ライブラリー</span>
             </h1>
-            <p class="exam-university-header__meta">2025年度　一般選抜・一次試験</p>
+            <p class="exam-university-header__meta">2026〜2022年度　5年分</p>
           </div>
 
           <aside class="exam-university-current" aria-label="現在の公開状況">
             <span>現在の公開状況</span>
-            <strong>3科目を準備中・生物は未収録</strong>
-            <small>科目別分析は閲覧できます</small>
+            <strong>5年分の掲載枠を用意しました</strong>
+            <small>2025年度は科目別分析を閲覧できます</small>
           </aside>
         </div>
       </div>
@@ -168,70 +215,106 @@ const structuredData = {
       </div>
     </nav>
 
-    <section class="exam-university-browser" id="year-2025" aria-labelledby="year-2025-title">
+    <div class="exam-university-browser" id="years">
       <div class="content">
-        <header class="exam-university-toolbar">
-          <div class="exam-university-year-label">
-            <span>年度</span>
-            <h2 id="year-2025-title">2025年度</h2>
+        <header class="exam-university-year-index-heading">
+          <div>
+            <p>YEAR INDEX</p>
+            <h2 id="year-index-title">年度を選ぶ</h2>
           </div>
-          <dl>
-            <div>
-              <dt>試験区分</dt>
-              <dd>一般選抜</dd>
-            </div>
-            <div>
-              <dt>試験段階</dt>
-              <dd>一次試験</dd>
-            </div>
-          </dl>
           <a href="/past-exam-library/">大学一覧へ戻る</a>
         </header>
 
-        <div class="exam-university-table-wrap" id="subjects">
-          <table class="exam-university-table">
-            <caption>2025年度 岩手医科大学 一般選抜・一次試験の科目別公開状況</caption>
-            <thead>
-              <tr>
-                <th scope="col">科目</th>
-                <th scope="col">問題</th>
-                <th scope="col">解答</th>
-                <th scope="col">分析</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                subjects.map((subject) => (
-                  <tr class={`is-${subject.tone}`}>
-                    <th scope="row">
-                      <span class="exam-university-subject">
-                        <span>{subject.index}</span>
-                        <span>
-                          <strong>{subject.name}</strong>
-                          <small>{subject.english}</small>
-                        </span>
-                      </span>
-                    </th>
-                    <td data-label="問題">
-                      <span class={`exam-university-state is-${subject.problemTone}`}>{subject.problem}</span>
-                    </td>
-                    <td data-label="解答">
-                      <span class={`exam-university-state is-${subject.answerTone}`}>{subject.answer}</span>
-                    </td>
-                    <td data-label="分析">
-                      <a
-                        class="exam-university-analysis-link"
-                        href={subject.analysisPath}
-                        aria-label={`${subject.name}の分析を見る`}
-                      >
-                        分析を見る <span aria-hidden="true">→</span>
-                      </a>
-                    </td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
+        <nav class="exam-university-year-nav" aria-labelledby="year-index-title">
+          {
+            examYears.map((examYear) => (
+              <a class={`is-${examYear.tone}`} href={`#year-${examYear.year}`}>
+                <strong>{examYear.year}</strong>
+                <span>年度</span>
+                <small>{examYear.label}</small>
+              </a>
+            ))
+          }
+        </nav>
+
+        <div class="exam-university-year-list" id="subjects">
+          {
+            examYears.map((examYear) => (
+              <section
+                class={`exam-university-year-section is-${examYear.tone}`}
+                id={`year-${examYear.year}`}
+                aria-labelledby={`year-${examYear.year}-title`}
+              >
+                <header class="exam-university-toolbar">
+                  <div class="exam-university-year-label">
+                    <span>年度</span>
+                    <h3 id={`year-${examYear.year}-title`}>{examYear.year}年度</h3>
+                  </div>
+                  <dl>
+                    <div>
+                      <dt>試験区分</dt>
+                      <dd>一般選抜</dd>
+                    </div>
+                    <div>
+                      <dt>試験段階</dt>
+                      <dd>一次試験</dd>
+                    </div>
+                  </dl>
+                  <span class={`exam-university-year-status is-${examYear.tone}`}>{examYear.label}</span>
+                </header>
+
+                <div class="exam-university-table-wrap">
+                  <table class="exam-university-table">
+                    <caption>{examYear.year}年度 岩手医科大学 一般選抜・一次試験の科目別公開状況</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">科目</th>
+                        <th scope="col">問題</th>
+                        <th scope="col">解答</th>
+                        <th scope="col">分析</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {examYear.subjects.map((subject) => (
+                        <tr class={`is-${subject.tone}`}>
+                          <th scope="row">
+                            <span class="exam-university-subject">
+                              <span>{subject.index}</span>
+                              <span>
+                                <strong>{subject.name}</strong>
+                                <small>{subject.english}</small>
+                              </span>
+                            </span>
+                          </th>
+                          <td data-label="問題">
+                            <span class={`exam-university-state is-${subject.problemTone}`}>{subject.problem}</span>
+                          </td>
+                          <td data-label="解答">
+                            <span class={`exam-university-state is-${subject.answerTone}`}>{subject.answer}</span>
+                          </td>
+                          <td data-label="分析">
+                            {subject.analysisPath ? (
+                              <a
+                                class="exam-university-analysis-link"
+                                href={subject.analysisPath}
+                                aria-label={`${examYear.year}年度 ${subject.name}の分析を見る`}
+                              >
+                                {subject.analysis} <span aria-hidden="true">→</span>
+                              </a>
+                            ) : (
+                              <span class={`exam-university-state is-${subject.analysisTone}`}>
+                                {subject.analysis}
+                              </span>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            ))
+          }
         </div>
 
         <div class="exam-university-info-row">
@@ -246,7 +329,7 @@ const structuredData = {
           </ul>
         </div>
       </div>
-    </section>
+    </div>
 
     <nav class="exam-university-links" aria-label="岩手医科大学の関連情報">
       <div class="content">
