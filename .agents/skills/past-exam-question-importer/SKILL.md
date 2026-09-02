@@ -56,6 +56,8 @@ node .agents/skills/past-exam-question-importer/scripts/import-question-page.mjs
 `--overrides` is optional. Use package-scoped operations for small, reproducible presentation corrections:
 
 - `replace-text` replaces an exact string and fails unless `expectedMatches` is met.
+- `promote-inline-fractions` applies display-style fraction sizing to every inline formula in scope that contains `\\frac`.
+- `flatten-introduction` preserves the semantic source order while joining introductory prose and fact lists into one naturally wrapping paragraph.
 - `wrap-introduction` wraps the content between the first `h2` and `h3` in a named class for compact introductory layout.
 
 Keep override files declarative and narrowly scoped to a major-question ID. If an operation changes the meaning of the question rather than its presentation, fix and re-review the source package instead.

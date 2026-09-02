@@ -84,7 +84,7 @@ function applyOverrides(fragment, scope, overrides) {
   if (!overrides) return fragment;
 
   return overrides.operations
-    .filter((operation) => operation.scope === scope)
+    .filter((operation) => operation.scope === scope || operation.scope === "*")
     .reduce((result, operation, index) => {
       const operationLabel = `override operation ${index + 1} (${scope})`;
 
@@ -98,6 +98,50 @@ function applyOverrides(fragment, scope, overrides) {
           throw new Error(`${operationLabel}: expected ${expectedMatches} matches, found ${actualMatches}`);
         }
         return result.replaceAll(operation.from, operation.to);
+      }
+
+      if (operation.type === "promote-inline-fractions") {
+        let promoted = 0;
+        const updated = result.replace(
+          /<span\b([^>]*\bdata-katex=")([^"]+)("[^>]*)>([^<]*)<\/span>/gi,
+          (match, beforeLatex, latex, afterLatex, fallback) => {
+            if (!latex.includes("\\frac") || latex.includes("\\displaystyle")) return match;
+            promoted += 1;
+            const styledLatex = `\\displaystyle ${latex}`;
+            const styledFallback = fallback === latex ? styledLatex : fallback;
+            return `<span${beforeLatex}${styledLatex}${afterLatex}>${styledFallback}</span>`;
+          },
+        );
+        const minimumMatches = Number(operation.minimumMatches ?? 1);
+        if (promoted < minimumMatches) {
+          throw new Error(`${operationLabel}: expected at least ${minimumMatches} fractions, found ${promoted}`);
+        }
+        return updated;
+      }
+
+      if (operation.type === "flatten-introduction") {
+        const headingEnd = result.indexOf("</h2>");
+        const firstSubheading = result.indexOf("<h3", headingEnd + 5);
+        if (headingEnd < 0 || firstSubheading < 0 || firstSubheading <= headingEnd + 5) {
+          throw new Error(`${operationLabel}: introduction boundaries were not found`);
+        }
+
+        const introduction = result.slice(headingEnd + 5, firstSubheading);
+        const flattened = introduction
+          .replace(/<p\b[^>]*\bclass=["'][^"']*\bprose\b[^"']*["'][^>]*>/gi, "")
+          .replace(/<\/p>/gi, " ")
+          .replace(/<div\b[^>]*>/gi, " ")
+          .replace(/<\/div>/gi, " ")
+          .replace(/\s+/g, " ")
+          .replace(/([。、])\s+/g, "$1")
+          .trim();
+        if (!flattened || /<\/?(?:p|div)\b/i.test(flattened)) {
+          throw new Error(`${operationLabel}: introduction could not be flattened safely`);
+        }
+
+        return `${result.slice(0, headingEnd + 5)}<p class="prose question-intro-compact">${flattened}</p>${result.slice(
+          firstSubheading,
+        )}`;
       }
 
       if (operation.type === "wrap-introduction") {

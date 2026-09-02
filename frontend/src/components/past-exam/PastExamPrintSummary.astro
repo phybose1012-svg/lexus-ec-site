@@ -1,0 +1,15 @@
+---
+type Props = {
+  metadata: string[];
+  notes: string[];
+};
+
+const { metadata, notes } = Astro.props;
+---
+
+<section class="past-exam-print-summary" aria-label="印刷用試験情報">
+  <p>{metadata.join(" ｜ ")}</p>
+  <ul>
+    {notes.map((note) => <li>{note}</li>)}
+  </ul>
+</section>

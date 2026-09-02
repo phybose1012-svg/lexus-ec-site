@@ -2,6 +2,7 @@
 import SiteLayout from "../../../../../layouts/SiteLayout.astro";
 import PastExamPrintBranding from "../../../../../components/past-exam/PastExamPrintBranding.astro";
 import PastExamPrintButton from "../../../../../components/past-exam/PastExamPrintButton.astro";
+import PastExamPrintSummary from "../../../../../components/past-exam/PastExamPrintSummary.astro";
 import "../../../../../styles/past-exam-library.css";
 import "../../../../../styles/past-exam-question.css";
 
@@ -122,7 +123,7 @@ const structuredData = {
   </Fragment>
 
   <main class="past-exam-question-page">
-    <PastExamPrintBranding subtitle={`${page.university.name} ${page.exam.year}年度 ${page.subject.name}・問題`} />
+    <PastExamPrintBranding />
 
     <header class="past-exam-question-header">
       <div class="content">
@@ -162,6 +163,22 @@ const structuredData = {
         </dl>
       </div>
     </header>
+
+    <PastExamPrintSummary
+      metadata={[
+        `${page.exam.year}年度`,
+        page.exam.label,
+        page.exam.stage,
+        page.subject.name,
+        page.exam.duration,
+        `大問${page.document.questions.length}題`,
+      ]}
+      notes={[
+        "空欄には、指定に従って符号または数字を1つずつ記入してください。",
+        "分数は既約分数とし、負号は分子につけてください。",
+        "根号を含む答えは、根号の中が最小になる形にしてください。",
+      ]}
+    />
 
     <div class:list={["past-exam-question-review", { "is-required": reviewRequired }]}>
       <div class="content">

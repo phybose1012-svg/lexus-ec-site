@@ -20,17 +20,12 @@ const { label, printTitle } = Astro.props;
 <script is:inline>
   (() => {
     const button = document.querySelector("[data-past-exam-print]");
-    const instructions = document.querySelector("[data-past-exam-print-instructions]");
     if (!(button instanceof HTMLButtonElement)) return;
 
     let titleBeforePrint = null;
-    let instructionsWereOpen = false;
 
     const clearPrintState = () => {
       document.body.classList.remove("is-printing-past-exam-document");
-      if (instructions instanceof HTMLDetailsElement && !instructionsWereOpen) {
-        instructions.open = false;
-      }
       if (titleBeforePrint !== null) {
         document.title = titleBeforePrint;
         titleBeforePrint = null;
@@ -39,8 +34,6 @@ const { label, printTitle } = Astro.props;
 
     button.addEventListener("click", () => {
       clearPrintState();
-      instructionsWereOpen = instructions instanceof HTMLDetailsElement && instructions.open;
-      if (instructions instanceof HTMLDetailsElement) instructions.open = true;
       document.body.classList.add("is-printing-past-exam-document");
       titleBeforePrint = document.title;
       document.title = button.dataset.printTitle || document.title;

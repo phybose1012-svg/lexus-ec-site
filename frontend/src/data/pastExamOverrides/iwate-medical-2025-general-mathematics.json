@@ -3,18 +3,20 @@
   "packageId": "iwate-medical-2025-general-mathematics",
   "operations": [
     {
-      "type": "replace-text",
-      "scope": "major-question-01",
-      "from": "f(x)=\\frac{x^3}{2x^2-1}",
-      "to": "\\displaystyle f(x)=\\frac{x^3}{2x^2-1}",
-      "expectedMatches": 2,
-      "reason": "冒頭の有理関数を本文内でも表示数式相当の分数サイズにする"
+      "type": "promote-inline-fractions",
+      "scope": "*",
+      "minimumMatches": 1,
+      "reason": "分数を含む数式の分子・分母を本文と釣り合うサイズに統一する"
     },
     {
-      "type": "wrap-introduction",
+      "type": "flatten-introduction",
       "scope": "major-question-02",
-      "className": "question-intro-compact",
-      "reason": "図形条件の導入部をひとまとまりとして読みやすくする"
+      "reason": "図形条件の導入部を自然に折り返す一続きの文章にする"
+    },
+    {
+      "type": "flatten-introduction",
+      "scope": "major-question-03",
+      "reason": "カード問題の短い導入文を不要に分断しない"
     }
   ]
 }

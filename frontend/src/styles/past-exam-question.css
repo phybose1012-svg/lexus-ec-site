@@ -57,7 +57,8 @@
   background: var(--question-navy);
 }
 
-.past-exam-print-branding {
+.past-exam-print-branding,
+.past-exam-print-summary {
   display: none;
 }
 
@@ -381,38 +382,37 @@
 
 .past-exam-question-page .structured-list__text {
   font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 1rem;
   line-height: 1.9;
 }
 
-.past-exam-question-page .question-intro-compact {
-  margin-bottom: 18px;
+.past-exam-question-page .structured-list--values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 2rem;
+  align-items: baseline;
 }
 
-.past-exam-question-page .question-intro-compact > .prose,
-.past-exam-question-page .question-intro-compact > .structured-list {
-  margin-block: 4px;
-}
-
-.past-exam-question-page .question-intro-compact > .structured-list--cols-2 {
-  grid-template-columns: repeat(4, max-content);
-  gap: 0 1.4rem;
-  width: 100%;
-}
-
-.past-exam-question-page .question-intro-compact .structured-list__item {
+.past-exam-question-page .structured-list--values .structured-list__item {
+  max-width: 100%;
+  flex: 0 1 auto;
   margin-block: 0.2em;
+}
+
+.past-exam-question-page .prose.question-intro-compact {
+  margin: 10px 0 20px;
 }
 
 .past-exam-question-page .answer-slot {
   display: inline-flex;
-  min-width: 2.1em;
-  height: 1.7em;
+  min-width: 2.2em;
+  height: 1.8em;
   align-items: center;
   justify-content: center;
   border: 2px solid #222;
   padding: 0 0.35em;
   background: #fff;
-  font-size: 0.88em;
+  font-size: 0.96em;
   font-weight: 800;
   line-height: 1;
   vertical-align: middle;
@@ -611,11 +611,6 @@
     grid-template-columns: 1fr;
   }
 
-  .past-exam-question-page .question-intro-compact > .structured-list--cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap-inline: 1rem;
-  }
-
   .past-exam-question-page .prose,
   .past-exam-question-page .structured-list__text {
     font-size: 0.94rem;
@@ -636,12 +631,17 @@
 
 @page {
   size: A4 portrait;
-  margin: 9mm;
+  margin: 16mm 18mm 18mm;
 }
 
 @media print {
+  html {
+    background: #fff !important;
+  }
+
   body.is-printing-past-exam-document {
     --past-exam-print-rule: 0.3mm solid #777;
+    background: #fff !important;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
@@ -655,10 +655,14 @@
   body.is-printing-past-exam-document .mega-nav,
   body.is-printing-past-exam-document .site-footer,
   body.is-printing-past-exam-document .exam-library-breadcrumb,
+  body.is-printing-past-exam-document .past-exam-question-kicker,
+  body.is-printing-past-exam-document .page-kicker,
   body.is-printing-past-exam-document .past-exam-question-header__actions,
+  body.is-printing-past-exam-document .past-exam-question-meta,
   body.is-printing-past-exam-document .past-exam-question-review,
   body.is-printing-past-exam-document .past-exam-question-mode,
   body.is-printing-past-exam-document .past-exam-question-index,
+  body.is-printing-past-exam-document .past-exam-question-instructions,
   body.is-printing-past-exam-document .past-exam-question-note,
   body.is-printing-past-exam-document .past-exam-question-links {
     display: none !important;
@@ -667,8 +671,6 @@
   body.is-printing-past-exam-document .past-exam-question-page,
   body.is-printing-past-exam-document .past-exam-question-header,
   body.is-printing-past-exam-document .past-exam-question-reader,
-  body.is-printing-past-exam-document .past-exam-question-instructions,
-  body.is-printing-past-exam-document .past-exam-question-instructions__body,
   body.is-printing-past-exam-document .past-exam-question-list {
     display: block !important;
     color: #111;
@@ -681,45 +683,27 @@
   }
 
   body.is-printing-past-exam-document .past-exam-print-branding {
-    display: grid !important;
-    grid-template-columns: 34mm minmax(0, 82mm) 34mm;
-    gap: 3mm;
-    align-items: start;
+    display: flex !important;
+    align-items: center;
     justify-content: center;
     width: 100%;
-    margin-bottom: 6mm;
+    margin-bottom: 5mm;
     border-bottom: var(--past-exam-print-rule);
     padding-bottom: 4mm;
-    color: #333;
     background: #fff;
-    text-align: center;
     break-inside: avoid-page;
     page-break-inside: avoid;
   }
 
-  body.is-printing-past-exam-document .past-exam-print-branding__character {
-    width: 34mm;
-    height: 34mm;
-    object-fit: contain;
-    object-position: center top;
-  }
-
   body.is-printing-past-exam-document .past-exam-print-branding__logo {
     display: block;
-    width: 82mm;
+    width: 62mm;
     height: auto;
   }
 
-  body.is-printing-past-exam-document .past-exam-print-branding p {
-    margin: 1.5mm 0 0;
-    font-size: 7pt;
-    font-weight: 800;
-    line-height: 1.4;
-  }
-
   body.is-printing-past-exam-document .past-exam-question-header {
-    border-bottom: var(--past-exam-print-rule);
-    padding: 0 0 5mm;
+    border-bottom: 0;
+    padding: 0;
   }
 
   body.is-printing-past-exam-document .past-exam-question-header__grid {
@@ -729,48 +713,48 @@
 
   body.is-printing-past-exam-document .past-exam-question-header h1 {
     margin: 0;
-    font-size: 18pt;
+    font-size: 16pt;
+    text-align: center;
   }
 
   body.is-printing-past-exam-document .past-exam-question-header h1 span {
     margin-top: 1mm;
-    font-size: 10pt;
+    font-size: 10.5pt;
   }
 
-  body.is-printing-past-exam-document .past-exam-question-meta {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    margin-top: 4mm;
-    border-radius: 0;
+  body.is-printing-past-exam-document .past-exam-print-summary {
+    display: block !important;
+    margin: 4mm 0 6mm;
+    border-top: var(--past-exam-print-rule);
+    border-bottom: var(--past-exam-print-rule);
+    padding: 3mm 0;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
   }
 
-  body.is-printing-past-exam-document .past-exam-question-meta > div {
-    border-top: 0;
-    padding: 2mm;
+  body.is-printing-past-exam-document .past-exam-print-summary p {
+    margin: 0;
+    font-size: 8.5pt;
+    font-weight: 800;
+    text-align: center;
   }
 
-  body.is-printing-past-exam-document .past-exam-question-meta dt {
-    font-size: 6pt;
+  body.is-printing-past-exam-document .past-exam-print-summary ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1mm 5mm;
+    margin: 2.5mm 0 0;
+    padding: 0;
+    list-style-position: inside;
   }
 
-  body.is-printing-past-exam-document .past-exam-question-meta dd {
+  body.is-printing-past-exam-document .past-exam-print-summary li {
+    margin: 0;
     font-size: 7.5pt;
+    line-height: 1.45;
   }
 
   body.is-printing-past-exam-document .past-exam-question-reader {
-    padding: 0;
-  }
-
-  body.is-printing-past-exam-document .past-exam-question-instructions {
-    margin-top: 6mm;
-    border: 0;
-    border-radius: 0;
-  }
-
-  body.is-printing-past-exam-document .past-exam-question-instructions summary {
-    display: none;
-  }
-
-  body.is-printing-past-exam-document .past-exam-question-instructions__body {
     padding: 0;
   }
 
@@ -781,16 +765,16 @@
     box-shadow: none;
   }
 
-  body.is-printing-past-exam-document .past-exam-question-page .question-shared-instructions {
-    padding-top: 0;
-  }
-
   body.is-printing-past-exam-document .past-exam-question-list {
     gap: 0;
     margin-top: 0;
   }
 
-  body.is-printing-past-exam-document .major-question-card {
+  body.is-printing-past-exam-document .major-question-card + .major-question-card {
+    margin-top: 7mm;
+  }
+
+  body.is-printing-past-exam-document #major-question-03 {
     break-before: page;
     page-break-before: always;
   }
@@ -799,6 +783,25 @@
     margin-top: 0;
     break-after: avoid-page;
     page-break-after: avoid;
+  }
+
+  body.is-printing-past-exam-document .past-exam-question-page .source-page-card h3 {
+    min-height: 0;
+    margin: 4mm 0 2mm;
+    padding-left: 3mm;
+    font-size: 11pt;
+  }
+
+  body.is-printing-past-exam-document .past-exam-question-page .prose {
+    margin-block: 2mm;
+  }
+
+  body.is-printing-past-exam-document .past-exam-question-page .structured-list {
+    margin-block: 1.5mm 3mm;
+  }
+
+  body.is-printing-past-exam-document .past-exam-question-page .structured-list__item {
+    margin-block: 0.8mm;
   }
 
   body.is-printing-past-exam-document .past-exam-question-page :where(h3, .prose, .structured-list__item) {
