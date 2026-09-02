@@ -1,42 +1,28 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
+import { privateMedicalUniversities2027 } from "../../data/privateMedicalAdmissions2027";
 import "../../styles/past-exam-library.css";
 
-const title = "私立医学部の過去問ライブラリー｜数学・化学・物理・生物｜レクサス教育センター";
+const title = "私立医学部の過去問ライブラリー｜大学・年度・科目から探す｜レクサス教育センター";
 const description =
-  "私立医学部の過去問を大学・年度・科目から探せるライブラリーを準備中です。数学・化学・物理・生物から、内容・権利・表示の確認が完了したものを順次掲載します。";
+  "私立医学部の過去問を大学ごとに整理し、年度・科目から探せるライブラリーを準備中です。数学・化学・物理・生物から、内容・権利・表示の確認が完了したものを順次掲載します。";
 const canonical = "https://lexus-ec.com/past-exam-library/";
 
-const subjects = [
-  {
-    id: "mathematics",
-    name: "数学",
-    english: "MATHEMATICS",
-    symbol: "∫",
-    description: "数式やグラフを、画面でも追いやすい形に整えて掲載予定です。",
-  },
-  {
-    id: "chemistry",
-    name: "化学",
-    english: "CHEMISTRY",
-    symbol: "H₂O",
-    description: "化学式・構造式・表を確認し、読みやすい形で掲載予定です。",
-  },
-  {
-    id: "physics",
-    name: "物理",
-    english: "PHYSICS",
-    symbol: "F=ma",
-    description: "図や数式を含む問題を、見やすい形に整えて掲載予定です。",
-  },
-  {
-    id: "biology",
-    name: "生物",
-    english: "BIOLOGY",
-    symbol: "DNA",
-    description: "長文・図表・考察問題を、読み進めやすく整理して掲載予定です。",
-  },
+const subjects = ["数学", "化学", "物理", "生物"] as const;
+
+const regionDefinitions = [
+  { name: "北海道・東北", id: "region-hokkaido-tohoku" },
+  { name: "関東", id: "region-kanto" },
+  { name: "中部", id: "region-chubu" },
+  { name: "近畿", id: "region-kinki" },
+  { name: "中国・四国", id: "region-chugoku-shikoku" },
+  { name: "九州", id: "region-kyushu" },
 ] as const;
+
+const universityGroups = regionDefinitions.map((region) => ({
+  ...region,
+  universities: privateMedicalUniversities2027.filter((university) => university.region === region.name),
+}));
 
 const reviewSteps = [
   {
@@ -142,11 +128,11 @@ const structuredData = {
               <strong>過去問ライブラリー</strong>
             </h1>
             <p class="exam-library-hero__lead">
-              志望校対策に必要な過去問を、大学・年度・科目から探せるライブラリーを準備しています。
-              まずは数学・化学・物理・生物から、公開確認が完了したものを順次追加します。
+              志望大学を選び、その大学の中で年度、科目の順に過去問を探せるライブラリーを準備しています。
+              対象科目は数学・化学・物理・生物です。
             </p>
             <div class="exam-library-hero__actions">
-              <a class="exam-library-button exam-library-button--primary" href="#subjects">収録予定科目を見る</a>
+              <a class="exam-library-button exam-library-button--primary" href="#universities">大学一覧を見る</a>
               <a class="exam-library-button exam-library-button--secondary" href="#library-status">公開状況を見る</a>
             </div>
           </div>
@@ -169,12 +155,12 @@ const structuredData = {
                 <dd>私立医学部</dd>
               </div>
               <div>
-                <dt>科目</dt>
-                <dd>数学・理科</dd>
+                <dt>整理</dt>
+                <dd>大学ごと</dd>
               </div>
               <div>
-                <dt>形式</dt>
-                <dd>読みやすいHTML</dd>
+                <dt>順序</dt>
+                <dd>年度 → 科目</dd>
               </div>
             </dl>
           </aside>
@@ -184,33 +170,69 @@ const structuredData = {
 
     <nav class="exam-library-jump-nav" aria-label="ページ内メニュー">
       <div class="content exam-library-jump-nav__inner">
-        <a href="#subjects"><span>01</span>収録予定科目</a>
+        <a href="#universities"><span>01</span>大学から探す</a>
         <a href="#library-status"><span>02</span>公開状況</a>
         <a href="#quality"><span>03</span>公開品質</a>
       </div>
     </nav>
 
-    <section class="exam-library-subjects" id="subjects" aria-labelledby="subjects-title">
+    <section class="exam-library-universities" id="universities" aria-labelledby="universities-title">
       <div class="content">
         <header class="exam-library-section-heading">
-          <p>SUBJECTS</p>
-          <h2 id="subjects-title">数学・化学・物理・生物から順次公開</h2>
-          <p>数式や図表も画面で読みやすい形に整え、確認が完了した科目から掲載します。</p>
+          <p>UNIVERSITY INDEX</p>
+          <h2 id="universities-title">大学から過去問を探す</h2>
+          <p>過去問は大学ごとにまとめ、各大学の中で年度、科目の順に選べる形で掲載します。</p>
         </header>
 
-        <div class="exam-library-subject-grid">
+        <aside class="exam-library-subject-key" aria-labelledby="subject-key-title">
+          <div>
+            <p id="subject-key-title">収録予定科目</p>
+            <strong>大学・年度を選んだあとに、科目を選択します。</strong>
+          </div>
+          <ul>
+            {subjects.map((subject) => <li>{subject}</li>)}
+          </ul>
+        </aside>
+
+        <nav class="exam-library-region-nav" aria-label="地域から大学を探す">
           {
-            subjects.map((subject, index) => (
-              <article class={`exam-library-subject-card exam-library-subject-card--${subject.id}`}>
-                <div class="exam-library-subject-card__topline">
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <small>{subject.english}</small>
+            universityGroups.map((group) => (
+              <a href={`#${group.id}`}>
+                <span>{group.name}</span>
+                <small>{group.universities.length}大学</small>
+              </a>
+            ))
+          }
+        </nav>
+
+        <div class="exam-library-university-groups">
+          {
+            universityGroups.map((group) => (
+              <section class="exam-library-university-group" id={group.id} aria-labelledby={`${group.id}-title`}>
+                <header>
+                  <div>
+                    <span>REGION</span>
+                    <h3 id={`${group.id}-title`}>{group.name}</h3>
+                  </div>
+                  <p>{group.universities.length}大学</p>
+                </header>
+
+                <div class="exam-library-university-grid">
+                  {group.universities.map((university) => (
+                    <article class="exam-library-university-card">
+                      <div class="exam-library-university-card__topline">
+                        <span>{university.prefecture}</span>
+                        <small>公開準備中</small>
+                      </div>
+                      <h4>{university.name}</h4>
+                      <p>年度・科目別に掲載予定</p>
+                      <div class="exam-library-university-card__path" aria-hidden="true">
+                        <span>大学</span><i>→</i><span>年度</span><i>→</i><span>科目</span>
+                      </div>
+                    </article>
+                  ))}
                 </div>
-                <p class="exam-library-subject-card__symbol" aria-hidden="true">{subject.symbol}</p>
-                <h3>{subject.name}</h3>
-                <p>{subject.description}</p>
-                <span class="exam-library-subject-card__status">公開準備中</span>
-              </article>
+              </section>
             ))
           }
         </div>
@@ -223,8 +245,8 @@ const structuredData = {
           <p>LIBRARY STATUS</p>
           <h2 id="library-status-title">過去問は現在準備中です</h2>
           <p>
-            現在、閲覧できる過去問はありません。数学・化学・物理・生物を中心に、
-            確認が完了した大学・年度から順次公開します。
+            現在、閲覧できる過去問はありません。内容・権利・表示の確認が完了した大学から、
+            年度・科目別に順次公開します。
           </p>
         </header>
 
@@ -234,9 +256,9 @@ const structuredData = {
           </div>
           <div>
             <p class="exam-library-empty__eyebrow">NEXT UPDATE</p>
-            <h3>最初の公開データを準備しています</h3>
+            <h3>大学別の公開データを準備しています</h3>
             <p>
-              公開後は、大学・年度・科目から目的の問題を探せるようになります。
+              公開後は、志望大学を選び、その大学の中で年度・科目から目的の問題を探せるようになります。
               公開時期が確定するまで、未確認の問題や件数は表示しません。
             </p>
           </div>
@@ -245,8 +267,8 @@ const structuredData = {
 
         <ol class="exam-library-future-flow" aria-label="公開後の探し方">
           <li><span>1</span><strong>大学を選ぶ</strong><small>志望校から探す</small></li>
-          <li><span>2</span><strong>年度を選ぶ</strong><small>出題傾向を比べる</small></li>
-          <li><span>3</span><strong>科目を選ぶ</strong><small>重点科目に取り組む</small></li>
+          <li><span>2</span><strong>年度を選ぶ</strong><small>過去問を年度別に確認</small></li>
+          <li><span>3</span><strong>科目を選ぶ</strong><small>数学・理科から選ぶ</small></li>
         </ol>
       </div>
     </section>
