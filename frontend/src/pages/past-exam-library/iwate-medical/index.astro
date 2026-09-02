@@ -5,83 +5,61 @@ import "../../../styles/past-exam-university.css";
 
 const title = "岩手医科大学 医学部の過去問｜年度・科目から探す｜レクサス教育センター";
 const description =
-  "岩手医科大学医学部の2025年度一般選抜について、数学・化学・物理・生物の過去問準備状況をご案内します。現在、問題本文は公開前の確認中です。";
+  "岩手医科大学医学部の過去問を年度・科目別に整理しています。2025年度一般選抜の問題・解答の公開状況と、科目別分析をご案内します。";
 const canonical = "https://lexus-ec.com/past-exam-library/iwate-medical/";
+
+const librarySteps = [
+  { number: "01", label: "年度", value: "2025年度", href: "#year-2025", tone: "selected" },
+  { number: "02", label: "科目", value: "4科目", href: "#subjects", tone: "selected" },
+  { number: "03", label: "問題", value: "確認中", href: "#subjects", tone: "waiting" },
+  { number: "04", label: "解答", value: "準備中", href: "#subjects", tone: "waiting" },
+  { number: "05", label: "分析", value: "閲覧可", href: "#subjects", tone: "ready" },
+] as const;
 
 const subjects = [
   {
     index: "01",
-    id: "mathematics",
     name: "数学",
     english: "MATHEMATICS",
-    stateLabel: "内容・権利確認中",
-    description:
-      "問題データは整備されていますが、内容確認と公開権利の確認が完了していないため、現在は閲覧できません。",
-    checks: [
-      { label: "問題データ", value: "整備済み", tone: "ready" },
-      { label: "科目確認", value: "確認中", tone: "waiting" },
-      { label: "公開権利", value: "確認中", tone: "waiting" },
-    ],
     tone: "mathematics",
+    problem: "確認中",
+    problemTone: "waiting",
+    answer: "準備中",
+    answerTone: "waiting",
+    analysisPath: "/iwateika-university-entrance-exam-measures2027/#数学",
   },
   {
     index: "02",
-    id: "chemistry",
     name: "化学",
     english: "CHEMISTRY",
-    stateLabel: "権利確認中",
-    description:
-      "問題文の転記・表示確認は完了していますが、公開に必要な権利確認が完了していないため、現在は閲覧できません。",
-    checks: [
-      { label: "問題データ", value: "整備済み", tone: "ready" },
-      { label: "内容・表示", value: "確認済み", tone: "ready" },
-      { label: "公開権利", value: "確認中", tone: "waiting" },
-    ],
     tone: "chemistry",
+    problem: "権利確認中",
+    problemTone: "waiting",
+    answer: "準備中",
+    answerTone: "waiting",
+    analysisPath: "/iwateika-university-entrance-exam-measures2027/#化学",
   },
   {
     index: "03",
-    id: "physics",
     name: "物理",
     english: "PHYSICS",
-    stateLabel: "内容・図版・権利確認中",
-    description:
-      "問題データは整備されていますが、内容確認、図版の差し替え、公開権利の確認が未完了です。",
-    checks: [
-      { label: "問題データ", value: "整備済み", tone: "ready" },
-      { label: "内容・図版", value: "確認中", tone: "waiting" },
-      { label: "公開権利", value: "確認中", tone: "waiting" },
-    ],
     tone: "physics",
+    problem: "図版確認中",
+    problemTone: "waiting",
+    answer: "準備中",
+    answerTone: "waiting",
+    analysisPath: "/iwateika-university-entrance-exam-measures2027/#物理",
   },
   {
     index: "04",
-    id: "biology",
     name: "生物",
     english: "BIOLOGY",
-    stateLabel: "掲載データなし",
-    description:
-      "このライブラリーで公開準備に入っている生物の過去問データは現在ありません。収録が決まり次第、このページでご案内します。",
-    checks: [{ label: "問題データ", value: "未収録", tone: "empty" }],
     tone: "biology",
-  },
-] as const;
-
-const reviewSteps = [
-  {
-    number: "01",
-    title: "内容を照合",
-    description: "問題文・数式・選択肢を原本と照らし合わせ、正確性を確認します。",
-  },
-  {
-    number: "02",
-    title: "公開権利を確認",
-    description: "問題文と図版について、掲載できる状態かを科目ごとに確認します。",
-  },
-  {
-    number: "03",
-    title: "画面表示を確認",
-    description: "数式や図表を含め、PCとスマートフォンで読みやすさを確認します。",
+    problem: "未収録",
+    problemTone: "empty",
+    answer: "未収録",
+    answerTone: "empty",
+    analysisPath: "/iwateika-university-entrance-exam-measures2027/#生物",
   },
 ] as const;
 
@@ -113,12 +91,7 @@ const structuredData = {
       "@type": "BreadcrumbList",
       "@id": `${canonical}#breadcrumb`,
       itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "ホーム",
-          item: "https://lexus-ec.com/",
-        },
+        { "@type": "ListItem", position: 1, name: "ホーム", item: "https://lexus-ec.com/" },
         {
           "@type": "ListItem",
           position: 2,
@@ -131,12 +104,7 @@ const structuredData = {
           name: "過去問ライブラリー",
           item: "https://lexus-ec.com/past-exam-library/",
         },
-        {
-          "@type": "ListItem",
-          position: 4,
-          name: "岩手医科大学",
-          item: canonical,
-        },
+        { "@type": "ListItem", position: 4, name: "岩手医科大学", item: canonical },
       ],
     },
   ],
@@ -157,192 +125,144 @@ const structuredData = {
   </Fragment>
 
   <main class="exam-library-page exam-university-page">
-    <section class="exam-university-hero" aria-labelledby="exam-university-title">
-      <div class="content exam-university-hero__inner">
+    <header class="exam-university-header">
+      <div class="content exam-university-header__inner">
         <nav class="exam-library-breadcrumb" aria-label="パンくずリスト">
           <a href="/">ホーム</a>
-          <span aria-hidden="true">/</span>
-          <a href="/top/information-shiritsu/">私立医学部情報</a>
           <span aria-hidden="true">/</span>
           <a href="/past-exam-library/">過去問ライブラリー</a>
           <span aria-hidden="true">/</span>
           <span aria-current="page">岩手医科大学</span>
         </nav>
 
-        <div class="exam-university-hero__grid">
-          <div class="exam-university-hero__copy">
-            <p class="exam-university-kicker">IWATE MEDICAL UNIVERSITY</p>
-            <h1 id="exam-university-title">
-              <span>2025年度 一般選抜</span>
-              岩手医科大学の過去問
+        <div class="exam-university-header__grid">
+          <div>
+            <p class="exam-university-kicker">PAST EXAM LIBRARY</p>
+            <h1>
+              岩手医科大学
+              <span>過去問ライブラリー</span>
             </h1>
-            <p class="exam-university-hero__lead">
-              2025年度一般選抜の数学・化学・物理について、公開に向けた確認を進めています。
-              現時点で閲覧できる過去問はありません。科目ごとの確認状況をご案内します。
-            </p>
-            <div class="exam-university-hero__actions">
-              <a class="exam-library-button exam-library-button--primary" href="#year-2025">2025年度の状況を見る</a>
-              <a class="exam-library-button exam-library-button--secondary" href="/past-exam-library/">大学一覧へ戻る</a>
-            </div>
+            <p class="exam-university-header__meta">2025年度　一般選抜・一次試験</p>
           </div>
 
-          <aside class="exam-university-summary" aria-labelledby="current-status-title">
-            <p>CURRENT STATUS</p>
-            <h2 id="current-status-title">現在公開中の過去問はありません</h2>
-            <dl>
-              <div>
-                <dt>公開確認中</dt>
-                <dd><strong>3</strong>科目</dd>
-              </div>
-              <div>
-                <dt>掲載データなし</dt>
-                <dd><strong>1</strong>科目</dd>
-              </div>
-              <div>
-                <dt>公開中</dt>
-                <dd><strong>0</strong>科目</dd>
-              </div>
-            </dl>
-            <p class="exam-university-summary__note">確認完了後、このページに閲覧リンクを表示します。</p>
+          <aside class="exam-university-current" aria-label="現在の公開状況">
+            <span>現在の公開状況</span>
+            <strong>3科目を準備中・生物は未収録</strong>
+            <small>科目別分析は閲覧できます</small>
           </aside>
         </div>
       </div>
-    </section>
+    </header>
 
-    <nav class="exam-library-jump-nav" aria-label="ページ内メニュー">
-      <div class="content exam-library-jump-nav__inner">
-        <a href="#year-2025"><span>01</span>2025年度</a>
-        <a href="#publication-policy"><span>02</span>公開基準</a>
-        <a href="#related-information"><span>03</span>関連情報</a>
+    <nav class="exam-university-map" aria-label="過去問ライブラリーの構成">
+      <div class="content exam-university-map__inner">
+        {
+          librarySteps.map((step) => (
+            <a class={`is-${step.tone}`} href={step.href}>
+              <span>{step.number}</span>
+              <strong>{step.label}</strong>
+              <small>{step.value}</small>
+            </a>
+          ))
+        }
       </div>
     </nav>
 
-    <section class="exam-university-year" id="year-2025" aria-labelledby="year-2025-title">
+    <section class="exam-university-browser" id="year-2025" aria-labelledby="year-2025-title">
       <div class="content">
-        <header class="exam-library-section-heading">
-          <p>2025 EXAMINATION</p>
-          <h2 id="year-2025-title">2025年度 一般選抜・一次試験</h2>
-          <p>科目ごとの整備状況と、問題本文を公開するまでに残っている確認事項を表示しています。</p>
+        <header class="exam-university-toolbar">
+          <div class="exam-university-year-label">
+            <span>年度</span>
+            <h2 id="year-2025-title">2025年度</h2>
+          </div>
+          <dl>
+            <div>
+              <dt>試験区分</dt>
+              <dd>一般選抜</dd>
+            </div>
+            <div>
+              <dt>試験段階</dt>
+              <dd>一次試験</dd>
+            </div>
+          </dl>
+          <a href="/past-exam-library/">大学一覧へ戻る</a>
         </header>
 
-        <dl class="exam-university-year__meta" aria-label="試験情報">
-          <div>
-            <dt>年度</dt>
-            <dd>2025年度</dd>
-          </div>
-          <div>
-            <dt>試験区分</dt>
-            <dd>一般選抜</dd>
-          </div>
-          <div>
-            <dt>試験段階</dt>
-            <dd>一次試験</dd>
-          </div>
-          <div>
-            <dt>掲載確認対象</dt>
-            <dd>数学・化学・物理・生物</dd>
-          </div>
-        </dl>
-
-        <div class="exam-university-subject-grid">
-          {
-            subjects.map((subject) => (
-              <article
-                class={`exam-university-subject-card exam-university-subject-card--${subject.tone}`}
-                id={subject.id}
-                aria-labelledby={`${subject.id}-title`}
-              >
-                <header>
-                  <div class="exam-university-subject-card__number" aria-hidden="true">{subject.index}</div>
-                  <div>
-                    <p>{subject.english}</p>
-                    <h3 id={`${subject.id}-title`}>{subject.name}</h3>
-                  </div>
-                  <span>{subject.stateLabel}</span>
-                </header>
-
-                <p class="exam-university-subject-card__description">{subject.description}</p>
-
-                <dl class="exam-university-subject-card__checks" aria-label={`${subject.name}の確認状況`}>
-                  {subject.checks.map((check) => (
-                    <div>
-                      <dt>{check.label}</dt>
-                      <dd class={`is-${check.tone}`}>{check.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-
-                <footer>
-                  <span aria-hidden="true"></span>
-                  <strong>
-                    {subject.tone === "biology"
-                      ? "閲覧できるデータはありません"
-                      : "閲覧リンクは確認完了後に表示します"}
-                  </strong>
-                </footer>
-              </article>
-            ))
-          }
+        <div class="exam-university-table-wrap" id="subjects">
+          <table class="exam-university-table">
+            <caption>2025年度 岩手医科大学 一般選抜・一次試験の科目別公開状況</caption>
+            <thead>
+              <tr>
+                <th scope="col">科目</th>
+                <th scope="col">問題</th>
+                <th scope="col">解答</th>
+                <th scope="col">分析</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                subjects.map((subject) => (
+                  <tr class={`is-${subject.tone}`}>
+                    <th scope="row">
+                      <span class="exam-university-subject">
+                        <span>{subject.index}</span>
+                        <span>
+                          <strong>{subject.name}</strong>
+                          <small>{subject.english}</small>
+                        </span>
+                      </span>
+                    </th>
+                    <td data-label="問題">
+                      <span class={`exam-university-state is-${subject.problemTone}`}>{subject.problem}</span>
+                    </td>
+                    <td data-label="解答">
+                      <span class={`exam-university-state is-${subject.answerTone}`}>{subject.answer}</span>
+                    </td>
+                    <td data-label="分析">
+                      <a
+                        class="exam-university-analysis-link"
+                        href={subject.analysisPath}
+                        aria-label={`${subject.name}の分析を見る`}
+                      >
+                        分析を見る <span aria-hidden="true">→</span>
+                      </a>
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
         </div>
 
-        <aside class="exam-university-disclosure">
-          <div aria-hidden="true">!</div>
-          <div>
-            <strong>問題本文・解答はまだ公開していません</strong>
-            <p>
-              「HTML化済み」や「公開候補」は、一般公開済みという意味ではありません。
-              内容・権利・表示の確認がすべて完了した科目にのみ閲覧リンクを表示します。公開時期は未定です。
-            </p>
-          </div>
-        </aside>
+        <div class="exam-university-info-row">
+          <aside class="exam-university-notice">
+            <strong>問題・解答について</strong>
+            <p>内容・権利・表示の確認が完了した科目から閲覧リンクを表示します。</p>
+          </aside>
+          <ul class="exam-university-checks" aria-label="公開前の確認項目">
+            <li><span>01</span>内容確認</li>
+            <li><span>02</span>権利確認</li>
+            <li><span>03</span>表示確認</li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section class="exam-university-policy" id="publication-policy" aria-labelledby="publication-policy-title">
+    <nav class="exam-university-links" aria-label="岩手医科大学の関連情報">
       <div class="content">
-        <header class="exam-library-section-heading exam-library-section-heading--light">
-          <p>PUBLICATION POLICY</p>
-          <h2 id="publication-policy-title">3つの確認を終えてから公開します</h2>
-          <p>問題が画面で表示できるだけでは公開しません。正確性・権利・読みやすさを順に確認します。</p>
-        </header>
-
-        <ol class="exam-university-policy__steps">
-          {
-            reviewSteps.map((step) => (
-              <li>
-                <span>{step.number}</span>
-                <div>
-                  <h3>{step.title}</h3>
-                  <p>{step.description}</p>
-                </div>
-              </li>
-            ))
-          }
-        </ol>
+        <a href="/past-exam-library/">
+          <span>大学一覧</span>
+          <strong>過去問ライブラリー</strong>
+        </a>
+        <a href="/iwateika-university-entrance-exam-measures2027/">
+          <span>傾向と対策</span>
+          <strong>2027年度 一般選抜対策</strong>
+        </a>
+        <a href="/information-iwate/">
+          <span>大学情報</span>
+          <strong>岩手医科大学 入試情報</strong>
+        </a>
       </div>
-    </section>
-
-    <section class="exam-library-related" id="related-information" aria-labelledby="related-information-title">
-      <div class="content exam-library-related__inner">
-        <div>
-          <p>RELATED INFORMATION</p>
-          <h2 id="related-information-title">岩手医科大学の入試情報を確認する</h2>
-        </div>
-        <div class="exam-library-related__links">
-          <a href="/past-exam-library/">
-            <span>大学一覧</span>
-            <strong>過去問ライブラリーへ戻る</strong>
-          </a>
-          <a href="/iwateika-university-entrance-exam-measures2027/">
-            <span>2027年度</span>
-            <strong>岩手医科大学の一般選抜対策を見る</strong>
-          </a>
-          <a href="/information-iwate/">
-            <span>大学情報</span>
-            <strong>岩手医科大学の入試情報を見る</strong>
-          </a>
-        </div>
-      </div>
-    </section>
+    </nav>
   </main>
 </SiteLayout>
