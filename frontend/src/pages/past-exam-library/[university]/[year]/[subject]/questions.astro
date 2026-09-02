@@ -1,5 +1,7 @@
 ---
 import SiteLayout from "../../../../../layouts/SiteLayout.astro";
+import PastExamPrintBranding from "../../../../../components/past-exam/PastExamPrintBranding.astro";
+import PastExamPrintButton from "../../../../../components/past-exam/PastExamPrintButton.astro";
 import "../../../../../styles/past-exam-library.css";
 import "../../../../../styles/past-exam-question.css";
 
@@ -120,6 +122,8 @@ const structuredData = {
   </Fragment>
 
   <main class="past-exam-question-page">
+    <PastExamPrintBranding subtitle={`${page.university.name} ${page.exam.year}年度 ${page.subject.name}・問題`} />
+
     <header class="past-exam-question-header">
       <div class="content">
         <nav class="exam-library-breadcrumb" aria-label="パンくずリスト">
@@ -137,9 +141,15 @@ const structuredData = {
             <p class="past-exam-question-kicker">PAST EXAM / QUESTION</p>
             <h1>{page.university.name}<span>{page.exam.year}年度 {page.subject.name}の問題</span></h1>
           </div>
-          <a class="past-exam-question-back" href={`${page.links.universityLibrary}#year-${page.exam.year}`}>
-            <span aria-hidden="true">←</span> 年度・科目一覧へ
-          </a>
+          <div class="past-exam-question-header__actions">
+            <PastExamPrintButton
+              label="問題を印刷"
+              printTitle={`${page.university.name} ${page.exam.year}年度 ${page.subject.name} 問題`}
+            />
+            <a class="past-exam-question-back" href={`${page.links.universityLibrary}#year-${page.exam.year}`}>
+              <span aria-hidden="true">←</span> 年度・科目一覧へ
+            </a>
+          </div>
         </div>
 
         <dl class="past-exam-question-meta" aria-label="試験情報">
@@ -184,7 +194,7 @@ const structuredData = {
         }
       </nav>
 
-      <details class="past-exam-question-instructions" id="instructions">
+      <details class="past-exam-question-instructions" id="instructions" data-past-exam-print-instructions>
         <summary>
           <span><small>INSTRUCTIONS</small><strong>解答上の注意</strong></span>
           <em>開いて確認</em>

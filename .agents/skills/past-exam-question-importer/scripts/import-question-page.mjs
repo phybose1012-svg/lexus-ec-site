@@ -75,6 +75,51 @@ function removeInternalSourceNotes(fragment) {
   return fragment.replace(/\s*·\s*参照:\s*[^<]*/g, "");
 }
 
+function countOccurrences(value, search) {
+  if (!search) return 0;
+  return value.split(search).length - 1;
+}
+
+function applyOverrides(fragment, scope, overrides) {
+  if (!overrides) return fragment;
+
+  return overrides.operations
+    .filter((operation) => operation.scope === scope)
+    .reduce((result, operation, index) => {
+      const operationLabel = `override operation ${index + 1} (${scope})`;
+
+      if (operation.type === "replace-text") {
+        if (typeof operation.from !== "string" || typeof operation.to !== "string") {
+          throw new Error(`${operationLabel}: replace-text requires string from/to values`);
+        }
+        const expectedMatches = Number(operation.expectedMatches ?? 1);
+        const actualMatches = countOccurrences(result, operation.from);
+        if (actualMatches !== expectedMatches) {
+          throw new Error(`${operationLabel}: expected ${expectedMatches} matches, found ${actualMatches}`);
+        }
+        return result.replaceAll(operation.from, operation.to);
+      }
+
+      if (operation.type === "wrap-introduction") {
+        const className = operation.className ?? "question-intro-compact";
+        if (!/^[a-z][a-z0-9_-]*$/i.test(className)) {
+          throw new Error(`${operationLabel}: invalid className`);
+        }
+        const headingEnd = result.indexOf("</h2>");
+        const firstSubheading = result.indexOf("<h3", headingEnd + 5);
+        if (headingEnd < 0 || firstSubheading < 0 || firstSubheading <= headingEnd + 5) {
+          throw new Error(`${operationLabel}: introduction boundaries were not found`);
+        }
+        return `${result.slice(0, headingEnd + 5)}<div class="${className}">${result.slice(
+          headingEnd + 5,
+          firstSubheading,
+        )}</div>${result.slice(firstSubheading)}`;
+      }
+
+      throw new Error(`${operationLabel}: unsupported operation type ${operation.type ?? "<missing>"}`);
+    }, fragment);
+}
+
 async function rewriteAndCopyAssets(fragment, sourceDir, publicRoot, packageId, sourceName) {
   const matches = [...fragment.matchAll(/\bsrc=(['"])([^'"]+)\1/gi)];
   let result = fragment;
@@ -133,9 +178,25 @@ async function main() {
     throw new Error("index.html: reconstruction package_id is missing");
   }
 
+  let overrides = null;
+  if (args.overrides) {
+    const overridesPath = path.resolve(args.overrides);
+    overrides = JSON.parse(await readFile(overridesPath, "utf8"));
+    if (overrides.packageId !== packageId) {
+      throw new Error(`Override package_id does not match ${packageId}`);
+    }
+    if (!Array.isArray(overrides.operations)) {
+      throw new Error("Override operations must be an array");
+    }
+  }
+
   const sourceBuildKind = indexHtml.match(/\bdata-build-kind=["']([^"']+)["']/i)?.[1] ?? "unknown";
   const publicationCandidate = /\bdata-publication-candidate\b/i.test(indexHtml);
-  const sharedSource = extractElement(indexHtml, "data-question-shared-instructions", "index.html");
+  const sharedSource = applyOverrides(
+    extractElement(indexHtml, "data-question-shared-instructions", "index.html"),
+    "shared",
+    overrides,
+  );
   assertSafeFragment(sharedSource, "index.html shared instructions");
   const sharedInstructionsHtml = await rewriteAndCopyAssets(
     removeInternalSourceNotes(sharedSource),
@@ -167,7 +228,11 @@ async function main() {
     }
     needsHumanReview ||= Boolean(reconstruction.review?.needs_human_review);
 
-    const sourceFragment = extractElement(html, "data-major-question-id", filename);
+    const sourceFragment = applyOverrides(
+      extractElement(html, "data-major-question-id", filename),
+      pageRecord.major_question_id,
+      overrides,
+    );
     assertSafeFragment(sourceFragment, filename);
     const questionHtml = await rewriteAndCopyAssets(
       removeInternalSourceNotes(sourceFragment),

@@ -22,7 +22,7 @@ The index must contain `data-question-shared-instructions`. Each major-question 
 ## Workflow
 
 1. Read the source package's `issues.json`, reconstruction metadata, and publication banner. Preserve `needs_human_review` and rights state in the generated data.
-2. Run `scripts/import-question-page.mjs` from the site repository root with the source directory, output JSON, public asset root, route metadata, and a repository-relative source reference.
+2. Run `scripts/import-question-page.mjs` from the site repository root with the source directory, output JSON, public asset root, route metadata, and a repository-relative source reference. When a reviewed source needs a narrow display correction, pass a package override file with `--overrides` instead of editing generated JSON.
 3. Do not edit the generated JSON by hand. Fix the source or importer and regenerate it.
 4. The generic Astro route discovers generated JSON automatically. Add a university-specific adapter only when the source cannot satisfy the common semantic contract, not merely because the university name or exam route differs.
 5. Link the new question page from the university/year/subject table, then verify the route, all major-question anchors, KaTeX rendering hooks, generated metadata, and `noindex` policy.
@@ -49,7 +49,15 @@ node .agents/skills/past-exam-question-importer/scripts/import-question-page.mjs
   --exam-label <exam-label> `
   --stage-label <stage-label> `
   --duration-label <duration-label> `
-  --source-reference <repository-relative-source-path>
+  --source-reference <repository-relative-source-path> `
+  --overrides frontend/src/data/pastExamOverrides/<package-id>.json
 ```
+
+`--overrides` is optional. Use package-scoped operations for small, reproducible presentation corrections:
+
+- `replace-text` replaces an exact string and fails unless `expectedMatches` is met.
+- `wrap-introduction` wraps the content between the first `h2` and `h3` in a named class for compact introductory layout.
+
+Keep override files declarative and narrowly scoped to a major-question ID. If an operation changes the meaning of the question rather than its presentation, fix and re-review the source package instead.
 
 The importer copies only referenced content assets plus the shared local KaTeX runtime. If a package needs non-HTML figures, keep their rights state explicit and use a package-specific adapter only when generic asset copying is insufficient.
