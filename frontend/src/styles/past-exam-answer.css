@@ -167,7 +167,7 @@
 }
 
 .past-exam-answer-page .answer-table--variation {
-  min-width: 1180px;
+  min-width: 1220px;
   margin: 0;
   table-layout: fixed;
   font-size: 0.78rem;
@@ -182,10 +182,26 @@
 
 .past-exam-answer-page .answer-table--variation th,
 .past-exam-answer-page .answer-table--variation td {
-  min-width: 94px;
-  padding: 9px 7px;
+  min-width: 68px;
+  padding: 9px 5px;
   line-height: 1.45;
   white-space: nowrap;
+}
+
+.past-exam-answer-page .answer-table--variation :is(th, td):nth-child(even) {
+  min-width: 102px;
+}
+
+.past-exam-answer-page .answer-table--variation :is(th, td):nth-child(6),
+.past-exam-answer-page .answer-table--variation :is(th, td):nth-child(10) {
+  border-right: 3px double #7e8e9d;
+  border-left: 3px double #7e8e9d;
+  background: #f7f9fb;
+}
+
+.past-exam-answer-page .answer-table--variation tbody tr:last-child th,
+.past-exam-answer-page .answer-table--variation tbody tr:last-child td {
+  height: 72px;
 }
 
 .past-exam-answer-page .answer-table--variation thead th:first-child,
@@ -197,6 +213,32 @@
   color: var(--question-navy);
   background: #eef3f7;
   font-weight: 900;
+}
+
+.past-exam-answer-page .answer-trend {
+  display: inline-flex;
+  width: 58px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  color: var(--question-blue);
+  vertical-align: middle;
+}
+
+.past-exam-answer-page .answer-trend svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.past-exam-answer-page .answer-trend__curve,
+.past-exam-answer-page .answer-trend__head {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .past-exam-answer-page .answer-figure-placeholder {
@@ -378,6 +420,16 @@
     padding: 0.8mm 0.4mm;
     line-height: 1.25;
     white-space: normal;
+  }
+
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-table--variation tbody tr:last-child th,
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-table--variation tbody tr:last-child td {
+    height: 12mm;
+  }
+
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-trend {
+    width: 8mm;
+    height: 5mm;
   }
 
   body.is-printing-past-exam-document .past-exam-answer-page .answer-figure-placeholder {

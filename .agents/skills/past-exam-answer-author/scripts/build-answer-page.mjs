@@ -53,6 +53,52 @@ function renderInlineMath(value, label) {
   return output;
 }
 
+function renderVariationTrend(value, label) {
+  const match = value.match(/^\[\[trend:(increase|decrease):(concave-down|concave-up)\]\]$/);
+  if (!match) return null;
+
+  const [, direction, concavity] = match;
+  const labels = {
+    "increase:concave-down": "増加・上に凸",
+    "decrease:concave-down": "減少・上に凸",
+    "decrease:concave-up": "減少・下に凸",
+    "increase:concave-up": "増加・下に凸",
+  };
+  const paths = {
+    "increase:concave-down": {
+      curve: "M6 30 C18 15 37 7 58 6",
+      head: "M50 3 L59 6 L53 13",
+    },
+    "decrease:concave-down": {
+      curve: "M6 6 C29 7 48 17 58 30",
+      head: "M50 27 L59 31 L56 22",
+    },
+    "decrease:concave-up": {
+      curve: "M6 6 C16 20 35 29 58 30",
+      head: "M51 25 L59 30 L52 34",
+    },
+    "increase:concave-up": {
+      curve: "M6 30 C29 29 48 19 58 6",
+      head: "M50 9 L59 5 L57 14",
+    },
+  };
+  const key = `${direction}:${concavity}`;
+  const trend = paths[key];
+  if (!trend) throw new Error(`${label} has an unsupported variation trend`);
+
+  return `<span class="answer-trend" role="img" aria-label="${labels[key]}"><svg viewBox="0 0 64 36" aria-hidden="true" focusable="false"><path class="answer-trend__curve" d="${trend.curve}"/><path class="answer-trend__head" d="${trend.head}"/></svg></span>`;
+}
+
+function renderTableCell(value, label, variant) {
+  if (typeof value !== "string") throw new Error(`${label} must be a string`);
+  if (variant === "variation") {
+    if (value.trim() === "") return "";
+    const trend = renderVariationTrend(value.trim(), label);
+    if (trend) return trend;
+  }
+  return renderInlineMath(value, label);
+}
+
 function renderTable(block, label) {
   if (!Array.isArray(block.headers) || block.headers.length === 0) {
     throw new Error(`${label} must include headers`);
@@ -61,7 +107,7 @@ function renderTable(block, label) {
     throw new Error(`${label} must include rows`);
   }
   const headers = block.headers
-    .map((header, index) => `<th scope="col">${renderInlineMath(header, `${label} header ${index + 1}`)}</th>`)
+    .map((header, index) => `<th scope="col">${renderTableCell(header, `${label} header ${index + 1}`, block.variant)}</th>`)
     .join("");
   const variant = block.variant === undefined ? "" : requireValue(block.variant, `${label} variant`);
   if (variant && variant !== "variation") {
@@ -74,7 +120,7 @@ function renderTable(block, label) {
       }
       return `<tr>${row
         .map((cell, cellIndex) => {
-          const content = renderInlineMath(cell, `${label} row ${rowIndex + 1} cell ${cellIndex + 1}`);
+          const content = renderTableCell(cell, `${label} row ${rowIndex + 1} cell ${cellIndex + 1}`, variant);
           return variant === "variation" && cellIndex === 0
             ? `<th scope="row">${content}</th>`
             : `<td>${content}</td>`;

@@ -21,7 +21,8 @@ Create answer pages from an independently written, structured JSON source and co
 1. Solve every subquestion from the question page and record the answer-key slots.
 2. Inventory every source table and figure by purpose before writing. Decide whether each is required, useful, or safely unnecessary; never infer that absence of a publishable asset means absence of the visual concept.
 3. Write concise explanations as `prose`, `formula`, `note`, `steps`, `table`, `figurePlaceholder`, and `result` blocks. Put inline TeX inside `\(...\)` and display TeX in `formula.latex`.
-   - Use `table.variant: "variation"` for an HTML increase/decrease and concavity table.
+   - Use `table.variant: "variation"` for an HTML increase/decrease and concavity table. Follow the conventional Japanese layout: alternate point and interval columns in the `x` row, put the signs and zeros of `f'` and `f''` underneath, and put extrema, inflection points, undefined points, and curve arrows in the `f` row. Do not replace this structure with interval descriptions written across the column headings.
+   - In a variation table, use `[[trend:increase:concave-down]]`, `[[trend:decrease:concave-down]]`, `[[trend:decrease:concave-up]]`, or `[[trend:increase:concave-up]]` for the curve-arrow cells. Empty point or endpoint cells are allowed.
    - Use `figurePlaceholder` with a stable `assetId`, `title`, `description`, and `size` (`wide`, `landscape`, or `square`) while an independently redrawn figure is pending.
 4. Run `scripts/build-answer-page.mjs --source <authoring-json> --output <generated-json>` from the site repository root.
 5. Do not edit generated JSON by hand. Fix the authoring source or builder and regenerate.
