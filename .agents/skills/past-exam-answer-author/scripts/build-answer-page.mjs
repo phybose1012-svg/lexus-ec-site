@@ -93,6 +93,9 @@ function renderTableCell(value, label, variant) {
   if (typeof value !== "string") throw new Error(`${label} must be a string`);
   if (variant === "variation") {
     if (value.trim() === "") return "";
+    if (value.trim() === "[[no-value]]") {
+      return '<svg class="answer-table__diagonal" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><line x1="0" y1="0" x2="100" y2="100" vector-effect="non-scaling-stroke"/></svg>';
+    }
     const trend = renderVariationTrend(value.trim(), label);
     if (trend) return trend;
   }
@@ -121,6 +124,9 @@ function renderTable(block, label) {
       return `<tr>${row
         .map((cell, cellIndex) => {
           const content = renderTableCell(cell, `${label} row ${rowIndex + 1} cell ${cellIndex + 1}`, variant);
+          if (variant === "variation" && cellIndex > 0 && cell.trim() === "[[no-value]]") {
+            return `<td class="answer-table__no-value" aria-label="値なし">${content}</td>`;
+          }
           return variant === "variation" && cellIndex === 0
             ? `<th scope="row">${content}</th>`
             : `<td>${content}</td>`;

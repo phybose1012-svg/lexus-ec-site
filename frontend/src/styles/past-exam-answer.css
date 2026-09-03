@@ -224,6 +224,24 @@
   word-break: keep-all;
 }
 
+.past-exam-answer-page .answer-table__no-value {
+  position: relative;
+}
+
+.past-exam-answer-page .answer-table__diagonal {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.past-exam-answer-page .answer-table__diagonal line {
+  stroke: #7e8e9d;
+  stroke-width: 1;
+}
+
 .past-exam-answer-page .answer-table--variation thead th:first-child,
 .past-exam-answer-page .answer-table--variation tbody th {
   position: sticky;
@@ -439,7 +457,7 @@
 
   body.is-printing-past-exam-document .past-exam-answer-page .answer-table--variation th,
   body.is-printing-past-exam-document .past-exam-answer-page .answer-table--variation td {
-    position: static;
+    position: relative;
     min-width: 0;
     padding: 0.8mm 0.4mm;
     line-height: 1.25;
