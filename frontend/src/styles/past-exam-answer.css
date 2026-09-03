@@ -200,6 +200,8 @@
 
 .past-exam-answer-page .answer-table--variation :is(th, td):first-child {
   width: 6%;
+  /* Reserve the double rule for the boundary between row labels and values. */
+  border-right: 3px double #7e8e9d;
 }
 
 .past-exam-answer-page .answer-table--variation :is(th, td):nth-child(even) {
@@ -212,8 +214,6 @@
 
 .past-exam-answer-page .answer-table--variation :is(th, td):nth-child(6),
 .past-exam-answer-page .answer-table--variation :is(th, td):nth-child(10) {
-  border-right: 3px double #7e8e9d;
-  border-left: 3px double #7e8e9d;
   background: #f7f9fb;
 }
 
