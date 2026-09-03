@@ -63,20 +63,44 @@ function renderTable(block, label) {
   const headers = block.headers
     .map((header, index) => `<th scope="col">${renderInlineMath(header, `${label} header ${index + 1}`)}</th>`)
     .join("");
+  const variant = block.variant === undefined ? "" : requireValue(block.variant, `${label} variant`);
+  if (variant && variant !== "variation") {
+    throw new Error(`${label} has unsupported table variant ${variant}`);
+  }
   const rows = block.rows
     .map((row, rowIndex) => {
       if (!Array.isArray(row) || row.length !== block.headers.length) {
         throw new Error(`${label} row ${rowIndex + 1} has the wrong number of cells`);
       }
       return `<tr>${row
-        .map((cell, cellIndex) => `<td>${renderInlineMath(cell, `${label} row ${rowIndex + 1} cell ${cellIndex + 1}`)}</td>`)
+        .map((cell, cellIndex) => {
+          const content = renderInlineMath(cell, `${label} row ${rowIndex + 1} cell ${cellIndex + 1}`);
+          return variant === "variation" && cellIndex === 0
+            ? `<th scope="row">${content}</th>`
+            : `<td>${content}</td>`;
+        })
         .join("")}</tr>`;
     })
     .join("");
   const caption = block.caption
     ? `<caption>${renderInlineMath(block.caption, `${label} caption`)}</caption>`
     : "";
-  return `<div class="table-scroll answer-table-scroll" role="region" tabindex="0"><table class="source-table answer-table">${caption}<thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table></div>`;
+  const variantClass = variant ? ` answer-table-scroll--${variant}` : "";
+  const tableVariantClass = variant ? ` answer-table--${variant}` : "";
+  return `<div class="table-scroll answer-table-scroll${variantClass}" role="region" tabindex="0"><table class="source-table answer-table${tableVariantClass}">${caption}<thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+function renderFigurePlaceholder(block, label) {
+  const assetId = requireValue(block.assetId, `${label} assetId`);
+  if (!/^[a-z0-9-]+$/.test(assetId)) throw new Error(`${label} assetId is invalid`);
+  const title = requireValue(block.title, `${label} title`);
+  const description = requireValue(block.description, `${label} description`);
+  const size = block.size ?? "landscape";
+  if (!["wide", "landscape", "square"].includes(size)) {
+    throw new Error(`${label} has unsupported placeholder size ${size}`);
+  }
+  const caption = block.caption ? requireValue(block.caption, `${label} caption`) : title;
+  return `<figure class="answer-figure-placeholder is-${size}" data-figure-placeholder="true" data-figure-id="${escapeHtml(assetId)}"><div class="answer-figure-placeholder__frame" role="img" aria-label="${escapeHtml(`${title}（図版準備中）`)}"><span>図版準備中</span><strong>ここに「${escapeHtml(title)}」が入ります</strong><p>${escapeHtml(description)}</p></div><figcaption>${escapeHtml(caption)}</figcaption></figure>`;
 }
 
 function renderBlock(block, label) {
@@ -104,6 +128,7 @@ function renderBlock(block, label) {
       .join("")}</ol>`;
   }
   if (block.type === "table") return renderTable(block, label);
+  if (block.type === "figurePlaceholder") return renderFigurePlaceholder(block, label);
 
   throw new Error(`${label} has unsupported type ${block.type}`);
 }

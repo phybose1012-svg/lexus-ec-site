@@ -93,8 +93,31 @@
                 "latex": "f'(x)=\\frac{3x^2(2x^2-1)-4x^4}{(2x^2-1)^2}=\\frac{x^2(2x^2-3)}{(2x^2-1)^2}"
               },
               {
+                "type": "formula",
+                "latex": "f'(x)=0\\quad\\Longrightarrow\\quad x=-\\frac{\\sqrt6}{2},\\ 0,\\ \\frac{\\sqrt6}{2}"
+              },
+              {
                 "type": "prose",
-                "text": "分母は定義域内で正、\\(x^2\\) も負にはなりません。したがって符号を決めるのは \\(2x^2-3\\) です。\\(x=-\\frac{\\sqrt6}{2}\\) では増加から減少へ、\\(x=\\frac{\\sqrt6}{2}\\) では減少から増加へ変わります。\\(x=0\\) では符号が変わらないため極値ではありません。"
+                "text": "極値と変曲点を一つの表で確認するため、2階微分も求めます。"
+              },
+              {
+                "type": "formula",
+                "latex": "f''(x)=\\frac{2x(2x^2+3)}{(2x^2-1)^3}"
+              },
+              {
+                "type": "table",
+                "variant": "variation",
+                "caption": "f(x) の増減・凹凸表",
+                "headers": ["項目", "\\(x<-\\frac{\\sqrt6}{2}\\)", "\\(x=-\\frac{\\sqrt6}{2}\\)", "\\(-\\frac{\\sqrt6}{2}<x<-\\frac{\\sqrt2}{2}\\)", "\\(x=-\\frac{\\sqrt2}{2}\\)", "\\(-\\frac{\\sqrt2}{2}<x<0\\)", "\\(x=0\\)", "\\(0<x<\\frac{\\sqrt2}{2}\\)", "\\(x=\\frac{\\sqrt2}{2}\\)", "\\(\\frac{\\sqrt2}{2}<x<\\frac{\\sqrt6}{2}\\)", "\\(x=\\frac{\\sqrt6}{2}\\)", "\\(x>\\frac{\\sqrt6}{2}\\)"],
+                "rows": [
+                  ["\\(f'(x)\\)", "+", "0", "−", "未定義", "−", "0", "−", "未定義", "−", "0", "+"],
+                  ["\\(f''(x)\\)", "−", "−", "−", "未定義", "+", "0", "−", "未定義", "+", "+", "+"],
+                  ["\\(f(x)\\)", "↗ 上に凸", "極大", "↘ 上に凸", "縦の漸近線", "↘ 下に凸", "変曲点", "↘ 上に凸", "縦の漸近線", "↘ 下に凸", "極小", "↗ 下に凸"]
+                ]
+              },
+              {
+                "type": "prose",
+                "text": "増減表より、\\(x=-\\frac{\\sqrt6}{2}\\) では \\(f'(x)\\) が正から負へ、\\(x=\\frac{\\sqrt6}{2}\\) では負から正へ変わります。\\(x=0\\) では符号が変わらないため極値ではありません。"
               },
               {
                 "type": "formula",
@@ -111,15 +134,15 @@
             "blocks": [
               {
                 "type": "prose",
-                "text": "2階微分を求め、凹凸が切り替わる点を調べます。"
+                "text": "増減・凹凸表を見ると、定義域内で \\(f''(x)=0\\) となる \\(x=0\\) の前後で符号が正から負へ変わっています。"
               },
               {
                 "type": "formula",
-                "latex": "f''(x)=\\frac{2x(2x^2+3)}{(2x^2-1)^3}"
+                "latex": "f(0)=0"
               },
               {
                 "type": "prose",
-                "text": "定義域内で \\(f''(x)=0\\) となるのは \\(x=0\\) だけで、その前後で符号が変化します。また \\(f(0)=0\\) です。"
+                "text": "したがって、グラフの凹凸が切り替わる点の座標は \\((0,0)\\) です。"
               },
               {
                 "type": "result",
@@ -153,15 +176,27 @@
             "blocks": [
               {
                 "type": "prose",
-                "text": "方程式 \\(x^3-2kx^2+k=0\\) の判別式を使います。"
+                "text": "\\(x=\\pm\\frac{1}{\\sqrt2}\\) は元の方程式を満たさないので、方程式を \\(f(x)=k\\) の形へ変形できます。"
               },
               {
                 "type": "formula",
-                "latex": "\\Delta=k^2(32k^2-27)"
+                "latex": "x^3-2kx^2+k=0\\quad\\Longleftrightarrow\\quad\\frac{x^3}{2x^2-1}=k"
               },
               {
                 "type": "prose",
-                "text": "境界は \\(32k^2-27=0\\)、すなわち \\(k=\\pm\\frac{3\\sqrt6}{8}\\) です。\\(k=0\\) のときは \\(x^3=0\\) なので、異なる実数解は1個です。"
+                "text": "問1の増減・凹凸表と問3の漸近線から \\(y=f(x)\\) の概形を描き、水平線 \\(y=k\\) との共有点を数えます。"
+              },
+              {
+                "type": "figurePlaceholder",
+                "assetId": "iwate-2025-math-q1-function-graph",
+                "title": "有理関数と水平線のグラフ",
+                "description": "y=f(x)、水平線 y=k、縦の漸近線 x=±√2/2、斜めの漸近線 y=x/2、極大点・極小点を示す予定です。",
+                "caption": "図：y=f(x) と y=k の共有点（独自作図へ差し替え予定）",
+                "size": "landscape"
+              },
+              {
+                "type": "prose",
+                "text": "水平線が極大点または極小点に接するときが境界です。極大値・極小値 \\(\\pm\\frac{3\\sqrt6}{8}\\) を基準に共有点の個数を整理します。"
               },
               {
                 "type": "table",
@@ -224,6 +259,14 @@
           {
             "title": "問1　角Aと辺CA",
             "blocks": [
+              {
+                "type": "figurePlaceholder",
+                "assetId": "iwate-2025-math-q2-geometry",
+                "title": "三角形と外接円の位置関係図",
+                "description": "三角形ABC、外接円、点D・E、内心I、外心O、線分AE・BCの位置関係を示す予定です。",
+                "caption": "図：A・B・C・D・E・I・Oの位置関係（独自作図へ差し替え予定）",
+                "size": "landscape"
+              },
               {
                 "type": "prose",
                 "text": "\\(CA=x\\) とおきます。\\(BC=\\sqrt7>AB=2\\) なので \\(A>C\\) です。もし角Cが鈍角なら角Aも鈍角となって三角形に矛盾するため、角Cは鋭角です。したがって、\\(\\sin C=\\frac{\\sqrt{21}}7\\) から \\(\\cos C=\\frac2{\\sqrt7}\\) です。角Cに余弦定理を使います。"
@@ -309,20 +352,32 @@
             "blocks": [
               {
                 "type": "note",
-                "label": "計算を短くする方針",
-                "text": "三角形の外接円半径をR、内接円半径をrとし、オイラーの公式 \\(OI^2=R(R-2r)\\) を使います。"
+                "label": "ベクトルで位置を表す",
+                "text": "Aを基準に \\(\\boldsymbol b=\\overrightarrow{AB}\\)、\\(\\boldsymbol c=\\overrightarrow{AC}\\) とおきます。問1より \\(|\\boldsymbol b|^2=4\\)、\\(|\\boldsymbol c|^2=1\\)、\\(\\boldsymbol b\\cdot\\boldsymbol c=-1\\) です。"
               },
               {
                 "type": "prose",
-                "text": "三角形ABCの面積をS、半周長をsとすると、\\(S=\\frac{\\sqrt3}{2}\\)、\\(s=\\frac{3+\\sqrt7}{2}\\) です。"
+                "text": "内心Iは辺の長さを重みとする内分点です。\\(BC=\\sqrt7\\)、\\(CA=1\\)、\\(AB=2\\) なので、AからIへのベクトルは次のようになります。"
               },
               {
                 "type": "formula",
-                "latex": "R=\\frac{AB\\cdot AC\\cdot BC}{4S}=\\frac{\\sqrt{21}}3,\\qquad r=\\frac{S}{s}=\\frac{\\sqrt3}{3+\\sqrt7}"
+                "latex": "\\overrightarrow{AI}=\\frac{\\boldsymbol b+2\\boldsymbol c}{3+\\sqrt7}=\\frac{3-\\sqrt7}{2}(\\boldsymbol b+2\\boldsymbol c)"
+              },
+              {
+                "type": "prose",
+                "text": "外心Oを \\(\\overrightarrow{AO}=s\\boldsymbol b+t\\boldsymbol c\\) とおきます。\\(OA=OB=OC\\) を展開して得られる2本の一次方程式を解きます。"
               },
               {
                 "type": "formula",
-                "latex": "OI^2=R^2-2Rr=\\frac73-(3\\sqrt7-7)=\\frac{28}{3}-3\\sqrt7"
+                "latex": "4s-2-t=0,\\qquad -s+t-\\frac12=0\\quad\\Longrightarrow\\quad\\overrightarrow{AO}=\\frac56\\boldsymbol b+\\frac43\\boldsymbol c"
+              },
+              {
+                "type": "formula",
+                "latex": "\\overrightarrow{OI}=\\overrightarrow{AI}-\\overrightarrow{AO}=\\frac{4-3\\sqrt7}{6}\\boldsymbol b+\\frac{10-6\\sqrt7}{6}\\boldsymbol c"
+              },
+              {
+                "type": "formula",
+                "latex": "OI^2=4\\left(\\frac{4-3\\sqrt7}{6}\\right)^2-2\\left(\\frac{4-3\\sqrt7}{6}\\right)\\left(\\frac{10-6\\sqrt7}{6}\\right)+\\left(\\frac{10-6\\sqrt7}{6}\\right)^2=\\frac{28}{3}-3\\sqrt7"
               },
               {
                 "type": "result",
@@ -430,6 +485,14 @@
               {
                 "type": "prose",
                 "text": "1と8のブロックを置ける位置は3か所、ブロック内の順序は2通りです。残り2か所へは残る6枚から2枚を並べます。"
+              },
+              {
+                "type": "figurePlaceholder",
+                "assetId": "iwate-2025-math-q3-adjacency-layout",
+                "title": "1と8を一つのブロックにした配置図",
+                "description": "4つの枠のうち、2枚ブロックを左端・中央・右端に置く3通りを横並びで示す予定です。",
+                "caption": "図：1と8が隣り合う3つの配置（独自作図へ差し替え予定）",
+                "size": "wide"
               },
               {
                 "type": "formula",
