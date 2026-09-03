@@ -1,0 +1,489 @@
+{
+  "schemaVersion": "lexus-past-exam-answer-source.v1",
+  "packageId": "iwate-medical-2025-general-mathematics",
+  "route": {
+    "university": "iwate-medical",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/iwate-medical/2025/mathematics/answers/"
+  },
+  "university": {
+    "id": "iwate-medical",
+    "name": "岩手医科大学"
+  },
+  "exam": {
+    "year": "2025",
+    "label": "一般選抜",
+    "stage": "一次試験",
+    "duration": "英語・数学 合計120分"
+  },
+  "subject": {
+    "id": "mathematics",
+    "name": "数学",
+    "english": "MATHEMATICS"
+  },
+  "document": {
+    "role": "answers",
+    "majorQuestions": [
+      {
+        "id": "major-question-01",
+        "label": "第1問",
+        "order": 1,
+        "answerKey": [
+          {
+            "label": "問1",
+            "entries": [
+              { "mark": "ア", "value": "6" },
+              { "mark": "イ", "value": "2" },
+              { "mark": "ウ", "value": "3" },
+              { "mark": "エ", "value": "6" },
+              { "mark": "オ", "value": "8" },
+              { "mark": "カ", "value": "6" },
+              { "mark": "キ", "value": "2" },
+              { "mark": "ク", "value": "3" },
+              { "mark": "ケ", "value": "6" },
+              { "mark": "コ", "value": "8" }
+            ]
+          },
+          {
+            "label": "問2",
+            "entries": [
+              { "mark": "サ", "value": "0" },
+              { "mark": "シ", "value": "0" }
+            ]
+          },
+          {
+            "label": "問3",
+            "entries": [
+              { "mark": "ス", "value": "1" },
+              { "mark": "セ", "value": "2" },
+              { "mark": "ソ", "value": "0" }
+            ]
+          },
+          {
+            "label": "問4",
+            "entries": [
+              { "mark": "タ", "value": "3" },
+              { "mark": "チ", "value": "6" },
+              { "mark": "ツ", "value": "8" },
+              { "mark": "テ", "value": "3" },
+              { "mark": "ト", "value": "6" },
+              { "mark": "ナ", "value": "8" },
+              { "mark": "ニ", "value": "1" },
+              { "mark": "ヌ", "value": "2" },
+              { "mark": "ネ", "value": "3" }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "問1　極大値・極小値",
+            "blocks": [
+              {
+                "type": "note",
+                "label": "最初に確認",
+                "text": "分母が0になる \\(x=\\pm\\frac{\\sqrt2}{2}\\) では関数が定義されません。増減を考えるときは、この2点で区間を分けます。"
+              },
+              {
+                "type": "prose",
+                "text": "商の微分公式で \\(f(x)=\\frac{x^3}{2x^2-1}\\) を微分します。"
+              },
+              {
+                "type": "formula",
+                "latex": "f'(x)=\\frac{3x^2(2x^2-1)-4x^4}{(2x^2-1)^2}=\\frac{x^2(2x^2-3)}{(2x^2-1)^2}"
+              },
+              {
+                "type": "prose",
+                "text": "分母は定義域内で正、\\(x^2\\) も負にはなりません。したがって符号を決めるのは \\(2x^2-3\\) です。\\(x=-\\frac{\\sqrt6}{2}\\) では増加から減少へ、\\(x=\\frac{\\sqrt6}{2}\\) では減少から増加へ変わります。\\(x=0\\) では符号が変わらないため極値ではありません。"
+              },
+              {
+                "type": "formula",
+                "latex": "f\\left(-\\frac{\\sqrt6}{2}\\right)=-\\frac{3\\sqrt6}{8},\\qquad f\\left(\\frac{\\sqrt6}{2}\\right)=\\frac{3\\sqrt6}{8}"
+              },
+              {
+                "type": "result",
+                "text": "極大値は \\(-\\frac{3\\sqrt6}{8}\\)、極小値は \\(\\frac{3\\sqrt6}{8}\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問2　変曲点",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "2階微分を求め、凹凸が切り替わる点を調べます。"
+              },
+              {
+                "type": "formula",
+                "latex": "f''(x)=\\frac{2x(2x^2+3)}{(2x^2-1)^3}"
+              },
+              {
+                "type": "prose",
+                "text": "定義域内で \\(f''(x)=0\\) となるのは \\(x=0\\) だけで、その前後で符号が変化します。また \\(f(0)=0\\) です。"
+              },
+              {
+                "type": "result",
+                "text": "変曲点は \\((0,0)\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問3　斜めの漸近線",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "分子を分母で割ると、直線部分と0へ近づく部分に分けられます。"
+              },
+              {
+                "type": "formula",
+                "latex": "f(x)=\\frac{x}{2}+\\frac{x}{2(2x^2-1)}"
+              },
+              {
+                "type": "formula",
+                "latex": "\\lim_{x\\to\\infty}\\left(f(x)-\\frac{x}{2}\\right)=\\lim_{x\\to\\infty}\\frac{x}{2(2x^2-1)}=0"
+              },
+              {
+                "type": "result",
+                "text": "\\(a=\\frac12,\\ b=0\\) で、漸近線は \\(y=\\frac12x\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問4　異なる実数解の個数",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "方程式 \\(x^3-2kx^2+k=0\\) の判別式を使います。"
+              },
+              {
+                "type": "formula",
+                "latex": "\\Delta=k^2(32k^2-27)"
+              },
+              {
+                "type": "prose",
+                "text": "境界は \\(32k^2-27=0\\)、すなわち \\(k=\\pm\\frac{3\\sqrt6}{8}\\) です。\\(k=0\\) のときは \\(x^3=0\\) なので、異なる実数解は1個です。"
+              },
+              {
+                "type": "table",
+                "caption": "kの範囲と異なる実数解の個数",
+                "headers": ["kの条件", "個数"],
+                "rows": [
+                  ["\\(-\\frac{3\\sqrt6}{8}<k<\\frac{3\\sqrt6}{8}\\)", "1個"],
+                  ["\\(k=\\pm\\frac{3\\sqrt6}{8}\\)", "2個"],
+                  ["\\(k<-\\frac{3\\sqrt6}{8}\\) または \\(k>\\frac{3\\sqrt6}{8}\\)", "3個"]
+                ]
+              },
+              {
+                "type": "result",
+                "text": "中央の範囲で1個、境界で2個、外側で3個です。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-02",
+        "label": "第2問",
+        "order": 2,
+        "answerKey": [
+          {
+            "label": "問1",
+            "entries": [
+              { "mark": "ア", "value": "1" },
+              { "mark": "イ", "value": "2" },
+              { "mark": "ウ", "value": "0" },
+              { "mark": "エ", "value": "1" }
+            ]
+          },
+          {
+            "label": "問2",
+            "entries": [
+              { "mark": "オ", "value": "7" },
+              { "mark": "カ", "value": "7" }
+            ]
+          },
+          {
+            "label": "問3",
+            "entries": [
+              { "mark": "キ", "value": "2" },
+              { "mark": "ク", "value": "3" },
+              { "mark": "ケ", "value": "3" }
+            ]
+          },
+          {
+            "label": "問4",
+            "entries": [
+              { "mark": "コサ", "value": "28" },
+              { "mark": "シ", "value": "3" },
+              { "mark": "ス", "value": "3" },
+              { "mark": "セ", "value": "7" }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "問1　角Aと辺CA",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "\\(CA=x\\) とおきます。\\(BC=\\sqrt7>AB=2\\) なので \\(A>C\\) です。もし角Cが鈍角なら角Aも鈍角となって三角形に矛盾するため、角Cは鋭角です。したがって、\\(\\sin C=\\frac{\\sqrt{21}}7\\) から \\(\\cos C=\\frac2{\\sqrt7}\\) です。角Cに余弦定理を使います。"
+              },
+              {
+                "type": "formula",
+                "latex": "2^2=x^2+(\\sqrt7)^2-2x\\sqrt7\\cdot\\frac2{\\sqrt7}"
+              },
+              {
+                "type": "formula",
+                "latex": "x^2-4x+3=0\\quad\\Longrightarrow\\quad x=1,3"
+              },
+              {
+                "type": "prose",
+                "text": "条件 \\(\\sqrt7>x\\) を満たすのは \\(x=1\\) です。3辺が \\(AB=2, AC=1, BC=\\sqrt7\\) と分かったので、今度は角Aに余弦定理を使います。"
+              },
+              {
+                "type": "formula",
+                "latex": "\\cos A=\\frac{2^2+1^2-(\\sqrt7)^2}{2\\cdot2\\cdot1}=-\\frac12"
+              },
+              {
+                "type": "result",
+                "text": "\\(\\angle BAC=120^\\circ\\)、\\(CA=1\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問2　BEとCE",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "\\(BD:DC=2:1\\) であり、問1から \\(AB:AC=2:1\\) です。角の二等分線定理の逆より、直線AEは角Aを二等分します。円周角が等しいため、対応する弦も等しく \\(BE=CE\\) です。"
+              },
+              {
+                "type": "prose",
+                "text": "円に内接する四角形ABECでは、\\(\\angle BEC=180^\\circ-\\angle BAC=60^\\circ\\) です。\\(BE=CE=y\\) として三角形BECに余弦定理を使います。"
+              },
+              {
+                "type": "formula",
+                "latex": "7=y^2+y^2-2y^2\\cos60^\\circ=y^2"
+              },
+              {
+                "type": "result",
+                "text": "\\(BE=CE=\\sqrt7\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問3　ADとAE",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "DはBCを \\(2:1\\) に内分するので、Aを始点とする位置ベクトルで表します。"
+              },
+              {
+                "type": "formula",
+                "latex": "\\overrightarrow{AD}=\\frac13\\overrightarrow{AB}+\\frac23\\overrightarrow{AC}"
+              },
+              {
+                "type": "prose",
+                "text": "\\(|\\overrightarrow{AB}|^2=4\\)、\\(|\\overrightarrow{AC}|^2=1\\)、\\(\\overrightarrow{AB}\\cdot\\overrightarrow{AC}=2\\cos120^\\circ=-1\\) を代入します。"
+              },
+              {
+                "type": "formula",
+                "latex": "AD^2=\\frac19\\cdot4+\\frac49\\cdot1+2\\cdot\\frac13\\cdot\\frac23\\cdot(-1)=\\frac49"
+              },
+              {
+                "type": "prose",
+                "text": "よって \\(AD=\\frac23\\) です。点Dで2本の弦AEとBCが交わるので、方べきの定理を使います。"
+              },
+              {
+                "type": "formula",
+                "latex": "\\frac23\\left(AE-\\frac23\\right)=\\frac{2\\sqrt7}{3}\\cdot\\frac{\\sqrt7}{3}=\\frac{14}{9}"
+              },
+              {
+                "type": "result",
+                "text": "\\(AD=\\frac23\\)、\\(AE=3\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問4　内心と外心の距離",
+            "blocks": [
+              {
+                "type": "note",
+                "label": "計算を短くする方針",
+                "text": "三角形の外接円半径をR、内接円半径をrとし、オイラーの公式 \\(OI^2=R(R-2r)\\) を使います。"
+              },
+              {
+                "type": "prose",
+                "text": "三角形ABCの面積をS、半周長をsとすると、\\(S=\\frac{\\sqrt3}{2}\\)、\\(s=\\frac{3+\\sqrt7}{2}\\) です。"
+              },
+              {
+                "type": "formula",
+                "latex": "R=\\frac{AB\\cdot AC\\cdot BC}{4S}=\\frac{\\sqrt{21}}3,\\qquad r=\\frac{S}{s}=\\frac{\\sqrt3}{3+\\sqrt7}"
+              },
+              {
+                "type": "formula",
+                "latex": "OI^2=R^2-2Rr=\\frac73-(3\\sqrt7-7)=\\frac{28}{3}-3\\sqrt7"
+              },
+              {
+                "type": "result",
+                "text": "\\(OI^2=\\frac{28}{3}-3\\sqrt7\\) です。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-03",
+        "label": "第3問",
+        "order": 3,
+        "answerKey": [
+          {
+            "label": "問1",
+            "entries": [
+              { "mark": "ア", "value": "1" },
+              { "mark": "イ", "value": "8" },
+              { "mark": "ウ", "value": "1" },
+              { "mark": "エオ", "value": "28" }
+            ]
+          },
+          {
+            "label": "問2",
+            "entries": [
+              { "mark": "カ", "value": "3" },
+              { "mark": "キ", "value": "7" }
+            ]
+          },
+          {
+            "label": "問3",
+            "entries": [
+              { "mark": "ク", "value": "3" },
+              { "mark": "ケコ", "value": "28" }
+            ]
+          },
+          {
+            "label": "問4",
+            "entries": [
+              { "mark": "サ", "value": "1" },
+              { "mark": "シ", "value": "2" }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "準備　全事象",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "8枚はすべて異なり、4枚を選んで順番に並べます。したがって全事象は次の1680通りです。"
+              },
+              {
+                "type": "formula",
+                "latex": "{}_8P_4=8\\cdot7\\cdot6\\cdot5=1680"
+              }
+            ]
+          },
+          {
+            "title": "問1　位置を固定して数える",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "1を左から2番目に固定すると、残り3か所は残る7枚から選んで並べるため \\({}_7P_3\\) 通りです。"
+              },
+              {
+                "type": "formula",
+                "latex": "\\frac{{}_7P_3}{{}_8P_4}=\\frac18"
+              },
+              {
+                "type": "prose",
+                "text": "1と8を両端に置く順序は2通り、中央2か所には残る6枚から2枚を並べます。"
+              },
+              {
+                "type": "formula",
+                "latex": "\\frac{2\\cdot{}_6P_2}{{}_8P_4}=\\frac1{28}"
+              },
+              {
+                "type": "result",
+                "text": "確率は順に \\(\\frac18\\)、\\(\\frac1{28}\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問2　両端の偶奇が同じ",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "偶数は4枚、奇数も4枚です。両端を偶数にする並べ方は \\({}_4P_2\\) 通りで、中央は残る6枚から2枚を並べるので \\({}_6P_2\\) 通りです。両端が奇数の場合も同数です。"
+              },
+              {
+                "type": "formula",
+                "latex": "\\frac{2\\cdot{}_4P_2\\cdot{}_6P_2}{{}_8P_4}=\\frac37"
+              },
+              {
+                "type": "result",
+                "text": "求める確率は \\(\\frac37\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問3　1と8を一つのブロックにする",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "1と8のブロックを置ける位置は3か所、ブロック内の順序は2通りです。残り2か所へは残る6枚から2枚を並べます。"
+              },
+              {
+                "type": "formula",
+                "latex": "\\frac{3\\cdot2\\cdot{}_6P_2}{{}_8P_4}=\\frac3{28}"
+              },
+              {
+                "type": "result",
+                "text": "求める確率は \\(\\frac3{28}\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問4　偶数が連続しない並べ方",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "偶数の使用枚数で分けます。偶数2枚なら、4か所から隣り合わない2か所を選ぶ方法が3通りあります。偶数1枚なら位置は4通り、偶数0枚なら奇数4枚を並べるだけです。"
+              },
+              {
+                "type": "table",
+                "caption": "条件を満たす並べ方",
+                "headers": ["偶数の枚数", "位置の選び方", "カードの並べ方", "小計"],
+                "rows": [
+                  ["2枚", "3通り", "\\({}_4P_2\\cdot{}_4P_2\\)", "432通り"],
+                  ["1枚", "4通り", "\\({}_4P_1\\cdot{}_4P_3\\)", "384通り"],
+                  ["0枚", "1通り", "\\({}_4P_4\\)", "24通り"]
+                ]
+              },
+              {
+                "type": "formula",
+                "latex": "\\frac{432+384+24}{1680}=\\frac{840}{1680}=\\frac12"
+              },
+              {
+                "type": "result",
+                "text": "求める確率は \\(\\frac12\\) です。"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "contentProvenance": "original_editorial",
+    "restrictedSourceCopied": false,
+    "publicationCandidate": true,
+    "rightsStatus": "original_editorial",
+    "needsHumanReview": true,
+    "reference": "岩手医科大学2025年度数学の掲載問題をもとにレクサスE.C.が独自作成"
+  },
+  "links": {
+    "questions": "/past-exam-library/iwate-medical/2025/mathematics/questions/",
+    "universityLibrary": "/past-exam-library/iwate-medical/",
+    "analysis": "/iwateika-university-entrance-exam-measures2027/#数学",
+    "universityInformation": "/information-iwate/"
+  }
+}

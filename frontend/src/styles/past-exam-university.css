@@ -535,6 +535,7 @@
   background: #7a828a;
 }
 
+.exam-university-answer-link,
 .exam-university-analysis-link,
 .exam-university-question-link {
   display: inline-flex;
@@ -553,6 +554,7 @@
   text-decoration: none;
 }
 
+.exam-university-answer-link:hover,
 .exam-university-analysis-link:hover,
 .exam-university-question-link:hover {
   border-color: var(--university-navy);
@@ -560,12 +562,14 @@
   background: var(--university-navy);
 }
 
+.exam-university-answer-link span,
 .exam-university-analysis-link span,
 .exam-university-question-link span {
   color: var(--university-gold);
   font-size: 1rem;
 }
 
+.exam-university-answer-link:hover span,
 .exam-university-analysis-link:hover span,
 .exam-university-question-link:hover span {
   color: #fff;
@@ -718,6 +722,7 @@
     padding-inline: 8px;
   }
 
+  .exam-university-answer-link,
   .exam-university-analysis-link,
   .exam-university-question-link {
     min-width: 0;
@@ -908,6 +913,7 @@
     height: 5px;
   }
 
+  .exam-university-answer-link,
   .exam-university-analysis-link,
   .exam-university-question-link {
     gap: 4px;

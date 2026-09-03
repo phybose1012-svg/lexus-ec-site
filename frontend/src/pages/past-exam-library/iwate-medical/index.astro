@@ -12,7 +12,7 @@ const librarySteps = [
   { number: "01", label: "年度", value: "5年分", href: "#years", tone: "selected" },
   { number: "02", label: "科目", value: "4科目", href: "#subjects", tone: "selected" },
   { number: "03", label: "問題", value: "1科目", href: "#year-2025", tone: "ready" },
-  { number: "04", label: "解答", value: "準備中", href: "#subjects", tone: "waiting" },
+  { number: "04", label: "解答", value: "1科目", href: "#year-2025", tone: "ready" },
   { number: "05", label: "分析", value: "閲覧可", href: "#subjects", tone: "ready" },
 ] as const;
 
@@ -25,7 +25,8 @@ type SubjectRow = {
   problemTone: "ready" | "waiting" | "empty";
   problemPath?: string;
   answer: string;
-  answerTone: "waiting" | "empty";
+  answerTone: "ready" | "waiting" | "empty";
+  answerPath?: string;
   analysis: string;
   analysisTone: "ready" | "empty";
   analysisPath?: string;
@@ -47,8 +48,9 @@ const subjects2025: SubjectRow[] = [
     problem: "問題を見る",
     problemTone: "ready",
     problemPath: "/past-exam-library/iwate-medical/2025/mathematics/questions/",
-    answer: "準備中",
-    answerTone: "waiting",
+    answer: "解答を見る",
+    answerTone: "ready",
+    answerPath: "/past-exam-library/iwate-medical/2025/mathematics/answers/",
     analysis: "分析を見る",
     analysisTone: "ready",
     analysisPath: "/iwateika-university-entrance-exam-measures2027/#数学",
@@ -197,7 +199,7 @@ const structuredData = {
           <aside class="exam-university-current" aria-label="現在の公開状況">
             <span>現在の公開状況</span>
             <strong>5年分の掲載枠を用意しました</strong>
-            <small>2025年度数学の問題と科目別分析を閲覧できます</small>
+            <small>2025年度数学の問題・解答解説と科目別分析を閲覧できます</small>
           </aside>
         </div>
       </div>
@@ -302,7 +304,17 @@ const structuredData = {
                             )}
                           </td>
                           <td data-label="解答">
-                            <span class={`exam-university-state is-${subject.answerTone}`}>{subject.answer}</span>
+                            {subject.answerPath ? (
+                              <a
+                                class="exam-university-answer-link"
+                                href={subject.answerPath}
+                                aria-label={`${examYear.year}年度 ${subject.name}の解答・解説を見る`}
+                              >
+                                {subject.answer} <span aria-hidden="true">→</span>
+                              </a>
+                            ) : (
+                              <span class={`exam-university-state is-${subject.answerTone}`}>{subject.answer}</span>
+                            )}
                           </td>
                           <td data-label="分析">
                             {subject.analysisPath ? (

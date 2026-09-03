@@ -1,0 +1,256 @@
+.past-exam-answer-index {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.past-exam-answer-list {
+  margin-top: 28px;
+}
+
+.past-exam-answer-page .answer-key-panel {
+  margin: 0 0 34px;
+  border: 1px solid #cbd5df;
+  border-radius: 5px 5px 12px 5px;
+  overflow: hidden;
+  background: #f7f9fb;
+}
+
+.past-exam-answer-page .answer-key-panel > h3 {
+  min-height: 0;
+  margin: 0;
+  border: 0;
+  padding: 11px 16px;
+  color: #fff;
+  background: var(--question-navy);
+  font-size: 0.86rem;
+}
+
+.past-exam-answer-page .answer-key {
+  display: grid;
+  gap: 1px;
+  margin: 0;
+  background: #d8e0e7;
+}
+
+.past-exam-answer-page .answer-key__question {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  min-width: 0;
+  background: #fff;
+}
+
+.past-exam-answer-page .answer-key__question-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 12px;
+  color: var(--question-navy);
+  background: #eef3f7;
+  font-size: 0.8rem;
+  font-weight: 950;
+}
+
+.past-exam-answer-page .answer-key__slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 0;
+  padding: 11px 14px;
+}
+
+.past-exam-answer-page .answer-key__slot {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  overflow: hidden;
+  border: 1px solid #9eacb9;
+  border-radius: 4px;
+  background: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  line-height: 1;
+}
+
+.past-exam-answer-page .answer-key__mark,
+.past-exam-answer-page .answer-key__value {
+  display: inline-flex;
+  min-width: 2em;
+  min-height: 2em;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35em 0.55em;
+}
+
+.past-exam-answer-page .answer-key__mark {
+  color: #fff;
+  background: var(--question-blue);
+  font-weight: 900;
+}
+
+.past-exam-answer-page .answer-key__value {
+  color: #111f31;
+  font-weight: 950;
+}
+
+.past-exam-answer-page .answer-explanation-section + .answer-explanation-section {
+  margin-top: 34px;
+  border-top: 1px solid #e0e6eb;
+  padding-top: 4px;
+}
+
+.past-exam-answer-page .answer-formula {
+  margin: 14px 0;
+  border-left: 3px solid var(--question-gold);
+  padding: 13px 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  color: #142238;
+  background: #faf9f5;
+  text-align: center;
+}
+
+.past-exam-answer-page .answer-note strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #234f79;
+  font-size: 0.76rem;
+}
+
+.past-exam-answer-page .answer-note p {
+  margin: 0;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 0.94rem;
+  line-height: 1.85;
+}
+
+.past-exam-answer-page .answer-result {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: baseline;
+  margin: 16px 0 0;
+  border-top: 1px solid #cab778;
+  border-bottom: 1px solid #cab778;
+  padding: 12px 14px;
+  background: #fffdf6;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 1rem;
+  line-height: 1.85;
+}
+
+.past-exam-answer-page .answer-result strong {
+  color: #785c17;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+}
+
+.past-exam-answer-page .answer-steps {
+  margin: 14px 0;
+  padding-left: 1.6em;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.past-exam-answer-page .answer-table caption {
+  margin-bottom: 7px;
+  color: #42566a;
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-align: left;
+}
+
+@media (max-width: 640px) {
+  .past-exam-answer-page .answer-key__question {
+    grid-template-columns: 52px minmax(0, 1fr);
+  }
+
+  .past-exam-answer-page .answer-key__slots {
+    gap: 6px;
+    padding: 10px;
+  }
+
+  .past-exam-answer-page .answer-key__slot {
+    font-size: 0.78rem;
+  }
+
+  .past-exam-answer-page .answer-result {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+}
+
+@media print {
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-major-card + .answer-major-card {
+    margin-top: 0;
+    break-before: page;
+    page-break-before: always;
+  }
+
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-key-panel {
+    margin-bottom: 5mm;
+    border-radius: 0;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-key-panel > h3 {
+    margin: 0;
+    border: 0;
+    padding: 2mm 3mm;
+    color: #111;
+    background: #edf1f4 !important;
+    font-size: 9pt;
+  }
+
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-key__question {
+    grid-template-columns: 16mm minmax(0, 1fr);
+  }
+
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-key__question-label,
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-key__slots {
+    padding: 1.5mm 2mm;
+  }
+
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-key__slot {
+    font-size: 7.5pt;
+  }
+
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-key__mark {
+    color: #111;
+    background: #e6ebef !important;
+  }
+
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-explanation-section + .answer-explanation-section {
+    margin-top: 5mm;
+    padding-top: 1mm;
+  }
+
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-explanation-section:last-child {
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-formula {
+    margin: 2.5mm 0;
+    padding: 2.5mm 3mm;
+    background: #fff !important;
+    font-size: 9pt;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-note,
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-result,
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-table-scroll {
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-note p,
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-result,
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-steps {
+    font-size: 9pt;
+    line-height: 1.65;
+  }
+}

@@ -5,8 +5,9 @@ import PastExamPrintButton from "../../../../../components/past-exam/PastExamPri
 import PastExamPrintSummary from "../../../../../components/past-exam/PastExamPrintSummary.astro";
 import "../../../../../styles/past-exam-library.css";
 import "../../../../../styles/past-exam-question.css";
+import "../../../../../styles/past-exam-answer.css";
 
-type QuestionPageData = {
+type AnswerPageData = {
   schemaVersion: string;
   packageId: string;
   route: { university: string; year: string; subject: string; path: string };
@@ -14,64 +15,47 @@ type QuestionPageData = {
   exam: { year: string; label: string; stage: string; duration: string };
   subject: { id: string; name: string; english: string };
   document: {
-    role: "questions";
+    role: "answers";
     pageUnit: string;
-    sharedInstructionsHtml: string;
-    questions: Array<{
-      id: string;
-      label: string;
-      order: number;
-      sourcePageIds: string[];
-      html: string;
-    }>;
+    majorQuestions: Array<{ id: string; label: string; order: number; html: string }>;
   };
   source: {
-    reference: string;
-    buildKind: string;
     contentProvenance: string;
+    restrictedSourceCopied: boolean;
     publicationCandidate: boolean;
     rightsStatus: string;
     needsHumanReview: boolean;
+    reference: string;
   };
   links: {
+    questions: string;
     universityLibrary: string;
     analysis: string | null;
     universityInformation: string | null;
   };
 };
 
-type AnswerRouteData = {
-  packageId: string;
-  route: { path: string };
-};
-
 export function getStaticPaths() {
-  const questionPageModules = import.meta.glob(
-    "../../../../../data/generated/pastExamQuestions/*.json",
-    { eager: true, import: "default" },
-  );
   const answerPageModules = import.meta.glob(
     "../../../../../data/generated/pastExamAnswers/*.json",
     { eager: true, import: "default" },
   );
-  const questionPages = Object.values(questionPageModules) as QuestionPageData[];
-  const answerPages = Object.values(answerPageModules) as AnswerRouteData[];
-  const answerPaths = new Map(answerPages.map((answerPage) => [answerPage.packageId, answerPage.route.path]));
-  return questionPages.map((page) => ({
+  const answerPages = Object.values(answerPageModules) as AnswerPageData[];
+  return answerPages.map((page) => ({
     params: {
       university: page.route.university,
       year: page.route.year,
       subject: page.route.subject,
     },
-    props: { page, answerPath: answerPaths.get(page.packageId) ?? null },
+    props: { page },
   }));
 }
 
-const { page, answerPath } = Astro.props as { page: QuestionPageData; answerPath: string | null };
-const title = `${page.university.name} ${page.exam.year}年度 ${page.subject.name}の問題｜過去問ライブラリー｜レクサス教育センター`;
-const description = `${page.university.name}医学部 ${page.exam.year}年度${page.exam.label}・${page.subject.name}の問題です。共通注意と全${page.document.questions.length}題を大問別に確認できます。`;
+const { page } = Astro.props as { page: AnswerPageData };
+const title = `${page.university.name} ${page.exam.year}年度 ${page.subject.name}の解答・解説｜過去問ライブラリー｜レクサス教育センター`;
+const description = `${page.university.name}医学部 ${page.exam.year}年度${page.exam.label}・${page.subject.name}の解答と詳しい解説です。全${page.document.majorQuestions.length}題を大問別に確認できます。`;
 const canonical = `https://lexus-ec.com${page.route.path}`;
-const reviewRequired = page.source.rightsStatus !== "approved" || page.source.needsHumanReview;
+const reviewRequired = page.source.needsHumanReview;
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -83,7 +67,7 @@ const structuredData = {
       name: title,
       description,
       inLanguage: "ja",
-      learningResourceType: "過去問",
+      learningResourceType: "解答・解説",
       about: `${page.university.name}医学部 ${page.exam.year}年度 ${page.subject.name}`,
       provider: {
         "@type": "EducationalOrganization",
@@ -110,7 +94,12 @@ const structuredData = {
           name: page.university.name,
           item: `https://lexus-ec.com${page.links.universityLibrary}`,
         },
-        { "@type": "ListItem", position: 4, name: `${page.exam.year}年度 ${page.subject.name} 問題`, item: canonical },
+        {
+          "@type": "ListItem",
+          position: 4,
+          name: `${page.exam.year}年度 ${page.subject.name} 解答・解説`,
+          item: canonical,
+        },
       ],
     },
   ],
@@ -133,7 +122,7 @@ const structuredData = {
     <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </Fragment>
 
-  <main class="past-exam-question-page">
+  <main class="past-exam-question-page past-exam-answer-page">
     <PastExamPrintBranding />
 
     <header class="past-exam-question-header">
@@ -145,18 +134,18 @@ const structuredData = {
           <span aria-hidden="true">/</span>
           <a href={page.links.universityLibrary}>{page.university.name}</a>
           <span aria-hidden="true">/</span>
-          <span aria-current="page">{page.exam.year}年度 {page.subject.name} 問題</span>
+          <span aria-current="page">{page.exam.year}年度 {page.subject.name} 解答・解説</span>
         </nav>
 
         <div class="past-exam-question-header__grid">
           <div>
-            <p class="past-exam-question-kicker">PAST EXAM / QUESTION</p>
-            <h1>{page.university.name}<span>{page.exam.year}年度 {page.subject.name}の問題</span></h1>
+            <p class="past-exam-question-kicker">PAST EXAM / ANSWER &amp; EXPLANATION</p>
+            <h1>{page.university.name}<span>{page.exam.year}年度 {page.subject.name}の解答・解説</span></h1>
           </div>
           <div class="past-exam-question-header__actions">
             <PastExamPrintButton
-              label="問題を印刷"
-              printTitle={`${page.university.name} ${page.exam.year}年度 ${page.subject.name} 問題`}
+              label="解答・解説を印刷"
+              printTitle={`${page.university.name} ${page.exam.year}年度 ${page.subject.name} 解答・解説`}
             />
             <a class="past-exam-question-back" href={`${page.links.universityLibrary}#year-${page.exam.year}`}>
               <span aria-hidden="true">←</span> 年度・科目一覧へ
@@ -169,8 +158,8 @@ const structuredData = {
           <div><dt>入試区分</dt><dd>{page.exam.label}</dd></div>
           <div><dt>試験段階</dt><dd>{page.exam.stage}</dd></div>
           <div><dt>科目</dt><dd>{page.subject.name}</dd></div>
-          <div><dt>試験時間</dt><dd>{page.exam.duration}</dd></div>
-          <div><dt>大問</dt><dd>{page.document.questions.length}題</dd></div>
+          <div><dt>内容</dt><dd>解答・解説</dd></div>
+          <div><dt>大問</dt><dd>{page.document.majorQuestions.length}題</dd></div>
         </dl>
       </div>
     </header>
@@ -181,33 +170,23 @@ const structuredData = {
         page.exam.label,
         page.exam.stage,
         page.subject.name,
-        page.exam.duration,
-        `大問${page.document.questions.length}題`,
+        "解答・解説",
+        `大問${page.document.majorQuestions.length}題`,
       ]}
-      notes={[
-        "空欄には、指定に従って符号または数字を1つずつ記入してください。",
-        "分数は既約分数とし、負号は分子につけてください。",
-        "根号を含む答えは、根号の中が最小になる形にしてください。",
-      ]}
+      notes={["掲載問題をもとに、レクサスE.C.が独自に作成した解答・解説です。"]}
     />
 
     <div class:list={["past-exam-question-review", { "is-required": reviewRequired }]}>
       <div class="content">
         <strong>{reviewRequired ? "ステージング確認用" : "掲載内容確認済み"}</strong>
-        <span>{reviewRequired ? "内容・権利・表示の最終確認中です。" : "公開承認済みの問題です。"}</span>
+        <span>{reviewRequired ? "解答・数式・表示の最終確認中です。" : "確認済みの解答・解説です。"}</span>
       </div>
     </div>
 
     <nav class="past-exam-question-mode" aria-label="問題・解答・分析">
       <div class="content">
-        <span class="is-current" aria-current="page"><small>01</small><strong>問題</strong><em>表示中</em></span>
-        {
-          answerPath ? (
-            <a href={answerPath}><small>02</small><strong>解答</strong><em>閲覧する</em></a>
-          ) : (
-            <span><small>02</small><strong>解答</strong><em>準備中</em></span>
-          )
-        }
+        <a href={page.links.questions}><small>01</small><strong>問題</strong><em>閲覧する</em></a>
+        <span class="is-current" aria-current="page"><small>02</small><strong>解答</strong><em>表示中</em></span>
         {
           page.links.analysis ? (
             <a href={page.links.analysis}><small>03</small><strong>分析</strong><em>閲覧する</em></a>
@@ -219,38 +198,27 @@ const structuredData = {
     </nav>
 
     <div class="past-exam-question-reader content">
-      <nav class="past-exam-question-index" aria-label="問題内の目次">
-        <a href="#instructions"><strong>共通注意</strong><small>解答方法</small></a>
+      <nav class="past-exam-question-index past-exam-answer-index" aria-label="解答・解説内の目次">
         {
-          page.document.questions.map((question) => (
-            <a href={`#${question.id}`}><strong>{question.label}</strong><small>問題を見る</small></a>
+          page.document.majorQuestions.map((major) => (
+            <a href={`#${major.id}`}><strong>{major.label}</strong><small>解答・解説を見る</small></a>
           ))
         }
       </nav>
 
-      <details class="past-exam-question-instructions" id="instructions" data-past-exam-print-instructions>
-        <summary>
-          <span><small>INSTRUCTIONS</small><strong>解答上の注意</strong></span>
-          <em>開いて確認</em>
-        </summary>
-        <div class="past-exam-question-instructions__body">
-          <Fragment set:html={page.document.sharedInstructionsHtml} />
-        </div>
-      </details>
-
-      <section class="past-exam-question-list" aria-label={`${page.exam.year}年度 ${page.subject.name}の問題`}>
-        {page.document.questions.map((question) => <Fragment set:html={question.html} />)}
+      <section class="past-exam-question-list past-exam-answer-list" aria-label={`${page.exam.year}年度 ${page.subject.name}の解答・解説`}>
+        {page.document.majorQuestions.map((major) => <Fragment set:html={major.html} />)}
       </section>
 
       <aside class="past-exam-question-note">
-        <strong>問題文について</strong>
-        <p>元の試験問題を読みやすいHTMLへ再構成しています。数式は画面幅に合わせて表示されます。</p>
+        <strong>解答・解説について</strong>
+        <p>掲載している問題をもとにレクサスE.C.が独自作成しています。元解答の文章・表・図版は転載していません。</p>
       </aside>
     </div>
 
     <nav class="past-exam-question-links" aria-label={`${page.university.name}の関連情報`}>
       <div class="content">
-        <a href={page.links.universityLibrary}><span>過去問</span><strong>年度・科目一覧</strong></a>
+        <a href={page.links.questions}><span>過去問</span><strong>{page.subject.name}の問題</strong></a>
         {page.links.analysis && <a href={page.links.analysis}><span>傾向と対策</span><strong>{page.subject.name}の分析</strong></a>}
         {page.links.universityInformation && <a href={page.links.universityInformation}><span>大学情報</span><strong>入試情報を見る</strong></a>}
       </div>
