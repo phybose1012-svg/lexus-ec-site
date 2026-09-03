@@ -6,6 +6,14 @@
   margin-top: 28px;
 }
 
+.past-exam-answer-page .content {
+  width: min(980px, calc(100% - 40px));
+}
+
+.past-exam-answer-page .answer-major-card {
+  padding: clamp(22px, 3vw, 34px);
+}
+
 .past-exam-answer-page .answer-key-panel {
   margin: 0 0 34px;
   border: 1px solid #cbd5df;
@@ -167,10 +175,12 @@
 }
 
 .past-exam-answer-page .answer-table--variation {
-  min-width: 1220px;
-  margin: 0;
+  width: 100%;
+  min-width: 720px;
+  max-width: 900px;
+  margin: 0 auto;
   table-layout: fixed;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
 }
 
 .past-exam-answer-page .answer-table--variation caption {
@@ -182,14 +192,22 @@
 
 .past-exam-answer-page .answer-table--variation th,
 .past-exam-answer-page .answer-table--variation td {
-  min-width: 68px;
-  padding: 9px 5px;
-  line-height: 1.45;
+  min-width: 0;
+  padding: 8px 3px;
+  line-height: 1.35;
   white-space: nowrap;
 }
 
+.past-exam-answer-page .answer-table--variation :is(th, td):first-child {
+  width: 6%;
+}
+
 .past-exam-answer-page .answer-table--variation :is(th, td):nth-child(even) {
-  min-width: 102px;
+  width: 8.5%;
+}
+
+.past-exam-answer-page .answer-table--variation :is(th, td):nth-child(2n + 3) {
+  width: 5.75%;
 }
 
 .past-exam-answer-page .answer-table--variation :is(th, td):nth-child(6),
@@ -201,7 +219,9 @@
 
 .past-exam-answer-page .answer-table--variation tbody tr:last-child th,
 .past-exam-answer-page .answer-table--variation tbody tr:last-child td {
-  height: 72px;
+  height: 60px;
+  white-space: normal;
+  word-break: keep-all;
 }
 
 .past-exam-answer-page .answer-table--variation thead th:first-child,
@@ -209,7 +229,6 @@
   position: sticky;
   left: 0;
   z-index: 1;
-  min-width: 72px;
   color: var(--question-navy);
   background: #eef3f7;
   font-weight: 900;
@@ -217,8 +236,8 @@
 
 .past-exam-answer-page .answer-trend {
   display: inline-flex;
-  width: 58px;
-  height: 36px;
+  width: 42px;
+  height: 28px;
   align-items: center;
   justify-content: center;
   color: var(--question-blue);
@@ -242,7 +261,7 @@
 }
 
 .past-exam-answer-page .answer-figure-placeholder {
-  width: min(100%, 760px);
+  width: min(100%, 680px);
   margin: 20px auto;
 }
 
@@ -305,6 +324,10 @@
 }
 
 @media (max-width: 640px) {
+  .past-exam-answer-page .content {
+    width: min(980px, calc(100% - 28px));
+  }
+
   .past-exam-answer-page .answer-key__question {
     grid-template-columns: 52px minmax(0, 1fr);
   }
