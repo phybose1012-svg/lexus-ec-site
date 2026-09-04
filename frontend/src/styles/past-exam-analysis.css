@@ -8,25 +8,33 @@
 .analysis-exam-facts span + span { border-left: 1px solid #d2dce3; padding-left: 20px; }
 .analysis-body { padding-block: 22px 52px; }
 .analysis-review { margin-bottom: 18px !important; font-size: .8125rem; color: #67737b; }
-.analysis-takeaway { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(320px,1fr); gap: 36px; border-block: 1px solid #d9e2e9; border-left: 4px solid var(--analysis-gold); padding: 28px; }
+.analysis-takeaway { display: grid; grid-template-columns: minmax(0,1fr) minmax(430px,1.2fr); align-items: center; gap: 32px; border-block: 1px solid #d9e2e9; border-left: 4px solid var(--analysis-gold); padding: 28px; }
 .analysis-eyebrow { color: #795b1b; font-size: .875rem; font-weight: 700; margin-bottom: 10px !important; }
 .analysis-takeaway h2 { font-size: clamp(1.35rem,2.4vw,1.7rem); line-height: 1.55; letter-spacing: -.025em; }
 .analysis-takeaway h2 + p { font-size: 1rem; line-height: 1.85; margin-top: 14px; }
-.analysis-distribution { align-self: center; }
-.analysis-distribution > p { font-size: .875rem; font-weight: 700; }
-.analysis-distribution .analysis-distribution-total { margin-top: 5px; font-weight: 500; color: #4c6072; }
-.analysis-distribution-total strong { color: #263f54; font-size: 1rem; }
-.analysis-stacked { display: flex; height: 34px; gap: 3px; margin-block: 12px; border-radius: 4px; overflow: hidden; }
-.analysis-stacked span { display: grid; place-items: center; color: #fff; font-weight: 700; font-size: .875rem; }
-.analysis-level-fill.level-0 { background: #477c76; }
-.analysis-level-fill.level-1 { background: #446e96; }
-.analysis-level-fill.level-2 { background: #a87928; }
-.analysis-level-fill.level-3 { background: #886076; }
-.analysis-legend { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 7px 16px; padding: 0; list-style: none; font-size: .875rem; }
-.analysis-legend li { display: flex; align-items: center; gap: 6px; }
-.analysis-legend i { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
-.analysis-legend b { margin-left: auto; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.analysis-distribution > small { display: block; margin-top: 12px; color: var(--analysis-muted); font-size: .8125rem; }
+.analysis-distribution { min-width: 0; scroll-margin-top: 30px; }
+.analysis-distribution h3 { font-size: 1rem; font-weight: 700; }
+.analysis-distribution-totals { display: grid; gap: 4px; margin: 12px 0 18px; }
+.analysis-distribution-totals > div { display: flex; align-items: baseline; gap: 18px; }
+.analysis-distribution-totals dt { font-size: .875rem; color: #4c6072; }
+.analysis-distribution-totals dd { margin: 0; font-size: .875rem; }
+.analysis-distribution-totals strong { margin-right: 4px; font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+.analysis-distribution-chart { display: grid; grid-template-columns: 220px minmax(0,1fr); align-items: center; gap: 20px; max-width: 550px; }
+.analysis-difficulty-pie { display: block; width: 220px; max-width: 100%; height: auto; overflow: visible; }
+.analysis-difficulty-pie path { stroke: #fff; stroke-width: 2; stroke-linejoin: round; }
+.analysis-difficulty-pie text { fill: #fff; font-size: 1rem; font-weight: 700; }
+.analysis-level-fill { background: var(--analysis-level); fill: var(--analysis-level); }
+.analysis-level-fill.level-0 { --analysis-level: #477c76; }
+.analysis-level-fill.level-1 { --analysis-level: #446e96; }
+.analysis-level-fill.level-2 { --analysis-level: #8b6422; }
+.analysis-level-fill.level-3 { --analysis-level: #886076; }
+.analysis-legend { display: grid; gap: 10px; padding: 0; list-style: none; font-size: .875rem; }
+.analysis-legend li { display: grid; grid-template-columns: 10px minmax(0,1fr) auto; align-items: center; gap: 8px; }
+.analysis-legend i { width: 10px; height: 10px; border-radius: 2px; }
+.analysis-legend-values { display: flex; flex-direction: column; align-items: flex-end; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.analysis-legend-values b { font-size: 1rem; }
+.analysis-legend-values small { font-size: .875rem; color: #586b7b; }
+.analysis-distribution > small { display: block; margin-top: 14px; color: var(--analysis-muted); font-size: .8125rem; }
 .analysis-section { margin-top: 48px; }
 .analysis-section-heading { display: flex; align-items: baseline; gap: 12px; margin-bottom: 22px; }
 .analysis-section-heading > span { font-family: Georgia,serif; color: #977738; font-size: 1.5rem; }
@@ -41,7 +49,6 @@
 .analysis-target-score > strong { font-size: clamp(2.8rem,5vw,3.5rem); line-height: 1; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.04em; }
 .analysis-target-score > span { font-size: 1.125rem; font-weight: 600; }
 .analysis-target-score small { margin-left: 8px; color: #586b7b; font-size: .8125rem; font-weight: 400; display: inline-block; }
-.analysis-target-rule { color: #5c6e7c; font-size: .875rem; line-height: 1.7; }
 .analysis-target-summary { font-size: 1rem; font-weight: 600; line-height: 1.8; margin-top: 18px !important; }
 .analysis-target-steps { margin: 18px 0 16px; }
 .analysis-target-steps > div { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 13px 0; border-top: 1px solid #e0e6eb; }
@@ -122,8 +129,11 @@
 .analysis-method summary { cursor: pointer; font-size: .875rem; font-weight: 700; }
 .analysis-method p { margin-top: 14px; font-size: .875rem; line-height: 1.8; }
 .analysis-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-@media(max-width: 800px) {
+@media(max-width: 960px) {
   .analysis-takeaway { grid-template-columns: 1fr; gap: 24px; }
+  .analysis-distribution { border-top: 1px solid #e0e6eb; padding-top: 24px; }
+}
+@media(max-width: 800px) {
   .analysis-major-grid { grid-template-columns: 1fr; gap: 12px; }
   .analysis-major-card { padding: 20px; }
   .analysis-major-card > a { padding-top: 0; }
@@ -132,7 +142,11 @@
 }
 @media(max-width: 560px) {
   .analysis-takeaway { padding: 22px 18px; }
-  .analysis-legend { grid-template-columns: 1fr; gap: 7px; }
+  .analysis-distribution-chart { grid-template-columns: 1fr; gap: 18px; }
+  .analysis-difficulty-pie { justify-self: center; }
+  .analysis-legend { width: 100%; max-width: 320px; justify-self: center; gap: 10px; }
+  .analysis-legend-values { flex-direction: row; align-items: baseline; gap: 12px; }
+  .analysis-legend-values small { min-width: 3.5em; text-align: right; }
   .analysis-target-card { padding: 22px 18px; }
   .analysis-section { margin-top: 36px; }
   .analysis-exam-facts { gap: 8px 12px; }

@@ -3,11 +3,31 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import { extractAnalysis, extractTargetAnalysis, axes } from "./import-past-exam-analysis.mjs";
 import { buildAnalysis } from "./build-past-exam-analyses.mjs";
+import { buildDifficultyPie } from "../src/lib/pastExamDifficultyPie.mjs";
 
 const root = new URL("../src/data/", import.meta.url);
 const read = (p) => JSON.parse(fs.readFileSync(new URL(p, root), "utf8"));
 const evidence = read("pastExamAnalysisEvidence/iwate-medical-2025-general-mathematics.json");
 const editorial = read("pastExamAnalysisSources/iwate-medical-2025-general-mathematics.json");
+
+test("difficulty pie uses exact counts, not rounded percentages, for its sectors", () => {
+  const slices = buildDifficultyPie([3, 4, 4, 1]);
+  assert.deepEqual(slices.map((s) => s.percent), [25, 33.3, 33.3, 8.3]);
+  assert.deepEqual(slices.map((s) => s.fraction), [3 / 12, 4 / 12, 4 / 12, 1 / 12]);
+  assert.ok(Math.abs(slices.reduce((n, s) => n + s.fraction, 0) - 1) < 1e-12);
+  assert.match(slices[0].path, /^M 110 110 L 110 6 A 104 104 0 0 1 214 110 Z$/);
+  assert.match(slices[3].path, /110 6 Z$/);
+  assert.ok(slices.every((s) => Math.abs(Math.hypot(s.labelX - 110, s.labelY - 110) - 72) < 0.001));
+});
+
+test("difficulty pie supports zero categories and a full-circle category", () => {
+  const slices = buildDifficultyPie([0, 12, 0, 0]);
+  assert.equal(slices[0].path, "");
+  assert.equal(slices[1].percent, 100);
+  assert.equal((slices[1].path.match(/A 104 104/g) ?? []).length, 2);
+  assert.ok(!JSON.stringify(slices).includes("NaN"));
+  for (const counts of [[], [0, 0, 0, 0], [-1, 2], [1.5, 2], [NaN], [Infinity]]) assert.throws(() => buildDifficultyPie(counts), /difficulty/);
+});
 
 const fixtureMetadata = {
   schema_version: "medical-entrance-past-exam-analysis.v6",
