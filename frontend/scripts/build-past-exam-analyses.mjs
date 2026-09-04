@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { axes, difficulties, actions } from "./import-past-exam-analysis.mjs";
+import { axes, difficulties, actions, validateTargetAnalysis } from "./import-past-exam-analysis.mjs";
 
 function requireText(value) {
   if (typeof value !== "string" || !value.trim()) throw new Error("Missing editorial text");
@@ -32,6 +32,24 @@ export function buildAnalysis(evidence, editorial) {
     return { id: major.id, label: major.label, title: requireText(edited.title), subtitle: requireText(edited.subtitle), summary: requireText(edited.summary), studyAction: requireText(edited.studyAction), requirements: major.requirements, subquestions, questionsPath: `${root}questions/#${anchor}`, answersPath: `${root}answers/#${anchor}` };
   });
   const counts = difficulties.map((_, level) => majorQuestions.flatMap((m) => m.subquestions).filter((s) => s.difficulty === level).length);
+  const targetAnalysis = validateTargetAnalysis(evidence.targetAnalysis, majorQuestions.flatMap((m) => m.subquestions.map((s) => s.id)));
+  if (editorial.targets?.length !== targetAnalysis.profiles.length) throw new Error("Incomplete target editorial coverage");
+  const targets = {
+    ...targetAnalysis,
+    profiles: targetAnalysis.profiles.map((profile) => {
+      const copy = editorial.targets.find((t) => t.id === profile.id);
+      if (!copy) throw new Error("Missing target editorial profile");
+      // A compact additional-question route is valid only if it extends the initial selection.
+      const route = profile.now.points >= profile.targetPoints ? profile.now : profile.maximum;
+      if (route.minutes > targetAnalysis.timeBudgetMinutes) throw new Error("Target route exceeds the provisional time budget");
+      if (profile.now.questionIds.some((id) => !route.questionIds.includes(id))) throw new Error("Target route replaces initial questions; provide a dedicated comparison");
+      const additional = route.questionIds.filter((id) => !profile.now.questionIds.includes(id)).map((id) => {
+        const major = majorQuestions.find((m) => m.subquestions.some((s) => s.id === id));
+        return { id, label: `${major.label} ${major.subquestions.find((s) => s.id === id).label}` };
+      });
+      return { ...profile, title: requireText(copy.title), summary: requireText(copy.summary), focus: requireText(copy.focus), route, additional };
+    }),
+  };
   return {
     schemaVersion: "lexus-analysis-page.v1", packageId: p.id,
     route: { university: p.university_id, year: String(p.academic_year), subject: p.subject_id, path: `${root}analysis/` },
@@ -39,7 +57,7 @@ export function buildAnalysis(evidence, editorial) {
     duration: requireText(p.time_limit.note), format: requireText(editorial.format),
     headline: requireText(editorial.headline), summary: requireText(editorial.summary), requirementsSummary: requireText(editorial.requirementsSummary),
     profiles: editorial.profiles.map((profile) => ({ id: profile.id, title: requireText(profile.title), text: requireText(profile.text) })),
-    majorQuestions, difficultyCounts: counts, source: evidence.source, editorialNotes: editorial.editorialNotes,
+    majorQuestions, difficultyCounts: counts, targets, source: evidence.source, editorialNotes: editorial.editorialNotes,
     links: { questions: `${root}questions/`, answers: `${root}answers/`, university: `/past-exam-library/${p.university_id}/` },
   };
 }

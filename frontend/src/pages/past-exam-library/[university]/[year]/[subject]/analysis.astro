@@ -11,7 +11,7 @@ export function getStaticPaths() {
 const { page } = Astro.props as { page: AnalysisPage };
 const title = `${page.university} ${page.year}年度 ${page.subject}の分析｜過去問ライブラリー｜レクサス教育センター`;
 const description = `${page.university} ${page.year}年度${page.subject}の出題分野、難易度、解く優先順位をコンパクトに整理。${page.summary}`;
-const levels = ["基本", "基本＋α", "標準", "発展"];
+const levels = ["基本レベル", "基本＋αレベル", "標準レベル", "発展レベル"];
 const priorities = ["先に解く", "後回し", "見送る"];
 const axes = ["図形処理", "数式処理", "計算量", "典型問題の知識", "条件の読み取り"];
 const total = page.majorQuestions.reduce((n, q) => n + q.subquestions.length, 0);
@@ -57,7 +57,8 @@ const total = page.majorQuestions.reduce((n, q) => n + q.subquestions.length, 0)
         </div>
         <div class="analysis-distribution">
           <p>小問の難易度</p>
-          <div class="analysis-stacked" role="img" aria-label={levels.map((label, i) => `${label}${page.difficultyCounts[i]}問`).join("、")}>
+          <p class="analysis-distribution-total">小問の合計　<strong>{total}問</strong></p>
+          <div class="analysis-stacked" role="img" aria-label={`小問の合計 ${total}問。${levels.map((label, i) => `${label} ${page.difficultyCounts[i]}問`).join("、")}`}>
             {page.difficultyCounts.map((count, i) => count > 0 && <span class={`analysis-level-fill level-${i}`} style={`flex:${count}`} aria-hidden="true">{count}</span>)}
           </div>
           <ul class="analysis-legend">
@@ -81,8 +82,38 @@ const total = page.majorQuestions.reduce((n, q) => n + q.subquestions.length, 0)
         </div>
       </section>
 
+      <section class="analysis-section analysis-targets" id="target-score" aria-labelledby="target-title">
+        <div class="analysis-section-heading"><span>02</span><h2 id="target-title">目標点</h2></div>
+        <p class="analysis-section-intro">数学に{page.targets.timeBudgetMinutes}分を使うと仮定した、レクサスの目標点です。小問別の仮配点に基づく試算で、大学公表の配点・合格最低点ではありません。</p>
+        <div class="analysis-target-grid">
+          {page.targets.profiles.map((profile) => (
+            <article class={`analysis-target-card is-${profile.id}`}>
+              <h3>{profile.title}</h3>
+              <p class="analysis-target-score"><strong>{profile.targetPoints}</strong><span>点<small>／{page.targets.totalPoints}点満点・仮配点</small></span></p>
+              <p class="analysis-target-rule">{profile.reliabilityFactor === 1
+                ? `理論最大${profile.maximum.points}点を、そのまま目標に。`
+                : `理論最大${profile.maximum.points}点 × 安全係数${profile.reliabilityFactor}`}</p>
+              <p class="analysis-target-summary">{profile.summary}</p>
+              <dl class="analysis-target-steps">
+                <div><dt>先に解く{profile.now.questionIds.length}小問</dt><dd><strong>{profile.now.points}点</strong><span>想定{profile.now.minutes}分</span></dd></div>
+                {profile.additional.length > 0
+                  ? <div class="analysis-target-addition"><dt>{profile.additional.map((q) => q.label).join("・")}を追加<small>＋{profile.route.points - profile.now.points}点</small></dt><dd><strong>計{profile.route.points}点</strong><span>計{profile.route.minutes}分</span></dd></div>
+                  : <div class="analysis-target-reached"><dt>この小問構成で目標点をカバー</dt></div>}
+              </dl>
+              <p class="analysis-target-focus">{profile.focus}</p>
+            </article>
+          ))}
+        </div>
+        <p class="analysis-small-note">時間は全{total}小問の解く・後回しにする判断を一度行う時間を含みます。実際の所要時間や得点を保証するものではありません。</p>
+        <details class="analysis-target-method">
+          <summary>目標点の算出条件</summary>
+          <p>試験時間は「{page.duration}」。ここでは{page.subject}に{page.targets.timeBudgetMinutes}分を仮配分しています。「先に解く」「後回し」の小問から、前の小問への依存関係を守り、時間内で仮配点の合計が最大になる組み合わせを元分析で算出しています。</p>
+          <ul>{page.targets.profiles.map((profile) => <li><strong>{profile.title}：</strong>判断時間×{profile.judgmentMultiplier}・解答時間×{profile.executionMultiplier}。理論最大は{profile.maximum.questionIds.length}小問・{profile.maximum.points}点・{profile.maximum.minutes}分です。{profile.nowPlusLater.minutes > page.targets.timeBudgetMinutes && `「後回し」まで全部解くと${profile.nowPlusLater.points}点・${profile.nowPlusLater.minutes}分となり、仮の制限時間を超えます。`}{profile.reliabilityFactor < 1 && `全体的な判断違い・処理ミスを見込み、安全係数${profile.reliabilityFactor}を掛け${profile.rounding === "floor_to_whole_point" ? "、1点単位で切り下げ" : ""}て目標点にしています。小問ごとの正答率を表す係数ではありません。`}</li>)}</ul>
+        </details>
+      </section>
+
       <section class="analysis-section" aria-labelledby="priority-title">
-        <div class="analysis-section-heading"><span>02</span><h2 id="priority-title">解く順番の目安</h2></div>
+        <div class="analysis-section-heading"><span>03</span><h2 id="priority-title">解く順番の目安</h2></div>
         <div class="analysis-profile-grid">
           {page.profiles.map((profile) => <aside class={`analysis-profile is-${profile.id}`}><h3>{profile.title}</h3><p>{profile.text}</p></aside>)}
         </div>
@@ -99,7 +130,7 @@ const total = page.majorQuestions.reduce((n, q) => n + q.subquestions.length, 0)
                 <tbody>{major.subquestions.map((s) => (
                   <tr>
                     <th scope="row"><span class="analysis-subquestion-name"><small>{s.label}</small>{s.title}</span><p>{s.note}</p></th>
-                    <td><span class={`analysis-difficulty level-${s.difficulty}`}>{levels[s.difficulty]}</span></td>
+                    <td><span class={`analysis-difficulty level-${s.difficulty}`}><span>{levels[s.difficulty].replace("レベル", "")}</span><span>レベル</span></span></td>
                     <td><span class={`analysis-priority priority-${s.weak}`}>{priorities[s.weak]}</span></td>
                     <td><span class={`analysis-priority priority-${s.strong}`}>{priorities[s.strong]}</span></td>
                   </tr>
@@ -112,7 +143,7 @@ const total = page.majorQuestions.reduce((n, q) => n + q.subquestions.length, 0)
       </section>
 
       <section class="analysis-section" aria-labelledby="requirements-title">
-        <div class="analysis-section-heading"><span>03</span><h2 id="requirements-title">要求される力を比べる</h2></div>
+        <div class="analysis-section-heading"><span>04</span><h2 id="requirements-title">要求される力を比べる</h2></div>
         <p class="analysis-section-intro">{page.requirementsSummary}</p>
         <div class="analysis-chart" role="region" aria-label="大問別の能力評価の比較" tabindex="0">
           <table class="analysis-requirements">
@@ -127,13 +158,13 @@ const total = page.majorQuestions.reduce((n, q) => n + q.subquestions.length, 0)
       </section>
 
       <section class="analysis-section" aria-labelledby="practice-title">
-        <div class="analysis-section-heading"><span>04</span><h2 id="practice-title">復習はこの{page.majorQuestions.length}点</h2></div>
+        <div class="analysis-section-heading"><span>05</span><h2 id="practice-title">復習はこの{page.majorQuestions.length}点</h2></div>
         <ol class="analysis-practice-list">{page.majorQuestions.map((m) => <li><strong>{m.title}</strong><p>{m.studyAction}</p></li>)}</ol>
       </section>
 
       <details class="analysis-method">
         <summary>分析の見方・元データについて</summary>
-        <p>保存済みの{page.year}年度{page.subject}の分析HTMLをもとに、難易度・優先度・能力評価を整理しています。長い説明は要約し、仮の目標得点・得点効率指数・想定解答時間の試算は省いています。</p>
+        <p>保存済みの{page.year}年度{page.subject}の分析HTMLをもとに、難易度・目標点・優先度・能力評価を整理しています。長い説明と得点効率指数は省き、目標点・想定時間の試算は、算出条件とともに掲載しています。</p>
         <p>試験時間は「{page.duration}」です。解く優先度は学習状況によって調整してください。</p>
         <p>能力評価の「典型問題の知識」は元分析の「問題パターン知識」、「条件の読み取り」は「問題咀嚼」に対応します。評価値は元分析のままです。</p>
       </details>

@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { extractAnalysis, axes } from "./import-past-exam-analysis.mjs";
+import { extractAnalysis, extractTargetAnalysis, axes } from "./import-past-exam-analysis.mjs";
 import { buildAnalysis } from "./build-past-exam-analyses.mjs";
 
 const root = new URL("../src/data/", import.meta.url);
@@ -65,4 +65,95 @@ test("reject out-of-scale scores", () => {
   const invalid = structuredClone(evidence);
   invalid.majorQuestions[0].requirements[0] = 6;
   assert.throws(() => buildAnalysis(invalid, editorial), /requirement score/);
+});
+
+function targetFixture() {
+  const metadata = structuredClone(fixtureMetadata);
+  metadata.package.id = "test-package";
+  metadata.package.total_points = 5;
+  metadata.major_questions[0].subquestions[0].time = { initial_judgment_minutes: 0.5, execution_minutes: 2 };
+  metadata.calculation_policy = {
+    scoring: { basis: "provisional_editorial" },
+    time_budget: { basis: "provisional_editorial", minutes: 10 },
+    time_model: { base_profile: "strong_subject", profiles: {
+      weak_subject: { initial_judgment_multiplier: 4, execution_multiplier: 1.5 },
+      strong_subject: { initial_judgment_multiplier: 1, execution_multiplier: 1 },
+    } },
+    target_optimization: { candidate_actions: ["今解く！", "後回し"], profiles: {
+      weak_subject: { reliability_factor: 1, rounding: "none" },
+      strong_subject: { reliability_factor: 0.8, rounding: "floor_to_whole_point" },
+    } },
+  };
+  const derived = { schema_version: "medical-entrance-past-exam-derived.v6", package_id: "test-package", profiles: {} };
+  const rows = [], cards = [];
+  for (const id of ["weak", "strong"]) {
+    const weak = id === "weak";
+    const target = weak ? 5 : 4;
+    const minutes = weak ? 5 : 2.5;
+    const rule = metadata.calculation_policy.target_optimization.profiles[`${id}_subject`];
+    const profile = {
+      target_percent: target / 5 * 100,
+      target_plan: { theoretical_max_points: 5, theoretical_max_percent: 100, target_points: target, target_percent: target / 5 * 100, minutes, subquestion_ids: ["q1-1"], ...rule },
+      now: { points: weak ? 0 : 5, minutes: weak ? 2 : 2.5, subquestion_ids: weak ? [] : ["q1-1"] },
+      now_plus_later: { points: 5, minutes, subquestion_ids: ["q1-1"] },
+    };
+    derived.profiles[`${id}_subject`] = profile;
+    cards.push(`<div class="target target--${id}">${weak ? "苦手" : "得意"}<strong>${profile.target_percent}%</strong></div>`);
+    rows.push(`<tr><th>${weak ? "苦手" : "得意"}科目</th><td>倍率</td><td><strong>${profile.target_percent}%（仮${target}点）</strong><small>理論最大 100%（仮5点）・${minutes}分</small></td>${[profile.now, profile.now_plus_later].map((p) => `<td><strong>${p.points / 5 * 100}%（仮配点 ${p.points}点）</strong><small>${p.minutes}分 / 編集試算</small></td>`).join("")}</tr>`);
+  }
+  return { metadata, derived, html: `${cards.join("")}<table class="profile-table"><tbody>${rows.join("")}</tbody></table>` };
+}
+
+test("extract targets from HTML and validate companion points, time and selections", () => {
+  const { html, metadata, derived } = targetFixture();
+  const result = extractTargetAnalysis(html, metadata, derived);
+  assert.equal(result.basis, "provisional_editorial");
+  assert.deepEqual(result.profiles.map((p) => p.targetPoints), [5, 4]);
+  assert.deepEqual(result.profiles.map((p) => p.targetPercent), [100, 80]);
+  assert.deepEqual(result.profiles.map((p) => p.maximum.minutes), [5, 2.5]);
+  assert.deepEqual(result.profiles[0].maximum.questionIds, ["q1-1"]);
+  assert.throws(() => extractTargetAnalysis(html, metadata), /derived/);
+  assert.throws(() => extractTargetAnalysis(html.replace("<strong>100%", "<strong>99%"), metadata, derived), /target/);
+  assert.throws(() => extractTargetAnalysis(html.replace("・5分", "・6分"), metadata, derived), /target/);
+  const wrongTime = structuredClone(metadata);
+  wrongTime.major_questions[0].subquestions[0].time.execution_minutes = 3;
+  assert.throws(() => extractTargetAnalysis(html, wrongTime, derived), /plan time/);
+  const missingPrerequisite = structuredClone(metadata);
+  missingPrerequisite.major_questions[0].subquestions[0].optimization_prerequisites.weak_subject = ["missing"];
+  assert.throws(() => extractTargetAnalysis(html, missingPrerequisite, derived), /prerequisite/);
+});
+
+test("preserve target/max distinction and select a concrete route to the goal", () => {
+  const { targets } = buildAnalysis(evidence, editorial);
+  assert.equal(targets.totalPoints, 100);
+  assert.equal(targets.timeBudgetMinutes, 60);
+  const [weak, strong] = targets.profiles;
+  assert.deepEqual([weak.targetPoints, strong.targetPoints], [48, 80]);
+  assert.deepEqual([weak.maximum.points, strong.maximum.points], [48, 100]);
+  assert.deepEqual([weak.route.points, weak.route.minutes, weak.route.questionIds.length], [48, 59.1, 6]);
+  assert.deepEqual(weak.additional, [{ id: "math-q3-4", label: "第3問 問4" }]);
+  assert.equal(weak.route.points - weak.now.points, 9);
+  assert.deepEqual([strong.route.points, strong.route.minutes, strong.route.questionIds.length], [80, 45, 10]);
+  assert.equal(strong.maximum.minutes, 59.5);
+  assert.deepEqual(strong.additional, []);
+  assert.ok(weak.nowPlusLater.minutes > targets.timeBudgetMinutes);
+  assert.ok(targets.profiles.every((p) => p.route.minutes <= targets.timeBudgetMinutes));
+});
+
+test("fail rather than silently omit or corrupt target analysis", () => {
+  assert.throws(() => buildAnalysis({ ...evidence, targetAnalysis: null }, editorial), /target/);
+  assert.throws(() => buildAnalysis(evidence, { ...editorial, targets: [] }), /target/);
+  for (const mutate of [
+    (t) => { t.profiles[0].targetPoints = 49; },
+    (t) => { t.profiles[1].reliabilityFactor = 0.9; },
+    (t) => { t.profiles[0].maximum.minutes = 61; },
+    (t) => { t.profiles[1].now.minutes = 61; },
+    (t) => { t.timeBudgetMinutes = Infinity; },
+    (t) => { t.profiles[0].now.questionIds.push("nonexistent-question"); },
+    (t) => { t.profiles[1].maximum.questionIds.push(t.profiles[1].maximum.questionIds[0]); },
+  ]) {
+    const bad = structuredClone(evidence);
+    mutate(bad.targetAnalysis);
+    assert.throws(() => buildAnalysis(bad, editorial), /target/i);
+  }
 });

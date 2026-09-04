@@ -1,3 +1,5 @@
+type TargetPlan = { points: number; minutes: number; questionIds: string[] };
+
 export type AnalysisPage = {
   schemaVersion: string;
   packageId: string;
@@ -6,6 +8,16 @@ export type AnalysisPage = {
   headline: string; summary: string; requirementsSummary: string;
   difficultyCounts: number[];
   profiles: Array<{ id: string; title: string; text: string }>;
+  targets: {
+    basis: "provisional_editorial"; totalPoints: number; timeBudgetMinutes: number;
+    profiles: Array<{
+      id: string; title: string; summary: string; focus: string;
+      targetPoints: number; targetPercent: number; reliabilityFactor: number; rounding: string;
+      judgmentMultiplier: number; executionMultiplier: number;
+      maximum: TargetPlan; now: TargetPlan; nowPlusLater: TargetPlan; route: TargetPlan;
+      additional: Array<{ id: string; label: string }>;
+    }>;
+  };
   majorQuestions: Array<{
     id: string; label: string; title: string; subtitle: string; summary: string; studyAction: string;
     requirements: number[]; questionsPath: string; answersPath: string;

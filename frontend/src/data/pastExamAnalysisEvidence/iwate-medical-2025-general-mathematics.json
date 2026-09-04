@@ -254,5 +254,121 @@
         }
       ]
     }
-  ]
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 48,
+        "targetPercent": 48,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "maximum": {
+          "points": 48,
+          "minutes": 59.1,
+          "questionIds": [
+            "math-q1-3",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4"
+          ]
+        },
+        "now": {
+          "points": 39,
+          "minutes": 51.9,
+          "questionIds": [
+            "math-q1-3",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 80,
+          "minutes": 86.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "maximum": {
+          "points": 100,
+          "minutes": 59.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4"
+          ]
+        },
+        "now": {
+          "points": 80,
+          "minutes": 45,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 59.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4"
+          ]
+        }
+      }
+    ]
+  }
 }
