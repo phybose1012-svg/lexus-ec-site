@@ -72,6 +72,7 @@ test("page covers every question and preserves original chart values", () => {
   assert.deepEqual(page.majorQuestions.map((m) => m.subquestions.map((s) => s.id)), evidence.majorQuestions.map((m) => m.subquestions.map((s) => s.id)));
   assert.equal(page.source.approved, false);
   assert.equal(page.duration, "英語・数学を合わせて120分");
+  assert.deepEqual(page.examTotal, { points: 400, subjectCount: 4 });
   assert.equal(page.route.path, "/past-exam-library/iwate-medical/2025/mathematics/analysis/");
   assert.equal(page.majorQuestions[1].questionsPath, "/past-exam-library/iwate-medical/2025/mathematics/questions/#major-question-02");
   assert.equal(JSON.stringify(page).includes("execution_minutes"), false);
@@ -95,6 +96,14 @@ test("reject out-of-scale scores", () => {
   const invalidPoints = structuredClone(evidence);
   invalidPoints.majorQuestions[0].subquestions[0].points += 1;
   assert.throws(() => buildAnalysis(invalidPoints, editorial), /point total/);
+});
+
+test("whole-exam total is explicit and does not alter the subject scoring", () => {
+  const page = buildAnalysis(evidence, editorial);
+  assert.equal(page.targets.totalPoints, 100);
+  assert.equal(page.majorQuestions.flatMap((m) => m.subquestions).reduce((n, s) => n + s.points, 0), 100);
+  assert.equal(buildAnalysis(evidence, { ...editorial, examTotal: undefined }).examTotal, null);
+  for (const examTotal of [{ points: 50, subjectCount: 4 }, { points: 400, subjectCount: 0 }]) assert.throws(() => buildAnalysis(evidence, { ...editorial, examTotal }), /whole-exam/);
 });
 
 function targetFixture() {

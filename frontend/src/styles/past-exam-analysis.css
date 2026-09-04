@@ -16,8 +16,9 @@
 .analysis-distribution h3 { font-size: 1rem; font-weight: 700; }
 .analysis-distribution-totals { display: grid; gap: 4px; margin: 12px 0 18px; }
 .analysis-distribution-totals > div { display: flex; align-items: baseline; gap: 18px; }
-.analysis-distribution-totals dt { font-size: .875rem; color: #4c6072; }
+.analysis-distribution-totals dt { font-size: .875rem; color: #4c6072; white-space: nowrap; }
 .analysis-distribution-totals dd { margin: 0; font-size: .875rem; }
+.analysis-exam-total { display: inline-block; }
 .analysis-distribution-totals strong { margin-right: 4px; font-size: 1.25rem; font-variant-numeric: tabular-nums; }
 .analysis-distribution-chart { display: grid; grid-template-columns: 220px minmax(0,1fr); align-items: center; gap: 20px; max-width: 550px; }
 .analysis-difficulty-pie { display: block; width: 220px; max-width: 100%; height: auto; overflow: visible; }

@@ -59,11 +59,11 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
           <p>{page.summary}</p>
         </div>
         <div class="analysis-distribution" id="difficulty-distribution">
-          <h3>小問の難易度</h3>
+          <h3>試験概要</h3>
           <dl class="analysis-distribution-totals">
             <div><dt>大問合計</dt><dd><strong>{page.majorQuestions.length}</strong>題</dd></div>
             <div><dt>小問合計</dt><dd><strong>{total}</strong>問</dd></div>
-            <div><dt>配点合計</dt><dd><strong>{totalPoints}</strong>点</dd></div>
+            <div><dt>配点合計</dt><dd><strong>{totalPoints}</strong>点{page.examTotal && <span class="analysis-exam-total"> / {page.examTotal.points}点 ({page.examTotal.subjectCount}科目合計)</span>}</dd></div>
           </dl>
           <div class="analysis-distribution-chart">
             <svg class="analysis-difficulty-pie" viewBox="0 0 220 220" width="220" height="220" role="img" aria-labelledby="difficulty-pie-title" aria-describedby="difficulty-pie-note">

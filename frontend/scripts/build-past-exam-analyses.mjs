@@ -12,6 +12,8 @@ export function buildAnalysis(evidence, editorial) {
   if (evidence.schemaVersion !== "lexus-analysis-evidence.v1" || evidence.package.id !== editorial.packageId) throw new Error("Analysis package mismatch");
   if (JSON.stringify(evidence.axes) !== JSON.stringify(axes) || evidence.aggregation !== "provisional_points_weighted_mean") throw new Error("Unsupported assessment axes or aggregation");
   const p = evidence.package;
+  const examTotal = editorial.examTotal ?? null;
+  if (examTotal && (!Number.isSafeInteger(examTotal.points) || examTotal.points < p.total_points || !Number.isSafeInteger(examTotal.subjectCount) || examTotal.subjectCount < 1)) throw new Error("Invalid whole-exam total");
   for (const id of [p.university_id, p.subject_id]) if (!/^[a-z0-9-]+$/.test(id)) throw new Error("Invalid route identifier");
   if (!/^\d{4}$/.test(String(p.academic_year))) throw new Error("Invalid academic year");
   const root = `/past-exam-library/${p.university_id}/${p.academic_year}/${p.subject_id}/`;
@@ -58,6 +60,7 @@ export function buildAnalysis(evidence, editorial) {
     route: { university: p.university_id, year: String(p.academic_year), subject: p.subject_id, path: `${root}analysis/` },
     university: p.university_name, year: p.academic_year, subject: p.subject_name, examLabel: p.exam_method_name,
     duration: requireText(p.time_limit.note), format: requireText(editorial.format),
+    examTotal: examTotal ? { points: examTotal.points, subjectCount: examTotal.subjectCount } : null,
     headline: requireText(editorial.headline), summary: requireText(editorial.summary), requirementsSummary: requireText(editorial.requirementsSummary),
     profiles: editorial.profiles.map((profile) => ({ id: profile.id, title: requireText(profile.title), text: requireText(profile.text) })),
     majorQuestions, difficultyCounts: counts, targets, source: evidence.source, editorialNotes: editorial.editorialNotes,
