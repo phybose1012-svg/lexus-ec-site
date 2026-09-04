@@ -1,0 +1,146 @@
+---
+import SiteLayout from "../../../../../layouts/SiteLayout.astro";
+import { analysisPages, type AnalysisPage } from "../../../../../data/pastExamAnalyses";
+import "../../../../../styles/past-exam-library.css";
+import "../../../../../styles/past-exam-question.css";
+import "../../../../../styles/past-exam-analysis.css";
+
+export function getStaticPaths() {
+  return analysisPages.map((page) => ({ params: { university: page.route.university, year: page.route.year, subject: page.route.subject }, props: { page } }));
+}
+const { page } = Astro.props as { page: AnalysisPage };
+const title = `${page.university} ${page.year}年度 ${page.subject}の分析｜過去問ライブラリー｜レクサス教育センター`;
+const description = `${page.university} ${page.year}年度${page.subject}の出題分野、難易度、解く優先順位をコンパクトに整理。${page.summary}`;
+const levels = ["基本", "基本＋α", "標準", "発展"];
+const priorities = ["先に解く", "後回し", "見送る"];
+const axes = ["図形処理", "数式処理", "計算量", "典型問題の知識", "条件の読み取り"];
+const total = page.majorQuestions.reduce((n, q) => n + q.subquestions.length, 0);
+---
+
+<SiteLayout title={title} description={description} canonical={`https://lexus-ec.com${page.route.path}`}>
+  <Fragment slot="head"><meta name="robots" content="noindex,follow" /></Fragment>
+  <main class="past-exam-question-page past-exam-analysis-page">
+    <header class="past-exam-question-header">
+      <div class="content">
+        <nav class="exam-library-breadcrumb" aria-label="パンくずリスト">
+          <a href="/past-exam-library/">過去問ライブラリー</a><span aria-hidden="true">/</span>
+          <a href={page.links.university}>{page.university}</a><span aria-hidden="true">/</span>
+          <span aria-current="page">{page.year}年度 {page.subject} 分析</span>
+        </nav>
+        <div class="past-exam-question-header__grid">
+          <div>
+            <p class="past-exam-question-kicker">PAST EXAM / ANALYSIS</p>
+            <h1>{page.university}<span>{page.year}年度 {page.subject}の分析</span></h1>
+          </div>
+          <a class="past-exam-question-back" href={`${page.links.university}#year-${page.year}`}>← 年度・科目一覧へ</a>
+        </div>
+        <div class="analysis-exam-facts" aria-label="試験情報">
+          <span>{page.examLabel}</span><span>{page.majorQuestions.length}大問・{total}小問</span><span>{page.format}</span><span>{page.duration}</span>
+        </div>
+      </div>
+    </header>
+    <nav class="past-exam-question-mode" aria-label="問題・解答・分析">
+      <div class="content">
+        <a href={page.links.questions}><small>01</small><strong>問題</strong><em>閲覧する</em></a>
+        <a href={page.links.answers}><small>02</small><strong>解答</strong><em>閲覧する</em></a>
+        <span class="is-current" aria-current="page"><small>03</small><strong>分析</strong><em>表示中</em></span>
+      </div>
+    </nav>
+
+    <div class="analysis-body content">
+      <p class="analysis-review">{page.source.approved ? "レクサスE.C.の編集評価" : "ステージング確認用 · 難易度・優先度はレクサスE.C.の編集評価です。"}</p>
+      <section class="analysis-takeaway" aria-labelledby="analysis-takeaway-title">
+        <div>
+          <p class="analysis-eyebrow">この年のポイント</p>
+          <h2 id="analysis-takeaway-title">{page.headline}</h2>
+          <p>{page.summary}</p>
+        </div>
+        <div class="analysis-distribution">
+          <p>小問の難易度</p>
+          <div class="analysis-stacked" role="img" aria-label={levels.map((label, i) => `${label}${page.difficultyCounts[i]}問`).join("、")}>
+            {page.difficultyCounts.map((count, i) => count > 0 && <span class={`analysis-level-fill level-${i}`} style={`flex:${count}`} aria-hidden="true">{count}</span>)}
+          </div>
+          <ul class="analysis-legend">
+            {levels.map((label, i) => <li><i class={`analysis-level-fill level-${i}`} aria-hidden="true"></i>{label}<b>{page.difficultyCounts[i]}問</b></li>)}
+          </ul>
+          <small>小問数の内訳。配点の割合ではありません。</small>
+        </div>
+      </section>
+
+      <section class="analysis-section" aria-labelledby="overview-title">
+        <div class="analysis-section-heading"><span>01</span><h2 id="overview-title">大問ごとの特徴</h2></div>
+        <div class="analysis-major-grid">
+          {page.majorQuestions.map((major, i) => (
+            <article class="analysis-major-card">
+              <div class="analysis-major-card__head"><span>{String(i + 1).padStart(2, "0")}</span><div><small>{major.label}</small><h3>{major.title}</h3></div></div>
+              <p class="analysis-major-subtitle">{major.subtitle}</p>
+              <p>{major.summary}</p>
+              <a href={`#${major.id}`}>小問別の優先度を見る <span aria-hidden="true">↓</span></a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="analysis-section" aria-labelledby="priority-title">
+        <div class="analysis-section-heading"><span>02</span><h2 id="priority-title">解く順番の目安</h2></div>
+        <div class="analysis-profile-grid">
+          {page.profiles.map((profile) => <aside class={`analysis-profile is-${profile.id}`}><h3>{profile.title}</h3><p>{profile.text}</p></aside>)}
+        </div>
+        <div class="analysis-priority-tables">
+          {page.majorQuestions.map((major) => (
+            <section class="analysis-major-detail" id={major.id} aria-labelledby={`${major.id}-title`}>
+              <div class="analysis-detail-heading">
+                <h3 id={`${major.id}-title`}>{major.label}<span>{major.title}</span></h3>
+                <div><a href={major.questionsPath}>問題</a><a href={major.answersPath}>解答・解説</a></div>
+              </div>
+              <table class="analysis-priority-table">
+                <caption class="analysis-sr-only">{major.label}の小問別難易度と優先度</caption>
+                <thead><tr><th scope="col">小問・着眼点</th><th scope="col">難易度</th><th scope="col">苦手なら</th><th scope="col">得意なら</th></tr></thead>
+                <tbody>{major.subquestions.map((s) => (
+                  <tr>
+                    <th scope="row"><span class="analysis-subquestion-name"><small>{s.label}</small>{s.title}</span><p>{s.note}</p></th>
+                    <td><span class={`analysis-difficulty level-${s.difficulty}`}>{levels[s.difficulty]}</span></td>
+                    <td><span class={`analysis-priority priority-${s.weak}`}>{priorities[s.weak]}</span></td>
+                    <td><span class={`analysis-priority priority-${s.strong}`}>{priorities[s.strong]}</span></td>
+                  </tr>
+                ))}</tbody>
+              </table>
+            </section>
+          ))}
+        </div>
+        <p class="analysis-small-note">「先に解く」は優先して着手する小問。「見送る」は今回の演習で時間をかけすぎない判断で、学習しなくてよいという意味ではありません。</p>
+      </section>
+
+      <section class="analysis-section" aria-labelledby="requirements-title">
+        <div class="analysis-section-heading"><span>03</span><h2 id="requirements-title">要求される力を比べる</h2></div>
+        <p class="analysis-section-intro">{page.requirementsSummary}</p>
+        <div class="analysis-chart" role="region" aria-label="大問別の能力評価の比較" tabindex="0">
+          <table class="analysis-requirements">
+            <caption>0〜5の編集評価 · 数値が大きいほど、その力や処理量が求められます</caption>
+            <thead><tr><th scope="col">評価項目</th>{page.majorQuestions.map((m) => <th scope="col">{m.label}<small>{m.title}</small></th>)}</tr></thead>
+            <tbody>{axes.map((axis, i) => (
+              <tr><th scope="row">{axis}</th>{page.majorQuestions.map((m) => <td><div class="analysis-score"><span class="analysis-score__track" aria-hidden="true"><i style={`width:${m.requirements[i] / 5 * 100}%`}></i></span><strong>{m.requirements[i].toFixed(1)}</strong></div></td>)}</tr>
+            ))}</tbody>
+          </table>
+        </div>
+        <p class="analysis-small-note">元分析と同じ、仮配点による小問評価の加重平均です。大学公表値・正答率ではありません。仮配点を使うため、参考値としてご覧ください。</p>
+      </section>
+
+      <section class="analysis-section" aria-labelledby="practice-title">
+        <div class="analysis-section-heading"><span>04</span><h2 id="practice-title">復習はこの{page.majorQuestions.length}点</h2></div>
+        <ol class="analysis-practice-list">{page.majorQuestions.map((m) => <li><strong>{m.title}</strong><p>{m.studyAction}</p></li>)}</ol>
+      </section>
+
+      <details class="analysis-method">
+        <summary>分析の見方・元データについて</summary>
+        <p>保存済みの{page.year}年度{page.subject}の分析HTMLをもとに、難易度・優先度・能力評価を整理しています。長い説明は要約し、仮の目標得点・得点効率指数・想定解答時間の試算は省いています。</p>
+        <p>試験時間は「{page.duration}」です。解く優先度は学習状況によって調整してください。</p>
+        <p>能力評価の「典型問題の知識」は元分析の「問題パターン知識」、「条件の読み取り」は「問題咀嚼」に対応します。評価値は元分析のままです。</p>
+      </details>
+    </div>
+    <nav class="past-exam-question-links" aria-label="問題・解答へ戻る"><div class="content">
+      <a href={page.links.questions}><span>{page.year}年度 {page.subject}</span><strong>問題を解く</strong></a>
+      <a href={page.links.answers}><span>解き方を確認</span><strong>解答・解説を見る</strong></a>
+    </div></nav>
+  </main>
+</SiteLayout>

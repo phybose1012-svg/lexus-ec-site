@@ -1,5 +1,6 @@
 ---
 import SiteLayout from "../../../../../layouts/SiteLayout.astro";
+import { analysisPathFor } from "../../../../../data/pastExamAnalyses";
 import PastExamPrintBranding from "../../../../../components/past-exam/PastExamPrintBranding.astro";
 import PastExamPrintButton from "../../../../../components/past-exam/PastExamPrintButton.astro";
 import PastExamPrintSummary from "../../../../../components/past-exam/PastExamPrintSummary.astro";
@@ -71,6 +72,7 @@ const { page, answerPath } = Astro.props as { page: QuestionPageData; answerPath
 const title = `${page.university.name} ${page.exam.year}年度 ${page.subject.name}の問題｜過去問ライブラリー｜レクサス教育センター`;
 const description = `${page.university.name}医学部 ${page.exam.year}年度${page.exam.label}・${page.subject.name}の問題です。共通注意と全${page.document.questions.length}題を大問別に確認できます。`;
 const canonical = `https://lexus-ec.com${page.route.path}`;
+const analysisPath = analysisPathFor(page.packageId, page.links.analysis);
 const reviewRequired = page.source.rightsStatus !== "approved" || page.source.needsHumanReview;
 
 const structuredData = {
@@ -209,8 +211,8 @@ const structuredData = {
           )
         }
         {
-          page.links.analysis ? (
-            <a href={page.links.analysis}><small>03</small><strong>分析</strong><em>閲覧する</em></a>
+          analysisPath ? (
+            <a href={analysisPath}><small>03</small><strong>分析</strong><em>閲覧する</em></a>
           ) : (
             <span><small>03</small><strong>分析</strong><em>準備中</em></span>
           )
@@ -251,7 +253,7 @@ const structuredData = {
     <nav class="past-exam-question-links" aria-label={`${page.university.name}の関連情報`}>
       <div class="content">
         <a href={page.links.universityLibrary}><span>過去問</span><strong>年度・科目一覧</strong></a>
-        {page.links.analysis && <a href={page.links.analysis}><span>傾向と対策</span><strong>{page.subject.name}の分析</strong></a>}
+        {analysisPath && <a href={analysisPath}><span>傾向と対策</span><strong>{page.subject.name}の分析</strong></a>}
         {page.links.universityInformation && <a href={page.links.universityInformation}><span>大学情報</span><strong>入試情報を見る</strong></a>}
       </div>
     </nav>

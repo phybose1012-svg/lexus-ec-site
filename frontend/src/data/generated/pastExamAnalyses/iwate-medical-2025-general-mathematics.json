@@ -1,0 +1,220 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "iwate-medical-2025-general-mathematics",
+  "route": {
+    "university": "iwate-medical",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/iwate-medical/2025/mathematics/analysis/"
+  },
+  "university": "岩手医科大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "一般選抜",
+  "duration": "英語・数学を合わせて120分",
+  "format": "マーク式",
+  "headline": "確率を先に確保。図形の後半は見極める。",
+  "summary": "第3問の前半と、第1問の漸近線が取り組みやすい入口。第2問の最後は、他の小問を確保してから。",
+  "requirementsSummary": "第2問は、図形を読み解く力・式の処理・計算量のいずれも高めです。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "第3問の問1〜3、第1問の問3、第2問の問1を先に。第1問の問2は、問1の計算を整えてから戻る。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "第1問・第2問は問1〜3を、第3問は全問を軸に進める。第1問・第2問の問4は後回しにして、取りこぼしを減らす。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "title": "微分・極限",
+      "subtitle": "有理関数のグラフ",
+      "summary": "問1の計算を問2・問4へつなぐ構成。問3の漸近線は、前半の結果なしで取り組める。",
+      "studyAction": "商の微分から増減・凹凸表までを通して練習。定義域の除外点も忘れない。",
+      "requirements": [
+        0,
+        3.6,
+        2.8,
+        3.3,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "問1",
+          "title": "極大値・極小値",
+          "note": "方針は典型的。ただし微分と代入の計算が長い。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0
+        },
+        {
+          "id": "math-q1-2",
+          "label": "問2",
+          "title": "変曲点",
+          "note": "問1で整理した導関数・表を使って続ける。",
+          "difficulty": 0,
+          "weak": 1,
+          "strong": 0
+        },
+        {
+          "id": "math-q1-3",
+          "label": "問3",
+          "title": "漸近線",
+          "note": "前の小問に依存せず、短い式変形で進められる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0
+        },
+        {
+          "id": "math-q1-4",
+          "label": "問4",
+          "title": "実数解の個数",
+          "note": "極値を使った場合分け。基本問題の確保を優先。",
+          "difficulty": 2,
+          "weak": 2,
+          "strong": 1
+        }
+      ],
+      "questionsPath": "/past-exam-library/iwate-medical/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/iwate-medical/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "title": "図形・ベクトル",
+      "subtitle": "三角形と外接円",
+      "summary": "問1で求める辺と角が後続の土台。後半ほど、図形の関係をつなぐ力と計算力が必要。",
+      "studyAction": "余弦定理・角の二等分線・方べきを図と結び付け、ベクトルで長さを求める練習へ。",
+      "requirements": [
+        4.1,
+        3.8,
+        3.8,
+        3.8,
+        3.8
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "問1",
+          "title": "角Aと辺CA",
+          "note": "辺と角を確定する入口。まずここを確保。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0
+        },
+        {
+          "id": "math-q2-2",
+          "label": "問2",
+          "title": "BEとCE",
+          "note": "角の二等分線と円周角の関係を見つける。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0
+        },
+        {
+          "id": "math-q2-3",
+          "label": "問3",
+          "title": "ADとAE",
+          "note": "問1の辺・角を使い、内積と方べきをつなぐ。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0
+        },
+        {
+          "id": "math-q2-4",
+          "label": "問4",
+          "title": "内心と外心の距離",
+          "note": "位置ベクトルと根号計算が重い。最後の挑戦枠。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1
+        }
+      ],
+      "questionsPath": "/past-exam-library/iwate-medical/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/iwate-medical/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "title": "場合の数・確率",
+      "subtitle": "数字カードの並べ方",
+      "summary": "小問を独立に解きやすい構成。問1〜3で典型処理を押さえ、問4は場合分けを丁寧に。",
+      "studyAction": "位置を固定する・隣接する2枚をまとめる・偶数の枚数で分ける、の3パターンを整理。",
+      "requirements": [
+        0,
+        2,
+        2.8,
+        3.5,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "問1",
+          "title": "位置・両端の指定",
+          "note": "位置を固定して数える。優先して取り組みたい。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0
+        },
+        {
+          "id": "math-q3-2",
+          "label": "問2",
+          "title": "両端の偶奇",
+          "note": "両端を選び、残りを並べる基本処理。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0
+        },
+        {
+          "id": "math-q3-3",
+          "label": "問3",
+          "title": "2枚の隣接",
+          "note": "2枚を1組と見て、組の中の順序も数える。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0
+        },
+        {
+          "id": "math-q3-4",
+          "label": "問4",
+          "title": "偶数が連続しない",
+          "note": "偶数の枚数で分け、漏れと重複を確認。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0
+        }
+      ],
+      "questionsPath": "/past-exam-library/iwate-medical/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/iwate-medical/2025/mathematics/answers/#major-question-03"
+    }
+  ],
+  "difficultyCounts": [
+    3,
+    4,
+    4,
+    1
+  ],
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/iwate-medical/past-exams/working/2025/general/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "849a73a9f4ad8e4940b56b51770db8b45a3db7e83a1f4b8cf8bbc8e56a5ec2a9",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析HTMLの難易度・優先度・能力評価を抽出し、説明文を要約しました。",
+    "第2問の対策表現は、掲載中の解答に合わせて内積・方べきを明記しています。評価値は変更していません。",
+    "仮配点、仮時間、得点効率指数、仮の目標得点は掲載から外しました。元資料は変更していません。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/iwate-medical/2025/mathematics/questions/",
+    "answers": "/past-exam-library/iwate-medical/2025/mathematics/answers/",
+    "university": "/past-exam-library/iwate-medical/"
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "iwate-medical-2025-general-mathematics",
+    "university_id": "iwate-medical",
+    "university_name": "岩手医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 120,
+      "subject_ids": [
+        "english",
+        "mathematics"
+      ],
+      "note": "英語・数学を合わせて120分"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/iwate-medical/past-exams/working/2025/general/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "849a73a9f4ad8e4940b56b51770db8b45a3db7e83a1f4b8cf8bbc8e56a5ec2a9",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "sourceTitle": "有理関数の極値・変曲点・漸近線・実数解の個数",
+      "requirements": [
+        0,
+        3.6,
+        2.8,
+        3.3,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "difficultyReason": "導関数の符号を整理して極値を求める典型処理である。計算は長めだが、医学部数学の標準的な微分演習で再現できる。",
+          "strategyReason": "確かに、微分して臨界点と極値を順に求める定型手順を進めれば答えには到達でき、方針自体は難しくない。しかし、「解ける問題」であることと「今すぐ解くべき問題」であることは別である。商の微分、因数分解、根号を含む代入計算まで工程が長く、苦手層では計算ミスが起こりやすい。正本の8.0分は得意層の基準時間であり、苦手層は初期判断4倍・解答実行1.5倍により14.5分となる。仮配点9点・数学60分の仮時間配分では、得点効率指数は得意層67.5、苦手層37.2で、いずれも科目平均ペースの100を下回る。特に苦手層は時間消費が大きいため、より短時間で回収しやすい小問を先に処理し、その後に戻る。得意層は計算を安定して進めやすいため今解く。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "問2",
+          "difficulty": "基本レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "difficultyReason": "変曲点は二階微分と既に得た増減情報から判定でき、前問の結果を使えば処理が短い。",
+          "strategyReason": "変曲点の正攻法は問1で作る増減・凹凸表に依存する。原点対称性から座標を即断する別解はあるが、苦手層に本番での再現を前提とする戦略には使わない。苦手層は問1を処理できる状態になってから戻り、得意層は問1の計算結果を使って続けて回収する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-1"
+            ],
+            "strong_subject": [
+              "math-q1-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-3",
+          "label": "問3",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "difficultyReason": "分子を分母で割るか差を整理して漸近線を特定する典型処理で、必要な計算は比較的短い。",
+          "strategyReason": "大問前半の成否にかかわらず独立して処理でき、短時間で得点しやすいので両層とも今解く。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-4",
+          "label": "問4",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "difficultyReason": "有理関数のグラフと直線の位置関係を統合し、パラメータ範囲ごとの実数解個数を場合分けする必要がある。類題は典型化しているが処理は重い。",
+          "strategyReason": "場合分けに時間を使う終盤小問である。苦手層は正答前提にせず、得意層も他の回収後に着手する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-1"
+            ],
+            "strong_subject": [
+              "math-q1-1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "sourceTitle": "三角形・外接円・内心と外心の距離",
+      "requirements": [
+        4.1,
+        3.8,
+        3.8,
+        3.8,
+        3.8
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "difficultyReason": "正弦定理・余弦定理を使って角と辺を確定する導入小問で、典型公式を適切に選べれば再現できる。",
+          "strategyReason": "後続の図形処理より独立性が高い導入得点である。苦手層もここは切り離して先に回収する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "問2",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "difficultyReason": "外接円上の配置を読み、角の二等分線や方べき・相似など複数の図形事項から適切な関係を選ぶ必要がある。",
+          "strategyReason": "図形の補助関係が見えないと停滞するため苦手層は後へ回す。得意層は典型関係を素早く拾って続ける。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1"
+            ],
+            "strong_subject": [
+              "math-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q2-3",
+          "label": "問3",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "difficultyReason": "前問までの長さを使い、相似や線分比を連結して二つの線分を求める統合型の典型問題である。",
+          "strategyReason": "問1で求めた辺・角への依存があり、苦手層は連鎖的な時間損失を避ける。得意層は流れに乗れれば続けて得点できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1"
+            ],
+            "strong_subject": [
+              "math-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q2-4",
+          "label": "問4",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "difficultyReason": "内心と外心を別々にベクトル表示し、複雑な根号計算を整理して距離の二乗まで求める高度な統合処理を要求する。",
+          "strategyReason": "発想と計算の両方が重く、合格戦略上の優先度は低い。得意層でも全体の得点確保後に挑む。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1"
+            ],
+            "strong_subject": [
+              "math-q2-1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "sourceTitle": "数字カードの並べ方と確率",
+      "requirements": [
+        0,
+        2,
+        2.8,
+        3.5,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "difficultyReason": "全順列を標本空間として位置を固定する基本的な確率計算であり、二つの問いも独立に数えられる。",
+          "strategyReason": "短い基本計算で二つの解答を回収できるため、得意不得意を問わず最優先で処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "問2",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "difficultyReason": "両端を偶数または奇数に固定して残りを並べる基本的な場合の数で処理できる。",
+          "strategyReason": "条件を端点に固定すれば短時間で処理できる独立小問なので、両層とも先に確保する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-3",
+          "label": "問3",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "difficultyReason": "指定された二枚を一つの塊として扱う典型手法を、全順列との比に落とす問題である。",
+          "strategyReason": "隣接条件の典型パターンを知っていれば速く、他小問に依存しないため両層とも今解く。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-4",
+          "label": "問4",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "difficultyReason": "偶数カードの並びを複数パターンに分け、重複なく数え上げる必要がある。方針は典型だが場合分けの管理を要する。",
+          "strategyReason": "場合分けの確認に時間がかかるため苦手層は基本小問を確保してから戻る。得意層は典型数え上げとして続けて処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    }
+  ]
+}
