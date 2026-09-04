@@ -10,8 +10,9 @@ const root = new URL("../", import.meta.url);
 const library = "/past-exam-library/";
 const university = `${library}iwate-medical/`;
 const exam = `${university}2025/mathematics/`;
+const physicsExam = `${university}2025/physics/`;
 const modes = ["questions", "answers", "analysis"];
-const routes = [library, university, ...modes.map((mode) => `${exam}${mode}/`)];
+const routes = [library, university, ...[exam, physicsExam].flatMap((base) => modes.map((mode) => `${base}${mode}/`))];
 const origin = process.env.PAST_EXAM_VERIFY_ORIGIN;
 const attr = (node, key) => node.attrs?.find((a) => a.name === key)?.value;
 const text = (node) => node.nodeName === "#text" ? node.value : (node.childNodes ?? []).map(text).join("");
@@ -120,7 +121,7 @@ for (const { route, nodes } of pages) {
       assert.ok(fs.existsSync(new URL(`dist${new URL(item.item).pathname}index.html`, root)));
     });
     const resource = graph.find((n) => n["@type"] === "LearningResource");
-    if (route.startsWith(exam)) {
+    if ([exam, physicsExam].some((base) => route.startsWith(base))) {
       assert.ok(resource);
       assert.equal(page.mainEntity["@id"], resource["@id"]);
       assert.equal(resource.mainEntityOfPage["@id"], page["@id"]);

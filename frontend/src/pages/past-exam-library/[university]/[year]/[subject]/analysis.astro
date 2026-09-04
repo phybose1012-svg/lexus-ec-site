@@ -103,7 +103,8 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
       </div>
 
       <AnalysisSection id="target-score" headingId="target-title" number="01" title="目標点" tone="muted" character="lexus">
-        <p class="analysis-section-intro">数学に{page.targets.timeBudgetMinutes}分を使うと仮定した、レクサスの目標点です。小問別の仮配点に基づく試算で、大学公表の配点・合格最低点ではありません。</p>
+        <p class="analysis-section-intro">{page.subject}に{page.targets.timeBudgetMinutes}分を使うと仮定した、レクサスの目標点です。小問別の仮配点に基づく試算で、大学公表の配点・合格最低点ではありません。</p>
+        {page.targetReviewNote && <p class="analysis-small-note">{page.targetReviewNote} 苦手層の全問一巡の判断時間：{page.targets.profiles.find((profile) => profile.id === "weak")?.scanMinutes}分。</p>}
         <div class="analysis-target-grid">
           {page.targets.profiles.map((profile) => (
             <article class={`analysis-target-card is-${profile.id}`}>
@@ -112,7 +113,9 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
               <p class="analysis-target-summary">{profile.summary}</p>
               <dl class="analysis-target-steps">
                 <div><dt>先に解く{profile.now.questionIds.length}小問</dt><dd><strong>{profile.now.points}点</strong><span>想定{profile.now.minutes}分</span></dd></div>
-                {profile.additional.length > 0
+                {profile.routeKind === "replacement"
+                  ? <div class="analysis-target-addition"><dt>小問の組合せを変更<small>{profile.replaced?.map((q) => q.label).join("・")}を外し、{profile.additional.map((q) => q.label).join("・")}へ</small></dt><dd><strong>計{profile.route.points}点</strong><span>計{profile.route.minutes}分</span></dd></div>
+                  : profile.additional.length > 0
                   ? <div class="analysis-target-addition"><dt>{profile.additional.map((q) => q.label).join("・")}を追加<small>＋{profile.route.points - profile.now.points}点</small></dt><dd><strong>計{profile.route.points}点</strong><span>計{profile.route.minutes}分</span></dd></div>
                   : <div class="analysis-target-reached"><dt>この小問構成で目標点をカバー</dt></div>}
               </dl>

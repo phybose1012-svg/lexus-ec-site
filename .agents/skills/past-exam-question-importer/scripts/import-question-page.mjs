@@ -3,6 +3,7 @@
 import { access, cp, copyFile, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
+import { loadFigureManifest, replaceSourceFigures } from "../../../../frontend/src/lib/pastExamFigures.mjs";
 
 function parseArguments(argv) {
   const values = {};
@@ -164,12 +165,13 @@ function applyOverrides(fragment, scope, overrides) {
     }, fragment);
 }
 
-async function rewriteAndCopyAssets(fragment, sourceDir, publicRoot, packageId, sourceName) {
+async function rewriteAndCopyAssets(fragment, sourceDir, publicRoot, packageId, sourceName, figures) {
   const matches = [...fragment.matchAll(/\bsrc=(['"])([^'"]+)\1/gi)];
   let result = fragment;
 
   for (const match of matches) {
     const originalUrl = match[2];
+    if (figures?.bySrc.has(originalUrl)) continue;
     if (/^(?:data:|https?:|\/)/i.test(originalUrl)) {
       throw new Error(`${sourceName}: external or absolute asset URL is unsupported (${originalUrl})`);
     }
@@ -221,6 +223,7 @@ async function main() {
   if (!packageId) {
     throw new Error("index.html: reconstruction package_id is missing");
   }
+  const figures = args["figure-manifest"] ? loadFigureManifest(args["figure-manifest"], publicRoot, packageId) : null;
 
   let overrides = null;
   if (args.overrides) {
@@ -232,6 +235,7 @@ async function main() {
     if (!Array.isArray(overrides.operations)) {
       throw new Error("Override operations must be an array");
     }
+    if (overrides.printNotes && (!Array.isArray(overrides.printNotes) || overrides.printNotes.some((note) => typeof note !== "string" || !note.trim()))) throw new Error("Invalid print notes");
   }
 
   const sourceBuildKind = indexHtml.match(/\bdata-build-kind=["']([^"']+)["']/i)?.[1] ?? "unknown";
@@ -272,11 +276,12 @@ async function main() {
     }
     needsHumanReview ||= Boolean(reconstruction.review?.needs_human_review);
 
-    const sourceFragment = applyOverrides(
+    let sourceFragment = applyOverrides(
       extractElement(html, "data-major-question-id", filename),
       pageRecord.major_question_id,
       overrides,
     );
+    if (figures) sourceFragment = replaceSourceFigures(sourceFragment, figures);
     assertSafeFragment(sourceFragment, filename);
     const questionHtml = await rewriteAndCopyAssets(
       removeInternalSourceNotes(sourceFragment),
@@ -284,6 +289,7 @@ async function main() {
       publicRoot,
       packageId,
       filename,
+      figures,
     );
     questions.push({
       id: pageRecord.major_question_id,
@@ -331,6 +337,7 @@ async function main() {
       role: "questions",
       pageUnit: indexReconstruction.document?.page_unit ?? "major_question",
       sharedInstructionsHtml,
+      ...(overrides?.printNotes ? { printNotes: overrides.printNotes } : {}),
       questions,
     },
     source: {

@@ -4,6 +4,11 @@ import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 
 export const axes = ["図形処理", "数式処理", "計算量", "問題パターン知識", "問題咀嚼"];
+export function analysisAxesFor(subject) {
+  if (subject === "mathematics") return axes;
+  if (subject === "physics") return ["物理に関する知識", "問題パターン知識", "数式処理", "計算量", "問題咀嚼"];
+  throw new Error(`Unsupported assessment axes for ${subject}`);
+}
 export const difficulties = ["基本レベル", "基本＋αレベル", "標準レベル", "発展レベル"];
 export const actions = ["今解く！", "後回し", "捨てる！"];
 const decode = (s) => s.replace(/&#(x[0-9a-f]+|\d+);/gi, (_, n) => String.fromCodePoint(n[0].toLowerCase() === "x" ? parseInt(n.slice(1), 16) : Number(n)))
@@ -15,7 +20,9 @@ function capture(html, pattern, label) {
   return match[1];
 }
 
-const round1 = (n) => Math.round(n * 10) / 10;
+const round1 = (n) => Math.round((n + 1e-12) * 10) / 10;
+// Match the source time model: round each adjusted subquestion time before summing.
+export const profileMinutes = (questions, field, multiplier) => round1(questions.reduce((n, q) => n + round1(q.time[field] * multiplier), 0));
 function sameNumber(actual, expected, label) {
   if (!Number.isFinite(actual) || actual !== expected) throw new Error(`Stale or invalid target ${label}`);
 }
@@ -68,8 +75,8 @@ export function extractTargetAnalysis(html, metadata, derived) {
       if (selected.some((q) => !q || !policy.target_optimization.candidate_actions.includes(q.strategy[key]) || q.optimization_prerequisites[key].some((qid) => !ids.includes(qid)))) throw new Error("Invalid target prerequisite or candidate");
       const points = sourcePlan[isMaximum ? "theoretical_max_points" : "points"];
       sameNumber(points, selected.reduce((n, q) => n + q.scoring.points, 0), `${id} plan points`);
-      const judgment = questions.reduce((n, q) => n + q.time.initial_judgment_minutes, 0) * time.initial_judgment_multiplier;
-      const execution = selected.reduce((n, q) => n + q.time.execution_minutes, 0) * time.execution_multiplier;
+      const judgment = profileMinutes(questions, "initial_judgment_minutes", time.initial_judgment_multiplier);
+      const execution = profileMinutes(selected, "execution_minutes", time.execution_multiplier);
       sameNumber(sourcePlan.minutes, round1(judgment + execution), `${id} plan time`);
       return { points, minutes: sourcePlan.minutes, questionIds: ids };
     };
@@ -84,7 +91,8 @@ export function extractTargetAnalysis(html, metadata, derived) {
     }
     const nowIds = questions.filter((q) => q.strategy[key] === "今解く！").map((q) => q.id).sort();
     if (JSON.stringify([...now.questionIds].sort()) !== JSON.stringify(nowIds)) throw new Error("Stale target priority selection");
-    return { id, targetPoints: Number(target[2]), targetPercent: percent, reliabilityFactor: rule.reliability_factor, rounding: rule.rounding, judgmentMultiplier: time.initial_judgment_multiplier, executionMultiplier: time.execution_multiplier, maximum, now, nowPlusLater };
+    const scanMinutes = profileMinutes(questions, "initial_judgment_minutes", time.initial_judgment_multiplier);
+    return { id, targetPoints: Number(target[2]), targetPercent: percent, reliabilityFactor: rule.reliability_factor, rounding: rule.rounding, judgmentMultiplier: time.initial_judgment_multiplier, executionMultiplier: time.execution_multiplier, scanMinutes, maximum, now, nowPlusLater };
   });
   return validateTargetAnalysis({ basis: "provisional_editorial", totalPoints: metadata.package.total_points, timeBudgetMinutes: policy.time_budget.minutes, profiles }, questions.map((q) => q.id));
 }
@@ -96,13 +104,14 @@ export function extractAnalysis(html, metadata, sourceRef, derived) {
   const title = plain(capture(html, /<title>([\s\S]*?)<\/title>/, "title"));
   if (!title.includes(`${metadata.package.university_name} ${metadata.package.academic_year}`) || !title.includes(metadata.package.subject_name)) throw new Error("HTML and package metadata do not match");
   const seen = new Set();
+  const reportAxes = analysisAxesFor(metadata.package.subject_id);
   const majorQuestions = [...html.matchAll(/<article class="card major-question" id="([^"]+)">([\s\S]*?)<\/article>/g)].map((match) => {
     const [, id, body] = match;
     const canonical = metadata.major_questions.find((q) => q.id === id);
     if (!canonical || seen.has(id)) throw new Error(`Unexpected or duplicate major question ${id}`);
     seen.add(id);
     const header = body.slice(0, body.indexOf('<div class="subquestion-list">'));
-    const requirements = axes.map((axis) => {
+    const requirements = reportAxes.map((axis) => {
       const score = Number(capture(header, new RegExp(`<text[^>]*>${axis} ([0-9.]+)</text>`), `${id} ${axis}`));
       const total = canonical.subquestions.reduce((n, s) => n + s.scoring.points, 0);
       const expected = Math.round(canonical.subquestions.reduce((n, s) => n + s.radar[axis] * s.scoring.points, 0) / total * 10) / 10;
@@ -137,7 +146,7 @@ export function extractAnalysis(html, metadata, sourceRef, derived) {
   return {
     schemaVersion: "lexus-analysis-evidence.v1", package: metadata.package,
     source: { project: "shidai-igakubu-gokaku-dokuhon", html: sourceRef, sha256: crypto.createHash("sha256").update(html).digest("hex"), approved: metadata.review.approved === true && !html.includes("編集責任者未承認") },
-    axes, aggregation: "provisional_points_weighted_mean", majorQuestions,
+    axes: reportAxes, aggregation: "provisional_points_weighted_mean", majorQuestions,
     targetAnalysis: extractTargetAnalysis(html, metadata, derived),
   };
 }

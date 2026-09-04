@@ -13,6 +13,8 @@ import PastExamPrintButton from "../../../../../components/past-exam/PastExamPri
 import PastExamPrintSummary from "../../../../../components/past-exam/PastExamPrintSummary.astro";
 import "../../../../../styles/past-exam-library.css";
 import "../../../../../styles/past-exam-question.css";
+import "../../../../../styles/past-exam-figures.css";
+import "../../../../../styles/past-exam-physics.css";
 
 type QuestionPageData = {
   schemaVersion: string;
@@ -25,6 +27,7 @@ type QuestionPageData = {
     role: "questions";
     pageUnit: string;
     sharedInstructionsHtml: string;
+    printNotes?: string[];
     questions: Array<{
       id: string;
       label: string;
@@ -108,7 +111,7 @@ const reviewRequired = page.source.rightsStatus !== "approved" || page.source.ne
     <PastExamSeoHead structuredData={structuredData} />
   </Fragment>
 
-  <main id="past-exam-content" tabindex="-1" class="past-exam-question-page">
+  <main id="past-exam-content" tabindex="-1" class:list={["past-exam-question-page", { "past-exam-physics-page": page.subject.id === "physics" }]}>
     <PastExamPrintBranding />
 
     <header class="past-exam-question-header">
@@ -151,7 +154,7 @@ const reviewRequired = page.source.rightsStatus !== "approved" || page.source.ne
         page.exam.duration,
         `大問${page.document.questions.length}題`,
       ]}
-      notes={[
+      notes={page.document.printNotes ?? [
         "空欄には、指定に従って符号または数字を1つずつ記入してください。",
         "分数は既約分数とし、負号は分子につけてください。",
         "根号を含む答えは、根号の中が最小になる形にしてください。",

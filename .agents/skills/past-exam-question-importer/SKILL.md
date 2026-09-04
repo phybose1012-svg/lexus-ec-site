@@ -62,4 +62,12 @@ node .agents/skills/past-exam-question-importer/scripts/import-question-page.mjs
 
 Keep override files declarative and narrowly scoped to a major-question ID. If an operation changes the meaning of the question rather than its presentation, fix and re-review the source package instead.
 
-The importer copies only referenced content assets plus the shared local KaTeX runtime. If a package needs non-HTML figures, keep their rights state explicit and use a package-specific adapter only when generic asset copying is insufficient.
+The importer copies only referenced content assets plus the shared local KaTeX runtime. If a package needs non-HTML figures, keep their rights state explicit.
+
+## Independently drawn figures and subject-specific notes
+
+- To replace source crop slots with original diagrams, pass `--figure-manifest frontend/src/data/pastExamFigures/<package-id>.json`. The shared renderer validates package-scoped asset paths, IDs, dimensions, alt text and captions, then replaces matching `data-crop-id` figures. Missing mappings fail; do not silently drop a required diagram.
+- The manifest uses `lexus-past-exam-figures.v1`, `contentProvenance: original_editorial`, `restrictedSourceCopied: false`, and `items` containing `id`, `src`, `width`, `height`, `alt`, `caption`. A manifest does not grant rights to source material. Draw from the mathematical conditions; do not embed restricted crops inside an SVG.
+- Iwate 2025 physics uses `frontend/scripts/build-iwate-2025-physics-figures.mjs` to regenerate its 10 original assets and manifest. This geometry is package-specific; the registration and HTML rendering are shared.
+- Optional `printNotes` in the override file replaces the mathematics-specific print notes. Derive instructions, single-/multiple-choice rules and combined-subject time from the current exam, not the preceding page.
+- After a physics import, run the normal build and `npm run past-exam:physics:test` from `frontend`. This checks static artifacts and mathematical invariants, not browser layout or human editorial approval.

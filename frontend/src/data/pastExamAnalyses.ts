@@ -6,6 +6,7 @@ export type AnalysisPage = {
   route: { university: string; year: string; subject: string; path: string };
   university: string; year: number; subject: string; examLabel: string; duration: string; format: string;
   headline: string; summary: string; requirementsSummary: string;
+  targetReviewNote?: string;
   difficultyCounts: number[];
   examTotal: { points: number; subjectCount: number } | null;
   profiles: Array<{ id: string; title: string; text: string }>;
@@ -17,6 +18,9 @@ export type AnalysisPage = {
       judgmentMultiplier: number; executionMultiplier: number;
       maximum: TargetPlan; now: TargetPlan; nowPlusLater: TargetPlan; route: TargetPlan;
       additional: Array<{ id: string; label: string }>;
+      routeKind?: "replacement";
+      replaced?: Array<{ id: string; label: string }>;
+      scanMinutes?: number;
     }>;
   };
   majorQuestions: Array<{

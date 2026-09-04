@@ -8,14 +8,14 @@ import "../../../styles/past-exam-university.css";
 
 const title = "岩手医科大学医学部の過去問一覧｜レクサス教育センター";
 const description =
-  "岩手医科大学医学部の過去問を年度・科目別に探せます。2026〜2022年度の掲載状況と、2025年度数学の問題・解答解説・分析をご案内。準備中の年度・科目も一覧で確認できます。";
+  "岩手医科大学医学部の過去問を年度・科目別に探せます。2026〜2022年度の掲載状況と、2025年度数学・物理の問題・解答解説・分析をご案内。準備中の年度・科目も一覧で確認できます。";
 const canonical = "https://lexus-ec.com/past-exam-library/iwate-medical/";
 
 const librarySteps = [
   { number: "01", label: "年度", value: "5年分", href: "#years", tone: "selected" },
   { number: "02", label: "科目", value: "4科目", href: "#subjects", tone: "selected" },
-  { number: "03", label: "問題", value: "1科目", href: "#year-2025", tone: "ready" },
-  { number: "04", label: "解答", value: "1科目", href: "#year-2025", tone: "ready" },
+  { number: "03", label: "問題", value: "2科目", href: "#year-2025", tone: "ready" },
+  { number: "04", label: "解答", value: "2科目", href: "#year-2025", tone: "ready" },
   { number: "05", label: "分析", value: "閲覧可", href: "#subjects", tone: "ready" },
 ] as const;
 
@@ -76,13 +76,15 @@ const subjects2025: SubjectRow[] = [
     name: "物理",
     english: "PHYSICS",
     tone: "physics",
-    problem: "図版確認中",
-    problemTone: "waiting",
-    answer: "準備中",
-    answerTone: "waiting",
+    problem: "問題を見る",
+    problemTone: "ready",
+    problemPath: "/past-exam-library/iwate-medical/2025/physics/questions/",
+    answer: "解答を見る",
+    answerTone: "ready",
+    answerPath: "/past-exam-library/iwate-medical/2025/physics/answers/",
     analysis: "分析を見る",
     analysisTone: "ready",
-    analysisPath: "/iwateika-university-entrance-exam-measures2027/#物理",
+    analysisPath: "/past-exam-library/iwate-medical/2025/physics/analysis/",
   },
   {
     index: "04",
@@ -159,7 +161,7 @@ const { breadcrumbs, structuredData } = buildPastExamPageSeo({
           <aside class="exam-university-current" aria-label="現在の公開状況">
             <span>現在の公開状況</span>
             <strong>5年分の掲載枠を用意しました</strong>
-            <small>2025年度数学の問題・解答解説と科目別分析を閲覧できます</small>
+            <small>2025年度数学・物理の問題・解答解説・分析を閲覧できます</small>
           </aside>
         </div>
       </div>

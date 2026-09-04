@@ -21,6 +21,15 @@ Use this when creating or revising an explanation, and on later editorial review
 - For counting arguments, verify cases are exhaustive and disjoint, impossible cases are excluded for a stated reason when not immediate, and the denominator uses equally likely outcomes.
 - Repair the smallest missing bridge; do not replace the intended method or add an unrelated alternative just to avoid a difficult step.
 
+### Physics-specific checks when relevant
+
+- Define the reference frame, positive direction and measured voltage order before writing signed equations. Speed is a magnitude; a body moving backwards relative to another body can still move forwards relative to the Earth.
+- Track which bodies remain after separation and measure gravitational distance from the attracting body's center. State the short-interaction or negligible-impulse condition when applying momentum conservation.
+- Distinguish a quantity from its rate of change. Zero secondary current may imply constant flux, not zero flux; track interval changes from the supplied initial value before reusing a later value.
+- For optical interference, count reflection phase reversals separately from optical path difference. Define where the ring index starts, and recheck choice numbers when identical formulas appear in different orders.
+- Before using an approximation, identify the small dimensionless parameter and the geometric model. A small gap is not by itself a proof that every relevant length ratio is small. Keep an added near-axis assumption explicit rather than claiming it was directly given.
+- Check every figure against the equations: focus/center positions, radius labels, coil winding and terminal orientation, graph interval signs, and the order of surfaces in a height difference. A polished drawing is not evidence of physical consistency.
+
 ## Pass 3: Does each displayed formula earn its space?
 
 - Remove display blocks that merely repeat an immediately available table value or the following conclusion without adding a calculation or a necessary explanation.

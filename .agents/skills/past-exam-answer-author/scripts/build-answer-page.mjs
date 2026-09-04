@@ -1,8 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { loadFormulaPurposes } from "./formula-purpose-library.mjs";
+import { fileURLToPath } from "node:url";
+import { loadFigureManifest, renderRegisteredFigure } from "../../../../frontend/src/lib/pastExamFigures.mjs";
 
 const formulaPurposes = loadFormulaPurposes();
+let figureManifest = null;
 
 function parseArgs(argv) {
   const args = {};
@@ -190,6 +193,7 @@ function renderBlock(block, label) {
   }
   if (block.type === "table") return renderTable(block, label);
   if (block.type === "figurePlaceholder") return renderFigurePlaceholder(block, label);
+  if (block.type === "figure") return renderRegisteredFigure(figureManifest, requireValue(block.assetId, `${label} assetId`));
 
   throw new Error(`${label} has unsupported type ${block.type}`);
 }
@@ -250,6 +254,10 @@ const args = parseArgs(process.argv.slice(2));
 const sourcePath = path.resolve(requireValue(args.source, "--source"));
 const outputPath = path.resolve(requireValue(args.output, "--output"));
 const source = JSON.parse(fs.readFileSync(sourcePath, "utf8"));
+if (source.figureManifest) {
+  const root = fileURLToPath(new URL("../../../../", import.meta.url));
+  figureManifest = loadFigureManifest(path.join(root, source.figureManifest), path.join(root, "frontend/public"), source.packageId);
+}
 
 if (source.schemaVersion !== "lexus-past-exam-answer-source.v1") {
   throw new Error("Unsupported answer source schemaVersion");

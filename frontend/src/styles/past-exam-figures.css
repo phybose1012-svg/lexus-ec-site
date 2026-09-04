@@ -1,0 +1,8 @@
+.past-exam-figure { margin: 24px auto; max-width: 680px; break-inside: avoid; }
+.past-exam-figure img { display: block; width: auto; max-width: 100%; max-height: 390px; margin-inline: auto; }
+.past-exam-figure figcaption { margin: 10px 0 0; color: #52657b; font-size: .875rem; line-height: 1.7; text-align: center; }
+@media print {
+  body.is-printing-past-exam-document .past-exam-figure { margin: 4mm auto; max-width: 150mm; break-inside: avoid; }
+  body.is-printing-past-exam-document .past-exam-figure img { max-height: 67mm; max-width: 100%; }
+  body.is-printing-past-exam-document .past-exam-figure figcaption { font-size: 9pt; margin-top: 2mm; }
+}

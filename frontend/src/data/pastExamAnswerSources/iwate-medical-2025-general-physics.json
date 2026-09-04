@@ -1,0 +1,803 @@
+{
+  "schemaVersion": "lexus-past-exam-answer-source.v1",
+  "packageId": "iwate-medical-2025-general-physics",
+  "route": {
+    "university": "iwate-medical",
+    "year": "2025",
+    "subject": "physics",
+    "path": "/past-exam-library/iwate-medical/2025/physics/answers/"
+  },
+  "university": {
+    "id": "iwate-medical",
+    "name": "岩手医科大学"
+  },
+  "exam": {
+    "year": "2025",
+    "label": "一般選抜",
+    "stage": "一次試験",
+    "duration": "理科2科目 合計120分"
+  },
+  "subject": {
+    "id": "physics",
+    "name": "物理",
+    "english": "PHYSICS"
+  },
+  "figureManifest": "frontend/src/data/pastExamFigures/iwate-medical-2025-general-physics.json",
+  "document": {
+    "role": "answers",
+    "majorQuestions": [
+      {
+        "id": "major-question-01",
+        "label": "第1問",
+        "order": 1,
+        "answerKey": [
+          {
+            "label": "問1",
+            "entries": [
+              {
+                "mark": "1",
+                "value": "⑤"
+              }
+            ]
+          },
+          {
+            "label": "問2",
+            "entries": [
+              {
+                "mark": "2",
+                "value": "③"
+              }
+            ]
+          },
+          {
+            "label": "問3",
+            "entries": [
+              {
+                "mark": "3",
+                "value": "⑤"
+              }
+            ]
+          },
+          {
+            "label": "問4",
+            "entries": [
+              {
+                "mark": "4",
+                "value": "⑥"
+              }
+            ]
+          },
+          {
+            "label": "問5",
+            "entries": [
+              {
+                "mark": "5",
+                "value": "②"
+              }
+            ]
+          },
+          {
+            "label": "問6",
+            "entries": [
+              {
+                "mark": "6",
+                "value": "⑤"
+              }
+            ]
+          },
+          {
+            "label": "問7",
+            "entries": [
+              {
+                "mark": "7",
+                "value": "⑥"
+              }
+            ]
+          },
+          {
+            "label": "問8",
+            "entries": [
+              {
+                "mark": "8",
+                "value": "①"
+              }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "問1　打ち出す初速",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "ロケット全体の質量は \\(5m\\) です。万有引力の位置エネルギーでは、地表面からの高さではなく地球の中心からの距離を使います。出発点は \\(R\\)、速さが0になる点は \\(2R\\) です。初速を \\(v_0\\) とします。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "energy-conservation",
+                "latex": "\\begin{aligned}\\frac12(5m)v_0^2-\\frac{GM(5m)}R&=-\\frac{GM(5m)}{2R}\\\\v_0&=\\sqrt{\\frac{GM}R}\\end{aligned}"
+              },
+              {
+                "type": "result",
+                "text": "解答番号1：⑤。初速は \\(\\sqrt{\\dfrac{GM}{R}}\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問2　円軌道を動くABの速さ",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "分離後のABの質量は \\(4m\\)、円軌道の半径は \\(2R\\) です。ABの速さを \\(u\\) とし、万有引力を円運動の中心向きの力として運動方程式を立てます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "circular-motion",
+                "latex": "\\frac{GM(4m)}{(2R)^2}=\\frac{4mu^2}{2R}\\quad\\Longrightarrow\\quad u=\\sqrt{\\frac{GM}{2R}}"
+              },
+              {
+                "type": "result",
+                "text": "解答番号2：③。ABの速さは \\(\\sqrt{\\dfrac{GM}{2R}}\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問3　分離直後のCの速さ",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "分離直前は全体が静止しています。短い分離時間では接線方向の外力の力積を無視できるので、その方向の運動量を保存します。ABの進む向きを正とし、Cの速度成分を \\(w_C\\) と置きます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "momentum-conservation",
+                "latex": "\\begin{aligned}0&=4mu+mw_C\\\\w_C&=-4u\\\\|w_C|&=4\\sqrt{\\frac{GM}{2R}}=\\sqrt{\\frac{8GM}R}\\end{aligned}"
+              },
+              {
+                "type": "prose",
+                "text": "負号はCがABと反対向きに進むことを示します。問われている速さは絶対値です。"
+              },
+              {
+                "type": "result",
+                "text": "解答番号3：⑤。Cの速さは \\(\\sqrt{\\dfrac{8GM}{R}}\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問4　円運動の周期",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "円軌道の一周の長さは \\(2\\pi(2R)\\) です。これを問2の速さ \\(u\\) で割ります。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "orbital-period",
+                "latex": "T=\\frac{2\\pi(2R)}{u}=4\\pi R\\sqrt{\\frac{2R}{GM}}=\\pi\\sqrt{\\frac{32R^3}{GM}}"
+              },
+              {
+                "type": "result",
+                "text": "解答番号4：⑥。周期は \\(\\pi\\sqrt{\\dfrac{32R^3}{GM}}\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問5　遠地点での速さの比",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "Bを分離した直後は近地点です。近地点でのAの速さを \\(v_{\\mathrm p}\\)、遠地点での速さを \\(v_{\\mathrm a}\\) とします。両地点では速度と地球の中心への方向が垂直になるので、面積速度の一定をそのまま距離と速さの積で表せます。"
+              },
+              {
+                "type": "figure",
+                "assetId": "q1-orbit-ellipse"
+              },
+              {
+                "type": "formula",
+                "purposeId": "areal-velocity",
+                "latex": "\\frac12(2R)v_{\\mathrm p}=\\frac12(7R)v_{\\mathrm a}\\quad\\Longrightarrow\\quad \\frac{v_{\\mathrm a}}{v_{\\mathrm p}}=\\frac27"
+              },
+              {
+                "type": "result",
+                "text": "解答番号5：②。遠地点での速さは近地点での速さの \\(\\dfrac27\\) 倍です。"
+              }
+            ]
+          },
+          {
+            "title": "問6　分離直後のAの速さ",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "Aの質量は \\(3m\\) です。近地点と遠地点の間でエネルギーを保存し、問5の \\(v_{\\mathrm a}=\\dfrac27v_{\\mathrm p}\\) を右辺の運動エネルギーに代入します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "energy-conservation",
+                "latex": "\\begin{aligned}\\frac12(3m)v_{\\mathrm p}^{\\,2}-\\frac{GM(3m)}{2R}&=\\frac12(3m)v_{\\mathrm a}^{\\,2}-\\frac{GM(3m)}{7R}\\\\ \\left(1-\\frac4{49}\\right)v_{\\mathrm p}^{\\,2}&=2GM\\left(\\frac1{2R}-\\frac1{7R}\\right)\\\\v_{\\mathrm p}^{\\,2}&=\\frac{7GM}{9R}\\end{aligned}"
+              },
+              {
+                "type": "result",
+                "text": "解答番号6：⑤。Aの速さは \\(\\sqrt{\\dfrac{7GM}{9R}}\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問7　だ円軌道の周期の比",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "だ円の長軸の長さは、近地点距離と遠地点距離の和 \\(2R+7R\\) です。長半径を \\(a\\)、だ円軌道の周期を \\(T_{\\mathrm e}\\) とします。同じ地球を回るため、ケプラーの第3法則を円軌道と比較できます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "kepler-third-law",
+                "latex": "\\begin{aligned}a&=\\frac{2R+7R}2=\\frac{9R}2\\\\\\left(\\frac{T_{\\mathrm e}}T\\right)^2&=\\left(\\frac a{2R}\\right)^3=\\left(\\frac94\\right)^3\\\\\\frac{T_{\\mathrm e}}T&=\\frac{27}8\\end{aligned}"
+              },
+              {
+                "type": "result",
+                "text": "解答番号7：⑥。周期は \\(T\\) の \\(\\dfrac{27}{8}\\) 倍です。"
+              }
+            ]
+          },
+          {
+            "title": "問8　分離直後のBの向き",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "分離前の進行方向を正とします。Bの地球に対する速度成分を \\(w_B\\) とすると、問2の \\(u\\) と問6の \\(v_{\\mathrm p}\\) を使って分離前後の運動量を等置できます。近地点ではAも接線方向に進むため、半径方向の運動量からBの半径方向成分も0です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "momentum-conservation",
+                "latex": "\\begin{aligned}4mu&=3mv_{\\mathrm p}+mw_B\\\\ w_B&=4u-3v_{\\mathrm p}\\\\&=\\left(4-\\sqrt{14}\\right)\\sqrt{\\frac{GM}{2R}}>0\\end{aligned}"
+              },
+              {
+                "type": "note",
+                "label": "速度の基準に注意",
+                "text": "BがAに対して後ろへ分離されても、地球に対する速度まで逆向きになるとは限りません。ここでは正の速度が残ります。"
+              },
+              {
+                "type": "result",
+                "text": "解答番号8：①。分離前のABと同じ向きです。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-02",
+        "label": "第2問",
+        "order": 2,
+        "answerKey": [
+          {
+            "label": "問1",
+            "entries": [
+              {
+                "mark": "9",
+                "value": "①"
+              }
+            ]
+          },
+          {
+            "label": "問2",
+            "entries": [
+              {
+                "mark": "10",
+                "value": "②"
+              }
+            ]
+          },
+          {
+            "label": "問3",
+            "entries": [
+              {
+                "mark": "11",
+                "value": "④"
+              }
+            ]
+          },
+          {
+            "label": "問4",
+            "entries": [
+              {
+                "mark": "12",
+                "value": "④"
+              }
+            ]
+          },
+          {
+            "label": "問5",
+            "entries": [
+              {
+                "mark": "13",
+                "value": "④"
+              }
+            ]
+          },
+          {
+            "label": "問6",
+            "entries": [
+              {
+                "mark": "14",
+                "value": "④"
+              }
+            ]
+          },
+          {
+            "label": "問7",
+            "entries": [
+              {
+                "mark": "15",
+                "value": "①"
+              }
+            ]
+          },
+          {
+            "label": "問8",
+            "entries": [
+              {
+                "mark": "16",
+                "value": "①"
+              }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "問1　スイッチを閉じた直後の電位差",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "求めるのは「bに対するaの電位」すなわち \\(V_a-V_b\\) です。電池の正極は抵抗を介してb側につながっています。回路を電池の正極からたどると、抵抗での電圧降下は \\(RI\\) です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "voltage-balance",
+                "latex": "V_a-V_b=RI-V=-V\\qquad(I=0)"
+              },
+              {
+                "type": "result",
+                "text": "解答番号9：①。電位差は \\(-V\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問2　二次コイルの電位差",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "求める向きは \\(V_c-V_d\\) です。図の2つのコイルは同じ向きに巻かれ、aとc、bとdがそれぞれ対応する端です。右向きを正とした共通の磁束を \\(\\phi\\) として、各コイルの電位差を表します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "induced-voltage",
+                "latex": "\\begin{aligned}V_a-V_b&=-N_1\\frac{\\Delta\\phi}{\\Delta t},\\qquad V_c-V_d=-N_2\\frac{\\Delta\\phi}{\\Delta t}\\\\ V_c-V_d&=\\frac{N_2}{N_1}(V_a-V_b)=-\\frac{N_2}{N_1}V\\end{aligned}"
+              },
+              {
+                "type": "note",
+                "label": "巻数比だけで決めない",
+                "text": "電位差を測る端子の順序と巻き方を先に確認します。ここでは問1と同じ極性になるので、負号が残ります。"
+              },
+              {
+                "type": "result",
+                "text": "解答番号10：②。電位差は \\(-\\dfrac{N_2}{N_1}V\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問3　十分に時間が経過した後の電流",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "直流の定常状態では磁束が変化せず、コイルの誘導起電力は0になります。コイルの内部抵抗も0なので、電池の電圧 \\(V\\) は抵抗 \\(R\\) にかかります。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "ohms-law",
+                "latex": "RI=V\\quad\\Longrightarrow\\quad I=\\frac VR"
+              },
+              {
+                "type": "result",
+                "text": "解答番号11：④。電流は正の向きに \\(\\dfrac VR\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問4　時刻2Tの磁束",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "ここからは電源Eと抵抗 \\(r\\) を接続した回路です。二次側の正の電流 \\(i\\) は、コイル内に右向きの磁束を作ります。右向きの磁束が増えると、それを妨げる向きに誘導電流が流れるので、符号を含めた関係は次のとおりです。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "induced-voltage",
+                "latex": "ri=-N_2\\frac{\\Delta\\phi}{\\Delta t}\\quad\\Longrightarrow\\quad \\frac{\\Delta\\phi}{\\Delta t}=-\\frac r{N_2}i"
+              },
+              {
+                "type": "figure",
+                "assetId": "q2-current-graph"
+              },
+              {
+                "type": "prose",
+                "text": "磁束は「その時刻の電流」だけでは決まりません。初期値 \\(\\phi(0)=0\\) から、電流が一定の区間ごとに変化を積み上げます。"
+              },
+              {
+                "type": "table",
+                "caption": "時刻2Tまでの磁束の変化",
+                "headers": [
+                  "区間",
+                  "二次側の電流",
+                  "その区間の磁束の変化"
+                ],
+                "rows": [
+                  [
+                    "\\(0\\) から \\(T\\)",
+                    "\\(-i_0\\)",
+                    "\\(+\\dfrac{ri_0T}{N_2}\\)"
+                  ],
+                  [
+                    "\\(T\\) から \\(2T\\)",
+                    "\\(0\\)",
+                    "\\(0\\)"
+                  ]
+                ]
+              },
+              {
+                "type": "formula",
+                "purposeId": "flux-change",
+                "latex": "\\phi(2T)=\\phi(0)+\\frac{ri_0T}{N_2}+0=\\frac{ri_0T}{N_2}"
+              },
+              {
+                "type": "result",
+                "text": "解答番号12：④。磁束は \\(\\dfrac{ri_0T}{N_2}\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問5　時刻2Tの一次電流",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "与えられた式 \\(\\phi=k(N_1I+N_2i)\\) を使います。時刻 \\(2T\\) には \\(i=0\\) なので、問4の磁束をこの式の左辺に代入します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "flux-current",
+                "latex": "\\frac{ri_0T}{N_2}=k(N_1I+N_2\\cdot0)\\quad\\Longrightarrow\\quad I=\\frac{ri_0T}{kN_1N_2}"
+              },
+              {
+                "type": "result",
+                "text": "解答番号13：④。電流は \\(\\dfrac{ri_0T}{kN_1N_2}\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問6　時刻2Tの電源の起電力",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "時刻 \\(2T\\) は磁束が一定の区間にあるため、一次コイルの誘導起電力も0です。電源は抵抗 \\(R\\) の電圧降下だけを補います。電源の起電力を \\(\\mathcal E\\) とし、問5の \\(I\\) を電圧の式へ代入します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "voltage-balance",
+                "latex": "\\mathcal E=RI+N_1\\frac{\\Delta\\phi}{\\Delta t}=R\\frac{ri_0T}{kN_1N_2}+0=\\frac{Rri_0T}{kN_1N_2}"
+              },
+              {
+                "type": "result",
+                "text": "解答番号14：④。起電力の大きさは \\(\\dfrac{Rri_0T}{kN_1N_2}\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問7　時刻4Tより後の一次電流",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "\\(T\\) から \\(3T\\) までは \\(i=0\\) なので、磁束は問4の値を保ちます。続く \\(3T\\) から \\(4T\\) では \\(i=+i_0\\) です。問4で立てた関係より、磁束は初めの区間と同じ量だけ減少します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "flux-change",
+                "latex": "\\phi(4T)=\\phi(3T)-\\frac{ri_0T}{N_2}=\\frac{ri_0T}{N_2}-\\frac{ri_0T}{N_2}=0"
+              },
+              {
+                "type": "prose",
+                "text": "\\(t>4T\\) では再び \\(i=0\\) となり、磁束は0のままです。与えられた式 \\(\\phi=k(N_1I+N_2i)\\) の左辺と \\(i\\) に0を入れると、\\(kN_1I=0\\) から \\(I=0\\) と分かります。"
+              },
+              {
+                "type": "result",
+                "text": "解答番号15：①。一次電流は0です。"
+              }
+            ]
+          },
+          {
+            "title": "問8　時刻4Tより後の電源の起電力",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "問7より \\(I=0\\) であり、磁束も0のまま変化しません。問6の電圧関係 \\(\\mathcal E=RI+N_1\\dfrac{\\Delta\\phi}{\\Delta t}\\) では、抵抗の電圧降下もコイルの誘導起電力も0です。"
+              },
+              {
+                "type": "result",
+                "text": "解答番号16：①。電源の起電力の大きさは0です。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-03",
+        "label": "第3問",
+        "order": 3,
+        "answerKey": [
+          {
+            "label": "問1",
+            "entries": [
+              {
+                "mark": "17",
+                "value": "②"
+              }
+            ]
+          },
+          {
+            "label": "問2",
+            "entries": [
+              {
+                "mark": "18",
+                "value": "①"
+              }
+            ]
+          },
+          {
+            "label": "問3",
+            "entries": [
+              {
+                "mark": "19",
+                "value": "②"
+              }
+            ]
+          },
+          {
+            "label": "問4",
+            "entries": [
+              {
+                "mark": "20",
+                "value": "④"
+              }
+            ]
+          },
+          {
+            "label": "問5",
+            "entries": [
+              {
+                "mark": "21",
+                "value": "③"
+              }
+            ]
+          },
+          {
+            "label": "問6",
+            "entries": [
+              {
+                "mark": "22",
+                "value": "⑥"
+              }
+            ]
+          },
+          {
+            "label": "問7",
+            "entries": [
+              {
+                "mark": "23",
+                "value": "③"
+              }
+            ]
+          },
+          {
+            "label": "問8",
+            "entries": [
+              {
+                "mark": "24",
+                "value": "③"
+              }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "問1　右端を押したときの変化",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "平行で等間隔のしまは、すき間の厚さが一定の割合で変わるときに現れます。観測されるしまの数が減るのは、ガラス全体にわたる厚さの差が小さくなり、しまの間隔が広がったということです。"
+              },
+              {
+                "type": "prose",
+                "text": "右端を押し下げて厚さの差が小さくなるためには、初めは右側のすき間の方が大きくなければなりません。逆に初めから右側が狭ければ、押すと傾きが増してしまが密になります。"
+              },
+              {
+                "type": "result",
+                "text": "解答番号17：②。初めは右側のすき間の方が大きい状態です。"
+              }
+            ]
+          },
+          {
+            "title": "問2　左端に挟んだ板の厚さ",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "右端の板を取り除くと、右端が接触したくさび型のすき間になります。板の厚さを \\(h\\)、ガラスの長さを \\(L\\)、接触した右端から左向きに測る距離を \\(x\\) とすると、すき間は \\(d=\\dfrac hLx\\) です。"
+              },
+              {
+                "type": "prose",
+                "text": "すき間の上下で反射する2つの光のうち、真空からガラスへ向かって反射する光だけが位相を \\(\\pi\\) だけ変えます。そのため反射光の暗線は \\(2d=j\\lambda\\)（\\(j=0,1,2,\\ldots\\)）で生じ、隣り合う暗線では厚さが \\(\\lambda/2\\) だけ変わります。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "fringe-spacing",
+                "latex": "\\begin{aligned}2\\frac hL\\Delta x&=\\lambda\\\\h&=\\frac{\\lambda L}{2\\Delta x}\\\\&=\\frac{7.2\\times10^{-7}\\times0.50}{2\\times0.60\\times10^{-3}}=3.0\\times10^{-4}\\,\\mathrm m\\end{aligned}"
+              },
+              {
+                "type": "result",
+                "text": "解答番号18：①。厚さは \\(3.0\\times10^{-4}\\,\\mathrm m\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問3　波長を変えたときの暗線間隔",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "装置の形が変わらなければ、問2の関係 \\(\\Delta x=\\dfrac{\\lambda L}{2h}\\) より暗線間隔は波長に比例します。板の厚さを改めて計算する必要はありません。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "fringe-spacing",
+                "latex": "\\Delta x'=\\Delta x\\frac{\\lambda'}{\\lambda}=0.60\\times\\frac{4.8\\times10^{-7}}{7.2\\times10^{-7}}=0.40\\,\\mathrm{mm}"
+              },
+              {
+                "type": "result",
+                "text": "解答番号19：②。暗線間隔は \\(0.40\\,\\mathrm{mm}\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "問4　液体の屈折率",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "真空中での波長は元の \\(7.2\\times10^{-7}\\,\\mathrm m\\) に戻っています。液体の屈折率を \\(n\\) とすると、すき間の往復による光路差は \\(2nd\\) です。同じ装置では暗線間隔が真空中の \\(1/n\\) 倍になります。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "refractive-index",
+                "latex": "\\Delta x_{\\text{液体}}=\\frac{\\Delta x_{\\text{真空}}}{n}\\quad\\Longrightarrow\\quad n=\\frac{0.60}{0.40}=1.5"
+              },
+              {
+                "type": "result",
+                "text": "解答番号20：④。屈折率は1.5です。"
+              }
+            ]
+          },
+          {
+            "title": "問5　2つの球面の間隔",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "2つのレンズが接触する光軸上の点をPとします。Pを通る水平面から、凹面までの高さを \\(d_1\\)、凸面までの高さを \\(d_2\\) と置きます。図では \\(d_2>d_1\\) なので、求めるすき間は \\(d=d_2-d_1\\) です。"
+              },
+              {
+                "type": "figure",
+                "assetId": "ans-q3-lens-geometry"
+              },
+              {
+                "type": "prose",
+                "text": "各球面の中心から球面上の点までの距離は半径です。横の長さが \\(r\\)、縦の長さが \\(R_j-d_j\\) の直角三角形に三平方の定理を使います。ここで \\(j=1,2\\) です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "spherical-sag",
+                "latex": "\\begin{aligned}(R_j-d_j)^2+r^2&=R_j^2\\\\d_j&=R_j-\\sqrt{R_j^2-r^2}\\\\&=R_j\\left(1-\\sqrt{1-\\frac{r^2}{R_j^2}}\\right)\\end{aligned}"
+              },
+              {
+                "type": "prose",
+                "text": "光軸近くで \\(r^2/R_j^2\\ll1\\) として、問題文の二項近似に \\(a=\\dfrac12\\)、\\(x=-\\dfrac{r^2}{R_j^2}\\) を入れます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "small-quantity-approximation",
+                "latex": "\\begin{aligned}\\sqrt{1-\\frac{r^2}{R_j^2}}&\\fallingdotseq1-\\frac{r^2}{2R_j^2},\\qquad d_j\\fallingdotseq\\frac{r^2}{2R_j}\\\\d=d_2-d_1&\\fallingdotseq\\frac{r^2}{2R_2}-\\frac{r^2}{2R_1}=\\frac{(R_1-R_2)r^2}{2R_1R_2}\\end{aligned}"
+              },
+              {
+                "type": "result",
+                "text": "解答番号21：③。半径の小さい凸面の方が、接点からの高さの変化が大きくなります。"
+              }
+            ]
+          },
+          {
+            "title": "問6　反射光の明環の半径",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "すき間で反射する2つの光のうち片方だけが位相反転するため、接触点は暗くなります。内側から \\(m\\) 番目の明環（\\(m=1,2,\\ldots\\)）では、往復の光路差が半波長の奇数倍です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "interference-condition",
+                "latex": "2d=\\left(m-\\frac12\\right)\\lambda"
+              },
+              {
+                "type": "prose",
+                "text": "この式の \\(d\\) に問5の近似式を代入し、半径 \\(r_m\\) について解きます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "ring-radius",
+                "latex": "\\begin{aligned}\\frac{R_1-R_2}{R_1R_2}r_m^2&=\\left(m-\\frac12\\right)\\lambda\\\\r_m&=\\sqrt{\\left(m-\\frac12\\right)\\frac{R_1R_2\\lambda}{R_1-R_2}}\\end{aligned}"
+              },
+              {
+                "type": "result",
+                "text": "解答番号22：⑥。最も内側の明環はm = 1に対応します。"
+              }
+            ]
+          },
+          {
+            "title": "問7　透過光の暗環の半径",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "透過側で比べる2つの光では、すき間内での余分な2回の反射による位相変化は合計 \\(2\\pi\\) となり、干渉条件には影響しません。弱め合う条件は \\(2d=\\left(m-\\dfrac12\\right)\\lambda\\) です。"
+              },
+              {
+                "type": "prose",
+                "text": "これは問6の反射光の明環の条件と同じです。透過光では中心が明るく、その外側の最初の暗環をm = 1として数えます。半径の式も問6と同じですが、選択肢の番号は異なります。"
+              },
+              {
+                "type": "result",
+                "text": "解答番号23：③。透過光の暗環は、反射光の明環と同じ半径です。"
+              }
+            ]
+          },
+          {
+            "title": "問8　凸面の曲率半径",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "問6の明環の半径の式に、\\(m=5\\)、\\(R_1=12\\,\\mathrm m\\)、\\(\\lambda=4.8\\times10^{-7}\\,\\mathrm m\\)、\\(r_5=8.0\\times10^{-3}\\,\\mathrm m\\) を代入します。まず両辺を二乗して \\(R_2\\) を取り出します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-equation",
+                "latex": "\\begin{aligned}r_5^2&=\\left(5-\\frac12\\right)\\frac{R_1R_2\\lambda}{R_1-R_2}\\\\r_5^2R_1&=\\left[r_5^2+\\left(5-\\frac12\\right)R_1\\lambda\\right]R_2\\\\R_2&=\\frac{(8.0\\times10^{-3})^2\\times12}{(8.0\\times10^{-3})^2+4.5\\times12\\times4.8\\times10^{-7}}\\\\&\\fallingdotseq8.5\\,\\mathrm m\\end{aligned}"
+              },
+              {
+                "type": "prose",
+                "text": "求めた値は、条件 \\(R_2<R_1=12\\,\\mathrm m\\) も満たしています。"
+              },
+              {
+                "type": "result",
+                "text": "解答番号24：③。凸面の曲率半径は約 \\(8.5\\,\\mathrm m\\) です。"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "contentProvenance": "original_editorial",
+    "restrictedSourceCopied": false,
+    "publicationCandidate": true,
+    "rightsStatus": "original_editorial",
+    "needsHumanReview": true,
+    "reference": "掲載問題から独立に導出し、内部解答の選択肢番号との一致を確認。図は独自作図。"
+  },
+  "links": {
+    "questions": "/past-exam-library/iwate-medical/2025/physics/questions/",
+    "universityLibrary": "/past-exam-library/iwate-medical/",
+    "analysis": "/past-exam-library/iwate-medical/2025/physics/analysis/",
+    "universityInformation": "/information-iwate/"
+  }
+}

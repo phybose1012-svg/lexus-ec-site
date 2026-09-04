@@ -19,6 +19,23 @@
     { "id": "circumcenter-vector", "label": "外心をベクトルで表す", "useWhen": "頂点から等距離である条件などから外心の位置を求める。" },
     { "id": "vector-difference", "label": "2点間のベクトルを求める", "useWhen": "同じ始点からの位置ベクトルの差で、2点を結ぶベクトルを表す。" },
     { "id": "count-total-outcomes", "label": "全事象を数える", "useWhen": "確率の分母となる、同様に確からしい全ての場合の数を求める。" },
-    { "id": "calculate-probability", "label": "確率を求める", "useWhen": "条件を満たす場合の数を全事象の場合の数で割るなどして確率を計算する。" }
+    { "id": "calculate-probability", "label": "確率を求める", "useWhen": "条件を満たす場合の数を全事象の場合の数で割るなどして確率を計算する。" },
+    { "id": "energy-conservation", "label": "力学的エネルギー保存則を使う", "useWhen": "運動エネルギーと位置エネルギーを、2つの位置または時刻で等置する。" },
+    { "id": "circular-motion", "label": "円運動の運動方程式を立てる", "useWhen": "中心向きの力を向心力として速さや軌道半径の関係を立てる。" },
+    { "id": "momentum-conservation", "label": "運動量保存則を使う", "useWhen": "衝突・分離の直前と直後の運動量を、定めた正の向きに沿って等置する。" },
+    { "id": "orbital-period", "label": "軌道の長さから周期を求める", "useWhen": "一周の道のりを速さで割り、等速円運動の周期を求める。" },
+    { "id": "areal-velocity", "label": "面積速度の一定を使う", "useWhen": "中心力の運動で、近地点・遠地点などの距離と接線速度の積を等置する。" },
+    { "id": "kepler-third-law", "label": "ケプラーの第3法則を使う", "useWhen": "周期の二乗と軌道の長半径の三乗の比例関係から周期比を求める。" },
+    { "id": "voltage-balance", "label": "回路の電圧関係を立てる", "useWhen": "電源・抵抗・コイルの電圧を符号と基準点を明示して結び付ける。" },
+    { "id": "induced-voltage", "label": "誘導起電力を求める", "useWhen": "ファラデーの法則から、巻数と磁束変化による電圧の大きさと符号を求める。" },
+    { "id": "ohms-law", "label": "オームの法則を使う", "useWhen": "抵抗の両端電圧と電流を抵抗値で関係付ける。" },
+    { "id": "flux-change", "label": "磁束の変化を積み上げる", "useWhen": "区間ごとの磁束の変化率と時間から、ある時刻の磁束を求める。" },
+    { "id": "flux-current", "label": "磁束と電流の関係を使う", "useWhen": "与えられた磁束と各コイルの電流・巻数の関係に、該当時刻の値を入れる。" },
+    { "id": "interference-condition", "label": "明暗の干渉条件を立てる", "useWhen": "光路差に加え、反射時の位相反転を考慮して強め合い・弱め合いを判定する。" },
+    { "id": "fringe-spacing", "label": "暗線間隔と厚さを結び付ける", "useWhen": "くさび型の層の厚さの変化と光路差から、暗線間隔・層の厚さ・波長の関係を立てる。" },
+    { "id": "refractive-index", "label": "屈折率を求める", "useWhen": "媒質中の光路長や波長の変化と観測量を関係付けて屈折率を求める。" },
+    { "id": "spherical-sag", "label": "球面の高さを求める", "useWhen": "球の半径・光軸からの距離・球面の高さを三平方の定理で結び付ける。" },
+    { "id": "small-quantity-approximation", "label": "微小量の近似を使う", "useWhen": "小さい無次元量を明記し、二項近似などを適用して式を簡単にする。" },
+    { "id": "ring-radius", "label": "干渉じまの半径を求める", "useWhen": "球面間の厚さと干渉条件を組み合わせて、指定された明環・暗環の半径を求める。" }
   ]
 }

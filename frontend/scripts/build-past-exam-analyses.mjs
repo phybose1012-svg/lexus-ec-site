@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { axes, difficulties, actions, validateTargetAnalysis } from "./import-past-exam-analysis.mjs";
+import { analysisAxesFor, difficulties, actions, validateTargetAnalysis } from "./import-past-exam-analysis.mjs";
 
 function requireText(value) {
   if (typeof value !== "string" || !value.trim()) throw new Error("Missing editorial text");
@@ -10,6 +10,7 @@ function requireText(value) {
 
 export function buildAnalysis(evidence, editorial) {
   if (evidence.schemaVersion !== "lexus-analysis-evidence.v1" || evidence.package.id !== editorial.packageId) throw new Error("Analysis package mismatch");
+  const axes = analysisAxesFor(evidence.package.subject_id);
   if (JSON.stringify(evidence.axes) !== JSON.stringify(axes) || evidence.aggregation !== "provisional_points_weighted_mean") throw new Error("Unsupported assessment axes or aggregation");
   const p = evidence.package;
   const examTotal = editorial.examTotal ?? null;
@@ -44,26 +45,32 @@ export function buildAnalysis(evidence, editorial) {
     profiles: targetAnalysis.profiles.map((profile) => {
       const copy = editorial.targets.find((t) => t.id === profile.id);
       if (!copy) throw new Error("Missing target editorial profile");
-      // A compact additional-question route is valid only if it extends the initial selection.
+      // Some subjects require replacing an initial selection, not merely adding to it.
       const route = profile.now.points >= profile.targetPoints ? profile.now : profile.maximum;
       if (route.minutes > targetAnalysis.timeBudgetMinutes) throw new Error("Target route exceeds the provisional time budget");
-      if (profile.now.questionIds.some((id) => !route.questionIds.includes(id))) throw new Error("Target route replaces initial questions; provide a dedicated comparison");
+      const replacedIds = profile.now.questionIds.filter((id) => !route.questionIds.includes(id));
+      const routeKind = replacedIds.length ? "replacement" : "addition";
+      const labelFor = (id) => {
+        const major = majorQuestions.find((m) => m.subquestions.some((s) => s.id === id));
+        return { id, label: `${major.label} ${major.subquestions.find((s) => s.id === id).label}` };
+      };
       const additional = route.questionIds.filter((id) => !profile.now.questionIds.includes(id)).map((id) => {
         const major = majorQuestions.find((m) => m.subquestions.some((s) => s.id === id));
         return { id, label: `${major.label} ${major.subquestions.find((s) => s.id === id).label}` };
       });
-      return { ...profile, title: requireText(copy.title), summary: requireText(copy.summary), focus: requireText(copy.focus), route, additional };
+      return { ...profile, title: requireText(copy.title), summary: requireText(copy.summary), focus: requireText(copy.focus), route, additional, ...(routeKind === "replacement" ? { routeKind, replaced: replacedIds.map(labelFor) } : {}) };
     }),
   };
   return {
     schemaVersion: "lexus-analysis-page.v1", packageId: p.id,
     route: { university: p.university_id, year: String(p.academic_year), subject: p.subject_id, path: `${root}analysis/` },
     university: p.university_name, year: p.academic_year, subject: p.subject_name, examLabel: p.exam_method_name,
-    duration: requireText(p.time_limit.note), format: requireText(editorial.format),
+    duration: requireText(editorial.durationLabel ?? p.time_limit.note), format: requireText(editorial.format),
     examTotal: examTotal ? { points: examTotal.points, subjectCount: examTotal.subjectCount } : null,
     headline: requireText(editorial.headline), summary: requireText(editorial.summary), requirementsSummary: requireText(editorial.requirementsSummary),
     profiles: editorial.profiles.map((profile) => ({ id: profile.id, title: requireText(profile.title), text: requireText(profile.text) })),
     majorQuestions, difficultyCounts: counts, targets, source: evidence.source, editorialNotes: editorial.editorialNotes,
+    ...(editorial.targetReviewNote ? { targetReviewNote: requireText(editorial.targetReviewNote) } : {}),
     links: { questions: `${root}questions/`, answers: `${root}answers/`, university: `/past-exam-library/${p.university_id}/` },
   };
 }

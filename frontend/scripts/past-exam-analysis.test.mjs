@@ -32,7 +32,7 @@ test("difficulty pie supports zero categories and a full-circle category", () =>
 
 const fixtureMetadata = {
   schema_version: "medical-entrance-past-exam-analysis.v6",
-  package: { university_name: "試験大学", academic_year: 2025, subject_name: "数学" },
+  package: { university_name: "試験大学", academic_year: 2025, subject_name: "数学", subject_id: "mathematics" },
   review: { approved: false },
   major_questions: [{ id: "q1", label: "第1問", subquestions: [{ id: "q1-1", difficulty: "基本レベル", strategy: { weak_subject: "後回し", strong_subject: "今解く！" }, radar: Object.fromEntries(axes.map((a) => [a, 2])), scoring: { points: 5 }, optimization_prerequisites: { weak_subject: [], strong_subject: [] } }] }],
 };

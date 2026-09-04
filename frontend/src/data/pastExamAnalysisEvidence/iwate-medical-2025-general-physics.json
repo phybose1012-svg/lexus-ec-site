@@ -1,0 +1,638 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "iwate-medical-2025-general-physics",
+    "university_id": "iwate-medical",
+    "university_name": "岩手医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 120,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "理科は「物理基礎・物理」「化学基礎・化学」「生物基礎・生物」から2科目選択し、選択した2科目を合わせて13:00〜15:00の120分で解答する。物理単独の公式試験時間はない。"
+    },
+    "total_points": 75
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "shidai-igakubu-gokaku-dokuhon/projects/universities/iwate-medical/past-exams/working/2025/general/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "640ebfadc5803dc762257e7e12011af85916363b7ef63c143b8e4c07a8ec9c98",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "第1問",
+      "sourceTitle": "多段ロケットの分離と円軌道・だ円軌道",
+      "requirements": [
+        3.5,
+        3.8,
+        2.8,
+        2.4,
+        2.9
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "万有引力による位置エネルギーを含む力学的エネルギー保存則の典型問題である。ただし、この段階の質量が 3m+m+m=5m であること、距離を地球の中心から測って R と 2R にすることの2点を読み替える必要がある。",
+          "strategyReason": "第1問の入口であり、以降の場面設定を理解するためにも必ず通る小問である。位置エネルギーの式さえ書ければ両辺を 5m で割るだけで答えが出る。質量と距離の読み替えを一度ここで確定させておくと、問2以降が速くなる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "問2",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "等速円運動の運動方程式に万有引力を代入するだけの基本問題である。質量が両辺で消えるため、計算も短い。",
+          "strategyReason": "第1問で最も短時間で確実に取れる小問である。しかも問3と問4がこの結果を使うため、ここを落とすと大問の前半が連鎖的に崩れる。最優先で回収する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "問3",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "切り離し前の運動量が0であることに気づけば、 0=4mv_2+mv_\\mathrm{C} を立てるだけである。速さを問われているので、負の符号を大きさに直す一手間がある。",
+          "strategyReason": "問2の結果をそのまま4倍するだけで、追加の物理的判断はほとんど要らない。問2を解いた直後に続けて処理するのが最も効率がよい。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-2"
+            ],
+            "strong_subject": [
+              "phys-q1-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "問4",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "周期は1周の長さを速さで割るだけだが、選択肢がすべて \\pi\\sqrt{\\ } の形にそろえてあるため、根号の外の因子を中へ入れて \\pi\\sqrt{32R^{3}/GM} の形まで直さないと照合できない。",
+          "strategyReason": "方針は「1周の長さ ÷ 速さ」だけで迷う余地がなく、定型問題である。しかし苦手層にとっては、根号の外の 4R を根号の中へ入れて 16R^{2}\\times2R=32R^{3} とまとめる指数計算が最後に残り、ここで形が合わずに時間を溶かしやすい。仮配点3点は問2・問3・問5と同じで、その3問はいずれも解答実行1.0分と見込んでおり、得点効率はこの小問より高い。したがって苦手層は問2・問3・問5を先に回収し、余力があれば戻って根号を整理する。得意層は指数計算を安定して処理できるため、問2の結果が手元にあるうちに続けて解く。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-2"
+            ],
+            "strong_subject": [
+              "phys-q1-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-5",
+          "label": "問5",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "ケプラーの第二法則を近地点と遠地点で書くだけで、比がただちに出る。半径と速さの積が等しいと書ければ計算は1行である。",
+          "strategyReason": "前の小問の数値を一切使わずに独立して解け、計算も1行で終わる。だ円軌道パートの入口であり、問6でも使うので必ず取る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-6",
+          "label": "問6",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "近地点と遠地点で力学的エネルギー保存則を立て、問5の速さの比を代入して未知数を1つに減らす2段構えである。分数を含む係数整理が続くため処理量が多い。",
+          "strategyReason": "立式そのものは問1と同じ力学的エネルギー保存則で、方針に迷う場面はない。しかし v_4=\\frac{2}{7}v_3 を代入してから v_3^{2} の係数をまとめるまでに、 \\frac{1}{2}\\left(1-\\frac{4}{49}\\right) と GM\\left(\\frac{1}{2R}-\\frac{1}{7R}\\right) という2つの分数計算が続き、苦手層は途中で符号や分母を取り違えやすい。仮配点4点は科目内で最も高い部類だが、想定解答実行3.0分は問2・問3・問5の3倍であり、苦手層の得点効率は科目平均ペースを下回る。したがって苦手層は問1〜問3・問5の短い小問をすべて回収してから戻る。得意層は分数整理を安定して進められるため、問5の直後に続けて解く。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-5"
+            ],
+            "strong_subject": [
+              "phys-q1-5"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-7",
+          "label": "問7",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "ケプラーの第三法則そのものは基本だが、円軌道側の半長軸が半径 2R であること、だ円側の半長軸が \\frac{2R+7R}{2} であることを正しく同定できるかで差がつく。最後に \\frac{3}{2} 乗の計算が入る。",
+          "strategyReason": "計算自体は \\left(\\frac{9}{4}\\right)^{3/2} を出すだけで短い。しかし苦手層がつまずくのは計算ではなく、だ円の半長軸を近地点距離と遠地点距離の平均として取り出す一手であり、ここを誤ると答えが選択肢に無いことにも気づけない。仮配点3点に対し、この一手の可否で0点か満点かに割れるため、苦手層は確実に取れる問1〜問3・問5を先に固めてから戻る。得意層は第三法則の適用が定着しているので今解く。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-8",
+          "label": "問8",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "向きを選ぶだけに見えるが、実際には運動量保存則で v_\\mathrm{B} を求め、その符号を判定する計算問題である。問2の v_2 と問6の v_3 の両方が必要で、最後に \\sqrt{8} と \\sqrt{7} の大小比較まで行う。",
+          "strategyReason": "図から向きを選ぶ形式なので一見軽く見えるが、答えを出すには問2の v_2 と問6の v_3 の2つが先に必要で、依存の鎖が第1問で最も長い。苦手層は問6を後回しにしているため、この小問に着手できる時点が終盤になり、そこから運動量保存則の立式と根号の大小比較を行う余裕は残らない。仮配点3点に対して所要時間が大きく、同じ3点の第2問問2・問3や第3問問3の方がはるかに短時間で回収できる。したがって苦手層は最初から解かないと決め、他大問の軽い小問へ時間を移す。得意層は問2・問6を済ませた流れで、符号判定まで一続きに処理できるため今解く。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-2",
+              "phys-q1-6"
+            ],
+            "strong_subject": [
+              "phys-q1-2",
+              "phys-q1-6"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "第2問",
+      "sourceTitle": "鉄心に巻いた2つのコイルの相互誘導と自己誘導",
+      "requirements": [
+        4.2,
+        3.5,
+        2.1,
+        1.8,
+        3.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "I=0 が問題文で与えられているので、閉回路の式は V+V_1=0 だけで済む。難しさは計算ではなく、bに対するaの電位という向きの定義を回路式の符号に正しく反映させる点にある。",
+          "strategyReason": "第2問の符号の約束をここで確定させておかないと、問2以降がすべて逆符号になる。計算量はほぼ0で、問題文が I=0 を与えてくれているため、苦手層でも到達できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "問2",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "共通磁束から得られる V_2/V_1=N_2/N_1 に問1の結果を入れるだけである。新しい回路を立てる必要がない。",
+          "strategyReason": "科目全体で最も短時間で取れる小問である。問1の答えに巻数比を掛けるだけなので、問1を解いた直後に必ず続けて処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1"
+            ],
+            "strong_subject": [
+              "phys-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "問3",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "電流一定なら磁束一定、磁束一定なら誘導起電力0、という定番の言いかえを1回行えば、あとはオームの法則である。",
+          "strategyReason": "コイルを含む回路の定常状態は頻出で、暗記ではなく理由まで含めて再現しやすい。前の小問の数値も要らず、短時間で確実に取れる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-4",
+          "label": "問4",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "求める時刻の値を直接与える式がなく、 \\mathrm{K}_2 側の閉回路から \\frac{d\\phi}{dt} を区間ごとに求め、 t=0 の初期値から積み上げるという方針を自力で組み立てる必要がある。 i=0 の区間を「磁束が0」ではなく「磁束が変化しない」と読む点でも差がつく。",
+          "strategyReason": "第2問の後半5問すべてがこの小問の結果に連なる要の位置にある一方、方針の組み立てが科目内で最も重い。苦手層にとっては、区間ごとに回路式を立て直し、変化率を時間で積み上げるという工程が、日頃の演習で反復できていない限り本番で再現できない。仮配点4点は科目内で最も高い部類だが、想定解答実行4.0分に初期判断1.0分が加わり、苦手層の実時間では10.0分に達する。得点効率は科目平均ペースの3分の1で科目内最低であり、同じ時間で第1問と第3問の3点小問を複数回収できるため、苦手層は着手しないと決める。得意層はここを起点に問5〜問8まで一気に回収できるため、最優先で今解く。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-5",
+          "label": "問5",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "問4で得た磁束の値を与えられた式へ代入し、 i=0 を使って I について解くだけである。判断は少ないが、問4の結果が正しいことが前提になる。",
+          "strategyReason": "この小問自体は代入1回で終わるが、問4の磁束を持っていなければ着手できない。苦手層は問4を捨てる判断をしているため、ここも自動的に解答不能になる。得意層は問4の直後に続けて処理すれば1分程度で回収できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-4"
+            ],
+            "strong_subject": [
+              "phys-q2-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-6",
+          "label": "問6",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "\\mathrm{K}_1 を含む閉回路にキルヒホッフの第二法則を立て、磁束が変化していないことから V_1=0 を確定させたうえで問5の I を代入する。3つの判断が連続するが、個々は基本である。",
+          "strategyReason": "問5の I に抵抗値を掛けるだけの短い小問だが、問4・問5の連鎖の先端にある。苦手層はその起点を捨てているため到達できない。得意層は問5の直後に続けて処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-5"
+            ],
+            "strong_subject": [
+              "phys-q2-5"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-7",
+          "label": "問7",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "問4で止めた磁束の積み上げを 3T<t<4T と t>4T まで延長する必要がある。符号が逆転する区間を1つ挟むため、 \\phi(4T)=0 に到達するまでに区間を3つ追跡する。",
+          "strategyReason": "問4と同じ工程を、符号が逆転する区間まで延長する。苦手層は問4の時点で着手しない判断をしているため、ここも解答不能である。得意層は問4で作った区間表をそのまま延ばせばよく、追加の判断は符号1か所に限られる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-4"
+            ],
+            "strong_subject": [
+              "phys-q2-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-8",
+          "label": "問8",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "問7で I=0 、磁束一定から V_1=0 が出れば、閉回路の式に残るのは起電力だけである。計算はないが、2つの項が同時に消えることを確認する判断が要る。",
+          "strategyReason": "計算はほぼ0で、問7まで到達していれば数十秒で取れる。逆に問7が無ければ根拠を持って0を選べない。苦手層は連鎖の起点である問4を捨てているため、ここも捨てる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-7"
+            ],
+            "strong_subject": [
+              "phys-q2-7"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q3",
+      "label": "第3問",
+      "sourceTitle": "くさび型空気層とニュートンリングによる光の干渉",
+      "requirements": [
+        3.8,
+        3.5,
+        2.5,
+        2.2,
+        3.9
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "問1",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "計算は一切ないが、「しまの数が減った」を「間隔が広がった」、さらに「傾きが小さくなった」と2段階で言いかえ、押した側がもともと広かったと逆算する必要がある。定量的な処理より読み替えの正確さで差がつく。",
+          "strategyReason": "計算が要らないため一見取りやすいが、しま間隔と傾きの関係を式ではなく言葉で扱うため、苦手層は逆向きの結論を選びやすい。仮配点3点に対して、同じ3点の問3は与えられた比例関係に数値を入れるだけで終わる。したがって苦手層は問3を先に確保し、その後に戻って、暗線間隔の式を実際に書いてから傾きの向きを確認する。得意層は式を書かずに関係を判断できるため今解く。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "問2",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "くさび型空気層の暗線間隔 \\Delta x=\\frac{L\\lambda}{2D} を導いてから D について解く。右端の板を外したことで L がガラスの1辺と一致すること、 \\mathrm{cm} ・ \\mathrm{mm} をメートルへそろえることの2点で落としやすい。",
+          "strategyReason": "暗線間隔の式は頻出で、方針に迷う小問ではない。ただし苦手層にとっては、式を導く工程に加えて、 50\\,\\mathrm{cm} と 0.60\\,\\mathrm{mm} を同じ単位へそろえ、 10^{-2} と 10^{-3} を含む分数を計算する処理が続く。指数の付け間違いは選択肢が 10^{-4} から 10^{-1} まで並んでいるため必ず誤答につながる。仮配点3点は問3と同じで、問3はこの結果を使わずに比例だけで解ける。したがって苦手層は問3を先に取り、その後で単位をそろえてから戻る。得意層は指数計算を安定して処理できるため今解く。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "問3",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "暗線間隔が波長に比例することさえ押さえれば、板の厚さを求め直さずに比だけで答えが出る。計算は掛け算1回である。",
+          "strategyReason": "第3問で最も短時間に取れる小問である。問2の答えを使わずに独立して解けるので、第3問は必ずここから入る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-4",
+          "label": "問4",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "計算は割り算1回だが、干渉が起こるのは隙間の中なので暗線間隔を決めるのは媒質中の波長である、という読み替えが必要である。ここを真空中の波長のまま考えると逆数を選んでしまう。",
+          "strategyReason": "計算量は科目内で最小級だが、選択肢に 0.67 と 1.5 が並んでおり、媒質中の波長で考えるか真空中の波長で考えるかを取り違えると必ず逆数を選ぶ設計になっている。苦手層は問3で暗線間隔と波長の比例関係を実際に使った直後であれば判断しやすくなるため、問3を先に済ませてから戻る。得意層は問3と連続して処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-3"
+            ],
+            "strong_subject": [
+              "phys-q3-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-5",
+          "label": "問5",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "球面と光軸の幾何から三平方の定理を立て、両辺を R_1^{2} で割って近似式が使える形に整えるという、物理というより数式変形の設計が要る。さらに2つの球面について同じ処理を繰り返し、差を取る必要がある。",
+          "strategyReason": "ニュートンリングの標準形は片方が平面だが、ここは2つの球面の差を取る変形版で、公式の暗記が通用しない。苦手層にとっては、三平方の定理を立てた後に「両辺を R_1^{2} で割って近似式の形に持ち込む」という発想が本番で再現できる見込みが低い。仮配点4点は科目内で最も高い部類だが、想定解答実行3.5分は苦手層では5分を超え、同じ時間で第1問の3点小問を複数回収できる。したがって苦手層は着手しないと決める。得意層は近似式の使い方が定着していれば一本道であり、問6・問7の起点でもあるため今解く。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-6",
+          "label": "問6",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "位相が \\pi ずれる反射が1回であることを確かめ、明環条件 2d=\\left(m-\\frac12\\right)\\lambda に問5の d を代入して r について解く。手順は定型だが、位相のずれの数え方を誤ると暗環の式を選んでしまう。",
+          "strategyReason": "位相のずれを数える工程だけなら苦手層でも扱えるが、代入すべき d が問5の結果であり、それが無ければ選択肢を絞れない。苦手層は問5を捨てているため到達できない。得意層は問5の直後に続けて処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-5"
+            ],
+            "strong_subject": [
+              "phys-q3-5"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-7",
+          "label": "問7",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "透過光では位相が \\pi ずれる反射が2回起こるため、ずれの効果が打ち消し合う。したがって式の形は問6の明環条件と同一で、意味だけが暗環に入れかわる。この一致に気づけるかどうかで所要時間が大きく変わる。",
+          "strategyReason": "問6と同じ式を選ぶだけなので、問6に到達していれば追加の計算はほとんど要らない。逆に問5・問6が無ければ、位相の数え方だけを正しく行っても選択肢を絞れない。苦手層は連鎖の起点を捨てているため到達できない。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-5"
+            ],
+            "strong_subject": [
+              "phys-q3-5"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-8",
+          "label": "問8",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 3,
+          "difficultyReason": "問6で得た式に数値を入れ、両辺を2乗して R_2 について解く。求める量が分母と分子の両方に現れるため一次方程式を解き直す必要があり、指数を含む数値計算も重い。",
+          "strategyReason": "得意層にとっても、これは代入するだけの小問ではない。 R_2 が \\frac{12R_2}{12-R_2} の形で分母と分子の両方に入るため、2乗した後に一次方程式へ整理し直す工程が必要で、途中に 10^{-3} と 10^{-7} の指数計算が挟まる。想定解答実行2.5分は仮配点3点に対して割高で、得点効率は科目平均ペースを下回る。同じ3点の第2問問8は1分以内、第3問問7も1.5分で回収でき、得点効率はいずれも科目平均ペースを大きく上回る。したがって得意層でもそれらを先に処理し、第2問・第3問の残りを取り切ってから最後に戻る。苦手層は問6に到達していないため着手できない。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-6"
+            ],
+            "strong_subject": [
+              "phys-q3-6"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "totalPoints": 75,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 27,
+        "targetPercent": 36,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 48.4,
+        "maximum": {
+          "points": 27,
+          "minutes": 59.1,
+          "questionIds": [
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q3-1",
+            "phys-q3-3",
+            "phys-q3-4"
+          ]
+        },
+        "now": {
+          "points": 24,
+          "minutes": 59.1,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q3-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 43,
+          "minutes": 73.5,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 60,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 12.1,
+        "maximum": {
+          "points": 75,
+          "minutes": 48.1,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q1-8",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q2-6",
+            "phys-q2-7",
+            "phys-q2-8",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6",
+            "phys-q3-7",
+            "phys-q3-8"
+          ]
+        },
+        "now": {
+          "points": 72,
+          "minutes": 45.6,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q1-8",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q2-6",
+            "phys-q2-7",
+            "phys-q2-8",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6",
+            "phys-q3-7"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 75,
+          "minutes": 48.1,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q1-8",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q2-6",
+            "phys-q2-7",
+            "phys-q2-8",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6",
+            "phys-q3-7",
+            "phys-q3-8"
+          ]
+        }
+      }
+    ]
+  }
+}

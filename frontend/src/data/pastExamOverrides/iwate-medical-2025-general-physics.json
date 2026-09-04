@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "lexus-ec.past-exam-import-overrides.v1",
+  "packageId": "iwate-medical-2025-general-physics",
+  "printNotes": ["各問で指定された選択肢から、最も適当なものを1つ選んでください。", "理科は選択した2科目を合わせて120分で解答します。"],
+  "operations": [
+    { "type": "promote-inline-fractions", "scope": "*", "minimumMatches": 0, "reason": "分子・分母を本文と釣り合う文字サイズにする。共通注意には分数がない。" }
+  ]
+}
