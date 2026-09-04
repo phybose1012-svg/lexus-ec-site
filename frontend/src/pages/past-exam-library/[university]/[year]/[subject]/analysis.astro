@@ -113,11 +113,6 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
           ))}
         </div>
         <p class="analysis-small-note">時間は全{total}小問の解く・後回しにする判断を一度行う時間を含みます。実際の所要時間や得点を保証するものではありません。</p>
-        <details class="analysis-target-method">
-          <summary>目標点の算出条件</summary>
-          <p>試験時間は「{page.duration}」。ここでは{page.subject}に{page.targets.timeBudgetMinutes}分を仮配分しています。「先に解く」「後回し」の小問から、前の小問への依存関係を守り、時間内で仮配点の合計が最大になる組み合わせを元分析で算出しています。</p>
-          <ul>{page.targets.profiles.map((profile) => <li><strong>{profile.title}：</strong>判断時間×{profile.judgmentMultiplier}・解答時間×{profile.executionMultiplier}。理論最大は{profile.maximum.questionIds.length}小問・{profile.maximum.points}点・{profile.maximum.minutes}分です。{profile.nowPlusLater.minutes > page.targets.timeBudgetMinutes && `「後回し」まで全部解くと${profile.nowPlusLater.points}点・${profile.nowPlusLater.minutes}分となり、仮の制限時間を超えます。`}{profile.reliabilityFactor < 1 && `全体的な判断違い・処理ミスを見込み、安全係数${profile.reliabilityFactor}を掛け${profile.rounding === "floor_to_whole_point" ? "、1点単位で切り下げ" : ""}て目標点にしています。小問ごとの正答率を表す係数ではありません。`}</li>)}</ul>
-        </details>
       </section>
 
       <section class="analysis-section" aria-labelledby="priority-title">
@@ -157,7 +152,7 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
 
       <details class="analysis-method">
         <summary>分析の見方・元データについて</summary>
-        <p>保存済みの{page.year}年度{page.subject}の分析HTMLをもとに、難易度・目標点・優先度を整理しています。長い説明と得点効率指数は省き、目標点・想定時間の試算は、算出条件とともに掲載しています。</p>
+        <p>保存済みの{page.year}年度{page.subject}の分析HTMLをもとに、難易度・目標点・優先度を整理しています。長い説明と得点効率指数は省き、目標点・想定時間は、仮配点・仮の時間配分に基づく目安として掲載しています。</p>
         <p>試験時間は「{page.duration}」です。解く優先度は学習状況によって調整してください。</p>
       </details>
     </div>
