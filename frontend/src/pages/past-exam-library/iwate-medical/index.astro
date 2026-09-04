@@ -1,11 +1,14 @@
 ---
 import SiteLayout from "../../../layouts/SiteLayout.astro";
+import PastExamBreadcrumbs from "../../../components/past-exam/PastExamBreadcrumbs.astro";
+import PastExamSeoHead from "../../../components/past-exam/PastExamSeoHead.astro";
+import { buildPastExamPageSeo, PAST_EXAM_SOCIAL_IMAGE, PAST_EXAM_SOCIAL_IMAGE_ALT } from "../../../lib/pastExamSeo.mjs";
 import "../../../styles/past-exam-library.css";
 import "../../../styles/past-exam-university.css";
 
-const title = "岩手医科大学 医学部の過去問｜年度・科目から探す｜レクサス教育センター";
+const title = "岩手医科大学医学部の過去問一覧｜レクサス教育センター";
 const description =
-  "岩手医科大学医学部の過去問を2026年度から2022年度まで年度・科目別に整理しています。問題・解答の公開状況と科目別分析をご案内します。";
+  "岩手医科大学医学部の過去問を年度・科目別に探せます。2026〜2022年度の掲載状況と、2025年度数学の問題・解答解説・分析をご案内。準備中の年度・科目も一覧で確認できます。";
 const canonical = "https://lexus-ec.com/past-exam-library/iwate-medical/";
 
 const librarySteps = [
@@ -114,77 +117,34 @@ const examYears = [
   { year: "2022", label: "掲載準備中", tone: "placeholder", subjects: placeholderSubjects },
 ] as const;
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "CollectionPage",
-      "@id": `${canonical}#webpage`,
-      url: canonical,
-      name: title,
-      description,
-      inLanguage: "ja",
-      isPartOf: {
-        "@type": "WebSite",
-        "@id": "https://lexus-ec.com/#website",
-        url: "https://lexus-ec.com/",
-        name: "医学部予備校 レクサス E.C.",
-      },
-      publisher: {
-        "@type": "EducationalOrganization",
-        "@id": "https://lexus-ec.com/#organization",
-        name: "レクサス教育センター",
-        url: "https://lexus-ec.com/",
-      },
-      breadcrumb: { "@id": `${canonical}#breadcrumb` },
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": `${canonical}#breadcrumb`,
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "ホーム", item: "https://lexus-ec.com/" },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "私立医学部情報",
-          item: "https://lexus-ec.com/top/information-shiritsu/",
-        },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: "過去問ライブラリー",
-          item: "https://lexus-ec.com/past-exam-library/",
-        },
-        { "@type": "ListItem", position: 4, name: "岩手医科大学", item: canonical },
-      ],
-    },
+const { breadcrumbs, structuredData } = buildPastExamPageSeo({
+  title, description, path: canonical, collection: true,
+  breadcrumbs: [
+    { name: "ホーム", path: "/" },
+    { name: "過去問ライブラリー", path: "/past-exam-library/" },
+    { name: "岩手医科大学", path: "/past-exam-library/iwate-medical/" },
   ],
-};
+});
 ---
 
 <SiteLayout
   title={title}
   description={description}
   canonical={canonical}
-  ogImage="/assets/legacy/wp-content/uploads/2024/09/新レクサス1-e1726564535383.png"
+  ogImage={PAST_EXAM_SOCIAL_IMAGE}
+  ogImageAlt={PAST_EXAM_SOCIAL_IMAGE_ALT}
+  mainContentId="past-exam-content"
+  noindex={true}
 >
   <Fragment slot="head">
     <meta name="author" content="医学部予備校 レクサス E.C." />
-    <meta name="robots" content="noindex,follow" />
-    <meta property="og:image:alt" content="医学部予備校レクサス E.C.のキャラクター" />
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <PastExamSeoHead structuredData={structuredData} />
   </Fragment>
 
-  <main class="exam-library-page exam-university-page">
+  <main id="past-exam-content" tabindex="-1" class="exam-library-page exam-university-page">
     <header class="exam-university-header">
       <div class="content exam-university-header__inner">
-        <nav class="exam-library-breadcrumb" aria-label="パンくずリスト">
-          <a href="/">ホーム</a>
-          <span aria-hidden="true">/</span>
-          <a href="/past-exam-library/">過去問ライブラリー</a>
-          <span aria-hidden="true">/</span>
-          <span aria-current="page">岩手医科大学</span>
-        </nav>
+        <PastExamBreadcrumbs items={breadcrumbs} />
 
         <div class="exam-university-header__grid">
           <div>

@@ -1,5 +1,8 @@
 ---
 import SiteLayout from "../../../../../layouts/SiteLayout.astro";
+import PastExamBreadcrumbs from "../../../../../components/past-exam/PastExamBreadcrumbs.astro";
+import PastExamSeoHead from "../../../../../components/past-exam/PastExamSeoHead.astro";
+import { buildExamDocumentSeo, PAST_EXAM_SOCIAL_IMAGE, PAST_EXAM_SOCIAL_IMAGE_ALT } from "../../../../../lib/pastExamSeo.mjs";
 import AnalysisSection from "../../../../../components/past-exam/AnalysisSection.astro";
 import PastExamExamInfo from "../../../../../components/past-exam/PastExamExamInfo.astro";
 import PastExamDocumentTabs from "../../../../../components/past-exam/PastExamDocumentTabs.astro";
@@ -14,8 +17,16 @@ export function getStaticPaths() {
   return analysisPages.map((page) => ({ params: { university: page.route.university, year: page.route.year, subject: page.route.subject }, props: { page } }));
 }
 const { page } = Astro.props as { page: AnalysisPage };
-const title = `${page.university} ${page.year}年度 ${page.subject}の分析｜過去問ライブラリー｜レクサス教育センター`;
-const description = `${page.university} ${page.year}年度${page.subject}の出題分野、難易度、解く優先順位をコンパクトに整理。${page.summary}`;
+const { title, description, canonical, breadcrumbs, structuredData } = buildExamDocumentSeo({
+  mode: "analysis",
+  university: page.university,
+  year: page.year,
+  subject: page.subject,
+  examLabel: page.examLabel,
+  majorCount: page.majorQuestions.length,
+  path: page.route.path,
+  universityPath: page.links.university,
+});
 const levels = ["基本レベル", "基本＋αレベル", "標準レベル", "発展レベル"];
 const priorities = ["先に解く", "後回し", "見送る"];
 const total = page.majorQuestions.reduce((n, q) => n + q.subquestions.length, 0);
@@ -24,16 +35,14 @@ const difficultyPoints = levels.map((_, level) => page.majorQuestions.flatMap((q
 const difficultySlices = buildDifficultyPie(difficultyPoints);
 ---
 
-<SiteLayout title={title} description={description} canonical={`https://lexus-ec.com${page.route.path}`}>
-  <Fragment slot="head"><meta name="robots" content="noindex,follow" /></Fragment>
-  <main class="past-exam-question-page past-exam-analysis-page">
+<SiteLayout title={title} description={description} canonical={canonical}
+  ogImage={PAST_EXAM_SOCIAL_IMAGE} ogImageAlt={PAST_EXAM_SOCIAL_IMAGE_ALT}
+  noindex={true} mainContentId="past-exam-content">
+  <Fragment slot="head"><PastExamSeoHead structuredData={structuredData} /></Fragment>
+  <main id="past-exam-content" tabindex="-1" class="past-exam-question-page past-exam-analysis-page">
     <header class="past-exam-question-header">
       <div class="content">
-        <nav class="exam-library-breadcrumb" aria-label="パンくずリスト">
-          <a href="/past-exam-library/">過去問ライブラリー</a><span aria-hidden="true">/</span>
-          <a href={page.links.university}>{page.university}</a><span aria-hidden="true">/</span>
-          <span aria-current="page">{page.year}年度 {page.subject} 分析</span>
-        </nav>
+        <PastExamBreadcrumbs items={breadcrumbs} />
         <div class="past-exam-question-header__grid">
           <div>
             <p class="past-exam-question-kicker">PAST EXAM / ANALYSIS</p>

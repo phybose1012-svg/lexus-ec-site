@@ -1,0 +1,22 @@
+---
+interface Props {
+  items: Array<{ name: string; path: string }>;
+}
+const { items } = Astro.props;
+---
+
+<nav class="exam-library-breadcrumb" aria-label="パンくずリスト">
+  <ol>
+    {items.map((item, index) => <li>
+      {index > 0 && <span aria-hidden="true">/</span>}
+      {index === items.length - 1
+        ? <span aria-current="page">{item.name}</span>
+        : <a href={item.path}>{item.name}</a>}
+    </li>)}
+  </ol>
+</nav>
+
+<style>
+  .exam-library-breadcrumb ol { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; list-style: none; margin: 0; padding: 0; }
+  .exam-library-breadcrumb li { display: inline-flex; align-items: baseline; gap: 8px; }
+</style>

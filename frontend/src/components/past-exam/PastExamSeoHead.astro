@@ -1,0 +1,6 @@
+---
+import { serializeJsonLd } from "../../lib/pastExamSeo.mjs";
+interface Props { structuredData: object; }
+const { structuredData } = Astro.props;
+---
+<script is:inline type="application/ld+json" set:html={serializeJsonLd(structuredData)} />

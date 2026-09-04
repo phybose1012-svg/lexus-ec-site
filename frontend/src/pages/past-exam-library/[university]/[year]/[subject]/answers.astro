@@ -1,5 +1,8 @@
 ---
 import SiteLayout from "../../../../../layouts/SiteLayout.astro";
+import PastExamBreadcrumbs from "../../../../../components/past-exam/PastExamBreadcrumbs.astro";
+import PastExamSeoHead from "../../../../../components/past-exam/PastExamSeoHead.astro";
+import { buildExamDocumentSeo, PAST_EXAM_SOCIAL_IMAGE, PAST_EXAM_SOCIAL_IMAGE_ALT } from "../../../../../lib/pastExamSeo.mjs";
 import PastExamExamInfo from "../../../../../components/past-exam/PastExamExamInfo.astro";
 import PastExamDocumentTabs from "../../../../../components/past-exam/PastExamDocumentTabs.astro";
 import PastExamContents from "../../../../../components/past-exam/PastExamContents.astro";
@@ -57,91 +60,44 @@ export function getStaticPaths() {
 }
 
 const { page } = Astro.props as { page: AnswerPageData };
-const title = `${page.university.name} ${page.exam.year}年度 ${page.subject.name}の解答・解説｜過去問ライブラリー｜レクサス教育センター`;
-const description = `${page.university.name}医学部 ${page.exam.year}年度${page.exam.label}・${page.subject.name}の解答と詳しい解説です。全${page.document.majorQuestions.length}題を大問別に確認できます。`;
-const canonical = `https://lexus-ec.com${page.route.path}`;
+const { title, description, canonical, breadcrumbs, structuredData } = buildExamDocumentSeo({
+  mode: "answers",
+  university: page.university.name,
+  year: page.exam.year,
+  subject: page.subject.name,
+  examLabel: page.exam.label,
+  majorCount: page.document.majorQuestions.length,
+  path: page.route.path,
+  universityPath: page.links.universityLibrary,
+});
 const analysisPath = analysisPathFor(page.packageId, page.links.analysis);
 const reviewRequired = page.source.needsHumanReview;
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "LearningResource",
-      "@id": `${canonical}#learning-resource`,
-      url: canonical,
-      name: title,
-      description,
-      inLanguage: "ja",
-      learningResourceType: "解答・解説",
-      about: `${page.university.name}医学部 ${page.exam.year}年度 ${page.subject.name}`,
-      provider: {
-        "@type": "EducationalOrganization",
-        "@id": "https://lexus-ec.com/#organization",
-        name: "レクサス教育センター",
-        url: "https://lexus-ec.com/",
-      },
-      breadcrumb: { "@id": `${canonical}#breadcrumb` },
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": `${canonical}#breadcrumb`,
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "ホーム", item: "https://lexus-ec.com/" },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "過去問ライブラリー",
-          item: "https://lexus-ec.com/past-exam-library/",
-        },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: page.university.name,
-          item: `https://lexus-ec.com${page.links.universityLibrary}`,
-        },
-        {
-          "@type": "ListItem",
-          position: 4,
-          name: `${page.exam.year}年度 ${page.subject.name} 解答・解説`,
-          item: canonical,
-        },
-      ],
-    },
-  ],
-};
 ---
 
 <SiteLayout
   title={title}
   description={description}
   canonical={canonical}
-  ogImage="/assets/legacy/wp-content/uploads/2024/09/新レクサス1-e1726564535383.png"
+  ogImage={PAST_EXAM_SOCIAL_IMAGE}
+  ogImageAlt={PAST_EXAM_SOCIAL_IMAGE_ALT}
+  noindex={true}
+  mainContentId="past-exam-content"
 >
   <Fragment slot="head">
     <meta name="author" content="医学部予備校 レクサス E.C." />
-    <meta name="robots" content="noindex,follow" />
-    <meta property="og:image:alt" content="医学部予備校レクサス E.C.のキャラクター" />
     <link rel="stylesheet" href="/assets/vendor/katex/katex.min.css" />
     <script is:inline defer src="/assets/vendor/katex/katex.min.js"></script>
     <script is:inline defer src="/assets/past-exam/math-render.js"></script>
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <PastExamSeoHead structuredData={structuredData} />
   </Fragment>
 
-  <main class="past-exam-question-page past-exam-answer-page">
+  <main id="past-exam-content" tabindex="-1" class="past-exam-question-page past-exam-answer-page">
     <PastExamPrintBranding />
 
     <header class="past-exam-question-header">
       <div class="content">
-        <nav class="exam-library-breadcrumb" aria-label="パンくずリスト">
-          <a href="/">ホーム</a>
-          <span aria-hidden="true">/</span>
-          <a href="/past-exam-library/">過去問ライブラリー</a>
-          <span aria-hidden="true">/</span>
-          <a href={page.links.universityLibrary}>{page.university.name}</a>
-          <span aria-hidden="true">/</span>
-          <span aria-current="page">{page.exam.year}年度 {page.subject.name} 解答・解説</span>
-        </nav>
+        <PastExamBreadcrumbs items={breadcrumbs} />
 
         <div class="past-exam-question-header__grid">
           <div>

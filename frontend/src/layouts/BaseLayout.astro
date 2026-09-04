@@ -1,14 +1,18 @@
 ---
 import "../styles/global.css";
+import { robotsForPage } from "../lib/robotsPolicy.mjs";
 
 interface Props {
   title: string;
   description: string;
   canonical: string;
   ogImage?: string;
+  ogImageAlt?: string;
+  noindex?: boolean;
+  mainContentId?: string;
 }
 
-const { title, description, canonical, ogImage } = Astro.props;
+const { title, description, canonical, ogImage, ogImageAlt, noindex = false, mainContentId } = Astro.props;
 const resolvedOgImage = ogImage ? new URL(ogImage, "https://lexus-ec.com").href : undefined;
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 const analyticsHostnames = (
@@ -19,8 +23,7 @@ const analyticsHostnames = (
   .filter(Boolean);
 const analyticsBranch = import.meta.env.PUBLIC_ANALYTICS_BRANCH || "main";
 const deploymentBranch = import.meta.env.CF_PAGES_BRANCH || "";
-const shouldNoindex = Boolean(deploymentBranch && deploymentBranch !== analyticsBranch);
-const robotsContent = shouldNoindex ? "noindex,nofollow,max-image-preview:large" : "max-image-preview:large";
+const robotsContent = robotsForPage({ deploymentBranch, productionBranch: analyticsBranch, noindex });
 const shouldRenderAnalytics = Boolean(
   gaMeasurementId && analyticsHostnames.length && deploymentBranch === analyticsBranch
 );
@@ -45,10 +48,12 @@ const shouldRenderAnalytics = Boolean(
     <meta property="og:url" content={canonical} />
     {resolvedOgImage && <meta property="og:image" content={resolvedOgImage} />}
     {resolvedOgImage && <meta property="og:image:secure_url" content={resolvedOgImage} />}
+    {resolvedOgImage && ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {resolvedOgImage && <meta name="twitter:image" content={resolvedOgImage} />}
+    {resolvedOgImage && ogImageAlt && <meta name="twitter:image:alt" content={ogImageAlt} />}
     <slot name="head" />
     {shouldRenderAnalytics && (
       <script
@@ -87,8 +92,8 @@ const shouldRenderAnalytics = Boolean(
     )}
   </head>
   <body>
-    <a class="skip-link" href="#content">コンテンツにスキップ</a>
-    <span id="content" class="skip-anchor" tabindex="-1"></span>
+    <a class="skip-link" href={`#${mainContentId || "content"}`}>コンテンツにスキップ</a>
+    {!mainContentId && <span id="content" class="skip-anchor" tabindex="-1"></span>}
     <slot />
   </body>
 </html>
