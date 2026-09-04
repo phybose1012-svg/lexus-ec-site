@@ -11,8 +11,19 @@
 
 .past-exam-question-header {
   border-bottom: 1px solid var(--question-line);
-  padding: 28px 0 24px;
+  padding: 16px 0 24px;
   background: #fff;
+}
+
+/* The shared library breadcrumb defaults to white text for its dark hero. */
+.past-exam-question-header .exam-library-breadcrumb {
+  margin-bottom: 0;
+  color: var(--question-muted);
+  font-size: 0.875rem;
+}
+
+.past-exam-question-header .exam-library-breadcrumb a {
+  color: var(--question-navy);
 }
 
 .past-exam-question-header__grid {
@@ -20,7 +31,7 @@
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 24px;
   align-items: end;
-  margin-top: 28px;
+  margin-top: 16px;
 }
 
 .past-exam-question-header__actions {
@@ -529,13 +540,13 @@
 
 @media (max-width: 680px) {
   .past-exam-question-header {
-    padding-block: 20px;
+    padding-block: 16px 20px;
   }
 
   .past-exam-question-header__grid {
     grid-template-columns: 1fr;
     gap: 15px;
-    margin-top: 22px;
+    margin-top: 12px;
   }
 
   .past-exam-question-header__actions {
