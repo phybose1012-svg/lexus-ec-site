@@ -79,22 +79,8 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
         </div>
       </section>
 
-      <section class="analysis-section" aria-labelledby="overview-title">
-        <div class="analysis-section-heading"><span>01</span><h2 id="overview-title">大問ごとの特徴</h2></div>
-        <div class="analysis-major-grid">
-          {page.majorQuestions.map((major, i) => (
-            <article class="analysis-major-card">
-              <div class="analysis-major-card__head"><span>{String(i + 1).padStart(2, "0")}</span><div><small>{major.label}</small><h3>{major.title}</h3></div></div>
-              <p class="analysis-major-subtitle">{major.subtitle}</p>
-              <p>{major.summary}</p>
-              <a href={`#${major.id}`}>小問別の優先度を見る <span aria-hidden="true">↓</span></a>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <section class="analysis-section analysis-targets" id="target-score" aria-labelledby="target-title">
-        <div class="analysis-section-heading"><span>02</span><h2 id="target-title">目標点</h2></div>
+        <div class="analysis-section-heading"><span>01</span><h2 id="target-title">目標点</h2></div>
         <p class="analysis-section-intro">数学に{page.targets.timeBudgetMinutes}分を使うと仮定した、レクサスの目標点です。小問別の仮配点に基づく試算で、大学公表の配点・合格最低点ではありません。</p>
         <div class="analysis-target-grid">
           {page.targets.profiles.map((profile) => (
@@ -113,6 +99,20 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
           ))}
         </div>
         <p class="analysis-small-note">時間は全{total}小問の解く・後回しにする判断を一度行う時間を含みます。実際の所要時間や得点を保証するものではありません。</p>
+      </section>
+
+      <section class="analysis-section" aria-labelledby="overview-title">
+        <div class="analysis-section-heading"><span>02</span><h2 id="overview-title">大問ごとの特徴</h2></div>
+        <div class="analysis-major-grid">
+          {page.majorQuestions.map((major, i) => (
+            <article class="analysis-major-card">
+              <div class="analysis-major-card__head"><span>{String(i + 1).padStart(2, "0")}</span><div><small>{major.label}</small><h3>{major.title}</h3></div></div>
+              <p class="analysis-major-subtitle">{major.subtitle}</p>
+              <p>{major.summary}</p>
+              <a href={`#${major.id}`}>小問別の優先度を見る <span aria-hidden="true">↓</span></a>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section class="analysis-section" aria-labelledby="priority-title">
