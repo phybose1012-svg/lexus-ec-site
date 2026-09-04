@@ -90,18 +90,21 @@
               },
               {
                 "type": "formula",
+                "purposeId": "differentiate",
                 "latex": "f'(x)=\\frac{3x^2(2x^2-1)-4x^4}{(2x^2-1)^2}=\\frac{x^2(2x^2-3)}{(2x^2-1)^2}"
               },
               {
                 "type": "formula",
+                "purposeId": "find-extrema-candidates",
                 "latex": "f'(x)=0\\quad\\Longrightarrow\\quad x=-\\frac{\\sqrt6}{2},\\ 0,\\ \\frac{\\sqrt6}{2}"
               },
               {
                 "type": "prose",
-                "text": "極値と変曲点を一つの表で確認するため、2階微分も求めます。"
+                "text": "極値の判定には \\(f'(x)\\) の符号を使います。問2で変曲点も求めるため、ここで二階微分を計算し、増減と凹凸を一つの表にまとめます。"
               },
               {
                 "type": "formula",
+                "purposeId": "differentiate-twice",
                 "latex": "f''(x)=\\frac{2x(2x^2+3)}{(2x^2-1)^3}"
               },
               {
@@ -121,6 +124,7 @@
               },
               {
                 "type": "formula",
+                "purposeId": "evaluate-extrema",
                 "latex": "f\\left(-\\frac{\\sqrt6}{2}\\right)=-\\frac{3\\sqrt6}{8},\\qquad f\\left(\\frac{\\sqrt6}{2}\\right)=\\frac{3\\sqrt6}{8}"
               },
               {
@@ -134,15 +138,7 @@
             "blocks": [
               {
                 "type": "prose",
-                "text": "増減・凹凸表を見ると、定義域内で \\(f''(x)=0\\) となる \\(x=0\\) の前後で符号が正から負へ変わっています。"
-              },
-              {
-                "type": "formula",
-                "latex": "f(0)=0"
-              },
-              {
-                "type": "prose",
-                "text": "したがって、グラフの凹凸が切り替わる点の座標は \\((0,0)\\) です。"
+                "text": "問1の増減・凹凸表では、\\(x=0\\) の前後で \\(f''(x)\\) の符号が正から負へ変わります。また、表の \\(f(x)\\) の行から、このときの関数値は0です。"
               },
               {
                 "type": "result",
@@ -159,10 +155,12 @@
               },
               {
                 "type": "formula",
+                "purposeId": "decompose-function",
                 "latex": "f(x)=\\frac{x}{2}+\\frac{x}{2(2x^2-1)}"
               },
               {
                 "type": "formula",
+                "purposeId": "check-asymptote",
                 "latex": "\\lim_{x\\to\\infty}\\left(f(x)-\\frac{x}{2}\\right)=\\lim_{x\\to\\infty}\\frac{x}{2(2x^2-1)}=0"
               },
               {
@@ -176,10 +174,11 @@
             "blocks": [
               {
                 "type": "prose",
-                "text": "\\(x=\\pm\\frac{1}{\\sqrt2}\\) は元の方程式を満たさないので、方程式を \\(f(x)=k\\) の形へ変形できます。"
+                "text": "\\(x=\\pm\\frac{1}{\\sqrt2}\\) を元の方程式の左辺に代入すると \\(x^3\\ne0\\) となるため、この2点は解ではありません。したがって、\\(2x^2-1\\) で割り、方程式を \\(f(x)=k\\) の形へ変形できます。"
               },
               {
                 "type": "formula",
+                "purposeId": "rewrite-as-intersections",
                 "latex": "x^3-2kx^2+k=0\\quad\\Longleftrightarrow\\quad\\frac{x^3}{2x^2-1}=k"
               },
               {
@@ -269,14 +268,16 @@
               },
               {
                 "type": "prose",
-                "text": "\\(CA=x\\) とおきます。\\(BC=\\sqrt7>AB=2\\) なので \\(A>C\\) です。もし角Cが鈍角なら角Aも鈍角となって三角形に矛盾するため、角Cは鋭角です。したがって、\\(\\sin C=\\frac{\\sqrt{21}}7\\) から \\(\\cos C=\\frac2{\\sqrt7}\\) です。角Cに余弦定理を使います。"
+                "text": "\\(CA=x\\) とおきます。\\(BC=\\sqrt7>AB=2\\) なので \\(A>C\\) です。角Cが直角以上なら角Aはさらに大きくなり、内角の和が180度であることに反するため、角Cは鋭角です。したがって、\\(\\sin C=\\frac{\\sqrt{21}}7\\) から \\(\\cos C=\\frac2{\\sqrt7}\\) です。角Cに余弦定理を使います。"
               },
               {
                 "type": "formula",
+                "purposeId": "cosine-rule-side",
                 "latex": "2^2=x^2+(\\sqrt7)^2-2x\\sqrt7\\cdot\\frac2{\\sqrt7}"
               },
               {
                 "type": "formula",
+                "purposeId": "solve-equation",
                 "latex": "x^2-4x+3=0\\quad\\Longrightarrow\\quad x=1,3"
               },
               {
@@ -285,6 +286,7 @@
               },
               {
                 "type": "formula",
+                "purposeId": "cosine-rule-angle",
                 "latex": "\\cos A=\\frac{2^2+1^2-(\\sqrt7)^2}{2\\cdot2\\cdot1}=-\\frac12"
               },
               {
@@ -298,7 +300,7 @@
             "blocks": [
               {
                 "type": "prose",
-                "text": "\\(BD:DC=2:1\\) であり、問1から \\(AB:AC=2:1\\) です。角の二等分線定理の逆より、直線AEは角Aを二等分します。円周角が等しいため、対応する弦も等しく \\(BE=CE\\) です。"
+                "text": "\\(BD:DC=2:1\\) であり、問1から \\(AB:AC=2:1\\) です。角の二等分線定理の逆より、ADは角Aを二等分します。A・D・Eは一直線上にあるので、円周角 \\(\\angle BAE=\\angle EAC\\) となり、対応する弦も等しく \\(BE=CE\\) です。"
               },
               {
                 "type": "prose",
@@ -306,6 +308,7 @@
               },
               {
                 "type": "formula",
+                "purposeId": "cosine-rule-side",
                 "latex": "7=y^2+y^2-2y^2\\cos60^\\circ=y^2"
               },
               {
@@ -323,6 +326,7 @@
               },
               {
                 "type": "formula",
+                "purposeId": "internal-division",
                 "latex": "\\overrightarrow{AD}=\\frac13\\overrightarrow{AB}+\\frac23\\overrightarrow{AC}"
               },
               {
@@ -331,14 +335,16 @@
               },
               {
                 "type": "formula",
+                "purposeId": "squared-distance",
                 "latex": "AD^2=\\frac19\\cdot4+\\frac49\\cdot1+2\\cdot\\frac13\\cdot\\frac23\\cdot(-1)=\\frac49"
               },
               {
                 "type": "prose",
-                "text": "よって \\(AD=\\frac23\\) です。点Dで2本の弦AEとBCが交わるので、方べきの定理を使います。"
+                "text": "よって \\(AD=\\frac23\\) です。Dは線分AEの内側にあるので \\(DE=AE-AD\\) です。点Dで交わる2本の弦AEとBCに方べきの定理を使います。"
               },
               {
                 "type": "formula",
+                "purposeId": "power-of-point",
                 "latex": "\\frac23\\left(AE-\\frac23\\right)=\\frac{2\\sqrt7}{3}\\cdot\\frac{\\sqrt7}{3}=\\frac{14}{9}"
               },
               {
@@ -361,6 +367,7 @@
               },
               {
                 "type": "formula",
+                "purposeId": "incenter-vector",
                 "latex": "\\overrightarrow{AI}=\\frac{\\boldsymbol b+2\\boldsymbol c}{3+\\sqrt7}=\\frac{3-\\sqrt7}{2}(\\boldsymbol b+2\\boldsymbol c)"
               },
               {
@@ -369,14 +376,21 @@
               },
               {
                 "type": "formula",
+                "purposeId": "circumcenter-vector",
                 "latex": "4s-2-t=0,\\qquad -s+t-\\frac12=0\\quad\\Longrightarrow\\quad\\overrightarrow{AO}=\\frac56\\boldsymbol b+\\frac43\\boldsymbol c"
               },
               {
+                "type": "prose",
+                "text": "IとOの位置ベクトルの差を取り、その長さの二乗を内積で計算します。"
+              },
+              {
                 "type": "formula",
+                "purposeId": "vector-difference",
                 "latex": "\\overrightarrow{OI}=\\overrightarrow{AI}-\\overrightarrow{AO}=\\frac{4-3\\sqrt7}{6}\\boldsymbol b+\\frac{10-6\\sqrt7}{6}\\boldsymbol c"
               },
               {
                 "type": "formula",
+                "purposeId": "squared-distance",
                 "latex": "OI^2=4\\left(\\frac{4-3\\sqrt7}{6}\\right)^2-2\\left(\\frac{4-3\\sqrt7}{6}\\right)\\left(\\frac{10-6\\sqrt7}{6}\\right)+\\left(\\frac{10-6\\sqrt7}{6}\\right)^2=\\frac{28}{3}-3\\sqrt7"
               },
               {
@@ -429,10 +443,11 @@
             "blocks": [
               {
                 "type": "prose",
-                "text": "8枚はすべて異なり、4枚を選んで順番に並べます。したがって全事象は次の1680通りです。"
+                "text": "8枚はすべて異なり、4枚を選んで順番に並べます。どの並べ方も同様に確からしいので、全事象を順列で数えます。"
               },
               {
                 "type": "formula",
+                "purposeId": "count-total-outcomes",
                 "latex": "{}_8P_4=8\\cdot7\\cdot6\\cdot5=1680"
               }
             ]
@@ -446,6 +461,7 @@
               },
               {
                 "type": "formula",
+                "purposeId": "calculate-probability",
                 "latex": "\\frac{{}_7P_3}{{}_8P_4}=\\frac18"
               },
               {
@@ -454,6 +470,7 @@
               },
               {
                 "type": "formula",
+                "purposeId": "calculate-probability",
                 "latex": "\\frac{2\\cdot{}_6P_2}{{}_8P_4}=\\frac1{28}"
               },
               {
@@ -471,6 +488,7 @@
               },
               {
                 "type": "formula",
+                "purposeId": "calculate-probability",
                 "latex": "\\frac{2\\cdot{}_4P_2\\cdot{}_6P_2}{{}_8P_4}=\\frac37"
               },
               {
@@ -496,6 +514,7 @@
               },
               {
                 "type": "formula",
+                "purposeId": "calculate-probability",
                 "latex": "\\frac{3\\cdot2\\cdot{}_6P_2}{{}_8P_4}=\\frac3{28}"
               },
               {
@@ -509,7 +528,7 @@
             "blocks": [
               {
                 "type": "prose",
-                "text": "偶数の使用枚数で分けます。偶数2枚なら、4か所から隣り合わない2か所を選ぶ方法が3通りあります。偶数1枚なら位置は4通り、偶数0枚なら奇数4枚を並べるだけです。"
+                "text": "偶数が3枚以上あると4か所のどこかで隣り合うため、偶数の使用枚数を0・1・2枚に分けます。偶数2枚なら、隣り合わない位置の組は \\((1,3),(1,4),(2,4)\\) の3通りです。偶数1枚なら位置は4通り、偶数0枚なら奇数4枚を並べるだけです。"
               },
               {
                 "type": "table",
@@ -523,6 +542,7 @@
               },
               {
                 "type": "formula",
+                "purposeId": "calculate-probability",
                 "latex": "\\frac{432+384+24}{1680}=\\frac{840}{1680}=\\frac12"
               },
               {

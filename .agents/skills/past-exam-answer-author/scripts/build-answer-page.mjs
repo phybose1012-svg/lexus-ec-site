@@ -1,5 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
+import { loadFormulaPurposes } from "./formula-purpose-library.mjs";
+
+const formulaPurposes = loadFormulaPurposes();
 
 function parseArgs(argv) {
   const args = {};
@@ -162,8 +165,14 @@ function renderBlock(block, label) {
     return `<p class="prose">${renderInlineMath(block.text, `${label} text`)}</p>`;
   }
   if (block.type === "formula") {
+    if ("purposeLabel" in block || "label" in block) {
+      throw new Error(`${label} must use a library purposeId, not a free-text label`);
+    }
     const latex = requireValue(block.latex, `${label} latex`);
-    return `<div class="formula answer-formula" data-katex="${escapeHtml(latex)}" data-display-mode="true">${escapeHtml(latex)}</div>`;
+    const purposeId = requireValue(block.purposeId, `${label} purposeId`);
+    const purpose = formulaPurposes.get(purposeId);
+    if (!purpose) throw new Error(`${label} has unknown formula purposeId ${purposeId}`);
+    return `<div class="formula answer-formula" data-formula-purpose="${escapeHtml(purposeId)}"><span class="answer-formula__purpose">${escapeHtml(purpose.label)}</span><div class="answer-formula__math" data-katex="${escapeHtml(latex)}" data-display-mode="true">${escapeHtml(latex)}</div></div>`;
   }
   if (block.type === "note") {
     return `<aside class="source-note answer-note"><strong>${escapeHtml(requireValue(block.label, `${label} label`))}</strong><p>${renderInlineMath(block.text, `${label} text`)}</p></aside>`;

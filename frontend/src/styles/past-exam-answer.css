@@ -110,11 +110,35 @@
   margin: 14px 0;
   border-left: 3px solid var(--question-gold);
   padding: 13px 16px;
-  overflow-x: auto;
-  overflow-y: hidden;
   color: #142238;
   background: #faf9f5;
   text-align: center;
+}
+
+.past-exam-answer-page .answer-formula__purpose {
+  display: table;
+  max-width: 100%;
+  margin-bottom: 8px;
+  border: 1px solid #d6c58e;
+  border-radius: 4px;
+  padding: 3px 8px;
+  color: #6b5218;
+  background: #f4efdf;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.past-exam-answer-page .answer-formula__math {
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.past-exam-answer-page .answer-formula__math .katex-display {
+  margin: 0.5em 0;
 }
 
 .past-exam-answer-page .answer-note strong {
@@ -433,6 +457,16 @@
     font-size: 9pt;
     break-inside: avoid-page;
     page-break-inside: avoid;
+  }
+
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-formula__purpose {
+    margin-bottom: 1.5mm;
+    padding: 0.5mm 1.5mm;
+    color: #333;
+    background: #fff !important;
+    border-color: #999;
+    font-size: 7.5pt;
+    break-after: avoid-page;
   }
 
   body.is-printing-past-exam-document .past-exam-answer-page .answer-note,

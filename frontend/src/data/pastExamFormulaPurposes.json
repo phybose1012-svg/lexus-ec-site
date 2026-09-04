@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "lexus-formula-purposes.v1",
+  "purposes": [
+    { "id": "differentiate", "label": "微分計算", "useWhen": "一階導関数を求める計算。極値の判定そのものとは区別する。" },
+    { "id": "find-extrema-candidates", "label": "極値の候補を求める", "useWhen": "導関数が0になる点などを求める段階。極値の確定には符号の変化などを別途確認する。" },
+    { "id": "differentiate-twice", "label": "二階微分の計算", "useWhen": "凹凸や変曲点などを調べるために二階導関数を求める。" },
+    { "id": "evaluate-extrema", "label": "極大値・極小値を求める", "useWhen": "極大・極小となることを判定した点の関数値を計算する。" },
+    { "id": "decompose-function", "label": "関数を分解する", "useWhen": "多項式部分と残りの項など、次の考察に適した形に関数を分ける。" },
+    { "id": "check-asymptote", "label": "漸近線を確かめる", "useWhen": "関数と候補となる直線の差の極限などから漸近線を確認する。" },
+    { "id": "rewrite-as-intersections", "label": "共有点の問題に置き換える", "useWhen": "方程式の解をグラフと直線などの共有点として考えるための変形。" },
+    { "id": "cosine-rule-side", "label": "余弦定理で辺を求める", "useWhen": "余弦定理から未知の辺の長さに関する式を立てる。" },
+    { "id": "solve-equation", "label": "方程式を解く", "useWhen": "すでに立てた方程式を解いて候補を求める。条件による解の選別は本文で示す。" },
+    { "id": "cosine-rule-angle", "label": "余弦定理で角を求める", "useWhen": "辺の長さから余弦定理で角の余弦や角度を求める。" },
+    { "id": "internal-division", "label": "内分点をベクトルで表す", "useWhen": "線分の内分比から点の位置ベクトルを求める。" },
+    { "id": "squared-distance", "label": "距離の二乗を求める", "useWhen": "ベクトルの内積や成分などで長さの二乗を計算する。" },
+    { "id": "power-of-point", "label": "方べきの定理を使う", "useWhen": "交わる弦や割線・接線の長さの関係を方べきの定理で式にする。" },
+    { "id": "incenter-vector", "label": "内心をベクトルで表す", "useWhen": "三辺の長さを重みとして内心の位置を求める。" },
+    { "id": "circumcenter-vector", "label": "外心をベクトルで表す", "useWhen": "頂点から等距離である条件などから外心の位置を求める。" },
+    { "id": "vector-difference", "label": "2点間のベクトルを求める", "useWhen": "同じ始点からの位置ベクトルの差で、2点を結ぶベクトルを表す。" },
+    { "id": "count-total-outcomes", "label": "全事象を数える", "useWhen": "確率の分母となる、同様に確からしい全ての場合の数を求める。" },
+    { "id": "calculate-probability", "label": "確率を求める", "useWhen": "条件を満たす場合の数を全事象の場合の数で割るなどして確率を計算する。" }
+  ]
+}

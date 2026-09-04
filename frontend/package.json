@@ -6,8 +6,10 @@
   "scripts": {
     "admin:api": "node ./scripts/admin-local-api.mjs",
     "past-exam:import": "node ../.agents/skills/past-exam-question-importer/scripts/import-question-page.mjs",
+    "past-exam:answers": "node ../.agents/skills/past-exam-answer-author/scripts/build-all-answer-pages.mjs",
+    "past-exam:answers:test": "node --test ../.agents/skills/past-exam-answer-author/scripts/build-answer-page.test.mjs",
     "dev": "node ./scripts/astro-command.mjs dev --host 127.0.0.1",
-    "build": "node ./scripts/verify-build-inputs.mjs && node ./scripts/astro-command.mjs check && node ./scripts/astro-command.mjs build",
+    "build": "node ./scripts/verify-build-inputs.mjs && npm run past-exam:answers && node ./scripts/astro-command.mjs check && node ./scripts/astro-command.mjs build",
     "preview": "node ./scripts/astro-command.mjs preview --host 127.0.0.1"
   },
   "dependencies": {
