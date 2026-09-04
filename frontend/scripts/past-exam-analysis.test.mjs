@@ -26,7 +26,8 @@ test("difficulty pie supports zero categories and a full-circle category", () =>
   assert.equal(slices[1].percent, 100);
   assert.equal((slices[1].path.match(/A 104 104/g) ?? []).length, 2);
   assert.ok(!JSON.stringify(slices).includes("NaN"));
-  for (const counts of [[], [0, 0, 0, 0], [-1, 2], [1.5, 2], [NaN], [Infinity]]) assert.throws(() => buildDifficultyPie(counts), /difficulty/);
+  for (const counts of [[], [0, 0, 0, 0], [-1, 2], [NaN], [Infinity]]) assert.throws(() => buildDifficultyPie(counts), /difficulty/);
+  assert.deepEqual(buildDifficultyPie([1.5, 0.5]).map((s) => s.fraction), [0.75, 0.25]);
 });
 
 const fixtureMetadata = {
@@ -43,6 +44,7 @@ test("HTML extraction preserves ratings, priorities, reasons and review status",
   const result = extractAnalysis(fixtureHtml, fixtureMetadata, "report.html");
   assert.deepEqual(result.majorQuestions[0].requirements, [2, 2, 2, 2, 2]);
   assert.equal(result.majorQuestions[0].subquestions[0].difficultyReason, "f'(x)を求める。");
+  assert.equal(result.majorQuestions[0].subquestions[0].points, 5);
   assert.equal(result.majorQuestions[0].subquestions[0].weak, "後回し");
   assert.equal(result.source.approved, false);
   assert.match(result.source.sha256, /^[a-f0-9]{64}$/);
@@ -60,6 +62,11 @@ for (const [name, transform] of [
 test("page covers every question and preserves original chart values", () => {
   const page = buildAnalysis(evidence, editorial);
   assert.deepEqual(page.difficultyCounts, [3, 4, 4, 1]);
+  assert.deepEqual(page.majorQuestions.flatMap((m) => m.subquestions).map((s) => s.points), [9, 7, 7, 10, 8, 8, 8, 10, 10, 7, 7, 9]);
+  assert.equal(page.majorQuestions.flatMap((m) => m.subquestions).reduce((n, s) => n + s.points, 0), 100);
+  const byLevel = [0, 1, 2, 3].map((level) => page.majorQuestions.flatMap((m) => m.subquestions).filter((s) => s.difficulty === level).reduce((n, s) => n + s.points, 0));
+  assert.deepEqual(byLevel, [24, 31, 35, 10]);
+  assert.deepEqual(buildDifficultyPie(byLevel).map((s) => s.fraction), [0.24, 0.31, 0.35, 0.1]);
   assert.equal(page.majorQuestions.flatMap((m) => m.subquestions).length, 12);
   assert.deepEqual(page.majorQuestions.map((m) => m.requirements), evidence.majorQuestions.map((m) => m.requirements));
   assert.deepEqual(page.majorQuestions.map((m) => m.subquestions.map((s) => s.id)), evidence.majorQuestions.map((m) => m.subquestions.map((s) => s.id)));
@@ -85,6 +92,9 @@ test("reject out-of-scale scores", () => {
   const invalid = structuredClone(evidence);
   invalid.majorQuestions[0].requirements[0] = 6;
   assert.throws(() => buildAnalysis(invalid, editorial), /requirement score/);
+  const invalidPoints = structuredClone(evidence);
+  invalidPoints.majorQuestions[0].subquestions[0].points += 1;
+  assert.throws(() => buildAnalysis(invalidPoints, editorial), /point total/);
 });
 
 function targetFixture() {

@@ -119,10 +119,12 @@ export function extractAnalysis(html, metadata, sourceRef, derived) {
       const weak = pills[1]?.replace(/^苦手: /, "");
       const strong = pills[2]?.replace(/^得意: /, "");
       if (!difficulties.includes(difficulty) || !actions.includes(weak) || !actions.includes(strong) || difficulty !== original.difficulty || weak !== original.strategy.weak_subject || strong !== original.strategy.strong_subject) throw new Error(`Stale or invalid assessment: ${subId}`);
+      const points = original.scoring.points;
+      if (!Number.isFinite(points) || points <= 0) throw new Error(`Invalid provisional points: ${subId}`);
       return {
         id: subId,
         label: plain(capture(subBody, /<span class="subquestion__label">([\s\S]*?)<\/span>/, `${subId} label`)),
-        difficulty, weak, strong,
+        difficulty, weak, strong, points,
         difficultyReason: plain(capture(subBody, /<h4>レベル判断<\/h4><p>([\s\S]*?)<\/p>/, `${subId} difficulty reason`)),
         strategyReason: plain(capture(subBody, /<h4>解く順番の理由<\/h4><p>([\s\S]*?)<\/p>/, `${subId} strategy reason`)),
         prerequisites: original.optimization_prerequisites,

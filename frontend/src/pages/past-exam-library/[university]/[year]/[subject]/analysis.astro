@@ -15,7 +15,9 @@ const description = `${page.university} ${page.year}年度${page.subject}の出�
 const levels = ["基本レベル", "基本＋αレベル", "標準レベル", "発展レベル"];
 const priorities = ["先に解く", "後回し", "見送る"];
 const total = page.majorQuestions.reduce((n, q) => n + q.subquestions.length, 0);
-const difficultySlices = buildDifficultyPie(page.difficultyCounts);
+const totalPoints = page.majorQuestions.flatMap((q) => q.subquestions).reduce((n, q) => n + q.points, 0);
+const difficultyPoints = levels.map((_, level) => page.majorQuestions.flatMap((q) => q.subquestions).filter((q) => q.difficulty === level).reduce((n, q) => n + q.points, 0));
+const difficultySlices = buildDifficultyPie(difficultyPoints);
 ---
 
 <SiteLayout title={title} description={description} canonical={`https://lexus-ec.com${page.route.path}`}>
@@ -61,18 +63,19 @@ const difficultySlices = buildDifficultyPie(page.difficultyCounts);
           <dl class="analysis-distribution-totals">
             <div><dt>大問合計</dt><dd><strong>{page.majorQuestions.length}</strong>題</dd></div>
             <div><dt>小問合計</dt><dd><strong>{total}</strong>問</dd></div>
+            <div><dt>配点合計</dt><dd><strong>{totalPoints}</strong>点</dd></div>
           </dl>
           <div class="analysis-distribution-chart">
             <svg class="analysis-difficulty-pie" viewBox="0 0 220 220" width="220" height="220" role="img" aria-labelledby="difficulty-pie-title" aria-describedby="difficulty-pie-note">
-              <title id="difficulty-pie-title">{`小問合計${total}問の難易度の割合。${difficultySlices.map((s) => `${levels[s.level]} ${s.count}問、${s.percent}%`).join("。")}`}</title>
-              {difficultySlices.filter((s) => s.count > 0).map((s) => <path class={`analysis-level-fill level-${s.level}`} d={s.path} />)}
-              {difficultySlices.filter((s) => s.fraction >= 0.06).map((s) => <text x={s.labelX} y={s.labelY} text-anchor="middle" dominant-baseline="central" aria-hidden="true">{s.count}問</text>)}
+              <title id="difficulty-pie-title">{`仮配点合計${totalPoints}点の難易度別割合。${difficultySlices.map((s) => `${levels[s.level]} ${page.difficultyCounts[s.level]}問、推定${s.value}点`).join("。")}`}</title>
+              {difficultySlices.filter((s) => s.value > 0).map((s) => <path class={`analysis-level-fill level-${s.level}`} d={s.path} />)}
+              {difficultySlices.filter((s) => s.fraction >= 0.06).map((s) => <text x={s.labelX} y={s.labelY} text-anchor="middle" dominant-baseline="central" aria-hidden="true">{s.value}点</text>)}
             </svg>
             <ul class="analysis-legend">
-              {difficultySlices.map((s) => <li><i class={`analysis-level-fill level-${s.level}`} aria-hidden="true"></i><span>{levels[s.level]}</span><span class="analysis-legend-values"><b>{s.count}問</b><small>{s.percent}%</small></span></li>)}
+              {difficultySlices.map((s) => <li><i class={`analysis-level-fill level-${s.level}`} aria-hidden="true"></i><span class="analysis-legend-copy"><span>{levels[s.level]}</span><span class="analysis-legend-values"><b>{page.difficultyCounts[s.level]}問</b><small>（推定：{s.value}点）</small></span></span></li>)}
             </ul>
           </div>
-          <small id="difficulty-pie-note">小問数の割合（概数）。配点比率ではありません。</small>
+          <small id="difficulty-pie-note">難易度別の仮配点割合です。大学公表の小問別配点ではありません。</small>
         </div>
       </section>
 

@@ -26,12 +26,15 @@ export function buildAnalysis(evidence, editorial) {
       const copy = edited.subquestions.find((q) => q.id === s.id);
       if (!copy || used.has(s.id) || !difficulties.includes(s.difficulty) || !actions.includes(s.weak) || !actions.includes(s.strong)) throw new Error(`Invalid subquestion ${s.id}`);
       used.add(s.id);
-      return { id: s.id, label: s.label, title: requireText(copy.title), note: requireText(copy.note), difficulty: difficulties.indexOf(s.difficulty), weak: actions.indexOf(s.weak), strong: actions.indexOf(s.strong) };
+      if (!Number.isFinite(s.points) || s.points <= 0) throw new Error(`Invalid provisional points ${s.id}`);
+      return { id: s.id, label: s.label, title: requireText(copy.title), note: requireText(copy.note), difficulty: difficulties.indexOf(s.difficulty), weak: actions.indexOf(s.weak), strong: actions.indexOf(s.strong), points: s.points };
     });
     const anchor = `major-question-${String(index + 1).padStart(2, "0")}`;
     return { id: major.id, label: major.label, title: requireText(edited.title), subtitle: requireText(edited.subtitle), summary: requireText(edited.summary), studyAction: requireText(edited.studyAction), requirements: major.requirements, subquestions, questionsPath: `${root}questions/#${anchor}`, answersPath: `${root}answers/#${anchor}` };
   });
   const counts = difficulties.map((_, level) => majorQuestions.flatMap((m) => m.subquestions).filter((s) => s.difficulty === level).length);
+  const pointsTotal = majorQuestions.flatMap((m) => m.subquestions).reduce((n, s) => n + s.points, 0);
+  if (pointsTotal !== p.total_points) throw new Error("Provisional point total mismatch");
   const targetAnalysis = validateTargetAnalysis(evidence.targetAnalysis, majorQuestions.flatMap((m) => m.subquestions.map((s) => s.id)));
   if (editorial.targets?.length !== targetAnalysis.profiles.length) throw new Error("Incomplete target editorial coverage");
   const targets = {

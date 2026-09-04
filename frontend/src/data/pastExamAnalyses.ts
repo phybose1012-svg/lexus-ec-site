@@ -21,7 +21,7 @@ export type AnalysisPage = {
   majorQuestions: Array<{
     id: string; label: string; title: string; subtitle: string; summary: string; studyAction: string;
     requirements: number[]; questionsPath: string; answersPath: string;
-    subquestions: Array<{ id: string; label: string; title: string; note: string; difficulty: number; weak: number; strong: number }>;
+    subquestions: Array<{ id: string; label: string; title: string; note: string; difficulty: number; weak: number; strong: number; points: number }>;
   }>;
   source: { approved: boolean; project: string; html: string; sha256: string };
   links: { questions: string; answers: string; university: string };
