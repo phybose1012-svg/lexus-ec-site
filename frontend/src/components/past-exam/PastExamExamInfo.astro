@@ -1,0 +1,15 @@
+---
+import "../../styles/past-exam-ui.css";
+
+interface Props {
+  fields: Array<{ label: string; value: string }>;
+}
+const { fields } = Astro.props;
+---
+
+<section class="past-exam-info" aria-label="試験情報">
+  <p class="past-exam-ui-label">試験情報</p>
+  <dl class="past-exam-info__grid">
+    {fields.map((field) => <div><dt>{field.label}</dt><dd>{field.value}</dd></div>)}
+  </dl>
+</section>

@@ -1,7 +1,3 @@
-.past-exam-answer-index {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
 .past-exam-answer-list {
   margin-top: 28px;
 }
@@ -400,7 +396,7 @@
 }
 
 @media print {
-  body.is-printing-past-exam-document .past-exam-answer-page .answer-major-card + .answer-major-card {
+  body.is-printing-past-exam-document .past-exam-answer-page .answer-major-card ~ .answer-major-card {
     margin-top: 0;
     break-before: page;
     page-break-before: always;

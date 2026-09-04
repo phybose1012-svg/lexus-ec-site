@@ -10,6 +10,7 @@
     "past-exam:answers:test": "node --test ../.agents/skills/past-exam-answer-author/scripts/build-answer-page.test.mjs",
     "past-exam:analyses": "node ./scripts/build-past-exam-analyses.mjs",
     "past-exam:analyses:test": "node --test ./scripts/past-exam-analysis.test.mjs",
+    "past-exam:ui:test": "node --test ./scripts/past-exam-ui.test.mjs",
     "dev": "node ./scripts/astro-command.mjs dev --host 127.0.0.1",
     "build": "node ./scripts/verify-build-inputs.mjs && npm run past-exam:answers && npm run past-exam:analyses && node ./scripts/astro-command.mjs check && node ./scripts/astro-command.mjs build",
     "preview": "node ./scripts/astro-command.mjs preview --host 127.0.0.1"

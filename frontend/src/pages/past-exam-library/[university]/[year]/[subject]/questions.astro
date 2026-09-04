@@ -1,5 +1,9 @@
 ---
 import SiteLayout from "../../../../../layouts/SiteLayout.astro";
+import PastExamExamInfo from "../../../../../components/past-exam/PastExamExamInfo.astro";
+import PastExamDocumentTabs from "../../../../../components/past-exam/PastExamDocumentTabs.astro";
+import PastExamContents from "../../../../../components/past-exam/PastExamContents.astro";
+import PastExamBrandDivider from "../../../../../components/past-exam/PastExamBrandDivider.astro";
 import { analysisPathFor } from "../../../../../data/pastExamAnalyses";
 import PastExamPrintBranding from "../../../../../components/past-exam/PastExamPrintBranding.astro";
 import PastExamPrintButton from "../../../../../components/past-exam/PastExamPrintButton.astro";
@@ -166,14 +170,14 @@ const structuredData = {
           </div>
         </div>
 
-        <dl class="past-exam-question-meta" aria-label="試験情報">
-          <div><dt>年度</dt><dd>{page.exam.year}年度</dd></div>
-          <div><dt>入試区分</dt><dd>{page.exam.label}</dd></div>
-          <div><dt>試験段階</dt><dd>{page.exam.stage}</dd></div>
-          <div><dt>科目</dt><dd>{page.subject.name}</dd></div>
-          <div><dt>試験時間</dt><dd>{page.exam.duration}</dd></div>
-          <div><dt>大問</dt><dd>{page.document.questions.length}題</dd></div>
-        </dl>
+        <PastExamExamInfo fields={[
+          { label: "年度", value: `${page.exam.year}年度` },
+          { label: "入試区分", value: page.exam.label },
+          { label: "試験段階", value: page.exam.stage },
+          { label: "科目", value: page.subject.name },
+          { label: "試験時間", value: page.exam.duration },
+          { label: "大問", value: `${page.document.questions.length}題` },
+        ]} />
       </div>
     </header>
 
@@ -200,35 +204,10 @@ const structuredData = {
       </div>
     </div>
 
-    <nav class="past-exam-question-mode" aria-label="問題・解答・分析">
-      <div class="content">
-        <span class="is-current" aria-current="page"><small>01</small><strong>問題</strong><em>表示中</em></span>
-        {
-          answerPath ? (
-            <a href={answerPath}><small>02</small><strong>解答</strong><em>閲覧する</em></a>
-          ) : (
-            <span><small>02</small><strong>解答</strong><em>準備中</em></span>
-          )
-        }
-        {
-          analysisPath ? (
-            <a href={analysisPath}><small>03</small><strong>分析</strong><em>閲覧する</em></a>
-          ) : (
-            <span><small>03</small><strong>分析</strong><em>準備中</em></span>
-          )
-        }
-      </div>
-    </nav>
+    <PastExamDocumentTabs current="questions" questions={page.route.path} answers={answerPath} analysis={analysisPath} />
 
     <div class="past-exam-question-reader content">
-      <nav class="past-exam-question-index" aria-label="問題内の目次">
-        <a href="#instructions"><strong>共通注意</strong><small>解答方法</small></a>
-        {
-          page.document.questions.map((question) => (
-            <a href={`#${question.id}`}><strong>{question.label}</strong><small>問題を見る</small></a>
-          ))
-        }
-      </nav>
+      <PastExamContents title="問題の目次" items={page.document.questions.map((question) => ({ label: question.label, href: `#${question.id}` }))} />
 
       <details class="past-exam-question-instructions" id="instructions" data-past-exam-print-instructions>
         <summary>
@@ -241,7 +220,10 @@ const structuredData = {
       </details>
 
       <section class="past-exam-question-list" aria-label={`${page.exam.year}年度 ${page.subject.name}の問題`}>
-        {page.document.questions.map((question) => <Fragment set:html={question.html} />)}
+        {page.document.questions.map((question, i) => <Fragment>
+          <PastExamBrandDivider character={i === 0 ? "lexus" : i === page.document.questions.length - 1 ? "oni" : "none"} />
+          <Fragment set:html={question.html} />
+        </Fragment>)}
       </section>
 
       <aside class="past-exam-question-note">

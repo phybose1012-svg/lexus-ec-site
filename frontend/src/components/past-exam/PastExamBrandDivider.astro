@@ -1,0 +1,18 @@
+---
+import "../../styles/past-exam-ui.css";
+
+interface Props {
+  character?: "none" | "lexus" | "oni";
+}
+const { character = "none" } = Astro.props;
+const characterImage = character === "lexus"
+  ? { src: "/illustrations/characters/lexus-kun-exp.png", size: 1170 }
+  : character === "oni"
+    ? { src: "/illustrations/characters/yuki-sensei-default.png", size: 395 }
+    : null;
+---
+
+<div class="past-exam-brand-divider" aria-hidden="true">
+  <img class="past-exam-brand-divider__strip" src="/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png" alt="" width="1024" height="74" loading="lazy" decoding="async" />
+  {characterImage && <img class="past-exam-brand-divider__character" src={characterImage.src} alt="" width={characterImage.size} height={characterImage.size} loading="lazy" decoding="async" />}
+</div>

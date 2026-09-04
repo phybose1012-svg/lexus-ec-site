@@ -1,6 +1,9 @@
 ---
 import SiteLayout from "../../../../../layouts/SiteLayout.astro";
 import AnalysisSection from "../../../../../components/past-exam/AnalysisSection.astro";
+import PastExamExamInfo from "../../../../../components/past-exam/PastExamExamInfo.astro";
+import PastExamDocumentTabs from "../../../../../components/past-exam/PastExamDocumentTabs.astro";
+import PastExamContents from "../../../../../components/past-exam/PastExamContents.astro";
 import { analysisPages, type AnalysisPage } from "../../../../../data/pastExamAnalyses";
 import { buildDifficultyPie } from "../../../../../lib/pastExamDifficultyPie.mjs";
 import "../../../../../styles/past-exam-library.css";
@@ -38,22 +41,30 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
           </div>
           <a class="past-exam-question-back" href={`${page.links.university}#year-${page.year}`}>← 年度・科目一覧へ</a>
         </div>
-        <div class="analysis-exam-facts" aria-label="試験情報">
-          <span>{page.examLabel}</span><span>{page.majorQuestions.length}大問・{total}小問</span><span>{page.format}</span><span>{page.duration}</span>
-        </div>
+        <PastExamExamInfo fields={[
+          { label: "年度", value: `${page.year}年度` },
+          { label: "入試区分", value: page.examLabel },
+          { label: "科目", value: page.subject },
+          { label: "形式", value: page.format },
+          { label: "試験時間", value: page.duration },
+          { label: "大問・小問", value: `${page.majorQuestions.length}題・${total}問` },
+        ]} />
       </div>
     </header>
-    <nav class="past-exam-question-mode" aria-label="問題・解答・分析">
-      <div class="content">
-        <a href={page.links.questions}><small>01</small><strong>問題</strong><em>閲覧する</em></a>
-        <a href={page.links.answers}><small>02</small><strong>解答</strong><em>閲覧する</em></a>
-        <span class="is-current" aria-current="page"><small>03</small><strong>分析</strong><em>表示中</em></span>
-      </div>
-    </nav>
+    <div class="past-exam-question-review"><div class="content">
+      <span>{page.source.approved ? "レクサスE.C.の編集評価" : "ステージング確認用 · 難易度・優先度はレクサスE.C.の編集評価です。"}</span>
+    </div></div>
+    <PastExamDocumentTabs current="analysis" questions={page.links.questions} answers={page.links.answers} analysis={page.route.path} />
 
     <div class="analysis-body">
       <div class="analysis-introduction content">
-      <p class="analysis-review">{page.source.approved ? "レクサスE.C.の編集評価" : "ステージング確認用 · 難易度・優先度はレクサスE.C.の編集評価です。"}</p>
+      <PastExamContents title="分析の目次" items={[
+        { label: "試験概要", href: "#difficulty-distribution" },
+        { label: "目標点", href: "#target-score" },
+        { label: "大問ごとの特徴", href: "#overview-title" },
+        { label: "解く順番", href: "#priority-title" },
+        { label: "復習", href: "#practice-title" },
+      ]} />
       <section class="analysis-takeaway" aria-labelledby="analysis-takeaway-title">
         <div>
           <p class="analysis-eyebrow">この年のポイント</p>
@@ -82,7 +93,7 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
       </section>
       </div>
 
-      <AnalysisSection id="target-score" headingId="target-title" number="01" title="目標点" tone="muted">
+      <AnalysisSection id="target-score" headingId="target-title" number="01" title="目標点" tone="muted" character="lexus">
         <p class="analysis-section-intro">数学に{page.targets.timeBudgetMinutes}分を使うと仮定した、レクサスの目標点です。小問別の仮配点に基づく試算で、大学公表の配点・合格最低点ではありません。</p>
         <div class="analysis-target-grid">
           {page.targets.profiles.map((profile) => (
@@ -116,7 +127,7 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
         </div>
       </AnalysisSection>
 
-      <AnalysisSection headingId="priority-title" number="03" title="解く順番の目安" tone="muted">
+      <AnalysisSection headingId="priority-title" number="03" title="解く順番の目安" tone="muted" character="oni">
         <div class="analysis-profile-grid">
           {page.profiles.map((profile) => <aside class={`analysis-profile is-${profile.id}`}><h3>{profile.title}</h3><p>{profile.text}</p></aside>)}
         </div>

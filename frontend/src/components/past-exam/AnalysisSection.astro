@@ -1,19 +1,21 @@
 ---
+import PastExamBrandDivider from "./PastExamBrandDivider.astro";
+
 interface Props {
   id?: string;
   headingId: string;
   number: string;
   title: string;
   tone?: "white" | "muted";
+  character?: "none" | "lexus" | "oni";
 }
 
-const { id, headingId, number, title, tone = "white" } = Astro.props;
-const logoStrip = "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png";
+const { id, headingId, number, title, tone = "white", character = "none" } = Astro.props;
 ---
 
 <section class:list={["analysis-section", { "analysis-section--muted": tone === "muted" }]} id={id} aria-labelledby={headingId}>
   <div class="content">
-    <img class="analysis-section-brand" src={logoStrip} alt="" aria-hidden="true" width="1024" height="74" loading="lazy" decoding="async" />
+    <PastExamBrandDivider character={character} />
     <div class="analysis-section-heading"><span>{number}</span><h2 id={headingId}>{title}</h2></div>
     <slot />
   </div>

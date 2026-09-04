@@ -1,0 +1,31 @@
+---
+import "../../styles/past-exam-ui.css";
+
+type DocumentMode = "questions" | "answers" | "analysis";
+interface Props {
+  current: DocumentMode;
+  questions: string;
+  answers: string | null;
+  analysis: string | null;
+}
+const { current, questions, answers, analysis } = Astro.props;
+const tabs: Array<{ id: DocumentMode; label: string; href: string | null }> = [
+  { id: "questions", label: "問題", href: questions },
+  { id: "answers", label: "解答・解説", href: answers },
+  { id: "analysis", label: "分析", href: analysis },
+];
+---
+
+<nav class="past-exam-document-tabs" aria-label="問題・解答・分析のページ切替">
+  <div class="content">
+    <p class="past-exam-ui-label">ページ切替</p>
+    <div class="past-exam-document-tabs__items">
+      {tabs.map((tab) => current === tab.id
+        ? <span class="past-exam-document-tab is-current" aria-current="page"><strong>{tab.label}</strong><small>表示中</small></span>
+        : tab.href
+          ? <a class="past-exam-document-tab" href={tab.href}><strong>{tab.label}</strong></a>
+          : <span class="past-exam-document-tab is-disabled" aria-disabled="true"><strong>{tab.label}</strong><small>準備中</small></span>
+      )}
+    </div>
+  </div>
+</nav>

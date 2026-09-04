@@ -1,0 +1,16 @@
+---
+import "../../styles/past-exam-ui.css";
+
+interface Props {
+  title: string;
+  items: Array<{ label: string; href: string }>;
+}
+const { title, items } = Astro.props;
+---
+
+<nav class="past-exam-contents" aria-label={title}>
+  <p class="past-exam-ui-label">{title}</p>
+  <ul>
+    {items.map((item) => <li><a href={item.href}>{item.label}<span aria-hidden="true">↓</span></a></li>)}
+  </ul>
+</nav>
