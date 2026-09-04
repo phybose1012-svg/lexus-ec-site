@@ -13,6 +13,8 @@ Use this when creating or revising an explanation, and on later editorial review
 ## Pass 2: Do the steps actually follow?
 
 - For each “therefore”, equivalence, substitution, or theorem, check the premise is given, proved, or explicitly cited from an earlier subquestion.
+- Before saying “代入します”, display or unambiguously identify the equation receiving the values. If deriving that equation requires squaring or expanding, show that bridge first; listing values alone does not identify a substitution target.
+- When converting a vector equation into a distance or squared-distance calculation, preserve the Lexus teaching sequence: take the magnitudes of both sides, square the resulting scalar equality, expand with dot products, then substitute the known magnitudes and dot products. Show the magnitude bars and the symbolic expansion, rather than jumping directly from a vector equality to a numeric squared length. Distinguish vector magnitude from scalar absolute value in the prose. Equal-distance conditions for a circumcenter likewise need the norm equalities before their squared equations.
 - Check domains, nonzero divisors, square-root signs, excluded solutions, interval endpoints, and necessity versus sufficiency. A zero derivative is a candidate, not by itself an extremum or inflection point.
 - Define variables before use and keep the same quantity attached to each symbol. Distinguish a point's x-coordinate, its y-coordinate, and a function value.
 - Name geometric angles/segments when an unexplained “equal angles” or “apply the theorem” obscures the inference. Check point order before replacing a segment length by a difference.
@@ -28,6 +30,7 @@ Use this when creating or revising an explanation, and on later editorial review
 - Avoid an identical prose conclusion immediately followed by the same result box. Use the prose for the reason and the box for the result.
 - Each colored formula block represents one meaningful calculation purpose. Read `frontend/src/data/pastExamFormulaPurposes.json`, reuse a matching `purposeId`, and add a label only if its purpose is genuinely distinct. Prefer a concrete purpose or method over labels such as “式”, “計算”, or “解説”.
 - Do not manufacture synonym variants. Adding a label does not fix a wrong location or a missing premise. Combine adjacent same-purpose calculations only if doing so improves readability.
+- Name an operation so students can see its purpose: for example, use “漸近線を求めるための式変形” for the rewrite into a linear term plus a remainder, not the vague “関数を分解する”. Update a canonical label in the library when improving its wording, rather than creating a synonymous entry.
 
 ## Repeat and gradually improve
 

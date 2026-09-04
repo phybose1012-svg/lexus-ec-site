@@ -331,7 +331,25 @@
               },
               {
                 "type": "prose",
-                "text": "\\(|\\overrightarrow{AB}|^2=4\\)、\\(|\\overrightarrow{AC}|^2=1\\)、\\(\\overrightarrow{AB}\\cdot\\overrightarrow{AC}=2\\cos120^\\circ=-1\\) を代入します。"
+                "text": "ADの長さを求めるため、両辺のベクトルの大きさ（絶対値）を取ります。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "vector-magnitude",
+                "latex": "AD=|\\overrightarrow{AD}|=\\left|\\frac13\\overrightarrow{AB}+\\frac23\\overrightarrow{AC}\\right|"
+              },
+              {
+                "type": "prose",
+                "text": "この等式の両辺を二乗し、右辺を内積で展開します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "squared-distance",
+                "latex": "\\begin{aligned}AD^2&=\\left|\\frac13\\overrightarrow{AB}+\\frac23\\overrightarrow{AC}\\right|^2\\\\&=\\frac19|\\overrightarrow{AB}|^2+\\frac49|\\overrightarrow{AC}|^2+\\frac49\\overrightarrow{AB}\\cdot\\overrightarrow{AC}\\end{aligned}"
+              },
+              {
+                "type": "prose",
+                "text": "この展開式に、問1で求めた値から分かる \\(|\\overrightarrow{AB}|^2=4\\)、\\(|\\overrightarrow{AC}|^2=1\\)、\\(\\overrightarrow{AB}\\cdot\\overrightarrow{AC}=2\\cdot1\\cdot\\cos120^\\circ=-1\\) を代入します。"
               },
               {
                 "type": "formula",
@@ -372,7 +390,25 @@
               },
               {
                 "type": "prose",
-                "text": "外心Oを \\(\\overrightarrow{AO}=s\\boldsymbol b+t\\boldsymbol c\\) とおきます。\\(OA=OB=OC\\) を展開して得られる2本の一次方程式を解きます。"
+                "text": "外心Oを \\(\\overrightarrow{AO}=s\\boldsymbol b+t\\boldsymbol c\\) とおきます。外心は3頂点から等距離なので、\\(OA=OB=OC\\) をベクトルの大きさで表します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "circumcenter-vector",
+                "latex": "|\\overrightarrow{AO}|=|\\overrightarrow{AO}-\\boldsymbol b|=|\\overrightarrow{AO}-\\boldsymbol c|"
+              },
+              {
+                "type": "prose",
+                "text": "各辺を二乗し、\\(\\overrightarrow{AO}=s\\boldsymbol b+t\\boldsymbol c\\) を代入すると、次の2式になります。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "circumcenter-vector",
+                "latex": "\\begin{aligned}|s\\boldsymbol b+t\\boldsymbol c|^2&=|(s-1)\\boldsymbol b+t\\boldsymbol c|^2\\\\|s\\boldsymbol b+t\\boldsymbol c|^2&=|s\\boldsymbol b+(t-1)\\boldsymbol c|^2\\end{aligned}"
+              },
+              {
+                "type": "prose",
+                "text": "この2式を内積で展開し、\\(|\\boldsymbol b|^2=4\\)、\\(|\\boldsymbol c|^2=1\\)、\\(\\boldsymbol b\\cdot\\boldsymbol c=-1\\) を代入して整理すると、次の連立方程式が得られます。"
               },
               {
                 "type": "formula",
@@ -381,7 +417,7 @@
               },
               {
                 "type": "prose",
-                "text": "IとOの位置ベクトルの差を取り、その長さの二乗を内積で計算します。"
+                "text": "IとOの位置ベクトルの差から、OからIへのベクトルを求めます。"
               },
               {
                 "type": "formula",
@@ -389,9 +425,31 @@
                 "latex": "\\overrightarrow{OI}=\\overrightarrow{AI}-\\overrightarrow{AO}=\\frac{4-3\\sqrt7}{6}\\boldsymbol b+\\frac{10-6\\sqrt7}{6}\\boldsymbol c"
               },
               {
+                "type": "prose",
+                "text": "両辺のベクトルの大きさ（絶対値）を取り、距離OIの式にします。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "vector-magnitude",
+                "latex": "OI=|\\overrightarrow{OI}|=\\left|\\frac{4-3\\sqrt7}{6}\\boldsymbol b+\\frac{10-6\\sqrt7}{6}\\boldsymbol c\\right|"
+              },
+              {
+                "type": "prose",
+                "text": "この等式の両辺を二乗し、右辺を内積で展開します。"
+              },
+              {
                 "type": "formula",
                 "purposeId": "squared-distance",
-                "latex": "OI^2=4\\left(\\frac{4-3\\sqrt7}{6}\\right)^2-2\\left(\\frac{4-3\\sqrt7}{6}\\right)\\left(\\frac{10-6\\sqrt7}{6}\\right)+\\left(\\frac{10-6\\sqrt7}{6}\\right)^2=\\frac{28}{3}-3\\sqrt7"
+                "latex": "\\begin{aligned}OI^2&=\\left|\\frac{4-3\\sqrt7}{6}\\boldsymbol b+\\frac{10-6\\sqrt7}{6}\\boldsymbol c\\right|^2\\\\&=\\left(\\frac{4-3\\sqrt7}{6}\\right)^2|\\boldsymbol b|^2+\\left(\\frac{10-6\\sqrt7}{6}\\right)^2|\\boldsymbol c|^2\\\\&\\quad+2\\left(\\frac{4-3\\sqrt7}{6}\\right)\\left(\\frac{10-6\\sqrt7}{6}\\right)\\boldsymbol b\\cdot\\boldsymbol c\\end{aligned}"
+              },
+              {
+                "type": "prose",
+                "text": "この展開式に \\(|\\boldsymbol b|^2=4\\)、\\(|\\boldsymbol c|^2=1\\)、\\(\\boldsymbol b\\cdot\\boldsymbol c=-1\\) を代入して計算します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "squared-distance",
+                "latex": "\\begin{aligned}OI^2&=4\\left(\\frac{4-3\\sqrt7}{6}\\right)^2+\\left(\\frac{10-6\\sqrt7}{6}\\right)^2\\\\&\\quad-2\\left(\\frac{4-3\\sqrt7}{6}\\right)\\left(\\frac{10-6\\sqrt7}{6}\\right)\\\\&=\\frac{28}{3}-3\\sqrt7\\end{aligned}"
               },
               {
                 "type": "result",
