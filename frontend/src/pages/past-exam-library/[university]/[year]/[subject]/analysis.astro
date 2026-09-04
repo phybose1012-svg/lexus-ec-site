@@ -14,7 +14,6 @@ const title = `${page.university} ${page.year}年度 ${page.subject}の分析｜
 const description = `${page.university} ${page.year}年度${page.subject}の出題分野、難易度、解く優先順位をコンパクトに整理。${page.summary}`;
 const levels = ["基本レベル", "基本＋αレベル", "標準レベル", "発展レベル"];
 const priorities = ["先に解く", "後回し", "見送る"];
-const axes = ["図形処理", "数式処理", "計算量", "典型問題の知識", "条件の読み取り"];
 const total = page.majorQuestions.reduce((n, q) => n + q.subquestions.length, 0);
 const difficultySlices = buildDifficultyPie(page.difficultyCounts);
 ---
@@ -148,31 +147,15 @@ const difficultySlices = buildDifficultyPie(page.difficultyCounts);
         <p class="analysis-small-note">「先に解く」は優先して着手する小問。「見送る」は今回の演習で時間をかけすぎない判断で、学習しなくてよいという意味ではありません。</p>
       </section>
 
-      <section class="analysis-section" aria-labelledby="requirements-title">
-        <div class="analysis-section-heading"><span>04</span><h2 id="requirements-title">要求される力を比べる</h2></div>
-        <p class="analysis-section-intro">{page.requirementsSummary}</p>
-        <div class="analysis-chart" role="region" aria-label="大問別の能力評価の比較" tabindex="0">
-          <table class="analysis-requirements">
-            <caption>0〜5の編集評価 · 数値が大きいほど、その力や処理量が求められます</caption>
-            <thead><tr><th scope="col">評価項目</th>{page.majorQuestions.map((m) => <th scope="col">{m.label}<small>{m.title}</small></th>)}</tr></thead>
-            <tbody>{axes.map((axis, i) => (
-              <tr><th scope="row">{axis}</th>{page.majorQuestions.map((m) => <td><div class="analysis-score"><span class="analysis-score__track" aria-hidden="true"><i style={`width:${m.requirements[i] / 5 * 100}%`}></i></span><strong>{m.requirements[i].toFixed(1)}</strong></div></td>)}</tr>
-            ))}</tbody>
-          </table>
-        </div>
-        <p class="analysis-small-note">元分析と同じ、仮配点による小問評価の加重平均です。大学公表値・正答率ではありません。仮配点を使うため、参考値としてご覧ください。</p>
-      </section>
-
       <section class="analysis-section" aria-labelledby="practice-title">
-        <div class="analysis-section-heading"><span>05</span><h2 id="practice-title">復習はこの{page.majorQuestions.length}点</h2></div>
+        <div class="analysis-section-heading"><span>04</span><h2 id="practice-title">復習はこの{page.majorQuestions.length}点</h2></div>
         <ol class="analysis-practice-list">{page.majorQuestions.map((m) => <li><strong>{m.title}</strong><p>{m.studyAction}</p></li>)}</ol>
       </section>
 
       <details class="analysis-method">
         <summary>分析の見方・元データについて</summary>
-        <p>保存済みの{page.year}年度{page.subject}の分析HTMLをもとに、難易度・目標点・優先度・能力評価を整理しています。長い説明と得点効率指数は省き、目標点・想定時間の試算は、算出条件とともに掲載しています。</p>
+        <p>保存済みの{page.year}年度{page.subject}の分析HTMLをもとに、難易度・目標点・優先度を整理しています。長い説明と得点効率指数は省き、目標点・想定時間の試算は、算出条件とともに掲載しています。</p>
         <p>試験時間は「{page.duration}」です。解く優先度は学習状況によって調整してください。</p>
-        <p>能力評価の「典型問題の知識」は元分析の「問題パターン知識」、「条件の読み取り」は「問題咀嚼」に対応します。評価値は元分析のままです。</p>
       </details>
     </div>
     <nav class="past-exam-question-links" aria-label="問題・解答へ戻る"><div class="content">
