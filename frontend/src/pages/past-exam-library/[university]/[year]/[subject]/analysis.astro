@@ -1,5 +1,6 @@
 ---
 import SiteLayout from "../../../../../layouts/SiteLayout.astro";
+import AnalysisSection from "../../../../../components/past-exam/AnalysisSection.astro";
 import { analysisPages, type AnalysisPage } from "../../../../../data/pastExamAnalyses";
 import { buildDifficultyPie } from "../../../../../lib/pastExamDifficultyPie.mjs";
 import "../../../../../styles/past-exam-library.css";
@@ -50,7 +51,8 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
       </div>
     </nav>
 
-    <div class="analysis-body content">
+    <div class="analysis-body">
+      <div class="analysis-introduction content">
       <p class="analysis-review">{page.source.approved ? "レクサスE.C.の編集評価" : "ステージング確認用 · 難易度・優先度はレクサスE.C.の編集評価です。"}</p>
       <section class="analysis-takeaway" aria-labelledby="analysis-takeaway-title">
         <div>
@@ -78,9 +80,9 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
           <small id="difficulty-pie-note">難易度別の仮配点割合です。大学公表の小問別配点ではありません。</small>
         </div>
       </section>
+      </div>
 
-      <section class="analysis-section analysis-targets" id="target-score" aria-labelledby="target-title">
-        <div class="analysis-section-heading"><span>01</span><h2 id="target-title">目標点</h2></div>
+      <AnalysisSection id="target-score" headingId="target-title" number="01" title="目標点" tone="muted">
         <p class="analysis-section-intro">数学に{page.targets.timeBudgetMinutes}分を使うと仮定した、レクサスの目標点です。小問別の仮配点に基づく試算で、大学公表の配点・合格最低点ではありません。</p>
         <div class="analysis-target-grid">
           {page.targets.profiles.map((profile) => (
@@ -99,10 +101,9 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
           ))}
         </div>
         <p class="analysis-small-note">時間は全{total}小問の解く・後回しにする判断を一度行う時間を含みます。実際の所要時間や得点を保証するものではありません。</p>
-      </section>
+      </AnalysisSection>
 
-      <section class="analysis-section" aria-labelledby="overview-title">
-        <div class="analysis-section-heading"><span>02</span><h2 id="overview-title">大問ごとの特徴</h2></div>
+      <AnalysisSection headingId="overview-title" number="02" title="大問ごとの特徴">
         <div class="analysis-major-grid">
           {page.majorQuestions.map((major, i) => (
             <article class="analysis-major-card">
@@ -113,10 +114,9 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
             </article>
           ))}
         </div>
-      </section>
+      </AnalysisSection>
 
-      <section class="analysis-section" aria-labelledby="priority-title">
-        <div class="analysis-section-heading"><span>03</span><h2 id="priority-title">解く順番の目安</h2></div>
+      <AnalysisSection headingId="priority-title" number="03" title="解く順番の目安" tone="muted">
         <div class="analysis-profile-grid">
           {page.profiles.map((profile) => <aside class={`analysis-profile is-${profile.id}`}><h3>{profile.title}</h3><p>{profile.text}</p></aside>)}
         </div>
@@ -143,12 +143,11 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
           ))}
         </div>
         <p class="analysis-small-note">「先に解く」は優先して着手する小問。「見送る」は今回の演習で時間をかけすぎない判断で、学習しなくてよいという意味ではありません。</p>
-      </section>
+      </AnalysisSection>
 
-      <section class="analysis-section" aria-labelledby="practice-title">
-        <div class="analysis-section-heading"><span>04</span><h2 id="practice-title">復習はこの{page.majorQuestions.length}点</h2></div>
+      <AnalysisSection headingId="practice-title" number="04" title={`復習はこの${page.majorQuestions.length}点`}>
         <ol class="analysis-practice-list">{page.majorQuestions.map((m) => <li><strong>{m.title}</strong><p>{m.studyAction}</p></li>)}</ol>
-      </section>
+      </AnalysisSection>
     </div>
     <nav class="past-exam-question-links" aria-label="問題・解答へ戻る"><div class="content">
       <a href={page.links.questions}><span>{page.year}年度 {page.subject}</span><strong>問題を解く</strong></a>
