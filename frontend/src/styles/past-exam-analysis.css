@@ -108,9 +108,6 @@
 .analysis-practice-list li::before { content: counter(practice, decimal-leading-zero); color: #967637; font-family: Georgia,serif; }
 .analysis-practice-list strong { font-size: 1rem; }
 .analysis-practice-list p { line-height: 1.8; font-size: 1rem; }
-.analysis-method { margin-top: 32px; padding: 18px 22px; border: 1px solid #dce4ea; border-radius: 4px; color: #5b6c7b; }
-.analysis-method summary { cursor: pointer; font-size: .875rem; font-weight: 700; }
-.analysis-method p { margin-top: 14px; font-size: .875rem; line-height: 1.8; }
 .analysis-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 @media(max-width: 960px) {
   .analysis-takeaway { grid-template-columns: 1fr; gap: 24px; }

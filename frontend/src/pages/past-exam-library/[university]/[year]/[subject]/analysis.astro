@@ -149,12 +149,6 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
         <div class="analysis-section-heading"><span>04</span><h2 id="practice-title">復習はこの{page.majorQuestions.length}点</h2></div>
         <ol class="analysis-practice-list">{page.majorQuestions.map((m) => <li><strong>{m.title}</strong><p>{m.studyAction}</p></li>)}</ol>
       </section>
-
-      <details class="analysis-method">
-        <summary>分析の見方・元データについて</summary>
-        <p>保存済みの{page.year}年度{page.subject}の分析HTMLをもとに、難易度・目標点・優先度を整理しています。長い説明と得点効率指数は省き、目標点・想定時間は、仮配点・仮の時間配分に基づく目安として掲載しています。</p>
-        <p>試験時間は「{page.duration}」です。解く優先度は学習状況によって調整してください。</p>
-      </details>
     </div>
     <nav class="past-exam-question-links" aria-label="問題・解答へ戻る"><div class="content">
       <a href={page.links.questions}><span>{page.year}年度 {page.subject}</span><strong>問題を解く</strong></a>
