@@ -66,6 +66,7 @@ The importer copies only referenced content assets plus the shared local KaTeX r
 
 ## Independently drawn figures and subject-specific notes
 
+- When creating, regenerating, or correcting original diagrams, follow the project-local [Past Exam Diagram Author](../past-exam-diagram-author/SKILL.md). It owns the SVG typography, deterministic generation, collision review, and figure-package validation; this importer owns registration and replacement in question HTML.
 - To replace source crop slots with original diagrams, pass `--figure-manifest frontend/src/data/pastExamFigures/<package-id>.json`. The shared renderer validates package-scoped asset paths, IDs, dimensions, alt text and captions, then replaces matching `data-crop-id` figures. Missing mappings fail; do not silently drop a required diagram.
 - The manifest uses `lexus-past-exam-figures.v1`, `contentProvenance: original_editorial`, `restrictedSourceCopied: false`, and `items` containing `id`, `src`, `width`, `height`, `alt`, `caption`. A manifest does not grant rights to source material. Draw from the mathematical conditions; do not embed restricted crops inside an SVG.
 - Iwate 2025 physics uses `frontend/scripts/build-iwate-2025-physics-figures.mjs` to regenerate its 10 original assets and manifest. This geometry is package-specific; the registration and HTML rendering are shared.
