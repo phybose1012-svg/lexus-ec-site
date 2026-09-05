@@ -76,6 +76,27 @@ test("original figures completely replace source crops and explanation placehold
   }
 });
 
+test("scientific labels use embedded KaTeX typography while Japanese labels stay readable", () => {
+  const textPattern = /<text([^>]*)>([\s\S]*?)<\/text>/g;
+  let mathLabelCount = 0;
+  let subscriptCount = 0;
+  for (const item of manifest.items) {
+    const svg = read(`public${item.src}`);
+    const labels = [...svg.matchAll(textPattern)];
+    const mathLabels = labels.filter((match) => /[A-Za-zφ0-9−=]/.test(match[2].replace(/<[^>]+>/g, "")));
+    mathLabelCount += mathLabels.length;
+    subscriptCount += (svg.match(/class="sub /g) ?? []).length;
+    for (const match of mathLabels) assert.match(match[1], /class="math/);
+    assert.equal(svg.includes("@font-face{font-family:'KaTeX_Main'"), mathLabels.length > 0, item.id);
+    if (mathLabels.length > 0) {
+      assert.equal((svg.match(/data:font\/woff2;base64/g) ?? []).length, 2, item.id);
+      assert.match(svg, /\.math \.mi\{font-family:'KaTeX_Math'/);
+    }
+  }
+  assert.ok(mathLabelCount > 30);
+  assert.ok(subscriptCount > 15);
+});
+
 test("figure registry fails closed on unregistered, duplicated and cross-package assets", () => {
   assert.throws(() => renderRegisteredFigure(registry, "missing"), /Unregistered/);
   assert.throws(() => replaceSourceFigures('<figure data-crop-id="missing"></figure>', registry), /Unregistered/);
