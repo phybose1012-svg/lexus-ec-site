@@ -1,6 +1,7 @@
 {
   "schemaVersion": "lexus-past-exam-answer-source.v1",
   "packageId": "iwate-medical-2025-general-mathematics",
+  "figureManifest": "frontend/src/data/pastExamFigures/iwate-medical-2025-general-mathematics.json",
   "route": {
     "university": "iwate-medical",
     "year": "2025",
@@ -186,12 +187,8 @@
                 "text": "問1の増減・凹凸表と問3の漸近線から \\(y=f(x)\\) の概形を描き、水平線 \\(y=k\\) との共有点を数えます。"
               },
               {
-                "type": "figurePlaceholder",
-                "assetId": "iwate-2025-math-q1-function-graph",
-                "title": "有理関数と水平線のグラフ",
-                "description": "y=f(x)、水平線 y=k、縦の漸近線 x=±√2/2、斜めの漸近線 y=x/2、極大点・極小点を示す予定です。",
-                "caption": "図：y=f(x) と y=k の共有点（独自作図へ差し替え予定）",
-                "size": "landscape"
+                "type": "figure",
+                "assetId": "q1-function-graph"
               },
               {
                 "type": "prose",
@@ -259,12 +256,8 @@
             "title": "問1　角Aと辺CA",
             "blocks": [
               {
-                "type": "figurePlaceholder",
-                "assetId": "iwate-2025-math-q2-geometry",
-                "title": "三角形と外接円の位置関係図",
-                "description": "三角形ABC、外接円、点D・E、内心I、外心O、線分AE・BCの位置関係を示す予定です。",
-                "caption": "図：A・B・C・D・E・I・Oの位置関係（独自作図へ差し替え予定）",
-                "size": "landscape"
+                "type": "figure",
+                "assetId": "q2-geometry"
               },
               {
                 "type": "prose",
@@ -563,12 +556,8 @@
                 "text": "1と8のブロックを置ける位置は3か所、ブロック内の順序は2通りです。残り2か所へは残る6枚から2枚を並べます。"
               },
               {
-                "type": "figurePlaceholder",
-                "assetId": "iwate-2025-math-q3-adjacency-layout",
-                "title": "1と8を一つのブロックにした配置図",
-                "description": "4つの枠のうち、2枚ブロックを左端・中央・右端に置く3通りを横並びで示す予定です。",
-                "caption": "図：1と8が隣り合う3つの配置（独自作図へ差し替え予定）",
-                "size": "wide"
+                "type": "figure",
+                "assetId": "q3-adjacency-layout"
               },
               {
                 "type": "formula",
