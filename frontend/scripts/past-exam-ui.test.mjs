@@ -68,6 +68,14 @@ for (const mode of modes) {
   });
 }
 
+test("question and answer cards do not repeat their headings in eyebrow labels", () => {
+  for (const mode of ["questions", "answers"]) {
+    const cards = findClass(pages[mode], "major-question-card");
+    assert.equal(cards.length, 3);
+    for (const card of cards) assert.equal(findClass(descendants(card), "page-kicker").length, 0);
+  }
+});
+
 // Keep all mathematical markup and attributes intact, not just visible text.
 function signature(node) {
   if (node.nodeName === "#comment") return null;

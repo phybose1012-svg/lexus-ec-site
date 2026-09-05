@@ -76,6 +76,13 @@ function removeInternalSourceNotes(fragment) {
   return fragment.replace(/\s*·\s*参照:\s*[^<]*/g, "");
 }
 
+function removeRedundantMajorQuestionKickers(fragment) {
+  return fragment.replace(
+    /<div\b[^>]*\bclass=["'][^"']*\bpage-kicker\b[^"']*["'][^>]*>[\s\S]*?<\/div>/gi,
+    "",
+  );
+}
+
 function countOccurrences(value, search) {
   if (!search) return 0;
   return value.split(search).length - 1;
@@ -281,6 +288,7 @@ async function main() {
       pageRecord.major_question_id,
       overrides,
     );
+    sourceFragment = removeRedundantMajorQuestionKickers(sourceFragment);
     if (figures) sourceFragment = replaceSourceFigures(sourceFragment, figures);
     assertSafeFragment(sourceFragment, filename);
     const questionHtml = await rewriteAndCopyAssets(

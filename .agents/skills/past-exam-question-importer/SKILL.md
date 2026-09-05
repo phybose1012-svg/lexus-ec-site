@@ -27,6 +27,8 @@ The index must contain `data-question-shared-instructions`. Each major-question 
 4. The generic Astro route discovers generated JSON automatically. Add a university-specific adapter only when the source cannot satisfy the common semantic contract, not merely because the university name or exam route differs.
 5. Link the new question page from the university/year/subject table, then verify the route, all major-question anchors, KaTeX rendering hooks, generated metadata, and `noindex` policy.
 
+The importer removes a direct `page-kicker` from each major-question fragment because the following `h2` already names the major question. Do not restore labels such as “第1問・大問別問題” above the same “第1問” heading.
+
 ## Publication boundary
 
 `public-candidate` means structurally ready for a publication review, not rights-approved. A staging URL protected only by `noindex` is still externally reachable. Do not push question content whose source says publication is prohibited or whose rights status is `review_required` until the user or responsible editor explicitly approves that shared staging publication.

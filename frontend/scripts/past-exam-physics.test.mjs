@@ -189,5 +189,10 @@ test("all three pages retain distinct navigation, branding, and physics-only lin
     for (const tab of tabs.filter((n) => n.tagName === "a")) assert.ok(attr(tab, "href").startsWith(route));
     for (const c of ["past-exam-info", "past-exam-contents"]) assert.equal(page.filter((n) => cls(n, c)).length, 1);
     assert.equal(page.filter((n) => cls(n, "past-exam-brand-divider")).length, mode === "analysis" ? 4 : 3);
+    if (mode !== "analysis") {
+      const cards = page.filter((n) => cls(n, "major-question-card"));
+      assert.equal(cards.length, 3);
+      for (const card of cards) assert.equal(nodes(card).filter((n) => cls(n, "page-kicker")).length, 0);
+    }
   }
 });

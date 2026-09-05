@@ -42,6 +42,7 @@ test("every formula resolves a canonical label outside the KaTeX target", () => 
     assert.equal((html.match(/class="answer-table__no-value"/g) ?? []).length, 6);
     assert.equal((html.match(/class="answer-trend"/g) ?? []).length, 6);
     assert.equal((html.match(/class="answer-key__slot"/g) ?? []).length, 47);
+    assert.equal(html.includes('class="page-kicker"'), false);
     execFileSync(process.execPath, [builder, "--source", inputPath, "--output", outputPath]);
     assert.equal(fs.readFileSync(outputPath, "utf8"), first, "generation is deterministic");
   });

@@ -241,7 +241,7 @@ function renderMajor(major, index) {
       return `<section class="answer-explanation-section" aria-labelledby="${sectionId}"><h3 id="${sectionId}">${escapeHtml(title)}</h3>${blocks}</section>`;
     })
     .join("");
-  const html = `<article class="source-page-card major-question-card answer-major-card" id="${escapeHtml(id)}" data-major-question-id="${escapeHtml(id)}"><div class="page-kicker">${escapeHtml(label)}・解答解説</div><h2>${escapeHtml(label)} 解答・解説</h2>${renderAnswerKey(major)}<div class="answer-explanation">${sections}</div></article>`;
+  const html = `<article class="source-page-card major-question-card answer-major-card" id="${escapeHtml(id)}" data-major-question-id="${escapeHtml(id)}"><h2>${escapeHtml(label)} 解答・解説</h2>${renderAnswerKey(major)}<div class="answer-explanation">${sections}</div></article>`;
   return {
     id,
     label,
