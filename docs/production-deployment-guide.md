@@ -87,16 +87,55 @@ Staging は Cloudflare Access のメールコード認証を外し、URL を知�
 | Domain | 用途 | 方針 |
 |---|---|---|
 | `lexus-ec.com` | 本番 apex | Cloudflare Pages production に割り当て予定 |
-| `www.lexus-ec.com` | www alias | apex へ 301 redirect、または Pages に同時割り当て。要確認 |
+| `www.lexus-ec.com` | www alias | `https://lexus-ec.com/...` へ 301 redirect。path/query は維持 |
 
 手順:
 
 1. Cloudflare Pages project `lexus-ec` を開く。
 2. `カスタム ドメイン` で `lexus-ec.com` を追加する。
-3. 必要なら `www.lexus-ec.com` も追加する。
+3. `www.lexus-ec.com` も追加し、DNS/証明書が有効な状態にする。
 4. Cloudflare が提示する DNS / 証明書状態を確認する。
 5. 既存 A record を Pages 向けに切り替える前に、メール系と既存アプリ系 DNS が維持されていることを確認する。
 6. ユーザー承認後に切り替える。
+
+`www` redirect rule:
+
+前提 DNS record:
+
+| Type | Name | Content | Proxy status | TTL |
+|---|---|---|---|---|
+| CNAME | `www` | `lexus-ec.com` | Proxied | Auto |
+
+| 項目 | 設定値 |
+|---|---|
+| Rule name | `www-to-apex-301` |
+| Rule type | Single Redirect |
+| Match | Wildcard pattern |
+| Request URL | `https://www.lexus-ec.com/*` |
+| Target URL | `https://lexus-ec.com/${1}` |
+| Status code | `301` |
+| Preserve query string | Enabled |
+
+HTTP 用 `www` redirect rule:
+
+| 項目 | 設定値 |
+|---|---|
+| Rule name | `www-http-to-apex-301` |
+| Rule type | Single Redirect |
+| Match | Wildcard pattern |
+| Request URL | `http://www.lexus-ec.com/*` |
+| Target URL | `https://lexus-ec.com/${1}` |
+| Status code | `301` |
+| Preserve query string | Enabled |
+
+検証済み:
+
+| URL | 期待値 |
+|---|---|
+| `https://www.lexus-ec.com/` | `301` -> `https://lexus-ec.com/` |
+| `https://www.lexus-ec.com/top/reservation/?utm_test=1` | `301` -> `https://lexus-ec.com/top/reservation/?utm_test=1` |
+| `http://www.lexus-ec.com/` | `301` -> `https://lexus-ec.com/` |
+| `http://www.lexus-ec.com/top/reservation/?utm_test=1` | `301` -> `https://lexus-ec.com/top/reservation/?utm_test=1` |
 
 ## DNS 切り替え手順
 
@@ -105,7 +144,7 @@ Staging は Cloudflare Access のメールコード認証を外し、URL を知�
 | 種別 | 確認対象 | 方針 |
 |---|---|---|
 | Apex | `lexus-ec.com` | Pages custom domain 用に切り替える候補 |
-| www | `www.lexus-ec.com` | redirect 方針を決めてから追加 |
+| www | `www.lexus-ec.com` | apex `https://lexus-ec.com/...` へ 301 redirect |
 | Base44 / Render 系 | `front2026`, `bento-request`, `front2026.prt`, `ocean-5` | CNAME `base44.onrender.com`、DNS only 維持 |
 | Mail | `mail`, `MX`, `TXT/SPF`, Google verification | 既存維持。メール停止を避けるため変更しない |
 | FTP | `ftp` | 使用有無を確認。不要でも即削除しない |
@@ -291,7 +330,7 @@ frontend/functions/form-submit.ts
 ## ユーザーに確認すべき事項
 
 1. production custom domain を Pages に切り替えるタイミング。
-2. `www.lexus-ec.com` を使うか、`lexus-ec.com` へ redirect するか。
+2. `www.lexus-ec.com` は `lexus-ec.com` へ 301 redirect で決定済み。
 3. Search Console の `lexus-ec.com` property が既にあるか。
 4. Google verification TXT を Cloudflare DNS に追加してよいか。
 5. フォーム通知メールの受信先。
