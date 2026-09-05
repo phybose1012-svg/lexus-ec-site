@@ -19,7 +19,6 @@ const staticPagePaths = [
   "/entrance/",
   "/lexus-premier/",
   "/medical-english-training/",
-  "/reservation/",
   "/top/access/",
   "/top/voice/",
   "/lexus-online/",
