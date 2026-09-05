@@ -35,7 +35,7 @@ add("q1-orbit-circle",650,370,"半径2Rの円軌道と地球。拡大したロ�
   '<path d="M408 64 H550 V108 H408 A22 22 0 0 1 408 64 Z" fill="#edf2f6"/>'+line(490,64,490,108)+line(521,64,521,108)+mathText(439,93,[mi("A")])+mathText(498,93,[mi("B")])+mathText(529,93,[mi("C")])+mathText(430,140,[rm("3"),mi("m")])+mathText(496,140,[mi("m")])+mathText(527,140,[mi("m")]));
 
 add("q1-orbit-ellipse",640,430,"地球の中心を右側の焦点とするだ円軌道。近地点は中心から2R、遠地点は7R。","だ円軌道の近地点と遠地点",
-  '<ellipse cx="310" cy="215" rx="202.5" ry="168.3746" class="dash"/>'+circle(422.5,215,45,'class="glass"')+circle(422.5,215,2,'fill="#18334c"')+dim(107.5,215,422.5,215)+dim(422.5,215,512.5,215)+mathText(248,200,[rm("7"),mi("R")])+mathText(470,200,[rm("2"),mi("R")])+text(402,240,"地球")+text(76,250,"遠地点")+text(506,250,"近地点"));
+  '<ellipse cx="310" cy="215" rx="202.5" ry="168.3746" class="dash"/>'+circle(422.5,215,45,'class="glass"')+circle(422.5,215,2,'fill="#18334c"')+dim(107.5,215,422.5,215)+dim(422.5,215,512.5,215)+mathText(248,200,[rm("7"),mi("R")])+mathText(470,200,[rm("2"),mi("R")])+text(402,240,"地球")+text(50,286,"遠地点")+text(506,286,"近地点"));
 
 let directions="";
 for(const [i,angle] of [-90,-135,-180,135,90,45,0,-45].entries()) {
@@ -84,7 +84,7 @@ const arc=(R)=>Array.from({length:71},(_,i)=>{const x=-r+2*r*i/70;return `${i?"L
 add("ans-q3-lens-geometry",640,470,"共通の接点Pから測る球面の高さはd1とd2。各球面の中心O1、O2から半径R1、R2を引き、横の長さr、縦の長さRj−djの直角三角形を作る。空隙dはd2−d1。","球面の高さd₁・d₂と、空隙d = d₂ − d₁",
   `<path d="${arc(R1)}"/><path d="${arc(R2)}"/>`+line(x0,28,x0,423,'class="dash"')+line(44,y0,587,y0,'class="dash"')+
   circle(x0,y0-R1,3,'fill="#18334c"')+circle(x0,y0-R2,3,'fill="#18334c"')+mathText(195,y0-R1+7,[mi("O"),sub("1")])+mathText(195,y0-R2+7,[mi("O"),sub("2")])+
-  line(x0,y0-R1,x0+r,y0-d1)+line(x0,y0-R2,x0+r,y0-d2)+mathText(328,175,[mi("R"),sub("1")])+mathText(312,237,[mi("R"),sub("2")])+
+  line(x0,y0-R1,x0+r,y0-d1)+line(x0,y0-R2,x0+r,y0-d2)+mathText(328,175,[mi("R"),sub("1")])+mathText(356,246,[mi("R"),sub("2")])+
   line(x0,y0-d1,x0+r,y0-d1,'class="dash"')+line(x0,y0-d2,x0+r,y0-d2,'class="dash"')+line(x0+r,y0-d2,x0+r,y0,'class="dash"')+
   dim(x0,y0+31,x0+r,y0+31)+mathText(x0+r/2-5,y0+58,[mi("r")])+mathText(x0-24,y0+25,[mi("P")])+
   line(x0+r,y0-d1,570,y0-d1,'class="dash"')+line(x0+r,y0-d2,570,y0-d2,'class="dash"')+

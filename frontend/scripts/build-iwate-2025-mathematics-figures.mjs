@@ -95,17 +95,17 @@ const graphBody =
   circle(gx(extremumX), gy(extremumY), 4.5, 'class="point"') +
   mathText(718, gy(0) + 7, [mi("x")]) +
   mathText(gx(0) + 8, 24, [mi("y")]) +
-  mathText(614, gy(k) - 10, [mi("y"), rm("="), mi("k")]) +
+  mathText(155, gy(k) - 15, [mi("y"), rm("="), mi("k")]) +
   mathText(85, 397, [mi("y"), rm("="), mi("f"), rm("("), mi("x"), rm(")")]) +
-  mathText(90, 337, [mi("y"), rm("="), mi("x"), rm("/2")], "", true) +
+  mathText(90, 365, [mi("y"), rm("="), mi("x"), rm("/2")], "", true) +
   mathText(gx(-asymptote) - 8, 61, [mi("x"), rm("=−√2/2")], 'text-anchor="end"', true) +
   mathText(gx(asymptote) + 8, 426, [mi("x"), rm("=√2/2")], 'text-anchor="start"', true) +
-  text(72, 286, "極大") +
-  mathText(72, 308, [rm("(−√6/2, −3√6/8)")], "", true) +
-  line(242, 298, gx(-extremumX) - 6, gy(-extremumY) + 2, 'class="guide"') +
-  text(520, 204, "極小") +
-  mathText(520, 226, [rm("(√6/2, 3√6/8)")], "", true) +
-  line(gx(extremumX) + 7, gy(extremumY), 512, 207, 'class="guide"') +
+  text(72, 198, "極大") +
+  mathText(72, 220, [rm("(−√6/2, −3√6/8)")], "", true) +
+  line(232, 218, gx(-extremumX) - 6, gy(-extremumY) - 4, 'class="guide"') +
+  text(530, 286, "極小") +
+  mathText(530, 308, [rm("(√6/2, 3√6/8)")], "", true) +
+  line(gx(extremumX) + 7, gy(extremumY) + 5, 520, 274, 'class="guide"') +
   rect(538, 48, 152, 42, 'rx="8" class="label-bg"') +
   mathText(614, 75, [mi("k"), rm(">3√6/8"), jp(" の例")], 'text-anchor="middle"', true) +
   text(614, 112, "水平線を上下に動かす", 'text-anchor="middle" font-size="15"');
