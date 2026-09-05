@@ -3,128 +3,50 @@ import SiteLayout from "../../../layouts/SiteLayout.astro";
 import PastExamBreadcrumbs from "../../../components/past-exam/PastExamBreadcrumbs.astro";
 import PastExamSeoHead from "../../../components/past-exam/PastExamSeoHead.astro";
 import { buildPastExamPageSeo, PAST_EXAM_SOCIAL_IMAGE, PAST_EXAM_SOCIAL_IMAGE_ALT } from "../../../lib/pastExamSeo.mjs";
+import {
+  universityLibraries,
+  subjectRowsFor,
+  librarySummaryFor,
+  type UniversityLibrary,
+} from "../../../data/pastExamUniversities";
 import "../../../styles/past-exam-library.css";
 import "../../../styles/past-exam-university.css";
 
-const title = "岩手医科大学医学部の過去問一覧｜レクサス教育センター";
-const description =
-  "岩手医科大学医学部の過去問を年度・科目別に探せます。2026〜2022年度の掲載状況と、2025年度数学・物理の問題・解答解説・分析をご案内。準備中の年度・科目も一覧で確認できます。";
-const canonical = "https://lexus-ec.com/past-exam-library/iwate-medical/";
+export const getStaticPaths = () =>
+  universityLibraries.map((library) => ({ params: { university: library.id }, props: { library } }));
+
+const { library } = Astro.props as { library: UniversityLibrary };
+
+const examYears = library.years.map((entry) => ({ ...entry, subjects: subjectRowsFor(library, entry.year) }));
+const readyYears = examYears.filter((entry) => entry.subjects.some((subject) => subject.problemPath));
+const summary = librarySummaryFor(library);
+const firstYear = library.years[0].year;
+const lastYear = library.years[library.years.length - 1].year;
+const anchorYear = readyYears[0]?.year ?? firstYear;
+
+const title = `${library.name}医学部の過去問一覧｜レクサス教育センター`;
+const publishedSubjects = examYears
+  .flatMap((entry) => entry.subjects.filter((subject) => subject.problemPath).map((subject) => `${entry.year}年度${subject.name}`))
+  .join("・");
+const description = `${library.name}医学部の過去問を年度・科目別に探せます。${firstYear}〜${lastYear}年度の掲載状況と、${
+  publishedSubjects || "掲載準備中の年度・科目"
+}の問題・解答解説・分析をご案内。準備中の年度・科目も一覧で確認できます。`;
+const canonical = `https://lexus-ec.com/past-exam-library/${library.id}/`;
 
 const librarySteps = [
-  { number: "01", label: "年度", value: "5年分", href: "#years", tone: "selected" },
-  { number: "02", label: "科目", value: "4科目", href: "#subjects", tone: "selected" },
-  { number: "03", label: "問題", value: "2科目", href: "#year-2025", tone: "ready" },
-  { number: "04", label: "解答", value: "2科目", href: "#year-2025", tone: "ready" },
-  { number: "05", label: "分析", value: "閲覧可", href: "#subjects", tone: "ready" },
-] as const;
-
-type SubjectRow = {
-  index: string;
-  name: string;
-  english: string;
-  tone: string;
-  problem: string;
-  problemTone: "ready" | "waiting" | "empty";
-  problemPath?: string;
-  answer: string;
-  answerTone: "ready" | "waiting" | "empty";
-  answerPath?: string;
-  analysis: string;
-  analysisTone: "ready" | "empty";
-  analysisPath?: string;
-};
-
-const subjectDefinitions = [
-  { index: "01", name: "数学", english: "MATHEMATICS", tone: "mathematics" },
-  { index: "02", name: "化学", english: "CHEMISTRY", tone: "chemistry" },
-  { index: "03", name: "物理", english: "PHYSICS", tone: "physics" },
-  { index: "04", name: "生物", english: "BIOLOGY", tone: "biology" },
-] as const;
-
-const subjects2025: SubjectRow[] = [
-  {
-    index: "01",
-    name: "数学",
-    english: "MATHEMATICS",
-    tone: "mathematics",
-    problem: "問題を見る",
-    problemTone: "ready",
-    problemPath: "/past-exam-library/iwate-medical/2025/mathematics/questions/",
-    answer: "解答を見る",
-    answerTone: "ready",
-    answerPath: "/past-exam-library/iwate-medical/2025/mathematics/answers/",
-    analysis: "分析を見る",
-    analysisTone: "ready",
-    analysisPath: "/past-exam-library/iwate-medical/2025/mathematics/analysis/",
-  },
-  {
-    index: "02",
-    name: "化学",
-    english: "CHEMISTRY",
-    tone: "chemistry",
-    problem: "権利確認中",
-    problemTone: "waiting",
-    answer: "準備中",
-    answerTone: "waiting",
-    analysis: "分析を見る",
-    analysisTone: "ready",
-    analysisPath: "/iwateika-university-entrance-exam-measures2027/#化学",
-  },
-  {
-    index: "03",
-    name: "物理",
-    english: "PHYSICS",
-    tone: "physics",
-    problem: "問題を見る",
-    problemTone: "ready",
-    problemPath: "/past-exam-library/iwate-medical/2025/physics/questions/",
-    answer: "解答を見る",
-    answerTone: "ready",
-    answerPath: "/past-exam-library/iwate-medical/2025/physics/answers/",
-    analysis: "分析を見る",
-    analysisTone: "ready",
-    analysisPath: "/past-exam-library/iwate-medical/2025/physics/analysis/",
-  },
-  {
-    index: "04",
-    name: "生物",
-    english: "BIOLOGY",
-    tone: "biology",
-    problem: "未収録",
-    problemTone: "empty",
-    answer: "未収録",
-    answerTone: "empty",
-    analysis: "分析を見る",
-    analysisTone: "ready",
-    analysisPath: "/iwateika-university-entrance-exam-measures2027/#生物",
-  },
+  { number: "01", label: "年度", value: `${summary.years}年分`, href: "#years", tone: "selected" },
+  { number: "02", label: "科目", value: `${summary.subjects}科目`, href: "#subjects", tone: "selected" },
+  { number: "03", label: "問題", value: `${summary.questions}科目`, href: `#year-${anchorYear}`, tone: summary.questions ? "ready" : "selected" },
+  { number: "04", label: "解答", value: `${summary.answers}科目`, href: `#year-${anchorYear}`, tone: summary.answers ? "ready" : "selected" },
+  { number: "05", label: "分析", value: summary.analyses ? "閲覧可" : "準備中", href: "#subjects", tone: summary.analyses ? "ready" : "selected" },
 ];
-
-const placeholderSubjects: SubjectRow[] = subjectDefinitions.map((subject) => ({
-  ...subject,
-  problem: "準備中",
-  problemTone: "empty",
-  answer: "準備中",
-  answerTone: "empty",
-  analysis: "準備中",
-  analysisTone: "empty",
-}));
-
-const examYears = [
-  { year: "2026", label: "最新年度", tone: "latest", subjects: placeholderSubjects },
-  { year: "2025", label: "一部公開中", tone: "active", subjects: subjects2025 },
-  { year: "2024", label: "掲載準備中", tone: "placeholder", subjects: placeholderSubjects },
-  { year: "2023", label: "掲載準備中", tone: "placeholder", subjects: placeholderSubjects },
-  { year: "2022", label: "掲載準備中", tone: "placeholder", subjects: placeholderSubjects },
-] as const;
 
 const { breadcrumbs, structuredData } = buildPastExamPageSeo({
   title, description, path: canonical, collection: true,
   breadcrumbs: [
     { name: "ホーム", path: "/" },
     { name: "過去問ライブラリー", path: "/past-exam-library/" },
-    { name: "岩手医科大学", path: "/past-exam-library/iwate-medical/" },
+    { name: library.name, path: `/past-exam-library/${library.id}/` },
   ],
 });
 ---
@@ -152,16 +74,16 @@ const { breadcrumbs, structuredData } = buildPastExamPageSeo({
           <div>
             <p class="exam-university-kicker">PAST EXAM LIBRARY</p>
             <h1>
-              岩手医科大学
+              {library.name}
               <span>過去問ライブラリー</span>
             </h1>
-            <p class="exam-university-header__meta">2026〜2022年度　5年分</p>
+            <p class="exam-university-header__meta">{firstYear}〜{lastYear}年度　{summary.years}年分</p>
           </div>
 
           <aside class="exam-university-current" aria-label="現在の公開状況">
             <span>現在の公開状況</span>
-            <strong>5年分の掲載枠を用意しました</strong>
-            <small>2025年度数学・物理の問題・解答解説・分析を閲覧できます</small>
+            <strong>{summary.years}年分の掲載枠を用意しました</strong>
+            <small>{library.currentStatus}</small>
           </aside>
         </div>
       </div>
@@ -219,11 +141,11 @@ const { breadcrumbs, structuredData } = buildPastExamPageSeo({
                   <dl>
                     <div>
                       <dt>試験区分</dt>
-                      <dd>一般選抜</dd>
+                      <dd>{library.examLabel}</dd>
                     </div>
                     <div>
                       <dt>試験段階</dt>
-                      <dd>一次試験</dd>
+                      <dd>{library.stageLabel}</dd>
                     </div>
                   </dl>
                   <span class={`exam-university-year-status is-${examYear.tone}`}>{examYear.label}</span>
@@ -231,7 +153,7 @@ const { breadcrumbs, structuredData } = buildPastExamPageSeo({
 
                 <div class="exam-university-table-wrap">
                   <table class="exam-university-table">
-                    <caption>{examYear.year}年度 岩手医科大学 一般選抜・一次試験の科目別公開状況</caption>
+                    <caption>{examYear.year}年度 {library.name} {library.examLabel}・{library.stageLabel}の科目別公開状況</caption>
                     <thead>
                       <tr>
                         <th scope="col">科目</th>
@@ -317,19 +239,19 @@ const { breadcrumbs, structuredData } = buildPastExamPageSeo({
       </div>
     </div>
 
-    <nav class="exam-university-links" aria-label="岩手医科大学の関連情報">
+    <nav class="exam-university-links" aria-label={`${library.name}の関連情報`}>
       <div class="content">
         <a href="/past-exam-library/">
           <span>大学一覧</span>
           <strong>過去問ライブラリー</strong>
         </a>
-        <a href="/iwateika-university-entrance-exam-measures2027/">
+        <a href={library.strategyPath}>
           <span>傾向と対策</span>
-          <strong>2027年度 一般選抜対策</strong>
+          <strong>{library.strategyLabel}</strong>
         </a>
-        <a href="/information-iwate/">
+        <a href={library.informationPath}>
           <span>大学情報</span>
-          <strong>岩手医科大学 入試情報</strong>
+          <strong>{library.informationLabel}</strong>
         </a>
       </div>
     </nav>

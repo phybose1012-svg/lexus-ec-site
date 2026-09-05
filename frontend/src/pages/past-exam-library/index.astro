@@ -4,6 +4,7 @@ import PastExamBreadcrumbs from "../../components/past-exam/PastExamBreadcrumbs.
 import PastExamSeoHead from "../../components/past-exam/PastExamSeoHead.astro";
 import { buildPastExamPageSeo, PAST_EXAM_SOCIAL_IMAGE, PAST_EXAM_SOCIAL_IMAGE_ALT } from "../../lib/pastExamSeo.mjs";
 import { privateMedicalUniversities2027 } from "../../data/privateMedicalAdmissions2027";
+import { libraryPathFor } from "../../data/pastExamUniversities";
 import "../../styles/past-exam-library.css";
 
 const title = "私立医学部の過去問ライブラリー｜レクサス教育センター";
@@ -28,8 +29,7 @@ const universityGroups = regionDefinitions.map((region) => ({
     .filter((university) => university.region === region.name)
     .map((university) => ({
       ...university,
-      libraryPath:
-        university.id === "iwate-medical" ? "/past-exam-library/iwate-medical/" : undefined,
+      libraryPath: libraryPathFor(university.id),
     })),
 }));
 

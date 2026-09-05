@@ -1,0 +1,527 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "juntendo-2025-general-a-mathematics",
+    "university_id": "juntendo",
+    "university_name": "順天堂大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-a",
+    "exam_method_name": "一般選抜A方式",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 70,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "順天堂大学公式の2025年度一般選抜A方式学生募集要項により、数学は70分。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "shidai-igakubu-gokaku-dokuhon/projects/universities/juntendo/past-exams/working/2025/general-a/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "b057072f8abcf253078da855327895e4aed13e097ed8c5001063f1159e5dd5ed",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "Ⅰ",
+      "sourceTitle": "小問集合：数列・ベクトル・4次方程式・必要十分条件",
+      "requirements": [
+        0.9,
+        3.1,
+        2.7,
+        3,
+        2.9
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1a",
+          "label": "（1）前半",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "等比数列であることを見抜き、1をまたぐ隣接項を確認する典型処理である。",
+          "strategyReason": "底をそろえて隣接項を代入する再現性の高い手順で、短時間に仮配点3点を回収できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-1b",
+          "label": "（1）無限級数",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "初項と公比を確認して無限等比級数の公式へ代入する基本問題である。",
+          "strategyReason": "収束条件と和の公式がそのまま使え、科目内でも特に高い得点効率が見込める。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-1c",
+          "label": "（1）積の数列",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "積を対数で和に変え、等差数列の和を整理した後に不等式を解く複数段階の典型問題である。",
+          "strategyReason": "常用対数をとれば単調な計算で答えに到達できるが、対数の和、二つの和公式、不等号処理、小数除算まで工程が長く、構造的に計算ミスへさらされる。得意層でも4分、苦手層では初期判断4倍・実行1.5倍で7.5分を要する見込みで、仮配点4点に対する得点効率は低い。Ⅰ（1）前半・無限級数やⅢ（1）など短い問題を先に処理し、時間が残った段階で戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2a",
+          "label": "（2）ベクトル表示",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "二つの内分公式と位置ベクトルを順に適用する必要があるが、誘導どおりに再現できる空間ベクトルの典型問題である。",
+          "strategyReason": "図の把握は必要だが、内分点RとDの位置ベクトルを公式どおり書く単調な手順で、誘導が強い。弱点層にも再現可能なルートがあるため今解く。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2b",
+          "label": "（2）面積",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "内積三つとグラム行列型の面積公式を組み合わせる典型処理だが、計算量はやや多い。",
+          "strategyReason": "得意層は前段のベクトルをそのまま用いて面積まで回収する。苦手層にも正攻法はあるが、三つの内積計算と平方根整理で実行時間が長くなるため、短い空所を処理した後に戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-2a"
+            ],
+            "strong_subject": [
+              "math-q1-2a"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-3a",
+          "label": "（3）平行移動",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "y^3 の係数比較だけで決まる、展開と係数比較の典型問題である。",
+          "strategyReason": "展開全部を行わず y^3 の係数を比較する定型手順で短く処理できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-3b",
+          "label": "（3）変数変換",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "係数比較の本数は多いが、誘導された形へ代入して連立する再現性の高い問題である。",
+          "strategyReason": "前段の値を代入し、 a^4=c,64a=c などを比較する機械的な処理で、空所数に対して短い。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-3a"
+            ],
+            "strong_subject": [
+              "math-q1-3a"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-3c",
+          "label": "（3）相反方程式",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "相反型の4次式を z^2 で割り、 z-1/z を導入する典型変形だが、誘導の意味を咀嚼する必要がある。",
+          "strategyReason": "誘導はあるが、 z\\ne0 を確認して式を割り、置換後の形を作るまでに発想と符号管理が必要である。先に係数比較まで回収し、時間に余裕があれば戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-3b"
+            ],
+            "strong_subject": [
+              "math-q1-3b"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-3d",
+          "label": "（3）最大の実数解",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "二つの2次方程式を解いて最大根を選び、二重根号を指定された形へ整理する複雑な処理を要求する。",
+          "strategyReason": "方針は2次方程式を二度解く定型計算だが、複数の±、最大根の比較、二重根号整理が重なり、5分以上かかる割に仮配点4点で得点効率が低い。苦手層は正答を前提にせず、得意層もⅠ・Ⅱ・Ⅲ（1）（2）を処理した後に戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-3c"
+            ],
+            "strong_subject": [
+              "math-q1-3c"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-4a",
+          "label": "（4）（a）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "絶対値の境界で場合分けし、集合の包含を判定する基本的な必要十分条件問題である。",
+          "strategyReason": "場合分けという定型手順で判定でき、選択式のため短時間で回収しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-4b",
+          "label": "（4）（b）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "一方向は a=x,b=1 、逆方向は反例で判定する、必要十分条件の典型である。",
+          "strategyReason": "具体例と反例を一つずつ置く定型的な判定で、計算負担が小さい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-4c",
+          "label": "（4）（c）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "級数収束の必要条件 a_n\\to0 と、その逆が成り立たないことを問う基本事項である。",
+          "strategyReason": "収束なら一般項は0へ、逆は偽という基本知識を確認すれば短く判定できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-4d",
+          "label": "（4）（d）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "平方しても奇偶が変わらないことを使い、奇数個の奇数を含むかで同値を判定する問題である。",
+          "strategyReason": "奇偶表を作る単調な手順でも確実に判定でき、専門的な発想を必要としない。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "Ⅱ",
+      "sourceTitle": "3次関数と接線条件から係数を決定する",
+      "requirements": [
+        1.4,
+        4.4,
+        3.4,
+        4,
+        3.4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-a",
+          "label": "（a）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "共有点を因数に置き換え、端点での微分係数を代入する典型問題である。",
+          "strategyReason": "三つの共有点を因数へ直す定型ルートが明示的で、後は微分と展開だけで仮配点8点を回収できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-b",
+          "label": "（b）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "重解による因数分解に加え、未知の接点で傾きと関数値を連立する必要がある。",
+          "strategyReason": "得意層には重解と接線条件を結ぶ典型問題で9点を狙える。苦手層は接点 t を新たに置き、二条件を連立する段階で時間を使いやすいため、（a）（c）や短い小問を先に処理してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-c",
+          "label": "（c）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "唯一の共有点を三重解と解釈できれば、微分係数の代入まで短く進む典型問題である。",
+          "strategyReason": "共有点が一つだけという条件を三重解へ置き換えれば、微分と代入の短い定型処理になる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "Ⅲ",
+      "sourceTitle": "定積分の漸化式と交代級数",
+      "requirements": [
+        0,
+        4,
+        3.7,
+        3.8,
+        3.3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "（1）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "\\int f'/f 型へ直す、数学Ⅲの基本的な定積分である。",
+          "strategyReason": "置換を使わず -\\log|\\cos x| へ直す定型積分で、記述式でも短時間に仮配点5点を確保できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "（2）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "次数を2下げる定積分の漸化式と帰納法は典型だが、基底と帰納段階を記述する処理量がある。",
+          "strategyReason": "数学Ⅲを得意とする層には漸化式と帰納法の典型で、仮配点15点を確保したい。苦手層にも再現可能な手順はあるが、基底確認、部分積分相当の変形、帰納仮定の符号整理まで長く、調整後は13.75分を見込む。短い空所とⅢ（1）を先に回収してから戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1"
+            ],
+            "strong_subject": [
+              "math-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-3",
+          "label": "（3）",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 10,
+          "difficultyReason": "積分不等式、はさみうち、前問の帰納式、部分和の極限を一つの証明へ統合する必要がある。",
+          "strategyReason": "与えられた不等式を積分して I_n\\to0 を得るだけでなく、前問の式を部分和へ組み替える必要がある。強い層でも8分を見込む発展的な終盤証明なので、得意層は全体の回収後に着手し、苦手層は正答を合格戦略の前提にしない。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1",
+              "math-q3-2"
+            ],
+            "strong_subject": [
+              "math-q3-1",
+              "math-q3-2"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 70,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 50,
+        "targetPercent": 50,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 38.8,
+        "maximum": {
+          "points": 50,
+          "minutes": 69.9,
+          "questionIds": [
+            "math-q1-1a",
+            "math-q1-1b",
+            "math-q1-2a",
+            "math-q1-3a",
+            "math-q2-a",
+            "math-q2-c",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "now": {
+          "points": 49,
+          "minutes": 69.6,
+          "questionIds": [
+            "math-q1-1a",
+            "math-q1-1b",
+            "math-q1-2a",
+            "math-q1-3a",
+            "math-q1-3b",
+            "math-q1-4a",
+            "math-q1-4b",
+            "math-q1-4c",
+            "math-q1-4d",
+            "math-q2-a",
+            "math-q2-c",
+            "math-q3-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 86,
+          "minutes": 102.2,
+          "questionIds": [
+            "math-q1-1a",
+            "math-q1-1b",
+            "math-q1-1c",
+            "math-q1-2a",
+            "math-q1-2b",
+            "math-q1-3a",
+            "math-q1-3b",
+            "math-q1-3c",
+            "math-q1-4a",
+            "math-q1-4b",
+            "math-q1-4c",
+            "math-q1-4d",
+            "math-q2-a",
+            "math-q2-b",
+            "math-q2-c",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 9.9,
+        "maximum": {
+          "points": 100,
+          "minutes": 63.1,
+          "questionIds": [
+            "math-q1-1a",
+            "math-q1-1b",
+            "math-q1-1c",
+            "math-q1-2a",
+            "math-q1-2b",
+            "math-q1-3a",
+            "math-q1-3b",
+            "math-q1-3c",
+            "math-q1-3d",
+            "math-q1-4a",
+            "math-q1-4b",
+            "math-q1-4c",
+            "math-q1-4d",
+            "math-q2-a",
+            "math-q2-b",
+            "math-q2-c",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "now": {
+          "points": 78,
+          "minutes": 46.2,
+          "questionIds": [
+            "math-q1-1a",
+            "math-q1-1b",
+            "math-q1-2a",
+            "math-q1-2b",
+            "math-q1-3a",
+            "math-q1-3b",
+            "math-q1-4a",
+            "math-q1-4b",
+            "math-q1-4c",
+            "math-q1-4d",
+            "math-q2-a",
+            "math-q2-b",
+            "math-q2-c",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 63.1,
+          "questionIds": [
+            "math-q1-1a",
+            "math-q1-1b",
+            "math-q1-1c",
+            "math-q1-2a",
+            "math-q1-2b",
+            "math-q1-3a",
+            "math-q1-3b",
+            "math-q1-3c",
+            "math-q1-3d",
+            "math-q1-4a",
+            "math-q1-4b",
+            "math-q1-4c",
+            "math-q1-4d",
+            "math-q2-a",
+            "math-q2-b",
+            "math-q2-c",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        }
+      }
+    ]
+  }
+}

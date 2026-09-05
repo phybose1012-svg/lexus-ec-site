@@ -179,6 +179,34 @@ test("preserve target/max distinction and select a concrete route to the goal", 
   assert.ok(targets.profiles.every((p) => p.route.minutes <= targets.timeBudgetMinutes));
 });
 
+test("distinguish an official per-subject time limit from a provisional allocation", () => {
+  const { html, metadata, derived } = targetFixture();
+  assert.equal(extractTargetAnalysis(html, metadata, derived).timeBudgetBasis, "provisional_editorial");
+
+  // A subject with its own published time limit keeps provisional points but an official clock.
+  const official = structuredClone(metadata);
+  official.calculation_policy.time_budget.basis = "official_subject";
+  const officialTargets = extractTargetAnalysis(html, official, derived);
+  assert.equal(officialTargets.timeBudgetBasis, "official_subject");
+  assert.equal(officialTargets.basis, "provisional_editorial");
+  assert.equal(officialTargets.timeBudgetMinutes, 10);
+
+  // Anything else is still rejected rather than silently treated as provisional.
+  const unknown = structuredClone(metadata);
+  unknown.calculation_policy.time_budget.basis = "guessed";
+  assert.throws(() => extractTargetAnalysis(html, unknown, derived), /calculation policy/);
+  // Points may never be relabelled as official.
+  const officialPoints = structuredClone(metadata);
+  officialPoints.calculation_policy.scoring.basis = "official_subject";
+  assert.throws(() => extractTargetAnalysis(html, officialPoints, derived), /calculation policy/);
+
+  for (const basis of [undefined, "official", null]) {
+    const bad = structuredClone(evidence);
+    bad.targetAnalysis.timeBudgetBasis = basis;
+    assert.throws(() => buildAnalysis(bad, editorial), /time budget basis/);
+  }
+});
+
 test("fail rather than silently omit or corrupt target analysis", () => {
   assert.throws(() => buildAnalysis({ ...evidence, targetAnalysis: null }, editorial), /target/);
   assert.throws(() => buildAnalysis(evidence, { ...editorial, targets: [] }), /target/);

@@ -103,7 +103,9 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
       </div>
 
       <AnalysisSection id="target-score" headingId="target-title" number="01" title="目標点" tone="muted" character="lexus">
-        <p class="analysis-section-intro">{page.subject}に{page.targets.timeBudgetMinutes}分を使うと仮定した、レクサスの目標点です。小問別の仮配点に基づく試算で、大学公表の配点・合格最低点ではありません。</p>
+        <p class="analysis-section-intro">{page.targets.timeBudgetBasis === "official_subject"
+          ? `${page.subject}の試験時間${page.targets.timeBudgetMinutes}分で組んだ、レクサスの目標点です。小問別の仮配点に基づく試算で、大学公表の配点・合格最低点ではありません。`
+          : `${page.subject}に${page.targets.timeBudgetMinutes}分を使うと仮定した、レクサスの目標点です。小問別の仮配点に基づく試算で、大学公表の配点・合格最低点ではありません。`}</p>
         {page.targetReviewNote && <p class="analysis-small-note">{page.targetReviewNote} 苦手層の全問一巡の判断時間：{page.targets.profiles.find((profile) => profile.id === "weak")?.scanMinutes}分。</p>}
         <div class="analysis-target-grid">
           {page.targets.profiles.map((profile) => (

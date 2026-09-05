@@ -29,6 +29,9 @@ function sameNumber(actual, expected, label) {
 
 export function validateTargetAnalysis(targets, questionIds) {
   if (!targets || targets.basis !== "provisional_editorial" || !Number.isFinite(targets.totalPoints) || !(targets.totalPoints > 0) || !Number.isFinite(targets.timeBudgetMinutes) || !(targets.timeBudgetMinutes > 0)) throw new Error("Missing or unsupported target assumptions");
+  // The points are always an editorial estimate, but the per-subject time may be
+  // the exam's own published limit. Keep the two apart so the page can say which.
+  if (!["provisional_editorial", "official_subject"].includes(targets.timeBudgetBasis)) throw new Error("Missing or unsupported time budget basis");
   if (targets.profiles?.length !== 2 || targets.profiles.map((p) => p.id).join() !== "weak,strong") throw new Error("Incomplete target profiles");
   for (const p of targets.profiles) {
     if (!(p.reliabilityFactor > 0 && p.reliabilityFactor <= 1) || !["none", "floor_to_whole_point"].includes(p.rounding) || !Number.isFinite(p.judgmentMultiplier) || !(p.judgmentMultiplier > 0) || !Number.isFinite(p.executionMultiplier) || !(p.executionMultiplier > 0)) throw new Error("Invalid target profile rule");
@@ -49,7 +52,7 @@ export function extractTargetAnalysis(html, metadata, derived) {
   const policy = metadata.calculation_policy;
   if (!policy?.target_optimization && !html.includes('class="target target--')) return null;
   if (derived?.schema_version !== "medical-entrance-past-exam-derived.v6" || derived.package_id !== metadata.package.id) throw new Error("Missing or mismatched target derived data");
-  if (policy.scoring.basis !== "provisional_editorial" || policy.time_budget.basis !== "provisional_editorial" || policy.time_model.base_profile !== "strong_subject") throw new Error("Unsupported target calculation policy");
+  if (policy.scoring.basis !== "provisional_editorial" || !["provisional_editorial", "official_subject"].includes(policy.time_budget.basis) || policy.time_model.base_profile !== "strong_subject") throw new Error("Unsupported target calculation policy");
   const questions = metadata.major_questions.flatMap((m) => m.subquestions);
   sameNumber(questions.reduce((n, q) => n + q.scoring.points, 0), metadata.package.total_points, "total points");
   const table = capture(html, /<table class="profile-table">([\s\S]*?)<\/table>/, "target strategy table");
@@ -94,7 +97,7 @@ export function extractTargetAnalysis(html, metadata, derived) {
     const scanMinutes = profileMinutes(questions, "initial_judgment_minutes", time.initial_judgment_multiplier);
     return { id, targetPoints: Number(target[2]), targetPercent: percent, reliabilityFactor: rule.reliability_factor, rounding: rule.rounding, judgmentMultiplier: time.initial_judgment_multiplier, executionMultiplier: time.execution_multiplier, scanMinutes, maximum, now, nowPlusLater };
   });
-  return validateTargetAnalysis({ basis: "provisional_editorial", totalPoints: metadata.package.total_points, timeBudgetMinutes: policy.time_budget.minutes, profiles }, questions.map((q) => q.id));
+  return validateTargetAnalysis({ basis: "provisional_editorial", timeBudgetBasis: policy.time_budget.basis, totalPoints: metadata.package.total_points, timeBudgetMinutes: policy.time_budget.minutes, profiles }, questions.map((q) => q.id));
 }
 
 // Adapter for the saved student-report HTML. Never execute source scripts or copy its markup.

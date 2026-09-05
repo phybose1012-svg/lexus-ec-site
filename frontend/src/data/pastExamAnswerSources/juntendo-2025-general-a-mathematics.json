@@ -1,0 +1,786 @@
+{
+  "schemaVersion": "lexus-past-exam-answer-source.v1",
+  "packageId": "juntendo-2025-general-a-mathematics",
+  "figureManifest": "frontend/src/data/pastExamFigures/juntendo-2025-general-a-mathematics.json",
+  "route": {
+    "university": "juntendo",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/juntendo/2025/mathematics/answers/"
+  },
+  "university": {
+    "id": "juntendo",
+    "name": "順天堂大学"
+  },
+  "exam": {
+    "year": "2025",
+    "label": "一般選抜A方式",
+    "stage": "一次試験",
+    "duration": "数学 70分"
+  },
+  "subject": {
+    "id": "mathematics",
+    "name": "数学",
+    "english": "MATHEMATICS"
+  },
+  "document": {
+    "role": "answers",
+    "majorQuestions": [
+      {
+        "id": "major-question-01",
+        "label": "大問Ⅰ",
+        "order": 1,
+        "answerKey": [
+          {
+            "label": "（1）",
+            "entries": [
+              { "mark": "ア", "value": "6" },
+              { "mark": "イウ", "value": "16" },
+              { "mark": "エオ", "value": "10" }
+            ]
+          },
+          {
+            "label": "（2）",
+            "entries": [
+              { "mark": "ア", "value": "1" },
+              { "mark": "イ", "value": "3" },
+              { "mark": "ウ", "value": "2" },
+              { "mark": "エ", "value": "3" },
+              { "mark": "オ", "value": "2" },
+              { "mark": "カ", "value": "3" },
+              { "mark": "キ", "value": "9" },
+              { "mark": "クケ", "value": "12" },
+              { "mark": "コ", "value": "3" },
+              { "mark": "サ", "value": "3" },
+              { "mark": "シス", "value": "11" }
+            ]
+          },
+          {
+            "label": "（3）",
+            "entries": [
+              { "mark": "アイ", "value": "−1" },
+              { "mark": "ウ", "value": "4" },
+              { "mark": "エオカ", "value": "256" },
+              { "mark": "キクケコ", "value": "−768" },
+              { "mark": "サ", "value": "1" },
+              { "mark": "シ", "value": "5" },
+              { "mark": "ス", "value": "2" },
+              { "mark": "セ", "value": "5" },
+              { "mark": "ソタ", "value": "22" },
+              { "mark": "チ", "value": "2" },
+              { "mark": "ツ", "value": "5" }
+            ]
+          },
+          {
+            "label": "（4）",
+            "entries": [
+              { "mark": "ア", "value": "C" },
+              { "mark": "イ", "value": "B" },
+              { "mark": "ウ", "value": "C" },
+              { "mark": "エ", "value": "A" }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "（1）数列と無限級数",
+            "blocks": [
+              {
+                "type": "note",
+                "label": "最初に確認",
+                "text": "\\(a_n=2^{n+3}3^{-n}\\) は底が2と3に分かれています。まず底をそろえて等比数列の形に直すと、（1）の3問がすべて同じ形から扱えます。"
+              },
+              {
+                "type": "prose",
+                "text": "\\(2^{n+3}=2^3\\cdot 2^n\\) と分け、\\(2^n\\) と \\(3^{-n}\\) をまとめます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "rewrite-as-geometric",
+                "latex": "a_n=2^{n+3}3^{-n}=2^3\\cdot\\frac{2^n}{3^n}=8\\left(\\frac23\\right)^{n}"
+              },
+              {
+                "type": "prose",
+                "text": "初項 \\(a_1=\\dfrac{16}{3}\\)、公比 \\(\\dfrac23\\) の等比数列です。"
+              },
+              {
+                "type": "prose",
+                "text": "\\(a_n<1\\) を満たす最小の \\(n\\) を求めます。両辺とも正なので、常用対数をとって指数を下ろします。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "take-logarithm",
+                "latex": "\\log_{10}8+n\\log_{10}\\frac23<0\\quad\\Longleftrightarrow\\quad 3\\log_{10}2+n\\left(\\log_{10}2-\\log_{10}3\\right)<0"
+              },
+              {
+                "type": "prose",
+                "text": "\\(\\log_{10}3-\\log_{10}2=0.4771-0.3010=0.1761>0\\) です。この正の数で割るので、不等号の向きは変わりません。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-equation",
+                "latex": "n>\\frac{3\\log_{10}2}{\\log_{10}3-\\log_{10}2}=\\frac{3\\times0.3010}{0.1761}=\\frac{0.9030}{0.1761}=5.12\\cdots"
+              },
+              {
+                "type": "result",
+                "text": "\\(a_n<1\\) を満たす最小の \\(n\\) は \\(n=6\\)（ア）です。"
+              },
+              {
+                "type": "prose",
+                "text": "公比は \\(\\left|\\dfrac23\\right|<1\\) を満たすので、無限等比級数は収束します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "geometric-series-sum",
+                "latex": "\\sum_{n=1}^{\\infty}a_n=\\frac{a_1}{1-r}=\\frac{\\dfrac{16}{3}}{1-\\dfrac23}=\\frac{\\dfrac{16}{3}}{\\dfrac13}=16"
+              },
+              {
+                "type": "result",
+                "text": "\\(\\displaystyle\\sum_{n=1}^{\\infty}a_n=16\\)（イウ）です。"
+              },
+              {
+                "type": "prose",
+                "text": "\\(b_n\\) は \\(a_1\\) から \\(a_n\\) までの積です。指数法則で一つの累乗にまとめると、指数に \\(1+2+\\cdots+n\\) が現れます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "product-to-power",
+                "latex": "b_n=\\prod_{k=1}^{n}8\\left(\\frac23\\right)^{k}=8^{n}\\left(\\frac23\\right)^{1+2+\\cdots+n}=8^{n}\\left(\\frac23\\right)^{\\frac{n(n+1)}{2}}"
+              },
+              {
+                "type": "prose",
+                "text": "\\(b_n<1\\) の両辺の常用対数をとります。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "take-logarithm",
+                "latex": "3n\\log_{10}2+\\frac{n(n+1)}{2}\\left(\\log_{10}2-\\log_{10}3\\right)<0"
+              },
+              {
+                "type": "prose",
+                "text": "\\(n\\ge1\\) なので両辺を正の数 \\(n\\) で割れます。さらに \\(\\log_{10}3-\\log_{10}2>0\\) で割って整理します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-equation",
+                "latex": "\\frac{n+1}{2}>\\frac{3\\log_{10}2}{\\log_{10}3-\\log_{10}2}=5.12\\cdots\\quad\\Longleftrightarrow\\quad n>9.25\\cdots"
+              },
+              {
+                "type": "result",
+                "text": "\\(b_n<1\\) を満たす最小の \\(n\\) は \\(n=10\\)（エオ）です。"
+              }
+            ]
+          },
+          {
+            "title": "（2）空間ベクトル",
+            "blocks": [
+              { "type": "figure", "assetId": "ans-q1-geometry" },
+              {
+                "type": "note",
+                "label": "最初に確認",
+                "text": "3つのなす角がすべて \\(60^\\circ\\) なので、3通りの内積を先に計算しておくと、あとの \\(|\\vec{k}|^2\\)、\\(|\\vec{l}|^2\\)、\\(\\vec{k}\\cdot\\vec{l}\\) がすべてその値の組み合わせで書けます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "dot-product",
+                "latex": "\\overrightarrow{OA}\\cdot\\overrightarrow{OB}=9\\cdot3\\cos60^\\circ=\\frac{27}{2},\\qquad\\overrightarrow{OB}\\cdot\\overrightarrow{OC}=3\\cdot6\\cos60^\\circ=9,\\qquad\\overrightarrow{OA}\\cdot\\overrightarrow{OC}=9\\cdot6\\cos60^\\circ=27"
+              },
+              {
+                "type": "prose",
+                "text": "点 \\(R\\) は線分 \\(PQ\\) を \\(2:1\\) に内分するので、\\(\\overrightarrow{OR}\\) は \\(\\overrightarrow{OP}\\) と \\(\\overrightarrow{OQ}\\) の内分の式で表せます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "internal-division",
+                "latex": "\\overrightarrow{OR}=\\frac{1\\cdot\\overrightarrow{OP}+2\\cdot\\overrightarrow{OQ}}{2+1}=\\frac13\\overrightarrow{OP}+\\frac23\\overrightarrow{OQ}"
+              },
+              {
+                "type": "prose",
+                "text": "ここに \\(\\overrightarrow{OP}=s\\overrightarrow{OA}\\)、\\(\\overrightarrow{OQ}=(1-t)\\overrightarrow{OB}+t\\overrightarrow{OC}\\) を代入し、さらに \\(\\overrightarrow{OD}=\\dfrac23\\overrightarrow{OB}\\) を引いて \\(\\overrightarrow{DR}=\\overrightarrow{OR}-\\overrightarrow{OD}\\) を作ります。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "vector-difference",
+                "latex": "\\begin{aligned}\\overrightarrow{DR}&=\\frac{s}{3}\\overrightarrow{OA}+\\frac23(1-t)\\overrightarrow{OB}+\\frac{2t}{3}\\overrightarrow{OC}-\\frac23\\overrightarrow{OB}\\\\&=\\frac{s}{3}\\overrightarrow{OA}-\\frac{2t}{3}\\overrightarrow{OB}+\\frac{2t}{3}\\overrightarrow{OC}\\\\&=s\\cdot\\frac13\\overrightarrow{OA}+t\\left(\\frac23\\overrightarrow{OC}-\\frac23\\overrightarrow{OB}\\right)\\end{aligned}"
+              },
+              {
+                "type": "result",
+                "text": "\\(\\vec{k}=\\dfrac13\\overrightarrow{OA}\\)（ア・イ）、\\(\\vec{l}=\\dfrac23\\overrightarrow{OC}-\\dfrac23\\overrightarrow{OB}\\)（ウ〜カ）です。"
+              },
+              {
+                "type": "prose",
+                "text": "\\(\\vec{k}=\\dfrac13\\overrightarrow{OA}\\) の大きさを二乗します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "squared-distance",
+                "latex": "|\\vec{k}|^2=\\left(\\frac13\\right)^2\\left|\\overrightarrow{OA}\\right|^2=\\frac{81}{9}=9"
+              },
+              {
+                "type": "prose",
+                "text": "\\(\\vec{l}=\\dfrac23\\left(\\overrightarrow{OC}-\\overrightarrow{OB}\\right)\\) です。両辺の大きさを取って二乗し、内積を使って展開してから、先に求めた値を代入します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "squared-distance",
+                "latex": "|\\vec{l}|^2=\\frac49\\left|\\overrightarrow{OC}-\\overrightarrow{OB}\\right|^2=\\frac49\\left(\\left|\\overrightarrow{OC}\\right|^2-2\\,\\overrightarrow{OB}\\cdot\\overrightarrow{OC}+\\left|\\overrightarrow{OB}\\right|^2\\right)=\\frac49(36-18+9)=12"
+              },
+              {
+                "type": "prose",
+                "text": "内積 \\(\\vec{k}\\cdot\\vec{l}\\) も、同じ3つの内積の値だけで書けます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "dot-product",
+                "latex": "\\vec{k}\\cdot\\vec{l}=\\frac13\\overrightarrow{OA}\\cdot\\frac23\\left(\\overrightarrow{OC}-\\overrightarrow{OB}\\right)=\\frac29\\left(\\overrightarrow{OA}\\cdot\\overrightarrow{OC}-\\overrightarrow{OA}\\cdot\\overrightarrow{OB}\\right)=\\frac29\\left(27-\\frac{27}{2}\\right)=3"
+              },
+              {
+                "type": "result",
+                "text": "\\(|\\vec{k}|^2=9\\)（キ）、\\(|\\vec{l}|^2=12\\)（クケ）、\\(\\vec{k}\\cdot\\vec{l}=3\\)（コ）です。"
+              },
+              {
+                "type": "prose",
+                "text": "点 \\(P\\) と点 \\(Q\\) は独立に動くので、\\(s\\) と \\(t\\) は \\(0\\le s\\le1\\)、\\(0\\le t\\le1\\) の範囲を独立に動きます。\\(\\overrightarrow{DR}=s\\vec{k}+t\\vec{l}\\) なので、点 \\(R\\) は \\(D\\) を基準に \\(\\vec{k}\\) と \\(\\vec{l}\\) が張る平行四辺形をちょうど覆います。"
+              },
+              { "type": "figure", "assetId": "ans-q1-region" },
+              {
+                "type": "prose",
+                "text": "\\(|\\vec{k}|^2|\\vec{l}|^2-(\\vec{k}\\cdot\\vec{l})^2=9\\times12-3^2=99>0\\) なので \\(\\vec{k}\\) と \\(\\vec{l}\\) は平行ではなく、平行四辺形はつぶれません。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "parallelogram-area",
+                "latex": "S=|\\vec{k}||\\vec{l}|\\sin\\theta=\\sqrt{|\\vec{k}|^2|\\vec{l}|^2-\\left(\\vec{k}\\cdot\\vec{l}\\right)^2}=\\sqrt{9\\times12-3^2}=\\sqrt{99}=3\\sqrt{11}"
+              },
+              {
+                "type": "result",
+                "text": "平面 \\(H\\) 上で点 \\(R\\) が描く図形の面積は \\(3\\sqrt{11}\\)（サ・シス）です。"
+              }
+            ]
+          },
+          {
+            "title": "（3）4次方程式",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "\\(x=y+b\\) を代入したとき、\\(y^3\\) の項は \\((y+b)^4\\) の展開からしか現れません。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "match-coefficients",
+                "latex": "(y+b)^4=y^4+4by^3+6b^2y^2+4b^3y+b^4\\quad\\Longrightarrow\\quad 4b=-4"
+              },
+              {
+                "type": "prose",
+                "text": "よって \\(b=-1\\) です。実際に \\(x=y-1\\) を代入すると \\(P(y-1)=y^4-4y^3-48y^2+64y+256\\) となり、問題文の式と一致します。"
+              },
+              {
+                "type": "result",
+                "text": "\\(b=-1\\)（アイ）です。"
+              },
+              {
+                "type": "prose",
+                "text": "次に \\(y=az\\) とおきます。\\(P(az-1)\\) の各係数を \\(a\\) で表し、指定された形 \\(cz^4-cz^3+dz^2+cz+c\\) と係数を比べます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "match-coefficients",
+                "latex": "P(az-1)=a^4z^4-4a^3z^3-48a^2z^2+64az+256"
+              },
+              {
+                "type": "prose",
+                "text": "\\(z^4\\) の係数から \\(a^4=c\\)、\\(z^3\\) の係数から \\(-4a^3=-c\\) です。この2式を等置すると \\(a\\) が決まります（\\(a\\ne0\\)）。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-equation",
+                "latex": "a^4=4a^3\\quad\\Longrightarrow\\quad a=4"
+              },
+              {
+                "type": "prose",
+                "text": "\\(a=4\\) のとき \\(c=a^4=256\\) です。\\(z\\) の係数 \\(64a=256\\)、定数項 \\(256\\) もこの \\(c\\) と一致し、確かに指定の形になっています。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "expand-to-coefficients",
+                "latex": "c=4^4=256,\\qquad d=-48a^2=-48\\times16=-768"
+              },
+              {
+                "type": "result",
+                "text": "\\(a=4\\)（ウ）、\\(c=256\\)（エオカ）、\\(d=-768\\)（キクケコ）です。"
+              },
+              {
+                "type": "prose",
+                "text": "\\(P(az-1)=0\\) は \\(256z^4-256z^3-768z^2+256z+256=0\\)、すなわち \\(z^4-z^3-3z^2+z+1=0\\) です。定数項が \\(1\\ne0\\) なので \\(z=0\\) は解ではなく、両辺を \\(z^2\\) で割れます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "reciprocal-equation",
+                "latex": "z^2-z-3+\\frac1z+\\frac1{z^2}=0\\quad\\Longleftrightarrow\\quad\\left(z^2+\\frac1{z^2}\\right)-\\left(z-\\frac1z\\right)-3=0"
+              },
+              {
+                "type": "prose",
+                "text": "\\(t=z-\\dfrac1z\\) とおくと \\(t^2=z^2-2+\\dfrac1{z^2}\\) なので、\\(z^2+\\dfrac1{z^2}=t^2+2\\) です。これを代入します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-equation",
+                "latex": "\\left(t^2+2\\right)-t-3=0\\quad\\Longleftrightarrow\\quad t^2-t-1=0\\quad\\Longrightarrow\\quad t=\\frac{1\\pm\\sqrt5}{2}"
+              },
+              {
+                "type": "result",
+                "text": "\\(t=\\dfrac{1\\pm\\sqrt5}{2}\\)（サ・シ・ス）です。"
+              },
+              {
+                "type": "prose",
+                "text": "最後に \\(P(x)=0\\) の最大の実数解を求めます。\\(x=az+b=4z-1\\) は \\(z\\) の増加関数なので、\\(x\\) が最大になるのは \\(z\\) が最大のときです。そこで \\(t=z-\\dfrac1z\\) を \\(z\\) の方程式に戻します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-equation",
+                "latex": "z^2-tz-1=0\\quad\\Longrightarrow\\quad z=\\frac{t\\pm\\sqrt{t^2+4}}{2}"
+              },
+              {
+                "type": "prose",
+                "text": "\\(t^2+4>t^2\\) より \\(\\sqrt{t^2+4}>|t|\\) なので、2つの解は符号が逆です。\\(z\\) を最大にするには複号の \\(+\\) を選びます。さらに \\(z=\\dfrac{t+\\sqrt{t^2+4}}{2}\\) は \\(t\\) について増加するので、大きい方の \\(t=\\dfrac{1+\\sqrt5}{2}\\) を選びます。"
+              },
+              {
+                "type": "prose",
+                "text": "この \\(t\\) は \\(t^2-t-1=0\\) を満たすので \\(t^2=t+1\\)、したがって \\(t^2+4=t+5=\\dfrac{11+\\sqrt5}{2}\\) です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "simplify-nested-radical",
+                "latex": "x=4z-1=2t+2\\sqrt{t^2+4}-1=\\sqrt5+2\\sqrt{\\frac{11+\\sqrt5}{2}}=\\sqrt5+\\sqrt{22+2\\sqrt5}"
+              },
+              {
+                "type": "result",
+                "text": "\\(P(x)=0\\) の実数解のうち最大のものは \\(x=\\sqrt5+\\sqrt{22+2\\sqrt5}\\)（セ〜ツ）です。"
+              }
+            ]
+          },
+          {
+            "title": "（4）必要条件・十分条件",
+            "blocks": [
+              {
+                "type": "note",
+                "label": "最初に確認",
+                "text": "「\\(p\\) は \\(q\\) であるための〜」という問いでは、\\(p\\Rightarrow q\\) が成り立てば \\(p\\) は十分条件、\\(q\\Rightarrow p\\) が成り立てば \\(p\\) は必要条件です。必ず両方向を別々に確かめます。"
+              },
+              {
+                "type": "prose",
+                "text": "（a）\\(g(x)=|x+2|-|x-1|\\) とおきます。絶対値の中身の符号が変わる \\(x=-2\\) と \\(x=1\\) で場合分けします。"
+              },
+              {
+                "type": "table",
+                "caption": "g(x)=|x+2|−|x−1| の場合分け",
+                "headers": ["\\(x\\) の範囲", "\\(|x+2|\\)", "\\(|x-1|\\)", "\\(g(x)\\)"],
+                "rows": [
+                  ["\\(x<-2\\)", "\\(-(x+2)\\)", "\\(-(x-1)\\)", "\\(-3\\)"],
+                  ["\\(-2\\le x<1\\)", "\\(x+2\\)", "\\(-(x-1)\\)", "\\(2x+1\\)"],
+                  ["\\(1\\le x\\)", "\\(x+2\\)", "\\(x-1\\)", "\\(3\\)"]
+                ]
+              },
+              {
+                "type": "prose",
+                "text": "\\(x<-2\\) では \\(g(x)=-3\\)、\\(1\\le x\\) では \\(g(x)=3\\) と一定なので、\\(0<g(x)<3\\) を満たしうるのは \\(-2\\le x<1\\) の部分だけです。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-equation",
+                "latex": "0<2x+1<3\\quad\\Longleftrightarrow\\quad-\\frac12<x<1"
+              },
+              {
+                "type": "prose",
+                "text": "条件を満たす範囲 \\(-\\dfrac12<x<1\\) は \\(-1<x<1\\) に含まれますが、一致しません。実際 \\(x=-\\dfrac34\\) は \\(-1<x<1\\) を満たしますが \\(g\\left(-\\dfrac34\\right)=-\\dfrac12\\) なので \\(0<g(x)<3\\) を満たしません。"
+              },
+              {
+                "type": "result",
+                "text": "（a）は十分条件であるが必要条件ではないので（C）（ア）です。"
+              },
+              {
+                "type": "prose",
+                "text": "（b）\\(a=2\\)、\\(b=\\dfrac12\\) とすると \\(a^b=\\sqrt2\\) は無理数です。よって \\(a^b\\) と表せても \\(x\\) が有理数とは限らず、十分条件ではありません。"
+              },
+              {
+                "type": "prose",
+                "text": "逆に \\(x\\) が有理数なら、\\(a=x\\)、\\(b=1\\) として \\(x=a^b\\) と表せます。よって必要条件です。"
+              },
+              {
+                "type": "result",
+                "text": "（b）は必要条件であるが十分条件ではないので（B）（イ）です。"
+              },
+              {
+                "type": "prose",
+                "text": "（c）\\(\\displaystyle\\sum_{n=1}^{\\infty}a_n\\) が収束するとき、部分和 \\(S_n\\) はある値に収束し、\\(a_n=S_n-S_{n-1}\\to0\\) となります。よって収束は \\(\\lim_{n\\to\\infty}a_n=0\\) の十分条件です。"
+              },
+              {
+                "type": "prose",
+                "text": "逆は成り立ちません。\\(a_n=\\dfrac1n\\) は \\(\\lim_{n\\to\\infty}a_n=0\\) を満たしますが、\\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac1n\\) は発散します。"
+              },
+              {
+                "type": "result",
+                "text": "（c）は十分条件であるが必要条件ではないので（C）（ウ）です。"
+              },
+              {
+                "type": "prose",
+                "text": "（d）整数 \\(m\\) について、\\(m\\) が偶数なら \\(m^2\\) も偶数、\\(m\\) が奇数なら \\(m^2\\) も奇数です。つまり \\(m^2\\) と \\(m\\) の偶奇はつねに一致します。\\(n\\)、\\(l\\) についても同様なので、\\(m^2+n^2+l^2\\) と \\(m+n+l\\) の偶奇も一致します。"
+              },
+              {
+                "type": "result",
+                "text": "（d）は一方が奇数なら他方も奇数で逆も成り立つので、必要十分条件（A）（エ）です。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-02",
+        "label": "大問Ⅱ",
+        "order": 2,
+        "answerKey": [
+          {
+            "label": "（a）",
+            "entries": [
+              { "mark": "ア", "value": "2" },
+              { "mark": "イ", "value": "1" },
+              { "mark": "ウ", "value": "4" },
+              { "mark": "エオ", "value": "−1" },
+              { "mark": "カ", "value": "2" },
+              { "mark": "キ", "value": "3" },
+              { "mark": "ク", "value": "2" },
+              { "mark": "ケ", "value": "9" },
+              { "mark": "コサ", "value": "−4" }
+            ]
+          },
+          {
+            "label": "（b）",
+            "entries": [
+              { "mark": "シ", "value": "3" },
+              { "mark": "スセソ", "value": "−18" },
+              { "mark": "タチ", "value": "33" },
+              { "mark": "ツテト", "value": "−12" }
+            ]
+          },
+          {
+            "label": "（c）",
+            "entries": [
+              { "mark": "ナニ", "value": "−1" },
+              { "mark": "ヌ", "value": "8" },
+              { "mark": "ネ", "value": "3" },
+              { "mark": "ノ", "value": "8" },
+              { "mark": "ハヒ", "value": "45" },
+              { "mark": "フ", "value": "8" },
+              { "mark": "ヘ", "value": "1" },
+              { "mark": "ホ", "value": "8" }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "（a）3個の共有点と微分係数",
+            "blocks": [
+              {
+                "type": "note",
+                "label": "最初に確認",
+                "text": "\\(y=f(x)\\) と直線 \\(y=g(x)\\) の共有点の \\(x\\) 座標は \\(f(x)-g(x)=0\\) の実数解です。接点はその重解に対応します。（a）〜（c）はこの対応をそのまま使って処理できます。"
+              },
+              {
+                "type": "prose",
+                "text": "条件（i）より \\(f(x)-6x\\) は3次式で、\\(x=-2,\\ 1,\\ 4\\) を解に持ちます。最高次の係数は \\(f(x)\\) と同じ \\(a\\) です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "factorize-from-shared-points",
+                "latex": "f(x)-6x=a(x+2)(x-1)(x-4)"
+              },
+              {
+                "type": "result",
+                "text": "ア \\(=2\\)、イ \\(=1\\)、ウ \\(=4\\) です（イ \\(<\\) ウ を満たしています）。"
+              },
+              {
+                "type": "prose",
+                "text": "条件（ii）を使います。\\(f(x)=6x+a(x+2)(x-1)(x-4)\\) を積の微分で微分します。\\(x=-2\\) を代入すると、因数 \\((x+2)\\) を含む項は消えます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "differentiate",
+                "latex": "f'(x)=6+a\\left\\{(x-1)(x-4)+(x+2)(x-4)+(x+2)(x-1)\\right\\}"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-equation",
+                "latex": "f'(-2)=6+a(-3)(-6)=6+18a=-3\\quad\\Longrightarrow\\quad a=-\\frac12"
+              },
+              {
+                "type": "prose",
+                "text": "\\((x+2)(x-1)(x-4)=x^3-3x^2-6x+8\\) です。\\(a=-\\dfrac12\\) を代入して展開し、各次数の係数を読み取ります。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "expand-to-coefficients",
+                "latex": "f(x)=6x-\\frac12\\left(x^3-3x^2-6x+8\\right)=-\\frac12x^3+\\frac32x^2+9x-4"
+              },
+              {
+                "type": "result",
+                "text": "\\(a=-\\dfrac12\\)（エオ・カ）、\\(b=\\dfrac32\\)（キ・ク）、\\(c=9\\)（ケ）、\\(d=-4\\)（コサ）です。"
+              }
+            ]
+          },
+          {
+            "title": "（b）2直線に接する条件",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "条件（i）では \\((1,6)\\) が接点なので \\(x=1\\) は重解、\\((4,24)\\) は接点ではない共有点なので \\(x=4\\) は単解です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "factorize-from-shared-points",
+                "latex": "f(x)-6x=a(x-1)^2(x-4)"
+              },
+              {
+                "type": "prose",
+                "text": "条件（ii）は \\(y=f(x)\\) と \\(y=6x-12\\) が接することです。差をとった関数を \\(g(x)\\) とおくと、接することは \\(g(x)=0\\) が重解を持つことと同じです。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "tangency-condition",
+                "latex": "g(x)=f(x)-(6x-12)=a(x-1)^2(x-4)+12"
+              },
+              {
+                "type": "prose",
+                "text": "\\(g(x)=0\\) が \\(x=\\alpha\\) を重解に持つとき、\\(g(\\alpha)=0\\) かつ \\(g'(\\alpha)=0\\) が必要です。まず \\(g'(x)\\) を求めます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "differentiate",
+                "latex": "g'(x)=a\\left\\{2(x-1)(x-4)+(x-1)^2\\right\\}=a(x-1)(3x-9)=3a(x-1)(x-3)"
+              },
+              {
+                "type": "prose",
+                "text": "\\(a\\ne0\\) より \\(g'(x)=0\\) となるのは \\(x=1\\) と \\(x=3\\) です。\\(g(1)=12\\ne0\\) なので \\(x=1\\) は重解になりません。残る \\(x=3\\) に \\(g(3)=0\\) を課します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-equation",
+                "latex": "g(3)=a\\cdot2^2\\cdot(-1)+12=-4a+12=0\\quad\\Longrightarrow\\quad a=3"
+              },
+              {
+                "type": "prose",
+                "text": "\\((x-1)^2(x-4)=x^3-6x^2+9x-4\\) です。\\(a=3\\) を代入して展開します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "expand-to-coefficients",
+                "latex": "f(x)=6x+3\\left(x^3-6x^2+9x-4\\right)=3x^3-18x^2+33x-12"
+              },
+              {
+                "type": "result",
+                "text": "\\(a=3\\)（シ）、\\(b=-18\\)（スセソ）、\\(c=33\\)（タチ）、\\(d=-12\\)（ツテト）です。"
+              }
+            ]
+          },
+          {
+            "title": "（c）共有点が接点だけの場合",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "条件（i）では \\((1,6)\\) が接点なので \\(f(x)-6x\\) は \\((x-1)^2\\) を因数に持ち、\\(f(x)-6x=a(x-1)^2(x-r)\\) と書けます。ここで \\(r\\ne1\\) なら \\(x=r\\) がもう一つの共有点になり「他に共有点はない」に反します。よって \\(r=1\\) です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "factorize-from-shared-points",
+                "latex": "f(x)-6x=a(x-1)^3"
+              },
+              {
+                "type": "prose",
+                "text": "条件（ii）を使います。\\(f(x)=6x+a(x-1)^3\\) を微分し、\\(x=-3\\) で微分係数が \\(0\\) になることを課します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "differentiate",
+                "latex": "f'(x)=6+3a(x-1)^2"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-equation",
+                "latex": "f'(-3)=6+3a\\cdot(-4)^2=6+48a=0\\quad\\Longrightarrow\\quad a=-\\frac18"
+              },
+              {
+                "type": "prose",
+                "text": "微分係数が \\(0\\) というだけでは極値とは限らないので確認します。\\(a=-\\dfrac18\\) のとき \\(f'(x)=6-\\dfrac38(x-1)^2=0\\) の解は \\(x=5\\) と \\(x=-3\\) の2つで、\\(f'(x)\\) は上に凸の2次関数なので各解の前後で符号を変えます。よって \\(x=-3\\) は確かに極値をとる点です。"
+              },
+              {
+                "type": "prose",
+                "text": "\\((x-1)^3=x^3-3x^2+3x-1\\) です。\\(a=-\\dfrac18\\) を代入して展開します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "expand-to-coefficients",
+                "latex": "f(x)=6x-\\frac18\\left(x^3-3x^2+3x-1\\right)=-\\frac18x^3+\\frac38x^2+\\frac{45}{8}x+\\frac18"
+              },
+              {
+                "type": "result",
+                "text": "\\(a=-\\dfrac18\\)（ナニ・ヌ）、\\(b=\\dfrac38\\)（ネ・ノ）、\\(c=\\dfrac{45}{8}\\)（ハヒ・フ）、\\(d=\\dfrac18\\)（ヘ・ホ）です。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-03",
+        "label": "大問Ⅲ",
+        "order": 3,
+        "answerKey": [
+          {
+            "label": "（1）",
+            "entries": [
+              { "mark": "I₀", "value": "(1/2)log 2" }
+            ]
+          },
+          {
+            "label": "（2）",
+            "entries": [
+              { "mark": "方針", "value": "Iₙ + Iₙ₋₁ = 1/(2n) を作り数学的帰納法" }
+            ]
+          },
+          {
+            "label": "（3）",
+            "entries": [
+              { "mark": "方針", "value": "0 ≤ Iₙ ≤ π/{8(n+1)} から Iₙ → 0" }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "（1）I₀ を求める",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "\\(I_0=\\displaystyle\\int_0^{\\pi/4}\\tan x\\,dx\\) です。\\(\\tan x=\\dfrac{\\sin x}{\\cos x}\\) と書くと、分子が分母 \\(\\cos x\\) の導関数の \\(-1\\) 倍になっているので、そのまま積分できます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "definite-integral",
+                "latex": "I_0=\\int_0^{\\pi/4}\\frac{\\sin x}{\\cos x}\\,dx=\\Big[-\\log|\\cos x|\\Big]_0^{\\pi/4}=-\\log\\frac{1}{\\sqrt2}+\\log 1=\\log\\sqrt2=\\frac12\\log 2"
+              },
+              {
+                "type": "result",
+                "text": "\\(I_0=\\dfrac12\\log 2\\) です。"
+              }
+            ]
+          },
+          {
+            "title": "（2）数学的帰納法による証明",
+            "blocks": [
+              {
+                "type": "note",
+                "label": "証明の要",
+                "text": "\\(\\tan^2x+1=\\dfrac1{\\cos^2x}\\) を使うと、\\(I_n\\) と \\(I_{n-1}\\) の和が簡単な定積分になります。この漸化式が帰納法の土台です。"
+              },
+              {
+                "type": "prose",
+                "text": "\\(n\\ge1\\) のとき \\(\\tan^{2n+1}x+\\tan^{2n-1}x=\\tan^{2n-1}x\\left(\\tan^2x+1\\right)=\\dfrac{\\tan^{2n-1}x}{\\cos^2x}\\) です。\\((\\tan x)'=\\dfrac1{\\cos^2x}\\) なので、\\(\\tan x\\) の置換でそのまま積分できます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "derive-recurrence",
+                "latex": "I_n+I_{n-1}=\\int_0^{\\pi/4}\\frac{\\tan^{2n-1}x}{\\cos^2x}\\,dx=\\left[\\frac{\\tan^{2n}x}{2n}\\right]_0^{\\pi/4}=\\frac1{2n}"
+              },
+              {
+                "type": "prose",
+                "text": "示すべき等式を \\((\\ast)\\ :\\ I_n=(-1)^n\\left(I_0+\\displaystyle\\sum_{m=1}^{n}\\frac{(-1)^m}{2m}\\right)\\) とします。"
+              },
+              {
+                "type": "steps",
+                "items": [
+                  "\\(n=1\\) のとき。漸化式より \\(I_1=\\dfrac12-I_0\\) です。一方 \\((\\ast)\\) の右辺は \\((-1)^1\\left(I_0+\\dfrac{(-1)^1}{2}\\right)=-I_0+\\dfrac12\\) となり、両者は一致します。",
+                  "\\(n=k\\ (k\\ge1)\\) で \\((\\ast)\\) が成り立つと仮定します。すなわち \\(I_k=(-1)^k\\left(I_0+\\displaystyle\\sum_{m=1}^{k}\\frac{(-1)^m}{2m}\\right)\\) です。",
+                  "漸化式 \\(I_{k+1}=\\dfrac1{2(k+1)}-I_k\\) にこの仮定を代入します。"
+                ]
+              },
+              {
+                "type": "formula",
+                "purposeId": "induction-step",
+                "latex": "\\begin{aligned}I_{k+1}&=\\frac{1}{2(k+1)}-(-1)^k\\left(I_0+\\sum_{m=1}^{k}\\frac{(-1)^m}{2m}\\right)\\\\&=(-1)^{k+1}\\left(I_0+\\sum_{m=1}^{k}\\frac{(-1)^m}{2m}\\right)+\\frac{1}{2(k+1)}\\end{aligned}"
+              },
+              {
+                "type": "prose",
+                "text": "\\((-1)^{k+1}\\times(-1)^{k+1}=1\\) なので、\\(\\dfrac1{2(k+1)}=(-1)^{k+1}\\cdot\\dfrac{(-1)^{k+1}}{2(k+1)}\\) と書き直せます。これで全体を \\((-1)^{k+1}\\) でくくれます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "induction-step",
+                "latex": "I_{k+1}=(-1)^{k+1}\\left(I_0+\\sum_{m=1}^{k}\\frac{(-1)^m}{2m}+\\frac{(-1)^{k+1}}{2(k+1)}\\right)=(-1)^{k+1}\\left(I_0+\\sum_{m=1}^{k+1}\\frac{(-1)^m}{2m}\\right)"
+              },
+              {
+                "type": "result",
+                "text": "\\(n=k+1\\) でも \\((\\ast)\\) が成り立ちます。よって数学的帰納法により、\\(n\\ge1\\) のすべての整数で \\((\\ast)\\) が成り立ちます。"
+              }
+            ]
+          },
+          {
+            "title": "（3）交代級数と log 2",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "（2）の等式の両辺に \\((-1)^n\\) を掛けます。\\(\\left\\{(-1)^n\\right\\}^2=1\\) なので左辺の符号だけが移ります。さらに \\(I_0=\\dfrac12\\log2\\) を代入します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "isolate-target",
+                "latex": "(-1)^nI_n=I_0+\\sum_{m=1}^{n}\\frac{(-1)^m}{2m}=\\frac12\\log2+\\frac12\\sum_{m=1}^{n}\\frac{(-1)^m}{m}"
+              },
+              {
+                "type": "prose",
+                "text": "求めたい和が左辺に来るように整理します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "isolate-target",
+                "latex": "\\sum_{m=1}^{n}\\frac{(-1)^m}{m}=2(-1)^nI_n-\\log2"
+              },
+              {
+                "type": "prose",
+                "text": "あとは \\(n\\to\\infty\\) で \\(I_n\\to0\\) を示せば結論が出ます。ここで与えられた不等式 \\(0\\le\\tan x\\le\\dfrac4\\pi x\\ \\left(0\\le x\\le\\dfrac\\pi4\\right)\\) を使います。各辺は \\(0\\) 以上なので \\(2n+1\\) 乗しても大小は保たれ、区間 \\(\\left[0,\\dfrac\\pi4\\right]\\) で積分できます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "squeeze-limit",
+                "latex": "0\\le I_n\\le\\int_0^{\\pi/4}\\left(\\frac4\\pi x\\right)^{2n+1}dx=\\left(\\frac4\\pi\\right)^{2n+1}\\cdot\\frac{1}{2n+2}\\left(\\frac\\pi4\\right)^{2n+2}=\\frac{\\pi}{8(n+1)}"
+              },
+              {
+                "type": "prose",
+                "text": "右辺は \\(n\\to\\infty\\) で \\(0\\) に収束するので、はさみうちの原理より \\(\\displaystyle\\lim_{n\\to\\infty}I_n=0\\) です。したがって \\(\\left|2(-1)^nI_n\\right|=2I_n\\to0\\) となります。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "isolate-target",
+                "latex": "\\sum_{m=1}^{\\infty}\\frac{(-1)^m}{m}=\\lim_{n\\to\\infty}\\left(2(-1)^nI_n-\\log2\\right)=-\\log2"
+              },
+              {
+                "type": "result",
+                "text": "よって \\(\\log2=-\\displaystyle\\sum_{m=1}^{\\infty}\\frac{(-1)^m}{m}\\) が示されました。"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "contentProvenance": "original_editorial",
+    "restrictedSourceCopied": false,
+    "publicationCandidate": true,
+    "rightsStatus": "original_editorial",
+    "needsHumanReview": true,
+    "reference": "順天堂大学2025年度一般選抜A方式 数学の掲載問題をもとにレクサスE.C.が独自作成"
+  },
+  "links": {
+    "questions": "/past-exam-library/juntendo/2025/mathematics/questions/",
+    "universityLibrary": "/past-exam-library/juntendo/",
+    "analysis": "/juntendo-medical-entrance-exam2027-measures/#数学",
+    "universityInformation": "/information-jyunten/"
+  }
+}

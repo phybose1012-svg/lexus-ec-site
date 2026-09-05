@@ -14,7 +14,9 @@
     "past-exam:seo:test": "node --test ./scripts/past-exam-seo.test.mjs",
     "past-exam:physics:test": "node --test ./scripts/past-exam-physics.test.mjs",
     "past-exam:figures:iwate-2025-mathematics": "node ./scripts/build-iwate-2025-mathematics-figures.mjs",
+    "past-exam:figures:juntendo-2025-mathematics": "node ./scripts/build-juntendo-2025-general-a-mathematics-figures.mjs",
     "past-exam:mathematics-figures:test": "node --test ./scripts/past-exam-mathematics-figures.test.mjs",
+    "past-exam:juntendo-mathematics:test": "node --test ./scripts/past-exam-juntendo-2025-mathematics.test.mjs",
     "dev": "node ./scripts/astro-command.mjs dev --host 127.0.0.1",
     "build": "node ./scripts/verify-build-inputs.mjs && npm run past-exam:answers && npm run past-exam:analyses && node ./scripts/astro-command.mjs check && node ./scripts/astro-command.mjs build",
     "preview": "node ./scripts/astro-command.mjs preview --host 127.0.0.1"

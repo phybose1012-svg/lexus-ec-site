@@ -11,7 +11,7 @@ export type AnalysisPage = {
   examTotal: { points: number; subjectCount: number } | null;
   profiles: Array<{ id: string; title: string; text: string }>;
   targets: {
-    basis: "provisional_editorial"; totalPoints: number; timeBudgetMinutes: number;
+    basis: "provisional_editorial"; timeBudgetBasis: "provisional_editorial" | "official_subject"; totalPoints: number; timeBudgetMinutes: number;
     profiles: Array<{
       id: string; title: string; summary: string; focus: string;
       targetPoints: number; targetPercent: number; reliabilityFactor: number; rounding: string;
