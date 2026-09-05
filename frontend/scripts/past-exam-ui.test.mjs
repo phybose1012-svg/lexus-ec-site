@@ -44,6 +44,7 @@ for (const mode of modes) {
       assert.ok(href.startsWith("#"));
       assert.notEqual(href, "#instructions");
       assert.ok(nodes.some((n) => attr(n, "id") === href.slice(1)), href);
+      assert.equal(text(link).includes("↓"), false);
     }
   });
 

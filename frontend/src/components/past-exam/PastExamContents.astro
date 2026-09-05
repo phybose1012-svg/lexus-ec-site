@@ -11,6 +11,6 @@ const { title, items } = Astro.props;
 <nav class="past-exam-contents" aria-label={title}>
   <p class="past-exam-ui-label">{title}</p>
   <ul>
-    {items.map((item) => <li><a href={item.href}>{item.label}<span aria-hidden="true">↓</span></a></li>)}
+    {items.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
   </ul>
 </nav>
