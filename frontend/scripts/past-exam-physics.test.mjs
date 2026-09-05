@@ -83,7 +83,7 @@ test("scientific labels use embedded KaTeX typography while Japanese labels stay
   for (const item of manifest.items) {
     const svg = read(`public${item.src}`);
     const labels = [...svg.matchAll(textPattern)];
-    const mathLabels = labels.filter((match) => /[A-Za-zφ0-9−=]/.test(match[2].replace(/<[^>]+>/g, "")));
+    const mathLabels = labels.filter((match) => /[A-Za-zφϕ0-9−=]/.test(match[2].replace(/<[^>]+>/g, "")));
     mathLabelCount += mathLabels.length;
     subscriptCount += (svg.match(/class="sub /g) ?? []).length;
     for (const match of mathLabels) assert.match(match[1], /class="math/);
@@ -95,6 +95,17 @@ test("scientific labels use embedded KaTeX typography while Japanese labels stay
   }
   assert.ok(mathLabelCount > 30);
   assert.ok(subscriptCount > 15);
+});
+
+test("the iron-core flux label matches the glyph rendered by TeX phi", () => {
+  const context = {};
+  vm.runInNewContext(read("public/assets/vendor/katex/katex.min.js"), context);
+  const renderedPhi = context.katex.renderToString("\\phi");
+  const svg = read("public/assets/past-exams/iwate-medical-2025-general-physics/figures/q2-core-circuit-source.svg");
+
+  assert.match(renderedPhi, /mathnormal">ϕ<\/span>/);
+  assert.match(svg, /<tspan class="mi">ϕ<\/tspan>/);
+  assert.doesNotMatch(svg, /<tspan class="mi">φ<\/tspan>/);
 });
 
 test("figure registry fails closed on unregistered, duplicated and cross-package assets", () => {
