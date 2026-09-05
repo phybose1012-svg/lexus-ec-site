@@ -55,6 +55,8 @@ node .agents/skills/past-exam-question-importer/scripts/import-question-page.mjs
   --overrides frontend/src/data/pastExamOverrides/<package-id>.json
 ```
 
+On Windows, run this from PowerShell, or prefix the command with `MSYS_NO_PATHCONV=1` under Git Bash. Git Bash rewrites leading-slash arguments into Windows paths, which silently turns `--analysis-path /foo/` into `C:/Program Files/Git/foo/` in the generated `links`. Check `links` in the output JSON after importing.
+
 `--overrides` is optional. Use package-scoped operations for small, reproducible presentation corrections:
 
 - `replace-text` replaces an exact string and fails unless `expectedMatches` is met.
