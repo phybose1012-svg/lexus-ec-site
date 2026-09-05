@@ -7,6 +7,6 @@ export default defineConfig({
     enabled: false,
   },
   vite: {
-    cacheDir: "../.vite-cache/frontend",
+    cacheDir: process.env.LEXUS_VITE_CACHE_DIR || "../.vite-cache/frontend",
   },
 });

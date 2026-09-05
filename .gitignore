@@ -1,11 +1,19 @@
 node_modules/
 .npm-cache/
+.pnpm-store/
 .vite-cache/
 .agents/
 .codex/
+.tmp.driveupload/
+_automation_state/
+_recovered-teacher-videos/
+_tmp/
 tmp/
+pdf-tmp/
+poppler_temp/
 reports/
 _worktrees/
+shidai-igakubu-gokaku-dokuhon/
 !frontend/src/pages/admin/reports/
 !frontend/src/pages/admin/reports/import.astro
 baseline/*
@@ -17,4 +25,5 @@ frontend/dist/
 frontend/.dev-server.pid
 frontend/.visual-check/
 frontend/reports/
+top_course_lexus-premiere-course_introduction.html
 *.log
