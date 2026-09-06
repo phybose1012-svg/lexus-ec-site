@@ -3,6 +3,7 @@ import path from "node:path";
 import { loadFormulaPurposes } from "./formula-purpose-library.mjs";
 import { fileURLToPath } from "node:url";
 import { loadFigureManifest, renderRegisteredFigure } from "../../../../frontend/src/lib/pastExamFigures.mjs";
+import { normalizeInequalitiesDeep } from "../../../../frontend/src/lib/mathNotation.mjs";
 
 const formulaPurposes = loadFormulaPurposes();
 let figureManifest = null;
@@ -253,7 +254,9 @@ function renderMajor(major, index) {
 const args = parseArgs(process.argv.slice(2));
 const sourcePath = path.resolve(requireValue(args.source, "--source"));
 const outputPath = path.resolve(requireValue(args.output, "--output"));
-const source = JSON.parse(fs.readFileSync(sourcePath, "utf8"));
+// Japanese school notation is enforced here, not left to the author:
+// every \le / \ge / ≤ / ≥ becomes \leqq / \geqq / ≦ / ≧.
+const source = normalizeInequalitiesDeep(JSON.parse(fs.readFileSync(sourcePath, "utf8")));
 if (source.figureManifest) {
   const root = fileURLToPath(new URL("../../../../", import.meta.url));
   figureManifest = loadFigureManifest(path.join(root, source.figureManifest), path.join(root, "frontend/public"), source.packageId);

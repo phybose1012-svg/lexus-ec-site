@@ -4,6 +4,7 @@ import { access, cp, copyFile, mkdir, readFile, readdir, writeFile } from "node:
 import path from "node:path";
 import process from "node:process";
 import { loadFigureManifest, replaceSourceFigures } from "../../../../frontend/src/lib/pastExamFigures.mjs";
+import { normalizeInequalities } from "../../../../frontend/src/lib/mathNotation.mjs";
 
 function parseArguments(argv) {
   const values = {};
@@ -72,8 +73,10 @@ function assertSafeFragment(fragment, sourceName) {
   }
 }
 
+// Upstream transcriptions spell the inequalities \le / \ge. Japanese exam pages
+// must publish \leqq / \geqq, so normalize on import rather than after the fact.
 function removeInternalSourceNotes(fragment) {
-  return fragment.replace(/\s*·\s*参照:\s*[^<]*/g, "");
+  return normalizeInequalities(fragment.replace(/\s*·\s*参照:\s*[^<]*/g, ""));
 }
 
 function removeRedundantMajorQuestionKickers(fragment) {

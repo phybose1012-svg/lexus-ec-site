@@ -27,6 +27,8 @@ The index must contain `data-question-shared-instructions`. Each major-question 
 4. The generic Astro route discovers generated JSON automatically. Add a university-specific adapter only when the source cannot satisfy the common semantic contract, not merely because the university name or exam route differs.
 5. Link the new question page from the university/year/subject table, then verify the route, all major-question anchors, KaTeX rendering hooks, generated metadata, and `noindex` policy.
 
+The importer rewrites every inequality into Japanese school notation: `\le`, `\leq`, `\leqslant` and ≤ become `\leqq`/≦, and the `\ge` family becomes `\geqq`/≧. Upstream transcriptions routinely use `\le`; ≤ and ≥ are never used up to university entrance level, so the published page must not inherit them. Commands that merely share the prefix, such as `\left` and `\gets`, are untouched.
+
 The importer removes a direct `page-kicker` from each major-question fragment because the following `h2` already names the major question. Do not restore labels such as “第1問・大問別問題” above the same “第1問” heading.
 
 ## Publication boundary

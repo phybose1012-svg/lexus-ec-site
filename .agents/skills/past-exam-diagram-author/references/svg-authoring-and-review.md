@@ -32,6 +32,7 @@ SVGs loaded through `<img>` do not reliably inherit page fonts. Embed the shippe
 - Put Japanese annotations in the site's Japanese sans-serif stack.
 - Represent subscripts with a smaller, baseline-shifted span. Do not fake a subscript by moving an entire label manually.
 - Match the TeX command used in the page. Visually similar Unicode characters are not interchangeable. Use the shipped KaTeX runtime to inspect the actual HTML glyph when needed; for example, `\phi` renders `ϕ`, while `\varphi` renders `φ`.
+- Use the Japanese inequality glyphs ≦ and ≧, never ≤ or ≥. These live in `KaTeX_AMS-Regular`, not in Main or Math Italic, so a figure that needs one must embed that third face and relax the two-face check deliberately — do not substitute ≤ because the AMS font is not embedded. `npm run past-exam:notation:test` fails on any SVG carrying the forbidden forms.
 - Add a package regression assertion for an ambiguous symbol or convention so a later edit cannot silently change it.
 
 ## Place labels for reading, not decoration

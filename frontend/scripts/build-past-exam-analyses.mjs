@@ -2,10 +2,12 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { analysisAxesFor, difficulties, actions, validateTargetAnalysis } from "./import-past-exam-analysis.mjs";
+import { normalizeInequalities } from "../src/lib/mathNotation.mjs";
 
 function requireText(value) {
   if (typeof value !== "string" || !value.trim()) throw new Error("Missing editorial text");
-  return value;
+  // Editorial copy follows the same Japanese inequality convention as the pages.
+  return normalizeInequalities(value);
 }
 
 export function buildAnalysis(evidence, editorial) {
