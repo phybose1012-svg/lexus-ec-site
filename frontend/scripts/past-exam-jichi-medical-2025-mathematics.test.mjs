@@ -53,6 +53,25 @@ test("question import preserves all 25 assessment items in 16 reader sections", 
   assert.equal(questions.links.analysis, "/jichiika-university-entrance-exam-measures2027/#数学");
 });
 
+test("all marked choices use the package-scoped table layout", () => {
+  const combined = questions.document.questions.map((question) => question.html).join("\n");
+  const choiceLists = nodes(parse(combined)).filter((node) => hasClass(node, "structured-list--values"));
+  assert.equal(choiceLists.length, 25);
+  for (const list of choiceLists) {
+    assert.equal(nodes(list).filter((node) => hasClass(node, "structured-list__item")).length, 10);
+    assert.equal(nodes(list).filter((node) => hasClass(node, "structured-list__label")).length, 10);
+  }
+
+  const route = read("src/pages/past-exam-library/[university]/[year]/[subject]/questions.astro");
+  const css = read("src/styles/past-exam-question.css");
+  assert.match(route, /data-past-exam-package=\{page\.packageId\}/);
+  assert.match(css, /data-past-exam-package="jichi-medical-2025-general-mathematics"/);
+  assert.match(css, /grid-template-columns:\s*repeat\(5, minmax\(0, 1fr\)\)/);
+  assert.match(css, /grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\)/);
+  assert.match(css, /grid-template-rows:\s*1\.65rem minmax\(2\.8rem, auto\)/);
+  assert.match(css, /break-inside:\s*avoid-page/);
+});
+
 test("independently authored answer source covers 25 keys and every formula has a registered purpose", () => {
   assert.equal(answers.source.contentProvenance, "original_editorial");
   assert.equal(answers.source.restrictedSourceCopied, false);

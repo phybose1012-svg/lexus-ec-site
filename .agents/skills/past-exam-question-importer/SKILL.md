@@ -70,6 +70,14 @@ On Windows, run this from PowerShell, or prefix the command with `MSYS_NO_PATHCO
 
 Keep override files declarative and narrowly scoped to a major-question ID or to `shared` instructions. If an operation changes the meaning of the question rather than its presentation, fix and re-review the source package instead.
 
+## Marked-choice layout
+
+- Preserve marked choices as a semantic list with each mark and value in the same `listitem`. A visually tabular layout does not make the choices relational data, so do not replace the list with an HTML `table` solely for presentation.
+- Inspect the number of choices and the widest rendered expression before choosing columns. For a fixed set of ten compact choices, a proven starting profile is five columns by two rows on desktop and print, and two columns by five rows on mobile.
+- Scope a special choice grid to `data-past-exam-package`; `.structured-list--values` is shared by packages with different content structures and must not be globally redefined for one exam.
+- Keep the mark visually distinct from its value. On narrow screens, place the mark in a short top band and the expression below when a side-by-side mark reduces usable formula width.
+- Verify the widest choices at desktop, 390px, 360px, and 320px. Confirm that neither the page nor the list overflows horizontally, formulas remain legible without unintended line breaks, source order is unchanged, and print keeps each choice list together where practical.
+
 ## Source defect escalation
 
 When a semantic transcription or explanation defect is found, do not hide it in a display override and do not spend the library-build session repairing the separate source repository. Use independently verified content on the Lexus side only when the correct value follows unambiguously from the published problem, and create a handoff prompt for a dedicated source-repair session.
