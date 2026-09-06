@@ -48,18 +48,23 @@ export function buildAnalysis(evidence, editorial) {
       const copy = editorial.targets.find((t) => t.id === profile.id);
       if (!copy) throw new Error("Missing target editorial profile");
       // Some subjects require replacing an initial selection, not merely adding to it.
-      const route = profile.now.points >= profile.targetPoints ? profile.now : profile.maximum;
+      // Meeting the point target is not sufficient when the selected "now" plan
+      // exceeds the subject's time limit. In that case, use the validated
+      // maximum plan, which is guaranteed to fit the budget.
+      const route = profile.now.points >= profile.targetPoints && profile.now.minutes <= targetAnalysis.timeBudgetMinutes
+        ? profile.now
+        : profile.maximum;
       if (route.minutes > targetAnalysis.timeBudgetMinutes) throw new Error("Target route exceeds the provisional time budget");
       const replacedIds = profile.now.questionIds.filter((id) => !route.questionIds.includes(id));
       const routeKind = replacedIds.length ? "replacement" : "addition";
       const labelFor = (id) => {
         const major = majorQuestions.find((m) => m.subquestions.some((s) => s.id === id));
-        return { id, label: `${major.label} ${major.subquestions.find((s) => s.id === id).label}` };
+        const subquestion = major.subquestions.find((s) => s.id === id);
+        const numberedProblem = /^問題\s*\d+(?:\s*[〜～]\s*\d+)?$/.test(major.label)
+          && /^問題\s*\d+$/.test(subquestion.label);
+        return { id, label: numberedProblem ? subquestion.label : `${major.label} ${subquestion.label}` };
       };
-      const additional = route.questionIds.filter((id) => !profile.now.questionIds.includes(id)).map((id) => {
-        const major = majorQuestions.find((m) => m.subquestions.some((s) => s.id === id));
-        return { id, label: `${major.label} ${major.subquestions.find((s) => s.id === id).label}` };
-      });
+      const additional = route.questionIds.filter((id) => !profile.now.questionIds.includes(id)).map(labelFor);
       return { ...profile, title: requireText(copy.title), summary: requireText(copy.summary), focus: requireText(copy.focus), route, additional, ...(routeKind === "replacement" ? { routeKind, replaced: replacedIds.map(labelFor) } : {}) };
     }),
   };

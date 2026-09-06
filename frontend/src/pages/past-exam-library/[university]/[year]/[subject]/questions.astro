@@ -2,7 +2,7 @@
 import SiteLayout from "../../../../../layouts/SiteLayout.astro";
 import PastExamBreadcrumbs from "../../../../../components/past-exam/PastExamBreadcrumbs.astro";
 import PastExamSeoHead from "../../../../../components/past-exam/PastExamSeoHead.astro";
-import { buildExamDocumentSeo, PAST_EXAM_SOCIAL_IMAGE, PAST_EXAM_SOCIAL_IMAGE_ALT } from "../../../../../lib/pastExamSeo.mjs";
+import { buildExamDocumentSeo, PAST_EXAM_SOCIAL_IMAGE, PAST_EXAM_SOCIAL_IMAGE_ALT, summarizeQuestionLabels } from "../../../../../lib/pastExamSeo.mjs";
 import PastExamExamInfo from "../../../../../components/past-exam/PastExamExamInfo.astro";
 import PastExamDocumentTabs from "../../../../../components/past-exam/PastExamDocumentTabs.astro";
 import PastExamContents from "../../../../../components/past-exam/PastExamContents.astro";
@@ -79,6 +79,7 @@ export function getStaticPaths() {
 }
 
 const { page, answerPath } = Astro.props as { page: QuestionPageData; answerPath: string | null };
+const questionSummary = summarizeQuestionLabels(page.document.questions.map((question) => question.label));
 const { title, description, canonical, breadcrumbs, structuredData } = buildExamDocumentSeo({
   mode: "questions",
   university: page.university.name,
@@ -86,6 +87,9 @@ const { title, description, canonical, breadcrumbs, structuredData } = buildExam
   subject: page.subject.name,
   examLabel: page.exam.label,
   majorCount: page.document.questions.length,
+  itemCount: questionSummary.count,
+  itemUnit: questionSummary.unit,
+  itemGrouping: questionSummary.grouping,
   path: page.route.path,
   universityPath: page.links.universityLibrary,
 });
@@ -140,7 +144,7 @@ const reviewRequired = page.source.rightsStatus !== "approved" || page.source.ne
           { label: "試験段階", value: page.exam.stage },
           { label: "科目", value: page.subject.name },
           { label: "試験時間", value: page.exam.duration },
-          { label: "大問", value: `${page.document.questions.length}題` },
+          { label: questionSummary.label, value: questionSummary.display },
         ]} />
       </div>
     </header>
@@ -152,7 +156,7 @@ const reviewRequired = page.source.rightsStatus !== "approved" || page.source.ne
         page.exam.stage,
         page.subject.name,
         page.exam.duration,
-        `大問${page.document.questions.length}題`,
+        questionSummary.print,
       ]}
       notes={page.document.printNotes ?? [
         "空欄には、指定に従って符号または数字を1つずつ記入してください。",

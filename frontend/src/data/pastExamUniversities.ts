@@ -112,6 +112,24 @@ export const universityLibraries: UniversityLibrary[] = [
     informationLabel: "順天堂大学 入試情報",
     currentStatus: "2025年度数学の問題・解答解説・分析を閲覧できます",
   },
+  {
+    id: "jichi-medical",
+    name: "自治医科大学",
+    examLabel: "一般選抜",
+    stageLabel: "第一次試験",
+    years: [
+      { year: "2026", label: "最新年度", tone: "latest" },
+      { year: "2025", label: "一部公開中", tone: "active" },
+      { year: "2024", label: "掲載準備中", tone: "placeholder" },
+      { year: "2023", label: "掲載準備中", tone: "placeholder" },
+      { year: "2022", label: "掲載準備中", tone: "placeholder" },
+    ],
+    strategyPath: "/jichiika-university-entrance-exam-measures2027/",
+    strategyLabel: "2027年度 一般選抜対策",
+    informationPath: "/information-jichi/",
+    informationLabel: "自治医科大学 入試情報",
+    currentStatus: "2025年度数学の問題・解答解説・分析を閲覧できます",
+  },
 ];
 
 export const libraryPathFor = (universityId: string) =>

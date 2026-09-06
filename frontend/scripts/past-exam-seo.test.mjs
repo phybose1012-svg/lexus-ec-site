@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
 import { parse } from "parse5";
-import { buildExamDocumentSeo, canonicalFor, serializeJsonLd, SITE_ORIGIN } from "../src/lib/pastExamSeo.mjs";
+import { buildExamDocumentSeo, canonicalFor, serializeJsonLd, SITE_ORIGIN, summarizeQuestionLabels } from "../src/lib/pastExamSeo.mjs";
 import { robotsForPage } from "../src/lib/robotsPolicy.mjs";
 
 const root = new URL("../", import.meta.url);
@@ -59,6 +59,26 @@ test("the reusable factory derives university/year/subject metadata from inputs"
   assert.match(seo.title, /テスト大学医学部 2026年度 化学/);
   assert.match(seo.description, /全4題/);
   assert.ok(!seo.description.includes("数学"));
+});
+
+test("numbered reader sections report assessment items instead of inventing major questions", () => {
+  const summary = summarizeQuestionLabels([
+    ...Array.from({ length: 13 }, (_, index) => `問題${index + 1}`),
+    "問題14〜16",
+    "問題17〜20",
+    "問題21〜25",
+  ]);
+  assert.deepEqual(summary, { label: "問題", count: 25, unit: "問", grouping: "問題別", display: "25問", print: "問題25問" });
+  const seo = buildExamDocumentSeo({
+    mode: "answers", university: "テスト大学", year: 2025, subject: "数学", examLabel: "一般選抜",
+    majorCount: 5, itemCount: summary.count, itemUnit: summary.unit, itemGrouping: summary.grouping,
+    path: `${library}test/2025/mathematics/answers/`, universityPath: `${library}test/`,
+  });
+  assert.match(seo.description, /全25問/);
+  assert.match(seo.description, /問題別/);
+  assert.ok(!seo.description.includes("全5題"));
+  assert.equal(summarizeQuestionLabels(["第1問", "第2問", "第3問"]).print, "大問3題");
+  assert.equal(summarizeQuestionLabels(["大問Ⅰ", "大問Ⅱ", "大問Ⅲ"]).print, "大問3題");
 });
 
 const titles = new Set();

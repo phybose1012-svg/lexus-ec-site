@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "lexus-ec.past-exam-import-overrides.v1",
+  "packageId": "jichi-medical-2025-general-mathematics",
+  "printNotes": [
+    "各問題について、与えられた選択肢から最も適当なものを1つ選んでください。",
+    "全25問です。問題14〜16、17〜20、21〜25は、それぞれ共通設定を用います。",
+    "数学の試験時間は80分です。"
+  ],
+  "operations": [
+    {
+      "type": "replace-text",
+      "scope": "shared",
+      "from": "<div class=\"page-kicker\">全大問共通</div>",
+      "to": "",
+      "expectedMatches": 1,
+      "reason": "問題1〜25を番号順に掲載するページでは、共有注意の用途と重複する大問ラベルを表示しない。"
+    },
+    {
+      "type": "replace-text",
+      "scope": "major-question-13",
+      "from": "x=1/e",
+      "to": "x=\\dfrac{1}{e}",
+      "expectedMatches": 2,
+      "reason": "原本の縦型分数を公開ページでも保つ。"
+    },
+    {
+      "type": "replace-text",
+      "scope": "major-question-14",
+      "from": "11/5",
+      "to": "\\dfrac{11}{5}",
+      "expectedMatches": 2,
+      "reason": "問題15の選択肢を原本どおりの縦型分数で表示する。"
+    },
+    {
+      "type": "replace-text",
+      "scope": "major-question-14",
+      "from": "12/5",
+      "to": "\\dfrac{12}{5}",
+      "expectedMatches": 2,
+      "reason": "問題15の選択肢を原本どおりの縦型分数で表示する。"
+    },
+    {
+      "type": "replace-text",
+      "scope": "major-question-14",
+      "from": "13/5",
+      "to": "\\dfrac{13}{5}",
+      "expectedMatches": 2,
+      "reason": "問題15の選択肢を原本どおりの縦型分数で表示する。"
+    },
+    {
+      "type": "replace-text",
+      "scope": "major-question-14",
+      "from": "14/5",
+      "to": "\\dfrac{14}{5}",
+      "expectedMatches": 2,
+      "reason": "問題15の選択肢を原本どおりの縦型分数で表示する。"
+    },
+    {
+      "type": "replace-text",
+      "scope": "major-question-14",
+      "from": "31/10",
+      "to": "\\dfrac{31}{10}",
+      "expectedMatches": 2,
+      "reason": "問題15の選択肢を原本どおりの縦型分数で表示する。"
+    },
+    {
+      "type": "replace-text",
+      "scope": "major-question-14",
+      "from": "16/5",
+      "to": "\\dfrac{16}{5}",
+      "expectedMatches": 2,
+      "reason": "問題15の選択肢を原本どおりの縦型分数で表示する。"
+    },
+    {
+      "type": "replace-text",
+      "scope": "major-question-14",
+      "from": "33/10",
+      "to": "\\dfrac{33}{10}",
+      "expectedMatches": 2,
+      "reason": "問題15の選択肢を原本どおりの縦型分数で表示する。"
+    },
+    {
+      "type": "replace-text",
+      "scope": "major-question-14",
+      "from": "17/5",
+      "to": "\\dfrac{17}{5}",
+      "expectedMatches": 2,
+      "reason": "問題15の選択肢を原本どおりの縦型分数で表示する。"
+    },
+    {
+      "type": "replace-text",
+      "scope": "major-question-14",
+      "from": "<h2>問題16</h2>",
+      "to": "<h3>問題16</h3>",
+      "expectedMatches": 1,
+      "reason": "共通設定配下の問題14〜16を同じ見出し階層にそろえる。"
+    },
+    {
+      "type": "replace-text",
+      "scope": "major-question-15",
+      "from": "<h2>問題19</h2>",
+      "to": "<h3>問題19</h3>",
+      "expectedMatches": 1,
+      "reason": "共通設定配下の問題17〜20を同じ見出し階層にそろえる。"
+    },
+    {
+      "type": "replace-text",
+      "scope": "major-question-16",
+      "from": "<h2>問題22</h2>",
+      "to": "<h3>問題22</h3>",
+      "expectedMatches": 1,
+      "reason": "共通設定配下の問題21〜25を同じ見出し階層にそろえる。"
+    },
+    {
+      "type": "promote-inline-fractions",
+      "scope": "*",
+      "minimumMatches": 0,
+      "reason": "分子・分母を本文と釣り合う大きさで表示する。"
+    }
+  ]
+}

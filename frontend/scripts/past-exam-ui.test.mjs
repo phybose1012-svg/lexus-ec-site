@@ -138,3 +138,17 @@ test("screen-only UI stays out of print and separators preserve question spacing
     assert.equal(descendants(branding).filter((n) => n.tagName === "img").length, 3);
   }
 });
+
+test("question and answer card grids may shrink below wide mathematical content on mobile", () => {
+  const css = postcss.parse(read("src/styles/past-exam-question.css"));
+  const declarations = new Map();
+  css.walkRules((rule) => {
+    if (rule.parent.type === "atrule") return;
+    if (![".past-exam-question-list", ".past-exam-question-list > *", ".past-exam-question-page .source-page-card"].includes(rule.selector)) return;
+    declarations.set(rule.selector, new Map(rule.nodes.filter((node) => node.type === "decl").map((node) => [node.prop, node.value])));
+  });
+  assert.equal(declarations.get(".past-exam-question-list")?.get("grid-template-columns"), "minmax(0, 1fr)");
+  assert.equal(declarations.get(".past-exam-question-list")?.get("min-width"), "0");
+  assert.equal(declarations.get(".past-exam-question-list > *")?.get("min-width"), "0");
+  assert.equal(declarations.get(".past-exam-question-page .source-page-card")?.get("min-width"), "0");
+});

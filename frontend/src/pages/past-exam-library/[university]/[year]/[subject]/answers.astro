@@ -2,7 +2,7 @@
 import SiteLayout from "../../../../../layouts/SiteLayout.astro";
 import PastExamBreadcrumbs from "../../../../../components/past-exam/PastExamBreadcrumbs.astro";
 import PastExamSeoHead from "../../../../../components/past-exam/PastExamSeoHead.astro";
-import { buildExamDocumentSeo, PAST_EXAM_SOCIAL_IMAGE, PAST_EXAM_SOCIAL_IMAGE_ALT } from "../../../../../lib/pastExamSeo.mjs";
+import { buildExamDocumentSeo, PAST_EXAM_SOCIAL_IMAGE, PAST_EXAM_SOCIAL_IMAGE_ALT, summarizeQuestionLabels } from "../../../../../lib/pastExamSeo.mjs";
 import PastExamExamInfo from "../../../../../components/past-exam/PastExamExamInfo.astro";
 import PastExamDocumentTabs from "../../../../../components/past-exam/PastExamDocumentTabs.astro";
 import PastExamContents from "../../../../../components/past-exam/PastExamContents.astro";
@@ -62,6 +62,7 @@ export function getStaticPaths() {
 }
 
 const { page } = Astro.props as { page: AnswerPageData };
+const questionSummary = summarizeQuestionLabels(page.document.majorQuestions.map((major) => major.label));
 const { title, description, canonical, breadcrumbs, structuredData } = buildExamDocumentSeo({
   mode: "answers",
   university: page.university.name,
@@ -69,6 +70,9 @@ const { title, description, canonical, breadcrumbs, structuredData } = buildExam
   subject: page.subject.name,
   examLabel: page.exam.label,
   majorCount: page.document.majorQuestions.length,
+  itemCount: questionSummary.count,
+  itemUnit: questionSummary.unit,
+  itemGrouping: questionSummary.grouping,
   path: page.route.path,
   universityPath: page.links.universityLibrary,
 });
@@ -123,7 +127,7 @@ const reviewRequired = page.source.needsHumanReview;
           { label: "試験段階", value: page.exam.stage },
           { label: "科目", value: page.subject.name },
           { label: "試験時間", value: page.exam.duration },
-          { label: "大問", value: `${page.document.majorQuestions.length}題` },
+          { label: questionSummary.label, value: questionSummary.display },
         ]} />
       </div>
     </header>
@@ -135,7 +139,7 @@ const reviewRequired = page.source.needsHumanReview;
         page.exam.stage,
         page.subject.name,
         "解答・解説",
-        `大問${page.document.majorQuestions.length}題`,
+        questionSummary.print,
       ]}
       notes={["掲載問題をもとに、レクサスE.C.が独自に作成した解答・解説です。"]}
     />

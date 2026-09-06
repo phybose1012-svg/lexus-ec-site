@@ -195,4 +195,5 @@ test("all three pages retain distinct navigation, branding, and physics-only lin
       for (const card of cards) assert.equal(nodes(card).filter((n) => cls(n, "page-kicker")).length, 0);
     }
   }
+  assert.equal((text(pages.analysis[0]).match(/48\.4分/g) ?? []).length, 1);
 });

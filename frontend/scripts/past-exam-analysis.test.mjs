@@ -38,12 +38,13 @@ const fixtureMetadata = {
 };
 const fixtureHtml = `<html data-report-mode="student"><title>試験大学 2025 数学</title><p>編集責任者未承認</p>
 <article class="card major-question" id="q1"><h3>微分と極限</h3><svg>${axes.map((a) => `<text>${a} 2.0</text>`).join("")}</svg><div class="subquestion-list">
-<section class="subquestion" id="q1-1"><span class="subquestion__label">問1</span><div class="pill-row"><span>基本レベル</span><span>苦手: 後回し</span><span>得意: 今解く！</span></div><h4>レベル判断</h4><p>f&#x27;(x)を求める。</p><h4>解く順番の理由</h4><p>計算量に注意。</p></section></div></article></html>`;
+<section class="subquestion" id="q1-1"><span class="subquestion__label">問1</span><div class="pill-row"><span>基本レベル</span><span>苦手: 後回し</span><span>得意: 今解く！</span></div><h4>レベル判断</h4><p>f&#x27;(x)を求める。</p><h4>解く順番の理由</h4><p>x \\le 1 の範囲で計算量に注意。</p></section></div></article></html>`;
 
 test("HTML extraction preserves ratings, priorities, reasons and review status", () => {
   const result = extractAnalysis(fixtureHtml, fixtureMetadata, "report.html");
   assert.deepEqual(result.majorQuestions[0].requirements, [2, 2, 2, 2, 2]);
   assert.equal(result.majorQuestions[0].subquestions[0].difficultyReason, "f'(x)を求める。");
+  assert.equal(result.majorQuestions[0].subquestions[0].strategyReason, "x \\leqq 1 の範囲で計算量に注意。");
   assert.equal(result.majorQuestions[0].subquestions[0].points, 5);
   assert.equal(result.majorQuestions[0].subquestions[0].weak, "後回し");
   assert.equal(result.source.approved, false);
@@ -214,7 +215,6 @@ test("fail rather than silently omit or corrupt target analysis", () => {
     (t) => { t.profiles[0].targetPoints = 49; },
     (t) => { t.profiles[1].reliabilityFactor = 0.9; },
     (t) => { t.profiles[0].maximum.minutes = 61; },
-    (t) => { t.profiles[1].now.minutes = 61; },
     (t) => { t.timeBudgetMinutes = Infinity; },
     (t) => { t.profiles[0].now.questionIds.push("nonexistent-question"); },
     (t) => { t.profiles[1].maximum.questionIds.push(t.profiles[1].maximum.questionIds[0]); },
@@ -223,4 +223,34 @@ test("fail rather than silently omit or corrupt target analysis", () => {
     mutate(bad.targetAnalysis);
     assert.throws(() => buildAnalysis(bad, editorial), /target/i);
   }
+});
+
+test("Jichi selects a time-feasible route when the immediate plan reaches the target too late", () => {
+  const jichiEvidence = read("pastExamAnalysisEvidence/jichi-medical-2025-general-mathematics.json");
+  const jichiEditorial = read("pastExamAnalysisSources/jichi-medical-2025-general-mathematics.json");
+  const page = buildAnalysis(jichiEvidence, jichiEditorial);
+  const subquestions = page.majorQuestions.flatMap((major) => major.subquestions);
+
+  assert.equal(page.majorQuestions.length, 16);
+  assert.equal(subquestions.length, 25);
+  assert.equal(subquestions.reduce((sum, question) => sum + question.points, 0), 25);
+  assert.deepEqual(page.difficultyCounts, [1, 9, 14, 1]);
+  assert.deepEqual(page.examTotal, { points: 100, subjectCount: 4 });
+  assert.equal(page.duration, "数学 80分（大学公表）");
+  assert.equal(page.targets.timeBudgetBasis, "official_subject");
+  assert.equal(page.source.approved, false);
+
+  const [weak, strong] = page.targets.profiles;
+  assert.deepEqual([weak.targetPoints, weak.now.points, weak.now.minutes], [6, 6, 81.4]);
+  assert.deepEqual([weak.route.points, weak.route.minutes], [6, 78]);
+  assert.equal(weak.routeKind, "replacement");
+  assert.deepEqual(weak.route.questionIds, weak.maximum.questionIds);
+  assert.deepEqual(weak.replaced.map((question) => question.id), ["math-q1-1", "math-q8-1", "math-q9-1"]);
+  assert.deepEqual(weak.additional.map((question) => question.id), ["math-q15-3", "math-q16-2", "math-q16-3"]);
+  assert.deepEqual(weak.replaced.map((question) => question.label), ["問題1", "問題8", "問題9"]);
+  assert.deepEqual(weak.additional.map((question) => question.label), ["問題19", "問題22", "問題23"]);
+
+  assert.deepEqual([strong.targetPoints, strong.now.points, strong.now.minutes], [16, 18, 62.9]);
+  assert.deepEqual(strong.route.questionIds, strong.now.questionIds);
+  assert.ok(page.targets.profiles.every((profile) => profile.route.minutes <= page.targets.timeBudgetMinutes));
 });

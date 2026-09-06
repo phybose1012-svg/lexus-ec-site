@@ -2,7 +2,7 @@
 import SiteLayout from "../../../../../layouts/SiteLayout.astro";
 import PastExamBreadcrumbs from "../../../../../components/past-exam/PastExamBreadcrumbs.astro";
 import PastExamSeoHead from "../../../../../components/past-exam/PastExamSeoHead.astro";
-import { buildExamDocumentSeo, PAST_EXAM_SOCIAL_IMAGE, PAST_EXAM_SOCIAL_IMAGE_ALT } from "../../../../../lib/pastExamSeo.mjs";
+import { buildExamDocumentSeo, PAST_EXAM_SOCIAL_IMAGE, PAST_EXAM_SOCIAL_IMAGE_ALT, summarizeQuestionLabels } from "../../../../../lib/pastExamSeo.mjs";
 import AnalysisSection from "../../../../../components/past-exam/AnalysisSection.astro";
 import PastExamExamInfo from "../../../../../components/past-exam/PastExamExamInfo.astro";
 import PastExamDocumentTabs from "../../../../../components/past-exam/PastExamDocumentTabs.astro";
@@ -30,9 +30,20 @@ const { title, description, canonical, breadcrumbs, structuredData } = buildExam
 const levels = ["基本レベル", "基本＋αレベル", "標準レベル", "発展レベル"];
 const priorities = ["先に解く", "後回し", "見送る"];
 const total = page.majorQuestions.reduce((n, q) => n + q.subquestions.length, 0);
+const questionSummary = summarizeQuestionLabels(page.majorQuestions.map((major) => major.label));
+const usesNumberedProblems = questionSummary.label === "問題";
+const overviewTitle = usesNumberedProblems ? "問題ごとの特徴" : "大問ごとの特徴";
+const itemNoun = usesNumberedProblems ? "問題" : "小問";
+const itemCountSuffix = usesNumberedProblems ? "問" : "小問";
 const totalPoints = page.majorQuestions.flatMap((q) => q.subquestions).reduce((n, q) => n + q.points, 0);
 const difficultyPoints = levels.map((_, level) => page.majorQuestions.flatMap((q) => q.subquestions).filter((q) => q.difficulty === level).reduce((n, q) => n + q.points, 0));
 const difficultySlices = buildDifficultyPie(difficultyPoints);
+const weakScanMinutes = page.targets.profiles.find((profile) => profile.id === "weak")?.scanMinutes;
+const targetReviewNote = page.targetReviewNote
+  ? `${page.targetReviewNote}${weakScanMinutes !== undefined && !page.targetReviewNote.includes(`${weakScanMinutes}分`)
+      ? ` 苦手層の全問一巡の判断時間：${weakScanMinutes}分。`
+      : ""}`
+  : null;
 ---
 
 <SiteLayout title={title} description={description} canonical={canonical}
@@ -56,7 +67,7 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
           { label: "科目", value: page.subject },
           { label: "形式", value: page.format },
           { label: "試験時間", value: page.duration },
-          { label: "大問・小問", value: `${page.majorQuestions.length}題・${total}問` },
+          { label: usesNumberedProblems ? "問題・掲載区分" : "大問・小問", value: usesNumberedProblems ? `${questionSummary.count}問・${page.majorQuestions.length}セクション` : `${page.majorQuestions.length}題・${total}問` },
         ]} />
       </div>
     </header>
@@ -70,7 +81,7 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
       <PastExamContents title="分析の目次" items={[
         { label: "試験概要", href: "#difficulty-distribution" },
         { label: "目標点", href: "#target-score" },
-        { label: "大問ごとの特徴", href: "#overview-title" },
+        { label: overviewTitle, href: "#overview-title" },
         { label: "解く順番", href: "#priority-title" },
         { label: "復習", href: "#practice-title" },
       ]} />
@@ -83,8 +94,8 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
         <div class="analysis-distribution" id="difficulty-distribution">
           <h3>試験概要</h3>
           <dl class="analysis-distribution-totals">
-            <div><dt>大問合計</dt><dd><strong>{page.majorQuestions.length}</strong>題</dd></div>
-            <div><dt>小問合計</dt><dd><strong>{total}</strong>問</dd></div>
+            <div><dt>{usesNumberedProblems ? "問題合計" : "大問合計"}</dt><dd><strong>{usesNumberedProblems ? questionSummary.count : page.majorQuestions.length}</strong>{usesNumberedProblems ? "問" : "題"}</dd></div>
+            <div><dt>{usesNumberedProblems ? "掲載セクション" : "小問合計"}</dt><dd><strong>{usesNumberedProblems ? page.majorQuestions.length : total}</strong>{usesNumberedProblems ? "区分" : "問"}</dd></div>
             <div><dt>配点合計</dt><dd><strong>{totalPoints}</strong>点{page.examTotal && <span class="analysis-exam-total"> / {page.examTotal.points}点 ({page.examTotal.subjectCount}科目合計)</span>}</dd></div>
           </dl>
           <div class="analysis-distribution-chart">
@@ -97,16 +108,16 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
               {difficultySlices.map((s) => <li><i class={`analysis-level-fill level-${s.level}`} aria-hidden="true"></i><span class="analysis-legend-copy"><span>{levels[s.level]}</span><span class="analysis-legend-values"><b>{page.difficultyCounts[s.level]}問</b><small>（推定：{s.value}点）</small></span></span></li>)}
             </ul>
           </div>
-          <small id="difficulty-pie-note">難易度別の仮配点割合です。大学公表の小問別配点ではありません。</small>
+          <small id="difficulty-pie-note">難易度別の仮配点割合です。大学公表の{itemNoun}別配点ではありません。</small>
         </div>
       </section>
       </div>
 
       <AnalysisSection id="target-score" headingId="target-title" number="01" title="目標点" tone="muted" character="lexus">
         <p class="analysis-section-intro">{page.targets.timeBudgetBasis === "official_subject"
-          ? `${page.subject}の試験時間${page.targets.timeBudgetMinutes}分で組んだ、レクサスの目標点です。小問別の仮配点に基づく試算で、大学公表の配点・合格最低点ではありません。`
-          : `${page.subject}に${page.targets.timeBudgetMinutes}分を使うと仮定した、レクサスの目標点です。小問別の仮配点に基づく試算で、大学公表の配点・合格最低点ではありません。`}</p>
-        {page.targetReviewNote && <p class="analysis-small-note">{page.targetReviewNote} 苦手層の全問一巡の判断時間：{page.targets.profiles.find((profile) => profile.id === "weak")?.scanMinutes}分。</p>}
+          ? `${page.subject}の試験時間${page.targets.timeBudgetMinutes}分で組んだ、レクサスの目標点です。${itemNoun}別の仮配点に基づく試算で、大学公表の配点・合格最低点ではありません。`
+          : `${page.subject}に${page.targets.timeBudgetMinutes}分を使うと仮定した、レクサスの目標点です。${itemNoun}別の仮配点に基づく試算で、大学公表の配点・合格最低点ではありません。`}</p>
+        {targetReviewNote && <p class="analysis-small-note">{targetReviewNote}</p>}
         <div class="analysis-target-grid">
           {page.targets.profiles.map((profile) => (
             <article class={`analysis-target-card is-${profile.id}`}>
@@ -114,28 +125,28 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
               <p class="analysis-target-score"><strong>{profile.targetPoints}</strong><span>点<small>／{page.targets.totalPoints}点満点・仮配点</small></span></p>
               <p class="analysis-target-summary">{profile.summary}</p>
               <dl class="analysis-target-steps">
-                <div><dt>先に解く{profile.now.questionIds.length}小問</dt><dd><strong>{profile.now.points}点</strong><span>想定{profile.now.minutes}分</span></dd></div>
+                <div><dt>{profile.routeKind === "replacement" ? "当初の優先候補" : "先に解く"}{profile.now.questionIds.length}{itemCountSuffix}{profile.now.minutes > page.targets.timeBudgetMinutes && <small>試験時間を超過</small>}</dt><dd><strong>{profile.now.points}点</strong><span>想定{profile.now.minutes}分</span></dd></div>
                 {profile.routeKind === "replacement"
-                  ? <div class="analysis-target-addition"><dt>小問の組合せを変更<small>{profile.replaced?.map((q) => q.label).join("・")}を外し、{profile.additional.map((q) => q.label).join("・")}へ</small></dt><dd><strong>計{profile.route.points}点</strong><span>計{profile.route.minutes}分</span></dd></div>
+                  ? <div class="analysis-target-addition"><dt>{itemNoun}の組合せを変更<small>{profile.replaced?.map((q) => q.label).join("・")}を外し、{profile.additional.map((q) => q.label).join("・")}へ</small></dt><dd><strong>計{profile.route.points}点</strong><span>計{profile.route.minutes}分</span></dd></div>
                   : profile.additional.length > 0
                   ? <div class="analysis-target-addition"><dt>{profile.additional.map((q) => q.label).join("・")}を追加<small>＋{profile.route.points - profile.now.points}点</small></dt><dd><strong>計{profile.route.points}点</strong><span>計{profile.route.minutes}分</span></dd></div>
-                  : <div class="analysis-target-reached"><dt>この小問構成で目標点をカバー</dt></div>}
+                  : <div class="analysis-target-reached"><dt>この{itemNoun}構成で目標点をカバー</dt></div>}
               </dl>
               <p class="analysis-target-focus">{profile.focus}</p>
             </article>
           ))}
         </div>
-        <p class="analysis-small-note">時間は全{total}小問の解く・後回しにする判断を一度行う時間を含みます。実際の所要時間や得点を保証するものではありません。</p>
+        <p class="analysis-small-note">時間は全{total}{usesNumberedProblems ? "問" : "小問"}の解く・後回しにする判断を一度行う時間を含みます。実際の所要時間や得点を保証するものではありません。</p>
       </AnalysisSection>
 
-      <AnalysisSection headingId="overview-title" number="02" title="大問ごとの特徴">
+      <AnalysisSection headingId="overview-title" number="02" title={overviewTitle}>
         <div class="analysis-major-grid">
           {page.majorQuestions.map((major, i) => (
             <article class="analysis-major-card">
               <div class="analysis-major-card__head"><span>{String(i + 1).padStart(2, "0")}</span><div><small>{major.label}</small><h3>{major.title}</h3></div></div>
               <p class="analysis-major-subtitle">{major.subtitle}</p>
               <p>{major.summary}</p>
-              <a href={`#${major.id}`}>小問別の優先度を見る <span aria-hidden="true">↓</span></a>
+              <a href={`#${major.id}`}>{itemNoun}別の優先度を見る <span aria-hidden="true">↓</span></a>
             </article>
           ))}
         </div>
@@ -153,8 +164,8 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
                 <div><a href={major.questionsPath}>問題</a><a href={major.answersPath}>解答・解説</a></div>
               </div>
               <table class="analysis-priority-table">
-                <caption class="analysis-sr-only">{major.label}の小問別難易度と優先度</caption>
-                <thead><tr><th scope="col">小問・着眼点</th><th scope="col">難易度</th><th scope="col">苦手なら</th><th scope="col">得意なら</th></tr></thead>
+                <caption class="analysis-sr-only">{major.label}の{itemNoun}別難易度と優先度</caption>
+                <thead><tr><th scope="col">{itemNoun}・着眼点</th><th scope="col">難易度</th><th scope="col">苦手なら</th><th scope="col">得意なら</th></tr></thead>
                 <tbody>{major.subquestions.map((s) => (
                   <tr>
                     <th scope="row"><span class="analysis-subquestion-name"><small>{s.label}</small>{s.title}</span><p>{s.note}</p></th>
@@ -167,7 +178,7 @@ const difficultySlices = buildDifficultyPie(difficultyPoints);
             </section>
           ))}
         </div>
-        <p class="analysis-small-note">「先に解く」は優先して着手する小問。「見送る」は今回の演習で時間をかけすぎない判断で、学習しなくてよいという意味ではありません。</p>
+        <p class="analysis-small-note">「先に解く」は優先して着手する{itemNoun}。「見送る」は今回の演習で時間をかけすぎない判断で、学習しなくてよいという意味ではありません。</p>
       </AnalysisSection>
 
       <AnalysisSection headingId="practice-title" number="04" title={`復習はこの${page.majorQuestions.length}点`}>
