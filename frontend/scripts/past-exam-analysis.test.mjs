@@ -225,10 +225,69 @@ test("fail rather than silently omit or corrupt target analysis", () => {
   }
 });
 
+test("apply an explicit package-scoped target policy without mutating source evidence", () => {
+  const originalEvidence = structuredClone(evidence.targetAnalysis);
+  const overriddenEditorial = structuredClone(editorial);
+  overriddenEditorial.targetProfileOverrides = [{
+    id: "strong",
+    reliabilityFactor: 1,
+    rounding: "none",
+    reason: "このパッケージ固有の方針です。",
+  }];
+  const page = buildAnalysis(evidence, overriddenEditorial);
+  const strong = page.targets.profiles.find((profile) => profile.id === "strong");
+  assert.deepEqual([strong.targetPoints, strong.targetPercent, strong.reliabilityFactor, strong.rounding], [100, 100, 1, "none"]);
+  assert.equal(strong.policyReason, "このパッケージ固有の方針です。");
+  assert.deepEqual(evidence.targetAnalysis, originalEvidence);
+  assert.deepEqual(buildAnalysis(evidence, editorial).targets.profiles.map((profile) => profile.targetPoints), [48, 80]);
+
+  for (const targetProfileOverrides of [
+    [],
+    [{ id: "missing", reliabilityFactor: 1, rounding: "none", reason: "理由" }],
+    [{ id: "strong", reliabilityFactor: 0, rounding: "none", reason: "理由" }],
+    [{ id: "strong", reliabilityFactor: "1", rounding: "none", reason: "理由" }],
+    [{ id: "strong", reliabilityFactor: 1, rounding: "nearest", reason: "理由" }],
+    [{ id: "strong", reliabilityFactor: 1, rounding: "none", reason: "" }],
+    [{ id: "strong", reliabilityFactor: 1, rounding: "none", reason: "理由", typo: true }],
+    [
+      { id: "strong", reliabilityFactor: 1, rounding: "none", reason: "理由1" },
+      { id: "strong", reliabilityFactor: 1, rounding: "none", reason: "理由2" },
+    ],
+  ]) assert.throws(() => buildAnalysis(evidence, { ...editorial, targetProfileOverrides }), /target profile override|editorial text/);
+});
+
+test("apply a university and subject policy without leaking into other packages", () => {
+  const policies = {
+    schemaVersion: "lexus-analysis-target-policies.v1",
+    universities: {
+      "iwate-medical": {
+        subjects: {
+          mathematics: {
+            targetProfileOverrides: [{ id: "strong", reliabilityFactor: 1, rounding: "none", reason: "岩手数学だけの検証用方針です。" }],
+          },
+        },
+      },
+    },
+  };
+  const overridden = buildAnalysis(evidence, editorial, policies).targets.profiles[1];
+  assert.deepEqual([overridden.targetPoints, overridden.targetPercent], [100, 100]);
+
+  const otherEvidence = read("pastExamAnalysisEvidence/juntendo-2025-general-a-mathematics.json");
+  const otherEditorial = read("pastExamAnalysisSources/juntendo-2025-general-a-mathematics.json");
+  const otherStrong = buildAnalysis(otherEvidence, otherEditorial, policies).targets.profiles[1];
+  assert.deepEqual([otherStrong.targetPoints, otherStrong.targetPercent, otherStrong.reliabilityFactor], [80, 80, 0.8]);
+  assert.throws(() => buildAnalysis(evidence, editorial, { schemaVersion: "invalid", universities: {} }), /policy registry/);
+  assert.throws(() => buildAnalysis(evidence, editorial, {
+    schemaVersion: "lexus-analysis-target-policies.v1",
+    universities: { "iwate-medical": { subjects: [] } },
+  }), /policy registry/);
+});
+
 test("Jichi selects a time-feasible route when the immediate plan reaches the target too late", () => {
   const jichiEvidence = read("pastExamAnalysisEvidence/jichi-medical-2025-general-mathematics.json");
   const jichiEditorial = read("pastExamAnalysisSources/jichi-medical-2025-general-mathematics.json");
   const page = buildAnalysis(jichiEvidence, jichiEditorial);
+  const sourceOnly = buildAnalysis(jichiEvidence, jichiEditorial, { schemaVersion: "lexus-analysis-target-policies.v1", universities: {} });
   const subquestions = page.majorQuestions.flatMap((major) => major.subquestions);
 
   assert.equal(page.majorQuestions.length, 16);
@@ -250,7 +309,14 @@ test("Jichi selects a time-feasible route when the immediate plan reaches the ta
   assert.deepEqual(weak.replaced.map((question) => question.label), ["問題1", "問題8", "問題9"]);
   assert.deepEqual(weak.additional.map((question) => question.label), ["問題19", "問題22", "問題23"]);
 
-  assert.deepEqual([strong.targetPoints, strong.now.points, strong.now.minutes], [16, 18, 62.9]);
-  assert.deepEqual(strong.route.questionIds, strong.now.questionIds);
+  assert.deepEqual([strong.targetPoints, strong.targetPercent, strong.reliabilityFactor, strong.rounding], [21, 84, 1, "none"]);
+  assert.deepEqual([strong.now.points, strong.now.minutes], [18, 62.9]);
+  assert.deepEqual([strong.route.points, strong.route.minutes], [21, 75.9]);
+  assert.deepEqual(strong.route.questionIds, strong.maximum.questionIds);
+  assert.deepEqual(strong.additional.map((question) => question.id), ["math-q7-1", "math-q14-3", "math-q16-5"]);
+  assert.deepEqual(strong.additional.map((question) => question.label), ["問題7", "問題16", "問題25"]);
+  assert.match(strong.policyReason, /スピードと正確さ/);
+  assert.equal(jichiEvidence.targetAnalysis.profiles[1].reliabilityFactor, 0.8);
+  assert.equal(sourceOnly.targets.profiles[1].targetPoints, 16);
   assert.ok(page.targets.profiles.every((profile) => profile.route.minutes <= page.targets.timeBudgetMinutes));
 });

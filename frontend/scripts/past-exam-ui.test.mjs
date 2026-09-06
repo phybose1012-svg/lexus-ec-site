@@ -114,6 +114,22 @@ test("analysis keeps section order, alternating backgrounds, points and question
   assert.deepEqual(descendants(pie).filter((n) => n.tagName === "text").map(text), ["24点", "31点", "35点", "10点"]);
 });
 
+test("all analysis pages use the shared discard label", () => {
+  const directory = new URL("src/data/generated/pastExamAnalyses/", project);
+  let discardedCount = 0;
+  for (const file of fs.readdirSync(directory).filter((name) => name.endsWith(".json"))) {
+    const data = JSON.parse(fs.readFileSync(new URL(file, directory), "utf8"));
+    const path = `dist/${data.route.path.replace(/^\//, "")}index.html`;
+    const nodes = descendants(parse(read(path)));
+    const discarded = findClass(nodes, "priority-2");
+    discardedCount += discarded.length;
+    assert.ok(discarded.every((node) => text(node) === "捨てる"), file);
+    assert.equal(findClass(nodes, "analysis-small-note").some((node) => text(node).includes("「見送る」は")), false, file);
+    assert.ok(findClass(nodes, "analysis-small-note").some((node) => text(node).includes("「捨てる」は本番で")), file);
+  }
+  assert.ok(discardedCount > 0);
+});
+
 test("screen-only UI stays out of print and separators preserve question spacing/page breaks", () => {
   const ui = postcss.parse(read("src/styles/past-exam-ui.css"));
   const hidden = new Set();

@@ -177,6 +177,10 @@ test("built pages expose the 25-question summary, semantic figures, and conventi
   }
   assert.match(textContent(analysisPage[0]), /問題・掲載区分25問・16セクション/);
   assert.equal((textContent(analysisPage[0]).match(/58\.8分/g) ?? []).length, 1);
+  const strongTarget = analysisPage.find((node) => hasClass(node, "analysis-target-card") && hasClass(node, "is-strong"));
+  assert.match(textContent(strongTarget), /21点.*問題7・問題16・問題25を追加.*計21点.*計75\.9分/);
+  assert.match(textContent(strongTarget), /スピードと正確さ/);
+  assert.ok(analysisPage.filter((node) => hasClass(node, "priority-2")).every((node) => textContent(node) === "捨てる"));
   const renderedFigures = answerPage.filter((node) => hasClass(node, "past-exam-figure"));
   assert.equal(renderedFigures.length, 7);
   assert.equal(answerPage.some((node) => hasClass(node, "answer-figure-placeholder")), false);
