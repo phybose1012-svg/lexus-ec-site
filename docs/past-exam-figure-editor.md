@@ -4,16 +4,21 @@
 `/admin/figures/edit` が開き、その図が FIBONA（図形エディタ）に読み込まれる。
 直して保存すると、リポジトリの SVG と manifest の寸法がまとめて書き変わる。
 
-**手元でしか動かない。** 書き戻し先はリポジトリのファイルで、それを触れるのは
-127.0.0.1 で動く管理 API だけ。門は 3 つある。
+書き戻し先は 2 つあり、開いている場所で決まる。
 
-| どこ | 門 | 結果 |
+| 開いた場所 | 書き戻し口 | 何が起きるか |
 | --- | --- | --- |
-| ビルド時 | `CF_PAGES_BRANCH === "main"` | エディタの経路ごと作らない。React も島も dist に出ない |
-| ビルド時 | `vendor/figure-editor/` があるか | 無ければ経路もボタンも作らない（押した先が 404 になる組み合わせを作らない） |
-| 実行時 | `location.hostname` が 127.0.0.1 / localhost / ::1 か | ステージングの配信先では印を出さない |
+| 手元（127.0.0.1） | ローカル管理 API | 作業ツリーのファイルを直接書く |
+| ステージング | Pages Function | GitHub の staging へ **1 コミット**として送る。Pages が作り直す |
+| 本番（main） | なし | ページ自体が作られない |
 
-判定は `astro.config.mjs` の `withFigureEditor` 1 箇所で決めて配っている。
+門は 2 つ。判定は `astro.config.mjs` の `withFigureEditor` 1 箇所で決めて配っている。
+
+| 門 | 結果 |
+| --- | --- |
+| `CF_PAGES_BRANCH === "main"` | エディタの経路ごと作らない。React も島も dist に出ない |
+| `vendor/figure-editor/` があるか | 無ければ経路もボタンも作らない（押した先が 404 になる組み合わせを作らない） |
+
 ボタン側で別に判定すると、ビルド時の `import.meta.url` がソースの場所を指さず
 黙って食い違う（実測でボタンが消えた）。
 
@@ -21,14 +26,13 @@
 
 | 構成 | ページ数 | 直すボタン | エディタ資産 |
 | --- | --- | --- | --- |
-| `CF_PAGES_BRANCH=main` ＋ vendor あり | 897 | 0 | 0 |
-| ブランチ指定なし ＋ vendor あり | 898 | 6ページ | あり |
-| vendor 無し（クリーンな clone） | 897 | 0 | 0 |
+| `CF_PAGES_BRANCH=main` | 901 | 0 | 0 |
+| ブランチ指定なし（＝ステージング） | 902 | 6ページ | あり |
 
 ```bash
 CF_PAGES_BRANCH=main npm run build
 grep -rl past-exam-figure__edit dist | wc -l        # 0
-ls dist/_astro | grep -icE 'figureeditor|client\.'  # 0 ← ここも見る
+ls dist/_astro | grep -ic figureeditor              # 0 ← ここも見る
 ```
 
 `_astro` まで見るのは、ページをリダイレクトに変えるだけでは足りないから。
@@ -60,6 +64,42 @@ $env:FIBONA_REPO="C:\path\to\math"; npm run figure-editor:sync   # PowerShell
 **ファイル ▸ SVG画像として保存** で書き戻る。画面の上の帯に、どのチェックアウトへ
 書くのかが出る。島は最初に応答した管理 API を採るので、**別のワークツリーの
 `admin:api` が上がっているとそちらへ書く**。帯の表示で気づける。
+
+## ステージングで直す
+
+`https://staging.lexus-ec.pages.dev/` の過去問ページにも「直す」が出る。保存すると
+Pages Function が **GitHub の `staging` へ 1 コミット**を送り、Pages がそれを拾って
+サイトを作り直す。SVG・manifest・控えは同じコミットに入るので、途中の半端な状態が
+枝に残らない。
+
+手元と違って**画面に出るのは 1〜2 分後**（ビルドを待つ）。保存の知らせには
+コミットの短縮 SHA が出る。
+
+### 用意するもの（一度だけ）
+
+1. **GitHub の fine-grained personal access token**
+   - Repository access はこのリポジトリ 1 つだけ
+   - Permissions は **Contents: Read and write** だけでよい（他は不要）
+2. **Cloudflare Pages の環境変数**（Settings ▸ Environment variables）
+   - `FIGURE_GIT_TOKEN` … 上のトークン（**Secret** にする）
+   - `FIGURE_GIT_REPO` … `phybose1012-svg/lexus-ec-site`
+   - `FIGURE_GIT_BRANCH` … `staging`
+   - `ADMIN_API_TOKEN` … 自分で決めた合言葉（**Secret**）
+   - **Preview 側にも入れること。** staging は Preview 環境なので、Production
+     にだけ入れても効かない
+3. ステージングで図を開くと、帯に合言葉の入力欄が出る。一度入れれば
+   そのブラウザに残る（`localStorage`）
+
+Cloudflare Access でメールを許可する運用にするなら、`ADMIN_API_TOKEN` の代わりに
+`ADMIN_ALLOWED_EMAILS` にアドレスを並べてもよい（既存の管理 API と同じ仕組み）。
+
+### 承知しておくこと
+
+- **`ADMIN_API_TOKEN` を入れないと書けない。** 未設定なら 503 で断る。
+  ステージングは誰でも開けるので、ここは開けたままにしない
+- **本番の枝へは書けない。** `FIGURE_GIT_BRANCH` に `main` を入れても口が断る
+- **1 保存 = 1 ビルド。** Cloudflare の無料枠は月 500 ビルド。続けて直すと効く
+- 図を読むのも合言葉が要る（GET も認可を通している）
 
 ## 手で直した図は、生成スクリプトから守られる
 
@@ -138,8 +178,10 @@ Figure size mismatch /assets/.../q1.svg: manifest 760x500, file 760x499
 
 ## 置き場
 
-- `vendor/figure-editor/` … FIBONA の配布物。**履歴には入れない**（`.gitignore`）。
-  必要になったら 2. で取り直す。
+- `vendor/figure-editor/` … FIBONA の配布物。ビルド成果物だが **履歴に入れている**。
+  Cloudflare は git の中身しか持たないので、無いとステージングでエディタが作れない
+  （それどころかサイト全体のビルドが落ちる）。更新は `npm run figure-editor:sync`
+  のあと commit。
 - `src/local-tools/figure-editor/` … エディタのページと島。`src/pages/` の下に
   置いていないのは、**vendor が無い環境ではページごと作らないため**。
   `src/pages/` に置いたままだと、クリーンな clone（Cloudflare Pages）で
@@ -149,9 +191,17 @@ Figure size mismatch /assets/.../q1.svg: manifest 760x500, file 760x499
   入らない。中身はほぼマウントするだけなので、そこは手で見る）。
 - `scripts/lib/past-exam-figure-handoff.mjs` … 控えの有無を見る側。生成スクリプトと
   管理 API の両方がこれを使う。
-- `src/lib/svgSize.mjs` … SVG の寸法の読み方。
-- `scripts/admin-local-api.mjs` の `/api/past-exam-figures` … `GET` で図と控えを渡し、
-  `POST` で控え・SVG・manifest を書く。
+- `src/lib/svgSize.mjs` … SVG の寸法の読み方。`.d.ts` を並べてあるのは、
+  Pages Function（TypeScript）からも読むため。
+- `src/lib/svgSafety.mjs` … 置けない SVG の検査。
+- `scripts/admin-local-api.mjs` の `/api/past-exam-figures` … 手元の口。
+- `functions/admin/api/past-exam-figures.ts` … ステージングの口。
+  `public/_routes.json` にこのパスを足してある（Functions はここに書いた
+  パスでしか動かない）。
+
+**寸法の読み方と SVG の検査は、2 つの口が同じものを読む。** 別々に持つと
+「手元では保存できたのに公開できない」が起きるので、検査で縛ってある
+（`npm run past-exam:figure-handoff:test`）。
 
 ## 承知しておくこと
 

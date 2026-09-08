@@ -128,6 +128,28 @@ test("build-*-figures.mjs は全部、控えを見てから書く", () => {
   }
 });
 
+// 書き戻し口は2つある（手元の管理 API と、ステージングの Pages Function）。
+// 寸法の読み方と SVG の検査が食い違うと「手元では保存できたのに公開できない」
+// あるいはその逆が起きる。同じものを読んでいることを見る。
+test("2つの書き戻し口は、同じ寸法の読み方と同じ SVG 検査を使う", () => {
+  const scriptsDir = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1"));
+  const frontendRoot = path.resolve(scriptsDir, "..");
+  const writers = [
+    path.join(frontendRoot, "scripts", "admin-local-api.mjs"),
+    path.join(frontendRoot, "functions", "admin", "api", "past-exam-figures.ts"),
+  ];
+
+  for (const file of writers) {
+    const source = fs.readFileSync(file, "utf8");
+    const name = path.basename(file);
+    assert.match(source, /svgSize\.mjs/, `${name} が寸法の読み方を共有していない`);
+    assert.match(source, /svgSafety\.mjs/, `${name} が SVG の検査を共有していない`);
+    // 自前で持ち直していないこと（持つと必ず片方だけ直る）。
+    assert.doesNotMatch(source, /const readSvgSize = /, `${name} が寸法の読み方を持ち直している`);
+    assert.doesNotMatch(source, /const unsafeSvgReason = /, `${name} が SVG の検査を持ち直している`);
+  }
+});
+
 test("控えが無ければ、生成スクリプトはこれまでどおり書く", () => {
   const tree = makeTree();
   try {

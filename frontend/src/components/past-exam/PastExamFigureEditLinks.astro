@@ -4,12 +4,14 @@
  *
  * 押すと `/admin/figures/edit` が開き、その図が FIBONA に読み込まれる。
  *
- * **本番には 1 バイトも出さない。** 門は 3 つある。
- *  - ビルド時: main のビルドではこのコンポーネントは何も返さない。
- *  - ビルド時: 配布物 vendor/figure-editor/ が無ければ何も返さない。
- *    行き先の /admin/figures/edit は astro.config.mjs が同じ条件で差し込んで
- *    いるので、これが無いと押した先が 404 になる。
- *  - 実行時: 127.0.0.1 以外では印を出さない（ステージングの配信先を汚さない）。
+ * **本番には 1 バイトも出さない。** 判定は astro.config.mjs の 1 箇所。
+ *  - main のビルドでは、このコンポーネントも行き先の経路も作られない。
+ *  - 配布物 vendor/figure-editor/ が無いときも同じ（押した先が 404 になる
+ *    組み合わせを作らない）。
+ *
+ * ステージングでは出す。あちらでも直せるようにしたので（書き戻しは
+ * functions/admin/api/past-exam-figures.ts が GitHub へコミットする）、
+ * 実行時にホスト名で隠す必要はなくなった。
  *
  * 見た目は script が要素へ直に付ける。`<style>` をこの条件分岐の中に置くと
  * Astro の巻き上げに乗らず、`<style is:global>` という不正な属性のまま HTML へ
@@ -28,7 +30,7 @@ const show = import.meta.env.LEXUS_FIGURE_EDITOR === true;
 
 {show && (
   <script is:inline define:vars={{ packageId }}>
-    if (["127.0.0.1", "localhost", "::1"].includes(window.location.hostname)) {
+    {
       const style = [
         "display:block",
         "width:fit-content",

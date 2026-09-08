@@ -13,6 +13,29 @@ const ID = /^[a-z0-9-]+$/;
 /** ローカル管理 API を探す範囲（admin/editor と同じ 4335 から 10 個）。 */
 const API_PORTS = Array.from({ length: 11 }, (_, index) => 4335 + index);
 
+/** ステージングの書き戻し口（Cloudflare Pages Function）。 */
+const REMOTE_ENDPOINT = "/admin/api/past-exam-figures";
+
+/** 管理 API の合言葉の置き場。admin/editor では使っていない、この機能だけのもの。 */
+const TOKEN_KEY = "lexus.figure-editor.adminToken";
+
+const readToken = () => {
+  try {
+    return window.localStorage.getItem(TOKEN_KEY) ?? "";
+  } catch {
+    return "";
+  }
+};
+
+const writeToken = (value: string) => {
+  try {
+    if (value) window.localStorage.setItem(TOKEN_KEY, value);
+    else window.localStorage.removeItem(TOKEN_KEY);
+  } catch {
+    /* 保存できなくても、その場では使える */
+  }
+};
+
 /**
  * どの図を開くかは URL のクエリで受ける。
  *
@@ -53,15 +76,14 @@ type Loaded = {
   fromSidecar: boolean;
   key: string;
   /**
-   * 管理 API が握っているチェックアウトの場所。
-   *
-   * 島は最初に応答したポートを採るので、別のワークツリーの管理 API が
-   * 上がっていればそちらへ書いてしまう。どちらへ書くのかは見えている必要がある。
+   * 書き戻し先の名前。手元なら作業ツリーの場所、ステージングなら
+   * `owner/repo@branch`。島は最初に応答した管理 API を採るので、別の
+   * ワークツリーの API が上がっていればそちらへ書く。見えている必要がある。
    */
   repoRoot: string | null;
 };
 
-async function findApiBase(): Promise<string | null> {
+async function findLocalApi(): Promise<string | null> {
   for (const port of API_PORTS) {
     const base = `http://127.0.0.1:${port}`;
     try {
@@ -78,10 +100,12 @@ async function findApiBase(): Promise<string | null> {
  * 過去問の図版を、その場で直すためのエディタ。
  *
  * FIBONA（図形エディタ）を React のアイランドとして載せている。
+ * 書き戻し先は 2 つあり、開いている場所で決まる。
  *
- * **ローカルでしか動かない。** 書き戻し先はリポジトリのファイルで、それを
- * 触れるのは 127.0.0.1 で動く管理 API だけ。デプロイされたページからは
- * その API へ届かないので、その旨を出して編集させない。
+ * - 手元（127.0.0.1）… ローカル管理 API が作業ツリーのファイルを直接書く
+ * - ステージング … Pages Function が GitHub へ 1 コミットとして送る
+ *
+ * 本番（main）ではこのページ自体が作られない（astro.config.mjs）。
  */
 export default function FigureEditorIsland() {
   const [target] = useState(figureFromQuery);
@@ -90,20 +114,31 @@ export default function FigureEditorIsland() {
   const [loaded, setLoaded] = useState<Loaded | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [status, setStatus] = useState("読み込んでいます…");
-  const [apiBase, setApiBase] = useState<string | null>(null);
+  const [localApi, setLocalApi] = useState<string | null>(null);
   const [apiSearched, setApiSearched] = useState(false);
+  const [token, setToken] = useState("");
+  const [tokenDraft, setTokenDraft] = useState("");
 
-  const isLocal = ["127.0.0.1", "localhost", "::1"].includes(
-    typeof window === "undefined" ? "" : window.location.hostname
-  );
+  const isLocal =
+    typeof window !== "undefined" &&
+    ["127.0.0.1", "localhost", "::1"].includes(window.location.hostname);
 
   useEffect(() => {
-    if (!isLocal) return;
+    setToken(readToken());
+  }, []);
+
+  // 手元のときだけローカル API を探す。ステージングでは同じページの
+  // /admin/api/... を使うので、探す相手はいない。
+  useEffect(() => {
+    if (!isLocal) {
+      setApiSearched(true);
+      return;
+    }
     let cancelled = false;
     void (async () => {
-      const base = await findApiBase();
+      const base = await findLocalApi();
       if (cancelled) return;
-      setApiBase(base);
+      setLocalApi(base);
       setApiSearched(true);
     })();
     return () => {
@@ -111,19 +146,30 @@ export default function FigureEditorIsland() {
     };
   }, [isLocal]);
 
-  // 図を読む。管理 API があれば控え（trio）ごと受け取り、無ければ SVG を
-  // 読んで取り込む。控えを優先するのは、SVG から読み直すと編集の履歴
-  // （レイヤ順・グループ・非表示）が失われるため。
+  const authHeaders = useCallback((): Record<string, string> => {
+    if (isLocal || !token) return {};
+    return { Authorization: `Bearer ${token}` };
+  }, [isLocal, token]);
+
+  const endpoint = isLocal
+    ? localApi
+      ? `${localApi}/api/past-exam-figures`
+      : null
+    : REMOTE_ENDPOINT;
+
+  // 図を読む。控え（trio）があればそれを使う。無ければ SVG を取り込む。
+  // 控えを優先するのは、SVG から読み直すと編集の履歴（レイヤ順・グループ・
+  // 非表示）が失われるため。
   useEffect(() => {
-    if (!target || !isLocal || !apiSearched) return;
+    if (!target || !apiSearched) return;
     let cancelled = false;
 
     void (async () => {
       try {
-        if (apiBase) {
+        if (endpoint) {
           const response = await fetch(
-            `${apiBase}/api/past-exam-figures?package=${encodeURIComponent(packageId)}&figure=${encodeURIComponent(figureId)}`,
-            { cache: "no-store" }
+            `${endpoint}?package=${encodeURIComponent(packageId)}&figure=${encodeURIComponent(figureId)}`,
+            { cache: "no-store", headers: authHeaders() }
           );
           const payload = await response.json();
           if (!response.ok) throw new Error(payload?.error ?? `HTTP ${response.status}`);
@@ -152,7 +198,7 @@ export default function FigureEditorIsland() {
           return;
         }
 
-        // 管理 API が無いときも、読むだけならできる（保存はできない）。
+        // 書き戻し口が無いときも、読むだけならできる（保存はできない）。
         const svgResponse = await fetch(
           `/assets/past-exams/${packageId}/figures/${figureId}.svg`,
           { cache: "no-store" }
@@ -179,20 +225,24 @@ export default function FigureEditorIsland() {
     return () => {
       cancelled = true;
     };
-  }, [target, isLocal, apiSearched, apiBase, packageId, figureId]);
+  }, [target, apiSearched, endpoint, packageId, figureId, authHeaders]);
 
   const save = useCallback(
     (svg: string, trio: PenroseTrio) => {
-      if (!apiBase) {
-        setStatus("ローカル管理 API が見つかりません（npm run admin:api）");
+      if (!endpoint) {
+        setStatus(
+          isLocal
+            ? "ローカル管理 API が見つかりません（npm run admin:api）"
+            : "書き戻し口がありません。"
+        );
         return;
       }
       setStatus("保存しています…");
       void (async () => {
         try {
-          const response = await fetch(`${apiBase}/api/past-exam-figures`, {
+          const response = await fetch(endpoint, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json", ...authHeaders() },
             // trio も一緒に送る。これが控えになり、生成スクリプトが
             // この図を上書きしなくなる（scripts/lib/past-exam-figure-handoff.mjs）。
             body: JSON.stringify({ packageId, figureId, svg, trio }),
@@ -200,9 +250,11 @@ export default function FigureEditorIsland() {
           const payload = await response.json();
           if (!response.ok) throw new Error(payload?.error ?? `HTTP ${response.status}`);
           setStatus(
-            `保存しました（${payload.file}${
-              payload.manifestUpdated ? " / manifest の寸法も更新" : ""
-            }${payload.trioFile ? " / 控えも更新（生成スクリプトは上書きしません）" : ""}）`
+            payload.commit
+              ? `保存しました（commit ${String(payload.commit).slice(0, 7)} を ${payload.branch} へ。反映はビルドのあと）`
+              : `保存しました（${payload.file}${
+                  payload.manifestUpdated ? " / manifest の寸法も更新" : ""
+                }${payload.trioFile ? " / 控えも更新（生成スクリプトは上書きしません）" : ""}）`
           );
         } catch (cause) {
           setStatus(
@@ -211,7 +263,7 @@ export default function FigureEditorIsland() {
         }
       })();
     },
-    [apiBase, packageId, figureId]
+    [endpoint, isLocal, authHeaders, packageId, figureId]
   );
 
   if (!target) {
@@ -222,20 +274,24 @@ export default function FigureEditorIsland() {
     );
   }
 
-  if (!isLocal) {
+  if (error) {
     return (
-      <p className="figure-editor-island__notice">
-        図版の編集はローカル（127.0.0.1）でのみ行えます。書き戻し先がリポジトリの
-        ファイルなので、公開中のページからは触れません。
-      </p>
+      <div className="figure-editor-island__notice">
+        <p>読み込めません: {error}</p>
+        {!isLocal && <TokenField draft={tokenDraft} onDraft={setTokenDraft} onSave={saveToken} />}
+      </div>
     );
   }
 
-  if (error) {
-    return <p className="figure-editor-island__notice">読み込めません: {error}</p>;
-  }
-
   const report = loaded?.report ?? null;
+
+  function saveToken(value: string) {
+    writeToken(value.trim());
+    setToken(value.trim());
+    setTokenDraft("");
+    setError(null);
+    setStatus("読み込んでいます…");
+  }
 
   return (
     <div className="figure-editor-island">
@@ -251,17 +307,19 @@ export default function FigureEditorIsland() {
             {report.warnings.length > 0 ? `・注意 ${report.warnings.length} 件` : ""}
           </span>
         )}
-        {/* どのチェックアウトへ書くのかを出す。島は最初に応答したポートを
-            採るので、別のワークツリーの管理 API が上がっていればそちらへ
-            書いてしまう。見えていれば気づける。 */}
+        {/* どこへ書くのかを出す。手元では別のワークツリーの管理 API を掴んで
+            いることがあり、ステージングではどの枝へコミットするかが要る。 */}
         <span title={loaded?.repoRoot ?? undefined}>
           {!apiSearched
             ? "ローカル管理 API を探しています…"
-            : apiBase
-              ? `保存先: ${loaded?.repoRoot ?? apiBase}`
+            : endpoint
+              ? `保存先: ${loaded?.repoRoot ?? endpoint}`
               : "保存できません（npm run admin:api）"}
         </span>
         {status && <strong>{status}</strong>}
+        {!isLocal && !token && (
+          <TokenField draft={tokenDraft} onDraft={setTokenDraft} onSave={saveToken} />
+        )}
       </div>
 
       <div className="figure-editor-island__editor">
@@ -294,5 +352,44 @@ export default function FigureEditorIsland() {
         </details>
       )}
     </div>
+  );
+}
+
+/**
+ * 管理 API の合言葉の入力欄。
+ *
+ * ステージングは誰でも開けるので、書き込みには合言葉が要る（Cloudflare の
+ * ADMIN_API_TOKEN）。入れた値はこのブラウザにだけ残る。Cloudflare Access で
+ * メールを許可している場合は要らない。
+ */
+function TokenField({
+  draft,
+  onDraft,
+  onSave,
+}: {
+  draft: string;
+  onDraft: (value: string) => void;
+  onSave: (value: string) => void;
+}) {
+  return (
+    <form
+      className="figure-editor-island__token"
+      onSubmit={(event) => {
+        event.preventDefault();
+        onSave(draft);
+      }}
+    >
+      <label>
+        管理APIの合言葉
+        <input
+          type="password"
+          value={draft}
+          autoComplete="off"
+          onChange={(event) => onDraft(event.target.value)}
+          placeholder="ADMIN_API_TOKEN"
+        />
+      </label>
+      <button type="submit">覚える</button>
+    </form>
   );
 }

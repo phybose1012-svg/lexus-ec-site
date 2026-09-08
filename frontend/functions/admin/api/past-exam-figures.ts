@@ -1,0 +1,401 @@
+import { readSvgSize } from "../../../src/lib/svgSize.mjs";
+import { unsafeSvgReason } from "../../../src/lib/svgSafety.mjs";
+
+/**
+ * ステージングから図版を直したときの書き戻し口。
+ *
+ * ローカルには同じ役目の口がある（scripts/admin-local-api.mjs）。あちらは
+ * 作業ツリーのファイルを直接書く。こちらは触れるファイルが無いので、
+ * **GitHub へ 1 コミットとして送る**。Pages がそれを拾って作り直す。
+ *
+ * **3 つのファイルは 1 コミットにまとめる。** SVG・manifest・控えのどれかが
+ * 欠けた状態が枝に残ると、次のビルドが落ちるか、直した図が黙って消える。
+ * Git Data API（blob → tree → commit → ref）なら、まとめて 1 回で入る。
+ * Contents API は 1 ファイル 1 コミットなので使えない。
+ *
+ * 要る設定（Cloudflare Pages の環境変数。**staging は preview 側にも要る**）:
+ *   FIGURE_GIT_TOKEN   … fine-grained PAT。権限は Contents: Read and write だけ
+ *   FIGURE_GIT_REPO    … "owner/repo"
+ *   FIGURE_GIT_BRANCH  … 既定 "staging"
+ *   ADMIN_API_TOKEN    … これが未設定だと、外からの書き込みは 503 で断る
+ */
+
+type Env = {
+  ADMIN_API_TOKEN?: string;
+  ADMIN_ALLOWED_EMAILS?: string;
+  FIGURE_GIT_TOKEN?: string;
+  FIGURE_GIT_REPO?: string;
+  FIGURE_GIT_BRANCH?: string;
+};
+
+type FunctionContext = {
+  request: Request;
+  env: Env;
+};
+
+type FigurePayload = {
+  packageId: string;
+  figureId: string;
+  svg: string;
+  trio?: unknown;
+};
+
+type ManifestItem = {
+  id: string;
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  caption: string;
+};
+
+type Manifest = {
+  items?: ManifestItem[];
+};
+
+const jsonHeaders = {
+  "Content-Type": "application/json; charset=utf-8",
+  "Cache-Control": "no-store",
+  "X-Robots-Tag": "noindex",
+};
+
+const FIGURE_ID = /^[a-z0-9-]+$/;
+// ローカルの口と同じ値にしてある。片方だけ通るのが一番たちが悪い。
+const maxSvgBytes = 2 * 1024 * 1024;
+const maxTrioBytes = 2 * 1024 * 1024;
+const maxBodyBytes = 6 * 1024 * 1024;
+const githubApi = "https://api.github.com";
+
+export const onRequestGet = async ({ request, env }: FunctionContext) => {
+  const auth = assertAdminAccess(request, env);
+  if (auth) return auth;
+  const config = readConfig(env);
+  if ("error" in config) return jsonResponse({ error: config.error }, 503);
+
+  const url = new URL(request.url);
+  const packageId = url.searchParams.get("package") || "";
+  const figureId = url.searchParams.get("figure") || "";
+  if (!FIGURE_ID.test(packageId) || !FIGURE_ID.test(figureId)) {
+    return jsonResponse({ error: "packageId / figureId の形が不正です。" }, 400);
+  }
+
+  try {
+    const manifest = await readJsonFile<Manifest>(config, manifestPath(packageId));
+    if (!manifest) return jsonResponse({ error: `manifest が見つかりません: ${packageId}` }, 404);
+    const item = manifest.items?.find((entry) => entry.id === figureId);
+    if (!item) return jsonResponse({ error: `manifest に登録されていない図です: ${figureId}` }, 404);
+
+    const svg = await readTextFile(config, svgPath(packageId, figureId));
+    if (svg === null) return jsonResponse({ error: `SVG がありません: ${figureId}` }, 404);
+
+    const record = await readJsonFile<{ trio?: unknown }>(config, trioPath(packageId, figureId));
+
+    return jsonResponse({
+      ok: true,
+      packageId,
+      figureId,
+      svg,
+      trio: record?.trio ?? null,
+      handEdited: record !== null,
+      alt: item.alt,
+      caption: item.caption,
+      repoRoot: `${config.repo}@${config.branch}`,
+    });
+  } catch (cause) {
+    return jsonResponse({ error: describe(cause) }, 502);
+  }
+};
+
+export const onRequestPost = async ({ request, env }: FunctionContext) => {
+  const auth = assertAdminAccess(request, env);
+  if (auth) return auth;
+  const config = readConfig(env);
+  if ("error" in config) return jsonResponse({ error: config.error }, 503);
+
+  const contentLength = Number(request.headers.get("Content-Length") || "0");
+  if (contentLength > maxBodyBytes) return jsonResponse({ error: "送られたものが大きすぎます。" }, 413);
+
+  const payload = (await request.json().catch(() => null)) as FigurePayload | null;
+  if (!payload) return jsonResponse({ error: "JSON として受け取れませんでした。" }, 400);
+
+  const packageId = String(payload.packageId ?? "");
+  const figureId = String(payload.figureId ?? "");
+  const svg = typeof payload.svg === "string" ? payload.svg : "";
+  const trio = payload.trio ?? null;
+
+  if (!FIGURE_ID.test(packageId) || !FIGURE_ID.test(figureId)) {
+    return jsonResponse({ error: "packageId / figureId の形が不正です。" }, 400);
+  }
+  if (!svg.trim().startsWith("<svg") || !svg.includes("</svg>")) {
+    return jsonResponse({ error: "SVG として受け取れませんでした。" }, 400);
+  }
+  if (utf8Length(svg) > maxSvgBytes) {
+    return jsonResponse({ error: "SVG が大きすぎます（上限 2MB）。" }, 413);
+  }
+  const unsafe = unsafeSvgReason(svg);
+  if (unsafe) return jsonResponse({ error: `SVG に置けないものが入っています: ${unsafe}` }, 400);
+
+  const size = readSvgSize(svg);
+  if (!size) return jsonResponse({ error: "SVG から寸法を読み取れませんでした。" }, 400);
+
+  let trioRecord: string | null = null;
+  if (trio !== null) {
+    if (!isTrio(trio)) {
+      return jsonResponse({ error: "trio の形が不正です（domain / substance / style が要ります）。" }, 400);
+    }
+    trioRecord = `${JSON.stringify(
+      { schemaVersion: "lexus-past-exam-figure-trio.v1", packageId, figureId, trio },
+      null,
+      2,
+    )}\n`;
+    if (utf8Length(trioRecord) > maxTrioBytes) {
+      return jsonResponse({ error: "trio が大きすぎます（上限 2MB）。" }, 413);
+    }
+  }
+
+  try {
+    const manifest = await readJsonFile<Manifest>(config, manifestPath(packageId));
+    if (!manifest) return jsonResponse({ error: `manifest が見つかりません: ${packageId}` }, 404);
+    const item = manifest.items?.find((entry) => entry.id === figureId);
+    if (!item) return jsonResponse({ error: `manifest に登録されていない図です: ${figureId}` }, 404);
+    const expected = `/assets/past-exams/${packageId}/figures/${figureId}.svg`;
+    if (item.src !== expected) {
+      return jsonResponse({ error: `manifest の src が想定と違います: ${item.src}` }, 409);
+    }
+
+    const manifestUpdated = item.width !== size.width || item.height !== size.height;
+    const files: { path: string; content: string }[] = [
+      { path: svgPath(packageId, figureId), content: svg.endsWith("\n") ? svg : `${svg}\n` },
+    ];
+    if (manifestUpdated) {
+      item.width = size.width;
+      item.height = size.height;
+      files.push({ path: manifestPath(packageId), content: `${JSON.stringify(manifest, null, 2)}\n` });
+    }
+    if (trioRecord !== null) {
+      files.push({ path: trioPath(packageId, figureId), content: trioRecord });
+    }
+
+    const commit = await commitFiles(
+      config,
+      files,
+      `fix(past-exam): 図版を直す（${packageId} / ${figureId}）\n\n図形エディタからの書き戻し。`,
+    );
+
+    return jsonResponse({
+      ok: true,
+      commit: commit.sha,
+      url: commit.url,
+      branch: config.branch,
+      file: files[0].path,
+      manifestUpdated,
+      trioFile: trioRecord === null ? null : trioPath(packageId, figureId),
+      width: size.width,
+      height: size.height,
+      repoRoot: `${config.repo}@${config.branch}`,
+    });
+  } catch (cause) {
+    return jsonResponse({ error: describe(cause) }, 502);
+  }
+};
+
+// ---------------------------------------------------------------------------
+// GitHub
+// ---------------------------------------------------------------------------
+
+type Config = { token: string; repo: string; branch: string };
+
+const readConfig = (env: Env): Config | { error: string } => {
+  const token = env.FIGURE_GIT_TOKEN;
+  const repo = env.FIGURE_GIT_REPO;
+  if (!token) return { error: "FIGURE_GIT_TOKEN が設定されていません。" };
+  if (!repo || !/^[\w.-]+\/[\w.-]+$/.test(repo)) {
+    return { error: "FIGURE_GIT_REPO が設定されていません（owner/repo の形）。" };
+  }
+  const branch = env.FIGURE_GIT_BRANCH || "staging";
+  // **main へは書かない。** 図版を直す口は作業中の枝のためのもので、公開中の
+  // サイトを直接書き換える道具ではない。設定を間違えても届かないようにする。
+  if (branch === "main" || branch === "master") {
+    return { error: "この口から本番の枝へは書けません（FIGURE_GIT_BRANCH）。" };
+  }
+  return { token, repo, branch };
+};
+
+const github = async (config: Config, path: string, init: RequestInit = {}) => {
+  const response = await fetch(`${githubApi}${path}`, {
+    ...init,
+    headers: {
+      Authorization: `Bearer ${config.token}`,
+      Accept: "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+      // GitHub は User-Agent が無いと 403 を返す。
+      "User-Agent": "lexus-ec-figure-editor",
+      ...(init.body ? { "Content-Type": "application/json" } : {}),
+      ...(init.headers as Record<string, string> | undefined),
+    },
+  });
+  return response;
+};
+
+const readTextFile = async (config: Config, path: string): Promise<string | null> => {
+  const response = await github(
+    config,
+    `/repos/${config.repo}/contents/${encodeURI(path)}?ref=${encodeURIComponent(config.branch)}`,
+  );
+  if (response.status === 404) return null;
+  if (!response.ok) throw new Error(`GitHub ${response.status}: ${await response.text()}`);
+  const body = (await response.json()) as { content?: string; encoding?: string; download_url?: string };
+  if (body.content && body.encoding === "base64") return decodeUtf8Base64(body.content);
+  // 1MB を超えるファイルは content が空で返る。
+  if (body.download_url) {
+    const raw = await fetch(body.download_url);
+    if (!raw.ok) throw new Error(`GitHub raw ${raw.status}`);
+    return await raw.text();
+  }
+  throw new Error(`GitHub の応答から中身を取れません: ${path}`);
+};
+
+const readJsonFile = async <T>(config: Config, path: string): Promise<T | null> => {
+  const text = await readTextFile(config, path);
+  if (text === null) return null;
+  return JSON.parse(text) as T;
+};
+
+/**
+ * 複数のファイルを 1 コミットで入れる。
+ *
+ * ref → 親 commit → blob → tree → commit → ref 更新。ref 更新は force を
+ * 使わない。**間に別のコミットが入ったら作り直す**（blob は中身で決まる名前
+ * なので、作り直しても同じものが使える）。
+ */
+const commitFiles = async (config: Config, files: { path: string; content: string }[], message: string) => {
+  const blobs = await Promise.all(
+    files.map(async (file) => {
+      const response = await github(config, `/repos/${config.repo}/git/blobs`, {
+        method: "POST",
+        body: JSON.stringify({ content: encodeUtf8Base64(file.content), encoding: "base64" }),
+      });
+      if (!response.ok) throw new Error(`blob ${response.status}: ${await response.text()}`);
+      const body = (await response.json()) as { sha: string };
+      return { path: file.path, mode: "100644", type: "blob", sha: body.sha };
+    }),
+  );
+
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    const refPath = `/repos/${config.repo}/git/ref/heads/${encodeURIComponent(config.branch)}`;
+    const refResponse = await github(config, refPath);
+    if (!refResponse.ok) throw new Error(`ref ${refResponse.status}: ${await refResponse.text()}`);
+    const ref = (await refResponse.json()) as { object: { sha: string } };
+    const parent = ref.object.sha;
+
+    const parentResponse = await github(config, `/repos/${config.repo}/git/commits/${parent}`);
+    if (!parentResponse.ok) throw new Error(`commit ${parentResponse.status}`);
+    const parentCommit = (await parentResponse.json()) as { tree: { sha: string } };
+
+    const treeResponse = await github(config, `/repos/${config.repo}/git/trees`, {
+      method: "POST",
+      body: JSON.stringify({ base_tree: parentCommit.tree.sha, tree: blobs }),
+    });
+    if (!treeResponse.ok) throw new Error(`tree ${treeResponse.status}: ${await treeResponse.text()}`);
+    const tree = (await treeResponse.json()) as { sha: string };
+
+    const commitResponse = await github(config, `/repos/${config.repo}/git/commits`, {
+      method: "POST",
+      body: JSON.stringify({ message, tree: tree.sha, parents: [parent] }),
+    });
+    if (!commitResponse.ok) throw new Error(`commit ${commitResponse.status}: ${await commitResponse.text()}`);
+    const commit = (await commitResponse.json()) as { sha: string; html_url: string };
+
+    const update = await github(config, `/repos/${config.repo}/git/refs/heads/${encodeURIComponent(config.branch)}`, {
+      method: "PATCH",
+      body: JSON.stringify({ sha: commit.sha, force: false }),
+    });
+    if (update.ok) return { sha: commit.sha, url: commit.html_url };
+    // 間に別のコミットが入った。取り直してやり直す。
+    if (update.status === 422 || update.status === 409) continue;
+    throw new Error(`ref update ${update.status}: ${await update.text()}`);
+  }
+
+  throw new Error("枝が動き続けていて書き込めませんでした。少し待ってやり直してください。");
+};
+
+// ---------------------------------------------------------------------------
+// 細かいもの
+// ---------------------------------------------------------------------------
+
+const svgPath = (packageId: string, figureId: string) =>
+  `frontend/public/assets/past-exams/${packageId}/figures/${figureId}.svg`;
+
+const manifestPath = (packageId: string) => `frontend/src/data/pastExamFigures/${packageId}.json`;
+
+const trioPath = (packageId: string, figureId: string) =>
+  `frontend/src/data/pastExamFigures/${packageId}/${figureId}.trio.json`;
+
+const utf8Length = (value: string) => new TextEncoder().encode(value).length;
+
+/**
+ * UTF-8 の文字列を base64 にする。
+ *
+ * **btoa に直接渡してはいけない。** btoa は Latin-1 しか受けないので、
+ * 日本語を含む SVG で例外になる。バイト列にしてから 1 バイトずつ詰める。
+ * 一度に渡すと引数の数が多すぎて落ちるので、区切って回す。
+ */
+const encodeUtf8Base64 = (value: string) => {
+  const bytes = new TextEncoder().encode(value);
+  let binary = "";
+  const step = 0x8000;
+  for (let index = 0; index < bytes.length; index += step) {
+    binary += String.fromCharCode(...bytes.subarray(index, index + step));
+  }
+  return btoa(binary);
+};
+
+const decodeUtf8Base64 = (value: string) => {
+  const binary = atob(value.replace(/\s+/g, ""));
+  const bytes = new Uint8Array(binary.length);
+  for (let index = 0; index < binary.length; index += 1) bytes[index] = binary.charCodeAt(index);
+  return new TextDecoder().decode(bytes);
+};
+
+const isTrio = (value: unknown): boolean =>
+  Boolean(
+    value &&
+      typeof value === "object" &&
+      typeof (value as Record<string, unknown>).domain === "string" &&
+      typeof (value as Record<string, unknown>).substance === "string" &&
+      typeof (value as Record<string, unknown>).style === "string",
+  );
+
+const describe = (cause: unknown) => (cause instanceof Error ? cause.message : String(cause));
+
+const assertAdminAccess = (request: Request, env: Env) => {
+  const url = new URL(request.url);
+  const isLocal = ["127.0.0.1", "localhost", "::1"].includes(url.hostname);
+  const token = env.ADMIN_API_TOKEN;
+  const allowedEmails = splitCsv(env.ADMIN_ALLOWED_EMAILS);
+
+  if (token) {
+    const authorization = request.headers.get("Authorization") || "";
+    if (authorization === `Bearer ${token}`) return null;
+  }
+
+  if (allowedEmails.length) {
+    const email = request.headers.get("Cf-Access-Authenticated-User-Email") || "";
+    if (allowedEmails.includes(email)) return null;
+  }
+
+  if (!token && !allowedEmails.length && isLocal) return null;
+  return jsonResponse({ error: "Admin API is not authorized" }, token || allowedEmails.length ? 401 : 503);
+};
+
+const splitCsv = (value?: string) =>
+  (value || "")
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+const jsonResponse = (payload: unknown, status = 200) =>
+  new Response(JSON.stringify(payload), {
+    status,
+    headers: jsonHeaders,
+  });

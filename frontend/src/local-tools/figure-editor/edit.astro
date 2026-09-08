@@ -74,6 +74,35 @@ if ((import.meta.env.CF_PAGES_BRANCH || "") === "main") {
       color: #525252;
     }
 
+    .figure-editor-island__token {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+    }
+
+    .figure-editor-island__token label {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+    }
+
+    .figure-editor-island__token input {
+      width: 12rem;
+      padding: 0.125rem 0.375rem;
+      border: 1px solid #d4d4d4;
+      border-radius: 0.25rem;
+      font: inherit;
+    }
+
+    .figure-editor-island__token button {
+      padding: 0.125rem 0.625rem;
+      border: 1px solid #c8d3df;
+      border-radius: 0.25rem;
+      background: #f5f8fb;
+      font: inherit;
+      cursor: pointer;
+    }
+
     .figure-editor-island__warnings {
       border-top: 1px solid #e5e5e5;
       padding: 0.5rem 0.75rem;

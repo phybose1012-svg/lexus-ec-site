@@ -1,4 +1,17 @@
 
-# 図版エディタ（FIBONA）の配布物。ビルド成果物なので履歴には入れない。
+# 図版エディタ（FIBONA）の配布物は、ビルド成果物だが **履歴に入れている**。
+#
+# ステージングでも図版を直せるようにするには、Cloudflare のビルド環境に
+# これが無いといけない。あちらは git の中身しか持たないので、無いと
+# `Cannot find module '@phybose1012-svg/figure-editor'` でサイト全体の
+# ビルドが落ちる（実測）。GitHub Packages から入れる手もあるが、ビルドに
+# もう 1 本トークンが要り、切れた瞬間にサイトが作れなくなる。
+#
 # 更新は npm run figure-editor:sync（FIBONA のリポジトリから写す）。
-vendor/figure-editor/
+# 写したあとは commit すること。
+#
+# main のビルドでは、この配布物があっても図版エディタは出力に入らない
+# （astro.config.mjs が CF_PAGES_BRANCH を見て経路ごと作らない）。
+
+# wrangler の作業用キャッシュ（pages dev で作られる）。
+.wrangler/

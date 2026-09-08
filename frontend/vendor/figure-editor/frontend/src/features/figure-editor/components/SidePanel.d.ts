@@ -1,0 +1,48 @@
+import type { PenroseTrio, SelectedElement } from "../lib/types";
+import { type ColorRGBA } from "../lib/styleParser";
+import type { Point2D } from "../lib/shapeBuilders";
+import { type MidlineMarkerSetting } from "../lib/midlineMarkers";
+import { type PointMarkerShapeType } from "../lib/pointMarkers";
+import type { CanvasDimensions } from "../lib/canvasViewport";
+interface SidePanelProps {
+    trio: PenroseTrio | null;
+    canvasDimensions: CanvasDimensions | null;
+    selection: SelectedElement | null;
+    onBodyChange: (newBody: string) => void;
+    onPointMarkerChange: (shapeType: PointMarkerShapeType, newBody: string) => void;
+    onSharedBodyChange: (newBody: string) => void;
+    onDetachShared: (path: string) => void;
+    onMidlineMarkerChange: (path: string, setting: MidlineMarkerSetting | null) => void;
+    onLabelBackgroundChange: (path: string, color: ColorRGBA) => void;
+    hiddenPaths: Set<string>;
+    onHide: (path: string) => void;
+    onUnhide: (path: string) => void;
+    /** この要素を控える（別のタブへ貼り付けるため）。 */
+    onCopy: () => void;
+    onDuplicate: () => void;
+    onDeleteRequest: (path: string) => void;
+    onSelectPath: (path: string) => void;
+    onSplitAtIntersections: () => void;
+    minPointsCount: number;
+    smoothnessLevel: number;
+    canSmoothenUp: boolean;
+    canSmoothenDown: boolean;
+    onSmoothenUp: () => void;
+    onSmoothenDown: () => void;
+    arcAngleU: number | null;
+    arcFlipped: boolean;
+    arcStart: Point2D | null;
+    arcEnd: Point2D | null;
+    onArcAngleChange: (u: number) => void;
+    onArcFlip: () => void;
+    onArcStartChange: (p: Point2D) => void;
+    onArcEndChange: (p: Point2D) => void;
+    regularPolygonSides: number | null;
+    onRegularPolygonSidesChange: (sides: number) => void;
+    position: Point2D | null;
+    onPositionChange: (p: Point2D) => void;
+    isRichTextBox?: boolean;
+    onEditRichText?: (path: string) => void;
+}
+export declare function SidePanel({ trio, canvasDimensions, selection, onBodyChange, onPointMarkerChange, onSharedBodyChange, onDetachShared, onMidlineMarkerChange, onLabelBackgroundChange, hiddenPaths, onHide, onUnhide, onCopy, onDuplicate, onDeleteRequest, onSelectPath, onSplitAtIntersections, minPointsCount, smoothnessLevel, canSmoothenUp, canSmoothenDown, onSmoothenUp, onSmoothenDown, arcAngleU, arcFlipped, arcStart, arcEnd, onArcAngleChange, onArcFlip, onArcStartChange, onArcEndChange, regularPolygonSides, onRegularPolygonSidesChange, position, onPositionChange, isRichTextBox, onEditRichText, }: SidePanelProps): import("react").JSX.Element;
+export {};

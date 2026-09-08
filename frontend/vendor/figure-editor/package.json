@@ -1,0 +1,35 @@
+{
+  "name": "@phybose1012-svg/figure-editor",
+  "version": "0.1.0",
+  "description": "math-penrose visual figure editor (React component) — 鬼かんり for Teacher アドオン用",
+  "type": "module",
+  "main": "./index.js",
+  "module": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js"
+    },
+    "./style.css": "./style.css"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "peerDependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "dependencies": {
+    "@penrose/core": "^3.3.0",
+    "use-sync-external-store": "^1.6.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phybose1012-svg/math-figure-editor.git"
+  },
+  "license": "UNLICENSED"
+}

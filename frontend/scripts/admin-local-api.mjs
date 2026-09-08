@@ -4,6 +4,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { readSvgSize } from "../src/lib/svgSize.mjs";
+import { unsafeSvgReason } from "../src/lib/svgSafety.mjs";
 import { figureSvgPath, handEditedTrioPath } from "./lib/past-exam-figure-handoff.mjs";
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
@@ -206,38 +207,11 @@ const assertWritable = (request) => {
   return null;
 };
 
-/**
- * 公開アセットとして置けない SVG か。置けないなら理由を返す。
- *
- * 完全な無害化ではない。**断るための検査**であって、通ったものが安全だと
- * 言っているわけではない。ここへ来る SVG は図形エディタの書き出しなので、
- * 下のどれかが入っていること自体が異常であり、その時点で止めれば足りる。
- */
-const unsafeSvgReason = (svg) => {
-  const checks = [
-    [/<\s*script\b/i, "<script>"],
-    [/<\s*foreignObject\b/i, "<foreignObject>"],
-    [/<\s*(iframe|embed|object|audio|video)\b/i, "外部を読む要素"],
-    [/\son[a-z]+\s*=/i, "on... のイベント属性"],
-    [/javascript\s*:/i, "javascript: の参照"],
-    [/<!ENTITY/i, "実体宣言"],
-  ];
-  for (const [pattern, label] of checks) {
-    if (pattern.test(svg)) return label;
-  }
-  // 外部を読みにいく参照。data:image と同じ文書の中の #id だけ通す。
-  const references = svg.match(/(?:\bhref|xlink:href|\bsrc)\s*=\s*"([^"]*)"/gi) ?? [];
-  for (const reference of references) {
-    const value = reference.slice(reference.indexOf('"') + 1, -1).trim();
-    if (value.startsWith("#") || value.startsWith("data:image/")) continue;
-    return `外部の参照 ${value.slice(0, 60)}`;
-  }
-  return null;
-};
-
 const FIGURE_ID = /^[a-z0-9-]+$/;
 const MAX_SVG_BYTES = 2 * 1024 * 1024;
-const MAX_TRIO_BYTES = 8 * 1024 * 1024;
+// ステージングの口（functions/admin/api/past-exam-figures.ts）と同じ値。
+// 片方だけ通ると「手元では保存できたのに公開できない」が起きる。
+const MAX_TRIO_BYTES = 2 * 1024 * 1024;
 
 const figureManifestPath = (packageId) =>
   path.join(frontendRoot, "src", "data", "pastExamFigures", `${packageId}.json`);
@@ -359,7 +333,7 @@ const writePastExamFigure = async (payload) => {
   if (trio !== null) {
     const record = `${JSON.stringify({ schemaVersion: "lexus-past-exam-figure-trio.v1", packageId, figureId, trio }, null, 2)}\n`;
     if (Buffer.byteLength(record, "utf8") > MAX_TRIO_BYTES) {
-      return { status: 413, body: { error: "trio が大きすぎます（上限 8MB）。" } };
+      return { status: 413, body: { error: "trio が大きすぎます（上限 2MB）。" } };
     }
     trioPath = handEditedTrioPath(frontendRoot, packageId, figureId);
     await mkdir(path.dirname(trioPath), { recursive: true });

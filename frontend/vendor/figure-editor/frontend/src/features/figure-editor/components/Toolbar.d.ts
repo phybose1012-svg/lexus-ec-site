@@ -1,0 +1,42 @@
+import { type DrawKind } from "../lib/shapeBuilders";
+import type { LassoMode } from "../lib/lassoSelection";
+interface ToolbarProps {
+    onNewTab?: () => void;
+    exportFormats?: ("png" | "svg" | "trio")[];
+    onSavePng: () => void | Promise<void>;
+    onSaveSvg: () => void;
+    onDuplicateTab?: () => void;
+    onInsertImage?: () => void;
+    onCopyShapes?: () => void;
+    onPasteShapes?: () => void;
+    hasCopyTarget?: boolean;
+    clipboardCount?: number;
+    onSaveTrio?: () => void;
+    onLoadTrio?: (file: File) => void;
+    onImportSvg?: () => void;
+    onSaveCloud?: () => void;
+    onRegister?: () => void;
+    onUndo: () => void;
+    onRedo: () => void;
+    canUndo: boolean;
+    canRedo: boolean;
+    canSave: boolean;
+    busy: boolean;
+    grayscale: boolean;
+    onToggleGrayscale: () => void;
+    cropMode?: boolean;
+    onToggleCrop?: () => void;
+    splitMode?: boolean;
+    onToggleSplit?: () => void;
+    lassoMode?: LassoMode | null;
+    onToggleLasso?: () => void;
+    onChangeLassoMode?: (mode: LassoMode) => void;
+    hasSelection?: boolean;
+    drawMode: {
+        kind: DrawKind;
+    } | null;
+    onStartDraw: (k: DrawKind) => void;
+    onCancelDraw: () => void;
+}
+export declare function Toolbar({ onImportSvg, onNewTab, exportFormats, onSavePng, onSaveSvg, onDuplicateTab, onInsertImage, onCopyShapes, onPasteShapes, hasCopyTarget, clipboardCount, onSaveTrio, onLoadTrio, onSaveCloud, onRegister, onUndo, onRedo, canUndo, canRedo, canSave, busy, grayscale, onToggleGrayscale, cropMode, onToggleCrop, splitMode, onToggleSplit, lassoMode, onToggleLasso, onChangeLassoMode, hasSelection, drawMode, onStartDraw, onCancelDraw, }: ToolbarProps): import("react").JSX.Element;
+export {};
