@@ -110,6 +110,24 @@ test("readSvgSize: px でない単位は読めなかったことにして viewBo
   assert.equal(readSvgSize('<svg width="100%" height="100%"></svg>'), null);
 });
 
+// 新しいパッケージを足すたびに生成スクリプトが増える。1 本でも繋ぎ忘れると、
+// その大学の図だけ黙って上書きされる。名前で見つけて全部に効いているか見る。
+test("build-*-figures.mjs は全部、控えを見てから書く", () => {
+  const scriptsDir = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1"));
+  const generators = fs
+    .readdirSync(scriptsDir)
+    .filter((name) => /^build-.*-figures\.mjs$/.test(name));
+
+  assert.ok(generators.length >= 4, `生成スクリプトが見つからない: ${generators.join(", ")}`);
+
+  for (const name of generators) {
+    const source = fs.readFileSync(path.join(scriptsDir, name), "utf8");
+    assert.match(source, /past-exam-figure-handoff\.mjs/, `${name} が控えの仕組みを読んでいない`);
+    assert.match(source, /handoff\.keep\(/, `${name} が控えを見ていない`);
+    assert.match(source, /handoff\.report\(\)/, `${name} が飛ばした図を報告していない`);
+  }
+});
+
 test("控えが無ければ、生成スクリプトはこれまでどおり書く", () => {
   const tree = makeTree();
   try {

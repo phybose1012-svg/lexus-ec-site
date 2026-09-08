@@ -4,10 +4,13 @@
 // Restricted answer-book crops are used only to identify which relationship
 // needs a visual explanation; no crop is traced, embedded, or copied.
 import fs from "node:fs";
+import { createFigureHandoff } from "./lib/past-exam-figure-handoff.mjs";
 
 const packageId = "jichi-medical-2025-general-mathematics";
 const output = new URL(`../public/assets/past-exams/${packageId}/figures/`, import.meta.url);
 const figures = [];
+// 手で直した図（管理ページで保存したもの）は上書きしない。控えの有無で決める。
+const handoff = createFigureHandoff(packageId, import.meta.url);
 const esc = (value) => String(value)
   .replaceAll("&", "&amp;")
   .replaceAll("<", "&lt;")
@@ -42,7 +45,9 @@ const plainText = (x, y, value, extra = "") =>
   `<text x="${fixed(x)}" y="${fixed(y)}" ${extra}>${esc(value)}</text>`;
 
 function add(id, width, height, alt, caption, body, extraDefs = "") {
-  figures.push({ id, width, height, alt, caption, src: `/assets/past-exams/${packageId}/figures/${id}.svg` });
+  const kept = handoff.keep(id);
+  figures.push({ id, width: kept?.width ?? width, height: kept?.height ?? height, alt, caption, src: `/assets/past-exams/${packageId}/figures/${id}.svg` });
+  if (kept) return;
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="title"><title id="title">${esc(alt)}</title><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#18334c"/></marker><marker id="arrow-gold" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#bd8b27"/></marker>${extraDefs}</defs><style>${katexFonts}text{font-family:'Yu Gothic','Meiryo',sans-serif;font-size:18px;fill:#18334c;stroke:none}.math{font-family:'KaTeX_Main','Times New Roman',serif;font-size:21px}.math .mi{font-family:'KaTeX_Math','Times New Roman',serif;font-style:italic}.math .rm{font-family:'KaTeX_Main','Times New Roman',serif;font-style:normal}.math .jp{font-family:'Yu Gothic','Meiryo',sans-serif;font-style:normal}.small{font-size:16px}line,path,circle,ellipse,rect,polygon,polyline{vector-effect:non-scaling-stroke}.axis{stroke:#18334c;stroke-width:1.7}.guide{stroke:#9cabb8;stroke-width:1.2;stroke-dasharray:5 5}.hidden{stroke:#8090a0;stroke-width:1.45;stroke-dasharray:6 6}.edge{stroke:#18334c;stroke-width:2}.construction{stroke:#bd8b27;stroke-width:2.4}.curve{stroke:#173f69;stroke-width:2.8}.curve-secondary{stroke:#bd8b27;stroke-width:2.2}.point{fill:white;stroke:#173f69;stroke-width:2}.point-accent{fill:#bd8b27;stroke:white;stroke-width:1.6}.plane{fill:#eef4f8;stroke:#7f94a6;stroke-width:1.5}.region{fill:#fff1c9;stroke:none;opacity:.8}.label-bg{fill:white;stroke:#d9e2e9;stroke-width:1}</style><rect width="100%" height="100%" fill="white"/><g stroke="#18334c" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">${body}</g></svg>`;
   fs.writeFileSync(new URL(`${id}.svg`, output), svg);
 }
@@ -377,6 +382,8 @@ fs.mkdirSync(output, { recursive: true });
     body,
   );
 }
+
+handoff.report();
 
 const manifest = {
   schemaVersion: "lexus-past-exam-figures.v1",
