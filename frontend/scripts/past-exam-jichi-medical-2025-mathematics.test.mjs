@@ -180,6 +180,9 @@ test("built pages expose the 25-question summary, semantic figures, and conventi
   const strongTarget = analysisPage.find((node) => hasClass(node, "analysis-target-card") && hasClass(node, "is-strong"));
   assert.match(textContent(strongTarget), /21点.*問題7・問題16・問題25を追加.*計21点.*計75\.9分/);
   assert.match(textContent(strongTarget), /スピードと正確さ/);
+  const weakTarget = analysisPage.find((node) => hasClass(node, "analysis-target-card") && hasClass(node, "is-weak"));
+  assert.match(textContent(weakTarget), /出願について.*仮6点.*この点数で合格を見込めるという意味ではありません/);
+  assert.match(textContent(weakTarget), /数学の目標が仮6点程度となる方には.*出願をレクサスでは積極的におすすめしていません/);
   assert.ok(analysisPage.filter((node) => hasClass(node, "priority-2")).every((node) => textContent(node) === "捨てる"));
   const renderedFigures = answerPage.filter((node) => hasClass(node, "past-exam-figure"));
   assert.equal(renderedFigures.length, 7);

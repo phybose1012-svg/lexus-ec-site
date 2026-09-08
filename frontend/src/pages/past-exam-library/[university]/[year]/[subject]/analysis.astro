@@ -134,6 +134,7 @@ const targetReviewNote = page.targetReviewNote
                   : <div class="analysis-target-reached"><dt>この{itemNoun}構成で目標点をカバー</dt></div>}
               </dl>
               <p class="analysis-target-focus">{profile.focus}</p>
+              {profile.advisory && <aside class="analysis-target-advisory" aria-label="出願について"><strong>出願について</strong><p>{profile.advisory}</p></aside>}
             </article>
           ))}
         </div>

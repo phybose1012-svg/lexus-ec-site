@@ -13,7 +13,7 @@ export type AnalysisPage = {
   targets: {
     basis: "provisional_editorial"; timeBudgetBasis: "provisional_editorial" | "official_subject"; totalPoints: number; timeBudgetMinutes: number;
     profiles: Array<{
-      id: string; title: string; summary: string; focus: string; policyReason?: string;
+      id: string; title: string; summary: string; focus: string; policyReason?: string; advisory?: string;
       targetPoints: number; targetPercent: number; reliabilityFactor: number; rounding: string;
       judgmentMultiplier: number; executionMultiplier: number;
       maximum: TargetPlan; now: TargetPlan; nowPlusLater: TargetPlan; route: TargetPlan;

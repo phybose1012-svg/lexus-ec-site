@@ -142,7 +142,16 @@ export function buildAnalysis(evidence, editorial, targetPolicies = defaultTarge
         return { id, label: numberedProblem ? subquestion.label : `${major.label} ${subquestion.label}` };
       };
       const additional = route.questionIds.filter((id) => !profile.now.questionIds.includes(id)).map(labelFor);
-      return { ...profile, title: requireText(copy.title), summary: requireText(copy.summary), focus: requireText(copy.focus), route, additional, ...(routeKind === "replacement" ? { routeKind, replaced: replacedIds.map(labelFor) } : {}) };
+      return {
+        ...profile,
+        title: requireText(copy.title),
+        summary: requireText(copy.summary),
+        focus: requireText(copy.focus),
+        ...(copy.advisory === undefined ? {} : { advisory: requireText(copy.advisory) }),
+        route,
+        additional,
+        ...(routeKind === "replacement" ? { routeKind, replaced: replacedIds.map(labelFor) } : {}),
+      };
     }),
   };
   return {
