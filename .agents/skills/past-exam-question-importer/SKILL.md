@@ -27,6 +27,8 @@ The index must contain `data-question-shared-instructions`. Each major-question 
 4. The generic Astro route discovers generated JSON automatically. Add a university-specific adapter only when the source cannot satisfy the common semantic contract, not merely because the university name or exam route differs.
 5. Link the new question page from the university/year/subject table, then verify the route, all major-question anchors, KaTeX rendering hooks, generated metadata, and `noindex` policy.
 
+Do not infer the exam's visible question count or taxonomy from the number of imported reader files. Shared-stem groups may store `問題14〜16` in one section. Count the numbered assessment items, and make the question, answer, analysis, print and SEO surfaces agree. If the source labels individual items as `問題N`, call them 問題 and report the reader grouping separately; do not invent “大問16題” from 16 storage sections when the paper actually has 25 questions.
+
 The importer rewrites every inequality into Japanese school notation: `\le`, `\leq`, `\leqslant` and ≤ become `\leqq`/≦, and the `\ge` family becomes `\geqq`/≧. Upstream transcriptions routinely use `\le`; ≤ and ≥ are never used up to university entrance level, so the published page must not inherit them. Commands that merely share the prefix, such as `\left` and `\gets`, are untouched.
 
 The importer removes a direct `page-kicker` from each major-question fragment because the following `h2` already names the major question. Do not restore labels such as “第1問・大問別問題” above the same “第1問” heading.
@@ -66,7 +68,23 @@ On Windows, run this from PowerShell, or prefix the command with `MSYS_NO_PATHCO
 - `flatten-introduction` preserves the semantic source order while joining introductory prose and fact lists into one naturally wrapping paragraph.
 - `wrap-introduction` wraps the content between the first `h2` and `h3` in a named class for compact introductory layout.
 
-Keep override files declarative and narrowly scoped to a major-question ID. If an operation changes the meaning of the question rather than its presentation, fix and re-review the source package instead.
+Keep override files declarative and narrowly scoped to a major-question ID or to `shared` instructions. If an operation changes the meaning of the question rather than its presentation, fix and re-review the source package instead.
+
+## Marked-choice layout
+
+- Preserve marked choices as a semantic list with each mark and value in the same `listitem`. A visually tabular layout does not make the choices relational data, so do not replace the list with an HTML `table` solely for presentation.
+- Inspect the number of choices and the widest rendered expression before choosing columns. For a fixed set of ten compact choices, a proven starting profile is five columns by two rows on desktop and print, and two columns by five rows on mobile.
+- Scope a special choice grid to `data-past-exam-package`; `.structured-list--values` is shared by packages with different content structures and must not be globally redefined for one exam.
+- Keep the mark visually distinct from its value. On narrow screens, place the mark in a short top band and the expression below when a side-by-side mark reduces usable formula width.
+- Verify the widest choices at desktop, 390px, 360px, and 320px. Confirm that neither the page nor the list overflows horizontally, formulas remain legible without unintended line breaks, source order is unchanged, and print keeps each choice list together where practical.
+
+## Source defect escalation
+
+When a semantic transcription or explanation defect is found, do not hide it in a display override and do not spend the library-build session repairing the separate source repository. Use independently verified content on the Lexus side only when the correct value follows unambiguously from the published problem, and create a handoff prompt for a dedicated source-repair session.
+
+A source defect must not stop unrelated library work. Continue every section and task that does not depend on the uncertain value, including route scaffolding, metadata, original diagrams, styling, tests, and independently authored answers. Never publish or guess the affected question content: keep the route or section review-gated and `noindex`, identify the precise blocked boundary, and let the dedicated repair session make the canonical source change. Re-run the import after that repair before clearing the boundary.
+
+Audit the complete in-scope package, including every relevant question and answer page, so the prompt reports all detected defects, not only the first failure. For each defect include the source page, canonical-data location, current value, expected value, and mathematical or visual evidence. The prompt must also name the repository/package, required local instructions, canonical-first repair rule, generated artifacts to rebuild, stale-value search, package validators and browser QA, unchanged rights/review gates, allowed Git scope, and the completion report expected from the repair session. Save the complete prompt as a reviewable Markdown artifact beside the library work. If evidence is insufficient, request an open issue rather than a guessed correction.
 
 The importer copies only referenced content assets plus the shared local KaTeX runtime. If a package needs non-HTML figures, keep their rights state explicit.
 

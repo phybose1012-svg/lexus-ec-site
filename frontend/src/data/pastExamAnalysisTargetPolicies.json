@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "lexus-analysis-target-policies.v1",
+  "universities": {
+    "jichi-medical": {
+      "subjects": {
+        "mathematics": {
+          "targetProfileOverrides": [
+            {
+              "id": "strong",
+              "reliabilityFactor": 1,
+              "rounding": "none",
+              "reason": "自治医科大学の数学はスピードと正確さの双方を強く求めるため、得意層は時間内の最大化案をそのまま目標点とします。"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

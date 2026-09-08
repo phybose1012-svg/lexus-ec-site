@@ -114,6 +114,22 @@ test("analysis keeps section order, alternating backgrounds, points and question
   assert.deepEqual(descendants(pie).filter((n) => n.tagName === "text").map(text), ["24点", "31点", "35点", "10点"]);
 });
 
+test("all analysis pages use the shared discard label", () => {
+  const directory = new URL("src/data/generated/pastExamAnalyses/", project);
+  let discardedCount = 0;
+  for (const file of fs.readdirSync(directory).filter((name) => name.endsWith(".json"))) {
+    const data = JSON.parse(fs.readFileSync(new URL(file, directory), "utf8"));
+    const path = `dist/${data.route.path.replace(/^\//, "")}index.html`;
+    const nodes = descendants(parse(read(path)));
+    const discarded = findClass(nodes, "priority-2");
+    discardedCount += discarded.length;
+    assert.ok(discarded.every((node) => text(node) === "捨てる"), file);
+    assert.equal(findClass(nodes, "analysis-small-note").some((node) => text(node).includes("「見送る」は")), false, file);
+    assert.ok(findClass(nodes, "analysis-small-note").some((node) => text(node).includes("「捨てる」は本番で")), file);
+  }
+  assert.ok(discardedCount > 0);
+});
+
 test("screen-only UI stays out of print and separators preserve question spacing/page breaks", () => {
   const ui = postcss.parse(read("src/styles/past-exam-ui.css"));
   const hidden = new Set();
@@ -137,4 +153,18 @@ test("screen-only UI stays out of print and separators preserve question spacing
     const branding = findClass(pages[mode], "past-exam-print-branding")[0];
     assert.equal(descendants(branding).filter((n) => n.tagName === "img").length, 3);
   }
+});
+
+test("question and answer card grids may shrink below wide mathematical content on mobile", () => {
+  const css = postcss.parse(read("src/styles/past-exam-question.css"));
+  const declarations = new Map();
+  css.walkRules((rule) => {
+    if (rule.parent.type === "atrule") return;
+    if (![".past-exam-question-list", ".past-exam-question-list > *", ".past-exam-question-page .source-page-card"].includes(rule.selector)) return;
+    declarations.set(rule.selector, new Map(rule.nodes.filter((node) => node.type === "decl").map((node) => [node.prop, node.value])));
+  });
+  assert.equal(declarations.get(".past-exam-question-list")?.get("grid-template-columns"), "minmax(0, 1fr)");
+  assert.equal(declarations.get(".past-exam-question-list")?.get("min-width"), "0");
+  assert.equal(declarations.get(".past-exam-question-list > *")?.get("min-width"), "0");
+  assert.equal(declarations.get(".past-exam-question-page .source-page-card")?.get("min-width"), "0");
 });

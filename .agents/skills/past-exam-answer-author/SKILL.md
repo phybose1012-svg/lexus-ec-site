@@ -19,6 +19,7 @@ Create answer pages from an independently written, structured JSON source and co
 ## Workflow
 
 1. Solve every subquestion from the question page and record the answer-key slots.
+   - If an internal reconstruction disagrees with that independent derivation or with the source image, do not copy the defect or silently repair the separate source repository during the library build. Use the verified result in the original Lexus explanation when the mathematics is unambiguous, keep the review gate active, and record the source defect for a dedicated repair handoff.
 2. Inventory every source table and figure by purpose before writing. Decide whether each is required, useful, or safely unnecessary; never infer that absence of a publishable asset means absence of the visual concept.
    - For authoring or editorial revision, read [Explanation review](references/explanation-review.md). Review the question-to-solution logic separately from formatting, and repeat the review after corrections.
 3. Write concise explanations as `prose`, `formula`, `note`, `steps`, `table`, `figure`, `figurePlaceholder`, and `result` blocks. Put inline TeX inside `\(...\)` and display TeX in `formula.latex`.
@@ -41,3 +42,11 @@ Create answer pages from an independently written, structured JSON source and co
    - After changing the generator or purpose library, run `npm run past-exam:answers:test` from `frontend`. Missing or unknown IDs and duplicate library entries must fail validation. Automated checks do not establish logical correctness; complete the editorial passes in the review reference as well.
 
 The generic route discovers `frontend/src/data/generated/pastExamAnswers/*.json` automatically. Add university-specific rendering only when the common block model cannot express the explanation.
+
+## Source-repair handoff
+
+Before handing a defective source package to another session, audit every in-scope question and answer page so the prompt contains all detected defects rather than stopping at the first mismatch. For each item state the original page, canonical-data location, current value, expected value, and independent mathematical or visual evidence. Distinguish a transcription error from an editorial explanation that merely omits a necessary justification.
+
+The handoff prompt must name the repository and package, required local instructions, canonical-first repair rule, generated artifacts to rebuild, stale-value search, complete answer-key and algebra recheck, package validators and desktop/mobile browser QA, unchanged rights and human-review gates, allowed Git scope, and the completion report expected from the repair session. Require unresolved cases to remain open issues instead of guessed corrections. Keep this prompt as a reviewable Markdown artifact beside the library work so the main authoring session can continue without losing the defect trail.
+
+Do not pause the whole library build for a localized source defect. Continue independently verifiable explanations, figures, metadata, layout, and tests that do not rely on the disputed value. If the published question itself is uncertain, stop only that dependent explanation and keep it visibly review-gated and `noindex`; never infer an answer from a defective answer key. Clear the gate only after the canonical repair has been re-imported and the solution rechecked.

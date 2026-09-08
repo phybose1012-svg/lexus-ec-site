@@ -193,11 +193,19 @@
 
 .past-exam-question-list {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 28px;
+  min-width: 0;
   margin-top: 34px;
 }
 
+.past-exam-question-list > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
 .past-exam-question-page .source-page-card {
+  min-width: 0;
   scroll-margin-top: 20px;
   border: 1px solid var(--question-line);
   border-top: 4px solid var(--question-navy);
@@ -288,6 +296,55 @@
   max-width: 100%;
   flex: 0 1 auto;
   margin-block: 0.2em;
+}
+
+/* Jichi 2025 mathematics uses ten marked choices for every question. */
+.past-exam-question-page[data-past-exam-package="jichi-medical-2025-general-mathematics"] .structured-list--values {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1px;
+  align-items: stretch;
+  width: min(100%, 58rem);
+  overflow: hidden;
+  border: 1px solid #c8d4df;
+  border-radius: 8px;
+  padding: 0;
+  background: #c8d4df;
+  break-inside: avoid-page;
+  page-break-inside: avoid;
+}
+
+.past-exam-question-page[data-past-exam-package="jichi-medical-2025-general-mathematics"] .structured-list--values .structured-list__item {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr);
+  align-items: stretch;
+  min-width: 0;
+  min-height: 3rem;
+  margin: 0;
+  background: #fff;
+}
+
+.past-exam-question-page[data-past-exam-package="jichi-medical-2025-general-mathematics"] .structured-list--values .structured-list__label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #c8d4df;
+  color: var(--question-navy);
+  background: #eef3f7;
+  font-family: Arial, "Yu Gothic", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.past-exam-question-page[data-past-exam-package="jichi-medical-2025-general-mathematics"] .structured-list--values .structured-list__text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 0.45rem 0.5rem;
+  text-align: center;
+  line-height: 1.45;
 }
 
 .past-exam-question-page .prose.question-intro-compact {
@@ -453,6 +510,24 @@
   .past-exam-question-page .structured-list--cols-2,
   .past-exam-question-page .structured-list--cols-3 {
     grid-template-columns: 1fr;
+  }
+
+  .past-exam-question-page[data-past-exam-package="jichi-medical-2025-general-mathematics"] .structured-list--values {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .past-exam-question-page[data-past-exam-package="jichi-medical-2025-general-mathematics"] .structured-list--values .structured-list__item {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 1.65rem minmax(2.8rem, auto);
+  }
+
+  .past-exam-question-page[data-past-exam-package="jichi-medical-2025-general-mathematics"] .structured-list--values .structured-list__label {
+    border-right: 0;
+    border-bottom: 1px solid #c8d4df;
+  }
+
+  .past-exam-question-page[data-past-exam-package="jichi-medical-2025-general-mathematics"] .structured-list--values .structured-list__text {
+    padding-inline: 0.35rem;
   }
 
   .past-exam-question-page .prose,
@@ -653,6 +728,28 @@
 
   body.is-printing-past-exam-document .past-exam-question-page .structured-list__item {
     margin-block: 0.8mm;
+  }
+
+  body.is-printing-past-exam-document .past-exam-question-page[data-past-exam-package="jichi-medical-2025-general-mathematics"] .structured-list--values {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.25mm;
+    border-color: #999;
+    border-radius: 0;
+    background: #999;
+  }
+
+  body.is-printing-past-exam-document .past-exam-question-page[data-past-exam-package="jichi-medical-2025-general-mathematics"] .structured-list--values .structured-list__item {
+    grid-template-columns: 2.2rem minmax(0, 1fr);
+    grid-template-rows: auto;
+    min-height: 9mm;
+    margin: 0;
+  }
+
+  body.is-printing-past-exam-document .past-exam-question-page[data-past-exam-package="jichi-medical-2025-general-mathematics"] .structured-list--values .structured-list__label {
+    border-right: 1px solid #999;
+    border-bottom: 0;
+    border-color: #999;
+    background: #f2f2f2;
   }
 
   body.is-printing-past-exam-document .past-exam-question-page :where(h3, .prose, .structured-list__item) {

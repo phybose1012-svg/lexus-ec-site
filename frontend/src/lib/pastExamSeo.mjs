@@ -20,6 +20,25 @@ export function serializeJsonLd(data) {
 }
 
 /**
+ * Some exams number every item as 問題1… while storing shared-stem groups as
+ * one reader section. Count the assessment items without calling those groups
+ * "大問". Other naming schemes retain the established major-question fallback.
+ * @param {string[]} labels
+ */
+export function summarizeQuestionLabels(labels) {
+  const ranges = labels.map((label) => String(label).trim().match(/^問題\s*(\d+)(?:\s*[〜～]\s*(\d+))?$/));
+  if (labels.length > 0 && ranges.every(Boolean)) {
+    const count = ranges.reduce((total, match) => {
+      const first = Number(match[1]);
+      const last = Number(match[2] ?? match[1]);
+      return total + last - first + 1;
+    }, 0);
+    return { label: "問題", count, unit: "問", grouping: "問題別", display: `${count}問`, print: `問題${count}問` };
+  }
+  return { label: "大問", count: labels.length, unit: "題", grouping: "大問別", display: `${labels.length}題`, print: `大問${labels.length}題` };
+}
+
+/**
  * @param {{title: string, description: string, path: string, breadcrumbs: Breadcrumb[],
  * collection?: boolean, resource?: {name: string, kind: string, about: string}}} input
  */
@@ -77,17 +96,21 @@ export function buildPastExamPageSeo(input) {
 /**
  * No invented dates, official-answer claims or university authorship.
  * @param {{mode: "questions" | "answers" | "analysis", university: string, year: string | number,
- * subject: string, examLabel: string, majorCount: number, path: string, universityPath: string}} input
+ * subject: string, examLabel: string, majorCount: number, itemCount?: number,
+ * itemUnit?: string, itemGrouping?: string, path: string, universityPath: string}} input
  */
 export function buildExamDocumentSeo(input) {
   const labels = { questions: "問題", answers: "解答・解説", analysis: "出題分析" };
   const label = labels[input.mode];
   const name = `${input.university}医学部 ${input.year}年度 ${input.subject}の過去問${input.mode === "questions" ? "" : ` ${label}`}`;
   const introduction = `${input.university}医学部の${input.year}年度${input.examLabel}・${input.subject}。`;
+  const itemCount = input.itemCount ?? input.majorCount;
+  const itemUnit = input.itemUnit ?? "題";
+  const itemGrouping = input.itemGrouping ?? "大問別";
   const descriptions = {
-    questions: `過去問全${input.majorCount}題を大問別に掲載。問題文・数式を確認でき、印刷にも対応しています。解答・解説と出題分析へも移動できます。`,
-    answers: `過去問全${input.majorCount}題の解答と、計算過程・考え方を大問別に解説。レクサスE.C.独自作成の解説を、問題と照らし合わせて確認・印刷できます。`,
-    analysis: "出題分野、難易度別の仮配点、目標点、解く順番を図表で整理。レクサスE.C.の編集評価をもとに、優先して解く小問と復習のポイントを確認できます。",
+    questions: `過去問全${itemCount}${itemUnit}を${itemGrouping}に掲載。問題文・数式を確認でき、印刷にも対応しています。解答・解説と出題分析へも移動できます。`,
+    answers: `過去問全${itemCount}${itemUnit}の解答と、計算過程・考え方を${itemGrouping}に解説。レクサスE.C.独自作成の解説を、問題と照らし合わせて確認・印刷できます。`,
+    analysis: "出題分野、難易度別の仮配点、目標点、解く順番を図表で整理。レクサスE.C.の編集評価をもとに、優先して解く問題と復習のポイントを確認できます。",
   };
   const breadcrumbs = [
     { name: "ホーム", path: "/" },

@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
+import { normalizeInequalities } from "../src/lib/mathNotation.mjs";
 
 export const axes = ["図形処理", "数式処理", "計算量", "問題パターン知識", "問題咀嚼"];
 export function analysisAxesFor(subject) {
@@ -13,7 +14,7 @@ export const difficulties = ["基本レベル", "基本＋αレベル", "標準�
 export const actions = ["今解く！", "後回し", "捨てる！"];
 const decode = (s) => s.replace(/&#(x[0-9a-f]+|\d+);/gi, (_, n) => String.fromCodePoint(n[0].toLowerCase() === "x" ? parseInt(n.slice(1), 16) : Number(n)))
   .replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
-const plain = (s) => decode(s.replace(/<[^>]*>/g, " ")).replace(/\s+/g, " ").trim();
+const plain = (s) => normalizeInequalities(decode(s.replace(/<[^>]*>/g, " ")).replace(/\s+/g, " ").trim());
 function capture(html, pattern, label) {
   const match = html.match(pattern);
   if (!match) throw new Error(`Analysis HTML is missing ${label}`);

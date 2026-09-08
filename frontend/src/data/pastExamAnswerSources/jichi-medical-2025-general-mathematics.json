@@ -1,0 +1,1036 @@
+{
+  "schemaVersion": "lexus-past-exam-answer-source.v1",
+  "packageId": "jichi-medical-2025-general-mathematics",
+  "figureManifest": "frontend/src/data/pastExamFigures/jichi-medical-2025-general-mathematics.json",
+  "route": {
+    "university": "jichi-medical",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/jichi-medical/2025/mathematics/answers/"
+  },
+  "university": {
+    "id": "jichi-medical",
+    "name": "自治医科大学"
+  },
+  "exam": {
+    "year": "2025",
+    "label": "一般選抜",
+    "stage": "第一次試験",
+    "duration": "数学 80分"
+  },
+  "subject": {
+    "id": "mathematics",
+    "name": "数学",
+    "english": "MATHEMATICS"
+  },
+  "document": {
+    "role": "answers",
+    "majorQuestions": [
+      {
+        "id": "major-question-01",
+        "label": "問題1",
+        "order": 1,
+        "answerKey": [
+          {
+            "label": "問題1",
+            "entries": [
+              {
+                "mark": "ヤ",
+                "value": "7"
+              }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "3つの因数から3次式を決める",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "3次式 \\(P\\) は、互いに定数倍ではない3つの1次式 \\(3x+1\\)、\\(2x-1\\)、\\(x-3\\) のすべてで割り切れます。したがって、その積の定数倍で表せます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "expand-to-coefficients",
+                "latex": "\\begin{aligned}P&=A(3x+1)(2x-1)(x-3)\\\\P(0)=3&=A\\cdot1\\cdot(-1)\\cdot(-3)\\quad\\Longrightarrow\\quad A=1\\\\P&=6x^3-19x^2+2x+3\\end{aligned}"
+              },
+              {
+                "type": "prose",
+                "text": "係数を比べると \\(a=6\\)、\\(b=-19\\)、\\(c=2\\) です。よって \\(|ac+b|=|12-19|=7\\) となります。"
+              },
+              {
+                "type": "result",
+                "text": "\\(|ac+b|=7\\)。正解はヤです。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-02",
+        "label": "問題2",
+        "order": 2,
+        "answerKey": [
+          {
+            "label": "問題2",
+            "entries": [
+              {
+                "mark": "ワ",
+                "value": "9"
+              }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "平方の和として整理する",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "左辺を平方完成します。実数の平方は0以上なので、平方の和が0になるには各平方がともに0でなければなりません。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-equation",
+                "latex": "\\begin{aligned}x^2+4xy+12x+8y^2+72&=(x+2y+6)^2+4(y-3)^2=0\\\\&\\Longrightarrow\\quad x+2y+6=0,\\quad y=3\\\\&\\Longrightarrow\\quad (x,y)=(-12,3)\\end{aligned}"
+              },
+              {
+                "type": "prose",
+                "text": "したがって \\(|x+y|=|-12+3|=9\\) です。"
+              },
+              {
+                "type": "result",
+                "text": "\\(|x+y|=9\\)。正解はワです。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-03",
+        "label": "問題3",
+        "order": 3,
+        "answerKey": [
+          {
+            "label": "問題3",
+            "entries": [
+              {
+                "mark": "ハ",
+                "value": "5"
+              }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "複素数の累乗を周期で整理する",
+            "blocks": [
+              {
+                "type": "note",
+                "label": "最初に確認",
+                "text": "\\(p=\\cos\\frac{\\pi}{3}+i\\sin\\frac{\\pi}{3}\\)、\\(q=\\cos\\frac{2\\pi}{3}+i\\sin\\frac{2\\pi}{3}=p^2\\) です。したがって \\(p^6=1\\) を使って指数を6で整理できます。"
+              },
+              {
+                "type": "steps",
+                "items": [
+                  "前半4項は順に \\(1\\)、\\(-p\\)、\\(-q\\)、\\(-1\\) です。例えば \\(p^{16}q^{13}=p^{42}=1\\) となります。",
+                  "後半4項は順に \\(-p\\)、\\(q\\)、\\(p\\)、\\(q\\) です。よって8項の和は \\(1-p-q-1-p+q+p+q=q-p=-1\\) です。",
+                  "問題の絶対値の中は \\(-1+6=5\\) となるため、その絶対値も5です。"
+                ]
+              },
+              {
+                "type": "result",
+                "text": "求める値は \\(5\\)。正解はハです。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-04",
+        "label": "問題4",
+        "order": 4,
+        "answerKey": [
+          {
+            "label": "問題4",
+            "entries": [
+              {
+                "mark": "カ",
+                "value": "1"
+              }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "cos x の範囲でkの値域を調べる",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "\\(t=\\cos x\\) とおくと \\(-1\\leqq t\\leqq1\\) です。したがって \\(2t+3\\geqq1>0\\) であり、\\(2t+3\\) で割っても解を失いません。\\(\\sin^2x=1-t^2\\) を使い、方程式を \\(k\\) について解きます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "isolate-target",
+                "latex": "1-t^2-2kt-3k-1=0\\quad\\Longleftrightarrow\\quad k=h(t)=-\\frac{t^2}{2t+3}"
+              },
+              {
+                "type": "prose",
+                "text": "\\(\\cos x\\) は区間 \\([-1,1]\\) の値をすべてとるため、\\(h(t)\\) の値域がそのまま \\(k\\) の範囲です。導関数の符号から \\(h\\) は \\([-1,0]\\) で増加し、\\([0,1]\\) で減少します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "differentiate",
+                "latex": "h'(t)=-\\frac{2t(t+3)}{(2t+3)^2}"
+              },
+              {
+                "type": "prose",
+                "text": "最大値は \\(h(0)=0\\) です。最小値は両端を比較して、\\(h(-1)=-1\\)、\\(h(1)=-\\frac15\\) より \\(-1\\) です。"
+              },
+              { "type": "figure", "assetId": "ans-q4-k-range-graph" },
+              {
+                "type": "result",
+                "text": "\\(M=0\\)、\\(m=-1\\) より \\(|M+m|=1\\)。正解はカです。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-05",
+        "label": "問題5",
+        "order": 5,
+        "answerKey": [
+          {
+            "label": "問題5",
+            "entries": [
+              {
+                "mark": "タ",
+                "value": "3"
+              }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "周期6のまとまりで和を求める",
+            "blocks": [
+              {
+                "type": "note",
+                "label": "周期に注目",
+                "text": "\\(\\sin\\frac{k\\pi}{3}\\) と \\(\\cos\\frac{k\\pi}{3}\\) は、ともに \\(k\\) について周期6をもち、連続する6項の和は0です。"
+              },
+              {
+                "type": "steps",
+                "items": [
+                  "\\(20=6\\cdot3+2\\) なので、最初の18項は3周期分として相殺します。",
+                  "残る \\(k=19,20\\) は周期性から \\(k=1,2\\) と同じです。したがって \\(A=\\sin\\frac{\\pi}{3}+\\sin\\frac{2\\pi}{3}=\\sqrt3\\) です。",
+                  "同様に \\(B=\\cos\\frac{\\pi}{3}+\\cos\\frac{2\\pi}{3}=0\\) です。"
+                ]
+              },
+              {
+                "type": "result",
+                "text": "\\((A+B)^2=3\\)。正解はタです。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-06",
+        "label": "問題6",
+        "order": 6,
+        "answerKey": [
+          {
+            "label": "問題6",
+            "entries": [
+              {
+                "mark": "ラ",
+                "value": "8"
+              }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "組合せと重複組合せを使い分ける",
+            "blocks": [
+              {
+                "type": "steps",
+                "items": [
+                  "\\(1\\leqq a<b<c\\leqq20\\) は、1から20までの異なる3数を選べば順序が一意に決まるので、\\(G={}_{20}C_3=1140\\) です。",
+                  "\\(p+q+r+s=19\\) の非負整数解は、19個の同じものを4つの箱へ分ける重複組合せです。よって \\(H={}_{22}C_3=1540\\) です。",
+                  "差は \\(|G-H|=400\\) です。"
+                ]
+              },
+              {
+                "type": "result",
+                "text": "\\(\\frac{|G-H|}{50}=8\\)。正解はラです。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-07",
+        "label": "問題7",
+        "order": 7,
+        "answerKey": [
+          {
+            "label": "問題7",
+            "entries": [
+              {
+                "mark": "ナ",
+                "value": "4"
+              }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "底辺CDへの高さを最小にする",
+            "blocks": [
+              { "type": "figure", "assetId": "ans-q7-tetrahedron" },
+              {
+                "type": "prose",
+                "text": "\\(AP=t\\ (0\\leqq t\\leqq1)\\) とおきます。\\(t>0\\) では正三角形 \\(ABC\\) より、\\(AP\\) と \\(AC\\) のなす角は \\(60^\\circ\\) です。\\(t=0\\) でも、次の余弦定理の式へ直接代入すれば同じ関係が成り立ちます。また正四面体の対称性から \\(PC=PD\\) なので、三角形 \\(PCD\\) で \\(P\\) から \\(CD\\) へ下ろした垂線の足 \\(M\\) は \\(CD\\) の中点です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "squared-distance",
+                "latex": "\\begin{aligned}PC^2&=t^2+1-2t\\cos60^\\circ=t^2-t+1\\\\PM^2&=PC^2-CM^2=t^2-t+\\frac34=\\left(t-\\frac12\\right)^2+\\frac12\\end{aligned}"
+              },
+              {
+                "type": "prose",
+                "text": "したがって \\(t=\\frac12\\) のとき \\(PM\\) は最小値 \\(\\frac1{\\sqrt2}\\) をとります。底辺 \\(CD=1\\) より、面積の最小値は \\(S=\\frac12\\cdot1\\cdot\\frac1{\\sqrt2}=\\frac1{2\\sqrt2}\\) です。"
+              },
+              {
+                "type": "result",
+                "text": "\\(\\frac{\\sqrt2}{S}=4\\)。正解はナです。"
+              },
+              {
+                "type": "note",
+                "label": "立方体による確認",
+                "text": "立方体の互いに隣り合わない4頂点を結ぶ正四面体のモデルでも、PがABの中点にあるとき高さが最小になることを確認できます。"
+              },
+              { "type": "figure", "assetId": "ans-q7-cube-model" }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-08",
+        "label": "問題8",
+        "order": 8,
+        "answerKey": [
+          {
+            "label": "問題8",
+            "entries": [
+              {
+                "mark": "ワ",
+                "value": "9"
+              }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "余弦定理で三角形の形を決める",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "辺 \\(AB=3\\)、\\(AC=6\\)、\\(BC=k\\) を余弦定理へ入れ、条件に現れる \\(\\cos A\\)、\\(\\cos B\\) を辺の式に直します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "cosine-rule-angle",
+                "latex": "\\cos B=\\frac{3^2+k^2-6^2}{2\\cdot3\\cdot k}=\\frac{k^2-27}{6k},\\qquad \\cos A=\\frac{3^2+6^2-k^2}{2\\cdot3\\cdot6}=\\frac{45-k^2}{36}"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-equation",
+                "latex": "k\\cos B=6\\cos A+3\\quad\\Longrightarrow\\quad\\frac{k^2-27}{6}=\\frac{45-k^2}{6}+3\\quad\\Longrightarrow\\quad k^2=45"
+              },
+              {
+                "type": "prose",
+                "text": "\\(k>0\\) より \\(k=3\\sqrt5\\) です。この値を \\(\\cos A\\) の式へ戻すと \\(\\cos A=0\\) なので \\(A=90^\\circ\\) です。よって \\(S=\\frac12\\cdot3\\cdot6=9\\) です。"
+              },
+              {
+                "type": "result",
+                "text": "\\(\\frac{S^2}{9}=9\\)。正解はワです。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-09",
+        "label": "問題9",
+        "order": 9,
+        "answerKey": [
+          {
+            "label": "問題9",
+            "entries": [
+              {
+                "mark": "ラ",
+                "value": "8"
+              }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "5で割った余りを一覧にする",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "\\(N\\) の余りを \\(r=0,1,2,3,4\\) とすれば、\\(N^j\\) の余りは \\(r^j\\) の余りと同じです。"
+              },
+              {
+                "type": "table",
+                "caption": "累乗を5で割った余り",
+                "headers": [
+                  "\\(r\\)",
+                  "0",
+                  "1",
+                  "2",
+                  "3",
+                  "4",
+                  "異なる余り",
+                  "種類数",
+                  "総和"
+                ],
+                "rows": [
+                  [
+                    "\\(r^2\\)",
+                    "0",
+                    "1",
+                    "4",
+                    "4",
+                    "1",
+                    "0、1、4",
+                    "3",
+                    "5"
+                  ],
+                  [
+                    "\\(r^3\\)",
+                    "0",
+                    "1",
+                    "3",
+                    "2",
+                    "4",
+                    "0、1、2、3、4",
+                    "5",
+                    "10"
+                  ],
+                  [
+                    "\\(r^4\\)",
+                    "0",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "0、1",
+                    "2",
+                    "1"
+                  ]
+                ]
+              },
+              {
+                "type": "prose",
+                "text": "したがって \\((a,S_a)=(3,5)\\)、\\((b,S_b)=(5,10)\\)、\\((c,S_c)=(2,1)\\) です。"
+              },
+              {
+                "type": "result",
+                "text": "\\(|S_a-a|+|S_b-b|+|S_c-c|=2+5+1=8\\)。正解はラです。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-10",
+        "label": "問題10",
+        "order": 10,
+        "answerKey": [
+          {
+            "label": "問題10",
+            "entries": [
+              {
+                "mark": "ラ",
+                "value": "8"
+              }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "内積の範囲から最大値と最小値を求める",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "円上の点を \\(P(x,y)\\) とすると \\(x^2+y^2=4\\) です。2本のベクトルを成分で書き、内積を整理します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "dot-product",
+                "latex": "\\begin{aligned}\\overrightarrow{AP}\\cdot\\overrightarrow{BP}&=(x+12,y)\\cdot(x,y+5)\\\\&=4+(12,5)\\cdot(x,y),\\qquad -26\\leqq(12,5)\\cdot(x,y)\\leqq26\\end{aligned}"
+              },
+              {
+                "type": "prose",
+                "text": "後半の範囲は、\\(|(12,5)|=13\\)、\\(|(x,y)|=2\\) から得られます。\\((x,y)\\) が \\((12,5)\\) と同方向または反対方向のとき等号が成立するので、最大値は \\(M=30\\)、最小値は \\(m=-22\\) です。"
+              },
+              {
+                "type": "result",
+                "text": "\\(|M+m|=8\\)。正解はラです。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-11",
+        "label": "問題11",
+        "order": 11,
+        "answerKey": [
+          {
+            "label": "問題11",
+            "entries": [
+              {
+                "mark": "ア",
+                "value": "0"
+              }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "最短点へのベクトルが平面に垂直であることを使う",
+            "blocks": [
+              { "type": "figure", "assetId": "ans-q11-space-projection" },
+              {
+                "type": "prose",
+                "text": "平面上で \\(OP\\) が最小になる点 \\(H\\) は、原点から平面へ下ろした垂線の足です。したがって \\(\\overrightarrow{OH}\\) は平面上の \\(\\overrightarrow{HA}\\)、\\(\\overrightarrow{HB}\\)、\\(\\overrightarrow{HC}\\) のすべてと垂直です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "dot-product",
+                "latex": "\\overrightarrow{OA}\\cdot\\overrightarrow{OH}=(\\overrightarrow{OH}+\\overrightarrow{HA})\\cdot\\overrightarrow{OH}=|\\overrightarrow{OH}|^2"
+              },
+              {
+                "type": "prose",
+                "text": "同様に \\(\\overrightarrow{OB}\\cdot\\overrightarrow{OH}\\) と \\(\\overrightarrow{OC}\\cdot\\overrightarrow{OH}\\) も \\(|\\overrightarrow{OH}|^2\\) です。"
+              },
+              {
+                "type": "result",
+                "text": "求める式は \\((1+1-1-1)|\\overrightarrow{OH}|^2=0\\)。正解はアです。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-12",
+        "label": "問題12",
+        "order": 12,
+        "answerKey": [
+          {
+            "label": "問題12",
+            "entries": [
+              {
+                "mark": "ナ",
+                "value": "4"
+              }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "xの4実根をtの2つの正の解に読み替える",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "\\(t=x^2\\) とおき、\\(g(t)=t^2-2(k+2)t+k^2-2k-3\\) の2解を \\(t_1,t_2\\) とします。元の方程式が異なる4実根をもつための必要十分条件は、\\(g(t)=0\\) が異なる2つの正の解をもつことです。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "positive-roots-condition",
+                "latex": "\\begin{aligned}D>0&\\Longleftrightarrow4(6k+7)>0\\Longleftrightarrow k>-\\frac76\\\\t_1+t_2>0&\\Longleftrightarrow2(k+2)>0\\Longleftrightarrow k>-2\\\\t_1t_2>0&\\Longleftrightarrow(k-3)(k+1)>0\\Longleftrightarrow k<-1\\ \\text{または}\\ k>3\\end{aligned}"
+              },
+              {
+                "type": "prose",
+                "text": "3条件を合わせると \\(-\\frac76<k<-1\\) または \\(k>3\\) です。前者には整数がないので、整数 \\(k\\) は \\(k\\geqq4\\) となります。"
+              },
+              { "type": "figure", "assetId": "ans-q12-parabola-condition" },
+              {
+                "type": "result",
+                "text": "\\(|k|\\) の最小値は \\(4\\)。正解はナです。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-13",
+        "label": "問題13",
+        "order": 13,
+        "answerKey": [
+          {
+            "label": "問題13",
+            "entries": [
+              {
+                "mark": "ハ",
+                "value": "8e²−65e⁻¹"
+              }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "対数を置換して部分積分する",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "\\((\\log x)^4\\geqq0\\) なので、求める面積はそのまま定積分です。\\(t=\\log x\\) とおくと \\(x=e^t\\)、\\(dx=e^t\\,dt\\) で、積分区間は \\([-1,2]\\) になります。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "substitute-in-integral",
+                "latex": "S=\\int_{e^{-1}}^{e^2}(\\log x)^4\\,dx=\\int_{-1}^{2}t^4e^t\\,dt"
+              },
+              {
+                "type": "prose",
+                "text": "\\(e^t\\) を積分する側にして部分積分を4回繰り返すと、次の原始関数が得られます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "definite-integral",
+                "latex": "\\begin{aligned}\\int t^4e^t\\,dt&=(t^4-4t^3+12t^2-24t+24)e^t+C\\\\S&=\\left[(t^4-4t^3+12t^2-24t+24)e^t\\right]_{-1}^{2}=8e^2-65e^{-1}\\end{aligned}"
+              },
+              {
+                "type": "result",
+                "text": "\\(S=8e^2-65e^{-1}\\)。正解はハです。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-14",
+        "label": "問題14〜16",
+        "order": 14,
+        "answerKey": [
+          {
+            "label": "問題14",
+            "entries": [
+              {
+                "mark": "サ",
+                "value": "2"
+              }
+            ]
+          },
+          {
+            "label": "問題15",
+            "entries": [
+              {
+                "mark": "ハ",
+                "value": "3"
+              }
+            ]
+          },
+          {
+            "label": "問題16",
+            "entries": [
+              {
+                "mark": "カ",
+                "value": "1"
+              }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "共通準備　接線と半径で直角三角形をつくる",
+            "blocks": [
+              { "type": "figure", "assetId": "ans-q14-16-common-tangent" },
+              {
+                "type": "prose",
+                "text": "円 \\(C_1\\)、\\(C_2\\) の中心をそれぞれ \\(O(0,0)\\)、\\(A(\\beta,0)\\) とします。半径 \\(OQ\\)、\\(AR\\) は接線 \\(l\\) に垂直です。\\(l\\) と \\(x\\) 軸のなす角を \\(\\theta\\) とすると、\\(\\tan\\theta=\\frac{\\sqrt3}{3}\\) より \\(\\theta=30^\\circ\\) です。"
+              },
+              {
+                "type": "steps",
+                "items": [
+                  "直角三角形 \\(POQ\\) で \\(OQ=1\\)、\\(\\sin30^\\circ=\\frac12\\) なので \\(PO=2\\) です。",
+                  "直角三角形 \\(PAR\\) では \\(AR=\\frac52\\) なので、同様に \\(PA=5\\) です。",
+                  "条件 \\(\\frac32<\\beta<\\frac72\\) に合う配置ではP、O、Aの順に並ぶため、\\(OA=PA-PO=3\\) です。"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "問題14　Pのx座標の絶対値",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "\\(O\\) は原点なので、\\(P\\) の \\(x\\) 座標の絶対値は距離 \\(PO\\) と等しくなります。"
+              },
+              {
+                "type": "result",
+                "text": "\\(|k|=2\\)。正解はサです。"
+              }
+            ]
+          },
+          {
+            "title": "問題15　2円の中心間距離",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "\\(A=(\\beta,0)\\) なので \\(\\beta=OA\\) です。共通準備で求めた \\(PA=5\\)、\\(PO=2\\) を使います。"
+              },
+              {
+                "type": "result",
+                "text": "\\(\\beta=PA-PO=3\\)。正解はハです。"
+              }
+            ]
+          },
+          {
+            "title": "問題16　接点の位置ベクトルの内積",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "半径 \\(OQ\\)、\\(AR\\) は正の \\(x\\) 軸となす角が \\(120^\\circ\\) です。\\(\\beta=3\\) と各半径を使うと、\\(Q=(-\\frac12,\\frac{\\sqrt3}{2})\\)、\\(R=(\\frac74,\\frac{5\\sqrt3}{4})\\) となります。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "dot-product",
+                "latex": "q_1r_1+q_2r_2=\\left(-\\frac12\\right)\\frac74+\\frac{\\sqrt3}{2}\\cdot\\frac{5\\sqrt3}{4}=1"
+              },
+              {
+                "type": "result",
+                "text": "\\(|q_1r_1+q_2r_2|=1\\)。正解はカです。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-15",
+        "label": "問題17〜20",
+        "order": 15,
+        "answerKey": [
+          {
+            "label": "問題17",
+            "entries": [
+              {
+                "mark": "サ",
+                "value": "2"
+              }
+            ]
+          },
+          {
+            "label": "問題18",
+            "entries": [
+              {
+                "mark": "ヤ",
+                "value": "7"
+              }
+            ]
+          },
+          {
+            "label": "問題19",
+            "entries": [
+              {
+                "mark": "ラ",
+                "value": "8"
+              }
+            ]
+          },
+          {
+            "label": "問題20",
+            "entries": [
+              {
+                "mark": "ナ",
+                "value": "19"
+              }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "共通準備　等比数列の和",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "有限等比数列の和の公式から \\(S_n=\\frac{1-(8/9)^n}{1-8/9}=9-9\\left(\\frac89\\right)^n\\) です。\\(0<\\frac89<1\\) なので \\(S_n\\) は増加し、つねに9より小さく、9へ近づきます。"
+              }
+            ]
+          },
+          {
+            "title": "問題17　S3をはさむ整数",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "\\(S_3=1+\\frac89+\\frac{64}{81}=\\frac{217}{81}=2.679\\cdots\\) です。"
+              },
+              {
+                "type": "result",
+                "text": "\\(p=2\\)。正解はサです。"
+              }
+            ]
+          },
+          {
+            "title": "問題18　5より大きくなる最初の項",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "\\(5<S_n<6\\) に共通準備の式を代入し、底が1より大きい \\(\\frac98\\) の累乗へ直します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "take-logarithm",
+                "latex": "\\frac94<\\left(\\frac98\\right)^n<3\\quad\\Longleftrightarrow\\quad\\frac{0.3522}{0.0512}<n<\\frac{0.4771}{0.0512}\\quad\\Longleftrightarrow\\quad6.87\\cdots<n<9.31\\cdots"
+              },
+              {
+                "type": "result",
+                "text": "条件を満たす最小の自然数は \\(q=7\\)。正解はヤです。"
+              }
+            ]
+          },
+          {
+            "title": "問題19　整数部分の最大値",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "\\(S_n<9\\) なので、\\(N<S_n<N+1\\) を満たしうる自然数は8以下です。8が指定範囲 \\(n\\leqq10000\\) で実現することも確認します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "take-logarithm",
+                "latex": "8<S_n\\quad\\Longleftrightarrow\\quad\\left(\\frac98\\right)^n>9\\quad\\Longleftrightarrow\\quad n>\\frac{\\log_{10}9}{\\log_{10}(9/8)}=\\frac{0.9542}{0.0512}=18.63\\cdots"
+              },
+              {
+                "type": "prose",
+                "text": "したがって \\(n=19\\leqq10000\\) で \\(8<S_n<9\\) となるため、8は実際に可能です。"
+              },
+              {
+                "type": "result",
+                "text": "\\(M=8\\)。正解はラです。"
+              }
+            ]
+          },
+          {
+            "title": "問題20　8より大きくなる最初の項",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "問題19で \\(8<S_n\\) の条件が \\(n>18.63\\cdots\\) と分かりました。上側の \\(S_n<9\\) は常に成り立つので、この条件を満たす最小の自然数を選びます。"
+              },
+              {
+                "type": "result",
+                "text": "最小の自然数は \\(m=19\\)。正解はナです。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-16",
+        "label": "問題21〜25",
+        "order": 16,
+        "answerKey": [
+          {
+            "label": "問題21",
+            "entries": [
+              {
+                "mark": "タ",
+                "value": "3"
+              }
+            ]
+          },
+          {
+            "label": "問題22",
+            "entries": [
+              {
+                "mark": "カ",
+                "value": "−3−√34/2"
+              }
+            ]
+          },
+          {
+            "label": "問題23",
+            "entries": [
+              {
+                "mark": "マ",
+                "value": "−3+√34/2"
+              }
+            ]
+          },
+          {
+            "label": "問題24",
+            "entries": [
+              {
+                "mark": "ワ",
+                "value": "1009"
+              }
+            ]
+          },
+          {
+            "label": "問題25",
+            "entries": [
+              {
+                "mark": "ナ",
+                "value": "25"
+              }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "問題21　2重解を因数分解から読む",
+            "blocks": [
+              {
+                "type": "formula",
+                "purposeId": "factor-polynomial",
+                "latex": "f(x)=(x-3)^2(x^2+10x+16)=(x-3)^2(x+2)(x+8)"
+              },
+              {
+                "type": "prose",
+                "text": "\\(x=3\\) は2重解で、\\(x=-2,-8\\) は単解です。"
+              },
+              {
+                "type": "result",
+                "text": "\\(k=3\\)。正解はタです。"
+              }
+            ]
+          },
+          {
+            "title": "問題22・23　導関数の符号から極値を判定する",
+            "blocks": [
+              {
+                "type": "formula",
+                "purposeId": "differentiate",
+                "latex": "f'(x)=4x^3+12x^2-70x-6=2(x-3)(2x^2+12x+1)"
+              },
+              {
+                "type": "formula",
+                "purposeId": "find-extrema-candidates",
+                "latex": "f'(x)=0\\quad\\Longrightarrow\\quad x=\\alpha=-3-\\frac{\\sqrt{34}}2,\\quad x=\\beta=-3+\\frac{\\sqrt{34}}2,\\quad x=3"
+              },
+              {
+                "type": "prose",
+                "text": "\\(\\alpha<\\beta<3\\) で、\\(f'\\) の符号は左から負、正、負、正と変わります。したがって \\(\\alpha\\) と3で極小、\\(\\beta\\) で極大です。さらに \\(-8<\\alpha<-2\\) では因数分解した \\(f(x)\\) が負で、\\(f(3)=0\\) なので、最小値は \\(x=\\alpha\\) でとります。"
+              },
+              {
+                "type": "table",
+                "variant": "variation",
+                "caption": "\\(f(x)\\) の増減表",
+                "headers": [
+                  "\\(x\\)",
+                  "\\(-\\infty\\)",
+                  "",
+                  "\\(\\alpha\\)",
+                  "",
+                  "\\(\\beta\\)",
+                  "",
+                  "\\(3\\)",
+                  "",
+                  "\\(+\\infty\\)"
+                ],
+                "rows": [
+                  [
+                    "\\(f'(x)\\)",
+                    "",
+                    "−",
+                    "0",
+                    "+",
+                    "0",
+                    "−",
+                    "0",
+                    "+",
+                    ""
+                  ],
+                  [
+                    "\\(f(x)\\)",
+                    "\\(+\\infty\\)",
+                    "\\(\\searrow\\)",
+                    "\\(m\\) 最小",
+                    "\\(\\nearrow\\)",
+                    "\\(M\\) 極大",
+                    "\\(\\searrow\\)",
+                    "\\(0\\) 極小",
+                    "\\(\\nearrow\\)",
+                    "\\(+\\infty\\)"
+                  ]
+                ]
+              },
+              { "type": "figure", "assetId": "ans-q21-25-quartic-graph" },
+              {
+                "type": "result",
+                "text": "\\(p=\\alpha=-3-\\frac{\\sqrt{34}}2\\)（問題22・カ）、\\(q=\\beta=-3+\\frac{\\sqrt{34}}2\\)（問題23・マ）です。"
+              }
+            ]
+          },
+          {
+            "title": "問題24　2つの極値の和を求める",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "\\(\\alpha\\)、\\(\\beta\\) は \\(2x^2+12x+1=0\\) の2解です。多項式の割り算で、この関係をそのまま使える恒等式を作ります。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "reduce-by-equation",
+                "latex": "f(x)=\\left(\\frac12x^2-x-\\frac{47}{4}\\right)(2x^2+12x+1)+136x+\\frac{623}{4}"
+              },
+              {
+                "type": "prose",
+                "text": "\\(x=\\alpha,\\beta\\) では第1項が0になるので、両方の点で \\(f(x)=136x+\\frac{623}{4}\\) です。また、解と係数の関係から \\(\\alpha+\\beta=-6\\) です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "evaluate-extrema",
+                "latex": "M+m=136(\\alpha+\\beta)+2\\cdot\\frac{623}{4}=136(-6)+\\frac{623}{2}=-\\frac{1009}{2}"
+              },
+              {
+                "type": "result",
+                "text": "\\(2|M+m|=1009\\)。正解はワです。"
+              }
+            ]
+          },
+          {
+            "title": "問題25　x軸と囲まれる部分を積分する",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "因数分解から、\\(f(x)\\geqq0\\) の部分で \\(x\\) 軸と有限に囲まれるのは \\(-2\\leqq x\\leqq3\\) です。\\(x=3\\) は2重解なので、グラフはここで \\(x\\) 軸に接します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "definite-integral",
+                "latex": "\\begin{aligned}S&=\\int_{-2}^{3}(x-3)^2(x+2)(x+8)\\,dx\\\\&=\\int_{-5}^{0}(t^4+16t^3+55t^2)\\,dt=\\frac{1250}{3}\\qquad(t=x-3)\\end{aligned}"
+              },
+              {
+                "type": "result",
+                "text": "\\(\\sqrt{\\frac{3S}{2}}=\\sqrt{625}=25\\)。正解はナです。"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "contentProvenance": "original_editorial",
+    "restrictedSourceCopied": false,
+    "publicationCandidate": true,
+    "rightsStatus": "original_editorial",
+    "needsHumanReview": true,
+    "reference": "自治医科大学2025年度一般選抜第一次試験 数学の掲載問題をもとにレクサスE.C.が独自作成"
+  },
+  "links": {
+    "questions": "/past-exam-library/jichi-medical/2025/mathematics/questions/",
+    "universityLibrary": "/past-exam-library/jichi-medical/",
+    "analysis": "/past-exam-library/jichi-medical/2025/mathematics/analysis/",
+    "universityInformation": "/information-jichi/"
+  }
+}
