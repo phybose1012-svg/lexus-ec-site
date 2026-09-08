@@ -52,6 +52,13 @@ type Loaded = {
   /** 控え（.trio.json）から戻したか。 */
   fromSidecar: boolean;
   key: string;
+  /**
+   * 管理 API が握っているチェックアウトの場所。
+   *
+   * 島は最初に応答したポートを採るので、別のワークツリーの管理 API が
+   * 上がっていればそちらへ書いてしまう。どちらへ書くのかは見えている必要がある。
+   */
+  repoRoot: string | null;
 };
 
 async function findApiBase(): Promise<string | null> {
@@ -127,6 +134,7 @@ export default function FigureEditorIsland() {
               report: null,
               fromSidecar: true,
               key: contentKey(JSON.stringify(payload.trio)),
+              repoRoot: (payload.repoRoot as string) ?? null,
             });
             setStatus("");
             return;
@@ -138,6 +146,7 @@ export default function FigureEditorIsland() {
             report: result,
             fromSidecar: false,
             key: contentKey(payload.svg as string),
+            repoRoot: (payload.repoRoot as string) ?? null,
           });
           setStatus("");
           return;
@@ -152,7 +161,13 @@ export default function FigureEditorIsland() {
         const svg = await svgResponse.text();
         const result = await importSvgForEditor(svg);
         if (cancelled) return;
-        setLoaded({ trio: result.trio, report: result, fromSidecar: false, key: contentKey(svg) });
+        setLoaded({
+          trio: result.trio,
+          report: result,
+          fromSidecar: false,
+          key: contentKey(svg),
+          repoRoot: null,
+        });
         setStatus("");
       } catch (cause) {
         if (cancelled) return;
@@ -236,11 +251,14 @@ export default function FigureEditorIsland() {
             {report.warnings.length > 0 ? `・注意 ${report.warnings.length} 件` : ""}
           </span>
         )}
-        <span>
+        {/* どのチェックアウトへ書くのかを出す。島は最初に応答したポートを
+            採るので、別のワークツリーの管理 API が上がっていればそちらへ
+            書いてしまう。見えていれば気づける。 */}
+        <span title={loaded?.repoRoot ?? undefined}>
           {!apiSearched
             ? "ローカル管理 API を探しています…"
             : apiBase
-              ? "保存先: ローカル管理 API"
+              ? `保存先: ${loaded?.repoRoot ?? apiBase}`
               : "保存できません（npm run admin:api）"}
         </span>
         {status && <strong>{status}</strong>}

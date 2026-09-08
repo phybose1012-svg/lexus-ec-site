@@ -12,7 +12,10 @@ const repoRoot = path.resolve(frontendRoot, "..");
 const overridesModulePath = path.join(frontendRoot, "functions", "generated", "content-overrides.ts");
 const targetBranch = process.env.ADMIN_GIT_TARGET_BRANCH || "staging";
 const basePort = Number(process.env.ADMIN_LOCAL_API_PORT || 4335);
-const maxBodyBytes = 1024 * 1024;
+// route 側の上限（図版 SVG 2MB・控え 8MB）より大きくしておく。小さいと
+// readBody が先に切ってしまい、宣言した 413 が永久に返らず、クライアントには
+// 理由の分からない `Failed to fetch` だけが出る（実測）。
+const maxBodyBytes = 12 * 1024 * 1024;
 
 const jsonHeaders = {
   "Content-Type": "application/json; charset=utf-8",
@@ -24,6 +27,23 @@ const server = createServer(async (request, response) => {
   try {
     const url = new URL(request.url || "/", `http://${request.headers.host || "127.0.0.1"}`);
     const corsHeaders = corsFor(request);
+
+    // 書き込みは「JSON で」「ローカルから」だけ受ける。
+    //
+    // **これが無いと、閲覧中の任意のサイトから図版を書き換えられる。**
+    // text/plain は CORS の単純リクエストなので preflight が無く、ブラウザは
+    // そのまま送ってしまう。応答は読めない（ローカル以外に ACAO を付けない）
+    // が、書き込みだけは通る。実際に別オリジンのページから公開アセットへ
+    // <script> 入りの SVG を書けることを確かめた。
+    // application/json を必須にすると preflight が要り、その preflight は
+    // ローカル以外に許可を返さないのでブラウザが止める。
+    if (request.method === "POST") {
+      const failure = assertWritable(request);
+      if (failure) {
+        sendJson(response, failure.status, { error: failure.error }, corsHeaders);
+        return;
+      }
+    }
 
     if (request.method === "OPTIONS") {
       sendJson(response, 204, null, corsHeaders);
@@ -170,6 +190,51 @@ const server = createServer(async (request, response) => {
  * 受け取ったものはリポジトリの中の決まった場所にしか置かない。ID の形を
  * 先に検査し、パスは組み立てるだけで、渡された文字列を経路に混ぜない。
  */
+/** 書き込みを受けてよい要求か。理由があれば返す。 */
+const assertWritable = (request) => {
+  const contentType = String(request.headers["content-type"] || "")
+    .split(";")[0]
+    .trim()
+    .toLowerCase();
+  if (contentType !== "application/json") {
+    return { status: 415, error: "Content-Type は application/json だけ受け付けます。" };
+  }
+  const origin = request.headers.origin;
+  if (origin && !isLocalOrigin(origin)) {
+    return { status: 403, error: `このオリジンからは書けません: ${origin}` };
+  }
+  return null;
+};
+
+/**
+ * 公開アセットとして置けない SVG か。置けないなら理由を返す。
+ *
+ * 完全な無害化ではない。**断るための検査**であって、通ったものが安全だと
+ * 言っているわけではない。ここへ来る SVG は図形エディタの書き出しなので、
+ * 下のどれかが入っていること自体が異常であり、その時点で止めれば足りる。
+ */
+const unsafeSvgReason = (svg) => {
+  const checks = [
+    [/<\s*script\b/i, "<script>"],
+    [/<\s*foreignObject\b/i, "<foreignObject>"],
+    [/<\s*(iframe|embed|object|audio|video)\b/i, "外部を読む要素"],
+    [/\son[a-z]+\s*=/i, "on... のイベント属性"],
+    [/javascript\s*:/i, "javascript: の参照"],
+    [/<!ENTITY/i, "実体宣言"],
+  ];
+  for (const [pattern, label] of checks) {
+    if (pattern.test(svg)) return label;
+  }
+  // 外部を読みにいく参照。data:image と同じ文書の中の #id だけ通す。
+  const references = svg.match(/(?:\bhref|xlink:href|\bsrc)\s*=\s*"([^"]*)"/gi) ?? [];
+  for (const reference of references) {
+    const value = reference.slice(reference.indexOf('"') + 1, -1).trim();
+    if (value.startsWith("#") || value.startsWith("data:image/")) continue;
+    return `外部の参照 ${value.slice(0, 60)}`;
+  }
+  return null;
+};
+
 const FIGURE_ID = /^[a-z0-9-]+$/;
 const MAX_SVG_BYTES = 2 * 1024 * 1024;
 const MAX_TRIO_BYTES = 8 * 1024 * 1024;
@@ -233,6 +298,7 @@ const readPastExamFigure = async (packageId, figureId) => {
       svg,
       trio: trio?.trio ?? null,
       handEdited: trio !== null,
+      repoRoot,
       alt: entry.item.alt,
       caption: entry.item.caption,
     },
@@ -258,6 +324,12 @@ const writePastExamFigure = async (payload) => {
   if (!size) {
     return { status: 400, body: { error: "SVG から寸法を読み取れませんでした。" } };
   }
+  // 書いた先は公開ディレクトリで、.svg を直接開けばサイトのオリジンで動く。
+  // 落とすのではなく断る（落とすと、直したはずの図が黙って変わる）。
+  const unsafe = unsafeSvgReason(svg);
+  if (unsafe) {
+    return { status: 400, body: { error: `SVG に置けないものが入っています: ${unsafe}` } };
+  }
   // 控えは「編集を続けられる形」でなければ意味がない。形だけ先に見る。
   if (trio !== null) {
     if (
@@ -274,19 +346,15 @@ const writePastExamFigure = async (payload) => {
   if (entry.error) return entry.error;
   const { manifestPath, manifest, item } = entry;
 
-  const svgPath = figureSvgPath(frontendRoot, packageId, figureId);
-  await mkdir(path.dirname(svgPath), { recursive: true });
-  await writeFile(svgPath, svg.endsWith("\n") ? svg : `${svg}\n`, "utf8");
-
-  const manifestUpdated = item.width !== size.width || item.height !== size.height;
-  if (manifestUpdated) {
-    item.width = size.width;
-    item.height = size.height;
-    await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
-  }
-
-  // 控えは SVG を書いたあとに置く。逆にすると、SVG の書き込みに失敗したとき
-  // 「手が正本」の印だけが残り、生成スクリプトが古い SVG を守ってしまう。
+  // **控えを先に書く。** 3 つ（控え・SVG・manifest）を続けて書くので、途中で
+  // 落ちたときにどちらへ倒れるかを選べる。
+  //
+  // 控えを最後にすると「公開ファイルは差し替わったのに、手が正本という印だけ
+  // 無い」で終わる。次に生成スクリプトを流すと警告ひとつ無く元へ戻り、直した
+  // ものが黙って消える（実測）。
+  // 先に書けば、最悪でも「印はあるが SVG は古い」で終わる。直した trio は
+  // 残っているので次に開けば続きから編集でき、生成スクリプトはその図の名前を
+  // 出して手を出さない。失敗したことも画面に出る。
   let trioPath = null;
   if (trio !== null) {
     const record = `${JSON.stringify({ schemaVersion: "lexus-past-exam-figure-trio.v1", packageId, figureId, trio }, null, 2)}\n`;
@@ -298,6 +366,17 @@ const writePastExamFigure = async (payload) => {
     await writeFile(trioPath, record, "utf8");
   }
 
+  const svgPath = figureSvgPath(frontendRoot, packageId, figureId);
+  await mkdir(path.dirname(svgPath), { recursive: true });
+  await writeFile(svgPath, svg.endsWith("\n") ? svg : `${svg}\n`, "utf8");
+
+  const manifestUpdated = item.width !== size.width || item.height !== size.height;
+  if (manifestUpdated) {
+    item.width = size.width;
+    item.height = size.height;
+    await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+  }
+
   return {
     status: 200,
     body: {
@@ -306,6 +385,7 @@ const writePastExamFigure = async (payload) => {
       manifest: path.relative(repoRoot, manifestPath).replaceAll("\\", "/"),
       manifestUpdated,
       trioFile: trioPath ? path.relative(repoRoot, trioPath).replaceAll("\\", "/") : null,
+      repoRoot,
       width: size.width,
       height: size.height,
       git: await gitStatus(),

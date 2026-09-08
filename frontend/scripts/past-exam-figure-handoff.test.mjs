@@ -89,6 +89,27 @@ test("readSvgSize: 読めないものは null", () => {
   assert.equal(readSvgSize('<svg width="0" height="10"></svg>'), null);
 });
 
+// 書く側と検査する側が同じ関数なので、ここが間違うと両方同じ嘘をつく。
+test("readSvgSize: stroke-width や data-width には当たらない", () => {
+  assert.deepEqual(readSvgSize('<svg stroke-width="2" width="470" height="370"></svg>'), {
+    width: 470,
+    height: 370,
+  });
+  assert.deepEqual(readSvgSize('<svg data-width="9" width="470" height="370"></svg>'), {
+    width: 470,
+    height: 370,
+  });
+});
+
+test("readSvgSize: px でない単位は読めなかったことにして viewBox へ落とす", () => {
+  const mm = '<svg width="124.35mm" height="97.9mm" viewBox="0 0 470 370"></svg>';
+  assert.deepEqual(readSvgSize(mm), { width: 470, height: 370 });
+  const percent = '<svg width="100%" height="100%" viewBox="0 0 470 370"></svg>';
+  assert.deepEqual(readSvgSize(percent), { width: 470, height: 370 });
+  // 落とす先が無ければ、黙って px 扱いにせず読めないと答える。
+  assert.equal(readSvgSize('<svg width="100%" height="100%"></svg>'), null);
+});
+
 test("控えが無ければ、生成スクリプトはこれまでどおり書く", () => {
   const tree = makeTree();
   try {
