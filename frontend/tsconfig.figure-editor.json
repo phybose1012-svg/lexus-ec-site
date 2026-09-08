@@ -1,0 +1,10 @@
+{
+  "//": "図版エディタの島だけを型検査する。src/local-tools/ は tsconfig.json では除外している（vendor が無い環境ではモジュールが解決できず、サイト全体のビルドが落ちるため）。手元に vendor/figure-editor/ を置いたときだけ npm run figure-editor:check で見る。",
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "noEmit": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["src/local-tools/**/*.ts", "src/local-tools/**/*.tsx"]
+}

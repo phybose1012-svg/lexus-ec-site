@@ -6,6 +6,7 @@
   "scripts": {
     "admin:api": "node ./scripts/admin-local-api.mjs",
     "figure-editor:sync": "node ./scripts/sync-figure-editor.mjs",
+    "figure-editor:check": "tsc -p tsconfig.figure-editor.json",
     "past-exam:import": "node ../.agents/skills/past-exam-question-importer/scripts/import-question-page.mjs",
     "past-exam:notation": "node ./scripts/normalize-past-exam-notation.mjs",
     "past-exam:answers": "node ../.agents/skills/past-exam-answer-author/scripts/build-all-answer-pages.mjs",
@@ -18,6 +19,7 @@
     "past-exam:figures:iwate-2025-mathematics": "node ./scripts/build-iwate-2025-mathematics-figures.mjs",
     "past-exam:figures:juntendo-2025-mathematics": "node ./scripts/build-juntendo-2025-general-a-mathematics-figures.mjs",
     "past-exam:mathematics-figures:test": "node --test ./scripts/past-exam-mathematics-figures.test.mjs",
+    "past-exam:figure-handoff:test": "node --test ./scripts/past-exam-figure-handoff.test.mjs",
     "past-exam:juntendo-mathematics:test": "node --test ./scripts/past-exam-juntendo-2025-mathematics.test.mjs",
     "past-exam:notation:test": "node --test ./scripts/past-exam-notation.test.mjs",
     "dev": "node ./scripts/astro-command.mjs dev --host 127.0.0.1",

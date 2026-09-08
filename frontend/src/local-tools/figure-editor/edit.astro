@@ -1,8 +1,12 @@
 ---
-import AdminLayout from "../../../layouts/AdminLayout.astro";
-import FigureEditorIsland from "../../../components/past-exam/FigureEditorIsland.tsx";
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import FigureEditorIsland from "./FigureEditorIsland.tsx";
 
-// 管理ツールなので本番ドメインには出さない（/admin/editor と同じ扱い）。
+// このページは astro.config.mjs が「vendor/figure-editor/ が置いてあるときだけ」
+// 経路へ差し込む。だから src/pages/ の下ではなくここに居る。置いていない環境
+// （Cloudflare Pages のクリーンな clone）ではビルドの視界に入らない。
+//
+// 経路に入っていても本番ドメインには出さない（/admin/editor と同じ扱い）。
 if ((import.meta.env.CF_PAGES_BRANCH || "") === "main") {
   return Astro.redirect("/", 302);
 }

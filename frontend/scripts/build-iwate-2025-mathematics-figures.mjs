@@ -1,10 +1,13 @@
 // Original vector diagrams derived from the published mathematical conditions.
 // The restricted reference crops are not traced, embedded, or copied.
 import fs from "node:fs";
+import { createFigureHandoff } from "./lib/past-exam-figure-handoff.mjs";
 
 const packageId = "iwate-medical-2025-general-mathematics";
 const output = new URL(`../public/assets/past-exams/${packageId}/figures/`, import.meta.url);
 const figures = [];
+// 手で直した図（管理ページで保存したもの）は上書きしない。控えの有無で決める。
+const handoff = createFigureHandoff(packageId, import.meta.url);
 const esc = (value) => String(value)
   .replaceAll("&", "&amp;")
   .replaceAll("<", "&lt;")
@@ -29,7 +32,9 @@ const rect = (x, y, width, height, extra = "") => `<rect x="${x}" y="${y}" width
 const pathFromPoints = (points) => points.map(([x, y], index) => `${index ? "L" : "M"}${x.toFixed(2)},${y.toFixed(2)}`).join(" ");
 
 function add(id, width, height, alt, caption, body, extraDefs = "") {
-  figures.push({ id, width, height, alt, caption, src: `/assets/past-exams/${packageId}/figures/${id}.svg` });
+  const kept = handoff.keep(id);
+  figures.push({ id, width: kept?.width ?? width, height: kept?.height ?? height, alt, caption, src: `/assets/past-exams/${packageId}/figures/${id}.svg` });
+  if (kept) return;
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="title"><title id="title">${esc(alt)}</title><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#18334c"/></marker>${extraDefs}</defs><style>${katexFonts}text{font-family:'Yu Gothic','Meiryo',sans-serif;font-size:19px;fill:#18334c;stroke:none}.math{font-family:'KaTeX_Main','Times New Roman',serif;font-size:21px}.math .mi{font-family:'KaTeX_Math','Times New Roman',serif;font-style:italic}.math .rm{font-family:'KaTeX_Main','Times New Roman',serif;font-style:normal}.math .jp{font-family:'Yu Gothic','Meiryo',sans-serif;font-style:normal}.small{font-size:16px}line,path,circle,ellipse,rect{vector-effect:non-scaling-stroke}.dash{stroke-dasharray:6 6}.guide{stroke:#aab7c3;stroke-width:1.2;stroke-dasharray:4 5}.gold{stroke:#bd8b27}.gold-fill{fill:#fff4d6}.function-curve{stroke:#173f69;stroke-width:2.6}.point{fill:white;stroke:#173f69;stroke-width:2}.label-bg{fill:white;stroke:#dbe3ea;stroke-width:1}</style><rect width="100%" height="100%" fill="white"/><g stroke="#18334c" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">${body}</g></svg>`;
   fs.writeFileSync(new URL(`${id}.svg`, output), svg);
 }
@@ -209,6 +214,8 @@ add(
   "1と8を一つのブロックとして置ける3つの位置",
   adjacencyBody,
 );
+
+handoff.report();
 
 const manifest = {
   schemaVersion: "lexus-past-exam-figures.v1",

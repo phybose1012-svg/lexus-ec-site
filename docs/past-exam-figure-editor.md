@@ -1,7 +1,7 @@
 # 過去問の図版をその場で直す
 
 過去問ページの図（`figure.past-exam-figure`）に「✏️ 直す」が出る。押すと
-`/admin/figures/edit` が開き、その SVG が FIBONA（図形エディタ）に読み込まれる。
+`/admin/figures/edit` が開き、その図が FIBONA（図形エディタ）に読み込まれる。
 直して保存すると、リポジトリの SVG と manifest の寸法がまとめて書き変わる。
 
 **手元でしか動かない。** 書き戻し先はリポジトリのファイルで、それを触れるのは
@@ -33,18 +33,65 @@ npm run dev
 過去問ページを開き、図の下の「✏️ 直す」を押す。エディタで直して
 **ファイル ▸ SVG画像として保存** で書き戻る。
 
+## 手で直した図は、生成スクリプトから守られる
+
+図版 SVG は `scripts/build-*-figures.mjs` の出力でもある。放っておけば、手で
+直したものは次にそれを流した時点で消える。そこで、保存したときに trio の控えを
+残している。
+
+```
+frontend/src/data/pastExamFigures/<packageId>/<figureId>.trio.json
+```
+
+この控えがある図は「もう手が正本」と見なす。生成スクリプトは SVG を書かず、
+manifest の寸法だけ現物の SVG から取り直して、何を飛ばしたかを出す。
+
+```
+$ node scripts/build-iwate-2025-mathematics-figures.mjs
+手で直した図なので上書きしませんでした (1): q3-adjacency-layout
+Built 3 original mathematics diagrams
+```
+
+**生成スクリプトへ返したくなったら、控えを消すだけでよい。** 次に流したときから、
+また計算した図が書かれる。控えがあるのに SVG が無いときは、黙って作り直さずに
+止まる（消えたことに気づけないまま manifest だけ整うのを避けるため）。
+
+控えは次に開いたときの復元にも使う。SVG から読み直しても形は戻るが、レイヤ順・
+グループ・非表示は SVG に書かれていないので失われる。控えがあるときは
+「控えから復元（前回の編集の続き）」と出る。
+
+なお `npm run build` は図版生成スクリプトを呼ばない（実測：ビルド前後で SVG 15 枚
+＋ manifest 3 枚が md5 で不変）。CI も無い。消えるのは、手で
+`npm run past-exam:figures:*` か `node scripts/build-*-figures.mjs` を流したときだけ。
+
+## 寸法は破れたら鳴る
+
+manifest の `width` / `height` はページの `<img>` にそのまま出るので、実ファイルと
+ずれると図が伸び縮みして表示される。`loadFigureManifest`（`src/lib/pastExamFigures.mjs`）
+が SVG の実寸と突き合わせていて、食い違うとビルドが止まる。
+
+```
+Figure size mismatch /assets/.../q1.svg: manifest 760x500, file 760x499
+```
+
+だから書き戻し API は SVG と manifest を必ず一緒に書く。片方だけ書ける口は開けない。
+
 ## 置き場
 
 - `vendor/figure-editor/` … FIBONA の配布物。**履歴には入れない**（`.gitignore`）。
-  ビルド成果物なので、必要になったら 2. で取り直す。
-- `src/components/past-exam/FigureEditorIsland.tsx` … エディタを載せるアイランド。
-  どの図を開くかは URL のクエリ（`?package=&figure=`）から自分で読む。静的出力では
-  ページはビルド時に 1 枚しか作られないので、Astro の props では渡せない。
-- `scripts/admin-local-api.mjs` の `POST /api/past-exam-figures` … 書き戻し口。
-  SVG と manifest は必ず一緒に書く。`loadFigureManifest` が両者を突き合わせていて、
-  食い違うとビルドごと落ちるため。
+  必要になったら 2. で取り直す。
+- `src/local-tools/figure-editor/` … エディタのページと島。`src/pages/` の下に
+  置いていないのは、**vendor が無い環境ではページごと作らないため**。
+  `astro.config.mjs` が vendor の有無を見て `injectRoute` する。
+  `src/pages/` に置いたままだと、クリーンな clone（Cloudflare Pages）で
+  `Cannot find module '@phybose1012-svg/figure-editor'` が出てサイト全体のビルドが
+  落ちる（実測）。同じ理由で `tsconfig.json` からも除外してあるので、型検査は
+  `npm run figure-editor:check` で別に走らせる。
+- `scripts/lib/past-exam-figure-handoff.mjs` … 控えの有無を見る側。生成スクリプトと
+  管理 API の両方がこれを使う。
+- `src/lib/svgSize.mjs` … SVG の寸法の読み方。manifest の検査・生成スクリプト・
+  書き戻し API で同じ答えが要るので 1 箇所に置いてある。
+- `scripts/admin-local-api.mjs` の `/api/past-exam-figures` … `GET` で図と控えを渡し、
+  `POST` で SVG・manifest・控えを書く。
 
-## 承知しておくこと
-
-図版 SVG と manifest は `scripts/build-*-figures.mjs` の出力でもある。ここで
-直したものは、次にその生成スクリプトを流した時点で上書きされて消える。
+検査は `npm run past-exam:figure-handoff:test`。

@@ -1,9 +1,12 @@
 // Original vector diagrams from the stated physical/geometric conditions.
 // No source crop, tracing data, embedded raster, font or external resource is copied.
 import fs from "node:fs";
+import { createFigureHandoff } from "./lib/past-exam-figure-handoff.mjs";
 const packageId = "iwate-medical-2025-general-physics";
 const output = new URL(`../public/assets/past-exams/${packageId}/figures/`, import.meta.url);
 const figures = [];
+// 手で直した図（管理ページで保存したもの）は上書きしない。控えの有無で決める。
+const handoff = createFigureHandoff(packageId, import.meta.url);
 const esc = (s) => String(s).replaceAll("&", "&amp;").replaceAll("<", "&lt;");
 const fontData = (name) => fs.readFileSync(new URL(`../public/assets/vendor/katex/fonts/${name}.woff2`, import.meta.url)).toString("base64");
 // SVGs loaded through <img> do not reliably inherit the page's web fonts. Embed
@@ -22,7 +25,9 @@ const dim = (x1,y1,x2,y2) => line(x1,y1,x2,y2,'marker-start="url(#arrow)" marker
 const circle = (x,y,r,extra="") => `<circle cx="${x}" cy="${y}" r="${r}" ${extra}/>`;
 const rect = (x,y,w,h,extra="") => `<rect x="${x}" y="${y}" width="${w}" height="${h}" ${extra}/>`;
 function add(id,width,height,alt,caption,body) {
-  figures.push({id,width,height,alt,caption,src:`/assets/past-exams/${packageId}/figures/${id}.svg`});
+  const kept = handoff.keep(id);
+  figures.push({id,width:kept?.width ?? width,height:kept?.height ?? height,alt,caption,src:`/assets/past-exams/${packageId}/figures/${id}.svg`});
+  if (kept) return;
   const mathStyles=body.includes('class="math') ? `${katexFonts}.math{font-family:'KaTeX_Main','Times New Roman',serif;font-size:22px}.math .mi{font-family:'KaTeX_Math','Times New Roman',serif;font-style:italic}.math .rm{font-family:'KaTeX_Main','Times New Roman',serif;font-style:normal}.math .jp{font-family:'Yu Gothic','Meiryo',sans-serif;font-style:normal}.math .sub{font-size:70%;baseline-shift:sub}` : "";
   const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="title"><title id="title">${esc(alt)}</title><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#18334c"/></marker></defs><style>text{font-family:'Yu Gothic','Meiryo',sans-serif;font-size:20px;fill:#18334c;stroke:none}${mathStyles}line,path,circle,ellipse,rect{vector-effect:non-scaling-stroke}.dash{stroke-dasharray:5 5}.glass{fill:#edf2f6}.small{font-size:17px}</style><rect width="100%" height="100%" fill="white"/><g stroke="#18334c" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">${body}</g></svg>`;
   fs.writeFileSync(new URL(`${id}.svg`,output),svg);
@@ -90,6 +95,8 @@ add("ans-q3-lens-geometry",640,470,"共通の接点Pから測る球面の高さ�
   line(x0+r,y0-d1,570,y0-d1,'class="dash"')+line(x0+r,y0-d2,570,y0-d2,'class="dash"')+
   dim(455,y0-d2,455,y0-d1)+mathText(464,y0-(d1+d2)/2+6,[mi("d")])+dim(514,y0-d1,514,y0)+mathText(523,y0-d1/2+6,[mi("d"),sub("1")])+dim(581,y0-d2,581,y0)+mathText(590,y0-d2/2+6,[mi("d"),sub("2")])+
   mathText(74,267,[mi("R"),sub("1"),rm(" − "),mi("d"),sub("1")],"",true)+mathText(244,266,[mi("R"),sub("2"),rm(" − "),mi("d"),sub("2")],"",true));
+
+handoff.report();
 
 const manifest={schemaVersion:"lexus-past-exam-figures.v1",packageId,contentProvenance:"original_editorial",restrictedSourceCopied:false,review:{needsHumanReview:true,notes:"物理条件・端子・選択肢方向を確認するための独自ベクトル作図。原本の権利承認状態は変更しない。"},items:figures};
 fs.mkdirSync(new URL("../src/data/pastExamFigures/",import.meta.url),{recursive:true});

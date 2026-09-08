@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { readSvgSize } from "./svgSize.mjs";
 
 const escape = (value) => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
 export function loadFigureManifest(filename, publicRoot, packageId) {
@@ -12,7 +13,18 @@ export function loadFigureManifest(filename, publicRoot, packageId) {
     const prefix = `/assets/past-exams/${packageId}/figures/`;
     if (!item.src.startsWith(prefix) || !/^[a-z0-9-]+\.(svg|png|webp|jpg)$/.test(item.src.slice(prefix.length))) throw new Error("Figure asset path must stay in its package");
     if (!item.alt?.trim() || !item.caption?.trim() || !Number.isSafeInteger(item.width) || !Number.isSafeInteger(item.height) || item.width <= 0 || item.height <= 0) throw new Error("Missing figure dimensions or description");
-    if (!fs.existsSync(path.join(publicRoot, item.src))) throw new Error(`Missing figure asset ${item.src}`);
+    const assetPath = path.join(publicRoot, item.src);
+    if (!fs.existsSync(assetPath)) throw new Error(`Missing figure asset ${item.src}`);
+    // manifest の width/height は <img> にそのまま出る。実ファイルとずれると
+    // 図が伸び縮みして表示される。図版は手でも直せる（管理 API 経由）ので、
+    // 「一致しているはず」ではなく、破れたら鳴るようにしておく。
+    if (item.src.endsWith(".svg")) {
+      const size = readSvgSize(fs.readFileSync(assetPath, "utf8"));
+      if (!size) throw new Error(`Cannot read size of ${item.src}`);
+      if (size.width !== item.width || size.height !== item.height) {
+        throw new Error(`Figure size mismatch ${item.src}: manifest ${item.width}x${item.height}, file ${size.width}x${size.height}`);
+      }
+    }
     byId.set(item.id, item);
     bySrc.set(item.src, item);
   }

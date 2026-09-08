@@ -3,6 +3,8 @@ import { execFile } from "node:child_process";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { readSvgSize } from "../src/lib/svgSize.mjs";
+import { figureSvgPath, handEditedTrioPath } from "./lib/past-exam-figure-handoff.mjs";
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const frontendRoot = path.resolve(scriptDir, "..");
@@ -68,6 +70,15 @@ const server = createServer(async (request, response) => {
         override,
         git: await gitStatus(),
       }, corsHeaders);
+      return;
+    }
+
+    if (url.pathname === "/api/past-exam-figures" && request.method === "GET") {
+      const result = await readPastExamFigure(
+        url.searchParams.get("package") || "",
+        url.searchParams.get("figure") || ""
+      );
+      sendJson(response, result.status, result.body, corsHeaders);
       return;
     }
 
@@ -143,44 +154,96 @@ const server = createServer(async (request, response) => {
 });
 
 /**
- * 図版エディタからの書き戻し。
+ * 図版エディタとのやり取り。
  *
- * **SVG と manifest は必ず一緒に書く。** ページのビルドは
- * `src/lib/pastExamFigures.mjs` の loadFigureManifest が manifest の
- * width / height と実ファイルを突き合わせていて、食い違うとビルドごと落ちる。
- * 片方だけ書ける口を開けると、必ずいつか片方だけ書かれる。
+ * **SVG と manifest の寸法は必ず一緒に書く。** manifest の width / height は
+ * ページの <img> にそのまま出るので、実ファイルとずれると図が伸び縮みして
+ * 表示される。src/lib/pastExamFigures.mjs の loadFigureManifest がこの一致を
+ * 検査していて、破れているとビルドが止まる。片方だけ書ける口を開けると、
+ * 必ずいつか片方だけ書かれる。
  *
- * 受け取った SVG はリポジトリの中の決まった場所にしか置かない。ID の形を
+ * **trio の控えも一緒に置く。** 図版 SVG は build-*-figures.mjs の出力でも
+ * ある。控え（src/data/pastExamFigures/<packageId>/<figureId>.trio.json）が
+ * あると、生成スクリプトはその図を上書きしなくなる。控えは次に開いたときの
+ * 復元にも使う（SVG から読み直すと、編集の履歴＝レイヤ順やグループが失われる）。
+ *
+ * 受け取ったものはリポジトリの中の決まった場所にしか置かない。ID の形を
  * 先に検査し、パスは組み立てるだけで、渡された文字列を経路に混ぜない。
  */
 const FIGURE_ID = /^[a-z0-9-]+$/;
 const MAX_SVG_BYTES = 2 * 1024 * 1024;
+const MAX_TRIO_BYTES = 8 * 1024 * 1024;
 
-const readSvgSize = (svg) => {
-  const open = svg.match(/<svg\b[^>]*>/i);
-  if (!open) return null;
-  const attribute = (name) => {
-    const found = open[0].match(new RegExp(`\\b${name}="([^"]*)"`, "i"));
-    return found ? Number.parseFloat(found[1]) : Number.NaN;
-  };
-  let width = attribute("width");
-  let height = attribute("height");
-  if (!Number.isFinite(width) || !Number.isFinite(height)) {
-    const viewBox = open[0].match(/\bviewBox="([^"]*)"/i);
-    if (!viewBox) return null;
-    const parts = viewBox[1].trim().split(/[\s,]+/).map(Number);
-    if (parts.length !== 4 || parts.some((value) => !Number.isFinite(value))) return null;
-    width = parts[2];
-    height = parts[3];
+const figureManifestPath = (packageId) =>
+  path.join(frontendRoot, "src", "data", "pastExamFigures", `${packageId}.json`);
+
+/** manifest を読み、その図が登録されているか確かめる。 */
+const loadFigureEntry = async (packageId, figureId) => {
+  const manifestPath = figureManifestPath(packageId);
+  let manifest;
+  try {
+    manifest = JSON.parse(await readFile(manifestPath, "utf8"));
+  } catch {
+    return { error: { status: 404, body: { error: `manifest が見つかりません: ${packageId}` } } };
   }
-  if (!(width > 0) || !(height > 0)) return null;
-  return { width: Math.round(width), height: Math.round(height) };
+  const item = manifest.items?.find((entry) => entry.id === figureId);
+  if (!item) {
+    return { error: { status: 404, body: { error: `manifest に登録されていない図です: ${figureId}` } } };
+  }
+  const expected = `/assets/past-exams/${packageId}/figures/${figureId}.svg`;
+  if (item.src !== expected) {
+    return { error: { status: 409, body: { error: `manifest の src が想定と違います: ${item.src}` } } };
+  }
+  return { manifestPath, manifest, item };
+};
+
+/**
+ * 編集する図を渡す。控えがあればそれを返す。
+ *
+ * 控えを優先するのは、SVG から読み直すと編集の履歴が失われるから。取り込みは
+ * 形を復元できるが、レイヤ順・グループ・非表示は SVG に書かれていない。
+ */
+const readPastExamFigure = async (packageId, figureId) => {
+  if (!FIGURE_ID.test(packageId) || !FIGURE_ID.test(figureId)) {
+    return { status: 400, body: { error: "packageId / figureId の形が不正です。" } };
+  }
+  const entry = await loadFigureEntry(packageId, figureId);
+  if (entry.error) return entry.error;
+
+  let svg;
+  try {
+    svg = await readFile(figureSvgPath(frontendRoot, packageId, figureId), "utf8");
+  } catch {
+    return { status: 404, body: { error: `SVG がありません: ${figureId}` } };
+  }
+
+  let trio = null;
+  try {
+    trio = JSON.parse(await readFile(handEditedTrioPath(frontendRoot, packageId, figureId), "utf8"));
+  } catch {
+    /* 控えが無い（まだ手で直していない）。SVG から取り込めばよい。 */
+  }
+
+  return {
+    status: 200,
+    body: {
+      ok: true,
+      packageId,
+      figureId,
+      svg,
+      trio: trio?.trio ?? null,
+      handEdited: trio !== null,
+      alt: entry.item.alt,
+      caption: entry.item.caption,
+    },
+  };
 };
 
 const writePastExamFigure = async (payload) => {
   const packageId = String(payload?.packageId ?? "");
   const figureId = String(payload?.figureId ?? "");
   const svg = typeof payload?.svg === "string" ? payload.svg : "";
+  const trio = payload?.trio ?? null;
 
   if (!FIGURE_ID.test(packageId) || !FIGURE_ID.test(figureId)) {
     return { status: 400, body: { error: "packageId / figureId の形が不正です。" } };
@@ -195,38 +258,23 @@ const writePastExamFigure = async (payload) => {
   if (!size) {
     return { status: 400, body: { error: "SVG から寸法を読み取れませんでした。" } };
   }
-
-  const manifestPath = path.join(
-    frontendRoot,
-    "src",
-    "data",
-    "pastExamFigures",
-    `${packageId}.json`
-  );
-  let manifest;
-  try {
-    manifest = JSON.parse(await readFile(manifestPath, "utf8"));
-  } catch {
-    return { status: 404, body: { error: `manifest が見つかりません: ${packageId}` } };
-  }
-  const item = manifest.items?.find((entry) => entry.id === figureId);
-  if (!item) {
-    return { status: 404, body: { error: `manifest に登録されていない図です: ${figureId}` } };
-  }
-  const expected = `/assets/past-exams/${packageId}/figures/${figureId}.svg`;
-  if (item.src !== expected) {
-    return { status: 409, body: { error: `manifest の src が想定と違います: ${item.src}` } };
+  // 控えは「編集を続けられる形」でなければ意味がない。形だけ先に見る。
+  if (trio !== null) {
+    if (
+      typeof trio !== "object" ||
+      typeof trio.domain !== "string" ||
+      typeof trio.substance !== "string" ||
+      typeof trio.style !== "string"
+    ) {
+      return { status: 400, body: { error: "trio の形が不正です（domain / substance / style が要ります）。" } };
+    }
   }
 
-  const svgPath = path.join(
-    frontendRoot,
-    "public",
-    "assets",
-    "past-exams",
-    packageId,
-    "figures",
-    `${figureId}.svg`
-  );
+  const entry = await loadFigureEntry(packageId, figureId);
+  if (entry.error) return entry.error;
+  const { manifestPath, manifest, item } = entry;
+
+  const svgPath = figureSvgPath(frontendRoot, packageId, figureId);
   await mkdir(path.dirname(svgPath), { recursive: true });
   await writeFile(svgPath, svg.endsWith("\n") ? svg : `${svg}\n`, "utf8");
 
@@ -237,6 +285,19 @@ const writePastExamFigure = async (payload) => {
     await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
   }
 
+  // 控えは SVG を書いたあとに置く。逆にすると、SVG の書き込みに失敗したとき
+  // 「手が正本」の印だけが残り、生成スクリプトが古い SVG を守ってしまう。
+  let trioPath = null;
+  if (trio !== null) {
+    const record = `${JSON.stringify({ schemaVersion: "lexus-past-exam-figure-trio.v1", packageId, figureId, trio }, null, 2)}\n`;
+    if (Buffer.byteLength(record, "utf8") > MAX_TRIO_BYTES) {
+      return { status: 413, body: { error: "trio が大きすぎます（上限 8MB）。" } };
+    }
+    trioPath = handEditedTrioPath(frontendRoot, packageId, figureId);
+    await mkdir(path.dirname(trioPath), { recursive: true });
+    await writeFile(trioPath, record, "utf8");
+  }
+
   return {
     status: 200,
     body: {
@@ -244,6 +305,7 @@ const writePastExamFigure = async (payload) => {
       file: path.relative(repoRoot, svgPath).replaceAll("\\", "/"),
       manifest: path.relative(repoRoot, manifestPath).replaceAll("\\", "/"),
       manifestUpdated,
+      trioFile: trioPath ? path.relative(repoRoot, trioPath).replaceAll("\\", "/") : null,
       width: size.width,
       height: size.height,
       git: await gitStatus(),
