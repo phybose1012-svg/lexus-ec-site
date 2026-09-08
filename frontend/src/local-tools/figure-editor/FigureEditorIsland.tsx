@@ -83,6 +83,27 @@ type Loaded = {
   repoRoot: string | null;
 };
 
+/**
+ * 応答を読む。**JSON でないことがある。**
+ *
+ * Cloudflare は Function が落ちたとき（CPU 超過・502・524）HTML のページを
+ * 返す。それを JSON として読もうとすると `Unexpected token '<'` になり、
+ * 何が起きたのか分からなくなる。状態番号から言い直す。
+ */
+async function readResponse(response: Response): Promise<Record<string, unknown>> {
+  const text = await response.text();
+  try {
+    return JSON.parse(text) as Record<string, unknown>;
+  } catch {
+    if (response.ok) throw new Error("応答が JSON ではありませんでした。");
+    throw new Error(
+      response.status >= 500
+        ? `書き戻し口が応答しませんでした (HTTP ${response.status})。図が大きすぎるのかもしれません。`
+        : `HTTP ${response.status}`
+    );
+  }
+}
+
 async function findLocalApi(): Promise<string | null> {
   for (const port of API_PORTS) {
     const base = `http://127.0.0.1:${port}`;
@@ -146,6 +167,11 @@ export default function FigureEditorIsland() {
     };
   }, [isLocal]);
 
+  const forgetToken = useCallback(() => {
+    writeToken("");
+    setToken("");
+  }, []);
+
   const authHeaders = useCallback((): Record<string, string> => {
     if (isLocal || !token) return {};
     return { Authorization: `Bearer ${token}` };
@@ -171,8 +197,8 @@ export default function FigureEditorIsland() {
             `${endpoint}?package=${encodeURIComponent(packageId)}&figure=${encodeURIComponent(figureId)}`,
             { cache: "no-store", headers: authHeaders() }
           );
-          const payload = await response.json();
-          if (!response.ok) throw new Error(payload?.error ?? `HTTP ${response.status}`);
+          const payload = await readResponse(response);
+          if (!response.ok) throw new Error(String(payload?.error ?? `HTTP ${response.status}`));
           if (payload.trio) {
             if (cancelled) return;
             setLoaded({
@@ -217,7 +243,11 @@ export default function FigureEditorIsland() {
         setStatus("");
       } catch (cause) {
         if (cancelled) return;
-        setError(cause instanceof Error ? cause.message : String(cause));
+        const message = cause instanceof Error ? cause.message : String(cause);
+        // 合言葉が違うなら、覚えているものを捨てて入れ直させる。
+        // 持ったままだと、何度読み込んでも同じ失敗が出続ける。
+        if (/401|authorized/i.test(message)) forgetToken();
+        setError(message);
         setStatus("");
       }
     })();
@@ -247,8 +277,8 @@ export default function FigureEditorIsland() {
             // この図を上書きしなくなる（scripts/lib/past-exam-figure-handoff.mjs）。
             body: JSON.stringify({ packageId, figureId, svg, trio }),
           });
-          const payload = await response.json();
-          if (!response.ok) throw new Error(payload?.error ?? `HTTP ${response.status}`);
+          const payload = await readResponse(response);
+          if (!response.ok) throw new Error(String(payload?.error ?? `HTTP ${response.status}`));
           setStatus(
             payload.commit
               ? `保存しました（commit ${String(payload.commit).slice(0, 7)} を ${payload.branch} へ。反映はビルドのあと）`
@@ -257,9 +287,9 @@ export default function FigureEditorIsland() {
                 }${payload.trioFile ? " / 控えも更新（生成スクリプトは上書きしません）" : ""}）`
           );
         } catch (cause) {
-          setStatus(
-            `保存できませんでした: ${cause instanceof Error ? cause.message : String(cause)}`
-          );
+          const message = cause instanceof Error ? cause.message : String(cause);
+          if (/401|authorized/i.test(message)) forgetToken();
+          setStatus(`保存できませんでした: ${message}`);
         }
       })();
     },
@@ -317,9 +347,14 @@ export default function FigureEditorIsland() {
               : "保存できません（npm run admin:api）"}
         </span>
         {status && <strong>{status}</strong>}
-        {!isLocal && !token && (
-          <TokenField draft={tokenDraft} onDraft={setTokenDraft} onSave={saveToken} />
-        )}
+        {!isLocal &&
+          (token ? (
+            <button type="button" className="figure-editor-island__forget" onClick={forgetToken}>
+              合言葉を入れ直す
+            </button>
+          ) : (
+            <TokenField draft={tokenDraft} onDraft={setTokenDraft} onSave={saveToken} />
+          ))}
       </div>
 
       <div className="figure-editor-island__editor">

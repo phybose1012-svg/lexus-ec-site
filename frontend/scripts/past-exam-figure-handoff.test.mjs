@@ -12,6 +12,7 @@ import test from "node:test";
 import { pathToFileURL } from "node:url";
 
 import { readSvgSize } from "../src/lib/svgSize.mjs";
+import { unsafeSvgReason } from "../src/lib/svgSafety.mjs";
 import { loadFigureManifest } from "../src/lib/pastExamFigures.mjs";
 import { createFigureHandoff, handEditedTrioPath, figureSvgPath } from "./lib/past-exam-figure-handoff.mjs";
 
@@ -147,6 +148,46 @@ test("2つの書き戻し口は、同じ寸法の読み方と同じ SVG 検査�
     // 自前で持ち直していないこと（持つと必ず片方だけ直る）。
     assert.doesNotMatch(source, /const readSvgSize = /, `${name} が寸法の読み方を持ち直している`);
     assert.doesNotMatch(source, /const unsafeSvgReason = /, `${name} が SVG の検査を持ち直している`);
+  }
+});
+
+// 置いた SVG は /assets/... から直接開ける＝サイトのオリジンで動く。ここを
+// 抜けると、図版を直せるだけの権限が「オリジンでの任意 JS」に化ける。
+// 並べてあるのは実際に抜けたもの（接頭辞つきの要素・引用符違い・CSS の外部参照）。
+test("動く SVG・外を読む SVG は断る", () => {
+  const blocked = [
+    ["ふつうの script", '<svg><script>alert(1)</script></svg>'],
+    ["接頭辞つき script", '<svg xmlns:x="http://www.w3.org/2000/svg"><x:script>alert(1)</x:script></svg>'],
+    ["接頭辞つき foreignObject", '<svg xmlns:x="http://www.w3.org/2000/svg"><x:foreignObject/></svg>'],
+    ["イベント属性", '<svg><rect onload="alert(1)"/></svg>'],
+    ["javascript: の参照", '<svg><a href="javascript:alert(1)"/></svg>'],
+    ["二重引用符の外部参照", '<svg><image href="https://evil.example/x.png"/></svg>'],
+    ["一重引用符の外部参照", "<svg><image href='https://evil.example/x.png'/></svg>"],
+    ["CSS の @import", '<svg><style>@import url("https://evil.example/x.css")</style></svg>'],
+    ["CSS の外部 url", '<svg><style>@font-face{src:url("https://evil.example/x.woff2")}</style></svg>'],
+    ["animate", '<svg><animate attributeName="x"/></svg>'],
+    ["set", '<svg><set attributeName="x"/></svg>'],
+  ];
+  for (const [label, svg] of blocked) {
+    assert.ok(unsafeSvgReason(svg), `すり抜けた: ${label}`);
+  }
+});
+
+test("実物の図版は 1 枚も弾かれない", () => {
+  const scriptsDir = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1"));
+  const root = path.join(path.resolve(scriptsDir, ".."), "public", "assets", "past-exams");
+  const files = [];
+  for (const packageDir of fs.readdirSync(root)) {
+    const figures = path.join(root, packageDir, "figures");
+    if (!fs.existsSync(figures)) continue;
+    for (const name of fs.readdirSync(figures)) {
+      if (name.endsWith(".svg")) files.push(path.join(figures, name));
+    }
+  }
+  assert.ok(files.length >= 20, `図版が見つからない: ${files.length} 枚`);
+  for (const file of files) {
+    const reason = unsafeSvgReason(fs.readFileSync(file, "utf8"));
+    assert.equal(reason, null, `誤って弾いた: ${path.basename(file)} → ${reason}`);
   }
 });
 

@@ -88,10 +88,14 @@ Pages Function が **GitHub の `staging` へ 1 コミット**を送り、Pages 
    - **Preview 側にも入れること。** staging は Preview 環境なので、Production
      にだけ入れても効かない
 3. ステージングで図を開くと、帯に合言葉の入力欄が出る。一度入れれば
-   そのブラウザに残る（`localStorage`）
+   そのブラウザに残る（`localStorage`）。違うものを入れてしまったら
+   「合言葉を入れ直す」から入れ替える
 
-Cloudflare Access でメールを許可する運用にするなら、`ADMIN_API_TOKEN` の代わりに
-`ADMIN_ALLOWED_EMAILS` にアドレスを並べてもよい（既存の管理 API と同じ仕組み）。
+**この口は合言葉だけで判定する。** 既存の管理 API は
+`Cf-Access-Authenticated-User-Email` でも通すが、ここでは使わない。あのヘッダは
+Cloudflare Access が前段に立っているときしか意味が無く、**名乗るだけで通って
+しまう**（実測）。Pages はプレビューごとに別のホスト名でも同じ Function と同じ
+環境変数を配るので、Access を 1 つのホスト名にだけ掛けても守れない。
 
 ### 承知しておくこと
 
@@ -100,6 +104,9 @@ Cloudflare Access でメールを許可する運用にするなら、`ADMIN_API_
 - **本番の枝へは書けない。** `FIGURE_GIT_BRANCH` に `main` を入れても口が断る
 - **1 保存 = 1 ビルド。** Cloudflare の無料枠は月 500 ビルド。続けて直すと効く
 - 図を読むのも合言葉が要る（GET も認可を通している）
+- **この口の上限は 512KB**（手元の口は 2MB）。Workers は 1 回の呼び出しで使える
+  CPU が短く、base64 化がそこを食う（512KB で 18.9ms、64KB で 2.9ms＝実測）。
+  実際の図版は 20〜60KB なので足りるが、それより大きい図は手元から保存する
 
 ## 手で直した図は、生成スクリプトから守られる
 
@@ -172,9 +179,20 @@ Figure size mismatch /assets/.../q1.svg: manifest 760x500, file 760x499
   ページから公開アセットへ `<script>` 入りの SVG を書けた）
 - `Origin` があってローカルでなければ 403
 
-置く SVG も見る。`<script>` / `<foreignObject>` / `on...` 属性 / `javascript:` /
-外部への `href`（`#id` と `data:image/` 以外）が入っていたら断る。落として直すの
-ではなく断るのは、直したはずの図が黙って変わるのを避けるため。
+置く SVG も見る（`src/lib/svgSafety.mjs`、両方の口が同じものを使う）。
+`script` / `foreignObject` / `animate` などの要素、`on...` 属性、`javascript:`、
+外部への `href` や CSS の `url()`（`#id` と `data:` 以外）が入っていたら断る。
+落として直すのではなく断るのは、直したはずの図が黙って変わるのを避けるため。
+
+**接頭辞を無視して名前で見る。** XML では要素は「名前空間 + 名前」で決まり、
+接頭辞は書き手が好きに付けられる。`<script>` だけを見ていたころは
+`<x:script xmlns:x="http://www.w3.org/2000/svg">` が素通りし、置いた SVG を直接
+開くとサイトのオリジンで JS が動いた（実測）。引用符の種類でも抜けた。
+
+検査だけに頼らない。`public/_headers` が `/assets/past-exams/*` へ
+`Content-Security-Policy: default-src 'none'; … sandbox` を付けているので、
+ここを抜けたものがあってもブラウザ側でもう一度止まる。図版は自己完結
+（外部を読まない）なので、表示は変わらない。
 
 ## 置き場
 

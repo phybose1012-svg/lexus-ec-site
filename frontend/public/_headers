@@ -133,3 +133,11 @@ https://:version.:project.pages.dev/*
   Cache-Control: no-store, max-age=0, must-revalidate
   Pragma: no-cache
   Expires: 0
+
+# 過去問の図版は誰でも書き換えうる（管理ページの書き戻し口がある）。
+# .svg を直接開くとサイトのオリジンで動くので、中身の検査（src/lib/svgSafety.mjs）
+# だけに頼らず、ブラウザ側でも止める。図版は自己完結（外部を読まない）なので
+# これで表示は変わらない。
+/assets/past-exams/*
+  Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'; img-src data:; font-src data:; sandbox
+  X-Content-Type-Options: nosniff
