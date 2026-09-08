@@ -61,6 +61,9 @@
 .analysis-target-steps dd span { display: block; font-size: .8125rem; color: #5c6e7c; }
 .analysis-target-steps .analysis-target-reached { color: #79602d; min-height: 58px; }
 .analysis-target-focus { font-size: .9375rem; line-height: 1.85; color: #526878; }
+.analysis-target-advisory { margin-top: 18px; padding: 14px 16px; border: 1px solid #e5d8bd; border-left: 3px solid #af904f; background: #fffdf8; color: #4f4a40; }
+.analysis-target-advisory > strong { display: block; margin-bottom: 5px; color: #765c27; font-size: .875rem; }
+.analysis-target-advisory > p { margin: 0 !important; font-size: .875rem; line-height: 1.75; }
 .analysis-major-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
 .analysis-major-card { min-width: 0; border: 1px solid #dbe3ea; border-radius: 6px; padding: 22px; display: flex; flex-direction: column; gap: 12px; }
 .analysis-major-card__head { display: flex; align-items: center; gap: 12px; }

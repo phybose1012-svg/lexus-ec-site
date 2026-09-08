@@ -308,6 +308,8 @@ test("Jichi selects a time-feasible route when the immediate plan reaches the ta
   assert.deepEqual(weak.additional.map((question) => question.id), ["math-q15-3", "math-q16-2", "math-q16-3"]);
   assert.deepEqual(weak.replaced.map((question) => question.label), ["問題1", "問題8", "問題9"]);
   assert.deepEqual(weak.additional.map((question) => question.label), ["問題19", "問題22", "問題23"]);
+  assert.match(weak.advisory, /この点数で合格を見込めるという意味ではありません/);
+  assert.match(weak.advisory, /数学の目標が仮6点程度となる方には.*出願をレクサスでは積極的におすすめしていません/);
 
   assert.deepEqual([strong.targetPoints, strong.targetPercent, strong.reliabilityFactor, strong.rounding], [21, 84, 1, "none"]);
   assert.deepEqual([strong.now.points, strong.now.minutes], [18, 62.9]);
@@ -318,5 +320,6 @@ test("Jichi selects a time-feasible route when the immediate plan reaches the ta
   assert.match(strong.policyReason, /スピードと正確さ/);
   assert.equal(jichiEvidence.targetAnalysis.profiles[1].reliabilityFactor, 0.8);
   assert.equal(sourceOnly.targets.profiles[1].targetPoints, 16);
+  assert.equal(strong.advisory, undefined);
   assert.ok(page.targets.profiles.every((profile) => profile.route.minutes <= page.targets.timeBudgetMinutes));
 });
