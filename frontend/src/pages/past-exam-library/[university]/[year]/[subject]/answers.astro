@@ -10,6 +10,7 @@ import PastExamBrandDivider from "../../../../../components/past-exam/PastExamBr
 import { analysisPathFor } from "../../../../../data/pastExamAnalyses";
 import PastExamPrintBranding from "../../../../../components/past-exam/PastExamPrintBranding.astro";
 import PastExamPrintButton from "../../../../../components/past-exam/PastExamPrintButton.astro";
+import PastExamFigureEditLinks from "../../../../../components/past-exam/PastExamFigureEditLinks.astro";
 import PastExamPrintSummary from "../../../../../components/past-exam/PastExamPrintSummary.astro";
 import "../../../../../styles/past-exam-library.css";
 import "../../../../../styles/past-exam-question.css";
@@ -172,5 +173,7 @@ const reviewRequired = page.source.needsHumanReview;
         {page.links.universityInformation && <a href={page.links.universityInformation}><span>大学情報</span><strong>入試情報を見る</strong></a>}
       </div>
     </nav>
+
+    <PastExamFigureEditLinks packageId={page.packageId} />
   </main>
 </SiteLayout>

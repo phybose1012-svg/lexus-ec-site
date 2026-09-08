@@ -71,6 +71,13 @@ const server = createServer(async (request, response) => {
       return;
     }
 
+    if (url.pathname === "/api/past-exam-figures" && request.method === "POST") {
+      const payload = await readJsonBody(request);
+      const result = await writePastExamFigure(payload);
+      sendJson(response, result.status, result.body, corsHeaders);
+      return;
+    }
+
     if (url.pathname === "/api/git/status" && request.method === "GET") {
       sendJson(response, 200, await gitStatus(), corsHeaders);
       return;
@@ -134,6 +141,115 @@ const server = createServer(async (request, response) => {
     sendJson(response, 500, { error: error instanceof Error ? error.message : String(error) }, corsFor(request));
   }
 });
+
+/**
+ * 図版エディタからの書き戻し。
+ *
+ * **SVG と manifest は必ず一緒に書く。** ページのビルドは
+ * `src/lib/pastExamFigures.mjs` の loadFigureManifest が manifest の
+ * width / height と実ファイルを突き合わせていて、食い違うとビルドごと落ちる。
+ * 片方だけ書ける口を開けると、必ずいつか片方だけ書かれる。
+ *
+ * 受け取った SVG はリポジトリの中の決まった場所にしか置かない。ID の形を
+ * 先に検査し、パスは組み立てるだけで、渡された文字列を経路に混ぜない。
+ */
+const FIGURE_ID = /^[a-z0-9-]+$/;
+const MAX_SVG_BYTES = 2 * 1024 * 1024;
+
+const readSvgSize = (svg) => {
+  const open = svg.match(/<svg\b[^>]*>/i);
+  if (!open) return null;
+  const attribute = (name) => {
+    const found = open[0].match(new RegExp(`\\b${name}="([^"]*)"`, "i"));
+    return found ? Number.parseFloat(found[1]) : Number.NaN;
+  };
+  let width = attribute("width");
+  let height = attribute("height");
+  if (!Number.isFinite(width) || !Number.isFinite(height)) {
+    const viewBox = open[0].match(/\bviewBox="([^"]*)"/i);
+    if (!viewBox) return null;
+    const parts = viewBox[1].trim().split(/[\s,]+/).map(Number);
+    if (parts.length !== 4 || parts.some((value) => !Number.isFinite(value))) return null;
+    width = parts[2];
+    height = parts[3];
+  }
+  if (!(width > 0) || !(height > 0)) return null;
+  return { width: Math.round(width), height: Math.round(height) };
+};
+
+const writePastExamFigure = async (payload) => {
+  const packageId = String(payload?.packageId ?? "");
+  const figureId = String(payload?.figureId ?? "");
+  const svg = typeof payload?.svg === "string" ? payload.svg : "";
+
+  if (!FIGURE_ID.test(packageId) || !FIGURE_ID.test(figureId)) {
+    return { status: 400, body: { error: "packageId / figureId の形が不正です。" } };
+  }
+  if (!svg.trim().startsWith("<svg") || !svg.includes("</svg>")) {
+    return { status: 400, body: { error: "SVG として受け取れませんでした。" } };
+  }
+  if (Buffer.byteLength(svg, "utf8") > MAX_SVG_BYTES) {
+    return { status: 413, body: { error: "SVG が大きすぎます（上限 2MB）。" } };
+  }
+  const size = readSvgSize(svg);
+  if (!size) {
+    return { status: 400, body: { error: "SVG から寸法を読み取れませんでした。" } };
+  }
+
+  const manifestPath = path.join(
+    frontendRoot,
+    "src",
+    "data",
+    "pastExamFigures",
+    `${packageId}.json`
+  );
+  let manifest;
+  try {
+    manifest = JSON.parse(await readFile(manifestPath, "utf8"));
+  } catch {
+    return { status: 404, body: { error: `manifest が見つかりません: ${packageId}` } };
+  }
+  const item = manifest.items?.find((entry) => entry.id === figureId);
+  if (!item) {
+    return { status: 404, body: { error: `manifest に登録されていない図です: ${figureId}` } };
+  }
+  const expected = `/assets/past-exams/${packageId}/figures/${figureId}.svg`;
+  if (item.src !== expected) {
+    return { status: 409, body: { error: `manifest の src が想定と違います: ${item.src}` } };
+  }
+
+  const svgPath = path.join(
+    frontendRoot,
+    "public",
+    "assets",
+    "past-exams",
+    packageId,
+    "figures",
+    `${figureId}.svg`
+  );
+  await mkdir(path.dirname(svgPath), { recursive: true });
+  await writeFile(svgPath, svg.endsWith("\n") ? svg : `${svg}\n`, "utf8");
+
+  const manifestUpdated = item.width !== size.width || item.height !== size.height;
+  if (manifestUpdated) {
+    item.width = size.width;
+    item.height = size.height;
+    await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+  }
+
+  return {
+    status: 200,
+    body: {
+      ok: true,
+      file: path.relative(repoRoot, svgPath).replaceAll("\\", "/"),
+      manifest: path.relative(repoRoot, manifestPath).replaceAll("\\", "/"),
+      manifestUpdated,
+      width: size.width,
+      height: size.height,
+      git: await gitStatus(),
+    },
+  };
+};
 
 const readOverrides = async () => {
   const source = await readFile(overridesModulePath, "utf8").catch(() => "");

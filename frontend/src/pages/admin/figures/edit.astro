@@ -1,0 +1,81 @@
+---
+import AdminLayout from "../../../layouts/AdminLayout.astro";
+import FigureEditorIsland from "../../../components/past-exam/FigureEditorIsland.tsx";
+
+// 管理ツールなので本番ドメインには出さない（/admin/editor と同じ扱い）。
+if ((import.meta.env.CF_PAGES_BRANCH || "") === "main") {
+  return Astro.redirect("/", 302);
+}
+
+// 図の指定はクエリで受ける。静的出力なのでページ自体は 1 枚だけ作り、
+// どの図を開くかはブラウザ側（アイランド）が読む。
+---
+
+<AdminLayout title="図版を直す | LEXUS E.C. Admin" active="editor">
+  <section class="admin-page-head">
+    <div>
+      <p class="admin-eyebrow">Past exam figure editor</p>
+      <h1>図版を直す</h1>
+      <p>
+        過去問ページの図をその場で直します。保存すると、リポジトリの SVG と
+        manifest の寸法をまとめて書き換えます。ローカル（127.0.0.1）で
+        <code>npm run admin:api</code> を動かしているときだけ保存できます。
+      </p>
+    </div>
+  </section>
+
+  <div class="figure-editor-page">
+    {/* client:only で載せる。手で createRoot すると、Astro が入れる React の
+        前置き（Fast Refresh）が無いまま動いて `$RefreshSig$ is not defined`
+        で止まる（実測）。どの図を開くかは島が自分でクエリから読む。 */}
+    <FigureEditorIsland client:only="react" />
+  </div>
+
+  <style is:global>
+    .figure-editor-page {
+      /* エディタは高さいっぱいに広がる作り。画面の残りを全部渡す。 */
+      height: calc(100vh - 12rem);
+      min-height: 32rem;
+      border: 1px solid #d4d4d4;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .figure-editor-island {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .figure-editor-island__bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid #e5e5e5;
+      background: #fafafa;
+      font-size: 0.8125rem;
+      color: #525252;
+    }
+
+    .figure-editor-island__editor {
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    .figure-editor-island__notice {
+      padding: 1.5rem;
+      color: #525252;
+    }
+
+    .figure-editor-island__warnings {
+      border-top: 1px solid #e5e5e5;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8125rem;
+      max-height: 8rem;
+      overflow-y: auto;
+    }
+  </style>
+</AdminLayout>
