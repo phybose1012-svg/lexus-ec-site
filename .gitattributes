@@ -7,3 +7,8 @@
 *.webp binary
 *.ico binary
 *.zip binary
+
+# バッチファイルは改行が CRLF でないと cmd.exe が行を読み違えて壊れる。
+# eol=lf の既定から外す（実測: LF だと「'oint' は…認識されていません」で落ちた）。
+*.cmd text eol=crlf
+*.bat text eol=crlf
