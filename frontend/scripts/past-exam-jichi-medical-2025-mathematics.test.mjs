@@ -5,6 +5,8 @@ import { fileURLToPath } from "node:url";
 import { parse } from "parse5";
 import { loadFigureManifest } from "../src/lib/pastExamFigures.mjs";
 import { summarizeQuestionLabels } from "../src/lib/pastExamSeo.mjs";
+import { unsafeSvgReason } from "../src/lib/svgSafety.mjs";
+import { isHandEditedFigure } from "./lib/past-exam-figure-handoff.mjs";
 
 const root = new URL("../", import.meta.url);
 const packageId = "jichi-medical-2025-general-mathematics";
@@ -17,6 +19,10 @@ const hasBuiltPages = [builtQuestionPath, builtAnswerPath, builtAnalysisPath].ev
 const questions = JSON.parse(read(`src/data/generated/pastExamQuestions/${packageId}.json`));
 const answers = JSON.parse(read(`src/data/pastExamAnswerSources/${packageId}.json`));
 const manifest = JSON.parse(read(`src/data/pastExamFigures/${packageId}.json`));
+// 手で直した図（控えのあるもの）は、生成スクリプトの書き方の検査から外す。
+// 理由と実測は scripts/lib/past-exam-figure-handoff.mjs にある。
+const frontendRoot = fileURLToPath(root);
+const generatedItems = manifest.items.filter((item) => !isHandEditedFigure(frontendRoot, packageId, item.id));
 const purposes = JSON.parse(read("src/data/pastExamFormulaPurposes.json"));
 const registry = loadFigureManifest(
   fileURLToPath(new URL(`src/data/pastExamFigures/${packageId}.json`, root)),
@@ -105,9 +111,17 @@ test("all seven required visuals are registered original SVGs and replace answer
   assert.equal(manifest.contentProvenance, "original_editorial");
   assert.equal(manifest.restrictedSourceCopied, false);
   assert.equal(registry.byId.size, 7);
+  // 全図に効かせる約束事。外を読まないことと、トレース画像を持ち込まないこと。
   for (const item of manifest.items) {
     const svg = read(`public${item.src}`);
     assert.ok(item.alt.length >= 40, item.id);
+    assert.equal(unsafeSvgReason(svg), null, item.id);
+    assert.doesNotMatch(svg, /data:image\//, item.id);
+  }
+
+  // ここから下は生成スクリプトの書き方。手で直した図には求めない。
+  for (const item of generatedItems) {
+    const svg = read(`public${item.src}`);
     assert.match(svg, /role="img" aria-labelledby="title"/);
     assert.equal((svg.match(/data:font\/woff2;base64/g) ?? []).length, 2, item.id);
     assert.ok(!/<(?:script|image|foreignObject|iframe|object|embed|use)\b/i.test(svg), item.id);

@@ -10,6 +10,8 @@ import { parse, parseFragment } from "parse5";
 import { analysisAxesFor, profileMinutes } from "./import-past-exam-analysis.mjs";
 import { buildAnalysis } from "./build-past-exam-analyses.mjs";
 import { loadFigureManifest, renderRegisteredFigure, replaceSourceFigures } from "../src/lib/pastExamFigures.mjs";
+import { unsafeSvgReason } from "../src/lib/svgSafety.mjs";
+import { isHandEditedFigure } from "./lib/past-exam-figure-handoff.mjs";
 
 const root = new URL("../", import.meta.url);
 const id = "iwate-medical-2025-general-physics";
@@ -22,6 +24,11 @@ const evidence = json("pastExamAnalysisEvidence");
 const analysis = buildAnalysis(evidence, json("pastExamAnalysisSources"));
 const manifest = json("pastExamFigures");
 const registry = loadFigureManifest(fileURLToPath(new URL("src/data/pastExamFigures/" + id + ".json", root)), fileURLToPath(new URL("public", root)), id);
+// 手で直した図（控えのあるもの）は、生成スクリプトの書き方の検査から外す。
+// 理由と実測は scripts/lib/past-exam-figure-handoff.mjs にある。
+// **外を読まない・トレース画像を埋め込まない**は、下で全図に効かせる。
+const frontendRoot = fileURLToPath(root);
+const generatedItems = manifest.items.filter((item) => !isHandEditedFigure(frontendRoot, id, item.id));
 const attr = (n, k) => n.attrs?.find((a) => a.name === k)?.value;
 const nodes = (n) => [n, ...(n.childNodes ?? []).flatMap(nodes)];
 const text = (n) => n.nodeName === "#text" ? n.value : (n.childNodes ?? []).map(text).join("");
@@ -68,10 +75,12 @@ test("original figures completely replace source crops and explanation placehold
     }
     assert.ok(!pages[mode].some((n) => cls(n, "answer-figure-placeholder")));
   }
+  // 全図に効かせる約束事。外を読まないことと、トレース画像を持ち込まないこと。
   for (const item of manifest.items) {
     const svg = read("public" + item.src);
     assert.match(svg, /<svg/);
-    assert.ok(!/<script|<image|<foreignObject|(?:href|onload)\s*=/i.test(svg), item.id);
+    assert.equal(unsafeSvgReason(svg), null, item.id);
+    assert.doesNotMatch(svg, /data:image\//, item.id);
     assert.ok(fs.existsSync(new URL("dist" + item.src, root)));
   }
 });
@@ -80,7 +89,9 @@ test("scientific labels use embedded KaTeX typography while Japanese labels stay
   const textPattern = /<text([^>]*)>([\s\S]*?)<\/text>/g;
   let mathLabelCount = 0;
   let subscriptCount = 0;
-  for (const item of manifest.items) {
+  // 生成スクリプトの書き方（KaTeX の字を埋め込み、数式ラベルに class を付ける）。
+  // 手で直した図は図形エディタの書き出しなので、ここには従わない。
+  for (const item of generatedItems) {
     const svg = read(`public${item.src}`);
     const labels = [...svg.matchAll(textPattern)];
     const mathLabels = labels.filter((match) => /[A-Za-zφϕ0-9−=]/.test(match[2].replace(/<[^>]+>/g, "")));
@@ -93,8 +104,22 @@ test("scientific labels use embedded KaTeX typography while Japanese labels stay
       assert.match(svg, /\.math \.mi\{font-family:'KaTeX_Math'/);
     }
   }
-  assert.ok(mathLabelCount > 30);
-  assert.ok(subscriptCount > 15);
+  // この 2 つは「生成スクリプトが KaTeX の数式を出し続けているか」の見張り。
+  //
+  // **枚数で割った平均には直せない。** 数式の数は図によって大きく違い、
+  // 10 枚のうち 1 枚が下付きの半分（20 個中 10 個）を持っている。平均で
+  // 書くと、その 1 枚を手で直しただけで、生成側が無事でも落ちる（実測）。
+  //
+  // だから、全部が生成物のときだけ元の閾値を見る。手で直したものがある
+  // ときは「数式が丸ごと消えていないこと」だけを見る。1 枚ずつの検査
+  // （class="math" と KaTeX の埋め込み）は上のループで全生成物に効いている。
+  if (generatedItems.length === manifest.items.length) {
+    assert.ok(mathLabelCount > 30, `math labels: ${mathLabelCount}`);
+    assert.ok(subscriptCount > 15, `subscripts: ${subscriptCount}`);
+  } else {
+    assert.ok(mathLabelCount > 0, `math labels: ${mathLabelCount}`);
+    assert.ok(subscriptCount > 0, `subscripts: ${subscriptCount}`);
+  }
 });
 
 test("the iron-core flux label matches the glyph rendered by TeX phi", () => {

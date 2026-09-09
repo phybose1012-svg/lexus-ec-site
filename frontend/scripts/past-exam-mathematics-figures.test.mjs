@@ -5,6 +5,8 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 import { parse } from "parse5";
 import { loadFigureManifest } from "../src/lib/pastExamFigures.mjs";
+import { unsafeSvgReason } from "../src/lib/svgSafety.mjs";
+import { isHandEditedFigure } from "./lib/past-exam-figure-handoff.mjs";
 
 const root = new URL("../", import.meta.url);
 const id = "iwate-medical-2025-general-mathematics";
@@ -18,6 +20,15 @@ const registry = loadFigureManifest(
   id,
 );
 const attr = (node, key) => node.attrs?.find((item) => item.name === key)?.value;
+
+// 手で直した図（控えのあるもの）は、生成スクリプトの書き方の検査から外す。
+// 理由と実測は scripts/lib/past-exam-figure-handoff.mjs にある。
+// **外部を読まない・トレース画像を埋め込まない**は、下で全図に効かせる。
+const frontendRoot = fileURLToPath(root);
+const generatedItems = manifest.items.filter(
+  (item) => !isHandEditedFigure(frontendRoot, id, item.id),
+);
+
 const nodes = (node) => [node, ...(node.childNodes ?? []).flatMap(nodes)];
 const cls = (node, name) => (attr(node, "class") ?? "").split(" ").includes(name);
 
@@ -36,11 +47,17 @@ test("all three mathematics placeholders are replaced by registered original fig
 
 test("SVG assets are self-contained, safe, descriptive and use embedded KaTeX typography", () => {
   const textPattern = /<text([^>]*)>([\s\S]*?)<\/text>/g;
+  // 全図に効かせる約束事。外を読まないことと、トレース画像を持ち込まないこと。
   for (const item of manifest.items) {
     const svg = read(`public${item.src}`);
     assert.match(svg, /<svg/);
     assert.ok(item.alt.length > 30);
-    assert.ok(!/<script|<image|<foreignObject|(?:href|onload)\s*=/i.test(svg), item.id);
+    assert.equal(unsafeSvgReason(svg), null, item.id);
+    assert.doesNotMatch(svg, /data:image\//, item.id);
+  }
+  // ここから下は生成スクリプトの書き方。手で直した図には求めない。
+  for (const item of generatedItems) {
+    const svg = read(`public${item.src}`);
     assert.equal((svg.match(/data:font\/woff2;base64/g) ?? []).length, 2, item.id);
     assert.match(svg, /\.math \.mi\{font-family:'KaTeX_Math'/);
     const mathLabels = [...svg.matchAll(textPattern)].filter((match) => /[A-Za-z0-9√−=]/.test(match[2].replace(/<[^>]+>/g, "")));

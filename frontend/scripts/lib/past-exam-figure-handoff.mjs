@@ -27,6 +27,24 @@ export function figureSvgPath(frontendRoot, packageId, figureId) {
 }
 
 /**
+ * その図はもう手が正本か（控えがあるか）。
+ *
+ * 検査を分けるのに使う。生成スクリプトの出力には決まった書き方があり
+ * （KaTeX のクラス、role="img"、`<use>` を使わない等）、テストがそれを見て
+ * いる。手で直した図は図形エディタの書き出しなので、その書き方には従わない
+ * ——矢じりの形が変わり、数式は `<use>` で描かれる。
+ *
+ * **測ってから外している。** 物理の図版 10 枚で 1px 許容の画素差は 0.0〜4.3%、
+ * 字体はほぼ同じで、違うのは矢じりの形とラベル位置が数 px 動くことだった。
+ *
+ * だから「生成物の書き方」の検査からだけ外す。**外部を読まない・トレース
+ * 画像を埋め込まない**は編集物にも効かせる（あれは書き方ではなく約束事）。
+ */
+export function isHandEditedFigure(frontendRoot, packageId, figureId) {
+  return fs.existsSync(handEditedTrioPath(frontendRoot, packageId, figureId));
+}
+
+/**
  * 生成スクリプト用。`import.meta.url` を渡すと、その scripts/ から見た
  * frontend を起点に判定する。
  */
