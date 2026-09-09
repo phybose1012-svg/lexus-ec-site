@@ -397,15 +397,39 @@ const publishPastExamFigure = async (payload) => {
   if (!status.ok) {
     return { status: 500, body: { error: "git の様子が読めませんでした。", status } };
   }
-  const branchGuard = assertOnTargetBranch(status);
-  if (branchGuard) {
-    return {
-      status: 409,
-      body: {
-        error: `いまいる枝は ${status.branch || "（不明）"} です。${targetBranch} に移ってから送ってください。`,
-        status,
-      },
-    };
+  // **枝の名前ではなく「staging へきれいに載るか」で決める。**
+  //
+  // 名前だけを見ていたときは、中身が staging と 1 コミットも違わない作業用の
+  // 枝からも送れなかった（実測）。行き止まりになるだけで、何も守れていない。
+  //
+  // 通すのは 2 つの場合だけ。
+  //  - いま staging にいる
+  //  - いる枝の先頭が origin/staging と同じ（＝この図の分だけが増える）
+  // 先へ進んでいる枝は断る。**その枝の他のコミットまで一緒に公開されるため。**
+  if (status.branch !== targetBranch) {
+    await git(["fetch", "origin", targetBranch]).catch(() => "");
+    const head = (await git(["rev-parse", "HEAD"])).trim();
+    const remote = (await git(["rev-parse", `origin/${targetBranch}`]).catch(() => "")).trim();
+    if (!remote) {
+      return {
+        status: 409,
+        body: { error: `origin/${targetBranch} が見つかりません。`, status },
+      };
+    }
+    if (head !== remote) {
+      const ahead = (await git(["rev-list", "--count", `origin/${targetBranch}..HEAD`])).trim();
+      const behind = (await git(["rev-list", "--count", `HEAD..origin/${targetBranch}`])).trim();
+      return {
+        status: 409,
+        body: {
+          error:
+            `いまいる枝（${status.branch || "（不明）"}）は ${targetBranch} と中身が違います` +
+            `（${targetBranch} に無いコミット ${ahead} 個 / 取り込んでいないコミット ${behind} 個）。` +
+            `そのまま送ると、この図以外の変更まで公開されてしまいます。${targetBranch} に移るか、先に揃えてください。`,
+          status,
+        },
+      };
+    }
   }
 
   // この図に属するものだけを staging へ載せる。
@@ -438,7 +462,9 @@ const publishPastExamFigure = async (payload) => {
   const commitOutput = await git(["commit", "-m", message]);
   let pushOutput;
   try {
-    pushOutput = await git(["push", "origin", targetBranch]);
+    // いま staging にいなくても、上で「先頭が origin/staging と同じ」ことを
+    // 確かめてあるので、HEAD を staging へ載せるのは早送りになる。
+    pushOutput = await git(["push", "origin", `HEAD:${targetBranch}`]);
   } catch (error) {
     // commit は済んでいる。押し戻せなかったことだけを伝える（取り消さない。
     // 消すと、直した内容ごと失われる）。
