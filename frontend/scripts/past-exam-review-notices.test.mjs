@@ -12,3 +12,11 @@ test('Source notices never leak into another university or major question',()=>{
  assert.equal(withReviewNotice(original,'iwate-medical-2025-general-physics','major-question-04'),original);
  assert.equal(withReviewNotice(original,'dokkyo-medical-2025-general-early-physics','major-question-01'),original);
 });
+test('Fujita explanation gate names the affected subquestions without changing question conditions',()=>{
+ const body='<article id="major-question-01"><h2>第1問</h2><p>Original formula stays unchanged.</p></article>';
+ const html=withReviewNotice(body,'fujita-health-2025-general-early-mathematics','major-question-01');
+ assert.match(html,/\(1\).*\(2\).*\(8\)/);
+ assert.match(html,/問題条件・解答値の変更ではありません/);
+ assert.equal(html.replace(/<aside[\s\S]*?<\/aside>/,''),body);
+ assert.equal(withReviewNotice(original,'fujita-health-2025-general-early-mathematics','major-question-02'),original);
+});

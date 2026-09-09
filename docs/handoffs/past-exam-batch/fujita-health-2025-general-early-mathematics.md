@@ -15,7 +15,6 @@
 
 ## 検出事項
 
-- **answers / figures-pending**: Required visual positions retained; no restricted answer crop copied.（5件）
 - **answers / editorial-review**: Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch.
 - **analysis-targets / source-error**: Stale or invalid target weak headline: observed 72; canonical 72.5 (or rounded 73)
 - **analysis-targets / pending**: Target section retained but scores withheld until validated source is supplied.
@@ -23,3 +22,12 @@
 ## 完了報告
 
 修正した正本の位置、原文→修正後、根拠となるページ・計算、再生成したHTML、テスト結果、未解決事項を列挙する。過去問ライブラリーの再取り込み先IDは `fujita-health-2025-general-early-mathematics`。既存の独自解説へ昇格済みのパッケージは一括取込で上書きしない。
+
+## 元データの未解決項目
+
+元のissues.jsonから取得した編集メモです。完了済みという意味ではありません。
+
+- **official-score-source-review**: 2025年度一般入試（前期）の数学200点を、大学公式募集要項の保存原本で科目担当兼編集責任者が再確認する。数学100分は問題原本p.1で確認済み。
+- **provisional-subquestion-scoring-review**: 12小問へ割り当てた仮配点（マーク式各15点、記述式15点または25点、合計200点）を科目担当兼編集責任者が確認する。公式の小問別配点ではない。
+- **rights-and-redraw-review**: 問題・解答原本の公開利用範囲を確認し、解答内の回転体関連図、条件範囲グラフ、直角三角形配置図、関数グラフ、2放物線と共通接線の計5点を模写差し替えして内容確認を行う。rights_statusがunknown/restricted、replacement_statusがpending_redrawの間、原本ページ画像・原本クロップ・原本解答解説は内部レビュー限定とする。
+- **subject-editor-review**: 数学科目担当者が、原本13ページのHTML転記、3大問・12小問の構造、学習者向け解説、難易度、五角形評価、層別所要時間、戦略、仮配点、得点効率、Lexus目標をパッケージ単位で確認し、manifestのvisual_reviewedとanalysisのreview.approvedを明示的に判断する。

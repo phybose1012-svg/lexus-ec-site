@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "lexus-past-exam-figures.v1",
+  "packageId": "fujita-health-2025-general-early-mathematics",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "問題条件から独自に算出。回転体では左右領域の和集合、指数置換では実数全体、放物線では面積保存の座標変換を明示。元の解説には別途修正依頼がある。"
+  },
+  "items": [
+    {
+      "id": "ans-q1-1-diagrams",
+      "src": "/assets/past-exams/fujita-health-2025-general-early-mathematics/figures/ans-q1-1-diagrams.svg",
+      "width": 620,
+      "height": 1090,
+      "alt": "曲線y=x³−xと法線y=x、x=±1で囲まれた左右の領域と、y軸回転後の子午断面。半径rでは左右が重なり、高さは2rとなる。",
+      "caption": "左右の回転領域は重なりを除いた和集合で考える。"
+    },
+    {
+      "id": "ans-q1-3-graph",
+      "src": "/assets/past-exams/fujita-health-2025-general-early-mathematics/figures/ans-q1-3-graph.svg",
+      "width": 700,
+      "height": 540,
+      "alt": "α²+β²=4(a−1)²−14のグラフ。実数解条件を満たすaが−1以下と5以上の部分を太線にし、(−1,2)と(5,50)を示す。",
+      "caption": "太線部分での最小値は、a=−1のとき。"
+    },
+    {
+      "id": "ans-q1-7-geometry",
+      "src": "/assets/past-exams/fujita-health-2025-general-early-mathematics/figures/ans-q1-7-geometry.svg",
+      "width": 660,
+      "height": 790,
+      "alt": "直角三角形OABの辺OA上にP、辺OB上にQがあり、AQとBPはRで交わる。OA=QB=a+b、OP=a、PA=OQ=b。角α、βと角PRQ=135度を示す。",
+      "caption": "a:b=2:1の配置例。長さと角度の関係は一般の正のa,bでも共通。"
+    },
+    {
+      "id": "ans-q1-8-graphs",
+      "src": "/assets/past-exams/fujita-health-2025-general-early-mathematics/figures/ans-q1-8-graphs.svg",
+      "width": 620,
+      "height": 1105,
+      "alt": "t=3ˣ−3⁻ˣの単調増加グラフ、t²+3t+2の放物線、元の関数f(x)の3図。tは実数全体を動き、t=−3/2に対応する点で最小値−1/4。",
+      "caption": "変数の置換から元の関数の最小値までを3段で確認。"
+    },
+    {
+      "id": "ans-q2-parabolas",
+      "src": "/assets/past-exams/fujita-health-2025-general-early-mathematics/figures/ans-q2-parabolas.svg",
+      "width": 660,
+      "height": 600,
+      "alt": "u=x+2k、v=y−ℓ(x)により、共通接線をv=0へ移した図。C₁はv=(u+1)²、C₂はv=(u−1)²。接点u=±1、交点u=0と、低い方の放物線と接線で囲まれた領域を示す。",
+      "caption": "座標変換は面積を保つ。左半分はC₁、右半分はC₂と接線との差。"
+    }
+  ]
+}
