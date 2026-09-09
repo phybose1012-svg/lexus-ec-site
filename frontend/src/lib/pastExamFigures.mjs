@@ -37,11 +37,14 @@ export function renderRegisteredFigure(manifest, id) {
   return `<figure class="past-exam-figure" data-figure-id="${escape(id)}"><img src="${escape(item.src)}" alt="${escape(item.alt)}" width="${item.width}" height="${item.height}" loading="eager" decoding="sync"/><figcaption>${escape(item.caption)}</figcaption></figure>`;
 }
 
-export function replaceSourceFigures(fragment, manifest) {
+export function replaceSourceFigures(fragment, manifest, { allowDeferred = false } = {}) {
   const seen = new Set();
-  return fragment.replace(/<figure\b[^>]*\bdata-crop-id="([^"]+)"[^>]*>[\s\S]*?<\/figure>/g, (_, id) => {
+  return fragment.replace(/<figure\b[^>]*\bdata-crop-id="([^"]+)"[^>]*>[\s\S]*?<\/figure>/g, (original, id) => {
     if (seen.has(id)) throw new Error(`Duplicate source figure ${id}`);
     seen.add(id);
+    // Only the explicitly deferred staging importer may retain unmatched crops.
+    // Its next step replaces these with placeholders before any asset copying.
+    if (allowDeferred && !manifest.byId.has(id)) return original;
     return renderRegisteredFigure(manifest, id);
   });
 }

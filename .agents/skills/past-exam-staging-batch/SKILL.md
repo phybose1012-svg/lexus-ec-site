@@ -31,6 +31,15 @@ This mode is for the user's explicit workflow: bring existing HTML packages into
 - A Windows-path check must not reject legitimate TeX such as `C:\ (x-7)^2=17` or `\alpha:\beta`. Check actual local-path structure and URL attributes without weakening script/event-handler rejection.
 - Imported formula-purpose labels are deduplicated in `pastExamBatch/formula-purposes.json` and remain marked for editorial review. When refining a package, reuse the reviewed shared purpose library; migrate only distinct useful labels into it.
 
+## Continue the figure queue serially
+
+- The first independently drawn batch examples are `build-aichi-2025-mathematics-figures.mjs` and `build-aichi-2025-physics-figures.mjs`. The physics example uses `scripts/lib/past-exam-svg-author.mjs` for only the shared SVG envelope, local KaTeX faces and hand-edited-figure protection. Geometry and invariants belong in the package generator/test.
+- Register a manifest under the normalized **library** package ID. Crop IDs must match exactly. The answer adapter resolves registered originals automatically and retains every unmatched placeholder. The question importer permits partial manifests **only** with `--defer-crops true`; otherwise missing IDs still fail. Do not remove that strict default or the duplicate-ID guard.
+- After generating and visually reviewing figures, run the targeted importer for that package, then build, tests, math audit and report. This updates both question placement and the pending-figure ledger. Do not merely hand-edit generated page JSON or the counts.
+- Question-only answer axes must remain blank. Show solution curves/coordinates only in answer figures. Test signs, point order and the time direction of phase trajectories separately from SVG syntax.
+- Normalize local analysis authoring snapshots to the existing Japanese inequality policy as well as the rendered output. Preserve source evidence and content provenance; a typography conversion is not a new independent explanation.
+- Read `docs/handoffs/past-exam-batch/continuation.md` before the next package. After verified staging pushes, append what was actually drawn, tested and deployed. Temporary QA PNGs belong under `frontend/reports/`, not in production assets or Git.
+
 ## Handoff and completion
 
 Use `pastExamBatch/status.json`, upstream open issues, `math-audit.json`, and `docs/handoffs/past-exam-batch/<id>.md`. Report counts separately: routes created, substantive question/answer/analysis bodies, deferred targets, pending diagrams, and source packages missing material. Creating three route shells is not completing three bodies.

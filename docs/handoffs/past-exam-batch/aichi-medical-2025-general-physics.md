@@ -15,8 +15,6 @@
 
 ## 検出事項
 
-- **questions / figures-pending**: Question figures require independent reconstruction; dependent questions remain review-only.（5件）
-- **answers / figures-pending**: Required visual positions retained; no restricted answer crop copied.（1件）
 - **answers / editorial-review**: Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch.
 - **analysis-targets / source-error**: Invalid target prerequisite or candidate (weak, now): phys-q2-5: requires absent phys-q2-4
 - **analysis-targets / pending**: Target section retained but scores withheld until validated source is supplied.

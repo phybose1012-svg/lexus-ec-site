@@ -7,6 +7,8 @@ import {extractAnalysis} from './import-past-exam-analysis.mjs';
 import {buildAnalysis} from './build-past-exam-analyses.mjs';
 import {renderProjection} from './build-past-exam-staging-answers.mjs';
 import {durationLabelFor} from './past-exam-duration.mjs';
+import {loadFigureManifest} from '../src/lib/pastExamFigures.mjs';
+import {normalizeInequalitiesDeep} from '../src/lib/mathNotation.mjs';
 
 const frontend=fileURLToPath(new URL('../',import.meta.url));
 const repo=path.dirname(frontend);
@@ -61,11 +63,14 @@ for(let index=0;index<inventory.length;index++) {
     const durationLabel=durationLabelFor(duration,entry.subject,durationOverrides[entry.id]);
     const args=['--source-dir',sourceDir,'--output',questionFile,'--public-root',path.join(frontend,'public'),'--university-id',entry.university,'--university-name',entry.name,'--year',entry.year,'--subject-id',entry.subject,'--subject-name',subjectNames[entry.subject],'--subject-english',entry.subject.toUpperCase(),'--exam-label',entry.examLabel,'--stage-label',entry.stage==='second-stage'?'二次試験':'一次試験','--duration-label',durationLabel,'--source-reference',`${item.directory}/source-html/generated/public-candidate/questions`,'--route-segment',entry.segment,'--library-package-id',entry.id,'--defer-crops','true','--analysis-path',`/past-exam-library/${entry.university}/${entry.year}/${entry.segment}/analysis/`];
     const overrideFile=path.join(data,'pastExamBatch/question-overrides',file);
+    const manifestFile=path.join(data,'pastExamFigures',file);
+    const figures=fs.existsSync(manifestFile)?loadFigureManifest(manifestFile,path.join(frontend,'public'),entry.id):null;
+    if(figures)args.push('--figure-manifest',manifestFile);
     write(overrideFile,{packageId:item.id,operations:[],printNotes:['各設問に記載された解答形式・記号・単位の指定に従ってください。','図版準備中・内容確認中の設問は、確認が完了するまで演習対象外です。']});
     execFileSync(process.execPath,[path.join(repo,'.agents/skills/past-exam-question-importer/scripts/import-question-page.mjs'),...args,'--overrides',overrideFile],{cwd:repo,stdio:'pipe'});
     const q=read(questionFile);
     const imgs=q.document.questions.flatMap(q=>[...q.html.matchAll(/<img\b[^>]*src="([^"]+)"/g)].map(m=>m[1]));
-    if(imgs.length) throw new Error('Source image survived deferred-figure import: '+imgs.join(', '));
+    if(imgs.some(src=>!figures?.bySrc.has(src))) throw new Error('Source image survived deferred-figure import: '+imgs.join(', '));
     status.questions='imported';
     status.questionFigures=q.document.questions.reduce((n,q)=>n+(q.html.match(/data-figure-placeholder/g)||[]).length,0);
     if(status.questionFigures)status.issues.push({scope:'questions',kind:'figures-pending',count:status.questionFigures,message:'Question figures require independent reconstruction; dependent questions remain review-only.'});
@@ -79,7 +84,7 @@ for(let index=0;index<inventory.length;index++) {
       write(path.join(data,'pastExamStagingAnswerSources',file),snapshot);
       write(path.join(data,'generated/pastExamAnswers',file),output);
       status.answers='editorial-adaptation-imported';
-      status.answerFigures=editorial.pages.flatMap(p=>p.blocks).filter(b=>b.type==='crop').length;
+      status.answerFigures=output.document.majorQuestions.reduce((n,q)=>n+(q.html.match(/data-figure-placeholder/g)||[]).length,0);
       if(status.answerFigures)status.issues.push({scope:'answers',kind:'figures-pending',count:status.answerFigures,message:'Required visual positions retained; no restricted answer crop copied.'});
       status.issues.push({scope:'answers',kind:'editorial-review',message:'Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch.'});
     } catch(error) {
@@ -105,7 +110,7 @@ for(let index=0;index<inventory.length;index++) {
       editorial.examLabel=entry.examLabel;
       const output=buildAnalysis(evidence,editorial);
       write(path.join(data,'pastExamAnalysisEvidence',file),evidence);
-      write(path.join(data,'pastExamAnalysisSources',file),editorial);
+      write(path.join(data,'pastExamAnalysisSources',file),normalizeInequalitiesDeep(editorial));
       write(path.join(data,'generated/pastExamAnalyses',file),output);
       status.analysis=evidence.targetAnalysis?'imported':'targets-deferred';
     } catch(error) {

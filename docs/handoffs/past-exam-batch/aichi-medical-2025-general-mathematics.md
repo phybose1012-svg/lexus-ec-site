@@ -15,7 +15,6 @@
 
 ## 検出事項
 
-- **answers / figures-pending**: Required visual positions retained; no restricted answer crop copied.（4件）
 - **answers / editorial-review**: Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch.
 
 ## 完了報告

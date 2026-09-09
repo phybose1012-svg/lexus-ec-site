@@ -15,6 +15,7 @@ import { readSvgSize } from "../src/lib/svgSize.mjs";
 import { unsafeSvgReason } from "../src/lib/svgSafety.mjs";
 import { loadFigureManifest } from "../src/lib/pastExamFigures.mjs";
 import { createFigureHandoff, handEditedTrioPath, figureSvgPath } from "./lib/past-exam-figure-handoff.mjs";
+import { createSvgPackage } from "./lib/past-exam-svg-author.mjs";
 
 const PACKAGE_ID = "test-package-2025-mathematics";
 const FIGURE_ID = "q1-sample";
@@ -122,10 +123,38 @@ test("build-*-figures.mjs は全部、控えを見てから書く", () => {
   assert.ok(generators.length >= 4, `生成スクリプトが見つからない: ${generators.join(", ")}`);
 
   for (const name of generators) {
-    const source = fs.readFileSync(path.join(scriptsDir, name), "utf8");
+    let source = fs.readFileSync(path.join(scriptsDir, name), "utf8");
+    if (/from ['"]\.\/lib\/past-exam-svg-author\.mjs['"]/.test(source)) {
+      assert.match(source, /createSvgPackage\(/, `${name} が保護付きの生成枠を使用していない`);
+      assert.match(source, /pack\.add\(/);
+      assert.match(source, /pack\.save\(/);
+      // The shared envelope owns writes. Its preservation behavior is tested
+      // below with an actual hand-edited SVG, not merely an import-name check.
+      source = fs.readFileSync(path.join(scriptsDir, 'lib/past-exam-svg-author.mjs'), 'utf8');
+    }
     assert.match(source, /past-exam-figure-handoff\.mjs/, `${name} が控えの仕組みを読んでいない`);
     assert.match(source, /handoff\.keep\(/, `${name} が控えを見ていない`);
     assert.match(source, /handoff\.report\(\)/, `${name} が飛ばした図を報告していない`);
+  }
+});
+
+test("共通SVG生成枠も、手で直したファイルと現物の寸法を保持する", () => {
+  const original = svgOf(321, 123);
+  const tree = makeTree({ svg: original, trio: { handEdited: true } });
+  try {
+    const fonts = path.join(tree.publicRoot, 'assets/vendor/katex/fonts');
+    fs.mkdirSync(fonts, { recursive: true });
+    for (const name of ['KaTeX_Main-Regular', 'KaTeX_Math-Italic']) {
+      fs.copyFileSync(new URL(`../public/assets/vendor/katex/fonts/${name}.woff2`, import.meta.url), path.join(fonts, `${name}.woff2`));
+    }
+    const pack = createSvgPackage(PACKAGE_ID, tree.metaUrl);
+    pack.add(FIGURE_ID, 999, 888, '保持テスト', '手修正の図', '<path d="M0 0 L50 50"/>');
+    const manifest = pack.save('テスト');
+    assert.equal(fs.readFileSync(figureSvgPath(tree.root, PACKAGE_ID, FIGURE_ID), 'utf8'), original);
+    assert.equal(manifest.items[0].width, 321);
+    assert.equal(manifest.items[0].height, 123);
+  } finally {
+    tree.cleanup();
   }
 });
 

@@ -171,7 +171,7 @@ const reviewRequired = page.source.needsHumanReview;
       <aside class="past-exam-question-note">
         <strong>解答・解説について</strong>
         <p>{page.source.contentProvenance === 'editorial_adaptation_import'
-          ? '保存済みの学習者向け解説を取り込んだステージング確認版です。解法・表現の詳細校正と図版の作成は未完了です。'
+          ? '保存済みの学習者向け解説を取り込んだステージング確認版です。解法・表現の詳細校正は未完了です。' + (page.document.majorQuestions.some(q => q.html.includes('data-figure-placeholder')) ? '準備中の図版は、位置を確保して表示しています。' : '')
           : page.source.contentProvenance === 'original_editorial'
           ? '掲載している問題をもとにレクサスE.C.が独自作成しています。元解答の文章・表・図版は転載していません。'
           : '解答・解説の元データを確認しています。確認できていない解答は掲載していません。'}</p>

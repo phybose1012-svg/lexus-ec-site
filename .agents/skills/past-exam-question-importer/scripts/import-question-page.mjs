@@ -234,7 +234,7 @@ async function main() {
   if (!packageId) {
     throw new Error("index.html: reconstruction package_id is missing");
   }
-  const figures = args["figure-manifest"] ? loadFigureManifest(args["figure-manifest"], publicRoot, packageId) : null;
+  const figures = args["figure-manifest"] ? loadFigureManifest(args["figure-manifest"], publicRoot, args['library-package-id'] ?? packageId) : null;
 
   let overrides = null;
   if (args.overrides) {
@@ -293,7 +293,7 @@ async function main() {
       overrides,
     );
     sourceFragment = removeRedundantMajorQuestionKickers(sourceFragment);
-    if (figures) sourceFragment = replaceSourceFigures(sourceFragment, figures);
+    if (figures) sourceFragment = replaceSourceFigures(sourceFragment, figures, { allowDeferred: args['defer-crops'] === 'true' });
     if (args['defer-crops'] === 'true') {
       // Staging bulk imports reserve required figures; restricted source images
       // are never copied merely to make an incomplete reader appear complete.

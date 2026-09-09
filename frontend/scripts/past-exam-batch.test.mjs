@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {inline,renderProjection} from './build-past-exam-staging-answers.mjs';
 import {buildAnalysis} from './build-past-exam-analyses.mjs';
 import {durationLabelFor} from './past-exam-duration.mjs';
+import {loadFigureManifest,replaceSourceFigures} from '../src/lib/pastExamFigures.mjs';
 const root=fileURLToPath(new URL('../src/data/',import.meta.url));
 const read=name=>JSON.parse(fs.readFileSync(root+name,'utf8'));
 const pages=folder=>fs.readdirSync(root+folder).filter(f=>f.endsWith('.json')).map(f=>read(folder+'/'+f));
@@ -33,8 +34,24 @@ test('Projected explanations are explicit about provenance and carry no source i
   assert.equal(result.source.independentlyReauthored,false);
   assert.equal(result.source.restrictedAssetsCopied,false);
   assert.equal(result.document.majorQuestions.length,source.question.document.questions.length);
-  assert.doesNotMatch(result.document.majorQuestions.map(m=>m.html).join(''),/<img\b|<script\b|onerror=|javascript:/);
+  const html=result.document.majorQuestions.map(m=>m.html).join('');
+  assert.doesNotMatch(html,/<script\b|onerror=|javascript:/);
+  const images=[...html.matchAll(/<img\b[^>]*src="([^"]+)"/g)].map(m=>m[1]);
+  if(images.length){
+   const manifest=loadFigureManifest(root+'pastExamFigures/'+result.packageId+'.json',fileURLToPath(new URL('../public/',import.meta.url)),result.packageId);
+   for(const src of images)assert.ok(manifest.bySrc.has(src),'Only registered original assets may render');
+  }
  }
+});
+test('Partial figure replacement is allowed only in explicit deferred mode',()=>{
+ const figure={id:'ready',src:'/assets/ready.svg',width:100,height:100,alt:'A',caption:'B'};
+ const manifest={byId:new Map([['ready',figure]])};
+ const html='<figure data-crop-id="ready">old crop</figure><figure data-crop-id="pending">second crop</figure>';
+ assert.throws(()=>replaceSourceFigures(html,manifest),/Unregistered figure/);
+ const partial=replaceSourceFigures(html,manifest,{allowDeferred:true});
+ assert.match(partial,/data-figure-id="ready"/);
+ assert.match(partial,/data-crop-id="pending"/);
+ assert.throws(()=>replaceSourceFigures(html+html,manifest,{allowDeferred:true}),/Duplicate source figure/);
 });
 test('Inline text is escaped and TeX remains an empty rendering target',()=>{
  assert.equal(inline('<b>x</b>'),'&lt;b&gt;x&lt;/b&gt;');

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "lexus-past-exam-figures.v1",
+  "packageId": "aichi-medical-2025-general-mathematics",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "公開問題の条件から接円の中心・半径、平面の基底、球の切断面を独自に計算。元画像のトレースや複製なし。"
+  },
+  "items": [
+    {
+      "id": "a1-three-circles",
+      "src": "/assets/past-exams/aichi-medical-2025-general-mathematics/figures/a1-three-circles.svg",
+      "width": 760,
+      "height": 640,
+      "alt": "原点中心・半径3の円O1と、C=(1,0)を中心とする半径2の円O2がA=(3,0)で内接。O3はP=(23/11,12√3/11)を中心とする半径2/11の円で、B=(2,√3)でO2に外接しO1に内接する。C、B、Pはこの順に一直線上に並ぶ。",
+      "caption": "3円の接触関係（同一縮尺。小円の半径は2/11）"
+    },
+    {
+      "id": "a3-plane-foot",
+      "src": "/assets/past-exams/aichi-medical-2025-general-mathematics/figures/a3-plane-foot.svg",
+      "width": 520,
+      "height": 280,
+      "alt": "平面α上のA=(-1,0,1)、B=(0,1,1)、C=(0,-1,-1)と球の中心P=(3,0,-1)。垂線の足H=(7/3,2/3,-5/3)は三角形ABCの外側にある。PHは平面に垂直。実座標を平面内の直交基底へ射影した図。",
+      "caption": "中心Pから平面αへの垂線。Hは三角形ABCの外側"
+    },
+    {
+      "id": "a3-sphere-plane-circle",
+      "src": "/assets/past-exams/aichi-medical-2025-general-mathematics/figures/a3-sphere-plane-circle.svg",
+      "width": 720,
+      "height": 515,
+      "alt": "半径√10の球面Sを平面αで切った交円K。中心Pから平面への垂線の足HがKの中心で、PH=2/√3、交円の半径HQ=√(26/3)。PHとHQは垂直で、P、H、Qは直角三角形を作る。",
+      "caption": "交円Kの半径は、直角三角形PHQに三平方の定理を適用して求める"
+    },
+    {
+      "id": "a3-unit-circle-parameterization",
+      "src": "/assets/past-exams/aichi-medical-2025-general-mathematics/figures/a3-unit-circle-parameterization.svg",
+      "width": 760,
+      "height": 450,
+      "alt": "平面αを正面から見た局所座標。左は直交単位ベクトルe1、e2方向の単位円、右は中心H、半径rKの円K。同じ角θに対し、HQ=rK(e1 cosθ+e2 sinθ)。三次元のx軸・y軸ではなく平面内の2方向を示す。",
+      "caption": "平面α内の正規直交基底で見る：単位円をrK倍し、中心をHへ移す"
+    }
+  ]
+}

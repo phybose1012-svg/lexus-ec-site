@@ -4,6 +4,7 @@ import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {normalizeInequalitiesDeep} from '../src/lib/mathNotation.mjs';
 import {inline,escapeHtml} from '../src/lib/pastExamInline.mjs';
+import {loadFigureManifest,renderRegisteredFigure} from '../src/lib/pastExamFigures.mjs';
 export {inline,escapeHtml};
 
 const dataRoot=fileURLToPath(new URL('../src/data/',import.meta.url));
@@ -16,6 +17,8 @@ export function purposeFor(title) {
 export function renderProjection(snapshot, purposes=new Map()) {
   if(snapshot.schemaVersion!=='lexus-staging-answer-snapshot.v1'||snapshot.editorial?.provenance!=='editorial_adaptation') throw new Error('Only separately identified editorial adaptations can be projected');
   const {question,editorial,assets}=normalizeInequalitiesDeep(snapshot);
+  const manifestFile=path.join(dataRoot,'pastExamFigures',`${question.packageId}.json`);
+  const figures=fs.existsSync(manifestFile)?loadFigureManifest(manifestFile,fileURLToPath(new URL('../public/',import.meta.url)),question.packageId):null;
   if(editorial.package_id!==question.source.sourcePackageId) throw new Error('Source package mismatch');
   const known=new Set(question.document.questions.map(q=>q.id));
   const all=editorial.pages.flatMap(p=>p.blocks);
@@ -37,6 +40,7 @@ export function renderProjection(snapshot, purposes=new Map()) {
     if(block.type==='crop') {
       const asset=assets.find(a=>a.id===block.asset_id);
       if(!asset) throw new Error(`Unregistered source figure ${block.asset_id}`);
+      if(figures?.byId.has(asset.id)) return renderRegisteredFigure(figures,asset.id);
       const alt=asset.alt||'解説に必要な図';
       const box=asset.crop_box_pixels;
       const ratio=box&&box[2]>box[0]&&box[3]>box[1]?(box[2]-box[0])/(box[3]-box[1]):1.6;
