@@ -1,5 +1,15 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'fukuoka-2025-general-keitobetsu-physics':{
+  'major-question-01':{
+   title:'〔Ⅰ〕(10)の解説は記号を確認中です',
+   message:'元解説のうなりの周期の式で、元の音の振動数とうなりの振動数が混同されています。該当式は原本照合・修正が完了するまで正式な教材として使用しないでください。',
+  },
+  'major-question-03':{
+   title:'〔Ⅲ〕(6)の速度の大きさは条件を確認中です',
+   message:'問題に記された反発係数の範囲と、解説の速度の「大きさ」の符号に不整合があります。(6)の採点と(7)〜(8)で使う符号の説明は、原本照合・修正が完了するまで確認用として扱ってください。',
+  },
+ },
  'fujita-health-2025-general-early-physics':{
   'major-question-04':{
    title:'第4問・問9〜10の解説は前提を確認中です',
