@@ -8,9 +8,18 @@
 
 | 開いた場所 | 書き戻し口 | 何が起きるか |
 | --- | --- | --- |
-| 手元（127.0.0.1） | ローカル管理 API | 作業ツリーのファイルを直接書く |
+| 手元（127.0.0.1） | ローカル管理 API | 作業ツリーのファイルを書く。**まだ公開されない**（下記） |
 | ステージング | Pages Function | GitHub の staging へ **1 コミット**として送る。Pages が作り直す |
 | 本番（main） | なし | ページ自体が作られない |
+
+**保存はゴールではない。** 手元で保存しただけでは、そのパソコンの中のファイルが
+変わるだけで、ステージングにも本番にも出ない。帯に「まだ公開されていません」と出て
+**「ステージングへ送る」**ボタンが現れるので、それを押すと commit と push まで済む
+（送るのはその図の 3 つだけで、作業ツリーごとは送らない）。
+
+押すには **git の push 権限**が要る。持っていない人に頼むなら、手元ではなく
+ステージングの画面で直してもらう。あちらは Function が代わりにコミットするので、
+clone も git も要らない。
 
 門は 2 つ。判定は `astro.config.mjs` の `withFigureEditor` 1 箇所で決めて配っている。
 
@@ -229,6 +238,9 @@ Figure size mismatch /assets/.../q1.svg: manifest 760x500, file 760x499
   Pages Function（TypeScript）からも読むため。
 - `src/lib/svgSafety.mjs` … 置けない SVG の検査。
 - `scripts/admin-local-api.mjs` の `/api/past-exam-figures` … 手元の口。
+  `/api/past-exam-figures/publish` が、直した図を staging へ送る（commit + push）。
+  `staging` にいないと断る。送るのはその図の 3 つだけで、他の人が触りかけの
+  ものは巻き込まない。
 - `functions/admin/api/past-exam-figures.ts` … ステージングの口。
   `public/_routes.json` にこのパスを足してある（Functions はここに書いた
   パスでしか動かない）。

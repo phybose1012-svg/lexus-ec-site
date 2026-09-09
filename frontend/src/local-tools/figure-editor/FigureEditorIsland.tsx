@@ -139,6 +139,13 @@ export default function FigureEditorIsland() {
   const [apiSearched, setApiSearched] = useState(false);
   const [token, setToken] = useState("");
   const [tokenDraft, setTokenDraft] = useState("");
+  /**
+   * 手元で保存したが、まだ送っていない。
+   *
+   * 手元の口は作業ツリーのファイルを書き換えるだけで、誰にも見えない。
+   * ここを黙っていると「保存したのに直っていない」になる。
+   */
+  const [pending, setPending] = useState(false);
 
   const isLocal =
     typeof window !== "undefined" &&
@@ -281,11 +288,13 @@ export default function FigureEditorIsland() {
           if (!response.ok) throw new Error(String(payload?.error ?? `HTTP ${response.status}`));
           setStatus(
             payload.commit
-              ? `保存しました（commit ${String(payload.commit).slice(0, 7)} を ${payload.branch} へ。反映はビルドのあと）`
-              : `保存しました（${payload.file}${
-                  payload.manifestUpdated ? " / manifest の寸法も更新" : ""
-                }${payload.trioFile ? " / 控えも更新（生成スクリプトは上書きしません）" : ""}）`
+              ? // ステージングの口は commit まで済ませる。あとはビルドを待つだけ。
+                `保存しました（commit ${String(payload.commit).slice(0, 7)} を ${payload.branch} へ。1〜2分で画面に出ます）`
+              : // 手元の口はファイルを書き換えただけ。**これでは誰にも見えない。**
+                // 送るまでが 1 仕事なので、終わったふりをしない。
+                "保存しました（このパソコンの中だけ。まだ公開されていません）"
           );
+          if (!payload.commit) setPending(true);
         } catch (cause) {
           const message = cause instanceof Error ? cause.message : String(cause);
           if (/401|authorized/i.test(message)) forgetToken();
@@ -295,6 +304,28 @@ export default function FigureEditorIsland() {
     },
     [endpoint, isLocal, authHeaders, packageId, figureId]
   );
+
+  /** 直したものを staging へ送る（commit して push する）。 */
+  const publish = useCallback(() => {
+    if (!localApi) return;
+    setStatus("ステージングへ送っています…");
+    void (async () => {
+      try {
+        const response = await fetch(`${localApi}/api/past-exam-figures/publish`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ packageId, figureId }),
+        });
+        const payload = await readResponse(response);
+        if (!response.ok) throw new Error(String(payload?.error ?? `HTTP ${response.status}`));
+        setPending(false);
+        const files = Array.isArray(payload.files) ? payload.files.length : 0;
+        setStatus(`送りました（${payload.branch} へ ${files} 件。1〜2分で画面に出ます）`);
+      } catch (cause) {
+        setStatus(`送れませんでした: ${cause instanceof Error ? cause.message : String(cause)}`);
+      }
+    })();
+  }, [localApi, packageId, figureId]);
 
   if (!target) {
     return (
@@ -347,6 +378,12 @@ export default function FigureEditorIsland() {
               : "保存できません（npm run admin:api）"}
         </span>
         {status && <strong>{status}</strong>}
+        {/* 保存はゴールではない。送るまでが 1 仕事なので、ここに出しておく。 */}
+        {pending && (
+          <button type="button" className="figure-editor-island__publish" onClick={publish}>
+            ステージングへ送る
+          </button>
+        )}
         {!isLocal &&
           (token ? (
             <button type="button" className="figure-editor-island__forget" onClick={forgetToken}>

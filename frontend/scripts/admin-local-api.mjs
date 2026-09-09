@@ -1,5 +1,6 @@
 import { createServer } from "node:http";
 import { execFile } from "node:child_process";
+import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -106,6 +107,13 @@ const server = createServer(async (request, response) => {
     if (url.pathname === "/api/past-exam-figures" && request.method === "POST") {
       const payload = await readJsonBody(request);
       const result = await writePastExamFigure(payload);
+      sendJson(response, result.status, result.body, corsHeaders);
+      return;
+    }
+
+    if (url.pathname === "/api/past-exam-figures/publish" && request.method === "POST") {
+      const payload = await readJsonBody(request);
+      const result = await publishPastExamFigure(payload);
       sendJson(response, result.status, result.body, corsHeaders);
       return;
     }
@@ -363,6 +371,96 @@ const writePastExamFigure = async (payload) => {
       width: size.width,
       height: size.height,
       git: await gitStatus(),
+    },
+  };
+};
+
+/**
+ * 直した図を staging へ送る（commit して push する）。
+ *
+ * **保存しただけでは、どこにも公開されない。** 手元の口は作業ツリーの
+ * ファイルを書き換えるだけなので、誰かが commit して push しないと
+ * ステージングにも本番にも出ない。そこを人手に頼ると必ず抜ける。
+ *
+ * 送るのはその図の 3 つだけ（SVG・manifest・控え）。**作業ツリーごと
+ * まとめて送らない。** 他の人が触りかけのものを巻き込むと、直した図と
+ * 関係のない変更が一緒に公開される。
+ */
+const publishPastExamFigure = async (payload) => {
+  const packageId = String(payload?.packageId ?? "");
+  const figureId = String(payload?.figureId ?? "");
+  if (!FIGURE_ID.test(packageId) || !FIGURE_ID.test(figureId)) {
+    return { status: 400, body: { error: "packageId / figureId の形が不正です。" } };
+  }
+
+  const status = await gitStatus();
+  if (!status.ok) {
+    return { status: 500, body: { error: "git の様子が読めませんでした。", status } };
+  }
+  const branchGuard = assertOnTargetBranch(status);
+  if (branchGuard) {
+    return {
+      status: 409,
+      body: {
+        error: `いまいる枝は ${status.branch || "（不明）"} です。${targetBranch} に移ってから送ってください。`,
+        status,
+      },
+    };
+  }
+
+  // この図に属するものだけを staging へ載せる。
+  const paths = [
+    path.relative(repoRoot, figureSvgPath(frontendRoot, packageId, figureId)),
+    path.relative(repoRoot, figureManifestPath(packageId)),
+    path.relative(repoRoot, handEditedTrioPath(frontendRoot, packageId, figureId)),
+  ].map((value) => value.replaceAll("\\", "/"));
+
+  // **まだ無いものを git add へ渡さない。** 控えは初回の保存で作られるので、
+  // 保存する前に送ろうとすると pathspec が合わずに git ごと落ちる（実測で 500）。
+  const present = paths.filter((value) => existsSync(path.join(repoRoot, value)));
+  if (present.length === 0) {
+    return {
+      status: 409,
+      body: { error: "送るものがありません（この図はまだ保存されていません）。", status },
+    };
+  }
+
+  await git(["add", "--", ...present]);
+  const staged = await git(["diff", "--cached", "--name-only", "--", ...present]);
+  if (!staged.trim()) {
+    return {
+      status: 409,
+      body: { error: "送るものがありません（この図は変わっていません）。", status: await gitStatus() },
+    };
+  }
+
+  const message = `fix(past-exam): 図版を直す（${packageId} / ${figureId}）`;
+  const commitOutput = await git(["commit", "-m", message]);
+  let pushOutput;
+  try {
+    pushOutput = await git(["push", "origin", targetBranch]);
+  } catch (error) {
+    // commit は済んでいる。押し戻せなかったことだけを伝える（取り消さない。
+    // 消すと、直した内容ごと失われる）。
+    return {
+      status: 502,
+      body: {
+        error: `commit はできましたが、送れませんでした: ${error instanceof Error ? error.message : String(error)}`,
+        committed: true,
+        files: staged.trim().split("\n"),
+        status: await gitStatus(),
+      },
+    };
+  }
+
+  return {
+    status: 200,
+    body: {
+      ok: true,
+      branch: targetBranch,
+      files: staged.trim().split("\n"),
+      output: `${commitOutput}\n${pushOutput}`.trim(),
+      status: await gitStatus(),
     },
   };
 };
