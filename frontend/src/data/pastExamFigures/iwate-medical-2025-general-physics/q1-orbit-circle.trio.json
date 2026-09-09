@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "lexus-past-exam-figure-trio.v1",
+  "packageId": "iwate-medical-2025-general-physics",
+  "figureId": "q1-orbit-circle",
+  "trio": {
+    "domain": "type UserShape\n",
+    "substance": "UserShape rect_03m73o9\nUserShape circle_02cdcmf\nUserShape circle_0nxqzop\nUserShape circle_1ovqi29\nUserShape text_1tq0g16\nUserShape line_0176idw\nUserShape text_0obl6bk\nUserShape rect_1x6llxz\nUserShape text_1ncye91\nUserShape path_0tsy2dk\nUserShape line_0cgvrw3\nUserShape line_01gz90a\nUserShape text_135qhf3\nUserShape text_013wont\nUserShape text_14k81kj\nUserShape text_013tbb4\nUserShape text_0aqmmx1\nUserShape text_1p9zw85\nUserShape newBezier1\n",
+    "style": "canvas {\n  width = 650\n  height = 370\n}\n\nforall UserShape `rect_03m73o9` {\n  `rect_03m73o9`.shape = Rectangle {\n    center: (0, 0)\n    width: 650\n    height: 370\n    cornerRadius: 0\n    fillColor: rgba(1, 1, 1, 1)\n    strokeColor: none()\n  }\n}\n\nforall UserShape `circle_02cdcmf` {\n  `circle_02cdcmf`.shape = Circle {\n    center: (-145, -25)\n    r: 115\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"5 5\"\n  }\n}\n\nforall UserShape `circle_0nxqzop` {\n  `circle_0nxqzop`.shape = Circle {\n    center: (-145, -25)\n    r: 57\n    fillColor: rgba(0.9294, 0.949, 0.9647, 1)\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `circle_1ovqi29` {\n  `circle_1ovqi29`.shape = Circle {\n    center: (-145, -25)\n    r: 2\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `text_1tq0g16` {\n  `text_1tq0g16`.shape = Text {\n    string: \"地球\"\n    center: (-145, -52.5)\n    fontSize: \"20px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    fontFamily: \"'Yu Gothic','Meiryo',sans-serif\"\n  }\n}\n\nforall UserShape `line_0176idw` {\n  `line_0176idw`.shape = Line {\n    start: (-145, -25)\n    end: (-30, -25)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"straight\"\n    startArrowheadSize: 0.603\n    endArrowhead: \"straight\"\n    endArrowheadSize: 0.603\n  }\n}\n\nforall UserShape `text_0obl6bk` {\n  `text_0obl6bk`.shape = Equation {\n    string: \"\\mathrm{2}R\"\n    center: (-65.151, -4.718)\n    fontSize: \"22px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `rect_1x6llxz` {\n  `rect_1x6llxz`.shape = Rectangle {\n    center: (-145, 90)\n    width: 32\n    height: 8\n    cornerRadius: 0\n    fillColor: rgba(1, 1, 1, 1)\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinejoin: \"round\"\n  }\n}\n\nforall UserShape `text_1ncye91` {\n  `text_1ncye91`.shape = Text {\n    string: \"拡大図\"\n    center: (128, 153.5)\n    fontSize: \"20px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    fontFamily: \"'Yu Gothic','Meiryo',sans-serif\"\n  }\n}\n\nforall UserShape `path_0tsy2dk` {\n  `path_0tsy2dk`.shape = Path {\n    d: \"M 83 121 L 225 121 L 225 77 L 83 77 A 22 22 0 0 1 83 121 Z\"\n    fillColor: rgba(0.9294, 0.949, 0.9647, 1)\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    strokeLinejoin: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_0cgvrw3` {\n  `line_0cgvrw3`.shape = Line {\n    start: (165, 121)\n    end: (165, 77)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_01gz90a` {\n  `line_01gz90a`.shape = Line {\n    start: (196, 121)\n    end: (196, 77)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `text_135qhf3` {\n  `text_135qhf3`.shape = Equation {\n    string: \"A\"\n    center: (122.25, 99.876)\n    fontSize: \"22px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_013wont` {\n  `text_013wont`.shape = Equation {\n    string: \"B\"\n    center: (181.349, 99.513)\n    fontSize: \"22px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_14k81kj` {\n  `text_14k81kj`.shape = Equation {\n    string: \"C\"\n    center: (212.36, 99.513)\n    fontSize: \"22px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_013tbb4` {\n  `text_013tbb4`.shape = Equation {\n    string: \"\\mathrm{3}m\"\n    center: (120.158, 52.073)\n    fontSize: \"22px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_0aqmmx1` {\n  `text_0aqmmx1`.shape = Equation {\n    string: \"m\"\n    center: (180.658, 49.741)\n    fontSize: \"22px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_1p9zw85` {\n  `text_1p9zw85`.shape = Equation {\n    string: \"m\"\n    center: (211.658, 49.741)\n    fontSize: \"22px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `newBezier1` {\n  `newBezier1`.shape = Path {\n    d: \"M 51.99273351792135 115.48426494110869 C 30.278537383312763 137.15486848287358 -8.447398787009655 143.82727483020722 -41.52443092914888 141.3061541333392 C -66.81416134697088 139.378579056452 -108.09969866592668 123.74845125955542 -121.0837414528429 107.10957601475222\"\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.322167\n    fillColor: none()\n    startArrowhead: \"\"\n    endArrowhead: \"straight\"\n    startArrowheadSize: 1\n    endArrowheadSize: 1\n  }\n}\n",
+    "variation": "fibona-svg-import",
+    "editorState": {
+      "version": 1,
+      "layerOrder": [
+        "rect_03m73o9.shape",
+        "circle_02cdcmf.shape",
+        "circle_0nxqzop.shape",
+        "circle_1ovqi29.shape",
+        "text_1tq0g16.shape",
+        "line_0176idw.shape",
+        "text_0obl6bk.shape",
+        "rect_1x6llxz.shape",
+        "text_1ncye91.shape",
+        "path_0tsy2dk.shape",
+        "line_0cgvrw3.shape",
+        "line_01gz90a.shape",
+        "text_135qhf3.shape",
+        "text_013wont.shape",
+        "text_14k81kj.shape",
+        "text_013tbb4.shape",
+        "text_0aqmmx1.shape",
+        "text_1p9zw85.shape"
+      ],
+      "groups": [],
+      "hiddenPaths": [],
+      "deletedPaths": [],
+      "originalPointCounts": {},
+      "originalPoints": {},
+      "smoothnessLevel": {},
+      "arcMetadata": {},
+      "regularPolygonMetadata": {}
+    }
+  }
+}
