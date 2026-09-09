@@ -42,9 +42,35 @@ test("every formula resolves a canonical label outside the KaTeX target", () => 
     assert.equal((html.match(/class="answer-table__no-value"/g) ?? []).length, 6);
     assert.equal((html.match(/class="answer-trend"/g) ?? []).length, 6);
     assert.equal((html.match(/class="answer-key__slot"/g) ?? []).length, 47);
+    assert.equal(source.document.answerKeyValueRendering, undefined);
+    assert.equal((html.match(/class="answer-key__value math-inline"/g) ?? []).length, 0);
     assert.equal(html.includes('class="page-kicker"'), false);
     execFileSync(process.execPath, [builder, "--source", inputPath, "--output", outputPath]);
     assert.equal(fs.readFileSync(outputPath, "utf8"), first, "generation is deterministic");
+  });
+});
+
+test("answer-key values stay text by default and support opt-in math rendering", () => {
+  const input = structuredClone(source);
+  input.document.answerKeyValueRendering = "math";
+  input.document.majorQuestions[0].answerKey[0].entries[0].value = "\\frac{123}{457}";
+  withBuild(input, (result, outputPath) => {
+    assert.equal(result.status, 0, result.stderr);
+    const html = JSON.parse(fs.readFileSync(outputPath, "utf8")).document.majorQuestions.map((q) => q.html).join("");
+    const mathValues = html.match(/<span class="answer-key__value math-inline" data-katex="[^"]+" data-display-mode="false"><\/span>/g) ?? [];
+    assert.equal(mathValues.length, 47);
+    assert.ok(html.includes('class="answer-key__value math-inline" data-katex="\\frac{123}{457}" data-display-mode="false"></span>'));
+    assert.equal(html.includes('>\\frac{123}{457}</span>'), false);
+  });
+});
+
+test("reject unsupported answer-key value rendering modes", () => {
+  const input = structuredClone(source);
+  input.document.answerKeyValueRendering = "auto";
+  withBuild(input, (result, outputPath) => {
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /answerKeyValueRendering/);
+    assert.equal(fs.existsSync(outputPath), false);
   });
 });
 

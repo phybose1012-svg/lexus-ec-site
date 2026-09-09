@@ -1,0 +1,700 @@
+{
+  "schemaVersion": "lexus-past-exam-answer-source.v1",
+  "packageId": "keio-2025-general-mathematics",
+  "figureManifest": "frontend/src/data/pastExamFigures/keio-2025-general-mathematics.json",
+  "route": {
+    "university": "keio",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/keio/2025/mathematics/answers/"
+  },
+  "university": {
+    "id": "keio",
+    "name": "慶應義塾大学"
+  },
+  "exam": {
+    "year": "2025",
+    "label": "一般選抜",
+    "stage": "一次試験",
+    "duration": "数学 100分"
+  },
+  "subject": {
+    "id": "mathematics",
+    "name": "数学",
+    "english": "MATHEMATICS"
+  },
+  "document": {
+    "role": "answers",
+    "answerKeyValueRendering": "math",
+    "majorQuestions": [
+      {
+        "id": "major-question-01",
+        "label": "大問Ⅰ",
+        "order": 1,
+        "answerKey": [
+          {
+            "label": "（1）",
+            "entries": [
+              { "mark": "あ", "value": "84" },
+              { "mark": "い", "value": "148" }
+            ]
+          },
+          {
+            "label": "（2）",
+            "entries": [
+              { "mark": "う", "value": "\\frac{4}{e^2+1}" }
+            ]
+          },
+          {
+            "label": "（3）",
+            "entries": [
+              { "mark": "え", "value": "\\frac{4}{3\\pi}" }
+            ]
+          },
+          {
+            "label": "（4）",
+            "entries": [
+              { "mark": "お", "value": "\\frac{13}{6}" }
+            ]
+          },
+          {
+            "label": "（5）",
+            "entries": [
+              { "mark": "答", "value": "(6,0,0,3),\\ (2,8,2,1)" }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "（1）正規分布を標準化する",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "身長を \\(X\\) cm とします。平均158、標準偏差5なので、標準化した変数は \\(Z=(X-158)/5\\) です。まず、153 cmと170.5 cmに対応する \\(Z\\) の値を求めます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "standardize-normal-variable",
+                "latex": "X=153\\Longrightarrow Z=-1,\\qquad X=170.5\\Longrightarrow Z=2.5"
+              },
+              {
+                "type": "prose",
+                "text": "標準正規分布は0を中心に左右対称です。したがって、表の \\(p(1.00)=0.3413\\) と \\(p(2.50)=0.4938\\) を足せば、この区間に入る確率が得られます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "calculate-probability",
+                "latex": "P(153\\leqq X\\leqq170.5)=0.3413+0.4938=0.8351"
+              },
+              {
+                "type": "prose",
+                "text": "百分率は83.51%なので、小数第1位を四捨五入すると84%です。また、\\(Z=-2.00\\) より小さい確率は \\(0.5-0.4772=0.0228\\) で2.5%以下です。このとき \\(X=158-2\\cdot5=148\\) です。次の整数149 cmでは \\(Z=-1.80\\) となり、下側確率は \\(0.5-0.4641=0.0359\\) で2.5%を超えます。"
+              },
+              {
+                "type": "result",
+                "text": "（あ）\\(84\\)、（い）\\(148\\)"
+              }
+            ]
+          },
+          {
+            "title": "（2）確率密度の全積分を1にする",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "確率密度関数は、とりうる範囲全体で積分すると1になります。部分積分により \\(\\int x\\log x\\,dx=\\frac{x^2}{2}\\log x-\\frac{x^2}{4}\\) です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "definite-integral",
+                "latex": "\\begin{aligned}1&=r\\int_1^e x\\log x\\,dx\\\\&=r\\left[\\frac{x^2}{2}\\log x-\\frac{x^2}{4}\\right]_1^e\\\\&=r\\left(\\frac{e^2}{4}+\\frac14\\right)=r\\frac{e^2+1}{4}\\end{aligned}"
+              },
+              {
+                "type": "result",
+                "text": "（う）\\(\\displaystyle \\frac{4}{e^2+1}\\)"
+              }
+            ]
+          },
+          {
+            "title": "（3）区分求積法で極限を積分に直す",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "\\(x_k=k\\pi/(2n)\\) とおくと、区間 \\([0,\\pi/2]\\) の分割幅は \\(\\Delta x=\\pi/(2n)\\) です。問題の和には \\(1/n=(2/\\pi)\\Delta x\\) が掛かっていると見ます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "riemann-sum-to-integral",
+                "latex": "\\begin{aligned}\\lim_{n\\to\\infty}\\frac1n\\sum_{k=1}^n\\sin^3\\frac{k\\pi}{2n}&=\\frac2\\pi\\int_0^{\\pi/2}\\sin^3x\\,dx\\\\&=\\frac2\\pi\\left[-\\cos x+\\frac13\\cos^3x\\right]_0^{\\pi/2}\\\\&=\\frac2\\pi\\cdot\\frac23=\\frac4{3\\pi}\\end{aligned}"
+              },
+              {
+                "type": "result",
+                "text": "（え）\\(\\displaystyle \\frac{4}{3\\pi}\\)"
+              }
+            ]
+          },
+          {
+            "title": "（4）3乗根がつくる正三角形の面積を求める",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "右辺を極形式に直すと、絶対値は24、偏角は \\(\\pi/3\\) です。したがって3つの3乗根は、絶対値 \\(R=\\sqrt[3]{24}=2\\sqrt[3]3\\)、偏角の差 \\(2\\pi/3\\) をもちます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "complex-roots-polar",
+                "latex": "12(1+\\sqrt3i)=24\\left(\\cos\\frac\\pi3+i\\sin\\frac\\pi3\\right),\\qquad R=2\\sqrt[3]3"
+              },
+              {
+                "type": "prose",
+                "text": "3点は原点を中心とする半径 \\(R\\) の円周を3等分するので、正三角形をつくります。その1辺は \\(2R\\sin(\\pi/3)=\\sqrt3R\\) です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "triangle-area",
+                "latex": "\\begin{aligned}[\\triangle ABC]&=\\frac{\\sqrt3}{4}(\\sqrt3R)^2=\\frac{3\\sqrt3}{4}R^2\\\\&=\\frac{3\\sqrt3}{4}\\left(2\\sqrt[3]3\\right)^2=3^{13/6}\\end{aligned}"
+              },
+              {
+                "type": "prose",
+                "text": "面積が \\(3^s\\) なので、指数を比べます。"
+              },
+              {
+                "type": "result",
+                "text": "（お）\\(\\displaystyle \\frac{13}{6}\\)"
+              }
+            ]
+          },
+          {
+            "title": "（5）無理数性を使って整数の組を絞る",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "分母 \\(c\\sqrt2+d\\) は0ではありません。実際、0なら \\(c=d=0\\) となり、条件に反します。そこで分母を払います。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-equation",
+                "latex": "a\\sqrt2+b=2\\sqrt2(c\\sqrt2+d)=4c+2d\\sqrt2"
+              },
+              {
+                "type": "prose",
+                "text": "両辺の有理数部分と \\(\\sqrt2\\) の係数を比べます。これは、\\(u+v\\sqrt2=0\\) を満たす有理数 \\(u,v\\) はともに0であることによります。よって \\(a=2d\\)、\\(b=4c\\) です。\\(a,b\\geqq0\\) から \\(c,d\\geqq0\\) もわかります。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-equation",
+                "latex": "ad+bc=18\\Longrightarrow2d^2+4c^2=18\\Longrightarrow d^2+2c^2=9"
+              },
+              {
+                "type": "prose",
+                "text": "\\(2c^2\\leqq9\\) より \\(c=0,1,2\\) だけを調べれば十分です。\\(c=0\\) では \\(d=3\\)、\\(c=1\\) では整数解がなく、\\(c=2\\) では \\(d=1\\) です。いずれも元の4条件を満たします。"
+              },
+              {
+                "type": "result",
+                "text": "\\((a,b,c,d)=(6,0,0,3),(2,8,2,1)\\)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-02",
+        "label": "大問Ⅱ",
+        "order": 2,
+        "answerKey": [
+          {
+            "label": "（1）漸化式",
+            "entries": [
+              { "mark": "あ", "value": "\\frac12" },
+              { "mark": "い", "value": "\\frac12" },
+              { "mark": "う", "value": "\\frac35" },
+              { "mark": "え", "value": "\\frac25" },
+              { "mark": "お", "value": "\\frac34" }
+            ]
+          },
+          {
+            "label": "（1）一般項",
+            "entries": [
+              { "mark": "か", "value": "(\\frac12)^n" },
+              { "mark": "き", "value": "5" },
+              { "mark": "く", "value": "\\frac35" },
+              { "mark": "け", "value": "\\frac12" },
+              { "mark": "こ", "value": "4" },
+              { "mark": "さ", "value": "\\frac34" },
+              { "mark": "し", "value": "-2" },
+              { "mark": "す", "value": "\\frac35" },
+              { "mark": "せ", "value": "\\frac12" }
+            ]
+          },
+          {
+            "label": "（2）",
+            "entries": [
+              { "mark": "そ", "value": "\\frac12n+1" },
+              { "mark": "た", "value": "3" },
+              { "mark": "ち", "value": "-\\frac14" },
+              { "mark": "つ", "value": "-1" },
+              { "mark": "て", "value": "-\\frac32" }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "（1）白玉の個数ごとに状態遷移を整理する",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "赤玉は常に3個です。白玉が3個、2個、1個のとき、次に赤玉を引いて同じ状態にとどまる確率は、それぞれ \\(3/6\\)、\\(3/5\\)、\\(3/4\\) です。白玉を引くと、白玉の個数が1個減ります。"
+              },
+              {
+                "type": "table",
+                "caption": "1回の操作による状態遷移",
+                "headers": ["操作前の白玉", "同じ個数にとどまる", "1個減る"],
+                "rows": [
+                  ["3個", "\\(\\frac12\\)", "\\(\\frac12\\)"],
+                  ["2個", "\\(\\frac35\\)", "\\(\\frac25\\)"],
+                  ["1個", "\\(\\frac34\\)", "\\(\\frac14\\)"]
+                ]
+              },
+              {
+                "type": "prose",
+                "text": "\\(n+1\\) 回後に各状態にいる直前の状態を漏れなく分けると、次の漸化式になります。白玉1個の状態へは、白玉2個から白玉を引く場合と、白玉1個から赤玉を引く場合に限られます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "state-transition-recurrence",
+                "latex": "\\begin{cases}a_{n+1}=\\dfrac12a_n,\\\\b_{n+1}=\\dfrac12a_n+\\dfrac35b_n,\\\\c_{n+1}=\\dfrac25b_n+\\dfrac34c_n.\\end{cases}"
+              },
+              {
+                "type": "prose",
+                "text": "1回目の操作後は、赤玉を引けば白玉3個、白玉を引けば白玉2個です。したがって \\(a_1=b_1=1/2\\)、\\(c_1=0\\) です。まず \\(a_n\\) は公比 \\(1/2\\) の等比数列です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-recurrence",
+                "latex": "a_n=\\left(\\frac12\\right)^n"
+              },
+              {
+                "type": "prose",
+                "text": "次に \\(a_n\\) を \\(b_n\\) の漸化式へ代入します。\\(B_n=b_n+5(1/2)^n\\) とおくと \\(B_{n+1}=(3/5)B_n\\)、\\(B_1=3\\) になります。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-recurrence",
+                "latex": "b_n=5\\left\\{\\left(\\frac35\\right)^n-\\left(\\frac12\\right)^n\\right\\}"
+              },
+              {
+                "type": "prose",
+                "text": "最後に、この \\(b_n\\) を \\(c_n\\) の漸化式へ代入します。\\(C_n=c_n+\\frac{40}{3}(3/5)^n-8(1/2)^n\\) とおくと \\(C_{n+1}=(3/4)C_n\\)、\\(C_1=4\\) です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-recurrence",
+                "latex": "c_n=4\\left\\{\\left(\\frac34\\right)^{n-1}-2\\left(\\frac35\\right)^{n-1}+\\left(\\frac12\\right)^{n-1}\\right\\}"
+              },
+              {
+                "type": "result",
+                "text": "（あ）\\(\\frac12\\)、（い）\\(\\frac12\\)、（う）\\(\\frac35\\)、（え）\\(\\frac25\\)、（お）\\(\\frac34\\)、（か）\\((\\frac12)^n\\)、（き）\\(5\\)、（く）\\(\\frac35\\)、（け）\\(\\frac12\\)、（こ）\\(4\\)、（さ）\\(\\frac34\\)、（し）\\(-2\\)、（す）\\(\\frac35\\)、（せ）\\(\\frac12\\)"
+              }
+            ]
+          },
+          {
+            "title": "（2）得点の分布から期待値と分散を求める",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "得点できるのは白玉がまだ3個あるときに赤玉を引いた場合です。一度でも白玉を引けば、その後は白玉が3個に戻らないので得点できません。したがって \\(0\\leqq k\\leqq n-1\\) では、\\(X_n=k\\) となるのは最初の \\(k\\) 回で赤玉を引き、\\(k+1\\) 回目に白玉を引く場合です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "calculate-probability",
+                "latex": "P(X_n=k)=\\left(\\frac12\\right)^{k+1}\\ (0\\leqq k\\leqq n-1),\\qquad P(X_n=n)=\\left(\\frac12\\right)^n"
+              },
+              {
+                "type": "prose",
+                "text": "\\(Y_n=2^{X_n}\\) なので、各値にその確率を掛けて足します。\\(k<n\\) の各項は \\(2^k(1/2)^{k+1}=1/2\\) です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "expected-value",
+                "latex": "E(Y_n)=\\sum_{k=0}^{n-1}2^k\\left(\\frac12\\right)^{k+1}+2^n\\left(\\frac12\\right)^n=\\frac n2+1"
+              },
+              {
+                "type": "prose",
+                "text": "分散には \\(E(Y_n^2)\\) が必要です。今度は \\(Y_n^2=4^{X_n}\\) を同じ分布に代入します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "variance",
+                "latex": "\\begin{aligned}E(Y_n^2)&=\\sum_{k=0}^{n-1}4^k\\left(\\frac12\\right)^{k+1}+4^n\\left(\\frac12\\right)^n\\\\&=\\frac12\\sum_{k=0}^{n-1}2^k+2^n=\\frac{3\\cdot2^n-1}{2},\\\\V(Y_n)&=E(Y_n^2)-\\{E(Y_n)\\}^2\\\\&=3\\cdot2^{n-1}-\\frac14n^2-n-\\frac32.\\end{aligned}"
+              },
+              {
+                "type": "result",
+                "text": "（そ）\\(\\frac12n+1\\)、（た）\\(3\\)、（ち）\\(-\\frac14\\)、（つ）\\(-1\\)、（て）\\(-\\frac32\\)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-03",
+        "label": "大問Ⅲ",
+        "order": 3,
+        "answerKey": [
+          {
+            "label": "（1）（i）",
+            "entries": [
+              { "mark": "あ", "value": "24x^6-4x^2+1" }
+            ]
+          },
+          {
+            "label": "（1）（ii）",
+            "entries": [
+              { "mark": "結論", "value": "a_m=\\cdots=a_0=0" }
+            ]
+          },
+          {
+            "label": "（2）（i）",
+            "entries": [
+              { "mark": "い", "value": "a" },
+              { "mark": "う", "value": "3" },
+              { "mark": "え", "value": "-3a" },
+              { "mark": "お", "value": "-6a^2+4a-1" },
+              { "mark": "か", "value": "3a^3" }
+            ]
+          },
+          {
+            "label": "（2）（ii）",
+            "entries": [
+              { "mark": "き", "value": "\\frac13" },
+              { "mark": "く", "value": "1" },
+              { "mark": "け", "value": "\\frac{3a-\\sqrt{9a^2-12a+3}}{3}" },
+              { "mark": "こ", "value": "\\frac{3a+2\\sqrt{9a^2-12a+3}}{3}" }
+            ]
+          },
+          {
+            "label": "（2）（iii）",
+            "entries": [
+              { "mark": "さ", "value": "-3a^2+4a-1" },
+              { "mark": "し", "value": "a^3" },
+              { "mark": "す", "value": "a^2e^{-a^2/2}" },
+              { "mark": "せ", "value": "\\frac2e" }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "（1）（i）合成して同類項をまとめる",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "\\(u=Q(x)=2x^2+1\\) を \\(P(u)=3u^3-9u^2+7u\\) に代入し、次数ごとにまとめます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "expand-to-coefficients",
+                "latex": "\\begin{aligned}P(Q(x))&=3(2x^2+1)^3-9(2x^2+1)^2+7(2x^2+1)\\\\&=24x^6-4x^2+1.\\end{aligned}"
+              },
+              {
+                "type": "result",
+                "text": "（あ）\\(24x^6-4x^2+1\\)"
+              }
+            ]
+          },
+          {
+            "title": "（1）（ii）最高次項から零多項式であることを示す",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "背理法で示します。\\(G\\) が零多項式でないと仮定し、係数が0でない最大の次数を \\(k\\) とします。このとき \\(a_k\\ne0\\) で、\\(G\\) の次数は \\(k\\) です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "composition-leading-term",
+                "latex": "G(H(x))=a_k\\{b_nx^n+\\cdots\\}^k+\\text{（これより低い次数の項）}"
+              },
+              {
+                "type": "prose",
+                "text": "合成後の最高次項は \\(a_kb_n^kx^{kn}\\) です。\\(a_k\\ne0\\)、\\(b_n\\ne0\\) なので、この係数は0ではありません。これは \\(G(H(x))=0\\) が恒等式であることに反します。したがって \\(G\\) は零多項式でなければならず、すべての係数が0です。"
+              },
+              {
+                "type": "result",
+                "text": "\\(a_m=\\cdots=a_1=a_0=0\\)"
+              }
+            ]
+          },
+          {
+            "title": "（2）（i）恒等式から多項式gを決める",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "積分区間をつなげると、\\(g(x)+h(x)=\\int_0^1f(t)\\,dt=g(1)=a\\) です。よって \\(g(x)=a-h(x)\\) です。"
+              },
+              {
+                "type": "note",
+                "label": "括弧全体の符号に注意",
+                "text": "条件の恒等式は \\(g(h(x))-\\bigl(\\{h(x)\\}^3+b\\{g(x)\\}^2+ch(x)+d\\bigr)=0\\) です。括弧内の第1項だけを引くのではありません。"
+              },
+              {
+                "type": "prose",
+                "text": "\\(K(u)=g(u)-\\{u^3+b(a-u)^2+cu+d\\}\\) とおきます。条件に \\(g(x)=a-h(x)\\) を代入すると \\(K(h(x))=0\\) です。\\(h'(x)=-f(x)\\) であり、\\(f\\) は0でない多項式なので、\\(h\\) は定数ではありません。（1）（ii）より \\(K\\) は零多項式です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "composition-to-identity",
+                "latex": "g(x)=x^3+b(a-x)^2+cx+d"
+              },
+              {
+                "type": "prose",
+                "text": "右辺の3次項は \\(x^3\\) だけなので、\\(g\\) は3次式です。また、定義と第2条件から \\(g(0)=0\\)、\\(g(1)=a\\)、\\(g'(1)=f(1)=2(1-a)\\) です。これらを、いま得た \\(g(x)\\) とその導関数に代入します。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-equation",
+                "latex": "\\begin{cases}a^2b+d=0,\\\\1+b(a-1)^2+c+d=a,\\\\3-2b(a-1)+c=2(1-a).\\end{cases}"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-equation",
+                "latex": "\\begin{aligned}d&=-a^2b,\\qquad c=a-1-b(1-2a),\\\\3-2b(a-1)+c&=2(1-a)\\Longrightarrow2+a+b=2-2a,\\\\b&=-3a,\\qquad c=-6a^2+4a-1,\\qquad d=3a^3.\\end{aligned}"
+              },
+              {
+                "type": "prose",
+                "text": "これらを恒等式へ戻すと、以後使う形は \\(g(x)=x^3-3ax^2+(4a-1)x\\) です。"
+              },
+              {
+                "type": "result",
+                "text": "（い）\\(a\\)、（う）\\(3\\)、（え）\\(-3a\\)、（お）\\(-6a^2+4a-1\\)、（か）\\(3a^3\\)"
+              }
+            ]
+          },
+          {
+            "title": "（2）（ii）導関数の2つの実数解から極値を判定する",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "3次関数 \\(g\\) が極大値と極小値をもつための必要十分条件は、2次方程式 \\(g'(x)=0\\) が異なる2つの実数解をもつことです。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "differentiate",
+                "latex": "g'(x)=3x^2-6ax+(4a-1)"
+              },
+              {
+                "type": "formula",
+                "purposeId": "two-real-roots-condition",
+                "latex": "\\frac{D}{4}=9a^2-3(4a-1)=3(3a-1)(a-1)>0"
+              },
+              {
+                "type": "prose",
+                "text": "積が正になる範囲は \\(a<1/3\\) または \\(a>1\\) です。この条件のもとで \\(D_0=9a^2-12a+3\\) とおき、\\(g'(x)=0\\) の小さい方の解を \\(\\alpha\\)、大きい方を \\(\\beta\\) とします。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-equation",
+                "latex": "\\alpha=\\frac{3a-\\sqrt{D_0}}3,\\qquad\\beta=\\frac{3a+\\sqrt{D_0}}3"
+              },
+              {
+                "type": "prose",
+                "text": "\\(g'\\) は上に開く2次式なので、その符号は \\(( -\\infty,\\alpha)\\) で正、\\((\\alpha,\\beta)\\) で負、\\((\\beta,+\\infty)\\) で正です。したがって \\(x=\\alpha\\) で極大値 \\(M\\) をとります。さらに \\(g(x)-M\\) は \\(x=\\alpha\\) を重解にもつ3次式です。残りの解を \\(\\gamma\\) とすると、最高次係数が1なので次のように因数分解できます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "factor-polynomial",
+                "latex": "g(x)-M=(x-\\alpha)^2(x-\\gamma)"
+              },
+              {
+                "type": "prose",
+                "text": "左辺の \\(x^2\\) の係数は \\(-3a\\)、右辺は \\(-(2\\alpha+\\gamma)\\) です。係数を比較して \\(\\gamma=3a-2\\alpha=(3a+2\\sqrt{D_0})/3\\) を得ます。"
+              },
+              {
+                "type": "result",
+                "text": "（き）\\(\\frac13\\)、（く）\\(1\\)、（け）\\(\\displaystyle\\frac{3a-\\sqrt{9a^2-12a+3}}3\\)、（こ）\\(\\displaystyle\\frac{3a+2\\sqrt{9a^2-12a+3}}3\\)"
+              }
+            ]
+          },
+          {
+            "title": "（2）（iii）接線との差を積分する",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "接点の \\(x\\) 座標は \\(a\\) です。傾き \\(g'(a)\\) と切片 \\(g(a)-ag'(a)\\) を順に求めます。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "tangent-line",
+                "latex": "g'(a)=-3a^2+4a-1,\\qquad g(a)-ag'(a)=a^3"
+              },
+              {
+                "type": "prose",
+                "text": "したがって接線は \\(y=(-3a^2+4a-1)x+a^3\\) です。また、\\(g(x)\\) からこの接線の式を引くと \\((x-a)^3\\) になります。問題の指数関数は、括弧 \\(\\{g(x)-接線-2(x-a)\\}\\) 全体に掛かっています。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "definite-integral",
+                "latex": "F(a)=\\int_0^a\\{(x-a)^3-2(x-a)\\}e^{-(x-a)^2/2}\\,dx"
+              },
+              {
+                "type": "prose",
+                "text": "\\(t=x-a\\) とおくと積分区間は \\(-a\\) から0です。ここで \\(\\frac{d}{dt}(t^2e^{-t^2/2})=(2t-t^3)e^{-t^2/2}\\) なので、被積分関数はその符号を反転したものです。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "definite-integral",
+                "latex": "F(a)=-\\left[t^2e^{-t^2/2}\\right]_{-a}^{0}=a^2e^{-a^2/2}"
+              },
+              {
+                "type": "prose",
+                "text": "最大値を調べるために微分します。指数関数は常に正なので、導関数の符号は \\(a(2-a^2)\\) で決まります。\\(F(a)\\to0\\ (a\\to\\pm\\infty)\\)、\\(F(0)=0\\) も合わせると、\\(a=\\pm\\sqrt2\\) のときが最大です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "differentiate",
+                "latex": "F'(a)=a(2-a^2)e^{-a^2/2}"
+              },
+              {
+                "type": "result",
+                "text": "（さ）\\(-3a^2+4a-1\\)、（し）\\(a^3\\)、（す）\\(a^2e^{-a^2/2}\\)、（せ）\\(\\frac2e\\)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "major-question-04",
+        "label": "大問Ⅳ",
+        "order": 4,
+        "answerKey": [
+          {
+            "label": "（1）",
+            "entries": [
+              { "mark": "あ", "value": "\\frac{2-p}{2}" },
+              { "mark": "い", "value": "\\frac{2-2p}{2-p}" },
+              { "mark": "う", "value": "\\frac23" },
+              { "mark": "え", "value": "\\frac{2p}{2-p}" },
+              { "mark": "お", "value": "\\frac{3p-2}{2}" }
+            ]
+          },
+          {
+            "label": "（2）（i）",
+            "entries": [
+              { "mark": "か", "value": "\\frac{a_1}{b_1}" }
+            ]
+          },
+          {
+            "label": "（2）（ii）",
+            "entries": [
+              { "mark": "き", "value": "\\frac a2" },
+              { "mark": "く", "value": "\\frac{2-b}{2}" },
+              { "mark": "け", "value": "\\frac{a}{2-b}" },
+              { "mark": "こ", "value": "\\frac{2-2b}{2-b}" },
+              { "mark": "さ", "value": "\\frac23" },
+              { "mark": "し", "value": "2-2a" },
+              { "mark": "す", "value": "\\frac{2-2a}{a}" },
+              { "mark": "せ", "value": "\\frac{3a}{2}" },
+              { "mark": "そ", "value": "\\frac{3b-2}{2}" }
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "title": "（1）正方形を反射して経路を一直線にする",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "辺で等しい角度に折れ曲がる経路は、正方形をその辺に関して反射すると一直線になります。上辺、右辺、下辺の順に正方形を反射すると、\\(P_0\\) と、\\(P_3(p,0)\\) を移した点 \\(P'_3(2-p,2)\\) を結ぶ直線を考えればよいことになります。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "unfold-reflection",
+                "latex": "P_0P'_3:\\quad y=\\frac{2}{2-p}x"
+              },
+              {
+                "type": "prose",
+                "text": "この直線と \\(y=1\\) の交点の \\(x\\) 座標が \\(p_1\\) です。また、直線と \\(x=1\\) の交点の展開図上の \\(y\\) 座標は \\(2/(2-p)\\) なので、元の正方形へ折り戻すと \\(q_2=2-2/(2-p)\\) です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-equation",
+                "latex": "p_1=\\frac{2-p}{2},\\qquad q_2=2-\\frac2{2-p}=\\frac{2-2p}{2-p}"
+              },
+              {
+                "type": "figure",
+                "assetId": "a13-square-reflection-case1"
+              },
+              {
+                "type": "prose",
+                "text": "\\(P'_3\\) の先で直線が先に \\(x=2\\) へ達する場合、折り戻した \\(P_4\\) は左辺上にあります。その交点の \\(y\\) 座標が3以下であることから \\(4/(2-p)\\leqq3\\)、すなわち \\(0<p\\leqq2/3\\) です。このとき、折り戻した縦座標は \\(4/(2-p)-2=2p/(2-p)\\) です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "unfold-reflection",
+                "latex": "0<p\\leqq\\frac23:\\quad (p_4,q_4)=\\left(0,\\frac{2p}{2-p}\\right)"
+              },
+              {
+                "type": "figure",
+                "assetId": "a13-square-reflection-case2"
+              },
+              {
+                "type": "prose",
+                "text": "\\(2/3\\leqq p<1\\) では直線が先に \\(y=3\\) へ達するため、折り戻した \\(P_4\\) は上辺上です。展開図での交点の \\(x\\) 座標は \\(3(2-p)/2\\) であり、右辺に関する反射を戻すと \\(p_4=2-3(2-p)/2=(3p-2)/2\\) です。\\(p=2/3\\) では2つの場合がともに頂点 \\((0,1)\\) を与えます。"
+              },
+              {
+                "type": "result",
+                "text": "（あ）\\(\\frac{2-p}{2}\\)、（い）\\(\\frac{2-2p}{2-p}\\)、（う）\\(\\frac23\\)、（え）\\(\\frac{2p}{2-p}\\)、（お）\\(\\frac{3p-2}{2}\\)"
+              }
+            ]
+          },
+          {
+            "title": "（2）（i）直線と平面の交点を求める",
+            "blocks": [
+              {
+                "type": "prose",
+                "text": "2点 \\((0,0,0)\\)、\\((a_1,b_1,0)\\) を通る直線を、実数 \\(t\\) を使って \\((x,y,z)=t(a_1,b_1,0)\\) と表します。平面 \\(y=1\\) 上では \\(tb_1=1\\) なので \\(t=1/b_1\\) です。"
+              },
+              {
+                "type": "formula",
+                "purposeId": "solve-equation",
+                "latex": "(x,y,z)=\\left(\\frac{a_1}{b_1},1,0\\right)"
+              },
+              {
+                "type": "prose",
+                "text": "問題文の展開によれば、この交点の \\(x\\) 座標が \\(a_2\\) です。"
+              },
+              {
+                "type": "result",
+                "text": "（か）\\(\\displaystyle\\frac{a_1}{b_1}\\)、したがって \\(a_2=\\frac{a_1}{b_1}\\)"
+              }
+            ]
+          },
+          {
+            "title": "（2）（ii）公開用問題データの修復後に解説を確定",
+            "blocks": [
+              {
+                "type": "note",
+                "label": "解説の確認待ち",
+                "text": "公開用にHTML化された問題では、各 \\(Q_i\\) における等角条件を定める面・共有線分の記述が省略されています。この条件がないまま立方体の反射順序を推測すると、必要十分条件の説明が成立しません。そのため、空欄値は原資料と照合したうえで掲げますが、導出と立方体図は問題データの修復後に独立検算して追記します。"
+              },
+              {
+                "type": "result",
+                "text": "（き）\\(\\frac a2\\)、（く）\\(\\frac{2-b}{2}\\)、（け）\\(\\frac{a}{2-b}\\)、（こ）\\(\\frac{2-2b}{2-b}\\)、（さ）\\(\\frac23\\)、（し）\\(2-2a\\)、（す）\\(\\frac{2-2a}{a}\\)、（せ）\\(\\frac{3a}{2}\\)、（そ）\\(\\frac{3b-2}{2}\\)"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "contentProvenance": "original_editorial",
+    "restrictedSourceCopied": false,
+    "publicationCandidate": true,
+    "rightsStatus": "original_editorial",
+    "needsHumanReview": true,
+    "reference": "慶應義塾大学2025年度一般選抜 数学の掲載問題をもとにレクサスE.C.が独自作成"
+  },
+  "links": {
+    "questions": "/past-exam-library/keio/2025/mathematics/questions/",
+    "universityLibrary": "/past-exam-library/keio/",
+    "analysis": "/past-exam-library/keio/2025/mathematics/analysis/",
+    "universityInformation": "/information-keio/"
+  }
+}

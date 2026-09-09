@@ -130,6 +130,24 @@ export const universityLibraries: UniversityLibrary[] = [
     informationLabel: "自治医科大学 入試情報",
     currentStatus: "2025年度数学の問題・解答解説・分析を閲覧できます",
   },
+  {
+    id: "keio",
+    name: "慶應義塾大学",
+    examLabel: "一般選抜",
+    stageLabel: "一次試験",
+    years: [
+      { year: "2026", label: "最新年度", tone: "latest" },
+      { year: "2025", label: "公開審査中", tone: "active" },
+      { year: "2024", label: "掲載準備中", tone: "placeholder" },
+      { year: "2023", label: "掲載準備中", tone: "placeholder" },
+      { year: "2022", label: "掲載準備中", tone: "placeholder" },
+    ],
+    strategyPath: "/keio-university-entrance-exam2027-measures/",
+    strategyLabel: "2027年度 一般選抜対策",
+    informationPath: "/information-keio/",
+    informationLabel: "慶應義塾大学 医学部 入試情報",
+    currentStatus: "2025年度数学を制作中です（原文・権利・図版の公開審査中）",
+  },
 ];
 
 export const libraryPathFor = (universityId: string) =>

@@ -1,0 +1,442 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "keio-2025-general-mathematics",
+    "university_id": "keio",
+    "university_name": "慶應義塾大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 100,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "問題原本p.1の科目扉に数学100分と明記されている。"
+    },
+    "total_points": 150
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "shidai-igakubu-gokaku-dokuhon/projects/universities/keio/past-exams/working/2025/general/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "d5b90ec511289b0e0fad4ff96d575d4a30bf893e478bc85d27ea067ae5262609",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "I",
+      "sourceTitle": "統計・積分・複素数・整数の小問集合",
+      "requirements": [
+        0.6,
+        3,
+        2.8,
+        3.4,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "（1）（あ・い）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "平均と標準偏差から標準化し、与えられた正規分布表を読む基本手順で完結する。",
+          "strategyReason": "表と標準化の対応が明確で、両層が早期に確保したい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "（2）（う）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "部分積分を正確に実行し、区間端で評価する必要がある。",
+          "strategyReason": "確率密度の積分条件が見えれば短時間の定型計算になる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-3",
+          "label": "（3）（え）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "区分幅π/(2n)に合わせて係数を補う必要がある。",
+          "strategyReason": "区分求積の型を認識できれば計算は短い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-4",
+          "label": "（4）（お）",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "極形式、ド・モアブル、正三角形の面積を連続して扱う。",
+          "strategyReason": "得意層には典型だが、苦手層は偏角と面積の接続に時間を要する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-5",
+          "label": "（5）記述",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "無理数性を用いた背理法を明示し、二次不定方程式の整数解を漏れなく調べる記述問題である。",
+          "strategyReason": "方針は素直だが答案記述まで含めると時間が必要。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "II",
+      "sourceTitle": "白玉除去過程と指数得点の期待値・分散",
+      "requirements": [
+        0,
+        4,
+        4,
+        3.5,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "（1）（あ〜せ）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 10,
+          "difficultyReason": "状態別の遷移確率を整理し、非同次型を補助数列で等比化する必要がある。",
+          "strategyReason": "計算は長いが誘導があり、まとまった時間を確保して処理する価値がある。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "（2）（そ〜て）",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "X_nの幾何型分布を見抜けば等比和で進むが、二乗期待値まで正確に処理する必要がある。",
+          "strategyReason": "得意層は分布を直接作って取れるが、苦手層は指数変換と分散計算が重い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "III",
+      "sourceTitle": "合成多項式・積分で定義された三次関数",
+      "requirements": [
+        0.4,
+        4.2,
+        3.8,
+        3.4,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1i",
+          "label": "（1）（i）（あ）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "代入と展開だけで完結する短い計算である。",
+          "strategyReason": "独立した展開問題で最優先の得点源。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-1ii",
+          "label": "（1）（ii）証明",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "最高次係数またはHの値域と根の個数を用いて、論理を文章化する必要がある。",
+          "strategyReason": "計算は少ないが証明の構成力が必要。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2i",
+          "label": "（2）（i）（い〜か）",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 10,
+          "difficultyReason": "前問の証明を関数関係へ適用し、3本の条件を連立する複合処理である。",
+          "strategyReason": "後続の土台だが論理と計算が重く、強い層も時間を確保して扱う。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1ii"
+            ],
+            "strong_subject": [
+              "math-q3-1ii"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-2ii",
+          "label": "（2）（ii）（き〜こ）",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 10,
+          "difficultyReason": "パラメータ条件、増減、重解をもつ三次方程式の係数比較を連続して行う。",
+          "strategyReason": "前提依存が強く、式も長いため後半の選択問題とする。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-2i"
+            ],
+            "strong_subject": [
+              "math-q3-2i"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-2iii",
+          "label": "（2）（iii）（さ〜せ）",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 10,
+          "difficultyReason": "接線計算、平行移動、置換積分、パラメータ微分を長く正確につなぐ必要がある。",
+          "strategyReason": "完答までの工程が多く、強い層も残時間を見て着手する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-2i"
+            ],
+            "strong_subject": [
+              "math-q3-2i"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q4",
+      "label": "IV",
+      "sourceTitle": "正方形・立方体の反射折れ線",
+      "requirements": [
+        4.3,
+        4,
+        3.7,
+        4.3,
+        4.3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "（1）（あ〜お）",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 10,
+          "difficultyReason": "等角条件を反射と結び付け、展開後の交点がどの辺に乗るかを場合分けする発想が難しい。",
+          "strategyReason": "反射の発想が見えないと停滞するため、強い層も後半に回す。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-2i",
+          "label": "（2）（i）（か）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "直線の比例式から平面との交点を求める局所的な計算である。",
+          "strategyReason": "大問全体は重いが、この小問は独立に交点計算だけで取れる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-2ii",
+          "label": "（2）（ii）（き〜そ）",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "捨てる！",
+          "points": 10,
+          "difficultyReason": "三次元の複数面反射と範囲条件を同時に管理する本試験最重量級の問題である。",
+          "strategyReason": "前半の確実な得点を守るため、100分では原則として最後の挑戦枠に限定する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q4-2i"
+            ],
+            "strong_subject": [
+              "math-q4-2i"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 150,
+    "timeBudgetMinutes": 100,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 70,
+        "targetPercent": 46.7,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 54.4,
+        "maximum": {
+          "points": 70,
+          "minutes": 99.4,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q3-1i",
+            "math-q3-1ii",
+            "math-q4-2i"
+          ]
+        },
+        "now": {
+          "points": 40,
+          "minutes": 75.4,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q3-1i"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 90,
+          "minutes": 120.4,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q3-1i",
+            "math-q3-1ii",
+            "math-q4-2i"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 112,
+        "targetPercent": 74.7,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 13.6,
+        "maximum": {
+          "points": 140,
+          "minutes": 96.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1i",
+            "math-q3-1ii",
+            "math-q3-2i",
+            "math-q3-2ii",
+            "math-q3-2iii",
+            "math-q4-1",
+            "math-q4-2i"
+          ]
+        },
+        "now": {
+          "points": 90,
+          "minutes": 56.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-2",
+            "math-q3-1i",
+            "math-q3-1ii",
+            "math-q4-2i"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 140,
+          "minutes": 96.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1i",
+            "math-q3-1ii",
+            "math-q3-2i",
+            "math-q3-2ii",
+            "math-q3-2iii",
+            "math-q4-1",
+            "math-q4-2i"
+          ]
+        }
+      }
+    ]
+  }
+}

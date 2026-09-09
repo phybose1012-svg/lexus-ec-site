@@ -107,10 +107,11 @@ test("whole-exam total is explicit and does not alter the subject scoring", () =
   for (const examTotal of [{ points: 50, subjectCount: 4 }, { points: 400, subjectCount: 0 }]) assert.throws(() => buildAnalysis(evidence, { ...editorial, examTotal }), /whole-exam/);
 });
 
-function targetFixture() {
+function targetFixture(totalPoints = 5) {
   const metadata = structuredClone(fixtureMetadata);
   metadata.package.id = "test-package";
-  metadata.package.total_points = 5;
+  metadata.package.total_points = totalPoints;
+  metadata.major_questions[0].subquestions[0].scoring.points = totalPoints;
   metadata.major_questions[0].subquestions[0].time = { initial_judgment_minutes: 0.5, execution_minutes: 2 };
   metadata.calculation_policy = {
     scoring: { basis: "provisional_editorial" },
@@ -128,18 +129,19 @@ function targetFixture() {
   const rows = [], cards = [];
   for (const id of ["weak", "strong"]) {
     const weak = id === "weak";
-    const target = weak ? 5 : 4;
+    const target = weak ? totalPoints : Math.floor(totalPoints * 0.8);
     const minutes = weak ? 5 : 2.5;
+    const targetPercent = Math.round((target / totalPoints * 100 + 1e-12) * 10) / 10;
     const rule = metadata.calculation_policy.target_optimization.profiles[`${id}_subject`];
     const profile = {
-      target_percent: target / 5 * 100,
-      target_plan: { theoretical_max_points: 5, theoretical_max_percent: 100, target_points: target, target_percent: target / 5 * 100, minutes, subquestion_ids: ["q1-1"], ...rule },
-      now: { points: weak ? 0 : 5, minutes: weak ? 2 : 2.5, subquestion_ids: weak ? [] : ["q1-1"] },
-      now_plus_later: { points: 5, minutes, subquestion_ids: ["q1-1"] },
+      target_percent: targetPercent,
+      target_plan: { theoretical_max_points: totalPoints, theoretical_max_percent: 100, target_points: target, target_percent: targetPercent, minutes, subquestion_ids: ["q1-1"], ...rule },
+      now: { points: weak ? 0 : totalPoints, minutes: weak ? 2 : 2.5, subquestion_ids: weak ? [] : ["q1-1"] },
+      now_plus_later: { points: totalPoints, minutes, subquestion_ids: ["q1-1"] },
     };
     derived.profiles[`${id}_subject`] = profile;
     cards.push(`<div class="target target--${id}">${weak ? "苦手" : "得意"}<strong>${profile.target_percent}%</strong></div>`);
-    rows.push(`<tr><th>${weak ? "苦手" : "得意"}科目</th><td>倍率</td><td><strong>${profile.target_percent}%（仮${target}点）</strong><small>理論最大 100%（仮5点）・${minutes}分</small></td>${[profile.now, profile.now_plus_later].map((p) => `<td><strong>${p.points / 5 * 100}%（仮配点 ${p.points}点）</strong><small>${p.minutes}分 / 編集試算</small></td>`).join("")}</tr>`);
+    rows.push(`<tr><th>${weak ? "苦手" : "得意"}科目</th><td>倍率</td><td><strong>${profile.target_percent}%（仮${target}点）</strong><small>理論最大 100%（仮${totalPoints}点）・${minutes}分</small></td>${[profile.now, profile.now_plus_later].map((p) => `<td><strong>${Math.round((p.points / totalPoints * 100 + 1e-12) * 10) / 10}%（仮配点 ${p.points}点）</strong><small>${p.minutes}分 / 編集試算</small></td>`).join("")}</tr>`);
   }
   return { metadata, derived, html: `${cards.join("")}<table class="profile-table"><tbody>${rows.join("")}</tbody></table>` };
 }
@@ -161,6 +163,14 @@ test("extract targets from HTML and validate companion points, time and selectio
   const missingPrerequisite = structuredClone(metadata);
   missingPrerequisite.major_questions[0].subquestions[0].optimization_prerequisites.weak_subject = ["missing"];
   assert.throws(() => extractTargetAnalysis(html, missingPrerequisite, derived), /prerequisite/);
+});
+
+test("accept a rounded target headline while preserving the exact derived percentage", () => {
+  const { html, metadata, derived } = targetFixture(6);
+  const roundedDisplay = html.replaceAll('66.7%', '67%');
+  const result = extractTargetAnalysis(roundedDisplay, metadata, derived);
+  assert.equal(result.profiles[1].targetPercent, 66.7);
+  assert.throws(() => extractTargetAnalysis(roundedDisplay.replace('<strong>67%</strong>', '<strong>68%</strong>'), metadata, derived), /target/);
 });
 
 test("preserve target/max distinction and select a concrete route to the goal", () => {

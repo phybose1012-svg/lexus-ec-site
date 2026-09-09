@@ -28,6 +28,15 @@ function sameNumber(actual, expected, label) {
   if (!Number.isFinite(actual) || actual !== expected) throw new Error(`Stale or invalid target ${label}`);
 }
 
+// Report hero cards are allowed to round a canonical one-decimal percentage to
+// a whole number for display. The strategy table immediately below still has
+// to carry, and is validated against, the exact derived percentage.
+function sameHeadlinePercent(actual, expected, label) {
+  if (!Number.isFinite(actual) || (actual !== expected && actual !== Math.round(expected))) {
+    throw new Error(`Stale or invalid target ${label}`);
+  }
+}
+
 export function validateTargetAnalysis(targets, questionIds) {
   if (!targets || targets.basis !== "provisional_editorial" || !Number.isFinite(targets.totalPoints) || !(targets.totalPoints > 0) || !Number.isFinite(targets.timeBudgetMinutes) || !(targets.timeBudgetMinutes > 0)) throw new Error("Missing or unsupported target assumptions");
   // The points are always an editorial estimate, but the per-subject time may be
@@ -67,9 +76,13 @@ export function extractTargetAnalysis(html, metadata, derived) {
     const target = cells[1]?.match(/^([\d.]+)%（仮([\d.]+)点） 理論最大 ([\d.]+)%（仮([\d.]+)点）・([\d.]+)分/);
     if (!target) throw new Error(`Unsupported target result row ${id}`);
     const percent = Number(capture(html, new RegExp(`<div class="target target--${id}">[^<]*<strong>([0-9.]+)%</strong>`), `${id} target headline`));
-    sameNumber(percent, profile.target_percent, `${id} headline`);
+    sameHeadlinePercent(percent, profile.target_percent, `${id} headline`);
     const plan = profile.target_plan;
-    [plan.target_percent, plan.target_points, plan.theoretical_max_percent, plan.theoretical_max_points, plan.minutes].forEach((n, i) => sameNumber(Number(target[i + 1]), n, `${id} result`));
+    sameHeadlinePercent(Number(target[1]), plan.target_percent, `${id} result target percent`);
+    sameNumber(Number(target[2]), plan.target_points, `${id} result target points`);
+    sameHeadlinePercent(Number(target[3]), plan.theoretical_max_percent, `${id} result maximum percent`);
+    sameNumber(Number(target[4]), plan.theoretical_max_points, `${id} result maximum points`);
+    sameNumber(Number(target[5]), plan.minutes, `${id} result maximum time`);
     sameNumber(plan.reliability_factor, rule.reliability_factor, `${id} reliability factor`);
     if (plan.rounding !== rule.rounding) throw new Error("Stale target rounding");
     const readPlan = (sourcePlan, isMaximum = false) => {
@@ -96,7 +109,7 @@ export function extractTargetAnalysis(html, metadata, derived) {
     const nowIds = questions.filter((q) => q.strategy[key] === "今解く！").map((q) => q.id).sort();
     if (JSON.stringify([...now.questionIds].sort()) !== JSON.stringify(nowIds)) throw new Error("Stale target priority selection");
     const scanMinutes = profileMinutes(questions, "initial_judgment_minutes", time.initial_judgment_multiplier);
-    return { id, targetPoints: Number(target[2]), targetPercent: percent, reliabilityFactor: rule.reliability_factor, rounding: rule.rounding, judgmentMultiplier: time.initial_judgment_multiplier, executionMultiplier: time.execution_multiplier, scanMinutes, maximum, now, nowPlusLater };
+    return { id, targetPoints: Number(target[2]), targetPercent: profile.target_percent, reliabilityFactor: rule.reliability_factor, rounding: rule.rounding, judgmentMultiplier: time.initial_judgment_multiplier, executionMultiplier: time.execution_multiplier, scanMinutes, maximum, now, nowPlusLater };
   });
   return validateTargetAnalysis({ basis: "provisional_editorial", timeBudgetBasis: policy.time_budget.basis, totalPoints: metadata.package.total_points, timeBudgetMinutes: policy.time_budget.minutes, profiles }, questions.map((q) => q.id));
 }

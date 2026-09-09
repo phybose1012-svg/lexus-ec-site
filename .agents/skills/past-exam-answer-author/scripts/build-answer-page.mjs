@@ -199,7 +199,22 @@ function renderBlock(block, label) {
   throw new Error(`${label} has unsupported type ${block.type}`);
 }
 
-function renderAnswerKey(major) {
+function resolveAnswerKeyValueRendering(document) {
+  const mode = document?.answerKeyValueRendering ?? "text";
+  if (mode !== "text" && mode !== "math") {
+    throw new Error("document.answerKeyValueRendering must be text or math");
+  }
+  return mode;
+}
+
+function renderAnswerKeyValue(value, mode) {
+  if (mode === "text") {
+    return `<span class="answer-key__value">${escapeHtml(value)}</span>`;
+  }
+  return `<span class="answer-key__value math-inline" data-katex="${escapeHtml(value)}" data-display-mode="false"></span>`;
+}
+
+function renderAnswerKey(major, valueRendering) {
   if (!Array.isArray(major.answerKey) || major.answerKey.length === 0) {
     throw new Error(`${major.id} must include an answer key`);
   }
@@ -213,7 +228,8 @@ function renderAnswerKey(major) {
         .map((entry, entryIndex) => {
           const mark = requireValue(entry.mark, `${major.id} ${questionLabel} entry ${entryIndex + 1} mark`);
           const value = requireValue(entry.value, `${major.id} ${questionLabel} entry ${entryIndex + 1} value`);
-          return `<span class="answer-key__slot" aria-label="${escapeHtml(`${mark}: ${value}`)}"><span class="answer-key__mark">${escapeHtml(mark)}</span><span class="answer-key__value">${escapeHtml(value)}</span></span>`;
+          const accessibleLabel = valueRendering === "text" ? ` aria-label="${escapeHtml(`${mark}: ${value}`)}"` : "";
+          return `<span class="answer-key__slot"${accessibleLabel}><span class="answer-key__mark">${escapeHtml(mark)}</span>${renderAnswerKeyValue(value, valueRendering)}</span>`;
         })
         .join("");
       return `<div class="answer-key__question"><dt class="answer-key__question-label">${escapeHtml(questionLabel)}</dt><dd class="answer-key__slots">${entries}</dd></div>`;
@@ -222,7 +238,7 @@ function renderAnswerKey(major) {
   return `<section class="answer-key-panel" aria-labelledby="${escapeHtml(major.id)}-answer-key"><h3 id="${escapeHtml(major.id)}-answer-key">解答</h3><dl class="answer-key">${questions}</dl></section>`;
 }
 
-function renderMajor(major, index) {
+function renderMajor(major, index, answerKeyValueRendering) {
   const id = requireValue(major.id, `major question ${index + 1} id`);
   const label = requireValue(major.label, `${id} label`);
   if (!/^major-question-\d{2}$/.test(id)) throw new Error(`${id} is not a valid major-question id`);
@@ -242,7 +258,7 @@ function renderMajor(major, index) {
       return `<section class="answer-explanation-section" aria-labelledby="${sectionId}"><h3 id="${sectionId}">${escapeHtml(title)}</h3>${blocks}</section>`;
     })
     .join("");
-  const html = `<article class="source-page-card major-question-card answer-major-card" id="${escapeHtml(id)}" data-major-question-id="${escapeHtml(id)}"><h2>${escapeHtml(label)} 解答・解説</h2>${renderAnswerKey(major)}<div class="answer-explanation">${sections}</div></article>`;
+  const html = `<article class="source-page-card major-question-card answer-major-card" id="${escapeHtml(id)}" data-major-question-id="${escapeHtml(id)}"><h2>${escapeHtml(label)} 解答・解説</h2>${renderAnswerKey(major, answerKeyValueRendering)}<div class="answer-explanation">${sections}</div></article>`;
   return {
     id,
     label,
@@ -276,8 +292,9 @@ if (!Array.isArray(source.document?.majorQuestions) || source.document.majorQues
 }
 
 const seenIds = new Set();
+const answerKeyValueRendering = resolveAnswerKeyValueRendering(source.document);
 const majorQuestions = source.document.majorQuestions.map((major, index) => {
-  const rendered = renderMajor(major, index);
+  const rendered = renderMajor(major, index, answerKeyValueRendering);
   if (seenIds.has(rendered.id)) throw new Error(`Duplicate major-question id ${rendered.id}`);
   seenIds.add(rendered.id);
   return rendered;

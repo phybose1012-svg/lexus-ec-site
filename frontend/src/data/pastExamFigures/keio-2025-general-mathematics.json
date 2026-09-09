@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "lexus-past-exam-figures.v1",
+  "packageId": "keio-2025-general-mathematics",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "公開問題IV(1)の座標・等角条件と、反射による独立導出から作成した独自SVG。制限付き参照画像のトレース・埋め込み・複製は行っていない。公開候補HTMLで等角条件が欠落しているIV(2)の立方体図は推測作成していない。"
+  },
+  "items": [
+    {
+      "id": "a13-square-reflection-case1",
+      "width": 920,
+      "height": 455,
+      "alt": "正方形S内でP0からP1、P2、P3、P4へ反射する折れ線と、辺y=1、x=1、y=2で順に展開して5点が一直線に並ぶ対応図。0<p≦2/3では展開線がy=3に達するまでにx=2へ達し、p=2/3では角を通る。P4=(0,2p/(2-p))となる。p=1/2を用いた模式図。",
+      "caption": "0<p≦2/3：反射を展開すると、直線は y=3 に達するまでに x=2 へ達する（p=2/3 では角）。",
+      "src": "/assets/past-exams/keio-2025-general-mathematics/figures/a13-square-reflection-case1.svg"
+    },
+    {
+      "id": "a13-square-reflection-case2",
+      "width": 920,
+      "height": 455,
+      "alt": "正方形S内でP0からP1、P2、P3、P4へ反射する折れ線と、辺y=1、x=1、y=2で順に展開して5点が一直線に並ぶ対応図。2/3<p<1では展開線がx=2より先にy=3へ達し、P4=((3p-2)/2,1)となる。p=4/5を用いた模式図。",
+      "caption": "2/3<p<1：反射を展開すると、直線は x=2 より先に y=3 へ達する。",
+      "src": "/assets/past-exams/keio-2025-general-mathematics/figures/a13-square-reflection-case2.svg"
+    }
+  ]
+}
