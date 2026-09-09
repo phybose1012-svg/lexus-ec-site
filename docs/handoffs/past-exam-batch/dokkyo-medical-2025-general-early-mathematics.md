@@ -15,7 +15,6 @@
 
 ## 検出事項
 
-- **answers / figures-pending**: Required visual positions retained; no restricted answer crop copied.（14件）
 - **answers / editorial-review**: Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch.
 - **analysis-targets / source-error**: Invalid target prerequisite or candidate (weak, now_plus_later): math-q3-3-ii: requires absent math-q3-3-i
 - **analysis-targets / pending**: Target section retained but scores withheld until validated source is supplied.

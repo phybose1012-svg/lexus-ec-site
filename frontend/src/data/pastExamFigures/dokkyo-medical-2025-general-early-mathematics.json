@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "lexus-past-exam-figures.v1",
+  "packageId": "dokkyo-medical-2025-general-early-mathematics",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "14図を公開問題の条件・編集済み解説の数式から独自描画。色の配置図は側面の隣接と周回順を表す模式図。共円・接線法線・回転半径は座標で検証。restricted source cropは参照・複製していない。担当者による最終確認待ち。"
+  },
+  "items": [
+    {
+      "id": "a1-seven-colors",
+      "src": "/assets/past-exams/dokkyo-medical-2025-general-early-mathematics/figures/a1-seven-colors.svg",
+      "width": 570,
+      "height": 418,
+      "alt": "正5角柱の7面を7色AからGで塗る配置例。底面はAとB、側面はC、D、E、F、Gの周回順。模式図である。",
+      "caption": "底面の2色を選び、残る5色を側面の円順列にする。"
+    },
+    {
+      "id": "a1-six-colors-flip",
+      "src": "/assets/past-exams/dokkyo-medical-2025-general-early-mathematics/figures/a1-six-colors-flip.svg",
+      "width": 740,
+      "height": 418,
+      "alt": "底面をともにAにした正5角柱。側面の周回順B C D E Fは上下反転でB F E D Cと一致する。",
+      "caption": "上下の底面が同色なら、側面の逆向きの並びも同一視する。"
+    },
+    {
+      "id": "a1-six-colors-placement",
+      "src": "/assets/past-exams/dokkyo-medical-2025-general-early-mathematics/figures/a1-six-colors-placement.svg",
+      "width": 570,
+      "height": 418,
+      "alt": "底面をBとF、側面をA C A D Eの順にした正5角柱。2回使うAの側面は互いに隣り合わない。",
+      "caption": "2回使う色Aを、隣り合わない2側面へ配置する例。"
+    },
+    {
+      "id": "a2-five-colors-first",
+      "src": "/assets/past-exams/dokkyo-medical-2025-general-early-mathematics/figures/a2-five-colors-first.svg",
+      "width": 570,
+      "height": 418,
+      "alt": "底面をともにA、側面をB C B D Eの順にした正5角柱。2回使うBどうしは離れ、残り3色C D Eを並べる。",
+      "caption": "同色の底面A・Aを選ぶ場合。側面のB・Bを隣り合わせにしない。"
+    },
+    {
+      "id": "a2-five-colors-second",
+      "src": "/assets/past-exams/dokkyo-medical-2025-general-early-mathematics/figures/a2-five-colors-second.svg",
+      "width": 740,
+      "height": 418,
+      "alt": "底面C Dを固定した正5角柱の2つの側面配置。Eを基準に、E A B A BとE B A B Aの2通り。",
+      "caption": "側面のEを固定すると、AとBを交互に並べる2通りになる。"
+    },
+    {
+      "id": "a2-seven-prism",
+      "src": "/assets/past-exams/dokkyo-medical-2025-general-early-mathematics/figures/a2-seven-prism.svg",
+      "width": 740,
+      "height": 452,
+      "alt": "正7角柱の側面で、B C D Eの円順列の3つの隙間へAを挿入。側面B A C A D A E、底面F Gの配置例。",
+      "caption": "3回使うAを、異なる色の間へ1個ずつ挿入する。"
+    },
+    {
+      "id": "a4-complex-plane",
+      "src": "/assets/past-exams/dokkyo-medical-2025-general-early-mathematics/figures/a4-complex-plane.svg",
+      "width": 720,
+      "height": 458,
+      "alt": "共円となる場合の複素数平面。A=k+i、B=k−i、C=−1、D=3。縦の弦ABと実軸上の弦CDはE=kで交わる。",
+      "caption": "共円となる配置。AE・BEは1、CEはk+1、EDは3−k。"
+    },
+    {
+      "id": "a6-hyperbola-tangent",
+      "src": "/assets/past-exams/dokkyo-medical-2025-general-early-mathematics/figures/a6-hyperbola-tangent.svg",
+      "width": 720,
+      "height": 550,
+      "alt": "双曲線C1の点P=(2√2,√2)での接線と漸近線y=x、y=−x。交点A=(3√2,3√2)、B=(√2,−√2)を結び三角形OABを示す。",
+      "caption": "接線ℓと2本の漸近線の交点で、三角形OABを作る。"
+    },
+    {
+      "id": "a6-hyperbola-normal",
+      "src": "/assets/past-exams/dokkyo-medical-2025-general-early-mathematics/figures/a6-hyperbola-normal.svg",
+      "width": 720,
+      "height": 550,
+      "alt": "C1上のPにおける接線ℓが、C2上の第4象限のQにおける法線mと一致。OPとOQが直交する実際の座標配置。",
+      "caption": "ℓ=mとなる配置。原点OでOPとOQが直交する。"
+    },
+    {
+      "id": "a8-cross-section",
+      "src": "/assets/past-exams/dokkyo-medical-2025-general-early-mathematics/figures/a8-cross-section.svg",
+      "width": 660,
+      "height": 490,
+      "alt": "平面y=kのx-z断面。R=(0,k,0)、P=(eの√k乗,k,0)、Q=(0,k,e二乗)の直角三角形。辺PR=eの√k乗、QR=e二乗。",
+      "caption": "立体Aの断面は、Rを直角の頂点とする三角形PQR。"
+    },
+    {
+      "id": "a9-pr-qr",
+      "src": "/assets/past-exams/dokkyo-medical-2025-general-early-mathematics/figures/a9-pr-qr.svg",
+      "width": 660,
+      "height": 345,
+      "alt": "直角三角形PQRの直角頂点Rからの2辺を比較。PR=eの√k乗、QR=e二乗。k=4で2辺が等しくなる。模式図。",
+      "caption": "回転半径はPRとQRの長い方。k=4で大小が入れ替わる。"
+    },
+    {
+      "id": "a9-low-section",
+      "src": "/assets/past-exams/dokkyo-medical-2025-general-early-mathematics/figures/a9-low-section.svg",
+      "width": 660,
+      "height": 490,
+      "alt": "0から4までの高さkでの回転体Bの断面。三角形PQRをR中心に回転すると、長い辺QR=e二乗を半径とする円板になる。",
+      "caption": "下部の断面。QRが外半径となる円板（k=1の配置例）。"
+    },
+    {
+      "id": "a9-cylinder",
+      "src": "/assets/past-exams/dokkyo-medical-2025-general-early-mathematics/figures/a9-cylinder.svg",
+      "width": 620,
+      "height": 440,
+      "alt": "回転体Bの高さ0から4までの部分。すべての高さで半径e二乗の円板なので、半径e二乗、高さ4の円柱となる。模式図。",
+      "caption": "半径e²、高さ4の円柱部分。体積は4πe⁴。"
+    },
+    {
+      "id": "a9-high-section",
+      "src": "/assets/past-exams/dokkyo-medical-2025-general-early-mathematics/figures/a9-high-section.svg",
+      "width": 660,
+      "height": 490,
+      "alt": "4から9までの高さkでの回転体Bの断面。三角形PQRをR中心に回転すると、長い辺PR=eの√k乗を半径とする円板になる。",
+      "caption": "上部の断面。PRが外半径となる円板（k=6.25の配置例）。"
+    }
+  ]
+}
