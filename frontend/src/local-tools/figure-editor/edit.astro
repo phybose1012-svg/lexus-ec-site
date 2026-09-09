@@ -21,9 +21,11 @@ if ((import.meta.env.CF_PAGES_BRANCH || "") === "main") {
       <p class="admin-eyebrow">Past exam figure editor</p>
       <h1>図版を直す</h1>
       <p>
-        過去問ページの図をその場で直します。保存すると、リポジトリの SVG と
-        manifest の寸法をまとめて書き換えます。ローカル（127.0.0.1）で
-        <code>npm run admin:api</code> を動かしているときだけ保存できます。
+        過去問ページの図をその場で直します。保存すると SVG・manifest の寸法・
+        再編集用の控えがまとめて書き換わり、その図は生成スクリプトの上書きから
+        外れます。手元（127.0.0.1）では <code>npm run admin:api</code> が
+        作業ツリーへ直接書き、ステージングでは GitHub の
+        <code>staging</code> へ 1 コミットとして送ります（反映はビルドのあと）。
       </p>
     </div>
   </section>

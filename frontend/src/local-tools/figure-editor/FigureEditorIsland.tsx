@@ -365,6 +365,9 @@ export default function FigureEditorIsland() {
             workspaceTabId={`lexus-${packageId}-${figureId}-${loaded.key}`}
             initialTrio={loaded.trio}
             onSave={save}
+            // 右パネルを持たない簡易編集 UI。選んだものの上にミニバーが出る。
+            // ここでやるのは出来上がった図の手直しなので、作図の道具一式は要らない。
+            uiProfile="simple"
             // AI 生成・MAX・AI 修正は sidecar が要る。ここでは使わない。
             allowGenerate={false}
             allowMaxMode={false}

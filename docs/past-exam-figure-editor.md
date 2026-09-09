@@ -60,6 +60,10 @@ FIBONA_REPO=/path/to/math npm run figure-editor:sync   # bash
 $env:FIBONA_REPO="C:\path\to\math"; npm run figure-editor:sync   # PowerShell
 ```
 
+エディタは**シンプルモード**（`uiProfile="simple"`）で開く。右パネルは出さず、
+選んだものの上にミニバーが出る。ここでやるのは出来上がった図の手直しなので、
+作図の道具一式は要らない。ファイルメニューは同じなので保存の場所は変わらない。
+
 過去問ページを開き、図の下の「✏️ 直す」を押す。エディタで直して
 **ファイル ▸ SVG画像として保存** で書き戻る。画面の上の帯に、どのチェックアウトへ
 書くのかが出る。島は最初に応答した管理 API を採るので、**別のワークツリーの
