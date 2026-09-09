@@ -9,6 +9,7 @@ import {renderProjection} from './build-past-exam-staging-answers.mjs';
 import {durationLabelFor} from './past-exam-duration.mjs';
 import {loadFigureManifest} from '../src/lib/pastExamFigures.mjs';
 import {normalizeInequalitiesDeep} from '../src/lib/mathNotation.mjs';
+import {openUpstreamIssues,upstreamIssueText} from './lib/past-exam-upstream-issues.mjs';
 
 const frontend=fileURLToPath(new URL('../',import.meta.url));
 const repo=path.dirname(frontend);
@@ -54,8 +55,8 @@ for(let index=0;index<inventory.length;index++) {
   const dir=path.join(sourceRoot,item.directory);
   const sourceDir=path.join(dir,'source-html/generated/public-candidate/questions');
   const upstreamIssuesPath=path.join(dir,'issues.json');
-  const upstreamIssues=fs.existsSync(upstreamIssuesPath)?read(upstreamIssuesPath).issues??[]:[];
-  const status={id:entry.id,directory:item.directory,state:'in-progress',upstreamOpenIssues:upstreamIssues.filter(i=>!['resolved','closed','fixed'].includes(i.status)),issues:[]};
+  const upstreamIssues=fs.existsSync(upstreamIssuesPath)?openUpstreamIssues(read(upstreamIssuesPath)):[];
+  const status={id:entry.id,directory:item.directory,state:'in-progress',upstreamOpenIssues:upstreamIssues,issues:[]};
   const record=()=>{const at=ledger.findIndex(s=>s.id===entry.id);if(at>=0)ledger[at]=status;else ledger.push(status);write(ledgerFile,{schemaVersion:'lexus-past-exam-batch-status.v1',packages:ledger});};
   record();
   try {
@@ -125,5 +126,6 @@ for(let index=0;index<inventory.length;index++) {
   const handoff=path.join(repo,'docs/handoffs/past-exam-batch',`${entry.id}.md`);
   fs.mkdirSync(path.dirname(handoff),{recursive:true});
   fs.writeFileSync(handoff,`# ${entry.name} ${entry.year}年度 ${subjectNames[entry.subject]} — 修正担当への依頼\n\n対象元データ: \`C:/---hp/shidai-igakubu-gokaku-dokuhon/${item.directory}\`\n\n## 方針\n\n- 元リポジトリの AGENTS.md と該当過去問スキルを読む。別方式・別段階の同名 package_id と混同しない。\n- reconstruction.json / editorial-explanations.json / analysis.json を正本として修復し、生成HTMLだけを編集しない。\n- 原本の各ページ画像と照合し、全問・全解答欄・TeX・前提条件・依存関係・図表を監査する。以下は自動検査で検出した項目であり、全文の正誤を保証するリストではない。\n- 不明な値や欠けた条件を推測で補完しない。未解決項目は issues.json に残す。\n- 検証不能の目標点を出さず、仮配点・公式試験時間・仮時間配分を区別する。\n- 制限付き図版は複製せず、条件に基づく独自SVGへ置換する。\n- 再生成後に元データvalidator、desktop/mobileでの全ページ表示と数式、印刷を確認する。\n- 変更はこのパッケージに限定。他担当の変更を上書きしない。ステージング掲載許可は2026-09-09のユーザー指示あり。本番公開の承認とは別。\n\n## 検出事項\n\n${status.issues.map(v=>`- **${v.scope} / ${v.kind}**: ${v.message}${v.count?`（${v.count}件）`:''}`).join('\n')}\n\n## 完了報告\n\n修正した正本の位置、原文→修正後、根拠となるページ・計算、再生成したHTML、テスト結果、未解決事項を列挙する。過去問ライブラリーの再取り込み先IDは \`${entry.id}\`。既存の独自解説へ昇格済みのパッケージは一括取込で上書きしない。\n`);
+  if(upstreamIssues.length)fs.appendFileSync(handoff,`\n## 元データの未解決項目\n\n元のissues.jsonから取得した編集メモです。完了済みという意味ではありません。\n\n${upstreamIssues.map(i=>`- **${i.id??'source-issue'}**: ${upstreamIssueText(i)}`).join('\n')}\n`);
   console.log(`${entry.id}: ${status.state}; questions=${status.questions??'failed'}, answers=${status.answers??'-'}, analysis=${status.analysis??'-'}`);
 }

@@ -1,5 +1,6 @@
 ---
 import SiteLayout from "../../../../../layouts/SiteLayout.astro";
+import { withReviewNotice } from "../../../../../lib/pastExamReviewNotices.mjs";
 import PastExamBreadcrumbs from "../../../../../components/past-exam/PastExamBreadcrumbs.astro";
 import PastExamSeoHead from "../../../../../components/past-exam/PastExamSeoHead.astro";
 import { buildExamDocumentSeo, PAST_EXAM_SOCIAL_IMAGE, PAST_EXAM_SOCIAL_IMAGE_ALT, summarizeQuestionLabels } from "../../../../../lib/pastExamSeo.mjs";
@@ -198,7 +199,7 @@ const reviewRequired = page.source.rightsStatus !== "approved" || page.source.ne
       <section class="past-exam-question-list" aria-label={`${page.exam.year}年度 ${page.subject.name}の問題`}>
         {page.document.questions.map((question, i) => <Fragment>
           <PastExamBrandDivider character={i === 0 ? "lexus" : i === page.document.questions.length - 1 ? "oni" : "none"} />
-          <Fragment set:html={question.html} />
+          <Fragment set:html={withReviewNotice(question.html, page.packageId, question.id)} />
         </Fragment>)}
       </section>
 

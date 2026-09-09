@@ -11,5 +11,8 @@ fs.writeFileSync('../docs/handoffs/past-exam-batch/README.md',`# 過去問ライ
 if(fs.existsSync('../docs/handoffs/past-exam-batch/visual-review-notes.md')){
  fs.appendFileSync('../docs/handoffs/past-exam-batch/README.md','\n## 追加の目視所見\n\n修正担当は[画面点検で見つかった項目](visual-review-notes.md)も確認してください。自動生成の大学別依頼とは分離して保管しています。\n');
 }
+if(fs.existsSync('../docs/handoffs/past-exam-batch/upstream-issues.md')){
+ fs.appendFileSync('../docs/handoffs/past-exam-batch/README.md','\n元データ側の[未解決事項の同期記録](upstream-issues.md)も大学IDで確認してください。items/ issuesの両形式を対象にしています。\n');
+}
 fs.writeFileSync('src/data/pastExamBatch/summary.json',JSON.stringify(summary,null,2)+'\n');
 console.log(summary);

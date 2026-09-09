@@ -1,5 +1,6 @@
 ---
 import SiteLayout from "../../../../../layouts/SiteLayout.astro";
+import { withReviewNotice } from "../../../../../lib/pastExamReviewNotices.mjs";
 import "../../../../../styles/past-exam-batch.css";
 import PastExamBreadcrumbs from "../../../../../components/past-exam/PastExamBreadcrumbs.astro";
 import PastExamSeoHead from "../../../../../components/past-exam/PastExamSeoHead.astro";
@@ -164,7 +165,7 @@ const reviewRequired = page.source.needsHumanReview;
       <section class="past-exam-question-list past-exam-answer-list" aria-label={`${page.exam.year}年度 ${page.subject.name}の解答・解説`}>
         {page.document.majorQuestions.map((major, i) => <Fragment>
           <PastExamBrandDivider character={i === 0 ? "lexus" : i === page.document.majorQuestions.length - 1 ? "oni" : "none"} />
-          <Fragment set:html={major.html} />
+          <Fragment set:html={withReviewNotice(major.html, page.packageId, major.id)} />
         </Fragment>)}
       </section>
 
