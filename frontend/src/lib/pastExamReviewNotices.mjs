@@ -1,5 +1,19 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'hyogo-medical-2025-general-a-b-physics':{
+  'major-question-01':{
+   title:'問1(4)・(6)・(10)の速度条件は元データを確認中です',
+   message:'垂直抗力の式と、解答の速度上限でtan αの次数が一致していません。後続の角度条件も含め、原本照合・修正が完了するまで該当する解答を演習の採点に使用しないでください。',
+  },
+  'major-question-02':{
+   title:'問2の方向選択図は確認中です',
+   message:'元HTMLにa・bの矢印と電源極性の対応がありません。図2を確認できるまで、(1)②・④・⑤の方向選択は演習・採点の対象外としてください。',
+  },
+  'major-question-04':{
+   title:'問4(5)の導出過程は確認中です',
+   message:'原解説の距離CDの中間式に符号の不一致があり、学習者向けHTMLではその過程が省略されています。焦点への光線を新たに図示していますが、該当導出の教材利用は原本照合・修正後にしてください。',
+  },
+ },
  'fukuoka-2025-general-keitobetsu-physics':{
   'major-question-01':{
    title:'〔Ⅰ〕(10)の解説は記号を確認中です',

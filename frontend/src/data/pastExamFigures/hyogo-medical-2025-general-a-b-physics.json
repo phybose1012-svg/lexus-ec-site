@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "lexus-past-exam-figures.v1",
+  "packageId": "hyogo-medical-2025-general-a-b-physics",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "問題と解説を分離した独自作図。波面は各球面点への入射時刻・屈折後の進行時間から計算し、任意の円弧では代用しない。屈折図はn1/n0=1.5、θ0=0.1radの配置例。A上/B下は解説のAC上のDと正のyPに合わせる。電子のa/b方向と電極対応はHTMLだけでは確定できずq2-figure-2を保留。円運動の速度上限・屈折の中間式にある不整合は読者向け注意書きと修復依頼で管理。"
+  },
+  "items": [
+    {
+      "id": "q1-figure-1a",
+      "src": "/assets/past-exams/hyogo-medical-2025-general-a-b-physics/figures/q1-figure-1a.svg",
+      "width": 700,
+      "height": 495,
+      "alt": "水平な板のOに高さhの棒が垂直に立つ。上端から糸を結んだ質量mの小球AがOを中心に速さvで円運動し、棒と糸の角はα。",
+      "caption": "図1a：配置の模式図。破線は円軌道。"
+    },
+    {
+      "id": "q1-figure-1b",
+      "src": "/assets/past-exams/hyogo-medical-2025-general-a-b-physics/figures/q1-figure-1b.svg",
+      "width": 700,
+      "height": 495,
+      "alt": "板と棒を一緒にβ傾ける。棒は板に垂直。円軌道の左側Pが最下点、右側Qが最上点で、Pでの速さはv₀。",
+      "caption": "図1b：立体配置の模式図。高さや円軌道を投影して示す。"
+    },
+    {
+      "id": "q3-figure-3",
+      "src": "/assets/past-exams/hyogo-medical-2025-general-a-b-physics/figures/q3-figure-3.svg",
+      "width": 700,
+      "height": 535,
+      "alt": "p–V図でAからBへ定圧膨張、BからCへ断熱膨張、CからDへ定積冷却、DからAへ断熱圧縮する時計回りのサイクル。",
+      "caption": "図3：体積と圧力の比率は配置例。断熱曲線はpV^γ=一定から作図。"
+    },
+    {
+      "id": "q4-figure-4",
+      "src": "/assets/past-exams/hyogo-medical-2025-general-a-b-physics/figures/q4-figure-4.svg",
+      "width": 700,
+      "height": 590,
+      "alt": "中心C、半径aの半球の左端をOとし、右の平面ABはx軸に垂直。半球内n₁、外側n₀。光は左から入射し、球面上のPとQはx軸対称。",
+      "caption": "図4：半球の断面と座標。A・Pは上側、B・Qは下側。"
+    },
+    {
+      "id": "q4-answer-frame",
+      "src": "/assets/past-exams/hyogo-medical-2025-general-a-b-physics/figures/q4-answer-frame.svg",
+      "width": 700,
+      "height": 590,
+      "alt": "半球と座標軸、球面上の上側Pと下側Qだけを示す。解答する波面は描かれていない。",
+      "caption": "問4(1) 解答用：P・Qに到達した時刻の波面を書き込む。"
+    },
+    {
+      "id": "a1-forces-at-p",
+      "src": "/assets/past-exams/hyogo-medical-2025-general-a-b-physics/figures/a1-forces-at-p.svg",
+      "width": 700,
+      "height": 500,
+      "alt": "最下点Pで、張力Sは糸に沿って右上、垂直抗力Rは面に垂直な左上、重力mgは下へ働く。RとSの角はα。",
+      "caption": "問1(5)：力の方向を示す側面図。矢印の長さは力の比率ではない。"
+    },
+    {
+      "id": "a4-wavefront",
+      "src": "/assets/past-exams/hyogo-medical-2025-general-a-b-physics/figures/a4-wavefront.svg",
+      "width": 700,
+      "height": 590,
+      "alt": "Δt後の波面は外側ではPQを含む縦の直線、半球内では屈折してx軸付近ほど後ろへ遅れた曲線。軸上Rはx=cΔt/n₁。",
+      "caption": "問4(1)：金色が波面。n₁/n₀=1.5、cΔt/n₀=0.4aの配置例。"
+    },
+    {
+      "id": "a4-wavefront-geometry",
+      "src": "/assets/past-exams/hyogo-medical-2025-general-a-b-physics/figures/a4-wavefront-geometry.svg",
+      "width": 700,
+      "height": 620,
+      "alt": "PとQを結んだ直線とx軸の交点をSとする。PSCはSで直角、PC=a、OS=cΔt/n₀。",
+      "caption": "問4(2)：直角三角形PSCで点Pの高さを求める。"
+    },
+    {
+      "id": "a4-ray-diagram",
+      "src": "/assets/past-exams/hyogo-medical-2025-general-a-b-physics/figures/a4-ray-diagram.svg",
+      "width": 720,
+      "height": 465,
+      "alt": "上側球面のTで屈折し、平面のDで再び屈折して真の焦点へ進む。Dから内部光線をそのまま延長した破線の交点Fは真の焦点より右。UはTから軸への垂足。",
+      "caption": "問4(4)〜(5)：スネルの法則による光線。縦方向を拡大しており、角度は図から測らない。"
+    }
+  ]
+}
