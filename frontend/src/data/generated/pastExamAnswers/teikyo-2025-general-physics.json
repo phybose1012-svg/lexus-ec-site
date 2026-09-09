@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "lexus-past-exam-answer-page.v1",
+  "packageId": "teikyo-2025-general-physics",
+  "route": {
+    "university": "teikyo",
+    "year": "2025",
+    "subject": "physics",
+    "path": "/past-exam-library/teikyo/2025/physics/answers/"
+  },
+  "university": {
+    "id": "teikyo",
+    "name": "帝京大学"
+  },
+  "exam": {
+    "year": "2025",
+    "label": "一般選抜",
+    "stage": "一次試験",
+    "duration": "選択2科目 合計120分"
+  },
+  "subject": {
+    "id": "physics",
+    "name": "物理",
+    "english": "PHYSICS"
+  },
+  "document": {
+    "role": "answers",
+    "pageUnit": "major_question",
+    "majorQuestions": [
+      {
+        "id": "major-question-01",
+        "label": "物理① 第1問",
+        "order": 1,
+        "html": "<article class=\"source-page-card major-question-card answer-major-card\" id=\"major-question-01\" data-major-question-id=\"major-question-01\"><h2>物理① 第1問 解答・解説</h2><div class=\"answer-explanation\"><section class=\"answer-key-panel\"><h3>解答</h3><dl class=\"batch-answer-key\"><div><dt>(1)</dt><dd>1 ③</dd></div><div><dt>(2)</dt><dd>2 ④</dd></div><div><dt>(3)</dt><dd>3 ①・4 ④・5 ⓪</dd></div><div><dt>(4)</dt><dd>6 ④・7 ⓪・8 ⓪</dd></div><div><dt>(5)</dt><dd>9 ⑦・10 ⑨・11 ①</dd></div><div><dt>(6)</dt><dd>12 ③・13 ⑧・14 ②</dd></div></dl></section><aside class=\"source-note answer-note\"><strong>この大問の道筋</strong><p>脚を単振り子として扱う。周期から角振動数、角振動数から最大速度、最大速度から運動エネルギーへ順に進み、最後に歩数・両脚・効率・Jからkcalへの換算をまとめる。</p></aside><section class=\"answer-explanation-section\"><h3>(1)・(2)　周期と最大速度</h3><p class=\"prose\">単振り子の周期はT=2π√(L/g)。角振動数はω=2π/T=√(g/L)なので、振幅Aの脚先の最大速度はv_max=Aω=A√(g/L)となる。周期を先に整理すると2πが消える。</p></section><section class=\"answer-explanation-section\"><h3>(3)・(4)　数値代入</h3><p class=\"prose\">L=0.50 m、g=9.8 m/s²、π=3.14を周期式へ入れるとT=1.41…≒1.4×10⁰ s。A=0.90 mを最大速度式へ入れるとv_max=3.98…≒4.0×10⁰ m/s。指定された桁と指数欄を最後に確認する。</p></section><section class=\"answer-explanation-section\"><h3>(5)　最大運動エネルギー</h3><p class=\"prose\">速さが最大の瞬間に運動エネルギーも最大となる。K_max=(1/2)mv_max²へm=10 kgと(4)の値を代入し、79.3…≒7.9×10¹ Jを得る。</p></section><section class=\"answer-explanation-section\"><h3>(6)　歩行全体の仕事</h3><p class=\"prose\">原本解説の条件では最大運動エネルギーの4×5000=20000倍が必要な仕事である。1 kcal=4.2×10³ Jで割り、79.3×20000/(4.2×10³)=377…≒3.8×10² kcalとする。</p></section></div></article>"
+      },
+      {
+        "id": "major-question-02",
+        "label": "物理① 第2問",
+        "order": 2,
+        "html": "<article class=\"source-page-card major-question-card answer-major-card\" id=\"major-question-02\" data-major-question-id=\"major-question-02\"><h2>物理① 第2問 解答・解説</h2><div class=\"answer-explanation\"><section class=\"answer-key-panel\"><h3>解答</h3><dl class=\"batch-answer-key\"><div><dt>(1)</dt><dd>1 ②</dd></div><div><dt>(2)</dt><dd>浮力のグラフ</dd></div><div><dt>(3)</dt><dd>2 ②</dd></div><div><dt>(4)</dt><dd>3 ④</dd></div><div><dt>(5)</dt><dd>4 ⑧</dd></div><div><dt>(6)</dt><dd>5 ⑨</dd></div><div><dt>(7)</dt><dd><span class=\"math-inline\" data-katex=\"\\frac{11}{3}l\" data-display-mode=\"false\"></span></dd></div></dl></section><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"ans-q2-force-graph\"><div role=\"img\" aria-label=\"浮力がx=0でρSlgからx=lで0まで直線的に減少する解答グラフ（図版準備中）\" style=\"aspect-ratio:1.916\"><strong>図版準備中</strong><p>浮力がx=0でρSlgからx=lで0まで直線的に減少する解答グラフ</p></div><figcaption>図の位置・大きさを確保しています。図を使う説明は確認完了までレビュー中です。</figcaption></figure><aside class=\"source-note answer-note\"><strong>この大問の道筋</strong><p>木片の質量m=(1/4)ρSlと、浸水長から決まる浮力F(x)=ρS(l−x)gを最初に置く。つり合い、F-xグラフの面積、運動方程式、仕事の和の順に同じ2式を使い回す。</p></aside><section class=\"answer-explanation-section\"><h3>(1)〜(3)　つり合い・グラフ・浮力の仕事</h3><p class=\"prose\">静止時はmg=F(x)よりl−x=l/4。浮力はx=0でρSlg、x=lで0となる直線である。木片が水面から出るまでの浮力の仕事はこの三角形の面積なので(1/2)ρSl²gとなる。</p></section><section class=\"answer-explanation-section\"><h3>(4)　最初の最高点</h3><p class=\"prose\">初めと最高点では速さが0。浮力の仕事(1/2)ρSl²gと重力の仕事−(1/4)ρSlg(l+h)の和を0と置けばh=lとなる。</p></section><section class=\"answer-explanation-section\"><h3>(5)・(6)　全没中の等加速度運動</h3><p class=\"prose\">全没中の浮力ρSlgは一定。上向きを正にしてρSlg−(1/4)ρSlg=(1/4)ρSlaよりa=3g。初速0で2l/3進むのでv²=2a(2l/3)からv=2√(gl)となる。</p></section><section class=\"answer-explanation-section\"><h3>(7)　より深い位置から放す</h3><p class=\"prose\">全没区間の浮力の仕事(2/3)ρSl²gと、浮力が直線的に減る区間の仕事(1/2)ρSl²gを足す。重力の仕事−(1/4)ρSlg(l+h₂)との和を0と置き、h₂=11l/3を得る。</p></section></div></article>"
+      },
+      {
+        "id": "major-question-03",
+        "label": "物理① 第3問",
+        "order": 3,
+        "html": "<article class=\"source-page-card major-question-card answer-major-card\" id=\"major-question-03\" data-major-question-id=\"major-question-03\"><h2>物理① 第3問 解答・解説</h2><div class=\"answer-explanation\"><section class=\"answer-key-panel\"><h3>解答</h3><dl class=\"batch-answer-key\"><div><dt>1〜4</dt><dd>1 ②・2 ⓪・3 ⓪・4 ①</dd></div><div><dt>5〜8</dt><dd>5 ②・6 ⓪・7 ⓪・8 ②</dd></div><div><dt>9〜12</dt><dd>9 ①・10 ⑧・11 ②・12 ①</dd></div><div><dt>13〜16</dt><dd>13 ④・14 ⑤・15 ⓪・16 ①</dd></div><div><dt>17〜20</dt><dd>17 ②・18 ⓪・19 ⓪・20 ①</dd></div><div><dt>21〜24</dt><dd>21 ②・22 ⓪・23 ⓪・24 ①</dd></div></dl></section><aside class=\"source-note answer-note\"><strong>この大問の道筋</strong><p>対物レンズでは距離の和と倍率、次にレンズ公式を使う。結像レンズでも倍率とレンズ公式を同じ順で使い、最後に2つの倍率を掛ける。</p></aside><section class=\"answer-explanation-section\"><h3>空欄1〜12　対物レンズ</h3><p class=\"prose\">物体距離をa、像距離をbとするとa+b=220 mm、b/a=10。よってa=20.0 mm、b=200 mm。1/a+1/b=1/fへ代入し、f=18.18…≒18.2 mmとする。</p></section><section class=\"answer-explanation-section\"><h3>空欄13〜16　結像レンズ</h3><p class=\"prose\">対物像から結像レンズまでをc、結像レンズから像までをdと置く。倍率2倍よりd/c=2、焦点距離30 mmより1/c+1/d=1/30。連立してc=45.0 mmを得る。</p></section><section class=\"answer-explanation-section\"><h3>空欄17〜24　総合倍率と物体範囲</h3><p class=\"prose\">総合倍率は対物10倍×結像2倍=20.0倍。撮像素子の一辺4 mmに写る物体側の長さは4/20=0.200 mm、すなわち2.00×10⁻¹ mmとなる。</p></section></div></article>"
+      },
+      {
+        "id": "major-question-04",
+        "label": "物理② 第1問",
+        "order": 4,
+        "html": "<article class=\"source-page-card major-question-card answer-major-card\" id=\"major-question-04\" data-major-question-id=\"major-question-04\"><h2>物理② 第1問 解答・解説</h2><div class=\"answer-explanation\"><section class=\"answer-key-panel\"><h3>解答</h3><dl class=\"batch-answer-key\"><div><dt>(1)</dt><dd>1 ②</dd></div><div><dt>(2)</dt><dd>2 ③・3 ②・4 ①</dd></div><div><dt>(3)</dt><dd>5 ⑤・6 ⑧・7 ②・8 ①・9 ④</dd></div><div><dt>(4)</dt><dd>シーベルト</dd></div><div><dt>(5)</dt><dd>10 ①・11 ⑥・12 ⑤</dd></div><div><dt>(6)</dt><dd>13 ⑥</dd></div></dl></section><aside class=\"source-note answer-note\"><strong>この大問の道筋</strong><p>原子番号の変化、半減期、eVからJへの換算を先に確定する。等価線量では各量をSI単位へそろえて与式へ代入し、最後にmSvへ直して表と照合する。</p></aside><section class=\"answer-explanation-section\"><h3>(1)〜(4)　崩壊・半減期・単位</h3><p class=\"prose\">原子番号が1増えるのでβ⁻崩壊。1/16=(1/2)⁴だから8.02日の4倍で32.1日。364 keV=364×10³×1.60×10⁻¹⁹=5.82×10⁻¹⁴ J。等価線量の単位はシーベルトである。</p></section><section class=\"answer-explanation-section\"><h3>(5)・(6)　等価線量</h3><p class=\"prose\">I=1.00×10⁸ Bq、t=3.6×10³ s、R=1.00 mなどを与式へ入れると1.62×10⁻⁵ Sv≒1.6×10⁻⁵ Sv。これは0.0162 mSvなので表の0.01 mSv以上0.1 mSv未満に入る。</p></section></div></article>"
+      },
+      {
+        "id": "major-question-05",
+        "label": "物理② 第2問",
+        "order": 5,
+        "html": "<article class=\"source-page-card major-question-card answer-major-card\" id=\"major-question-05\" data-major-question-id=\"major-question-05\"><h2>物理② 第2問 解答・解説</h2><div class=\"answer-explanation\"><section class=\"answer-key-panel\"><h3>解答</h3><dl class=\"batch-answer-key\"><div><dt>1</dt><dd>③</dd></div><div><dt>2</dt><dd>⑤</dd></div><div><dt>3</dt><dd>②</dd></div><div><dt>4</dt><dd>②</dd></div><div><dt>5</dt><dd>④</dd></div><div><dt>6</dt><dd>④</dd></div><div><dt>7</dt><dd><span class=\"math-inline\" data-katex=\"2.14\\times10^2\" data-display-mode=\"false\"></span></dd></div></dl></section><aside class=\"source-note answer-note\"><strong>この大問の道筋</strong><p>熱サイクルの前半とエンジン機構の後半を分ける。前半は圧縮比の同じ指数値を再利用し、後半は排気量・2回転で1サイクル・トルクの順に単位をそろえる。</p></aside><section class=\"answer-explanation-section\"><h3>1・2　断熱圧縮と熱効率</h3><p class=\"prose\">R^(γ−1)=10^0.40≒2.512。したがってT₂=300×2.512=754 K、η=1−1/2.512=0.602となる。問2では問1の中間値を使い直す。</p></section><section class=\"answer-explanation-section\"><h3>3〜5　排気量・回転数・ピストン距離</h3><p class=\"prose\">1気筒当たりの排気量は2000/4=500 cm³。6000 rpmは100回転/sで、4行程1サイクルは2回転だから50.0 cycle/s。円柱体積から行程長を求め、1サイクル中の2往復を掛けると31.7 cmとなる。</p></section><section class=\"answer-explanation-section\"><h3>6・7　仕事率と馬力</h3><p class=\"prose\">トルクFr_c=250 N·m。1回転の仕事2πFr_cに毎秒回転数を掛け、P=157 kW。1 ps=75.0×9.80=735 Wより157×10³/735=2.14×10² psとなる。</p></section></div></article>"
+      },
+      {
+        "id": "major-question-06",
+        "label": "物理② 第3問",
+        "order": 6,
+        "html": "<article class=\"source-page-card major-question-card answer-major-card\" id=\"major-question-06\" data-major-question-id=\"major-question-06\"><h2>物理② 第3問 解答・解説</h2><div class=\"answer-explanation\"><section class=\"answer-key-panel\"><h3>解答</h3><dl class=\"batch-answer-key\"><div><dt>(1)</dt><dd>1 ⑥・2 ③</dd></div><div><dt>(2)</dt><dd>3 ⑤・4 ④</dd></div><div><dt>(3)</dt><dd>5 ⑨・6 ⑤・7 ⑦・8 ③</dd></div><div><dt>(4)</dt><dd>9 ⑤・10 ⑦・11 ④</dd></div><div><dt>(5)</dt><dd>12 ⑨・13 ⑤・14 ⑧・15 ③</dd></div></dl></section><aside class=\"source-note answer-note\"><strong>この大問の道筋</strong><p>右向きを正に統一し、AとBへ別々に運動方程式を立てる。加速度が一定の間は速度式と位置式へ機械的に積み上げ、最後に位置差がR₀へ戻る条件を使う。</p></aside><section class=\"answer-explanation-section\"><h3>(1)〜(4)　加速度と速度</h3><p class=\"prose\">Aには左向きにFが働くのでa=−F/m、Bには右向きにFが働き質量kmだからb=F/(km)。初速度を入れてv_A=v₀−Ft/m、v_B=Ft/(km)となる。</p></section><section class=\"answer-explanation-section\"><h3>(5)　小球Aの位置</h3><p class=\"prose\">原点から初速度v₀で出発するのでx(t)=v₀t−Ft²/(2m)。加速度が負であることを二次項の符号へ反映する。</p><section class=\"answer-key-panel\"><h3>解答</h3><dl class=\"batch-answer-key\"><div><dt>(6)</dt><dd>16 ②・17 ⑤・18 ⑧・19 ④</dd></div><div><dt>(7)</dt><dd><span class=\"math-inline\" data-katex=\"t_0=\\frac{2kmv_0}{(1+k)F}\" data-display-mode=\"false\"></span></dd></div></dl></section></section><section class=\"answer-explanation-section\"><h3>(6)　小球Bの位置</h3><p class=\"prose\">Bの初期位置はR₀、初速度は0なのでX(t)=R₀+Ft²/(2km)。初期位置を落とさないことが最後の距離条件に効く。</p></section><section class=\"answer-explanation-section\"><h3>(7)　力が働かなくなる時刻</h3><p class=\"prose\">球間距離d=X−xが再びR₀になったときに斥力が消える。2つの位置式を代入して共通のR₀を消すとFt₀²(1+k)/(2km)=v₀t₀。t₀≠0の解を選び、t₀=2kmv₀/((1+k)F)を得る。</p><aside class=\"source-note answer-note\"><strong>見直し</strong><p>(1)〜(7)を通じ、Aの加速度だけが負、Bの位置だけがR₀から始まる。最後の式が時間の次元をもつことも確認する。</p></aside></section></div></article>"
+      }
+    ]
+  },
+  "source": {
+    "contentProvenance": "editorial_adaptation_import",
+    "reference": "projects/universities/teikyo/past-exams/working/2025/general/first-stage/physics/source-html/editorial-explanations.json",
+    "sha256": "9a0b7c266976dc7e08be41ed3dcbbffa8bdb193e5e48e5ff7923585f5a821d7d",
+    "needsHumanReview": true,
+    "rightsStatus": "review_required",
+    "restrictedAssetsCopied": false,
+    "independentlyReauthored": false,
+    "reviewNote": "保存済み学習者向け解説のステージング取り込み版。数式・論理・図版の詳細校正前。"
+  },
+  "links": {
+    "questions": "/past-exam-library/teikyo/2025/physics/questions/",
+    "universityLibrary": "/past-exam-library/teikyo/",
+    "analysis": "/past-exam-library/teikyo/2025/physics/analysis/"
+  }
+}

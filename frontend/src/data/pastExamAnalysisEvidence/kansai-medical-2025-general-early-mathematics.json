@@ -1,0 +1,423 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "kansai-medical-2025-general-early-mathematics",
+    "university_id": "kansai-medical",
+    "university_name": "関西医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-early",
+    "exam_method_name": "一般選抜試験（前期）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 90,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "問題原本p.1に数学90分と明記されている。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kansai-medical/past-exams/working/2025/general-early/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "52fe37a363d954b3c8996a13a0d8f8168f6b3dddfbbd1be029906196e0d4b452",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "Ⅰ",
+      "sourceTitle": "極方程式と三角関数グラフの共有点",
+      "requirements": [
+        3,
+        3.5,
+        2.5,
+        3.5,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "焦点・準線の定義を極座標へ結び、aの正負で向きを分ける。",
+          "strategyReason": "定義から距離を立式できれば標準的な得点源になる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "パラメータを水平線へ読み替え、境界値-8,0,1を正確に扱う。",
+          "strategyReason": "グラフと開区間端点まで確認するため苦手層は後回しにする。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "Ⅱ",
+      "sourceTitle": "平方差と連続自然数の和",
+      "requirements": [
+        1,
+        3.3,
+        3.3,
+        3.3,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "平方差と和差の復元を使い、両因子が偶数となる4組を抽出する。",
+          "strategyReason": "平方差の定石を知っていれば短時間で処理できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "約数個数と因数の大小、m≧1による中央組の除外を処理する。",
+          "strategyReason": "平方数の中央組を除く判断が必要である。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(3)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 8,
+          "difficultyReason": "(2)の因数対を再利用し、不適な組の除外と復活を調整する。",
+          "strategyReason": "列挙と例外処理が重く苦手層には費用対効果が低い。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1",
+              "math-q2-2"
+            ],
+            "strong_subject": [
+              "math-q2-1",
+              "math-q2-2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "Ⅲ",
+      "sourceTitle": "ルーレットゲームの確率数列",
+      "requirements": [
+        1,
+        3.3,
+        3,
+        3.3,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "初回と2回目以降を分け、引き分け後の勝敗確率が等しいことを式にする。",
+          "strategyReason": "遷移を正しく書ければ差が消える。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "確率の全和を利用して望遠和へ変形する。",
+          "strategyReason": "(1)の遷移式を保てれば短く処理できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1"
+            ],
+            "strong_subject": [
+              "math-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "確率遷移と等比数列の一般項を結ぶ。",
+          "strategyReason": "前問の遷移式が使えれば標準的である。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1"
+            ],
+            "strong_subject": [
+              "math-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-4",
+          "label": "(4)",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 8,
+          "difficultyReason": "差と和の連立、等比数列の極限、分数式の整理を行う。",
+          "strategyReason": "前3問に依存する連鎖型で苦手層にはリスクが高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1",
+              "math-q3-2",
+              "math-q3-3"
+            ],
+            "strong_subject": [
+              "math-q3-1",
+              "math-q3-2",
+              "math-q3-3"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q4",
+      "label": "Ⅳ",
+      "sourceTitle": "三倍角と回転対称を用いる立体の体積",
+      "requirements": [
+        3,
+        3.3,
+        2.8,
+        3.5,
+        3.8
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "三倍角公式の直接確認である。",
+          "strategyReason": "即答でき後続の鍵にもなる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-2",
+          "label": "(2)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 7,
+          "difficultyReason": "断面積、置換積分、三倍角・倍角・積和公式まで長い計算を通す。",
+          "strategyReason": "計算量が大きく苦手層は時間を投じない。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q4-1"
+            ],
+            "strong_subject": [
+              "math-q4-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q4-3",
+          "label": "(3)",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "奇関数部分と単位半円の面積を使う対称性を見抜く。",
+          "strategyReason": "(2)の具体値がなくても独立に回収できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-4",
+          "label": "(4)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 7,
+          "difficultyReason": "回転後の座標とcos3(α+120°)=cos3αから包含を論証する。",
+          "strategyReason": "立体の把握と記述論証が必要である。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q4-1"
+            ],
+            "strong_subject": [
+              "math-q4-1"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 90,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 39,
+        "targetPercent": 39,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 46,
+        "maximum": {
+          "points": 39,
+          "minutes": 83.5,
+          "questionIds": [
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1"
+          ]
+        },
+        "now": {
+          "points": 39,
+          "minutes": 88,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 70,
+          "minutes": 131.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-3"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 68,
+        "targetPercent": 68,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 11.5,
+        "maximum": {
+          "points": 86,
+          "minutes": 86.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1",
+            "math-q4-3"
+          ]
+        },
+        "now": {
+          "points": 70,
+          "minutes": 68.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 116.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3",
+            "math-q4-4"
+          ]
+        }
+      }
+    ]
+  }
+}

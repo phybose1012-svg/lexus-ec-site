@@ -170,6 +170,7 @@ const { breadcrumbs, structuredData } = buildPastExamPageSeo({
                               <span>{subject.index}</span>
                               <span>
                                 <strong>{subject.name}</strong>
+                                {subject.examVariant && <small>{subject.examVariant}</small>}
                                 <small>{subject.english}</small>
                               </span>
                             </span>

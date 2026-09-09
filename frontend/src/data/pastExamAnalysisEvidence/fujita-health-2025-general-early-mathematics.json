@@ -1,0 +1,254 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "fujita-health-2025-general-early-mathematics",
+    "university_id": "fujita-health",
+    "university_name": "藤田医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-early",
+    "exam_method_name": "一般入試（前期）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 100,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "問題原本p.1に数学100分と明記されている。"
+    },
+    "total_points": 200
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/fujita-health/past-exams/working/2025/general-early/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "249c4c720af77a5e62be9176e0fc8ff8252b74e45f10d50323c6d9d6745dcf48",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "sourceTitle": "独立9題の小問集合",
+      "requirements": [
+        1.2,
+        3.2,
+        3,
+        3.6,
+        3.3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)（ア〜ウ）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "法線の傾きの決定と回転体の積分を連続して行う必要がある。",
+          "strategyReason": "得意層には定型だが、苦手層は回転体までの計算が重い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)（エ・オ）",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "偏角の差を整数倍し、実数条件を満たす最小値へ結び付ける。",
+          "strategyReason": "偏角の型を知る層には短いが、苦手層は発想待ちになりやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)（カ・キ）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "解と係数の関係と判別式を同時に管理する。",
+          "strategyReason": "式をaの二次式へ直せば平方完成で確実に処理できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-4",
+          "label": "(4)（ク・ケ）",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 15,
+          "difficultyReason": "負の二項型の確率を隣接項の比で比較する必要がある。",
+          "strategyReason": "確率式の立式と最大化が重く、短問確保後に回す。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-5",
+          "label": "(5)（コ〜シ）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "共役で有理化し、負のxに対する平方根の符号へ注意する基本問題である。",
+          "strategyReason": "有理化の定型で短時間に確保できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-6",
+          "label": "(6)（ス・セ）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "差を和に直して一般項を作り、整数の境界を確認する。",
+          "strategyReason": "和の公式を用いれば見通しよく処理できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-7",
+          "label": "(7)（ソ〜チ）",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "相似と角度関係を図に対応させる必要がある。",
+          "strategyReason": "図形像が見えれば短いが、見えない場合は停滞しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-8",
+          "label": "(8)（ツ〜ト）",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "3^xを正の変数へ置き換え、相反する項を含む式を整理する。",
+          "strategyReason": "置換後の式変形がやや長いため、苦手層は短問後に扱う。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-9",
+          "label": "(9)（ナ・ニ）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "分散の定義をそのまま用いる計算問題である。",
+          "strategyReason": "計算だけで完結する確実な得点源。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "sourceTitle": "2放物線の共通接線と面積",
+      "requirements": [
+        4,
+        5,
+        4.5,
+        4,
+        5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 25,
+          "difficultyReason": "各放物線との接触条件を重解として整理し、同じ直線へ統合する必要がある。",
+          "strategyReason": "記述量はあるが、接線条件の型に沿えば得意層は安定して進められる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 25,
+          "difficultyReason": "接点と2放物線の交点を確認し、上側の曲線が変わる位置で積分を分ける必要がある。",
+          "strategyReason": "領域把握と積分が最も重いため、得意層も最後に回す。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1"
+            ],
+            "strong_subject": [
+              "math-q2-1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "sourceTitle": "指数を含む整数方程式",
+      "requirements": [
+        0,
+        4,
+        3,
+        4,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "記述",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "nとmの大小を確定し、2^mをくくって4の約数条件へ帰着する。",
+          "strategyReason": "合同式の方針が立てば短く、記述答案もまとめやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": null
+}

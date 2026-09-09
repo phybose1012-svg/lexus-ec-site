@@ -1,0 +1,2662 @@
+{
+  "schemaVersion": "lexus-past-exam-batch-status.v1",
+  "packages": [
+    {
+      "id": "aichi-medical-2025-general-mathematics",
+      "directory": "projects/universities/aichi-medical/past-exams/working/2025/general/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [
+        {
+          "id": "provisional-subquestion-scoring-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "14主設問の仮配点合計100点は編集上の配分であり、公式小問別配点ではない。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "lexus-time-and-target-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "小問別時間と層別Lexus目標は、公式80分を用いた編集モデルによる仮定である。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "learner-editorial-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "学習者向け解説は原本の解法順を保った編集稿であり、数学担当による論理・式変形・答案表現の確認が必要。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "restricted-crop-redraw-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "内部限定クロップ4点はpending_redrawであり、公開前に模写差し替えと対応確認が必要。",
+          "owner": "art_and_rights"
+        },
+        {
+          "id": "rights-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "原本問題・解答解説のrights_statusはunknown。公開判断前に権利確認が必要。",
+          "owner": "rights"
+        },
+        {
+          "id": "subject-editor-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "科目担当＝編集責任者による原本、分析、解説、表示の一括承認が未了。",
+          "owner": "subject_editor"
+        }
+      ],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 4,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 4,
+      "analysis": "imported"
+    },
+    {
+      "id": "aichi-medical-2025-general-physics",
+      "directory": "projects/universities/aichi-medical/past-exams/working/2025/general/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 5,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 1,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "source-error",
+          "message": "Invalid target prerequisite or candidate (weak, now): phys-q2-5: requires absent phys-q2-4"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 5,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 1,
+      "analysis": "targets-deferred"
+    },
+    {
+      "id": "dokkyo-medical-2025-general-early-mathematics",
+      "directory": "projects/universities/dokkyo-medical/past-exams/working/2025/general-early/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 14,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "source-error",
+          "message": "Invalid target prerequisite or candidate (weak, now_plus_later): math-q3-3-ii: requires absent math-q3-3-i"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 14,
+      "analysis": "targets-deferred"
+    },
+    {
+      "id": "dokkyo-medical-2025-general-early-physics",
+      "directory": "projects/universities/dokkyo-medical/past-exams/working/2025/general-early/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 11,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 11,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 0,
+      "analysis": "imported"
+    },
+    {
+      "id": "fujita-health-2025-general-early-mathematics",
+      "directory": "projects/universities/fujita-health/past-exams/working/2025/general-early/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 5,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "source-error",
+          "message": "Stale or invalid target weak headline: observed 72; canonical 72.5 (or rounded 73)"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 5,
+      "analysis": "targets-deferred"
+    },
+    {
+      "id": "fujita-health-2025-general-early-physics",
+      "directory": "projects/universities/fujita-health/past-exams/working/2025/general-early/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 6,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 4,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "source-error",
+          "message": "Invalid target prerequisite or candidate (weak, now_plus_later): phys-q2-7: requires absent phys-q2-6"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 6,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 4,
+      "analysis": "targets-deferred"
+    },
+    {
+      "id": "fukuoka-2025-general-keitobetsu-mathematics",
+      "directory": "projects/universities/fukuoka/past-exams/working/2025/general-keitobetsu/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 1,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 1,
+      "analysis": "imported"
+    },
+    {
+      "id": "fukuoka-2025-general-keitobetsu-physics",
+      "directory": "projects/universities/fukuoka/past-exams/working/2025/general-keitobetsu/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [
+        {
+          "id": "official-2025-score-source",
+          "status": "open",
+          "severity": "high",
+          "summary": "2025年度要項原本を入手し、隣接年度の2026年度公式要項から採用した物理100点の配点が同一であることを確認する。"
+        },
+        {
+          "id": "score-allocation",
+          "status": "open",
+          "severity": "medium",
+          "summary": "物理100点をマーク21設問各3点・記述8設問各4〜5点とした仮配点を科目担当者が確認する。"
+        },
+        {
+          "id": "time-strategy",
+          "status": "open",
+          "severity": "medium",
+          "summary": "理科2科目120分から物理60分とした仮時間、時間モデル、層別戦略、Lexus目標を確認する。"
+        },
+        {
+          "id": "editorial-review",
+          "status": "open",
+          "severity": "high",
+          "summary": "学習者向け解説4原本ページ分を、原本の解法順・数式・答えと物理科目担当者が照合する。"
+        },
+        {
+          "id": "rights-redraw",
+          "status": "open",
+          "severity": "high",
+          "summary": "内部限定クロップ4点の権利を確認し、公開前に模写へ差し替える。"
+        },
+        {
+          "id": "human-visual-review",
+          "status": "open",
+          "severity": "high",
+          "summary": "原本9ページを科目担当者が確認し、source manifestのvisual_reviewedを明示判断する。"
+        },
+        {
+          "id": "human-approval",
+          "status": "open",
+          "severity": "high",
+          "summary": "分析、解説、難易度、レーダー、戦略、権利状態を科目担当者が一括承認する。"
+        }
+      ],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 3,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 1,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 3,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 1,
+      "analysis": "imported"
+    },
+    {
+      "id": "hyogo-medical-2025-general-a-b-mathematics",
+      "directory": "projects/universities/hyogo-medical/past-exams/working/2025/general-a-b/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [
+        {
+          "id": "provisional-subquestion-scoring-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "15主設問の仮配点合計100点は編集上の配分であり、公式小問別配点ではない。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "lexus-time-and-target-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "小問別時間と層別Lexus目標は、公式90分を用いた編集モデルによる仮定である。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "learner-editorial-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "学習者向け解説は原本の解法順を保った編集稿であり、数学担当による論理・式変形・答案表現の確認が必要。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "restricted-crop-redraw-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "内部限定クロップ5点はpending_redrawであり、公開前に模写差し替えと対応確認が必要。",
+          "owner": "art_and_rights"
+        },
+        {
+          "id": "rights-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "原本問題・解答解説のrights_statusはunknown。公開判断前に権利確認が必要。",
+          "owner": "rights"
+        },
+        {
+          "id": "subject-editor-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "科目担当＝編集責任者による原本、分析、解説、表示の一括承認が未了。",
+          "owner": "subject_editor"
+        }
+      ],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 5,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "source-error",
+          "message": "Invalid target prerequisite or candidate (weak, now): math-q2-5: requires absent math-q2-4"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 5,
+      "analysis": "targets-deferred"
+    },
+    {
+      "id": "hyogo-medical-2025-general-a-b-physics",
+      "directory": "projects/universities/hyogo-medical/past-exams/working/2025/general-a-b/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 6,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 4,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 6,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 4,
+      "analysis": "imported"
+    },
+    {
+      "id": "international-health-welfare-2025-general-mathematics",
+      "directory": "projects/universities/international-health-welfare/past-exams/working/2025/general/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 1,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 2,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 1,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 2,
+      "analysis": "imported"
+    },
+    {
+      "id": "international-health-welfare-2025-general-physics",
+      "directory": "projects/universities/international-health-welfare/past-exams/working/2025/general/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 11,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 2,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 11,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 2,
+      "analysis": "imported"
+    },
+    {
+      "id": "iwate-medical-2025-general-chemistry",
+      "directory": "projects/universities/iwate-medical/past-exams/working/2025/general/first-stage/chemistry",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 1,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "source-error",
+          "message": "ENOENT: no such file or directory, open 'C:\\---hp\\shidai-igakubu-gokaku-dokuhon\\projects\\universities\\iwate-medical\\past-exams\\working\\2025\\general\\first-stage\\chemistry\\source-html\\editorial-explanations.json'"
+        },
+        {
+          "scope": "analysis",
+          "kind": "source-error",
+          "message": "ENOENT: no such file or directory, open 'C:\\---hp\\shidai-igakubu-gokaku-dokuhon\\projects\\universities\\iwate-medical\\past-exams\\working\\2025\\general\\first-stage\\chemistry\\analysis.json'"
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 1,
+      "answers": "source-repair-required",
+      "analysis": "source-repair-required"
+    },
+    {
+      "id": "jichi-medical-2025-general-physics",
+      "directory": "projects/universities/jichi-medical/past-exams/working/2025/general/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 9,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "source-error",
+          "message": "Invalid target candidate or time budget"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 9,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 0,
+      "analysis": "targets-deferred"
+    },
+    {
+      "id": "jichi-medical-2025-general-mathematics-second-stage",
+      "directory": "projects/universities/jichi-medical/past-exams/working/2025/general/second-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 5,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "source-error",
+          "message": "Stale or invalid target weak strategy points: observed 8; expected 7.5"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 5,
+      "analysis": "targets-deferred"
+    },
+    {
+      "id": "jikei-2025-general-mathematics",
+      "directory": "projects/universities/jikei/past-exams/working/2025/general/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 0,
+      "analysis": "imported"
+    },
+    {
+      "id": "jikei-2025-general-physics",
+      "directory": "projects/universities/jikei/past-exams/working/2025/general/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [
+        {
+          "id": "provisional-subquestion-scoring-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "11論理小問の仮配点合計100点は編集上の配分であり、公式小問別配点ではない。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "combined-time-allocation-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "原本記載は理科2科目合計120分。分析では物理へ60分を仮配分しており、科目担当による妥当性確認が必要。",
+          "owner": "editorial_lead"
+        },
+        {
+          "id": "lexus-time-and-target-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "小問別時間とLexus目標は編集モデルによる仮定であり、科目担当の確認が必要。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "learner-editorial-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "学習者向け解説は原本の解法順・式・講評を保持した編集稿であり、物理担当による論理・式・符号の確認が必要。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "restricted-crop-redraw-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "内部限定クロップ4点はpending_redrawであり、公開前に模写差し替えと対応確認が必要。",
+          "owner": "art_and_rights"
+        },
+        {
+          "id": "rights-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "原本問題・解答解説のrights_statusはunknownで、クロップはrestricted。公開判断前に権利確認が必要。",
+          "owner": "rights"
+        },
+        {
+          "id": "subject-editor-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "科目担当＝編集責任者による原本、分析、学習者向け解説、表示の一括承認が未了。",
+          "owner": "subject_editor"
+        }
+      ],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 2,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 2,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 2,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 2,
+      "analysis": "imported"
+    },
+    {
+      "id": "juntendo-2025-general-a-physics",
+      "directory": "projects/universities/juntendo/past-exams/working/2025/general-a/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 16,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 11,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "source-error",
+          "message": "Invalid target prerequisite or candidate (weak, now_plus_later): phys-q2-4: requires absent phys-q2-2"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 16,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 11,
+      "analysis": "targets-deferred"
+    },
+    {
+      "id": "kanazawa-medical-2025-general-early-mathematics",
+      "directory": "projects/universities/kanazawa-medical/past-exams/working/2025/general-early/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 2,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 2,
+      "analysis": "imported"
+    },
+    {
+      "id": "kanazawa-medical-2025-general-early-physics",
+      "directory": "projects/universities/kanazawa-medical/past-exams/working/2025/general-early/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 3,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 3,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 0,
+      "analysis": "imported"
+    },
+    {
+      "id": "kanazawa-medical-2025-general-late-mathematics",
+      "directory": "projects/universities/kanazawa-medical/past-exams/working/2025/general-late/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 2,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 5,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 2,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 5,
+      "analysis": "imported"
+    },
+    {
+      "id": "kansai-medical-2025-general-early-mathematics",
+      "directory": "projects/universities/kansai-medical/past-exams/working/2025/general-early/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 6,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 6,
+      "analysis": "imported"
+    },
+    {
+      "id": "kansai-medical-2025-general-early-physics",
+      "directory": "projects/universities/kansai-medical/past-exams/working/2025/general-early/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 5,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 1,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "source-error",
+          "message": "Invalid target prerequisite or candidate (weak, now): phys-q1-4: requires absent phys-q1-3"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 5,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 1,
+      "analysis": "targets-deferred"
+    },
+    {
+      "id": "kawasaki-medical-2025-general-regional-quota-mathematics",
+      "directory": "projects/universities/kawasaki-medical/past-exams/working/2025/general-regional-quota/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 8,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 8,
+      "analysis": "imported"
+    },
+    {
+      "id": "kawasaki-medical-2025-general-regional-quota-physics",
+      "directory": "projects/universities/kawasaki-medical/past-exams/working/2025/general-regional-quota/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 3,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 3,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 3,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 3,
+      "analysis": "imported"
+    },
+    {
+      "id": "keio-2025-general-physics",
+      "directory": "projects/universities/keio/past-exams/working/2025/general/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 7,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 1,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "source-error",
+          "message": "Invalid target prerequisite or candidate (weak, now): phys-q1-d: requires absent phys-q1-c; phys-q2-m: requires absent phys-q2-l; phys-q2-m: requires absent phys-q2-k; phys-q3-f: requires absent phys-q3-c"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 7,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 1,
+      "analysis": "targets-deferred"
+    },
+    {
+      "id": "kindai-2025-general-first-a-mathematics",
+      "directory": "projects/universities/kindai/past-exams/working/2025/general-first-a/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [
+        {
+          "id": "provisional-subquestion-scoring-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "15主設問の仮配点合計100点は編集上の配分であり、公式小問別配点ではない。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "lexus-time-and-target-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "小問別時間と層別Lexus目標は、公式60分を用いた編集モデルによる仮定である。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "learner-editorial-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "学習者向け解説は原本の解法順を保った編集稿であり、数学担当による論理・式変形・答案表現の確認が必要。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "restricted-crop-redraw-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "内部限定クロップ8点はpending_redrawであり、公開前に模写差し替えと対応確認が必要。学習者解説では解答由来6点のみを使用している。",
+          "owner": "art_and_rights"
+        },
+        {
+          "id": "rights-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "原本問題・解答解説のrights_statusはunknown。公開判断前に権利確認が必要。",
+          "owner": "rights"
+        },
+        {
+          "id": "subject-editor-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "科目担当＝編集責任者による原本、分析、解説、表示の一括承認が未了。",
+          "owner": "subject_editor"
+        }
+      ],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 6,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 6,
+      "analysis": "imported"
+    },
+    {
+      "id": "kindai-2025-general-first-a-physics",
+      "directory": "projects/universities/kindai/past-exams/working/2025/general-first-a/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 8,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 5,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "source-error",
+          "message": "Invalid target prerequisite or candidate (weak, now): phys-q2-a5: requires absent phys-q2-a4"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 8,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 5,
+      "analysis": "targets-deferred"
+    },
+    {
+      "id": "kindai-2025-recommendation-general-public-mathematics",
+      "directory": "projects/universities/kindai/past-exams/working/2025/recommendation-general-public/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [
+        {
+          "id": "provisional-subquestion-scoring-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "13主設問の仮配点合計100点は編集上の配分であり、公式小問別配点ではない。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "lexus-time-and-target-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "小問別時間と層別Lexus目標は、公式60分を用いた編集モデルによる仮定である。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "learner-editorial-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "学習者向け解説は原本の解法順を保った編集稿であり、数学担当による論理・式変形・答案表現の確認が必要。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "restricted-crop-redraw-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "内部限定クロップ5点はpending_redrawであり、公開前に模写差し替えと対応確認が必要。学習者向け解説では解答由来3点のみを使用している。",
+          "owner": "art_and_rights"
+        },
+        {
+          "id": "rights-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "原本問題・解答解説のrights_statusはunknown。公開判断前に権利確認が必要。",
+          "owner": "rights"
+        },
+        {
+          "id": "subject-editor-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "科目担当＝編集責任者による原本、分析、解説、表示の一括承認が未了。",
+          "owner": "subject_editor"
+        }
+      ],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 3,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 3,
+      "analysis": "imported"
+    },
+    {
+      "id": "kindai-2025-recommendation-general-public-physics",
+      "directory": "projects/universities/kindai/past-exams/working/2025/recommendation-general-public/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 9,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 10,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 9,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 10,
+      "analysis": "imported"
+    },
+    {
+      "id": "kitasato-2025-general-mathematics",
+      "directory": "projects/universities/kitasato/past-exams/working/2025/general/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 1,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 1,
+      "analysis": "imported"
+    },
+    {
+      "id": "kitasato-2025-general-physics",
+      "directory": "projects/universities/kitasato/past-exams/working/2025/general/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 7,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 1,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 7,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 1,
+      "analysis": "imported"
+    },
+    {
+      "id": "kurume-2025-general-early-mathematics",
+      "directory": "projects/universities/kurume/past-exams/working/2025/general-early/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 2,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 5,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 2,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 5,
+      "analysis": "imported"
+    },
+    {
+      "id": "kurume-2025-general-early-physics",
+      "directory": "projects/universities/kurume/past-exams/working/2025/general-early/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 4,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "source-error",
+          "message": "Invalid target prerequisite or candidate (weak, now): phys-q2-7: requires absent phys-q2-6"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 4,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 0,
+      "analysis": "targets-deferred"
+    },
+    {
+      "id": "kyorin-2025-general-mathematics",
+      "directory": "projects/universities/kyorin/past-exams/working/2025/general/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 11,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 11,
+      "analysis": "imported"
+    },
+    {
+      "id": "kyorin-2025-general-physics",
+      "directory": "projects/universities/kyorin/past-exams/working/2025/general/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 4,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 4,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "source-error",
+          "message": "Invalid target prerequisite or candidate (weak, now_plus_later): phys-q2-c: requires absent phys-q2-b"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 4,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 4,
+      "analysis": "targets-deferred"
+    },
+    {
+      "id": "nihon-u-2025-n-unified-first-mathematics",
+      "directory": "projects/universities/nihon-u/past-exams/working/2025/n-unified-first/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 3,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 3,
+      "analysis": "imported"
+    },
+    {
+      "id": "nihon-u-2025-n-unified-first-physics",
+      "directory": "projects/universities/nihon-u/past-exams/working/2025/n-unified-first/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 7,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 3,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 7,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 3,
+      "analysis": "imported"
+    },
+    {
+      "id": "nihon-u-2025-n-unified-first-mathematics-second-stage",
+      "directory": "projects/universities/nihon-u/past-exams/working/2025/n-unified-first/second-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [
+        {
+          "id": "provisional-subquestion-scoring-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "各大問20点・合計60点は公式だが、9小問への内訳は編集上の仮配点であり公式小問別配点ではない。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "lexus-time-and-target-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "小問別時間と層別Lexus目標は、公式60分を用いた編集モデルによる仮定である。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "learner-editorial-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "学習者向け解説は原本の解法順を保った編集稿であり、数学担当による論理・式変形・答案表現の確認が必要。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "restricted-crop-redraw-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "内部限定クロップ6点はpending_redrawであり、公開前に模写差し替えと対応確認が必要。",
+          "owner": "art_and_rights"
+        },
+        {
+          "id": "rights-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "原本問題・解答解説のrights_statusはunknown。公開判断前に権利確認が必要。",
+          "owner": "rights"
+        },
+        {
+          "id": "subject-editor-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "科目担当＝編集責任者による原本、分析、解説、表示の一括承認が未了。",
+          "owner": "subject_editor"
+        }
+      ],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 6,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 6,
+      "analysis": "imported"
+    },
+    {
+      "id": "nippon-medical-2022-general-late-mathematics",
+      "directory": "projects/universities/nippon-medical/past-exams/working/2022/general-late/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "source-error",
+          "message": "ENOENT: no such file or directory, open 'C:\\---hp\\shidai-igakubu-gokaku-dokuhon\\projects\\universities\\nippon-medical\\past-exams\\working\\2022\\general-late\\first-stage\\mathematics\\source-html\\editorial-explanations.json'"
+        },
+        {
+          "scope": "analysis",
+          "kind": "source-error",
+          "message": "ENOENT: no such file or directory, open 'C:\\---hp\\shidai-igakubu-gokaku-dokuhon\\projects\\universities\\nippon-medical\\past-exams\\working\\2022\\general-late\\first-stage\\mathematics\\analysis.json'"
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "source-repair-required",
+      "analysis": "source-repair-required"
+    },
+    {
+      "id": "nippon-medical-2025-general-early-mathematics",
+      "directory": "projects/universities/nippon-medical/past-exams/working/2025/general-early/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [
+        {
+          "id": "provisional-subquestion-scoring-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "14主設問の仮配点合計300点は編集上の配分であり、公式小問別配点ではない。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "exam-time-source-notation-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "公式要項の試験枠11:05〜12:55と、問題冊子の数学90分表記の関係を編集責任者が最終確認する。分析時間モデルは問題冊子の90分を採用した。",
+          "owner": "editorial_lead"
+        },
+        {
+          "id": "lexus-time-and-target-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "小問別時間、苦手層53.3%、得意層80.0%のLexus目標は編集モデルによる仮定である。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "learner-editorial-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "学習者向け解説は原本の解法順を保った編集稿であり、数学担当による論理・式変形・答案表現の確認が必要。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "restricted-crop-redraw-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "内部限定クロップ5点はpending_redrawであり、公開前に模写差し替えと対応確認が必要。",
+          "owner": "art_and_rights"
+        },
+        {
+          "id": "rights-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "原本問題・解答解説のrights_statusはunknown。公開判断前に権利確認が必要。",
+          "owner": "rights"
+        },
+        {
+          "id": "subject-editor-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "科目担当＝編集責任者による原本、分析、解説、表示の一括承認が未了。",
+          "owner": "subject_editor"
+        }
+      ],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 5,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 5,
+      "analysis": "imported"
+    },
+    {
+      "id": "nippon-medical-2025-general-early-physics",
+      "directory": "projects/universities/nippon-medical/past-exams/working/2025/general-early/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [
+        {
+          "id": "provisional-subquestion-scoring-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "7小問の仮配点合計200点は編集上の配分であり、公式小問別配点ではない。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "combined-time-allocation-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "原本記載は理科2科目合計120分。分析では物理へ60分を仮配分しており、科目担当による妥当性確認が必要。",
+          "owner": "editorial_lead"
+        },
+        {
+          "id": "lexus-time-and-target-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "小問別時間とLexus目標は編集モデルによる仮定であり、科目担当の確認が必要。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "learner-editorial-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "学習者向け解説は原本の解法順を保った編集稿であり、物理担当による論理・式・単位・有効数字の確認が必要。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "restricted-crop-redraw-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "内部限定クロップ6点はpending_redrawであり、公開前に模写差し替えと対応確認が必要。",
+          "owner": "art_and_rights"
+        },
+        {
+          "id": "rights-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "原本問題・解答解説のrights_statusはunknownで、クロップはrestricted。公開判断前に権利確認が必要。",
+          "owner": "rights"
+        },
+        {
+          "id": "subject-editor-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "科目担当＝編集責任者による原本、分析、学習者向け解説、表示の一括承認が未了。",
+          "owner": "subject_editor"
+        }
+      ],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 5,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 1,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "source-error",
+          "message": "Stale or invalid target weak headline: observed 62; canonical 62.5 (or rounded 63)"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 5,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 1,
+      "analysis": "targets-deferred"
+    },
+    {
+      "id": "saitama-medical-2025-general-early-mathematics",
+      "directory": "projects/universities/saitama-medical/past-exams/working/2025/general-early/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 1,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 2,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 1,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 2,
+      "analysis": "imported"
+    },
+    {
+      "id": "saitama-medical-2025-general-early-physics",
+      "directory": "projects/universities/saitama-medical/past-exams/working/2025/general-early/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [
+        {
+          "id": "source-transcription-corrections",
+          "status": "open",
+          "severity": "high",
+          "summary": "問題p001の半円筒面名BOD→BCD、問題p009の位置エネルギー指数10^-13→10^-10という原本照合修正2件を科目担当者が確認する。"
+        },
+        {
+          "id": "official-2025-score-source",
+          "status": "open",
+          "severity": "high",
+          "summary": "2025年度一般選抜（前期）一次の物理100点を大学公式募集要項の保存原本で再確認する。理科2科目90分は問題原本p001で確認済み。"
+        },
+        {
+          "id": "score-allocation",
+          "status": "open",
+          "severity": "medium",
+          "summary": "31解答欄へ2〜4点を割り当て、大問別30・30・40点とした仮配点を科目担当者が確認する。"
+        },
+        {
+          "id": "time-strategy",
+          "status": "open",
+          "severity": "medium",
+          "summary": "理科2科目90分から物理45分とした仮時間、時間モデル、層別戦略、Lexus目標を確認する。"
+        },
+        {
+          "id": "editorial-review",
+          "status": "open",
+          "severity": "high",
+          "summary": "学習者向け解説5原本ページ分を、原本の解法順・数式・答えと物理科目担当者が照合する。"
+        },
+        {
+          "id": "rights-redraw",
+          "status": "open",
+          "severity": "high",
+          "summary": "内部限定クロップ3点の権利を確認し、公開前に模写へ差し替える。"
+        },
+        {
+          "id": "human-visual-review",
+          "status": "open",
+          "severity": "high",
+          "summary": "原本14ページを科目担当者が確認し、source manifestのvisual_reviewedを明示判断する。"
+        },
+        {
+          "id": "human-approval",
+          "status": "open",
+          "severity": "high",
+          "summary": "分析、解説、難易度、レーダー、戦略、権利状態を科目担当者が一括承認する。"
+        }
+      ],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 3,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 3,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 0,
+      "analysis": "imported"
+    },
+    {
+      "id": "sangyo-medical-2025-general-a-b-mathematics",
+      "directory": "projects/universities/sangyo-medical/past-exams/working/2025/general-a-b/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 4,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 4,
+      "analysis": "imported"
+    },
+    {
+      "id": "sangyo-medical-2025-general-a-b-physics",
+      "directory": "projects/universities/sangyo-medical/past-exams/working/2025/general-a-b/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 5,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 2,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 5,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 2,
+      "analysis": "imported"
+    },
+    {
+      "id": "showa-medical-2025-general-i-mathematics",
+      "directory": "projects/universities/showa-medical/past-exams/working/2025/general-i/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [
+        {
+          "id": "provisional-subquestion-scoring-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "16主設問の仮配点合計100点は編集上の配分であり、公式小問別配点ではない。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "combined-time-allocation-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "公式は英語・数学合計140分。分析では数学へ70分を仮配分しており、科目担当による妥当性確認が必要。",
+          "owner": "editorial_lead"
+        },
+        {
+          "id": "lexus-time-and-target-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "小問別時間、苦手層40.0%、得意層80.0%のLexus目標は編集モデルによる仮定である。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "learner-editorial-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "学習者向け解説は原本の解法順を保った編集稿であり、数学担当による論理・式変形・答案表現の確認が必要。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "restricted-crop-redraw-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "内部限定クロップ6点はpending_redrawであり、公開前に模写差し替えと対応確認が必要。",
+          "owner": "art_and_rights"
+        },
+        {
+          "id": "rights-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "原本問題・解答解説のrights_statusはunknown。公開判断前に権利確認が必要。",
+          "owner": "rights"
+        },
+        {
+          "id": "subject-editor-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "科目担当＝編集責任者による原本、分析、解説、表示の一括承認が未了。",
+          "owner": "subject_editor"
+        }
+      ],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 6,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 6,
+      "analysis": "imported"
+    },
+    {
+      "id": "showa-medical-2025-general-i-physics",
+      "directory": "projects/universities/showa-medical/past-exams/working/2025/general-i/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [
+        {
+          "id": "provisional-subquestion-scoring-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "25小問の仮配点合計100点は編集上の配分であり、公式小問別配点ではない。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "combined-time-allocation-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "公式は理科2科目合計140分。分析では物理へ70分を仮配分しており、科目担当による妥当性確認が必要。",
+          "owner": "editorial_lead"
+        },
+        {
+          "id": "lexus-time-and-target-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "小問別時間とLexus目標は編集モデルによる仮定であり、科目担当の確認が必要。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "learner-editorial-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "学習者向け解説は原本の解法順を保った編集稿であり、物理担当による論理・式・単位・有効数字の確認が必要。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "restricted-crop-redraw-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "内部限定クロップ11点はpending_redrawであり、公開前に模写差し替えと対応確認が必要。",
+          "owner": "art_and_rights"
+        },
+        {
+          "id": "rights-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "原本問題・解答解説のrights_statusはunknownで、クロップはrestricted。公開判断前に権利確認が必要。",
+          "owner": "rights"
+        },
+        {
+          "id": "subject-editor-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "科目担当＝編集責任者による原本、分析、学習者向け解説、表示の一括承認が未了。",
+          "owner": "subject_editor"
+        }
+      ],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 7,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 4,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "source-error",
+          "message": "Invalid target prerequisite or candidate (weak, now): phys-q2-3: requires absent phys-q2-2; phys-q4-7: requires absent phys-q4-6"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 7,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 4,
+      "analysis": "targets-deferred"
+    },
+    {
+      "id": "st-marianna-2025-general-early-mathematics",
+      "directory": "projects/universities/st-marianna/past-exams/working/2025/general-early/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 3,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 3,
+      "analysis": "imported"
+    },
+    {
+      "id": "st-marianna-2025-general-early-physics",
+      "directory": "projects/universities/st-marianna/past-exams/working/2025/general-early/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 9,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 1,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 9,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 1,
+      "analysis": "imported"
+    },
+    {
+      "id": "teikyo-2025-general-mathematics",
+      "directory": "projects/universities/teikyo/past-exams/working/2025/general/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 2,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 7,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 2,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 7,
+      "analysis": "imported"
+    },
+    {
+      "id": "teikyo-2025-general-physics",
+      "directory": "projects/universities/teikyo/past-exams/working/2025/general/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 9,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 1,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis",
+          "kind": "source-error",
+          "message": "ENOENT: no such file or directory, open 'C:\\---hp\\shidai-igakubu-gokaku-dokuhon\\projects\\universities\\teikyo\\past-exams\\working\\2025\\general\\first-stage\\physics\\preview-html\\public-preview\\index.html'"
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 9,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 1,
+      "analysis": "source-repair-required"
+    },
+    {
+      "id": "toho-2025-general-mathematics",
+      "directory": "projects/universities/toho/past-exams/working/2025/general/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 4,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 4,
+      "analysis": "imported"
+    },
+    {
+      "id": "toho-2025-general-physics",
+      "directory": "projects/universities/toho/past-exams/working/2025/general/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [
+        {
+          "id": "toho-physics-2025-provisional-scoring",
+          "status": "open",
+          "category": "scoring",
+          "summary": "27小問の配点は編集上の仮配点であり、科目担当レビューが必要。"
+        },
+        {
+          "id": "toho-physics-2025-combined-time",
+          "status": "open",
+          "category": "time_model",
+          "summary": "理科2科目120分から物理60分とした仮時間モデルの編集責任者確認が必要。"
+        },
+        {
+          "id": "toho-physics-2025-official-source-recheck",
+          "status": "open",
+          "category": "source",
+          "summary": "典拠として記録された2025年度募集要項URLが現在404のため、公式原典の再確認が必要。"
+        },
+        {
+          "id": "toho-physics-2025-lexus-review",
+          "status": "open",
+          "category": "analysis",
+          "summary": "Lexus目標と層別時間倍率は編集モデルであり、科目担当レビューが必要。"
+        },
+        {
+          "id": "toho-physics-2025-editorial-review",
+          "status": "open",
+          "category": "editorial",
+          "summary": "6大問へ再編した学習者向け解答・解説の科目担当レビューが必要。"
+        },
+        {
+          "id": "toho-physics-2025-crop-redraw",
+          "status": "open",
+          "category": "asset",
+          "summary": "原本クロップ7点は内部限定で、公開前に模写・差し替えが必要。"
+        },
+        {
+          "id": "toho-physics-2025-rights",
+          "status": "open",
+          "category": "rights",
+          "summary": "問題・解答原本の権利状態は未確認。公開可否の人間判断が必要。"
+        },
+        {
+          "id": "toho-physics-2025-package-approval",
+          "status": "open",
+          "category": "approval",
+          "summary": "科目担当・編集責任者によるパッケージ全体承認が未実施。"
+        }
+      ],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 5,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 2,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "source-error",
+          "message": "Invalid target prerequisite or candidate (strong, now): phys-q5-4: requires absent phys-q5-2"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 5,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 2,
+      "analysis": "targets-deferred"
+    },
+    {
+      "id": "tohoku-medical-pharmaceutical-2025-general-mathematics",
+      "directory": "projects/universities/tohoku-medical-pharmaceutical/past-exams/working/2025/general/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 1,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "table-column-mismatch",
+          "message": "tohoku-medical-pharmaceutical-2025-general-mathematics-answers-p005 / major-question-03 / f(x)の増減: headers=undefined, rows=6,6,6. Only this table is withheld."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 4,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 1,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 4,
+      "analysis": "imported"
+    },
+    {
+      "id": "tohoku-medical-pharmaceutical-2025-general-physics",
+      "directory": "projects/universities/tohoku-medical-pharmaceutical/past-exams/working/2025/general/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [
+        {
+          "id": "source-transcription-corrections-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "原本19ページのAI再監査で、注意事項の欄番号、問Ⅰ-3(1)の座標符号と選択肢、問Ⅱ-1(2)の解答番号を正本へ修正した。科目担当による原本対照が必要。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "provisional-subquestion-scoring-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "18論理小問の仮配点合計100点は編集上の配分であり、公式小問別配点ではない。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "combined-time-allocation-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "原本記載は理科2科目合計120分。分析では物理へ60分を仮配分しており、科目担当による妥当性確認が必要。",
+          "owner": "editorial_lead"
+        },
+        {
+          "id": "lexus-time-and-target-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "小問別時間とLexus目標は編集モデルによる仮定であり、科目担当の確認が必要。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "learner-editorial-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "学習者向け解説は原本の解法順・式を保った編集稿であり、物理担当による論理・式・符号の確認が必要。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "restricted-crop-redraw-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "内部限定クロップ7点はpending_redrawであり、公開前に模写差し替えと対応確認が必要。",
+          "owner": "art_and_rights"
+        },
+        {
+          "id": "rights-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "原本問題・解答解説のrights_statusはunknownで、クロップはrestricted。公開判断前に権利確認が必要。",
+          "owner": "rights"
+        },
+        {
+          "id": "subject-editor-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "科目担当＝編集責任者による原本、分析、学習者向け解説、表示の一括承認が未了。",
+          "owner": "subject_editor"
+        }
+      ],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 6,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "source-error",
+          "message": "Invalid target prerequisite or candidate (strong, now): phys-q3-5: requires absent phys-q3-4"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 6,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 0,
+      "analysis": "targets-deferred"
+    },
+    {
+      "id": "tokai-2025-general-mathematics",
+      "directory": "projects/universities/tokai/past-exams/working/2025/general/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [
+        {
+          "id": "score-allocation",
+          "status": "open",
+          "severity": "medium",
+          "summary": "公式100点を16論理小問へ配分した仮配点を科目担当者が確認する。"
+        },
+        {
+          "id": "time-strategy",
+          "status": "open",
+          "severity": "medium",
+          "summary": "公式70分を用いた時間モデル・層別戦略・Lexus目標を確認する。"
+        },
+        {
+          "id": "editorial-review",
+          "status": "open",
+          "severity": "high",
+          "summary": "学習者向け解説10原本ページ分を原本の解法順・数値と照合する。"
+        },
+        {
+          "id": "rights-redraw",
+          "status": "open",
+          "severity": "high",
+          "summary": "内部限定クロップ9点の権利を確認し、公開前に模写へ差し替える。"
+        },
+        {
+          "id": "human-approval",
+          "status": "open",
+          "severity": "high",
+          "summary": "原本12ページ、分析、解説、難易度、レーダー、戦略を科目担当者が承認する。"
+        }
+      ],
+      "issues": [
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 9,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 0,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 9,
+      "analysis": "imported"
+    },
+    {
+      "id": "tokai-2025-general-physics",
+      "directory": "projects/universities/tokai/past-exams/working/2025/general/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [
+        {
+          "id": "score-allocation",
+          "status": "open",
+          "severity": "medium",
+          "summary": "公式100点を20論理小問へ均等配分した仮配点を科目担当者が確認する。"
+        },
+        {
+          "id": "time-strategy",
+          "status": "open",
+          "severity": "medium",
+          "summary": "公式70分を用いた時間モデル・層別戦略・Lexus目標を確認する。"
+        },
+        {
+          "id": "editorial-review",
+          "status": "open",
+          "severity": "high",
+          "summary": "学習者向け解説6原本ページ分を原本の解法順・数式・答えと照合する。"
+        },
+        {
+          "id": "rights-redraw",
+          "status": "open",
+          "severity": "high",
+          "summary": "内部限定クロップ7点の権利を確認し、公開前に模写へ差し替える。"
+        },
+        {
+          "id": "human-visual-review",
+          "status": "open",
+          "severity": "high",
+          "summary": "原本11ページを科目担当者が実画面で確認し、source manifestのvisual_reviewedを承認する。"
+        },
+        {
+          "id": "human-approval",
+          "status": "open",
+          "severity": "high",
+          "summary": "分析、解説、難易度、レーダー、戦略、権利状態を科目担当者が一括承認する。"
+        }
+      ],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 6,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 1,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "source-error",
+          "message": "Invalid target prerequisite or candidate (weak, now): phys-q4-4: requires absent phys-q4-3"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 6,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 1,
+      "analysis": "targets-deferred"
+    },
+    {
+      "id": "tokyo-medical-2025-general-mathematics",
+      "directory": "projects/universities/tokyo-medical/past-exams/working/2025/general/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 1,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 5,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 1,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 5,
+      "analysis": "imported"
+    },
+    {
+      "id": "tokyo-medical-2025-general-physics",
+      "directory": "projects/universities/tokyo-medical/past-exams/working/2025/general/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 9,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 3,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "source-error",
+          "message": "Invalid target prerequisite or candidate (weak, now): phys-q2-3: requires absent phys-q2-2; phys-q4-4: requires absent phys-q4-2; phys-q4-5: requires absent phys-q4-3"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 9,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 3,
+      "analysis": "targets-deferred"
+    },
+    {
+      "id": "tokyo-womens-medical-2025-general-mathematics",
+      "directory": "projects/universities/tokyo-womens-medical/past-exams/working/2025/general/first-stage/mathematics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 1,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 2,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 1,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 2,
+      "analysis": "imported"
+    },
+    {
+      "id": "tokyo-womens-medical-2025-general-physics",
+      "directory": "projects/universities/tokyo-womens-medical/past-exams/working/2025/general/first-stage/physics",
+      "state": "staging-review-draft",
+      "upstreamOpenIssues": [
+        {
+          "id": "provisional-subquestion-scoring-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "29論理小問の仮配点合計100点は編集上の配分であり、公式小問別配点ではない。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "combined-time-allocation-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "原本記載は理科2科目合計120分。分析では物理へ60分を仮配分しており、科目担当による妥当性確認が必要。",
+          "owner": "editorial_lead"
+        },
+        {
+          "id": "lexus-time-and-target-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "小問別時間とLexus目標は編集モデルによる仮定であり、科目担当の確認が必要。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "learner-editorial-review",
+          "status": "open",
+          "severity": "review_required",
+          "summary": "学習者向け解説は原本の解法順・式を保持して再構成する編集稿であり、物理担当による論理・式・符号の確認が必要。",
+          "owner": "subject_editor"
+        },
+        {
+          "id": "restricted-crop-redraw-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "内部限定クロップ14点はpending_redrawであり、公開前に模写差し替えと対応確認が必要。",
+          "owner": "art_and_rights"
+        },
+        {
+          "id": "rights-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "原本問題・解答解説のrights_statusはunknownで、クロップはrestricted。公開判断前に権利確認が必要。",
+          "owner": "rights"
+        },
+        {
+          "id": "subject-editor-review",
+          "status": "open",
+          "severity": "publication_blocker",
+          "summary": "科目担当＝編集責任者による原本、分析、学習者向け解説、表示の一括承認が未了。",
+          "owner": "subject_editor"
+        }
+      ],
+      "issues": [
+        {
+          "scope": "questions",
+          "kind": "figures-pending",
+          "count": 10,
+          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
+        },
+        {
+          "scope": "answers",
+          "kind": "figures-pending",
+          "count": 4,
+          "message": "Required visual positions retained; no restricted answer crop copied."
+        },
+        {
+          "scope": "answers",
+          "kind": "editorial-review",
+          "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
+        }
+      ],
+      "questions": "imported",
+      "questionFigures": 10,
+      "answers": "editorial-adaptation-imported",
+      "answerFigures": 4,
+      "analysis": "imported"
+    }
+  ]
+}

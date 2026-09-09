@@ -1,0 +1,450 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "aichi-medical-2025-general-mathematics",
+    "university_id": "aichi-medical",
+    "university_name": "愛知医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 80,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "原本問題冊子に数学80分と明記される。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/aichi-medical/past-exams/working/2025/general/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "bbe8203b31d48c810303a5a33525e4c36073706744830b1d1bd5fbd1b6deccd1",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "sourceTitle": "整数・場合の数・接円・三角関数の小問集合",
+      "requirements": [
+        1.6,
+        3.1,
+        2.9,
+        3,
+        3.2
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "1)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "約数個数12の指数分割を列挙し、候補を大きさ順に比較する必要がある。",
+          "strategyReason": "約数個数の定型整理で短時間に独立得点できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2a",
+          "label": "2)(a)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "4種類への重複組合せをそのまま適用する典型問題である。",
+          "strategyReason": "重複組合せの定型問題である。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2b",
+          "label": "2)(b)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "a-1,b-1への置換で非負整数解へ戻す一手が必要である。",
+          "strategyReason": "(a)を再利用でき、正変数の平行移動だけで処理できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-2a"
+            ],
+            "strong_subject": [
+              "math-q1-2a"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-3a",
+          "label": "3)(a)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "CとBを結ぶ直線上の点を内分的なベクトル表示で表す問題である。",
+          "strategyReason": "指定されたベクトル式を座標へ移すだけである。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-3b",
+          "label": "3)(b)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "2つの接触条件を中心間距離へ翻訳し、根号方程式を処理する必要がある。",
+          "strategyReason": "図の読み替えと根号方程式に時間を使うが、(a)を使えば一本道である。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-3a"
+            ],
+            "strong_subject": [
+              "math-q1-3a"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-4a",
+          "label": "4)(a)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "角のずれを3倍角公式へ正しく反映する必要がある。",
+          "strategyReason": "3倍角公式の定型変形である。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-4b",
+          "label": "4)(b)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "合成公式でcosx-√3sinxを2cosαへ直す必要がある。",
+          "strategyReason": "(a)と三角関数の合成を組み合わせる誘導問題である。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-4a"
+            ],
+            "strong_subject": [
+              "math-q1-4a"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-4c",
+          "label": "4)(c)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "置換後の定義域、三次関数の増減、tからxへの戻しを一続きで処理する。",
+          "strategyReason": "計算は長いが、(b)まで完成すれば微分による標準手順で処理できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-4b"
+            ],
+            "strong_subject": [
+              "math-q1-4b"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "sourceTitle": "二次単数の漸化式と直線の傾きの極限",
+      "requirements": [
+        1.4,
+        3.7,
+        3.2,
+        3,
+        3.2
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "(2+√3)を掛けて有理部分と√3の係数を比較する定型問題である。",
+          "strategyReason": "後続全問の前提で、係数比較だけで得点できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "2)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "連立漸化式を代入して不変量を示し、初項へ戻す必要がある。",
+          "strategyReason": "1)の式を二乗展開すれば不変量が直接確認できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1"
+            ],
+            "strong_subject": [
+              "math-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q2-3",
+          "label": "3)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 11,
+          "difficultyReason": "不変量からxn/yn→√3を示し、傾きの分数式へ接続する必要がある。",
+          "strategyReason": "前問の不変量を使う見通しが立てば、比の極限へ一本道である。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1",
+              "math-q2-2"
+            ],
+            "strong_subject": [
+              "math-q2-1",
+              "math-q2-2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "sourceTitle": "球面と平面の交円・距離最大",
+      "requirements": [
+        4.2,
+        4.2,
+        4.2,
+        3.4,
+        4.2
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "球面方程式を各変数で平方完成するだけである。",
+          "strategyReason": "平方完成のみで確実に得点できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 12,
+          "difficultyReason": "平面上の点を2変数表示し、2本の方向ベクトルとの内積0から連立方程式を解く。",
+          "strategyReason": "計算量はあるが、垂線の足を内積条件で決める標準形である。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1"
+            ],
+            "strong_subject": [
+              "math-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-3",
+          "label": "3)",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 18,
+          "difficultyReason": "交円の中心・半径を決め、平面内の正規直交基底で円を表示してz成分を最適化する必要がある。",
+          "strategyReason": "設定と計算が重く、基本・標準問題の回収後に取り組むべき大問最終問である。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1",
+              "math-q3-2"
+            ],
+            "strong_subject": [
+              "math-q3-1",
+              "math-q3-2"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 80,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 62,
+        "targetPercent": 62,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 26,
+        "maximum": {
+          "points": 62,
+          "minutes": 80,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2a",
+            "math-q1-2b",
+            "math-q1-3a",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "now": {
+          "points": 47,
+          "minutes": 64.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2a",
+            "math-q1-2b",
+            "math-q1-3a",
+            "math-q1-4a",
+            "math-q1-4b",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 126.2,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2a",
+            "math-q1-2b",
+            "math-q1-3a",
+            "math-q1-3b",
+            "math-q1-4a",
+            "math-q1-4b",
+            "math-q1-4c",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 6.5,
+        "maximum": {
+          "points": 100,
+          "minutes": 73,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2a",
+            "math-q1-2b",
+            "math-q1-3a",
+            "math-q1-3b",
+            "math-q1-4a",
+            "math-q1-4b",
+            "math-q1-4c",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "now": {
+          "points": 82,
+          "minutes": 60.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2a",
+            "math-q1-2b",
+            "math-q1-3a",
+            "math-q1-3b",
+            "math-q1-4a",
+            "math-q1-4b",
+            "math-q1-4c",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 73,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2a",
+            "math-q1-2b",
+            "math-q1-3a",
+            "math-q1-3b",
+            "math-q1-4a",
+            "math-q1-4b",
+            "math-q1-4c",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        }
+      }
+    ]
+  }
+}

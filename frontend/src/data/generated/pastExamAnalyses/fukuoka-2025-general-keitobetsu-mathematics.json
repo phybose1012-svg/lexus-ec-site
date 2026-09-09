@@ -1,0 +1,336 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "fukuoka-2025-general-keitobetsu-mathematics",
+  "route": {
+    "university": "fukuoka",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/fukuoka/2025/mathematics/analysis/"
+  },
+  "university": "福岡大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "一般選抜（系統別日程）",
+  "duration": "数学 90分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "確率・ベクトル",
+  "summary": "［Ⅰ］は確率・ベクトル、［Ⅱ］は数列・三角関数、［Ⅲ］は三角関数・微分法。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "［Ⅰ］",
+      "title": "確率・空間ベクトル・放物線と平行線",
+      "subtitle": "確率・ベクトル・2次関数",
+      "summary": "独立した3題について、遷移の確率、四面体内の位置ベクトル、放物線と2本の平行線の交点条件と面積を求める空欄補充問題。",
+      "studyAction": "場合分けによる確率計算。空間ベクトルの係数比較",
+      "requirements": [
+        3,
+        3.7,
+        3.4,
+        3.7,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-i",
+          "label": "(i)",
+          "title": "三角形の頂点Aから出発し、毎秒、反時計回り・時計回りへ各確率 \\(1/6\\)、同じ頂点に確率 \\(2/3\\) で移る点Pについて、2秒後にBにいる確率と、最初の3秒間に一度もBにいない確率を求める。",
+          "note": "状態数が3つに限られ、2秒後は3場合の和、3秒間の非到達は同じ確率の積へ落とせる。大問冒頭で確実に回収したい。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 14
+        },
+        {
+          "id": "math-q1-ii",
+          "label": "(ii)",
+          "title": "四面体OABCで、OAの中点P、ABを \\(1:2\\) に内分するQ、BCを \\(2:3\\) に内分するRを用い、\\(\\overrightarrow{PR}\\) を基本ベクトルで表す。さらに平面PQRと辺OCの交点Sについて \\(\\overrightarrow{OS}\\) を求める。",
+          "note": "位置ベクトルの設定から平面条件の連立まで工程が多く、苦手層は係数計算の取り違えが起きやすい。確率や数列を先に処理し、基本ベクトルの置き方が確認できた時点で戻る。得意層には典型手順で再現可能。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 14
+        },
+        {
+          "id": "math-q1-iii",
+          "label": "(iii)",
+          "title": "放物線 \\(C:y=x^2+5x+4\\) が平行な2直線 \\(\\ell_1:y=3x+k+1\\)、\\(\\ell_2:y=3x+k\\) とそれぞれ異なる2点で交わる \\(k\\) の範囲を求め、その4交点を頂点とする四角形の面積が2となる \\(k\\) を求める。",
+          "note": "判別式までは定型だが、交点間距離を解の差で表し、平行線間距離と台形面積を作って根号方程式まで解く長い経路である。苦手層は他の基本的な空欄を優先し本番では回収対象から外す。得意層も短問を回収した後、15分程度を確保できた段階で戻る。",
+          "difficulty": 2,
+          "weak": 2,
+          "strong": 1,
+          "points": 15
+        }
+      ],
+      "questionsPath": "/past-exam-library/fukuoka/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/fukuoka/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "［Ⅱ］",
+      "title": "数列と三角関数の周期・平均値と中央値",
+      "subtitle": "数列・三角関数・データの分析",
+      "summary": "部分和から一般項を求めて三角関数列の周期和を処理する問題と、データ追加後の平均値・中央値を場合分けする問題。",
+      "studyAction": "部分和の差による一般項。三角関数の周期利用",
+      "requirements": [
+        0,
+        4,
+        4.5,
+        3.5,
+        4.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-i",
+          "label": "(i)",
+          "title": "数列 \\(\\{a_n\\}\\) の部分和が \\(\\sum_{k=1}^{n}a_k=\\frac{1}{12}n(n+7)\\) であるとき一般項を求め、\\(\\sum_{n=1}^{2025}\\cos(\\pi a_n)\\) を周期性を使って計算する。",
+          "note": "一般項までは定型だが、周期12の整理と末尾3項の符号確認が必要。苦手層は確率を先に回収し、周期が即座に見えた場合に戻る。得意層は部分和と周期和の典型として早めに処理できる。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 14
+        },
+        {
+          "id": "math-q2-ii",
+          "label": "(ii)",
+          "title": "10個のデータ \\(-5,-2,2,5,6,8,9,10,12,15\\) の平均値 \\(m\\) と中央値 \\(M\\) を求め、\\(M\\) と異なるデータ \\(a\\) を加えた平均値 \\(m'\\)、中央値 \\(M'\\) が \\(\\frac{m'-m}{M'-M}=101\\) を満たす \\(a\\) をすべて求める。",
+          "note": "平均値の計算後に、追加値の位置ごとに中央値を3場合へ分け、各解が範囲条件を満たすか確認する。工程量と分数計算が多いため、両層とも短問後に戻り、中央値の3範囲を書き出してから着手する。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 1,
+          "points": 14
+        }
+      ],
+      "questionsPath": "/past-exam-library/fukuoka/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/fukuoka/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "［Ⅲ］",
+      "title": "三角関数を含む2曲線の接線と面積",
+      "subtitle": "三角関数・微分法・積分法",
+      "summary": "正の定数 \\(a\\) を含む2曲線の共有点が1つとなる条件を倍角公式で決め、接線と囲まれた面積を記述する問題。",
+      "studyAction": "倍角公式と共有点個数。接点での微分係数",
+      "requirements": [
+        2.5,
+        4.5,
+        4,
+        4,
+        4.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-i",
+          "label": "(i)",
+          "title": "正の定数 \\(a\\) と2曲線 \\(C_1:y=1/\\cos x\\)、\\(C_2:y=a\\sin x\\)（\\(0\\leqq x<\\pi/2\\)）について、共有点がただ1つとなる \\(a\\) と共有点を求め、その点における \\(C_1\\) の接線の方程式を記述する。",
+          "note": "倍角公式で共有点個数をグラフに帰着し、接点と微分係数を順に求める再現可能な経路である。苦手層は空欄短問後、\\(2/a=\\sin2x\\) まで変形できる見通しが立った時点で戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 14
+        },
+        {
+          "id": "math-q3-ii",
+          "label": "(ii)",
+          "title": "［Ⅲ］(i)で \\(a=2\\)、共有点の \\(x\\) 座標が \\(\\pi/4\\) と決まったとき、\\(C_1:y=1/\\cos x\\)、\\(C_2:y=2\\sin x\\) と \\(y\\) 軸で囲まれる面積を定積分で求める。",
+          "note": "面積の立式後、分母を因数分解して部分分数と対数評価を進める長い記述計算である。苦手層は他の空欄と(i)を優先し回収対象外とする。得意層は(i)を完了し、残り15分程度を確保してから戻る。",
+          "difficulty": 2,
+          "weak": 2,
+          "strong": 1,
+          "points": 15
+        }
+      ],
+      "questionsPath": "/past-exam-library/fukuoka/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/fukuoka/2025/mathematics/answers/#major-question-03"
+    }
+  ],
+  "difficultyCounts": [
+    0,
+    1,
+    6,
+    0
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 90,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 70,
+        "targetPercent": 70,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 20.4,
+        "maximum": {
+          "points": 70,
+          "minutes": 89.4,
+          "questionIds": [
+            "math-q1-i",
+            "math-q1-ii",
+            "math-q2-i",
+            "math-q2-ii",
+            "math-q3-i"
+          ]
+        },
+        "now": {
+          "points": 14,
+          "minutes": 27.9,
+          "questionIds": [
+            "math-q1-i"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 70,
+          "minutes": 89.4,
+          "questionIds": [
+            "math-q1-i",
+            "math-q1-ii",
+            "math-q2-i",
+            "math-q2-ii",
+            "math-q3-i"
+          ]
+        },
+        "title": "数学が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 70,
+          "minutes": 89.4,
+          "questionIds": [
+            "math-q1-i",
+            "math-q1-ii",
+            "math-q2-i",
+            "math-q2-ii",
+            "math-q3-i"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q1-ii",
+            "label": "［Ⅰ］ (ii)"
+          },
+          {
+            "id": "math-q2-i",
+            "label": "［Ⅱ］ (i)"
+          },
+          {
+            "id": "math-q2-ii",
+            "label": "［Ⅱ］ (ii)"
+          },
+          {
+            "id": "math-q3-i",
+            "label": "［Ⅲ］ (i)"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 5.1,
+        "maximum": {
+          "points": 100,
+          "minutes": 81.1,
+          "questionIds": [
+            "math-q1-i",
+            "math-q1-ii",
+            "math-q1-iii",
+            "math-q2-i",
+            "math-q2-ii",
+            "math-q3-i",
+            "math-q3-ii"
+          ]
+        },
+        "now": {
+          "points": 56,
+          "minutes": 39.1,
+          "questionIds": [
+            "math-q1-i",
+            "math-q1-ii",
+            "math-q2-i",
+            "math-q3-i"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 81.1,
+          "questionIds": [
+            "math-q1-i",
+            "math-q1-ii",
+            "math-q1-iii",
+            "math-q2-i",
+            "math-q2-ii",
+            "math-q3-i",
+            "math-q3-ii"
+          ]
+        },
+        "title": "数学が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 100,
+          "minutes": 81.1,
+          "questionIds": [
+            "math-q1-i",
+            "math-q1-ii",
+            "math-q1-iii",
+            "math-q2-i",
+            "math-q2-ii",
+            "math-q3-i",
+            "math-q3-ii"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q1-iii",
+            "label": "［Ⅰ］ (iii)"
+          },
+          {
+            "id": "math-q2-ii",
+            "label": "［Ⅱ］ (ii)"
+          },
+          {
+            "id": "math-q3-ii",
+            "label": "［Ⅲ］ (ii)"
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/fukuoka/past-exams/working/2025/general-keitobetsu/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "dec9182158facc18362a2242a2646c546baa0cc62ee3d2d299f354844258c250",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/fukuoka/2025/mathematics/questions/",
+    "answers": "/past-exam-library/fukuoka/2025/mathematics/answers/",
+    "university": "/past-exam-library/fukuoka/"
+  }
+}

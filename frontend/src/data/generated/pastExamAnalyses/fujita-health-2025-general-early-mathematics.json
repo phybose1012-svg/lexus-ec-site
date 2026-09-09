@@ -1,0 +1,239 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "fujita-health-2025-general-early-mathematics",
+  "route": {
+    "university": "fujita-health",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/fujita-health/2025/mathematics/analysis/"
+  },
+  "university": "藤田医科大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "一般入試（前期）",
+  "duration": "数学 100分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "微分法・積分法",
+  "summary": "第1問は微分法・積分法、第2問は微分法・積分法、第3問は整数の性質・指数関数・対数関数。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "title": "独立9題の小問集合",
+      "subtitle": "微分法・積分法・複素数平面",
+      "summary": "微積分、複素数、確率、数列、図形、指数関数、データ分析を横断するマーク式小問を処理する。",
+      "studyAction": "接線と法線。回転体の体積",
+      "requirements": [
+        1.2,
+        3.2,
+        3,
+        3.6,
+        3.3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)（ア〜ウ）",
+          "title": "三次関数の曲線上の法線を求め、囲まれた部分の回転体の体積を計算する。",
+          "note": "得意層には定型だが、苦手層は回転体までの計算が重い。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 15
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)（エ・オ）",
+          "title": "複素数の商の偏角を整理し、初めて実数となる自然数nを求める。",
+          "note": "偏角の型を知る層には短いが、苦手層は発想待ちになりやすい。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 15
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)（カ・キ）",
+          "title": "二次方程式の実数解条件の下で、2根の平方和の最小値を求める。",
+          "note": "式をaの二次式へ直せば平方完成で確実に処理できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 15
+        },
+        {
+          "id": "math-q1-4",
+          "label": "(4)（ク・ケ）",
+          "title": "さいころで1が10回出た時点に試行を終える確率が最大となる試行回数を求める。",
+          "note": "確率式の立式と最大化が重く、短問確保後に回す。",
+          "difficulty": 2,
+          "weak": 2,
+          "strong": 1,
+          "points": 15
+        },
+        {
+          "id": "math-q1-5",
+          "label": "(5)（コ〜シ）",
+          "title": "xが負の無限大へ進むときの根号を含む式の極限を求める。",
+          "note": "有理化の定型で短時間に確保できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 15
+        },
+        {
+          "id": "math-q1-6",
+          "label": "(6)（ス・セ）",
+          "title": "差がn²−nで与えられる数列について、初めて2025を超える項番号を求める。",
+          "note": "和の公式を用いれば見通しよく処理できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 15
+        },
+        {
+          "id": "math-q1-7",
+          "label": "(7)（ソ〜チ）",
+          "title": "直角三角形内の長さ条件から点の配置を決め、角PRQを求める。",
+          "note": "図形像が見えれば短いが、見えない場合は停滞しやすい。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 15
+        },
+        {
+          "id": "math-q1-8",
+          "label": "(8)（ツ〜ト）",
+          "title": "指数関数を一つの変数へ置き換え、値域を考えて最小値を求める。",
+          "note": "置換後の式変形がやや長いため、苦手層は短問後に扱う。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 15
+        },
+        {
+          "id": "math-q1-9",
+          "label": "(9)（ナ・ニ）",
+          "title": "5個の観測値から平均を求め、偏差平方の平均として分散を計算する。",
+          "note": "計算だけで完結する確実な得点源。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 15
+        }
+      ],
+      "questionsPath": "/past-exam-library/fujita-health/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/fujita-health/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "title": "2放物線の共通接線と面積",
+      "subtitle": "微分法・積分法・図形と方程式",
+      "summary": "パラメータを含む2放物線の共通接線を決定し、3曲線に囲まれた面積を求める。",
+      "studyAction": "接線条件と重解。平方完成",
+      "requirements": [
+        4,
+        5,
+        4.5,
+        4,
+        5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "title": "2本の放物線に共通する接線の方程式をパラメータkで表す。",
+          "note": "記述量はあるが、接線条件の型に沿えば得意層は安定して進められる。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 25
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)",
+          "title": "2放物線と共通接線で囲まれる領域を分割し、面積を求める。",
+          "note": "領域把握と積分が最も重いため、得意層も最後に回す。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 25
+        }
+      ],
+      "questionsPath": "/past-exam-library/fujita-health/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/fujita-health/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "title": "指数を含む整数方程式",
+      "subtitle": "整数の性質・指数関数・対数関数",
+      "summary": "整数条件と指数の増大を利用して、方程式6^m=2^n+4の自然数解を尽くす。",
+      "studyAction": "整数の大小関係。素因数分解",
+      "requirements": [
+        0,
+        4,
+        3,
+        4,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "記述",
+          "title": "方程式6^m=2^n+4を満たす自然数の組(m,n)をすべて求める。",
+          "note": "合同式の方針が立てば短く、記述答案もまとめやすい。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 15
+        }
+      ],
+      "questionsPath": "/past-exam-library/fujita-health/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/fujita-health/2025/mathematics/answers/#major-question-03"
+    }
+  ],
+  "difficultyCounts": [
+    2,
+    6,
+    3,
+    1
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 200,
+    "timeBudgetMinutes": null,
+    "profiles": []
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/fujita-health/past-exams/working/2025/general-early/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "249c4c720af77a5e62be9176e0fc8ff8252b74e45f10d50323c6d9d6745dcf48",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "targetReviewNote": "元データの目標点・所要時間・前問依存を確認しています。数値は検証完了後に掲載します。",
+  "links": {
+    "questions": "/past-exam-library/fujita-health/2025/mathematics/questions/",
+    "answers": "/past-exam-library/fujita-health/2025/mathematics/answers/",
+    "university": "/past-exam-library/fujita-health/"
+  }
+}

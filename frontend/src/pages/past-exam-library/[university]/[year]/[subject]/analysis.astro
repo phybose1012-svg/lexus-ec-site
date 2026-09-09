@@ -9,16 +9,19 @@ import PastExamDocumentTabs from "../../../../../components/past-exam/PastExamDo
 import PastExamContents from "../../../../../components/past-exam/PastExamContents.astro";
 import { analysisPages, type AnalysisPage } from "../../../../../data/pastExamAnalyses";
 import { buildDifficultyPie } from "../../../../../lib/pastExamDifficultyPie.mjs";
+import { inline } from "../../../../../lib/pastExamInline.mjs";
 import "../../../../../styles/past-exam-library.css";
 import "../../../../../styles/past-exam-question.css";
 import "../../../../../styles/past-exam-analysis.css";
 
 export function getStaticPaths() {
-  return analysisPages.map((page) => ({ params: { university: page.route.university, year: page.route.year, subject: page.route.subject }, props: { page } }));
+  return analysisPages.map((page) => ({ params: { university: page.route.university, year: page.route.year, subject: page.route.path.split('/').filter(Boolean).at(-2) }, props: { page } }));
 }
 const { page } = Astro.props as { page: AnalysisPage };
 const { title, description, canonical, breadcrumbs, structuredData } = buildExamDocumentSeo({
   mode: "analysis",
+  pending: Boolean(page.pendingReason),
+  variantLabel: page.route.path.split('/').filter(Boolean).at(-2) !== page.route.subject ? page.examLabel : undefined,
   university: page.university,
   year: page.year,
   subject: page.subject,
@@ -37,7 +40,7 @@ const itemNoun = usesNumberedProblems ? "問題" : "小問";
 const itemCountSuffix = usesNumberedProblems ? "問" : "小問";
 const totalPoints = page.majorQuestions.flatMap((q) => q.subquestions).reduce((n, q) => n + q.points, 0);
 const difficultyPoints = levels.map((_, level) => page.majorQuestions.flatMap((q) => q.subquestions).filter((q) => q.difficulty === level).reduce((n, q) => n + q.points, 0));
-const difficultySlices = buildDifficultyPie(difficultyPoints);
+const difficultySlices = page.pendingReason ? [] : buildDifficultyPie(difficultyPoints);
 const weakScanMinutes = page.targets.profiles.find((profile) => profile.id === "weak")?.scanMinutes;
 const targetReviewNote = page.targetReviewNote
   ? `${page.targetReviewNote}${weakScanMinutes !== undefined && !page.targetReviewNote.includes(`${weakScanMinutes}分`)
@@ -49,7 +52,11 @@ const targetReviewNote = page.targetReviewNote
 <SiteLayout title={title} description={description} canonical={canonical}
   ogImage={PAST_EXAM_SOCIAL_IMAGE} ogImageAlt={PAST_EXAM_SOCIAL_IMAGE_ALT}
   noindex={true} mainContentId="past-exam-content">
-  <Fragment slot="head"><PastExamSeoHead structuredData={structuredData} /></Fragment>
+  <Fragment slot="head"><PastExamSeoHead structuredData={structuredData} />
+    <link rel="stylesheet" href="/assets/vendor/katex/katex.min.css" />
+    <script is:inline defer src="/assets/vendor/katex/katex.min.js"></script>
+    <script is:inline defer src="/assets/past-exam/math-render.js"></script>
+  </Fragment>
   <main id="past-exam-content" tabindex="-1" class="past-exam-question-page past-exam-analysis-page">
     <header class="past-exam-question-header">
       <div class="content">
@@ -77,6 +84,8 @@ const targetReviewNote = page.targetReviewNote
     <PastExamDocumentTabs current="analysis" questions={page.links.questions} answers={page.links.answers} analysis={page.route.path} />
 
     <div class="analysis-body">
+      {page.pendingReason && <section class="content source-page-card"><h2>分析データを確認しています</h2><p>{page.pendingReason}</p></section>}
+      {!page.pendingReason && <>
       <div class="analysis-introduction content">
       <PastExamContents title="分析の目次" items={[
         { label: "試験概要", href: "#difficulty-distribution" },
@@ -88,8 +97,8 @@ const targetReviewNote = page.targetReviewNote
       <section class="analysis-takeaway" aria-labelledby="analysis-takeaway-title">
         <div>
           <p class="analysis-eyebrow">この年のポイント</p>
-          <h2 id="analysis-takeaway-title">{page.headline}</h2>
-          <p>{page.summary}</p>
+          <h2 id="analysis-takeaway-title" set:html={inline(page.headline)} />
+          <p set:html={inline(page.summary)} />
         </div>
         <div class="analysis-distribution" id="difficulty-distribution">
           <h3>試験概要</h3>
@@ -114,9 +123,9 @@ const targetReviewNote = page.targetReviewNote
       </div>
 
       <AnalysisSection id="target-score" headingId="target-title" number="01" title="目標点" tone="muted" character="lexus">
-        <p class="analysis-section-intro">{page.targets.timeBudgetBasis === "official_subject"
+        {page.targets.profiles.length > 0 && <p class="analysis-section-intro">{page.targets.timeBudgetBasis === "official_subject"
           ? `${page.subject}の試験時間${page.targets.timeBudgetMinutes}分で組んだ、レクサスの目標点です。${itemNoun}別の仮配点に基づく試算で、大学公表の配点・合格最低点ではありません。`
-          : `${page.subject}に${page.targets.timeBudgetMinutes}分を使うと仮定した、レクサスの目標点です。${itemNoun}別の仮配点に基づく試算で、大学公表の配点・合格最低点ではありません。`}</p>
+          : `${page.subject}に${page.targets.timeBudgetMinutes}分を使うと仮定した、レクサスの目標点です。${itemNoun}別の仮配点に基づく試算で、大学公表の配点・合格最低点ではありません。`}</p>}
         {targetReviewNote && <p class="analysis-small-note">{targetReviewNote}</p>}
         <div class="analysis-target-grid">
           {page.targets.profiles.map((profile) => (
@@ -138,16 +147,16 @@ const targetReviewNote = page.targetReviewNote
             </article>
           ))}
         </div>
-        <p class="analysis-small-note">時間は全{total}{usesNumberedProblems ? "問" : "小問"}の解く・後回しにする判断を一度行う時間を含みます。実際の所要時間や得点を保証するものではありません。</p>
+        {page.targets.profiles.length > 0 && <p class="analysis-small-note">時間は全{total}{usesNumberedProblems ? "問" : "小問"}の解く・後回しにする判断を一度行う時間を含みます。実際の所要時間や得点を保証するものではありません。</p>}
       </AnalysisSection>
 
       <AnalysisSection headingId="overview-title" number="02" title={overviewTitle}>
         <div class="analysis-major-grid">
           {page.majorQuestions.map((major, i) => (
             <article class="analysis-major-card">
-              <div class="analysis-major-card__head"><span>{String(i + 1).padStart(2, "0")}</span><div><small>{major.label}</small><h3>{major.title}</h3></div></div>
-              <p class="analysis-major-subtitle">{major.subtitle}</p>
-              <p>{major.summary}</p>
+              <div class="analysis-major-card__head"><span>{String(i + 1).padStart(2, "0")}</span><div><small>{major.label}</small><h3 set:html={inline(major.title)} /></div></div>
+              <p class="analysis-major-subtitle" set:html={inline(major.subtitle)} />
+              <p set:html={inline(major.summary)} />
               <a href={`#${major.id}`}>{itemNoun}別の優先度を見る <span aria-hidden="true">↓</span></a>
             </article>
           ))}
@@ -162,7 +171,7 @@ const targetReviewNote = page.targetReviewNote
           {page.majorQuestions.map((major) => (
             <section class="analysis-major-detail" id={major.id} aria-labelledby={`${major.id}-title`}>
               <div class="analysis-detail-heading">
-                <h3 id={`${major.id}-title`}>{major.label}<span>{major.title}</span></h3>
+                <h3 id={`${major.id}-title`}>{major.label}<span set:html={inline(major.title)} /></h3>
                 <div><a href={major.questionsPath}>問題</a><a href={major.answersPath}>解答・解説</a></div>
               </div>
               <table class="analysis-priority-table">
@@ -170,7 +179,7 @@ const targetReviewNote = page.targetReviewNote
                 <thead><tr><th scope="col">{itemNoun}・着眼点</th><th scope="col">難易度</th><th scope="col">苦手なら</th><th scope="col">得意なら</th></tr></thead>
                 <tbody>{major.subquestions.map((s) => (
                   <tr>
-                    <th scope="row"><span class="analysis-subquestion-name"><small>{s.label}</small>{s.title}</span><p>{s.note}</p></th>
+                    <th scope="row"><span class="analysis-subquestion-name"><small>{s.label}</small><span set:html={inline(s.title)} /></span><p set:html={inline(s.note)} /></th>
                     <td><span class={`analysis-difficulty level-${s.difficulty}`}><span>{levels[s.difficulty].replace("レベル", "")}</span><span>レベル</span></span></td>
                     <td><span class={`analysis-priority priority-${s.weak}`}>{priorities[s.weak]}</span></td>
                     <td><span class={`analysis-priority priority-${s.strong}`}>{priorities[s.strong]}</span></td>
@@ -184,8 +193,9 @@ const targetReviewNote = page.targetReviewNote
       </AnalysisSection>
 
       <AnalysisSection headingId="practice-title" number="04" title={`復習はこの${page.majorQuestions.length}点`}>
-        <ol class="analysis-practice-list">{page.majorQuestions.map((m) => <li><strong>{m.title}</strong><p>{m.studyAction}</p></li>)}</ol>
+        <ol class="analysis-practice-list">{page.majorQuestions.map((m) => <li><strong set:html={inline(m.title)} /><p set:html={inline(m.studyAction)} /></li>)}</ol>
       </AnalysisSection>
+      </>}
     </div>
     <nav class="past-exam-question-links" aria-label="問題・解答へ戻る"><div class="content">
       <a href={page.links.questions}><span>{page.year}年度 {page.subject}</span><strong>問題を解く</strong></a>

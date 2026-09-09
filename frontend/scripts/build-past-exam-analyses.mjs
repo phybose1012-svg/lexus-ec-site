@@ -90,7 +90,9 @@ export function buildAnalysis(evidence, editorial, targetPolicies = defaultTarge
   if (examTotal && (!Number.isSafeInteger(examTotal.points) || examTotal.points < p.total_points || !Number.isSafeInteger(examTotal.subjectCount) || examTotal.subjectCount < 1)) throw new Error("Invalid whole-exam total");
   for (const id of [p.university_id, p.subject_id]) if (!/^[a-z0-9-]+$/.test(id)) throw new Error("Invalid route identifier");
   if (!/^\d{4}$/.test(String(p.academic_year))) throw new Error("Invalid academic year");
-  const root = `/past-exam-library/${p.university_id}/${p.academic_year}/${p.subject_id}/`;
+  const segment = editorial.routeSegment ?? p.subject_id;
+  if (!/^[a-z0-9-]+$/.test(segment)) throw new Error('Invalid exam route segment');
+  const root = `/past-exam-library/${p.university_id}/${p.academic_year}/${segment}/`;
   if (editorial.majorQuestions.length !== evidence.majorQuestions.length) throw new Error("Editorial major question coverage mismatch");
   const used = new Set();
   const majorQuestions = evidence.majorQuestions.map((major, index) => {
@@ -115,9 +117,12 @@ export function buildAnalysis(evidence, editorial, targetPolicies = defaultTarge
   // Validate the immutable source snapshot before applying an explicitly authored
   // package or university/subject policy. This keeps source evidence auditable
   // without hard-coding route IDs in the builder.
-  const sourceTargetAnalysis = validateTargetAnalysis(evidence.targetAnalysis, questionIds);
+  const targetDeferred = evidence.targetAnalysis === null && editorial.targetReviewStatus === 'source-repair-required';
+  const sourceTargetAnalysis = targetDeferred
+    ? {basis: 'provisional_editorial', timeBudgetBasis: 'provisional_editorial', totalPoints: p.total_points, timeBudgetMinutes: null, profiles: []}
+    : validateTargetAnalysis(evidence.targetAnalysis, questionIds);
   const targetProfileOverrides = resolveTargetProfileOverrides(targetPolicies, p, editorial);
-  const targetAnalysis = applyTargetProfileOverrides(sourceTargetAnalysis, targetProfileOverrides, questionIds);
+  const targetAnalysis = targetDeferred ? sourceTargetAnalysis : applyTargetProfileOverrides(sourceTargetAnalysis, targetProfileOverrides, questionIds);
   if (editorial.targets?.length !== targetAnalysis.profiles.length) throw new Error("Incomplete target editorial coverage");
   const targets = {
     ...targetAnalysis,
@@ -157,7 +162,7 @@ export function buildAnalysis(evidence, editorial, targetPolicies = defaultTarge
   return {
     schemaVersion: "lexus-analysis-page.v1", packageId: p.id,
     route: { university: p.university_id, year: String(p.academic_year), subject: p.subject_id, path: `${root}analysis/` },
-    university: p.university_name, year: p.academic_year, subject: p.subject_name, examLabel: p.exam_method_name,
+    university: p.university_name, year: p.academic_year, subject: p.subject_name, examLabel: editorial.examLabel ?? p.exam_method_name,
     duration: requireText(editorial.durationLabel ?? p.time_limit.note), format: requireText(editorial.format),
     examTotal: examTotal ? { points: examTotal.points, subjectCount: examTotal.subjectCount } : null,
     headline: requireText(editorial.headline), summary: requireText(editorial.summary), requirementsSummary: requireText(editorial.requirementsSummary),

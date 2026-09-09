@@ -1,0 +1,384 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "tohoku-medical-pharmaceutical-2025-general-mathematics",
+    "university_id": "tohoku-medical-pharmaceutical",
+    "university_name": "東北医科薬科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 70,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "問題原本p.1に数学70分と明記されている。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/tohoku-medical-pharmaceutical/past-exams/working/2025/general/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "54696cdcdc903486de9654a36b0a131de7f3c212509d51daa8ed0b19e0b3b93e",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第Ⅰ問",
+      "sourceTitle": "2次方程式の解と係数・円上の最大最小",
+      "requirements": [
+        2.5,
+        4,
+        3.5,
+        4,
+        3.8
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "判別式の条件をa-b平面上の領域へ翻訳し、円周上でbを最大化する。",
+          "strategyReason": "領域図を正しく作れれば短く、苦手層は図示で止まりやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "判別式0と因数分解を順に使う一本道である。",
+          "strategyReason": "重解条件が直接使え、独立に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-3-1",
+          "label": "(3-1)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "解と係数の関係と平方完成の定型処理である。",
+          "strategyReason": "(3)で得たbの範囲を使えば短時間で完了する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-3-2",
+          "label": "(3-2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 9,
+          "difficultyReason": "制約円弧の端点と接点を区別し、直線の切片を動かす必要がある。",
+          "strategyReason": "領域の端点と接線の双方を確認するため、先に短い設問を確保する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-3-1"
+            ],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第Ⅱ問",
+      "sourceTitle": "格子経路の数え上げと包除原理",
+      "requirements": [
+        3.2,
+        2.8,
+        3,
+        4.2,
+        3.6
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "格子経路の基本的な組合せである。",
+          "strategyReason": "定型で最優先に確保できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "指定点で経路を分割する定型問題である。",
+          "strategyReason": "図から移動回数を読めれば確実に進められる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(3)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "禁止条件を補集合と包除原理で扱う。",
+          "strategyReason": "三つの経路数を正確に整理する必要がある。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1"
+            ],
+            "strong_subject": [
+              "math-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q2-4-1",
+          "label": "(4-1)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "西向きの位置ごとに経路を分解し、三場合を合計する。",
+          "strategyReason": "場合分けは明確だが計算項が三つある。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-2"
+            ],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-4-2",
+          "label": "(4-2)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 9,
+          "difficultyReason": "西向きの挿入位置とBへの重複到達を別々に数える必要がある。",
+          "strategyReason": "数え上げのモデル化が難しく、最後の候補とする。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": [
+              "math-q2-1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第Ⅲ問",
+      "sourceTitle": "三角関数を含む関数の微分と極値",
+      "requirements": [
+        1,
+        4.7,
+        4.7,
+        4.3,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "積の形に注意して微分し、特殊値を代入する。",
+          "strategyReason": "(ii)を直接使う短い計算である。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 8,
+          "difficultyReason": "3次式の因数分解、増減判定、対数を含む値の計算を連続して行う。",
+          "strategyReason": "試験中最重量の計算で、短い設問を確保した後に扱う。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1"
+            ],
+            "strong_subject": [
+              "math-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 9,
+          "difficultyReason": "極値位置は(2)を利用できるが、根号と対数の式整理が長い。",
+          "strategyReason": "(2)依存で計算も長いため最後に回す。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-2"
+            ],
+            "strong_subject": [
+              "math-q3-2"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 70,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 57,
+        "targetPercent": 57,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 32,
+        "maximum": {
+          "points": 57,
+          "minutes": 68.8,
+          "questionIds": [
+            "math-q1-2",
+            "math-q1-3-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4-1",
+            "math-q3-1"
+          ]
+        },
+        "now": {
+          "points": 41,
+          "minutes": 55.3,
+          "questionIds": [
+            "math-q1-2",
+            "math-q1-3-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 74,
+          "minutes": 85.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3-1",
+            "math-q1-3-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4-1",
+            "math-q3-1"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 8,
+        "maximum": {
+          "points": 100,
+          "minutes": 67.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3-1",
+            "math-q1-3-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4-1",
+            "math-q2-4-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "now": {
+          "points": 65,
+          "minutes": 37.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4-1",
+            "math-q3-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 67.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3-1",
+            "math-q1-3-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4-1",
+            "math-q2-4-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        }
+      }
+    ]
+  }
+}

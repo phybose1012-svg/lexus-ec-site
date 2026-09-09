@@ -1,0 +1,1321 @@
+{
+  "schemaVersion": "lexus-staging-answer-snapshot.v1",
+  "question": {
+    "schemaVersion": "lexus-ec.past-exam-question-page.v1",
+    "packageId": "jichi-medical-2025-general-physics",
+    "route": {
+      "university": "jichi-medical",
+      "year": "2025",
+      "subject": "physics",
+      "path": "/past-exam-library/jichi-medical/2025/physics/questions/"
+    },
+    "university": {
+      "id": "jichi-medical",
+      "name": "自治医科大学"
+    },
+    "exam": {
+      "year": "2025",
+      "label": "一般選抜",
+      "stage": "一次試験",
+      "duration": "理科2科目 合計80分"
+    },
+    "subject": {
+      "id": "physics",
+      "name": "物理",
+      "english": "PHYSICS"
+    },
+    "document": {
+      "role": "questions",
+      "pageUnit": "major_question",
+      "sharedInstructionsHtml": "<section class=\"source-page-card question-shared-instructions\" data-question-shared-instructions><div class=\"page-kicker\">全大問共通</div><h2>2025年度 第1次試験 物理</h2><p class=\"prose\">2科目80分。設問ごとに、与えられた選択肢の中から最も適当なものを一つ選べ。</p></section>",
+      "printNotes": [
+        "各設問に記載された解答形式・記号・単位の指定に従ってください。",
+        "図版準備中・内容確認中の設問は、確認が完了するまで演習対象外です。"
+      ],
+      "questions": [
+        {
+          "id": "major-question-01",
+          "label": "問題1〜3",
+          "order": 1,
+          "sourcePageIds": [
+            "jichi-medical-2025-general-physics-questions-p001",
+            "jichi-medical-2025-general-physics-questions-p002"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-01\" data-major-question-id=\"major-question-01\"><h2>問題1〜3　電気振動</h2><p class=\"prose\">次の文章を読み、以下の問い（問題1〜3）に答えよ。起電力 <span class=\"math-inline\" data-katex=\"E\" data-display-mode=\"false\">E</span> の電池、抵抗値 <span class=\"math-inline\" data-katex=\"R\" data-display-mode=\"false\">R</span> の電気抵抗、電気容量 <span class=\"math-inline\" data-katex=\"C\" data-display-mode=\"false\">C</span> のコンデンサー、自己インダクタンス <span class=\"math-inline\" data-katex=\"L\" data-display-mode=\"false\">L</span> のコイルとスイッチ <span class=\"math-inline\" data-katex=\"S_1,S_2\" data-display-mode=\"false\">S_1,S_2</span> を図のように接続した回路がある。最初、スイッチ <span class=\"math-inline\" data-katex=\"S_1,S_2\" data-display-mode=\"false\">S_1,S_2</span> は開いており、コンデンサーには電荷が蓄えられていないものとする。スイッチ <span class=\"math-inline\" data-katex=\"S_2\" data-display-mode=\"false\">S_2</span> は開いた状態で、スイッチ <span class=\"math-inline\" data-katex=\"S_1\" data-display-mode=\"false\">S_1</span> を閉じてから十分な時間が過ぎた後、スイッチ <span class=\"math-inline\" data-katex=\"S_1\" data-display-mode=\"false\">S_1</span> を開いた。</p><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q1-3-circuit\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure><p class=\"prose\">1　コンデンサーに蓄えられた静電エネルギーはいくらか。</p><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{CE}{2}\" data-display-mode=\"false\">\\dfrac{CE}{2}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{CE^2}{2}\" data-display-mode=\"false\">\\dfrac{CE^2}{2}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{CE}{2R}\" data-display-mode=\"false\">\\dfrac{CE}{2R}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{CE^2}{2R}\" data-display-mode=\"false\">\\dfrac{CE^2}{2R}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"CE^2\" data-display-mode=\"false\">CE^2</span></div></div></div><p class=\"prose\">2　次に、スイッチ <span class=\"math-inline\" data-katex=\"S_1\" data-display-mode=\"false\">S_1</span> は開いたまま、スイッチ <span class=\"math-inline\" data-katex=\"S_2\" data-display-mode=\"false\">S_2</span> を閉じるとコイルに電流が流れ始めた。スイッチ <span class=\"math-inline\" data-katex=\"S_2\" data-display-mode=\"false\">S_2</span> を閉じてから、コンデンサーに蓄えられている電気量が初めて最初の半分に減るまでの時間を <span class=\"math-inline\" data-katex=\"\\tau\" data-display-mode=\"false\">\\tau</span> とし、そのときコイルを流れる電流を <span class=\"math-inline\" data-katex=\"I_\\tau\" data-display-mode=\"false\">I_\\tau</span> とする。また、スイッチ <span class=\"math-inline\" data-katex=\"S_2\" data-display-mode=\"false\">S_2</span> を閉じた後、コイルを流れる電流の最大値を <span class=\"math-inline\" data-katex=\"I_{\\max}\" data-display-mode=\"false\">I_{\\max}</span> とする。<span class=\"math-inline\" data-katex=\"I_\\tau/I_{\\max}\" data-display-mode=\"false\">I_\\tau/I_{\\max}</span> はいくらか。</p><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac14\" data-display-mode=\"false\">\\dfrac14</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac12\" data-display-mode=\"false\">\\dfrac12</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{\\sqrt2}{2}\" data-display-mode=\"false\">\\dfrac{\\sqrt2}{2}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac34\" data-display-mode=\"false\">\\dfrac34</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{\\sqrt3}{2}\" data-display-mode=\"false\">\\dfrac{\\sqrt3}{2}</span></div></div></div><p class=\"prose\">3　<span class=\"math-inline\" data-katex=\"\\tau\" data-display-mode=\"false\">\\tau</span> はいくらか。</p><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{\\pi\\sqrt{LC}}8\" data-display-mode=\"false\">\\dfrac{\\pi\\sqrt{LC}}8</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{\\pi\\sqrt{LC}}6\" data-display-mode=\"false\">\\dfrac{\\pi\\sqrt{LC}}6</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{\\pi\\sqrt{LC}}4\" data-display-mode=\"false\">\\dfrac{\\pi\\sqrt{LC}}4</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{\\pi\\sqrt{LC}}3\" data-display-mode=\"false\">\\dfrac{\\pi\\sqrt{LC}}3</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{\\pi\\sqrt{LC}}2\" data-display-mode=\"false\">\\dfrac{\\pi\\sqrt{LC}}2</span></div></div></div></article>"
+        },
+        {
+          "id": "major-question-02",
+          "label": "問題4",
+          "order": 2,
+          "sourcePageIds": [
+            "jichi-medical-2025-general-physics-questions-p002"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-02\" data-major-question-id=\"major-question-02\"><h2>問題4　磁場内での荷電粒子の運動</h2><p class=\"prose\">図のように、磁束密度 <span class=\"math-inline\" data-katex=\"B\" data-display-mode=\"false\">B</span> の一様な磁場が紙面の表から裏へ垂直にかけられており、<span class=\"math-inline\" data-katex=\"xy\" data-display-mode=\"false\">xy</span> 平面の原点に置かれた質量 <span class=\"math-inline\" data-katex=\"m\" data-display-mode=\"false\">m</span>、電気量 <span class=\"math-inline\" data-katex=\"q\\,(&gt;0)\" data-display-mode=\"false\">q\\,(&gt;0)</span> の粒子が <span class=\"math-inline\" data-katex=\"y\" data-display-mode=\"false\">y</span> 軸の正方向に初速度の大きさ <span class=\"math-inline\" data-katex=\"v\" data-display-mode=\"false\">v</span> で発射された。粒子が再び <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> 軸上に戻るまでに要する時間はいくらか。重力と空気抵抗の影響は無視できるものとする。</p><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q4-particle-diagram\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{\\pi m}{qB}\" data-display-mode=\"false\">\\dfrac{\\pi m}{qB}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{2\\pi m}{qB}\" data-display-mode=\"false\">\\dfrac{2\\pi m}{qB}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{2\\pi mv}{qB}\" data-display-mode=\"false\">\\dfrac{2\\pi mv}{qB}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{qB}{2\\pi mv}\" data-display-mode=\"false\">\\dfrac{qB}{2\\pi mv}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{qB}{2\\pi m}\" data-display-mode=\"false\">\\dfrac{qB}{2\\pi m}</span></div></div></div></article>"
+        },
+        {
+          "id": "major-question-03",
+          "label": "問題5",
+          "order": 3,
+          "sourcePageIds": [
+            "jichi-medical-2025-general-physics-questions-p002"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-03\" data-major-question-id=\"major-question-03\"><h2>問題5　ファラデーの法則</h2><p class=\"prose\">100回巻きのコイルの断面を貫く磁束が0.10秒の間に一定の割合で変化した。このとき、コイルの両端に発生する誘導起電力の大きさは2.0 Vであった。0.10秒の間に変化した磁束密度の大きさは何Tか。ただし、コイルの断面積は <span class=\"math-inline\" data-katex=\"4.0\\times10^{-3}\\,\\mathrm{m^2}\" data-display-mode=\"false\">4.0\\times10^{-3}\\,\\mathrm{m^2}</span> である。</p><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\">0.10</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\">0.20</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\">0.30</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\">0.40</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\">0.50</div></div></div></article>"
+        },
+        {
+          "id": "major-question-04",
+          "label": "問題6",
+          "order": 4,
+          "sourcePageIds": [
+            "jichi-medical-2025-general-physics-questions-p002"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-04\" data-major-question-id=\"major-question-04\"><h2>問題6　金属小球の接触と静電気力</h2><p class=\"prose\">材質、形状、大きさの等しい三つの金属小球A、B、Cがある。AとBに等しい負の電気量を与え、真空中の2点 <span class=\"math-inline\" data-katex=\"P_A\" data-display-mode=\"false\">P_A</span> と <span class=\"math-inline\" data-katex=\"P_B\" data-display-mode=\"false\">P_B</span> にそれぞれ固定すると、両小球の間に大きさ <span class=\"math-inline\" data-katex=\"F\" data-display-mode=\"false\">F</span> の静電気力（斥力）がはたらいた。次に、帯電していないCをAに接触させた後、再び離すと、CとAのもつ電気量は等しくなった。Cを <span class=\"math-inline\" data-katex=\"P_A\" data-display-mode=\"false\">P_A</span> と <span class=\"math-inline\" data-katex=\"P_B\" data-display-mode=\"false\">P_B</span> の中点に置いたとき、Cにはたらく静電気力の合力の方向と大きさとして正しいものはどれか。</p><div class=\"structured-list structured-list--values\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\">Cから <span class=\"math-inline\" data-katex=\"P_A\" data-display-mode=\"false\">P_A</span> に向かう方向で、大きさは <span class=\"math-inline\" data-katex=\"F\" data-display-mode=\"false\">F</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\">Cから <span class=\"math-inline\" data-katex=\"P_B\" data-display-mode=\"false\">P_B</span> に向かう方向で、大きさは <span class=\"math-inline\" data-katex=\"F\" data-display-mode=\"false\">F</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\">Cから <span class=\"math-inline\" data-katex=\"P_A\" data-display-mode=\"false\">P_A</span> に向かう方向で、大きさは <span class=\"math-inline\" data-katex=\"2F\" data-display-mode=\"false\">2F</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\">Cから <span class=\"math-inline\" data-katex=\"P_B\" data-display-mode=\"false\">P_B</span> に向かう方向で、大きさは <span class=\"math-inline\" data-katex=\"2F\" data-display-mode=\"false\">2F</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\">合力は0</div></div></div></article>"
+        },
+        {
+          "id": "major-question-05",
+          "label": "問題7・8",
+          "order": 5,
+          "sourcePageIds": [
+            "jichi-medical-2025-general-physics-questions-p003"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-05\" data-major-question-id=\"major-question-05\"><h2>問題7・8　結合エネルギー</h2><p class=\"prose\">次の文章を読み、以下の問い（問題7、8）に答えよ。2個の重陽子（<span class=\"math-inline\" data-katex=\"{}^{2}_{1}\\mathrm{H}\" data-display-mode=\"false\">{}^{2}_{1}\\mathrm{H}</span>）が結合して、質量数3のヘリウム原子核（<span class=\"math-inline\" data-katex=\"{}^{3}_{2}\\mathrm{He}\" data-display-mode=\"false\">{}^{3}_{2}\\mathrm{He}</span>）と中性子（<span class=\"math-inline\" data-katex=\"{}^{1}_{0}\\mathrm{n}\" data-display-mode=\"false\">{}^{1}_{0}\\mathrm{n}</span>）になり、3.27 MeVの核エネルギーが放出される以下の核融合反応がある。</p><div class=\"formula\" data-katex=\"{}^{2}_{1}\\mathrm{H}+{}^{2}_{1}\\mathrm{H}\\to{}^{3}_{2}\\mathrm{He}+{}^{1}_{0}\\mathrm{n}\" data-display-mode=\"true\">{}^{2}_{1}\\mathrm{H}+{}^{2}_{1}\\mathrm{H}\\to{}^{3}_{2}\\mathrm{He}+{}^{1}_{0}\\mathrm{n}</div><p class=\"prose\"><span class=\"math-inline\" data-katex=\"{}^{2}_{1}\\mathrm{H}\" data-display-mode=\"false\">{}^{2}_{1}\\mathrm{H}</span> の核子1個当たりの結合エネルギーを1.11 MeVとする。MeVは <span class=\"math-inline\" data-katex=\"10^6\\,\\mathrm{eV}\" data-display-mode=\"false\">10^6\\,\\mathrm{eV}</span> を表す。また、<span class=\"math-inline\" data-katex=\"1\\,\\mathrm{eV}=1.60\\times10^{-19}\\,\\mathrm{J}\" data-display-mode=\"false\">1\\,\\mathrm{eV}=1.60\\times10^{-19}\\,\\mathrm{J}</span> とし、光の速さを <span class=\"math-inline\" data-katex=\"3.00\\times10^8\\,\\mathrm{m/s}\" data-display-mode=\"false\">3.00\\times10^8\\,\\mathrm{m/s}</span> とする。</p><p class=\"prose\">7　<span class=\"math-inline\" data-katex=\"{}^{3}_{2}\\mathrm{He}\" data-display-mode=\"false\">{}^{3}_{2}\\mathrm{He}</span> の核子1個当たりの結合エネルギーは何MeVか。</p><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\">0.390</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\">2.16</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\">2.57</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\">4.38</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\">5.49</div></div></div><p class=\"prose\">8　<span class=\"math-inline\" data-katex=\"{}^{3}_{2}\\mathrm{He}\" data-display-mode=\"false\">{}^{3}_{2}\\mathrm{He}</span> の質量欠損は何kgか。</p><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"3.84\\times10^{-30}\" data-display-mode=\"false\">3.84\\times10^{-30}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"7.79\\times10^{-30}\" data-display-mode=\"false\">7.79\\times10^{-30}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"9.76\\times10^{-30}\" data-display-mode=\"false\">9.76\\times10^{-30}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"1.37\\times10^{-29}\" data-display-mode=\"false\">1.37\\times10^{-29}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"1.83\\times10^{-29}\" data-display-mode=\"false\">1.83\\times10^{-29}</span></div></div></div></article>"
+        },
+        {
+          "id": "major-question-06",
+          "label": "問題9",
+          "order": 6,
+          "sourcePageIds": [
+            "jichi-medical-2025-general-physics-questions-p003"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-06\" data-major-question-id=\"major-question-06\"><h2>問題9　ラジウムのα崩壊</h2><p class=\"prose\">半減期11日でα崩壊を起こす <span class=\"math-inline\" data-katex=\"{}^{223}_{88}\\mathrm{Ra}\" data-display-mode=\"false\">{}^{223}_{88}\\mathrm{Ra}</span>（質量数223のラジウム）は、体内でカルシウムと似た化学的挙動を示すため、カルシウムの取り込みが活発な骨に転移したがんを治療する放射性医薬品として用いられている。24 mgの <span class=\"math-inline\" data-katex=\"{}^{223}_{88}\\mathrm{Ra}\" data-display-mode=\"false\">{}^{223}_{88}\\mathrm{Ra}</span> が33日経過したとき、残っている <span class=\"math-inline\" data-katex=\"{}^{223}_{88}\\mathrm{Ra}\" data-display-mode=\"false\">{}^{223}_{88}\\mathrm{Ra}</span> は何mgか。</p><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\">1.0</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\">2.0</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\">3.0</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\">4.0</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\">6.0</div></div></div></article>"
+        },
+        {
+          "id": "major-question-07",
+          "label": "問題10",
+          "order": 7,
+          "sourcePageIds": [
+            "jichi-medical-2025-general-physics-questions-p003",
+            "jichi-medical-2025-general-physics-questions-p004"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-07\" data-major-question-id=\"major-question-07\"><h2>問題10　波の干渉</h2><p class=\"prose\">図のように、水面上で二つの波源 <span class=\"math-inline\" data-katex=\"S_1\" data-display-mode=\"false\">S_1</span> と <span class=\"math-inline\" data-katex=\"S_2\" data-display-mode=\"false\">S_2</span> から、同じ振幅、同じ波長の同位相の波が出て、波源を中心に円形の波紋が広がっている。図の実線はある瞬間における波の山の波面、破線は谷の波面を表している。以下の記述のうち間違っているものはどれか。</p><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q10-wave-interference\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure><div class=\"structured-list structured-list--values\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\">波源 <span class=\"math-inline\" data-katex=\"S_1\" data-display-mode=\"false\">S_1</span> と <span class=\"math-inline\" data-katex=\"S_2\" data-display-mode=\"false\">S_2</span> の間には、弱め合う点を連ねた線（節線）が偶数本ある。</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\">波源 <span class=\"math-inline\" data-katex=\"S_1\" data-display-mode=\"false\">S_1</span> と <span class=\"math-inline\" data-katex=\"S_2\" data-display-mode=\"false\">S_2</span> の間には、強め合う点を連ねた線（腹線）が奇数本ある。</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\">腹線上で山と山が重なってできる大きな山の位置は時間が経過しても動かない。</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\">節線と腹線は交わらない。</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\">節線は双曲線になる。</div></div></div></article>"
+        },
+        {
+          "id": "major-question-08",
+          "label": "問題11",
+          "order": 8,
+          "sourcePageIds": [
+            "jichi-medical-2025-general-physics-questions-p004"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-08\" data-major-question-id=\"major-question-08\"><h2>問題11　開管の共鳴</h2><p class=\"prose\">図のように、長さを自由に変えることができる開管の一端の外側に小さなスピーカーを置き、一定の振動数 <span class=\"math-inline\" data-katex=\"f_0\" data-display-mode=\"false\">f_0</span> の音を出した。最初、管の長さを30 cmにしたところ開管内の気柱が共鳴した。次に、管を徐々に長くしていくと、長さ40 cmのときにはじめて気柱が共鳴した。<span class=\"math-inline\" data-katex=\"f_0\" data-display-mode=\"false\">f_0</span> は何Hzか。音速を340 m/sとし、開口端補正は無視できるものとする。</p><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q11-open-pipe\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\">850</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\">1100</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\">1700</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\">3400</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\">6800</div></div></div></article>"
+        },
+        {
+          "id": "major-question-09",
+          "label": "問題12",
+          "order": 9,
+          "sourcePageIds": [
+            "jichi-medical-2025-general-physics-questions-p004"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-09\" data-major-question-id=\"major-question-09\"><h2>問題12　うなり</h2><p class=\"prose\">おんさAと、振動数470 HzのおんさBを同時に鳴らすと、5秒間に20回のうなりが聞こえた。次に、Bに針金を巻き付け振動しにくくすると、Aとの間のうなりの回数が増えた。Aの振動数は何Hzか。ただし、針金による振動数の変化の大きさは5 Hz以下とする。</p><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\">450</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\">466</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\">470</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\">474</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\">490</div></div></div></article>"
+        },
+        {
+          "id": "major-question-10",
+          "label": "問題13",
+          "order": 10,
+          "sourcePageIds": [
+            "jichi-medical-2025-general-physics-questions-p004",
+            "jichi-medical-2025-general-physics-questions-p005"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-10\" data-major-question-id=\"major-question-10\"><h2>問題13　全反射</h2><p class=\"prose\">図のように、屈折率 <span class=\"math-inline\" data-katex=\"\\sqrt2\" data-display-mode=\"false\">\\sqrt2</span> の油と屈折率1の空気が水平な境界面Sで接しており、油の中には放射状に光を放つ点光源がある。光を通さない半径 <span class=\"math-inline\" data-katex=\"r\" data-display-mode=\"false\">r</span> の薄い円盤をS上に置き、光が空気中に出ないようにしたい。円盤の中心を点光源の鉛直上方、距離 <span class=\"math-inline\" data-katex=\"D\" data-display-mode=\"false\">D</span> の位置に置くとき、<span class=\"math-inline\" data-katex=\"r\" data-display-mode=\"false\">r</span> はいくらより大きい必要があるか。</p><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac D2\" data-display-mode=\"false\">\\dfrac D2</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{\\sqrt2D}{2}\" data-display-mode=\"false\">\\dfrac{\\sqrt2D}{2}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"D\" data-display-mode=\"false\">D</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\sqrt2D\" data-display-mode=\"false\">\\sqrt2D</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"2D\" data-display-mode=\"false\">2D</span></div></div></div><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q13-total-reflection\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure></article>"
+        },
+        {
+          "id": "major-question-11",
+          "label": "問題14",
+          "order": 11,
+          "sourcePageIds": [
+            "jichi-medical-2025-general-physics-questions-p005"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-11\" data-major-question-id=\"major-question-11\"><h2>問題14　凸レンズと凹レンズ</h2><p class=\"prose\">焦点距離の大きさがそれぞれ20 cmと10 cmの薄い凸レンズAと薄い凹レンズBがある。図のように、AとBを25 cm離して同じ光軸上に置き、レンズAの前方60 cmの位置に物体を置く。これら二つのレンズによってできる物体の像の位置は物体の位置から何cm離れているか。</p><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q14-lenses\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\">90</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\">95</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\">100</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\">105</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\">110</div></div></div></article>"
+        },
+        {
+          "id": "major-question-12",
+          "label": "問題15",
+          "order": 12,
+          "sourcePageIds": [
+            "jichi-medical-2025-general-physics-questions-p005"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-12\" data-major-question-id=\"major-question-12\"><h2>問題15　熱効率</h2><p class=\"prose\">なめらかに動くピストンの付いたシリンダーの中に一定物質量の単原子分子理想気体が閉じ込められている。この気体を図のように、A→B→C→Aの順に図中の実線に沿ってゆっくり変化させる。A→Bは定積変化、B→Cは等温変化、C→Aは定圧変化である。このサイクルを熱機関とみなしたときの熱効率はいくらか。ただし、B→Cの等温変化で気体が吸収した熱量を <span class=\"math-inline\" data-katex=\"Q\\,(&gt;0)\" data-display-mode=\"false\">Q\\,(&gt;0)</span> とする。</p><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q15-pv-cycle\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{Q-pV}{Q+pV}\" data-display-mode=\"false\">\\dfrac{Q-pV}{Q+pV}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{Q-2pV}{Q+pV}\" data-display-mode=\"false\">\\dfrac{Q-2pV}{Q+pV}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{Q-pV}{Q+2pV}\" data-display-mode=\"false\">\\dfrac{Q-pV}{Q+2pV}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{Q-pV}{Q+3pV}\" data-display-mode=\"false\">\\dfrac{Q-pV}{Q+3pV}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{Q-2pV}{Q+3pV}\" data-display-mode=\"false\">\\dfrac{Q-2pV}{Q+3pV}</span></div></div></div></article>"
+        },
+        {
+          "id": "major-question-13",
+          "label": "問題16・17",
+          "order": 13,
+          "sourcePageIds": [
+            "jichi-medical-2025-general-physics-questions-p006"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-13\" data-major-question-id=\"major-question-13\"><h2>問題16・17　熱量と比熱、熱容量</h2><p class=\"prose\">次の文章を読み、以下の問い（問題16、17）に答えよ。断熱材で囲まれた容器に100 gの水が入っており、全体の温度は10 ℃であった。そこに70 ℃の水50 gを加えたところ、全体の温度が24 ℃で熱平衡に達した。次に、この中へ70 ℃にあたためた300 gの鉄球を入れた。水の比熱を <span class=\"math-inline\" data-katex=\"4.2\\,\\mathrm{J/(g\\cdot K)}\" data-display-mode=\"false\">4.2\\,\\mathrm{J/(g\\cdot K)}</span>、鉄の比熱を <span class=\"math-inline\" data-katex=\"0.45\\,\\mathrm{J/(g\\cdot K)}\" data-display-mode=\"false\">0.45\\,\\mathrm{J/(g\\cdot K)}</span> とし、熱の移動は水と容器と鉄球の間でのみ起こったものとする。また、比熱の温度依存性は無視できるものとする。</p><p class=\"prose\">16　容器の熱容量は何J/Kか。</p><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\">240</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\">270</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\">300</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\">330</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\">360</div></div></div><p class=\"prose\">17　鉄球を入れた後、熱平衡に達したときの全体の温度は何℃か。</p><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\">30</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\">35</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\">40</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\">45</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\">50</div></div></div></article>"
+        },
+        {
+          "id": "major-question-14",
+          "label": "問題18",
+          "order": 14,
+          "sourcePageIds": [
+            "jichi-medical-2025-general-physics-questions-p006"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-14\" data-major-question-id=\"major-question-14\"><h2>問題18　棒の質量</h2><p class=\"prose\">密度が不均一な長さ1.0 mの棒が水平面に置かれている。図のように、この棒の一端に鉛直上向きの力を加えて少し持ち上げた状態を保つには40 Nの力を必要とした。また、もう一端を鉛直に少し持ち上げた状態を保つには9.0 Nの力を必要とした。棒の質量は何kgか。重力加速度の大きさを <span class=\"math-inline\" data-katex=\"9.8\\,\\mathrm{m/s^2}\" data-display-mode=\"false\">9.8\\,\\mathrm{m/s^2}</span> とする。</p><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q18-rod\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\">5.0</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\">8.0</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\">10</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\">12</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\">15</div></div></div></article>"
+        },
+        {
+          "id": "major-question-15",
+          "label": "問題19",
+          "order": 15,
+          "sourcePageIds": [
+            "jichi-medical-2025-general-physics-questions-p006"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-15\" data-major-question-id=\"major-question-15\"><h2>問題19　地球と月の半径の比</h2><p class=\"prose\">天体の表面から打ち上げられた物体が、その天体の引力を受けながらも、無限の遠方まで飛んでいくときの最小の初速度の大きさを脱出速度という。地球からの脱出速度は月からのそれの4.7倍であり、地球表面の重力加速度の大きさは月面のそれの6.0倍である。これらのデータから、地球の半径は月の半径の何倍と考えられるか。最も近いものを選べ。</p><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\">3.5</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\">3.7</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\">3.9</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\">4.1</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\">4.3</div></div></div></article>"
+        },
+        {
+          "id": "major-question-16",
+          "label": "問題20〜25",
+          "order": 16,
+          "sourcePageIds": [
+            "jichi-medical-2025-general-physics-questions-p007",
+            "jichi-medical-2025-general-physics-questions-p008"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-16\" data-major-question-id=\"major-question-16\"><h2>問題20〜25　あらい水平面上での単振動</h2><p class=\"prose\">次の文章を読み、以下の問い（問題20〜25）に答えよ。軽いばねの一端に質量 <span class=\"math-inline\" data-katex=\"m\" data-display-mode=\"false\">m</span> の小球Bを取り付けて鉛直に吊り下げたところ、ばねは自然の長さ（自然長）から <span class=\"math-inline\" data-katex=\"a\" data-display-mode=\"false\">a</span> だけ伸びて静止した。このばねと小球を、図のように、あらい水平面上に置き、ばねの他端を壁に固定する。点Oは、ばねが自然長のときのBの位置であり、点Pは、ばねが自然長から <span class=\"math-inline\" data-katex=\"p\" data-display-mode=\"false\">p</span> だけ縮められたときのBの位置である。小球Bと水平面との間の静止摩擦係数と動摩擦係数をそれぞれ <span class=\"math-inline\" data-katex=\"\\mu\" data-display-mode=\"false\">\\mu</span> と <span class=\"math-inline\" data-katex=\"\\mu&#x27;\" data-display-mode=\"false\">\\mu&#x27;</span> とし、重力加速度の大きさを <span class=\"math-inline\" data-katex=\"g\" data-display-mode=\"false\">g</span> とする。</p><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q20-25-spring\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure><p class=\"prose\">20　点Pに置かれたBを静かにはなしたところ、Bは点Oをこえ、ばねの長さは自然長をこえた。この運動が起こるために <span class=\"math-inline\" data-katex=\"p\" data-display-mode=\"false\">p</span> と <span class=\"math-inline\" data-katex=\"\\mu&#x27;\" data-display-mode=\"false\">\\mu&#x27;</span> が満たすべき必要十分条件はどれか。</p><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"p&gt;\\dfrac14a\\mu&#x27;\" data-display-mode=\"false\">p&gt;\\dfrac14a\\mu&#x27;</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"p&gt;\\dfrac12a\\mu&#x27;\" data-display-mode=\"false\">p&gt;\\dfrac12a\\mu&#x27;</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"p&gt;a\\mu&#x27;\" data-display-mode=\"false\">p&gt;a\\mu&#x27;</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"p&gt;2a\\mu&#x27;\" data-display-mode=\"false\">p&gt;2a\\mu&#x27;</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"p&gt;4a\\mu&#x27;\" data-display-mode=\"false\">p&gt;4a\\mu&#x27;</span></div></div></div><p class=\"prose\">21　点Pから運動を始めたBは点Oをこえた後、点Oから距離 <span class=\"math-inline\" data-katex=\"q\" data-display-mode=\"false\">q</span> だけ進んだ点Qで進行方向を変え、逆向きに進み始めた。この運動が起こるために <span class=\"math-inline\" data-katex=\"\\mu\" data-display-mode=\"false\">\\mu</span> が満たすべき必要十分条件はどれか。</p><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\mu&lt;\\dfrac{q}{2a}\" data-display-mode=\"false\">\\mu&lt;\\dfrac{q}{2a}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\mu&lt;\\dfrac qa\" data-display-mode=\"false\">\\mu&lt;\\dfrac qa</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\mu&lt;\\dfrac{p-q}{a}\" data-display-mode=\"false\">\\mu&lt;\\dfrac{p-q}{a}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\mu&lt;\\dfrac{p+q}{a}\" data-display-mode=\"false\">\\mu&lt;\\dfrac{p+q}{a}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\mu&lt;\\dfrac{p-q}{2a}\" data-display-mode=\"false\">\\mu&lt;\\dfrac{p-q}{2a}</span></div></div></div><p class=\"prose\">22　前問の運動が起こるとき、<span class=\"math-inline\" data-katex=\"\\mu&#x27;\" data-display-mode=\"false\">\\mu&#x27;</span> はいくらか。</p><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{q}{2a}\" data-display-mode=\"false\">\\dfrac{q}{2a}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac qa\" data-display-mode=\"false\">\\dfrac qa</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{p-q}{a}\" data-display-mode=\"false\">\\dfrac{p-q}{a}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{p+q}{a}\" data-display-mode=\"false\">\\dfrac{p+q}{a}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{p-q}{2a}\" data-display-mode=\"false\">\\dfrac{p-q}{2a}</span></div></div></div><p class=\"prose\">23　Bが点Pから点Qまで運動する間に、Bの速さが最大となる点を点O&#x27;とする。点Pと点O&#x27;の間の距離はいくらか。</p><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"p-q\" data-display-mode=\"false\">p-q</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"q\" data-display-mode=\"false\">q</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{p+q}{2}\" data-display-mode=\"false\">\\dfrac{p+q}{2}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"p\" data-display-mode=\"false\">p</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"p+\\dfrac q2\" data-display-mode=\"false\">p+\\dfrac q2</span></div></div></div><p class=\"prose\">24　点O&#x27;でのBの速さはいくらか。</p><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"p\\sqrt{\\dfrac ga}\" data-display-mode=\"false\">p\\sqrt{\\dfrac ga}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{p-q}{2}\\sqrt{\\dfrac ga}\" data-display-mode=\"false\">\\dfrac{p-q}{2}\\sqrt{\\dfrac ga}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\dfrac{p+q}{2}\\sqrt{\\dfrac ga}\" data-display-mode=\"false\">\\dfrac{p+q}{2}\\sqrt{\\dfrac ga}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"(p-q)\\sqrt{\\dfrac ga}\" data-display-mode=\"false\">(p-q)\\sqrt{\\dfrac ga}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"(p+q)\\sqrt{\\dfrac ga}\" data-display-mode=\"false\">(p+q)\\sqrt{\\dfrac ga}</span></div></div></div><p class=\"prose\">25　Bが点Pから点Qまで運動するのに要する時間はいくらか。</p><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ア</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\pi\\sqrt{\\dfrac ag}\" data-display-mode=\"false\">\\pi\\sqrt{\\dfrac ag}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">イ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\pi\\sqrt{\\dfrac{a+p}{g}}\" data-display-mode=\"false\">\\pi\\sqrt{\\dfrac{a+p}{g}}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">ウ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\pi\\sqrt{\\dfrac{a+q}{g}}\" data-display-mode=\"false\">\\pi\\sqrt{\\dfrac{a+q}{g}}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">エ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\pi\\sqrt{\\dfrac{p-q}{g}}\" data-display-mode=\"false\">\\pi\\sqrt{\\dfrac{p-q}{g}}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">オ</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\pi\\sqrt{\\dfrac{p+q}{g}}\" data-display-mode=\"false\">\\pi\\sqrt{\\dfrac{p+q}{g}}</span></div></div></div></article>"
+        }
+      ]
+    },
+    "source": {
+      "sourcePackageId": "jichi-medical-2025-general-physics",
+      "reference": "projects/universities/jichi-medical/past-exams/working/2025/general/first-stage/physics/source-html/generated/public-candidate/questions",
+      "buildKind": "publication-candidate",
+      "contentProvenance": "source_projection",
+      "publicationCandidate": true,
+      "rightsStatus": "review_required",
+      "needsHumanReview": true
+    },
+    "links": {
+      "universityLibrary": "/past-exam-library/jichi-medical/",
+      "analysis": "/past-exam-library/jichi-medical/2025/physics/analysis/",
+      "universityInformation": null
+    }
+  },
+  "editorial": {
+    "schema_version": "medical-entrance-past-exam-editorial-explanation.v2",
+    "package_id": "jichi-medical-2025-general-physics",
+    "document_role": "answers",
+    "source_reconstruction_path": "reconstruction.json",
+    "audience": {
+      "visibility": "internal_only",
+      "reader": "learner_and_subject_editor"
+    },
+    "provenance": "editorial_adaptation",
+    "style_policy": {
+      "id": "lexus-learner-friendly-physics.v1",
+      "sequence": [
+        "何を求めるか",
+        "最初にすること",
+        "その理由",
+        "計算",
+        "結論"
+      ],
+      "short_paragraphs": true,
+      "expert_shortcuts_are_optional": true,
+      "main_route_is_reproducible": true,
+      "preserve_answers_and_conditions": true,
+      "preserve_units_and_significant_figures": true,
+      "preserve_source_method": true,
+      "preserve_source_reasoning_order": true,
+      "forbid_answer_backward_reasoning": true
+    },
+    "reader_structure": {
+      "page_unit": "major_question",
+      "assignment": "explicit_per_block",
+      "source_page_records_preserved_for_provenance": true,
+      "major_questions": [
+        {
+          "id": "major-question-01",
+          "label": "問題1〜3",
+          "order": 1
+        },
+        {
+          "id": "major-question-02",
+          "label": "問題4",
+          "order": 2
+        },
+        {
+          "id": "major-question-03",
+          "label": "問題5",
+          "order": 3
+        },
+        {
+          "id": "major-question-04",
+          "label": "問題6",
+          "order": 4
+        },
+        {
+          "id": "major-question-05",
+          "label": "問題7・8",
+          "order": 5
+        },
+        {
+          "id": "major-question-06",
+          "label": "問題9",
+          "order": 6
+        },
+        {
+          "id": "major-question-07",
+          "label": "問題10",
+          "order": 7
+        },
+        {
+          "id": "major-question-08",
+          "label": "問題11",
+          "order": 8
+        },
+        {
+          "id": "major-question-09",
+          "label": "問題12",
+          "order": 9
+        },
+        {
+          "id": "major-question-10",
+          "label": "問題13",
+          "order": 10
+        },
+        {
+          "id": "major-question-11",
+          "label": "問題14",
+          "order": 11
+        },
+        {
+          "id": "major-question-12",
+          "label": "問題15",
+          "order": 12
+        },
+        {
+          "id": "major-question-13",
+          "label": "問題16・17",
+          "order": 13
+        },
+        {
+          "id": "major-question-14",
+          "label": "問題18",
+          "order": 14
+        },
+        {
+          "id": "major-question-15",
+          "label": "問題19",
+          "order": 15
+        },
+        {
+          "id": "major-question-16",
+          "label": "問題20〜25",
+          "order": 16
+        }
+      ]
+    },
+    "pages": [
+      {
+        "source_page_id": "jichi-medical-2025-general-physics-answers-p001",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "問題1〜3　解答",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "1",
+                "value": "イ"
+              },
+              {
+                "label": "2",
+                "value": "オ"
+              },
+              {
+                "label": "3",
+                "value": "エ"
+              }
+            ],
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "解説〈電気振動〉",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "1．コンデンサーの電圧が \\(E\\) となるので、静電エネルギーの公式より",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac12CE^2=\\frac{CE^2}{2}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "2．エネルギー保存則より",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac12CE^2=\\frac12C\\left(\\frac12E\\right)^2+\\frac12LI_\\tau^2",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\therefore\\quad I_\\tau=\\sqrt{\\frac{3CE^2}{4L}}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac12CE^2=\\frac12LI_{\\max}^2",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\therefore\\quad I_{\\max}=\\sqrt{\\frac{CE^2}{L}}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\therefore\\quad \\frac{I_\\tau}{I_{\\max}}=\\sqrt{\\frac34}=\\frac{\\sqrt3}{2}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "3．電気量が半分になるとき、電圧も半分になる。この電気振動の角振動数は \\(1/\\sqrt{LC}\\) であり、電圧の最大値はスイッチ \\(S_2\\) を閉じたときの \\(E\\) であるから",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac12E=E\\cos\\frac{\\tau}{\\sqrt{LC}}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac{\\tau}{\\sqrt{LC}}=\\frac\\pi3",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\therefore\\quad \\tau=\\frac{\\pi\\sqrt{LC}}3",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "問題4　解答 ア",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "解説〈磁場内での荷電粒子の運動〉",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "粒子の円運動の半径を \\(r\\) とおき、円運動の運動方程式をたてると",
+            "major_question_id": "major-question-02"
+          }
+        ]
+      },
+      {
+        "source_page_id": "jichi-medical-2025-general-physics-answers-p002",
+        "blocks": [
+          {
+            "type": "formula",
+            "latex": "m\\frac{v^2}{r}=qvB\\quad\\therefore\\quad r=\\frac{mv}{qB}",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "求める時間は周期の半分となるので",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac{2\\pi r}{v}\\times\\frac12=\\frac{\\pi m}{qB}",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "問題5　解答 オ",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "解説〈ファラデーの法則〉",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "磁束密度の変化の大きさを \\(\\Delta B\\,[\\mathrm{T}]\\) とおき、ファラデーの法則を用いると",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "2.0=100\\times\\frac{\\Delta B\\times4.0\\times10^{-3}}{0.10}",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "\\therefore\\quad \\Delta B=0.50\\,[\\mathrm{T}]",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "問題6　解答 ア",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "解説〈金属小球の接触と静電気力〉",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "prose",
+            "text": "小球AとBに与えた負の電気量を \\(-q\\)、静電気力の比例定数を \\(k\\)、\\(P_A\\) と \\(P_B\\) の距離を \\(r\\) とおくと",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "formula",
+            "latex": "F=k\\frac{q^2}{r^2}",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "prose",
+            "text": "接触後のAとCの電気量は \\(-q\\) の半分になる。CがAから受ける力を \\(F_A\\)、Bから受ける力を \\(F_B\\) とおくと",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "formula",
+            "latex": "F_A=k\\frac{(\\frac12q)^2}{(\\frac12r)^2}=k\\frac{q^2}{r^2}=F",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "prose",
+            "text": "向きはCから \\(P_B\\) に向かう方向である。",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "formula",
+            "latex": "F_B=k\\frac{\\frac12q^2}{(\\frac12r)^2}=k\\frac{2q^2}{r^2}=2F",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "prose",
+            "text": "向きはCから \\(P_A\\) に向かう方向である。",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "prose",
+            "text": "よって、Cが受ける力は次ページのとおりである。",
+            "major_question_id": "major-question-04"
+          }
+        ]
+      },
+      {
+        "source_page_id": "jichi-medical-2025-general-physics-answers-p003",
+        "blocks": [
+          {
+            "type": "formula",
+            "latex": "F_B-F_A=2F-F=F",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "prose",
+            "text": "したがって、合力の向きはCから \\(P_A\\) に向かう方向である。",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "問題7・8　解答",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "7",
+                "value": "ウ"
+              },
+              {
+                "label": "8",
+                "value": "エ"
+              }
+            ],
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "解説〈結合エネルギー〉",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "prose",
+            "text": "7．\\({}^{2}_{1}\\mathrm{H}\\) は陽子と中性子の2個の核子で構成されているので、反応前の全結合エネルギーは",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "formula",
+            "latex": "1.11\\times2\\times2=4.44\\,[\\mathrm{MeV}]",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "prose",
+            "text": "放出されたエネルギーが3.27 MeVであることより、反応後の全結合エネルギーは",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "formula",
+            "latex": "4.44+3.27=7.71\\,[\\mathrm{MeV}]",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "prose",
+            "text": "\\({}^{3}_{2}\\mathrm{He}\\) は核子が3個であるから、1個当たりの結合エネルギーは",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac{7.71}{3}=2.57\\,[\\mathrm{MeV}]",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "prose",
+            "text": "8．質量欠損を \\(m\\,[\\mathrm{kg}]\\) とおくと",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "formula",
+            "latex": "7.71\\times1.60\\times10^{-13}=m\\times(3.00\\times10^8)^2",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "formula",
+            "latex": "\\therefore\\quad m=1.37\\times10^{-29}\\,[\\mathrm{kg}]",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "問題9　解答 ウ",
+            "major_question_id": "major-question-06"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "解説〈ラジウムのα崩壊〉",
+            "major_question_id": "major-question-06"
+          },
+          {
+            "type": "prose",
+            "text": "求めるラジウムの質量を \\(m\\,[\\mathrm{mg}]\\) とおき、半減期の式を用いると",
+            "major_question_id": "major-question-06"
+          },
+          {
+            "type": "formula",
+            "latex": "m=24\\times\\left(\\frac12\\right)^{33/11}=3.0\\,[\\mathrm{mg}]",
+            "major_question_id": "major-question-06"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "問題10　解答 ウ",
+            "major_question_id": "major-question-07"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "解説〈波の干渉〉",
+            "major_question_id": "major-question-07"
+          },
+          {
+            "type": "prose",
+            "text": "ウは誤文。山と山が重なってできる大きな山は腹線上を移動する。",
+            "major_question_id": "major-question-07"
+          }
+        ]
+      },
+      {
+        "source_page_id": "jichi-medical-2025-general-physics-answers-p004",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "問題11　解答 ウ",
+            "major_question_id": "major-question-08"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "解説〈開管の共鳴〉",
+            "major_question_id": "major-question-08"
+          },
+          {
+            "type": "prose",
+            "text": "共鳴するときの開管の長さの差は波長の半分となるので、波長を \\(\\lambda\\,[\\mathrm{m}]\\) とおくと",
+            "major_question_id": "major-question-08"
+          },
+          {
+            "type": "formula",
+            "latex": "\\lambda=2(40-30)\\times10^{-2}=0.20\\,[\\mathrm{m}]",
+            "major_question_id": "major-question-08"
+          },
+          {
+            "type": "prose",
+            "text": "波の基本式より",
+            "major_question_id": "major-question-08"
+          },
+          {
+            "type": "formula",
+            "latex": "340=f_0\\times0.20\\quad\\therefore\\quad f_0=1700\\,[\\mathrm{Hz}]",
+            "major_question_id": "major-question-08"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "問題12　解答 エ",
+            "major_question_id": "major-question-09"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "解説〈うなり〉",
+            "major_question_id": "major-question-09"
+          },
+          {
+            "type": "prose",
+            "text": "うなりの振動数を \\(f\\,[\\mathrm{Hz}]\\) とおくと",
+            "major_question_id": "major-question-09"
+          },
+          {
+            "type": "formula",
+            "latex": "f=\\frac{20}{5}=4\\,[\\mathrm{Hz}]",
+            "major_question_id": "major-question-09"
+          },
+          {
+            "type": "prose",
+            "text": "よって、おんさAの振動数は \\(470\\pm4\\,[\\mathrm{Hz}]\\) となる。おんさBの振動数を小さくするとうなりの振動数が大きくなるので、おんさAの振動数はおんさBの振動数より大きい \\(470+4=474\\,[\\mathrm{Hz}]\\) となる。",
+            "major_question_id": "major-question-09"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "問題13　解答 ウ",
+            "major_question_id": "major-question-10"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "解説〈全反射〉",
+            "major_question_id": "major-question-10"
+          },
+          {
+            "type": "prose",
+            "text": "光が油から空気へ出るときの臨界角を \\(\\theta_0\\) とおくと、屈折の法則より",
+            "major_question_id": "major-question-10"
+          },
+          {
+            "type": "formula",
+            "latex": "\\sqrt2\\sin\\theta_0=\\sin90^\\circ\\quad\\therefore\\quad\\theta_0=45^\\circ",
+            "major_question_id": "major-question-10"
+          },
+          {
+            "type": "prose",
+            "text": "入射角が \\(\\theta_0\\) となるときの \\(r\\) を求めればよいので",
+            "major_question_id": "major-question-10"
+          },
+          {
+            "type": "formula",
+            "latex": "\\tan45^\\circ=\\frac rD\\quad\\therefore\\quad r=D",
+            "major_question_id": "major-question-10"
+          }
+        ]
+      },
+      {
+        "source_page_id": "jichi-medical-2025-general-physics-answers-p005",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "問題14　解答 イ",
+            "major_question_id": "major-question-11"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "解説〈凸レンズと凹レンズ〉",
+            "major_question_id": "major-question-11"
+          },
+          {
+            "type": "prose",
+            "text": "Aによる像の位置をAから右へ \\(b\\,[\\mathrm{cm}]\\) とおくと、レンズの式より",
+            "major_question_id": "major-question-11"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac1{60}+\\frac1b=\\frac1{20}\\quad\\therefore\\quad b=30\\,[\\mathrm{cm}]",
+            "major_question_id": "major-question-11"
+          },
+          {
+            "type": "prose",
+            "text": "よって、Aによる像の位置はBから右へ5 cmのところであり、Bによる像の位置をBから右へ \\(b'\\,[\\mathrm{cm}]\\) とおくと、レンズの式より",
+            "major_question_id": "major-question-11"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac1{-5}+\\frac1{b'}=-\\frac1{10}\\quad\\therefore\\quad b'=10\\,[\\mathrm{cm}]",
+            "major_question_id": "major-question-11"
+          },
+          {
+            "type": "prose",
+            "text": "以上から、物体からの距離は \\(60+25+10=95\\,[\\mathrm{cm}]\\)。",
+            "major_question_id": "major-question-11"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "問題15　解答 オ",
+            "major_question_id": "major-question-12"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "解説〈熱効率〉",
+            "major_question_id": "major-question-12"
+          },
+          {
+            "type": "prose",
+            "text": "A→Bは定積変化であり、気体が吸収した熱量を \\(Q_{AB}\\)、気体が外部にした仕事を \\(W_{AB}\\) とおくと",
+            "major_question_id": "major-question-12"
+          },
+          {
+            "type": "formula",
+            "latex": "Q_{AB}=\\frac32(3pV-pV)=3pV,\\qquad W_{AB}=0",
+            "major_question_id": "major-question-12"
+          },
+          {
+            "type": "prose",
+            "text": "B→Cは等温変化であり、気体が吸収した熱量を \\(Q_{BC}\\)、気体が外部にした仕事を \\(W_{BC}\\) とおくと",
+            "major_question_id": "major-question-12"
+          },
+          {
+            "type": "formula",
+            "latex": "Q_{BC}=Q,\\qquad W_{BC}=Q",
+            "major_question_id": "major-question-12"
+          },
+          {
+            "type": "prose",
+            "text": "C→Aは定圧変化であり、気体が吸収した熱量を \\(Q_{CA}\\)、気体が外部にした仕事を \\(W_{CA}\\) とおくと",
+            "major_question_id": "major-question-12"
+          },
+          {
+            "type": "formula",
+            "latex": "Q_{CA}=\\frac52(pV-3pV)=-5pV,\\qquad W_{CA}=-2pV",
+            "major_question_id": "major-question-12"
+          },
+          {
+            "type": "prose",
+            "text": "よって、熱効率 \\(e\\) は",
+            "major_question_id": "major-question-12"
+          },
+          {
+            "type": "formula",
+            "latex": "e=\\frac{Q-2pV}{Q+3pV}",
+            "major_question_id": "major-question-12"
+          }
+        ]
+      },
+      {
+        "source_page_id": "jichi-medical-2025-general-physics-answers-p006",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "問題16・17　解答",
+            "major_question_id": "major-question-13"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "16",
+                "value": "イ"
+              },
+              {
+                "label": "17",
+                "value": "ア"
+              }
+            ],
+            "major_question_id": "major-question-13"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "解説〈熱量と比熱、熱容量〉",
+            "major_question_id": "major-question-13"
+          },
+          {
+            "type": "prose",
+            "text": "16．容器の熱容量を \\(C\\,[\\mathrm{J/K}]\\) とおくと、1回目の混合における熱量の保存より",
+            "major_question_id": "major-question-13"
+          },
+          {
+            "type": "formula",
+            "latex": "100\\times4.2\\times(24-10)+C\\times(24-10)=50\\times4.2\\times(70-24)",
+            "major_question_id": "major-question-13"
+          },
+          {
+            "type": "formula",
+            "latex": "\\therefore\\quad C=270\\,[\\mathrm{J/K}]",
+            "major_question_id": "major-question-13"
+          },
+          {
+            "type": "prose",
+            "text": "17．全体の温度を \\(t\\,[^\\circ\\mathrm{C}]\\) とおくと、2回目の混合における熱量の保存より",
+            "major_question_id": "major-question-13"
+          },
+          {
+            "type": "formula",
+            "latex": "150\\times4.2\\times(t-24)+270\\times(t-24)=300\\times0.45\\times(70-t)",
+            "major_question_id": "major-question-13"
+          },
+          {
+            "type": "formula",
+            "latex": "\\therefore\\quad t=30\\,[^\\circ\\mathrm{C}]",
+            "major_question_id": "major-question-13"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "問題18　解答 ア",
+            "major_question_id": "major-question-14"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "解説〈棒の質量〉",
+            "major_question_id": "major-question-14"
+          },
+          {
+            "type": "prose",
+            "text": "棒の質量を \\(m\\,[\\mathrm{kg}]\\) とおき、鉛直方向の力のつりあいを考えると",
+            "major_question_id": "major-question-14"
+          },
+          {
+            "type": "formula",
+            "latex": "m\\times9.8=40+9.0\\quad\\therefore\\quad m=\\frac{49}{9.8}=5.0\\,[\\mathrm{kg}]",
+            "major_question_id": "major-question-14"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "問題19　解答 イ",
+            "major_question_id": "major-question-15"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "解説〈地球と月の半径の比〉",
+            "major_question_id": "major-question-15"
+          },
+          {
+            "type": "prose",
+            "text": "物体と地球の質量をそれぞれ \\(m,M\\)、万有引力定数を \\(G\\)、地球の半径を \\(R\\)、地球表面の重力加速度を \\(g\\)、地球の脱出速度を \\(v_0\\) とおく。力学的エネルギー保存則より",
+            "major_question_id": "major-question-15"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac12mv_0^2-G\\frac{Mm}{R}=0\\quad\\therefore\\quad v_0=\\sqrt{\\frac{2GM}{R}}",
+            "major_question_id": "major-question-15"
+          },
+          {
+            "type": "prose",
+            "text": "ここで、地球表面上に静止する物体にはたらく重力と万有引力の関係から",
+            "major_question_id": "major-question-15"
+          },
+          {
+            "type": "formula",
+            "latex": "mg=G\\frac{Mm}{R^2},\\qquad GM=gR^2",
+            "major_question_id": "major-question-15"
+          }
+        ]
+      },
+      {
+        "source_page_id": "jichi-medical-2025-general-physics-answers-p007",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "が成り立つので",
+            "major_question_id": "major-question-15"
+          },
+          {
+            "type": "formula",
+            "latex": "v_0=\\sqrt{\\frac{2gR^2}{R}}=\\sqrt{2gR}",
+            "major_question_id": "major-question-15"
+          },
+          {
+            "type": "prose",
+            "text": "月面の重力加速度を \\(g'\\)、月の脱出速度を \\(v_0'\\)、月の半径を \\(R'\\) とおくと、地球の場合と同様にして",
+            "major_question_id": "major-question-15"
+          },
+          {
+            "type": "formula",
+            "latex": "v_0'=\\sqrt{2g'R'}",
+            "major_question_id": "major-question-15"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac{v_0}{v_0'}=\\frac{\\sqrt{2gR}}{\\sqrt{2g'R'}}",
+            "major_question_id": "major-question-15"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac{4.7v_0'}{v_0'}=\\frac{\\sqrt{2\\times6.0g'\\times R}}{\\sqrt{2g'R'}}",
+            "major_question_id": "major-question-15"
+          },
+          {
+            "type": "formula",
+            "latex": "\\therefore\\quad \\frac{R}{R'}=\\frac{4.7^2}{6.0}=3.68\\simeq3.7",
+            "major_question_id": "major-question-15"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "問題20〜25　解答",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "20",
+                "value": "エ"
+              },
+              {
+                "label": "21",
+                "value": "イ"
+              },
+              {
+                "label": "22",
+                "value": "オ"
+              },
+              {
+                "label": "23",
+                "value": "ウ"
+              },
+              {
+                "label": "24",
+                "value": "ウ"
+              },
+              {
+                "label": "25",
+                "value": "ア"
+              }
+            ],
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "解説〈あらい水平面上での単振動〉",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "prose",
+            "text": "20．ばねのばね定数を \\(k\\) とおき、小球Bを鉛直に吊るしたときの力のつりあいの式をたてると",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "formula",
+            "latex": "ka=mg\\quad\\therefore\\quad k=\\frac{mg}{a}",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "prose",
+            "text": "小球Bが点Pにあるときのばねのエネルギーが、小球Bが点Oまで移動する間に動摩擦力のした仕事より大きければよいので",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac12kp^2>\\mu'mgp",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac12\\frac{mg}{a}p^2>\\mu'mgp\\quad\\therefore\\quad p>2a\\mu'",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "prose",
+            "text": "21．点Qですべる条件は",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "formula",
+            "latex": "kq>\\mu mg",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac{mg}{a}q>\\mu mg\\quad\\therefore\\quad\\mu<\\frac qa",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "prose",
+            "text": "22．エネルギーと仕事の関係より",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac12kp^2=\\frac12kq^2+\\mu'mg(p+q)",
+            "major_question_id": "major-question-16"
+          }
+        ]
+      },
+      {
+        "source_page_id": "jichi-medical-2025-general-physics-answers-p008",
+        "blocks": [
+          {
+            "type": "formula",
+            "latex": "\\frac12\\frac{mg}{a}p^2=\\frac12\\frac{mg}{a}q^2+\\mu'mg(p+q)",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "formula",
+            "latex": "(p^2-q^2)=2\\mu'a(p+q)\\quad\\therefore\\quad\\mu'=\\frac{p-q}{2a}",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "prose",
+            "text": "23．単振動の中心で速さが最大となるので、点O'はPQの中点であり",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "formula",
+            "latex": "PO'=\\frac{p+q}{2}",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "prose",
+            "text": "24．単振動の振幅が \\(PO'\\) なので、速さの最大値の式より",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac{p+q}{2}\\sqrt{\\frac{k}{m}}=\\frac{p+q}{2}\\sqrt{\\frac1m\\frac{mg}{a}}",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "formula",
+            "latex": "=\\frac{p+q}{2}\\sqrt{\\frac ga}",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "prose",
+            "text": "25．求める時間は周期の半分となるので、周期の式より",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "formula",
+            "latex": "2\\pi\\sqrt{\\frac mk}\\times\\frac12=\\pi\\sqrt{\\frac{ma}{mg}}=\\pi\\sqrt{\\frac ag}",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "講評",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "prose",
+            "text": "例年通り25問で構成されているが、2025年度は1〜3、7・8、16・17、20〜25のそれぞれが1つの大問となっていた。全体的に難度が高い問題はないが、1科目あたり40分程度の試験時間なので、解答にはスピードが要求される。",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "prose",
+            "text": "1〜3の電気振動では電圧を求めるのに三角関数を用いることに気づく必要があり、6の金属小球の接触と静電気力や19の地球と月の半径の比では種々の物理量を自分で定義して考える必要があるので、問題文を正しく理解していないと厳しい。7・8の結合エネルギー、13の全反射は知識があれば簡単に解ける。14の凸レンズと凹レンズは凹レンズの扱い方に注意が必要である。15の熱効率、16・17の熱量と比熱、熱容量は内容をしっかり読み取れれば解ける。20〜25のあらい水平面上での単振動は苦手とする受験生も多いが、振動の中心で速さが最大であることや速さ0が端になるなどの知識や公式を上手に活用すれば解ける。",
+            "major_question_id": "major-question-16"
+          },
+          {
+            "type": "prose",
+            "text": "日頃の学習の成果が点数に反映される問題なので、十分な準備を重ね、高得点を目指してほしい。",
+            "major_question_id": "major-question-16"
+          }
+        ]
+      }
+    ],
+    "review": {
+      "needs_human_review": true,
+      "editorial_status": "draft_for_subject_editor",
+      "physics_consistency_checked": true,
+      "answer_key_checked": true,
+      "source_transcription_preserved": true,
+      "source_route_checked": true,
+      "unit_and_significant_figures_checked": true,
+      "reader_structure_checked": true
+    }
+  },
+  "assets": [
+    {
+      "id": "q1-3-circuit",
+      "kind": "source_crop",
+      "source_page_id": "jichi-medical-2025-general-physics-questions-p001",
+      "crop_box_pixels": [
+        358,
+        228,
+        874,
+        772
+      ],
+      "source_crop_path": "assets/crops/q1-3-circuit/source.png",
+      "replacement_path": "assets/crops/q1-3-circuit/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "電池E、抵抗R、コンデンサーC、コイルL、スイッチS1・S2を接続した回路図"
+    },
+    {
+      "id": "q4-particle-diagram",
+      "kind": "source_crop",
+      "source_page_id": "jichi-medical-2025-general-physics-questions-p002",
+      "crop_box_pixels": [
+        398,
+        108,
+        874,
+        682
+      ],
+      "source_crop_path": "assets/crops/q4-particle-diagram/source.png",
+      "replacement_path": "assets/crops/q4-particle-diagram/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "紙面の裏向きの一様磁場中で原点からy軸正方向へ発射される正電荷の図"
+    },
+    {
+      "id": "q10-wave-interference",
+      "kind": "source_crop",
+      "source_page_id": "jichi-medical-2025-general-physics-questions-p003",
+      "crop_box_pixels": [
+        428,
+        648,
+        874,
+        1241
+      ],
+      "source_crop_path": "assets/crops/q10-wave-interference/source.png",
+      "replacement_path": "assets/crops/q10-wave-interference/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "波源S1・S2から広がる山と谷の円形波面を示す干渉図"
+    },
+    {
+      "id": "q11-open-pipe",
+      "kind": "source_crop",
+      "source_page_id": "jichi-medical-2025-general-physics-questions-p004",
+      "crop_box_pixels": [
+        358,
+        238,
+        874,
+        862
+      ],
+      "source_crop_path": "assets/crops/q11-open-pipe/source.png",
+      "replacement_path": "assets/crops/q11-open-pipe/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "長さ30cmと40cmで共鳴する長さ可変の開管とスピーカーの図"
+    },
+    {
+      "id": "q13-total-reflection",
+      "kind": "source_crop",
+      "source_page_id": "jichi-medical-2025-general-physics-questions-p005",
+      "crop_box_pixels": [
+        358,
+        0,
+        874,
+        462
+      ],
+      "source_crop_path": "assets/crops/q13-total-reflection/source.png",
+      "replacement_path": "assets/crops/q13-total-reflection/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "油中の点光源、境界面S、半径rの円盤、距離Dを示す全反射の図"
+    },
+    {
+      "id": "q14-lenses",
+      "kind": "source_crop",
+      "source_page_id": "jichi-medical-2025-general-physics-questions-p005",
+      "crop_box_pixels": [
+        98,
+        238,
+        832,
+        832
+      ],
+      "source_crop_path": "assets/crops/q14-lenses/source.png",
+      "replacement_path": "assets/crops/q14-lenses/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "物体、凸レンズA、凹レンズBと60cm・25cmの配置を示す図"
+    },
+    {
+      "id": "q15-pv-cycle",
+      "kind": "source_crop",
+      "source_page_id": "jichi-medical-2025-general-physics-questions-p005",
+      "crop_box_pixels": [
+        378,
+        608,
+        874,
+        1241
+      ],
+      "source_crop_path": "assets/crops/q15-pv-cycle/source.png",
+      "replacement_path": "assets/crops/q15-pv-cycle/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "状態A・B・Cを通る単原子分子理想気体の圧力体積サイクル図"
+    },
+    {
+      "id": "q18-rod",
+      "kind": "source_crop",
+      "source_page_id": "jichi-medical-2025-general-physics-questions-p006",
+      "crop_box_pixels": [
+        378,
+        358,
+        874,
+        1002
+      ],
+      "source_crop_path": "assets/crops/q18-rod/source.png",
+      "replacement_path": "assets/crops/q18-rod/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "長さ1.0mの棒を左右の端で40Nまたは9.0Nにより持ち上げる図"
+    },
+    {
+      "id": "q20-25-spring",
+      "kind": "source_crop",
+      "source_page_id": "jichi-medical-2025-general-physics-questions-p007",
+      "crop_box_pixels": [
+        168,
+        228,
+        874,
+        832
+      ],
+      "source_crop_path": "assets/crops/q20-25-spring/source.png",
+      "replacement_path": "assets/crops/q20-25-spring/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "あらい水平面上のばねと小球B、点P・O・Q、距離p・qを示す図"
+    }
+  ],
+  "sourceReference": "projects/universities/jichi-medical/past-exams/working/2025/general/first-stage/physics/source-html/editorial-explanations.json",
+  "sha256": "d3c3f1f5f37027db47703cbc309afc3a19ae5f3630d12e7d4d83792b1f68c034"
+}

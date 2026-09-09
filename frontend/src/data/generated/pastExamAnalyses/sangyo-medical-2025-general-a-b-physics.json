@@ -1,0 +1,523 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "sangyo-medical-2025-general-a-b-physics",
+  "route": {
+    "university": "sangyo-medical",
+    "year": "2025",
+    "subject": "physics",
+    "path": "/past-exam-library/sangyo-medical/2025/physics/analysis/"
+  },
+  "university": "産業医科大学",
+  "year": 2025,
+  "subject": "物理",
+  "examLabel": "一般選抜A・B（個別学力検査共通）",
+  "duration": "理科2科目 合計100分",
+  "format": "選択・数値解答など（各設問を参照）",
+  "examTotal": null,
+  "headline": "円運動・仕事と力学的エネルギー",
+  "summary": "[1]は円運動・仕事と力学的エネルギー、[2]は気体の状態変化と熱力学、[3]は光の干渉と回折。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "物理が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "物理が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "[1]",
+      "title": "鉛直面内の円運動と軌道から離れない条件",
+      "subtitle": "円運動・仕事と力学的エネルギー",
+      "summary": "高さ \\(h\\) から静かに放した物体が外側の円弧ADBと内側の半円筒GEを通る。力学的エネルギー保存と向心方向の運動方程式から、垂直抗力が0以上となる高さ条件を求める。",
+      "studyAction": "力学的エネルギー保存から速さを表す。垂直抗力を含む向心方向の運動方程式を立てる",
+      "requirements": [
+        2.5,
+        2.8,
+        2.5,
+        2.2,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-a",
+          "label": "ア",
+          "title": "高さ \\(h\\) から初速0で滑る物体について、外側の円弧ADB上で力学的エネルギー保存と運動方程式を組み合わせ、円弧から離れない \\(h\\) の最大値を \\(a,d,\\varphi\\) で表す。",
+          "note": "仮6点。エネルギー保存と円運動の定型連立だが、角度と抗力の向きを読み違えやすい。得意層は先に式を確立し、苦手層は回折格子や熱力学の基本項目を回収後に戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "phys-q1-b",
+          "label": "イ",
+          "title": "物体が外側の円弧ADBを離れず頂点Dを越えるための \\(a+d<h\\) と、アで得た上限が両立するための \\(\\cos\\varphi\\) の境界値を求める。",
+          "note": "仮5点。アの結果を正しく使えば短いが、前問の不等式に依存する。苦手層は独立した基本問題を優先し、アを解けた場合に続ける。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q1-c",
+          "label": "ウ",
+          "title": "半円筒GEの内側を運動する物体について、最高点Eからの角 \\(\\theta'\\) で抗力を表し、\\(h=7a/3\\) の物体が抗力0で軌道を離れる高さを求める。",
+          "note": "仮5点。内側円運動の定型式だが、角度の基準と高さ \\(a(1+\\cos\\theta')\\) の対応確認が要る。苦手層は時間が残れば図を描き直して処理する。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q1-d",
+          "label": "エ",
+          "title": "半円筒GEの最高点Eで物体が軌道から離れない条件 \\(N'\\geqq0\\) を用い、Eへ到達できる初期高さ \\(h\\) の最小値を求める。",
+          "note": "仮5点。ウの抗力式を再利用すれば短いが前問依存がある。苦手層はウを解けたときだけ連続して回収する。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q1-e",
+          "label": "オ",
+          "title": "\\(d=2a,\\ \\cos\\varphi=8/9\\) の条件で、外側円弧を通過し半円筒の最高点Eへ離れずに到達できる \\(h\\) の範囲の下限を求める。",
+          "note": "仮6点。アとエの条件整理が済めば代入中心だが、複数条件を落としやすい。苦手層は前半を解けた場合にまとめて処理する。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "phys-q1-f",
+          "label": "カ",
+          "title": "\\(d=2a,\\ \\cos\\varphi=8/9\\) の条件で、外側円弧を通過し半円筒の最高点Eへ離れずに到達できる \\(h\\) の範囲の上限を求める。",
+          "note": "仮5点。アの式があれば代入だけで、オと同時に回収できる。苦手層も前提を満たした場合は短時間で記入する。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        }
+      ],
+      "questionsPath": "/past-exam-library/sangyo-medical/2025/physics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/sangyo-medical/2025/physics/answers/#major-question-01"
+    },
+    {
+      "id": "phys-q2",
+      "label": "[2]",
+      "title": "理想気体の循環過程と熱効率",
+      "subtitle": "気体の状態変化と熱力学",
+      "summary": "1 molの理想気体が四つのPVサイクルを回る。定積・定圧・断熱・等温過程での熱量、仕事、内部エネルギー変化を熱力学第一法則で整理し、各サイクルの熱効率を求める。",
+      "studyAction": "各過程の種類と熱量・仕事の関係を読む。熱力学第一法則を符号付きで適用する",
+      "requirements": [
+        2.8,
+        2.9,
+        2.5,
+        1.9,
+        2.9
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-a",
+          "label": "ア",
+          "title": "図2(I)の定積過程B→Cで1 molの理想気体が受け取る熱量を、定積モル比熱 \\(C_V\\) と温度 \\(b,c\\) で表す。",
+          "note": "仮5点。定積モル比熱の定義をそのまま使う独立した基本項目で、両層とも先に確保する。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q2-b",
+          "label": "イ",
+          "title": "図2(I)でB→Cの吸収熱と、二つの断熱過程の仕事を熱力学第一法則から求め、サイクルの熱効率を \\(1-\\) の形で表す。",
+          "note": "仮6点。断熱過程の仕事を2本立てて合成するため符号ミスの影響が大きい。苦手層はア・カ・キと回折格子を優先し、得意層も各サイクルの基本項目後に戻る。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 6
+        },
+        {
+          "id": "phys-q2-c",
+          "label": "ウ",
+          "title": "図2(II)の定圧過程A→BとC→Dについて、1サイクルの内部エネルギー変化が0であることを用い、気体が外部にする正味仕事を表す。",
+          "note": "仮5点。サイクルでは内部エネルギー変化が0という定型を使うが、温度差の符号整理が必要。苦手層は基本項目後に戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q2-d",
+          "label": "エ",
+          "title": "図2(II)でC→Dの吸収熱 \\(C_p(d-c)\\) とウの正味仕事から、熱効率を \\(1-\\) の形に整理する。",
+          "note": "仮5点。ウが得られていれば熱効率の定義への代入で回収できる。苦手層はウを確定できた場合に続ける。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q2-e",
+          "label": "オ",
+          "title": "図2(III)の定圧吸熱と定積放熱を比熱 \\(C_p,C_V\\) と温度差で表し、サイクルの熱効率を \\(1-\\) の形で求める。",
+          "note": "仮6点。定圧・定積の比熱を同時に扱い、図の温度変化と符号を保つ必要がある。苦手層は独立基本項目を優先し、得意層も最後の検算時間を確保して戻る。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 6
+        },
+        {
+          "id": "phys-q2-f",
+          "label": "カ",
+          "title": "図2(IV)の理想気体がA→B→C→D→Aの1サイクルを終えて元の状態へ戻るとき、内部エネルギーの全変化を答える。",
+          "note": "仮5点。状態量の基本知識だけで即答できるため、両層とも最優先で確保する。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q2-g",
+          "label": "キ",
+          "title": "図2(IV)で与えられた \\(Q_{CD}/d=Q_{AB}/b\\) から放熱量と吸熱量の比を作り、熱効率を \\(1-\\) の形で \\(b,d\\) により表す。",
+          "note": "仮5点。問題文が必要な比を与えており短い変形で済む。カと合わせて先に回収する。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        }
+      ],
+      "questionsPath": "/past-exam-library/sangyo-medical/2025/physics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/sangyo-medical/2025/physics/answers/#major-question-02"
+    },
+    {
+      "id": "phys-q3",
+      "label": "[3]",
+      "title": "回折格子と交互に挿入した透明平板",
+      "subtitle": "光の干渉と回折",
+      "summary": "回折格子のスリットへレーザー光を垂直入射し、明線条件を求める。さらに透明平板を一つおきに挿入して位相差 \\(\\pi\\) を与え、明暗の移動と媒質中の波長変化からスクリーン上の間隔を求める。",
+      "studyAction": "回折格子の光路差と明線条件を使う。明暗の並びから位相差を判断する",
+      "requirements": [
+        2.3,
+        2.5,
+        1.7,
+        1,
+        2.6
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "(1)",
+          "title": "スリット間隔 \\(d\\) の回折格子へ波長 \\(\\lambda\\) の光を垂直入射し、1次明線 \\(m_1\\) の回折角 \\(\\theta_A\\) について \\(\\sin\\theta_A\\) を求める。",
+          "note": "仮5点。回折格子の1次明線条件をそのまま使う基本問題で、両層とも先に確保する。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "(2)",
+          "title": "透明平板を一つおきのスリット直前へ挿入すると元の \\(m_1\\) が暗線になり、その両側に新しい明線が現れることから、二群の直進光の位相差 \\(\\alpha\\) を \\(0\\leqq\\alpha<2\\pi\\) で求める。",
+          "note": "仮5点。計算はないが明線・暗線の位置関係を正しく再解釈する必要がある。苦手層は(1)と数値代入問題を先に取り、図を再確認して戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "(3)",
+          "title": "(2)で得た位相差 \\(\\pi\\) を持つ二群の光が新しい最寄り明線 \\(m_1'\\) を作る条件から、回折角 \\(\\theta_B\\) の \\(\\sin\\theta_B\\) を \\(\\lambda,d\\) で表す。",
+          "note": "仮5点。(2)の位相差を半波長として式にできれば短い。苦手層は(2)を確定できた場合に続けて処理する。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q3-4",
+          "label": "(4)",
+          "title": "回折格子とスクリーンの距離が \\(L\\)、新しい回折角が十分小さく \\(\\tan\\theta_B=\\sin\\theta_B\\) とできるとき、\\(m_0\\) と \\(m_1'\\) の間隔を求める。",
+          "note": "仮5点。(3)があれば小角近似への代入だけで回収できる。苦手層も(3)まで進めた場合は連続して解く。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q3-5a",
+          "label": "(5-1)",
+          "title": "回折格子とスクリーンの間を屈折率 \\(n\\) の透明物質で満たし、物質中の波長が \\(\\lambda/n\\) になることから、変化後の \\(m_0\\) と \\(m_1'\\) の間隔を求める。",
+          "note": "仮5点。媒質中の波長 \\(\\lambda/n\\) を認識できれば(4)の式を置換できる。苦手層は前問までの流れができた場合に続ける。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q3-5b",
+          "label": "(5-2)",
+          "title": "\\(d=2.0\\times10^{-5}\\,\\mathrm{m}\\)、\\(L=4.0\\times10^{-1}\\,\\mathrm{m}\\)、\\(n=1.5\\)、変化後の間隔 \\(3.0\\times10^{-3}\\,\\mathrm{m}\\) を(5-1)の式へ代入し、真空中の波長 \\(\\lambda\\) を求める。",
+          "note": "仮6点。(5-1)があれば代入中心で高効率だが前問依存がある。苦手層は(5-1)を確定できた場合に必ず回収し、独立して逆算はしない。",
+          "difficulty": 0,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        }
+      ],
+      "questionsPath": "/past-exam-library/sangyo-medical/2025/physics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/sangyo-medical/2025/physics/answers/#major-question-03"
+    }
+  ],
+  "difficultyCounts": [
+    5,
+    4,
+    8,
+    2
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 50,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 52,
+        "targetPercent": 52,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 22.8,
+        "maximum": {
+          "points": 52,
+          "minutes": 48.6,
+          "questionIds": [
+            "phys-q1-a",
+            "phys-q2-a",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5a",
+            "phys-q3-5b"
+          ]
+        },
+        "now": {
+          "points": 20,
+          "minutes": 30.1,
+          "questionIds": [
+            "phys-q2-a",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q3-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 88,
+          "minutes": 73.1,
+          "questionIds": [
+            "phys-q1-a",
+            "phys-q1-b",
+            "phys-q1-c",
+            "phys-q1-d",
+            "phys-q1-e",
+            "phys-q1-f",
+            "phys-q2-a",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5a",
+            "phys-q3-5b"
+          ]
+        },
+        "title": "物理が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 52,
+          "minutes": 48.6,
+          "questionIds": [
+            "phys-q1-a",
+            "phys-q2-a",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5a",
+            "phys-q3-5b"
+          ]
+        },
+        "additional": [
+          {
+            "id": "phys-q1-a",
+            "label": "[1] ア"
+          },
+          {
+            "id": "phys-q3-2",
+            "label": "[3] (2)"
+          },
+          {
+            "id": "phys-q3-3",
+            "label": "[3] (3)"
+          },
+          {
+            "id": "phys-q3-4",
+            "label": "[3] (4)"
+          },
+          {
+            "id": "phys-q3-5a",
+            "label": "[3] (5-1)"
+          },
+          {
+            "id": "phys-q3-5b",
+            "label": "[3] (5-2)"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 5.7,
+        "maximum": {
+          "points": 100,
+          "minutes": 44.9,
+          "questionIds": [
+            "phys-q1-a",
+            "phys-q1-b",
+            "phys-q1-c",
+            "phys-q1-d",
+            "phys-q1-e",
+            "phys-q1-f",
+            "phys-q2-a",
+            "phys-q2-b",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-e",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5a",
+            "phys-q3-5b"
+          ]
+        },
+        "now": {
+          "points": 88,
+          "minutes": 39.1,
+          "questionIds": [
+            "phys-q1-a",
+            "phys-q1-b",
+            "phys-q1-c",
+            "phys-q1-d",
+            "phys-q1-e",
+            "phys-q1-f",
+            "phys-q2-a",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5a",
+            "phys-q3-5b"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 44.9,
+          "questionIds": [
+            "phys-q1-a",
+            "phys-q1-b",
+            "phys-q1-c",
+            "phys-q1-d",
+            "phys-q1-e",
+            "phys-q1-f",
+            "phys-q2-a",
+            "phys-q2-b",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-e",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5a",
+            "phys-q3-5b"
+          ]
+        },
+        "title": "物理が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 88,
+          "minutes": 39.1,
+          "questionIds": [
+            "phys-q1-a",
+            "phys-q1-b",
+            "phys-q1-c",
+            "phys-q1-d",
+            "phys-q1-e",
+            "phys-q1-f",
+            "phys-q2-a",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5a",
+            "phys-q3-5b"
+          ]
+        },
+        "additional": []
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/sangyo-medical/past-exams/working/2025/general-a-b/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "2f6a5f7b06863e005bdb82205606ebef6de533f2c6bc29928a49d745d14cd8a6",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/sangyo-medical/2025/physics/questions/",
+    "answers": "/past-exam-library/sangyo-medical/2025/physics/answers/",
+    "university": "/past-exam-library/sangyo-medical/"
+  }
+}

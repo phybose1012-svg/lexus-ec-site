@@ -1,0 +1,361 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "jikei-2025-general-mathematics",
+  "route": {
+    "university": "jikei",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/jikei/2025/mathematics/analysis/"
+  },
+  "university": "東京慈恵会医科大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "一般選抜",
+  "duration": "数学 90分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "確率",
+  "summary": "第1問は確率、第2問は微分法・積分法、第3問は図形と方程式・整数の性質、第4問は複素数平面。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "title": "さいころ3回の確率：余事象と包除原理",
+      "subtitle": "確率",
+      "summary": "1個のさいころを3回投げる標本空間で、積が10の倍数になる確率と、3つの隣接和がいずれも6の倍数にならない確率を求める。前半は余事象、後半は3事象の包除原理を使う。",
+      "studyAction": "積が10の倍数となる条件を5の倍数と偶数の出現に分解する。余事象の和を包除原理で数える",
+      "requirements": [
+        0,
+        2.5,
+        2.5,
+        3,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-a",
+          "label": "ア",
+          "title": "1個のさいころを3回投げ、出た目を順に \\(X_1,X_2,X_3\\) とする。積 \\(X_1X_2X_3\\) が10で割り切れる確率を求める。",
+          "note": "余事象と2事象の包除原理という再現性の高い標準手順で、後続小問への依存もない。仮配点10点を短時間で確保できるため両層とも先に処理する。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 10
+        },
+        {
+          "id": "math-q1-i",
+          "label": "イ",
+          "title": "1個のさいころを3回投げ、出た目を順に \\(X_1,X_2,X_3\\) とする。\\(X_1+X_2\\)、\\(X_2+X_3\\)、\\(X_3+X_1\\) がいずれも6で割り切れない確率を求める。",
+          "note": "得意層なら3事象の包除原理へ直ちに移れて、対称性により数え上げも3種類で済むため今解く。苦手層にも解法は再現可能だが、各共通部分の数え間違いと符号の交代が起きやすく、層別換算では約13分を要する。まずア、第2問(1)(2)など短い定型問題を確保し、残り時間で戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 10
+        }
+      ],
+      "questionsPath": "/past-exam-library/jikei/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/jikei/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "title": "対数を含む積分不等式と和の評価",
+      "subtitle": "微分法・積分法",
+      "summary": "被積分関数を上下から挟む基本評価、不定積分、単調減少関数の積分比較と平均値の定理を組み合わせ、有限和を対数の差で評価する。",
+      "studyAction": "区間上の対数の大小から被積分関数を挟む。合成関数の微分を見抜いて不定積分を求める",
+      "requirements": [
+        0,
+        3.7,
+        2.7,
+        3.5,
+        3.7
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "（1）",
+          "title": "自然数 \\(n\\geqq3\\) と \\(0\\leqq x\\leqq1\\) に対し、\\(\\log n\\leqq\\log(x+n)\\leqq\\log(n+1)\\) を用いて \\(\\int_0^1\\dfrac{x}{\\log(x+n)}\\,dx\\) を上下から評価し、指定された不等式を証明する。",
+          "note": "分母の対数を端点で挟み、逆数をとって \\(x\\) を掛け、積分するだけの再現性が高い誘導である。第2問(3)の前提にもなるため両層とも確保する。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 10
+        },
+        {
+          "id": "math-q2-2",
+          "label": "（2）",
+          "title": "不定積分 \\(\\int\\dfrac{1}{x(\\log x)^2}\\,dx\\) を、\\((\\log x)'=1/x\\) を利用して求める。",
+          "note": "合成関数の微分を見抜く基本的な不定積分で、短時間に仮配点8点を回収できる。第2問(3)でも原始関数を使うため最優先で処理する。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q2-3",
+          "label": "（3）",
+          "title": "自然数 \\(m\\geqq n\\geqq3\\) に対し、(1)の積分評価と(2)の原始関数を使って有限和を定積分と比較する。右側を単調減少性で、左側を平均値の定理から得る対数差で評価し、指定された両側不等式を証明する。",
+          "note": "右側の標準比較だけでも式変形が長く、左側は結論から必要な差分評価を見抜き、平均値の定理で保証する発想を要する。苦手層の換算時間は30分を超え、対数・積分・総和の添字や不等号を一か所誤ると論証全体が崩れる。苦手層は第1問ア、第2問(1)(2)、第4問など再現性の高い項目を優先し、本問には戻らない。得意層もまず第1問、第2問(1)(2)、第3問(1)、第4問を確保し、残り時間で右側から着手する。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 17
+        }
+      ],
+      "questionsPath": "/past-exam-library/jikei/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/jikei/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "title": "双曲線領域に含まれる円と素数条件",
+      "subtitle": "図形と方程式・整数の性質",
+      "summary": "不等式 \\(x^2-py^2\\geqq-1\\) の領域に円が含まれる条件を平方完成で調べ、最大の自然数半径を決める。続いて円の方程式を満たす互いに異なる素数の組を偶奇で絞る。",
+      "studyAction": "円上の点を代入して半径の必要条件を得る。円の式から変数を消去し平方完成で領域包含を判定する",
+      "requirements": [
+        3,
+        4,
+        4,
+        3.5,
+        4.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "（1）",
+          "title": "自然数 \\(p\\geqq2\\) に対し、領域 \\(D:x^2-py^2\\geqq-1\\) に円 \\((x-p)^2+y^2=r\\) 全体が含まれるような自然数 \\(r\\) の最大値を \\(p\\) で表す。円上の式を代入し、\\(r=p\\) の不成立と \\(r=p-1\\) の成立を平方完成で示す。",
+          "note": "得意層なら円上の点で上限を作り、候補2つを平方完成で検証する道筋を再現でき、(2)の前提にもなるため今解く。苦手層には領域包含の必要条件と十分条件を区別しつつ2回の平方完成を行う負荷が大きく、換算で約25分かかる。第1問ア、第2問(1)(2)を確保した後、図形と方程式の処理に慣れていれば戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 15
+        },
+        {
+          "id": "math-q3-2",
+          "label": "（2）",
+          "title": "(1)で得た \\(r=p-1\\) を用い、互いに異なる素数 \\(x,y,p\\) が \\((x-p)^2+y^2=p-1\\) を満たすとき、\\(p\\) が最小となる組を求める。偶奇を比較し、\\(y=2\\) の場合を平方数 \\(p-5=4N^2\\) で探索し、\\(y\\) が奇素数の場合を矛盾で除く。",
+          "note": "(1)の結果を前提に、偶奇、平方数、素数候補の試行、残る場合の矛盾証明まで必要である。苦手層では換算30分近くを要し、候補探索に終点が見えにくく、同じ15点なら第4問や第2問(1)(2)の方が手順を再現しやすいので本問は捨てる。得意層も(1)と第4問まで確保し、十分な残り時間がある場合だけ戻る。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 15
+        }
+      ],
+      "questionsPath": "/past-exam-library/jikei/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/jikei/2025/mathematics/answers/#major-question-03"
+    },
+    {
+      "id": "math-q4",
+      "label": "第4問",
+      "title": "複素数条件から絶対値の範囲を求める",
+      "subtitle": "複素数平面",
+      "summary": "\\(z-1=x+yi\\) と置き、与式が正の実数となる条件を実部・虚部に分けて単位円上の範囲へ直す。求める絶対値の2乗を \\(x\\) の2次式にし、定義域を保って最大・最小を評価する。",
+      "studyAction": "複素数を実部と虚部に分けて実数条件を処理する。非実数条件から虚部を0でないとして制約を導く",
+      "requirements": [
+        2,
+        4,
+        4,
+        3,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "範囲",
+          "title": "実数でない複素数 \\(z\\) が \\(z+1/(z-1)\\) を正の実数にするとき、\\(z-1=x+yi\\) と置いて \\(x^2+y^2=1\\)、\\(-1/2<x<1\\) を導く。その条件下で \\(|1/(z-1)-(z-\\bar z)/2+1|\\) の取り得る値の範囲を求める。",
+          "note": "得意層なら \\(z-1=x+yi\\) の直交形式化、虚部0、絶対値の2乗という標準手順で完結するため今解く。苦手層にも手順は学習可能だが、小問に分かれず、逆数の実虚分離、範囲の開閉、平方完成を連続して処理するため換算約25分を要する。第1問アと第2問(1)(2)を先に取り、複素数の直交形式が得意なら戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 15
+        }
+      ],
+      "questionsPath": "/past-exam-library/jikei/2025/mathematics/questions/#major-question-04",
+      "answersPath": "/past-exam-library/jikei/2025/mathematics/answers/#major-question-04"
+    }
+  ],
+  "difficultyCounts": [
+    1,
+    2,
+    3,
+    2
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 90,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 58,
+        "targetPercent": 58,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 26.4,
+        "maximum": {
+          "points": 58,
+          "minutes": 88,
+          "questionIds": [
+            "math-q1-a",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q4-1"
+          ]
+        },
+        "now": {
+          "points": 28,
+          "minutes": 46,
+          "questionIds": [
+            "math-q1-a",
+            "math-q2-1",
+            "math-q2-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 68,
+          "minutes": 97.8,
+          "questionIds": [
+            "math-q1-a",
+            "math-q1-i",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q4-1"
+          ]
+        },
+        "title": "数学が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 58,
+          "minutes": 88,
+          "questionIds": [
+            "math-q1-a",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q4-1"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q3-1",
+            "label": "第3問 （1）"
+          },
+          {
+            "id": "math-q4-1",
+            "label": "第4問 範囲"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 6.6,
+        "maximum": {
+          "points": 100,
+          "minutes": 88.1,
+          "questionIds": [
+            "math-q1-a",
+            "math-q1-i",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1"
+          ]
+        },
+        "now": {
+          "points": 68,
+          "minutes": 54.1,
+          "questionIds": [
+            "math-q1-a",
+            "math-q1-i",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q4-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 88.1,
+          "questionIds": [
+            "math-q1-a",
+            "math-q1-i",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1"
+          ]
+        },
+        "title": "数学が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 100,
+          "minutes": 88.1,
+          "questionIds": [
+            "math-q1-a",
+            "math-q1-i",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q2-3",
+            "label": "第2問 （3）"
+          },
+          {
+            "id": "math-q3-2",
+            "label": "第3問 （2）"
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/jikei/past-exams/working/2025/general/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "6224cebf84b2d44c3d0af712a97a097cc282edf1a9f5820f74b1bb058503c5d8",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/jikei/2025/mathematics/questions/",
+    "answers": "/past-exam-library/jikei/2025/mathematics/answers/",
+    "university": "/past-exam-library/jikei/"
+  }
+}

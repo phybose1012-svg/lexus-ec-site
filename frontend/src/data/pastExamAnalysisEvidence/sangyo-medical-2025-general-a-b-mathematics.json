@@ -1,0 +1,616 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "sangyo-medical-2025-general-a-b-mathematics",
+    "university_id": "sangyo-medical",
+    "university_name": "産業医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-a-b",
+    "exam_method_name": "一般選抜A・B",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 100,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "問題原本p.1に数学100分と明記されている。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/sangyo-medical/past-exams/working/2025/general-a-b/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "d77a18db7e1dcff1fcd9b26b7b69cad8031dc25ab4f66c99a6e7cfa5cf581c88",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "sourceTitle": "酸素運搬量と肺の酸素吸収率",
+      "requirements": [
+        1,
+        2.2,
+        2.6,
+        2,
+        2.2
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "体積単位を一度換算して濃度を掛ける。",
+          "strategyReason": "単位換算ができれば確実な得点源。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "指数表記と単位モルを正確に扱う。",
+          "strategyReason": "(1)を利用する短い指数計算。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-1"
+            ],
+            "strong_subject": [
+              "math-q1-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "(2)の20%を取る比例計算。",
+          "strategyReason": "前問結果の割合計算である。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-2"
+            ],
+            "strong_subject": [
+              "math-q1-2"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-4",
+          "label": "(4)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "気体のモル体積を用いる直接計算。",
+          "strategyReason": "与えられた割合とモル体積をそのまま用いる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-5",
+          "label": "(5)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "(3)(4)の比を百分率へ直す。",
+          "strategyReason": "前問2つが得られれば割合計算だけで完結する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-3",
+              "math-q1-4"
+            ],
+            "strong_subject": [
+              "math-q1-3",
+              "math-q1-4"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "sourceTitle": "独立小問10題",
+      "requirements": [
+        2.3,
+        3.7,
+        3.5,
+        3.9,
+        3.7
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "見通しよく因数分解して複素数解まで列挙する。",
+          "strategyReason": "因数分解の着眼が得点を左右する短問。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "内積条件を円と接線へ幾何的に読み替える。",
+          "strategyReason": "ベクトル条件の図形化が必要。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(3)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "奇偶性を見抜けば計算量を大きく減らせる。",
+          "strategyReason": "対称性に気づけば短く解ける。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-4",
+          "label": "(4)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "桁数と常用対数の不等式を対応させる。",
+          "strategyReason": "既知の桁数から比例的に挟む標準手順。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-5",
+          "label": "(5)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "因数分解型への変形と約数の列挙が必要。",
+          "strategyReason": "定番の整数方程式変形。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-6",
+          "label": "(6)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "合同面から辺長を復元し、立体の高さを決める。",
+          "strategyReason": "補助線を含む空間把握に時間がかかる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-7",
+          "label": "(7)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "パラメータを含む定積分を展開し、平方完成まで進める。",
+          "strategyReason": "計算量が多く、独立小問として時間効率が低い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-8",
+          "label": "(8)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "最初の4回で7がちょうど1回という事象を立てる。",
+          "strategyReason": "試行回数と成功回数の整理が短い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-9",
+          "label": "(9)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "定義域を使って因子を絞り、複数の公式を連結する。",
+          "strategyReason": "変形が長く独立小問として重い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-10",
+          "label": "(10)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "接点と中心を結ぶ補助線から直角三角形と相似を作る。",
+          "strategyReason": "図を正しく描ければ相似で短く処理できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "sourceTitle": "中心と半径が動く円",
+      "requirements": [
+        3.3,
+        3.3,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "中心のパラメータ表示から直線式へ消去する。",
+          "strategyReason": "平方完成の標準誘導。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "半径平方の最小化と中心座標への代入。",
+          "strategyReason": "平方完成で直接得点できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1"
+            ],
+            "strong_subject": [
+              "math-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "任意のtという条件から2本の方程式へ分解する。",
+          "strategyReason": "恒等式の着眼後は2次方程式で処理できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-4",
+          "label": "(4)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "円周角、距離、三平方を前問の点へ結び付ける。",
+          "strategyReason": "前問結果と円周角の定理を正しく接続する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-3"
+            ],
+            "strong_subject": [
+              "math-q3-3"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q4",
+      "label": "第4問",
+      "sourceTitle": "1個または2個ずつ食べる場合の数と漸化式",
+      "requirements": [
+        1,
+        3.3,
+        3,
+        3.3,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "短い列挙で8通りを確認する。",
+          "strategyReason": "実験的列挙で確実に取れる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-2",
+          "label": "(2)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "末尾の選択による場合分けがそのまま漸化式になる。",
+          "strategyReason": "典型的なフィボナッチ型漸化式。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-3",
+          "label": "(3)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "3項間漸化式を等比型2本へ分解して一般項を構成する。",
+          "strategyReason": "誘導はあるが代数計算が長い。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q4-2"
+            ],
+            "strong_subject": [
+              "math-q4-2"
+            ]
+          }
+        },
+        {
+          "id": "math-q4-4",
+          "label": "(4)",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "(3)の一般項から絶対値1未満の比を見抜く。",
+          "strategyReason": "一般項が得られていれば支配項比較で短い。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q4-3"
+            ],
+            "strong_subject": [
+              "math-q4-3"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 100,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 30,
+        "targetPercent": 30,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 75.2,
+        "maximum": {
+          "points": 30,
+          "minutes": 99.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "now": {
+          "points": 60,
+          "minutes": 142.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q2-5",
+            "math-q2-8",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 92,
+          "minutes": 214.9,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q2-5",
+            "math-q2-6",
+            "math-q2-8",
+            "math-q2-10",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3",
+            "math-q4-4"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 67,
+        "targetPercent": 67,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 18.8,
+        "maximum": {
+          "points": 84,
+          "minutes": 96.8,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q2-5",
+            "math-q2-8",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3",
+            "math-q4-4"
+          ]
+        },
+        "now": {
+          "points": 92,
+          "minutes": 111.8,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q2-5",
+            "math-q2-6",
+            "math-q2-8",
+            "math-q2-10",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3",
+            "math-q4-4"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 133.8,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q2-5",
+            "math-q2-6",
+            "math-q2-7",
+            "math-q2-8",
+            "math-q2-9",
+            "math-q2-10",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3",
+            "math-q4-4"
+          ]
+        }
+      }
+    ]
+  }
+}

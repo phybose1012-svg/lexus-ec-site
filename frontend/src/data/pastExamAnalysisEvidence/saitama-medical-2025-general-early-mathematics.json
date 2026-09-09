@@ -1,0 +1,353 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "saitama-medical-2025-general-early-mathematics",
+    "university_id": "saitama-medical",
+    "university_name": "埼玉医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-early",
+    "exam_method_name": "一般選抜（前期）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 50,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "問題原本p.1に数学50分と明記されている。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/saitama-medical/past-exams/working/2025/general-early/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "c9785dc3b414002b8a39875f399e4cb3842d545ee67bf585edb137736b8371a6",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "sourceTitle": "指数関数の最小値と複素数平面の回転",
+      "requirements": [
+        1,
+        3.5,
+        2.5,
+        3,
+        2.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "指数関数を微分し、 e^x>0 を使って臨界点と最小値を確定する典型問題。",
+          "strategyReason": "微分して平方差を解く再現しやすい手順で、短時間に10点を狙える。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "問2",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "中心を原点へ移して回転因子を掛け、中心を戻す標準手順を正確に実行する。",
+          "strategyReason": "公式は典型だが複素数の展開と指定形への整理で符号ミスが出やすい。苦手層は指数関数と移動点の短問を先に確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "sourceTitle": "移動点間距離の最小値と移動量の最大",
+      "requirements": [
+        2,
+        3.7,
+        3.3,
+        3.3,
+        3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "座標を1変数で表し、距離の平方を平方完成するだけで結論が出る。",
+          "strategyReason": "同速なので両座標を同じ変数で表せ、平方完成まで一本道である。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "問2",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "速度比を座標の移動量へ正しく反映し、距離の平方を平方完成する。",
+          "strategyReason": "問1と同型で、 Q の移動量を 3b と置けば安定して進められる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-3",
+          "label": "問3",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 10,
+          "difficultyReason": "2変数の関係を k で一般化して平方完成し、得られた分数関数を微分する複合処理が必要。",
+          "strategyReason": "平方完成と分数関数の微分が連続し計算負荷が高い。苦手層は他の典型小問を優先し、得意層も問1・2を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "sourceTitle": "円上の点が作る直線と相似",
+      "requirements": [
+        4.7,
+        3,
+        3,
+        4.3,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "直径に対する円周角と、直交する2直線の傾きの積を結び付ける。",
+          "strategyReason": "円周角90度に気付けば傾きは -1/t と直ちに決まる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "問2",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 10,
+          "difficultyReason": "複数の角の対応を追って相似を示し、面積比を辺比の2乗へ変換した後に角度まで決める必要がある。",
+          "strategyReason": "図の角追跡、相似、面積比、方程式、角度決定が連続する。得意層は短問を確保後に取り組み、苦手層は時間を残しても優先しない。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1"
+            ],
+            "strong_subject": [
+              "math-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-3",
+          "label": "問3",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 10,
+          "difficultyReason": "前問の角と辺比を引き継ぎ、複数の線分を求めて差を取る必要がある。",
+          "strategyReason": "問2の結果が前提で、辺比の整理にも時間がかかる。得意層は問2を解いた場合だけ続け、苦手層は独立小問を優先する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-2"
+            ],
+            "strong_subject": [
+              "math-q3-2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q4",
+      "label": "第4問",
+      "sourceTitle": "重複組合せによる分配",
+      "requirements": [
+        0,
+        3,
+        2.5,
+        4,
+        2.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "重複組合せまたは10個の印と4本の仕切りを並べる典型問題。",
+          "strategyReason": "重複組合せの型を見抜けば {}_{14}\\mathrm C_4 の計算だけで終わる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-2",
+          "label": "問2",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "1人分を固定して4変数の非負整数解へ落とし、重複組合せを積の形へ展開する。",
+          "strategyReason": "問1と同じ仕切り法を4人へ適用するだけで、計算も短い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 50,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 60,
+        "targetPercent": 60,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 22.4,
+        "maximum": {
+          "points": 60,
+          "minutes": 46.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "now": {
+          "points": 60,
+          "minutes": 46.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 70,
+          "minutes": 51.9,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 5.6,
+        "maximum": {
+          "points": 100,
+          "minutes": 41.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "now": {
+          "points": 70,
+          "minutes": 25.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 41.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        }
+      }
+    ]
+  }
+}

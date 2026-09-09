@@ -1,0 +1,322 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "hyogo-medical-2025-general-a-b-mathematics",
+    "university_id": "hyogo-medical",
+    "university_name": "兵庫医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-a-b",
+    "exam_method_name": "一般選抜A・B（共通問題）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 90,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "原本問題冊子に数学90分と明記される。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/hyogo-medical/past-exams/working/2025/general-a-b/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "431e8e760b18a0852a2722b543a60e3fe912714723774edb41afd48cc2cc2124",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "sourceTitle": "対数不等式・微分方程式・場合の数・三角関数・平面図形の小問集合",
+      "requirements": [
+        1.9,
+        3.5,
+        3.3,
+        3.2,
+        3.7
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "真数条件、底の統一、絶対値による場合分けを一続きで正確に処理する必要がある。",
+          "strategyReason": "定型手順だが二つの二次不等式の範囲整理に時間を使う。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "ゼロ関数となる場合を先に分け、二階微分後の恒等条件を必要十分に詰める必要がある。",
+          "strategyReason": "見落としやすいゼロ関数の場合を含み、論証負荷が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-3a",
+          "label": "(3)(a)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "仕切り法を直接適用する基本問題である。",
+          "strategyReason": "典型的な重複組合せで短時間に独立得点できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-3b",
+          "label": "(3)(b)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "各変数から1を引くか仕切り位置を選ぶ定型問題である。",
+          "strategyReason": "(a)と対比して条件変換だけで処理できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-3a"
+            ],
+            "strong_subject": [
+              "math-q1-3a"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-4",
+          "label": "(4)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "角の範囲を確定し、倍角・合成で一つの正弦へ直して等号条件まで戻す必要がある。",
+          "strategyReason": "定義域と等号成立条件の確認に注意を要する標準問題である。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-5",
+          "label": "(5)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "直径を共有する円を見抜き、円周角と余弦定理を接続する必要がある。",
+          "strategyReason": "補助円の着想が必要だが、見抜ければ計算は短い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "sourceTitle": "食塩水の移動と連立漸化式",
+      "requirements": [
+        1,
+        3.5,
+        3.5,
+        3.2,
+        3.2
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "百分率を食塩量へ換算するだけの導入問題である。",
+          "strategyReason": "濃度の基本換算で確実に回収できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "AからB、混合、BからAの順に食塩量と全体量を追跡する必要がある。",
+          "strategyReason": "後続全問の基礎で、表に整理すれば一本道である。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1"
+            ],
+            "strong_subject": [
+              "math-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(3)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "食塩量の和を適切な一次結合として置き、漸化式を代入する必要がある。",
+          "strategyReason": "保存量の形が明示的で、(2)を代入すれば証明できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-2"
+            ],
+            "strong_subject": [
+              "math-q2-2"
+            ]
+          }
+        },
+        {
+          "id": "math-q2-4",
+          "label": "(4)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 11,
+          "difficultyReason": "保存量で一方を消去し、平衡値を引いて等比数列へ帰着する必要がある。",
+          "strategyReason": "文字式が長く、前問の保存量を活用する見通しが必要である。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-2",
+              "math-q2-3"
+            ],
+            "strong_subject": [
+              "math-q2-2",
+              "math-q2-3"
+            ]
+          }
+        },
+        {
+          "id": "math-q2-5",
+          "label": "(5)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "一般項の等比部分がゼロへ収束することを用いる基本問題である。",
+          "strategyReason": "(4)の式があれば極限は即座に読める。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-4"
+            ],
+            "strong_subject": [
+              "math-q2-4"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "sourceTitle": "複素数平面上の外心と回転",
+      "requirements": [
+        3.8,
+        3.8,
+        3.6,
+        3.6,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "二複素数の比が実数となる条件を共役を使う等式へ変形する必要がある。",
+          "strategyReason": "共線条件の定型を知っていれば短時間で処理できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "二つの等距離条件を展開し、共役を含む連立一次式から外心を消去計算する必要がある。",
+          "strategyReason": "計算負荷が高いが、等距離条件からの導出は一貫している。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1"
+            ],
+            "strong_subject": [
+              "math-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-3a",
+          "label": "(3)(a)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "偏角から原点角を読み、外心の中心角へ二倍する必要がある。",
+          "strategyReason": "図形的に中心角を使えば計算が短い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-3b",
+          "label": "(3)(b)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "八点周期を把握し、指定点との角度差が最小となる剰余類を選ぶ必要がある。",
+          "strategyReason": "回転の幾何像が描ければ周期8の比較へ帰着できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-3a"
+            ],
+            "strong_subject": [
+              "math-q3-3a"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": null
+}

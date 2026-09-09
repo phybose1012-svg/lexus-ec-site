@@ -1,0 +1,689 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "nihon-u-2025-n-unified-first-physics",
+    "university_id": "nihon-u",
+    "university_name": "日本大学医学部",
+    "academic_year": 2025,
+    "exam_method_id": "n-unified-first",
+    "exam_method_name": "N全学統一方式第1期",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 60,
+      "subject_ids": [
+        "physics"
+      ],
+      "note": "問題冊子表紙に「物理（60分）」と明記。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/nihon-u/past-exams/working/2025/n-unified-first/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "f90a7d770030fc5555836a2cffc7609cdb7e243951e9973ff44dc4cd2ba8e8c6",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "［問1］",
+      "sourceTitle": "小球と壁との斜め衝突",
+      "requirements": [
+        3,
+        4,
+        3,
+        3,
+        3
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "典型的な公式・保存則を一段で適用する。",
+          "strategyReason": "仮4点。典型処理で短時間に回収しやすい。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "(2)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "典型的な公式・保存則を一段で適用する。",
+          "strategyReason": "仮4点。典型処理で短時間に回収しやすい。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "(3)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "状況に合う法則を選び、二段程度の関係式をつなぐ。",
+          "strategyReason": "仮4点。典型処理で短時間に回収しやすい。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "(4)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "複数の状態・式または近似を見通して一貫して処理する必要がある。",
+          "strategyReason": "仮4点。複数段の処理が必要なため、苦手層は基本問題の回収後に戻る。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-3"
+            ],
+            "strong_subject": [
+              "phys-q1-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-5",
+          "label": "(5)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "複数の状態・式または近似を見通して一貫して処理する必要がある。",
+          "strategyReason": "仮4点。複数段の処理が必要なため、苦手層は基本問題の回収後に戻る。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-4"
+            ],
+            "strong_subject": [
+              "phys-q1-4"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "［問2］",
+      "sourceTitle": "断熱容器内の理想気体の状態変化",
+      "requirements": [
+        2.6,
+        3.6,
+        2.6,
+        2.6,
+        2.6
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "典型的な公式・保存則を一段で適用する。",
+          "strategyReason": "仮4点。典型処理で短時間に回収しやすい。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "(2)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "典型的な公式・保存則を一段で適用する。",
+          "strategyReason": "仮4点。典型処理で短時間に回収しやすい。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "(3)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "状況に合う法則を選び、二段程度の関係式をつなぐ。",
+          "strategyReason": "仮4点。典型処理で短時間に回収しやすい。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-4",
+          "label": "(4)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "典型的な公式・保存則を一段で適用する。",
+          "strategyReason": "仮4点。典型処理で短時間に回収しやすい。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-5",
+          "label": "(5)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "複数の状態・式または近似を見通して一貫して処理する必要がある。",
+          "strategyReason": "仮4点。複数段の処理が必要なため、苦手層は基本問題の回収後に戻る。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-4"
+            ],
+            "strong_subject": [
+              "phys-q2-4"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q3",
+      "label": "［問3］",
+      "sourceTitle": "平凹レンズ上の液膜干渉",
+      "requirements": [
+        3.2,
+        4.2,
+        3.2,
+        3.2,
+        3.2
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "典型的な公式・保存則を一段で適用する。",
+          "strategyReason": "仮4点。典型処理で短時間に回収しやすい。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "(2)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "状況に合う法則を選び、二段程度の関係式をつなぐ。",
+          "strategyReason": "仮4点。典型処理で短時間に回収しやすい。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "(3)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "状況に合う法則を選び、二段程度の関係式をつなぐ。",
+          "strategyReason": "仮4点。典型処理で短時間に回収しやすい。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-4",
+          "label": "(4)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "複数の状態・式または近似を見通して一貫して処理する必要がある。",
+          "strategyReason": "仮4点。複数段の処理が必要なため、苦手層は基本問題の回収後に戻る。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-3"
+            ],
+            "strong_subject": [
+              "phys-q3-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-5",
+          "label": "(5)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "複数の状態・式または近似を見通して一貫して処理する必要がある。",
+          "strategyReason": "仮4点。複数段の処理が必要なため、苦手層は基本問題の回収後に戻る。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-4"
+            ],
+            "strong_subject": [
+              "phys-q3-4"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q4",
+      "label": "［問4］",
+      "sourceTitle": "磁場中のレール上を動く導体棒",
+      "requirements": [
+        3.2,
+        4.2,
+        3.2,
+        3.2,
+        3.2
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q4-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "典型的な公式・保存則を一段で適用する。",
+          "strategyReason": "仮4点。典型処理で短時間に回収しやすい。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-2",
+          "label": "(2)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "状況に合う法則を選び、二段程度の関係式をつなぐ。",
+          "strategyReason": "仮4点。典型処理で短時間に回収しやすい。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-3",
+          "label": "(3)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "状況に合う法則を選び、二段程度の関係式をつなぐ。",
+          "strategyReason": "仮4点。典型処理で短時間に回収しやすい。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-4",
+          "label": "(4)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "複数の状態・式または近似を見通して一貫して処理する必要がある。",
+          "strategyReason": "仮4点。複数段の処理が必要なため、苦手層は基本問題の回収後に戻る。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-3"
+            ],
+            "strong_subject": [
+              "phys-q4-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-5",
+          "label": "(5)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "複数の状態・式または近似を見通して一貫して処理する必要がある。",
+          "strategyReason": "仮4点。複数段の処理が必要なため、苦手層は基本問題の回収後に戻る。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-4"
+            ],
+            "strong_subject": [
+              "phys-q4-4"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q5",
+      "label": "［問5］",
+      "sourceTitle": "ウランの核分裂と原子力発電",
+      "requirements": [
+        3,
+        4,
+        3,
+        3,
+        3
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q5-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "典型的な公式・保存則を一段で適用する。",
+          "strategyReason": "仮4点。典型処理で短時間に回収しやすい。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q5-2",
+          "label": "(2)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "典型的な公式・保存則を一段で適用する。",
+          "strategyReason": "仮4点。典型処理で短時間に回収しやすい。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q5-3",
+          "label": "(3)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "状況に合う法則を選び、二段程度の関係式をつなぐ。",
+          "strategyReason": "仮4点。典型処理で短時間に回収しやすい。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q5-4",
+          "label": "(4)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "複数の状態・式または近似を見通して一貫して処理する必要がある。",
+          "strategyReason": "仮4点。複数段の処理が必要なため、苦手層は基本問題の回収後に戻る。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q5-3"
+            ],
+            "strong_subject": [
+              "phys-q5-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q5-5",
+          "label": "(5)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "複数の状態・式または近似を見通して一貫して処理する必要がある。",
+          "strategyReason": "仮4点。複数段の処理が必要なため、苦手層は基本問題の回収後に戻る。 得意層は大問の流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q5-4"
+            ],
+            "strong_subject": [
+              "phys-q5-4"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 56,
+        "targetPercent": 56,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 27.2,
+        "maximum": {
+          "points": 56,
+          "minutes": 59.6,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-4",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3"
+          ]
+        },
+        "now": {
+          "points": 64,
+          "minutes": 66.1,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 101.2,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q4-5",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4",
+            "phys-q5-5"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 6.8,
+        "maximum": {
+          "points": 100,
+          "minutes": 56.1,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q4-5",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4",
+            "phys-q5-5"
+          ]
+        },
+        "now": {
+          "points": 100,
+          "minutes": 56.1,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q4-5",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4",
+            "phys-q5-5"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 56.1,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q4-5",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4",
+            "phys-q5-5"
+          ]
+        }
+      }
+    ]
+  }
+}

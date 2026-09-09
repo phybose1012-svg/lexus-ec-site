@@ -1,0 +1,369 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "kitasato-2025-general-mathematics",
+  "route": {
+    "university": "kitasato",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/kitasato/2025/mathematics/analysis/"
+  },
+  "university": "北里大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "一般選抜試験",
+  "duration": "数学 80分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "数と式・積分法",
+  "summary": "第1問は数と式・積分法、第2問は微分法・積分法、第3問は平面上の曲線・図形と方程式。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "title": "最近整数・三角形のベクトル・条件付き確率と漸化式",
+      "subtitle": "数と式・積分法・ベクトル",
+      "summary": "最近整数関数、三角形の垂心と内分点、箱を切り替える確率過程を扱う3つの独立小問。",
+      "studyAction": "最近整数による区間分割。内積と位置ベクトル",
+      "requirements": [
+        2,
+        4,
+        3.7,
+        3.7,
+        4.7
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "title": "最も近い整数を返す関数Nと距離関数fについて、具体値、一般式、0から2025までの積分を求める。",
+          "note": "定義確認から周期積分まで道筋が明確で、空欄も段階的に回収できる。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 15
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "title": "60度を含む三角形の垂線の足と垂心を位置ベクトルで表し、辺上の比と面積を求める。",
+          "note": "式量は多いが、垂直条件を2本立てれば再現可能。苦手層は計算負荷を見て後回しにする。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 15
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)",
+          "title": "直前に3を引いたかで次の箱が変わる復元抽出について、和8、条件付き確率、確率漸化式と極限を求める。",
+          "note": "状態遷移を誤ると連続して失点しやすいが、表と漸化式に整理すれば完答可能。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 1,
+          "points": 15
+        }
+      ],
+      "questionsPath": "/past-exam-library/kitasato/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/kitasato/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "title": "根号を含む関数の最大最小・面積・回転体",
+      "subtitle": "微分法・積分法",
+      "summary": "関数f(x)=2x-√(1-x²)について、微分、面積、x軸・y軸回転体を順に扱う。",
+      "studyAction": "根号関数の微分。増減表",
+      "requirements": [
+        3,
+        3.8,
+        4,
+        4.3,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "title": "fを微分して増減を調べ、定義域内の最大値と最小値を求める。",
+          "note": "微分から増減表へ進む定型手順で、後続小問のグラフ理解にも役立つ。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 15
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)",
+          "title": "曲線、直線y=x+1、y軸で囲まれる面積を定積分で求める。",
+          "note": "積分区間0から1と上下関係が明確で、円の面積を使えば短く処理できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 15
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(3)",
+          "title": "曲線と両軸で囲まれる図形をx軸回転してできる立体の体積を求める。",
+          "note": "立式は定型だが根号を含む展開・置換積分が長く、検算時間を確保したい。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 1,
+          "points": 15
+        },
+        {
+          "id": "math-q2-4",
+          "label": "(4)",
+          "title": "同じ図形をy軸回転してできる立体を、xをyの式に直して円板法で求める。",
+          "note": "立式判断と計算量の双方が重い。得意層も他問を確保してから戻る。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 15
+        }
+      ],
+      "questionsPath": "/past-exam-library/kitasato/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/kitasato/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "title": "楕円の接線と外接長方形の回転領域",
+      "subtitle": "平面上の曲線・図形と方程式",
+      "summary": "焦点と準線の距離比から楕円を導き、接線距離と外接長方形の頂点半径の不変性を使う。",
+      "studyAction": "距離条件の式化。判別式による接線条件",
+      "requirements": [
+        4,
+        3.7,
+        3.3,
+        4.3,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "title": "点(1,0)と直線x=4への距離比1:2から曲線Cの方程式を求める。",
+          "note": "定義を式に直す一本道で、後続の接線問題の土台になる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 15
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "title": "直線y=mx+nが楕円Cに接する条件からnを求め、原点との距離dをmで表す。",
+          "note": "判別式と距離公式の標準連結であり、(1)を正しく得ていれば再現しやすい。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 15
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)",
+          "title": "楕円に外接する長方形を原点中心に回転したとき、辺と内部が通過する領域の面積を求める。",
+          "note": "不変量の発見と回転領域の解釈が難しいため、得意層も最後に戻る。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 15
+        }
+      ],
+      "questionsPath": "/past-exam-library/kitasato/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/kitasato/2025/mathematics/answers/#major-question-03"
+    }
+  ],
+  "difficultyCounts": [
+    0,
+    3,
+    5,
+    2
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 150,
+    "timeBudgetMinutes": 80,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 75,
+        "targetPercent": 50,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 24.8,
+        "maximum": {
+          "points": 75,
+          "minutes": 71.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "now": {
+          "points": 60,
+          "minutes": 60.8,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 120,
+          "minutes": 116.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "title": "数学が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 75,
+          "minutes": 71.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q3-2",
+            "label": "第3問 (2)"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 108,
+        "targetPercent": 72,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 6.2,
+        "maximum": {
+          "points": 135,
+          "minutes": 79.2,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "now": {
+          "points": 90,
+          "minutes": 47.2,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 150,
+          "minutes": 91.2,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "title": "数学が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 135,
+          "minutes": 79.2,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q1-3",
+            "label": "第1問 (3)"
+          },
+          {
+            "id": "math-q2-3",
+            "label": "第2問 (3)"
+          },
+          {
+            "id": "math-q3-3",
+            "label": "第3問 (3)"
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kitasato/past-exams/working/2025/general/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "b0810b17424a5cf15636ed431f5d6e2d231334cb1d13c7fbdf96eec1e5de02c9",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/kitasato/2025/mathematics/questions/",
+    "answers": "/past-exam-library/kitasato/2025/mathematics/answers/",
+    "university": "/past-exam-library/kitasato/"
+  }
+}

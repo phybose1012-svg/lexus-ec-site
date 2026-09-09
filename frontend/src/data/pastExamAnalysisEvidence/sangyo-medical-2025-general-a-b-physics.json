@@ -1,0 +1,543 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "sangyo-medical-2025-general-a-b-physics",
+    "university_id": "sangyo-medical",
+    "university_name": "産業医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-a-b",
+    "exam_method_name": "一般選抜A・B（個別学力検査共通）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 100,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "物理・化学・生物から2科目を出願時に選択し、2科目を合わせて100分で解答する。物理単独の公式試験時間はない。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/sangyo-medical/past-exams/working/2025/general-a-b/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "2f6a5f7b06863e005bdb82205606ebef6de533f2c6bc29928a49d745d14cd8a6",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "[1]",
+      "sourceTitle": "鉛直面内の円運動と軌道から離れない条件",
+      "requirements": [
+        2.5,
+        2.8,
+        2.5,
+        2.2,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-a",
+          "label": "ア",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "任意角 \\theta で速さと垂直抗力を表し、円弧端で抗力が最小になることまで判断する必要がある。",
+          "strategyReason": "仮6点。エネルギー保存と円運動の定型連立だが、角度と抗力の向きを読み違えやすい。得意層は先に式を確立し、苦手層は回折格子や熱力学の基本項目を回収後に戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-b",
+          "label": "イ",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "二つの高さ条件が同時に成り立つためのパラメータ条件へ不等式を変形する。",
+          "strategyReason": "仮5点。アの結果を正しく使えば短いが、前問の不等式に依存する。苦手層は独立した基本問題を優先し、アを解けた場合に続ける。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-a"
+            ],
+            "strong_subject": [
+              "phys-q1-a"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-c",
+          "label": "ウ",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "内側円運動では抗力の向きが外側円弧と逆になるため、運動方程式を図から正しく立てる必要がある。",
+          "strategyReason": "仮5点。内側円運動の定型式だが、角度の基準と高さ a(1+\\cos\\theta') の対応確認が要る。苦手層は時間が残れば図を描き直して処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-d",
+          "label": "エ",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "ウで導いた抗力の式へ \\theta'=0 を代入し、境界条件を不等式として読む。",
+          "strategyReason": "仮5点。ウの抗力式を再利用すれば短いが前問依存がある。苦手層はウを解けたときだけ連続して回収する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-c"
+            ],
+            "strong_subject": [
+              "phys-q1-c"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-e",
+          "label": "オ",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "既出の外側円弧通過条件と半円筒到達条件を代入して共通範囲を取る。",
+          "strategyReason": "仮6点。アとエの条件整理が済めば代入中心だが、複数条件を落としやすい。苦手層は前半を解けた場合にまとめて処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-a",
+              "phys-q1-d"
+            ],
+            "strong_subject": [
+              "phys-q1-a",
+              "phys-q1-d"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-f",
+          "label": "カ",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "アで得た上限式へ数値条件を代入し、オと同じ共通範囲の右端を確定する。",
+          "strategyReason": "仮5点。アの式があれば代入だけで、オと同時に回収できる。苦手層も前提を満たした場合は短時間で記入する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-a",
+              "phys-q1-e"
+            ],
+            "strong_subject": [
+              "phys-q1-a",
+              "phys-q1-e"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "[2]",
+      "sourceTitle": "理想気体の循環過程と熱効率",
+      "requirements": [
+        2.8,
+        2.9,
+        2.5,
+        1.9,
+        2.9
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-a",
+          "label": "ア",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "定積変化では仕事が0で、受熱量が内部エネルギー変化 C_V(c-b) に等しい。",
+          "strategyReason": "仮5点。定積モル比熱の定義をそのまま使う独立した基本項目で、両層とも先に確保する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-b",
+          "label": "イ",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 6,
+          "difficultyReason": "二つの断熱過程の仕事を温度差で表し、正味仕事を受熱量で割って整理する多段階処理が必要。",
+          "strategyReason": "仮6点。断熱過程の仕事を2本立てて合成するため符号ミスの影響が大きい。苦手層はア・カ・キと回折格子を優先し、得意層も各サイクルの基本項目後に戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-a"
+            ],
+            "strong_subject": [
+              "phys-q2-a"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-c",
+          "label": "ウ",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "サイクル全体へ熱力学第一法則を適用し、二つの定圧過程の熱量を正負込みで合成する。",
+          "strategyReason": "仮5点。サイクルでは内部エネルギー変化が0という定型を使うが、温度差の符号整理が必要。苦手層は基本項目後に戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-d",
+          "label": "エ",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "熱効率の定義へウの式を代入し、温度差の分数を整理する。",
+          "strategyReason": "仮5点。ウが得られていれば熱効率の定義への代入で回収できる。苦手層はウを確定できた場合に続ける。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-c"
+            ],
+            "strong_subject": [
+              "phys-q2-c"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-e",
+          "label": "オ",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 6,
+          "difficultyReason": "図から吸熱・放熱過程を判別し、異なるモル比熱を含む正味仕事と吸収熱を整理する。",
+          "strategyReason": "仮6点。定圧・定積の比熱を同時に扱い、図の温度変化と符号を保つ必要がある。苦手層は独立基本項目を優先し、得意層も最後の検算時間を確保して戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-f",
+          "label": "カ",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "内部エネルギーが状態量であり、サイクルでは始状態と終状態が同じことを使う。",
+          "strategyReason": "仮5点。状態量の基本知識だけで即答できるため、両層とも最優先で確保する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-g",
+          "label": "キ",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "与えられた熱量比を熱効率 1-Q_{\\mathrm{out}}/Q_{\\mathrm{in}} へ直接代入する。",
+          "strategyReason": "仮5点。問題文が必要な比を与えており短い変形で済む。カと合わせて先に回収する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q3",
+      "label": "[3]",
+      "sourceTitle": "回折格子と交互に挿入した透明平板",
+      "requirements": [
+        2.3,
+        2.5,
+        1.7,
+        1,
+        2.6
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "隣接スリットの光路差 d\\sin\\theta_A を1次明線条件 \\lambda に等置する。",
+          "strategyReason": "仮5点。回折格子の1次明線条件をそのまま使う基本問題で、両層とも先に確保する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "観察された明暗の並びを位相反転として読み、直進方向でも打ち消し合うことを判断する。",
+          "strategyReason": "仮5点。計算はないが明線・暗線の位置関係を正しく再解釈する必要がある。苦手層は(1)と数値代入問題を先に取り、図を再確認して戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "(3)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "半波長の位相ずれを干渉条件の 1/2 次として光路差へ組み込む。",
+          "strategyReason": "仮5点。(2)の位相差を半波長として式にできれば短い。苦手層は(2)を確定できた場合に続けて処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-2"
+            ],
+            "strong_subject": [
+              "phys-q3-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-4",
+          "label": "(4)",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "(3)の結果と小角近似 x/L=\\tan\\theta_B を直接結び付ける。",
+          "strategyReason": "仮5点。(3)があれば小角近似への代入だけで回収できる。苦手層も(3)まで進めた場合は連続して解く。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-3"
+            ],
+            "strong_subject": [
+              "phys-q3-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-5a",
+          "label": "(5-1)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "媒質中で波長が短くなる効果を(4)の間隔式へ正しく反映する。",
+          "strategyReason": "仮5点。媒質中の波長 \\lambda/n を認識できれば(4)の式を置換できる。苦手層は前問までの流れができた場合に続ける。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-4"
+            ],
+            "strong_subject": [
+              "phys-q3-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-5b",
+          "label": "(5-2)",
+          "difficulty": "基本レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "直前の式を \\lambda について解き、指数と有効数字を保って数値代入する。",
+          "strategyReason": "仮6点。(5-1)があれば代入中心で高効率だが前問依存がある。苦手層は(5-1)を確定できた場合に必ず回収し、独立して逆算はしない。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-5a"
+            ],
+            "strong_subject": [
+              "phys-q3-5a"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 50,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 52,
+        "targetPercent": 52,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 22.8,
+        "maximum": {
+          "points": 52,
+          "minutes": 48.6,
+          "questionIds": [
+            "phys-q1-a",
+            "phys-q2-a",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5a",
+            "phys-q3-5b"
+          ]
+        },
+        "now": {
+          "points": 20,
+          "minutes": 30.1,
+          "questionIds": [
+            "phys-q2-a",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q3-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 88,
+          "minutes": 73.1,
+          "questionIds": [
+            "phys-q1-a",
+            "phys-q1-b",
+            "phys-q1-c",
+            "phys-q1-d",
+            "phys-q1-e",
+            "phys-q1-f",
+            "phys-q2-a",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5a",
+            "phys-q3-5b"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 5.7,
+        "maximum": {
+          "points": 100,
+          "minutes": 44.9,
+          "questionIds": [
+            "phys-q1-a",
+            "phys-q1-b",
+            "phys-q1-c",
+            "phys-q1-d",
+            "phys-q1-e",
+            "phys-q1-f",
+            "phys-q2-a",
+            "phys-q2-b",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-e",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5a",
+            "phys-q3-5b"
+          ]
+        },
+        "now": {
+          "points": 88,
+          "minutes": 39.1,
+          "questionIds": [
+            "phys-q1-a",
+            "phys-q1-b",
+            "phys-q1-c",
+            "phys-q1-d",
+            "phys-q1-e",
+            "phys-q1-f",
+            "phys-q2-a",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5a",
+            "phys-q3-5b"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 44.9,
+          "questionIds": [
+            "phys-q1-a",
+            "phys-q1-b",
+            "phys-q1-c",
+            "phys-q1-d",
+            "phys-q1-e",
+            "phys-q1-f",
+            "phys-q2-a",
+            "phys-q2-b",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-e",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5a",
+            "phys-q3-5b"
+          ]
+        }
+      }
+    ]
+  }
+}

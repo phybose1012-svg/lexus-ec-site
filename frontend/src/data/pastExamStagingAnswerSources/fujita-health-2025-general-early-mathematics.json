@@ -1,0 +1,710 @@
+{
+  "schemaVersion": "lexus-staging-answer-snapshot.v1",
+  "question": {
+    "schemaVersion": "lexus-ec.past-exam-question-page.v1",
+    "packageId": "fujita-health-2025-general-early-mathematics",
+    "route": {
+      "university": "fujita-health",
+      "year": "2025",
+      "subject": "mathematics",
+      "path": "/past-exam-library/fujita-health/2025/mathematics/questions/"
+    },
+    "university": {
+      "id": "fujita-health",
+      "name": "藤田医科大学"
+    },
+    "exam": {
+      "year": "2025",
+      "label": "一般入試（前期）",
+      "stage": "一次試験",
+      "duration": "数学 100分"
+    },
+    "subject": {
+      "id": "mathematics",
+      "name": "数学",
+      "english": "MATHEMATICS"
+    },
+    "document": {
+      "role": "questions",
+      "pageUnit": "major_question",
+      "sharedInstructionsHtml": "<section class=\"source-page-card question-shared-instructions\" data-question-shared-instructions><div class=\"page-kicker\">全大問共通</div><h2>数学</h2><p class=\"prose\">100分</p><aside class=\"source-note\"><strong>注</strong> 問題1はマークシートに解答しなさい。問題2、問題3は記述用解答用紙に、求める手順をわかりやすく説明すること。説明のない数字・式だけの場合、採点対象外とする。</aside><h2>マークシート解答上の注意</h2><div class=\"structured-list structured-list--facts\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">1.</div><div class=\"structured-list__text\">問題1の解答は、マークシートのカタカナに対応した解答欄にマークしなさい。</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">2.</div><div class=\"structured-list__text\">問題文中の <span class=\"answer-slot\">ア</span>、<span class=\"answer-slot\">イウ</span> などには、特に指示がないかぎり、符号（−、±）または数字（0〜9）が入る。ア、イ、ウ、…の一つ一つは、これらのいずれか一つに対応する。</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">3.</div><div class=\"structured-list__text\">解答欄の桁数が解答したい桁数よりも大きいときは、解答を右詰めで記載し、上位の桁は0をマークする。例えば <span class=\"answer-slot\">アイウ</span> に25と答えたいときは025とする。</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">4.</div><div class=\"structured-list__text\">分数形で解答する場合、分数の符号は分子につけ、分母につけてはいけない。また、それ以上約分できない形で答える。</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">5.</div><div class=\"structured-list__text\">根号を含む形で解答する場合、根号の中に現れる自然数が最小となる形で答える。</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">6.</div><div class=\"structured-list__text\">上記以外で解答不可能なときは、その解答欄すべてに±をマークする。</div></div></div><h2>記述式問題解答上の注意</h2><p class=\"prose\">問題2、問題3の解答において、答えが分数となるときには既約分数とし、分母に根号を含むときには分母を有理化しなさい。また、根号の中に現れる自然数が最小となる形とし、根号をはずせる場合にははずしなさい。</p></section>",
+      "printNotes": [
+        "各設問に記載された解答形式・記号・単位の指定に従ってください。",
+        "図版準備中・内容確認中の設問は、確認が完了するまで演習対象外です。"
+      ],
+      "questions": [
+        {
+          "id": "major-question-01",
+          "label": "問題1",
+          "order": 1,
+          "sourcePageIds": [
+            "fujita-health-2025-general-early-mathematics-questions-p002"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-01\" data-major-question-id=\"major-question-01\"><h2>問題1</h2><p class=\"prose\">次の問いに答えよ。</p><h3>(1)</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"xy\" data-display-mode=\"false\">xy</span> 平面において、曲線 <span class=\"math-inline\" data-katex=\"C:y=x^3-x\" data-display-mode=\"false\">C:y=x^3-x</span> の <span class=\"math-inline\" data-katex=\"x=0\" data-display-mode=\"false\">x=0</span> における法線 <span class=\"math-inline\" data-katex=\"\\ell\" data-display-mode=\"false\">\\ell</span> の傾きは <span class=\"answer-slot\">ア</span> であり、曲線 <span class=\"math-inline\" data-katex=\"C\" data-display-mode=\"false\">C</span> と法線 <span class=\"math-inline\" data-katex=\"\\ell\" data-display-mode=\"false\">\\ell</span> と直線 <span class=\"math-inline\" data-katex=\"x=1\" data-display-mode=\"false\">x=1</span>、<span class=\"math-inline\" data-katex=\"x=-1\" data-display-mode=\"false\">x=-1</span> で囲まれた部分を <span class=\"math-inline\" data-katex=\"y\" data-display-mode=\"false\">y</span> 軸のまわりに1回転してできる立体の体積は <span class=\"math-inline\" data-katex=\"\\frac{\\boxed{\\text{イ}}}{\\boxed{\\text{ウ}}}\\pi\" data-display-mode=\"false\">\\frac{\\boxed{\\text{イ}}}{\\boxed{\\text{ウ}}}\\pi</span> である。</p><h3>(2)</h3><div class=\"formula\" data-katex=\"\\left(\\frac{\\cos\\left(\\frac{11\\pi}{6}\\right)+i\\sin\\left(\\frac{11\\pi}{6}\\right)}{\\cos\\left(\\frac{2\\pi}{9}\\right)+i\\sin\\left(\\frac{2\\pi}{9}\\right)}\\right)^n=1\" data-display-mode=\"true\">\\left(\\frac{\\cos\\left(\\frac{11\\pi}{6}\\right)+i\\sin\\left(\\frac{11\\pi}{6}\\right)}{\\cos\\left(\\frac{2\\pi}{9}\\right)+i\\sin\\left(\\frac{2\\pi}{9}\\right)}\\right)^n=1</div><p class=\"prose\">を満たす最小の自然数 <span class=\"math-inline\" data-katex=\"n\" data-display-mode=\"false\">n</span> の値は <span class=\"answer-slot\">エオ</span> である。ただし、<span class=\"math-inline\" data-katex=\"i\" data-display-mode=\"false\">i</span> は虚数単位である。</p><h3>(3)</h3><p class=\"prose\">2次方程式 <span class=\"math-inline\" data-katex=\"x^2-2ax+4a+5=0\" data-display-mode=\"false\">x^2-2ax+4a+5=0</span> の解 <span class=\"math-inline\" data-katex=\"\\alpha,\\beta\" data-display-mode=\"false\">\\alpha,\\beta</span> が実数となるように実数 <span class=\"math-inline\" data-katex=\"a\" data-display-mode=\"false\">a</span> の範囲を定める。<span class=\"math-inline\" data-katex=\"\\alpha^2+\\beta^2\" data-display-mode=\"false\">\\alpha^2+\\beta^2</span> は <span class=\"math-inline\" data-katex=\"a=\\boxed{\\text{カキ}}\" data-display-mode=\"false\">a=\\boxed{\\text{カキ}}</span> のとき最小となる。</p><h3>(4)</h3><p class=\"prose\">1個のサイコロを続けて投げ、1が10回出たところで終了する。ちょうど <span class=\"math-inline\" data-katex=\"n\" data-display-mode=\"false\">n</span> 回投げて終了する確率を <span class=\"math-inline\" data-katex=\"p_n\" data-display-mode=\"false\">p_n</span> とするとき、<span class=\"math-inline\" data-katex=\"p_n\" data-display-mode=\"false\">p_n</span> を最大とする最小の <span class=\"math-inline\" data-katex=\"n\" data-display-mode=\"false\">n</span> は <span class=\"answer-slot\">クケ</span> である。</p><h3>(5)</h3><div class=\"formula\" data-katex=\"\\lim_{x\\to-\\infty}\\left(\\sqrt{4x^2+x}+2x\\right)=\\frac{\\boxed{\\text{コサ}}}{\\boxed{\\text{シ}}}\" data-display-mode=\"true\">\\lim_{x\\to-\\infty}\\left(\\sqrt{4x^2+x}+2x\\right)=\\frac{\\boxed{\\text{コサ}}}{\\boxed{\\text{シ}}}</div><h3>(6)</h3><p class=\"prose\">数列 <span class=\"math-inline\" data-katex=\"\\{a_n\\}\" data-display-mode=\"false\">\\{a_n\\}</span> が <span class=\"math-inline\" data-katex=\"a_1=1\" data-display-mode=\"false\">a_1=1</span>、<span class=\"math-inline\" data-katex=\"a_{n+1}=a_n+n^2-n\" data-display-mode=\"false\">a_{n+1}=a_n+n^2-n</span> を満たすとき、<span class=\"math-inline\" data-katex=\"a_n\" data-display-mode=\"false\">a_n</span> が2025を超える最小の自然数 <span class=\"math-inline\" data-katex=\"n\" data-display-mode=\"false\">n</span> は <span class=\"answer-slot\">スセ</span> である。</p><h3>(7)</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"\\angle AOB\" data-display-mode=\"false\">\\angle AOB</span> を直角とする直角三角形 <span class=\"math-inline\" data-katex=\"OAB\" data-display-mode=\"false\">OAB</span> がある。辺 <span class=\"math-inline\" data-katex=\"OA\" data-display-mode=\"false\">OA</span> を <span class=\"math-inline\" data-katex=\"a:b\" data-display-mode=\"false\">a:b</span> に内分する点を <span class=\"math-inline\" data-katex=\"P\" data-display-mode=\"false\">P</span>、辺 <span class=\"math-inline\" data-katex=\"OB\" data-display-mode=\"false\">OB</span> を <span class=\"math-inline\" data-katex=\"b:(a+b)\" data-display-mode=\"false\">b:(a+b)</span> に内分する点を <span class=\"math-inline\" data-katex=\"Q\" data-display-mode=\"false\">Q</span> とし、<span class=\"math-inline\" data-katex=\"AQ\" data-display-mode=\"false\">AQ</span> と <span class=\"math-inline\" data-katex=\"BP\" data-display-mode=\"false\">BP</span> の交点を <span class=\"math-inline\" data-katex=\"R\" data-display-mode=\"false\">R</span> とする。<span class=\"math-inline\" data-katex=\"OA=QB\" data-display-mode=\"false\">OA=QB</span> のとき、<span class=\"math-inline\" data-katex=\"\\angle PRQ=\\boxed{\\text{ソタチ}}^\\circ\" data-display-mode=\"false\">\\angle PRQ=\\boxed{\\text{ソタチ}}^\\circ</span> である。ただし、<span class=\"math-inline\" data-katex=\"a,b\" data-display-mode=\"false\">a,b</span> は正の実数とする。</p><h3>(8)</h3><p class=\"prose\">実数で定義される関数 <span class=\"math-inline\" data-katex=\"f(x)=3^{2x}+3^{-2x}+3^{x+1}-3^{-x+1}\" data-display-mode=\"false\">f(x)=3^{2x}+3^{-2x}+3^{x+1}-3^{-x+1}</span> の最小値は <span class=\"math-inline\" data-katex=\"\\frac{\\boxed{\\text{ツテ}}}{\\boxed{\\text{ト}}}\" data-display-mode=\"false\">\\frac{\\boxed{\\text{ツテ}}}{\\boxed{\\text{ト}}}</span> である。</p><h3>(9)</h3><p class=\"prose\">5人の身長（cm）のデータ <span class=\"math-inline\" data-katex=\"161,185,163,179,167\" data-display-mode=\"false\">161,185,163,179,167</span> の分散は <span class=\"answer-slot\">ナニ</span> である。</p></article>"
+        },
+        {
+          "id": "major-question-02",
+          "label": "問題2",
+          "order": 2,
+          "sourcePageIds": [
+            "fujita-health-2025-general-early-mathematics-questions-p003"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-02\" data-major-question-id=\"major-question-02\"><h2>問題2</h2><p class=\"prose\">2つの放物線 <span class=\"math-inline\" data-katex=\"C_1:y=x^2+2(k+1)x+4k+3\" data-display-mode=\"false\">C_1:y=x^2+2(k+1)x+4k+3</span> と <span class=\"math-inline\" data-katex=\"C_2:y=x^2+2(k-1)x-4k+3\" data-display-mode=\"false\">C_2:y=x^2+2(k-1)x-4k+3</span> があり、直線 <span class=\"math-inline\" data-katex=\"\\ell\" data-display-mode=\"false\">\\ell</span> が2つの放物線の両方に接している。ただし、<span class=\"math-inline\" data-katex=\"k\" data-display-mode=\"false\">k</span> は実数とする。次の問いに答えよ。</p><h3>(1)</h3><p class=\"prose\">直線 <span class=\"math-inline\" data-katex=\"\\ell\" data-display-mode=\"false\">\\ell</span> の方程式を求めよ。</p><h3>(2)</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"C_1\" data-display-mode=\"false\">C_1</span> と <span class=\"math-inline\" data-katex=\"C_2\" data-display-mode=\"false\">C_2</span> および直線 <span class=\"math-inline\" data-katex=\"\\ell\" data-display-mode=\"false\">\\ell</span> により囲まれた部分の面積を求めよ。</p></article>"
+        },
+        {
+          "id": "major-question-03",
+          "label": "問題3",
+          "order": 3,
+          "sourcePageIds": [
+            "fujita-health-2025-general-early-mathematics-questions-p003"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-03\" data-major-question-id=\"major-question-03\"><h2>問題3</h2><p class=\"prose\"><span class=\"math-inline\" data-katex=\"m,n\" data-display-mode=\"false\">m,n</span> を整数とする。<span class=\"math-inline\" data-katex=\"6^m=2^n+4\" data-display-mode=\"false\">6^m=2^n+4</span> を満たす <span class=\"math-inline\" data-katex=\"(m,n)\" data-display-mode=\"false\">(m,n)</span> の組をすべて求めよ。</p></article>"
+        }
+      ]
+    },
+    "source": {
+      "sourcePackageId": "fujita-health-2025-general-early-mathematics",
+      "reference": "projects/universities/fujita-health/past-exams/working/2025/general-early/first-stage/mathematics/source-html/generated/public-candidate/questions",
+      "buildKind": "publication-candidate",
+      "contentProvenance": "source_projection",
+      "publicationCandidate": true,
+      "rightsStatus": "review_required",
+      "needsHumanReview": true
+    },
+    "links": {
+      "universityLibrary": "/past-exam-library/fujita-health/",
+      "analysis": "/past-exam-library/fujita-health/2025/mathematics/analysis/",
+      "universityInformation": null
+    }
+  },
+  "editorial": {
+    "schema_version": "medical-entrance-past-exam-editorial-explanation.v2",
+    "package_id": "fujita-health-2025-general-early-mathematics",
+    "document_role": "answers",
+    "source_reconstruction_path": "reconstruction.json",
+    "audience": "数学が苦手、または数学に抵抗感がある私立医学部受験生",
+    "provenance": "editorial_adaptation",
+    "style_policy": {
+      "id": "lexus-learner-friendly-mathematics.v1",
+      "sequence": [
+        "何を求めるか",
+        "最初にすること",
+        "その理由",
+        "計算",
+        "結論"
+      ],
+      "short_paragraphs": true,
+      "expert_shortcuts_are_optional": true,
+      "main_route_is_reproducible": true,
+      "preserve_answers_and_conditions": true,
+      "preserve_source_method": true,
+      "preserve_source_reasoning_order": true,
+      "forbid_answer_backward_reasoning": true,
+      "use_katex_for_all_mathematics": true
+    },
+    "reader_structure": {
+      "page_unit": "major_question",
+      "assignment": "explicit_per_block",
+      "source_page_records_preserved_for_provenance": true,
+      "major_questions": [
+        {
+          "id": "major-question-01",
+          "label": "第1問",
+          "order": 1
+        },
+        {
+          "id": "major-question-02",
+          "label": "第2問",
+          "order": 2
+        },
+        {
+          "id": "major-question-03",
+          "label": "第3問",
+          "order": 3
+        }
+      ]
+    },
+    "pages": [
+      {
+        "source_page_id": "fujita-health-2025-general-early-mathematics-answers-p001",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第1問　独立9題は入口の見える順に",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "(1)",
+                "value": "ア 1 ／ イ 4 ／ ウ 3"
+              },
+              {
+                "label": "(2)",
+                "value": "エオ 36"
+              },
+              {
+                "label": "(3)",
+                "value": "カキ −1"
+              },
+              {
+                "label": "(4)",
+                "value": "クケ 54"
+              },
+              {
+                "label": "(5)",
+                "value": "コサ −1 ／ シ 4"
+              },
+              {
+                "label": "(6)",
+                "value": "スセ 20"
+              },
+              {
+                "label": "(7)",
+                "value": "ソタチ 135"
+              },
+              {
+                "label": "(8)",
+                "value": "ツテ −1 ／ ト 4"
+              },
+              {
+                "label": "(9)",
+                "value": "ナニ 88"
+              }
+            ],
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "note",
+            "label": "進め方",
+            "text": "9問は独立です。極限、数列、分散など手順が見える問題を先に確保し、確率や図形は後へ回します。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(1) 法線を出してから回転体へ",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "曲線y=x³−xの接線の傾きは3x²−1です。問題の点で法線の傾きが1となり、法線と曲線で囲まれる範囲を確認します。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "y=x",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "回転体は円板の差を積分します。原本の積分を整理すると体積は4π/3です。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "V=\\frac{4\\pi}{3}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "crop",
+            "asset_id": "ans-q1-1-diagrams",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "fujita-health-2025-general-early-mathematics-answers-p002",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(2) 偏角の差を整数倍する",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "商の偏角を整理し、そのn倍がπの整数倍となる最小の自然数nを探します。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "n=36",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(3) 解と係数の関係を使う",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\alpha+\\beta=2a",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\alpha\\beta=4a+5",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\alpha^2+\\beta^2=(\\alpha+\\beta)^2-2\\alpha\\beta",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "aの二次式へ直し、実数解条件も確認して最小となるaを選ぶとa=−1です。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "crop",
+            "asset_id": "ans-q1-3-graph",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "fujita-health-2025-general-early-mathematics-answers-p003",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(4) 終了時刻の確率を隣同士で比べる",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "n回目で10個目の1が出るには、最初のn−1回に1が9回、n回目に1が出ればよいです。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "p_n={}_{n-1}C_9\\left(\\frac16\\right)^{10}\\left(\\frac56\\right)^{n-10}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "p(n+1)/p(n)が1をまたぐ場所を調べると、最大となる最小のnは54です。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "n=54",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "fujita-health-2025-general-early-mathematics-answers-p004",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(5) 有理化した後に負の符号を見る",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\sqrt{4x^2+x}+2x",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "=\\frac{x}{\\sqrt{4x^2+x}-2x}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "x→−∞では√(x²)=−xです。符号を落とさず極限を取ると−1/4です。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "-\\frac14",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(6) 差を1項目から足す",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "a_n=1+\\sum_{k=1}^{n-1}(k^2-k)",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "一般項と2025を比較すると、初めて超える項番号は20です。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "n=20",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "fujita-health-2025-general-early-mathematics-answers-p005",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(7) 直角三角形の角度を追う",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "長さの等しい部分と直角条件を図に書き込み、相似な三角形から角を移します。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\angle PRQ=135^\\circ",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "crop",
+            "asset_id": "ans-q1-7-geometry",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(8) 3^x−3^(−x)を一つの文字へ置く",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "t=3^x−3^(−x)と置きます。xがすべての実数を動くとき、tもすべての実数を動きます。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "t=3^x-3^{-x}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "元の式はt²+3t+2です。平方完成すると、t=−3/2で最小値−1/4を取ります。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "t^2+3t+2=\\left(t+\\frac32\\right)^2-\\frac14",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "-\\frac14",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "crop",
+            "asset_id": "ans-q1-8-graphs",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "fujita-health-2025-general-early-mathematics-answers-p006",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(9) 平均からのずれを平方する",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\bar{x}=\\frac{161+185+163+179+167}{5}=171",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "V=\\frac{1}{5}\\sum_{i=1}^{5}(x_i-171)^2",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "V=88",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "note",
+            "label": "第1問の確認",
+            "text": "分数の符号、指数置換のt>0、分散で5個の平均を取ることを見直します。",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "fujita-health-2025-general-early-mathematics-answers-p007",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第2問　共通接線を接触条件から作る",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(1) 接点を文字で置く",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "C1とC2の接点で、接線の傾きと切片が同じになる条件を立てます。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "C_1:y=x^2+2(k+1)x+4k+3",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "C_2:y=x^2+2(k-1)x-4k+3",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "条件を整理すると共通接線は次の式です。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "\\ell:y=-2kx-4k^2+2",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "crop",
+            "asset_id": "ans-q2-parabolas",
+            "major_question_id": "major-question-02"
+          }
+        ]
+      },
+      {
+        "source_page_id": "fujita-health-2025-general-early-mathematics-answers-p008",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(2) 上側の曲線が変わる点で分ける",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "接点と2放物線の交点を求め、各区間で上側の放物線から接線を引きます。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "接線との差は平方の形になるので、区間ごとに積分すると計算が安定します。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "S=\\int_{-2k-1}^{-2k}(C_1-\\ell)\\,dx",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "+\\int_{-2k}^{-2k+1}(C_2-\\ell)\\,dx",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "原本の区間で評価すると、kに依存せず面積は2/3です。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "S=\\frac23",
+            "major_question_id": "major-question-02"
+          }
+        ]
+      },
+      {
+        "source_page_id": "fujita-health-2025-general-early-mathematics-answers-p009",
+        "blocks": [
+          {
+            "type": "note",
+            "label": "記述答案の形",
+            "text": "接点条件、共通接線、交点、積分区間、面積の順に書きます。式だけでなく、どの曲線との差を積分したかを一言添えます。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第3問　大小関係を確定して2^mをくくる",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "整数条件を整理してm,nが自然数であることを確かめます。次にn<mでは矛盾するため、n≥mと分かります。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "n\\ge m",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "n−mが0以上なので2^mをくくれます。かっこ内は整数であり、2^mは4の正の約数です。したがってmは1または2に絞られます。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "2^m\\left(3^m-2^{n-m}\\right)=4",
+            "major_question_id": "major-question-03"
+          }
+        ]
+      },
+      {
+        "source_page_id": "fujita-health-2025-general-early-mathematics-answers-p010",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "解を尽くしたことを確認する",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "m=1,2を元の式へ代入するとn=1,5です。2^mが4を割り切る条件で候補を尽くしているため、ほかの解はありません。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "6^1=2^1+4",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "6^2=2^5+4",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "(m,n)=(1,1),(2,5)",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "note",
+            "label": "最終確認",
+            "text": "第2問と第3問は求める手順の説明が必要です。式の変形理由と、解を尽くした根拠を答案に残します。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "note",
+            "label": "人間確認待ち",
+            "text": "この解説は原本の解法順と答えを維持した編集案です。科目担当者による数式・答案表現・戦略の最終確認が必要です。",
+            "major_question_id": "major-question-03"
+          }
+        ]
+      }
+    ],
+    "review": {
+      "needs_human_review": true,
+      "editorial_status": "draft_for_subject_editor",
+      "mathematical_consistency_checked": true,
+      "answer_key_checked": true,
+      "source_transcription_preserved": true,
+      "source_route_checked": true,
+      "reader_structure_checked": true
+    }
+  },
+  "assets": [
+    {
+      "id": "ans-q1-1-diagrams",
+      "source_page_id": "fujita-health-2025-general-early-mathematics-answers-p001",
+      "crop_box_pixels": [
+        158,
+        168,
+        874,
+        1092
+      ],
+      "source_crop_path": "assets/crops/ans-q1-1-diagrams/source.png",
+      "replacement_path": "assets/crops/ans-q1-1-diagrams/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "曲線、法線、回転体の領域を示す問題1(1)の複合図",
+      "kind": "source_crop"
+    },
+    {
+      "id": "ans-q1-3-graph",
+      "source_page_id": "fujita-health-2025-general-early-mathematics-answers-p002",
+      "crop_box_pixels": [
+        428,
+        578,
+        874,
+        1132
+      ],
+      "source_crop_path": "assets/crops/ans-q1-3-graph/source.png",
+      "replacement_path": "assets/crops/ans-q1-3-graph/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "実数aの許容範囲と二次式の最小値を示すグラフ",
+      "kind": "source_crop"
+    },
+    {
+      "id": "ans-q1-7-geometry",
+      "source_page_id": "fujita-health-2025-general-early-mathematics-answers-p005",
+      "crop_box_pixels": [
+        428,
+        8,
+        874,
+        572
+      ],
+      "source_crop_path": "assets/crops/ans-q1-7-geometry/source.png",
+      "replacement_path": "assets/crops/ans-q1-7-geometry/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "直角三角形OABと点P、Q、R、角alpha、betaの配置図",
+      "kind": "source_crop"
+    },
+    {
+      "id": "ans-q1-8-graphs",
+      "source_page_id": "fujita-health-2025-general-early-mathematics-answers-p005",
+      "crop_box_pixels": [
+        108,
+        578,
+        874,
+        1232
+      ],
+      "source_crop_path": "assets/crops/ans-q1-8-graphs/source.png",
+      "replacement_path": "assets/crops/ans-q1-8-graphs/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "指数関数から変数変換した関数の三つのグラフ",
+      "kind": "source_crop"
+    },
+    {
+      "id": "ans-q2-parabolas",
+      "source_page_id": "fujita-health-2025-general-early-mathematics-answers-p007",
+      "crop_box_pixels": [
+        278,
+        488,
+        874,
+        1212
+      ],
+      "source_crop_path": "assets/crops/ans-q2-parabolas/source.png",
+      "replacement_path": "assets/crops/ans-q2-parabolas/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "二つの放物線と共通接線、囲まれた領域を示す図",
+      "kind": "source_crop"
+    }
+  ],
+  "sourceReference": "projects/universities/fujita-health/past-exams/working/2025/general-early/first-stage/mathematics/source-html/editorial-explanations.json",
+  "sha256": "f23e34ea3b98272b3cc1e74371197f1cd011a97fbb7f05286927d8ec9817bc36"
+}

@@ -1,0 +1,294 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "kyorin-2025-general-mathematics",
+    "university_id": "kyorin",
+    "university_name": "杏林大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 70,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "問題原本p.1に数学70分と明記されている。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kyorin/past-exams/working/2025/general/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "c107ecf241521920012fd8b6177db57b00ed69b66b839ff5e454b82cc5a29460",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第Ⅰ問",
+      "sourceTitle": "4次関数と複素数・共通接線",
+      "requirements": [
+        1.7,
+        4.4,
+        3.7,
+        4,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-a",
+          "label": "(a)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 12,
+          "difficultyReason": "増減表から極値を求め、重解を含む因数分解へつなぐ。",
+          "strategyReason": "増減表と係数比較を連続して使うため苦手層は後へ回す。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-b",
+          "label": "(b)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 12,
+          "difficultyReason": "共役を用いて二次式を作り、余りへ代入する定型問題である。",
+          "strategyReason": "方針が明確で独立性も高く、先に確保したい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-c",
+          "label": "(c)",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 13,
+          "difficultyReason": "二重根2組の展開と4次式の係数比較が必要である。",
+          "strategyReason": "式展開が重く、短い小問を守った後の候補。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第Ⅱ問",
+      "sourceTitle": "区分関数の微分可能性と積分",
+      "requirements": [
+        0.3,
+        4.4,
+        4.1,
+        4,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-a",
+          "label": "(a)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 12,
+          "difficultyReason": "与えられた不等式を積の極限へ変形する。",
+          "strategyReason": "誘導が明確で短時間に確保できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-b",
+          "label": "(b)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 13,
+          "difficultyReason": "片側極限と微分係数を順にそろえる必要がある。",
+          "strategyReason": "計算は長いが誘導に沿えば得意層は安定して進められる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-a"
+            ],
+            "strong_subject": [
+              "math-q2-a"
+            ]
+          }
+        },
+        {
+          "id": "math-q2-c",
+          "label": "(c)",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 13,
+          "difficultyReason": "接線との交点決定後、根号積分を三角置換する必要がある。",
+          "strategyReason": "積分計算が長いため最後に回す。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-b"
+            ],
+            "strong_subject": [
+              "math-q2-b"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第Ⅲ問",
+      "sourceTitle": "直交円柱・八面体と確率漸化式",
+      "requirements": [
+        4,
+        5,
+        5,
+        5,
+        5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 12,
+          "difficultyReason": "立体を複数方向から切り、断面の差と積分・最大化を連続して行う。",
+          "strategyReason": "試験中最重量の設問で、得意層も他を確保してから扱う。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 13,
+          "difficultyReason": "対称性で状態をまとめ、交代項を含む漸化式の一般項を求める。",
+          "strategyReason": "状態遷移と一般項の処理が長く、最終候補となる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 70,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 49,
+        "targetPercent": 49,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 29.6,
+        "maximum": {
+          "points": 49,
+          "minutes": 61.9,
+          "questionIds": [
+            "math-q1-a",
+            "math-q1-b",
+            "math-q2-a",
+            "math-q2-b"
+          ]
+        },
+        "now": {
+          "points": 24,
+          "minutes": 40.9,
+          "questionIds": [
+            "math-q1-b",
+            "math-q2-a"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 49,
+          "minutes": 61.9,
+          "questionIds": [
+            "math-q1-a",
+            "math-q1-b",
+            "math-q2-a",
+            "math-q2-b"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 70,
+        "targetPercent": 70,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 7.4,
+        "maximum": {
+          "points": 88,
+          "minutes": 56.9,
+          "questionIds": [
+            "math-q1-a",
+            "math-q1-b",
+            "math-q1-c",
+            "math-q2-a",
+            "math-q2-b",
+            "math-q2-c",
+            "math-q3-2"
+          ]
+        },
+        "now": {
+          "points": 49,
+          "minutes": 28.9,
+          "questionIds": [
+            "math-q1-a",
+            "math-q1-b",
+            "math-q2-a",
+            "math-q2-b"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 76.9,
+          "questionIds": [
+            "math-q1-a",
+            "math-q1-b",
+            "math-q1-c",
+            "math-q2-a",
+            "math-q2-b",
+            "math-q2-c",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        }
+      }
+    ]
+  }
+}

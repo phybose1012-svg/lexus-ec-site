@@ -1,0 +1,317 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "jikei-2025-general-mathematics",
+    "university_id": "jikei",
+    "university_name": "東京慈恵会医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 90,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "2025年度学生募集要項の一般選抜・一次試験欄で、数学は100点・90分の独立枠。問題冊子表紙にも「一次試験 数学（90分）」と印刷されている。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/jikei/past-exams/working/2025/general/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "6224cebf84b2d44c3d0af712a97a097cc282edf1a9f5820f74b1bb058503c5d8",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "sourceTitle": "さいころ3回の確率：余事象と包除原理",
+      "requirements": [
+        0,
+        2.5,
+        2.5,
+        3,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-a",
+          "label": "ア",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "積が10の倍数になる条件を「5が少なくとも1回」と「偶数が少なくとも1回」に分け、その否定事象2つの和を包除原理で数える必要がある。手順は典型だが、共通部分を3回とも1または3と読む整理が要る。",
+          "strategyReason": "余事象と2事象の包除原理という再現性の高い標準手順で、後続小問への依存もない。仮配点10点を短時間で確保できるため両層とも先に処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-i",
+          "label": "イ",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "3つの和が6の倍数となる事象を置き、各事象、2事象共通部分、3事象共通部分を数えて3事象の包除原理を適用する。対称性を利用して計算を整理する判断が必要である。",
+          "strategyReason": "得意層なら3事象の包除原理へ直ちに移れて、対称性により数え上げも3種類で済むため今解く。苦手層にも解法は再現可能だが、各共通部分の数え間違いと符号の交代が起きやすく、層別換算では約13分を要する。まずア、第2問(1)(2)など短い定型問題を確保し、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "sourceTitle": "対数を含む積分不等式と和の評価",
+      "requirements": [
+        0,
+        3.7,
+        2.7,
+        3.5,
+        3.7
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "（1）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "対数関数の単調性で分母を評価し、正数の逆数で不等号が反転することを確認してから積分する典型問題である。証明として不等号の向きと積分区間を整えて書く必要がある。",
+          "strategyReason": "分母の対数を端点で挟み、逆数をとって x を掛け、積分するだけの再現性が高い誘導である。第2問(3)の前提にもなるため両層とも確保する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "（2）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "u=\\log x とみる置換積分、または -1/\\log x の微分を確認するだけの基本問題である。",
+          "strategyReason": "合成関数の微分を見抜く基本的な不定積分で、短時間に仮配点8点を回収できる。第2問(3)でも原始関数を使うため最優先で処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-3",
+          "label": "（3）",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 17,
+          "difficultyReason": "右側は和と積分の標準比較で進むが、左側では結論の差分形を見て 1/(k\\log k\\log(k+1)) を対数の逆数差で下から評価する方針を立て、平均値の定理まで接続する必要がある。論証量も多い。",
+          "strategyReason": "右側の標準比較だけでも式変形が長く、左側は結論から必要な差分評価を見抜き、平均値の定理で保証する発想を要する。苦手層の換算時間は30分を超え、対数・積分・総和の添字や不等号を一か所誤ると論証全体が崩れる。苦手層は第1問ア、第2問(1)(2)、第4問など再現性の高い項目を優先し、本問には戻らない。得意層もまず第1問、第2問(1)(2)、第3問(1)、第4問を確保し、残り時間で右側から着手する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1",
+              "math-q2-2"
+            ],
+            "strong_subject": [
+              "math-q2-1",
+              "math-q2-2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "sourceTitle": "双曲線領域に含まれる円と素数条件",
+      "requirements": [
+        3,
+        4,
+        4,
+        3.5,
+        4.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "（1）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "円上の特定点から r\\leqq p を得た後、候補 p,p-1 を円の方程式で変数消去し、平方完成で領域包含を判定する。自然数条件による候補の絞り込みと十分性の証明を両方そろえる必要がある。",
+          "strategyReason": "得意層なら円上の点で上限を作り、候補2つを平方完成で検証する道筋を再現でき、(2)の前提にもなるため今解く。苦手層には領域包含の必要条件と十分条件を区別しつつ2回の平方完成を行う負荷が大きく、換算で約25分かかる。第1問ア、第2問(1)(2)を確保した後、図形と方程式の処理に慣れていれば戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "（2）",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 15,
+          "difficultyReason": "3つの素数の偶奇から場合分けを設計し、 y=2 で p=4N^2+5 の素数候補を小さい順に検証する一方、 y が奇素数なら x=2 として矛盾を示す必要がある。探索と排除の両方を完結させる論証量が多い。",
+          "strategyReason": "(1)の結果を前提に、偶奇、平方数、素数候補の試行、残る場合の矛盾証明まで必要である。苦手層では換算30分近くを要し、候補探索に終点が見えにくく、同じ15点なら第4問や第2問(1)(2)の方が手順を再現しやすいので本問は捨てる。得意層も(1)と第4問まで確保し、十分な残り時間がある場合だけ戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1"
+            ],
+            "strong_subject": [
+              "math-q3-1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q4",
+      "label": "第4問",
+      "sourceTitle": "複素数条件から絶対値の範囲を求める",
+      "requirements": [
+        2,
+        4,
+        4,
+        3,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "範囲",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "非実数条件を使って虚部の係数を0とし、単位円条件と実部の開区間を得る。その後、絶対値の2乗を x の平方完成形に直し、端点が含まれない下限と内部で達成される上限を区別する必要がある。",
+          "strategyReason": "得意層なら z-1=x+yi の直交形式化、虚部0、絶対値の2乗という標準手順で完結するため今解く。苦手層にも手順は学習可能だが、小問に分かれず、逆数の実虚分離、範囲の開閉、平方完成を連続して処理するため換算約25分を要する。第1問アと第2問(1)(2)を先に取り、複素数の直交形式が得意なら戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 90,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 58,
+        "targetPercent": 58,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 26.4,
+        "maximum": {
+          "points": 58,
+          "minutes": 88,
+          "questionIds": [
+            "math-q1-a",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q4-1"
+          ]
+        },
+        "now": {
+          "points": 28,
+          "minutes": 46,
+          "questionIds": [
+            "math-q1-a",
+            "math-q2-1",
+            "math-q2-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 68,
+          "minutes": 97.8,
+          "questionIds": [
+            "math-q1-a",
+            "math-q1-i",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q4-1"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 6.6,
+        "maximum": {
+          "points": 100,
+          "minutes": 88.1,
+          "questionIds": [
+            "math-q1-a",
+            "math-q1-i",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1"
+          ]
+        },
+        "now": {
+          "points": 68,
+          "minutes": 54.1,
+          "questionIds": [
+            "math-q1-a",
+            "math-q1-i",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q4-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 88.1,
+          "questionIds": [
+            "math-q1-a",
+            "math-q1-i",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1"
+          ]
+        }
+      }
+    ]
+  }
+}

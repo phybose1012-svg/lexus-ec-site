@@ -16,6 +16,7 @@ import "../../../../../styles/past-exam-library.css";
 import "../../../../../styles/past-exam-question.css";
 import "../../../../../styles/past-exam-figures.css";
 import "../../../../../styles/past-exam-physics.css";
+import "../../../../../styles/past-exam-batch.css";
 
 type QuestionPageData = {
   schemaVersion: string;
@@ -73,7 +74,7 @@ export function getStaticPaths() {
     params: {
       university: page.route.university,
       year: page.route.year,
-      subject: page.route.subject,
+      subject: page.route.path.split('/').filter(Boolean).at(-2),
     },
     props: { page, answerPath: answerPaths.get(page.packageId) ?? null },
   }));
@@ -83,6 +84,7 @@ const { page, answerPath } = Astro.props as { page: QuestionPageData; answerPath
 const questionSummary = summarizeQuestionLabels(page.document.questions.map((question) => question.label));
 const { title, description, canonical, breadcrumbs, structuredData } = buildExamDocumentSeo({
   mode: "questions",
+  variantLabel: page.route.path.split('/').filter(Boolean).at(-2) !== page.route.subject ? `${page.exam.label} ${page.exam.stage}` : undefined,
   university: page.university.name,
   year: page.exam.year,
   subject: page.subject.name,

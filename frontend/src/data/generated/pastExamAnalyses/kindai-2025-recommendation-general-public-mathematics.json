@@ -1,0 +1,426 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "kindai-2025-recommendation-general-public-mathematics",
+  "route": {
+    "university": "kindai",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/kindai/2025/mathematics-recommendation-general-public-first-stage/analysis/"
+  },
+  "university": "近畿大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "推薦入試（一般公募）",
+  "duration": "数学 60分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "三角関数・確率",
+  "summary": "第Ⅰ問は三角関数・確率、第Ⅱ問はデータの分析、第Ⅲ問は2次関数・図形と方程式。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第Ⅰ問",
+      "title": "三角関数・配列確率・不等式の小問集合",
+      "subtitle": "三角関数・確率・場合の数",
+      "summary": "三角関数の連立、赤白玉の配列確率、相加相乗平均またはコーシー・シュワルツ型不等式を扱う独立小問集合。",
+      "studyAction": "三角関数の相互関係でsinとcosを決定する。同色球を区別して配置条件を数える",
+      "requirements": [
+        1.1,
+        3.4,
+        2.9,
+        3.7,
+        3.1
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "title": "sinθ、sin2θ、tanθを求める。",
+          "note": "典型計算で独立して回収できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q1-2i",
+          "label": "(2)(i)",
+          "title": "赤玉が隣り合わない配列確率を求める。",
+          "note": "隙間配置の典型で短時間に解ける。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q1-2ii",
+          "label": "(2)(ii)",
+          "title": "赤玉がちょうど3個続く配列確率を求める。",
+          "note": "塊の置き場所を整理すれば一本道である。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q1-2iii",
+          "label": "(2)(iii)",
+          "title": "赤玉2個の連続箇所が1箇所だけとなる確率を求める。",
+          "note": "条件の読み違いを避けるため、他の確実な小問後に扱う。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q1-3i",
+          "label": "(3)(i)",
+          "title": "3変数の積の最小値を求める。",
+          "note": "定型不等式として方針が立ちやすい。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q1-3ii",
+          "label": "(3)(ii)",
+          "title": "n変数へ一般化した最小値が2025となるnを求める。",
+          "note": "一般化の証明は長いが、結論の不等式を見抜けば得点できる。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 9
+        }
+      ],
+      "questionsPath": "/past-exam-library/kindai/2025/mathematics-recommendation-general-public-first-stage/questions/#major-question-01",
+      "answersPath": "/past-exam-library/kindai/2025/mathematics-recommendation-general-public-first-stage/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "第Ⅱ問",
+      "title": "平均・分散・四分位数と未知データ",
+      "subtitle": "データの分析",
+      "summary": "複数回の小テストデータについて平均、分散、四分位数を計算し、和と偏差平方和から未知得点を決定する。",
+      "studyAction": "平均と分散を計算する。四分位数と中央値の定義を正しく使う",
+      "requirements": [
+        1,
+        3.7,
+        4,
+        3.3,
+        3.3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "title": "1回目の平均・分散・四分位数とi,jを求める。",
+          "note": "計算量はあるが手順が明確で得点源になる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)",
+          "title": "2回目の平均・分散条件からb,cを求める。",
+          "note": "平均7を基準に偏差表を作れば処理しやすい。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(3)",
+          "title": "3回目の平均差・分散条件からk,lと12人平均を求める。",
+          "note": "集団の取り違えが起きやすく、条件を表に整理して解く。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        }
+      ],
+      "questionsPath": "/past-exam-library/kindai/2025/mathematics-recommendation-general-public-first-stage/questions/#major-question-02",
+      "answersPath": "/past-exam-library/kindai/2025/mathematics-recommendation-general-public-first-stage/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "第Ⅲ問",
+      "title": "2つの放物線の共有点・面積・格子点条件",
+      "subtitle": "2次関数・図形と方程式・積分法",
+      "summary": "自然数a,bで定まる2つの放物線について、共有点の公式、x軸上の共有点と面積、指定x座標、異象限の格子点共有条件を調べる。",
+      "studyAction": "2つの二次式を等置して共有点方程式を作る。判別式を含む解の公式を整理する",
+      "requirements": [
+        3.4,
+        4.1,
+        3.8,
+        3.5,
+        3.8
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "title": "共有点のx座標をa,bで表す。",
+          "note": "後続で使う基本式で、方針は明確である。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "title": "x軸上で共有する(a,b)と囲まれた面積を求める。",
+          "note": "整数条件と面積積分を連結するため処理が長い。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)",
+          "title": "x=1で共有点をもつaを求める。",
+          "note": "前問と独立して候補を少数確認できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q3-4",
+          "label": "(4)",
+          "title": "第1・第4象限に格子点共有点をもつ(a,b)と共有点を求める。",
+          "note": "条件整理が最も重く、他の確実な得点を回収した後に扱う。",
+          "difficulty": 3,
+          "weak": 1,
+          "strong": 1,
+          "points": 9
+        }
+      ],
+      "questionsPath": "/past-exam-library/kindai/2025/mathematics-recommendation-general-public-first-stage/questions/#major-question-03",
+      "answersPath": "/past-exam-library/kindai/2025/mathematics-recommendation-general-public-first-stage/answers/#major-question-03"
+    }
+  ],
+  "difficultyCounts": [
+    3,
+    5,
+    4,
+    1
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 53,
+        "targetPercent": 53,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 25.6,
+        "maximum": {
+          "points": 53,
+          "minutes": 59.9,
+          "questionIds": [
+            "math-q1-2i",
+            "math-q1-2ii",
+            "math-q1-3i",
+            "math-q1-3ii",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-3"
+          ]
+        },
+        "now": {
+          "points": 58,
+          "minutes": 63.8,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2i",
+            "math-q1-2ii",
+            "math-q1-3i",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 98.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2i",
+            "math-q1-2ii",
+            "math-q1-2iii",
+            "math-q1-3i",
+            "math-q1-3ii",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4"
+          ]
+        },
+        "title": "数学が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 53,
+          "minutes": 59.9,
+          "questionIds": [
+            "math-q1-2i",
+            "math-q1-2ii",
+            "math-q1-3i",
+            "math-q1-3ii",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-3"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q1-3ii",
+            "label": "第Ⅰ問 (3)(ii)"
+          }
+        ],
+        "routeKind": "replacement",
+        "replaced": [
+          {
+            "id": "math-q1-1",
+            "label": "第Ⅰ問 (1)"
+          },
+          {
+            "id": "math-q2-1",
+            "label": "第Ⅱ問 (1)"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 6.4,
+        "maximum": {
+          "points": 100,
+          "minutes": 54.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2i",
+            "math-q1-2ii",
+            "math-q1-2iii",
+            "math-q1-3i",
+            "math-q1-3ii",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4"
+          ]
+        },
+        "now": {
+          "points": 91,
+          "minutes": 49,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2i",
+            "math-q1-2ii",
+            "math-q1-2iii",
+            "math-q1-3i",
+            "math-q1-3ii",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 54.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2i",
+            "math-q1-2ii",
+            "math-q1-2iii",
+            "math-q1-3i",
+            "math-q1-3ii",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4"
+          ]
+        },
+        "title": "数学が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 91,
+          "minutes": 49,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2i",
+            "math-q1-2ii",
+            "math-q1-2iii",
+            "math-q1-3i",
+            "math-q1-3ii",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "additional": []
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kindai/past-exams/working/2025/recommendation-general-public/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "6ff762b8e26e5aa0897141f5c3f7073d753f038042c73ef78b881c5a15edae96",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/kindai/2025/mathematics-recommendation-general-public-first-stage/questions/",
+    "answers": "/past-exam-library/kindai/2025/mathematics-recommendation-general-public-first-stage/answers/",
+    "university": "/past-exam-library/kindai/"
+  }
+}

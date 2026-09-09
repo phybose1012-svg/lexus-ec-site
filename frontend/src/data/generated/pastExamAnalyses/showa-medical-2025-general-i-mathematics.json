@@ -1,0 +1,509 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "showa-medical-2025-general-i-mathematics",
+  "route": {
+    "university": "showa-medical",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/showa-medical/2025/mathematics/analysis/"
+  },
+  "university": "昭和医科大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "一般選抜入試（Ⅰ期）",
+  "duration": "英語・数学 合計140分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "複素数平面・整数の性質",
+  "summary": "第1問は複素数平面・整数の性質、第2問は整数の性質・式と証明、第3問はベクトル・図形と計量、第4問は確率・場合の数。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "title": "複素数の絶対値・極形式と複素数平面",
+      "subtitle": "複素数平面・整数の性質・図形と計量",
+      "summary": "絶対値条件から複素数の比を求め、極形式と共役を使って高べきの絶対値、和の絶対値、三角形の面積を処理する。",
+      "studyAction": "絶対値を共役との積に直す。複素数の比を二次方程式で求める",
+      "requirements": [
+        1.4,
+        3.7,
+        3.5,
+        3.1,
+        3.2
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "title": "絶対値条件から \\(\\beta/\\alpha\\) とその4乗を求める。",
+          "note": "後続問の基礎であり、定型的な共役・極形式計算で得点できる。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "title": "共役との積から \\(|\\alpha+\\beta|\\) を求める。",
+          "note": "問1の式を流用でき、短時間で回収できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)",
+          "title": "\\(n\\equiv3\\pmod{16}\\) の条件の下で高べきの絶対値を指定形に直す。",
+          "note": "高配点候補だが計算量と前提依存が大きいため、独立短問の後に回す。",
+          "difficulty": 3,
+          "weak": 1,
+          "strong": 1,
+          "points": 8
+        },
+        {
+          "id": "math-q1-4",
+          "label": "(4)",
+          "title": "複素数平面上の三角形の面積を求める。",
+          "note": "問2・問3を飛ばしても解けるため確実に取る。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        }
+      ],
+      "questionsPath": "/past-exam-library/showa-medical/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/showa-medical/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "title": "整数・対数領域・積分評価の総合小問",
+      "subtitle": "整数の性質・式と証明・指数関数・対数関数",
+      "summary": "ユークリッドの互除法と連分数、因数定理による整数組、対数不等式の領域と面積、単調関数の積分評価を扱う。",
+      "studyAction": "ユークリッドの互除法を連分数へつなぐ。因数定理から整数条件を場合分けする",
+      "requirements": [
+        1.6,
+        3.5,
+        3.3,
+        3.5,
+        3.4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1-1)",
+          "title": "2025と1928の最大公約数を求める。",
+          "note": "最短時間で確実に得点でき、次問の前提にもなる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(1-2)",
+          "title": "互除法の計算を連分数展開へ戻して4整数を求める。",
+          "note": "問1の計算を利用できるため、型を知っていれば短時間で取れる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(2)",
+          "title": "\\(f(x)\\mid f(x^2-2)\\) を満たす整数組をすべて求める。",
+          "note": "場合分けが長く、苦手層は短問を優先する。得意層は因数定理の型で回収できる。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q2-4",
+          "label": "(3-1)",
+          "title": "対数不等式の表す領域を図示する。",
+          "note": "符号と不等号の反転を丁寧に処理できれば次問の面積へつながる。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q2-5",
+          "label": "(3-2)",
+          "title": "領域Eの面積を積分で求める。",
+          "note": "領域図が正しければ定積分は短く、得意層は続けて取る。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q2-6",
+          "label": "(4)",
+          "title": "\\(\\sum_{k=1}^{2025}1/\\sqrt{k}\\) の整数部分を積分評価で求める。",
+          "note": "典型的な積分評価で独立しており、手順の再現性が高い。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        }
+      ],
+      "questionsPath": "/past-exam-library/showa-medical/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/showa-medical/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "title": "座標空間の四面体と回転体",
+      "subtitle": "ベクトル・図形と計量・積分法",
+      "summary": "対称配置された四面体の存在条件と表面積最大を求め、座標軸周りの回転体を断面積・円錐・対称性で計算する。",
+      "studyAction": "座標表示から存在条件を求める。合同と対称性で表面積を簡約する",
+      "requirements": [
+        4.8,
+        4.5,
+        4.3,
+        2.5,
+        4.7
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "title": "点Bのy座標tが取り得る範囲を、他の座標の存在条件から求める。",
+          "note": "後続の最大化範囲を与え、式の型も明確である。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "title": "四面体OABCの表面積の最大値を求める。",
+          "note": "問1の範囲を使うが、対称性を捉えれば再現性の高い最大化である。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)",
+          "title": "最大表面積の四面体を3軸周りに回転した体積を求める。",
+          "note": "高配点候補だが図形把握と計算量が大きい。全体の短問を回収後に着手する。",
+          "difficulty": 3,
+          "weak": 1,
+          "strong": 1,
+          "points": 15
+        }
+      ],
+      "questionsPath": "/past-exam-library/showa-medical/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/showa-medical/2025/mathematics/answers/#major-question-03"
+    },
+    {
+      "id": "math-q4",
+      "label": "第4問",
+      "title": "反復試行の確率と最頻値",
+      "subtitle": "確率・場合の数・数列",
+      "summary": "回転と平行移動を伴うさいころ操作を成功・失敗回数へ読み替え、負の二項型の確率と隣接項比で最頻値を求める。",
+      "studyAction": "到達条件を回転6回と移動回数へ読み替える。最後の試行を固定して反復試行を数える",
+      "requirements": [
+        0.7,
+        2.7,
+        2.7,
+        4.3,
+        3.4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "(1)",
+          "title": "\\(P_1,P_2,P_3\\) を具体的に求める。",
+          "note": "問題の操作を理解できれば短い反復試行として確実に取れる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "math-q4-2",
+          "label": "(2)",
+          "title": "一般の到達確率 \\(P_n\\) を求める。",
+          "note": "問1の構造を一般化するだけで、次問の前提にもなる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q4-3",
+          "label": "(3)",
+          "title": "\\(P_n\\) を最大にする整数nをすべて求める。",
+          "note": "典型的な隣接項比で計算量も少なく、第4問を完結できる。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        }
+      ],
+      "questionsPath": "/past-exam-library/showa-medical/2025/mathematics/questions/#major-question-04",
+      "answersPath": "/past-exam-library/showa-medical/2025/mathematics/answers/#major-question-04"
+    }
+  ],
+  "difficultyCounts": [
+    3,
+    4,
+    7,
+    2
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 70,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 40,
+        "targetPercent": 40,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 34.8,
+        "maximum": {
+          "points": 40,
+          "minutes": 68,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "now": {
+          "points": 51,
+          "minutes": 81.4,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-6",
+            "math-q3-1",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 125.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q2-5",
+            "math-q2-6",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "title": "数学が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 40,
+          "minutes": 68,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q1-3",
+            "label": "第1問 (3)"
+          }
+        ],
+        "routeKind": "replacement",
+        "replaced": [
+          {
+            "id": "math-q2-1",
+            "label": "第2問 (1-1)"
+          },
+          {
+            "id": "math-q2-2",
+            "label": "第2問 (1-2)"
+          },
+          {
+            "id": "math-q2-6",
+            "label": "第2問 (4)"
+          },
+          {
+            "id": "math-q3-1",
+            "label": "第3問 (1)"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 8.7,
+        "maximum": {
+          "points": 100,
+          "minutes": 69,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q2-5",
+            "math-q2-6",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "now": {
+          "points": 77,
+          "minutes": 57,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q2-5",
+            "math-q2-6",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 69,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q2-5",
+            "math-q2-6",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "title": "数学が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 100,
+          "minutes": 69,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q2-5",
+            "math-q2-6",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q1-3",
+            "label": "第1問 (3)"
+          },
+          {
+            "id": "math-q3-3",
+            "label": "第3問 (3)"
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/showa-medical/past-exams/working/2025/general-i/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "0f1f2a6813b1b76ca234f60d9563e7ee998065079924dd9cba4d27f25e656054",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/showa-medical/2025/mathematics/questions/",
+    "answers": "/past-exam-library/showa-medical/2025/mathematics/answers/",
+    "university": "/past-exam-library/showa-medical/"
+  }
+}

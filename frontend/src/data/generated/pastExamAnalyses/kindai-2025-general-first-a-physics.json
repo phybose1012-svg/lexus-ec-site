@@ -1,0 +1,220 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "kindai-2025-general-first-a-physics",
+  "route": {
+    "university": "kindai",
+    "year": "2025",
+    "subject": "physics",
+    "path": "/past-exam-library/kindai/2025/physics/analysis/"
+  },
+  "university": "近畿大学",
+  "year": 2025,
+  "subject": "物理",
+  "examLabel": "一般入試・前期（A日程）",
+  "duration": "理科2科目 合計120分",
+  "format": "選択・数値解答など（各設問を参照）",
+  "examTotal": null,
+  "headline": "力のつり合いと運動の法則・単振動",
+  "summary": "Iは力のつり合いと運動の法則・単振動、IIは静電気力と電場・電位・電流と磁場。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "物理が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "物理が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "I",
+      "title": "ばねで連結された小物体と円筒状弾性薄膜の単振動",
+      "subtitle": "力のつり合いと運動の法則・単振動・気体の状態変化と熱力学",
+      "summary": "一次元・二次元のばね力を成分表示し、その結果を円筒状薄膜の離散モデルへ適用する。内外圧と等温変化を微小変位の一次まで展開し、有効ばね定数を導く。",
+      "studyAction": "ばねの伸びと力の向きを座標で表す。斜めのばね力を成分分解する",
+      "requirements": [
+        3.5,
+        3.4,
+        4,
+        3.4,
+        4.2
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-a",
+          "label": "I-A（1〜3）",
+          "title": "x軸上の3小物体を結ぶ2本のばねについて、各ばねの伸びから小物体2が受ける力を求め、合力のx成分を整理する。",
+          "note": "導入のばね力で、後続の成分計算の基礎になる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "phys-q1-b",
+          "label": "I-B（4・5）",
+          "title": "平面上で斜めに張られた2本のばねについて、弾性力のy成分を座標と角度で表し、十分に伸びた極限を求める。",
+          "note": "I-Aのベクトル成分を二次元へ拡張する定型処理である。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "phys-q1-c1",
+          "label": "I-C（6〜8）",
+          "title": "円筒状薄膜をばねで結ばれた小物体の円環として表し、幾何から座標を定めてばね力の半径方向成分を求める。",
+          "note": "図の読み替えが必要だが、I-Bの式を使えば一本道である。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "phys-q1-c2",
+          "label": "I-C（9・10）",
+          "title": "薄膜の内外圧差と面積から圧力による力を表し、静止半径でのつり合い条件からばね定数との関係を導く。",
+          "note": "前問のばね力が使えれば、圧力差×面積とつり合いで得点できる。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "phys-q1-c3",
+          "label": "I-C（11〜14）",
+          "title": "半径をつり合い値から微小に変化させ、一次近似と等温変化を用いて内圧および圧力による力を一次まで展開する。",
+          "note": "近似計算が長く、前半の確実な得点後に扱うべきである。",
+          "difficulty": 3,
+          "weak": 1,
+          "strong": 1,
+          "points": 9
+        },
+        {
+          "id": "phys-q1-c4",
+          "label": "I-C（15〜17）",
+          "title": "ばね力と圧力を運動方程式へ代入し、静止時のつり合い条件で整理して、単位角あたりの薄膜の単振動に対応する有効ばね定数を求める。",
+          "note": "大問の最終到達点で計算負荷と前問依存が大きい。",
+          "difficulty": 3,
+          "weak": 1,
+          "strong": 1,
+          "points": 9
+        }
+      ],
+      "questionsPath": "/past-exam-library/kindai/2025/physics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/kindai/2025/physics/answers/#major-question-01"
+    },
+    {
+      "id": "phys-q2",
+      "label": "II",
+      "title": "トムソン・アストン型質量分析器における陽イオンの運動",
+      "subtitle": "静電気力と電場・電位・電流と磁場・原子と原子核",
+      "summary": "一様電場と一様磁場に入射する陽イオンの運動を三次元で追い、感光フィルム上の放物線を導く。さらに電場と磁場で曲がりを逆向きにし、速度の異なるイオンを一点へ集束させる条件を調べる。",
+      "studyAction": "電場中の等加速度運動を成分ごとに扱う。ローレンツ力による円運動の半径と偏向角を求める",
+      "requirements": [
+        3.5,
+        3.5,
+        3.5,
+        2.9,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-a1",
+          "label": "II-A（1〜4）",
+          "title": "領域Aに電場だけをかけたときの力の3成分を求め、通過時間とy方向加速度から出口での偏向角を表す。",
+          "note": "独立した電場中の運動で短時間に回収できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "phys-q2-a2",
+          "label": "II-A（5・6）",
+          "title": "領域Aに磁場だけをかけたとき、ローレンツ力を向心力として円運動半径を求め、円弧長から偏向角を表す。",
+          "note": "磁場中の荷電粒子運動の基本式をそのまま使える。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "phys-q2-a3",
+          "label": "II-A（7〜10）",
+          "title": "電場と磁場を同時にかけた陽イオンについて、磁場中の円弧と出口後の直進を分け、感光フィルム上のz座標とy座標を表す。",
+          "note": "処理は長いが、前2問の式を保てば座標ごとに分解できる。",
+          "difficulty": 3,
+          "weak": 1,
+          "strong": 0,
+          "points": 9
+        },
+        {
+          "id": "phys-q2-a4",
+          "label": "II-A（11）",
+          "title": "小角近似とd≪Lを用いて到達座標から入射速度を消去し、感光フィルム上でyがz²に比例する放物線を導く。",
+          "note": "前問の座標式が得られていれば代数消去で回収できる。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "phys-q2-a5",
+          "label": "II-A（あ・い）",
+          "title": "入射速度を大きくしたときの像の移動方向と、質量が大きい²²Neの放物線の位置を、導出した比例関係から図上で選ぶ。",
+          "note": "前問の式を用いれば計算量が少なく、図から選択できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "phys-q2-b",
+          "label": "II-B（12・う・え）",
+          "title": "アストン型質量分析器で入射速度を微小に増したとき、電場による偏向角の相対変化と符号を求め、磁場偏向も含めて一点集束に必要な変化の符号を判定する。",
+          "note": "微小変化の式と集束図の両方を読むため、確実な基本項目後に扱う。",
+          "difficulty": 3,
+          "weak": 1,
+          "strong": 1,
+          "points": 9
+        }
+      ],
+      "questionsPath": "/past-exam-library/kindai/2025/physics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/kindai/2025/physics/answers/#major-question-02"
+    }
+  ],
+  "difficultyCounts": [
+    2,
+    2,
+    4,
+    4
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": null,
+    "profiles": []
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kindai/past-exams/working/2025/general-first-a/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "0f03f51d525ee547b7b94a56864ccb46d5c1e39a60ea7d6981e8544318c97b9c",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "targetReviewNote": "元データの目標点・所要時間・前問依存を確認しています。数値は検証完了後に掲載します。",
+  "links": {
+    "questions": "/past-exam-library/kindai/2025/physics/questions/",
+    "answers": "/past-exam-library/kindai/2025/physics/answers/",
+    "university": "/past-exam-library/kindai/"
+  }
+}

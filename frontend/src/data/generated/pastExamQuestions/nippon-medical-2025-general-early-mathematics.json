@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "lexus-ec.past-exam-question-page.v1",
+  "packageId": "nippon-medical-2025-general-early-mathematics",
+  "route": {
+    "university": "nippon-medical",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/nippon-medical/2025/mathematics/questions/"
+  },
+  "university": {
+    "id": "nippon-medical",
+    "name": "日本医科大学"
+  },
+  "exam": {
+    "year": "2025",
+    "label": "一般選抜・前期",
+    "stage": "一次試験",
+    "duration": "数学 90分"
+  },
+  "subject": {
+    "id": "mathematics",
+    "name": "数学",
+    "english": "MATHEMATICS"
+  },
+  "document": {
+    "role": "questions",
+    "pageUnit": "major_question",
+    "sharedInstructionsHtml": "<section class=\"source-page-card question-shared-instructions\" data-question-shared-instructions><div class=\"page-kicker\">全大問共通</div><h2>2025年度 一般前期・グローバル 数学</h2><p class=\"prose\">数学（90分）</p></section>",
+    "printNotes": [
+      "各設問に記載された解答形式・記号・単位の指定に従ってください。",
+      "図版準備中・内容確認中の設問は、確認が完了するまで演習対象外です。"
+    ],
+    "questions": [
+      {
+        "id": "major-question-01",
+        "label": "［Ⅰ］",
+        "order": 1,
+        "sourcePageIds": [
+          "nippon-medical-2025-general-early-mathematics-questions-p001"
+        ],
+        "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-01\" data-major-question-id=\"major-question-01\"><h2>［Ⅰ］</h2><p class=\"prose\">1から6の目をもつ1つのさいころがある。<span class=\"math-inline\" data-katex=\"i\" data-display-mode=\"false\">i</span> を虚数単位とするとき，複素数平面上の点 <span class=\"math-inline\" data-katex=\"z\" data-display-mode=\"false\">z</span> が <span class=\"math-inline\" data-katex=\"z_0=1\" data-display-mode=\"false\">z_0=1</span> から出発して，さいころを1回投げるごとに，次の規則に従って動く。</p><aside class=\"source-note\"><strong>規則</strong> 4以下の目が出たら現在の点に対応する複素数に <span class=\"math-inline\" data-katex=\"\\sqrt{2}i\" data-display-mode=\"false\">\\sqrt{2}i</span> を掛け，5または6の目が出たら <span class=\"math-inline\" data-katex=\"1+i\" data-display-mode=\"false\">1+i</span> で割る。このようにして得られる複素数に対応する点を新たな点 <span class=\"math-inline\" data-katex=\"z\" data-display-mode=\"false\">z</span> とする。</aside><p class=\"prose\"><span class=\"math-inline\" data-katex=\"n\" data-display-mode=\"false\">n</span> を1以上の整数とし，さいころを <span class=\"math-inline\" data-katex=\"n\" data-display-mode=\"false\">n</span> 回投げたとき，4以下の目が <span class=\"math-inline\" data-katex=\"k\\;(k=0,1,2,\\ldots,n)\" data-display-mode=\"false\">k\\;(k=0,1,2,\\ldots,n)</span> 回出る確率を <span class=\"math-inline\" data-katex=\"P_{n,k}\" data-display-mode=\"false\">P_{n,k}</span> とし，この場合の点 <span class=\"math-inline\" data-katex=\"z\" data-display-mode=\"false\">z</span> に対応する複素数を <span class=\"math-inline\" data-katex=\"z_{n,k}\" data-display-mode=\"false\">z_{n,k}</span> と表すとき，以下の空欄に適する1以上の整数を求めよ。</p><h3>問1</h3><p class=\"prose\">確率 <span class=\"math-inline\" data-katex=\"P_{n,k}\" data-display-mode=\"false\">P_{n,k}</span> は，二項係数 <span class=\"math-inline\" data-katex=\"{}_nC_k\" data-display-mode=\"false\">{}_nC_k</span> を用いて</p><div class=\"formula\" data-katex=\"P_{n,k}={}_nC_k\\frac{\\boxed{\\text{ア}}^k}{\\boxed{\\text{イ}}^n}\" data-display-mode=\"true\">P_{n,k}={}_nC_k\\frac{\\boxed{\\text{ア}}^k}{\\boxed{\\text{イ}}^n}</div><p class=\"prose\">と表せる。また複素数 <span class=\"math-inline\" data-katex=\"z_{n,k}\" data-display-mode=\"false\">z_{n,k}</span> は</p><div class=\"formula\" data-katex=\"z_{n,k}={\\boxed{\\text{ウ}}}^{\\frac{\\boxed{\\text{エ}}k-n}{\\boxed{\\text{オ}}}}\\left\\{\\cos\\left(\\frac{\\boxed{\\text{カ}}k-n}{\\boxed{\\text{キ}}}\\pi\\right)+i\\sin\\left(\\frac{\\boxed{\\text{カ}}k-n}{\\boxed{\\text{キ}}}\\pi\\right)\\right\\}\" data-display-mode=\"true\">z_{n,k}={\\boxed{\\text{ウ}}}^{\\frac{\\boxed{\\text{エ}}k-n}{\\boxed{\\text{オ}}}}\\left\\{\\cos\\left(\\frac{\\boxed{\\text{カ}}k-n}{\\boxed{\\text{キ}}}\\pi\\right)+i\\sin\\left(\\frac{\\boxed{\\text{カ}}k-n}{\\boxed{\\text{キ}}}\\pi\\right)\\right\\}</div><p class=\"prose\">となる。</p><h3>問2</h3><p class=\"prose\">確率 <span class=\"math-inline\" data-katex=\"P_{2025,k}\" data-display-mode=\"false\">P_{2025,k}</span> は，<span class=\"math-inline\" data-katex=\"k=\\boxed{\\text{ク}}\" data-display-mode=\"false\">k=\\boxed{\\text{ク}}</span> のとき，最大値をとる。</p><h3>問3</h3><p class=\"prose\">複素数 <span class=\"math-inline\" data-katex=\"z_{2025,k}\" data-display-mode=\"false\">z_{2025,k}</span> が純虚数となる <span class=\"math-inline\" data-katex=\"k\" data-display-mode=\"false\">k</span> は <span class=\"answer-slot\">ケ</span> 個ある。</p></article>"
+      },
+      {
+        "id": "major-question-02",
+        "label": "［Ⅱ］",
+        "order": 2,
+        "sourcePageIds": [
+          "nippon-medical-2025-general-early-mathematics-questions-p002"
+        ],
+        "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-02\" data-major-question-id=\"major-question-02\"><h2>［Ⅱ］</h2><p class=\"prose\"><span class=\"math-inline\" data-katex=\"O\" data-display-mode=\"false\">O</span> を原点とする座標空間において，四面体 <span class=\"math-inline\" data-katex=\"OABC\" data-display-mode=\"false\">OABC</span> は <span class=\"math-inline\" data-katex=\"OA=OB=AB=1,\\ AC=2,\\ OC=BC=\\sqrt{3}\" data-display-mode=\"false\">OA=OB=AB=1,\\ AC=2,\\ OC=BC=\\sqrt{3}</span> を満たす。<span class=\"math-inline\" data-katex=\"0&lt;x&lt;1\" data-display-mode=\"false\">0&lt;x&lt;1</span> を満たす実数 <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> に対し，線分 <span class=\"math-inline\" data-katex=\"OA\" data-display-mode=\"false\">OA</span> を <span class=\"math-inline\" data-katex=\"x:(1-x)\" data-display-mode=\"false\">x:(1-x)</span> に内分する点を <span class=\"math-inline\" data-katex=\"D\" data-display-mode=\"false\">D</span> とする。点 <span class=\"math-inline\" data-katex=\"O\" data-display-mode=\"false\">O</span> から平面 <span class=\"math-inline\" data-katex=\"ABC\" data-display-mode=\"false\">ABC</span> に垂線 <span class=\"math-inline\" data-katex=\"OH\" data-display-mode=\"false\">OH</span> を下ろす。また，三角形 <span class=\"math-inline\" data-katex=\"ABC\" data-display-mode=\"false\">ABC</span> の内心を <span class=\"math-inline\" data-katex=\"I\" data-display-mode=\"false\">I</span> とし，三角形 <span class=\"math-inline\" data-katex=\"DHI\" data-display-mode=\"false\">DHI</span> の面積を <span class=\"math-inline\" data-katex=\"S\" data-display-mode=\"false\">S</span> とする。<span class=\"math-inline\" data-katex=\"\\vec a=\\overrightarrow{OA},\\ \\vec b=\\overrightarrow{OB},\\ \\vec c=\\overrightarrow{OC}\" data-display-mode=\"false\">\\vec a=\\overrightarrow{OA},\\ \\vec b=\\overrightarrow{OB},\\ \\vec c=\\overrightarrow{OC}</span> とおくとき，以下の各問いに答えよ。</p><h3>問1</h3><p class=\"prose\">空欄に適する数を求めよ。答えのみでよい。</p><div class=\"formula\" data-katex=\"\\vec a\\cdot\\vec b=\\boxed{\\text{ア}},\\qquad \\vec b\\cdot\\vec c=\\boxed{\\text{イ}},\\qquad \\vec c\\cdot\\vec a=\\boxed{\\text{ウ}}\" data-display-mode=\"true\">\\vec a\\cdot\\vec b=\\boxed{\\text{ア}},\\qquad \\vec b\\cdot\\vec c=\\boxed{\\text{イ}},\\qquad \\vec c\\cdot\\vec a=\\boxed{\\text{ウ}}</div><h3>問2</h3><p class=\"prose\">空欄に適する数を求めよ。答えのみでよい。</p><div class=\"formula\" data-katex=\"\\overrightarrow{OH}=\\boxed{\\text{エ}}\\vec a+\\boxed{\\text{オ}}\\vec b+\\boxed{\\text{カ}}\\vec c\" data-display-mode=\"true\">\\overrightarrow{OH}=\\boxed{\\text{エ}}\\vec a+\\boxed{\\text{オ}}\\vec b+\\boxed{\\text{カ}}\\vec c</div><h3>問3</h3><p class=\"prose\">空欄に適する数を求めよ。答えのみでよい。</p><div class=\"formula\" data-katex=\"\\overrightarrow{OI}=\\boxed{\\text{キ}}\\vec a+\\boxed{\\text{ク}}\\vec b+\\boxed{\\text{ケ}}\\vec c\" data-display-mode=\"true\">\\overrightarrow{OI}=\\boxed{\\text{キ}}\\vec a+\\boxed{\\text{ク}}\\vec b+\\boxed{\\text{ケ}}\\vec c</div><h3>問4</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"S=\\frac{\\sqrt{2}}{24}\" data-display-mode=\"false\">S=\\frac{\\sqrt{2}}{24}</span> のとき，<span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> の値を求めよ。導出過程も記せ。</p></article>"
+      },
+      {
+        "id": "major-question-03",
+        "label": "［Ⅲ］",
+        "order": 3,
+        "sourcePageIds": [
+          "nippon-medical-2025-general-early-mathematics-questions-p003"
+        ],
+        "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-03\" data-major-question-id=\"major-question-03\"><h2>［Ⅲ］</h2><p class=\"prose\"><span class=\"math-inline\" data-katex=\"O\" data-display-mode=\"false\">O</span> を原点とする座標空間内において，点 <span class=\"math-inline\" data-katex=\"P\" data-display-mode=\"false\">P</span> は <span class=\"math-inline\" data-katex=\"xy\" data-display-mode=\"false\">xy</span> 平面内の曲線 <span class=\"math-inline\" data-katex=\"x=2y^2\" data-display-mode=\"false\">x=2y^2</span> 上を動き，点 <span class=\"math-inline\" data-katex=\"Q\" data-display-mode=\"false\">Q</span> は <span class=\"math-inline\" data-katex=\"zx\" data-display-mode=\"false\">zx</span> 平面内の曲線 <span class=\"math-inline\" data-katex=\"x=2z^2\" data-display-mode=\"false\">x=2z^2</span> 上を動くとき，<span class=\"math-inline\" data-katex=\"\\overrightarrow{OR}=\\overrightarrow{OP}+\\overrightarrow{OQ}\" data-display-mode=\"false\">\\overrightarrow{OR}=\\overrightarrow{OP}+\\overrightarrow{OQ}</span> によって定められる動点 <span class=\"math-inline\" data-katex=\"R\" data-display-mode=\"false\">R</span> の集合を <span class=\"math-inline\" data-katex=\"S\" data-display-mode=\"false\">S</span> とする。点 <span class=\"math-inline\" data-katex=\"A(1,3,4)\" data-display-mode=\"false\">A(1,3,4)</span> とするとき，以下の各問いの空欄に適する数値あるいは数式を求めよ。問4については導出過程も記せ。</p><h3>問1</h3><p class=\"prose\">正の定数 <span class=\"math-inline\" data-katex=\"k\" data-display-mode=\"false\">k</span> に対して，平面 <span class=\"math-inline\" data-katex=\"x=k\" data-display-mode=\"false\">x=k</span> と <span class=\"math-inline\" data-katex=\"S\" data-display-mode=\"false\">S</span> の共通部分は，平面 <span class=\"math-inline\" data-katex=\"x=k\" data-display-mode=\"false\">x=k</span> 内の点 <span class=\"math-inline\" data-katex=\"(k,\\boxed{\\text{ア}},\\boxed{\\text{イ}})\" data-display-mode=\"false\">(k,\\boxed{\\text{ア}},\\boxed{\\text{イ}})</span> を中心とし，半径 <span class=\"answer-slot\">ウ</span> の円となる。</p><h3>問2</h3><p class=\"prose\">点 <span class=\"math-inline\" data-katex=\"A\" data-display-mode=\"false\">A</span> から <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> 軸に下した垂線を <span class=\"math-inline\" data-katex=\"AH\" data-display-mode=\"false\">AH</span> とするとき，線分 <span class=\"math-inline\" data-katex=\"AH\" data-display-mode=\"false\">AH</span> の長さは <span class=\"answer-slot\">エ</span> となる。</p><h3>問3</h3><p class=\"prose\">点 <span class=\"math-inline\" data-katex=\"A\" data-display-mode=\"false\">A</span> を平面 <span class=\"math-inline\" data-katex=\"x=1\" data-display-mode=\"false\">x=1</span> 内の点 <span class=\"math-inline\" data-katex=\"(1,0,0)\" data-display-mode=\"false\">(1,0,0)</span> を中心として <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> 軸の周りに回転して <span class=\"math-inline\" data-katex=\"xy\" data-display-mode=\"false\">xy</span> 平面上に移す。このような点のうちで <span class=\"math-inline\" data-katex=\"y\" data-display-mode=\"false\">y</span> 座標が正となるものを <span class=\"math-inline\" data-katex=\"B\" data-display-mode=\"false\">B</span> とすると，点 <span class=\"math-inline\" data-katex=\"B\" data-display-mode=\"false\">B</span> の座標は <span class=\"math-inline\" data-katex=\"(\\boxed{\\text{オ}},\\boxed{\\text{カ}},\\boxed{\\text{キ}})\" data-display-mode=\"false\">(\\boxed{\\text{オ}},\\boxed{\\text{カ}},\\boxed{\\text{キ}})</span> となる。</p><h3>問4</h3><p class=\"prose\">集合 <span class=\"math-inline\" data-katex=\"S\" data-display-mode=\"false\">S</span> 上で点 <span class=\"math-inline\" data-katex=\"X\" data-display-mode=\"false\">X</span> を動かすとき，<span class=\"math-inline\" data-katex=\"|\\overrightarrow{AX}|\" data-display-mode=\"false\">|\\overrightarrow{AX}|</span> は <span class=\"math-inline\" data-katex=\"X\" data-display-mode=\"false\">X</span> の座標が <span class=\"math-inline\" data-katex=\"(\\boxed{\\text{ク}},\\boxed{\\text{ケ}},\\boxed{\\text{コ}})\" data-display-mode=\"false\">(\\boxed{\\text{ク}},\\boxed{\\text{ケ}},\\boxed{\\text{コ}})</span> のとき，最小値 <span class=\"answer-slot\">サ</span> をとる。</p></article>"
+      },
+      {
+        "id": "major-question-04",
+        "label": "［Ⅳ］",
+        "order": 4,
+        "sourcePageIds": [
+          "nippon-medical-2025-general-early-mathematics-questions-p004"
+        ],
+        "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-04\" data-major-question-id=\"major-question-04\"><h2>［Ⅳ］</h2><p class=\"prose\">以下の各問いに答えよ。</p><h3>問1</h3><p class=\"prose\">全ての実数 <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> に対して定義された関数 <span class=\"math-inline\" data-katex=\"a(x)\" data-display-mode=\"false\">a(x)</span> に対して，関数 <span class=\"math-inline\" data-katex=\"b(x),c(x)\" data-display-mode=\"false\">b(x),c(x)</span> を次で定める。</p><div class=\"formula\" data-katex=\"b(x)=\\frac{1}{2}\\{a(x)+a(-x)\\},\\qquad c(x)=\\frac{1}{2}\\{a(x)-a(-x)\\}\" data-display-mode=\"true\">b(x)=\\frac{1}{2}\\{a(x)+a(-x)\\},\\qquad c(x)=\\frac{1}{2}\\{a(x)-a(-x)\\}</div><p class=\"prose\">このとき，<span class=\"math-inline\" data-katex=\"b(x)\" data-display-mode=\"false\">b(x)</span> は <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> の偶関数，<span class=\"math-inline\" data-katex=\"c(x)\" data-display-mode=\"false\">c(x)</span> は <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> の奇関数，となることをそれぞれ示せ。</p><h3>問2</h3><p class=\"prose\">全ての実数 <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> に対して定義された連続関数 <span class=\"math-inline\" data-katex=\"f(x)\" data-display-mode=\"false\">f(x)</span> は次の条件 (i)，(ii) を満たすものとする。</p><div class=\"formula\" data-katex=\"\\text{(i)}\\quad f(0)=2\" data-display-mode=\"true\">\\text{(i)}\\quad f(0)=2</div><div class=\"formula\" data-katex=\"\\text{(ii)}\\quad f(x+h)+\\int_x^{x+h}g(t)f(t)\\,dt=f(x)\\quad\\text{が全ての実数 }x,h\\text{ に対して成り立つ。}\" data-display-mode=\"true\">\\text{(ii)}\\quad f(x+h)+\\int_x^{x+h}g(t)f(t)\\,dt=f(x)\\quad\\text{が全ての実数 }x,h\\text{ に対して成り立つ。}</div><div class=\"formula\" data-katex=\"g(x)=\\frac{e^x}{1+e^x}+\\frac{\\sin x}{3+\\cos x}\" data-display-mode=\"true\">g(x)=\\frac{e^x}{1+e^x}+\\frac{\\sin x}{3+\\cos x}</div><p class=\"prose\">このとき，以下の (1)〜(3) の各問いに答えよ。</p><h4>(1)</h4><p class=\"prose\">関数 <span class=\"math-inline\" data-katex=\"f(x)\" data-display-mode=\"false\">f(x)</span> は微分可能であることを示し，<span class=\"math-inline\" data-katex=\"f(x)\" data-display-mode=\"false\">f(x)</span> の導関数 <span class=\"math-inline\" data-katex=\"f&#x27;(x)\" data-display-mode=\"false\">f&#x27;(x)</span> を，<span class=\"math-inline\" data-katex=\"f(x)\" data-display-mode=\"false\">f(x)</span> と <span class=\"math-inline\" data-katex=\"g(x)\" data-display-mode=\"false\">g(x)</span> を用いて表せ。</p><h4>(2)</h4><p class=\"prose\">(ii) で与えた関数 <span class=\"math-inline\" data-katex=\"g(x)\" data-display-mode=\"false\">g(x)</span> の原始関数 <span class=\"math-inline\" data-katex=\"G(x)\" data-display-mode=\"false\">G(x)</span> で <span class=\"math-inline\" data-katex=\"G(0)=0\" data-display-mode=\"false\">G(0)=0</span> を満たすものを求めよ。答えのみでよい。</p><h4>(3)</h4><p class=\"prose\">(2) の <span class=\"math-inline\" data-katex=\"G(x)\" data-display-mode=\"false\">G(x)</span> に対して関数 <span class=\"math-inline\" data-katex=\"h(x)\" data-display-mode=\"false\">h(x)</span> を <span class=\"math-inline\" data-katex=\"h(x)=e^{G(x)}f(x)\" data-display-mode=\"false\">h(x)=e^{G(x)}f(x)</span> で定めるとき，<span class=\"math-inline\" data-katex=\"h(x)\" data-display-mode=\"false\">h(x)</span> の導関数 <span class=\"math-inline\" data-katex=\"h&#x27;(x)\" data-display-mode=\"false\">h&#x27;(x)</span> を計算することにより <span class=\"math-inline\" data-katex=\"f(x)\" data-display-mode=\"false\">f(x)</span> を求めよ。</p><h3>問3</h3><p class=\"prose\">問2で求めた関数 <span class=\"math-inline\" data-katex=\"f(x)\" data-display-mode=\"false\">f(x)</span> に対して，次の定積分の値を求めよ。</p><div class=\"formula\" data-katex=\"I=\\int_{-\\pi}^{\\pi}f(x)\\,dx\" data-display-mode=\"true\">I=\\int_{-\\pi}^{\\pi}f(x)\\,dx</div><aside class=\"source-note\"><strong>解答欄</strong> 説明・計算の記入欄あり</aside></article>"
+      }
+    ]
+  },
+  "source": {
+    "sourcePackageId": "nippon-medical-2025-general-early-mathematics",
+    "reference": "projects/universities/nippon-medical/past-exams/working/2025/general-early/first-stage/mathematics/source-html/generated/public-candidate/questions",
+    "buildKind": "publication-candidate",
+    "contentProvenance": "source_projection",
+    "publicationCandidate": true,
+    "rightsStatus": "review_required",
+    "needsHumanReview": true
+  },
+  "links": {
+    "universityLibrary": "/past-exam-library/nippon-medical/",
+    "analysis": "/past-exam-library/nippon-medical/2025/mathematics/analysis/",
+    "universityInformation": null
+  }
+}

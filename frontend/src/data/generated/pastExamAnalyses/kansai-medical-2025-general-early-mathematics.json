@@ -1,0 +1,410 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "kansai-medical-2025-general-early-mathematics",
+  "route": {
+    "university": "kansai-medical",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/kansai-medical/2025/mathematics/analysis/"
+  },
+  "university": "関西医科大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "一般選抜試験（前期）",
+  "duration": "数学 90分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "平面上の曲線・三角関数",
+  "summary": "Ⅰは平面上の曲線・三角関数、Ⅱは整数の性質・数列、Ⅲは確率・数列、Ⅳは三角関数・微分法。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "Ⅰ",
+      "title": "極方程式と三角関数グラフの共有点",
+      "subtitle": "平面上の曲線・三角関数・微分法",
+      "summary": "円と放物線を極方程式で表し、三角関数を含む2曲線の共有点数をパラメータkで分類する。",
+      "studyAction": "焦点・準線と極座標の関係。極方程式化",
+      "requirements": [
+        3,
+        3.5,
+        2.5,
+        3.5,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "title": "円Cと、焦点O・準線x=a/2で定まる放物線Dを、aの符号に注意して極方程式で表す。",
+          "note": "定義から距離を立式できれば標準的な得点源になる。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "title": "2曲線の共有点数をh(x)=-4cos²x+4cos xの増減と水平線y=kから分類する。",
+          "note": "グラフと開区間端点まで確認するため苦手層は後回しにする。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        }
+      ],
+      "questionsPath": "/past-exam-library/kansai-medical/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/kansai-medical/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "Ⅱ",
+      "title": "平方差と連続自然数の和",
+      "subtitle": "整数の性質・数列",
+      "summary": "n²-m²を因数分解し、2024・2025の約数の組と偶奇条件から自然数解を数える。",
+      "studyAction": "平方差の因数分解。約数の組の列挙",
+      "requirements": [
+        1,
+        3.3,
+        3.3,
+        3.3,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "title": "2024=(n-m)(n+m)とし、2因子がともに偶数となる約数の組を数える。",
+          "note": "平方差の定石を知っていれば短時間で処理できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)",
+          "title": "2025の奇数約数15個から中央の45×45を除いて7組を得る。",
+          "note": "平方数の中央組を除く判断が必要である。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(3)",
+          "title": "連続自然数和を(n-m+1)(n+m)=4050へ変形し、14組を数える。",
+          "note": "列挙と例外処理が重く苦手層には費用対効果が低い。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 8
+        }
+      ],
+      "questionsPath": "/past-exam-library/kansai-medical/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/kansai-medical/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "Ⅲ",
+      "title": "ルーレットゲームの確率数列",
+      "subtitle": "確率・数列・極限",
+      "summary": "勝ち・負け・引き分けの確率を漸化式で結び、部分和、一般項、最終的な勝敗確率比を求める。",
+      "studyAction": "確率遷移。確率漸化式",
+      "requirements": [
+        1,
+        3.3,
+        3,
+        3.3,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "title": "n≧2でa_n=b_nとなることからΣ(a_k-b_k)=1/mを求める。",
+          "note": "遷移を正しく書ければ差が消える。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "title": "a_n+b_n=c_{n-1}-c_nの望遠和からΣ(a_k+b_k)=1-c_nを得る。",
+          "note": "(1)の遷移式を保てれば短く処理できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)",
+          "title": "c_nを初項(m-1)/m、公比(m-2)/mの等比数列として求める。",
+          "note": "前問の遷移式が使えれば標準的である。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q3-4",
+          "label": "(4)",
+          "title": "差と和から勝敗の部分和を解き、c_n→0として無限和の比(m+1)/(m-1)を求める。",
+          "note": "前3問に依存する連鎖型で苦手層にはリスクが高い。",
+          "difficulty": 2,
+          "weak": 2,
+          "strong": 1,
+          "points": 8
+        }
+      ],
+      "questionsPath": "/past-exam-library/kansai-medical/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/kansai-medical/2025/mathematics/answers/#major-question-03"
+    },
+    {
+      "id": "math-q4",
+      "label": "Ⅳ",
+      "title": "三倍角と回転対称を用いる立体の体積",
+      "subtitle": "三角関数・微分法・積分法",
+      "summary": "単位円を底面、3次関数を上面とする立体を断面積で積分し、対称性と120度回転不変性を利用する。",
+      "studyAction": "三倍角公式。断面積積分",
+      "requirements": [
+        3,
+        3.3,
+        2.8,
+        3.5,
+        3.8
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "(1)",
+          "title": "cos3θをcosθで表す。",
+          "note": "即答でき後続の鍵にもなる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q4-2",
+          "label": "(2)",
+          "title": "断面積を作りx=cosθで置換してV=π/3-9√3/20を求める。",
+          "note": "計算量が大きく苦手層は時間を投じない。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 7
+        },
+        {
+          "id": "math-q4-3",
+          "label": "(3)",
+          "title": "S全体の体積をπと求め、Uの体積をπ-Vと表す。",
+          "note": "(2)の具体値がなくても独立に回収できる。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q4-4",
+          "label": "(4)",
+          "title": "120度回転しても高さcos3α+1が不変であることを示し、S内の体積をVとする。",
+          "note": "立体の把握と記述論証が必要である。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 7
+        }
+      ],
+      "questionsPath": "/past-exam-library/kansai-medical/2025/mathematics/questions/#major-question-04",
+      "answersPath": "/past-exam-library/kansai-medical/2025/mathematics/answers/#major-question-04"
+    }
+  ],
+  "difficultyCounts": [
+    1,
+    4,
+    5,
+    3
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 90,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 39,
+        "targetPercent": 39,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 46,
+        "maximum": {
+          "points": 39,
+          "minutes": 83.5,
+          "questionIds": [
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1"
+          ]
+        },
+        "now": {
+          "points": 39,
+          "minutes": 88,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 70,
+          "minutes": 131.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-3"
+          ]
+        },
+        "title": "数学が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 39,
+          "minutes": 88,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1"
+          ]
+        },
+        "additional": []
+      },
+      {
+        "id": "strong",
+        "targetPoints": 68,
+        "targetPercent": 68,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 11.5,
+        "maximum": {
+          "points": 86,
+          "minutes": 86.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1",
+            "math-q4-3"
+          ]
+        },
+        "now": {
+          "points": 70,
+          "minutes": 68.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 116.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3",
+            "math-q4-4"
+          ]
+        },
+        "title": "数学が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 70,
+          "minutes": 68.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-3"
+          ]
+        },
+        "additional": []
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kansai-medical/past-exams/working/2025/general-early/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "52fe37a363d954b3c8996a13a0d8f8168f6b3dddfbbd1be029906196e0d4b452",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/kansai-medical/2025/mathematics/questions/",
+    "answers": "/past-exam-library/kansai-medical/2025/mathematics/answers/",
+    "university": "/past-exam-library/kansai-medical/"
+  }
+}

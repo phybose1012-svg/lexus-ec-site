@@ -1,0 +1,927 @@
+{
+  "schemaVersion": "lexus-staging-answer-snapshot.v1",
+  "question": {
+    "schemaVersion": "lexus-ec.past-exam-question-page.v1",
+    "packageId": "kurume-2025-general-early-mathematics",
+    "route": {
+      "university": "kurume",
+      "year": "2025",
+      "subject": "mathematics",
+      "path": "/past-exam-library/kurume/2025/mathematics/questions/"
+    },
+    "university": {
+      "id": "kurume",
+      "name": "久留米大学医学部"
+    },
+    "exam": {
+      "year": "2025",
+      "label": "前期一般選抜",
+      "stage": "一次試験",
+      "duration": "数学 90分"
+    },
+    "subject": {
+      "id": "mathematics",
+      "name": "数学",
+      "english": "MATHEMATICS"
+    },
+    "document": {
+      "role": "questions",
+      "pageUnit": "major_question",
+      "sharedInstructionsHtml": "<section class=\"source-page-card question-shared-instructions\" data-question-shared-instructions><div class=\"page-kicker\">全大問共通</div><h2>2025年度 前期一般選抜 医学科 数学</h2><p class=\"prose\">数学（90分）</p><h3>（注意）</h3><div class=\"structured-list structured-list--conditions\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">(1)</div><div class=\"structured-list__text\">問題の文中の <span class=\"answer-slot\">ア</span>，<span class=\"answer-slot\">イウ</span> などには，特に指示がない限り，符号（−）または数字（0〜9）が入る。ア，イ，ウ，…の一つ一つは，これらのいずれか一つに対応する。なお，同一の問題文中に <span class=\"answer-slot\">ア</span>，<span class=\"answer-slot\">イウ</span> などが2度以上現れる場合，原則として，2度目以降は <span class=\"answer-slot\">ア</span>，<span class=\"answer-slot\">イウ</span> のように細字で表記する。</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">(2)</div><div class=\"structured-list__text\">分数形で解答する場合，分数の符号は分子につけ，分母につけてはならない。例えば，<span class=\"math-inline\" data-katex=\"\\dfrac{\\boxed{\\text{エオ}}}{\\boxed{\\text{カ}}}\" data-display-mode=\"false\">\\dfrac{\\boxed{\\text{エオ}}}{\\boxed{\\text{カ}}}</span> に <span class=\"math-inline\" data-katex=\"-\\dfrac{4}{5}\" data-display-mode=\"false\">-\\dfrac{4}{5}</span> と答えたいときは，<span class=\"math-inline\" data-katex=\"\\dfrac{-4}{5}\" data-display-mode=\"false\">\\dfrac{-4}{5}</span> として答えよ。またそれ以上約分できない形で答えること。<span class=\"math-inline\" data-katex=\"\\dfrac{3}{4}\" data-display-mode=\"false\">\\dfrac{3}{4}</span> と答えるところを <span class=\"math-inline\" data-katex=\"\\dfrac{6}{8}\" data-display-mode=\"false\">\\dfrac{6}{8}</span> のように答えてはならない。</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">(3)</div><div class=\"structured-list__text\">対数を含む形で解答する場合，真数が最小の自然数となる形で答えること。例えば，<span class=\"math-inline\" data-katex=\"4\\log 2\" data-display-mode=\"false\">4\\log 2</span> と答えるところを <span class=\"math-inline\" data-katex=\"2\\log 4\" data-display-mode=\"false\">2\\log 4</span> のように答えてはならない。</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">(4)</div><div class=\"structured-list__text\">根号を含む形で解答する場合，根号の中に現れる自然数が最小となる形で答えること。例えば <span class=\"math-inline\" data-katex=\"4\\sqrt{2}\" data-display-mode=\"false\">4\\sqrt{2}</span> と答えるところを <span class=\"math-inline\" data-katex=\"2\\sqrt{8}\" data-display-mode=\"false\">2\\sqrt{8}</span> のように答えてはならない。</div></div></div></section>",
+      "printNotes": [
+        "各設問に記載された解答形式・記号・単位の指定に従ってください。",
+        "図版準備中・内容確認中の設問は、確認が完了するまで演習対象外です。"
+      ],
+      "questions": [
+        {
+          "id": "major-question-01",
+          "label": "1",
+          "order": 1,
+          "sourcePageIds": [
+            "kurume-2025-general-early-mathematics-questions-p001",
+            "kurume-2025-general-early-mathematics-questions-p002"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-01\" data-major-question-id=\"major-question-01\"><h2>1</h2><h3>(1)</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"x,\\ y,\\ a,\\ b\" data-display-mode=\"false\">x,\\ y,\\ a,\\ b</span> を正の実数とする。</p><div class=\"formula\" data-katex=\"a^{x}=b^{y}=\\sqrt{ab}\\qquad(a\\neq 1\\ \\text{かつ}\\ b\\neq 1)\" data-display-mode=\"true\">a^{x}=b^{y}=\\sqrt{ab}\\qquad(a\\neq 1\\ \\text{かつ}\\ b\\neq 1)</div><p class=\"prose\">を満たしているとき，<span class=\"math-inline\" data-katex=\"a,\\ b\" data-display-mode=\"false\">a,\\ b</span> の値によらず，<span class=\"math-inline\" data-katex=\"\\dfrac{1}{x}+\\dfrac{1}{y}=\" data-display-mode=\"false\">\\dfrac{1}{x}+\\dfrac{1}{y}=</span> <span class=\"answer-slot\">ア</span> となる。</p><p class=\"prose\">また，<span class=\"math-inline\" data-katex=\"\\left(\\dfrac{1}{x}+\\dfrac{1}{y}\\right)(4x+y)\" data-display-mode=\"false\">\\left(\\dfrac{1}{x}+\\dfrac{1}{y}\\right)(4x+y)</span> の最小値は <span class=\"answer-slot\">イ</span> である。</p><p class=\"prose\">よって，<span class=\"math-inline\" data-katex=\"4x+y\" data-display-mode=\"false\">4x+y</span> は <span class=\"math-inline\" data-katex=\"(x,\\ y)=\\left(\\dfrac{\\boxed{\\text{ウ}}}{\\boxed{\\text{エ}}},\\ \\dfrac{\\boxed{\\text{オ}}}{\\boxed{\\text{カ}}}\\right)\" data-display-mode=\"false\">(x,\\ y)=\\left(\\dfrac{\\boxed{\\text{ウ}}}{\\boxed{\\text{エ}}},\\ \\dfrac{\\boxed{\\text{オ}}}{\\boxed{\\text{カ}}}\\right)</span> において最小値 <span class=\"math-inline\" data-katex=\"\\dfrac{\\boxed{\\text{キ}}}{\\boxed{\\text{ク}}}\" data-display-mode=\"false\">\\dfrac{\\boxed{\\text{キ}}}{\\boxed{\\text{ク}}}</span> をとることがわかる。</p><h3>(2)</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"x,\\ y,\\ z,\\ a,\\ b,\\ c\" data-display-mode=\"false\">x,\\ y,\\ z,\\ a,\\ b,\\ c</span> を正の実数とする。</p><div class=\"formula\" data-katex=\"a^{x}b^{y}=b^{y}c^{z}=c^{z}a^{x}=abc\\qquad(a\\neq 1\\ \\text{かつ}\\ b\\neq 1\\ \\text{かつ}\\ c\\neq 1)\" data-display-mode=\"true\">a^{x}b^{y}=b^{y}c^{z}=c^{z}a^{x}=abc\\qquad(a\\neq 1\\ \\text{かつ}\\ b\\neq 1\\ \\text{かつ}\\ c\\neq 1)</div><p class=\"prose\">を満たしているとき，<span class=\"math-inline\" data-katex=\"x+4y+z\" data-display-mode=\"false\">x+4y+z</span> は <span class=\"math-inline\" data-katex=\"(x,\\ y,\\ z)=(\" data-display-mode=\"false\">(x,\\ y,\\ z)=(</span> <span class=\"answer-slot\">ケ</span>, <span class=\"answer-slot\">コ</span>, <span class=\"answer-slot\">サ</span> <span class=\"math-inline\" data-katex=\")\" data-display-mode=\"false\">)</span> において最小値 <span class=\"answer-slot\">シ</span> をとる。</p></article>"
+        },
+        {
+          "id": "major-question-02",
+          "label": "2",
+          "order": 2,
+          "sourcePageIds": [
+            "kurume-2025-general-early-mathematics-questions-p002"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-02\" data-major-question-id=\"major-question-02\"><h2>2</h2><p class=\"prose\">1辺の長さが1の正四面体OABCがあり，OBの中点をP，OCを1:2に内分する点をQとする。また <span class=\"math-inline\" data-katex=\"\\overrightarrow{\\mathrm{OA}}=\\vec{a}\" data-display-mode=\"false\">\\overrightarrow{\\mathrm{OA}}=\\vec{a}</span>，<span class=\"math-inline\" data-katex=\"\\overrightarrow{\\mathrm{OB}}=\\vec{b}\" data-display-mode=\"false\">\\overrightarrow{\\mathrm{OB}}=\\vec{b}</span>，<span class=\"math-inline\" data-katex=\"\\overrightarrow{\\mathrm{OC}}=\\vec{c}\" data-display-mode=\"false\">\\overrightarrow{\\mathrm{OC}}=\\vec{c}</span> とする。次の問いに答えよ。</p><h3>(1)</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"\\overrightarrow{\\mathrm{AP}}=\\dfrac{\\boxed{\\text{ス}}}{\\boxed{\\text{セ}}}\\vec{b}-\\vec{a}\" data-display-mode=\"false\">\\overrightarrow{\\mathrm{AP}}=\\dfrac{\\boxed{\\text{ス}}}{\\boxed{\\text{セ}}}\\vec{b}-\\vec{a}</span>，<span class=\"math-inline\" data-katex=\"\\overrightarrow{\\mathrm{AQ}}=\\dfrac{\\boxed{\\text{ソ}}}{\\boxed{\\text{タ}}}\\vec{c}-\\vec{a}\" data-display-mode=\"false\">\\overrightarrow{\\mathrm{AQ}}=\\dfrac{\\boxed{\\text{ソ}}}{\\boxed{\\text{タ}}}\\vec{c}-\\vec{a}</span> である。</p><p class=\"prose\"><span class=\"math-inline\" data-katex=\"x,\\ y,\\ z\" data-display-mode=\"false\">x,\\ y,\\ z</span> を0でない実数とし，<span class=\"math-inline\" data-katex=\"\\overrightarrow{\\mathrm{OD}}=x\\vec{a}+y\\overrightarrow{\\mathrm{OP}}+z\\overrightarrow{\\mathrm{OQ}}\" data-display-mode=\"false\">\\overrightarrow{\\mathrm{OD}}=x\\vec{a}+y\\overrightarrow{\\mathrm{OP}}+z\\overrightarrow{\\mathrm{OQ}}</span> とする。内積 <span class=\"math-inline\" data-katex=\"\\overrightarrow{\\mathrm{OD}}\\cdot\\overrightarrow{\\mathrm{AP}}=0\" data-display-mode=\"false\">\\overrightarrow{\\mathrm{OD}}\\cdot\\overrightarrow{\\mathrm{AP}}=0</span> であるとき <span class=\"math-inline\" data-katex=\"\\dfrac{z}{x}=-\" data-display-mode=\"false\">\\dfrac{z}{x}=-</span> <span class=\"answer-slot\">チ</span> である。このとき，さらに内積 <span class=\"math-inline\" data-katex=\"\\overrightarrow{\\mathrm{OD}}\\cdot\\overrightarrow{\\mathrm{AQ}}=0\" data-display-mode=\"false\">\\overrightarrow{\\mathrm{OD}}\\cdot\\overrightarrow{\\mathrm{AQ}}=0</span> であるとき <span class=\"math-inline\" data-katex=\"\\dfrac{y}{x}=-\" data-display-mode=\"false\">\\dfrac{y}{x}=-</span> <span class=\"answer-slot\">ツ</span> となる。</p><h3>(2)</h3><p class=\"prose\">平面APQ上の点Hについて OH は平面APQと垂直であるとする。</p><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q2-plane-apq\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q2-plane-oab\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure><p class=\"prose\">このとき，</p><div class=\"formula\" data-katex=\"\\overrightarrow{\\mathrm{OH}}=-\\dfrac{\\boxed{\\text{テ}}}{10}\\vec{a}+\\dfrac{\\boxed{\\text{ト}}}{10}\\vec{b}+\\dfrac{\\boxed{\\text{ナ}}}{10}\\vec{c}\" data-display-mode=\"true\">\\overrightarrow{\\mathrm{OH}}=-\\dfrac{\\boxed{\\text{テ}}}{10}\\vec{a}+\\dfrac{\\boxed{\\text{ト}}}{10}\\vec{b}+\\dfrac{\\boxed{\\text{ナ}}}{10}\\vec{c}</div><p class=\"prose\">である。</p><p class=\"prose\">さらに，直線CHと平面OABの交点をRとすると <span class=\"math-inline\" data-katex=\"\\overrightarrow{\\mathrm{OR}}=\\dfrac{1}{\\boxed{\\text{ニ}}}\\overrightarrow{\\mathrm{AB}}\" data-display-mode=\"false\">\\overrightarrow{\\mathrm{OR}}=\\dfrac{1}{\\boxed{\\text{ニ}}}\\overrightarrow{\\mathrm{AB}}</span> となり，OR と AB は平行であることがわかる。</p></article>"
+        },
+        {
+          "id": "major-question-03",
+          "label": "3",
+          "order": 3,
+          "sourcePageIds": [
+            "kurume-2025-general-early-mathematics-questions-p002",
+            "kurume-2025-general-early-mathematics-questions-p003"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-03\" data-major-question-id=\"major-question-03\"><h2>3</h2><h3>(1)</h3><p class=\"prose\">3次関数 <span class=\"math-inline\" data-katex=\"f(x)=4x^{3}+9x^{2}+6x+3\" data-display-mode=\"false\">f(x)=4x^{3}+9x^{2}+6x+3</span> を考える。<span class=\"math-inline\" data-katex=\"y=f(x)\" data-display-mode=\"false\">y=f(x)</span> において，極値をとるグラフ上の2点をA，Bとする。これらの</p><p class=\"prose\">2点をいずれも通る直線の方程式は <span class=\"math-inline\" data-katex=\"y=-\\dfrac{\\boxed{\\text{ヌ}}}{2}x+\\dfrac{\\boxed{\\text{ネ}}}{2}\" data-display-mode=\"false\">y=-\\dfrac{\\boxed{\\text{ヌ}}}{2}x+\\dfrac{\\boxed{\\text{ネ}}}{2}</span> である。</p><h3>(2)</h3><p class=\"prose\">4次関数 <span class=\"math-inline\" data-katex=\"g(x)=3x^{4}-8x^{3}+12x\" data-display-mode=\"false\">g(x)=3x^{4}-8x^{3}+12x</span> について，以下の問いに答えよ。</p><h4>(i)</h4><p class=\"prose\"><span class=\"math-inline\" data-katex=\"g(x)\" data-display-mode=\"false\">g(x)</span> を <span class=\"math-inline\" data-katex=\"g&#x27;(x)\" data-display-mode=\"false\">g&#x27;(x)</span> で割ると，商は <span class=\"math-inline\" data-katex=\"\\dfrac{\\boxed{\\text{ノ}}}{4}x-\\dfrac{\\boxed{\\text{ハ}}}{6}\" data-display-mode=\"false\">\\dfrac{\\boxed{\\text{ノ}}}{4}x-\\dfrac{\\boxed{\\text{ハ}}}{6}</span>，余りは <span class=\"math-inline\" data-katex=\"-\" data-display-mode=\"false\">-</span> <span class=\"answer-slot\">ヒ</span> <span class=\"math-inline\" data-katex=\"x^{2}+\" data-display-mode=\"false\">x^{2}+</span> <span class=\"answer-slot\">フ</span> <span class=\"math-inline\" data-katex=\"x+\" data-display-mode=\"false\">x+</span> <span class=\"answer-slot\">ヘ</span> である。</p><h4>(ii)</h4><p class=\"prose\"><span class=\"math-inline\" data-katex=\"g(x)\" data-display-mode=\"false\">g(x)</span> は <span class=\"math-inline\" data-katex=\"x=\" data-display-mode=\"false\">x=</span> <span class=\"answer-slot\">ホ</span> において極大値 <span class=\"answer-slot\">マ</span>，<span class=\"math-inline\" data-katex=\"x=\\dfrac{\\boxed{\\text{ミ}}\\pm\\sqrt{\\boxed{\\text{ム}}}}{2}\" data-display-mode=\"false\">x=\\dfrac{\\boxed{\\text{ミ}}\\pm\\sqrt{\\boxed{\\text{ム}}}}{2}</span> において極小値 <span class=\"math-inline\" data-katex=\"\\dfrac{\\boxed{\\text{メ}}\\pm\\boxed{\\text{モ}}\\sqrt{\\boxed{\\text{ヤ}}}}{2}\" data-display-mode=\"false\">\\dfrac{\\boxed{\\text{メ}}\\pm\\boxed{\\text{モ}}\\sqrt{\\boxed{\\text{ヤ}}}}{2}</span> をとる。ただし，複号同順である。</p><h4>(iii)</h4><p class=\"prose\"><span class=\"math-inline\" data-katex=\"y=g(x)\" data-display-mode=\"false\">y=g(x)</span> において，極値をとるグラフ上の3点をP，Q，Rとする。これらの3点をすべて通り，軸が <span class=\"math-inline\" data-katex=\"y\" data-display-mode=\"false\">y</span> 軸に平行な放物線の方程式は <span class=\"math-inline\" data-katex=\"y=-\" data-display-mode=\"false\">y=-</span> <span class=\"answer-slot\">ユ</span> <span class=\"math-inline\" data-katex=\"x^{2}+\" data-display-mode=\"false\">x^{2}+</span> <span class=\"answer-slot\">ヨ</span> <span class=\"math-inline\" data-katex=\"x+\" data-display-mode=\"false\">x+</span> <span class=\"answer-slot\">ラ</span> である。</p></article>"
+        },
+        {
+          "id": "major-question-04",
+          "label": "4",
+          "order": 4,
+          "sourcePageIds": [
+            "kurume-2025-general-early-mathematics-questions-p003",
+            "kurume-2025-general-early-mathematics-questions-p004",
+            "kurume-2025-general-early-mathematics-questions-p005"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-04\" data-major-question-id=\"major-question-04\"><h2>4</h2><p class=\"prose\">動物高校に通うウサギとクマの会話である。</p><p class=\"prose\">ウサギ：従兄弟の子供が中学受験をするというので，問題集をやっていたんだ。</p><aside class=\"source-note\"><strong>問題集の問題</strong> 1より大きな数（小学生だから正の整数）があります。次の操作 <span class=\"math-inline\" data-katex=\"T\" data-display-mode=\"false\">T</span> を考えます。</aside><aside class=\"source-note\"><strong>操作 T</strong> 「数が2の倍数のときは2で割り，2の倍数でないときは1を足す。」</aside><aside class=\"source-note\"><strong>問題集の問題</strong> この操作 <span class=\"math-inline\" data-katex=\"T\" data-display-mode=\"false\">T</span> を繰り返すと，いつか1になります。初めて1になったら，そこでやめます。</aside><aside class=\"source-note\"><strong>問題集の問題</strong> たとえば最初が5ならば，1を足して6になり，2で割ると3になり，次は1を足して4になり，次は2で割って2になり，次は2で割って1になります。これを次のようにかくことにします。</aside><p class=\"prose\">5 → 6 → 3 → 4 → 2 → 1</p><aside class=\"source-note\"><strong>問題集の問題</strong> では，</aside><p class=\"prose\"><span class=\"answer-slot\">Ⅲ</span> → <span class=\"answer-slot\">Ⅱ</span> → <span class=\"answer-slot\">Ⅰ</span> → 2 → 1</p><aside class=\"source-note\"><strong>問題集の問題</strong> となるとき，空欄にはどんな数が入るでしょうか？　すべて答えなさい。</aside><p class=\"prose\">クマ：<span class=\"answer-slot\">Ⅰ</span> は4が入るね。<span class=\"math-inline\" data-katex=\"T\" data-display-mode=\"false\">T</span> が「2で割るか，1を加える」だから，<span class=\"math-inline\" data-katex=\"T\" data-display-mode=\"false\">T</span> の逆操作は「2倍するか，1を引く」で，<span class=\"answer-slot\">Ⅱ</span> は「<span class=\"answer-slot\">Ⅰ</span> の2倍，または <span class=\"answer-slot\">Ⅰ</span> から1を引いたもの」だから，「8または3」だね。</p><h3>(1)</h3><p class=\"prose\"><span class=\"answer-slot\">Ⅲ</span> に入ることができる数は <span class=\"answer-slot\">リ</span> 個ある。</p><p class=\"prose\">クマ：ちょうど <span class=\"math-inline\" data-katex=\"n\" data-display-mode=\"false\">n</span> 回で操作が終了する数はいくつあるんだろう。</p><p class=\"prose\">ウサギ：塾で「<span class=\"math-inline\" data-katex=\"n\" data-display-mode=\"false\">n</span> 回で，場合の数の問題で，すぐに求められないなら，漸化式を立てる」と習った。やってみよう。うーん，これ，一般項に無理数が出るパターンだ。無理数が出ないように問題を変更しよう。</p><aside class=\"source-note\"><strong>操作 U</strong> 「1より大きな正の整数があるとき，それが <span class=\"math-inline\" data-katex=\"c\" data-display-mode=\"false\">c</span> の倍数ならば，<span class=\"math-inline\" data-katex=\"c\" data-display-mode=\"false\">c</span> で割る。それが <span class=\"math-inline\" data-katex=\"c\" data-display-mode=\"false\">c</span> の倍数でなければ，1，2，3，…，<span class=\"math-inline\" data-katex=\"c-1\" data-display-mode=\"false\">c-1</span> のうちの1つの数を加えて <span class=\"math-inline\" data-katex=\"c\" data-display-mode=\"false\">c</span> の倍数になるようにする。」</aside><p class=\"prose\">これを繰り返して初めて1になったらやめる。一番初めの数を <span class=\"math-inline\" data-katex=\"N\" data-display-mode=\"false\">N</span> として，<span class=\"math-inline\" data-katex=\"n\" data-display-mode=\"false\">n</span> 回の操作でやめるような <span class=\"math-inline\" data-katex=\"N\" data-display-mode=\"false\">N</span> が <span class=\"math-inline\" data-katex=\"a_n\" data-display-mode=\"false\">a_n</span> 個あるとする。<span class=\"math-inline\" data-katex=\"c=2\" data-display-mode=\"false\">c=2</span> なら最初の問題と同じになるから，<span class=\"math-inline\" data-katex=\"a_1=1\" data-display-mode=\"false\">a_1=1</span>，<span class=\"math-inline\" data-katex=\"a_2=1\" data-display-mode=\"false\">a_2=1</span>，<span class=\"math-inline\" data-katex=\"a_3=2\" data-display-mode=\"false\">a_3=2</span> になるってわけだ。</p><p class=\"prose\">クマ：塾の先生は「後の方でタイプ分けする」か「最初でタイプ分けする」と言っていたね。最初でタイプ分けしてみよう。</p><p class=\"prose\"><span class=\"math-inline\" data-katex=\"n\" data-display-mode=\"false\">n</span> 回で操作が終了する <span class=\"math-inline\" data-katex=\"a_n\" data-display-mode=\"false\">a_n</span> 個の <span class=\"math-inline\" data-katex=\"N\" data-display-mode=\"false\">N</span> のうち，</p><p class=\"prose\"><span class=\"math-inline\" data-katex=\"N\" data-display-mode=\"false\">N</span> が <span class=\"math-inline\" data-katex=\"c\" data-display-mode=\"false\">c</span> の倍数のものは『1回目に <span class=\"math-inline\" data-katex=\"c\" data-display-mode=\"false\">c</span> で割る』から，あと <span class=\"math-inline\" data-katex=\"n-1\" data-display-mode=\"false\">n-1</span> 回で終了するので，<span class=\"math-inline\" data-katex=\"a_{n-1}\" data-display-mode=\"false\">a_{n-1}</span> 個あるね。</p><p class=\"prose\"><span class=\"math-inline\" data-katex=\"N\" data-display-mode=\"false\">N</span> が <span class=\"math-inline\" data-katex=\"c\" data-display-mode=\"false\">c</span> の倍数でないものは，</p><div class=\"structured-list structured-list--cases\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__text\">『<span class=\"math-inline\" data-katex=\"N\" data-display-mode=\"false\">N</span> が <span class=\"math-inline\" data-katex=\"c\" data-display-mode=\"false\">c</span> で割って余りが <span class=\"math-inline\" data-katex=\"c-1\" data-display-mode=\"false\">c-1</span> なら，1回目に1を加えて <span class=\"math-inline\" data-katex=\"c\" data-display-mode=\"false\">c</span> の倍数にして（これで1回の操作），次に <span class=\"math-inline\" data-katex=\"c\" data-display-mode=\"false\">c</span> で割る（これが2回目の操作）』，</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__text\">または『1回目に2を加えて <span class=\"math-inline\" data-katex=\"c\" data-display-mode=\"false\">c</span> の倍数にして，次に <span class=\"math-inline\" data-katex=\"c\" data-display-mode=\"false\">c</span> で割る』，…，</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__text\">または『1回目に <span class=\"math-inline\" data-katex=\"c-1\" data-display-mode=\"false\">c-1</span> を加えて <span class=\"math-inline\" data-katex=\"c\" data-display-mode=\"false\">c</span> の倍数にして，次に <span class=\"math-inline\" data-katex=\"c\" data-display-mode=\"false\">c</span> で割る』，</div></div></div><p class=\"prose\">というタイプがある。これらは，今の時点で2回操作しているから，あと <span class=\"answer-slot\">ル</span> 回で終了するね。</p><p class=\"prose\">ウサギ：だから <span class=\"math-inline\" data-katex=\"n\\geqq3\" data-display-mode=\"false\">n\\geqq3</span> として <span class=\"math-inline\" data-katex=\"a_{n}=a_{n-1}+\\boxed{\\text{レ}}\\times a_{\\boxed{\\text{ロ}}}\" data-display-mode=\"false\">a_{n}=a_{n-1}+\\boxed{\\text{レ}}\\times a_{\\boxed{\\text{ロ}}}</span> ……Ⓐが成り立つね。</p><h3>(2)</h3><p class=\"prose\"><span class=\"answer-slot\">ル</span>，<span class=\"answer-slot\">レ</span>，<span class=\"answer-slot\">ロ</span> に次の選択肢から適当なものを選んで番号を答えよ。同じ番号を何回選んでもよい。</p><div class=\"structured-list structured-list--values structured-list--cols-3\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">①</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"n-1\" data-display-mode=\"false\">n-1</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">②</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"n-2\" data-display-mode=\"false\">n-2</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">③</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"n\" data-display-mode=\"false\">n</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">④</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"c-1\" data-display-mode=\"false\">c-1</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">⑤</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"c+1\" data-display-mode=\"false\">c+1</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">⑥</div><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"c\" data-display-mode=\"false\">c</span></div></div></div><h3>(3)</h3><p class=\"prose\">Ⓐから得られる方程式 <span class=\"math-inline\" data-katex=\"x^{2}-x-\\boxed{\\text{レ}}=0\" data-display-mode=\"false\">x^{2}-x-\\boxed{\\text{レ}}=0</span> が整数解をもつのは，0以上の整数 <span class=\"math-inline\" data-katex=\"k\" data-display-mode=\"false\">k</span> を用いて <span class=\"math-inline\" data-katex=\"\\boxed{\\text{ワ}}c-\\boxed{\\text{ヲ}}=(2k+1)^{2}\" data-display-mode=\"false\">\\boxed{\\text{ワ}}c-\\boxed{\\text{ヲ}}=(2k+1)^{2}</span> の形でかけるときである。このとき，<span class=\"math-inline\" data-katex=\"c=k^{2}+k+\\boxed{\\text{ン}}\" data-display-mode=\"false\">c=k^{2}+k+\\boxed{\\text{ン}}</span> となる。</p><p class=\"prose\">特に，この <span class=\"math-inline\" data-katex=\"k=2\" data-display-mode=\"false\">k=2</span> のときは，<span class=\"math-inline\" data-katex=\"a_{2}=6\" data-display-mode=\"false\">a_{2}=6</span>，</p><div class=\"formula\" data-katex=\"a_{n}=\\dfrac{1}{\\boxed{\\text{あ}}}\\left(\\boxed{\\text{い}}\\cdot\\boxed{\\text{う}}^{\\,n-1}-\\boxed{\\text{え}}\\cdot(-\\boxed{\\text{お}})^{\\,n-1}\\right)\" data-display-mode=\"true\">a_{n}=\\dfrac{1}{\\boxed{\\text{あ}}}\\left(\\boxed{\\text{い}}\\cdot\\boxed{\\text{う}}^{\\,n-1}-\\boxed{\\text{え}}\\cdot(-\\boxed{\\text{お}})^{\\,n-1}\\right)</div><p class=\"prose\">となる。</p></article>"
+        },
+        {
+          "id": "major-question-05",
+          "label": "5",
+          "order": 5,
+          "sourcePageIds": [
+            "kurume-2025-general-early-mathematics-questions-p005"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-05\" data-major-question-id=\"major-question-05\"><h2>5</h2><p class=\"prose\"><span class=\"math-inline\" data-katex=\"xyz\" data-display-mode=\"false\">xyz</span> 空間において，半径1の球 <span class=\"math-inline\" data-katex=\"D\" data-display-mode=\"false\">D</span> の中心が <span class=\"math-inline\" data-katex=\"xy\" data-display-mode=\"false\">xy</span> 平面上の4つの線分</p><div class=\"structured-list structured-list--cases structured-list--cols-2\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"y=0\\quad(-5\\leqq x\\leqq 5)\" data-display-mode=\"false\">y=0\\quad(-5\\leqq x\\leqq 5)</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"x=0\\quad(-5\\leqq y\\leqq 5)\" data-display-mode=\"false\">x=0\\quad(-5\\leqq y\\leqq 5)</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"y=x\\quad(-5\\leqq x\\leqq 5)\" data-display-mode=\"false\">y=x\\quad(-5\\leqq x\\leqq 5)</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"y=-x\\quad(-5\\leqq x\\leqq 5)\" data-display-mode=\"false\">y=-x\\quad(-5\\leqq x\\leqq 5)</span></div></div></div><p class=\"prose\">上を動くとする。このとき，球 <span class=\"math-inline\" data-katex=\"D\" data-display-mode=\"false\">D</span> の通過する部分を <span class=\"math-inline\" data-katex=\"W\" data-display-mode=\"false\">W</span> とおく。</p><h3>(1)</h3><p class=\"prose\">平面 <span class=\"math-inline\" data-katex=\"z=t\" data-display-mode=\"false\">z=t</span>（<span class=\"math-inline\" data-katex=\"-1\\leqq t\\leqq 1\" data-display-mode=\"false\">-1\\leqq t\\leqq 1</span>）における，<span class=\"math-inline\" data-katex=\"W\" data-display-mode=\"false\">W</span> の断面積を <span class=\"math-inline\" data-katex=\"S(t)\" data-display-mode=\"false\">S(t)</span> とおくと，</p><div class=\"formula\" data-katex=\"S(t)=\\boxed{\\text{か}}\\left\\{10\\left(\\boxed{\\text{き}}+\\sqrt{\\boxed{\\text{く}}}\\right)\\sqrt{1-t^{2}}-\\left(\\boxed{\\text{け}}+\\boxed{\\text{こ}}\\sqrt{\\boxed{\\text{く}}}-\\pi\\right)(1-t^{2})\\right\\}\" data-display-mode=\"true\">S(t)=\\boxed{\\text{か}}\\left\\{10\\left(\\boxed{\\text{き}}+\\sqrt{\\boxed{\\text{く}}}\\right)\\sqrt{1-t^{2}}-\\left(\\boxed{\\text{け}}+\\boxed{\\text{こ}}\\sqrt{\\boxed{\\text{く}}}-\\pi\\right)(1-t^{2})\\right\\}</div><p class=\"prose\">である。</p><h3>(2)</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"W\" data-display-mode=\"false\">W</span> の体積を <span class=\"math-inline\" data-katex=\"V\" data-display-mode=\"false\">V</span> とおくと，</p><div class=\"formula\" data-katex=\"V=\\left(\\dfrac{\\boxed{\\text{さし}}}{3}+20\\sqrt{\\boxed{\\text{く}}}\\right)\\pi-\\dfrac{\\boxed{\\text{すせ}}}{3}\\left(\\boxed{\\text{そ}}+\\sqrt{\\boxed{\\text{く}}}\\right)\" data-display-mode=\"true\">V=\\left(\\dfrac{\\boxed{\\text{さし}}}{3}+20\\sqrt{\\boxed{\\text{く}}}\\right)\\pi-\\dfrac{\\boxed{\\text{すせ}}}{3}\\left(\\boxed{\\text{そ}}+\\sqrt{\\boxed{\\text{く}}}\\right)</div><p class=\"prose\">である。</p></article>"
+        }
+      ]
+    },
+    "source": {
+      "sourcePackageId": "kurume-2025-general-early-mathematics",
+      "reference": "projects/universities/kurume/past-exams/working/2025/general-early/first-stage/mathematics/source-html/generated/public-candidate/questions",
+      "buildKind": "publication-candidate",
+      "contentProvenance": "source_projection",
+      "publicationCandidate": true,
+      "rightsStatus": "review_required",
+      "needsHumanReview": true
+    },
+    "links": {
+      "universityLibrary": "/past-exam-library/kurume/",
+      "analysis": "/past-exam-library/kurume/2025/mathematics/analysis/",
+      "universityInformation": null
+    }
+  },
+  "editorial": {
+    "schema_version": "medical-entrance-past-exam-editorial-explanation.v2",
+    "package_id": "kurume-2025-general-early-mathematics",
+    "document_role": "answers",
+    "source_reconstruction_path": "reconstruction.json",
+    "audience": "数学が苦手な私立医学部受験生",
+    "provenance": "editorial_adaptation",
+    "style_policy": {
+      "preserve_source_method": true,
+      "preserve_source_reasoning_order": true,
+      "forbid_answer_backward_reasoning": true,
+      "preserve_source_solution_route": true,
+      "do_not_reason_backward_from_answer": true,
+      "separate_goal_first_move_reason_calculation_conclusion": true,
+      "prefer_short_sentences": true,
+      "explain_transformations_before_calculation": true,
+      "use_katex_for_all_mathematics": true,
+      "title": "解答・解説（学習者向け）"
+    },
+    "reader_structure": {
+      "page_unit": "major_question",
+      "major_questions": [
+        {
+          "id": "major-question-01",
+          "label": "第1問",
+          "order": 1
+        },
+        {
+          "id": "major-question-02",
+          "label": "第2問",
+          "order": 2
+        },
+        {
+          "id": "major-question-03",
+          "label": "第3問",
+          "order": 3
+        },
+        {
+          "id": "major-question-04",
+          "label": "第4問",
+          "order": 4
+        },
+        {
+          "id": "major-question-05",
+          "label": "第5問",
+          "order": 5
+        }
+      ],
+      "assignment": "explicit_per_block",
+      "source_page_records_preserved_for_provenance": true
+    },
+    "pages": [
+      {
+        "source_page_id": "kurume-2025-general-early-mathematics-answers-p001",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第1問　対数条件と相加・相乗平均による最小値（学習者向け解説）",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "(1)",
+                "value": "ア 2／イ 9／ウ 3／エ 4／オ 3／カ 2／キ 9／ク 2"
+              },
+              {
+                "label": "(2)",
+                "value": "ケ 2／コ 1／サ 2／シ 8"
+              }
+            ],
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(1)（ア〜ク）　対数で制約を作る",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "note",
+            "label": "目標",
+            "text": "\\(1/x+1/y\\) を定数として取り出し、\\(4x+y\\) の最小値と等号条件を求めます。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "note",
+            "label": "最初の一手",
+            "text": "原本どおり、条件式の底を \\(a\\) とする対数を取ります。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\log_a a^x=\\log_a b^y=\\log_a\\sqrt{ab}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "x=y\\log_a b=\\frac12+\\frac12\\log_a b",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "\\(\\log_a b=x/y\\) を代入して整理します。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac1x+\\frac1y=2",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "これでアは2です。次に相加・相乗平均を使います。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\left(\\frac1x+\\frac1y\\right)(4x+y)=5+\\frac yx+\\frac{4x}y\\ge9",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "note",
+            "label": "等号条件",
+            "text": "\\(y/x=4x/y\\)、すなわち \\(y=2x\\) です。最小値9だけでなく、この条件を次へ残します。",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kurume-2025-general-early-mathematics-answers-p002",
+        "blocks": [
+          {
+            "type": "formula",
+            "latex": "\\frac1x+\\frac1{2x}=2\\quad\\Longrightarrow\\quad (x,y)=\\left(\\frac34,\\frac32\\right)",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "したがって \\(4x+y\\) の最小値は \\(9/2\\) です。ウ〜クは3、4、3、2、9、2です。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(2)（ケ〜シ）　3変数へ同じ方法を広げる",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "note",
+            "label": "目標",
+            "text": "対数で逆数和を作り、3組の相加・相乗平均から \\(x+4y+z\\) の最小値を求めます。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac1x+\\frac1y+\\frac1z=2",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\left(\\frac1x+\\frac1y+\\frac1z\\right)(x+4y+z)\\ge16",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "よって \\(x+4y+z\\ge8\\) です。等号条件は \\(x=2y=z\\) です。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac1{2y}+\\frac1y+\\frac1{2y}=2\\quad\\Longrightarrow\\quad (x,y,z)=(2,1,2)",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "ケ〜シは2、1、2、8です。",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kurume-2025-general-early-mathematics-answers-p003",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第2問　正四面体の内積と平面のベクトル方程式（学習者向け解説）",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "(1)",
+                "value": "ス 1／セ 2／ソ 1／タ 3／チ 9／ツ 2"
+              },
+              {
+                "label": "(2)",
+                "value": "テ 1／ト 1／ナ 3／ニ 7"
+              }
+            ],
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "crop",
+            "asset_id": "a2-tetrahedron-opqab",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(1)（ス〜ツ）　垂直条件を内積0で式にする",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "\\vec{AP}=\\frac12\\vec b-\\vec a,\\qquad\\vec{AQ}=\\frac13\\vec c-\\vec a",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "note",
+            "label": "理由",
+            "text": "正四面体の各辺は1で、Oから出る辺のなす角は60度です。したがって相異なる辺ベクトルの内積は \\(1/2\\) です。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "\\vec a\\cdot\\vec b=\\vec b\\cdot\\vec c=\\vec c\\cdot\\vec a=\\frac12",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "\\vec{OD}\\cdot\\vec{AP}=-\\frac{3x}{4}-\\frac z{12}=0\\quad\\Longrightarrow\\quad\\frac zx=-9",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "さらに \\(\\vec{OD}\\cdot\\vec{AQ}=0\\) にこの比を代入します。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "-\\frac56-\\frac{y}{6x}-\\frac{z}{18x}=0\\quad\\Longrightarrow\\quad\\frac yx=-2",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "ス〜ツは1、2、1、3、9、2です。",
+            "major_question_id": "major-question-02"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kurume-2025-general-early-mathematics-answers-p004",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(2)（テ〜ニ）　平面上の係数和でHを決める",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "note",
+            "label": "最初の一手",
+            "text": "Hが平面APQ上にあるので係数和を1にし、(1)の法線方向を正規化します。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "\\vec{OH}=x\\vec a+y\\vec{OP}+z\\vec{OQ},\\qquad x+y+z=1",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "x-2x-9x=1\\quad\\Longrightarrow\\quad x=-\\frac1{10}",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "\\vec{OH}=-\\frac1{10}\\vec a+\\frac1{10}\\vec b+\\frac3{10}\\vec c",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "直線CH上の点を媒介変数 \\(k\\) で表します。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "\\vec{OR}=-\\frac{k}{10}\\vec a+\\frac{k}{10}\\vec b+\\left(1-\\frac{7k}{10}\\right)\\vec c",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "note",
+            "label": "理由",
+            "text": "Rは平面OAB上にあるので \\(\\vec c\\) の係数は0です。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "1-\\frac{7k}{10}=0\\quad\\Longrightarrow\\quad k=\\frac{10}{7}",
+            "major_question_id": "major-question-02"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kurume-2025-general-early-mathematics-answers-p005",
+        "blocks": [
+          {
+            "type": "formula",
+            "latex": "\\vec{OR}=\\frac17(\\vec b-\\vec a)=\\frac17\\vec{AB}",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "テ〜ニは1、1、3、7です。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第3問　3次・4次関数の極値と補間曲線（学習者向け解説）",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "(1)",
+                "value": "ヌ 1／ネ 3"
+              },
+              {
+                "label": "(2)(i)",
+                "value": "ノ 1／ハ 1／ヒ 4／フ 9／ヘ 2"
+              },
+              {
+                "label": "(2)(ii)",
+                "value": "ホ 1／マ 7／ミ 1／ム 5／メ 1／モ 5／ヤ 5"
+              },
+              {
+                "label": "(2)(iii)",
+                "value": "ユ 4／ヨ 9／ラ 2"
+              }
+            ],
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(1)（ヌ・ネ）　極値をとる2点から直線を作る",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "f'(x)=6(x+1)(2x+1)",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "停留点は \\(x=-1,-1/2\\)、対応する点は \\((-1,2)\\)、\\((-1/2,7/4)\\) です。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "y=-\\frac12x+\\frac32",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "ヌ、ネは1、3です。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(2)(i)（ノ〜ヘ）　多項式の割り算",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "crop",
+            "asset_id": "a3-polynomial-long-division",
+            "major_question_id": "major-question-03"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kurume-2025-general-early-mathematics-answers-p006",
+        "blocks": [
+          {
+            "type": "formula",
+            "latex": "g(x)=g'(x)\\left(\\frac14x-\\frac16\\right)-4x^2+9x+2",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "商は \\(x/4-1/6\\)、余りは \\(-4x^2+9x+2\\) です。ノ〜ヘは1、1、4、9、2です。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(2)(ii)（ホ〜ヤ）　増減と極値",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "g'(x)=12(x-1)(x^2-x-1)",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "停留点は \\(x=1,(1\\pm\\sqrt5)/2\\) です。符号を調べると \\(x=1\\) で極大値7、他の2点で極小です。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "note",
+            "label": "計算を短くする理由",
+            "text": "停留点では \\(g'(x)=0\\) なので、(i)の割り算の式は余りだけになります。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "g\\left(\\frac{1\\pm\\sqrt5}{2}\\right)=\\frac{1\\pm5\\sqrt5}{2}",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "ホ〜ヤは1、7、1、5、1、5、5です。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(2)(iii)（ユ〜ラ）　3点を通る放物線",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "\\(y=ax^2+bx+c\\) と置いて3点を代入します。根号を含む2式は差と和を取ります。",
+            "major_question_id": "major-question-03"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kurume-2025-general-early-mathematics-answers-p007",
+        "blocks": [
+          {
+            "type": "formula",
+            "latex": "a+b=5,\\qquad a+b+c=7,\\qquad3a+b=-3",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "a=-4,\\qquad b=9,\\qquad c=2",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "よって \\(y=-4x^2+9x+2\\) で、ユ〜ラは4、9、2です。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第4問　整数操作の逆算と3項間漸化式（学習者向け解説）",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "(1)",
+                "value": "リ 3"
+              },
+              {
+                "label": "(2)",
+                "value": "ル ②／レ ④／ロ ②"
+              },
+              {
+                "label": "(3)",
+                "value": "ワ 4／ヲ 3／ン 1／あ 5／い 8／う 3／え 3／お 2"
+              }
+            ],
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(1)（リ）　逆操作で候補を列挙する",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "prose",
+            "text": "4の一つ前は8または3です。8の一つ前は16または7、3の一つ前は6なので、候補は3個です。",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(2)（ル・レ・ロ）　最初の操作で型分けする",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "note",
+            "label": "考え方",
+            "text": "\\(c\\) の倍数は1回割ると残り \\(n-1\\) 回です。非倍数は足す・割るの2回を使うので残り \\(n-2\\) 回です。",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "prose",
+            "text": "非倍数の余りは \\(c-1\\) 通りあります。",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "formula",
+            "latex": "a_n=a_{n-1}+(c-1)a_{n-2}",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "prose",
+            "text": "ル②、レ④、ロ②です。",
+            "major_question_id": "major-question-04"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kurume-2025-general-early-mathematics-answers-p008",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(3)（ワ〜お）　整数条件と一般項",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "prose",
+            "text": "特性方程式 \\(x^2-x-(c-1)=0\\) の解が整数になるには、判別式 \\(4c-3\\) が正の奇数の平方でなければなりません。",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "formula",
+            "latex": "4c-3=(2k+1)^2\\quad\\Longrightarrow\\quad c=k^2+k+1",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "prose",
+            "text": "\\(k=2\\) では \\(c=7\\)、特性根は3と\\(-2\\)です。原本どおり二つの等比数列へ変形します。",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "formula",
+            "latex": "a_{n+1}-3a_n=3(-2)^{n-1},\\qquad a_{n+1}+2a_n=8\\cdot3^{n-1}",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "formula",
+            "latex": "a_n=\\frac15\\{8\\cdot3^{n-1}-3(-2)^{n-1}\\}",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "prose",
+            "text": "ワ〜おは4、3、1、5、8、3、3、2です。",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第5問　動く球の通過領域の断面積と体積（学習者向け解説）",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "(1)",
+                "value": "か 4／き 1／く 2／け 2／こ 2"
+              },
+              {
+                "label": "(2)",
+                "value": "さし 76／すせ 32／そ 1"
+              }
+            ],
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(1)（か〜こ）　水平断面で平面図形へ直す",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "note",
+            "label": "最初の一手",
+            "text": "高さ \\(z=t\\) で球を切ると、切り口は半径 \\(r=\\sqrt{1-t^2}\\) の円です。Wの断面は、この円が4線分上を動く領域です。",
+            "major_question_id": "major-question-05"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kurume-2025-general-early-mathematics-answers-p009",
+        "blocks": [
+          {
+            "type": "crop",
+            "asset_id": "a5-sphere-cross-section",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "prose",
+            "text": "原本の図に従い、重なりを避けて台形①、長方形②〜④、半円⑤へ分けます。",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "formula",
+            "latex": "\\text{①}=(2+2\\sqrt2)(1-t^2),\\qquad\\text{②}=20\\sqrt{1-t^2}",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "formula",
+            "latex": "\\text{③}=10\\sqrt{1-t^2}-(2+2\\sqrt2)(1-t^2)",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "formula",
+            "latex": "\\text{④}=10\\sqrt2\\sqrt{1-t^2}-(2+2\\sqrt2)(1-t^2)",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "formula",
+            "latex": "\\text{⑤}=\\frac12\\pi(1-t^2)",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "crop",
+            "asset_id": "a5-w-cross-section",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "crop",
+            "asset_id": "a5-w-cross-section-zoom",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "prose",
+            "text": "①を2個、②を1個、③を2個、④を4個、⑤を8個足します。",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "formula",
+            "latex": "S(t)=4\\{10(1+\\sqrt2)\\sqrt{1-t^2}-(2+2\\sqrt2-\\pi)(1-t^2)\\}",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "prose",
+            "text": "か〜こは4、1、2、2、2です。",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(2)（さ〜そ）　断面積を積分する",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "formula",
+            "latex": "V=\\int_{-1}^{1}S(t)\\,dt",
+            "major_question_id": "major-question-05"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kurume-2025-general-early-mathematics-answers-p010",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "\\(\\int_{-1}^{1}\\sqrt{1-t^2}\\,dt=\\pi/2\\)、\\(\\int_{-1}^{1}(1-t^2)dt=4/3\\) を使います。",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "formula",
+            "latex": "V=\\left(\\frac{76}{3}+20\\sqrt2\\right)\\pi-\\frac{32}{3}(1+\\sqrt2)",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "prose",
+            "text": "さし、すせ、そは76、32、1です。くは(1)と同じ2です。",
+            "major_question_id": "major-question-05"
+          },
+          {
+            "type": "note",
+            "label": "つまずきやすい点",
+            "text": "\\(\\sqrt{1-t^2}\\) の積分は、単位円の上半分の面積と見ます。",
+            "major_question_id": "major-question-05"
+          }
+        ]
+      }
+    ],
+    "review": {
+      "needs_human_review": true,
+      "editorial_status": "draft_for_subject_editor",
+      "mathematical_consistency_checked": true,
+      "answer_key_checked": true,
+      "source_transcription_preserved": true,
+      "source_route_checked": true,
+      "reader_structure_checked": true
+    }
+  },
+  "assets": [
+    {
+      "id": "q2-plane-apq",
+      "kind": "source_crop",
+      "source_page_id": "kurume-2025-general-early-mathematics-questions-p002",
+      "crop_box_pixels": [
+        514,
+        640,
+        874,
+        956
+      ],
+      "source_crop_path": "assets/crops/q2-plane-apq/source.png",
+      "replacement_path": "assets/crops/q2-plane-apq/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "平面APQを表す平行四辺形の模式図。点Oから垂直に伸びる破線上に点D、平行四辺形の内部に点H（直角記号つき）、Q、P、Aが示されている。"
+    },
+    {
+      "id": "q2-plane-oab",
+      "kind": "source_crop",
+      "source_page_id": "kurume-2025-general-early-mathematics-questions-p002",
+      "crop_box_pixels": [
+        500,
+        778,
+        874,
+        1134
+      ],
+      "source_crop_path": "assets/crops/q2-plane-oab/source.png",
+      "replacement_path": "assets/crops/q2-plane-oab/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "平面OABを表す平行四辺形の模式図。点Cから下方に伸びる直線が平行四辺形をRで貫き、内部に点H、O、B、Aが示されている。"
+    },
+    {
+      "id": "a2-tetrahedron-opqab",
+      "kind": "source_crop",
+      "source_page_id": "kurume-2025-general-early-mathematics-answers-p003",
+      "crop_box_pixels": [
+        518,
+        164,
+        874,
+        544
+      ],
+      "source_crop_path": "assets/crops/a2-tetrahedron-opqab/source.png",
+      "replacement_path": "assets/crops/a2-tetrahedron-opqab/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "正四面体OABCの見取り図。辺OC上に比1対2を示す丸数字①②を添えた点Q、辺OB上の中点P、頂点Aから引いた線分APとAQが太線で示されている。"
+    },
+    {
+      "id": "a3-polynomial-long-division",
+      "kind": "source_crop",
+      "source_page_id": "kurume-2025-general-early-mathematics-answers-p005",
+      "crop_box_pixels": [
+        98,
+        868,
+        682,
+        1241
+      ],
+      "source_crop_path": "assets/crops/a3-polynomial-long-division/source.png",
+      "replacement_path": "assets/crops/a3-polynomial-long-division/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "多項式の筆算。3x^4-8x^3+12x を 12x^3-24x^2+12 で割り、商 (1/4)x-(1/6)、余り -4x^2+9x+2 を求める割り算の配置。"
+    },
+    {
+      "id": "a5-sphere-cross-section",
+      "kind": "source_crop",
+      "source_page_id": "kurume-2025-general-early-mathematics-answers-p009",
+      "crop_box_pixels": [
+        506,
+        40,
+        874,
+        422
+      ],
+      "source_crop_path": "assets/crops/a5-sphere-cross-section/source.png",
+      "replacement_path": "assets/crops/a5-sphere-cross-section/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "球をz=tで切ったときの断面を示すzx平面上の図。半径1の円、水平線z=t、切り口の半径√(1-t^2)、高さ|t|、半径1の直角三角形が示されている。"
+    },
+    {
+      "id": "a5-w-cross-section",
+      "kind": "source_crop",
+      "source_page_id": "kurume-2025-general-early-mathematics-answers-p009",
+      "crop_box_pixels": [
+        88,
+        510,
+        572,
+        974
+      ],
+      "source_crop_path": "assets/crops/a5-w-cross-section/source.png",
+      "replacement_path": "assets/crops/a5-w-cross-section/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "z=t における W の断面図。xy平面上で8方向に伸びる帯状領域が重なり、丸数字①から⑤で台形・長方形・半円の各部分と寸法が示されている。図の下に「z=t における W の断面」の説明が付く。"
+    },
+    {
+      "id": "a5-w-cross-section-zoom",
+      "kind": "source_crop",
+      "source_page_id": "kurume-2025-general-early-mathematics-answers-p009",
+      "crop_box_pixels": [
+        376,
+        510,
+        862,
+        974
+      ],
+      "source_crop_path": "assets/crops/a5-w-cross-section-zoom/source.png",
+      "replacement_path": "assets/crops/a5-w-cross-section-zoom/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "z=t における W の断面の右上部分の拡大図。x軸方向と y軸方向の帯、斜め45度の帯の重なりと、5、√(1-t^2)、√2√(1-t^2) などの寸法が示されている。図の下に「z=t における W の断面（右上の拡大図）」の説明が付く。"
+    }
+  ],
+  "sourceReference": "projects/universities/kurume/past-exams/working/2025/general-early/first-stage/mathematics/source-html/editorial-explanations.json",
+  "sha256": "d9629d8ce2735e4225c615eec23a69dbf9d618a3da0763e8dfad7985c31536c5"
+}

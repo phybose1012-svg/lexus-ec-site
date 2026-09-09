@@ -1,0 +1,389 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "saitama-medical-2025-general-early-mathematics",
+  "route": {
+    "university": "saitama-medical",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/saitama-medical/2025/mathematics/analysis/"
+  },
+  "university": "埼玉医科大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "一般選抜（前期）",
+  "duration": "数学 50分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "指数関数・対数関数・微分法",
+  "summary": "第1問は指数関数・対数関数・微分法、第2問は図形と方程式・微分法、第3問は図形の性質・図形と方程式、第4問は場合の数。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "title": "指数関数の最小値と複素数平面の回転",
+      "subtitle": "指数関数・対数関数・微分法・複素数平面",
+      "summary": "指数関数の微分による最小値と、複素数平面で中心を指定した回転を扱う独立小問。",
+      "studyAction": "指数関数の微分。増減と最小値",
+      "requirements": [
+        1,
+        3.5,
+        2.5,
+        3,
+        2.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "問1",
+          "title": "関数 \\(f(x)=e^x+3e^{-x}\\) の極値条件を微分で調べ、最小となる \\(x\\) と最小値を求める。",
+          "note": "微分して平方差を解く再現しやすい手順で、短時間に10点を狙える。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 10
+        },
+        {
+          "id": "math-q1-2",
+          "label": "問2",
+          "title": "複素数 \\(\\alpha=2+i\\) を \\(\\beta=1-2i\\) を中心に \\(\\pi/4\\) 回転した点を求め、指定形へ因数分解する。",
+          "note": "公式は典型だが複素数の展開と指定形への整理で符号ミスが出やすい。苦手層は指数関数と移動点の短問を先に確保してから戻る。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 10
+        }
+      ],
+      "questionsPath": "/past-exam-library/saitama-medical/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/saitama-medical/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "title": "移動点間距離の最小値と移動量の最大",
+      "subtitle": "図形と方程式・微分法",
+      "summary": "直交する座標軸上を動く2点を座標表示し、距離の平方を平方完成して最小化し、一般化した分数関数を微分する。",
+      "studyAction": "移動点の座標化。2点間距離",
+      "requirements": [
+        2,
+        3.7,
+        3.3,
+        3.3,
+        3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "問1",
+          "title": "\\(P(10,0)\\)、\\(Q(0,20)\\) が同速で負方向へ動くとき、移動距離を \\(a\\) として \\(PQ\\) の最小値とその時点を求める。",
+          "note": "同速なので両座標を同じ変数で表せ、平方完成まで一本道である。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 10
+        },
+        {
+          "id": "math-q2-2",
+          "label": "問2",
+          "title": "\\(Q\\) の速さが \\(P\\) の3倍のとき、\\(P\\) の移動距離を \\(b\\) として \\(PQ\\) の最小値とその時点を求める。",
+          "note": "問1と同型で、\\(Q\\) の移動量を \\(3b\\) と置けば安定して進められる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 10
+        },
+        {
+          "id": "math-q2-3",
+          "label": "問3",
+          "title": "速度比を \\(k>0\\) と一般化し、距離が最小となる \\(P\\) の移動量 \\(d\\) を求め、さらに \\(d\\) を最大にする \\(k\\) を求める。",
+          "note": "平方完成と分数関数の微分が連続し計算負荷が高い。苦手層は他の典型小問を優先し、得意層も問1・2を確保してから戻る。",
+          "difficulty": 2,
+          "weak": 2,
+          "strong": 1,
+          "points": 10
+        }
+      ],
+      "questionsPath": "/past-exam-library/saitama-medical/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/saitama-medical/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "title": "円上の点が作る直線と相似",
+      "subtitle": "図形の性質・図形と方程式・図形と計量",
+      "summary": "単位円上の点を通る2直線の直交、相似三角形の面積比、三角比による線分長を順に求める。",
+      "studyAction": "円周角。直交する直線の傾き",
+      "requirements": [
+        4.7,
+        3,
+        3,
+        4.3,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "問1",
+          "title": "単位円の直径 \\(BC\\) と円周上の点 \\(P\\) から \\(\\angle BPC=\\pi/2\\) を用い、直線 \\(\\ell\\) と \\(\\ell'\\) の傾きの関係を求める。",
+          "note": "円周角90度に気付けば傾きは \\(-1/t\\) と直ちに決まる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 10
+        },
+        {
+          "id": "math-q3-2",
+          "label": "問2",
+          "title": "直線 \\(\\ell,\\ell'\\) と座標軸が作る点 \\(Q,S,R,T\\) について、\\(\\triangle PBC\\sim\\triangle PQS\\) と面積比3から \\(t\\) を求め、\\(\\angle ATP\\) を求める。",
+          "note": "図の角追跡、相似、面積比、方程式、角度決定が連続する。得意層は短問を確保後に取り組み、苦手層は時間を残しても優先しない。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 10
+        },
+        {
+          "id": "math-q3-3",
+          "label": "問3",
+          "title": "問2で得た \\(t=\\sqrt3\\) と図の相似・三角比を使い、線分 \\(PT\\) の長さを求める。",
+          "note": "問2の結果が前提で、辺比の整理にも時間がかかる。得意層は問2を解いた場合だけ続け、苦手層は独立小問を優先する。",
+          "difficulty": 2,
+          "weak": 2,
+          "strong": 1,
+          "points": 10
+        }
+      ],
+      "questionsPath": "/past-exam-library/saitama-medical/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/saitama-medical/2025/mathematics/answers/#major-question-03"
+    },
+    {
+      "id": "math-q4",
+      "label": "第4問",
+      "title": "重複組合せによる分配",
+      "subtitle": "場合の数",
+      "summary": "見分けがつかないアメ玉を複数人へ0個以上分配する組数を、重複組合せまたは仕切り法で数える。",
+      "studyAction": "重複組合せ。仕切り法",
+      "requirements": [
+        0,
+        3,
+        2.5,
+        4,
+        2.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "問1",
+          "title": "見分けがつかない10個のアメ玉を5人へ0個以上分配する組数、すなわち \\(a+b+c+d+e=10\\) の非負整数解数を求める。",
+          "note": "重複組合せの型を見抜けば \\({}_{14}\\mathrm C_4\\) の計算だけで終わる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 10
+        },
+        {
+          "id": "math-q4-2",
+          "label": "問2",
+          "title": "\\(A\\) への分配数を \\(k\\) に固定し、残る \\(10-k\\) 個を4人へ分配する組数を \\(k\\) の式で表す。",
+          "note": "問1と同じ仕切り法を4人へ適用するだけで、計算も短い。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 10
+        }
+      ],
+      "questionsPath": "/past-exam-library/saitama-medical/2025/mathematics/questions/#major-question-04",
+      "answersPath": "/past-exam-library/saitama-medical/2025/mathematics/answers/#major-question-04"
+    }
+  ],
+  "difficultyCounts": [
+    1,
+    6,
+    2,
+    1
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 50,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 60,
+        "targetPercent": 60,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 22.4,
+        "maximum": {
+          "points": 60,
+          "minutes": 46.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "now": {
+          "points": 60,
+          "minutes": 46.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 70,
+          "minutes": 51.9,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "title": "数学が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 60,
+          "minutes": 46.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "additional": []
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 5.6,
+        "maximum": {
+          "points": 100,
+          "minutes": 41.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "now": {
+          "points": 70,
+          "minutes": 25.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 41.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "title": "数学が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 100,
+          "minutes": 41.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q2-3",
+            "label": "第2問 問3"
+          },
+          {
+            "id": "math-q3-2",
+            "label": "第3問 問2"
+          },
+          {
+            "id": "math-q3-3",
+            "label": "第3問 問3"
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/saitama-medical/past-exams/working/2025/general-early/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "c9785dc3b414002b8a39875f399e4cb3842d545ee67bf585edb137736b8371a6",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/saitama-medical/2025/mathematics/questions/",
+    "answers": "/past-exam-library/saitama-medical/2025/mathematics/answers/",
+    "university": "/past-exam-library/saitama-medical/"
+  }
+}

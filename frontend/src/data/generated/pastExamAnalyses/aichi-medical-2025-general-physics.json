@@ -1,0 +1,260 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "aichi-medical-2025-general-physics",
+  "route": {
+    "university": "aichi-medical",
+    "year": "2025",
+    "subject": "physics",
+    "path": "/past-exam-library/aichi-medical/2025/physics/analysis/"
+  },
+  "university": "愛知医科大学",
+  "year": 2025,
+  "subject": "物理",
+  "examLabel": "一般選抜",
+  "duration": "理科2科目 合計100分",
+  "format": "選択・数値解答など（各設問を参照）",
+  "examTotal": null,
+  "headline": "静電気力と電場・電位・仕事と力学的エネルギー",
+  "summary": "Ⅰは静電気力と電場・電位・仕事と力学的エネルギー、Ⅱは力のつり合いと運動の法則・仕事と力学的エネルギー。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "物理が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "物理が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "Ⅰ",
+      "title": "点電荷がつくる電場・電位とエネルギー",
+      "subtitle": "静電気力と電場・電位・仕事と力学的エネルギー",
+      "summary": "点電荷による電場・電位の基本計算から始め、複数電荷の重ね合わせ、外力の仕事、電場・電位が0となる位置、エネルギー保存へ進む。",
+      "studyAction": "点電荷の電場と電位を区別する。ベクトルとスカラーの重ね合わせを使い分ける",
+      "requirements": [
+        2.8,
+        2.8,
+        2.7,
+        2.7,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "問1",
+          "title": "点電荷がつくる電場・電位・力・位置エネルギーを数値と単位で求める。",
+          "note": "公式代入で4項目をまとめて回収できる仮7点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "問2",
+          "title": "点Bの電場成分と電位、B-C間の外力の仕事、一様電場の成分を求める。",
+          "note": "3段階の立式を要するため苦手層は基本設問後に戻る仮7点。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "問3",
+          "title": "2点電荷の電場が0となるx座標を求める。",
+          "note": "領域x>aが指定され、標準的な重ね合わせで取れる仮6点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "問4",
+          "title": "2点電荷の電位が0となるx座標を求める。",
+          "note": "電場との違いを押さえれば短く回収できる仮6点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "phys-q1-5",
+          "label": "問5",
+          "title": "点Fから点Eへ動く電荷の速さをエネルギー保存で求める。",
+          "note": "前問依存と符号処理がある仮6点。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "phys-q1-6",
+          "label": "問6",
+          "title": "十分遠方で2点電荷を合成電荷として近似し、電場の選択肢を選ぶ。",
+          "note": "問題文の近似をそのまま使える独立した仮6点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        }
+      ],
+      "questionsPath": "/past-exam-library/aichi-medical/2025/physics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/aichi-medical/2025/physics/answers/#major-question-01"
+    },
+    {
+      "id": "phys-q2",
+      "label": "Ⅱ",
+      "title": "単振動の位相空間と波動性による量子化",
+      "subtitle": "力のつり合いと運動の法則・仕事と力学的エネルギー・単振動",
+      "summary": "ばね振り子のエネルギーと運動量をx-p平面の楕円へ写し、定在波とド・ブロイ波長を経て、位相空間面積と放射エネルギーの量子化へつなぐ。",
+      "studyAction": "摩擦の仕事とエネルギー変化を区別する。単振動の位置・運動量・エネルギーを相互変換する",
+      "requirements": [
+        3,
+        3,
+        2.7,
+        2.2,
+        3
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "［1］問1",
+          "title": "あらい床で滑り出す直前の外力、摩擦の仕事、弾性エネルギー変化、原点での運動エネルギーを求める。",
+          "note": "4項目は同じ力図とエネルギー収支から連続して回収できる仮7点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "［1］問2",
+          "title": "なめらかな床での角振動数、位置、力学的エネルギー、運動量最大値を求める。",
+          "note": "後続の位相空間問題の土台となる仮7点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "［1］問3",
+          "title": "エネルギー保存式をx²+(ap)²=L²へ変形し、定数aを求める。",
+          "note": "問2の式から短くつながる仮6点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "phys-q2-4",
+          "label": "［1］問4",
+          "title": "x-p平面の楕円軌跡、切片、時間変化の向きを図示する。",
+          "note": "図示と向きの判断を含む仮6点。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "phys-q2-5",
+          "label": "［1］問5",
+          "title": "楕円軌跡の面積をLとaで表す。",
+          "note": "問題文に面積変換が与えられた仮6点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "phys-q2-6",
+          "label": "［1］問6",
+          "title": "位相空間の楕円面積を角振動数ωと力学的エネルギーEで表す。",
+          "note": "複数の既出式を整理する仮6点。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "phys-q2-7",
+          "label": "［2］問7",
+          "title": "両端固定弦の腹の数nから波長λ_nを求める。",
+          "note": "独立した定在波の基本である仮6点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "phys-q2-8",
+          "label": "［3］問8",
+          "title": "ド・ブロイ波長λ_nから粒子の運動量の大きさを求める。",
+          "note": "公式1本で回収できる仮6点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "phys-q2-9",
+          "label": "［3］問9",
+          "title": "腹1個の定在波に対応するx-p長方形の面積Hを求める。",
+          "note": "問7・問8を使うとH=hへ簡潔にまとまる仮6点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "phys-q2-10",
+          "label": "［3］問10",
+          "title": "単振動のエネルギー準位差と振動数の関係から、電磁波エネルギーの最小単位を求める。",
+          "note": "長い誘導文から3関係を抽出する仮6点。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        }
+      ],
+      "questionsPath": "/past-exam-library/aichi-medical/2025/physics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/aichi-medical/2025/physics/answers/#major-question-02"
+    }
+  ],
+  "difficultyCounts": [
+    6,
+    5,
+    5,
+    0
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": null,
+    "profiles": []
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/aichi-medical/past-exams/working/2025/general/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "c98f99c2c73cf44e5b22da202e61ee0e1aa96637a8c3bf063c38b2c41486a68e",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "targetReviewNote": "元データの目標点・所要時間・前問依存を確認しています。数値は検証完了後に掲載します。",
+  "links": {
+    "questions": "/past-exam-library/aichi-medical/2025/physics/questions/",
+    "answers": "/past-exam-library/aichi-medical/2025/physics/answers/",
+    "university": "/past-exam-library/aichi-medical/"
+  }
+}

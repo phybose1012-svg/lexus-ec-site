@@ -1,0 +1,603 @@
+{
+  "schemaVersion": "lexus-staging-answer-snapshot.v1",
+  "question": {
+    "schemaVersion": "lexus-ec.past-exam-question-page.v1",
+    "packageId": "jichi-medical-2025-general-mathematics-second-stage",
+    "route": {
+      "university": "jichi-medical",
+      "year": "2025",
+      "subject": "mathematics",
+      "path": "/past-exam-library/jichi-medical/2025/mathematics-general-second-stage/questions/"
+    },
+    "university": {
+      "id": "jichi-medical",
+      "name": "自治医科大学"
+    },
+    "exam": {
+      "year": "2025",
+      "label": "一般選抜",
+      "stage": "二次試験",
+      "duration": "数学 30分"
+    },
+    "subject": {
+      "id": "mathematics",
+      "name": "数学",
+      "english": "MATHEMATICS"
+    },
+    "document": {
+      "role": "questions",
+      "pageUnit": "major_question",
+      "sharedInstructionsHtml": "<section class=\"source-page-card question-shared-instructions\" data-question-shared-instructions><div class=\"page-kicker\">全大問共通</div><h2>2025年度 一般選抜 第2次試験 医学部 数学</h2><p class=\"prose\">数学（30分）</p></section>",
+      "printNotes": [
+        "各設問に記載された解答形式・記号・単位の指定に従ってください。",
+        "図版準備中・内容確認中の設問は、確認が完了するまで演習対象外です。"
+      ],
+      "questions": [
+        {
+          "id": "major-question-01",
+          "label": "問題",
+          "order": 1,
+          "sourcePageIds": [
+            "jichi-medical-2025-general-mathematics-questions-p001",
+            "jichi-medical-2025-general-mathematics-questions-p002"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-01\" data-major-question-id=\"major-question-01\"><h2>問題</h2><p class=\"prose\">座標平面上（原点を <span class=\"math-inline\" data-katex=\"O\" data-display-mode=\"false\">O</span> とする）において、円 <span class=\"math-inline\" data-katex=\"C\" data-display-mode=\"false\">C</span>、直線 <span class=\"math-inline\" data-katex=\"\\ell_1\" data-display-mode=\"false\">\\ell_1</span>、直線 <span class=\"math-inline\" data-katex=\"\\ell_2\" data-display-mode=\"false\">\\ell_2</span> について考える。</p><div class=\"formula\" data-katex=\"C:\\ (x-7)^2+(y-7)^2=17\" data-display-mode=\"true\">C:\\ (x-7)^2+(y-7)^2=17</div><div class=\"formula\" data-katex=\"\\ell_1:\\ x+y=9\" data-display-mode=\"true\">\\ell_1:\\ x+y=9</div><div class=\"formula\" data-katex=\"\\ell_2:\\ mx-y-m+8=0\\quad(m&gt;-1,\\ m\\text{ は実数})\" data-display-mode=\"true\">\\ell_2:\\ mx-y-m+8=0\\quad(m&gt;-1,\\ m\\text{ は実数})</div><p class=\"prose\">点 <span class=\"math-inline\" data-katex=\"A\" data-display-mode=\"false\">A</span> の座標を <span class=\"math-inline\" data-katex=\"(1,8)\" data-display-mode=\"false\">(1,8)</span>、円 <span class=\"math-inline\" data-katex=\"C\" data-display-mode=\"false\">C</span> の中心の点を <span class=\"math-inline\" data-katex=\"B\" data-display-mode=\"false\">B</span> とする。</p><p class=\"prose\">直線 <span class=\"math-inline\" data-katex=\"\\ell_1\" data-display-mode=\"false\">\\ell_1</span> と円 <span class=\"math-inline\" data-katex=\"C\" data-display-mode=\"false\">C</span> との異なる2つの交点を <span class=\"math-inline\" data-katex=\"Q\" data-display-mode=\"false\">Q</span>、<span class=\"math-inline\" data-katex=\"R\" data-display-mode=\"false\">R</span> とする（2つの交点 <span class=\"math-inline\" data-katex=\"Q\" data-display-mode=\"false\">Q</span>、<span class=\"math-inline\" data-katex=\"R\" data-display-mode=\"false\">R</span> のうち点 <span class=\"math-inline\" data-katex=\"A\" data-display-mode=\"false\">A</span> に近い点を <span class=\"math-inline\" data-katex=\"Q\" data-display-mode=\"false\">Q</span> とする）。</p><p class=\"prose\">以下の設問に答えよ。</p><h3>1）</h3><p class=\"prose\">直線 <span class=\"math-inline\" data-katex=\"\\ell_1\" data-display-mode=\"false\">\\ell_1</span> と円 <span class=\"math-inline\" data-katex=\"C\" data-display-mode=\"false\">C</span> との2つの交点 <span class=\"math-inline\" data-katex=\"Q\" data-display-mode=\"false\">Q</span>、<span class=\"math-inline\" data-katex=\"R\" data-display-mode=\"false\">R</span> の座標を求め、線分 <span class=\"math-inline\" data-katex=\"AQ\" data-display-mode=\"false\">AQ</span> と線分 <span class=\"math-inline\" data-katex=\"AR\" data-display-mode=\"false\">AR</span> の長さを求めよ。</p><h3>2）</h3><p class=\"prose\">直線 <span class=\"math-inline\" data-katex=\"\\ell_2\" data-display-mode=\"false\">\\ell_2</span> が円 <span class=\"math-inline\" data-katex=\"C\" data-display-mode=\"false\">C</span> と異なる2つの点 <span class=\"math-inline\" data-katex=\"P\" data-display-mode=\"false\">P</span>、<span class=\"math-inline\" data-katex=\"S\" data-display-mode=\"false\">S</span> で交わる場合（2つの交点 <span class=\"math-inline\" data-katex=\"P\" data-display-mode=\"false\">P</span>、<span class=\"math-inline\" data-katex=\"S\" data-display-mode=\"false\">S</span> のうち点 <span class=\"math-inline\" data-katex=\"A\" data-display-mode=\"false\">A</span> に近い点を <span class=\"math-inline\" data-katex=\"P\" data-display-mode=\"false\">P</span> とする）、<span class=\"math-inline\" data-katex=\"m\" data-display-mode=\"false\">m</span> のとりうる値の範囲を求めよ。</p><aside class=\"source-note\"><strong>共通条件</strong> 以下の設問3）、4）、5）は設問2）の条件を満たすものとする。</aside><h3>3）</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"PQ\\parallel SR\" data-display-mode=\"false\">PQ\\parallel SR</span> となるとき、<span class=\"math-inline\" data-katex=\"AP=AQ\" data-display-mode=\"false\">AP=AQ</span>、<span class=\"math-inline\" data-katex=\"AR=AS\" data-display-mode=\"false\">AR=AS</span> であることを示すとともに、直線 <span class=\"math-inline\" data-katex=\"AB\" data-display-mode=\"false\">AB</span> が <span class=\"math-inline\" data-katex=\"\\angle SAR\" data-display-mode=\"false\">\\angle SAR</span> の二等分線となることを証明せよ。</p><h3>4）</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"PQ\\parallel SR\" data-display-mode=\"false\">PQ\\parallel SR</span> となるときの <span class=\"math-inline\" data-katex=\"m\" data-display-mode=\"false\">m</span> の値を求めよ。</p><h3>5）</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"PQ\\parallel SR\" data-display-mode=\"false\">PQ\\parallel SR</span> であるとき、四角形 <span class=\"math-inline\" data-katex=\"PQRS\" data-display-mode=\"false\">PQRS</span> の面積を求めよ。</p></article>"
+        }
+      ]
+    },
+    "source": {
+      "sourcePackageId": "jichi-medical-2025-general-mathematics",
+      "reference": "projects/universities/jichi-medical/past-exams/working/2025/general/second-stage/mathematics/source-html/generated/public-candidate/questions",
+      "buildKind": "publication-candidate",
+      "contentProvenance": "source_projection",
+      "publicationCandidate": true,
+      "rightsStatus": "review_required",
+      "needsHumanReview": true
+    },
+    "links": {
+      "universityLibrary": "/past-exam-library/jichi-medical/",
+      "analysis": "/past-exam-library/jichi-medical/2025/mathematics-general-second-stage/analysis/",
+      "universityInformation": null
+    }
+  },
+  "editorial": {
+    "schema_version": "medical-entrance-past-exam-editorial-explanation.v2",
+    "package_id": "jichi-medical-2025-general-mathematics",
+    "document_role": "answers",
+    "audience": "数学が苦手、または数学に抵抗感がある私立医学部受験生",
+    "provenance": "editorial_adaptation",
+    "source_reconstruction_path": "reconstruction.json",
+    "style_policy": {
+      "id": "lexus-learner-friendly-mathematics.v1",
+      "sequence": [
+        "何を求めるか",
+        "最初にすること",
+        "その理由",
+        "計算",
+        "結論"
+      ],
+      "short_paragraphs": true,
+      "expert_shortcuts_are_optional": true,
+      "main_route_is_reproducible": true,
+      "preserve_answers_and_conditions": true,
+      "preserve_source_method": true,
+      "preserve_source_reasoning_order": true,
+      "forbid_answer_backward_reasoning": true,
+      "use_katex_for_all_mathematics": true
+    },
+    "reader_structure": {
+      "page_unit": "major_question",
+      "assignment": "explicit_per_block",
+      "source_page_records_preserved_for_provenance": true,
+      "major_questions": [
+        {
+          "id": "major-question-01",
+          "label": "問題",
+          "order": 1
+        }
+      ]
+    },
+    "pages": [
+      {
+        "source_page_id": "jichi-medical-2025-general-mathematics-answers-p001",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "問題　円と2本の直線を順に整理する",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "1）　円と直線を連立する",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "note",
+            "label": "何を求めるか",
+            "text": "円と直線の2交点を求め、点Aから各交点までの長さを計算します。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "直線 \\(\\ell_1:x+y=9\\) から \\(y=9-x\\) として、円の式へ代入します。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "(x-7)^2+(9-x-7)^2=17",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "x^2-9x+18=(x-3)(x-6)=0",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "Q(3,6),\\qquad R(6,3)",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "点 \\(A(1,8)\\) からのベクトルを作ると、長さは成分の2乗和の平方根で求まります。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\overrightarrow{AQ}=(2,-2),\\qquad \\overrightarrow{AR}=(5,-5)",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "AQ=2\\sqrt2,\\qquad AR=5\\sqrt2",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "crop",
+            "asset_id": "ans-overview-diagram",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "2）　中心から直線までの距離を見る",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "まず \\(\\ell_2\\) を \\(y=m(x-1)+8\\) と直します。点 \\(A(1,8)\\) を通り、傾きが \\(m\\) の直線です。",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "jichi-medical-2025-general-mathematics-answers-p002",
+        "blocks": [
+          {
+            "type": "note",
+            "label": "最初にすること",
+            "text": "円と直線が異なる2点で交わる条件は、中心から直線までの距離が半径より小さいことです。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac{|m(7-1)-(7-8)|}{\\sqrt{m^2+(-1)^2}}<\\sqrt{17}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "|6m+1|<\\sqrt{17(m^2+1)}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "両辺が正なので2乗してよく、2次不等式へ直します。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "19m^2+12m-16<0",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac{-6-2\\sqrt{85}}{19}<m<\\frac{-6+2\\sqrt{85}}{19}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "最後に問題の条件 \\(m>-1\\) と共通部分を取ります。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "-1<m<\\frac{-6+2\\sqrt{85}}{19}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "3）　平行線の角と円周角をつなぐ",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "crop",
+            "asset_id": "ans-proof-diagram",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "note",
+            "label": "考え方",
+            "text": "平行線から得る同位角と、円に内接する四角形の対角の和が \\(\\pi\\) であることを同時に使います。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "\\(\\angle AQP=\\alpha_1\\)、\\(\\angle ARS=\\alpha_2\\)、\\(\\angle APQ=\\beta_1\\)、\\(\\angle ASR=\\beta_2\\) と置きます。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\alpha_1=\\alpha_2,\\qquad \\beta_1=\\beta_2",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\beta_2+(\\pi-\\alpha_1)=\\pi,\\qquad \\alpha_2+(\\pi-\\beta_1)=\\pi",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\alpha_1=\\beta_2,\\qquad \\beta_1=\\alpha_2",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "jichi-medical-2025-general-mathematics-answers-p003",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "ここまでの等式をまとめると、4つの角はすべて等しくなります。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\alpha_1=\\alpha_2=\\beta_1=\\beta_2",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "三角形の底角が等しいので、それぞれ二等辺三角形です。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "AP=AQ,\\qquad AR=AS",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "次に \\(\\triangle ABP\\) と \\(\\triangle ABQ\\) を比べます。\\(AB\\) は共通、\\(AP=AQ\\)、\\(BP=BQ\\) は円の半径なので、3辺がそれぞれ等しい合同です。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\triangle ABP\\equiv\\triangle ABQ",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\angle BAP=\\angle BAQ",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "したがって直線 \\(AB\\) は \\(\\angle SAR\\) の二等分線です。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "4）　二等辺三角形の中点と垂線を使う",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "crop",
+            "asset_id": "ans-midpoint-diagram",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "直線 \\(AB\\) と弦 \\(PQ\\) の交点を \\(M\\) とします。\\(AP=AQ\\) で、\\(AM\\) は頂角の二等分線なので、二等辺三角形の性質から中線と垂線にもなります。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "M\\text{ は }PQ\\text{ の中点},\\qquad AM\\perp PQ",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\operatorname{slope}(AB)=\\frac{7-8}{7-1}=-\\frac16",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "\\(PQ\\perp AB\\) なので \\(PQ\\) の傾きは6です。点 \\(Q(3,6)\\) を通るため、直線の式が決まります。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "PQ:\\ y=6(x-3)+6\\quad\\Longleftrightarrow\\quad 6x-y-12=0",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "AM=\\frac{|6\\cdot1-8-12|}{\\sqrt{6^2+1^2}}=\\frac{14}{\\sqrt{37}}",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "jichi-medical-2025-general-mathematics-answers-p004",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "直角三角形 \\(AQM\\) で、1）で求めた \\(AQ=2\\sqrt2\\) と \\(AM\\) を使います。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "QM=\\sqrt{AQ^2-AM^2}=\\sqrt{(2\\sqrt2)^2-\\left(\\frac{14}{\\sqrt{37}}\\right)^2}=\\frac{10}{\\sqrt{37}}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "PQ=2QM=\\frac{20}{\\sqrt{37}}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "傾き6の方向ベクトルは \\((1,6)\\) です。長さを合わせて \\(\\overrightarrow{QP}\\) を作ります。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\overrightarrow{QP}=\\frac{20}{37}(1,6)",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\overrightarrow{AP}=\\overrightarrow{AQ}+\\overrightarrow{QP}=(2,-2)+\\frac{20}{37}(1,6)=\\frac{2}{37}(47,23)",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "m=\\frac{23}{47}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "5）　相似な2三角形の面積差を取る",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "\\(PQ\\parallel SR\\) なので \\(\\triangle AQP\\sim\\triangle ARS\\) です。相似比は \\(AQ:AR=2:5\\) だから、面積比はその2乗になります。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac{[\\triangle ARS]}{[\\triangle AQP]}=\\left(\\frac{AR}{AQ}\\right)^2=\\frac{25}{4}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "[\\triangle AQP]=\\frac12\\cdot PQ\\cdot AM=\\frac12\\cdot\\frac{20}{\\sqrt{37}}\\cdot\\frac{14}{\\sqrt{37}}=\\frac{140}{37}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "四角形 \\(PQRS\\) は大きい三角形 \\(ARS\\) から小さい三角形 \\(AQP\\) を引いた部分です。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "[PQRS]=\\left(\\frac{25}{4}-1\\right)\\frac{140}{37}=\\frac{735}{37}",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "jichi-medical-2025-general-mathematics-answers-p005",
+        "blocks": [
+          {
+            "type": "note",
+            "label": "別解 4）",
+            "text": "原本は角と三角関数を使う別解も示しています。主解法を確認した後の別ルートとして読みます。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "crop",
+            "asset_id": "ans-alternative-diagram",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "\\(\\angle BAS=\\angle BAR=\\theta\\) とし、直線 \\(AR=\\ell_1\\) の傾きを \\(\\tan\\theta_1\\)、直線 \\(AB\\) の傾きを \\(\\tan\\theta_2\\) とします。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\tan\\theta_1=-1,\\qquad \\tan\\theta_2=-\\frac16",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\tan\\theta=\\tan(\\theta_2-\\theta_1)=\\frac{\\tan\\theta_2-\\tan\\theta_1}{1+\\tan\\theta_2\\tan\\theta_1}=\\frac57",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "m=\\tan(\\theta_2+\\theta)=\\frac{\\tan\\theta_2+\\tan\\theta}{1-\\tan\\theta_2\\tan\\theta}=\\frac{23}{47}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "note",
+            "label": "別解 5）",
+            "text": "同じ角 \\(\\theta\\) を使えば、三角形ARSの面積から相似な三角形AQPの面積を引けます。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "[\\triangle ARS]=\\frac12(5\\sqrt2)^2\\sin2\\theta=25\\sin2\\theta",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac{[\\triangle AQP]}{[\\triangle ARS]}=\\left(\\frac{AQ}{AR}\\right)^2=\\frac4{25}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "[PQRS]=21\\sin2\\theta=42\\sin\\theta\\cos\\theta",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "jichi-medical-2025-general-mathematics-answers-p006",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "\\(\\tan\\theta=5/7\\) なので、底辺7、高さ5の直角三角形で \\(\\sin\\theta\\) と \\(\\cos\\theta\\) を表します。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "crop",
+            "asset_id": "ans-trig-triangle",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\sin\\theta\\cos\\theta=\\frac{5}{\\sqrt{7^2+5^2}}\\cdot\\frac{7}{\\sqrt{7^2+5^2}}=\\frac{35}{74}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "[PQRS]=42\\cdot\\frac{35}{74}=\\frac{735}{37}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "note",
+            "label": "実戦での進め方",
+            "text": "原本の解説は、1）2）は比較的取り組みやすく、3）の証明は発想負荷が高いと評価しています。3）を証明できなくても、そこで示す結論を使って4）5）へ進む方針を勧めています。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "4）5）には、主解法のベクトル・距離・相似を使う方法と、別解の角・三角関数を使う方法があります。まず自分が再現しやすい主解法を一つ固め、余裕があれば別解で結果を確かめます。",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      }
+    ],
+    "review": {
+      "needs_human_review": true,
+      "editorial_status": "draft_for_subject_editor",
+      "mathematical_consistency_checked": true,
+      "answer_key_checked": true,
+      "source_transcription_preserved": true,
+      "source_route_checked": true,
+      "reader_structure_checked": true
+    }
+  },
+  "assets": [
+    {
+      "id": "ans-overview-diagram",
+      "kind": "source_crop",
+      "source_page_id": "jichi-medical-2025-general-mathematics-answers-p001",
+      "crop_box_pixels": [
+        178,
+        603,
+        807,
+        1182
+      ],
+      "source_crop_path": "assets/crops/ans-overview-diagram/source.png",
+      "replacement_path": "assets/crops/ans-overview-diagram/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "円C、直線l1・l2、点A・B・P・Q・R・Sと座標軸の位置関係を示す図"
+    },
+    {
+      "id": "ans-proof-diagram",
+      "kind": "source_crop",
+      "source_page_id": "jichi-medical-2025-general-mathematics-answers-p002",
+      "crop_box_pixels": [
+        158,
+        568,
+        722,
+        1057
+      ],
+      "source_crop_path": "assets/crops/ans-proof-diagram/source.png",
+      "replacement_path": "assets/crops/ans-proof-diagram/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "PQとSRが平行なときの円周角α1・α2・β1・β2を示す補助図"
+    },
+    {
+      "id": "ans-midpoint-diagram",
+      "kind": "source_crop",
+      "source_page_id": "jichi-medical-2025-general-mathematics-answers-p003",
+      "crop_box_pixels": [
+        228,
+        338,
+        732,
+        862
+      ],
+      "source_crop_path": "assets/crops/ans-midpoint-diagram/source.png",
+      "replacement_path": "assets/crops/ans-midpoint-diagram/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "直線ABと弦PQの交点M、円C、直線l1・l2、各点の位置関係を示す図"
+    },
+    {
+      "id": "ans-alternative-diagram",
+      "kind": "source_crop",
+      "source_page_id": "jichi-medical-2025-general-mathematics-answers-p005",
+      "crop_box_pixels": [
+        228,
+        0,
+        752,
+        472
+      ],
+      "source_crop_path": "assets/crops/ans-alternative-diagram/source.png",
+      "replacement_path": "assets/crops/ans-alternative-diagram/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "別解で用いる角θ・θ1・θ2と直線l1・l2・ABの位置関係を示す図"
+    },
+    {
+      "id": "ans-trig-triangle",
+      "kind": "source_crop",
+      "source_page_id": "jichi-medical-2025-general-mathematics-answers-p006",
+      "crop_box_pixels": [
+        488,
+        18,
+        832,
+        317
+      ],
+      "source_crop_path": "assets/crops/ans-trig-triangle/source.png",
+      "replacement_path": "assets/crops/ans-trig-triangle/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "角θに対する底辺7・高さ5の直角三角形"
+    }
+  ],
+  "sourceReference": "projects/universities/jichi-medical/past-exams/working/2025/general/second-stage/mathematics/source-html/editorial-explanations.json",
+  "sha256": "ab40d939bf6f479472e198803bbe52b136ae437aa038ae2677a25d2480d92eea"
+}

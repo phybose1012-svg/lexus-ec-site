@@ -1,0 +1,337 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "kawasaki-medical-2025-general-regional-quota-mathematics",
+  "route": {
+    "university": "kawasaki-medical",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/kawasaki-medical/2025/mathematics/analysis/"
+  },
+  "university": "川崎医科大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "一般選抜・地域枠選抜",
+  "duration": "数学 80分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "図形と方程式・図形の性質",
+  "summary": "第1問は図形と方程式・図形の性質、第2問は指数関数・対数関数・微分法、第3問は複素数平面。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "title": "円・角度と線形関数の最大値",
+      "subtitle": "図形と方程式・図形の性質・三角関数",
+      "summary": "2直線と直径円の座標を求め、円周角・三角比を計算し、領域上の線形関数ax-yの最大値を傾きで場合分けする。",
+      "studyAction": "直線と円。円周角",
+      "requirements": [
+        4.4,
+        3.8,
+        4.4,
+        3.7,
+        4.1
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "title": "直線の交点A、直径ABの円K、直線ℓとの第2交点Cを求める。",
+          "note": "定型計算でまとまった空欄を回収できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 10
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "title": "直角三角形と円周角の定理からtanαとsin(α-β)を求める。",
+          "note": "図の読み取りができれば計算は進む。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 10
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)",
+          "title": "傾きaの支持直線が弧または端点へ接する位置を場合分けし、Mとその最小を求める。",
+          "note": "場合分けと微分を含む高負荷問題。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 14
+        }
+      ],
+      "questionsPath": "/past-exam-library/kawasaki-medical/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/kawasaki-medical/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "title": "対数曲線・法線・絶対値積分",
+      "subtitle": "指数関数・対数関数・微分法・積分法",
+      "summary": "対数曲線と法線で囲まれる面積を求め、別の対数曲線の係数を決定し、絶対値積分g(a)を最小化する。",
+      "studyAction": "対数微分。法線",
+      "requirements": [
+        3.3,
+        4.7,
+        4.7,
+        4.3,
+        4.3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)(i)",
+          "title": "log(x+1)の接線傾きから法線を求め、曲線・法線・y軸の面積を計算する。",
+          "note": "標準手順だが計算が長い。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 11
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(1)(ii)",
+          "title": "通過条件でqをp表示し、2曲線とy軸で囲まれる面積条件からpを決める。",
+          "note": "設定理解と式整理の負荷が高い。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 11
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(2)",
+          "title": "log(x+a)の符号境界で絶対値積分を分け、g'(a)=0と最小値を求める。",
+          "note": "第2問の最重部分。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 11
+        }
+      ],
+      "questionsPath": "/past-exam-library/kawasaki-medical/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/kawasaki-medical/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "title": "複素数平面の極形式・円・反転",
+      "subtitle": "複素数平面",
+      "summary": "商α/βの極形式と累乗を求め、円上の最遠点、直線の複素数表示、zw=10による反転像と面積比を扱う。",
+      "studyAction": "複素数の商。極形式とド・モアブル",
+      "requirements": [
+        3.7,
+        4,
+        4.3,
+        4.3,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "title": "α/βを計算して極形式へ直し、ド・モアブルの定理で20乗を求める。",
+          "note": "定型計算で得点を集めやすい。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 11
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "title": "中心β・半径√2の円上でαから最遠となる点zと最大距離を求める。",
+          "note": "最遠点の幾何が見えれば短い。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 11
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)",
+          "title": "直線ABの共役複素数表示を定め、zw=10で写る円と面積最大時の分割比を求める。",
+          "note": "80分試験で最後まで追う費用対効果が低い。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 2,
+          "points": 11
+        }
+      ],
+      "questionsPath": "/past-exam-library/kawasaki-medical/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/kawasaki-medical/2025/mathematics/answers/#major-question-03"
+    }
+  ],
+  "difficultyCounts": [
+    0,
+    2,
+    3,
+    4
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 80,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 11,
+        "targetPercent": 11,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 60,
+        "maximum": {
+          "points": 11,
+          "minutes": 70.5,
+          "questionIds": [
+            "math-q3-1"
+          ]
+        },
+        "now": {
+          "points": 21,
+          "minutes": 81,
+          "questionIds": [
+            "math-q1-1",
+            "math-q3-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 53,
+          "minutes": 115.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "title": "数学が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 11,
+          "minutes": 70.5,
+          "questionIds": [
+            "math-q3-1"
+          ]
+        },
+        "additional": [],
+        "routeKind": "replacement",
+        "replaced": [
+          {
+            "id": "math-q1-1",
+            "label": "第1問 (1)"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 62,
+        "targetPercent": 62,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 15,
+        "maximum": {
+          "points": 78,
+          "minutes": 77,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "now": {
+          "points": 53,
+          "minutes": 52,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 89,
+          "minutes": 90,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "title": "数学が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 78,
+          "minutes": 77,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q1-3",
+            "label": "第1問 (3)"
+          },
+          {
+            "id": "math-q2-2",
+            "label": "第2問 (1)(ii)"
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kawasaki-medical/past-exams/working/2025/general-regional-quota/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "d0c208767c4faada49190553a328e34c1e63e3bb63bba3094bc683bac53e5c1f",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/kawasaki-medical/2025/mathematics/questions/",
+    "answers": "/past-exam-library/kawasaki-medical/2025/mathematics/answers/",
+    "university": "/past-exam-library/kawasaki-medical/"
+  }
+}

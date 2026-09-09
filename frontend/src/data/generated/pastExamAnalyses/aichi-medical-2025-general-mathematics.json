@@ -1,0 +1,450 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "aichi-medical-2025-general-mathematics",
+  "route": {
+    "university": "aichi-medical",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/aichi-medical/2025/mathematics/analysis/"
+  },
+  "university": "愛知医科大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "一般選抜",
+  "duration": "数学 80分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "整数の性質・場合の数",
+  "summary": "第1問は整数の性質・場合の数、第2問は数列・極限、第3問はベクトル・図形と方程式。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "title": "整数・場合の数・接円・三角関数の小問集合",
+      "subtitle": "整数の性質・場合の数・図形の性質",
+      "summary": "約数個数、重複組合せ、3円の接触条件、三角関数の置換と最大最小を処理する。",
+      "studyAction": "約数個数から素因数の指数を逆算する。重複組合せへ帰着する",
+      "requirements": [
+        1.6,
+        3.1,
+        2.9,
+        3,
+        3.2
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "1)",
+          "title": "正の約数が12個となる自然数を小さい順に3個求める。",
+          "note": "約数個数の定型整理で短時間に独立得点できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q1-2a",
+          "label": "2)(a)",
+          "title": "a+b+c+d=n の非負整数解の個数を求める。",
+          "note": "重複組合せの定型問題である。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q1-2b",
+          "label": "2)(b)",
+          "title": "a,bが自然数、c,dが非負整数の場合の解の個数を求める。",
+          "note": "(a)を再利用でき、正変数の平行移動だけで処理できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q1-3a",
+          "label": "3)(a)",
+          "title": "円O3の中心Pをパラメータtで表す。",
+          "note": "指定されたベクトル式を座標へ移すだけである。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q1-3b",
+          "label": "3)(b)",
+          "title": "円の内接・外接条件からPの座標と半径rを求める。",
+          "note": "図の読み替えと根号方程式に時間を使うが、(a)を使えば一本道である。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q1-4a",
+          "label": "4)(a)",
+          "title": "α=x+π/3、t=cosαとしてcos3xをtで表す。",
+          "note": "3倍角公式の定型変形である。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "math-q1-4b",
+          "label": "4)(b)",
+          "title": "f(x)をtの三次式で表す。",
+          "note": "(a)と三角関数の合成を組み合わせる誘導問題である。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "math-q1-4c",
+          "label": "4)(c)",
+          "title": "tの範囲に注意して三次関数の最大値・最小値とxを求める。",
+          "note": "計算は長いが、(b)まで完成すれば微分による標準手順で処理できる。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 7
+        }
+      ],
+      "questionsPath": "/past-exam-library/aichi-medical/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/aichi-medical/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "title": "二次単数の漸化式と直線の傾きの極限",
+      "subtitle": "数列・極限",
+      "summary": "(2+√3)^nの有理・無理部分から連立漸化式と不変量を作り、隣接点を結ぶ直線の傾きの極限を求める。",
+      "studyAction": "無理数係数を比較して漸化式を作る。漸化式から不変量を発見する",
+      "requirements": [
+        1.4,
+        3.7,
+        3.2,
+        3,
+        3.2
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "1)",
+          "title": "xn+1、yn+1をxn、ynで表す。",
+          "note": "後続全問の前提で、係数比較だけで得点できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q2-2",
+          "label": "2)",
+          "title": "xn²-3yn²が1であることを示す。",
+          "note": "1)の式を二乗展開すれば不変量が直接確認できる。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q2-3",
+          "label": "3)",
+          "title": "点(xn,yn)と(xn+1,yn+1)を結ぶ直線の傾きknの極限を求める。",
+          "note": "前問の不変量を使う見通しが立てば、比の極限へ一本道である。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 11
+        }
+      ],
+      "questionsPath": "/past-exam-library/aichi-medical/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/aichi-medical/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "title": "球面と平面の交円・距離最大",
+      "subtitle": "ベクトル・図形と方程式",
+      "summary": "球面の中心と半径、中心から平面へ下ろした垂線の足、交円上でxy平面から最も遠い点を求める。",
+      "studyAction": "球面の方程式を平方完成する。平面上の点を2変数で表し垂直条件を課す",
+      "requirements": [
+        4.2,
+        4.2,
+        4.2,
+        3.4,
+        4.2
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "1)",
+          "title": "球面Sの半径を求める。",
+          "note": "平方完成のみで確実に得点できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q3-2",
+          "label": "2)",
+          "title": "球面の中心から平面αへ下ろした垂線の足Hを求める。",
+          "note": "計算量はあるが、垂線の足を内積条件で決める標準形である。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 12
+        },
+        {
+          "id": "math-q3-3",
+          "label": "3)",
+          "title": "球面と平面の交円上でxy平面との距離が最大となる点Qを求める。",
+          "note": "設定と計算が重く、基本・標準問題の回収後に取り組むべき大問最終問である。",
+          "difficulty": 3,
+          "weak": 1,
+          "strong": 1,
+          "points": 18
+        }
+      ],
+      "questionsPath": "/past-exam-library/aichi-medical/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/aichi-medical/2025/mathematics/answers/#major-question-03"
+    }
+  ],
+  "difficultyCounts": [
+    4,
+    4,
+    5,
+    1
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 80,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 62,
+        "targetPercent": 62,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 26,
+        "maximum": {
+          "points": 62,
+          "minutes": 80,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2a",
+            "math-q1-2b",
+            "math-q1-3a",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "now": {
+          "points": 47,
+          "minutes": 64.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2a",
+            "math-q1-2b",
+            "math-q1-3a",
+            "math-q1-4a",
+            "math-q1-4b",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 126.2,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2a",
+            "math-q1-2b",
+            "math-q1-3a",
+            "math-q1-3b",
+            "math-q1-4a",
+            "math-q1-4b",
+            "math-q1-4c",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "title": "数学が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 62,
+          "minutes": 80,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2a",
+            "math-q1-2b",
+            "math-q1-3a",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q2-3",
+            "label": "第2問 3)"
+          },
+          {
+            "id": "math-q3-2",
+            "label": "第3問 2)"
+          }
+        ],
+        "routeKind": "replacement",
+        "replaced": [
+          {
+            "id": "math-q1-4a",
+            "label": "第1問 4)(a)"
+          },
+          {
+            "id": "math-q1-4b",
+            "label": "第1問 4)(b)"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 6.5,
+        "maximum": {
+          "points": 100,
+          "minutes": 73,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2a",
+            "math-q1-2b",
+            "math-q1-3a",
+            "math-q1-3b",
+            "math-q1-4a",
+            "math-q1-4b",
+            "math-q1-4c",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "now": {
+          "points": 82,
+          "minutes": 60.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2a",
+            "math-q1-2b",
+            "math-q1-3a",
+            "math-q1-3b",
+            "math-q1-4a",
+            "math-q1-4b",
+            "math-q1-4c",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 73,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2a",
+            "math-q1-2b",
+            "math-q1-3a",
+            "math-q1-3b",
+            "math-q1-4a",
+            "math-q1-4b",
+            "math-q1-4c",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "title": "数学が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 82,
+          "minutes": 60.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2a",
+            "math-q1-2b",
+            "math-q1-3a",
+            "math-q1-3b",
+            "math-q1-4a",
+            "math-q1-4b",
+            "math-q1-4c",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "additional": []
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/aichi-medical/past-exams/working/2025/general/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "bbe8203b31d48c810303a5a33525e4c36073706744830b1d1bd5fbd1b6deccd1",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/aichi-medical/2025/mathematics/questions/",
+    "answers": "/past-exam-library/aichi-medical/2025/mathematics/answers/",
+    "university": "/past-exam-library/aichi-medical/"
+  }
+}

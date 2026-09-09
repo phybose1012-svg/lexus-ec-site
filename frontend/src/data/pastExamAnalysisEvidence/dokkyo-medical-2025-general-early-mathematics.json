@@ -1,0 +1,284 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "dokkyo-medical-2025-general-early-mathematics",
+    "university_id": "dokkyo-medical",
+    "university_name": "獨協医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-early",
+    "exam_method_name": "一般選抜（前期）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 60,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "問題原本p.1に数学60分と明記されている。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/dokkyo-medical/past-exams/working/2025/general-early/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "a1a7c6de7984ccee87f3a87d545624434d3d8397ba88b04f9ed3b53cce14bf52",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "sourceTitle": "正n角柱の面の彩色",
+      "requirements": [
+        3.7,
+        4,
+        4,
+        4.7,
+        4.7
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 8,
+          "difficultyReason": "色の重複型を分け、底面固定後の円順列と反転同一視を使い分ける。",
+          "strategyReason": "三つの重複型で同一視の扱いが変わり、試験序盤として負荷が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "3回使う色と底面色を選び、円順列の隙間へ同色を配置する。",
+          "strategyReason": "(1)より場合分けが少なく、隙間選択の形が見えれば短い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 8,
+          "difficultyReason": "(2)の構造をnへ一般化し、階乗を約して2次方程式まで整理する。",
+          "strategyReason": "一般式の立式と階乗整理が必要で、(2)を確保した後の候補。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-2"
+            ],
+            "strong_subject": [
+              "math-q1-2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "sourceTitle": "4次方程式と複素数平面の共円条件",
+      "requirements": [
+        2.6,
+        5,
+        4.5,
+        5,
+        4.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "共役根の2次因子を作り、剰余0とx=1代入を順に使う。",
+          "strategyReason": "手順は定型だが4次式の展開を正確に行う必要がある。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 9,
+          "difficultyReason": "絶対値不等式、配置図、方べきの定理、既約化を連続して使う。",
+          "strategyReason": "(1)依存で複素数平面の共円条件まで見抜く必要がある。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1"
+            ],
+            "strong_subject": [
+              "math-q2-1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "sourceTitle": "双曲線の焦点・接線・法線",
+      "requirements": [
+        2.8,
+        3.7,
+        3.3,
+        4,
+        3.3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "標準形へ直してc²=a²+b²を適用する。",
+          "strategyReason": "公式を直接使う短い設問で最優先に確保できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2-i",
+          "label": "(2)(i)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "双曲線の接線公式へ座標を代入する。",
+          "strategyReason": "接線公式が再現できれば短時間で完了する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2-ii",
+          "label": "(2)(ii)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "2本の連立方程式と座標面積公式で処理できる。",
+          "strategyReason": "(2)(i)から連続して計算でき、得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-2-i"
+            ],
+            "strong_subject": [
+              "math-q3-2-i"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-3-i",
+          "label": "(3)(i)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 9,
+          "difficultyReason": "接線と法線の係数比から複数の関係式を作り、二つの双曲線条件へ代入する。",
+          "strategyReason": "比例式の立式が核心で、短い設問を確保後に戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-3-ii",
+          "label": "(3)(ii)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 9,
+          "difficultyReason": "平方恒等式と内積0による三平方を正確に整理する。",
+          "strategyReason": "(3)(i)依存だが、関係式が得られれば式整理は再現可能である。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-3-i"
+            ],
+            "strong_subject": [
+              "math-q3-3-i"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q4",
+      "label": "第4問",
+      "sourceTitle": "指数関数で表される断面と回転体の体積",
+      "requirements": [
+        4.5,
+        5,
+        5,
+        4.5,
+        4.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "(1)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "t=e^{√k}への変換後、断面積を部分積分で積み上げる。",
+          "strategyReason": "断面が三角形と読めれば、変数変換と積分は誘導に沿える。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-2",
+          "label": "(2)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 9,
+          "difficultyReason": "回転断面の外半径を区間で切り替え、指数関数の部分積分を行う。",
+          "strategyReason": "区間分割と回転体積分が長く、60分では最後の候補となる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q4-1"
+            ],
+            "strong_subject": [
+              "math-q4-1"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": null
+}

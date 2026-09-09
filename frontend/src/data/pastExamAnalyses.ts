@@ -7,6 +7,7 @@ export type AnalysisPage = {
   university: string; year: number; subject: string; examLabel: string; duration: string; format: string;
   headline: string; summary: string; requirementsSummary: string;
   targetReviewNote?: string;
+  pendingReason?: string;
   difficultyCounts: number[];
   examTotal: { points: number; subjectCount: number } | null;
   profiles: Array<{ id: string; title: string; text: string }>;

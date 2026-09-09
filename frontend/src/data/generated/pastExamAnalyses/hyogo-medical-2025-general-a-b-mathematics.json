@@ -1,0 +1,269 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "hyogo-medical-2025-general-a-b-mathematics",
+  "route": {
+    "university": "hyogo-medical",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/hyogo-medical/2025/mathematics/analysis/"
+  },
+  "university": "兵庫医科大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "一般選抜A・B（共通問題）",
+  "duration": "数学 90分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "指数関数・対数関数・微分法",
+  "summary": "第1問は指数関数・対数関数・微分法、第2問は数列・極限、第3問は複素数平面。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "title": "対数不等式・微分方程式・場合の数・三角関数・平面図形の小問集合",
+      "subtitle": "指数関数・対数関数・微分法・場合の数",
+      "summary": "対数と絶対値を含む不等式、指数・三角関数型の微分方程式、整数解の個数、三角関数の最大最小、正方形と直角三角形の距離を処理する。",
+      "studyAction": "真数条件と絶対値で場合分けする。関数を微分して係数条件を比較する",
+      "requirements": [
+        1.9,
+        3.5,
+        3.3,
+        3.2,
+        3.7
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "title": "対数と絶対値を含む不等式を解く。",
+          "note": "定型手順だが二つの二次不等式の範囲整理に時間を使う。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "title": "指数関数と正弦の積が微分方程式を満たす定数を求める。",
+          "note": "見落としやすいゼロ関数の場合を含み、論証負荷が高い。",
+          "difficulty": 3,
+          "weak": 1,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q1-3a",
+          "label": "(3)(a)",
+          "title": "和が20となる非負整数3個の組数を求める。",
+          "note": "典型的な重複組合せで短時間に独立得点できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q1-3b",
+          "label": "(3)(b)",
+          "title": "和が20となる正整数3個の組数を求める。",
+          "note": "(a)と対比して条件変換だけで処理できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q1-4",
+          "label": "(4)",
+          "title": "差が固定された2角について三角式の最大値と最小値を求める。",
+          "note": "定義域と等号成立条件の確認に注意を要する標準問題である。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q1-5",
+          "label": "(5)",
+          "title": "正方形と外側の直角三角形から二点間距離を求める。",
+          "note": "補助円の着想が必要だが、見抜ければ計算は短い。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 9
+        }
+      ],
+      "questionsPath": "/past-exam-library/hyogo-medical/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/hyogo-medical/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "title": "食塩水の移動と連立漸化式",
+      "subtitle": "数列・極限",
+      "summary": "二つの容器間で食塩水を往復させる操作を連立漸化式で表し、保存量、一般項、極限を求める。",
+      "studyAction": "濃度から食塩量へ換算する。移動前後を順に追って連立漸化式を作る",
+      "requirements": [
+        1,
+        3.5,
+        3.5,
+        3.2,
+        3.2
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "title": "二つの容器に最初に含まれる食塩量の和を求める。",
+          "note": "濃度の基本換算で確実に回収できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)",
+          "title": "一回の往復操作後の濃度を連立漸化式で表す。",
+          "note": "後続全問の基礎で、表に整理すれば一本道である。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(3)",
+          "title": "連立漸化式を使って食塩量の和が一定であることを示す。",
+          "note": "保存量の形が明示的で、(2)を代入すれば証明できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q2-4",
+          "label": "(4)",
+          "title": "二つの濃度の一般項を初期濃度と操作回数で表す。",
+          "note": "文字式が長く、前問の保存量を活用する見通しが必要である。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 11
+        },
+        {
+          "id": "math-q2-5",
+          "label": "(5)",
+          "title": "操作回数を無限にしたときの二つの濃度の極限を求める。",
+          "note": "(4)の式があれば極限は即座に読める。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        }
+      ],
+      "questionsPath": "/past-exam-library/hyogo-medical/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/hyogo-medical/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "title": "複素数平面上の外心と回転",
+      "subtitle": "複素数平面",
+      "summary": "複素数平面で共線条件と三角形の外心を導き、具体的な配置の回転角と八点周期における最近点を求める。",
+      "studyAction": "商が実数となる条件を共役で表す。等距離条件を展開して外心を解く",
+      "requirements": [
+        3.8,
+        3.8,
+        3.6,
+        3.6,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "title": "原点と二点が同一直線上にある条件を共役複素数で表す。",
+          "note": "共線条件の定型を知っていれば短時間で処理できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "title": "三角形の外心を表す複素数を四つの複素数で表す。",
+          "note": "計算負荷が高いが、等距離条件からの導出は一貫している。",
+          "difficulty": 3,
+          "weak": 1,
+          "strong": 0,
+          "points": 9
+        },
+        {
+          "id": "math-q3-3a",
+          "label": "(3)(a)",
+          "title": "具体的な三角形で外心から二頂点への回転角を求める。",
+          "note": "図形的に中心角を使えば計算が短い。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q3-3b",
+          "label": "(3)(b)",
+          "title": "45度ずつ回転する点列のうち指定点に最も近い整数を求める。",
+          "note": "回転の幾何像が描ければ周期8の比較へ帰着できる。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        }
+      ],
+      "questionsPath": "/past-exam-library/hyogo-medical/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/hyogo-medical/2025/mathematics/answers/#major-question-03"
+    }
+  ],
+  "difficultyCounts": [
+    4,
+    3,
+    6,
+    2
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": null,
+    "profiles": []
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/hyogo-medical/past-exams/working/2025/general-a-b/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "431e8e760b18a0852a2722b543a60e3fe912714723774edb41afd48cc2cc2124",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "targetReviewNote": "元データの目標点・所要時間・前問依存を確認しています。数値は検証完了後に掲載します。",
+  "links": {
+    "questions": "/past-exam-library/hyogo-medical/2025/mathematics/questions/",
+    "answers": "/past-exam-library/hyogo-medical/2025/mathematics/answers/",
+    "university": "/past-exam-library/hyogo-medical/"
+  }
+}

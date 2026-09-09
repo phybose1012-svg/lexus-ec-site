@@ -1,0 +1,280 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "kindai-2025-general-first-a-physics",
+    "university_id": "kindai",
+    "university_name": "近畿大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-first-a",
+    "exam_method_name": "一般入試・前期（A日程）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 120,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "理科は物理・化学・生物から2科目を選択し、2科目を合わせて120分で解答する。物理単独の公式試験時間はない。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kindai/past-exams/working/2025/general-first-a/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "0f03f51d525ee547b7b94a56864ccb46d5c1e39a60ea7d6981e8544318c97b9c",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "I",
+      "sourceTitle": "ばねで連結された小物体と円筒状弾性薄膜の単振動",
+      "requirements": [
+        3.5,
+        3.4,
+        4,
+        3.4,
+        4.2
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-a",
+          "label": "I-A（1〜3）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "左右のばねで力の向きが逆になることを座標差へ正しく反映する必要がある。",
+          "strategyReason": "導入のばね力で、後続の成分計算の基礎になる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-b",
+          "label": "I-B（4・5）",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "自然長に対応する成分と現在位置の成分を分けて式を組み立てる必要がある。",
+          "strategyReason": "I-Aのベクトル成分を二次元へ拡張する定型処理である。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-a"
+            ],
+            "strong_subject": [
+              "phys-q1-a"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-c1",
+          "label": "I-C（6〜8）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "円環の対称性とI-Bの結果を対応させ、外向きを正とする符号を管理する必要がある。",
+          "strategyReason": "図の読み替えが必要だが、I-Bの式を使えば一本道である。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-b"
+            ],
+            "strong_subject": [
+              "phys-q1-b"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-c2",
+          "label": "I-C（9・10）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "圧力差の向き、円筒面部分の面積、ばね力の符号を一つのつり合い式へまとめる。",
+          "strategyReason": "前問のばね力が使えれば、圧力差×面積とつり合いで得点できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-c1"
+            ],
+            "strong_subject": [
+              "phys-q1-c1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-c3",
+          "label": "I-C（11〜14）",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 9,
+          "difficultyReason": "逆数と二乗の一次近似を連続して使い、Δrの一次項だけを残す必要がある。",
+          "strategyReason": "近似計算が長く、前半の確実な得点後に扱うべきである。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-c2"
+            ],
+            "strong_subject": [
+              "phys-q1-c2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-c4",
+          "label": "I-C（15〜17）",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 9,
+          "difficultyReason": "多数の項からつり合い部分を相殺し、質量mを単位角あたりの質量へ換算する必要がある。",
+          "strategyReason": "大問の最終到達点で計算負荷と前問依存が大きい。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-c2",
+              "phys-q1-c3"
+            ],
+            "strong_subject": [
+              "phys-q1-c2",
+              "phys-q1-c3"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "II",
+      "sourceTitle": "トムソン・アストン型質量分析器における陽イオンの運動",
+      "requirements": [
+        3.5,
+        3.5,
+        3.5,
+        2.9,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-a1",
+          "label": "II-A（1〜4）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "電場方向と座標軸を確認し、等加速度運動を速度成分へつなぐ基本問題である。",
+          "strategyReason": "独立した電場中の運動で短時間に回収できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-a2",
+          "label": "II-A（5・6）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "円運動半径と弧度法の関係を順に適用する定型問題である。",
+          "strategyReason": "磁場中の荷電粒子運動の基本式をそのまま使える。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-a3",
+          "label": "II-A（7〜10）",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "三次元の速度成分、円弧の幾何、領域内外の変位を別々に計算して加える必要がある。",
+          "strategyReason": "処理は長いが、前2問の式を保てば座標ごとに分解できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-a1",
+              "phys-q2-a2"
+            ],
+            "strong_subject": [
+              "phys-q2-a1",
+              "phys-q2-a2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-a4",
+          "label": "II-A（11）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "二つの近似式を同じ精度で扱い、v₀を消去して係数を整理する必要がある。",
+          "strategyReason": "前問の座標式が得られていれば代数消去で回収できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-a3"
+            ],
+            "strong_subject": [
+              "phys-q2-a3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-a5",
+          "label": "II-A（あ・い）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "式の比例関係をグラフ上の上下・左右の変化へ正しく翻訳する必要がある。",
+          "strategyReason": "前問の式を用いれば計算量が少なく、図から選択できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-a4"
+            ],
+            "strong_subject": [
+              "phys-q2-a4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-b",
+          "label": "II-B（12・う・え）",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 9,
+          "difficultyReason": "v₀の逆二乗依存を一次展開し、二つの曲がりが相殺する幾何から符号を判断する必要がある。",
+          "strategyReason": "微小変化の式と集束図の両方を読むため、確実な基本項目後に扱う。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-a1",
+              "phys-q2-a2"
+            ],
+            "strong_subject": [
+              "phys-q2-a1",
+              "phys-q2-a2"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": null
+}

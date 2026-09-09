@@ -1,0 +1,258 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "dokkyo-medical-2025-general-early-mathematics",
+  "route": {
+    "university": "dokkyo-medical",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/dokkyo-medical/2025/mathematics/analysis/"
+  },
+  "university": "獨協医科大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "一般選抜（前期）",
+  "duration": "数学 60分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "場合の数",
+  "summary": "第1問は場合の数、第2問は数と式・複素数と方程式、第3問は数と式・図形と方程式、第4問は指数関数・対数関数・積分法。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "title": "正n角柱の面の彩色",
+      "subtitle": "場合の数",
+      "summary": "回転・上下反転を同一視し、底面と側面の隣接条件を満たす彩色を円順列と隙間選択で数える。",
+      "studyAction": "円順列。組合せ",
+      "requirements": [
+        3.7,
+        4,
+        4,
+        4.7,
+        4.7
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "title": "正5角柱を7色・6色・5色すべてで塗り、回転と上下反転を同一視した彩色数を求める。",
+          "note": "三つの重複型で同一視の扱いが変わり、試験序盤として負荷が高い。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 8
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "title": "正7角柱を7色すべてで塗り、1色だけを3面に使う彩色数を求める。",
+          "note": "(1)より場合分けが少なく、隙間選択の形が見えれば短い。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)",
+          "title": "正n角柱をn色で塗り1色を3面に使う彩色数S(n)を一般化し、S(n+1)=16S(n)を満たすnを求める。",
+          "note": "一般式の立式と階乗整理が必要で、(2)を確保した後の候補。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 8
+        }
+      ],
+      "questionsPath": "/past-exam-library/dokkyo-medical/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/dokkyo-medical/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "title": "4次方程式と複素数平面の共円条件",
+      "subtitle": "数と式・複素数と方程式・図形の性質",
+      "summary": "共役複素数から4次式を因数分解し、絶対値条件と方べきの定理で4解の共円条件を求める。",
+      "studyAction": "共役複素数。解と係数の関係",
+      "requirements": [
+        2.6,
+        5,
+        4.5,
+        5,
+        4.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "title": "4次方程式がk+iを解にもつ条件からℓ,mをkで表し、x=1での積が−68となるkを求める。",
+          "note": "手順は定型だが4次式の展開を正確に行う必要がある。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)",
+          "title": "4解の絶対値和からkの範囲を絞り、複素数平面上の4点が共円となるkと(m+27)/ℓを求める。",
+          "note": "(1)依存で複素数平面の共円条件まで見抜く必要がある。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 9
+        }
+      ],
+      "questionsPath": "/past-exam-library/dokkyo-medical/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/dokkyo-medical/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "title": "双曲線の焦点・接線・法線",
+      "subtitle": "数と式・図形と方程式・ベクトル",
+      "summary": "二つの直交する双曲線について焦点、接線と漸近線、他方の法線との一致条件、点間距離を求める。",
+      "studyAction": "双曲線の焦点。接線公式",
+      "requirements": [
+        2.8,
+        3.7,
+        3.3,
+        4,
+        3.3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "title": "双曲線x²−y²=6とx²−y²=−10の焦点座標を求める。",
+          "note": "公式を直接使う短い設問で最優先に確保できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q3-2-i",
+          "label": "(2)(i)",
+          "title": "C1上のP=(2√2,√2)における接線ℓの方程式を求める。",
+          "note": "接線公式が再現できれば短時間で完了する。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q3-2-ii",
+          "label": "(2)(ii)",
+          "title": "C1の漸近線y=±xと接線ℓの交点A,Bを求め、三角形OABの面積を計算する。",
+          "note": "(2)(i)から連続して計算でき、得点効率が高い。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q3-3-i",
+          "label": "(3)(i)",
+          "title": "C2上のQでの法線がC1上のPでの接線と一致する条件からa²b²とOQ/OPを求める。",
+          "note": "比例式の立式が核心で、短い設問を確保後に戻る。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 9
+        },
+        {
+          "id": "math-q3-3-ii",
+          "label": "(3)(ii)",
+          "title": "(3)(i)のa²b²とOP・OQの直交関係からOP²とPQ²を求める。",
+          "note": "(3)(i)依存だが、関係式が得られれば式整理は再現可能である。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 1,
+          "points": 9
+        }
+      ],
+      "questionsPath": "/past-exam-library/dokkyo-medical/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/dokkyo-medical/2025/mathematics/answers/#major-question-03"
+    },
+    {
+      "id": "math-q4",
+      "label": "第4問",
+      "title": "指数関数で表される断面と回転体の体積",
+      "subtitle": "指数関数・対数関数・積分法",
+      "summary": "y=(log t)²で表される断面積を積分し、y軸回転後は半径の大小が切り替わるy=4で分割して体積を求める。",
+      "studyAction": "空間の断面。指数と対数",
+      "requirements": [
+        4.5,
+        5,
+        5,
+        4.5,
+        4.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "(1)",
+          "title": "平面y=kによる立体Aの三角形断面S(k)を求め、0≦k≦9で積分して体積を計算する。",
+          "note": "断面が三角形と読めれば、変数変換と積分は誘導に沿える。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q4-2",
+          "label": "(2)",
+          "title": "立体Aをy軸回転し、半径e²とe^{√k}が切り替わるk=4で分けて立体Bの体積を求める。",
+          "note": "区間分割と回転体積分が長く、60分では最後の候補となる。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 9
+        }
+      ],
+      "questionsPath": "/past-exam-library/dokkyo-medical/2025/mathematics/questions/#major-question-04",
+      "answersPath": "/past-exam-library/dokkyo-medical/2025/mathematics/answers/#major-question-04"
+    }
+  ],
+  "difficultyCounts": [
+    1,
+    2,
+    4,
+    5
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": null,
+    "profiles": []
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/dokkyo-medical/past-exams/working/2025/general-early/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "a1a7c6de7984ccee87f3a87d545624434d3d8397ba88b04f9ed3b53cce14bf52",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "targetReviewNote": "元データの目標点・所要時間・前問依存を確認しています。数値は検証完了後に掲載します。",
+  "links": {
+    "questions": "/past-exam-library/dokkyo-medical/2025/mathematics/questions/",
+    "answers": "/past-exam-library/dokkyo-medical/2025/mathematics/answers/",
+    "university": "/past-exam-library/dokkyo-medical/"
+  }
+}

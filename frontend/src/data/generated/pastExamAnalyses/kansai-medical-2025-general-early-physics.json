@@ -1,0 +1,378 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "kansai-medical-2025-general-early-physics",
+  "route": {
+    "university": "kansai-medical",
+    "year": "2025",
+    "subject": "physics",
+    "path": "/past-exam-library/kansai-medical/2025/physics/analysis/"
+  },
+  "university": "関西医科大学",
+  "year": 2025,
+  "subject": "物理",
+  "examLabel": "一般選抜試験（前期）",
+  "duration": "理科2科目 合計120分",
+  "format": "選択・数値解答など（各設問を参照）",
+  "examTotal": null,
+  "headline": "運動の表し方・力のつり合いと運動の法則",
+  "summary": "Ⅰは運動の表し方・力のつり合いと運動の法則、Ⅱは円運動・電流と磁場、Ⅲは音波、Ⅳは原子と原子核。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "物理が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "物理が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "Ⅰ",
+      "title": "記録タイマーによる重力加速度の測定",
+      "subtitle": "運動の表し方・力のつり合いと運動の法則",
+      "summary": "自由落下するおもりの打点記録から平均速度、加速度、瞬間速度を求め、実験誤差の原因を考察する。",
+      "studyAction": "打点間隔を時間へ換算する。区間距離の変化から加速度を求める",
+      "requirements": [
+        2.6,
+        2.6,
+        2,
+        2,
+        2.6
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "問1",
+          "title": "50 Hzの記録タイマーの打点周期を求める。",
+          "note": "短時間で確実に回収しやすい仮4点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "問2",
+          "title": "2打点目と8打点目までの平均の速さを求める。",
+          "note": "表の値を正しく読めば回収しやすい仮4点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "問3",
+          "title": "区間距離グラフの傾きから落下加速度を求める。",
+          "note": "読み違いの影響が大きいため苦手層は基本設問後に戻る仮4点。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "問4",
+          "title": "等加速度運動として2打点目と8打点目の瞬間速度を求める。",
+          "note": "前問の結果があれば短く処理できる仮4点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q1-5",
+          "label": "問5",
+          "title": "測定加速度を小さくする空気抵抗と摩擦力を挙げる。",
+          "note": "計算不要で独立に回収できる仮4点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        }
+      ],
+      "questionsPath": "/past-exam-library/kansai-medical/2025/physics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/kansai-medical/2025/physics/answers/#major-question-01"
+    },
+    {
+      "id": "phys-q2",
+      "label": "Ⅱ",
+      "title": "サイクロトロンと荷電粒子の運動",
+      "subtitle": "円運動・電流と磁場",
+      "summary": "一様磁場中の荷電粒子の円運動、高周波電場による加速、直流電場へ変更したときの軌跡を扱う。",
+      "studyAction": "ローレンツ力の向きを判定する。円運動の運動方程式から半径と周期を導く",
+      "requirements": [
+        3.2,
+        3.6,
+        2.2,
+        2.2,
+        3.2
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "問1",
+          "title": "初回のy軸到達時に受けるローレンツ力の大きさと向きを求める。",
+          "note": "公式と向心方向で回収しやすい仮4点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "問2",
+          "title": "荷電粒子の円軌道半径と周期を求める。",
+          "note": "後続設問の基礎にもなる仮4点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "問3",
+          "title": "荷電粒子を半周ごとに加速する高周波電源の反転周期を求める。",
+          "note": "問2の周期を半分にすればよい仮4点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q2-4",
+          "label": "問4",
+          "title": "半径rまで加速される間の隙間通過回数を求める。",
+          "note": "複数式を接続するため苦手層は後回しにする仮4点。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q2-5",
+          "label": "問5",
+          "title": "直流電源時に4回隙間を通過するまでの軌跡を描く。",
+          "note": "描図の検証に時間を要するため苦手層は最後に戻る仮4点。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 4
+        }
+      ],
+      "questionsPath": "/past-exam-library/kansai-medical/2025/physics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/kansai-medical/2025/physics/answers/#major-question-02"
+    },
+    {
+      "id": "phys-q3",
+      "label": "Ⅲ",
+      "title": "超音波ドップラー法による心筋層の測定",
+      "subtitle": "音波",
+      "summary": "動く反射面で二度生じるドップラー効果と心筋層の体積一定条件から、内外面速度、厚さ、厚さ変化率を求める。",
+      "studyAction": "音源と観測者の運動を段階に分ける。球殻の体積一定から内外面の動きを比較する",
+      "requirements": [
+        2.7,
+        3,
+        2.4,
+        1.7,
+        3
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-A",
+          "label": "A",
+          "title": "内腔拡張時に心筋層が体表へ近づくことを選ぶ。",
+          "note": "後続式の向きを決める仮4点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-a",
+          "label": "ア",
+          "title": "動く内面が観測する超音波振動数を求める。",
+          "note": "標準公式の一段適用である仮4点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-i",
+          "label": "イ",
+          "title": "反射面を音源とみた受信振動数を求める。",
+          "note": "アの結果を順に代入できる仮4点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-u",
+          "label": "ウ",
+          "title": "受信振動数f1から内面速度v1を逆算する。",
+          "note": "イの式変形で回収できる仮4点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-e",
+          "label": "エ",
+          "title": "受信振動数f2から外面速度v2を求める。",
+          "note": "直前の式を再利用できる仮4点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-o",
+          "label": "オ",
+          "title": "最収縮から最拡張までの時間を周期Tで表す。",
+          "note": "独立して短時間に回収できる仮4点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-ka",
+          "label": "カ",
+          "title": "内外面の速度差から心筋層の厚さ変化量を求める。",
+          "note": "速度差と時間の積で整理できる仮4点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-ki",
+          "label": "キ",
+          "title": "反射波の到達時刻差から心筋層の厚さを求める。",
+          "note": "往復係数2に注意すれば回収できる仮4点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-ku",
+          "label": "ク",
+          "title": "厚さ変化量と厚さから心筋層の厚さ変化率を求める。",
+          "note": "前半の複数結果を統合するため苦手層は最後に戻る仮4点。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 4
+        }
+      ],
+      "questionsPath": "/past-exam-library/kansai-medical/2025/physics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/kansai-medical/2025/physics/answers/#major-question-03"
+    },
+    {
+      "id": "phys-q4",
+      "label": "Ⅳ",
+      "title": "ルテチウム・ハフニウム宇宙核時計",
+      "subtitle": "原子と原子核",
+      "summary": "ベータ崩壊と半減期を用いて同位体の個数変化を表し、同位体比グラフの傾きから太陽系の年齢を求める。",
+      "studyAction": "ベータ崩壊前後の原子番号と質量数を保存する。半減期の指数式を現在値から逆算する",
+      "requirements": [
+        2.8,
+        2.8,
+        2.5,
+        1.7,
+        2.3
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q4-1",
+          "label": "問1",
+          "title": "ルテチウム176のベータ崩壊後の原子番号と質量数を求める。",
+          "note": "独立して確実に回収したい仮5点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q4-2",
+          "label": "問2",
+          "title": "現在n個残るルテチウム176の時刻0での個数を求める。",
+          "note": "後続設問の基礎となる仮5点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q4-3",
+          "label": "問3",
+          "title": "時刻tまでに新たに生成したハフニウムXの個数を求める。",
+          "note": "問2から直接つなげられる仮5点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q4-4",
+          "label": "問4",
+          "title": "初めから存在した分と新規生成分を足して現在のハフニウムX個数を表す。",
+          "note": "前問結果を利用して短く回収できる仮5点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q4-5",
+          "label": "問5",
+          "title": "同位体比グラフの傾き0.09から太陽系の年齢を求める。",
+          "note": "対数計算を含むため苦手層は基本設問後に戻る仮4点。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 4
+        }
+      ],
+      "questionsPath": "/past-exam-library/kansai-medical/2025/physics/questions/#major-question-04",
+      "answersPath": "/past-exam-library/kansai-medical/2025/physics/answers/#major-question-04"
+    }
+  ],
+  "difficultyCounts": [
+    10,
+    9,
+    5,
+    0
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": null,
+    "profiles": []
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kansai-medical/past-exams/working/2025/general-early/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "eacd25e709cfe98e418839e3e071d64b16e6ec516d89bf7a708ad87132c6dcfa",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "targetReviewNote": "元データの目標点・所要時間・前問依存を確認しています。数値は検証完了後に掲載します。",
+  "links": {
+    "questions": "/past-exam-library/kansai-medical/2025/physics/questions/",
+    "answers": "/past-exam-library/kansai-medical/2025/physics/answers/",
+    "university": "/past-exam-library/kansai-medical/"
+  }
+}

@@ -1,0 +1,534 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "showa-medical-2025-general-i-physics",
+    "university_id": "showa-medical",
+    "university_name": "昭和医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-i",
+    "exam_method_name": "一般選抜入試（Ⅰ期）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 140,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "原本問題冊子に「2科目140分」と明記される。物理単独の公式時間はないため、本分析では2科目を等分した70分を編集上の仮時間予算として用いる。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/showa-medical/past-exams/working/2025/general-i/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "0ccff32ef0bacbb18e1e60158e2d2db3e305e3355b4d9c8a6bf23e6777c50999",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "第1問",
+      "sourceTitle": "円運動する音源のドップラー効果",
+      "requirements": [
+        4.2,
+        2.9,
+        3,
+        2.9,
+        4.2
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "(1)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "ドップラー効果の極値を速度ベクトルの射影最大として図形的に読み替える必要がある。",
+          "strategyReason": "接線と半径の直交を見抜けば短い幾何計算であり、後続の基準点にもなる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "(2)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "音源が近づく場合と遠ざかる場合の符号を正しく選ぶ定型問題である。",
+          "strategyReason": "典型公式へ速度成分 r\\omega を代入するだけで2答案を回収できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-1"
+            ],
+            "strong_subject": [
+              "phys-q1-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "(3)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "観測時刻は発音時刻だけでなく音の伝播時間も含むと判断する必要がある。",
+          "strategyReason": "CとBからPまでの距離が等しいことを確認すれば伝播時間が相殺し、計算は短い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-1"
+            ],
+            "strong_subject": [
+              "phys-q1-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "(4)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "発音間隔 \\pi/\\omega に、A・DからPまでの伝播時間差 2r/V を加える必要がある。",
+          "strategyReason": "発音時刻と到達時刻を混同しやすいため、独立した基本問を先に確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-1"
+            ],
+            "strong_subject": [
+              "phys-q1-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-5",
+          "label": "(5)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 6,
+          "difficultyReason": "時刻依存の幾何を自力で補助図に落とし、長い式を導いたうえで伝播時間を反映した非対称グラフを描く必要がある。",
+          "strategyReason": "補助図、式導出、グラフの3段階で計算事故の露出が高く約7分を要する。得意層も他大問の典型問を終えた後に戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-1",
+              "phys-q1-2",
+              "phys-q1-3",
+              "phys-q1-4"
+            ],
+            "strong_subject": [
+              "phys-q1-1",
+              "phys-q1-2",
+              "phys-q1-3",
+              "phys-q1-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-6",
+          "label": "(6)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "衝撃波とドップラー効果を因果順に短くまとめる論述力が必要である。",
+          "strategyReason": "知識を因果順にまとめる独立論述で、前問の長い式に依存しない。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "第2問",
+      "sourceTitle": "接触する2物体の単振動と完全弾性衝突",
+      "requirements": [
+        4.2,
+        3.4,
+        3.5,
+        3.3,
+        4.3
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "m\\alpha=-kx から角振動数 \\sqrt{k/m} を読む定型問題である。",
+          "strategyReason": "独立した周期公式の基本問であり、最優先で確保する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "2物体を一体として扱うだけでなく、接触力 N=0 を分離条件として個別の運動方程式から導く必要がある。",
+          "strategyReason": "大問の核で答案数も多い。苦手層は接触力の立式に時間を使い過ぎず、他の基本問後に戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1"
+            ],
+            "strong_subject": [
+              "phys-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "(3)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "中心で速さ最大、端で速さ0という単振動の対応を時間と振幅の両方に使う。",
+          "strategyReason": "問2の分離速度が得られていれば、単振動の標準対応で2答案を回収できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-2"
+            ],
+            "strong_subject": [
+              "phys-q2-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-4",
+          "label": "(4)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "壁で速度の向きだけが反転する完全弾性衝突を踏まえ、A・Bの同時刻条件を距離式へ変換する必要がある。",
+          "strategyReason": "前問の速度・位置に依存し経路長の取り違えも起きやすいため、独立問後に処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-2",
+              "phys-q2-3"
+            ],
+            "strong_subject": [
+              "phys-q2-2",
+              "phys-q2-3"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q3",
+      "label": "第3問",
+      "sourceTitle": "RLC直列交流回路",
+      "requirements": [
+        3.6,
+        4.4,
+        2.6,
+        2.1,
+        2.7
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "\\omega=2\\pi/T の定義を使う1段階の基本問題である。",
+          "strategyReason": "定義式だけの独立基本問である。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "(2)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "オームの法則と正弦波の実効値 1/\\sqrt2 倍を順に用いる。",
+          "strategyReason": "後続の基準となる電流を短時間で確定できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-1"
+            ],
+            "strong_subject": [
+              "phys-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "(3)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "コイルの位相とリアクタンスを正しく適用する典型問題である。",
+          "strategyReason": "位相が進むことを確認すれば問2と同じ型である。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-2"
+            ],
+            "strong_subject": [
+              "phys-q3-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-4",
+          "label": "(4)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "位相遅れによる余弦項の負号まで正確に処理する必要がある。",
+          "strategyReason": "問3との対比で位相の符号を確認すれば、同じ型で解ける。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-2"
+            ],
+            "strong_subject": [
+              "phys-q3-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-5",
+          "label": "(5)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "問4の時刻関数の零点を1周期内で列挙する短い問題である。",
+          "strategyReason": "問4が未完でも電圧が余弦形と分かれば短時間で回収できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-4"
+            ],
+            "strong_subject": [
+              "phys-q3-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-6",
+          "label": "(6)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "3素子の位相差を保って電圧を加え、三角関数の合成またはベクトル合成を行う。",
+          "strategyReason": "典型問題だが3項の符号と合成で計算事故が起きやすい。苦手層は前半の基本問を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-2",
+              "phys-q3-3",
+              "phys-q3-4"
+            ],
+            "strong_subject": [
+              "phys-q3-2",
+              "phys-q3-3",
+              "phys-q3-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-7",
+          "label": "(7)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "\\omega L=1/(\\omega C) を直列共振条件として整理する。",
+          "strategyReason": "共振条件を覚えていれば独立に解け、短時間で得点できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-8",
+          "label": "(8)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "交流の平均電力を抵抗だけに帰着し、 \\sin^2 の平均を 1/2 とする定型処理である。",
+          "strategyReason": "独立性が高い典型問で、平均値の知識があれば短い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-2"
+            ],
+            "strong_subject": [
+              "phys-q3-2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q4",
+      "label": "第4問",
+      "sourceTitle": "薄膜による光の干渉",
+      "requirements": [
+        4.1,
+        3.5,
+        3.2,
+        3,
+        3.7
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q4-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "媒質中の波長が屈折率の逆数倍になる基本関係を用いる。",
+          "strategyReason": "独立した基本関係であり、最優先で確保する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-2",
+          "label": "(2)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "上面反射だけが \\pi 変化する条件から、半波長ずれを含む強め合い式を立てる。",
+          "strategyReason": "薄膜干渉の標準条件で、後続の基準式になる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-1"
+            ],
+            "strong_subject": [
+              "phys-q4-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-3",
+          "label": "(3)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "明暗を一度経て次の極大になることを次数が1増える条件へ翻訳する必要がある。",
+          "strategyReason": "問2の光路差を固定し、次数を1つ進めるだけで解ける。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-2"
+            ],
+            "strong_subject": [
+              "phys-q4-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-4",
+          "label": "(4)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "波長比から整数次数を特定した後、膜厚式へ戻る2段階の数値計算である。",
+          "strategyReason": "整数次数の特定と数値計算で時間を使うため、苦手層は文字式の問を先に確保する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-2",
+              "phys-q4-3"
+            ],
+            "strong_subject": [
+              "phys-q4-2",
+              "phys-q4-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-5",
+          "label": "(5)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "低屈折率側から高屈折率側への反射だけが \\pi 変化する知識を用いる。",
+          "strategyReason": "前半の数値計算に依存しない独立知識問である。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-6",
+          "label": "(6)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "斜入射の光路差と位相反転を組み合わせ、指定された入射角で表すために屈折の法則を代入する。",
+          "strategyReason": "屈折角ではなく入射角で答える式変形まで必要で、計算事故が起きやすい。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-5"
+            ],
+            "strong_subject": [
+              "phys-q4-5"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-7",
+          "label": "(7)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "最小条件 m=0 を選び、斜入射の式へ数値を正確に代入する。",
+          "strategyReason": "問6の式があれば m=0 の代入計算で回収できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-6"
+            ],
+            "strong_subject": [
+              "phys-q4-6"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": null
+}

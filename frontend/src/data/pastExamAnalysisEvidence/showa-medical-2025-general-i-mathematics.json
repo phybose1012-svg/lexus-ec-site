@@ -1,0 +1,501 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "showa-medical-2025-general-i-mathematics",
+    "university_id": "showa-medical",
+    "university_name": "昭和医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-i",
+    "exam_method_name": "一般選抜入試（Ⅰ期）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 140,
+      "subject_ids": [
+        "english",
+        "mathematics"
+      ],
+      "note": "原本問題冊子に「英語とともに140分」と明記される。数学単独の公式時間はないため、本分析では2科目を等分した70分を編集上の仮時間予算として用いる。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/showa-medical/past-exams/working/2025/general-i/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "0f1f2a6813b1b76ca234f60d9563e7ee998065079924dd9cba4d27f25e656054",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "sourceTitle": "複素数の絶対値・極形式と複素数平面",
+      "requirements": [
+        1.4,
+        3.7,
+        3.5,
+        3.1,
+        3.2
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "共役を用いて比の二次方程式を作り、極形式で4乗まで処理する必要がある。",
+          "strategyReason": "後続問の基礎であり、定型的な共役・極形式計算で得点できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "問1で得た交差項を再利用すれば短いが、絶対値の平方を正しく展開する必要がある。",
+          "strategyReason": "問1の式を流用でき、短時間で回収できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-1"
+            ],
+            "strong_subject": [
+              "math-q1-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 8,
+          "difficultyReason": "問1の比を一般のn乗へ拡張し、偏角の合同条件と大きな指数を整理する長い計算が必要。",
+          "strategyReason": "高配点候補だが計算量と前提依存が大きいため、独立短問の後に回す。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-1"
+            ],
+            "strong_subject": [
+              "math-q1-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-4",
+          "label": "(4)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "問1で得た偏角差と2辺の長さを面積公式へ代入する独立性の高い短問。",
+          "strategyReason": "問2・問3を飛ばしても解けるため確実に取る。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-1"
+            ],
+            "strong_subject": [
+              "math-q1-1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "sourceTitle": "整数・対数領域・積分評価の総合小問",
+      "requirements": [
+        1.6,
+        3.5,
+        3.3,
+        3.5,
+        3.4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1-1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "ユークリッドの互除法をそのまま実行する基本問題。",
+          "strategyReason": "最短時間で確実に得点でき、次問の前提にもなる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(1-2)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "互除法の商と余りを逆向きに読み、連分数の係数へ対応させる。",
+          "strategyReason": "問1の計算を利用できるため、型を知っていれば短時間で取れる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1"
+            ],
+            "strong_subject": [
+              "math-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "2つの根を代入した条件を組み合わせ、複数の整数場合分けを漏れなく処理する必要がある。",
+          "strategyReason": "場合分けが長く、苦手層は短問を優先する。得意層は因数定理の型で回収できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-4",
+          "label": "(3-1)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "真数条件、絶対値、底が1未満であることを4領域に分けて図示する必要がある。",
+          "strategyReason": "符号と不等号の反転を丁寧に処理できれば次問の面積へつながる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-5",
+          "label": "(3-2)",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "前問の境界を2区間に分けて積分する標準処理。",
+          "strategyReason": "領域図が正しければ定積分は短く、得意層は続けて取る。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-4"
+            ],
+            "strong_subject": [
+              "math-q2-4"
+            ]
+          }
+        },
+        {
+          "id": "math-q2-6",
+          "label": "(4)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "単調減少関数の長方形と積分の大小関係を上下両側から作る必要がある。",
+          "strategyReason": "典型的な積分評価で独立しており、手順の再現性が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "sourceTitle": "座標空間の四面体と回転体",
+      "requirements": [
+        4.8,
+        4.5,
+        4.3,
+        2.5,
+        4.7
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "内積条件に加え、残りの座標が0でない実数として存在する条件を同時に課す必要がある。",
+          "strategyReason": "後続の最大化範囲を与え、式の型も明確である。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "合同な面を見抜いて表面積をtだけで表し、平方完成で最大化する。",
+          "strategyReason": "問1の範囲を使うが、対称性を捉えれば再現性の高い最大化である。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1"
+            ],
+            "strong_subject": [
+              "math-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 15,
+          "difficultyReason": "3種類の回転体を、断面の円環・円錐・対称性に分けて計算する長い空間処理が必要。",
+          "strategyReason": "高配点候補だが図形把握と計算量が大きい。全体の短問を回収後に着手する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1",
+              "math-q3-2"
+            ],
+            "strong_subject": [
+              "math-q3-1",
+              "math-q3-2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q4",
+      "label": "第4問",
+      "sourceTitle": "反復試行の確率と最頻値",
+      "requirements": [
+        0.7,
+        2.7,
+        2.7,
+        4.3,
+        3.4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "最後の回転を固定し、それ以前の移動回数を組合せで数える導入問題。",
+          "strategyReason": "問題の操作を理解できれば短い反復試行として確実に取れる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-2",
+          "label": "(2)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "最後の成功を固定した負の二項型の数え上げを一般化する。",
+          "strategyReason": "問1の構造を一般化するだけで、次問の前提にもなる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q4-1"
+            ],
+            "strong_subject": [
+              "math-q4-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q4-3",
+          "label": "(3)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "隣接項比を1と比較し、等号により最大が2項並ぶことを正確に読む。",
+          "strategyReason": "典型的な隣接項比で計算量も少なく、第4問を完結できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q4-2"
+            ],
+            "strong_subject": [
+              "math-q4-2"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 70,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 40,
+        "targetPercent": 40,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 34.8,
+        "maximum": {
+          "points": 40,
+          "minutes": 68,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "now": {
+          "points": 51,
+          "minutes": 81.4,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-6",
+            "math-q3-1",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 125.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q2-5",
+            "math-q2-6",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 8.7,
+        "maximum": {
+          "points": 100,
+          "minutes": 69,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q2-5",
+            "math-q2-6",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "now": {
+          "points": 77,
+          "minutes": 57,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q2-5",
+            "math-q2-6",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 69,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q2-5",
+            "math-q2-6",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        }
+      }
+    ]
+  }
+}

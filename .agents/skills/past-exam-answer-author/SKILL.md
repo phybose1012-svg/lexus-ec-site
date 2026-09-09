@@ -7,6 +7,8 @@ description: Build independently written Lexus EC answer-and-explanation pages f
 
 Create answer pages from an independently written, structured JSON source and compile them into the generic past-exam answer route.
 
+For an explicitly requested bulk staging import of already-edited learner editions, use [Past Exam Staging Batch](../past-exam-staging-batch/SKILL.md) instead. That separate projection mode preserves `editorial_adaptation_import` provenance and unfinished review status; it must not satisfy or bypass this skill's independently-authored completion contract.
+
 ## Rights boundary
 
 - Treat internal answer reconstructions as verification material only.

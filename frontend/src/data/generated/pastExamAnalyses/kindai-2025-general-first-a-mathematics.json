@@ -1,0 +1,460 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "kindai-2025-general-first-a-mathematics",
+  "route": {
+    "university": "kindai",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/kindai/2025/mathematics/analysis/"
+  },
+  "university": "近畿大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "一般入試・前期（A日程）",
+  "duration": "数学 60分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "三角関数・指数関数・対数関数",
+  "summary": "第Ⅰ問は三角関数・指数関数・対数関数、第Ⅱ問は確率・数列、第Ⅲ問はベクトル・図形と方程式。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第Ⅰ問",
+      "title": "三角関数を含む対数関数と整数値条件",
+      "subtitle": "三角関数・指数関数・対数関数・2次関数",
+      "summary": "三角式の真数を二次関数へ変換し、定義域、最大値、指数式が整数となる解の個数と総和を調べる。",
+      "studyAction": "二倍角公式で真数を二次式へ直す。真数条件を解いて三角関数の定義域へ戻す",
+      "requirements": [
+        2.2,
+        3.9,
+        3.5,
+        3.4,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "title": "二倍角公式を用いて真数をtの二次式で表す。",
+          "note": "後続の基礎となる短い式変形である。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "title": "真数条件からfの定義域を求める。",
+          "note": "真数条件の典型で、単位円の確認まで一本道である。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)",
+          "title": "二次関数の最大値からfの最大値とcosxを求める。",
+          "note": "平方完成で安定して得点できる。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q1-4",
+          "label": "(4)",
+          "title": "5のf乗が整数となるxの個数と総和を求める。",
+          "note": "場合分けを図で整理すれば処理できるが、数え落としに注意を要する。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q1-5",
+          "label": "(5)",
+          "title": "20のf乗が整数となるxの個数と総和を近似対数で求める。",
+          "note": "近似計算と解数の対応が長く、最後に回す候補である。",
+          "difficulty": 3,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        }
+      ],
+      "questionsPath": "/past-exam-library/kindai/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/kindai/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "第Ⅱ問",
+      "title": "硬貨列の漸化式と二項確率の最大項",
+      "subtitle": "確率・数列",
+      "summary": "偏りのある硬貨について基本確率、連続する表を禁じた列の漸化式、二項確率が一意に最大となる条件を扱う。",
+      "studyAction": "余事象で確率を求める。末尾で場合分けして漸化式を立てる",
+      "requirements": [
+        1,
+        3.4,
+        3.6,
+        3.6,
+        3.6
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "title": "3回投げたときの基本的な二項確率を求める。",
+          "note": "典型公式で短時間に独立得点できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q2-2i",
+          "label": "(2)(i)",
+          "title": "連続する表を禁じた長さ2〜4の列を数える。",
+          "note": "小規模列挙で確実に回収でき、次問の準備にもなる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q2-2ii",
+          "label": "(2)(ii)",
+          "title": "末尾別の漸化式を用いてX5とX10の確率を求める。",
+          "note": "漸化式が立てば反復計算で進められる。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(3)",
+          "title": "二つの確率条件を満たすpの範囲を求める。",
+          "note": "文章条件の解釈と不等式処理が長く、時間配分上は最後の候補である。",
+          "difficulty": 3,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        }
+      ],
+      "questionsPath": "/past-exam-library/kindai/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/kindai/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "第Ⅲ問",
+      "title": "球と平面の交円上を動く点と面積最小",
+      "subtitle": "ベクトル・図形と方程式・微分法",
+      "summary": "座標空間の正三角形と平面までの距離を求め、球との交円上の点の座標条件から三角形の面積を一変数化して最小化する。",
+      "studyAction": "空間座標で距離と面積を求める。対称性から垂足を重心と見抜く",
+      "requirements": [
+        3.2,
+        3.4,
+        3,
+        3.4,
+        3.4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "title": "BCの中点までの距離と正三角形ABCの面積を求める。",
+          "note": "公式適用で確実に独立得点できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "title": "原点から平面ABCまでの距離を求める。",
+          "note": "対称性を見抜けば計算は短い。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q3-3i",
+          "label": "(3)(i)",
+          "title": "球と平面の交円Dの半径を求める。",
+          "note": "前問の距離を使う定型処理である。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q3-3ii",
+          "label": "(3)(ii)",
+          "title": "q+rとqrをpで表す。",
+          "note": "二つの基本式を連立して順に整理できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q3-3iii",
+          "label": "(3)(iii)",
+          "title": "q,rが実数となる判別式からpの範囲を求める。",
+          "note": "和と積が得られていれば判別式の典型問題になる。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q3-3iv",
+          "label": "(3)(iv)",
+          "title": "三角形PQRの面積をpで表して最小値を求める。",
+          "note": "計算量が最も多く、前半の確実な得点後に扱うべき設問である。",
+          "difficulty": 3,
+          "weak": 1,
+          "strong": 1,
+          "points": 9
+        }
+      ],
+      "questionsPath": "/past-exam-library/kindai/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/kindai/2025/mathematics/answers/#major-question-03"
+    }
+  ],
+  "difficultyCounts": [
+    4,
+    4,
+    4,
+    3
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 48,
+        "targetPercent": 48,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 29.6,
+        "maximum": {
+          "points": 48,
+          "minutes": 59.9,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3i",
+            "math-q3-3ii",
+            "math-q3-3iii"
+          ]
+        },
+        "now": {
+          "points": 68,
+          "minutes": 75.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2i",
+            "math-q2-2ii",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3i",
+            "math-q3-3ii",
+            "math-q3-3iii"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 106.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2i",
+            "math-q2-2ii",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3i",
+            "math-q3-3ii",
+            "math-q3-3iii",
+            "math-q3-3iv"
+          ]
+        },
+        "title": "数学が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 48,
+          "minutes": 59.9,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3i",
+            "math-q3-3ii",
+            "math-q3-3iii"
+          ]
+        },
+        "additional": [],
+        "routeKind": "replacement",
+        "replaced": [
+          {
+            "id": "math-q1-3",
+            "label": "第Ⅰ問 (3)"
+          },
+          {
+            "id": "math-q2-2i",
+            "label": "第Ⅱ問 (2)(i)"
+          },
+          {
+            "id": "math-q2-2ii",
+            "label": "第Ⅱ問 (2)(ii)"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 7.4,
+        "maximum": {
+          "points": 100,
+          "minutes": 58.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2i",
+            "math-q2-2ii",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3i",
+            "math-q3-3ii",
+            "math-q3-3iii",
+            "math-q3-3iv"
+          ]
+        },
+        "now": {
+          "points": 91,
+          "minutes": 52.4,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2i",
+            "math-q2-2ii",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3i",
+            "math-q3-3ii",
+            "math-q3-3iii"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 58.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2i",
+            "math-q2-2ii",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3i",
+            "math-q3-3ii",
+            "math-q3-3iii",
+            "math-q3-3iv"
+          ]
+        },
+        "title": "数学が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 91,
+          "minutes": 52.4,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2i",
+            "math-q2-2ii",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3i",
+            "math-q3-3ii",
+            "math-q3-3iii"
+          ]
+        },
+        "additional": []
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kindai/past-exams/working/2025/general-first-a/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "1d295542ab6b655429b8a54c1c7dd64df8a0887e0abcc5205fbc0994687c5656",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/kindai/2025/mathematics/questions/",
+    "answers": "/past-exam-library/kindai/2025/mathematics/answers/",
+    "university": "/past-exam-library/kindai/"
+  }
+}

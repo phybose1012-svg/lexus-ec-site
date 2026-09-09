@@ -1,0 +1,464 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "tokyo-medical-2025-general-mathematics",
+  "route": {
+    "university": "tokyo-medical",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/tokyo-medical/2025/mathematics/analysis/"
+  },
+  "university": "東京医科大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "一般選抜",
+  "duration": "数学 60分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "三角関数・図形と方程式",
+  "summary": "第1問は三角関数・図形と方程式、第2問は集合と命題・場合の数、第3問は指数関数・対数関数、第4問はベクトル・図形と方程式。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "title": "独立4題の小問集合",
+      "subtitle": "三角関数・図形と方程式・積分法",
+      "summary": "三角関数、放物線、絶対値を含む定積分、5乗根を独立に処理する。",
+      "studyAction": "和積公式。2曲線の共通点を通る直線",
+      "requirements": [
+        0.3,
+        2.8,
+        2.5,
+        3.3,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)（ア・イ）",
+          "title": "和積公式で分子・分母を積へ変形し三角比を簡約する。",
+          "note": "短い定型変形で両層が最優先で確保したい。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)（ウ〜ク）",
+          "title": "2放物線の式を線形結合し、二次項を消して共通2点を通る直線を求める。",
+          "note": "方針が決まれば連立式の加減だけで完結する。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)（ケ〜サ）",
+          "title": "根号を絶対値に直し、x=1で区間を分けて定積分を求める。",
+          "note": "絶対値の区間分割が見えれば確実に得点できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q1-4",
+          "label": "(4)（シ・ス）",
+          "title": "x^5-1の因数分解へx=2を代入し、4つの因子の積を求める。",
+          "note": "型を知る層には短いが、発想が出なければ停滞するため苦手層は後へ回す。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 7
+        }
+      ],
+      "questionsPath": "/past-exam-library/tokyo-medical/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/tokyo-medical/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "title": "部分集合の個数と要素の分配",
+      "subtitle": "集合と命題・場合の数",
+      "summary": "8要素の各要素が属する領域を選ぶ考え方で部分集合と順序付き組を数える。",
+      "studyAction": "部分集合の個数。二項定理",
+      "requirements": [
+        0.7,
+        1.7,
+        1.7,
+        2.7,
+        2.3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)（アイウ）",
+          "title": "8要素それぞれを含む・含まないの2択として部分集合を数える。",
+          "note": "最短で確保できる基本得点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)（エ〜キ）",
+          "title": "各要素をB、Cのみ、Cの外の3領域へ分配してB⊂Cの組を数える。",
+          "note": "要素の分配という型が見えれば3^8で直ちに終わる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(3)（ク〜サ）",
+          "title": "BとCが交わらない条件を各要素の3つの配置先として数える。",
+          "note": "(2)の考えを再利用でき、短時間で確保できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        }
+      ],
+      "questionsPath": "/past-exam-library/tokyo-medical/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/tokyo-medical/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "title": "常用対数による桁数",
+      "subtitle": "指数関数・対数関数",
+      "summary": "桁数を10の冪の不等式へ翻訳し、対数評価や区間集計を行う。",
+      "studyAction": "桁数と常用対数。平方数の範囲分け",
+      "requirements": [
+        0,
+        2.7,
+        3,
+        3,
+        3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)（アイ）",
+          "title": "log10 5^50を評価して5^50の桁数を求める。",
+          "note": "与えられた対数値を直接使う短い得点源。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)（ウ〜オ）",
+          "title": "n^2の桁数が1〜5となるnの範囲を分け、100項の桁数を合計する。",
+          "note": "計算量があるため苦手層は短問後、得意層は確実な中盤得点として扱う。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)（カ）",
+          "title": "2^nが100桁となる対数不等式から整数nの範囲と個数を求める。",
+          "note": "不等式の型が明確で、(1)の考えも再利用できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        }
+      ],
+      "questionsPath": "/past-exam-library/tokyo-medical/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/tokyo-medical/2025/mathematics/answers/#major-question-03"
+    },
+    {
+      "id": "math-q4",
+      "label": "第4問",
+      "title": "平行四辺形の回転体",
+      "subtitle": "ベクトル・図形と方程式・微分法",
+      "summary": "空間内の平行四辺形を高さごとの線分で切り、z軸回転後の同心円環から面積・体積・距離最大を求める。",
+      "studyAction": "空間座標とベクトル。媒介変数表示",
+      "requirements": [
+        3.8,
+        3.5,
+        2.5,
+        3.3,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "(1)（ア〜ク）",
+          "title": "平行四辺形の頂点Cと、辺AB上で高さz=tとなる点の座標を求める。",
+          "note": "後続と独立に座標計算だけで得点できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q4-2",
+          "label": "(2)（ケ・コ）",
+          "title": "高さz=tの線分を回転してできる同心円環を特定し、z=1の断面積を求める。",
+          "note": "得意層には誘導が明確だが、苦手層は断面像の把握に時間を要する。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q4-3",
+          "label": "(3)（サ・シ）",
+          "title": "円環断面積π(9-t)を0から2まで積分して回転体の体積を求める。",
+          "note": "(2)の式があれば短く、得意層は続けて確保する。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q4-4",
+          "label": "(4)（ス・セ）",
+          "title": "高さごとの外周点について原点距離の二乗を最大化し、頂点Cで12を得る。",
+          "note": "図形的な最大化の根拠が必要で、短問を守った後の最終候補とする。",
+          "difficulty": 2,
+          "weak": 2,
+          "strong": 1,
+          "points": 7
+        }
+      ],
+      "questionsPath": "/past-exam-library/tokyo-medical/2025/mathematics/questions/#major-question-04",
+      "answersPath": "/past-exam-library/tokyo-medical/2025/mathematics/answers/#major-question-04"
+    }
+  ],
+  "difficultyCounts": [
+    3,
+    8,
+    3,
+    0
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 50,
+        "targetPercent": 50,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 35.2,
+        "maximum": {
+          "points": 50,
+          "minutes": 59.4,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q4-1"
+          ]
+        },
+        "now": {
+          "points": 64,
+          "minutes": 70.7,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-3",
+            "math-q4-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 93,
+          "minutes": 94.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "title": "数学が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 50,
+          "minutes": 59.4,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q4-1"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q1-4",
+            "label": "第1問 (4)（シ・ス）"
+          }
+        ],
+        "routeKind": "replacement",
+        "replaced": [
+          {
+            "id": "math-q1-2",
+            "label": "第1問 (2)（ウ〜ク）"
+          },
+          {
+            "id": "math-q1-3",
+            "label": "第1問 (3)（ケ〜サ）"
+          },
+          {
+            "id": "math-q3-3",
+            "label": "第3問 (3)（カ）"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 8.8,
+        "maximum": {
+          "points": 100,
+          "minutes": 53.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3",
+            "math-q4-4"
+          ]
+        },
+        "now": {
+          "points": 93,
+          "minutes": 47.8,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 53.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3",
+            "math-q4-4"
+          ]
+        },
+        "title": "数学が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 93,
+          "minutes": 47.8,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "additional": []
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/tokyo-medical/past-exams/working/2025/general/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "a81c8f90328a79202dd66d363673f471ab568bdccb9e92a3f03387a1836764ec",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/tokyo-medical/2025/mathematics/questions/",
+    "answers": "/past-exam-library/tokyo-medical/2025/mathematics/answers/",
+    "university": "/past-exam-library/tokyo-medical/"
+  }
+}

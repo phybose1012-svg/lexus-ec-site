@@ -1,0 +1,413 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "tohoku-medical-pharmaceutical-2025-general-mathematics",
+  "route": {
+    "university": "tohoku-medical-pharmaceutical",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/tohoku-medical-pharmaceutical/2025/mathematics/analysis/"
+  },
+  "university": "東北医科薬科大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "一般選抜",
+  "duration": "数学 70分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "数と式・複素数と方程式",
+  "summary": "第Ⅰ問は数と式・複素数と方程式、第Ⅱ問は場合の数、第Ⅲ問は三角関数・指数関数・対数関数。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第Ⅰ問",
+      "title": "2次方程式の解と係数・円上の最大最小",
+      "subtitle": "数と式・複素数と方程式・図形と方程式",
+      "summary": "解と係数の関係、判別式、a-b平面上の円と放物線を用いて複素根・重解・式の最大最小を処理する。",
+      "studyAction": "解と係数の関係。判別式",
+      "requirements": [
+        2.5,
+        4,
+        3.5,
+        4,
+        3.8
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "title": "非実数解の絶対値を根の積へ直し、条件領域上で最大化する。",
+          "note": "領域図を正しく作れれば短く、苦手層は図示で止まりやすい。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "title": "重解条件からb=a²/16を得て、条件式との連立でa,bと重解を求める。",
+          "note": "重解条件が直接使え、独立に得点しやすい。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q1-3-1",
+          "label": "(3-1)",
+          "title": "対称式をa,bで表し、条件式でbだけの2次式へ変形して最大値を求める。",
+          "note": "(3)で得たbの範囲を使えば短時間で完了する。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 9
+        },
+        {
+          "id": "math-q1-3-2",
+          "label": "(3-2)",
+          "title": "a+√3bを円弧上で最大・最小化し、端点と接線条件を使い分ける。",
+          "note": "領域の端点と接線の双方を確認するため、先に短い設問を確保する。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 1,
+          "points": 9
+        }
+      ],
+      "questionsPath": "/past-exam-library/tohoku-medical-pharmaceutical/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/tohoku-medical-pharmaceutical/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "第Ⅱ問",
+      "title": "格子経路の数え上げと包除原理",
+      "subtitle": "場合の数",
+      "summary": "最短経路を組合せで数え、指定点・禁止辺・西向き1回という条件を積・包除・文字列で処理する。",
+      "studyAction": "組合せ。経路の積の法則",
+      "requirements": [
+        3.2,
+        2.8,
+        3,
+        4.2,
+        3.6
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "title": "東5回・北4回の並べ替えとして最短経路を数える。",
+          "note": "定型で最優先に確保できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)",
+          "title": "AからQとQからBの経路数を掛けて指定点通過を数える。",
+          "note": "図から移動回数を読めれば確実に進められる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(3)",
+          "title": "QR・RSを通る経路を数え、包除原理でどちらも通らない経路を求める。",
+          "note": "三つの経路数を正確に整理する必要がある。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q2-4-1",
+          "label": "(4-1)",
+          "title": "P・Q・Rで西へ戻る三つの場合を分け、前後の最短経路を掛けて足す。",
+          "note": "場合分けは明確だが計算項が三つある。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q2-4-2",
+          "label": "(4-2)",
+          "title": "西向き1回を含む文字列を数え、B到達後に戻る不適切な経路を除く。",
+          "note": "数え上げのモデル化が難しく、最後の候補とする。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 9
+        }
+      ],
+      "questionsPath": "/past-exam-library/tohoku-medical-pharmaceutical/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/tohoku-medical-pharmaceutical/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "第Ⅲ問",
+      "title": "三角関数を含む関数の微分と極値",
+      "subtitle": "三角関数・指数関数・対数関数・微分法",
+      "summary": "g'(x)=tan xを積分し、tan x=tで導関数を因数分解して増減表から二つの極小値と一つの極大値を求める。",
+      "studyAction": "合成関数の微分。tan xの積分",
+      "requirements": [
+        1,
+        4.7,
+        4.7,
+        4.3,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "title": "fを微分し、x=0とπ/4を代入して導関数値を求める。",
+          "note": "(ii)を直接使う短い計算である。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 8
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "title": "tan x=tでf'を因数分解し、gを積分して二つの極小値を計算する。",
+          "note": "試験中最重量の計算で、短い設問を確保した後に扱う。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 8
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)",
+          "title": "増減表で得たx=π/12をfへ代入し、加法定理で極大値を整理する。",
+          "note": "(2)依存で計算も長いため最後に回す。",
+          "difficulty": 2,
+          "weak": 2,
+          "strong": 1,
+          "points": 9
+        }
+      ],
+      "questionsPath": "/past-exam-library/tohoku-medical-pharmaceutical/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/tohoku-medical-pharmaceutical/2025/mathematics/answers/#major-question-03"
+    }
+  ],
+  "difficultyCounts": [
+    0,
+    5,
+    5,
+    2
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 70,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 57,
+        "targetPercent": 57,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 32,
+        "maximum": {
+          "points": 57,
+          "minutes": 68.8,
+          "questionIds": [
+            "math-q1-2",
+            "math-q1-3-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4-1",
+            "math-q3-1"
+          ]
+        },
+        "now": {
+          "points": 41,
+          "minutes": 55.3,
+          "questionIds": [
+            "math-q1-2",
+            "math-q1-3-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 74,
+          "minutes": 85.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3-1",
+            "math-q1-3-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4-1",
+            "math-q3-1"
+          ]
+        },
+        "title": "数学が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 57,
+          "minutes": 68.8,
+          "questionIds": [
+            "math-q1-2",
+            "math-q1-3-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4-1",
+            "math-q3-1"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q2-3",
+            "label": "第Ⅱ問 (3)"
+          },
+          {
+            "id": "math-q2-4-1",
+            "label": "第Ⅱ問 (4-1)"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 8,
+        "maximum": {
+          "points": 100,
+          "minutes": 67.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3-1",
+            "math-q1-3-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4-1",
+            "math-q2-4-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "now": {
+          "points": 65,
+          "minutes": 37.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4-1",
+            "math-q3-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 67.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3-1",
+            "math-q1-3-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4-1",
+            "math-q2-4-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "title": "数学が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 100,
+          "minutes": 67.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3-1",
+            "math-q1-3-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4-1",
+            "math-q2-4-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q1-3-2",
+            "label": "第Ⅰ問 (3-2)"
+          },
+          {
+            "id": "math-q2-4-2",
+            "label": "第Ⅱ問 (4-2)"
+          },
+          {
+            "id": "math-q3-2",
+            "label": "第Ⅲ問 (2)"
+          },
+          {
+            "id": "math-q3-3",
+            "label": "第Ⅲ問 (3)"
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/tohoku-medical-pharmaceutical/past-exams/working/2025/general/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "54696cdcdc903486de9654a36b0a131de7f3c212509d51daa8ed0b19e0b3b93e",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/tohoku-medical-pharmaceutical/2025/mathematics/questions/",
+    "answers": "/past-exam-library/tohoku-medical-pharmaceutical/2025/mathematics/answers/",
+    "university": "/past-exam-library/tohoku-medical-pharmaceutical/"
+  }
+}

@@ -1,0 +1,421 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "kurume-2025-general-early-mathematics",
+    "university_id": "kurume",
+    "university_name": "久留米大学医学部",
+    "academic_year": 2025,
+    "exam_method_id": "general-early",
+    "exam_method_name": "前期一般選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 90,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "問題冊子の科目扉に数学90分と明記されている。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kurume/past-exams/working/2025/general-early/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "c14e21b9e8703b1b515037efd62617139be068af7685c37487affa59525286bc",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "sourceTitle": "対数条件と相加・相乗平均による最小値",
+      "requirements": [
+        0,
+        4.5,
+        3.5,
+        4,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)（ア〜ク）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "対数変換で制約 1/x+1/y=2 を得た後、相加・相乗平均の等号条件と組み合わせる典型的な流れだが、最小値と等号条件を連続して管理する必要がある。",
+          "strategyReason": "底をそろえた対数変換と相加・相乗平均は再現可能な典型手順で、得意層は先に確保したい。苦手層も解法は定型だが、逆数制約・等号条件・分数座標まで処理が続き計算ミスにさらされるため、より短い第3問(1)や第4問(1)を先に取り、時間が残れば戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)（ケ〜シ）",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 8,
+          "difficultyReason": "3変数の対数条件を整理し、相加・相乗平均を3組に分けて同時に等号成立条件を合わせる必要があり、定型知識に加えて式の設計力を要する。",
+          "strategyReason": "対数化の後に3変数の相加・相乗平均を組み立て、三つの等号条件を同時に処理するため、長く計算ミスにもさらされる。苦手層は第3問の微分計算や第4問(1)を優先して本問は切る。得意層も一巡目では保留し、基本的な微分・商計算を回収後に戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "sourceTitle": "正四面体の内積と平面のベクトル方程式",
+      "requirements": [
+        3.5,
+        4.5,
+        4,
+        4,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)（ス〜ツ）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "正四面体の辺ベクトルの内積がすべて 1/2 であることを使えば方針は典型的だが、係数付き内積の展開量が多い。",
+          "strategyReason": "内積0を2本立てる再現可能なルートはあるが、分数係数の展開が長く計算ミスにさらされる。苦手層は短い微分計算を先に取り、戻るなら内積表を先に書いて処理する。得意層は標準ベクトル問題として確保したい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)（テ〜ニ）",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 8,
+          "difficultyReason": "前問の法線方向を平面上の係数和で正規化し、さらに直線CHを媒介変数表示して平面OABとの交点を求める二段階処理が必要である。",
+          "strategyReason": "(1)の正答を前提に、係数和と直線・平面の交点まで計算が続き、途中値の影響を受けやすい。苦手層はこの12分相当を第3問(1)(2)(i)へ回す。得意層は(1)を確保してから後半へ戻り、平面OAB上では \\vec c の係数が0という条件を使う。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1"
+            ],
+            "strong_subject": [
+              "math-q2-1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "sourceTitle": "3次・4次関数の極値と補間曲線",
+      "requirements": [
+        1,
+        4,
+        3.6,
+        3.8,
+        2.6
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)（ヌ・ネ）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "微分・因数分解・極値座標・2点を通る直線という定型手順で完結し、計算も比較的短い。",
+          "strategyReason": "導関数を因数分解して2点を出し直線式へ進む典型手順で再現性が高く、短時間で7点を見込めるため両層とも一巡目で確保する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2i",
+          "label": "(2)(i)（ノ〜ヘ）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "次数をそろえた多項式の割り算を正確に行う計算問題で、方針選択より筆算の精度が中心となる。",
+          "strategyReason": "割り算の手順が固定され、後続(ii)の極小値計算にも使える高効率項目である。次数と符号を縦にそろえて一巡目で確保する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2ii",
+          "label": "(2)(ii)（ホ〜ヤ）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "導関数の因数分解と増減判定は典型だが、無理数を含む極小値を前問の余りで簡約する工夫と複号対応が必要である。",
+          "strategyReason": "増減表までは典型だが、無理数の代入計算と複号対応で負荷が上がる。苦手層は(2)(i)まで先に確保し、残り時間で戻る。得意層は前問の余りを使えば8分程度で処理できるため続けて解く。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-2i"
+            ],
+            "strong_subject": [
+              "math-q3-2i"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-2iii",
+          "label": "(2)(iii)（ユ〜ラ）",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 8,
+          "difficultyReason": "無理数を含む3点を2次式へ代入し、対称な式の和差を利用して3係数を解く長い連立計算が必要である。",
+          "strategyReason": "前問の3点を正しく保持したうえで無理数を含む3元連立を解くため計算量と連鎖依存が大きい。苦手層はより高効率の第1問(1)や第5問(1)へ時間を回す。得意層は他の独立設問を確保後、②−③と②＋③で根号部分を整理して戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-2i",
+              "math-q3-2ii"
+            ],
+            "strong_subject": [
+              "math-q3-2i",
+              "math-q3-2ii"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q4",
+      "label": "第4問",
+      "sourceTitle": "整数操作の逆算と3項間漸化式",
+      "requirements": [
+        0,
+        3.1,
+        2.8,
+        3.7,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "(1)（リ）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "4の一つ前を8または3と逆算し、それぞれの一つ前を列挙する短い場合分けで解ける。",
+          "strategyReason": "逆操作を2段たどるだけで候補16、7、6を列挙でき、短時間で7点を確保できるため両層とも最優先で解く。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-2",
+          "label": "(2)（ル・レ・ロ）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "倍数の場合と非倍数の c-1 通りを、操作回数をずらして a_{n-1} 、 a_{n-2} に対応させる読解が必要である。",
+          "strategyReason": "式計算は短いが会話文から全単射と操作回数のずれを読み取る必要がある。苦手層は第4問(1)を確保して他の定型計算へ進み、戻るなら倍数・非倍数の2行表を作る。得意層は漸化式の典型分類として続けて解く。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-3",
+          "label": "(3)（ワ〜お）",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 8,
+          "difficultyReason": "判別式を奇数の平方とみる整数条件に加え、3項間漸化式を二つの等比数列へ変形し一般項を消去する長い処理が必要である。",
+          "strategyReason": "整数条件、特性方程式、二つの補助数列、消去まで段階が多く、前問の漸化式にも依存して計算ミスにさらされる。苦手層は切って第1問(1)や第5問(1)へ回す。得意層も独立問題を回収後に戻り、 a_{n+1}-3a_n と a_{n+1}+2a_n を別々に処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q4-2"
+            ],
+            "strong_subject": [
+              "math-q4-2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q5",
+      "label": "第5問",
+      "sourceTitle": "動く球の通過領域の断面積と体積",
+      "requirements": [
+        4,
+        4,
+        4,
+        3.5,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q5-1",
+          "label": "(1)（か〜こ）",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 8,
+          "difficultyReason": "水平断面の円半径を得るだけでなく、8本の帯状領域の重なりを台形・長方形・半円に分割して数え上げる高度な図形処理が必要である。",
+          "strategyReason": "断面図の分割を正しく再現できないと計算へ入れず、領域の重複数えと係数整理も長い。苦手層は第3問(1)(2)(i)や第4問(1)を優先して切る。得意層は独立設問を先に回収し、断面半径を r=\\sqrt{1-t^2} と置いて図の5領域を順に数えて戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q5-2",
+          "label": "(2)（さ〜そ）",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 8,
+          "difficultyReason": "断面積が与えられれば、半円の面積と多項式積分で処理できるが、前問の式に依存し係数整理が長い。",
+          "strategyReason": "積分自体は標準だが、前問の断面積がないと得点へつながらず係数整理も必要である。苦手層は依存のない短問を優先する。得意層は(1)を完成できた場合に限り、半円面積 \\pi/2 と \\int_{-1}^{1}(1-t^2)dt=4/3 を使って戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q5-1"
+            ],
+            "strong_subject": [
+              "math-q5-1"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 90,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 30,
+        "targetPercent": 30,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 56.4,
+        "maximum": {
+          "points": 30,
+          "minutes": 88.8,
+          "questionIds": [
+            "math-q1-1",
+            "math-q3-2i",
+            "math-q3-2ii",
+            "math-q4-1"
+          ]
+        },
+        "now": {
+          "points": 21,
+          "minutes": 73.1,
+          "questionIds": [
+            "math-q3-1",
+            "math-q3-2i",
+            "math-q4-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 52,
+          "minutes": 117.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2i",
+            "math-q3-2ii",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 61,
+        "targetPercent": 61,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 14.1,
+        "maximum": {
+          "points": 77,
+          "minutes": 86,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2i",
+            "math-q3-2ii",
+            "math-q3-2iii",
+            "math-q4-1",
+            "math-q5-1",
+            "math-q5-2"
+          ]
+        },
+        "now": {
+          "points": 52,
+          "minutes": 54.8,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2i",
+            "math-q3-2ii",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 114,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2i",
+            "math-q3-2ii",
+            "math-q3-2iii",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3",
+            "math-q5-1",
+            "math-q5-2"
+          ]
+        }
+      }
+    ]
+  }
+}

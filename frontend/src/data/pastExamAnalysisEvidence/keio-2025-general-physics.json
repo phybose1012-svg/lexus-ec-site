@@ -1,0 +1,564 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "keio-2025-general-physics",
+    "university_id": "keio",
+    "university_name": "慶應義塾大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 120,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "公式条件は理科2科目一括120分。物理単独の公式時間ではない。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/keio/past-exams/working/2025/general/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "3bc3c7290a0ca8b7ce74d54419ec37c267d2dbceca581c4a0b7a1d71cb93e365",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "Ⅰ",
+      "sourceTitle": "斜方投射・反発衝突と放射線量",
+      "requirements": [
+        2.8,
+        2.8,
+        2.3,
+        2.3,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-a",
+          "label": "問1(a)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "斜方投射の水平到達距離が sin2θ に比例する標準結果を用いる。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮3点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-b",
+          "label": "問1(b)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "鉛直運動と反発係数を順に適用する。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-a"
+            ],
+            "strong_subject": [
+              "phys-q1-a"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-c",
+          "label": "問1(c)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "衝突間隔の等比数列と速度成分の一般項を組み立てる。",
+          "strategyReason": "複数段の処理を要するため苦手層は独立設問を先に回収する仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-b"
+            ],
+            "strong_subject": [
+              "phys-q1-b"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-d",
+          "label": "問1(d)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "前問の極限時刻へ一定の水平速度を掛ける。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-c"
+            ],
+            "strong_subject": [
+              "phys-q1-c"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-e",
+          "label": "問2(e)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "放射能と吸収線量の単位定義を再現する知識問題である。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮3点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-f",
+          "label": "問2(f)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "放射線種と被曝部位による影響差を説明する。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮3点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "Ⅱ",
+      "sourceTitle": "磁性・回転コイル・非線形磁気計測",
+      "requirements": [
+        2.9,
+        2.9,
+        2.5,
+        2.5,
+        2.9
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-a",
+          "label": "問1(a)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "代表物質の磁性を分類する知識問題である。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮3点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-b",
+          "label": "問1(b)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "F=mHの次元関係から単位を導く。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮3点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-c",
+          "label": "問1(c)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "単位長さ当たり巻き数と電流の積を用いる。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮3点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-d",
+          "label": "問1(d)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "ファラデーの法則を差分形式で記述する。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮3点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-e",
+          "label": "問2(e)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "ホール効果の名称を答える独立知識問題である。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮2点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-f",
+          "label": "問3(f)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "磁束の時間変化と回転角を結び付ける。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-d"
+            ],
+            "strong_subject": [
+              "phys-q2-d"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-g",
+          "label": "問3(g)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "正弦波の実効値と前問の振幅式を用いる。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮3点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-f"
+            ],
+            "strong_subject": [
+              "phys-q2-f"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-h",
+          "label": "問3(h)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "角速度と回転半径を使って遠心力を求める。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮3点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-g"
+            ],
+            "strong_subject": [
+              "phys-q2-g"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-i",
+          "label": "問3(i)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "前問の力と装置強度を比較して定性的に判断する。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-h"
+            ],
+            "strong_subject": [
+              "phys-q2-h"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-j",
+          "label": "問4(j)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "長いソレノイドの磁場式へ交流電流を代入する。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮3点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-c"
+            ],
+            "strong_subject": [
+              "phys-q2-c"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-k",
+          "label": "問4(k)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "三次式を展開し、時間差分公式で基本波と高調波を分離する。",
+          "strategyReason": "複数段の処理を要するため苦手層は独立設問を先に回収する仮5点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-j",
+              "phys-q2-d"
+            ],
+            "strong_subject": [
+              "phys-q2-j",
+              "phys-q2-d"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-l",
+          "label": "問4(l)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "各コイルの磁場方向と誘導電圧の加減を図で整合させる。",
+          "strategyReason": "複数段の処理を要するため苦手層は独立設問を先に回収する仮5点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-k"
+            ],
+            "strong_subject": [
+              "phys-q2-k"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-m",
+          "label": "問4(m)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "逆向き励磁した2系統の式を加えて不要項を消す。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-l",
+              "phys-q2-k"
+            ],
+            "strong_subject": [
+              "phys-q2-l",
+              "phys-q2-k"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-n",
+          "label": "問4(n)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "前問の実効値式へ桁をそろえて代入する。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-m"
+            ],
+            "strong_subject": [
+              "phys-q2-m"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q3",
+      "label": "Ⅲ",
+      "sourceTitle": "飽和水蒸気圧・断熱変化・大気の温度変化",
+      "requirements": [
+        2.8,
+        2.8,
+        2.4,
+        2.4,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-a",
+          "label": "問1(a)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "状態方程式の圧力と飽和水蒸気圧を比較する。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮3点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-b",
+          "label": "問1(b)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "飽和判定後にグラフの圧力を状態方程式へ用いる。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮3点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-c",
+          "label": "問2(c)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "状態方程式で体積を消去し一次近似を行う。",
+          "strategyReason": "複数段の処理を要するため苦手層は独立設問を先に回収する仮3点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-d",
+          "label": "問3(d)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "上下圧力差と重力を等置する。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮3点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-e",
+          "label": "問3(e)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "モル質量と状態方程式から密度を表す。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮3点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-d"
+            ],
+            "strong_subject": [
+              "phys-q3-d"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-f",
+          "label": "問3(f)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "圧力勾配と断熱変化式を連結する。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-c",
+              "phys-q3-e"
+            ],
+            "strong_subject": [
+              "phys-q3-c",
+              "phys-q3-e"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-g",
+          "label": "問3(g)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "前問の式への代入と有効数字処理である。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-f"
+            ],
+            "strong_subject": [
+              "phys-q3-f"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-h",
+          "label": "問3(h)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "空気塊と周囲大気の密度を比較して浮力条件を立てる。",
+          "strategyReason": "複数段の処理を要するため苦手層は独立設問を先に回収する仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-e"
+            ],
+            "strong_subject": [
+              "phys-q3-e"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-i",
+          "label": "問3(i)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "凝結時の潜熱放出が温度低下を緩和することを説明する。",
+          "strategyReason": "方針が立てやすく得点源にしやすい仮3点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-f"
+            ],
+            "strong_subject": [
+              "phys-q3-f"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": null
+}

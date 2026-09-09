@@ -1,0 +1,724 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "tokyo-womens-medical-2025-general-physics",
+    "university_id": "tokyo-womens-medical",
+    "university_name": "東京女子医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 120,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "問題原本に理科2科目を通して120分と示される。物理単独の公式時間はないため、分析では2科目を等分した60分を編集上の仮時間予算とする。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/tokyo-womens-medical/past-exams/working/2025/general/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "251f8ead6c62facc6433521049c5185671e4d7a584833d1666c96bdf2266086d",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "第Ⅰ問",
+      "sourceTitle": "放物運動・円運動・運動量保存",
+      "requirements": [
+        2.8,
+        3.1,
+        2.8,
+        1.8,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-a-1",
+          "label": "A(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "等加速度運動の速度変化と面積Sを結び付ける。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-a-2",
+          "label": "A(2)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "面積aSを同じ自由落下の関係へ置き換える。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-a-3",
+          "label": "A(3)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "飛行時間と水平速度を面積比から整理し、速度成分を合成する。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-a-4",
+          "label": "A(4)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "反発後の鉛直成分と共通の水平成分を合成する。",
+          "strategyReason": "式の連鎖または条件整理が長いため、短問を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-a-3"
+            ],
+            "strong_subject": [
+              "phys-q1-a-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-a-5",
+          "label": "A(5)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "跳ね返り前後の鉛直速度比とグラフの傾き・面積を対応させる。",
+          "strategyReason": "式の連鎖または条件整理が長いため、短問を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-a-2"
+            ],
+            "strong_subject": [
+              "phys-q1-a-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-b-1",
+          "label": "B(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "向心力とばねの張力を半径方向へそろえる。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-b-2",
+          "label": "B(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "前問の運動方程式へ半径aL0と伸び(a−1)L0を代入する。",
+          "strategyReason": "式の連鎖または条件整理が長いため、短問を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-b-1"
+            ],
+            "strong_subject": [
+              "phys-q1-b-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-c-1",
+          "label": "C(1)",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "水平運動量保存と力学的エネルギー保存を連立する。",
+          "strategyReason": "式の連鎖または条件整理が長いため、短問を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-c-2",
+          "label": "C(2)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "完全非弾性の終状態を運動量保存で決め、初期エネルギーとの差を取る。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "第Ⅱ問",
+      "sourceTitle": "熱・波動・光・原子の選択問題",
+      "requirements": [
+        2.2,
+        3,
+        2.2,
+        1.2,
+        2.2
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-a",
+          "label": "A",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "熱量保存を一式立てる。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-b",
+          "label": "B",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "温度上昇で分布が広がり極大が右へ移ることを判断する。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-c",
+          "label": "C",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "定圧過程の仕事と内部エネルギー変化を足す。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-d",
+          "label": "D",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "境界条件と波長の関係を読む。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-e",
+          "label": "E",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "代表光線と鏡の公式を対応させる。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-f",
+          "label": "F",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "壁をいったん受信者、反射後を静止音源として二段階で扱う。",
+          "strategyReason": "式の連鎖または条件整理が長いため、短問を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-g",
+          "label": "G",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "力のつり合いから電気力を求める。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-h",
+          "label": "H",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "E=hc/λを使う。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-i",
+          "label": "I",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "加速電圧と運動量、波長の関係を整理する。",
+          "strategyReason": "式の連鎖または条件整理が長いため、短問を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-j",
+          "label": "J",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "電荷・透過力・正体の基本知識を使う。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-k",
+          "label": "K",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "経過した半減期の回数を数える。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-l",
+          "label": "L",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "左右で質量数と原子番号を別々に保存する。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q3",
+      "label": "第Ⅲ問",
+      "sourceTitle": "静電場・RC回路・電磁誘導",
+      "requirements": [
+        2.8,
+        3,
+        2.8,
+        1.8,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-a-1",
+          "label": "A(1)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "各電荷による電場ベクトルを成分に分けて合成する。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-a-2",
+          "label": "A(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "始点と終点の電位を重ね合わせ、位置エネルギー差を取る。",
+          "strategyReason": "式の連鎖または条件整理が長いため、短問を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-b-1",
+          "label": "B(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "直後の未充電コンデンサーを導線相当として回路を読む。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-b-2",
+          "label": "B(2)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "定常状態でコンデンサー枝を開放し、分圧からQ=CVを使う。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-b-3",
+          "label": "B(3)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "定常状態の合成抵抗にオームの法則を適用する。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-c-1",
+          "label": "C(1)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "レンツの法則で向きを決め、斜面方向の力のつり合いを使う。",
+          "strategyReason": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-c-2",
+          "label": "C(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "運動起電力BLv、電流、磁気力を連結する。",
+          "strategyReason": "式の連鎖または条件整理が長いため、短問を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-c-1"
+            ],
+            "strong_subject": [
+              "phys-q3-c-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-c-3",
+          "label": "C(3)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "終端速度では力学的入力と電気的散逸が一致することを示す。",
+          "strategyReason": "式の連鎖または条件整理が長いため、短問を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-c-2"
+            ],
+            "strong_subject": [
+              "phys-q3-c-2"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 50,
+        "targetPercent": 50,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 36.4,
+        "maximum": {
+          "points": 50,
+          "minutes": 59.9,
+          "questionIds": [
+            "phys-q1-b-1",
+            "phys-q1-c-2",
+            "phys-q2-a",
+            "phys-q2-b",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-e",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q2-h",
+            "phys-q2-i",
+            "phys-q2-j",
+            "phys-q2-k",
+            "phys-q2-l",
+            "phys-q3-b-1",
+            "phys-q3-b-3"
+          ]
+        },
+        "now": {
+          "points": 66,
+          "minutes": 72.7,
+          "questionIds": [
+            "phys-q1-a-1",
+            "phys-q1-a-2",
+            "phys-q1-a-3",
+            "phys-q1-b-1",
+            "phys-q1-c-2",
+            "phys-q2-a",
+            "phys-q2-b",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-e",
+            "phys-q2-g",
+            "phys-q2-h",
+            "phys-q2-j",
+            "phys-q2-k",
+            "phys-q2-l",
+            "phys-q3-a-1",
+            "phys-q3-b-1",
+            "phys-q3-b-2",
+            "phys-q3-b-3",
+            "phys-q3-c-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 99.8,
+          "questionIds": [
+            "phys-q1-a-1",
+            "phys-q1-a-2",
+            "phys-q1-a-3",
+            "phys-q1-a-4",
+            "phys-q1-a-5",
+            "phys-q1-b-1",
+            "phys-q1-b-2",
+            "phys-q1-c-1",
+            "phys-q1-c-2",
+            "phys-q2-a",
+            "phys-q2-b",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-e",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q2-h",
+            "phys-q2-i",
+            "phys-q2-j",
+            "phys-q2-k",
+            "phys-q2-l",
+            "phys-q3-a-1",
+            "phys-q3-a-2",
+            "phys-q3-b-1",
+            "phys-q3-b-2",
+            "phys-q3-b-3",
+            "phys-q3-c-1",
+            "phys-q3-c-2",
+            "phys-q3-c-3"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 9.1,
+        "maximum": {
+          "points": 100,
+          "minutes": 51.2,
+          "questionIds": [
+            "phys-q1-a-1",
+            "phys-q1-a-2",
+            "phys-q1-a-3",
+            "phys-q1-a-4",
+            "phys-q1-a-5",
+            "phys-q1-b-1",
+            "phys-q1-b-2",
+            "phys-q1-c-1",
+            "phys-q1-c-2",
+            "phys-q2-a",
+            "phys-q2-b",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-e",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q2-h",
+            "phys-q2-i",
+            "phys-q2-j",
+            "phys-q2-k",
+            "phys-q2-l",
+            "phys-q3-a-1",
+            "phys-q3-a-2",
+            "phys-q3-b-1",
+            "phys-q3-b-2",
+            "phys-q3-b-3",
+            "phys-q3-c-1",
+            "phys-q3-c-2",
+            "phys-q3-c-3"
+          ]
+        },
+        "now": {
+          "points": 96,
+          "minutes": 48.8,
+          "questionIds": [
+            "phys-q1-a-1",
+            "phys-q1-a-2",
+            "phys-q1-a-3",
+            "phys-q1-a-4",
+            "phys-q1-a-5",
+            "phys-q1-b-1",
+            "phys-q1-b-2",
+            "phys-q1-c-2",
+            "phys-q2-a",
+            "phys-q2-b",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-e",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q2-h",
+            "phys-q2-i",
+            "phys-q2-j",
+            "phys-q2-k",
+            "phys-q2-l",
+            "phys-q3-a-1",
+            "phys-q3-a-2",
+            "phys-q3-b-1",
+            "phys-q3-b-2",
+            "phys-q3-b-3",
+            "phys-q3-c-1",
+            "phys-q3-c-2",
+            "phys-q3-c-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 51.2,
+          "questionIds": [
+            "phys-q1-a-1",
+            "phys-q1-a-2",
+            "phys-q1-a-3",
+            "phys-q1-a-4",
+            "phys-q1-a-5",
+            "phys-q1-b-1",
+            "phys-q1-b-2",
+            "phys-q1-c-1",
+            "phys-q1-c-2",
+            "phys-q2-a",
+            "phys-q2-b",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-e",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q2-h",
+            "phys-q2-i",
+            "phys-q2-j",
+            "phys-q2-k",
+            "phys-q2-l",
+            "phys-q3-a-1",
+            "phys-q3-a-2",
+            "phys-q3-b-1",
+            "phys-q3-b-2",
+            "phys-q3-b-3",
+            "phys-q3-c-1",
+            "phys-q3-c-2",
+            "phys-q3-c-3"
+          ]
+        }
+      }
+    ]
+  }
+}

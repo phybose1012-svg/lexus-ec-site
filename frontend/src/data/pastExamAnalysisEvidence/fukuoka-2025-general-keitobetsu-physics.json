@@ -1,0 +1,800 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "fukuoka-2025-general-keitobetsu-physics",
+    "university_id": "fukuoka",
+    "university_name": "福岡大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-keitobetsu",
+    "exam_method_name": "一般選抜（系統別日程）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 120,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "問題原本に理科2科目120分と明記。物理・化学・生物から2科目を選択する枠として扱う。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/fukuoka/past-exams/working/2025/general-keitobetsu/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "bfbc115a7787b549db30da0713051c65ea21132f5885922984a095c5eee21fb8",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-mq01",
+      "label": "〔Ⅰ〕",
+      "sourceTitle": "風や反射板がある場合のドップラー効果",
+      "requirements": [
+        3.5,
+        3.5,
+        2.8,
+        2.8,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "等速運動の距離 v_St を直接用いる。",
+          "strategyReason": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "(2)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "波長を距離÷波数で求める典型処理である。",
+          "strategyReason": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-1"
+            ],
+            "strong_subject": [
+              "phys-q1-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "(3)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "観測振動数を音速÷波長で求める基本問題である。",
+          "strategyReason": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-2"
+            ],
+            "strong_subject": [
+              "phys-q1-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "(4)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "接近する音源では観測振動数が増えるという基本的なドップラー効果を問う。",
+          "strategyReason": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-3"
+            ],
+            "strong_subject": [
+              "phys-q1-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-5",
+          "label": "(5)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "媒質の移動方向と音の伝播方向を合わせて速度を合成する。",
+          "strategyReason": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-6",
+          "label": "(6)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "風による音速の変更と音源移動による波面間隔を同時に扱う。",
+          "strategyReason": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-5"
+            ],
+            "strong_subject": [
+              "phys-q1-5"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-7",
+          "label": "(7)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "風・音源移動・観測者静止の基準系を崩さず振動数式へまとめる必要がある。",
+          "strategyReason": "立式経路は既知だが、複数式の接続と代数整理が必要で計算ミスへ露出し、基準実行時間1.8分を要する。各大問の基本設問を先に回収し、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-6"
+            ],
+            "strong_subject": [
+              "phys-q1-6"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-8",
+          "label": "(8)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "移動観測者として反射板を扱うドップラー効果の典型問題である。",
+          "strategyReason": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-9",
+          "label": "(9)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "反射板を観測者と音源の二役に分け、二段階のドップラー効果を接続する。",
+          "strategyReason": "立式経路は既知だが、複数式の接続と代数整理が必要で計算ミスへ露出し、基準実行時間1.8分を要する。各大問の基本設問を先に回収し、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-8"
+            ],
+            "strong_subject": [
+              "phys-q1-8"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-10",
+          "label": "(10)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "二段階ドップラー効果の結果から振動数差を取り、その逆数へ変換する。",
+          "strategyReason": "立式経路は既知だが、複数式の接続と代数整理が必要で計算ミスへ露出し、基準実行時間1.8分を要する。各大問の基本設問を先に回収し、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-9"
+            ],
+            "strong_subject": [
+              "phys-q1-9"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-mq02",
+      "label": "〔Ⅱ〕",
+      "sourceTitle": "傾斜レール上の導体棒と誘導起電力",
+      "requirements": [
+        3.6,
+        3.6,
+        2.9,
+        2.9,
+        2.9
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "オームの法則を直接使う。",
+          "strategyReason": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "(2)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "電流が磁場から受ける力 IBL を使う。",
+          "strategyReason": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1"
+            ],
+            "strong_subject": [
+              "phys-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "(3)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "磁力のレール方向成分と重力成分のつり合いを作る。",
+          "strategyReason": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-2"
+            ],
+            "strong_subject": [
+              "phys-q2-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-4",
+          "label": "(4)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "水平投影された面積変化と磁束 B\\Delta S を結ぶ。",
+          "strategyReason": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-5",
+          "label": "(5)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "ファラデーの法則を直前の磁束変化へ適用する。",
+          "strategyReason": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-4"
+            ],
+            "strong_subject": [
+              "phys-q2-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-6",
+          "label": "(6)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "誘導起電力の向きを判断し、合成起電力をオームの法則へ入れる。",
+          "strategyReason": "立式経路は既知だが、複数式の接続と代数整理が必要で計算ミスへ露出し、基準実行時間1.7分を要する。各大問の基本設問を先に回収し、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-5"
+            ],
+            "strong_subject": [
+              "phys-q2-5"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-7",
+          "label": "(7)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "速度依存の電流式を磁力 IBL へ代入して整理する。",
+          "strategyReason": "立式経路は既知だが、複数式の接続と代数整理が必要で計算ミスへ露出し、基準実行時間1.8分を要する。各大問の基本設問を先に回収し、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-6"
+            ],
+            "strong_subject": [
+              "phys-q2-6"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-8",
+          "label": "(8)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "重力成分と磁力成分をつり合わせる。",
+          "strategyReason": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-3"
+            ],
+            "strong_subject": [
+              "phys-q2-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-9",
+          "label": "(9)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "速度依存電流と力のつり合いを接続し、多文字式を整理する。",
+          "strategyReason": "立式経路は既知だが、複数式の接続と代数整理が必要で計算ミスへ露出し、基準実行時間2.4分を要する。各大問の基本設問を先に回収し、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-6",
+              "phys-q2-8"
+            ],
+            "strong_subject": [
+              "phys-q2-6",
+              "phys-q2-8"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-10",
+          "label": "(10)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "電力を起電力と電流の積で表す。",
+          "strategyReason": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-8"
+            ],
+            "strong_subject": [
+              "phys-q2-8"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-11",
+          "label": "(11)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "抵抗の消費電力公式へ終端電流を代入する。",
+          "strategyReason": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-8"
+            ],
+            "strong_subject": [
+              "phys-q2-8"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-mq03",
+      "label": "〔Ⅲ〕",
+      "sourceTitle": "水平投射した小球の45度斜面への反復衝突",
+      "requirements": [
+        3.7,
+        3.7,
+        3.1,
+        3.1,
+        3.1
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "水平投射の成分式と45度斜面の座標条件を直接用いる。",
+          "strategyReason": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "(2)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "直前の時刻を等速なx方向運動へ代入する。",
+          "strategyReason": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-1"
+            ],
+            "strong_subject": [
+              "phys-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "(3)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "水平速度一定と鉛直速度 gt を用いる。",
+          "strategyReason": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-1"
+            ],
+            "strong_subject": [
+              "phys-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-4",
+          "label": "(4)",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "x・y成分を45度回転した座標へ正しい符号で射影する。",
+          "strategyReason": "立式経路は既知だが、複数式の接続と代数整理が必要で計算ミスへ露出し、基準実行時間1.8分を要する。各大問の基本設問を先に回収し、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-3"
+            ],
+            "strong_subject": [
+              "phys-q3-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-5",
+          "label": "(5)",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "摩擦なしなので平行成分を保ち、垂直成分だけを e 倍する。",
+          "strategyReason": "立式経路は既知だが、複数式の接続と代数整理が必要で計算ミスへ露出し、基準実行時間1.5分を要する。各大問の基本設問を先に回収し、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-4"
+            ],
+            "strong_subject": [
+              "phys-q3-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-6",
+          "label": "(6)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "反発後の向きを保ちながら座標変換し、 e を含む式を整理する。",
+          "strategyReason": "立式経路は既知だが、複数式の接続と代数整理が必要で計算ミスへ露出し、基準実行時間2.3分を要する。各大問の基本設問を先に回収し、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-5"
+            ],
+            "strong_subject": [
+              "phys-q3-5"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-7",
+          "label": "(7)",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "初期位置と反発後速度を引き継いだ二成分運動を斜面条件で結ぶ。",
+          "strategyReason": "前段の結果を複数引き継ぐ長い立式と整理が必要で、計算ミスへ強く露出し、基準実行時間2.8分を要する。他の基本・標準設問を回収した後に十分な時間が残る場合だけ戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-2",
+              "phys-q3-6"
+            ],
+            "strong_subject": [
+              "phys-q3-2",
+              "phys-q3-6"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-8",
+          "label": "(8)",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "複数の前問結果を x_2=x_1+v_x't_2 へ代入し、多項式を整理する。",
+          "strategyReason": "前段の結果を複数引き継ぐ長い立式と整理が必要で、計算ミスへ強く露出し、基準実行時間2.4分を要する。他の基本・標準設問を回収した後に十分な時間が残る場合だけ戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-2",
+              "phys-q3-6",
+              "phys-q3-7"
+            ],
+            "strong_subject": [
+              "phys-q3-2",
+              "phys-q3-6",
+              "phys-q3-7"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 50,
+        "targetPercent": 50,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 36.8,
+        "maximum": {
+          "points": 50,
+          "minutes": 59.5,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-8",
+            "phys-q2-10",
+            "phys-q2-11",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4"
+          ]
+        },
+        "now": {
+          "points": 57,
+          "minutes": 64.3,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-8",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q2-8",
+            "phys-q2-10",
+            "phys-q2-11",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 90,
+          "minutes": 89.8,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q1-8",
+            "phys-q1-9",
+            "phys-q1-10",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q2-6",
+            "phys-q2-7",
+            "phys-q2-8",
+            "phys-q2-9",
+            "phys-q2-10",
+            "phys-q2-11",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 9.2,
+        "maximum": {
+          "points": 100,
+          "minutes": 49.3,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q1-8",
+            "phys-q1-9",
+            "phys-q1-10",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q2-6",
+            "phys-q2-7",
+            "phys-q2-8",
+            "phys-q2-9",
+            "phys-q2-10",
+            "phys-q2-11",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6",
+            "phys-q3-7",
+            "phys-q3-8"
+          ]
+        },
+        "now": {
+          "points": 100,
+          "minutes": 49.3,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q1-8",
+            "phys-q1-9",
+            "phys-q1-10",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q2-6",
+            "phys-q2-7",
+            "phys-q2-8",
+            "phys-q2-9",
+            "phys-q2-10",
+            "phys-q2-11",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6",
+            "phys-q3-7",
+            "phys-q3-8"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 49.3,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q1-8",
+            "phys-q1-9",
+            "phys-q1-10",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q2-6",
+            "phys-q2-7",
+            "phys-q2-8",
+            "phys-q2-9",
+            "phys-q2-10",
+            "phys-q2-11",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6",
+            "phys-q3-7",
+            "phys-q3-8"
+          ]
+        }
+      }
+    ]
+  }
+}

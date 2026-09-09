@@ -1,0 +1,968 @@
+{
+  "schemaVersion": "lexus-staging-answer-snapshot.v1",
+  "question": {
+    "schemaVersion": "lexus-ec.past-exam-question-page.v1",
+    "packageId": "kawasaki-medical-2025-general-regional-quota-mathematics",
+    "route": {
+      "university": "kawasaki-medical",
+      "year": "2025",
+      "subject": "mathematics",
+      "path": "/past-exam-library/kawasaki-medical/2025/mathematics/questions/"
+    },
+    "university": {
+      "id": "kawasaki-medical",
+      "name": "川崎医科大学"
+    },
+    "exam": {
+      "year": "2025",
+      "label": "一般選抜・地域枠選抜",
+      "stage": "一次試験",
+      "duration": "数学 80分"
+    },
+    "subject": {
+      "id": "mathematics",
+      "name": "数学",
+      "english": "MATHEMATICS"
+    },
+    "document": {
+      "role": "questions",
+      "pageUnit": "major_question",
+      "sharedInstructionsHtml": "<section class=\"source-page-card question-shared-instructions\" data-question-shared-instructions><div class=\"page-kicker\">全大問共通</div><h2>2025年度 一般選抜・地域枠選抜 数学</h2><p class=\"prose\">数学（80分）</p><h3>解答上の注意</h3><p class=\"prose\">（ⅰ）ア、イ、ウ、……の1つ1つは、それぞれ、0から9までの数字、または、＋、−のいずれか1つに対応します。それらを、ア、イ、ウ、……で示された解答欄にマークしてください。</p><div class=\"table-scroll\" role=\"region\" tabindex=\"0\"><table class=\"source-table source-table--wide\"><caption>〔例1〕<span class=\"answer-slot\">アイウ</span> に −30 と答えたいとき</caption><thead><tr><th>解答欄</th><th>＋</th><th>−</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th></tr></thead><tbody><tr><td>ア</td><td></td><td>●</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>イ</td><td></td><td></td><td></td><td></td><td></td><td>●</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>ウ</td><td></td><td></td><td>●</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div><p class=\"prose\">（ⅱ）分数形で解答する場合、分数の符号は分子につけ、分母につけてはいけません。また、それ以上約分できない形で答えてください。</p><div class=\"table-scroll\" role=\"region\" tabindex=\"0\"><table class=\"source-table source-table--wide\"><caption>〔例2〕<span class=\"math-inline\" data-katex=\"\\frac{\\boxed{\\text{エオ}}}{\\boxed{\\text{カ}}}\" data-display-mode=\"false\">\\frac{\\boxed{\\text{エオ}}}{\\boxed{\\text{カ}}}</span> に <span class=\"math-inline\" data-katex=\"-\\frac{5}{6}\" data-display-mode=\"false\">-\\frac{5}{6}</span> と答えたいとき</caption><thead><tr><th>解答欄</th><th>＋</th><th>−</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th></tr></thead><tbody><tr><td>エ</td><td></td><td>●</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>オ</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>●</td><td></td><td></td><td></td><td></td></tr><tr><td>カ</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>●</td><td></td><td></td><td></td></tr></tbody></table></div><p class=\"prose\">（ⅲ）根号を含む形で解答する場合、根号の中に現れる自然数が最小となる形で答えてください。例えば、<span class=\"answer-slot\">キ</span><span class=\"math-inline\" data-katex=\"\\sqrt{\\boxed{\\text{ク}}}\" data-display-mode=\"false\">\\sqrt{\\boxed{\\text{ク}}}</span> に <span class=\"math-inline\" data-katex=\"4\\sqrt2\" data-display-mode=\"false\">4\\sqrt2</span> と答えるところを、<span class=\"math-inline\" data-katex=\"2\\sqrt8\" data-display-mode=\"false\">2\\sqrt8</span> のように答えてはいけません。</p><p class=\"prose\">（ⅳ）根号を含む分数形で解答する場合、例えば <span class=\"math-inline\" data-katex=\"\\frac{\\boxed{\\text{ケ}}+\\boxed{\\text{コ}}\\sqrt{\\boxed{\\text{サ}}}}{\\boxed{\\text{シ}}}\" data-display-mode=\"false\">\\frac{\\boxed{\\text{ケ}}+\\boxed{\\text{コ}}\\sqrt{\\boxed{\\text{サ}}}}{\\boxed{\\text{シ}}}</span> に <span class=\"math-inline\" data-katex=\"\\frac{3+2\\sqrt2}{2}\" data-display-mode=\"false\">\\frac{3+2\\sqrt2}{2}</span> と答えるところを、</p><p class=\"prose\"><span class=\"math-inline\" data-katex=\"\\frac{6+4\\sqrt2}{4}\" data-display-mode=\"false\">\\frac{6+4\\sqrt2}{4}</span> や <span class=\"math-inline\" data-katex=\"\\frac{6+2\\sqrt8}{4}\" data-display-mode=\"false\">\\frac{6+2\\sqrt8}{4}</span> のように答えてはいけません。</p><p class=\"prose\">（ⅴ）同一の問題文中に <span class=\"answer-slot\">スセ</span> などが2度以上現れる場合、原則として2度目以降は、<span class=\"answer-slot\">スセ</span> のように細字で表記します。</p></section>",
+      "printNotes": [
+        "各設問に記載された解答形式・記号・単位の指定に従ってください。",
+        "図版準備中・内容確認中の設問は、確認が完了するまで演習対象外です。"
+      ],
+      "questions": [
+        {
+          "id": "major-question-01",
+          "label": "第1問",
+          "order": 1,
+          "sourcePageIds": [
+            "kawasaki-medical-2025-general-regional-quota-mathematics-questions-p002",
+            "kawasaki-medical-2025-general-regional-quota-mathematics-questions-p003"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-01\" data-major-question-id=\"major-question-01\"><h2>1</h2><p class=\"prose\">座標平面上に2つの直線 <span class=\"math-inline\" data-katex=\"\\ell:y=2x+4,\\ m:y=-2x+12\" data-display-mode=\"false\">\\ell:y=2x+4,\\ m:y=-2x+12</span> がある。2直線 <span class=\"math-inline\" data-katex=\"\\ell,m\" data-display-mode=\"false\">\\ell,m</span> の交点をAとし、直線 <span class=\"math-inline\" data-katex=\"m\" data-display-mode=\"false\">m</span> と <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> 軸の交点をBとする。線分ABを直径とする円をKとし、直線 <span class=\"math-inline\" data-katex=\"\\ell\" data-display-mode=\"false\">\\ell</span> と円Kの共有点でAでない方をCとする。また、D<span class=\"math-inline\" data-katex=\"(2,0)\" data-display-mode=\"false\">(2,0)</span>とする。</p><h3>（1）</h3><p class=\"prose\">点Aの座標は <span class=\"math-inline\" data-katex=\"(\\boxed{\\text{ア}},\\boxed{\\text{イ}})\" data-display-mode=\"false\">(\\boxed{\\text{ア}},\\boxed{\\text{イ}})</span> であり、円Kの中心の座標は <span class=\"math-inline\" data-katex=\"(\\boxed{\\text{ウ}},\\boxed{\\text{エ}})\" data-display-mode=\"false\">(\\boxed{\\text{ウ}},\\boxed{\\text{エ}})</span>、半径は <span class=\"answer-slot\">オ</span><span class=\"math-inline\" data-katex=\"\\sqrt{\\boxed{\\text{カ}}}\" data-display-mode=\"false\">\\sqrt{\\boxed{\\text{カ}}}</span> である。また、点Cの座標は <span class=\"math-inline\" data-katex=\"\\left(-\\frac{\\boxed{\\text{キ}}}{\\boxed{\\text{ク}}},\\frac{\\boxed{\\text{ケコ}}}{\\boxed{\\text{サ}}}\\right)\" data-display-mode=\"false\">\\left(-\\frac{\\boxed{\\text{キ}}}{\\boxed{\\text{ク}}},\\frac{\\boxed{\\text{ケコ}}}{\\boxed{\\text{サ}}}\\right)</span> である。</p><h3>（2）</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"\\angle ADC=\\alpha,\\ \\angle BCD=\\beta\" data-display-mode=\"false\">\\angle ADC=\\alpha,\\ \\angle BCD=\\beta</span> とするとき、<span class=\"math-inline\" data-katex=\"\\tan\\alpha=\\frac{\\boxed{\\text{シ}}}{\\boxed{\\text{ス}}}\" data-display-mode=\"false\">\\tan\\alpha=\\frac{\\boxed{\\text{シ}}}{\\boxed{\\text{ス}}}</span> であり、<span class=\"math-inline\" data-katex=\"\\sin(\\alpha-\\beta)=\\frac{\\boxed{\\text{セ}}\\sqrt{\\boxed{\\text{ソ}}}}{\\boxed{\\text{タチ}}}\" data-display-mode=\"false\">\\sin(\\alpha-\\beta)=\\frac{\\boxed{\\text{セ}}\\sqrt{\\boxed{\\text{ソ}}}}{\\boxed{\\text{タチ}}}</span> である。</p><h3>（3）</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"a\" data-display-mode=\"false\">a</span> を定数とし、円Kの点Dを含む弧BCと線分ABおよび線分ACで囲まれた領域をLとする。点<span class=\"math-inline\" data-katex=\"(x,y)\" data-display-mode=\"false\">(x,y)</span>が領域Lを動くとき、<span class=\"math-inline\" data-katex=\"ax-y\" data-display-mode=\"false\">ax-y</span>の最大値<span class=\"math-inline\" data-katex=\"M\" data-display-mode=\"false\">M</span>は、</p><div class=\"structured-list structured-list--cases\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"a&lt;-\\frac{\\boxed{\\text{ツテ}}}{\\boxed{\\text{ト}}}\" data-display-mode=\"false\">a&lt;-\\frac{\\boxed{\\text{ツテ}}}{\\boxed{\\text{ト}}}</span> のとき、<span class=\"math-inline\" data-katex=\"M=\\frac{\\boxed{\\text{ナニ}}}{\\boxed{\\text{ヌ}}}(a+\\boxed{\\text{ネ}})\" data-display-mode=\"false\">M=\\frac{\\boxed{\\text{ナニ}}}{\\boxed{\\text{ヌ}}}(a+\\boxed{\\text{ネ}})</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"-\\frac{\\boxed{\\text{ツテ}}}{\\boxed{\\text{ト}}}\\leqq a&lt;\\frac{\\boxed{\\text{ノ}}}{\\boxed{\\text{ハ}}}\" data-display-mode=\"false\">-\\frac{\\boxed{\\text{ツテ}}}{\\boxed{\\text{ト}}}\\leqq a&lt;\\frac{\\boxed{\\text{ノ}}}{\\boxed{\\text{ハ}}}</span> のとき、<span class=\"math-inline\" data-katex=\"M=\\boxed{\\text{ヒ}}a-\\boxed{\\text{フ}}+\\boxed{\\text{ヘ}}\\sqrt{\\boxed{\\text{ホ}}}\\sqrt{a^2+\\boxed{\\text{マ}}}\" data-display-mode=\"false\">M=\\boxed{\\text{ヒ}}a-\\boxed{\\text{フ}}+\\boxed{\\text{ヘ}}\\sqrt{\\boxed{\\text{ホ}}}\\sqrt{a^2+\\boxed{\\text{マ}}}</span></div></div></div><div class=\"structured-list structured-list--cases\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"\\frac{\\boxed{\\text{ノ}}}{\\boxed{\\text{ハ}}}\\leqq a\" data-display-mode=\"false\">\\frac{\\boxed{\\text{ノ}}}{\\boxed{\\text{ハ}}}\\leqq a</span> のとき、<span class=\"math-inline\" data-katex=\"M=\\boxed{\\text{ミ}}a\" data-display-mode=\"false\">M=\\boxed{\\text{ミ}}a</span></div></div></div><p class=\"prose\">である。また、<span class=\"math-inline\" data-katex=\"a\" data-display-mode=\"false\">a</span> の値が変化するとき、<span class=\"math-inline\" data-katex=\"M\" data-display-mode=\"false\">M</span> が最小値をとるのは、<span class=\"math-inline\" data-katex=\"a=\\boxed{\\text{ムメ}}\" data-display-mode=\"false\">a=\\boxed{\\text{ムメ}}</span> のときである。</p></article>"
+        },
+        {
+          "id": "major-question-02",
+          "label": "第2問",
+          "order": 2,
+          "sourcePageIds": [
+            "kawasaki-medical-2025-general-regional-quota-mathematics-questions-p003",
+            "kawasaki-medical-2025-general-regional-quota-mathematics-questions-p004"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-02\" data-major-question-id=\"major-question-02\"><h2>2</h2><p class=\"prose\"><span class=\"math-inline\" data-katex=\"a\" data-display-mode=\"false\">a</span> は <span class=\"math-inline\" data-katex=\"0&lt;a\\leqq1\" data-display-mode=\"false\">0&lt;a\\leqq1</span> を満たす定数とし、関数 <span class=\"math-inline\" data-katex=\"f(x)=\\log(x+a)\" data-display-mode=\"false\">f(x)=\\log(x+a)</span> がある。</p><h3>（1）</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"a=1\" data-display-mode=\"false\">a=1</span> とする。<span class=\"math-inline\" data-katex=\"y=f(x)\" data-display-mode=\"false\">y=f(x)</span> のグラフを <span class=\"math-inline\" data-katex=\"C_1\" data-display-mode=\"false\">C_1</span> とし、<span class=\"math-inline\" data-katex=\"C_1\" data-display-mode=\"false\">C_1</span> 上の点 <span class=\"math-inline\" data-katex=\"(1,f(1))\" data-display-mode=\"false\">(1,f(1))</span> における法線を <span class=\"math-inline\" data-katex=\"\\ell\" data-display-mode=\"false\">\\ell</span> とする。</p><h4>（ⅰ）</h4><p class=\"prose\"><span class=\"math-inline\" data-katex=\"f&#x27;(1)=\\frac{\\boxed{\\text{ア}}}{\\boxed{\\text{イ}}}\" data-display-mode=\"false\">f&#x27;(1)=\\frac{\\boxed{\\text{ア}}}{\\boxed{\\text{イ}}}</span> であり、法線 <span class=\"math-inline\" data-katex=\"\\ell\" data-display-mode=\"false\">\\ell</span> の方程式は、<span class=\"math-inline\" data-katex=\"y=\\boxed{\\text{ウエ}}x+\\boxed{\\text{オ}}+\\log\\boxed{\\text{カ}}\" data-display-mode=\"false\">y=\\boxed{\\text{ウエ}}x+\\boxed{\\text{オ}}+\\log\\boxed{\\text{カ}}</span> である。また、<span class=\"math-inline\" data-katex=\"C_1\" data-display-mode=\"false\">C_1</span> と <span class=\"math-inline\" data-katex=\"\\ell\" data-display-mode=\"false\">\\ell</span> および <span class=\"math-inline\" data-katex=\"y\" data-display-mode=\"false\">y</span> 軸で囲まれた図形の面積は、<span class=\"answer-slot\">キ</span><span class=\"math-inline\" data-katex=\"-\\log\\boxed{\\text{ク}}\" data-display-mode=\"false\">-\\log\\boxed{\\text{ク}}</span> である。</p><h4>（ⅱ）</h4><p class=\"prose\"><span class=\"math-inline\" data-katex=\"p,q\" data-display-mode=\"false\">p,q</span> を定数とし、<span class=\"math-inline\" data-katex=\"q\" data-display-mode=\"false\">q</span> は <span class=\"math-inline\" data-katex=\"\\log2&lt;q&lt;\\boxed{\\text{オ}}+\\log\\boxed{\\text{カ}}\" data-display-mode=\"false\">\\log2&lt;q&lt;\\boxed{\\text{オ}}+\\log\\boxed{\\text{カ}}</span> を満たすとする。<span class=\"math-inline\" data-katex=\"y=p\\log(x+1)+q\" data-display-mode=\"false\">y=p\\log(x+1)+q</span> のグラフを <span class=\"math-inline\" data-katex=\"C_2\" data-display-mode=\"false\">C_2</span> とし、<span class=\"math-inline\" data-katex=\"C_2\" data-display-mode=\"false\">C_2</span> が点<span class=\"math-inline\" data-katex=\"(1,\\log2)\" data-display-mode=\"false\">(1,\\log2)</span>を通るとき、<span class=\"math-inline\" data-katex=\"q=(\\boxed{\\text{ケ}}-p)\\log\\boxed{\\text{コ}}\" data-display-mode=\"false\">q=(\\boxed{\\text{ケ}}-p)\\log\\boxed{\\text{コ}}</span> である。このとき、<span class=\"math-inline\" data-katex=\"x\\geqq0\" data-display-mode=\"false\">x\\geqq0</span> の部分で <span class=\"math-inline\" data-katex=\"C_2\" data-display-mode=\"false\">C_2</span> と <span class=\"math-inline\" data-katex=\"\\ell\" data-display-mode=\"false\">\\ell</span> および <span class=\"math-inline\" data-katex=\"y\" data-display-mode=\"false\">y</span> 軸で囲まれた図形の面積が <span class=\"math-inline\" data-katex=\"\\frac{\\log2+1}{2}\" data-display-mode=\"false\">\\frac{\\log2+1}{2}</span> であれば、<span class=\"math-inline\" data-katex=\"p=\\frac{\\boxed{\\text{サシ}}}{\\boxed{\\text{ス}}}\" data-display-mode=\"false\">p=\\frac{\\boxed{\\text{サシ}}}{\\boxed{\\text{ス}}}</span> である。</p><h3>（2）</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"g(a)=\\int_0^1|f(x)|\\,dx\" data-display-mode=\"false\">g(a)=\\int_0^1|f(x)|\\,dx</span> とする。</p><p class=\"prose\"><span class=\"math-inline\" data-katex=\"g(a)=(a+\\boxed{\\text{セ}})\\log(a+\\boxed{\\text{ソ}})+a\\log a-\\boxed{\\text{タ}}a+\\boxed{\\text{チ}}\" data-display-mode=\"false\">g(a)=(a+\\boxed{\\text{セ}})\\log(a+\\boxed{\\text{ソ}})+a\\log a-\\boxed{\\text{タ}}a+\\boxed{\\text{チ}}</span> である。また、<span class=\"math-inline\" data-katex=\"g&#x27;(a)=0\" data-display-mode=\"false\">g&#x27;(a)=0</span> の解は、<span class=\"math-inline\" data-katex=\"a=\\frac{\\sqrt{\\boxed{\\text{ツ}}}-\\boxed{\\text{テ}}}{\\boxed{\\text{ト}}}\" data-display-mode=\"false\">a=\\frac{\\sqrt{\\boxed{\\text{ツ}}}-\\boxed{\\text{テ}}}{\\boxed{\\text{ト}}}</span> であり、<span class=\"math-inline\" data-katex=\"a\" data-display-mode=\"false\">a</span> の</p><p class=\"prose\">値が変化するとき、<span class=\"math-inline\" data-katex=\"g(a)\" data-display-mode=\"false\">g(a)</span> の最小値は、<span class=\"math-inline\" data-katex=\"\\log\\frac{\\sqrt{\\boxed{\\text{ナ}}}+\\boxed{\\text{ニ}}}{\\boxed{\\text{ヌ}}}+\\boxed{\\text{ネ}}-\\sqrt{\\boxed{\\text{ノ}}}\" data-display-mode=\"false\">\\log\\frac{\\sqrt{\\boxed{\\text{ナ}}}+\\boxed{\\text{ニ}}}{\\boxed{\\text{ヌ}}}+\\boxed{\\text{ネ}}-\\sqrt{\\boxed{\\text{ノ}}}</span> である。</p></article>"
+        },
+        {
+          "id": "major-question-03",
+          "label": "第3問",
+          "order": 3,
+          "sourcePageIds": [
+            "kawasaki-medical-2025-general-regional-quota-mathematics-questions-p004"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-03\" data-major-question-id=\"major-question-03\"><h2>3</h2><p class=\"prose\"><span class=\"math-inline\" data-katex=\"i\" data-display-mode=\"false\">i</span> を虚数単位とし、2つの複素数 <span class=\"math-inline\" data-katex=\"\\alpha=2+4i,\\ \\beta=1-3i\" data-display-mode=\"false\">\\alpha=2+4i,\\ \\beta=1-3i</span> がある。</p><h3>（1）</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"|\\alpha|=\\boxed{\\text{ア}}\\sqrt{\\boxed{\\text{イ}}}\" data-display-mode=\"false\">|\\alpha|=\\boxed{\\text{ア}}\\sqrt{\\boxed{\\text{イ}}}</span>、<span class=\"math-inline\" data-katex=\"\\frac{\\alpha}{\\beta}=\\boxed{\\text{ウエ}}+i\" data-display-mode=\"false\">\\frac{\\alpha}{\\beta}=\\boxed{\\text{ウエ}}+i</span> であり、<span class=\"math-inline\" data-katex=\"\\frac{\\alpha}{\\beta}\" data-display-mode=\"false\">\\frac{\\alpha}{\\beta}</span> を極形式で表すと、<span class=\"math-inline\" data-katex=\"\\frac{\\alpha}{\\beta}=\\sqrt{\\boxed{\\text{オ}}}\\left(\\cos\\frac{\\boxed{\\text{カ}}}{\\boxed{\\text{キ}}}\\pi+i\\sin\\frac{\\boxed{\\text{カ}}}{\\boxed{\\text{キ}}}\\pi\\right)\" data-display-mode=\"false\">\\frac{\\alpha}{\\beta}=\\sqrt{\\boxed{\\text{オ}}}\\left(\\cos\\frac{\\boxed{\\text{カ}}}{\\boxed{\\text{キ}}}\\pi+i\\sin\\frac{\\boxed{\\text{カ}}}{\\boxed{\\text{キ}}}\\pi\\right)</span> となる。ただし、<span class=\"math-inline\" data-katex=\"0\\leqq\\arg\\frac{\\alpha}{\\beta}&lt;2\\pi\" data-display-mode=\"false\">0\\leqq\\arg\\frac{\\alpha}{\\beta}&lt;2\\pi</span> とする。また、<span class=\"math-inline\" data-katex=\"\\left(\\frac{\\alpha}{\\beta}\\right)^{20}=\\boxed{\\text{クケコサシ}}\" data-display-mode=\"false\">\\left(\\frac{\\alpha}{\\beta}\\right)^{20}=\\boxed{\\text{クケコサシ}}</span> である。</p><h3>（2）</h3><p class=\"prose\">複素数 <span class=\"math-inline\" data-katex=\"z\" data-display-mode=\"false\">z</span> は、方程式 <span class=\"math-inline\" data-katex=\"|z-\\beta|=\\sqrt2\" data-display-mode=\"false\">|z-\\beta|=\\sqrt2</span> を満たしている。このとき、<span class=\"math-inline\" data-katex=\"|z-\\alpha|\" data-display-mode=\"false\">|z-\\alpha|</span> の最大値は <span class=\"answer-slot\">ス</span><span class=\"math-inline\" data-katex=\"\\sqrt{\\boxed{\\text{セ}}}\" data-display-mode=\"false\">\\sqrt{\\boxed{\\text{セ}}}</span> であり、そのときの <span class=\"math-inline\" data-katex=\"z\" data-display-mode=\"false\">z</span> は <span class=\"math-inline\" data-katex=\"\\frac{\\boxed{\\text{ソ}}-\\boxed{\\text{タチ}}i}{\\boxed{\\text{ツ}}}\" data-display-mode=\"false\">\\frac{\\boxed{\\text{ソ}}-\\boxed{\\text{タチ}}i}{\\boxed{\\text{ツ}}}</span> である。</p><h3>（3）</h3><p class=\"prose\">複素数平面上で、複素数 <span class=\"math-inline\" data-katex=\"\\alpha,\\beta\" data-display-mode=\"false\">\\alpha,\\beta</span> が表す点をそれぞれA、Bとする。<span class=\"math-inline\" data-katex=\"\\gamma=\\frac{\\boxed{\\text{テ}}-i}{\\boxed{\\text{トナ}}}\" data-display-mode=\"false\">\\gamma=\\frac{\\boxed{\\text{テ}}-i}{\\boxed{\\text{トナ}}}</span> とするとき、直線AB上の点を表す複素数 <span class=\"math-inline\" data-katex=\"z\" data-display-mode=\"false\">z</span> は、つねに方程式 <span class=\"math-inline\" data-katex=\"\\bar\\gamma z+\\gamma\\bar z=1\" data-display-mode=\"false\">\\bar\\gamma z+\\gamma\\bar z=1</span> を満たす。このとき、<span class=\"math-inline\" data-katex=\"zw=10\" data-display-mode=\"false\">zw=10</span> を満たす複素数 <span class=\"math-inline\" data-katex=\"w\" data-display-mode=\"false\">w</span> が表す点は、点 <span class=\"math-inline\" data-katex=\"\\frac{\\boxed{\\text{ニ}}+i}{\\boxed{\\text{ヌ}}}\" data-display-mode=\"false\">\\frac{\\boxed{\\text{ニ}}+i}{\\boxed{\\text{ヌ}}}</span> を中心とし、半径が <span class=\"math-inline\" data-katex=\"\\frac{\\boxed{\\text{ネ}}\\sqrt{\\boxed{\\text{ノ}}}}{\\boxed{\\text{ハ}}}\" data-display-mode=\"false\">\\frac{\\boxed{\\text{ネ}}\\sqrt{\\boxed{\\text{ノ}}}}{\\boxed{\\text{ハ}}}</span> の円周上にある。また、複素数 <span class=\"math-inline\" data-katex=\"z,w\" data-display-mode=\"false\">z,w</span> が表す点をそれぞれP、Qとし、P、Qは実軸上にないとする。△POQの面積が最大となるとき、直線ABは△POQの面積を <span class=\"answer-slot\">ヒ</span>：<span class=\"answer-slot\">フ</span> の比に分ける。ただし、Oは原点とし、<span class=\"answer-slot\">ヒ</span>&lt;<span class=\"answer-slot\">フ</span> とする。</p></article>"
+        }
+      ]
+    },
+    "source": {
+      "sourcePackageId": "kawasaki-medical-2025-general-regional-quota-mathematics",
+      "reference": "projects/universities/kawasaki-medical/past-exams/working/2025/general-regional-quota/first-stage/mathematics/source-html/generated/public-candidate/questions",
+      "buildKind": "publication-candidate",
+      "contentProvenance": "source_projection",
+      "publicationCandidate": true,
+      "rightsStatus": "review_required",
+      "needsHumanReview": true
+    },
+    "links": {
+      "universityLibrary": "/past-exam-library/kawasaki-medical/",
+      "analysis": "/past-exam-library/kawasaki-medical/2025/mathematics/analysis/",
+      "universityInformation": null
+    }
+  },
+  "editorial": {
+    "schema_version": "medical-entrance-past-exam-editorial-explanation.v2",
+    "package_id": "kawasaki-medical-2025-general-regional-quota-mathematics",
+    "document_role": "answers",
+    "source_reconstruction_path": "reconstruction.json",
+    "audience": "数学が苦手、または数学に抵抗感がある私立医学部受験生",
+    "provenance": "editorial_adaptation",
+    "style_policy": {
+      "id": "lexus-learner-friendly-mathematics.v1",
+      "sequence": [
+        "何を求めるか",
+        "最初にすること",
+        "その理由",
+        "計算",
+        "結論"
+      ],
+      "short_paragraphs": true,
+      "expert_shortcuts_are_optional": true,
+      "main_route_is_reproducible": true,
+      "preserve_answers_and_conditions": true,
+      "preserve_source_method": true,
+      "preserve_source_reasoning_order": true,
+      "forbid_answer_backward_reasoning": true,
+      "use_katex_for_all_mathematics": true
+    },
+    "reader_structure": {
+      "page_unit": "major_question",
+      "assignment": "explicit_per_block",
+      "source_page_records_preserved_for_provenance": true,
+      "major_questions": [
+        {
+          "id": "major-question-01",
+          "label": "第1問",
+          "order": 1
+        },
+        {
+          "id": "major-question-02",
+          "label": "第2問",
+          "order": 2
+        },
+        {
+          "id": "major-question-03",
+          "label": "第3問",
+          "order": 3
+        }
+      ]
+    },
+    "pages": [
+      {
+        "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p001",
+        "blocks": [
+          {
+            "type": "note",
+            "label": "この大問の進め方",
+            "text": "(1)でA・B・円K・Cを確定し、(2)は円周角、(3)は傾きaの支持直線が弧または端点に当たる場合を分けます。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第1問 解答一覧",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "（1）ア",
+                "value": "2"
+              },
+              {
+                "label": "イ",
+                "value": "8"
+              },
+              {
+                "label": "ウ",
+                "value": "4"
+              },
+              {
+                "label": "エ",
+                "value": "4"
+              },
+              {
+                "label": "オ",
+                "value": "2"
+              },
+              {
+                "label": "カ",
+                "value": "5"
+              },
+              {
+                "label": "キ",
+                "value": "2"
+              },
+              {
+                "label": "ク",
+                "value": "5"
+              },
+              {
+                "label": "ケコ",
+                "value": "16"
+              },
+              {
+                "label": "サ",
+                "value": "5"
+              },
+              {
+                "label": "（2）シ",
+                "value": "3"
+              },
+              {
+                "label": "ス",
+                "value": "4"
+              },
+              {
+                "label": "セ",
+                "value": "2"
+              },
+              {
+                "label": "ソ",
+                "value": "5"
+              },
+              {
+                "label": "タチ",
+                "value": "25"
+              },
+              {
+                "label": "（3）ツテ",
+                "value": "11"
+              },
+              {
+                "label": "ト",
+                "value": "2"
+              },
+              {
+                "label": "ナニ",
+                "value": "−2"
+              },
+              {
+                "label": "ヌ",
+                "value": "5"
+              },
+              {
+                "label": "ネ",
+                "value": "8"
+              },
+              {
+                "label": "ノ",
+                "value": "1"
+              },
+              {
+                "label": "ハ",
+                "value": "2"
+              },
+              {
+                "label": "ヒ",
+                "value": "4"
+              },
+              {
+                "label": "フ",
+                "value": "4"
+              },
+              {
+                "label": "ヘ",
+                "value": "2"
+              },
+              {
+                "label": "ホ",
+                "value": "5"
+              },
+              {
+                "label": "マ",
+                "value": "1"
+              },
+              {
+                "label": "ミ",
+                "value": "6"
+              },
+              {
+                "label": "ムメ",
+                "value": "−2"
+              }
+            ],
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "直線ℓとmを連立してA=(2,8)、mとx軸からB=(6,0)です。円Kの中心はABの中点、半径はAB/2です。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "K(4,4),\\qquad r=2\\sqrt5",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "C\\left(-\\frac25,\\frac{16}{5}\\right)",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p002",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第1問 (2)",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "CからADへ垂線を下ろしてtanαを求めます。βは円周角の定理で∠BADへ移し、差の公式を使います。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\tan\\alpha=\\frac34",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\sin(\\alpha-\\beta)=\\frac{2\\sqrt5}{25}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "crop",
+            "asset_id": "ans-q1-circle-angles",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "crop",
+            "asset_id": "ans-q1-sine-triangle",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p003",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第1問 (3) 支持直線",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "ax-y=kをy=ax-kと見ます。kを最大にする直線を上へ動かし、弧BCへの接線または端点B・Cを通る直線になる場合を分けます。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "crop",
+            "asset_id": "ans-q1-region",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "M=4a-4+2\\sqrt5\\sqrt{a^2+1}",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p004",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第1問 (3) 場合分けと最小",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "a<-\\frac{11}{2}:\\ M=-\\frac25(a+8)",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "-11/2≤a<1/2 のとき",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "M=4a-4+2\\sqrt5\\sqrt{a^2+1}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac12\\le a:\\ M=6a",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "中央の式を微分して増減を調べると、Mが最小となるのはa=-2です。",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p005",
+        "blocks": [
+          {
+            "type": "note",
+            "label": "この大問の進め方",
+            "text": "(1)(i)は微分→法線→面積、(ii)は通過条件でqを消去、(2)はlog(x+a)=0となる点で絶対値積分を分けます。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第2問 解答一覧",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "（1）（ⅰ）ア",
+                "value": "1"
+              },
+              {
+                "label": "イ",
+                "value": "2"
+              },
+              {
+                "label": "ウエ",
+                "value": "−2"
+              },
+              {
+                "label": "オ",
+                "value": "2"
+              },
+              {
+                "label": "カ",
+                "value": "2"
+              },
+              {
+                "label": "キ",
+                "value": "2"
+              },
+              {
+                "label": "ク",
+                "value": "2"
+              },
+              {
+                "label": "（ⅱ）ケ",
+                "value": "1"
+              },
+              {
+                "label": "コ",
+                "value": "2"
+              },
+              {
+                "label": "サシ",
+                "value": "−1"
+              },
+              {
+                "label": "ス",
+                "value": "2"
+              },
+              {
+                "label": "（2）セ",
+                "value": "1"
+              },
+              {
+                "label": "ソ",
+                "value": "1"
+              },
+              {
+                "label": "タ",
+                "value": "2"
+              },
+              {
+                "label": "チ",
+                "value": "1"
+              },
+              {
+                "label": "ツ",
+                "value": "5"
+              },
+              {
+                "label": "テ",
+                "value": "1"
+              },
+              {
+                "label": "ト",
+                "value": "2"
+              },
+              {
+                "label": "ナ",
+                "value": "5"
+              },
+              {
+                "label": "ニ",
+                "value": "1"
+              },
+              {
+                "label": "ヌ",
+                "value": "2"
+              },
+              {
+                "label": "ネ",
+                "value": "2"
+              },
+              {
+                "label": "ノ",
+                "value": "5"
+              }
+            ],
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "f'(1)=1/2なので法線の傾きは-2です。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "\\ell:y=-2x+2+\\log2",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "crop",
+            "asset_id": "ans-q2-c1-area",
+            "major_question_id": "major-question-02"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p006",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第2問 (1) 面積",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "法線とlog(x+1)の差を0から1まで積分すると、最初の面積は2-log2です。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "S_1=2-\\log2",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "C2が(1,log2)を通るのでq=(1-p)log2です。面積条件へ代入してpを決めます。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "crop",
+            "asset_id": "ans-q2-c2-area",
+            "major_question_id": "major-question-02"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p007",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第2問 (2) 絶対値積分",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "0<a≤1ではlog(x+a)はx=1-aで符号が変わります。そこで積分を2区間に分けます。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "g(a)=-\\int_0^{1-a}\\log(x+a)dx",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "\\phantom{g(a)}+\\int_{1-a}^{1}\\log(x+a)dx",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "crop",
+            "asset_id": "ans-q2-absolute-value",
+            "major_question_id": "major-question-02"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p008",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "積分を整理して微分するとg'(a)=0はa²+a=1です。0<a≤1の解を選びます。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "a=\\frac{\\sqrt5-1}{2}",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "\\min g(a)=\\log\\frac{\\sqrt5+1}{2}+2-\\sqrt5",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "note",
+            "label": "この大問の進め方",
+            "text": "(1)は商を極形式へ直して20乗、(2)は円上の最遠点、(3)は直線の複素数表示をzw=10でw平面の円へ移します。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第3問 解答一覧 (1)(2)",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "（1）ア",
+                "value": "2"
+              },
+              {
+                "label": "イ",
+                "value": "5"
+              },
+              {
+                "label": "ウエ",
+                "value": "−1"
+              },
+              {
+                "label": "オ",
+                "value": "2"
+              },
+              {
+                "label": "カ",
+                "value": "3"
+              },
+              {
+                "label": "キ",
+                "value": "4"
+              },
+              {
+                "label": "クケコサシ",
+                "value": "−1024"
+              },
+              {
+                "label": "（2）ス",
+                "value": "6"
+              },
+              {
+                "label": "セ",
+                "value": "2"
+              },
+              {
+                "label": "ソ",
+                "value": "4"
+              },
+              {
+                "label": "タチ",
+                "value": "22"
+              },
+              {
+                "label": "ツ",
+                "value": "5"
+              }
+            ],
+            "major_question_id": "major-question-03"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p009",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第3問 解答一覧 (3)",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "（3）テ",
+                "value": "7"
+              },
+              {
+                "label": "トナ",
+                "value": "20"
+              },
+              {
+                "label": "ニ",
+                "value": "7"
+              },
+              {
+                "label": "ヌ",
+                "value": "2"
+              },
+              {
+                "label": "ネ",
+                "value": "5"
+              },
+              {
+                "label": "ノ",
+                "value": "2"
+              },
+              {
+                "label": "ハ",
+                "value": "2"
+              },
+              {
+                "label": "ヒ",
+                "value": "5"
+              },
+              {
+                "label": "フ",
+                "value": "7"
+              }
+            ],
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "α/β=-1+i=√2(cos3π/4+i sin3π/4)です。ド・モアブルの定理で20乗します。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "(\\alpha/\\beta)^{20}=-1024",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "crop",
+            "asset_id": "ans-q3-farthest-point",
+            "major_question_id": "major-question-03"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p010",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第3問 (2)(3)",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "|z-β|=√2は中心βの円です。αから最遠の点は中心を結ぶ直線の延長上にあります。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "\\max|z-\\alpha|=6\\sqrt2,\\qquad z=\\frac{4-22i}{5}",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "直線AB上のα、βを共役を含む式へ代入し、γを連立で決めます。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "\\gamma=\\frac{7-i}{20}",
+            "major_question_id": "major-question-03"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p011",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "zw=10よりz=10/wを直線の式へ代入し、w=u+ivとして平方完成します。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "\\left(u-\\frac72\\right)^2+\\left(v-\\frac12\\right)^2=\\frac{25}{2}",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "△POQの面積は|z||w|=10を使うと5sinθです。最大はθ=π/2のときです。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "crop",
+            "asset_id": "ans-q3-area-ratio",
+            "major_question_id": "major-question-03"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p012",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Pが直線AB上にある条件と偏角±π/4を組み合わせ、y=x、y=-xとの交点を求めます。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "P_1=(5/3,5/3),\\qquad P_2=(5/4,-5/4)",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "対応するQを|z||w|=10から求め、線分比を比較します。",
+            "major_question_id": "major-question-03"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p013",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第3問 (3) 結論",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "5:7",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "したがって、面積最大時に直線ABが△POQを分ける比は5:7です。",
+            "major_question_id": "major-question-03"
+          }
+        ]
+      }
+    ],
+    "review": {
+      "needs_human_review": true,
+      "editorial_status": "draft_for_subject_editor",
+      "mathematical_consistency_checked": true,
+      "answer_key_checked": true,
+      "source_transcription_preserved": true,
+      "source_route_checked": true,
+      "reader_structure_checked": true
+    }
+  },
+  "assets": [
+    {
+      "id": "ans-q1-circle-angles",
+      "kind": "source_crop",
+      "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p002",
+      "crop_box_pixels": [
+        398,
+        323,
+        837,
+        877
+      ],
+      "source_crop_path": "assets/crops/ans-q1-circle-angles/source.png",
+      "replacement_path": "assets/crops/ans-q1-circle-angles/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "円Kと直線ℓ・m、点A・B・C・D・E、角α・βの位置関係を示す図"
+    },
+    {
+      "id": "ans-q1-sine-triangle",
+      "kind": "source_crop",
+      "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p002",
+      "crop_box_pixels": [
+        448,
+        998,
+        827,
+        1241
+      ],
+      "source_crop_path": "assets/crops/ans-q1-sine-triangle/source.png",
+      "replacement_path": "assets/crops/ans-q1-sine-triangle/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "底辺11、高さ2、角α−βを示す直角三角形"
+    },
+    {
+      "id": "ans-q1-region",
+      "kind": "source_crop",
+      "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p003",
+      "crop_box_pixels": [
+        453,
+        228,
+        874,
+        712
+      ],
+      "source_crop_path": "assets/crops/ans-q1-region/source.png",
+      "replacement_path": "assets/crops/ans-q1-region/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "円Kの弧BCと線分AB・ACで囲まれた領域L、および境界で接する直線を示す図"
+    },
+    {
+      "id": "ans-q2-c1-area",
+      "kind": "source_crop",
+      "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p005",
+      "crop_box_pixels": [
+        463,
+        753,
+        874,
+        1241
+      ],
+      "source_crop_path": "assets/crops/ans-q2-c1-area/source.png",
+      "replacement_path": "assets/crops/ans-q2-c1-area/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "対数関数C1、点(1,log2)における法線ℓ、y軸で囲まれた面積を示す図"
+    },
+    {
+      "id": "ans-q2-c2-area",
+      "kind": "source_crop",
+      "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p006",
+      "crop_box_pixels": [
+        473,
+        823,
+        874,
+        1241
+      ],
+      "source_crop_path": "assets/crops/ans-q2-c2-area/source.png",
+      "replacement_path": "assets/crops/ans-q2-c2-area/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "対数関数C2、法線ℓ、y軸で囲まれた面積を示す図"
+    },
+    {
+      "id": "ans-q2-absolute-value",
+      "kind": "source_crop",
+      "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p007",
+      "crop_box_pixels": [
+        478,
+        478,
+        874,
+        877
+      ],
+      "source_crop_path": "assets/crops/ans-q2-absolute-value/source.png",
+      "replacement_path": "assets/crops/ans-q2-absolute-value/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "y=|f(x)|のグラフと、x=1−aおよびx=1での値を示す図"
+    },
+    {
+      "id": "ans-q3-farthest-point",
+      "kind": "source_crop",
+      "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p009",
+      "crop_box_pixels": [
+        568,
+        688,
+        874,
+        1227
+      ],
+      "source_crop_path": "assets/crops/ans-q3-farthest-point/source.png",
+      "replacement_path": "assets/crops/ans-q3-farthest-point/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "複素数平面上の点A・Bと、B中心の円およびAから最遠の点C1を示す図"
+    },
+    {
+      "id": "ans-q3-area-ratio",
+      "kind": "source_crop",
+      "source_page_id": "kawasaki-medical-2025-general-regional-quota-mathematics-answers-p011",
+      "crop_box_pixels": [
+        528,
+        763,
+        874,
+        1241
+      ],
+      "source_crop_path": "assets/crops/ans-q3-area-ratio/source.png",
+      "replacement_path": "assets/crops/ans-q3-area-ratio/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "直線ABとy=x・y=−x上の点P1・P2・Q1・Q2、原点Oを結ぶ面積比の図"
+    }
+  ],
+  "sourceReference": "projects/universities/kawasaki-medical/past-exams/working/2025/general-regional-quota/first-stage/mathematics/source-html/editorial-explanations.json",
+  "sha256": "85724cdc33dc6a53ee469a315a9b2c70db1011a4cf9d5e4c92a30045af82c6ce"
+}

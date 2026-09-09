@@ -1,0 +1,276 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "fukuoka-2025-general-keitobetsu-mathematics",
+    "university_id": "fukuoka",
+    "university_name": "福岡大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-keitobetsu",
+    "exam_method_name": "一般選抜（系統別日程）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 90,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "2025年度問題原本p.1に数学90分と明記されている。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/fukuoka/past-exams/working/2025/general-keitobetsu/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "dec9182158facc18362a2242a2646c546baa0cc62ee3d2d299f354844258c250",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "［Ⅰ］",
+      "sourceTitle": "確率・空間ベクトル・放物線と平行線",
+      "requirements": [
+        3,
+        3.7,
+        3.4,
+        3.7,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-i",
+          "label": "(i)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 14,
+          "difficultyReason": "2秒後は1秒後の位置で場合分けし、非到達は各秒にBへ移らない確率を積にする。短いが遷移条件の読み分けが必要。",
+          "strategyReason": "状態数が3つに限られ、2秒後は3場合の和、3秒間の非到達は同じ確率の積へ落とせる。大問冒頭で確実に回収したい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-ii",
+          "label": "(ii)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 14,
+          "difficultyReason": "各点の位置ベクトルを置いた後、平面上の点を2方向の一次結合で表し、独立な基本ベクトルの係数比較を行う必要がある。",
+          "strategyReason": "位置ベクトルの設定から平面条件の連立まで工程が多く、苦手層は係数計算の取り違えが起きやすい。確率や数列を先に処理し、基本ベクトルの置き方が確認できた時点で戻る。得意層には典型手順で再現可能。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-iii",
+          "label": "(iii)",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 15,
+          "difficultyReason": "2本の交点条件を判別式で処理した後、2次方程式の解の差、直線上の長さ、平行線間距離を組み合わせて面積式を作る統合問題。",
+          "strategyReason": "判別式までは定型だが、交点間距離を解の差で表し、平行線間距離と台形面積を作って根号方程式まで解く長い経路である。苦手層は他の基本的な空欄を優先し本番では回収対象から外す。得意層も短問を回収した後、15分程度を確保できた段階で戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "［Ⅱ］",
+      "sourceTitle": "数列と三角関数の周期・平均値と中央値",
+      "requirements": [
+        0,
+        4,
+        4.5,
+        3.5,
+        4.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-i",
+          "label": "(i)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 14,
+          "difficultyReason": "一般項は部分和の差で求まるが、後半は余弦列の12周期と1周期の和0を見抜き、2025項の端数を正確に処理する必要がある。",
+          "strategyReason": "一般項までは定型だが、周期12の整理と末尾3項の符号確認が必要。苦手層は確率を先に回収し、周期が即座に見えた場合に戻る。得意層は部分和と周期和の典型として早めに処理できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-ii",
+          "label": "(ii)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 14,
+          "difficultyReason": "元データの平均・中央値に加え、追加値が6以下、6と8の間、8以上の3範囲で新しい中央値を場合分けする必要がある。",
+          "strategyReason": "平均値の計算後に、追加値の位置ごとに中央値を3場合へ分け、各解が範囲条件を満たすか確認する。工程量と分数計算が多いため、両層とも短問後に戻り、中央値の3範囲を書き出してから着手する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "［Ⅲ］",
+      "sourceTitle": "三角関数を含む2曲線の接線と面積",
+      "requirements": [
+        2.5,
+        4.5,
+        4,
+        4,
+        4.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-i",
+          "label": "(i)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 14,
+          "difficultyReason": "共有点条件を 2/a=\\sin2x に変形し、区間内で解が1つとなる水平線を決めた後、分数関数を微分して接線を作る必要がある。",
+          "strategyReason": "倍角公式で共有点個数をグラフに帰着し、接点と微分係数を順に求める再現可能な経路である。苦手層は空欄短問後、 2/a=\\sin2x まで変形できる見通しが立った時点で戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-ii",
+          "label": "(ii)",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 15,
+          "difficultyReason": "曲線の上下関係から積分を立て、 1/\\cos x を u=\\sin x と部分分数で対数積分へ変形する長い計算を正確に記述する必要がある。",
+          "strategyReason": "面積の立式後、分母を因数分解して部分分数と対数評価を進める長い記述計算である。苦手層は他の空欄と(i)を優先し回収対象外とする。得意層は(i)を完了し、残り15分程度を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-i"
+            ],
+            "strong_subject": [
+              "math-q3-i"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 90,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 70,
+        "targetPercent": 70,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 20.4,
+        "maximum": {
+          "points": 70,
+          "minutes": 89.4,
+          "questionIds": [
+            "math-q1-i",
+            "math-q1-ii",
+            "math-q2-i",
+            "math-q2-ii",
+            "math-q3-i"
+          ]
+        },
+        "now": {
+          "points": 14,
+          "minutes": 27.9,
+          "questionIds": [
+            "math-q1-i"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 70,
+          "minutes": 89.4,
+          "questionIds": [
+            "math-q1-i",
+            "math-q1-ii",
+            "math-q2-i",
+            "math-q2-ii",
+            "math-q3-i"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 5.1,
+        "maximum": {
+          "points": 100,
+          "minutes": 81.1,
+          "questionIds": [
+            "math-q1-i",
+            "math-q1-ii",
+            "math-q1-iii",
+            "math-q2-i",
+            "math-q2-ii",
+            "math-q3-i",
+            "math-q3-ii"
+          ]
+        },
+        "now": {
+          "points": 56,
+          "minutes": 39.1,
+          "questionIds": [
+            "math-q1-i",
+            "math-q1-ii",
+            "math-q2-i",
+            "math-q3-i"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 81.1,
+          "questionIds": [
+            "math-q1-i",
+            "math-q1-ii",
+            "math-q1-iii",
+            "math-q2-i",
+            "math-q2-ii",
+            "math-q3-i",
+            "math-q3-ii"
+          ]
+        }
+      }
+    ]
+  }
+}

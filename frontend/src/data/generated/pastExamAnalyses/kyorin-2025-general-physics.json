@@ -1,0 +1,239 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "kyorin-2025-general-physics",
+  "route": {
+    "university": "kyorin",
+    "year": "2025",
+    "subject": "physics",
+    "path": "/past-exam-library/kyorin/2025/physics/analysis/"
+  },
+  "university": "杏林大学医学部",
+  "year": 2025,
+  "subject": "物理",
+  "examLabel": "一般選抜",
+  "duration": "理科2科目 合計100分",
+  "format": "選択・数値解答など（各設問を参照）",
+  "examTotal": null,
+  "headline": "原子と原子核",
+  "summary": "第Ⅰ問は原子と原子核、第Ⅱ問は運動の表し方・力のつり合いと運動の法則、第Ⅲ問は直流回路。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "物理が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "物理が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "第Ⅰ問",
+      "title": "原子核・質量欠損・核反応・半減期",
+      "subtitle": "原子と原子核",
+      "summary": "統一原子質量単位から出発し、質量欠損と結合エネルギー、核反応のエネルギー配分、放射性崩壊の半減期を扱う。",
+      "studyAction": "単位換算。質量とエネルギーの等価性",
+      "requirements": [
+        3.8,
+        3.8,
+        3.8,
+        3.1,
+        3.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-a",
+          "label": "（a）",
+          "title": "統一原子質量単位の定義を選び、kgへ換算する。",
+          "note": "想定2.5分・仮6点。設問の工程量と前問依存を踏まえて処理順を決める。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "phys-q1-b",
+          "label": "（b）",
+          "title": "重水素の質量欠損と結合エネルギーを求める。",
+          "note": "想定3.0分・仮6点。設問の工程量と前問依存を踏まえて処理順を決める。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "phys-q1-c",
+          "label": "（c）",
+          "title": "核反応の放出エネルギーと炭素14原子核の運動エネルギーを求める。",
+          "note": "想定5.0分・仮7点。設問の工程量と前問依存を踏まえて処理順を決める。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 7
+        },
+        {
+          "id": "phys-q1-d",
+          "label": "（d）",
+          "title": "崩壊率から半減期と残存数が6分の1になる時刻を求める。",
+          "note": "想定3.5分・仮6点。設問の工程量と前問依存を踏まえて処理順を決める。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        }
+      ],
+      "questionsPath": "/past-exam-library/kyorin/2025/physics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/kyorin/2025/physics/answers/#major-question-01"
+    },
+    {
+      "id": "phys-q2",
+      "label": "第Ⅱ問",
+      "title": "ばねでつながれた2物体・摩擦・重心運動",
+      "subtitle": "運動の表し方・力のつり合いと運動の法則・単振動",
+      "summary": "壁に接した小球とばねの系について、単振動、静止摩擦、2物体の運動方程式、重心運動、摩擦によるエネルギー損失を追う。",
+      "studyAction": "単振動のグラフ。摩擦条件",
+      "requirements": [
+        4.4,
+        4.4,
+        4.4,
+        3.7,
+        4.4
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-a",
+          "label": "（a）",
+          "title": "小球Bが静止している間の小球Aの単振動と摩擦・垂直抗力条件を求める。",
+          "note": "想定4.0分・仮6点。設問の工程量と前問依存を踏まえて処理順を決める。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "phys-q2-b",
+          "label": "（b）",
+          "title": "小球Bが離れた後の2物体の運動方程式、重心加速度、相対運動の角振動数を求める。",
+          "note": "想定7.0分・仮7点。設問の工程量と前問依存を踏まえて処理順を決める。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 7
+        },
+        {
+          "id": "phys-q2-c",
+          "label": "（c）",
+          "title": "動摩擦力の仕事と停止後の小球Aの振幅を求める。",
+          "note": "想定3.5分・仮6点。設問の工程量と前問依存を踏まえて処理順を決める。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        }
+      ],
+      "questionsPath": "/past-exam-library/kyorin/2025/physics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/kyorin/2025/physics/answers/#major-question-02"
+    },
+    {
+      "id": "phys-q3",
+      "label": "第Ⅲ問",
+      "title": "半導体・ダイオード・ブリッジ回路",
+      "subtitle": "直流回路",
+      "summary": "半導体の担体とダイオードの整流作用を確認し、理想・非理想ダイオードを含むブリッジ回路を電位差とキルヒホッフの法則で解析する。",
+      "studyAction": "半導体の基礎知識。電位差",
+      "requirements": [
+        3.8,
+        3.8,
+        3.8,
+        3.3,
+        3.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "（1）",
+          "title": "n型・p型半導体の価電子数、担体の運動、順方向接続を答える。",
+          "note": "想定2.5分・仮6点。設問の工程量と前問依存を踏まえて処理順を決める。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "phys-q3-2a",
+          "label": "（2）（a）",
+          "title": "ダイオードが導通しない条件で点bの相対電位と電池電流を求める。",
+          "note": "想定3.0分・仮6点。設問の工程量と前問依存を踏まえて処理順を決める。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "phys-q3-2b",
+          "label": "（2）（b）",
+          "title": "可変抵抗Rについてダイオードが導通する条件を求める。",
+          "note": "想定2.5分・仮6点。設問の工程量と前問依存を踏まえて処理順を決める。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "phys-q3-2c",
+          "label": "（2）（c）",
+          "title": "理想ダイオードが導通するブリッジ回路でダイオード電流を求める。",
+          "note": "想定5.0分・仮6点。設問の工程量と前問依存を踏まえて処理順を決める。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 6
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "（3）",
+          "title": "しきい電圧と線形特性をもつダイオードの電流を求める。",
+          "note": "想定5.5分・仮7点。設問の工程量と前問依存を踏まえて処理順を決める。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 7
+        }
+      ],
+      "questionsPath": "/past-exam-library/kyorin/2025/physics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/kyorin/2025/physics/answers/#major-question-03"
+    }
+  ],
+  "difficultyCounts": [
+    2,
+    1,
+    5,
+    4
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 75,
+    "timeBudgetMinutes": null,
+    "profiles": []
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kyorin/past-exams/working/2025/general/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "ae82fc89426d59a089e9de304a1dc435fe69324ec05c616a94a5e37081a01f25",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "targetReviewNote": "元データの目標点・所要時間・前問依存を確認しています。数値は検証完了後に掲載します。",
+  "links": {
+    "questions": "/past-exam-library/kyorin/2025/physics/questions/",
+    "answers": "/past-exam-library/kyorin/2025/physics/answers/",
+    "university": "/past-exam-library/kyorin/"
+  }
+}

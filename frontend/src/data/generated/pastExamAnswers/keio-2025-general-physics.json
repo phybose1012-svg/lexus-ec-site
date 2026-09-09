@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "lexus-past-exam-answer-page.v1",
+  "packageId": "keio-2025-general-physics",
+  "route": {
+    "university": "keio",
+    "year": "2025",
+    "subject": "physics",
+    "path": "/past-exam-library/keio/2025/physics/answers/"
+  },
+  "university": {
+    "id": "keio",
+    "name": "慶應義塾大学"
+  },
+  "exam": {
+    "year": "2025",
+    "label": "一般選抜",
+    "stage": "一次試験",
+    "duration": "理科2科目 合計120分"
+  },
+  "subject": {
+    "id": "physics",
+    "name": "物理",
+    "english": "PHYSICS"
+  },
+  "document": {
+    "role": "answers",
+    "pageUnit": "major_question",
+    "majorQuestions": [
+      {
+        "id": "major-question-01",
+        "label": "I",
+        "order": 1,
+        "html": "<article class=\"source-page-card major-question-card answer-major-card\" id=\"major-question-01\" data-major-question-id=\"major-question-01\"><h2>I 解答・解説</h2><div class=\"answer-explanation\"><aside class=\"source-note answer-note\"><strong>この大問の解き方</strong><p>水平方向と鉛直方向を分け、床衝突では鉛直速度だけに反発係数を掛ける。衝突間隔は等比数列になる。</p></aside><section class=\"answer-explanation-section\"><h3>問1(a)・(b)　最初の衝突</h3><p class=\"prose\">最初の衝突時刻は鉛直変位を0として t₁=2v₀sinθ/g。水平到達距離は v₀cosθ·t₁=v₀²sin2θ/g だから、最大となる角は45°である。</p><p class=\"prose\">衝突直前の鉛直速度は−v₀sinθ。反発後は向きが上向きとなり大きさがe倍なので、速度は (v₀cosθ, ev₀sinθ) となる。</p></section><section class=\"answer-explanation-section\"><h3>問1(c)・(d)　繰り返し衝突</h3><p class=\"prose\">n回目直後の鉛直速度は eⁿv₀sinθ。衝突間隔を加えると等比数列となり、tₙ=2v₀sinθ(1−eⁿ)/{g(1−e)} を得る。</p><p class=\"prose\">n→∞では時刻が2v₀sinθ/{g(1−e)}へ収束する。水平速度は一定なので、これをv₀cosθ倍して v₀²sin2θ/{g(1−e)} とする。</p></section><section class=\"answer-explanation-section\"><h3>問2(e)・(f)　放射線量</h3><p class=\"prose\">Bqは放射性崩壊の頻度、Gyは物質1 kg当たりの吸収エネルギーである。同じ吸収線量でも放射線種や被曝部位で生物影響が違うため、等価線量と実効線量を使う。</p><aside class=\"source-note answer-note\"><strong>Ⅰの確認</strong><p>速度ベクトルでは水平方向の符号と、反発後の鉛直方向が正であることを確認する。</p></aside></section></div></article>"
+      },
+      {
+        "id": "major-question-02",
+        "label": "II",
+        "order": 2,
+        "html": "<article class=\"source-page-card major-question-card answer-major-card\" id=\"major-question-02\" data-major-question-id=\"major-question-02\"><h2>II 解答・解説</h2><div class=\"answer-explanation\"><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"ans-q4-wiring\"><div role=\"img\" aria-label=\"不要信号を除去する2組の検出器の結線解答図（図版準備中）\" style=\"aspect-ratio:1.259\"><strong>図版準備中</strong><p>不要信号を除去する2組の検出器の結線解答図</p></div><figcaption>図の位置・大きさを確保しています。図を使う説明は確認完了までレビュー中です。</figcaption></figure><aside class=\"source-note answer-note\"><strong>この大問の解き方</strong><p>前半は磁場と電磁誘導の基礎。後半は磁化式を時間依存の磁場へ代入し、差分公式で信号成分を分ける。</p></aside><section class=\"answer-explanation-section\"><h3>問1・問2　基礎事項</h3><p class=\"prose\">磁性体の分類、H=nI、ファラデーの法則、ホール効果は後半の装置解析の土台となる。単位は F=mH から磁気量の次元を逆算する。</p></section><section class=\"answer-explanation-section\"><h3>問3(f)・(g)　回転コイルの誘導電圧</h3><p class=\"prose\">回転角をωtとするとコイルを貫く磁束は μ₀H₀h²sinωt。差分を取り、ω=2πfを用いると電圧振幅は2πfμ₀H₀h²となる。</p><p class=\"prose\">実効値は振幅の1/√2。1.0 nVを代入してfを解くと約2×10⁴ Hzとなる。</p></section><section class=\"answer-explanation-section\"><h3>問3(h)・(i)　遠心力と実現可能性</h3><p class=\"prose\">導線一辺に働く遠心力は、質量×回転半径×角速度²で見積もる。約6×10³ Nは細い導線には過大であり、装置は破損しやすい。</p></section><section class=\"answer-explanation-section\"><h3>問4(j)・(k)　非線形磁化と誘導電圧</h3><p class=\"prose\">交流磁場をH₁sinωtとし、H=H₀+H₁sinωtを B=aH−bH³ へ代入する。三次式を展開し、時間変化する項だけをファラデーの法則へ入れる。</p><p class=\"prose\">sin²ωtの差分はsin2ωtを、sin³ωtの差分はcosωt sin²ωtを生む。各係数を落とさないよう項ごとに整理する。</p></section><section class=\"answer-explanation-section\"><h3>問4(l)・(m)　不要信号の相殺</h3><p class=\"prose\">2組の磁気コアを逆向きに励磁すると、H₀に比例しない項の符号関係を利用して相殺できる。検出コイルの電圧は目的信号が加算される向きに結ぶ。</p><p class=\"prose\">2系統の式を加えると目的成分だけが残り、実効値は 3√2 bωNSH₀H₁² となる。</p></section><section class=\"answer-explanation-section\"><h3>問4(n)　信号電圧の数値</h3><p class=\"prose\">H₁²=a/(3b)を実効値式へ代入してbを消去し、指数を一つずつそろえると約2×10⁻⁹ Vとなる。</p></section></div></article>"
+      },
+      {
+        "id": "major-question-03",
+        "label": "III",
+        "order": 3,
+        "html": "<article class=\"source-page-card major-question-card answer-major-card\" id=\"major-question-03\" data-major-question-id=\"major-question-03\"><h2>III 解答・解説</h2><div class=\"answer-explanation\"><aside class=\"source-note answer-note\"><strong>この大問の解き方</strong><p>水蒸気は飽和判定を先に行う。大気では薄層の力のつり合い、状態方程式、断熱変化を順に連結する。</p></aside><section class=\"answer-explanation-section\"><h3>問1(a)・(b)　飽和水蒸気圧</h3><p class=\"prose\">まず全量が気体と仮定して状態方程式で圧力を求め、グラフの飽和水蒸気圧と比較する。80℃では全量が気体、40℃では一部が凝縮する。</p><p class=\"prose\">40℃では圧力をグラフの7.5×10³ Paに固定し、pV=nRTから気体として残る物質量を求める。</p></section><section class=\"answer-explanation-section\"><h3>問2(c)　微小断熱変化</h3><p class=\"prose\">pV^γ=一定へV=nRT/pを代入する。pとTのべき指数を整理し、微小変化で一次まで残すと A=1−γ、B=1−1/γ を得る。</p></section><section class=\"answer-explanation-section\"><h3>問3(d)・(e)　大気の圧力勾配</h3><p class=\"prose\">断面積S、厚さΔhの薄層について上下の圧力差と重力をつり合わせると Δp=−ρgΔh。したがってC=ρgである。</p><p class=\"prose\">気体の密度は、モル質量M×10⁻³ kg/molと状態方程式から ρ=pM×10⁻³/(RT)。これをCへ代入する。</p></section><section class=\"answer-explanation-section\"><h3>問3(f)・(g)　乾燥断熱減率</h3><p class=\"prose\">断熱変化式ΔT=B(T/p)Δpへ圧力勾配を代入すると、Tとpが消えて ΔT=−{BMg×10⁻³/R}Δh。数値代入で100 m当たり−1.0 Kとなる。</p></section><section class=\"answer-explanation-section\"><h3>問3(h)　下降条件</h3><p class=\"prose\">上昇後の空気塊と周囲大気を同じ圧力で比較する。理想気体では温度が低いほど密度が大きいため、空気塊の温度が周囲より低ければ重力が浮力を上回り下降する。</p><p class=\"prose\">上空ほど温度が下がることも含めると、空気塊の温度変化ΔTと周囲の変化ΔT̄の大小関係は ΔT̄&gt;ΔT となる。</p></section><section class=\"answer-explanation-section\"><h3>問3(i)　湿潤時の温度減率</h3><p class=\"prose\">水滴が生じると凝結時の潜熱が空気塊へ放出される。その熱が断熱膨張による温度低下を一部補うので、水滴が生じる場合のDは生じない場合より小さい。</p><aside class=\"source-note answer-note\"><strong>試験全体の振り返り</strong><p>Ⅰは等比数列、Ⅱは式展開と結線、Ⅲは複数法則の接続が要点。難しい導出でも独立した知識・数値設問を先に回収する。</p></aside></section></div></article>"
+      }
+    ]
+  },
+  "source": {
+    "contentProvenance": "editorial_adaptation_import",
+    "reference": "projects/universities/keio/past-exams/working/2025/general/first-stage/physics/source-html/editorial-explanations.json",
+    "sha256": "7063b687680cb4bf3571d541fa5a35c91c9e01d31723353cd53f5d749f8af099",
+    "needsHumanReview": true,
+    "rightsStatus": "review_required",
+    "restrictedAssetsCopied": false,
+    "independentlyReauthored": false,
+    "reviewNote": "保存済み学習者向け解説のステージング取り込み版。数式・論理・図版の詳細校正前。"
+  },
+  "links": {
+    "questions": "/past-exam-library/keio/2025/physics/questions/",
+    "universityLibrary": "/past-exam-library/keio/",
+    "analysis": "/past-exam-library/keio/2025/physics/analysis/"
+  }
+}

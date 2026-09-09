@@ -6,13 +6,15 @@
 // exam wording, related links, and the few editorial states (for example a
 // subject still held back for a rights review) that no generated file can imply.
 import { analysisPages } from "./pastExamAnalyses";
+import batchCatalog from "./pastExamBatch/catalog.json";
+import { privateMedicalUniversities2027 } from "./privateMedicalAdmissions2027";
 
-type Availability = { university: string; year: string; subject: string; path: string };
+type Availability = { university: string; year: string; subject: string; path: string; packageId?: string };
 
 const routesOf = (modules: Record<string, unknown>): Availability[] =>
   Object.values(modules).map((page) => {
-    const { route } = page as { route: Availability };
-    return { university: route.university, year: route.year, subject: route.subject, path: route.path };
+    const { route, packageId } = page as { route: Availability; packageId: string };
+    return { university: route.university, year: route.year, subject: route.subject, path: route.path, packageId };
   });
 
 const questionRoutes = routesOf(
@@ -26,6 +28,7 @@ const analysisRoutes: Availability[] = analysisPages.map((page) => ({
   year: page.route.year,
   subject: page.route.subject,
   path: page.route.path,
+  packageId: page.packageId,
 }));
 
 const find = (routes: Availability[], university: string, year: string, subject: string) =>
@@ -150,10 +153,25 @@ export const universityLibraries: UniversityLibrary[] = [
   },
 ];
 
-export const libraryPathFor = (universityId: string) =>
-  universityLibraries.some((library) => library.id === universityId)
-    ? `/past-exam-library/${universityId}/`
-    : undefined;
+// The source project and the admission-information site use different IDs for
+// several universities. Match their verified Japanese names, not guessed URLs.
+for (const entry of batchCatalog) {
+  if (universityLibraries.some(library => library.id === entry.university)) continue;
+  if (!questionRoutes.some(route => route.university === entry.university)) continue;
+  const information = privateMedicalUniversities2027.find(u => u.name === entry.name.replace(/医学部$/, ''));
+  universityLibraries.push({
+    id: entry.university, name: entry.name.replace(/医学部$/, ''), examLabel: entry.examLabel, stageLabel: '方式・試験段階は各行を参照',
+    years: ['2026','2025','2024','2023','2022'].map(year => ({year,label:year==='2026'?'最新年度':questionRoutes.some(r=>r.university===entry.university&&r.year===year)?'ステージング掲載中':'掲載準備中',tone:year==='2026'?'latest':questionRoutes.some(r=>r.university===entry.university&&r.year===year)?'active':'placeholder'})),
+    strategyPath:information?.strategyPath??'/past-exam-library/',strategyLabel:information?'入試対策・大学情報':'大学一覧',
+    informationPath:'/top/information-shiritsu/',informationLabel:'私立医学部の入試情報',
+    currentStatus:'問題・解答解説・分析をステージング掲載中です。未校正・図版準備中の箇所を含みます。',
+  });
+}
+export const libraryPathFor = (universityId: string) => {
+  const name=privateMedicalUniversities2027.find(u=>u.id===universityId)?.name;
+  const library=universityLibraries.find(l=>l.id===universityId||(name&&l.name===name));
+  return library?`/past-exam-library/${library.id}/`:undefined;
+};
 
 export type SubjectRow = SubjectDefinition & {
   problem: string;
@@ -165,15 +183,16 @@ export type SubjectRow = SubjectDefinition & {
   analysis: string;
   analysisTone: "ready" | "empty";
   analysisPath?: string;
+  examVariant?: string;
 };
 
 export function subjectRowsFor(library: UniversityLibrary, year: string): SubjectRow[] {
-  return subjectDefinitions.map((subject) => {
+  return subjectDefinitions.flatMap((subject) => {
     const override = library.overrides?.[`${year}:${subject.id}`] ?? {};
     const problemPath = find(questionRoutes, library.id, year, subject.id);
     const answerPath = find(answerRoutes, library.id, year, subject.id);
     const analysisPath = find(analysisRoutes, library.id, year, subject.id) ?? override.analysisPath;
-    return {
+    const base: SubjectRow = {
       ...subject,
       problem: problemPath ? "問題を見る" : (override.problem?.label ?? "準備中"),
       problemTone: problemPath ? "ready" : (override.problem?.tone ?? "empty"),
@@ -185,6 +204,14 @@ export function subjectRowsFor(library: UniversityLibrary, year: string): Subjec
       analysisTone: analysisPath ? "ready" : "empty",
       ...(analysisPath ? { analysisPath } : {}),
     };
+    const variants=questionRoutes.filter(r=>r.university===library.id&&r.year===year&&r.subject===subject.id);
+    if(variants.length < 2) return [base];
+    return variants.map(route=>{
+      const catalog=batchCatalog.find(c=>c.id===route.packageId);
+      const answer=answerRoutes.find(r=>r.packageId===route.packageId);
+      const analysis=analysisRoutes.find(r=>r.packageId===route.packageId);
+      return {...base,examVariant:catalog?`${catalog.examLabel} / ${catalog.stage==='second-stage'?'二次試験':'一次試験'}`:library.examLabel,problemPath:route.path,answerPath:answer?.path,analysisPath:analysis?.path,problem:'問題を見る',problemTone:'ready' as const,answer:answer?'解答を見る':'準備中',answerTone:answer?'ready' as const:'empty' as const,analysis:analysis?'分析を見る':'準備中',analysisTone:analysis?'ready' as const:'empty' as const};
+    });
   });
 }
 

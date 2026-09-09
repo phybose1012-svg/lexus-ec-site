@@ -11,6 +11,8 @@
     "past-exam:import": "node ../.agents/skills/past-exam-question-importer/scripts/import-question-page.mjs",
     "past-exam:notation": "node ./scripts/normalize-past-exam-notation.mjs",
     "past-exam:answers": "node ../.agents/skills/past-exam-answer-author/scripts/build-all-answer-pages.mjs",
+    "past-exam:staging-answers": "node ./scripts/build-past-exam-staging-answers.mjs",
+    "past-exam:batch:test": "node --test ./scripts/past-exam-batch.test.mjs",
     "past-exam:answers:test": "node --test ../.agents/skills/past-exam-answer-author/scripts/build-answer-page.test.mjs",
     "past-exam:analyses": "node ./scripts/build-past-exam-analyses.mjs",
     "past-exam:analyses:test": "node --test ./scripts/past-exam-analysis.test.mjs",
@@ -28,7 +30,7 @@
     "past-exam:keio-mathematics:test": "node --test ./scripts/past-exam-keio-2025-mathematics.test.mjs",
     "past-exam:notation:test": "node --test ./scripts/past-exam-notation.test.mjs",
     "dev": "node ./scripts/astro-command.mjs dev --host 127.0.0.1",
-    "build": "node ./scripts/verify-build-inputs.mjs && npm run past-exam:answers && npm run past-exam:analyses && node ./scripts/astro-command.mjs check && node ./scripts/astro-command.mjs build",
+    "build": "node ./scripts/verify-build-inputs.mjs && npm run past-exam:answers && npm run past-exam:staging-answers && npm run past-exam:analyses && node ./scripts/astro-command.mjs check && node ./scripts/astro-command.mjs build",
     "preview": "node ./scripts/astro-command.mjs preview --host 127.0.0.1"
   },
   "dependencies": {

@@ -1,0 +1,566 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "nihon-u-2025-n-unified-first-mathematics",
+  "route": {
+    "university": "nihon-u",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/nihon-u/2025/mathematics/analysis/"
+  },
+  "university": "日本大学医学部",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "N全学統一方式第1期",
+  "duration": "数学 60分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "集合と命題・2次関数",
+  "summary": "Iは集合と命題・2次関数、IIは確率、IIIはベクトル・図形と計量、IVは指数関数・対数関数・数列、Vは図形と方程式・数列、VIは微分法・積分法。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "I",
+      "title": "小問集合：集合、2次関数の最小値、桁数、複素数の極形式、加法定理",
+      "subtitle": "集合と命題・2次関数・指数関数・対数関数",
+      "summary": "独立した5題の小問集合。1次・2次不等式から集合を決める問題、パラメータを含む2次関数の最小値をさらに最大化する問題、常用対数による桁数、複素数の極形式とド・モアブルの定理、正接の加法定理を扱う。",
+      "studyAction": "連立不等式と2次不等式を解いて集合を区間で表す。共通部分が空集合という条件から差集合を読み取る",
+      "requirements": [
+        0.4,
+        2.9,
+        2.2,
+        2.8,
+        2.2
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "（1）",
+          "title": "\\(\\varnothing\\) を空集合とする。実数の集合 \\(A,B\\) が \\(A=\\{x\\mid -x-5\\leqq -3x+1<3-x\\}\\)、\\(A\\cap B=\\varnothing\\)、\\(A\\cup B=\\{x\\mid x^2-7x-8<0\\}\\) を満たしている。このとき \\(B\\) を \\(B=\\{x\\mid p<x<q\\}\\) の形で表したときの \\(p,q\\) を求める。",
+          "note": "不等式を解く手順が定型で、独立した小問集合の先頭にある。仮配点6点を短時間で回収でき、後続小問への依存もない。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q1-2",
+          "label": "（2）",
+          "title": "実数 \\(a\\) を含む関数 \\(f(x)=x^2-2ax+a+1\\) の最小値を \\(m\\) とする。\\(a\\) がすべての実数値をとって変化するとき、\\(m\\) の最大値を既約分数の形で求める。",
+          "note": "平方完成を2回続けるだけの再現性の高い手順で、仮配点5点を2分程度で確保できる。科目平均を大きく上回る得点効率になる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q1-3",
+          "label": "（3）",
+          "title": "\\(\\log_{10}3=0.4771\\) として、\\(30^{30}\\) が何桁の整数かを求める。",
+          "note": "桁数の定石がそのまま使え、掛け算1回で答えに届く。科目内で最も得点効率の高い小問の一つであり、真っ先に確保する。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q1-4",
+          "label": "（4）",
+          "title": "\\(i\\) を虚数単位とする。複素数 \\(\\dfrac{(\\sqrt3+3i)^2}{1+i}\\) を極形式 \\(r(\\cos\\theta+i\\sin\\theta)\\) で表す。絶対値 \\(r\\) を \\(a\\sqrt{b}\\) の形、偏角 \\(\\theta\\) を \\(\\dfrac{c}{d}\\pi\\) の形で求める。",
+          "note": "極形式へ直す方針自体は定型で、得意層なら3分強で6点を回収できるため今解く。苦手層にとっては工程が長い。分子の2乗、分母の有理化、偏角の引き算と通分という3段階があり、どこか1か所で符号や分母を落とすと最後の5空所がまとめて外れる構造になっている。苦手層の想定時間は初期判断4倍・解答実行1.5倍で約6.3分と、同じ大問Iの（2）（3）（5）の2〜3倍かかる。得点効率も科目平均ペースを下回る。まず（1）（2）（3）（5）と大問IIの確率、大問IVの（1）（2）を確保し、時間が残っていれば戻る。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q1-5",
+          "label": "（5）",
+          "title": "\\(0<\\alpha<\\pi\\)、\\(0<\\beta<\\pi\\) で \\(\\tan\\alpha=\\dfrac37\\)、\\(\\tan\\beta=\\dfrac25\\) のとき、\\(\\alpha+\\beta\\) を \\(\\dfrac{c}{d}\\pi\\) の形で求める。",
+          "note": "加法定理の公式1本で完結し、数値も分母35でそろうため計算が短い。仮配点5点を最短で回収できる小問であり、両層とも先に処理する。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        }
+      ],
+      "questionsPath": "/past-exam-library/nihon-u/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/nihon-u/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "II",
+      "title": "袋から2個の玉を取り出す確率と条件付き確率",
+      "subtitle": "確率",
+      "summary": "赤玉3個、青玉4個、白玉5個の計12個から2個を同時に取り出す試行について、2個の色が異なる確率と、その条件の下で1個が赤玉である条件付き確率を求める。",
+      "studyAction": "組合せによる標本空間の把握。異なる色の組を過不足なく数え上げる場合分け",
+      "requirements": [
+        0,
+        2,
+        2.5,
+        3,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "（1）",
+          "title": "赤玉3個、青玉4個、白玉5個の計12個が入った袋から2個の玉を同時に取り出す。取り出した2個の玉の色が異なる確率を既約分数で求める。",
+          "note": "組合せの計算だけで完結し、数値も小さい。次の（2）の土台にもなるので、両層とも早い段階で確保する。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q2-2",
+          "label": "（2）",
+          "title": "赤玉3個、青玉4個、白玉5個の計12個が入った袋から2個の玉を同時に取り出す。取り出した2個の玉の色が異なるとき、そのうち1個が赤玉である条件付き確率を既約分数で求める。前問で求めた「色が異なる確率」を分母として使う。",
+          "note": "（1）で数えた3通りの内訳をそのまま流用でき、追加の計算はほとんどない。（1）を解いた直後に続けて処理するのが最も効率がよい。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        }
+      ],
+      "questionsPath": "/past-exam-library/nihon-u/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/nihon-u/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "III",
+      "title": "三角形の垂線の足の内分比と垂心の位置ベクトル",
+      "subtitle": "ベクトル・図形と計量",
+      "summary": "内積が与えられた三角形で、頂点から対辺へ下ろした垂線の足の内分比を求め、続けて垂心の位置ベクトルを2つの基本ベクトルで表す。問題面に図はなく、条件から自分で図を起こす必要がある。",
+      "studyAction": "内積から余弦の値と辺の長さを求める。垂線の足を直角三角形2つの三平方の定理で決める",
+      "requirements": [
+        4,
+        3.5,
+        3.5,
+        3.5,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "（1）",
+          "title": "\\(|\\overrightarrow{OA}|=3\\)、\\(|\\overrightarrow{OB}|=2\\)、\\(\\overrightarrow{OA}\\cdot\\overrightarrow{OB}=3\\) である \\(\\triangle OAB\\) において、頂点 \\(O\\) から辺 \\(AB\\) に下ろした垂線と辺 \\(AB\\) の交点を \\(H\\) とし、\\(AH:HB=t:(1-t)\\) とする。実数 \\(t\\) の値を既約分数で求める。",
+          "note": "得意層には余弦定理と三平方を続けるだけの定型問題なので今解く。苦手層には見た目より重い。問題面に図がないため自分で三角形と垂線を描き起こすところから始まり、\\(AH=k\\) と置いて \\(9-k^2=4-(\\sqrt7-k)^2\\) を解く過程で \\(\\sqrt7\\) を含む展開と有理化が入る。苦手層の想定時間は初期判断4倍・解答実行1.5倍で約8.3分に達し、仮配点6点に対する得点効率は科目平均ペースを大きく下回る。同じ約8分で大問Iの（2）（3）（5）と大問IVの（1）（2）を合わせて24点分処理できるため、そちらを先に確定させる。（2）はこの結果に依存するので、（1）を捨てると大問III全体が落ちる構造になっており、苦手層は大問IIIを丸ごと後回しの対象外とするのが現実的である。",
+          "difficulty": 2,
+          "weak": 2,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q3-2",
+          "label": "（2）",
+          "title": "\\(|\\overrightarrow{OA}|=3\\)、\\(|\\overrightarrow{OB}|=2\\)、\\(\\overrightarrow{OA}\\cdot\\overrightarrow{OB}=3\\) である \\(\\triangle OAB\\) の垂心を \\(P\\) とする。\\(\\overrightarrow{OP}=s\\overrightarrow{OA}+t\\overrightarrow{OB}\\) と表したときの係数 \\(s,t\\) を既約分数で求める。前問で求めた垂線の足 \\(H\\) の内分比を利用する。",
+          "note": "得意層でも（1）の結果を確定させてから取りかかる必要があり、垂直条件と \\(OH\\) 上という2条件を扱うので、大問I・II・IVの軽い小問を先に回収してから戻る。苦手層は（1）が前提であり、その（1）自体を捨てる判断になっているため、ここも取りにいかない。仮に（1）が解けていても、\\(\\overrightarrow{OP}=k\\overrightarrow{OH}\\) と置く発想は本番で自力再現しにくい。",
+          "difficulty": 2,
+          "weak": 2,
+          "strong": 1,
+          "points": 7
+        }
+      ],
+      "questionsPath": "/past-exam-library/nihon-u/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/nihon-u/2025/mathematics/answers/#major-question-03"
+    },
+    {
+      "id": "math-q4",
+      "label": "IV",
+      "title": "指数関数の2曲線と直線で囲まれた図形に含まれる格子点",
+      "subtitle": "指数関数・対数関数・数列",
+      "summary": "2つの指数関数のグラフと縦線で囲まれた領域について、縦線の位置を決めたうえで、領域に含まれる格子点の横座標の範囲と個数を求める。個数は等比数列の和に帰着する。",
+      "studyAction": "指数を1文字に置き換えて2次方程式に帰着させる。2つの指数関数の大小と交点の把握",
+      "requirements": [
+        1.9,
+        3.1,
+        3.3,
+        3.4,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "（1）",
+          "title": "\\(t\\) を正の定数とし、原点を \\(O\\) とする座標平面上に2曲線 \\(C_1:y=2^{x+1}\\)、\\(C_2:y=4^{x}\\) と直線 \\(l:x=t\\) がある。\\(l\\) と \\(C_1,C_2\\) の交点をそれぞれ \\(A,B\\) とすると \\(AB=9999\\) である。このとき \\(2^{t}\\) の値を求める。",
+          "note": "置き換えて2次方程式にする手順は定型で、解の公式でも到達できる。短時間で仮配点4点を確保でき、（2）の入口にもなるので両層とも先に処理する。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "math-q4-2",
+          "label": "（2）",
+          "title": "座標平面上の2曲線 \\(C_1:y=2^{x+1}\\)、\\(C_2:y=4^{x}\\) と直線 \\(l:x=t\\)（\\(l\\) 上の2交点の距離が \\(9999\\) となる正の定数 \\(t\\)）で囲まれた図形を \\(D\\) とする。\\(D\\) は境界線を含む。\\(D\\) に含まれる格子点（\\(x\\) 座標と \\(y\\) 座標がともに整数である点）の座標を \\((p,q)\\) とするとき、\\(p\\) のとりうる値の範囲を求める。",
+          "note": "（1）の \\(2^{t}=101\\) さえ出ていれば、2の累乗を並べて挟むだけで上限が決まり、下限も指数の等式1本で出る。計算量が小さく仮配点5点を短時間で回収できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q4-3",
+          "label": "（3）",
+          "title": "座標平面上の2曲線 \\(C_1:y=2^{x+1}\\)、\\(C_2:y=4^{x}\\) と直線 \\(l:x=t\\)（\\(l\\) 上の2交点の距離が \\(9999\\)）で囲まれ、境界線を含む図形を \\(D\\) とする。前問で定めた \\(x\\) 座標の範囲を用いて、\\(D\\) に含まれる格子点の個数を求める。",
+          "note": "格子点の個数を縦の区間ごとに数えて総和にまとめる型は典型だが、実行は重い。各区間の個数を \\(4^{k}-2^{k+1}+1\\) と立てる段階で境界を含む「\\(+1\\)」を落としやすく、続く \\(\\sum4^{k}=5460\\)、\\(\\sum2^{k+1}=252\\) という4桁の等比数列の和が2本入る。得意層でも約5.0分かかるため、大問I・II・IVの前2問・大問Vの（1）（2）を先に確定させてから戻る。苦手層は初期判断4倍・解答実行1.5倍で約9.3分となり、残り時間で回収できる見込みが立たない。ここを捨て、大問Iの（4）や大問Vの（1）、大問VIの（1）へ時間を回す。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 7
+        }
+      ],
+      "questionsPath": "/past-exam-library/nihon-u/2025/mathematics/questions/#major-question-04",
+      "answersPath": "/past-exam-library/nihon-u/2025/mathematics/answers/#major-question-04"
+    },
+    {
+      "id": "math-q5",
+      "label": "V",
+      "title": "直線に沿って並ぶ正方形列の面積と無限等比級数",
+      "subtitle": "図形と方程式・数列・極限",
+      "summary": "原点を通る直線と縦線が作る直角三角形の中に、正方形を次々と内接させていく。1つ目の正方形の頂点座標を求め、面積の部分和の比を計算し、無限級数の和が1になる条件から定数を決める。問題面に図はない。",
+      "studyAction": "文章から正方形の配置を読み取って座標を設定する。正方形の条件を縦と横の長さの等式に翻訳する",
+      "requirements": [
+        2.2,
+        3.7,
+        3.1,
+        3.7,
+        3.6
+      ],
+      "subquestions": [
+        {
+          "id": "math-q5-1",
+          "label": "（1）",
+          "title": "\\(a\\) を正の定数とし、原点を \\(O\\) とする座標平面上に直線 \\(l:y=(\\sqrt3-1)x\\) がある。直線 \\(x=a\\) と \\(x\\) 軸、\\(l\\) の交点をそれぞれ \\(A_0,B_0\\) とする。線分 \\(OA_0\\) 上に点 \\(A_1\\)、線分 \\(OB_0\\) 上に点 \\(B_1\\)、線分 \\(A_0B_0\\) 上に点 \\(C_1\\) を、四角形 \\(A_0A_1B_1C_1\\) が正方形となるようにとる。点 \\(A_1\\) の \\(x\\) 座標を \\(a\\) を用いて表す。",
+          "note": "得意層は図を起こせば1次方程式1本で片づくため今解く。苦手層には、式が易しいのに取りにいかない判断になる。再現手順は「\\(A_1\\) の \\(x\\) 座標を \\(x_1\\) と置き、縦の長さ \\((\\sqrt3-1)x_1\\) と横の長さ \\(a-x_1\\) が等しいとする」の一手だが、そこへ至るには問題面に無い図を自分で描き、4点 \\(A_0,A_1,B_1,C_1\\) の位置関係を文章だけから復元しなければならない。ここを取り違えると縦横の長さが入れ替わり、以降すべてが崩れる。苦手層の想定時間は初期判断4倍・解答実行1.5倍で7.5分に達し、得点効率指数40.0は本問題18小問中で最も低い。苦手層が本番で使える解答実行時間は初期判断35.6分を差し引いた24.4分しかなく、大問I・II・IVの「今解く！」を回収した時点で残りは4分弱である。作図から始めるこの小問は、その残り時間では完了しない。大問Vは（2）（3）とも本問を前提とするため、大問Vごと取りにいかない。",
+          "difficulty": 2,
+          "weak": 2,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q5-2",
+          "label": "（2）",
+          "title": "\\(a\\) を正の定数、\\(l:y=(\\sqrt3-1)x\\) とし、直線 \\(x=a\\) と \\(x\\) 軸、\\(l\\) の交点を \\(A_0,B_0\\) とする。負でない整数 \\(k\\) について、線分 \\(OA_k\\) 上の点 \\(A_{k+1}\\)、線分 \\(OB_k\\) 上の点 \\(B_{k+1}\\)、線分 \\(A_kB_k\\) 上の点 \\(C_{k+1}\\) を、四角形 \\(A_kA_{k+1}B_{k+1}C_{k+1}\\) が正方形となるようにとる。その正方形の面積を \\(S_k\\)、\\(T_n=\\sum_{k=0}^{n}S_k\\) とするとき、\\(\\dfrac{T_7}{T_3}\\) を既約分数で求める。",
+          "note": "得意層は相似比から公比 \\(\\dfrac13\\) を即断でき、比をとれば係数が消えるので今解く。苦手層は前提の（1）を後回しにしており、さらに \\(S_0\\) の立式と等比数列の和の公式を続けて使う工程が入る。苦手層の想定時間は約6.5分で、同じ時間で確保できる大問Iや大問IVの小問の方が得点効率が高い。（1）が解けた場合に限り、時間が残っていれば検討する。",
+          "difficulty": 2,
+          "weak": 2,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q5-3",
+          "label": "（3）",
+          "title": "\\(a\\) を正の定数、\\(l:y=(\\sqrt3-1)x\\) とし、上と同じ手順で作った正方形 \\(A_kA_{k+1}B_{k+1}C_{k+1}\\) の面積を \\(S_k\\)、\\(T_n=\\sum_{k=0}^{n}S_k\\) とする。\\(\\lim_{n\\to\\infty}T_n=1\\) となる \\(a\\) の値を、\\(\\dfrac{\\sqrt{p}+\\sqrt{q}}{r}\\)（ただし \\(p>q\\)）の形で求める。",
+          "note": "得意層でも二重根号を外す最後の一手で止まりやすいので、大問I・II・IV・VIの取りやすい小問を確保してから戻る。苦手層は前提の（1）を後回しにしており、無限等比級数の和と二重根号という2つの山を続けて越える必要がある。想定時間は約6.5分で、確保できる仮配点6点に対して得点効率は科目平均ペースを下回る。ここは取りにいかない。",
+          "difficulty": 2,
+          "weak": 2,
+          "strong": 1,
+          "points": 6
+        }
+      ],
+      "questionsPath": "/past-exam-library/nihon-u/2025/mathematics/questions/#major-question-05",
+      "answersPath": "/past-exam-library/nihon-u/2025/mathematics/answers/#major-question-05"
+    },
+    {
+      "id": "math-q6",
+      "label": "VI",
+      "title": "対数の2乗の関数への接線と、囲まれた図形の面積・y軸回転体の体積",
+      "subtitle": "微分法・積分法",
+      "summary": "対数の2乗で定まる曲線に原点から接線を引き、接点を決めたうえで、曲線と接線と座標軸で囲まれた図形の面積と、それを y 軸のまわりに1回転してできる立体の体積を求める。",
+      "studyAction": "合成関数の微分と接線の方程式。接線が原点を通る条件からの接点決定と傾きの符号による場合の選択",
+      "requirements": [
+        3.1,
+        4.4,
+        4.1,
+        3.7,
+        3.4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q6-1",
+          "label": "（1）",
+          "title": "関数 \\(f(x)=(\\log x)^2\\)（\\(\\log\\) は自然対数、底は \\(e\\)）がある。原点を \\(O\\) とする座標平面上で、\\(O\\) から曲線 \\(y=f(x)\\) に引いた接線のうち傾きが正のものを \\(l\\) とし、曲線と \\(l\\) の接点を \\(P\\) とする。点 \\(P\\) の座標を求める。",
+          "note": "得意層には接点を文字で置く定石がそのまま通るので今解く。苦手層でも手順自体は再現しやすいが、合成関数の微分と接線の立式を続けるため実行に時間がかかる。大問I・II・IVの確実な小問を確保したうえで、残り時間があればここへ戻る。大問VIの残り2問はこの結果に依存するので、まずここだけを取りにいく。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q6-2a",
+          "label": "（2）前半・図形Dの面積",
+          "title": "関数 \\(f(x)=(\\log x)^2\\) について、原点 \\(O\\) から曲線 \\(y=f(x)\\) に引いた傾きが正の接線を \\(l\\)、接点を \\(P\\) とする。曲線 \\(y=f(x)\\) の \\(x\\geqq1\\) の部分と、線分 \\(OP\\) および \\(x\\) 軸で囲まれた図形を \\(D\\) とするとき、\\(D\\) の面積を求める。",
+          "note": "得意層でも部分積分を2回続ける工程があるため、大問I・II・IV・Vの軽い小問を確保してから戻る。苦手層は前提の（1）が後回しであり、そのうえで \\((\\log x)^2\\) の部分積分2回という長い計算に入ることになる。想定時間は約7.1分で、仮配点5点に対する得点効率は科目内で最も低い部類に入る。同じ7分で大問Iの（4）と大問Vの（1）を合わせて11点分取りにいける。ここは取らない。",
+          "difficulty": 2,
+          "weak": 2,
+          "strong": 1,
+          "points": 5
+        },
+        {
+          "id": "math-q6-2b",
+          "label": "（2）後半・y軸回転体の体積",
+          "title": "関数 \\(f(x)=(\\log x)^2\\) について、原点 \\(O\\) から曲線 \\(y=f(x)\\) に引いた傾きが正の接線を \\(l\\)、接点を \\(P\\) とする。曲線 \\(y=f(x)\\) の \\(x\\geqq1\\) の部分と線分 \\(OP\\) および \\(x\\) 軸で囲まれた図形 \\(D\\) を、\\(y\\) 軸のまわりに1回転してできる立体の体積を求める。",
+          "note": "得意層でも科目内で最も工程が長く、置換と部分積分と円錐の差し引きが重なる。他の小問を確保してから最後に戻る位置づけになる。苦手層は前提の（1）を後回しにしているうえ、\\(y\\) 軸回転を \\(x\\) の積分に置き換える発想を本番で再現するのは難しい。想定時間は約9.4分で、仮配点6点に対する得点効率は科目内で最も低い。ここを捨てて、大問Iの（4）、大問Vの（1）、大問VIの（1）へ時間を回す。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 6
+        }
+      ],
+      "questionsPath": "/past-exam-library/nihon-u/2025/mathematics/questions/#major-question-06",
+      "answersPath": "/past-exam-library/nihon-u/2025/mathematics/answers/#major-question-06"
+    }
+  ],
+  "difficultyCounts": [
+    3,
+    6,
+    7,
+    2
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 42,
+        "targetPercent": 42,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 35.6,
+        "maximum": {
+          "points": 42,
+          "minutes": 58.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "now": {
+          "points": 41,
+          "minutes": 56.2,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 52,
+          "minutes": 64.8,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q6-1"
+          ]
+        },
+        "title": "数学が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 42,
+          "minutes": 58.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q1-4",
+            "label": "I （4）"
+          }
+        ],
+        "routeKind": "replacement",
+        "replaced": [
+          {
+            "id": "math-q1-2",
+            "label": "I （2）"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 8.9,
+        "maximum": {
+          "points": 100,
+          "minutes": 57.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3",
+            "math-q5-1",
+            "math-q5-2",
+            "math-q5-3",
+            "math-q6-1",
+            "math-q6-2a",
+            "math-q6-2b"
+          ]
+        },
+        "now": {
+          "points": 69,
+          "minutes": 37.7,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q5-1",
+            "math-q5-2",
+            "math-q6-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 57.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3",
+            "math-q5-1",
+            "math-q5-2",
+            "math-q5-3",
+            "math-q6-1",
+            "math-q6-2a",
+            "math-q6-2b"
+          ]
+        },
+        "title": "数学が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 100,
+          "minutes": 57.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3",
+            "math-q5-1",
+            "math-q5-2",
+            "math-q5-3",
+            "math-q6-1",
+            "math-q6-2a",
+            "math-q6-2b"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q3-2",
+            "label": "III （2）"
+          },
+          {
+            "id": "math-q4-3",
+            "label": "IV （3）"
+          },
+          {
+            "id": "math-q5-3",
+            "label": "V （3）"
+          },
+          {
+            "id": "math-q6-2a",
+            "label": "VI （2）前半・図形Dの面積"
+          },
+          {
+            "id": "math-q6-2b",
+            "label": "VI （2）後半・y軸回転体の体積"
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/nihon-u/past-exams/working/2025/n-unified-first/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "f3c465dc9151c297269c6594744e65818a174cb81c95f953901cae3f26eec0af",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/nihon-u/2025/mathematics/questions/",
+    "answers": "/past-exam-library/nihon-u/2025/mathematics/answers/",
+    "university": "/past-exam-library/nihon-u/"
+  }
+}

@@ -1,0 +1,431 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "tokyo-womens-medical-2025-general-mathematics",
+  "route": {
+    "university": "tokyo-womens-medical",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/tokyo-womens-medical/2025/mathematics/analysis/"
+  },
+  "university": "東京女子医科大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "一般選抜",
+  "duration": "数学 60分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "確率・三角関数",
+  "summary": "第1問は確率・三角関数、第2問は図形と計量・図形の性質、第3問は2次関数・図形と方程式、第4問は複素数平面。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "title": "確率・逆関数の微分・得点列の数え上げ",
+      "subtitle": "確率・三角関数・微分法",
+      "summary": "カードの連続配置、逆関数の導関数、赤白の取り出し列を扱う3つの独立小問。",
+      "studyAction": "ひとまとまりにする確率計算。逆関数の微分法",
+      "requirements": [
+        0,
+        2.7,
+        2,
+        3,
+        2.3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "①",
+          "title": "1から9までのカードを1列に並べるとき、1・2・3がこの順で連続する並び『123』を含む確率を求める。",
+          "note": "全体を \\(9!\\)、条件を満たす並びを \\(7!\\) とする一本道で、短時間に9点を狙える。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 9
+        },
+        {
+          "id": "math-q1-2",
+          "label": "②",
+          "title": "\\(y=\\tan x\\ (-\\pi/2<x<\\pi/2)\\) の逆関数について、逆関数の微分法を使って導関数を \\(x\\) で表す。",
+          "note": "逆関数の微分公式と \\(1+\\tan^2y=1/\\cos^2y\\) が直結し、処理量が少ない。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 9
+        },
+        {
+          "id": "math-q1-3",
+          "label": "③",
+          "title": "赤1回を2点、白1回を1点とする復元抽出で合計8点になる赤白の取り出し順を、\\(2x+y=8\\) の各解ごとに数える。",
+          "note": "\\(2x+y=8\\) の5組を列挙して組合せを足す再現可能な手順であり、計算量も管理できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 9
+        }
+      ],
+      "questionsPath": "/past-exam-library/tokyo-womens-medical/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/tokyo-womens-medical/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "title": "正多面体の外接球・内接球",
+      "subtitle": "図形と計量・図形の性質",
+      "summary": "正四面体の外接球半径と正八面体の内接球半径を断面図から求め、球の体積へつなぐ。",
+      "studyAction": "正多面体の対称性。重心の比",
+      "requirements": [
+        5,
+        3,
+        3,
+        4,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "①",
+          "title": "一辺1の正四面体を中点と頂点を通る平面で切り、重心を使って外接球半径を求め、球の体積を計算する。",
+          "note": "断面を作れば三平方で進むが、立体の高さと球中心の関係を図から正しく設定する必要がある。苦手層は独立短問を先に確保してから戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 9
+        },
+        {
+          "id": "math-q2-2",
+          "label": "②",
+          "title": "一辺1の正八面体を対称面で切り、断面三角形の面積関係から内接球半径を求め、球の体積を計算する。",
+          "note": "断面の辺長と内接円への高さを対応させるまでが重い。短い確率・微分・距離公式の問題を先に解き、立体図を落ち着いて再構成できる時間に戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 1,
+          "points": 9
+        }
+      ],
+      "questionsPath": "/past-exam-library/tokyo-womens-medical/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/tokyo-womens-medical/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "title": "放物線と直線の共有点・三角形面積の最大",
+      "subtitle": "2次関数・図形と方程式・複素数と方程式",
+      "summary": "共有点条件、原点と直線の距離、解と係数の関係を用いた底辺長から面積関数を作り最大化する。",
+      "studyAction": "判別式。点と直線の距離",
+      "requirements": [
+        1.7,
+        3.4,
+        2.8,
+        3.4,
+        2.4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "①",
+          "title": "放物線 \\(y=-x^2+2\\) と直線 \\(y=-x+k\\) が異なる2点で交わるための正数 \\(k\\) の範囲を判別式で求める。",
+          "note": "交点条件を判別式へ移す典型問題で、計算も短い。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 9
+        },
+        {
+          "id": "math-q3-2",
+          "label": "②",
+          "title": "原点と直線 \\(x+y-k=0\\) の距離 \\(h\\) を点と直線の距離公式で \\(k\\) の式にする。",
+          "note": "距離公式への代入だけで9点を狙える高効率の小問。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 9
+        },
+        {
+          "id": "math-q3-3",
+          "label": "③",
+          "title": "共有点の \\(x\\) 座標を \\(p,q\\) とし、\\(|p-q|\\) と原点から直線までの距離で三角形 \\(OPQ\\) の面積 \\(S\\) を表し、\\(0<k<9/4\\) で最大化する。",
+          "note": "弦長の導出、面積関数化、微分が連続して計算負荷が高い。①②と独立短問を先に確保し、残り時間が十分なら戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 1,
+          "points": 10
+        }
+      ],
+      "questionsPath": "/past-exam-library/tokyo-womens-medical/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/tokyo-womens-medical/2025/mathematics/answers/#major-question-03"
+    },
+    {
+      "id": "math-q4",
+      "label": "第4問",
+      "title": "複素数平面の回転と垂直関係",
+      "subtitle": "複素数平面",
+      "summary": "正方形と合同三角形の配置を、複素数の \\(\\pm i\\) 倍による90度回転で表し、長さと垂直関係を示す。",
+      "studyAction": "複素数平面の回転。中点の複素数",
+      "requirements": [
+        4.3,
+        3.3,
+        2,
+        4,
+        3.7
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "①",
+          "title": "点Aを原点とし、正方形の向きから点Bを時計回り90度、点Cを反時計回り90度回転して点E・Gの複素数を求める。",
+          "note": "正方形の向きさえ確認できれば \\(\\pm i\\) 倍で直ちに表せる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 9
+        },
+        {
+          "id": "math-q4-2",
+          "label": "②",
+          "title": "\\(z_E=-iz_B\\)、\\(z_G=iz_C\\) から中点Mを \\(z_M=i(z_C-z_B)/2\\) と表し、\\(AM=L/2\\) と \\(AM\\perp BC\\) を示す。",
+          "note": "中点公式は短いが、差 \\(z_C-z_B\\) が線分BCを表すことと、係数 \\(i\\) の回転を同時に読む必要がある。苦手層は①を確保後に戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 9
+        },
+        {
+          "id": "math-q4-3",
+          "label": "③",
+          "title": "点Fを原点とする複素数平面で \\(z_G=-iz_C\\)、\\(z_K=-iz_H\\) と置き、方向ベクトルの比が \\(i\\) になることから \\(CH\\perp GK\\) を示す。",
+          "note": "計算自体は短いが、原点変更と線分方向の対応を図から再構成する必要がある。第1・3問の短問を確保し、第4問①②の回転表現に慣れてから戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 1,
+          "points": 9
+        }
+      ],
+      "questionsPath": "/past-exam-library/tokyo-womens-medical/2025/mathematics/questions/#major-question-04",
+      "answersPath": "/past-exam-library/tokyo-womens-medical/2025/mathematics/answers/#major-question-04"
+    }
+  ],
+  "difficultyCounts": [
+    3,
+    3,
+    5,
+    0
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 73,
+        "targetPercent": 73,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 22.4,
+        "maximum": {
+          "points": 73,
+          "minutes": 58.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "now": {
+          "points": 54,
+          "minutes": 45.7,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 81,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "title": "数学が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 73,
+          "minutes": 58.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q3-3",
+            "label": "第3問 ③"
+          },
+          {
+            "id": "math-q4-2",
+            "label": "第4問 ②"
+          },
+          {
+            "id": "math-q4-3",
+            "label": "第4問 ③"
+          }
+        ],
+        "routeKind": "replacement",
+        "replaced": [
+          {
+            "id": "math-q1-3",
+            "label": "第1問 ③"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 5.6,
+        "maximum": {
+          "points": 100,
+          "minutes": 44.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "now": {
+          "points": 72,
+          "minutes": 29.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 44.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "title": "数学が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 100,
+          "minutes": 44.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q2-2",
+            "label": "第2問 ②"
+          },
+          {
+            "id": "math-q3-3",
+            "label": "第3問 ③"
+          },
+          {
+            "id": "math-q4-3",
+            "label": "第4問 ③"
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/tokyo-womens-medical/past-exams/working/2025/general/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "823ed8a8b5b83a5f3dffaeaaf8e162b8f967ff4ee5b5c6cdb9ea7642715c1e51",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/tokyo-womens-medical/2025/mathematics/questions/",
+    "answers": "/past-exam-library/tokyo-womens-medical/2025/mathematics/answers/",
+    "university": "/past-exam-library/tokyo-womens-medical/"
+  }
+}

@@ -1,0 +1,511 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "kitasato-2025-general-physics",
+    "university_id": "kitasato",
+    "university_name": "北里大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜試験",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 100,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "公式条件は理科2科目一括100分。物理単独の公式時間ではない。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kitasato/past-exams/working/2025/general/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "c12bb60aaeced207bbc3b12ee8a5667db3f8f3e7c9cd72c2c6ef11d75c1b612c",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "Ⅰ",
+      "sourceTitle": "分野横断の小問集合",
+      "requirements": [
+        3.4,
+        3.4,
+        3.4,
+        3.4,
+        3.4
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "2つの支点回りのモーメントを使い分ける。",
+          "strategyReason": "選択肢と標準式から得点化しやすい仮6点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "問2",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "万有引力を向心力としGM=gR²で消去する。",
+          "strategyReason": "選択肢と標準式から得点化しやすい仮6点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "問3",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "電荷一定条件で容量と静電エネルギーの変化を追う。",
+          "strategyReason": "連続した立式が必要なため苦手層は独立設問後に戻る仮6点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "問4",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "動く音源と壁反射を別経路としてドップラー式を適用する。",
+          "strategyReason": "連続した立式が必要なため苦手層は独立設問後に戻る仮6点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-5",
+          "label": "問5",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "内部エネルギー保存と混合後の分圧を連立する。",
+          "strategyReason": "選択肢と標準式から得点化しやすい仮6点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "Ⅱ",
+      "sourceTitle": "加速度運動する台車上のばね振り子",
+      "requirements": [
+        3.2,
+        3.2,
+        3.2,
+        3.2,
+        3.2
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "慣性力による新しいつり合い位置を決める。",
+          "strategyReason": "選択肢と標準式から得点化しやすい仮6点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "問2",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "位相を数えて1.5周期と判断する。",
+          "strategyReason": "選択肢と標準式から得点化しやすい仮6点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1"
+            ],
+            "strong_subject": [
+              "phys-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "問3",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "つり合い位置の移動で振幅が2倍になる。",
+          "strategyReason": "選択肢と標準式から得点化しやすい仮6点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1"
+            ],
+            "strong_subject": [
+              "phys-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-4",
+          "label": "問4",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "慣性力の向き、減速時間、停止瞬間のエネルギーを接続する。",
+          "strategyReason": "連続した立式が必要なため苦手層は独立設問後に戻る仮6点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-2",
+              "phys-q2-3"
+            ],
+            "strong_subject": [
+              "phys-q2-2",
+              "phys-q2-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-5",
+          "label": "問5",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "各区間の時間と速度を整理して距離を合算する。",
+          "strategyReason": "連続した立式が必要なため苦手層は独立設問後に戻る仮6点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-2",
+              "phys-q2-4"
+            ],
+            "strong_subject": [
+              "phys-q2-2",
+              "phys-q2-4"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q3",
+      "label": "Ⅲ",
+      "sourceTitle": "電場・磁場中の荷電粒子",
+      "requirements": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "一様電場V₁/d₁へ電荷qを掛ける。",
+          "strategyReason": "選択肢と標準式から得点化しやすい仮5点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "問2",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "電場の仕事qV₁を運動エネルギーと等置する。",
+          "strategyReason": "選択肢と標準式から得点化しやすい仮5点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "問3",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "qV₂/d₂=maを用いる。",
+          "strategyReason": "選択肢と標準式から得点化しやすい仮5点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-4",
+          "label": "問4",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "通過時間中の等加速度変位をd₂/2へ等置する。",
+          "strategyReason": "選択肢と標準式から得点化しやすい仮6点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-2",
+              "phys-q3-3"
+            ],
+            "strong_subject": [
+              "phys-q3-2",
+              "phys-q3-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-5",
+          "label": "問5",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "電場内と電場外の変位を分けて加え、nで整理する。",
+          "strategyReason": "連続した立式が必要なため苦手層は独立設問後に戻る仮6点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-4"
+            ],
+            "strong_subject": [
+              "phys-q3-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-6",
+          "label": "問6",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "ローレンツ力を向心力として前問までの速度を用いる。",
+          "strategyReason": "選択肢と標準式から得点化しやすい仮6点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-2"
+            ],
+            "strong_subject": [
+              "phys-q3-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-7",
+          "label": "問7",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "円弧半径と弦の幾何で角度を決め直線運動へ接続する。",
+          "strategyReason": "連続した立式が必要なため苦手層は独立設問後に戻る仮7点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-6"
+            ],
+            "strong_subject": [
+              "phys-q3-6"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 50,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 53,
+        "targetPercent": 53,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 18.4,
+        "maximum": {
+          "points": 53,
+          "minutes": 49.4,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-6",
+            "phys-q3-7"
+          ]
+        },
+        "now": {
+          "points": 63,
+          "minutes": 54.4,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-6"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 84,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6",
+            "phys-q3-7"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 4.6,
+        "maximum": {
+          "points": 100,
+          "minutes": 48,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6",
+            "phys-q3-7"
+          ]
+        },
+        "now": {
+          "points": 100,
+          "minutes": 48,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6",
+            "phys-q3-7"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 48,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6",
+            "phys-q3-7"
+          ]
+        }
+      }
+    ]
+  }
+}

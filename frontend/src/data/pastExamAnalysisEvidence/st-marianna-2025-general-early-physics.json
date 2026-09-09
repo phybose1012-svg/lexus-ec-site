@@ -1,0 +1,535 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "st-marianna-2025-general-early-physics",
+    "university_id": "st-marianna",
+    "university_name": "聖マリアンナ医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-early",
+    "exam_method_name": "一般選抜（前期）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 150,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "物理・化学・生物から2科目を選択し、2科目を合わせて150分で解答する。物理単独の公式試験時間はない。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/st-marianna/past-exams/working/2025/general-early/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "9eaf1d334e512241b698a8561ad2e8fbdc059383c8636e268d0c6f4c69cef5ef",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "第1問",
+      "sourceTitle": "小問集合：ばね・磁場・ドップラー効果・物質波",
+      "requirements": [
+        3.8,
+        3.8,
+        3.3,
+        3.3,
+        2.5
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "[1]（①〜③）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "フックの法則と弾性エネルギーの公式を順に適用する定型計算である。",
+          "strategyReason": "独立した典型計算で、短時間に3項目を回収できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "[2]（④〜⑥）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "三つの標準公式へ数値を代入し、A/mで整理する問題である。",
+          "strategyReason": "公式の選択が明確で独立性も高いため、序盤の得点源にする。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "[3]（⑦〜⑨）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "音源と観測者のどちらが動くかを区別し、符号を正しく置く必要がある。",
+          "strategyReason": "三条件を同じ公式の符号整理で処理でき、確認もしやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "[4]（⑩〜⑫）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "電子ボルトからJへの換算と \\lambda=h/\\sqrt{2mE} までを連結する必要がある。",
+          "strategyReason": "定型ルートはあるが指数計算と単位換算が重なるため、苦手層は高効率の基本小問後に戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "第2問",
+      "sourceTitle": "加速する滑車と相対加速度",
+      "requirements": [
+        3.6,
+        3.4,
+        3.4,
+        3.1,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "[1]（①〜④）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "アトウッドの装置の標準的な連立であり、正方向を守れば一本道である。",
+          "strategyReason": "典型設定で後続との比較基準にもなるため最初に確保する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "[2]（⑤・⑥）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "内部張力を消去し、装置全体へ働く外力だけを見る発想が必要である。",
+          "strategyReason": "一体として見る判断後は短い計算で、独立性も高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "[3]（⑦〜⑭・方向）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "滑車・各物体の運動方程式に加え、地上系と滑車系の符号付き相対加速度を同時に管理する。",
+          "strategyReason": "再現可能な連立ではあるが未知量と符号確認が多く計算ミスにさらされるため、苦手層は第2問前半や独立小問を先に回収し、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q3",
+      "label": "第3問",
+      "sourceTitle": "誘電体を挿入した平行板コンデンサー",
+      "requirements": [
+        4.3,
+        3.5,
+        3.6,
+        3.1,
+        3.9
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "[1]〜[3]",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "C=\\varepsilon_0S/(5d) 、 Q=CV_0 、 E=V_0/(5d) を順に用いる定型問題である。",
+          "strategyReason": "後続の基準量を作る短い典型計算なので最優先で確保する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "[4]・[5]",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "一様電場では電位が直線、電場が一定という対応を図へ正確に表す必要がある。",
+          "strategyReason": "基準量が得られれば図示は短く、後半の比較にも使える。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-1"
+            ],
+            "strong_subject": [
+              "phys-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "[6]・[7]",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "電荷保存から空気層と誘電体層の電場を区別し、電位を区分線形で積み上げる必要がある。",
+          "strategyReason": "手順は再現できるが、三領域の傾きと連続性を同時確認するため、苦手層は基本小問の後に時間を確保して戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-1"
+            ],
+            "strong_subject": [
+              "phys-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-4",
+          "label": "[8]〜[10]",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 6,
+          "difficultyReason": "空気層と誘電体層の直列合成、電源再接続による電荷変化、区分ごとの電位降下を連続して扱う。",
+          "strategyReason": "計算ルートは明確だが前問結果と複数の比を使い計算量が大きい。得意層も独立した短問を先に回収し、第3問[6][7]の整理後に戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-3"
+            ],
+            "strong_subject": [
+              "phys-q3-3"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q4",
+      "label": "第4問",
+      "sourceTitle": "凸レンズの共役位置と実像・虚像",
+      "requirements": [
+        4.5,
+        3.3,
+        3.3,
+        2.8,
+        3.7
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q4-1",
+          "label": "[1]〜[4]",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "実像の性質と物体距離 a 、像距離 L-a を写像公式へ入れる標準処理である。",
+          "strategyReason": "像距離の対応を固定すれば短く、後続の基礎にもなる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-2",
+          "label": "[5]〜[7]",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "光の逆進性で共役位置を交換し、写像公式を二次方程式として判別式まで処理する。",
+          "strategyReason": "定型ルートだが倍率比と判別式の二段処理で計算ミスにさらされるため、苦手層は像Iと他の短問を先に解き、まとまった時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-1"
+            ],
+            "strong_subject": [
+              "phys-q4-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-3",
+          "label": "[8]・[9]",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "物体距離と像距離が等しい対称配置を認識し、写像公式へ代入する。",
+          "strategyReason": "対称条件を見抜けば独立して短く処理できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-4",
+          "label": "[10]・[11]",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "虚像距離を負として写像公式へ入れ、倍率から像距離を表す符号管理が必要である。",
+          "strategyReason": "符号整理が必要だが式は短い。苦手層は実像の基本項目を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q5",
+      "label": "第5問",
+      "sourceTitle": "理想気体の状態方程式・モル比熱",
+      "requirements": [
+        5,
+        3.6,
+        3.4,
+        3,
+        4.4
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q5-1",
+          "label": "[1]（①〜⑫）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "状態方程式、内部エネルギー変化、仕事を長い文章の空欄へ順序よく対応させる必要がある。",
+          "strategyReason": "内容は典型だが12空欄と式変形が続き、苦手層は独立短問の後に文章を区切って戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q5-2",
+          "label": "[2]〜[4]",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "単位の次元、熱運動、分子間力、比熱の定義という基本知識を確認する。",
+          "strategyReason": "前問の長い計算から独立し、知識で素早く回収できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q5-3",
+          "label": "[5]",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "q=nc\\Delta T と q=nc_v\\Delta T+w を比較し、 w と \\Delta T が同符号であることから不等式を結論する。",
+          "strategyReason": "証明の道筋は再現可能だが符号説明まで必要で、苦手層は知識問題を先に解き、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q5-1"
+            ],
+            "strong_subject": [
+              "phys-q5-1"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 75,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 44,
+        "targetPercent": 44,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 34.4,
+        "maximum": {
+          "points": 44,
+          "minutes": 73.8,
+          "questionIds": [
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q4-1",
+            "phys-q4-3",
+            "phys-q5-2"
+          ]
+        },
+        "now": {
+          "points": 53,
+          "minutes": 81,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q4-1",
+            "phys-q4-3",
+            "phys-q5-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 140.7,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 75,
+        "targetPercent": 75,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 8.6,
+        "maximum": {
+          "points": 94,
+          "minutes": 73.4,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3"
+          ]
+        },
+        "now": {
+          "points": 94,
+          "minutes": 73.6,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 79.4,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3"
+          ]
+        }
+      }
+    ]
+  }
+}

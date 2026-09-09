@@ -1,0 +1,332 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "nihon-u-2025-n-unified-first-mathematics-second-stage",
+    "university_id": "nihon-u",
+    "university_name": "日本大学医学部",
+    "academic_year": 2025,
+    "exam_method_id": "n-unified-first",
+    "exam_method_name": "N全学統一方式第1期",
+    "exam_stage": "second_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 60,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "原本問題冊子に数学60分と明記される。"
+    },
+    "total_points": 60
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/nihon-u/past-exams/working/2025/n-unified-first/second-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "c92c47beab428a31c18e9f32bd1f7eec970bb36ead3854860bf70a29253d439b",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "sourceTitle": "定積分の基本計算4題",
+      "requirements": [
+        1,
+        3,
+        2.5,
+        3.5,
+        2.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "x=0で区間を分けた後は多項式積分だが、絶対値の処理が必要である。",
+          "strategyReason": "区間分割に気づけば確実に計算できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "eの一次式指数の原始関数を直接用いる基本計算である。",
+          "strategyReason": "最短で回収できる独立小問である。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "半角公式を用いる典型的な三角関数積分である。",
+          "strategyReason": "公式を正しく書けば安定して得点できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-4",
+          "label": "(4)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "標準的な三角置換と積分区間の変換を正確に行う必要がある。",
+          "strategyReason": "典型置換を知っていれば一本道である。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "sourceTitle": "直線と平方根関数の共有点・回転体",
+      "requirements": [
+        4,
+        4.6,
+        3.6,
+        4,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "2乗後の二次方程式の判別式だけでなく、原点を通る境界と平方根側の符号条件も確認する必要がある。",
+          "strategyReason": "図形的境界と判別式を併用するため、条件確認に時間を要する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 11,
+          "difficultyReason": "共有点の2解を求め、円板法の積分を解の和と差で整理する必要がある。",
+          "strategyReason": "前問依存で式整理も長いが、体積公式自体は典型である。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1"
+            ],
+            "strong_subject": [
+              "math-q2-1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "sourceTitle": "積分方程式・変曲点・y軸回転体",
+      "requirements": [
+        3.3,
+        4.5,
+        4.2,
+        4,
+        4.2
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "微積分学の基本定理を直接使い、右辺を微分して整理する問題である。",
+          "strategyReason": "後続の基礎で、定型的に処理できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "二階導関数の符号変化を確認し、与式へx0を戻して対数式を整理する必要がある。",
+          "strategyReason": "微分計算はやや長いが、変曲点判定は典型である。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1"
+            ],
+            "strong_subject": [
+              "math-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 8,
+          "difficultyReason": "y軸回転を横切片で表し、積分変数の変換と部分積分、または逆関数積分で処理する必要がある。",
+          "strategyReason": "最も処理量が多く、他の確実な小問を回収した後に扱う。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1",
+              "math-q3-2"
+            ],
+            "strong_subject": [
+              "math-q3-1",
+              "math-q3-2"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 60,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 47,
+        "targetPercent": 78.3,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 16.8,
+        "maximum": {
+          "points": 47,
+          "minutes": 57.8,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "now": {
+          "points": 25,
+          "minutes": 37.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q3-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 60,
+          "minutes": 73.9,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 48,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 4.2,
+        "maximum": {
+          "points": 60,
+          "minutes": 42.2,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "now": {
+          "points": 52,
+          "minutes": 34.7,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 60,
+          "minutes": 42.2,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,336 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "aichi-medical-2025-general-physics",
+    "university_id": "aichi-medical",
+    "university_name": "愛知医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 100,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "理科は物理・化学・生物から2科目を選択し、2科目一括100分。物理単独の公式時間ではない。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/aichi-medical/past-exams/working/2025/general/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "c98f99c2c73cf44e5b22da202e61ee0e1aa96637a8c3bf063c38b2c41486a68e",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "Ⅰ",
+      "sourceTitle": "点電荷がつくる電場・電位とエネルギー",
+      "requirements": [
+        2.8,
+        2.8,
+        2.7,
+        2.7,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "4量の定義式を順に使う基本計算である。",
+          "strategyReason": "公式代入で4項目をまとめて回収できる仮7点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "問2",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "距離と方向成分、電位差、外力の仕事を連続して扱う。",
+          "strategyReason": "3段階の立式を要するため苦手層は基本設問後に戻る仮7点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "問3",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "電場の向きを確認して大きさの等式を解く。",
+          "strategyReason": "領域x>aが指定され、標準的な重ね合わせで取れる仮6点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "問4",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "電位はスカラーとして代数和を0にする。",
+          "strategyReason": "電場との違いを押さえれば短く回収できる仮6点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-5",
+          "label": "問5",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "問3・問4の位置を使って点Eの電位を求め、運動エネルギーへ変換する。",
+          "strategyReason": "前問依存と符号処理がある仮6点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-3",
+              "phys-q1-4"
+            ],
+            "strong_subject": [
+              "phys-q1-3",
+              "phys-q1-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-6",
+          "label": "問6",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "合成電荷-8Qを原点に置く近似を適用する。",
+          "strategyReason": "問題文の近似をそのまま使える独立した仮6点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "Ⅱ",
+      "sourceTitle": "単振動の位相空間と波動性による量子化",
+      "requirements": [
+        3,
+        3,
+        2.7,
+        2.2,
+        3
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "［1］問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "静止摩擦と動摩擦を分け、仕事と位置エネルギー変化の符号を管理する。",
+          "strategyReason": "4項目は同じ力図とエネルギー収支から連続して回収できる仮7点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "［1］問2",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "単振動の基本式とエネルギー式を4つの量へ展開する。",
+          "strategyReason": "後続の位相空間問題の土台となる仮7点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "［1］問3",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "係数比較でa=1/√(km)を読む。",
+          "strategyReason": "問2の式から短くつながる仮6点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-2"
+            ],
+            "strong_subject": [
+              "phys-q2-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-4",
+          "label": "［1］問4",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "円から楕円への縦軸変換と初期運動方向を同時に図示する。",
+          "strategyReason": "図示と向きの判断を含む仮6点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-3"
+            ],
+            "strong_subject": [
+              "phys-q2-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-5",
+          "label": "［1］問5",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "半径Lの円を縦に1/a倍した面積を用いる。",
+          "strategyReason": "問題文に面積変換が与えられた仮6点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-4"
+            ],
+            "strong_subject": [
+              "phys-q2-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-6",
+          "label": "［1］問6",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "L²=2E/kとa=1/√(km)、ω=√(k/m)を接続する。",
+          "strategyReason": "複数の既出式を整理する仮6点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-2",
+              "phys-q2-3",
+              "phys-q2-5"
+            ],
+            "strong_subject": [
+              "phys-q2-2",
+              "phys-q2-3",
+              "phys-q2-5"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-7",
+          "label": "［2］問7",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "長さLに半波長がn個入る条件を使う。",
+          "strategyReason": "独立した定在波の基本である仮6点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-8",
+          "label": "［3］問8",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "p=h/λの基本関係を適用する。",
+          "strategyReason": "公式1本で回収できる仮6点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-7"
+            ],
+            "strong_subject": [
+              "phys-q2-7"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-9",
+          "label": "［3］問9",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "λ_1=2Lとp=h/(2L)を長方形の高さ2p・幅Lへ代入する。",
+          "strategyReason": "問7・問8を使うとH=hへ簡潔にまとまる仮6点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-7",
+              "phys-q2-8"
+            ],
+            "strong_subject": [
+              "phys-q2-7",
+              "phys-q2-8"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-10",
+          "label": "［3］問10",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "S=2πE/ω、S=nH、ν=ω/(2π)を順に結ぶ。",
+          "strategyReason": "長い誘導文から3関係を抽出する仮6点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-6",
+              "phys-q2-9"
+            ],
+            "strong_subject": [
+              "phys-q2-6",
+              "phys-q2-9"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": null
+}

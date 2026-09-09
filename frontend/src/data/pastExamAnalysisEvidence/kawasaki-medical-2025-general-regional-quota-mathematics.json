@@ -1,0 +1,311 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "kawasaki-medical-2025-general-regional-quota-mathematics",
+    "university_id": "kawasaki-medical",
+    "university_name": "川崎医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-regional-quota",
+    "exam_method_name": "一般選抜・地域枠選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 80,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "問題原本p.1に数学80分と明記されている。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kawasaki-medical/past-exams/working/2025/general-regional-quota/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "d0c208767c4faada49190553a328e34c1e63e3bb63bba3094bc683bac53e5c1f",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "sourceTitle": "円・角度と線形関数の最大値",
+      "requirements": [
+        4.4,
+        3.8,
+        4.4,
+        3.7,
+        4.1
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "座標計算と円の方程式を連続して処理する。",
+          "strategyReason": "定型計算でまとまった空欄を回収できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "補助線、円周角、加法定理をつなぐ。",
+          "strategyReason": "図の読み取りができれば計算は進む。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-1"
+            ],
+            "strong_subject": [
+              "math-q1-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 14,
+          "difficultyReason": "支持直線の接点が移る境界とM(a)の最小化を統合する。",
+          "strategyReason": "場合分けと微分を含む高負荷問題。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-1"
+            ],
+            "strong_subject": [
+              "math-q1-1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "sourceTitle": "対数曲線・法線・絶対値積分",
+      "requirements": [
+        3.3,
+        4.7,
+        4.7,
+        4.3,
+        4.3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)(i)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 11,
+          "difficultyReason": "微分・法線・定積分を連結する。",
+          "strategyReason": "標準手順だが計算が長い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(1)(ii)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 11,
+          "difficultyReason": "係数を含む面積式を整理して連立する。",
+          "strategyReason": "設定理解と式整理の負荷が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1"
+            ],
+            "strong_subject": [
+              "math-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(2)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 11,
+          "difficultyReason": "絶対値積分、置換、パラメータ微分、対数整理を要する。",
+          "strategyReason": "第2問の最重部分。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "sourceTitle": "複素数平面の極形式・円・反転",
+      "requirements": [
+        3.7,
+        4,
+        4.3,
+        4.3,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 11,
+          "difficultyReason": "商の計算と偏角、累乗を一連で処理する。",
+          "strategyReason": "定型計算で得点を集めやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 11,
+          "difficultyReason": "複素数の絶対値を平面幾何へ読み替える。",
+          "strategyReason": "最遠点の幾何が見えれば短い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "捨てる！",
+          "points": 11,
+          "difficultyReason": "直線の複素数表示、反転像、偏角、面積最大、比の幾何を多段に統合する。",
+          "strategyReason": "80分試験で最後まで追う費用対効果が低い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 80,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 11,
+        "targetPercent": 11,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 60,
+        "maximum": {
+          "points": 11,
+          "minutes": 70.5,
+          "questionIds": [
+            "math-q3-1"
+          ]
+        },
+        "now": {
+          "points": 21,
+          "minutes": 81,
+          "questionIds": [
+            "math-q1-1",
+            "math-q3-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 53,
+          "minutes": 115.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 62,
+        "targetPercent": 62,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 15,
+        "maximum": {
+          "points": 78,
+          "minutes": 77,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "now": {
+          "points": 53,
+          "minutes": 52,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 89,
+          "minutes": 90,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        }
+      }
+    ]
+  }
+}

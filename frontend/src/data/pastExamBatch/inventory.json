@@ -1,0 +1,4814 @@
+{
+  "schemaVersion": "lexus-past-exam-batch-audit.v1",
+  "sourceRepository": "shidai-igakubu-gokaku-dokuhon",
+  "packages": [
+    {
+      "id": "aichi-medical-2025-general-mathematics",
+      "directory": "projects/universities/aichi-medical/past-exams/working/2025/general/first-stage/mathematics",
+      "majors": 3,
+      "errors": [],
+      "package": {
+        "id": "aichi-medical-2025-general-mathematics",
+        "university_id": "aichi-medical",
+        "university_name": "愛知医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 80,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "原本問題冊子に数学80分と明記される。"
+        },
+        "total_points": 100
+      },
+      "questions": 14,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "a1-three-circles",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a3-plane-foot",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a3-sphere-plane-circle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a3-unit-circle-parameterization",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "aichi-medical-2025-general-physics",
+      "directory": "projects/universities/aichi-medical/past-exams/working/2025/general/first-stage/physics",
+      "majors": 2,
+      "errors": [
+        "analysis: Invalid target prerequisite or candidate (weak, now): phys-q2-5: requires absent phys-q2-4"
+      ],
+      "package": {
+        "id": "aichi-medical-2025-general-physics",
+        "university_id": "aichi-medical",
+        "university_name": "愛知医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 100,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "理科は物理・化学・生物から2科目を選択し、2科目一括100分。物理単独の公式時間ではない。"
+        },
+        "total_points": 100
+      },
+      "questions": 16,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02"
+      ],
+      "assets": [
+        {
+          "id": "q1-xy-figure-1",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-xy-figure-2",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-spring-figure",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-phase-rectangle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-answer-axes",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-phase-ellipse",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "dokkyo-medical-2025-general-early-mathematics",
+      "directory": "projects/universities/dokkyo-medical/past-exams/working/2025/general-early/first-stage/mathematics",
+      "majors": 4,
+      "errors": [
+        "analysis: Invalid target prerequisite or candidate (weak, now_plus_later): math-q3-3-ii: requires absent math-q3-3-i"
+      ],
+      "package": {
+        "id": "dokkyo-medical-2025-general-early-mathematics",
+        "university_id": "dokkyo-medical",
+        "university_name": "獨協医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-early",
+        "exam_method_name": "一般選抜（前期）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 60,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "問題原本p.1に数学60分と明記されている。"
+        },
+        "total_points": 100
+      },
+      "questions": 12,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04"
+      ],
+      "assets": [
+        {
+          "id": "a1-seven-colors",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a1-six-colors-flip",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a1-six-colors-placement",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a2-five-colors-first",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a2-five-colors-second",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a2-seven-prism",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a4-complex-plane",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a6-hyperbola-tangent",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a6-hyperbola-normal",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a8-cross-section",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a9-pr-qr",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a9-low-section",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a9-cylinder",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a9-high-section",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "dokkyo-medical-2025-general-early-physics",
+      "directory": "projects/universities/dokkyo-medical/past-exams/working/2025/general-early/first-stage/physics",
+      "majors": 5,
+      "errors": [],
+      "package": {
+        "id": "dokkyo-medical-2025-general-early-physics",
+        "university_id": "dokkyo-medical",
+        "university_name": "獨協医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-early",
+        "exam_method_name": "一般選抜（前期）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "理科は「物理基礎・物理」「化学基礎・化学」「生物基礎・生物」から2科目を選択し、選択した2科目を合わせて12:50〜14:50の120分で解答する。物理単独の公式試験時間はない。原本問題冊子の表紙にも「物理（2科目120分）」と印刷されている。"
+        },
+        "total_points": 100
+      },
+      "questions": 21,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04",
+        "major-question-05"
+      ],
+      "assets": [
+        {
+          "id": "q1-collision-spring",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-conductor-model",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-resonance-doppler",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-earth-satellite",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-interior-sphere",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-force-graph-options",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-screen-slits",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-rc-circuit",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q5-molecular-selector",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q5-speed-distributions",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q5-gas-vessels",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "fujita-health-2025-general-early-mathematics",
+      "directory": "projects/universities/fujita-health/past-exams/working/2025/general-early/first-stage/mathematics",
+      "majors": 3,
+      "errors": [
+        "analysis: Stale or invalid target weak headline: observed 72; canonical 72.5 (or rounded 73)"
+      ],
+      "package": {
+        "id": "fujita-health-2025-general-early-mathematics",
+        "university_id": "fujita-health",
+        "university_name": "藤田医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-early",
+        "exam_method_name": "一般入試（前期）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 100,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "問題原本p.1に数学100分と明記されている。"
+        },
+        "total_points": 200
+      },
+      "questions": 12,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "ans-q1-1-diagrams",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q1-3-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q1-7-geometry",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q1-8-graphs",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-parabolas",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "fujita-health-2025-general-early-physics",
+      "directory": "projects/universities/fujita-health/past-exams/working/2025/general-early/first-stage/physics",
+      "majors": 4,
+      "errors": [
+        "analysis: Invalid target prerequisite or candidate (weak, now_plus_later): phys-q2-7: requires absent phys-q2-6"
+      ],
+      "package": {
+        "id": "fujita-health-2025-general-early-physics",
+        "university_id": "fujita-health",
+        "university_name": "藤田医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-early",
+        "exam_method_name": "一般入試（前期）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "理科は物理・化学・生物から2科目を選択し、2科目を合わせて120分で解答する。物理単独の公式試験時間はない。"
+        },
+        "total_points": 100
+      },
+      "questions": 28,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04"
+      ],
+      "assets": [
+        {
+          "id": "q1-rigid-body-setup",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-newton-rings-figure1",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-newton-rings-figure2",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-charged-particle-apparatus",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-two-ball-setup",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-answer-grid",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a2-lens-geometry",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a3-force-components",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a4-answer-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a4-solution-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "fukuoka-2025-general-keitobetsu-mathematics",
+      "directory": "projects/universities/fukuoka/past-exams/working/2025/general-keitobetsu/first-stage/mathematics",
+      "majors": 3,
+      "errors": [],
+      "package": {
+        "id": "fukuoka-2025-general-keitobetsu-mathematics",
+        "university_id": "fukuoka",
+        "university_name": "福岡大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-keitobetsu",
+        "exam_method_name": "一般選抜（系統別日程）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 90,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "2025年度問題原本p.1に数学90分と明記されている。"
+        },
+        "total_points": 100
+      },
+      "questions": 7,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "a7-area-shaded-region",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "fukuoka-2025-general-keitobetsu-physics",
+      "directory": "projects/universities/fukuoka/past-exams/working/2025/general-keitobetsu/first-stage/physics",
+      "majors": 3,
+      "errors": [],
+      "package": {
+        "id": "fukuoka-2025-general-keitobetsu-physics",
+        "university_id": "fukuoka",
+        "university_name": "福岡大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-keitobetsu",
+        "exam_method_name": "一般選抜（系統別日程）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "問題原本に理科2科目120分と明記。物理・化学・生物から2科目を選択する枠として扱う。"
+        },
+        "total_points": 100
+      },
+      "questions": 29,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "q1-doppler-setup",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-inclined-rail-circuit",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-incline-45-setup",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans2-force-balance",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "hyogo-medical-2025-general-a-b-mathematics",
+      "directory": "projects/universities/hyogo-medical/past-exams/working/2025/general-a-b/first-stage/mathematics",
+      "majors": 3,
+      "errors": [
+        "analysis: Invalid target prerequisite or candidate (weak, now): math-q2-5: requires absent math-q2-4"
+      ],
+      "package": {
+        "id": "hyogo-medical-2025-general-a-b-mathematics",
+        "university_id": "hyogo-medical",
+        "university_name": "兵庫医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-a-b",
+        "exam_method_name": "一般選抜A・B（共通問題）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 90,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "原本問題冊子に数学90分と明記される。"
+        },
+        "total_points": 100
+      },
+      "questions": 15,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "a02-inequality-graphs",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a06-geometry-diagrams",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a07-geometry-alternatives",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a13-complex-geometry",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a14-eight-points",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "hyogo-medical-2025-general-a-b-physics",
+      "directory": "projects/universities/hyogo-medical/past-exams/working/2025/general-a-b/first-stage/physics",
+      "majors": 5,
+      "errors": [],
+      "package": {
+        "id": "hyogo-medical-2025-general-a-b-physics",
+        "university_id": "hyogo-medical",
+        "university_name": "兵庫医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-a-b",
+        "exam_method_name": "一般選抜A・B（共通問題）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "一般選抜Aは理科2科目を通し120分、一般選抜Bは物理1科目60分。分析上の物理時間は共通して60分とする。"
+        },
+        "total_points": 100
+      },
+      "questions": 46,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04",
+        "major-question-05"
+      ],
+      "assets": [
+        {
+          "id": "q1-figure-1a",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-figure-1b",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-figure-2",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-figure-3",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-figure-4",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-answer-frame",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a1-forces-at-p",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a4-wavefront",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a4-wavefront-geometry",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a4-ray-diagram",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "international-health-welfare-2025-general-mathematics",
+      "directory": "projects/universities/international-health-welfare/past-exams/working/2025/general/first-stage/mathematics",
+      "majors": 4,
+      "errors": [],
+      "package": {
+        "id": "international-health-welfare-2025-general-mathematics",
+        "university_id": "international-health-welfare",
+        "university_name": "国際医療福祉大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 80,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "問題原本p.1の科目扉に数学80分と明記されている。"
+        },
+        "total_points": 200
+      },
+      "questions": 16,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04"
+      ],
+      "assets": [
+        {
+          "id": "notice-mark-example",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-regular-hexagon",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-locus",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q4-triangle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "international-health-welfare-2025-general-physics",
+      "directory": "projects/universities/international-health-welfare/past-exams/working/2025/general/first-stage/physics",
+      "majors": 5,
+      "errors": [],
+      "package": {
+        "id": "international-health-welfare-2025-general-physics",
+        "university_id": "international-health-welfare",
+        "university_name": "国際医療福祉大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "理科は物理・化学・生物から2科目を選択し、2科目を合わせて120分で解答する。原本問題冊子にも「物理（2科目120分）」と印刷されている。物理単独の公式試験時間はない。"
+        },
+        "total_points": 100
+      },
+      "questions": 26,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04",
+        "major-question-05"
+      ],
+      "assets": [
+        {
+          "id": "q1-disk",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-bulbs",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-lens",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-expansion",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-wedge",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-vectors",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-coils",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-pv",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q5-setup",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q5-geometry",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q5-rainbows",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-balance",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q5-limit",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "iwate-medical-2025-general-chemistry",
+      "directory": "projects/universities/iwate-medical/past-exams/working/2025/general/first-stage/chemistry",
+      "majors": 3,
+      "errors": [
+        "analysis: ENOENT: no such file or directory, open 'C:\\---hp\\shidai-igakubu-gokaku-dokuhon\\projects\\universities\\iwate-medical\\past-exams\\working\\2025\\general\\first-stage\\chemistry\\analysis.json'",
+        "answers: editorial-explanations.json missing or invalid"
+      ],
+      "assets": [
+        {
+          "id": "q3-aromatic-structure-choices",
+          "rights": "restricted",
+          "status": "not_required"
+        }
+      ]
+    },
+    {
+      "id": "iwate-medical-2025-general-mathematics",
+      "directory": "projects/universities/iwate-medical/past-exams/working/2025/general/first-stage/mathematics",
+      "majors": 3,
+      "errors": [],
+      "package": {
+        "id": "iwate-medical-2025-general-mathematics",
+        "university_id": "iwate-medical",
+        "university_name": "岩手医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "english",
+            "mathematics"
+          ],
+          "note": "英語・数学を合わせて120分"
+        },
+        "total_points": 100
+      },
+      "questions": 12,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "ans-q1-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-geometry",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-adjacency-layout",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "iwate-medical-2025-general-physics",
+      "directory": "projects/universities/iwate-medical/past-exams/working/2025/general/first-stage/physics",
+      "majors": 3,
+      "errors": [],
+      "package": {
+        "id": "iwate-medical-2025-general-physics",
+        "university_id": "iwate-medical",
+        "university_name": "岩手医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "理科は「物理基礎・物理」「化学基礎・化学」「生物基礎・生物」から2科目選択し、選択した2科目を合わせて13:00〜15:00の120分で解答する。物理単独の公式試験時間はない。"
+        },
+        "total_points": 75
+      },
+      "questions": 24,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "q1-orbit-circle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-orbit-ellipse",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-velocity-directions",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-core-circuit-switch",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-core-circuit-source",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-current-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-plane-wave-glass",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-dark-fringes",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-lens-pair",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-lens-geometry",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "jichi-medical-2025-general-mathematics",
+      "directory": "projects/universities/jichi-medical/past-exams/working/2025/general/first-stage/mathematics",
+      "majors": 16,
+      "errors": [],
+      "package": {
+        "id": "jichi-medical-2025-general-mathematics",
+        "university_id": "jichi-medical",
+        "university_name": "自治医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 80,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "2025年度学生募集要項の第1次試験［学力試験（マークシート式）］の表により、数学は9:00〜10:20の80分。理科・外国語とは別枠の科目単独時間である。"
+        },
+        "total_points": 25
+      },
+      "questions": 25,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04",
+        "major-question-05",
+        "major-question-06",
+        "major-question-07",
+        "major-question-08",
+        "major-question-09",
+        "major-question-10",
+        "major-question-11",
+        "major-question-12",
+        "major-question-13",
+        "major-question-14",
+        "major-question-15",
+        "major-question-16"
+      ],
+      "assets": [
+        {
+          "id": "ans-q4-k-range-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q7-tetrahedron",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q7-cube-model",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q11-space-projection",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q12-parabola-condition",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q14-16-common-tangent",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q21-25-quartic-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "jichi-medical-2025-general-physics",
+      "directory": "projects/universities/jichi-medical/past-exams/working/2025/general/first-stage/physics",
+      "majors": 16,
+      "errors": [
+        "analysis: Invalid target candidate or time budget"
+      ],
+      "package": {
+        "id": "jichi-medical-2025-general-physics",
+        "university_id": "jichi-medical",
+        "university_name": "自治医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 80,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "第1次試験の理科は「物理基礎・物理」「化学基礎・化学」「生物基礎・生物」から2科目を選択し、選択した2科目を合わせて10:50〜12:10の80分で解答する。物理単独の公式試験時間はない。原本問題冊子の柱にも「（2科目80分）」と印刷されている。"
+        },
+        "total_points": 25
+      },
+      "questions": 25,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04",
+        "major-question-05",
+        "major-question-06",
+        "major-question-07",
+        "major-question-08",
+        "major-question-09",
+        "major-question-10",
+        "major-question-11",
+        "major-question-12",
+        "major-question-13",
+        "major-question-14",
+        "major-question-15",
+        "major-question-16"
+      ],
+      "assets": [
+        {
+          "id": "q1-3-circuit",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-particle-diagram",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q10-wave-interference",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q11-open-pipe",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q13-total-reflection",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q14-lenses",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q15-pv-cycle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q18-rod",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q20-25-spring",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "jichi-medical-2025-general-mathematics",
+      "directory": "projects/universities/jichi-medical/past-exams/working/2025/general/second-stage/mathematics",
+      "majors": 1,
+      "errors": [
+        "analysis: Stale or invalid target weak strategy points: observed 8; expected 7.5"
+      ],
+      "package": {
+        "id": "jichi-medical-2025-general-mathematics",
+        "university_id": "jichi-medical",
+        "university_name": "自治医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "second_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 30,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "自治医科大学2025年度医学部学生募集要項p.7に、第2次試験の数学は30分と明記される。"
+        },
+        "total_points": 12.5
+      },
+      "questions": 5,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01"
+      ],
+      "assets": [
+        {
+          "id": "ans-overview-diagram",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-proof-diagram",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-midpoint-diagram",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-alternative-diagram",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-trig-triangle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "jikei-2025-general-mathematics",
+      "directory": "projects/universities/jikei/past-exams/working/2025/general/first-stage/mathematics",
+      "majors": 4,
+      "errors": [],
+      "package": {
+        "id": "jikei-2025-general-mathematics",
+        "university_id": "jikei",
+        "university_name": "東京慈恵会医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 90,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "2025年度学生募集要項の一般選抜・一次試験欄で、数学は100点・90分の独立枠。問題冊子表紙にも「一次試験 数学（90分）」と印刷されている。"
+        },
+        "total_points": 100
+      },
+      "questions": 8,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04"
+      ],
+      "assets": []
+    },
+    {
+      "id": "jikei-2025-general-physics",
+      "directory": "projects/universities/jikei/past-exams/working/2025/general/first-stage/physics",
+      "majors": 2,
+      "errors": [],
+      "package": {
+        "id": "jikei-2025-general-physics",
+        "university_id": "jikei",
+        "university_name": "東京慈恵会医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "募集要項と問題原本は理科2科目を通して120分と示す。物理単独の公式時間はないため、分析では2科目を等分した60分を編集上の仮時間予算とする。"
+        },
+        "total_points": 100
+      },
+      "questions": 11,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02"
+      ],
+      "assets": [
+        {
+          "id": "q1-fig-insulated-cylinders",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-fig-accelerating-cart",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a1-fig-pv-cycle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a2-fig-gamma-recoil",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "juntendo-2025-general-a-mathematics",
+      "directory": "projects/universities/juntendo/past-exams/working/2025/general-a/first-stage/mathematics",
+      "majors": 3,
+      "errors": [],
+      "package": {
+        "id": "juntendo-2025-general-a-mathematics",
+        "university_id": "juntendo",
+        "university_name": "順天堂大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-a",
+        "exam_method_name": "一般選抜A方式",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 70,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "順天堂大学公式の2025年度一般選抜A方式学生募集要項により、数学は70分。"
+        },
+        "total_points": 100
+      },
+      "questions": 19,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "ans-q1-geometry",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "juntendo-2025-general-a-physics",
+      "directory": "projects/universities/juntendo/past-exams/working/2025/general-a/first-stage/physics",
+      "majors": 4,
+      "errors": [
+        "analysis: Invalid target prerequisite or candidate (weak, now_plus_later): phys-q2-4: requires absent phys-q2-2"
+      ],
+      "package": {
+        "id": "juntendo-2025-general-a-physics",
+        "university_id": "juntendo",
+        "university_name": "順天堂大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-a",
+        "exam_method_name": "一般選抜A方式",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "理科は物理・化学・生物から2科目を選択し、2科目合計120分で解答する。問題冊子にも「2科目120分」と明記され、物理単独の公式時間はない。"
+        },
+        "total_points": 100
+      },
+      "questions": 26,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04"
+      ],
+      "assets": [
+        {
+          "id": "q-p01-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-p02-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-p03-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-p04-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-p05-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-p06-top",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-p06-bottom",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-p07-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-p08-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-p09-top",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-p09-bottom",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-p10-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-p11-top",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-p11-bottom",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-p12-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-p13-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-p01-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-p02-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-p03-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-p04-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-p05-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-p06-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-p07-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-p08-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-p09-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-p10-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-p11-main",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "kanazawa-medical-2025-general-early-mathematics",
+      "directory": "projects/universities/kanazawa-medical/past-exams/working/2025/general-early/first-stage/mathematics",
+      "majors": 4,
+      "errors": [],
+      "package": {
+        "id": "kanazawa-medical-2025-general-early-mathematics",
+        "university_id": "kanazawa-medical",
+        "university_name": "金沢医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-early",
+        "exam_method_name": "一般選抜（前期）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 60,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "問題原本p.1に数学60分と明記されている。"
+        },
+        "total_points": 100
+      },
+      "questions": 9,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04"
+      ],
+      "assets": [
+        {
+          "id": "ans-q2-parabola-area",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q4-parabola-semicircle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "kanazawa-medical-2025-general-early-physics",
+      "directory": "projects/universities/kanazawa-medical/past-exams/working/2025/general-early/first-stage/physics",
+      "majors": 2,
+      "errors": [],
+      "package": {
+        "id": "kanazawa-medical-2025-general-early-physics",
+        "university_id": "kanazawa-medical",
+        "university_name": "金沢医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-early",
+        "exam_method_name": "一般選抜（前期）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 90,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "物理・化学・生物から2科目を選択し、2科目を合わせて90分で解答する。物理単独の公式試験時間はない。"
+        },
+        "total_points": 75
+      },
+      "questions": 6,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02"
+      ],
+      "assets": [
+        {
+          "id": "q1-fig1-single-star",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-fig2-binary-star",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-fig-block-and-ball",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "kanazawa-medical-2025-general-late-mathematics",
+      "directory": "projects/universities/kanazawa-medical/past-exams/working/2025/general-late/first-stage/mathematics",
+      "majors": 4,
+      "errors": [],
+      "package": {
+        "id": "kanazawa-medical-2025-general-late-mathematics",
+        "university_id": "kanazawa-medical",
+        "university_name": "金沢医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-late",
+        "exam_method_name": "一般選抜（後期）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 60,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "問題原本p.1に数学60分と明記されている。"
+        },
+        "total_points": 100
+      },
+      "questions": 7,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04"
+      ],
+      "assets": [
+        {
+          "id": "q2-right-triangle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-square-pyramid",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-early-stages",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-late-stage-and-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-equilateral-lines",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q4-coordinate-model",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q4-sectioned-pyramid",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "kansai-medical-2025-general-early-mathematics",
+      "directory": "projects/universities/kansai-medical/past-exams/working/2025/general-early/first-stage/mathematics",
+      "majors": 4,
+      "errors": [],
+      "package": {
+        "id": "kansai-medical-2025-general-early-mathematics",
+        "university_id": "kansai-medical",
+        "university_name": "関西医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-early",
+        "exam_method_name": "一般選抜試験（前期）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 90,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "問題原本p.1に数学90分と明記されている。"
+        },
+        "total_points": 100
+      },
+      "questions": 13,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04"
+      ],
+      "assets": [
+        {
+          "id": "a1-circle-figure",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a1-parabola-figures",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a3-intersection-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a9-solid-height-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a10-cross-section-figure",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a12-rotation-figure",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "kansai-medical-2025-general-early-physics",
+      "directory": "projects/universities/kansai-medical/past-exams/working/2025/general-early/first-stage/physics",
+      "majors": 4,
+      "errors": [
+        "analysis: Invalid target prerequisite or candidate (weak, now): phys-q1-4: requires absent phys-q1-3"
+      ],
+      "package": {
+        "id": "kansai-medical-2025-general-early-physics",
+        "university_id": "kansai-medical",
+        "university_name": "関西医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-early",
+        "exam_method_name": "一般選抜試験（前期）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "問題冊子表紙に理科2科目120分と明記。物理単独の公式時間ではない。"
+        },
+        "total_points": 100
+      },
+      "questions": 24,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04"
+      ],
+      "assets": [
+        {
+          "id": "q1-apparatus-tape",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-interval-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-answer-axes",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-cyclotron-figures",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-heart-cross-section",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a2-trajectory",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "kawasaki-medical-2025-general-regional-quota-mathematics",
+      "directory": "projects/universities/kawasaki-medical/past-exams/working/2025/general-regional-quota/first-stage/mathematics",
+      "majors": 3,
+      "errors": [],
+      "package": {
+        "id": "kawasaki-medical-2025-general-regional-quota-mathematics",
+        "university_id": "kawasaki-medical",
+        "university_name": "川崎医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-regional-quota",
+        "exam_method_name": "一般選抜・地域枠選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 80,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "問題原本p.1に数学80分と明記されている。"
+        },
+        "total_points": 100
+      },
+      "questions": 9,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "ans-q1-circle-angles",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q1-sine-triangle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q1-region",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-c1-area",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-c2-area",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-absolute-value",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-farthest-point",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-area-ratio",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "kawasaki-medical-2025-general-regional-quota-physics",
+      "directory": "projects/universities/kawasaki-medical/past-exams/working/2025/general-regional-quota/first-stage/physics",
+      "majors": 5,
+      "errors": [],
+      "package": {
+        "id": "kawasaki-medical-2025-general-regional-quota-physics",
+        "university_id": "kawasaki-medical",
+        "university_name": "川崎医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-regional-quota",
+        "exam_method_name": "一般選抜・地域枠選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "理科は物理・化学・生物から2科目を選択し、2科目を合わせて120分で解答する。原本問題冊子にも「物理（2科目120分）」と印刷されている。物理単独の公式試験時間はない。"
+        },
+        "total_points": 75
+      },
+      "questions": 17,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04",
+        "major-question-05"
+      ],
+      "assets": [
+        {
+          "id": "q2-graph-options",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-container-diagram",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-thin-film-diagram",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a3-piston-diagram",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a3-pv-diagram",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a4-wavefront-diagram",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "keio-2025-general-mathematics",
+      "directory": "projects/universities/keio/past-exams/working/2025/general/first-stage/mathematics",
+      "majors": 4,
+      "errors": [],
+      "package": {
+        "id": "keio-2025-general-mathematics",
+        "university_id": "keio",
+        "university_name": "慶應義塾大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 100,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "問題原本p.1の科目扉に数学100分と明記されている。"
+        },
+        "total_points": 150
+      },
+      "questions": 15,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04"
+      ],
+      "assets": [
+        {
+          "id": "a13-square-reflection-case1",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a13-square-reflection-case2",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "keio-2025-general-physics",
+      "directory": "projects/universities/keio/past-exams/working/2025/general/first-stage/physics",
+      "majors": 3,
+      "errors": [
+        "analysis: Invalid target prerequisite or candidate (weak, now): phys-q1-d: requires absent phys-q1-c; phys-q2-m: requires absent phys-q2-l; phys-q2-m: requires absent phys-q2-k; phys-q3-f: requires absent phys-q3-c"
+      ],
+      "package": {
+        "id": "keio-2025-general-physics",
+        "university_id": "keio",
+        "university_name": "慶應義塾大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "公式条件は理科2科目一括120分。物理単独の公式時間ではない。"
+        },
+        "total_points": 100
+      },
+      "questions": 29,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "q1-projectile",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-rotating-coil",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-core-setup",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-wiring-template",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-dual-detectors",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-vapor-pressure-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-atmosphere-diagrams",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q4-wiring",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "kindai-2025-general-first-a-mathematics",
+      "directory": "projects/universities/kindai/past-exams/working/2025/general-first-a/first-stage/mathematics",
+      "majors": 3,
+      "errors": [],
+      "package": {
+        "id": "kindai-2025-general-first-a-mathematics",
+        "university_id": "kindai",
+        "university_name": "近畿大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-first-a",
+        "exam_method_name": "一般入試・前期（A日程）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 60,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "原本問題冊子に数学60分と明記される。"
+        },
+        "total_points": 100
+      },
+      "questions": 15,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "notice-mark-example-1",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "notice-mark-example-2",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a1-domain-circle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a1-parabola",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a2-unit-circle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a5-coordinate-space",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a5-plane-circle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a6-right-triangle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "kindai-2025-general-first-a-physics",
+      "directory": "projects/universities/kindai/past-exams/working/2025/general-first-a/first-stage/physics",
+      "majors": 2,
+      "errors": [
+        "analysis: Invalid target prerequisite or candidate (weak, now): phys-q2-a5: requires absent phys-q2-a4"
+      ],
+      "package": {
+        "id": "kindai-2025-general-first-a-physics",
+        "university_id": "kindai",
+        "university_name": "近畿大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-first-a",
+        "exam_method_name": "一般入試・前期（A日程）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "理科は物理・化学・生物から2科目を選択し、2科目を合わせて120分で解答する。物理単独の公式試験時間はない。"
+        },
+        "total_points": 100
+      },
+      "questions": 12,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02"
+      ],
+      "assets": [
+        {
+          "id": "q1-spring-line",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-spring-angles",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-membrane-setup",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-membrane-model",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-membrane-forces",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-apparatus-diagrams",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-isotope-graphs",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-aston-apparatus",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-a1-spring-force",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-a2-membrane-force",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-a4-magnetic-trajectory",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-a5-velocity-geometry",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-a6-focusing-rays",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "kindai-2025-recommendation-general-public-mathematics",
+      "directory": "projects/universities/kindai/past-exams/working/2025/recommendation-general-public/first-stage/mathematics",
+      "majors": 3,
+      "errors": [],
+      "package": {
+        "id": "kindai-2025-recommendation-general-public-mathematics",
+        "university_id": "kindai",
+        "university_name": "近畿大学",
+        "academic_year": 2025,
+        "exam_method_id": "recommendation-general-public",
+        "exam_method_name": "推薦入試（一般公募）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 60,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "原本問題冊子に数学60分と明記される。"
+        },
+        "total_points": 100
+      },
+      "questions": 13,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "notice-mark-example-1",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "notice-mark-example-2",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-parabola-overview",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-enclosed-area",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-quadrants",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "kindai-2025-recommendation-general-public-physics",
+      "directory": "projects/universities/kindai/past-exams/working/2025/recommendation-general-public/first-stage/physics",
+      "majors": 2,
+      "errors": [],
+      "package": {
+        "id": "kindai-2025-recommendation-general-public-physics",
+        "university_id": "kindai",
+        "university_name": "近畿大学",
+        "academic_year": 2025,
+        "exam_method_id": "recommendation-general-public",
+        "exam_method_name": "推薦入試（一般公募）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 60,
+          "subject_ids": [
+            "physics"
+          ],
+          "note": "問題冊子表紙に物理60分と明記されている。"
+        },
+        "total_points": 100
+      },
+      "questions": 11,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02"
+      ],
+      "assets": [
+        {
+          "id": "q-i-a-fig1a",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-i-a-fig1b",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-i-b-fig2",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-i-b-fig3",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-i-c-fig4",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-i-c-fig5",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-ii-a-fig1",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-ii-b-fig2-3",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-ii-c-fig4",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-i-a-q2-collision",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-i-a-q4-wall-condition",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-i-a-q5-wall-distance",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-i-b-q8-cylinder",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-i-b-q9-q10-arrivals",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-i-c-q12-area",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-i-c-q17-symmetry",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-ii-b-q6-equivalent",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-ii-b-q7-phasor",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-ii-c-q10-circuit",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "kitasato-2025-general-mathematics",
+      "directory": "projects/universities/kitasato/past-exams/working/2025/general/first-stage/mathematics",
+      "majors": 3,
+      "errors": [],
+      "package": {
+        "id": "kitasato-2025-general-mathematics",
+        "university_id": "kitasato",
+        "university_name": "北里大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜試験",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 80,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "問題原本p.1と北里大学公式2025年度学生募集要項に数学80分と明記。"
+        },
+        "total_points": 150
+      },
+      "questions": 10,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "ans-q2-function-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "kitasato-2025-general-physics",
+      "directory": "projects/universities/kitasato/past-exams/working/2025/general/first-stage/physics",
+      "majors": 3,
+      "errors": [],
+      "package": {
+        "id": "kitasato-2025-general-physics",
+        "university_id": "kitasato",
+        "university_name": "北里大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜試験",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 100,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "公式条件は理科2科目一括100分。物理単独の公式時間ではない。"
+        },
+        "total_points": 100
+      },
+      "questions": 17,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "q1-rods-equilibrium",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-capacitor-stages",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-doppler-layout",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q5-insulated-vessels",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q6-spring-cart",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q7-electric-plates-screen",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q7-magnetic-arc",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q7-magnetic-geometry",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "kurume-2025-general-early-mathematics",
+      "directory": "projects/universities/kurume/past-exams/working/2025/general-early/first-stage/mathematics",
+      "majors": 5,
+      "errors": [],
+      "package": {
+        "id": "kurume-2025-general-early-mathematics",
+        "university_id": "kurume",
+        "university_name": "久留米大学医学部",
+        "academic_year": 2025,
+        "exam_method_id": "general-early",
+        "exam_method_name": "前期一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 90,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "問題冊子の科目扉に数学90分と明記されている。"
+        },
+        "total_points": 100
+      },
+      "questions": 13,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04",
+        "major-question-05"
+      ],
+      "assets": [
+        {
+          "id": "q2-plane-apq",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-plane-oab",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a2-tetrahedron-opqab",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a3-polynomial-long-division",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a5-sphere-cross-section",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a5-w-cross-section",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a5-w-cross-section-zoom",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "kurume-2025-general-early-physics",
+      "directory": "projects/universities/kurume/past-exams/working/2025/general-early/first-stage/physics",
+      "majors": 3,
+      "errors": [
+        "analysis: Invalid target prerequisite or candidate (weak, now): phys-q2-7: requires absent phys-q2-6"
+      ],
+      "package": {
+        "id": "kurume-2025-general-early-physics",
+        "university_id": "kurume",
+        "university_name": "久留米大学医学部",
+        "academic_year": 2025,
+        "exam_method_id": "general-early",
+        "exam_method_name": "前期一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "公式問題冊子は理科2科目一括120分。物理単独の公式時間ではない。"
+        },
+        "total_points": 100
+      },
+      "questions": 28,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "q1-cone-circular-motion",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-cone-descending-path",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-hot-air-balloon",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-battery-circuit",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "kyorin-2025-general-mathematics",
+      "directory": "projects/universities/kyorin/past-exams/working/2025/general/first-stage/mathematics",
+      "majors": 3,
+      "errors": [],
+      "package": {
+        "id": "kyorin-2025-general-mathematics",
+        "university_id": "kyorin",
+        "university_name": "杏林大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 70,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "問題原本p.1に数学70分と明記されている。"
+        },
+        "total_points": 100
+      },
+      "questions": 8,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "ans-i-quartic-graphs",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-ii-triangle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-iii-xy-coordinates",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-iii-a-ellipse",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-iii-solid-projection",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-iii-projection-development",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-iii-octahedron-section",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-iii-z-section-square",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-iii-x-section-circle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-iii-x-section-area",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-iii-cylinder-note",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "kyorin-2025-general-physics",
+      "directory": "projects/universities/kyorin/past-exams/working/2025/general/first-stage/physics",
+      "majors": 3,
+      "errors": [
+        "analysis: Invalid target prerequisite or candidate (weak, now_plus_later): phys-q2-c: requires absent phys-q2-b"
+      ],
+      "package": {
+        "id": "kyorin-2025-general-physics",
+        "university_id": "kyorin",
+        "university_name": "杏林大学医学部",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 100,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "理科は物理・化学・生物から2科目を選択し、2科目を合わせて100分で解答する。物理単独の公式試験時間はない。"
+        },
+        "total_points": 75
+      },
+      "questions": 12,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "q2-spring-wall",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-graph-choices",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-bridge-circuit",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-diode-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-force-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-center-of-mass",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-bridge-current",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-kirchhoff-circuit",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "nihon-u-2025-n-unified-first-mathematics",
+      "directory": "projects/universities/nihon-u/past-exams/working/2025/n-unified-first/first-stage/mathematics",
+      "majors": 6,
+      "errors": [],
+      "package": {
+        "id": "nihon-u-2025-n-unified-first-mathematics",
+        "university_id": "nihon-u",
+        "university_name": "日本大学医学部",
+        "academic_year": 2025,
+        "exam_method_id": "n-unified-first",
+        "exam_method_name": "N全学統一方式第1期",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 60,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "2025年度日本大学一般選抜N全学統一方式の時間割で、数学②は14:40〜15:40の60分枠。原本問題冊子p.1の科目欄も「数学（60分）」と印刷している。理科は2科目一括枠だが、数学は独立した60分枠である。"
+        },
+        "total_points": 100
+      },
+      "questions": 18,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04",
+        "major-question-05",
+        "major-question-06"
+      ],
+      "assets": [
+        {
+          "id": "ans-q3-triangle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q5-square-series",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q6-rotation-region",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "nihon-u-2025-n-unified-first-physics",
+      "directory": "projects/universities/nihon-u/past-exams/working/2025/n-unified-first/first-stage/physics",
+      "majors": 5,
+      "errors": [],
+      "package": {
+        "id": "nihon-u-2025-n-unified-first-physics",
+        "university_id": "nihon-u",
+        "university_name": "日本大学医学部",
+        "academic_year": 2025,
+        "exam_method_id": "n-unified-first",
+        "exam_method_name": "N全学統一方式第1期",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 60,
+          "subject_ids": [
+            "physics"
+          ],
+          "note": "問題冊子表紙に「物理（60分）」と明記。"
+        },
+        "total_points": 100
+      },
+      "questions": 25,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04",
+        "major-question-05"
+      ],
+      "assets": [
+        {
+          "id": "q1-collision-setup",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-gas-state1",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-gas-state3",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-lens-liquid-setup",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-dark-ring-options",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-rail-resistor",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-rail-capacitor",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a1-collision-vector",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a1-collision-result",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a3-lens-geometry",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "nihon-u-2025-n-unified-first-mathematics",
+      "directory": "projects/universities/nihon-u/past-exams/working/2025/n-unified-first/second-stage/mathematics",
+      "majors": 3,
+      "errors": [],
+      "package": {
+        "id": "nihon-u-2025-n-unified-first-mathematics",
+        "university_id": "nihon-u",
+        "university_name": "日本大学医学部",
+        "academic_year": 2025,
+        "exam_method_id": "n-unified-first",
+        "exam_method_name": "N全学統一方式第1期",
+        "exam_stage": "second_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 60,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "原本問題冊子に数学60分と明記される。"
+        },
+        "total_points": 60
+      },
+      "questions": 9,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "ans-q2-k-range-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-rotation-region",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-volume-explanation",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-convexity-table",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-y-axis-rotation",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-shell-explanation",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "nippon-medical-2022-general-late-mathematics",
+      "directory": "projects/universities/nippon-medical/past-exams/working/2022/general-late/first-stage/mathematics",
+      "majors": 4,
+      "errors": [
+        "analysis: ENOENT: no such file or directory, open 'C:\\---hp\\shidai-igakubu-gokaku-dokuhon\\projects\\universities\\nippon-medical\\past-exams\\working\\2022\\general-late\\first-stage\\mathematics\\analysis.json'",
+        "answers: editorial-explanations.json missing or invalid"
+      ],
+      "assets": []
+    },
+    {
+      "id": "nippon-medical-2025-general-early-mathematics",
+      "directory": "projects/universities/nippon-medical/past-exams/working/2025/general-early/first-stage/mathematics",
+      "majors": 4,
+      "errors": [],
+      "package": {
+        "id": "nippon-medical-2025-general-early-mathematics",
+        "university_id": "nippon-medical",
+        "university_name": "日本医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-early",
+        "exam_method_name": "一般選抜・前期",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 90,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "2025年度入学者選抜要項の第1次試験枠は11:05〜12:55と記載される一方、原本問題冊子には数学（90分）と明記されている。本分析の解答時間モデルは受験生が実際に問題へ取り組む原本表記90分を用いる。"
+        },
+        "total_points": 300
+      },
+      "questions": 14,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04"
+      ],
+      "assets": [
+        {
+          "id": "ans-q2-djhi-plane",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-tetrahedron",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-incenter",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-space-geometry",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-yz-projection",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "nippon-medical-2025-general-early-physics",
+      "directory": "projects/universities/nippon-medical/past-exams/working/2025/general-early/first-stage/physics",
+      "majors": 3,
+      "errors": [
+        "analysis: Stale or invalid target weak headline: observed 62; canonical 62.5 (or rounded 63)"
+      ],
+      "package": {
+        "id": "nippon-medical-2025-general-early-physics",
+        "university_id": "nippon-medical",
+        "university_name": "日本医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-early",
+        "exam_method_name": "一般選抜・前期",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "原本問題冊子に「2科目120分」と明記される。物理単独の公式時間はないため、本分析では2科目を等分した60分を編集上の仮時間予算として用いる。"
+        },
+        "total_points": 200
+      },
+      "questions": 7,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "q1-fig1-half-cylinder",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-fig2-hemisphere",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-fig1-potential-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-fig2-conducting-shell",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-fig-pv-cycle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-fig-hemisphere-detach",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "saitama-medical-2025-general-early-mathematics",
+      "directory": "projects/universities/saitama-medical/past-exams/working/2025/general-early/first-stage/mathematics",
+      "majors": 4,
+      "errors": [],
+      "package": {
+        "id": "saitama-medical-2025-general-early-mathematics",
+        "university_id": "saitama-medical",
+        "university_name": "埼玉医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-early",
+        "exam_method_name": "一般選抜（前期）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 50,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "問題原本p.1に数学50分と明記されている。"
+        },
+        "total_points": 100
+      },
+      "questions": 10,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04"
+      ],
+      "assets": [
+        {
+          "id": "q3-geometry",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-geometry-1",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-geometry-2",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "saitama-medical-2025-general-early-physics",
+      "directory": "projects/universities/saitama-medical/past-exams/working/2025/general-early/first-stage/physics",
+      "majors": 3,
+      "errors": [],
+      "package": {
+        "id": "saitama-medical-2025-general-early-physics",
+        "university_id": "saitama-medical",
+        "university_name": "埼玉医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-early",
+        "exam_method_name": "一般選抜（前期）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 90,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "問題原本に理科2科目90分と明記。物理・化学・生物から2科目を選択する枠として扱う。"
+        },
+        "total_points": 100
+      },
+      "questions": 31,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "q1-half-cylinder",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-states-i-ii",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-states-i-iii",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "sangyo-medical-2025-general-a-b-mathematics",
+      "directory": "projects/universities/sangyo-medical/past-exams/working/2025/general-a-b/first-stage/mathematics",
+      "majors": 4,
+      "errors": [],
+      "package": {
+        "id": "sangyo-medical-2025-general-a-b-mathematics",
+        "university_id": "sangyo-medical",
+        "university_name": "産業医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-a-b",
+        "exam_method_name": "一般選抜A・B",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 100,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "問題原本p.1に数学100分と明記されている。"
+        },
+        "total_points": 100
+      },
+      "questions": 23,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04"
+      ],
+      "assets": [
+        {
+          "id": "a2-tangent-circle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a2-tetrahedron",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a2-tangent-circles",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a3-circle-triangle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "sangyo-medical-2025-general-a-b-physics",
+      "directory": "projects/universities/sangyo-medical/past-exams/working/2025/general-a-b/first-stage/physics",
+      "majors": 3,
+      "errors": [],
+      "package": {
+        "id": "sangyo-medical-2025-general-a-b-physics",
+        "university_id": "sangyo-medical",
+        "university_name": "産業医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-a-b",
+        "exam_method_name": "一般選抜A・B（個別学力検査共通）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 100,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "物理・化学・生物から2科目を出願時に選択し、2科目を合わせて100分で解答する。物理単独の公式試験時間はない。"
+        },
+        "total_points": 100
+      },
+      "questions": 19,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "q1-track-diagram",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-pv-cycle-diagrams",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-grating-geometry",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-screen-pattern",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-alternate-slit-plates",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a1-circular-arc-forces",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a1-hollow-forces",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "showa-medical-2025-general-i-mathematics",
+      "directory": "projects/universities/showa-medical/past-exams/working/2025/general-i/first-stage/mathematics",
+      "majors": 4,
+      "errors": [],
+      "package": {
+        "id": "showa-medical-2025-general-i-mathematics",
+        "university_id": "showa-medical",
+        "university_name": "昭和医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-i",
+        "exam_method_name": "一般選抜入試（Ⅰ期）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 140,
+          "subject_ids": [
+            "english",
+            "mathematics"
+          ],
+          "note": "原本問題冊子に「英語とともに140分」と明記される。数学単独の公式時間はないため、本分析では2科目を等分した70分を編集上の仮時間予算として用いる。"
+        },
+        "total_points": 100
+      },
+      "questions": 16,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04"
+      ],
+      "assets": [
+        {
+          "id": "ans-q1-complex-triangle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-region",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-integral-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-tetrahedron",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-x-cross-section",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-z-cross-section",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "showa-medical-2025-general-i-physics",
+      "directory": "projects/universities/showa-medical/past-exams/working/2025/general-i/first-stage/physics",
+      "majors": 4,
+      "errors": [
+        "analysis: Invalid target prerequisite or candidate (weak, now): phys-q2-3: requires absent phys-q2-2; phys-q4-7: requires absent phys-q4-6"
+      ],
+      "package": {
+        "id": "showa-medical-2025-general-i-physics",
+        "university_id": "showa-medical",
+        "university_name": "昭和医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-i",
+        "exam_method_name": "一般選抜入試（Ⅰ期）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 140,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "原本問題冊子に「2科目140分」と明記される。物理単独の公式時間はないため、本分析では2科目を等分した70分を編集上の仮時間予算として用いる。"
+        },
+        "total_points": 100
+      },
+      "questions": 25,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04"
+      ],
+      "assets": [
+        {
+          "id": "q1-circular-source-layout",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-frequency-graph-answer-field",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-spring-masses-layout",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-rlc-series-circuit",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-ab-voltage-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-normal-incidence-film",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-oblique-incidence-film",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q1-tangent-geometry",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q1-projection-geometry",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q1-frequency-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-voltage-phasor",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "st-marianna-2025-general-early-mathematics",
+      "directory": "projects/universities/st-marianna/past-exams/working/2025/general-early/first-stage/mathematics",
+      "majors": 4,
+      "errors": [],
+      "package": {
+        "id": "st-marianna-2025-general-early-mathematics",
+        "university_id": "st-marianna",
+        "university_name": "聖マリアンナ医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-early",
+        "exam_method_name": "一般選抜（前期）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 90,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "問題原本p.1に数学90分と明記されている。"
+        },
+        "total_points": 100
+      },
+      "questions": 15,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04"
+      ],
+      "assets": [
+        {
+          "id": "a3-graph-abs-quadratic",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a4-area-c1-c2",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a4-unit-circle-line",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "st-marianna-2025-general-early-physics",
+      "directory": "projects/universities/st-marianna/past-exams/working/2025/general-early/first-stage/physics",
+      "majors": 5,
+      "errors": [],
+      "package": {
+        "id": "st-marianna-2025-general-early-physics",
+        "university_id": "st-marianna",
+        "university_name": "聖マリアンナ医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general-early",
+        "exam_method_name": "一般選抜（前期）",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 150,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "物理・化学・生物から2科目を選択し、2科目を合わせて150分で解答する。物理単独の公式試験時間はない。"
+        },
+        "total_points": 100
+      },
+      "questions": 18,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04",
+        "major-question-05"
+      ],
+      "assets": [
+        {
+          "id": "q2-moving-pulley",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-capacitor-circuit",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-coordinate-axis",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-potential-grid",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-field-grid",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-dielectric-layout",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-dielectric-field-grid",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-dielectric-potential-grid",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-lens-layout",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a3-answer-graphs",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "teikyo-2025-general-mathematics",
+      "directory": "projects/universities/teikyo/past-exams/working/2025/general/first-stage/mathematics",
+      "majors": 8,
+      "errors": [],
+      "package": {
+        "id": "teikyo-2025-general-mathematics",
+        "university_id": "teikyo",
+        "university_name": "帝京大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "mathematics",
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "一次選考は英語（60分・100点）と、国語・数学・物理・化学・生物から選ぶ2科目（合わせて120分・各100点）の計3科目300点。数学はこの選択2科目枠の一方で、同じ枠を選択したもう1科目と120分を共有する。数学単独の公式試験時間は公表されていない。この120分は試験日1日あたりの公式枠であり、本パッケージは試験日自由選択制の別日程にあたる数学①・数学②（各100点）の2日分を収録している。国語も選択できるが、本ツールの科目IDに国語が無いため subject_ids には数学・物理・化学・生物のみを記載している。"
+        },
+        "total_points": 200
+      },
+      "questions": 25,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04",
+        "major-question-05",
+        "major-question-06",
+        "major-question-07",
+        "major-question-08"
+      ],
+      "assets": [
+        {
+          "id": "q-math1-q4-integral-identity",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q-math2-q1-integral-identity",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-math1-q2-parabola",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-math1-q4-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-math1-q4-integral-work",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-math1-q4-alternate-work",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-math2-q1-variation",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-math2-q1-integral-work",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a-math2-q4-graphs",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "teikyo-2025-general-physics",
+      "directory": "projects/universities/teikyo/past-exams/working/2025/general/first-stage/physics",
+      "majors": 6,
+      "errors": [
+        "analysis: ENOENT: no such file or directory, open 'C:\\---hp\\shidai-igakubu-gokaku-dokuhon\\projects\\universities\\teikyo\\past-exams\\working\\2025\\general\\first-stage\\physics\\preview-html\\public-preview\\index.html'"
+      ],
+      "package": {
+        "id": "teikyo-2025-general-physics",
+        "university_id": "teikyo",
+        "university_name": "帝京大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "mathematics",
+            "physics",
+            "chemistry",
+            "biology",
+            "japanese"
+          ],
+          "note": "英語必須に加え、数学・物理・化学・生物・国語から2科目を選択し、選択2科目を一括120分で解く。物理単独の公式時間ではない。"
+        },
+        "total_points": 100
+      },
+      "questions": 39,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04",
+        "major-question-05",
+        "major-question-06"
+      ],
+      "assets": [
+        {
+          "id": "q1-walking-cycle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-pendulum-model",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-wood-states",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-force-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-submerged-rise",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-microscope-optics",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-radiation-geometry",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q5-engine-diagrams",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q6-repulsive-spheres",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-force-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "toho-2025-general-mathematics",
+      "directory": "projects/universities/toho/past-exams/working/2025/general/first-stage/mathematics",
+      "majors": 10,
+      "errors": [],
+      "package": {
+        "id": "toho-2025-general-mathematics",
+        "university_id": "toho",
+        "university_name": "東邦大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般入試",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 90,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "数学単独で90分。理科や英語との一括枠ではない。"
+        },
+        "total_points": 100
+      },
+      "questions": 20,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04",
+        "major-question-05",
+        "major-question-06",
+        "major-question-07",
+        "major-question-08",
+        "major-question-09",
+        "major-question-10"
+      ],
+      "assets": [
+        {
+          "id": "ans-q2-triangle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-curves",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q7-complex-plane",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q8-space",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "toho-2025-general-physics",
+      "directory": "projects/universities/toho/past-exams/working/2025/general/first-stage/physics",
+      "majors": 6,
+      "errors": [
+        "analysis: Invalid target prerequisite or candidate (strong, now): phys-q5-4: requires absent phys-q5-2"
+      ],
+      "package": {
+        "id": "toho-2025-general-physics",
+        "university_id": "toho",
+        "university_name": "東邦大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般入試",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "理科は「物理基礎・物理」「化学基礎・化学」「生物基礎・生物」から2科目選択し、選択した2科目を合わせて120分で解答する。原本問題冊子の1ページ目にも科目名の下に「（2科目 120分）」と印刷されている。物理単独の公式試験時間はない。"
+        },
+        "total_points": 75
+      },
+      "questions": 27,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04",
+        "major-question-05",
+        "major-question-06"
+      ],
+      "assets": [
+        {
+          "id": "q1-platform-projectile",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-inclined-conical-pendulum",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-concentric-conductors",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-charge-magnetic-field",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q6-adiabatic-piston",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a2-conical-pendulum-forces",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a6-charge-trajectory-geometry",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "tohoku-medical-pharmaceutical-2025-general-mathematics",
+      "directory": "projects/universities/tohoku-medical-pharmaceutical/past-exams/working/2025/general/first-stage/mathematics",
+      "majors": 3,
+      "errors": [],
+      "package": {
+        "id": "tohoku-medical-pharmaceutical-2025-general-mathematics",
+        "university_id": "tohoku-medical-pharmaceutical",
+        "university_name": "東北医科薬科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 70,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "問題原本p.1に数学70分と明記されている。"
+        },
+        "total_points": 100
+      },
+      "questions": 12,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "notice-mark-example-1",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "notice-mark-example-2",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-road-grid",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a1-region-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a2-region-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a2-line-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a3-venn",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "tohoku-medical-pharmaceutical-2025-general-physics",
+      "directory": "projects/universities/tohoku-medical-pharmaceutical/past-exams/working/2025/general/first-stage/physics",
+      "majors": 3,
+      "errors": [
+        "analysis: Invalid target prerequisite or candidate (strong, now): phys-q3-5: requires absent phys-q3-4"
+      ],
+      "package": {
+        "id": "tohoku-medical-pharmaceutical-2025-general-physics",
+        "university_id": "tohoku-medical-pharmaceutical",
+        "university_name": "東北医科薬科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "問題原本p.1に「2科目120分」と明記される。物理単独の公式時間はないため、分析では2科目を等分した60分を編集上の仮時間予算とする。"
+        },
+        "total_points": 100
+      },
+      "questions": 18,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "notice-mark-examples",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-fixed-pipe",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-collision-pipe",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-moving-cart",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-constant-current-rc",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q5-lc-circuit",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q6-pv-cycle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "tokai-2025-general-mathematics",
+      "directory": "projects/universities/tokai/past-exams/working/2025/general/first-stage/mathematics",
+      "majors": 3,
+      "errors": [],
+      "package": {
+        "id": "tokai-2025-general-mathematics",
+        "university_id": "tokai",
+        "university_name": "東海大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 70,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "問題原本p.1に数学70分と明記されている。"
+        },
+        "total_points": 100
+      },
+      "questions": 16,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "ans-q1-separator-model",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q1-shift-model",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q1-variation-table",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q1-parabola-line",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-tetrahedron",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-menelaus",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-incircle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-two-circles",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q3-tangent-circles",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "tokai-2025-general-physics",
+      "directory": "projects/universities/tokai/past-exams/working/2025/general/first-stage/physics",
+      "majors": 4,
+      "errors": [
+        "analysis: Invalid target prerequisite or candidate (weak, now): phys-q4-4: requires absent phys-q4-3"
+      ],
+      "package": {
+        "id": "tokai-2025-general-physics",
+        "university_id": "tokai",
+        "university_name": "東海大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 70,
+          "subject_ids": [
+            "physics"
+          ],
+          "note": "問題原本p.1に物理70分と明記されている。"
+        },
+        "total_points": 100
+      },
+      "questions": 20,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04"
+      ],
+      "assets": [
+        {
+          "id": "q1-spring-collision",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-friction-floor",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-mass-spectrometer",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-interferometer",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-tilted-wavefronts",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-pv-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a3-path-difference",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "tokyo-medical-2025-general-mathematics",
+      "directory": "projects/universities/tokyo-medical/past-exams/working/2025/general/first-stage/mathematics",
+      "majors": 4,
+      "errors": [],
+      "package": {
+        "id": "tokyo-medical-2025-general-mathematics",
+        "university_id": "tokyo-medical",
+        "university_name": "東京医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 60,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "問題原本p.1に数学60分と明記されている。"
+        },
+        "total_points": 100
+      },
+      "questions": 14,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04"
+      ],
+      "assets": [
+        {
+          "id": "q4-cross-section-options",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-subset-diagram",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-nested-subsets",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q2-disjoint-subsets",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q4-distance-section",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q4-distance-alternative",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "tokyo-medical-2025-general-physics",
+      "directory": "projects/universities/tokyo-medical/past-exams/working/2025/general/first-stage/physics",
+      "majors": 5,
+      "errors": [
+        "analysis: Invalid target prerequisite or candidate (weak, now): phys-q2-3: requires absent phys-q2-2; phys-q4-4: requires absent phys-q4-2; phys-q4-5: requires absent phys-q4-3"
+      ],
+      "package": {
+        "id": "tokyo-medical-2025-general-physics",
+        "university_id": "tokyo-medical",
+        "university_name": "東京医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "理科は選択した2科目を合わせて120分で解答する。物理単独の公式試験時間はない。"
+        },
+        "total_points": 100
+      },
+      "questions": 23,
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04",
+        "major-question-05"
+      ],
+      "assets": [
+        {
+          "id": "q1-ladder",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-fluid-container",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-diode-circuit",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-glass-plate",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-newton-rings",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-projectile",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-rlc-circuit",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q4-waveform",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q5-pv-cycle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q1-diode",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q1-glass",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "ans-q1-newton-reference",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "tokyo-womens-medical-2025-general-mathematics",
+      "directory": "projects/universities/tokyo-womens-medical/past-exams/working/2025/general/first-stage/mathematics",
+      "majors": 4,
+      "errors": [],
+      "package": {
+        "id": "tokyo-womens-medical-2025-general-mathematics",
+        "university_id": "tokyo-womens-medical",
+        "university_name": "東京女子医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "mathematics",
+        "subject_name": "数学",
+        "time_limit": {
+          "kind": "subject_only",
+          "minutes": 60,
+          "subject_ids": [
+            "mathematics"
+          ],
+          "note": "問題原本p.1に数学60分と明記されている。"
+        },
+        "total_points": 100
+      },
+      "questions": 11,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03",
+        "major-question-04"
+      ],
+      "assets": [
+        {
+          "id": "q4-triangle-squares",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a2-tetrahedron-circumsphere",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a3-octahedron-insphere",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    },
+    {
+      "id": "tokyo-womens-medical-2025-general-physics",
+      "directory": "projects/universities/tokyo-womens-medical/past-exams/working/2025/general/first-stage/physics",
+      "majors": 3,
+      "errors": [],
+      "package": {
+        "id": "tokyo-womens-medical-2025-general-physics",
+        "university_id": "tokyo-womens-medical",
+        "university_name": "東京女子医科大学",
+        "academic_year": 2025,
+        "exam_method_id": "general",
+        "exam_method_name": "一般選抜",
+        "exam_stage": "first_stage_academic",
+        "subject_id": "physics",
+        "subject_name": "物理",
+        "time_limit": {
+          "kind": "combined_subjects",
+          "minutes": 120,
+          "subject_ids": [
+            "physics",
+            "chemistry",
+            "biology"
+          ],
+          "note": "問題原本に理科2科目を通して120分と示される。物理単独の公式時間はないため、分析では2科目を等分した60分を編集上の仮時間予算とする。"
+        },
+        "total_points": 100
+      },
+      "questions": 29,
+      "analysis": "ready",
+      "answers": "editorial_adaptation",
+      "answerMajors": [
+        "major-question-01",
+        "major-question-02",
+        "major-question-03"
+      ],
+      "assets": [
+        {
+          "id": "q1-a-velocity-graphs",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-a-answer-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-b-spring-circle",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q1-c-platform",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-b-distribution-graphs",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-f-doppler-setup",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q2-g-millikan",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-a-charge-axis",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-b-circuit",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "q3-c-rails",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a1-a5-velocity-graph",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a2-e-mirror-ray",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a3-a1-vector",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        },
+        {
+          "id": "a3-c1-force-diagram",
+          "rights": "restricted",
+          "status": "pending_redraw"
+        }
+      ]
+    }
+  ]
+}

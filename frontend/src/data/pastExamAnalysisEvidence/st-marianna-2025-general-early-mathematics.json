@@ -1,0 +1,459 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "st-marianna-2025-general-early-mathematics",
+    "university_id": "st-marianna",
+    "university_name": "聖マリアンナ医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-early",
+    "exam_method_name": "一般選抜（前期）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 90,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "問題原本p.1に数学90分と明記されている。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/st-marianna/past-exams/working/2025/general-early/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "3c351f815d410b787789bab41fab776d8baf0a8f6a2b7b6a68aa1a0945a8bfa8",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "sourceTitle": "累乗根の定義と公式の証明",
+      "requirements": [
+        1,
+        3.1,
+        1.5,
+        3,
+        3.1
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "教科書の定義を正確に記述する。",
+          "strategyReason": "定義を問う短い得点源。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "等式だけでなく正のn乗根であることを論証する必要がある。",
+          "strategyReason": "方針は短いが証明の完結性が必要。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-1"
+            ],
+            "strong_subject": [
+              "math-q1-1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "sourceTitle": "重複順列と隣接しない文字列",
+      "requirements": [
+        1.4,
+        2.2,
+        2.8,
+        3.2,
+        3.4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "重複順列の公式を直接用いる。",
+          "strategyReason": "公式適用で確実に取れる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "端を固定して残りの個数を更新する。",
+          "strategyReason": "(1)の自然な応用。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(3)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "両端固定後の重複数を正確に更新する。",
+          "strategyReason": "端固定の反復で処理できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-4",
+          "label": "(4)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "隣接条件を保つすき間を個別に判断する。",
+          "strategyReason": "条件の翻訳に時間を要する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-5",
+          "label": "(5)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 6,
+          "difficultyReason": "10個の核となる語を分類し、挿入数を漏れなく合算する。",
+          "strategyReason": "列挙と分類の負荷が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-4"
+            ],
+            "strong_subject": [
+              "math-q2-4"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "sourceTitle": "絶対値付き三角関数の値域と共有点",
+      "requirements": [
+        3.8,
+        3,
+        3,
+        3.3,
+        4.3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "倍角公式と絶対値の符号条件を組み合わせる。",
+          "strategyReason": "変換と不等式は定型的。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "各枝と端点を比較する必要がある。",
+          "strategyReason": "(1)からグラフを描ければ得点可能。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1"
+            ],
+            "strong_subject": [
+              "math-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "t=sin xの多対一対応を正しく数える。",
+          "strategyReason": "t解をx解へ戻す個数判定が核心。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-2"
+            ],
+            "strong_subject": [
+              "math-q3-2"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-4",
+          "label": "(4)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 7,
+          "difficultyReason": "区分グラフとsinの解数を同時に管理する。",
+          "strategyReason": "共有点数の境界判定が難しい。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-2"
+            ],
+            "strong_subject": [
+              "math-q3-2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q4",
+      "label": "第4問",
+      "sourceTitle": "極方程式で表された放物線と面積",
+      "requirements": [
+        3.6,
+        4.1,
+        3.6,
+        3.8,
+        4.1
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "(1)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "sinθ=-cosθの解と動径代入を処理する。",
+          "strategyReason": "極方程式の等置で直接求められる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "平方根を含む式を条件付きで2乗する。",
+          "strategyReason": "極座標から直交座標への定型変換。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-3",
+          "label": "(3)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "(2)と対応する変換に加え平方根の2枝を示す。",
+          "strategyReason": "(2)と同型で処理できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-4",
+          "label": "(4)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 9,
+          "difficultyReason": "図形の対称性、積分区間、被積分関数の因数分解を統合する。",
+          "strategyReason": "記述量と計算量が大きい最終問題。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q4-1",
+              "math-q4-2",
+              "math-q4-3"
+            ],
+            "strong_subject": [
+              "math-q4-1",
+              "math-q4-2",
+              "math-q4-3"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 90,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 26,
+        "targetPercent": 26,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 70,
+        "maximum": {
+          "points": 26,
+          "minutes": 89.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q4-1"
+          ]
+        },
+        "now": {
+          "points": 38,
+          "minutes": 101.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q4-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 78,
+          "minutes": 163.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 68,
+        "targetPercent": 68,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 17.5,
+        "maximum": {
+          "points": 85,
+          "minutes": 88.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "now": {
+          "points": 78,
+          "minutes": 79.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 113.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q2-5",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3",
+            "math-q4-4"
+          ]
+        }
+      }
+    ]
+  }
+}

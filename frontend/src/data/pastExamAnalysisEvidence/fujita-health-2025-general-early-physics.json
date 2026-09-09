@@ -1,0 +1,564 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "fujita-health-2025-general-early-physics",
+    "university_id": "fujita-health",
+    "university_name": "藤田医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-early",
+    "exam_method_name": "一般入試（前期）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 120,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "理科は物理・化学・生物から2科目を選択し、2科目を合わせて120分で解答する。物理単独の公式試験時間はない。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/fujita-health/past-exams/working/2025/general-early/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "7840a9c0124fd5f1eb62be70030d801f70c028307ae8b5c4d96f3b2ffa4ac361",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "第1問",
+      "sourceTitle": "剛体にはたらく力とモーメント",
+      "requirements": [
+        2.9,
+        2.9,
+        2.9,
+        1.9,
+        2.9
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "鉛直成分を符号どおり足す基本的なつり合い。",
+          "strategyReason": "想定1.3分・仮3点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "問2",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "張力の水平成分の差を取る基本問題。",
+          "strategyReason": "想定1.3分・仮3点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "問3",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "水平・鉛直成分ごとに腕の長さを対応させる。",
+          "strategyReason": "想定1.9分・仮4点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "問4",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "転倒直前の支点を選び、複数のモーメントを整理する。",
+          "strategyReason": "想定2.5分・仮4点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "第2問",
+      "sourceTitle": "ニュートンリングと曲率半径差",
+      "requirements": [
+        3.6,
+        3.8,
+        3.6,
+        2.8,
+        3.7
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "三平方の定理とd≪Rの近似を使う定番。",
+          "strategyReason": "想定1.0分・仮3点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "問2",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "明環条件の半整数を正しく選ぶ必要がある。",
+          "strategyReason": "想定1.9分・仮4点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1"
+            ],
+            "strong_subject": [
+              "phys-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "問3",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "光路差0と反射位相差πを結び付ける。",
+          "strategyReason": "想定0.7分・仮3点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-4",
+          "label": "問4",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "媒質中波長と反射位相の双方を確認する。",
+          "strategyReason": "想定1.6分・仮3点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-5",
+          "label": "問5",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "2つの球面のたわみ量の差を取る。",
+          "strategyReason": "想定1.9分・仮4点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1"
+            ],
+            "strong_subject": [
+              "phys-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-6",
+          "label": "問6",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "観測半径Lと第1・第2明環条件を不等式へ翻訳する。",
+          "strategyReason": "想定3.1分・仮4点。工程が長く、苦手層は他の回収を優先する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-5"
+            ],
+            "strong_subject": [
+              "phys-q2-5"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-7",
+          "label": "問7",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "問6の下限と一次近似を使い有効数字を整える。",
+          "strategyReason": "想定2.5分・仮4点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-6"
+            ],
+            "strong_subject": [
+              "phys-q2-6"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q3",
+      "label": "第3問",
+      "sourceTitle": "電場・磁場中の荷電粒子",
+      "requirements": [
+        3.5,
+        3.6,
+        3.5,
+        2.8,
+        3.7
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "電気的仕事eVを運動エネルギーへ変換する。",
+          "strategyReason": "想定1.3分・仮3点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "問2",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "一定電場の力積と問1の運動量を結ぶ。",
+          "strategyReason": "想定1.5分・仮3点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-1"
+            ],
+            "strong_subject": [
+              "phys-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "問3",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "半径L/2とローレンツ力、右手則を同時に使う。",
+          "strategyReason": "想定2.4分・仮4点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-1"
+            ],
+            "strong_subject": [
+              "phys-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-4",
+          "label": "問4",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "円周上の幾何と力の向きを成分へ分ける。",
+          "strategyReason": "想定2.7分・仮4点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-3"
+            ],
+            "strong_subject": [
+              "phys-q3-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-5",
+          "label": "問5",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "弧長を一定速度で割る。",
+          "strategyReason": "想定1.9分・仮3点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-1"
+            ],
+            "strong_subject": [
+              "phys-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-6",
+          "label": "問6",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "電場力の作用時間を力積として扱う。",
+          "strategyReason": "想定2.2分・仮4点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-7",
+          "label": "問7",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "問6の運動量と半円弧長の時間式を連立する。",
+          "strategyReason": "想定3.1分・仮4点。工程が長く、苦手層は他の回収を優先する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-6"
+            ],
+            "strong_subject": [
+              "phys-q3-6"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q4",
+      "label": "第4問",
+      "sourceTitle": "鉛直方向での2物体の衝突",
+      "requirements": [
+        3.6,
+        3.8,
+        3.8,
+        3.3,
+        3.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q4-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "自由落下の基本式を直接使う。",
+          "strategyReason": "想定1.0分・仮3点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-2",
+          "label": "問2",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "衝突直前の落下速度へ反発係数を掛ける。",
+          "strategyReason": "想定1.0分・仮3点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-1"
+            ],
+            "strong_subject": [
+              "phys-q4-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-3",
+          "label": "問3",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "同時落下なので両球の間隔hが保たれる。",
+          "strategyReason": "想定0.7分・仮3点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-1"
+            ],
+            "strong_subject": [
+              "phys-q4-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-4",
+          "label": "問4",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "2球の位置式を同じ時刻で立てて連立する。",
+          "strategyReason": "想定1.9分・仮4点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-2",
+              "phys-q4-3"
+            ],
+            "strong_subject": [
+              "phys-q4-2",
+              "phys-q4-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-5",
+          "label": "問5",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "問4の時刻をQの位置式へ代入する。",
+          "strategyReason": "想定1.9分・仮4点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-4"
+            ],
+            "strong_subject": [
+              "phys-q4-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-6",
+          "label": "問6",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "問5の高さを正とする2次不等式を解く。",
+          "strategyReason": "想定2.5分・仮4点。工程が長く、苦手層は他の回収を優先する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-5"
+            ],
+            "strong_subject": [
+              "phys-q4-5"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-7",
+          "label": "問7",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "問4の時刻を両球の速度式へ代入し絶対値を取る。",
+          "strategyReason": "想定2.5分・仮3点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-4"
+            ],
+            "strong_subject": [
+              "phys-q4-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-8",
+          "label": "問8",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "異質量2体の運動量保存と反発係数を連立する。",
+          "strategyReason": "想定3.6分・仮4点。工程が長く、苦手層は他の回収を優先する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-7"
+            ],
+            "strong_subject": [
+              "phys-q4-7"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-9",
+          "label": "問9",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "問8の速度を上昇運動のエネルギー式へ入れる。",
+          "strategyReason": "想定2.5分・仮4点。典型手順の見通しと前問依存を考えて処理順を決める。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-8"
+            ],
+            "strong_subject": [
+              "phys-q4-8"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-10",
+          "label": "問10",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "有理関数の形、零点、端点、物理条件を図示する。",
+          "strategyReason": "想定3.1分・仮4点。工程が長く、苦手層は他の回収を優先する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-9"
+            ],
+            "strong_subject": [
+              "phys-q4-9"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": null
+}

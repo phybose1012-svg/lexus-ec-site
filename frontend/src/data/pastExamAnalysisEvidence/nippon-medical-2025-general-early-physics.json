@@ -1,0 +1,186 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "nippon-medical-2025-general-early-physics",
+    "university_id": "nippon-medical",
+    "university_name": "日本医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-early",
+    "exam_method_name": "一般選抜・前期",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 120,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "原本問題冊子に「2科目120分」と明記される。物理単独の公式時間はないため、本分析では2科目を等分した60分を編集上の仮時間予算として用いる。"
+    },
+    "total_points": 200
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/nippon-medical/past-exams/working/2025/general-early/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "031503af9489d39736661e088f88b7fd9cdf0c7b5ec246195ee719fea13c3c27",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "第Ⅰ問",
+      "sourceTitle": "曲面上の運動と惑星の円運動",
+      "requirements": [
+        3.7,
+        3.7,
+        2.7,
+        2.4,
+        3.4
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "(1)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 50,
+          "difficultyReason": "エネルギー保存、向心方向の運動方程式、水平投射を場面ごとに切り替え、5つの答案へつなぐ必要がある。",
+          "strategyReason": "典型的な保存則と円運動の組合せで、解答欄5個をまとめて確保できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "(2)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 20,
+          "difficultyReason": "ケプラーの第三法則と向心方向の運動方程式を各1回使う定型問題である。",
+          "strategyReason": "2つの基本公式を直接適用でき、短時間で得点しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "第Ⅱ問",
+      "sourceTitle": "一様電場中の運動と導体球殻",
+      "requirements": [
+        4,
+        3.5,
+        3.5,
+        3.5,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "(1)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 35,
+          "difficultyReason": "速度2問はエネルギー保存で処理できるが、時間は区間ごとの電場・加速度・速度を整理して足す必要がある。",
+          "strategyReason": "速度2欄は短く確保でき、時間計算もグラフを3区間に分ければ追える。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 35,
+          "difficultyReason": "導体内の電場0と球殻外の点電荷相当を使い分け、指定近似をエネルギー式へ正しく入れる必要がある。",
+          "strategyReason": "前半2欄は基本だが、後半は符号を保ったエネルギー式と近似操作が必要で差がつきやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q3",
+      "label": "第Ⅲ問",
+      "sourceTitle": "単原子分子理想気体の熱力学サイクル",
+      "requirements": [
+        3.7,
+        3,
+        3.3,
+        3.3,
+        3
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 20,
+          "difficultyReason": "等積過程では仕事が0で、単原子分子理想気体の内部エネルギー変化がそのまま吸収熱となる。",
+          "strategyReason": "等積過程と内部エネルギーの基本式だけで2欄を同時に確保できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 20,
+          "difficultyReason": "比熱比5/3のポアソンの法則を分数冪で整理し、その状態量を仕事へ代入する必要がある。",
+          "strategyReason": "分数冪の整理と差し引き計算が必要だが、標準手順で後続の効率計算にもつながる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "(3)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 20,
+          "difficultyReason": "熱量の正負と大きさを区別し、前問までの結果から吸収熱に対する正味仕事の比を取る必要がある。",
+          "strategyReason": "前問の体積比に依存し、分数計算も重いので苦手層は最後に戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-2"
+            ],
+            "strong_subject": [
+              "phys-q3-2"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": null
+}

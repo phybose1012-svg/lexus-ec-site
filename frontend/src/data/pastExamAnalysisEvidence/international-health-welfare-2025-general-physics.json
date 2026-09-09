@@ -1,0 +1,715 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "international-health-welfare-2025-general-physics",
+    "university_id": "international-health-welfare",
+    "university_name": "国際医療福祉大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 120,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "理科は物理・化学・生物から2科目を選択し、2科目を合わせて120分で解答する。原本問題冊子にも「物理（2科目120分）」と印刷されている。物理単独の公式試験時間はない。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/international-health-welfare/past-exams/working/2025/general/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "28cc237d05a90c730abb73be7c2a0bc5bfac50354db2a941c96fc70a831deeb2",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "第1問",
+      "sourceTitle": "小問集合（円運動・電力・レンズ・気体・原子核）",
+      "requirements": [
+        3.8,
+        2.9,
+        1.9,
+        1.5,
+        3.3
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "Qには外側の糸の張力だけ、Pには2本の張力の差が向心力として働くと分けて運動方程式を立てる。式は短いが、Pへ働く張力の向きを正しく置く必要がある。",
+          "strategyReason": "2個の小球へ向心力の式を1本ずつ立てる再現可能な手順で、想定1.6分に対して仮配点4点と効率が高い。各分野の短い入口問題として両層とも先に回収する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "問2",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "定格値から R=V^2/P を求め、直列は合成抵抗、並列は定格電力の和として計算する典型問題である。",
+          "strategyReason": "定格電力から抵抗へ直す定型手順で想定1.4分、仮配点4点のため効率が高い。単位と直列・並列の区別を確認して両層とも即時回収する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "問3",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "2つの結像位置で物体距離と像距離が入れ替わることに加え、受光エネルギー比と像面積比を分けて組み合わせる必要がある。",
+          "strategyReason": "手順は倍率と逆二乗則の比較だが、入射光量と像面積を二段で処理し想定3.1分かかる。苦手層は同じ4点で1.5分前後の問1・問2を先に取り、波動の短問を終えてから戻る。得意層は関係を即座に整理できるため今解く。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "問4",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "準静的断熱膨張では気体が仕事をして温度が下がり、自由膨張では内部エネルギーが変わらないという差から、圧力と二乗平均速度を同時に比較する。",
+          "strategyReason": "計算量は少ないが、2操作の熱・仕事・温度を混同すると全比較を誤る。苦手層は知識直結の問5や計算定型の問1・問2を先に回収し、熱力学大問を処理した後に戻る。得意層は自由膨張の定型判定として今解く。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-5",
+          "label": "問5",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "トリチウムは陽子1・中性子2で、β崩壊により質量数3のヘリウムになるという基本知識を直接問う。",
+          "strategyReason": "核子数とβ崩壊の知識だけで想定0.6分、仮配点3点と科目内で最高水準の効率である。両層とも最優先で確保する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "第2問",
+      "sourceTitle": "三角台と小物体の拘束運動",
+      "requirements": [
+        3.7,
+        3.7,
+        2.2,
+        1.7,
+        4.5
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "Pの斜面方向のつり合いで張力を出し、滑車を含む三角台の水平方向へ同じ張力が作用すると読む。1小問に2つの解答成分がある。",
+          "strategyReason": "静止時の力のつり合いだけで2つの解答枠を同時に確定でき、想定2.0分で仮配点4点の入口問題である。後続の動力学と独立して回収できるため両層とも今解く。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "問2",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "相対加速度 \\vec a_r=\\vec a-\\vec A と、糸長一定から A=a_r を同時に読み取る必要があり、図の運動を拘束条件へ翻訳する力を問う。",
+          "strategyReason": "式計算は短いが、糸長一定を加速度の大きさへ移す読み替えが必要で想定2.2分。苦手層は第1問や第4問の公式直結問を先に確保し、時間が残れば図へ変位を書き込んで戻る。得意層は相対運動の定型として今解く。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "問3",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "前問のベクトル式を \\vec a=\\vec A+\\vec a_r と読み替え、大きさの等しい2辺と斜面角を図へ対応させる判断問題である。",
+          "strategyReason": "前問が確定すれば想定1.5分で図を選べるが、問2を誤ると連鎖する。苦手層は独立小問を先に取り、問2を解けた場合だけ続けて戻る。得意層は前問直後に今解く。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-2"
+            ],
+            "strong_subject": [
+              "phys-q2-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-4",
+          "label": "問4",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "拘束条件から得たベクトル三角形へ余弦定理を適用し、 \\sqrt{2-\\sqrt3} を選択肢の形へ変形するまで複数段の処理を要する。",
+          "strategyReason": "再現手順は問3の三角形へ余弦定理を使うことだが、前2問への依存、根号変形、想定3.3分の計算負荷が重なり、同じ4点の独立短問より効率が低い。苦手層は本番では捨て、得意層も独立問を終えてから戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-2",
+              "phys-q2-3"
+            ],
+            "strong_subject": [
+              "phys-q2-2",
+              "phys-q2-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-5",
+          "label": "問5",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "摩擦がないため力学的エネルギーは保存する一方、系には外力が働くため運動量は保存しないと、保存則ごとに系と外力を分けて判断する。",
+          "strategyReason": "前問の数値結果を使わず、系に働く外力と摩擦の有無を確認するだけで想定1.2分、仮配点4点と効率が高い。両層とも独立に回収する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-6",
+          "label": "問6",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "加速度比を速度比へ引き継ぎ、2物体の運動エネルギーを同時に数えて速度を解く。前段の拘束運動を保存則へ接続する必要がある。",
+          "strategyReason": "力学的エネルギー保存という再現可能な道具だが、速度比 r の向き、2物体の運動エネルギー、根号整理に想定3.7分を要し、計算ミスへ構造的にさらされる。苦手層は短い独立問を優先して捨て、得意層は問4の比を確定後、最後に戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-4"
+            ],
+            "strong_subject": [
+              "phys-q2-4"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q3",
+      "label": "第3問",
+      "sourceTitle": "自己誘導と相互誘導",
+      "requirements": [
+        3.8,
+        3.5,
+        2.1,
+        1.1,
+        3.3
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "磁束が電流に比例することをそのまま使い、基準値へ I_1 を掛けるだけである。",
+          "strategyReason": "比例関係を読むだけで想定0.6分、仮配点3点のため効率が非常に高い。後続の基準にもなるので両層とも最優先で確保する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "問2",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "ファラデーの法則 V=-\\Delta\\Phi/\\Delta t と \\Phi_1=\\Phi_0I_1 を比較する定型処理である。",
+          "strategyReason": "問1の比例式を微小変化へ移すだけで想定1.0分、仮配点4点と高効率である。両層とも問1から続けて回収する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-1"
+            ],
+            "strong_subject": [
+              "phys-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "問3",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "コイル2自身の電流による1巻きあたりの磁束に加え、誘導起電力では2巻き分を数えるため、巻数の二乗が効く構造を理解する必要がある。",
+          "strategyReason": "公式はファラデーの法則だが、磁束で2倍、鎖交でさらに2倍という二段の巻数処理があり想定1.7分。苦手層は問1・問2を先に確保し、時間が残れば巻数を書き分けて戻る。得意層は今解く。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-1"
+            ],
+            "strong_subject": [
+              "phys-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-4",
+          "label": "問4",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "相互磁束の比例式にコイル2の巻数2を掛け、誘導起電力の定義と係数比較する。自己誘導との違いを整理できれば定型である。",
+          "strategyReason": "問1の磁束式へ巻数2を掛ける再現手順だが、自己誘導と相互誘導の係数を混同しやすく想定1.7分。苦手層は短問を先行し、問1の式を確認してから戻る。得意層は今解く。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-1"
+            ],
+            "strong_subject": [
+              "phys-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-5",
+          "label": "問5",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "相互誘導起電力へ dI_1/dt=a を入れ、抵抗で割るだけだが、巻数係数と問題で定めた正方向に対する負号を両方保持する必要がある。",
+          "strategyReason": "問4の相互インダクタンス、時間微分、レンツの符号、オームの法則を連結し想定2.2分かかる。苦手層は連鎖ミスを避けて捨て、得意層も独立問を終え、問4を確定した後に戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-4"
+            ],
+            "strong_subject": [
+              "phys-q3-4"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q4",
+      "label": "第4問",
+      "sourceTitle": "理想気体の熱サイクル",
+      "requirements": [
+        3.6,
+        3.6,
+        2.6,
+        1.6,
+        2.6
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q4-1",
+          "label": "問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "定積変化の熱量式と状態方程式を組み合わせ、物質量 n が消えることを確認する典型処理である。",
+          "strategyReason": "定積熱量と状態方程式の定型2式で想定1.6分、仮配点4点のため効率が高い。後続の基準式でもあり両層とも今解く。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-2",
+          "label": "問2",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "C_V/R=1/(\\gamma-1) を作って問1の式へ代入する一手の式変形である。",
+          "strategyReason": "問1の結果へ比熱比の基本変形を入れるだけで想定0.9分、仮配点4点と高効率である。問1を確定した両層が続けて解く。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-1"
+            ],
+            "strong_subject": [
+              "phys-q4-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-3",
+          "label": "問3",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "定圧変化では C_P を使い、 C_P/R=\\gamma/(\\gamma-1) と温度差を組み合わせる。問1の定積処理との対比ができれば再現しやすい。",
+          "strategyReason": "定圧熱量と状態方程式の定型処理で想定1.6分、仮配点4点のため効率が高い。問1と同じ型として両層とも回収する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-4",
+          "label": "問4",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "熱効率の定義へ問2・問3の結果を代入し、共通因子を消す。前問依存はあるが計算自体は短い。",
+          "strategyReason": "熱効率の式は定型だが、問2・問3の両方を正しく保持する必要がある。苦手層は独立短問を先に取り、2式が確定した場合のみ想定1.4分で戻る。得意層は流れの中で今解く。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-2",
+              "phys-q4-3"
+            ],
+            "strong_subject": [
+              "phys-q4-2",
+              "phys-q4-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-5",
+          "label": "問5",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "両端状態をポアソンの法則へ直接代入し、 P_0V_0^\\gamma を消すだけである。",
+          "strategyReason": "ポアソンの法則へ状態を代入するだけで想定0.7分、仮配点3点と高効率である。前問の結果に依存せず両層とも先に回収できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q5",
+      "label": "第5問",
+      "sourceTitle": "CDを反射型回折格子として用いる光の干渉",
+      "requirements": [
+        3.2,
+        3.2,
+        1.6,
+        1.3,
+        3.7
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q5-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "回折格子の基本条件 d\\sin\\theta=m\\lambda を直接問う。",
+          "strategyReason": "基本公式を選ぶだけで想定0.6分、仮配点3点と高効率である。後続全問の基準になるため両層とも最優先で確保する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q5-2",
+          "label": "問2",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "1次と2次の回折条件の比を取り、三角関数表で \\sin^{-1}(0.84) に近い角度を選ぶ定型処理である。",
+          "strategyReason": "問1の式で次数比を取るだけで想定1.1分、仮配点4点と効率が高い。問1から続けて両層とも回収する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q5-1"
+            ],
+            "strong_subject": [
+              "phys-q5-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q5-3",
+          "label": "問3",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "短波長ほど回折角が小さいことを、中心向き・外向きの2本のリングの内外へ対応させる。図の向きに惑わされず角度順を保つ必要がある。",
+          "strategyReason": "問1の式から波長と角度の単調関係を読むだけで想定1.2分、仮配点4点と効率が高い。図上で内外を確認して両層とも回収する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q5-1"
+            ],
+            "strong_subject": [
+              "phys-q5-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q5-4",
+          "label": "問4",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "境界となるトラック位置・回折方向・波長を選び、紫色の回折角を求めた後、2本のリング半径差を直径 D_2 と結ぶ。図の読み取りと数値処理が長い。",
+          "strategyReason": "回折条件自体は再現可能だが、境界光の選択、角度比、リング半径差、三角関数表の4段を通り想定4.3分で、幾何の取り違えと計算ミスへさらされる。苦手層は短問を優先して捨て、得意層も全大問の入口を回収後に戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q5-1",
+              "phys-q5-2"
+            ],
+            "strong_subject": [
+              "phys-q5-1",
+              "phys-q5-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q5-5",
+          "label": "問5",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "計算は不要だが、CD上の遮光位置と、外向き回折が外側リング、中心向き回折が内側リングへ届く幾何を正確に反転対応させる必要がある。",
+          "strategyReason": "計算はないが図上の上下と内外を反転させるため、苦手層は直感で選ばず短問を先行し、矢印を描いて想定1.7分で戻る。得意層は幾何対応を追えるため今解く。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 44,
+        "targetPercent": 44,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 46.4,
+        "maximum": {
+          "points": 44,
+          "minutes": 59.7,
+          "questionIds": [
+            "phys-q1-5",
+            "phys-q2-5",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q4-5",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3"
+          ]
+        },
+        "now": {
+          "points": 52,
+          "minutes": 64,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-5",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-5",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 84,
+          "minutes": 80.9,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-5",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q4-5",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-5"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 11.6,
+        "maximum": {
+          "points": 100,
+          "minutes": 45.2,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q2-6",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q4-5",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4",
+            "phys-q5-5"
+          ]
+        },
+        "now": {
+          "points": 84,
+          "minutes": 34.4,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-5",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q4-5",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-5"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 45.2,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q2-6",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q4-5",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4",
+            "phys-q5-5"
+          ]
+        }
+      }
+    ]
+  }
+}

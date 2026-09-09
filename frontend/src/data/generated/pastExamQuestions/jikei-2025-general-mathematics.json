@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "lexus-ec.past-exam-question-page.v1",
+  "packageId": "jikei-2025-general-mathematics",
+  "route": {
+    "university": "jikei",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/jikei/2025/mathematics/questions/"
+  },
+  "university": {
+    "id": "jikei",
+    "name": "東京慈恵会医科大学"
+  },
+  "exam": {
+    "year": "2025",
+    "label": "一般選抜",
+    "stage": "一次試験",
+    "duration": "数学 90分"
+  },
+  "subject": {
+    "id": "mathematics",
+    "name": "数学",
+    "english": "MATHEMATICS"
+  },
+  "document": {
+    "role": "questions",
+    "pageUnit": "major_question",
+    "sharedInstructionsHtml": "<section class=\"source-page-card question-shared-instructions\" data-question-shared-instructions><div class=\"page-kicker\">全大問共通</div><h2>2025年度 一次試験 数学</h2><p class=\"prose\">90分</p></section>",
+    "printNotes": [
+      "各設問に記載された解答形式・記号・単位の指定に従ってください。",
+      "図版準備中・内容確認中の設問は、確認が完了するまで演習対象外です。"
+    ],
+    "questions": [
+      {
+        "id": "major-question-01",
+        "label": "第1問",
+        "order": 1,
+        "sourcePageIds": [
+          "jikei-2025-general-mathematics-questions-p001"
+        ],
+        "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-01\" data-major-question-id=\"major-question-01\"><h2>第1問</h2><p class=\"prose\">次の□にあてはまる適切な数値を解答欄に記入せよ。</p><p class=\"prose\">1個のさいころを3回投げ、<span class=\"math-inline\" data-katex=\"k\" data-display-mode=\"false\">k</span> 回目に出た目を <span class=\"math-inline\" data-katex=\"X_k\\ (k=1,2,3)\" data-display-mode=\"false\">X_k\\ (k=1,2,3)</span> とする。</p><div class=\"structured-list structured-list--questions\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__text\">積 <span class=\"math-inline\" data-katex=\"X_1X_2X_3\" data-display-mode=\"false\">X_1X_2X_3</span> が10で割り切れる確率は <span class=\"answer-slot\">ア</span> である。</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"X_1+X_2,\\ X_2+X_3,\\ X_3+X_1\" data-display-mode=\"false\">X_1+X_2,\\ X_2+X_3,\\ X_3+X_1</span> がいずれも6で割り切れない確率は <span class=\"answer-slot\">イ</span> である。</div></div></div></article>"
+      },
+      {
+        "id": "major-question-02",
+        "label": "第2問",
+        "order": 2,
+        "sourcePageIds": [
+          "jikei-2025-general-mathematics-questions-p001"
+        ],
+        "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-02\" data-major-question-id=\"major-question-02\"><h2>第2問</h2><p class=\"prose\">次の問いに答えよ。ただし、対数は自然対数とする。</p><h3>(1)</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"n\\geqq 3\" data-display-mode=\"false\">n\\geqq 3</span> を満たす自然数 <span class=\"math-inline\" data-katex=\"n\" data-display-mode=\"false\">n</span> について、次の不等式を証明せよ。</p><div class=\"formula\" data-katex=\"\\frac{1}{2\\log(n+1)}\\leqq \\int_0^1\\frac{x}{\\log(x+n)}\\,dx\\leqq \\frac{1}{2\\log n}\" data-display-mode=\"true\">\\frac{1}{2\\log(n+1)}\\leqq \\int_0^1\\frac{x}{\\log(x+n)}\\,dx\\leqq \\frac{1}{2\\log n}</div><h3>(2)</h3><p class=\"prose\">次の不定積分を求めよ。</p><div class=\"formula\" data-katex=\"\\int\\frac{1}{x(\\log x)^2}\\,dx\" data-display-mode=\"true\">\\int\\frac{1}{x(\\log x)^2}\\,dx</div><h3>(3)</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"m\\geqq n\\geqq3\" data-display-mode=\"false\">m\\geqq n\\geqq3</span> を満たす自然数 <span class=\"math-inline\" data-katex=\"m,n\" data-display-mode=\"false\">m,n</span> について、次の不等式を証明せよ。</p><div class=\"formula\" data-katex=\"\\frac1{\\log n}-\\frac1{\\log(m+1)}\\leqq \\sum_{k=n}^{m}\\frac{2}{k\\log k}\\int_0^1\\frac{x}{\\log(x+k)}\\,dx\\leqq \\frac1{\\log(n-1)}-\\frac1{\\log m}\" data-display-mode=\"true\">\\frac1{\\log n}-\\frac1{\\log(m+1)}\\leqq \\sum_{k=n}^{m}\\frac{2}{k\\log k}\\int_0^1\\frac{x}{\\log(x+k)}\\,dx\\leqq \\frac1{\\log(n-1)}-\\frac1{\\log m}</div></article>"
+      },
+      {
+        "id": "major-question-03",
+        "label": "第3問",
+        "order": 3,
+        "sourcePageIds": [
+          "jikei-2025-general-mathematics-questions-p002"
+        ],
+        "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-03\" data-major-question-id=\"major-question-03\"><h2>第3問</h2><p class=\"prose\"><span class=\"math-inline\" data-katex=\"p\\geqq2\" data-display-mode=\"false\">p\\geqq2</span> を満たす自然数 <span class=\"math-inline\" data-katex=\"p\" data-display-mode=\"false\">p</span> を定数とする。不等式 <span class=\"math-inline\" data-katex=\"x^2-py^2\\geqq-1\" data-display-mode=\"false\">x^2-py^2\\geqq-1</span> の表す領域を <span class=\"math-inline\" data-katex=\"D\" data-display-mode=\"false\">D</span> とする。円 <span class=\"math-inline\" data-katex=\"(x-p)^2+y^2=r\" data-display-mode=\"false\">(x-p)^2+y^2=r</span> が領域 <span class=\"math-inline\" data-katex=\"D\" data-display-mode=\"false\">D</span> に含まれるような自然数 <span class=\"math-inline\" data-katex=\"r\" data-display-mode=\"false\">r</span> のうち、最大のものを考える。</p><h3>(1)</h3><p class=\"prose\">この最大の自然数 <span class=\"math-inline\" data-katex=\"r\" data-display-mode=\"false\">r</span> を <span class=\"math-inline\" data-katex=\"p\" data-display-mode=\"false\">p</span> を用いて表せ。</p><h3>(2)</h3></article>"
+      },
+      {
+        "id": "major-question-04",
+        "label": "第4問",
+        "order": 4,
+        "sourcePageIds": [
+          "jikei-2025-general-mathematics-questions-p002"
+        ],
+        "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-04\" data-major-question-id=\"major-question-04\"><p class=\"prose\">(1)で求めた <span class=\"math-inline\" data-katex=\"r\" data-display-mode=\"false\">r</span> に対して、互いに異なる素数 <span class=\"math-inline\" data-katex=\"x,y,p\" data-display-mode=\"false\">x,y,p</span> が <span class=\"math-inline\" data-katex=\"(x-p)^2+y^2=r\" data-display-mode=\"false\">(x-p)^2+y^2=r</span> を満たすとき、<span class=\"math-inline\" data-katex=\"p\" data-display-mode=\"false\">p</span> が最小となる <span class=\"math-inline\" data-katex=\"(x,y,p)\" data-display-mode=\"false\">(x,y,p)</span> を1組求めよ。</p><h2>第4問</h2><p class=\"prose\"><span class=\"math-inline\" data-katex=\"z\" data-display-mode=\"false\">z</span> は実数でない複素数であり、<span class=\"math-inline\" data-katex=\"z+\\dfrac1{z-1}\" data-display-mode=\"false\">z+\\dfrac1{z-1}</span> は正の実数である。<span class=\"math-inline\" data-katex=\"\\bar z\" data-display-mode=\"false\">\\bar z</span> を <span class=\"math-inline\" data-katex=\"z\" data-display-mode=\"false\">z</span> の共役複素数とするとき、次の値の範囲を求めよ。</p><div class=\"formula\" data-katex=\"\\left|\\frac1{z-1}-\\frac{z-\\bar z}{2}+1\\right|\" data-display-mode=\"true\">\\left|\\frac1{z-1}-\\frac{z-\\bar z}{2}+1\\right|</div></article>"
+      }
+    ]
+  },
+  "source": {
+    "sourcePackageId": "jikei-2025-general-mathematics",
+    "reference": "projects/universities/jikei/past-exams/working/2025/general/first-stage/mathematics/source-html/generated/public-candidate/questions",
+    "buildKind": "publication-candidate",
+    "contentProvenance": "source_projection",
+    "publicationCandidate": true,
+    "rightsStatus": "review_required",
+    "needsHumanReview": true
+  },
+  "links": {
+    "universityLibrary": "/past-exam-library/jikei/",
+    "analysis": "/past-exam-library/jikei/2025/mathematics/analysis/",
+    "universityInformation": null
+  }
+}

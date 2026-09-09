@@ -1,0 +1,399 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "kurume-2025-general-early-physics",
+  "route": {
+    "university": "kurume",
+    "year": "2025",
+    "subject": "physics",
+    "path": "/past-exam-library/kurume/2025/physics/analysis/"
+  },
+  "university": "久留米大学医学部",
+  "year": 2025,
+  "subject": "物理",
+  "examLabel": "前期一般選抜",
+  "duration": "理科2科目 合計120分",
+  "format": "選択・数値解答など（各設問を参照）",
+  "examTotal": null,
+  "headline": "円運動・仕事と力学的エネルギー",
+  "summary": "1は円運動・仕事と力学的エネルギー、2は気体の状態変化と熱力学・力のつり合いと運動の法則、3は直流回路。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "物理が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "物理が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "1",
+      "title": "円すい内面上の小球の運動",
+      "subtitle": "円運動・仕事と力学的エネルギー",
+      "summary": "円すい内面での等速円運動と、回りながら降下する運動を力学的エネルギー保存へ接続する。",
+      "studyAction": "力を鉛直・水平方向へ分解する。向心力と幾何を接続する",
+      "requirements": [
+        2.7,
+        2.7,
+        2.6,
+        2.3,
+        2.7
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "I (1)",
+          "title": "垂直抗力を鉛直方向のつり合いから求める。",
+          "note": "最初のつり合い式で回収しやすい仮4点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "I (2)",
+          "title": "垂直抗力の水平成分から向心力を求める。",
+          "note": "問1から直結する仮4点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "I (3)",
+          "title": "等速円運動の加速度方向を選ぶ。",
+          "note": "知識で即答できる仮4点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "I (4)",
+          "title": "等速円運動の半径を速さと円すい角で表す。",
+          "note": "後続の基礎となる仮4点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q1-5",
+          "label": "I (5)",
+          "title": "半径と速さから等速円運動の周期を求める。",
+          "note": "問4から素直に求まる仮4点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q1-6",
+          "label": "I (6)",
+          "title": "高さが2倍の小球の運動エネルギーを比例関係から求める。",
+          "note": "比例関係が見えれば短い仮4点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q1-7",
+          "label": "I (7)",
+          "title": "質量と力学的エネルギーを変えた小球の高さを求める。",
+          "note": "比例関係の鎖が長いため苦手層は後回しにする仮3点。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q1-8",
+          "label": "II (8)",
+          "title": "高い点から低い点へ移る小球の速さをエネルギー保存で求める。",
+          "note": "独立したエネルギー保存の仮3点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q1-9",
+          "label": "II (9)",
+          "title": "高さと速さの積の条件をエネルギー保存へ代入する。",
+          "note": "連立整理を要する仮3点。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q1-10",
+          "label": "II (10)",
+          "title": "エネルギー比と問9の関係から2点の高さを求める。",
+          "note": "前問依存と二次式処理を含む仮3点。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        }
+      ],
+      "questionsPath": "/past-exam-library/kurume/2025/physics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/kurume/2025/physics/answers/#major-question-01"
+    },
+    {
+      "id": "phys-q2",
+      "label": "2",
+      "title": "熱気球の密度と浮力",
+      "subtitle": "気体の状態変化と熱力学・力のつり合いと運動の法則",
+      "summary": "開口した熱気球の圧力一定条件、理想気体、浮力のつり合いを用いて上昇開始と静止条件を求める。",
+      "studyAction": "理想気体の状態方程式を密度で書く。浮力と全重量をつり合わせる",
+      "requirements": [
+        2.9,
+        2.9,
+        2.4,
+        2.1,
+        2.9
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "I (1)",
+          "title": "地表で理想気体の状態方程式を書く。",
+          "note": "公式代入で回収できる仮4点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "I (2)",
+          "title": "物質量と体積から初期密度を求める。",
+          "note": "問1から直結する仮4点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "I (3)",
+          "title": "定圧・定容で加熱したときの物質量変化を判断する。",
+          "note": "定性的に判断できる仮4点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q2-4",
+          "label": "I (4)",
+          "title": "圧力一定での密度と温度の反比例式を導く。",
+          "note": "比例式で短く解ける仮4点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q2-5",
+          "label": "I (5)",
+          "title": "上昇開始時の浮力を全重量とのつり合いで表す。",
+          "note": "つり合い式の仮4点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q2-6",
+          "label": "I (6)",
+          "title": "密度温度関係と浮力条件から上昇開始温度を求める。",
+          "note": "複数式を接続する仮4点。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q2-7",
+          "label": "II (7)",
+          "title": "上昇開始温度の相対変化を質量比で表す。",
+          "note": "問6を得ていれば整理だけの仮3点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-8",
+          "label": "II (8)",
+          "title": "静止時の浮力から内外密度差を求める。",
+          "note": "II内で独立し回収しやすい仮3点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-9",
+          "label": "II (9)",
+          "title": "同圧で温度の異なる内外空気の密度比を求める。",
+          "note": "同圧条件を使う仮3点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-10",
+          "label": "II (10)",
+          "title": "密度差・密度比・温度条件を合わせて内部密度を求める。",
+          "note": "依存関係が長い仮3点。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        }
+      ],
+      "questionsPath": "/past-exam-library/kurume/2025/physics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/kurume/2025/physics/answers/#major-question-02"
+    },
+    {
+      "id": "phys-q3",
+      "label": "3",
+      "title": "内部抵抗をもつ電池と消費電力",
+      "subtitle": "直流回路",
+      "summary": "内部抵抗を含む直流回路の端子電圧、電流、消費電力の最大条件と測定値による数値決定を扱う。",
+      "studyAction": "端子電圧を起電力と内部電圧降下で表す。消費電力の最大条件を導く",
+      "requirements": [
+        2.7,
+        2.7,
+        2.5,
+        2.4,
+        2.5
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "I (1)",
+          "title": "開回路の端子電圧を答える。",
+          "note": "定義確認の仮4点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "I (2)",
+          "title": "閉回路の端子電圧を抵抗分圧で表す。",
+          "note": "標準直列回路の仮4点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "I (3)",
+          "title": "内部抵抗と外部抵抗を含む回路電流を求める。",
+          "note": "標準公式の仮4点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-4",
+          "label": "I (4)",
+          "title": "外部抵抗の消費電力を電流から求める。",
+          "note": "問3直結の仮4点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-5",
+          "label": "I (5)",
+          "title": "外部抵抗の消費電力が最大となる条件を導く。",
+          "note": "式変形を要する仮3点。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q3-6",
+          "label": "II (6)",
+          "title": "2組の電流・端子電圧測定から内部抵抗を求める。",
+          "note": "測定値の差で求まる仮3点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q3-7",
+          "label": "II (7)",
+          "title": "起電力と端子電圧を求め外部抵抗の消費電力を計算する。",
+          "note": "手順が明確な仮3点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q3-8",
+          "label": "II (8)",
+          "title": "並列回路の合成抵抗から未知抵抗を求める。",
+          "note": "標準並列合成の仮3点。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        }
+      ],
+      "questionsPath": "/past-exam-library/kurume/2025/physics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/kurume/2025/physics/answers/#major-question-03"
+    }
+  ],
+  "difficultyCounts": [
+    11,
+    11,
+    6,
+    0
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": null,
+    "profiles": []
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kurume/past-exams/working/2025/general-early/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "b631822bcce0fb5cc335f65b1ccf5c3ce30969ba0fa2232a19fc9e8a6d77acfb",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "targetReviewNote": "元データの目標点・所要時間・前問依存を確認しています。数値は検証完了後に掲載します。",
+  "links": {
+    "questions": "/past-exam-library/kurume/2025/physics/questions/",
+    "answers": "/past-exam-library/kurume/2025/physics/answers/",
+    "university": "/past-exam-library/kurume/"
+  }
+}

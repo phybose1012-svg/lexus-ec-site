@@ -1,0 +1,371 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "kindai-2025-recommendation-general-public-physics",
+    "university_id": "kindai",
+    "university_name": "近畿大学",
+    "academic_year": 2025,
+    "exam_method_id": "recommendation-general-public",
+    "exam_method_name": "推薦入試（一般公募）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 60,
+      "subject_ids": [
+        "physics"
+      ],
+      "note": "問題冊子表紙に物理60分と明記されている。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kindai/past-exams/working/2025/recommendation-general-public/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "e8ba2acf98227febd846eaeac1d9d8c6c1b052abca1c85bf61767833779d77c5",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "I",
+      "sourceTitle": "弾性散乱・粒子流と万有引力による双曲線軌道",
+      "requirements": [
+        3.7,
+        3.3,
+        3.4,
+        3.4,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-a1",
+          "label": "I-A（1〜3）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "反発係数1の斜め衝突を法線・接線方向に分ける定型処理である。",
+          "strategyReason": "大問の導入で後続の散乱幾何の基礎になる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-a2",
+          "label": "I-A（4〜7）",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "速度のx成分の符号と複数の線分を同時に追う必要がある。",
+          "strategyReason": "I-A前半の角度関係を使えば幾何計算へ一本道で進める。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-a1"
+            ],
+            "strong_subject": [
+              "phys-q1-a1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-b",
+          "label": "I-B（8〜10）",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "粒子数密度に速度と断面積を掛け、到達条件ごとの環状領域を区別する。",
+          "strategyReason": "前問の境界半径が分かれば体積差として短く処理できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-a2"
+            ],
+            "strong_subject": [
+              "phys-q1-a2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-c1",
+          "label": "I-C（11〜13）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "公式を図のr・v・φ・衝突径bへ正しく対応させる必要がある。",
+          "strategyReason": "天体運動の基本式をそのまま用いる独立性の高い得点源である。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-c2",
+          "label": "I-C（14〜16）",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 10,
+          "difficultyReason": "平方完成とエネルギー保存を連続して使い、複数の補助量を管理する必要がある。",
+          "strategyReason": "計算量と前問依存が大きく、基本項目を回収してから取り組むべきである。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-c1"
+            ],
+            "strong_subject": [
+              "phys-q1-c1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-c3",
+          "label": "I-C（17・18）",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 9,
+          "difficultyReason": "軌道式の極限、図形の対称性、三角関数の近似を一つにつなぐ必要がある。",
+          "strategyReason": "前問までの補助量がそろえば進められるが、図の読解負荷が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-c2"
+            ],
+            "strong_subject": [
+              "phys-q1-c2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "II",
+      "sourceTitle": "誘電体入りコンデンサーと損失を表すRC並列交流回路",
+      "requirements": [
+        3.6,
+        4,
+        3,
+        2.6,
+        3.2
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-a1",
+          "label": "II-A（1・2・ア・イ）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "電場と電気容量の基本式、および誘電分極の用語を確認する問題である。",
+          "strategyReason": "独立した基本事項で短時間に回収できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-a2",
+          "label": "II-A（3〜5）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "電位差一定を起点に、変化しない量とεr倍になる量を区別する。",
+          "strategyReason": "電池接続中は電位差一定という定型判断で処理できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-a1"
+            ],
+            "strong_subject": [
+              "phys-q2-a1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-b1",
+          "label": "II-B（6・7）",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "抵抗電流と容量性電流の位相・振幅を別々に扱う必要がある。",
+          "strategyReason": "交流回路の基本式で独立して回収でき、後続の位相差計算の土台になる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-b2",
+          "label": "II-B（8・9）",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "ベクトル図のtanδと実効値による平均電力を連続して使う。",
+          "strategyReason": "前問の電流振幅が得られれば、位相図と電力公式から処理できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-b1"
+            ],
+            "strong_subject": [
+              "phys-q2-b1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-c",
+          "label": "II-C（10・11）",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "並列抵抗の合成または各抵抗の電力加算を選び、式を簡潔に整理する。",
+          "strategyReason": "抵抗の電力は独立に加算でき、II-BのRを再利用できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-b2"
+            ],
+            "strong_subject": [
+              "phys-q2-b2"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 64,
+        "targetPercent": 64,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 20.4,
+        "maximum": {
+          "points": 64,
+          "minutes": 58,
+          "questionIds": [
+            "phys-q1-a1",
+            "phys-q1-c1",
+            "phys-q1-c2",
+            "phys-q2-a1",
+            "phys-q2-a2",
+            "phys-q2-b1",
+            "phys-q2-b2"
+          ]
+        },
+        "now": {
+          "points": 81,
+          "minutes": 66.8,
+          "questionIds": [
+            "phys-q1-a1",
+            "phys-q1-a2",
+            "phys-q1-b",
+            "phys-q1-c1",
+            "phys-q2-a1",
+            "phys-q2-a2",
+            "phys-q2-b1",
+            "phys-q2-b2",
+            "phys-q2-c"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 83.3,
+          "questionIds": [
+            "phys-q1-a1",
+            "phys-q1-a2",
+            "phys-q1-b",
+            "phys-q1-c1",
+            "phys-q1-c2",
+            "phys-q1-c3",
+            "phys-q2-a1",
+            "phys-q2-a2",
+            "phys-q2-b1",
+            "phys-q2-b2",
+            "phys-q2-c"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 5.1,
+        "maximum": {
+          "points": 100,
+          "minutes": 46.8,
+          "questionIds": [
+            "phys-q1-a1",
+            "phys-q1-a2",
+            "phys-q1-b",
+            "phys-q1-c1",
+            "phys-q1-c2",
+            "phys-q1-c3",
+            "phys-q2-a1",
+            "phys-q2-a2",
+            "phys-q2-b1",
+            "phys-q2-b2",
+            "phys-q2-c"
+          ]
+        },
+        "now": {
+          "points": 81,
+          "minutes": 35.8,
+          "questionIds": [
+            "phys-q1-a1",
+            "phys-q1-a2",
+            "phys-q1-b",
+            "phys-q1-c1",
+            "phys-q2-a1",
+            "phys-q2-a2",
+            "phys-q2-b1",
+            "phys-q2-b2",
+            "phys-q2-c"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 46.8,
+          "questionIds": [
+            "phys-q1-a1",
+            "phys-q1-a2",
+            "phys-q1-b",
+            "phys-q1-c1",
+            "phys-q1-c2",
+            "phys-q1-c3",
+            "phys-q2-a1",
+            "phys-q2-a2",
+            "phys-q2-b1",
+            "phys-q2-b2",
+            "phys-q2-c"
+          ]
+        }
+      }
+    ]
+  }
+}

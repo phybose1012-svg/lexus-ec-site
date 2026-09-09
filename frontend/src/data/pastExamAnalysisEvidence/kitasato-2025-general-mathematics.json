@@ -1,0 +1,351 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "kitasato-2025-general-mathematics",
+    "university_id": "kitasato",
+    "university_name": "北里大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜試験",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 80,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "問題原本p.1と北里大学公式2025年度学生募集要項に数学80分と明記。"
+    },
+    "total_points": 150
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kitasato/past-exams/working/2025/general/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "b0810b17424a5cf15636ed431f5d6e2d231334cb1d13c7fbdf96eec1e5de02c9",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "sourceTitle": "最近整数・三角形のベクトル・条件付き確率と漸化式",
+      "requirements": [
+        2,
+        4,
+        3.7,
+        3.7,
+        4.7
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "半整数を境に1周期を2区間へ分け、三角形状の面積を2025周期分足す必要がある。",
+          "strategyReason": "定義確認から周期積分まで道筋が明確で、空欄も段階的に回収できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "2本の垂直条件を内積で連立し、内分比と面積比までつなぐ複合ベクトル問題。",
+          "strategyReason": "式量は多いが、垂直条件を2本立てれば再現可能。苦手層は計算負荷を見て後回しにする。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 15,
+          "difficultyReason": "箱の遷移を整理した上で場合分け、ベイズ型計算、一次漸化式の極限まで処理する。",
+          "strategyReason": "状態遷移を誤ると連続して失点しやすいが、表と漸化式に整理すれば完答可能。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "sourceTitle": "根号を含む関数の最大最小・面積・回転体",
+      "requirements": [
+        3,
+        3.8,
+        4,
+        4.3,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "根号の微分と符号条件を確認して増減表を作る標準的な最大最小問題。",
+          "strategyReason": "微分から増減表へ進む定型手順で、後続小問のグラフ理解にも役立つ。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "上側から下側を引き、単位円の4分の1の面積または三角置換で計算する。",
+          "strategyReason": "積分区間0から1と上下関係が明確で、円の面積を使えば短く処理できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1"
+            ],
+            "strong_subject": [
+              "math-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(3)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 15,
+          "difficultyReason": "f(x)=0の正の解を決め、π∫f(x)²dxを根号項の置換積分まで計算する。",
+          "strategyReason": "立式は定型だが根号を含む展開・置換積分が長く、検算時間を確保したい。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1"
+            ],
+            "strong_subject": [
+              "math-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q2-4",
+          "label": "(4)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 15,
+          "difficultyReason": "xをyで解き、外側の回転体から円錐を差し引く立式と根号積分を同時に管理する必要がある。",
+          "strategyReason": "立式判断と計算量の双方が重い。得意層も他問を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1",
+              "math-q2-2"
+            ],
+            "strong_subject": [
+              "math-q2-1",
+              "math-q2-2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "sourceTitle": "楕円の接線と外接長方形の回転領域",
+      "requirements": [
+        4,
+        3.7,
+        3.3,
+        4.3,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "距離公式をそのまま二乗して整理すれば楕円の標準形が得られる。",
+          "strategyReason": "定義を式に直す一本道で、後続の接線問題の土台になる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "楕円と直線の連立に判別式D=0を適用し、点と直線の距離公式までつなぐ。",
+          "strategyReason": "判別式と距離公式の標準連結であり、(1)を正しく得ていれば再現しやすい。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1"
+            ],
+            "strong_subject": [
+              "math-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 15,
+          "difficultyReason": "直交する2接線までの距離を合成して頂点距離√7が一定と見抜き、回転領域を円と判断する。",
+          "strategyReason": "不変量の発見と回転領域の解釈が難しいため、得意層も最後に戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1",
+              "math-q3-2"
+            ],
+            "strong_subject": [
+              "math-q3-1",
+              "math-q3-2"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 150,
+    "timeBudgetMinutes": 80,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 75,
+        "targetPercent": 50,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 24.8,
+        "maximum": {
+          "points": 75,
+          "minutes": 71.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "now": {
+          "points": 60,
+          "minutes": 60.8,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 120,
+          "minutes": 116.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 108,
+        "targetPercent": 72,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 6.2,
+        "maximum": {
+          "points": 135,
+          "minutes": 79.2,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "now": {
+          "points": 90,
+          "minutes": 47.2,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 150,
+          "minutes": 91.2,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        }
+      }
+    ]
+  }
+}

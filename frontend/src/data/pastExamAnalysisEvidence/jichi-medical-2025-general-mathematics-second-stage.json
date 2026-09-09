@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "jichi-medical-2025-general-mathematics-second-stage",
+    "university_id": "jichi-medical",
+    "university_name": "自治医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜",
+    "exam_stage": "second_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 30,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "自治医科大学2025年度医学部学生募集要項p.7に、第2次試験の数学は30分と明記される。"
+    },
+    "total_points": 12.5
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/jichi-medical/past-exams/working/2025/general/second-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "945d606ef9d0525668641d4856324d071d5158b13ddae8fa8dc37cb5ca58c65d",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "問題",
+      "sourceTitle": "円と2直線・内接四角形・面積比",
+      "requirements": [
+        3.8,
+        3,
+        3,
+        3.6,
+        3.6
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "1）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "直線を円へ代入して2次方程式を解き、点Aからのベクトルの大きさを計算する典型手順である。",
+          "strategyReason": "円と直線の連立から距離計算まで一本道で、後続設問にも値を供給するため最初に確実に回収する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "2）",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "中心と直線の距離を半径未満とする条件を2次不等式へ直し、もとの条件 m>-1 と共通範囲を取る必要がある。",
+          "strategyReason": "点と直線の距離という再現可能な定型手順で、30分の前半に確保したい独立得点である。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-3",
+          "label": "3）",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 2.5,
+          "difficultyReason": "平行線の同位角と円に内接する四角形の対角関係を組み合わせて二等辺性を導き、さらに三角形の合同へつなぐ発想が必要である。",
+          "strategyReason": "図形の結論を証明文へ変換する発想負荷が高い。苦手層は1）2）を優先し、証明できなくても問題文の結論を利用して4）5）へ進む。得意層も計算設問を先に回収してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-4",
+          "label": "4）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "角の二等分線が二等辺三角形の中線・垂線になることを使い、点と直線の距離、弦長、ベクトルを順に処理する必要がある。",
+          "strategyReason": "1）の値を使う多段計算で苦手層には重いが、3）の結論を証明できなくても利用できる。得意層は中点・垂線を見抜けば再現可能な得点源として先に回収する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-1"
+            ],
+            "strong_subject": [
+              "math-q1-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-5",
+          "label": "5）",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "相似比の2乗で面積比を作り、前問の弦長と高さから小さい三角形の面積を求めて差を取る必要がある。",
+          "strategyReason": "主解法は1）と4）の結果に依存し、相似比・三角形面積・差の計算を重ねる。苦手層はより短い1）2）を優先し、得意層は4）の直後に結果を再利用して回収する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-1",
+              "math-q1-4"
+            ],
+            "strong_subject": [
+              "math-q1-1",
+              "math-q1-4"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": null
+}

@@ -97,19 +97,23 @@ export function buildPastExamPageSeo(input) {
  * No invented dates, official-answer claims or university authorship.
  * @param {{mode: "questions" | "answers" | "analysis", university: string, year: string | number,
  * subject: string, examLabel: string, majorCount: number, itemCount?: number,
- * itemUnit?: string, itemGrouping?: string, path: string, universityPath: string}} input
+ * itemUnit?: string, itemGrouping?: string, path: string, universityPath: string,
+ * originalEditorial?: boolean, pending?: boolean, variantLabel?: string}} input
  */
 export function buildExamDocumentSeo(input) {
+  input = {...input, university: input.university.replace(/医学部$/, '')};
   const labels = { questions: "問題", answers: "解答・解説", analysis: "出題分析" };
   const label = labels[input.mode];
-  const name = `${input.university}医学部 ${input.year}年度 ${input.subject}の過去問${input.mode === "questions" ? "" : ` ${label}`}`;
+  const name = `${input.university}医学部 ${input.year}年度 ${input.variantLabel ? `${input.variantLabel} ` : ''}${input.subject}の過去問${input.mode === "questions" ? "" : ` ${label}`}`;
   const introduction = `${input.university}医学部の${input.year}年度${input.examLabel}・${input.subject}。`;
   const itemCount = input.itemCount ?? input.majorCount;
   const itemUnit = input.itemUnit ?? "題";
   const itemGrouping = input.itemGrouping ?? "大問別";
   const descriptions = {
     questions: `過去問全${itemCount}${itemUnit}を${itemGrouping}に掲載。問題文・数式を確認でき、印刷にも対応しています。解答・解説と出題分析へも移動できます。`,
-    answers: `過去問全${itemCount}${itemUnit}の解答と、計算過程・考え方を${itemGrouping}に解説。レクサスE.C.独自作成の解説を、問題と照らし合わせて確認・印刷できます。`,
+    answers: input.originalEditorial === false
+      ? '保存済みの学習者向け解説を取り込んだステージング確認版。問題と照らし合わせて確認・印刷できます。数式・論理・図版の詳細校正中です。'
+      : `過去問全${itemCount}${itemUnit}の解答と、計算過程・考え方を${itemGrouping}に解説。レクサスE.C.独自作成の解説を、問題と照らし合わせて確認・印刷できます。`,
     analysis: "出題分野、難易度別の仮配点、目標点、解く順番を図表で整理。レクサスE.C.の編集評価をもとに、優先して解く問題と復習のポイントを確認できます。",
   };
   const breadcrumbs = [
@@ -120,7 +124,7 @@ export function buildExamDocumentSeo(input) {
   ];
   return buildPastExamPageSeo({
     title: `${name}｜レクサス教育センター`,
-    description: introduction + descriptions[input.mode],
+    description: introduction + (input.pending ? `${label}の元データを確認中です。検証できた内容から順次反映します。` : descriptions[input.mode]),
     path: input.path,
     breadcrumbs,
     resource: { name, kind: label, about: `${input.university}医学部 ${input.year}年度 ${input.examLabel} ${input.subject}` },

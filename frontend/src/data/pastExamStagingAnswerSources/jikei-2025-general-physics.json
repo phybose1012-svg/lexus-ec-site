@@ -1,0 +1,550 @@
+{
+  "schemaVersion": "lexus-staging-answer-snapshot.v1",
+  "question": {
+    "schemaVersion": "lexus-ec.past-exam-question-page.v1",
+    "packageId": "jikei-2025-general-physics",
+    "route": {
+      "university": "jikei",
+      "year": "2025",
+      "subject": "physics",
+      "path": "/past-exam-library/jikei/2025/physics/questions/"
+    },
+    "university": {
+      "id": "jikei",
+      "name": "東京慈恵会医科大学"
+    },
+    "exam": {
+      "year": "2025",
+      "label": "一般選抜",
+      "stage": "一次試験",
+      "duration": "理科2科目 合計120分"
+    },
+    "subject": {
+      "id": "physics",
+      "name": "物理",
+      "english": "PHYSICS"
+    },
+    "document": {
+      "role": "questions",
+      "pageUnit": "major_question",
+      "sharedInstructionsHtml": "<section class=\"source-page-card question-shared-instructions\" data-question-shared-instructions><div class=\"page-kicker\">全大問共通</div><h2>2025年度 物理</h2><p class=\"prose\">物理（2科目 120分）</p><aside class=\"source-note\"><strong>物理の記述問題に関する注意</strong> 物理の記述問題では、記述内容の深さや脈絡の豊かさに加えて、それを筋道立てて他者に伝える姿勢を重視する。</aside></section>",
+      "printNotes": [
+        "各設問に記載された解答形式・記号・単位の指定に従ってください。",
+        "図版準備中・内容確認中の設問は、確認が完了するまで演習対象外です。"
+      ],
+      "questions": [
+        {
+          "id": "major-question-01",
+          "label": "1．",
+          "order": 1,
+          "sourcePageIds": [
+            "jikei-2025-general-physics-questions-p001",
+            "jikei-2025-general-physics-questions-p002"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-01\" data-major-question-id=\"major-question-01\"><h2>1．</h2><p class=\"prose\">図1のように、滑らかにすべるピストンとシリンダーからなる断熱容器AとBを、不活性な多孔質体を充填した細い断熱管を介してつないだ。容器Aには温度 <span class=\"math-inline\" data-katex=\"T_A\" data-display-mode=\"false\">T_A</span>、圧力 <span class=\"math-inline\" data-katex=\"P_A\" data-display-mode=\"false\">P_A</span> の単原子分子理想気体を体積 <span class=\"math-inline\" data-katex=\"V_A\" data-display-mode=\"false\">V_A</span> だけ入れた。容器A内の圧力はおもりAによって一定値 <span class=\"math-inline\" data-katex=\"P_A\" data-display-mode=\"false\">P_A</span> に保たれている。容器Bには初め気体を入れず、容積を0とした。容器B内の圧力が <span class=\"math-inline\" data-katex=\"P_A\" data-display-mode=\"false\">P_A</span> より低い一定値 <span class=\"math-inline\" data-katex=\"P_B\" data-display-mode=\"false\">P_B</span> になるようにおもりBを調節すると、断熱管を通るゆっくりとした気体の流れが生じ、しばらくして気体はすべて容器Bへ移った。移動後の温度と体積をそれぞれ <span class=\"math-inline\" data-katex=\"T_B,V_B\" data-display-mode=\"false\">T_B,V_B</span> とする。</p><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q1-fig-insulated-cylinders\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure><h3>問1</h3><p class=\"prose\">はじめ容器Aに入っていた気体がすべて容器Bに移る間に、気体がされた仕事を <span class=\"math-inline\" data-katex=\"P_A,V_A,P_B,V_B\" data-display-mode=\"false\">P_A,V_A,P_B,V_B</span> を用いて表せ。なお、多孔質体を充填した細い断熱管内の気体の量は無視できるものとする。</p><h3>問2</h3><p class=\"prose\">気体とその周りとの間に熱の交換が全く起こらないならば、気体がされた仕事は気体の内部エネルギーの増加に等しい。この過程において <span class=\"math-inline\" data-katex=\"T_A=T_B\" data-display-mode=\"false\">T_A=T_B</span> となることを導け。</p><h3>問3</h3><p class=\"prose\">問2におけるように熱の出入りのない変化は断熱変化と呼ばれる。問2において <span class=\"math-inline\" data-katex=\"V_B\" data-display-mode=\"false\">V_B</span> は <span class=\"math-inline\" data-katex=\"V_A\" data-display-mode=\"false\">V_A</span> の何倍となるか、<span class=\"math-inline\" data-katex=\"P_A\" data-display-mode=\"false\">P_A</span> と <span class=\"math-inline\" data-katex=\"P_B\" data-display-mode=\"false\">P_B</span> を用いて表せ。</p><h3>問4</h3><p class=\"prose\">問2の変化は、容器AとBの圧力差によって生じる不可逆な流れである。一方、気体全体の圧力が一様なまま進む準静的な可逆断熱変化を考える。分子数 <span class=\"math-inline\" data-katex=\"N\" data-display-mode=\"false\">N</span>、温度 <span class=\"math-inline\" data-katex=\"T\" data-display-mode=\"false\">T</span>、体積 <span class=\"math-inline\" data-katex=\"V\" data-display-mode=\"false\">V</span> の単原子分子理想気体を微小量 <span class=\"math-inline\" data-katex=\"\\Delta V\" data-display-mode=\"false\">\\Delta V</span> だけ膨張させるとき、状態方程式と内部エネルギー <span class=\"math-inline\" data-katex=\"U=\\frac{3}{2}NkT\" data-display-mode=\"false\">U=\\frac{3}{2}NkT</span>、エネルギー保存則から <span class=\"math-inline\" data-katex=\"PV^\\gamma\" data-display-mode=\"false\">PV^\\gamma</span> が一定であることを示し、<span class=\"math-inline\" data-katex=\"\\gamma\" data-display-mode=\"false\">\\gamma</span> の値を求めよ。正の変数 <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> の微小変化について <span class=\"math-inline\" data-katex=\"\\Delta\\log x\\simeq \\Delta{x}/x\" data-display-mode=\"false\">\\Delta\\log x\\simeq \\Delta{x}/x</span> を用いてよい。<span class=\"math-inline\" data-katex=\"\\log\" data-display-mode=\"false\">\\log</span> は自然対数である。</p><div class=\"formula\" data-katex=\"PV=NkT,\\qquad U=\\frac{3}{2}NkT\" data-display-mode=\"true\">PV=NkT,\\qquad U=\\frac{3}{2}NkT</div><h3>問5</h3><p class=\"prose\">問2で得られた不可逆断熱変化では、<span class=\"math-inline\" data-katex=\"P_AV_A^\\gamma\" data-display-mode=\"false\">P_AV_A^\\gamma</span> と <span class=\"math-inline\" data-katex=\"P_BV_B^\\gamma\" data-display-mode=\"false\">P_BV_B^\\gamma</span> の大小関係が問4の可逆断熱変化と異なる。<span class=\"math-inline\" data-katex=\"P\" data-display-mode=\"false\">P</span>–<span class=\"math-inline\" data-katex=\"V\" data-display-mode=\"false\">V</span> 図上でこの2状態を結び、熱を吸収する過程を含むサイクルを考えることで、熱力学第二法則に反する熱効率100%の熱機関が仮に構成できることを説明せよ。</p></article>"
+        },
+        {
+          "id": "major-question-02",
+          "label": "2．",
+          "order": 2,
+          "sourcePageIds": [
+            "jikei-2025-general-physics-questions-p003",
+            "jikei-2025-general-physics-questions-p004"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-02\" data-major-question-id=\"major-question-02\"><h2>2．</h2><p class=\"prose\">物質粒子も光子も、粒子性と波動性をあわせもち、運動量の大きさ <span class=\"math-inline\" data-katex=\"P\" data-display-mode=\"false\">P</span> と波長 <span class=\"math-inline\" data-katex=\"\\lambda\" data-display-mode=\"false\">\\lambda</span> の間には共通してプランク定数 <span class=\"math-inline\" data-katex=\"h\" data-display-mode=\"false\">h</span> を用いた <span class=\"math-inline\" data-katex=\"P=h/\\lambda\" data-display-mode=\"false\">P=h/\\lambda</span> の関係がある。また、光子のエネルギー <span class=\"math-inline\" data-katex=\"E\" data-display-mode=\"false\">E</span> と振動数 <span class=\"math-inline\" data-katex=\"\\nu\" data-display-mode=\"false\">\\nu</span> の間には <span class=\"math-inline\" data-katex=\"E=h\\nu\" data-display-mode=\"false\">E=h\\nu</span> の関係がある。この事実が意味するところを、放射性粒子のガンマ線放出による質量変化を例に考察する。以下では真空中の光速を <span class=\"math-inline\" data-katex=\"c\" data-display-mode=\"false\">c</span> とする。</p><h3>問1</h3><p class=\"prose\">エネルギー <span class=\"math-inline\" data-katex=\"E\" data-display-mode=\"false\">E</span> のガンマ線光子の波長と運動量の大きさを、<span class=\"math-inline\" data-katex=\"E,h,c\" data-display-mode=\"false\">E,h,c</span> を用いて表せ。</p><h3>問2</h3><p class=\"prose\">初め静止していた質量 <span class=\"math-inline\" data-katex=\"M\" data-display-mode=\"false\">M</span> の放射性粒子が、運動量の大きさ <span class=\"math-inline\" data-katex=\"P\" data-display-mode=\"false\">P</span> のガンマ線光子を1個放出し、質量 <span class=\"math-inline\" data-katex=\"M-m\" data-display-mode=\"false\">M-m</span> の粒子になった。放出後の粒子の速さは光速に比べて十分小さく、ほかの粒子や光子の放出はないものとして、エネルギー保存の式を示せ。</p><h3>問3</h3><p class=\"prose\">問2の結果で <span class=\"math-inline\" data-katex=\"M\\to\\infty\" data-display-mode=\"false\">M\\to\\infty</span> の極限を考え、光子について <span class=\"math-inline\" data-katex=\"E=cP\" data-display-mode=\"false\">E=cP</span> を用いることで、質量減少 <span class=\"math-inline\" data-katex=\"m\" data-display-mode=\"false\">m</span> に対応するエネルギーが <span class=\"math-inline\" data-katex=\"mc^2\" data-display-mode=\"false\">mc^2</span> であることを示せ。</p><h3>問4</h3><p class=\"prose\">図2のように、無重力真空中で <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> 軸上を動く台車に、ガンマ線を発する放射性粒子を組み込んだ結晶と、その後方 <span class=\"math-inline\" data-katex=\"\\Delta{x}\" data-display-mode=\"false\">\\Delta{x}</span> の位置に検出器を置く。台車が <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> 軸正の向きに加速度 <span class=\"math-inline\" data-katex=\"a\" data-display-mode=\"false\">a</span> で加速しているとき、結晶から負の向きに放出され検出器に届くガンマ線について、台車上の観測者が対応づけるエネルギーを求めよ。</p><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q2-fig-accelerating-cart\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure><h3>問5</h3><p class=\"prose\">問4の結果は、同じ質量減少分 <span class=\"math-inline\" data-katex=\"m\" data-display-mode=\"false\">m</span> に対応するエネルギーが台車上の観測者にとって位置によって異なることを示す。これを位置エネルギーとみなしたとき、台車上で質量 <span class=\"math-inline\" data-katex=\"m\" data-display-mode=\"false\">m</span> の物体にはたらく慣性力の向きと大きさを答えよ。</p><h3>問6</h3><p class=\"prose\">ニュートンの運動方程式 <span class=\"math-inline\" data-katex=\"F=ma\" data-display-mode=\"false\">F=ma</span> は、質量 <span class=\"math-inline\" data-katex=\"m\" data-display-mode=\"false\">m</span>、力 <span class=\"math-inline\" data-katex=\"F\" data-display-mode=\"false\">F</span>、加速度 <span class=\"math-inline\" data-katex=\"a\" data-display-mode=\"false\">a</span> の関係を表す。問1〜問5の考察を踏まえ、質量とエネルギーの等価性、加速系で現れる慣性力、光と物質に共通する粒子性・波動性の関係から、ニュートンの運動法則について得られる知見を筋道立てて述べよ。</p></article>"
+        }
+      ]
+    },
+    "source": {
+      "sourcePackageId": "jikei-2025-general-physics",
+      "reference": "projects/universities/jikei/past-exams/working/2025/general/first-stage/physics/source-html/generated/public-candidate/questions",
+      "buildKind": "publication-candidate",
+      "contentProvenance": "source_projection",
+      "publicationCandidate": true,
+      "rightsStatus": "review_required",
+      "needsHumanReview": true
+    },
+    "links": {
+      "universityLibrary": "/past-exam-library/jikei/",
+      "analysis": "/past-exam-library/jikei/2025/physics/analysis/",
+      "universityInformation": null
+    }
+  },
+  "editorial": {
+    "schema_version": "medical-entrance-past-exam-editorial-explanation.v2",
+    "package_id": "jikei-2025-general-physics",
+    "document_role": "answers",
+    "source_reconstruction_path": "reconstruction.json",
+    "audience": {
+      "visibility": "internal_only",
+      "reader": "learner_and_subject_editor"
+    },
+    "provenance": "editorial_adaptation",
+    "style_policy": {
+      "id": "lexus-learner-friendly-physics.v1",
+      "sequence": [
+        "何を求めるか",
+        "最初にすること",
+        "その理由",
+        "計算",
+        "結論"
+      ],
+      "short_paragraphs": true,
+      "expert_shortcuts_are_optional": true,
+      "main_route_is_reproducible": true,
+      "preserve_answers_and_conditions": true,
+      "preserve_units_and_significant_figures": true,
+      "preserve_source_method": true,
+      "preserve_source_reasoning_order": true,
+      "forbid_answer_backward_reasoning": true
+    },
+    "reader_structure": {
+      "page_unit": "major_question",
+      "assignment": "explicit_per_block",
+      "source_page_records_preserved_for_provenance": true,
+      "major_questions": [
+        {
+          "id": "major-question-01",
+          "label": "第1問",
+          "order": 1
+        },
+        {
+          "id": "major-question-02",
+          "label": "第2問",
+          "order": 2
+        }
+      ]
+    },
+    "pages": [
+      {
+        "source_page_id": "jikei-2025-general-physics-answers-p001",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "1．解答・解説",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "note",
+            "label": "最初に確認",
+            "text": "第1問は、不可逆な断熱移動と準静的な可逆断熱変化を分けて扱います。まず系全体で仕事の正負を固定し、問2・3では状態方程式、問4では微小変化、問5では第二法則への矛盾を順に使います。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "問1",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "W=P_AV_A-P_BV_B",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "容器A側ではピストンが下がるため気体は \\(P_AV_A\\) の仕事をされ、容器B側では膨張して外部へ \\(P_BV_B\\) の仕事をする。したがって気体が正味でされた仕事は両者の差である。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "問2",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "P_AV_A=NkT_A,\\qquad P_BV_B=NkT_B",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac32Nk(T_B-T_A)=P_AV_A-P_BV_B",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "状態方程式を代入すると右辺は \\(Nk(T_A-T_B)\\) となり、整理して \\(T_A=T_B\\) を得る。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "問3",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac{V_B}{V_A}=\\left(\\frac{P_A}{P_B}\\right)^{2/3}",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "jikei-2025-general-physics-answers-p002",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "問4",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "準静的断熱膨張で気体がした仕事は \\(P\\Delta V\\) であるから、エネルギー保存より \\(\\Delta U=-P\\Delta V\\) となる。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac32Nk\\Delta T=-P\\Delta V",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac{\\Delta P}{P}+\\frac53\\frac{\\Delta V}{V}=0",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\Delta\\log(PV^{5/3})=0",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "したがって \\(\\gamma=5/3\\)、可逆断熱変化では \\(PV^{5/3}\\) が一定である。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "問5",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "問2の不可逆変化では \\(P_BV_B^\\gamma>P_AV_A^\\gamma\\) となる。2状態を図のように吸熱過程と断熱過程で結ぶと、吸収熱をすべて仕事に変える熱効率100%のサイクルが形式上得られ、熱力学第二法則に反する。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "crop",
+            "asset_id": "a1-fig-pv-cycle",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "jikei-2025-general-physics-answers-p003",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "1．補足解説",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "熱力学第一法則は、気体が受け取った熱量、内部エネルギーの変化、外部へした仕事の関係を表す。不可逆な流れであっても系全体のエネルギー保存は成り立つが、可逆断熱変化のポアソンの法則をそのまま適用することはできない。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "Q=\\Delta U+W",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "本問では、前半で断熱容器間の不可逆移動を扱い、後半で準静的な可逆断熱変化と比較することで、第二法則が可逆性と結び付いていることを確認する。",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "jikei-2025-general-physics-answers-p004",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "2．解答・解説",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "note",
+            "label": "最初に確認",
+            "text": "第2問は、光子の基本式、運動量・エネルギー保存、加速系でのドップラー効果、位置エネルギーと慣性力へ段階的につながります。前問の結論を次問で何に使うかを式の横へ短く書いてください。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "問1",
+                "value": "波長 \\(\\dfrac{ch}{E}\\)、運動量の大きさ \\(\\dfrac{E}{c}\\)"
+              },
+              {
+                "label": "問2",
+                "value": "\\(\\dfrac{P^2}{2(M-m)}+cP=mc^2\\)"
+              },
+              {
+                "label": "問3",
+                "value": "\\(E=mc^2\\)"
+              },
+              {
+                "label": "問4",
+                "value": "\\(mc^2+ma\\Delta{x}\\)"
+              },
+              {
+                "label": "問5",
+                "value": "\\(x\\) 軸負の向き、大きさ \\(ma\\)"
+              }
+            ],
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "問1",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "\\lambda=\\frac{c}{\\nu}=\\frac{ch}{E},\\qquad P=\\frac{h}{\\lambda}=\\frac{E}{c}",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "問2",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "運動量保存により、放出後の粒子は光子と逆向きに大きさ \\(P\\) の運動量をもつ。静止エネルギーと運動エネルギーを合わせて保存式を書く。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "Mc^2=(M-m)c^2+\\frac{P^2}{2(M-m)}+cP",
+            "major_question_id": "major-question-02"
+          }
+        ]
+      },
+      {
+        "source_page_id": "jikei-2025-general-physics-answers-p005",
+        "blocks": [
+          {
+            "type": "crop",
+            "asset_id": "a2-fig-gamma-recoil",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "ガンマ線放出前後の運動量保存を図示すると、光子と残った粒子の運動量は大きさが等しく向きが反対になる。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "問3",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "mc^2=\\frac{P^2}{2(M-m)}+cP",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "\\(M\\to\\infty\\) では反跳の運動エネルギーが0に近づくため \\(mc^2=cP=E\\) となる。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "問4",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "E'=mc^2+ma\\Delta{x}",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "加速する台車では、結晶と検出器の相対運動による周波数変化を一次近似で評価すると、検出位置でのエネルギーは \\(ma\\Delta{x}\\) だけ増える。",
+            "major_question_id": "major-question-02"
+          }
+        ]
+      },
+      {
+        "source_page_id": "jikei-2025-general-physics-answers-p006",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "問4（計算の続き）",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "光が距離 \\(\\Delta{x}\\) を進む時間はおよそ \\(\\Delta{x}/c\\) であり、その間に検出器の速度は \\(a\\Delta{x}/c\\) だけ変化する。光のドップラー効果を一次まで用いると、エネルギー差は \\(ma\\Delta{x}\\) となる。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "問5",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "位置エネルギー \\(U=ma\\Delta{x}\\) の勾配から力を求めると、台車の加速度と反対向きの慣性力が得られる。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "F_x=-\\frac{dU}{dx}=-ma",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "問6",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "質量は単に物体の量を表すだけでなく、エネルギーと等価である。また、加速系で現れる慣性力は、観測者が置かれた時空の見え方と結び付いている。これらを通じて \\(F=ma\\) の慣性質量を、エネルギーと時空の構造から捉え直すことができる。",
+            "major_question_id": "major-question-02"
+          }
+        ]
+      },
+      {
+        "source_page_id": "jikei-2025-general-physics-answers-p007",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "講評",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "大問1は熱力学、大問2は光子の運動量と質量・エネルギーの等価性を題材にした記述中心の構成である。公式を代入するだけでなく、保存則から関係式を組み立て、その意味を文章で説明する力が求められる。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "大問1では、不可逆な断熱移動と可逆断熱変化を区別することが重要である。問5は熱力学第二法則まで見通してサイクルを考案する必要があり、発想力が問われる。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "大問2では、前半の計算結果を後半の加速系の考察へつなげる構成である。各式が表す物理的意味を言葉にしながら進めたい。",
+            "major_question_id": "major-question-02"
+          }
+        ]
+      },
+      {
+        "source_page_id": "jikei-2025-general-physics-answers-p008",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "講評（続き）",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "記述問題では、結論だけでなく、どの保存則や近似を使ったかを明示し、式と文章のつながりを示すことが大切である。日頃から解答の根拠を短い文章で添える練習をしておきたい。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "note",
+            "label": "記述答案の仕上げ",
+            "text": "結論だけでなく、使った保存則・断熱条件・近似の次数を明示します。式の直後に一文で物理的意味を添え、問われた向き・大きさ・矛盾の内容まで答え切ってください。",
+            "major_question_id": "major-question-02"
+          }
+        ]
+      }
+    ],
+    "review": {
+      "needs_human_review": true,
+      "editorial_status": "draft_for_subject_editor",
+      "physics_consistency_checked": true,
+      "answer_key_checked": true,
+      "source_transcription_preserved": true,
+      "source_route_checked": true,
+      "unit_and_significant_figures_checked": true,
+      "reader_structure_checked": true
+    }
+  },
+  "assets": [
+    {
+      "id": "q1-fig-insulated-cylinders",
+      "kind": "source_crop",
+      "source_page_id": "jikei-2025-general-physics-questions-p001",
+      "crop_box_pixels": [
+        208,
+        608,
+        692,
+        1132
+      ],
+      "source_crop_path": "assets/crops/q1-fig-insulated-cylinders/source.png",
+      "replacement_path": "assets/crops/q1-fig-insulated-cylinders/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "図1。多孔質体を充填した細い断熱管でつながれた、ピストン付き断熱容器AとB。おもりA・B、圧力と体積の記号が示されている。"
+    },
+    {
+      "id": "q2-fig-accelerating-cart",
+      "kind": "source_crop",
+      "source_page_id": "jikei-2025-general-physics-questions-p004",
+      "crop_box_pixels": [
+        228,
+        0,
+        772,
+        472
+      ],
+      "source_crop_path": "assets/crops/q2-fig-accelerating-cart/source.png",
+      "replacement_path": "assets/crops/q2-fig-accelerating-cart/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "図2。加速度aでx軸正方向へ動く台車上に、結晶と検出器が距離Δxだけ離れて置かれ、結晶から検出器へガンマ線が進む図。"
+    },
+    {
+      "id": "a1-fig-pv-cycle",
+      "kind": "source_crop",
+      "source_page_id": "jikei-2025-general-physics-answers-p002",
+      "crop_box_pixels": [
+        378,
+        778,
+        874,
+        1241
+      ],
+      "source_crop_path": "assets/crops/a1-fig-pv-cycle/source.png",
+      "replacement_path": "assets/crops/a1-fig-pv-cycle/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "解説のP–V図。不可逆断熱変化の二状態を、吸熱過程と断熱過程で結ぶ熱力学サイクルの例。"
+    },
+    {
+      "id": "a2-fig-gamma-recoil",
+      "kind": "source_crop",
+      "source_page_id": "jikei-2025-general-physics-answers-p005",
+      "crop_box_pixels": [
+        148,
+        208,
+        772,
+        772
+      ],
+      "source_crop_path": "assets/crops/a2-fig-gamma-recoil/source.png",
+      "replacement_path": "assets/crops/a2-fig-gamma-recoil/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "ガンマ線放出前後の放射性粒子を示す解説図。放出後の粒子と光子が逆向きの運動量をもつ。"
+    }
+  ],
+  "sourceReference": "projects/universities/jikei/past-exams/working/2025/general/first-stage/physics/source-html/editorial-explanations.json",
+  "sha256": "cf197c86a704d324afe166c9441cf4ff7e7c4af544cb71637ca3e7cf8bfdf801"
+}

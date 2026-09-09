@@ -1,0 +1,437 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "tokyo-medical-2025-general-mathematics",
+    "university_id": "tokyo-medical",
+    "university_name": "東京医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 60,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "問題原本p.1に数学60分と明記されている。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/tokyo-medical/past-exams/working/2025/general/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "a81c8f90328a79202dd66d363673f471ab568bdccb9e92a3f03387a1836764ec",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "sourceTitle": "独立4題の小問集合",
+      "requirements": [
+        0.3,
+        2.8,
+        2.5,
+        3.3,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)（ア・イ）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "補角関係と和積公式をそのまま適用する定型問題である。",
+          "strategyReason": "短い定型変形で両層が最優先で確保したい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)（ウ〜ク）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "共通点では両式が同時に成立することを利用して二次項を消す。",
+          "strategyReason": "方針が決まれば連立式の加減だけで完結する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)（ケ〜サ）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "平方根を絶対値として扱う注意が必要だが積分自体は基本計算である。",
+          "strategyReason": "絶対値の区間分割が見えれば確実に得点できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-4",
+          "label": "(4)（シ・ス）",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "ωを1の5乗根と読み、因数分解に結び付ける知識が必要である。",
+          "strategyReason": "型を知る層には短いが、発想が出なければ停滞するため苦手層は後へ回す。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "sourceTitle": "部分集合の個数と要素の分配",
+      "requirements": [
+        0.7,
+        1.7,
+        1.7,
+        2.7,
+        2.3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)（アイウ）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "部分集合の総数2^8を求める基本問題である。",
+          "strategyReason": "最短で確保できる基本得点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)（エ〜キ）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "包含関係を要素ごとの3択へ読み替える必要がある。",
+          "strategyReason": "要素の分配という型が見えれば3^8で直ちに終わる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(3)（ク〜サ）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "(2)と同型の分配へ置き換えられることを見抜く問題である。",
+          "strategyReason": "(2)の考えを再利用でき、短時間で確保できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "sourceTitle": "常用対数による桁数",
+      "requirements": [
+        0,
+        2.7,
+        3,
+        3,
+        3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)（アイ）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "桁数を常用対数の整数部分から求める定型問題である。",
+          "strategyReason": "与えられた対数値を直接使う短い得点源。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)（ウ〜オ）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "平方数の境界を漏れなく列挙し、各区間の個数を正確に集計する必要がある。",
+          "strategyReason": "計算量があるため苦手層は短問後、得意層は確実な中盤得点として扱う。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)（カ）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "100桁の両端を不等式で正しく表し、端点を含む向きを管理する。",
+          "strategyReason": "不等式の型が明確で、(1)の考えも再利用できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q4",
+      "label": "第4問",
+      "sourceTitle": "平行四辺形の回転体",
+      "requirements": [
+        3.8,
+        3.5,
+        2.5,
+        3.3,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "(1)（ア〜ク）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "ベクトルの平行四辺形則と直線の媒介表示を連続して使う。",
+          "strategyReason": "後続と独立に座標計算だけで得点できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-2",
+          "label": "(2)（ケ・コ）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "線分両端のz軸からの距離を半径とする円環へ読み替える必要がある。",
+          "strategyReason": "得意層には誘導が明確だが、苦手層は断面像の把握に時間を要する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q4-1"
+            ],
+            "strong_subject": [
+              "math-q4-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q4-3",
+          "label": "(3)（サ・シ）",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "(2)の断面積を得ていれば一次式の定積分で完結する。",
+          "strategyReason": "(2)の式があれば短く、得意層は続けて確保する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q4-2"
+            ],
+            "strong_subject": [
+              "math-q4-2"
+            ]
+          }
+        },
+        {
+          "id": "math-q4-4",
+          "label": "(4)（ス・セ）",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 7,
+          "difficultyReason": "回転前の平行四辺形へ戻して距離を高さtの二次式として評価する必要がある。",
+          "strategyReason": "図形的な最大化の根拠が必要で、短問を守った後の最終候補とする。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q4-1"
+            ],
+            "strong_subject": [
+              "math-q4-1"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 50,
+        "targetPercent": 50,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 35.2,
+        "maximum": {
+          "points": 50,
+          "minutes": 59.4,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q4-1"
+          ]
+        },
+        "now": {
+          "points": 64,
+          "minutes": 70.7,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-3",
+            "math-q4-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 93,
+          "minutes": 94.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 8.8,
+        "maximum": {
+          "points": 100,
+          "minutes": 53.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3",
+            "math-q4-4"
+          ]
+        },
+        "now": {
+          "points": 93,
+          "minutes": 47.8,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 53.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3",
+            "math-q4-4"
+          ]
+        }
+      }
+    ]
+  }
+}

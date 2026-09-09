@@ -1,0 +1,286 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "kanazawa-medical-2025-general-early-physics",
+  "route": {
+    "university": "kanazawa-medical",
+    "year": "2025",
+    "subject": "physics",
+    "path": "/past-exam-library/kanazawa-medical/2025/physics/analysis/"
+  },
+  "university": "金沢医科大学",
+  "year": 2025,
+  "subject": "物理",
+  "examLabel": "一般選抜（前期）",
+  "duration": "理科2科目 合計90分",
+  "format": "選択・数値解答など（各設問を参照）",
+  "examTotal": null,
+  "headline": "音波・円運動",
+  "summary": "第1問は音波・円運動、第2問は運動の表し方・仕事と力学的エネルギー。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "物理が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "物理が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "第1問",
+      "title": "光のドップラー効果と連星の運動",
+      "subtitle": "音波・円運動・万有引力",
+      "summary": "光のドップラー効果による振動数の変動周期・変動幅から天体の速さと角速度を求め、円運動と万有引力の関係を用いて軌道半径・質量を決める。観測者が動く場合と二重連星へ同じ関係を拡張する。",
+      "studyAction": "光のドップラー近似式から変動幅を表す。周期・角速度・速さ・半径を結び付ける",
+      "requirements": [
+        4.3,
+        3.7,
+        3.7,
+        3.7,
+        4.7
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "(1)",
+          "title": "天体Qから見て観測者Oが静止する条件で、光の変動周期 \\(3.14\\times10^4\\,\\mathrm{s}\\) と変動幅 \\(2.4\\times10^{-3}f\\) から、天体Pの角速度 \\(\\omega_1\\)、速さ \\(V_1\\)、軌道半径 \\(r_1\\)、中心天体の質量 \\(M_1\\) を求める。",
+          "note": "仮13点。解法は定型の連鎖だが4量を有効数字つきで求めるため計算量と転記ミスの影響が大きい。得意層は流れを保って一気に処理し、苦手層は第2問の独立項目を先に回収してから戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 13
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "(2)",
+          "title": "観測者Oが天体Qから速さ \\(v_0\\) で遠ざかる場合、振動数の変動幅から得る速さは変わらない一方、光の伝播時間により観測周期が伸びることを用い、\\(r_2\\) と \\(M_2\\) を \\(r_1,M_1,c,v_0\\) で表す。",
+          "note": "仮12点。変動幅では \\(v_0\\) が相殺される一方、周期には光行差が残るという区別が要る。苦手層は再現性が低く第2問の保存則を優先し、得意層は(1)の記号を保ったまま続ける。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 0,
+          "points": 12
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "(3)",
+          "title": "共通重心Cのまわりを同周期で回る天体P′・Q′について、二つの光の変動幅から速さ比と回転半径比を求め、各天体の運動方程式から質量 \\(m'\\) と \\(M'\\) を算出する。",
+          "note": "仮13点。(1)の結果を再利用できるが、速度比・半径比・天体間距離・向心力を順に管理するため計算ミスの露出が大きい。苦手層は保存則の小問を優先し、得意層も第2問の基本項目後に戻る。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 13
+        }
+      ],
+      "questionsPath": "/past-exam-library/kanazawa-medical/2025/physics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/kanazawa-medical/2025/physics/answers/#major-question-01"
+    },
+    {
+      "id": "phys-q2",
+      "label": "第2問",
+      "title": "斜面を持つ台上をすべる小球と台の運動",
+      "subtitle": "運動の表し方・仕事と力学的エネルギー・運動量と力積",
+      "summary": "摩擦のない床上の台で小球を滑らせる。水平運動量保存、力学的エネルギー保存、重心位置不変を使い、台と小球の速度・変位、飛び出し時の速度成分を求める。",
+      "studyAction": "小球と台を一体系として水平運動量保存を立てる。台を含む力学的エネルギー保存を使う",
+      "requirements": [
+        3.4,
+        3.7,
+        3,
+        3,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "(1)",
+          "title": "質量 \\(1.0\\,\\mathrm{kg}\\) の小球が高さ \\(1.0\\,\\mathrm{m}\\) を滑り降りて点Bを通過するとき、質量 \\(9.0\\,\\mathrm{kg}\\) の台を含む水平運動量保存と力学的エネルギー保存から、床に対する小球速度 \\(v_B\\) と台速度 \\(V_B\\) を求める。",
+          "note": "仮12点。水平運動量保存と力学的エネルギー保存の定型連立で、向きを決めれば再現性が高い。両層とも第1問の長い連鎖より先に確保する。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 12
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "(2)",
+          "title": "小球が台の左端Aから右端Dへ移動する間、系の重心の水平位置が不変であることと、小球と台の相対変位が \\(2.0\\,\\mathrm{m}\\) であることから、床に対する小球の変位 \\(l\\) と台の変位 \\(L\\) を求める。",
+          "note": "仮12点。重心不変の式 \\(l+9L=0\\) と相対変位 \\(l-L=2.0\\) の連立で処理できる。符号を図に書けば計算量が小さく、両層の回収対象である。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 12
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "(3)",
+          "title": "小球が高さ \\(0.75\\,\\mathrm{m}\\) の点Dから台に対して水平より \\(42^\\circ\\) 上向きに飛び出すとき、系の力学的エネルギー保存、水平運動量保存、台に対する相対速度の方向から、床に対する小球速度成分 \\(v_x,v_y\\) と台速度 \\(V_D\\) を求める。",
+          "note": "仮13点。保存則は定型だが、角度条件に相対水平速度 \\(v_x-V_D\\) を使う点が核心で、三式連立の計算ミスが起きやすい。得意層は今解き、苦手層は(1)(2)を確保した後に戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 13
+        }
+      ],
+      "questionsPath": "/past-exam-library/kanazawa-medical/2025/physics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/kanazawa-medical/2025/physics/answers/#major-question-02"
+    }
+  ],
+  "difficultyCounts": [
+    0,
+    2,
+    2,
+    2
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 75,
+    "timeBudgetMinutes": 45,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 38,
+        "targetPercent": 50.7,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 10.4,
+        "maximum": {
+          "points": 38,
+          "minutes": 39,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q2-2",
+            "phys-q2-3"
+          ]
+        },
+        "now": {
+          "points": 24,
+          "minutes": 24.7,
+          "questionIds": [
+            "phys-q2-1",
+            "phys-q2-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 50,
+          "minutes": 46.5,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3"
+          ]
+        },
+        "title": "物理が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 38,
+          "minutes": 39,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q2-2",
+            "phys-q2-3"
+          ]
+        },
+        "additional": [
+          {
+            "id": "phys-q1-1",
+            "label": "第1問 (1)"
+          },
+          {
+            "id": "phys-q2-3",
+            "label": "第2問 (3)"
+          }
+        ],
+        "routeKind": "replacement",
+        "replaced": [
+          {
+            "id": "phys-q2-1",
+            "label": "第2問 (1)"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 60,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 2.6,
+        "maximum": {
+          "points": 75,
+          "minutes": 38.1,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3"
+          ]
+        },
+        "now": {
+          "points": 62,
+          "minutes": 31.6,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 75,
+          "minutes": 38.1,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3"
+          ]
+        },
+        "title": "物理が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 62,
+          "minutes": 31.6,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3"
+          ]
+        },
+        "additional": []
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kanazawa-medical/past-exams/working/2025/general-early/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "77f04f3ac0b0a2d2c595bb43c07b7ead661a626a69a2dc0c059ebaf8932718eb",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/kanazawa-medical/2025/physics/questions/",
+    "answers": "/past-exam-library/kanazawa-medical/2025/physics/answers/",
+    "university": "/past-exam-library/kanazawa-medical/"
+  }
+}

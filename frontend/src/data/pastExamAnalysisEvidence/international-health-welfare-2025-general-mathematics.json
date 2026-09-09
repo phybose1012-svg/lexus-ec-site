@@ -1,0 +1,458 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "international-health-welfare-2025-general-mathematics",
+    "university_id": "international-health-welfare",
+    "university_name": "国際医療福祉大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 80,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "問題原本p.1の科目扉に数学80分と明記されている。"
+    },
+    "total_points": 200
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/international-health-welfare/past-exams/working/2025/general/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "c931986ca1469ce437f3a6494f7246f0208df2d23fa67ee047defa05b7c55a69",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "sourceTitle": "独立5題の小問集合",
+      "requirements": [
+        1,
+        3.2,
+        2.6,
+        3.2,
+        2.4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-a",
+          "label": "(A)（ア〜エ）",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 12,
+          "difficultyReason": "a-b=1、ab=1を作れば進むが、最後の根号式の有理化まで正確に続ける必要がある。",
+          "strategyReason": "関係式を作れば短時間で完了する一方、苦手層は根号計算で停滞しやすいため短い整数問題を先に取る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-b",
+          "label": "(B)（オ〜ケ）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 12,
+          "difficultyReason": "ユークリッドの互除法をそのまま適用する短い計算である。",
+          "strategyReason": "解法が明確で計算量も少なく、両層が最初に確保したい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-c",
+          "label": "(C)（コ〜ソ）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 13,
+          "difficultyReason": "真数条件だけでなく0<底<1と底>1で不等号の向きが変わる点を整理する必要がある。",
+          "strategyReason": "得意層には典型的な場合分けだが、苦手層は定義域と不等号反転の二重管理が必要なので後に回す。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-d",
+          "label": "(D)（タ〜ト）",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 12,
+          "difficultyReason": "平方展開で内積を得た後、tの2次式を平方完成すれば解ける標準的な処理である。",
+          "strategyReason": "見通しはよいが計算が2段階あるため、苦手層は第1問(B)などを先に取る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-e",
+          "label": "(E)（ナ〜ノ）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 13,
+          "difficultyReason": "標準形への変形、焦点公式、陰関数微分による接線を連続して扱う。",
+          "strategyReason": "得意層は定型処理で確保できるが、苦手層には数学Cと数学IIIの横断が重い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "sourceTitle": "放物線の接線の中点軌跡と面積",
+      "requirements": [
+        4,
+        4,
+        3.6,
+        3,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)（ア〜ウ）",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 12,
+          "difficultyReason": "Pを媒介変数で置き、中点座標から媒介変数を消去する典型的な軌跡問題である。",
+          "strategyReason": "手順は定型だが設定の読み取りが必要で、苦手層はより短い小問を先にする。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)（エ〜ナ）",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 13,
+          "difficultyReason": "正方形の4辺ごとに中点の軌跡を作り、曲線と線分に囲まれる領域を正しく統合して積分する必要がある。",
+          "strategyReason": "領域構成と積分の工程が長い。得意層も短い独立小問を確保してから取り組み、苦手層は時間を守るため見送る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "sourceTitle": "正六角形上の確率移動",
+      "requirements": [
+        2.8,
+        3.5,
+        3,
+        3.3,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)（ア〜イ）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 12,
+          "difficultyReason": "2回の移動列を2通りに分けて確率を足す短い問題である。",
+          "strategyReason": "経路が少なく、両層にとって確実に取りたい設問である。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)（ウ〜コ）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 13,
+          "difficultyReason": "到達する移動列の列挙に加え、条件付き確率の分子からDを通る経路を除く必要がある。",
+          "strategyReason": "全列挙は可能だが条件の読み落としが起きやすく、苦手層は第3問(1)だけ先に確保する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-3i",
+          "label": "(3)(i)（サ〜ス）",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 12,
+          "difficultyReason": "3回単位でDを避ける経路と最後に到達する経路をブロック化する必要がある。",
+          "strategyReason": "一般のlへの構造化が必要で時間差が出るため、得意層も基本設問後に回す。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-3ii",
+          "label": "(3)(ii)（セ〜ノ）",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 13,
+          "difficultyReason": "3回後の遷移を補集合も使って整理し、一次漸化式を定常値へ平行移動して解く必要がある。",
+          "strategyReason": "確率遷移と漸化式の2段階で最も重く、得意層も残り時間で判断する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-2"
+            ],
+            "strong_subject": [
+              "math-q3-2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q4",
+      "label": "第4問",
+      "sourceTitle": "絶対値を含む定積分で定義された関数",
+      "requirements": [
+        1,
+        3.8,
+        3.2,
+        3.2,
+        3.6
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "(1)（ア〜イ）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 12,
+          "difficultyReason": "区間内でsin2tが非負であることを確認すれば直接積分できる。",
+          "strategyReason": "代入後の積分が短く、両層が確実に確保したい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-2i",
+          "label": "(2)(i)（ウ〜オ）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 12,
+          "difficultyReason": "符号判定ができれば絶対値を外し、2つの基本積分を計算するだけである。",
+          "strategyReason": "符号の理由が明確で計算も短く、苦手層にも優先度が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-2ii",
+          "label": "(2)(ii)（カ〜コ）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 13,
+          "difficultyReason": "絶対値の符号が変わる点を設定し、三角比をxで表して2区間の積分を統合する必要がある。",
+          "strategyReason": "後続の最小値と積分の基礎になる重要式だが工程が長く、苦手層は基本設問を先にする。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-2iii",
+          "label": "(2)(iii)（サ〜ソ）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 13,
+          "difficultyReason": "無理関数を微分して臨界点を求め、別の場合の値域と比較する必要がある。",
+          "strategyReason": "前問の式が得られていれば標準的な微分で進むため、得意層は続けて取りたい。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q4-2ii"
+            ],
+            "strong_subject": [
+              "math-q4-2ii"
+            ]
+          }
+        },
+        {
+          "id": "math-q4-3",
+          "label": "(3)（タ〜ノ）",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 13,
+          "difficultyReason": "f(x)の正領域の式を展開し、無理関数の積分を適切な置換で処理する必要がある。",
+          "strategyReason": "置換積分まで長く、得意層も他の短い設問を確保した後の最終候補とする。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q4-2ii"
+            ],
+            "strong_subject": [
+              "math-q4-2ii"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 200,
+    "timeBudgetMinutes": 80,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 62,
+        "targetPercent": 31,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 53.6,
+        "maximum": {
+          "points": 62,
+          "minutes": 79.2,
+          "questionIds": [
+            "math-q1-b",
+            "math-q1-e",
+            "math-q3-2",
+            "math-q4-1",
+            "math-q4-2i"
+          ]
+        },
+        "now": {
+          "points": 48,
+          "minutes": 69.4,
+          "questionIds": [
+            "math-q1-b",
+            "math-q3-1",
+            "math-q4-1",
+            "math-q4-2i"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 149,
+          "minutes": 127.4,
+          "questionIds": [
+            "math-q1-a",
+            "math-q1-b",
+            "math-q1-c",
+            "math-q1-d",
+            "math-q1-e",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1",
+            "math-q4-2i",
+            "math-q4-2ii",
+            "math-q4-2iii"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 140,
+        "targetPercent": 70,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 13.4,
+        "maximum": {
+          "points": 175,
+          "minutes": 79.4,
+          "questionIds": [
+            "math-q1-a",
+            "math-q1-b",
+            "math-q1-c",
+            "math-q1-d",
+            "math-q1-e",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3ii",
+            "math-q4-1",
+            "math-q4-2i",
+            "math-q4-2ii",
+            "math-q4-2iii",
+            "math-q4-3"
+          ]
+        },
+        "now": {
+          "points": 149,
+          "minutes": 62.4,
+          "questionIds": [
+            "math-q1-a",
+            "math-q1-b",
+            "math-q1-c",
+            "math-q1-d",
+            "math-q1-e",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1",
+            "math-q4-2i",
+            "math-q4-2ii",
+            "math-q4-2iii"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 200,
+          "minutes": 95.4,
+          "questionIds": [
+            "math-q1-a",
+            "math-q1-b",
+            "math-q1-c",
+            "math-q1-d",
+            "math-q1-e",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3i",
+            "math-q3-3ii",
+            "math-q4-1",
+            "math-q4-2i",
+            "math-q4-2ii",
+            "math-q4-2iii",
+            "math-q4-3"
+          ]
+        }
+      }
+    ]
+  }
+}

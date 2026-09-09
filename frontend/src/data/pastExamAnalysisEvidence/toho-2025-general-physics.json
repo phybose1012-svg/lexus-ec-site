@@ -1,0 +1,594 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "toho-2025-general-physics",
+    "university_id": "toho",
+    "university_name": "東邦大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般入試",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 120,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "理科は「物理基礎・物理」「化学基礎・化学」「生物基礎・生物」から2科目選択し、選択した2科目を合わせて120分で解答する。原本問題冊子の1ページ目にも科目名の下に「（2科目 120分）」と印刷されている。物理単独の公式試験時間はない。"
+    },
+    "total_points": 75
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/toho/past-exams/working/2025/general/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "d524e7b0477b7d7d5d7aec0aeaa86a68a7d8b4e87f0bc6e10dc1f19268b33ba1",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "1",
+      "sourceTitle": "等加速度運動する台からの斜方投射と相対速度",
+      "requirements": [
+        2.5,
+        2.8,
+        2.3,
+        2.1,
+        3.6
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "使う式は等加速度直線運動の x=\\frac12at^2 だけで、 t_1=2\\sqrt{l/g} 、 t_2=6\\sqrt{l/g} と求めて差を取れば終わる。難しさは計算ではなく、「小球が台上の点Pに落ちた」を「小球の飛行時間＝台が x=l から x=9l まで進む時間」と読み替えるところにある。",
+          "strategyReason": "第1問の入口で、以降の問2〜問4がすべてこの時間を使うため、得意層は最初に確定させる。苦手層にとっては、計算そのものではなく「台上の同じ点Pに落ちた」という一文を飛行時間の条件に翻訳する段階でつまずきやすい。図と本文を往復して意味を取り直す時間が要るので、先に第3問問1・問4や第5問問1のような読み替えの少ない小問を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "問2",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "床から見た小球の水平速度 V_x は一定で、飛行中に小球もPも同じ 8l だけ水平移動する。最高点では鉛直成分が0なので速さは V_x に等しい。式は V_x\\times4\\sqrt{l/g}=8l の一本だが、加速し続ける台と等速で進む小球の水平変位が一致することを納得する段階が要る。",
+          "strategyReason": "問1の飛行時間が出ていれば割り算1回で終わるので、得意層は続けて処理する。苦手層は問1を確保できたときだけ取りに行く。最高点の速さ＝水平成分という一手は典型で再現しやすいが、問1が未確定のままでは着手できないため単独では狙わない。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-1"
+            ],
+            "strong_subject": [
+              "phys-q1-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "問3",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "鉛直成分は最高点までの時間が飛行時間の半分であることから v_y=2\\sqrt{gl} 、水平成分は床から見た V_x から投射時の台の速度 v_1=\\sqrt{gl} を引いて \\sqrt{gl} と、独立な3段階を踏む。台が加速していても鉛直方向の相対速度は変わらないことも押さえる必要があり、工程は多いが各段階は典型である。",
+          "strategyReason": "得意層は問1・問2の結果がそろっているので、台の速度 v_1=\\sqrt{gl} を足すだけで初速度成分が確定し、そのまま問4にも使える。苦手層は問1・問2の2つを先に正解している必要があり、そのうえで「鉛直成分は両方の観測者で同じ」「水平成分だけ台の速度を引く」という2つの相対運動の約束を同時に扱う。ここは加速する観測系という設定に引きずられて符号と引く相手を取り違えやすく、途中で1か所ずれると問4まで連鎖して落ちる。3小問を積み上げて6点を狙うより、第3問問1・問4、第5問問1のような独立した小問に時間を回す方が確実である。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-1",
+              "phys-q1-2"
+            ],
+            "strong_subject": [
+              "phys-q1-1",
+              "phys-q1-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "問4",
+          "difficulty": "基本レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "台から見た初速度の成分が出ていれば \\tan\\theta=v_y/(V_x-v_1)=2\\sqrt{gl}/\\sqrt{gl}=2 と割り算1回で終わる。新しい物理は入らない。",
+          "strategyReason": "単独で見れば割り算1回の最軽量小問だが、台から見た初速度の2成分が確定していなければ書き出す値がない。得意層は問3の直後に無料で回収する。苦手層にとっては問1・問2・問3をすべて正解して初めて到達できる4段目であり、そこまでの所要時間に見合わない。第1問は問1・問2までで区切り、残り時間は第3問・第5問の独立小問に充てる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-3"
+            ],
+            "strong_subject": [
+              "phys-q1-3"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "2",
+      "sourceTitle": "斜面に接したまま回る円錐振り子と離脱条件",
+      "requirements": [
+        3.5,
+        3.2,
+        3.5,
+        2.9,
+        3.7
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "問1",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "棒の長さ・糸の長さ・円の半径が \\frac{\\sqrt3}{2}l:l:\\frac l2 の直角三角形をなすので、糸の張力の板に平行な成分は \\frac{T_{\\mathrm P}}{2} 、板に垂直な成分は \\frac{\\sqrt3}{2}T_{\\mathrm P} と確定する。Pでは重力の板に沿った成分が中心Oと逆向きなので、運動方程式は m\\frac{v^2}{l/2}=\\frac{T_{\\mathrm P}}{2}-mg\\sin\\theta となる。斜面と円運動が重なった立体的な設定を、板上の2次元問題に落とすところが山になる。",
+          "strategyReason": "得意層にとってはここが第2問全体の土台で、張力の分解比 \\frac12:\\frac{\\sqrt3}{2} を一度作れば問2・問4〜問7がすべて同じ図で処理できるため、最優先で立式する。苦手層は、傾いた板の上の円運動という立体設定を板に平行・垂直な2方向へ分解し直す作業に時間を取られ、 mg\\sin\\theta と mg\\cos\\theta の割り当てを取り違えやすい。しかも半径が糸の長さ l ではなく \\frac l2 である点を落とすと以降の6小問がすべて連鎖して崩れる。第2問は問3のみを取りに行き、この土台には手を出さない。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "問2",
+          "difficulty": "基本＋αレベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "板に垂直な方向のつり合い \\frac{\\sqrt3}{2}T_{\\mathrm P}+N_{\\mathrm P}-mg\\cos\\theta=0 に前問の T_{\\mathrm P} を代入して整理するだけで、 N_{\\mathrm P}=(\\cos\\theta-\\sqrt3\\sin\\theta)mg-2\\sqrt3\\frac{mv^2}{l} が出る。糸が板の上方へ引くので垂直抗力を減らす向きに効く、という符号の判断だけが要点である。",
+          "strategyReason": "得意層は問1の直後に同じ図でつり合いを1本立てるだけなので、続けて処理して問5・問7の材料にする。苦手層は問1に着手しない方針なので代入する T_{\\mathrm P} がなく、ここも取れない。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1"
+            ],
+            "strong_subject": [
+              "phys-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "問3",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "PからQへの高さの増加は板に沿って l 進む間の鉛直成分 l\\sin\\theta である。摩擦がなく糸も仕事をしないので \\frac12mv^2=\\frac12mv_{\\mathrm Q}^2+mgl\\sin\\theta の一本で終わり、力の分解は不要である。",
+          "strategyReason": "第2問の中で唯一、張力の分解を経由せずに独立して解ける小問である。使うのは力学的エネルギー保存の1本で、直径 l 分だけ斜面を登ることによる高さ l\\sin\\theta を書ければ答えが出る。苦手層はこの1問だけを第2問から確実に回収し、残りには立ち入らない。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-4",
+          "label": "問4",
+          "difficulty": "基本＋αレベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "Qでの運動方程式は m\\frac{v_{\\mathrm Q}^2}{l/2}=\\frac{T_{\\mathrm Q}}{2}+mg\\sin\\theta で、Pのときと重力成分の符号だけが入れ替わる。前問の v_{\\mathrm Q}^2=v^2-2gl\\sin\\theta を代入して T_{\\mathrm Q}=\\frac{4mv^2}{l}-10mg\\sin\\theta を得る。手数は少ないが、符号の入れ替えを機械的にやると落ちる。",
+          "strategyReason": "式の形だけ見れば問3の結果を代入する軽い小問に見えるが、成立させるには問1で作った「糸の張力の板に平行な成分は \\frac{T}{2} 」という分解が要る。苦手層は問1を捨てる方針なのでこの分解を持っておらず、 T_{\\mathrm Q} をそのまま中心方向の力として扱うと係数が2倍ずれた選択肢に吸い込まれる。加えて重力成分の符号がPと逆になる点も判断が要る。所要は短くても土台が欠けている以上、確度は上がらない。第3問問1・問4や第5問問1のような単独で完結する小問を先に取り、第2問は問3だけで切り上げる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1",
+              "phys-q2-3"
+            ],
+            "strong_subject": [
+              "phys-q2-1",
+              "phys-q2-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-5",
+          "label": "問5",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "Qでも \\frac{\\sqrt3}{2}T_{\\mathrm Q}+N_{\\mathrm Q}-mg\\cos\\theta=0 を立て、 N_{\\mathrm Q}=(\\cos\\theta+5\\sqrt3\\sin\\theta)mg-2\\sqrt3\\frac{mv^2}{l} を得てから差を取る。 v を含む項と \\cos\\theta の項が打ち消し合って 6\\sqrt3mg\\sin\\theta だけが残る構造で、 \\sqrt3 を含む係数計算を最後まで正確に運ぶ必要がある。",
+          "strategyReason": "得意層は問2と同じ形のつり合いをQで1本立てて引き算するだけで、 v の項が消える気持ちのよい構造なので確実に取る。苦手層は問1・問2・問4がすべて前提になるうえ、 \\sqrt3 を含む係数の引き算が続くので、途中の1か所のずれが選択肢の取り違えに直結する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-2",
+              "phys-q2-4"
+            ],
+            "strong_subject": [
+              "phys-q2-2",
+              "phys-q2-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-6",
+          "label": "問6",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "円運動を保つには糸に張力が生じ続ける必要があり、その条件が最も厳しいのは板上で最も高いQである。 T_{\\mathrm Q}=\\frac{4mv^2}{l}-10mg\\sin\\theta>0 から v>\\sqrt{\\frac{5gl\\sin\\theta}{2}} を得る。計算は軽いが、「どこで条件が最も厳しいか」を先に決める判断が本体である。",
+          "strategyReason": "得意層は問4の T_{\\mathrm Q} に不等号を付けるだけで、次の問7への必須材料になるので必ず処理する。苦手層は問4を持っていないため下限を書き出せない。選択肢に (1-\\cos\\theta) 型と \\sin\\theta 型が混ぜてあり、当てずっぽうも効きにくい。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-4"
+            ],
+            "strong_subject": [
+              "phys-q2-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-7",
+          "label": "問7",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "糸がたるまない条件（Qで T_{\\mathrm Q}>0 ）と板から離れない条件（Pで N_{\\mathrm P}>0 ）は v について逆向きに効く。 v の下限をそのまま N_{\\mathrm P}>0 に代入して \\cos\\theta>6\\sqrt3\\sin\\theta を導き、 \\tan\\theta<\\frac1{6\\sqrt3}=\\frac{\\sqrt3}{18} と有理化する。2つの不等式のどちらがどちらの境界を与えるかを見極める必要があり、選択肢には有理化前後の紛らわしい値が並ぶ。",
+          "strategyReason": "得意層でもここは第2問で最も重く、2つの不等式を重ねる論理と \\sqrt3 の有理化が続く。第2問の問1〜問6と第3問・第6問の軽い小問を先に確保し、時間が残ったところで取りに行くのが順当である。苦手層は問2・問6の両方が前提になるため到達しない。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-2",
+              "phys-q2-6"
+            ],
+            "strong_subject": [
+              "phys-q2-2",
+              "phys-q2-6"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q3",
+      "label": "3",
+      "sourceTitle": "導体球殻に囲まれた帯電導体球の電位と電場",
+      "requirements": [
+        4.2,
+        3.5,
+        2,
+        1.8,
+        3.3
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "Bの外側では全電気量 Q が中心にあるのと同じなので V(4a)=\\frac{kQ}{4a} 。導体Bは等電位だから 3a\\leqq r\\leqq4a の全体が同じ値になり、 r=\\frac72a もその範囲に含まれる。使う知識は2つだけで計算も1回である。",
+          "strategyReason": "「導体は等電位」「球の外側は点電荷と同じ」という2つの定石だけで決まり、 r=\\frac72a が導体の厚みの中にあることに気づけば計算は1回で済む。苦手層でも再現性が高く、第3問の他の小問への足がかりにもなるので最優先で取る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "問2",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "真空のすき間では電場が点電荷と同じなので、 r=2a と r=3a の電位差は \\frac{kQ}{2a}-\\frac{kQ}{3a}=\\frac{kQ}{6a} 。ここに前問で確定した V(3a)=V(4a)=\\frac{kQ}{4a} を足して \\frac{5kQ}{12a} を得る。電位そのものではなく電位差だけを点電荷の式から借りる、という手順の意味を理解していないと、 V(2a)=\\frac{kQ}{2a} としてしまう。",
+          "strategyReason": "得意層はこの「電位差を借りて基準に足し戻す」手順を第3問の共通の道具として一度作り、問3・問5へ使い回す。苦手層にとっては手順の意味を取るのに時間が要るが、計算自体は分数の足し算2回で、第3問問1を取ったあとなら道筋が見えている。第3問問4を確保したあとに戻り、時間が残れば取りに行く。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-1"
+            ],
+            "strong_subject": [
+              "phys-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "問3",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "導体Aの内部は等電位なので V\\!\\left(\\frac a2\\right)=V(a) 。真空部分の電位差 V(a)-V(3a)=\\frac{kQ}{a}-\\frac{kQ}{3a}=\\frac{2kQ}{3a} を V(3a)=\\frac{kQ}{4a} に足して \\frac{11kQ}{12a} を得る。問2と同じ手順を距離を変えて繰り返すだけだが、分数の通分でつまずきやすい。",
+          "strategyReason": "得意層は問2で作った手順をそのまま流用できるので、続けて処理するのが速い。苦手層は問1と問2の両方が前提になり、さらに \\frac14+\\frac23 の通分が加わる。第3問では問1と問4を確実に押さえ、残り時間があれば問2を取る方針とし、ここは見送る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-1",
+              "phys-q3-2"
+            ],
+            "strong_subject": [
+              "phys-q3-1",
+              "phys-q3-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-4",
+          "label": "問4",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "Bの外表面を接地すると、Aの電気量による外向きの電気力線はすべて接地側の電荷で終端し、 r>4a の電場は0になる。したがって E(5a)=0 で答えは0倍である。数式変形も数値計算も不要で、接地の意味を電気力線の言葉で説明できるかだけを見ている。計算がないことを理由に易しくはならず、接地を「電位が0になるだけ」と誤解していると答えが出せない。",
+          "strategyReason": "計算工程が実質0で、接地した導体球殻の外側に電場が残らないという知識ひとつで確定する。第4問・第6問の重い小問と同じ配点帯にありながら所要時間が最も短く、得点効率が全27小問で最上位になる。苦手層は真っ先にここを押さえる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-5",
+          "label": "問5",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "接地により V(4a)=V(3a)=0 となる。真空のすき間の電位差は帯電量が変わらないので図1と同じ \\frac{kQ}{6a} であり、 V(2a)=0+\\frac{kQ}{6a}=\\frac{kQ}{6a} 。基準点が無限遠から接地点へ移っても、内部の電位差は変わらないという読み替えが要点である。",
+          "strategyReason": "問2で真空部分の電位差 \\frac{kQ}{6a} を出していれば、接地で基準が0になるぶん問2より計算が軽い。得意層は続けて回収する。苦手層も問2を取れた場合に限り、同じ図を見ながら足し算1回で確保できるので、その順で戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-2"
+            ],
+            "strong_subject": [
+              "phys-q3-2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q4",
+      "label": "4",
+      "sourceTitle": "電場で加速され磁場中で部分円運動する荷電粒子",
+      "requirements": [
+        4,
+        4,
+        4.6,
+        4.1,
+        4.4
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q4-1",
+          "label": "問1",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 3,
+          "difficultyReason": "\\frac12mv_0^2=qV と r=\\frac{mv_0}{qB} はどちらも定石だが、Cの位置を出すには「Oで斜めに入射した円軌道が x 軸と再び交わる点までの距離が 2r\\cos\\theta になる」という幾何を自力で作らなければならない。原本は接弦定理から円周角 \\frac\\pi2-\\theta を導いているが、円の中心が r(\\cos\\theta,\\ \\sin\\theta) にあることから弦を出しても同じ結果になる。図を描き直す判断がこの小問の本体である。",
+          "strategyReason": "得意層でも、まず自分で軌道の円を描いて中心の位置を決めるところに時間がかかる。第2問問1〜問6、第3問、第6問問1〜問3といった手順の決まった小問を先に片づけ、図を描く余裕ができてから戻るのが順当である。苦手層は円軌道の幾何を本番で新たに構成する必要があり、選択肢に符号違い・係数違いが並ぶため当てにも行けない。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-2",
+          "label": "問2",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "3区間を別々に扱う。RS間は a=\\frac{qV}{md} の等加速度運動で t_1=d\\sqrt{\\frac{2m}{qV}} 、RからOまでは等速で t_2=l\\sqrt{\\frac m{2qV}} 、円弧は中心角 \\pi+2\\theta すなわち \\theta=\\frac\\pi3 のとき全円周の \\frac56 で \\frac{5\\pi m}{3qB} 。最後に d\\sqrt{\\frac{2m}{qV}}=2d\\sqrt{\\frac m{2qV}} と根号の形をそろえて足す必要があり、選択肢は (d+2l) と (2d+l) 、中心角 \\frac{2\\pi}{3} ・ \\pi ・ \\frac{5\\pi}{3} の組合せで作られている。処理量が全27小問で最大である。",
+          "strategyReason": "得意層でも半径と入射速度を問1で確定してから入るべきで、さらに中心角が \\pi+2\\theta であること、根号の形をそろえることの2か所で失点しやすい。第2問問7と並ぶ最重量小問なので、確定できる小問を全部押さえたあとに時間を測って取りに行く。苦手層は問1に到達していないため着手しない。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-1"
+            ],
+            "strong_subject": [
+              "phys-q4-1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q5",
+      "label": "5",
+      "sourceTitle": "降下する気球が受信する反射音のドップラー効果",
+      "requirements": [
+        3.4,
+        3.4,
+        3.5,
+        2.7,
+        3.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q5-1",
+          "label": "問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "地表で観測される振動数 f_1=\\frac{V}{V-v}f_0 、Pが受信する反射音の振動数 f=\\frac{V+v}{V}f_1 を続けて書き、 f=\\frac{V+v}{V-v}f_0 から \\frac vV=\\frac{f-f_0}{f+f_0} を得る。反射音を「地表が新たな音源になる」と読み替える定石で、医学部対策を積んだ受験生なら手順を再現できる。",
+          "strategyReason": "反射音のドップラー効果は問題集で繰り返し扱われる典型で、公式2本を続けて書き比の形に直すだけで答えが出る。第5問の他の小問がすべてこの結果を使うので、苦手層でもここは押さえに行く価値がある。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q5-2",
+          "label": "問2",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 3,
+          "difficultyReason": "受信時の高さを h とすると t=0 の高さは h+vT 。音が進んだ距離 VT と気球が降りた距離 vT の和が、 t=0 の高さの往復に等しいので 2(h+vT)=VT+vT が立つ。この一本を書くところが最大の関門で、あとは前問の \\frac vV を代入して h=\\frac{f_0}{f+f_0}VT と整理するだけである。",
+          "strategyReason": "得意層でも、音と気球が同じ時間だけ動いた距離を1本の式にまとめる図が要る。第5問の問1・問3・問4を先に確定させ、時刻 t=0 の高さを主役にした図を描いてから戻るのが速い。苦手層はこの距離関係を自力で立てる必要があり、 h と h+vT の取り違えが起きやすいので見送る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q5-1"
+            ],
+            "strong_subject": [
+              "phys-q5-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q5-3",
+          "label": "問3",
+          "difficulty": "基本レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "f_1=\\frac{V}{V-v}f_0 に v=\\frac{f-f_0}{f+f_0}V を代入して整理すると f_1=\\frac{f+f_0}{2} になる。代入と約分だけで、新しい物理は入らない。",
+          "strategyReason": "問1で書いた式にそのまま代入するだけなので、得意層は流れで処理する。苦手層も問1を確保できていれば追加の物理は不要で、分数の代入と約分1回で取れる。第3問の軽い小問を押さえたあとに戻る候補になる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q5-1"
+            ],
+            "strong_subject": [
+              "phys-q5-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q5-4",
+          "label": "問4",
+          "difficulty": "基本＋αレベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "t=0 の高さは h+vT なので所要時間は \\frac{h+vT}{V} 。 h=\\frac{f_0}{f+f_0}VT と v=\\frac{f-f_0}{f+f_0}V を代入すると \\frac{f_0}{f+f_0}T+\\frac{f-f_0}{f+f_0}T=\\frac{f}{f+f_0}T と分子がきれいにまとまる。使う量は既出で、代入と足し算だけである。",
+          "strategyReason": "見た目は「高さを音速で割る」だけの軽い小問だが、割る高さは受信時の h ではなく発信時の h+vT であり、その h は問2で初めて確定する。得意層は問2を済ませたあとに数十秒で回収できる。苦手層は問2を捨てる方針なので代入する h がなく、 h と h+vT を取り違えると選択肢c・dへ吸い込まれる。ここは深追いせず、第5問は問1と問3までで区切る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q5-1",
+              "phys-q5-2"
+            ],
+            "strong_subject": [
+              "phys-q5-1",
+              "phys-q5-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q5-5",
+          "label": "問5",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 3,
+          "difficultyReason": "地表で観測される振動数は問3の f_1=\\frac{f+f_0}{2} であり、変位は A\\sin2\\pi f_1\\!\\left(t-\\frac{f}{f+f_0}T\\right) と遅れ時間だけずらした形になる。展開すると A\\sin[\\pi((f+f_0)t-fT)] にまとまる。振幅と振動数は変わっても波形の形は保たれる、という理解と、 2\\pi\\times\\frac{f+f_0}{2}=\\pi(f+f_0) の整理が要点である。",
+          "strategyReason": "得意層でも問3と問4の両方を確定させてからでないと式が組めず、選択肢は \\frac{f\\pm f_0}{2} 型と (f\\pm f_0) 型、 fT と \\frac{fT}{2} の組合せで作られているので、最後の整理まで正確に運ぶ必要がある。第5問の他の小問と第6問を先に処理し、残り時間で取りに行く。苦手層は前提2問に到達しない。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q5-3",
+              "phys-q5-4"
+            ],
+            "strong_subject": [
+              "phys-q5-3",
+              "phys-q5-4"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q6",
+      "label": "6",
+      "sourceTitle": "断熱変化する気体によるピストンの単振動",
+      "requirements": [
+        3.9,
+        3.6,
+        3.8,
+        3.5,
+        3.4
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q6-1",
+          "label": "問1",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "y=-l での力は p_1S-mg だが、つり合いの式 p_0S-mg=0 を使うと p_1S-p_0S に化ける。断熱変化から p_1=p_0\\left(1-\\frac{lS}{V_0}\\right)^{-\\gamma} を出し、指数が -\\gamma であることに注意して近似式を当てると p_1=p_0\\left(1+\\frac{\\gamma lS}{V_0}\\right) 。結果は \\frac{\\gamma p_0S^2l}{V_0} である。大気圧と重力をつり合いの式で消す発想と、負の指数への近似の2か所が山になる。",
+          "strategyReason": "得意層にとってはここが第6問の土台で、復元力の係数 \\frac{\\gamma p_0S^2}{V_0} を作れば問2・問3がほぼ自動で決まり、問4でも同じ圧力の式を再利用できるため最優先で処理する。苦手層は、ポアソンの式を負の指数のまま近似する操作が本番で再現しにくく、ここを外すと第6問の4小問すべてが連鎖して落ちるので手を出さない。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q6-2",
+          "label": "問2",
+          "difficulty": "基本レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "前問の復元力から a=-\\frac{\\gamma p_0S^2}{mV_0}y と書けるので、角振動数は S\\sqrt{\\frac{\\gamma p_0}{mV_0}} 、周期は \\frac{2\\pi}{S}\\sqrt{\\frac{mV_0}{\\gamma p_0}} 。単振動の式から周期を読む定型処理だけである。",
+          "strategyReason": "単独では「復元力の係数を m で割って平方根を取る」だけの最短手順に見えるが、その係数 \\frac{\\gamma p_0S^2}{V_0} は問1の断熱近似からしか出てこない。苦手層は問1を捨てる方針なので係数を持っておらず、選択肢は \\gamma が分子・分母のどちらに入るか、 S が分子・分母のどちらかだけで6通りに作られているため当てにも行けない。第6問には入らず、第3問問1・問4や第5問問1のように単独で完結する小問へ時間を回す。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q6-1"
+            ],
+            "strong_subject": [
+              "phys-q6-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q6-3",
+          "label": "問3",
+          "difficulty": "基本＋αレベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "復元力の比例定数を K=\\frac{\\gamma p_0S^2}{V_0} とすると \\frac12Kl^2=\\frac12Kh_1^2+\\frac12mv^2 から v=\\sqrt{\\frac{\\gamma p_0S^2(l^2-h_1^2)}{mV_0}} 。ばね振り子と同じエネルギーの式に当てはめるだけだが、振幅が l であることと l^2-h_1^2 の形を落とさないことが要点である。",
+          "strategyReason": "得意層は問1の係数をそのまま単振動のエネルギー式に入れるだけで取れる。苦手層は問1が前提で、さらに選択肢が (l-h_1)^2 と l^2-h_1^2 、 \\gamma の位置で作り分けられているため、係数を持たないまま形だけで選ぶと外れる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q6-1"
+            ],
+            "strong_subject": [
+              "phys-q6-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q6-4",
+          "label": "問4",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "定積モル比熱を C_p-R と置き換え、 \\Delta U=n(C_p-R)(T_2-T_0) の温度を状態方程式で圧力と体積に直し、 p_2=p_0\\left(1-\\frac{Sh_2}{V_0}\\right)^{-\\gamma} を代入して \\Delta U=\\frac{(C_p-R)p_0V_0}{R}\\left\\{\\left(1-\\frac{Sh_2}{V_0}\\right)^{-\\gamma+1}-1\\right\\} まで整理する。そのうえで指数 -\\gamma+1 にもう一度近似式を当てて (\\gamma-1)(C_p-R)\\frac{p_0Sh_2}{R} を得る。物質量 n が途中で消えること、近似を2度目に使うときの指数の符号、この2点が同時に要求される。",
+          "strategyReason": "得意層でも工程が長く、 C_p-R への置き換え、状態方程式による温度の消去、2度目の近似という3つの関門が続く。第6問の問1〜問3と他の大問の確定小問をすべて押さえてから、時間を測って取りに行く。苦手層は問1の圧力の式が前提であり、そこに到達していない。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q6-1"
+            ],
+            "strong_subject": [
+              "phys-q6-1"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": null
+}

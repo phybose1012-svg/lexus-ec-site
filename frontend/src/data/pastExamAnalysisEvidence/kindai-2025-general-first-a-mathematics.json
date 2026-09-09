@@ -1,0 +1,487 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "kindai-2025-general-first-a-mathematics",
+    "university_id": "kindai",
+    "university_name": "近畿大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-first-a",
+    "exam_method_name": "一般入試・前期（A日程）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 60,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "原本問題冊子に数学60分と明記される。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kindai/past-exams/working/2025/general-first-a/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "1d295542ab6b655429b8a54c1c7dd64df8a0887e0abcc5205fbc0994687c5656",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第Ⅰ問",
+      "sourceTitle": "三角関数を含む対数関数と整数値条件",
+      "requirements": [
+        2.2,
+        3.9,
+        3.5,
+        3.4,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "二倍角公式を代入して整理する定型計算である。",
+          "strategyReason": "後続の基礎となる短い式変形である。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "二次不等式とcosの値域を共通範囲に絞り、角度範囲へ戻す必要がある。",
+          "strategyReason": "真数条件の典型で、単位円の確認まで一本道である。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-1"
+            ],
+            "strong_subject": [
+              "math-q1-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "定義域内で平方完成し、対数の形へ正確に戻す必要がある。",
+          "strategyReason": "平方完成で安定して得点できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-1",
+              "math-q1-2"
+            ],
+            "strong_subject": [
+              "math-q1-1",
+              "math-q1-2"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-4",
+          "label": "(4)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "二次関数の各整数水平線との交点数を角度の解の個数へ対応させる必要がある。",
+          "strategyReason": "場合分けを図で整理すれば処理できるが、数え落としに注意を要する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-1",
+              "math-q1-2",
+              "math-q1-3"
+            ],
+            "strong_subject": [
+              "math-q1-1",
+              "math-q1-2",
+              "math-q1-3"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-5",
+          "label": "(5)",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "底の異なる指数対数式を常用対数で評価し、最大値近傍の二次関数の解数まで数える必要がある。",
+          "strategyReason": "近似計算と解数の対応が長く、最後に回す候補である。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-1",
+              "math-q1-2",
+              "math-q1-3",
+              "math-q1-4"
+            ],
+            "strong_subject": [
+              "math-q1-1",
+              "math-q1-2",
+              "math-q1-3",
+              "math-q1-4"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第Ⅱ問",
+      "sourceTitle": "硬貨列の漸化式と二項確率の最大項",
+      "requirements": [
+        1,
+        3.4,
+        3.6,
+        3.6,
+        3.6
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "組合せと余事象を直接使う基本問題である。",
+          "strategyReason": "典型公式で短時間に独立得点できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2i",
+          "label": "(2)(i)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "末尾が表か裏かに分けて小さいnを漏れなく列挙する必要がある。",
+          "strategyReason": "小規模列挙で確実に回収でき、次問の準備にもなる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2ii",
+          "label": "(2)(ii)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "末尾条件からフィボナッチ型漸化式を立て、10項まで正確に反復する必要がある。",
+          "strategyReason": "漸化式が立てば反復計算で進められる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-2i"
+            ],
+            "strong_subject": [
+              "math-q2-2i"
+            ]
+          }
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(3)",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "条件文を別々の不等式に翻訳し、二項分布の隣接項比で一意な最頻値の条件を導く必要がある。",
+          "strategyReason": "文章条件の解釈と不等式処理が長く、時間配分上は最後の候補である。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第Ⅲ問",
+      "sourceTitle": "球と平面の交円上を動く点と面積最小",
+      "requirements": [
+        3.2,
+        3.4,
+        3,
+        3.4,
+        3.4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "中点座標、距離公式、正三角形の面積を順に用いる基本問題である。",
+          "strategyReason": "公式適用で確実に独立得点できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "対称性から垂足を正三角形の重心と判断し、その座標を使う必要がある。",
+          "strategyReason": "対称性を見抜けば計算は短い。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1"
+            ],
+            "strong_subject": [
+              "math-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-3i",
+          "label": "(3)(i)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "球の半径と中心から平面までの距離に三平方を適用する基本問題である。",
+          "strategyReason": "前問の距離を使う定型処理である。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-2"
+            ],
+            "strong_subject": [
+              "math-q3-2"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-3ii",
+          "label": "(3)(ii)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "球面条件と平面条件を整理し、和の二乗から積を導く必要がある。",
+          "strategyReason": "二つの基本式を連立して順に整理できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-3i"
+            ],
+            "strong_subject": [
+              "math-q3-3i"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-3iii",
+          "label": "(3)(iii)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 7,
+          "difficultyReason": "q,rを二次方程式の実数解とみなし、判別式条件へ変換する必要がある。",
+          "strategyReason": "和と積が得られていれば判別式の典型問題になる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-3ii"
+            ],
+            "strong_subject": [
+              "math-q3-3ii"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-3iv",
+          "label": "(3)(iv)",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 9,
+          "difficultyReason": "ベクトルから面積式を作り、q+rとqrで一変数化した三次式を区間内で増減調査する必要がある。",
+          "strategyReason": "計算量が最も多く、前半の確実な得点後に扱うべき設問である。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-3ii",
+              "math-q3-3iii"
+            ],
+            "strong_subject": [
+              "math-q3-3ii",
+              "math-q3-3iii"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 48,
+        "targetPercent": 48,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 29.6,
+        "maximum": {
+          "points": 48,
+          "minutes": 59.9,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3i",
+            "math-q3-3ii",
+            "math-q3-3iii"
+          ]
+        },
+        "now": {
+          "points": 68,
+          "minutes": 75.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2i",
+            "math-q2-2ii",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3i",
+            "math-q3-3ii",
+            "math-q3-3iii"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 106.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2i",
+            "math-q2-2ii",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3i",
+            "math-q3-3ii",
+            "math-q3-3iii",
+            "math-q3-3iv"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 7.4,
+        "maximum": {
+          "points": 100,
+          "minutes": 58.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2i",
+            "math-q2-2ii",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3i",
+            "math-q3-3ii",
+            "math-q3-3iii",
+            "math-q3-3iv"
+          ]
+        },
+        "now": {
+          "points": 91,
+          "minutes": 52.4,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2i",
+            "math-q2-2ii",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3i",
+            "math-q3-3ii",
+            "math-q3-3iii"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 58.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2i",
+            "math-q2-2ii",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3i",
+            "math-q3-3ii",
+            "math-q3-3iii",
+            "math-q3-3iv"
+          ]
+        }
+      }
+    ]
+  }
+}

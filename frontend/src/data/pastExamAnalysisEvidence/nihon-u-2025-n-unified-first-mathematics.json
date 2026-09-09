@@ -1,0 +1,546 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "nihon-u-2025-n-unified-first-mathematics",
+    "university_id": "nihon-u",
+    "university_name": "日本大学医学部",
+    "academic_year": 2025,
+    "exam_method_id": "n-unified-first",
+    "exam_method_name": "N全学統一方式第1期",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 60,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "2025年度日本大学一般選抜N全学統一方式の時間割で、数学②は14:40〜15:40の60分枠。原本問題冊子p.1の科目欄も「数学（60分）」と印刷している。理科は2科目一括枠だが、数学は独立した60分枠である。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/nihon-u/past-exams/working/2025/n-unified-first/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "f3c465dc9151c297269c6594744e65818a174cb81c95f953901cae3f26eec0af",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "I",
+      "sourceTitle": "小問集合：集合、2次関数の最小値、桁数、複素数の極形式、加法定理",
+      "requirements": [
+        0.4,
+        2.9,
+        2.2,
+        2.8,
+        2.2
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "（1）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "連立1次不等式と2次不等式を解く操作自体は基本だが、 A\\cap B=\\varnothing と A\\cup B から B を差集合として取り出す読み替えと、端点を含むか含まないかの判定を両方そろえる必要がある。",
+          "strategyReason": "不等式を解く手順が定型で、独立した小問集合の先頭にある。仮配点6点を短時間で回収でき、後続小問への依存もない。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "（2）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "x について平方完成して m=-a^2+a+1 を得たあと、 a についてもう一度平方完成するだけで、教科書の典型手順で完結する。",
+          "strategyReason": "平方完成を2回続けるだけの再現性の高い手順で、仮配点5点を2分程度で確保できる。科目平均を大きく上回る得点効率になる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-3",
+          "label": "（3）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "常用対数をとって \\log_{10}30^{30}=30(1+\\log_{10}3) を計算し、整数部分から桁数を読む定番処理である。",
+          "strategyReason": "桁数の定石がそのまま使え、掛け算1回で答えに届く。科目内で最も得点効率の高い小問の一つであり、真っ先に確保する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-4",
+          "label": "（4）",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "分子・分母をそれぞれ極形式に直し、ド・モアブルの定理で2乗と商を処理する典型問題である。ただし絶対値 \\dfrac{(2\\sqrt3)^2}{\\sqrt2} の整理と偏角 \\dfrac\\pi3\\times2-\\dfrac\\pi4 の通分を両方正確に通す必要がある。",
+          "strategyReason": "極形式へ直す方針自体は定型で、得意層なら3分強で6点を回収できるため今解く。苦手層にとっては工程が長い。分子の2乗、分母の有理化、偏角の引き算と通分という3段階があり、どこか1か所で符号や分母を落とすと最後の5空所がまとめて外れる構造になっている。苦手層の想定時間は初期判断4倍・解答実行1.5倍で約6.3分と、同じ大問Iの（2）（3）（5）の2〜3倍かかる。得点効率も科目平均ペースを下回る。まず（1）（2）（3）（5）と大問IIの確率、大問IVの（1）（2）を確保し、時間が残っていれば戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-5",
+          "label": "（5）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "正接の加法定理へ代入して \\tan(\\alpha+\\beta)=1 を得るだけで、分子と分母がともに \\dfrac{29}{35} になり約分も簡単である。",
+          "strategyReason": "加法定理の公式1本で完結し、数値も分母35でそろうため計算が短い。仮配点5点を最短で回収できる小問であり、両層とも先に処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "II",
+      "sourceTitle": "袋から2個の玉を取り出す確率と条件付き確率",
+      "requirements": [
+        0,
+        2,
+        2.5,
+        3,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "（1）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "標本空間 {}_{12}\\mathrm{C}_2=66 を押さえたうえで、赤青・青白・白赤の3通りを漏れなく数える。1つの場合分けを落とすと答えが変わるため、数え上げの正確さが要る。",
+          "strategyReason": "組合せの計算だけで完結し、数値も小さい。次の（2）の土台にもなるので、両層とも早い段階で確保する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "（2）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "条件付き確率の定義に沿って、分母を「色が異なる」、分子を「色が異なりかつ1個が赤玉」と設定する。分子が赤青と白赤の2通りの和であることを取り違えなければ計算は軽い。",
+          "strategyReason": "（1）で数えた3通りの内訳をそのまま流用でき、追加の計算はほとんどない。（1）を解いた直後に続けて処理するのが最も効率がよい。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1"
+            ],
+            "strong_subject": [
+              "math-q2-1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "III",
+      "sourceTitle": "三角形の垂線の足の内分比と垂心の位置ベクトル",
+      "requirements": [
+        4,
+        3.5,
+        3.5,
+        3.5,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "（1）",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "内積から \\cos\\theta=\\dfrac12 を出し、余弦定理で AB=\\sqrt7 を求め、さらに \\triangle OAH と \\triangle OBH の三平方の定理を連立して AH を決める、という3段階の統合が必要である。各段階は典型手順だが根号を含む文字計算が続く。",
+          "strategyReason": "得意層には余弦定理と三平方を続けるだけの定型問題なので今解く。苦手層には見た目より重い。問題面に図がないため自分で三角形と垂線を描き起こすところから始まり、 AH=k と置いて 9-k^2=4-(\\sqrt7-k)^2 を解く過程で \\sqrt7 を含む展開と有理化が入る。苦手層の想定時間は初期判断4倍・解答実行1.5倍で約8.3分に達し、仮配点6点に対する得点効率は科目平均ペースを大きく下回る。同じ約8分で大問Iの（2）（3）（5）と大問IVの（1）（2）を合わせて24点分処理できるため、そちらを先に確定させる。（2）はこの結果に依存するので、（1）を捨てると大問III全体が落ちる構造になっており、苦手層は大問IIIを丸ごと後回しの対象外とするのが現実的である。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "（2）",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 7,
+          "difficultyReason": "垂心を2本の垂直条件で押さえる典型問題である。 \\overrightarrow{AP}\\cdot\\overrightarrow{OB}=0 から1本の関係式を作り、 P が O から AB への垂線 OH 上にあることを使ってもう1つの自由度を消す、という2つの条件の組み合わせを自分で選ぶ必要がある。",
+          "strategyReason": "得意層でも（1）の結果を確定させてから取りかかる必要があり、垂直条件と OH 上という2条件を扱うので、大問I・II・IVの軽い小問を先に回収してから戻る。苦手層は（1）が前提であり、その（1）自体を捨てる判断になっているため、ここも取りにいかない。仮に（1）が解けていても、 \\overrightarrow{OP}=k\\overrightarrow{OH} と置く発想は本番で自力再現しにくい。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1"
+            ],
+            "strong_subject": [
+              "math-q3-1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q4",
+      "label": "IV",
+      "sourceTitle": "指数関数の2曲線と直線で囲まれた図形に含まれる格子点",
+      "requirements": [
+        1.9,
+        3.1,
+        3.3,
+        3.4,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "（1）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "2^{t}=X と置けば X^2-2X-9999=0 という2次方程式になる。 9999=101\\times99 と因数分解できることに気づけば一気に決まるが、その分解を見つける一手間がある。",
+          "strategyReason": "置き換えて2次方程式にする手順は定型で、解の公式でも到達できる。短時間で仮配点4点を確保でき、（2）の入口にもなるので両層とも先に処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-2",
+          "label": "（2）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "上限は 2^6<101<2^7 から t の整数部分を読み、下限は 4^{x}=2^{x+1} を解いて2曲線の交点 x=1 を求める。どちらも計算は軽いが、上限と下限で見るべきものが違う点を整理する必要がある。",
+          "strategyReason": "（1）の 2^{t}=101 さえ出ていれば、2の累乗を並べて挟むだけで上限が決まり、下限も指数の等式1本で出る。計算量が小さく仮配点5点を短時間で回収できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q4-1"
+            ],
+            "strong_subject": [
+              "math-q4-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q4-3",
+          "label": "（3）",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 7,
+          "difficultyReason": "各整数 x=k の縦線上で 2^{k+1}\\leqq y\\leqq 4^{k} を満たす整数 y が 4^{k}-2^{k+1}+1 個であることを立式し、これを k=1 から 6 まで足す。境界を含むための「 +1 」の扱いと、2つの等比数列の和を別々に処理する複雑な計算が同時に要求される。",
+          "strategyReason": "格子点の個数を縦の区間ごとに数えて総和にまとめる型は典型だが、実行は重い。各区間の個数を 4^{k}-2^{k+1}+1 と立てる段階で境界を含む「 +1 」を落としやすく、続く \\sum4^{k}=5460 、 \\sum2^{k+1}=252 という4桁の等比数列の和が2本入る。得意層でも約5.0分かかるため、大問I・II・IVの前2問・大問Vの（1）（2）を先に確定させてから戻る。苦手層は初期判断4倍・解答実行1.5倍で約9.3分となり、残り時間で回収できる見込みが立たない。ここを捨て、大問Iの（4）や大問Vの（1）、大問VIの（1）へ時間を回す。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q4-2"
+            ],
+            "strong_subject": [
+              "math-q4-2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q5",
+      "label": "V",
+      "sourceTitle": "直線に沿って並ぶ正方形列の面積と無限等比級数",
+      "requirements": [
+        2.2,
+        3.7,
+        3.1,
+        3.7,
+        3.6
+      ],
+      "subquestions": [
+        {
+          "id": "math-q5-1",
+          "label": "（1）",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "計算自体は1次方程式1本だが、問題面に図がなく、どの辺が縦でどの辺が横かを文章だけから復元しなければならない。 A_1 の x 座標を x_1 と置き、縦の長さ (\\sqrt3-1)x_1 と横の長さ a-x_1 が等しいという式にたどり着けるかが分岐点になる。",
+          "strategyReason": "得意層は図を起こせば1次方程式1本で片づくため今解く。苦手層には、式が易しいのに取りにいかない判断になる。再現手順は「 A_1 の x 座標を x_1 と置き、縦の長さ (\\sqrt3-1)x_1 と横の長さ a-x_1 が等しいとする」の一手だが、そこへ至るには問題面に無い図を自分で描き、4点 A_0,A_1,B_1,C_1 の位置関係を文章だけから復元しなければならない。ここを取り違えると縦横の長さが入れ替わり、以降すべてが崩れる。苦手層の想定時間は初期判断4倍・解答実行1.5倍で7.5分に達し、得点効率指数40.0は本問題18小問中で最も低い。苦手層が本番で使える解答実行時間は初期判断35.6分を差し引いた24.4分しかなく、大問I・II・IVの「今解く！」を回収した時点で残りは4分弱である。作図から始めるこの小問は、その残り時間では完了しない。大問Vは（2）（3）とも本問を前提とするため、大問Vごと取りにいかない。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q5-2",
+          "label": "（2）",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "\\{S_k\\} が公比 \\dfrac13 の等比数列であることを見抜き、部分和の比をとる。分子分母の共通因数がすべて約分されて \\dfrac{1-(1/3)^8}{1-(1/3)^4} だけが残る構造に気づき、さらに 1-X^2=(1-X)(1+X) の形で整理する必要がある。",
+          "strategyReason": "得意層は相似比から公比 \\dfrac13 を即断でき、比をとれば係数が消えるので今解く。苦手層は前提の（1）を後回しにしており、さらに S_0 の立式と等比数列の和の公式を続けて使う工程が入る。苦手層の想定時間は約6.5分で、同じ時間で確保できる大問Iや大問IVの小問の方が得点効率が高い。（1）が解けた場合に限り、時間が残っていれば検討する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q5-1"
+            ],
+            "strong_subject": [
+              "math-q5-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q5-3",
+          "label": "（3）",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 6,
+          "difficultyReason": "無限等比級数の和 (2-\\sqrt3)a^2=1 を作るところまでは定型だが、そこから a^2=2+\\sqrt3 の分母を有理化し、 \\sqrt{2+\\sqrt3} の二重根号を \\dfrac{\\sqrt6+\\sqrt2}{2} まで外す処理が続く。二重根号を外す手順を覚えているかどうかで結果が分かれる。",
+          "strategyReason": "得意層でも二重根号を外す最後の一手で止まりやすいので、大問I・II・IV・VIの取りやすい小問を確保してから戻る。苦手層は前提の（1）を後回しにしており、無限等比級数の和と二重根号という2つの山を続けて越える必要がある。想定時間は約6.5分で、確保できる仮配点6点に対して得点効率は科目平均ペースを下回る。ここは取りにいかない。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q5-1"
+            ],
+            "strong_subject": [
+              "math-q5-1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q6",
+      "label": "VI",
+      "sourceTitle": "対数の2乗の関数への接線と、囲まれた図形の面積・y軸回転体の体積",
+      "requirements": [
+        3.1,
+        4.4,
+        4.1,
+        3.7,
+        3.4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q6-1",
+          "label": "（1）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "接点を (t,(\\log t)^2) と置いて接線を作り、原点を代入して \\log t(\\log t-2)=0 を導く典型手順である。 \\log t=0 では傾きが 0 になり「傾きが正」の条件に反することを確認して捨てる、という場合の選択が入る。",
+          "strategyReason": "得意層には接点を文字で置く定石がそのまま通るので今解く。苦手層でも手順自体は再現しやすいが、合成関数の微分と接線の立式を続けるため実行に時間がかかる。大問I・II・IVの確実な小問を確保したうえで、残り時間があればここへ戻る。大問VIの残り2問はこの結果に依存するので、まずここだけを取りにいく。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q6-2a",
+          "label": "（2）前半・図形Dの面積",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 5,
+          "difficultyReason": "三角形部分の積分から曲線下の積分を引く構成は定型だが、 \\int(\\log x)^2dx を部分積分で2回処理する必要がある。積分区間が 0 から始まる直線側と 1 から始まる曲線側で異なる点も押さえなければならない。",
+          "strategyReason": "得意層でも部分積分を2回続ける工程があるため、大問I・II・IV・Vの軽い小問を確保してから戻る。苦手層は前提の（1）が後回しであり、そのうえで (\\log x)^2 の部分積分2回という長い計算に入ることになる。想定時間は約7.1分で、仮配点5点に対する得点効率は科目内で最も低い部類に入る。同じ7分で大問Iの（4）と大問Vの（1）を合わせて11点分取りにいける。ここは取らない。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q6-1"
+            ],
+            "strong_subject": [
+              "math-q6-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q6-2b",
+          "label": "（2）後半・y軸回転体の体積",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 6,
+          "difficultyReason": "y についての積分 \\pi\\int_0^4x^2dy を y=(\\log x)^2 の微分で x の積分に置き換え、さらに線分 OP の回転でできる円錐の体積を差し引く、という2段構えの構成を自分で立てる必要がある。置換後の \\int x\\log x\\,dx も部分積分になり、処理量が科目内で最も大きい。",
+          "strategyReason": "得意層でも科目内で最も工程が長く、置換と部分積分と円錐の差し引きが重なる。他の小問を確保してから最後に戻る位置づけになる。苦手層は前提の（1）を後回しにしているうえ、 y 軸回転を x の積分に置き換える発想を本番で再現するのは難しい。想定時間は約9.4分で、仮配点6点に対する得点効率は科目内で最も低い。ここを捨てて、大問Iの（4）、大問Vの（1）、大問VIの（1）へ時間を回す。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q6-1"
+            ],
+            "strong_subject": [
+              "math-q6-1"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 42,
+        "targetPercent": 42,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 35.6,
+        "maximum": {
+          "points": 42,
+          "minutes": 58.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "now": {
+          "points": 41,
+          "minutes": 56.2,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 52,
+          "minutes": 64.8,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q6-1"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 8.9,
+        "maximum": {
+          "points": 100,
+          "minutes": 57.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3",
+            "math-q5-1",
+            "math-q5-2",
+            "math-q5-3",
+            "math-q6-1",
+            "math-q6-2a",
+            "math-q6-2b"
+          ]
+        },
+        "now": {
+          "points": 69,
+          "minutes": 37.7,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q5-1",
+            "math-q5-2",
+            "math-q6-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 57.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3",
+            "math-q5-1",
+            "math-q5-2",
+            "math-q5-3",
+            "math-q6-1",
+            "math-q6-2a",
+            "math-q6-2b"
+          ]
+        }
+      }
+    ]
+  }
+}

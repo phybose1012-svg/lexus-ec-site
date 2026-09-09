@@ -1,0 +1,453 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "st-marianna-2025-general-early-mathematics",
+  "route": {
+    "university": "st-marianna",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/st-marianna/2025/mathematics/analysis/"
+  },
+  "university": "聖マリアンナ医科大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "一般選抜（前期）",
+  "duration": "数学 90分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "式と証明",
+  "summary": "第1問は式と証明、第2問は場合の数、第3問は三角関数・2次関数、第4問は平面上の曲線・積分法。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "title": "累乗根の定義と公式の証明",
+      "subtitle": "式と証明",
+      "summary": "正の実数のn乗根を定義し、指数法則と正値性を用いて累乗根の公式を証明する。",
+      "studyAction": "定義の記述。指数法則",
+      "requirements": [
+        1,
+        3.1,
+        1.5,
+        3,
+        3.1
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "title": "正の実数aのn乗根を、n乗してaとなる正の数として定義する。",
+          "note": "定義を問う短い得点源。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "title": "両辺のn乗がa^mで一致し、両者が正であることから累乗根の公式を示す。",
+          "note": "方針は短いが証明の完結性が必要。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 8
+        }
+      ],
+      "questionsPath": "/past-exam-library/st-marianna/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/st-marianna/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "title": "重複順列と隣接しない文字列",
+      "subtitle": "場合の数",
+      "summary": "a,b,cの重複順列を数え、cを除く操作を介して同じ文字が隣接しない語を分類する。",
+      "studyAction": "重複順列。両端固定",
+      "requirements": [
+        1.4,
+        2.2,
+        2.8,
+        3.2,
+        3.4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "title": "a3個、b4個、c3個の重複順列を数える。",
+          "note": "公式適用で確実に取れる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)",
+          "title": "左端をaに固定し、残る9文字の重複順列を数える。",
+          "note": "(1)の自然な応用。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(3)",
+          "title": "左端a・右端bを固定し、残る8文字の重複順列を数える。",
+          "note": "端固定の反復で処理できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q2-4",
+          "label": "(4)",
+          "title": "操作d後の語からcの挿入位置を復元し、2種類の語の原像数を数える。",
+          "note": "条件の翻訳に時間を要する。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q2-5",
+          "label": "(5)",
+          "title": "a,bの並びを隣接箇所数で分類し、cの挿入数を合計する。",
+          "note": "列挙と分類の負荷が高い。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 6
+        }
+      ],
+      "questionsPath": "/past-exam-library/st-marianna/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/st-marianna/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "title": "絶対値付き三角関数の値域と共有点",
+      "subtitle": "三角関数・2次関数",
+      "summary": "t=sin xで絶対値付き三角関数を区分二次関数へ変換し、値域と解の個数を調べる。",
+      "studyAction": "倍角公式。絶対値の場合分け",
+      "requirements": [
+        3.8,
+        3,
+        3,
+        3.3,
+        4.3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "title": "絶対値内3-4t^2の符号から下に凸でない枝のt範囲を求める。",
+          "note": "変換と不等式は定型的。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "title": "区分二次関数のグラフから最大値と最小値を求める。",
+          "note": "(1)からグラフを描ければ得点可能。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)",
+          "title": "tの解に対応するxの個数を数え、y=3との共有点数を求める。",
+          "note": "t解をx解へ戻す個数判定が核心。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q3-4",
+          "label": "(4)",
+          "title": "水平線との交点が6個となる高さkの開区間をグラフから特定する。",
+          "note": "共有点数の境界判定が難しい。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 7
+        }
+      ],
+      "questionsPath": "/past-exam-library/st-marianna/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/st-marianna/2025/mathematics/answers/#major-question-03"
+    },
+    {
+      "id": "math-q4",
+      "label": "第4問",
+      "title": "極方程式で表された放物線と面積",
+      "subtitle": "平面上の曲線・積分法",
+      "summary": "2つの極方程式を直交座標の放物線へ変換し、対称性と積分から囲まれた面積を求める。",
+      "studyAction": "極座標。直交座標への変換",
+      "requirements": [
+        3.6,
+        4.1,
+        3.6,
+        3.8,
+        4.1
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "(1)",
+          "title": "2つの極方程式を等置し、交点の偏角と動径を求める。",
+          "note": "極方程式の等置で直接求められる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q4-2",
+          "label": "(2)",
+          "title": "r-rsinθ=2をx,yで表し、C1を放物線の方程式へ変換する。",
+          "note": "極座標から直交座標への定型変換。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q4-3",
+          "label": "(3)",
+          "title": "r+rcosθ=2をx,yで表し、C2の方程式とyの2枝を求める。",
+          "note": "(2)と同型で処理できる。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q4-4",
+          "label": "(4)",
+          "title": "2曲線の対称性と交点を用い、差の積分から囲まれた面積を求める。",
+          "note": "記述量と計算量が大きい最終問題。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 9
+        }
+      ],
+      "questionsPath": "/past-exam-library/st-marianna/2025/mathematics/questions/#major-question-04",
+      "answersPath": "/past-exam-library/st-marianna/2025/mathematics/answers/#major-question-04"
+    }
+  ],
+  "difficultyCounts": [
+    2,
+    4,
+    6,
+    3
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 90,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 26,
+        "targetPercent": 26,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 70,
+        "maximum": {
+          "points": 26,
+          "minutes": 89.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q4-1"
+          ]
+        },
+        "now": {
+          "points": 38,
+          "minutes": 101.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q4-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 78,
+          "minutes": 163.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "title": "数学が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 26,
+          "minutes": 89.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q4-1"
+          ]
+        },
+        "additional": [],
+        "routeKind": "replacement",
+        "replaced": [
+          {
+            "id": "math-q2-3",
+            "label": "第2問 (3)"
+          },
+          {
+            "id": "math-q3-1",
+            "label": "第3問 (1)"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 68,
+        "targetPercent": 68,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 17.5,
+        "maximum": {
+          "points": 85,
+          "minutes": 88.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "now": {
+          "points": 78,
+          "minutes": 79.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 113.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q2-5",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3",
+            "math-q4-4"
+          ]
+        },
+        "title": "数学が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 78,
+          "minutes": 79.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "additional": []
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/st-marianna/past-exams/working/2025/general-early/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "3c351f815d410b787789bab41fab776d8baf0a8f6a2b7b6a68aa1a0945a8bfa8",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/st-marianna/2025/mathematics/questions/",
+    "answers": "/past-exam-library/st-marianna/2025/mathematics/answers/",
+    "university": "/past-exam-library/st-marianna/"
+  }
+}

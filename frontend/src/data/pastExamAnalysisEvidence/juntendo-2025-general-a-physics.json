@@ -1,0 +1,504 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "juntendo-2025-general-a-physics",
+    "university_id": "juntendo",
+    "university_name": "順天堂大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-a",
+    "exam_method_name": "一般選抜A方式",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 120,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "理科は物理・化学・生物から2科目を選択し、2科目合計120分で解答する。問題冊子にも「2科目120分」と明記され、物理単独の公式時間はない。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/juntendo/past-exams/working/2025/general-a/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "99f4cb2447086b513e877e0893e3c2813470b0dfd8dd110810fd209a2859dc7b",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-mq01",
+      "label": "Ⅰ 第1問",
+      "sourceTitle": "小問集合：力学・波動・熱力学・電場",
+      "requirements": [
+        3.8,
+        3.9,
+        2.8,
+        1.8,
+        3.2
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "Ⅰ第1問 問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "上端まわりのモーメントと鉛直方向の力のつり合いを順に使う標準問題である。",
+          "strategyReason": "公式または標準的な立式を短く再現でき、先に回収する価値が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "Ⅰ第1問 問2",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "離脱条件を垂直抗力0と読み、二つの式から速度を消去する必要がある。",
+          "strategyReason": "解法は再現できるが処理量または条件整理が重い。短い小問を先に終え、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "Ⅰ第1問 問3",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "グラフから振幅0.5 m、周期0.8 sを読み、進行波の遅れ t-x/v を入れる基本処理である。",
+          "strategyReason": "公式または標準的な立式を短く再現でき、先に回収する価値が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "Ⅰ第1問 問4",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "波長から媒質1の速さを出し、屈折の法則を波の速さの比へ適用する典型問題である。",
+          "strategyReason": "公式または標準的な立式を短く再現でき、先に回収する価値が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-5a",
+          "label": "Ⅰ第1問 問5（a）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "P\\Delta V=\\frac52nRT と PV=nRT を比べるだけの基本問題である。",
+          "strategyReason": "公式または標準的な立式を短く再現でき、先に回収する価値が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-5b",
+          "label": "Ⅰ第1問 問5（b）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "定圧変化の仕事から \\Delta T を求め、 Q=\\Delta U+W へ代入する標準連鎖である。",
+          "strategyReason": "公式または標準的な立式を短く再現でき、先に回収する価値が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-6a",
+          "label": "Ⅰ第1問 問6（a）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "E=kQ/r^2 に球面積 4\\pi r^2 を掛けるガウスの法則の導入問題である。",
+          "strategyReason": "公式または標準的な立式を短く再現でき、先に回収する価値が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-6b",
+          "label": "Ⅰ第1問 問6（b）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "円筒側面だけをガウス面として選び、総電荷 \\sigma l と面積 2\\pi rl を対応させる必要がある。",
+          "strategyReason": "解法は再現できるが処理量または条件整理が重い。短い小問を先に終え、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-mq02",
+      "label": "Ⅰ 第2問",
+      "sourceTitle": "木片へ打ち込まれる弾丸と単振動",
+      "requirements": [
+        4.2,
+        4.3,
+        3.5,
+        2.8,
+        3.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1a",
+          "label": "Ⅰ第2問 問1（a）",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "弾丸に一定力 -f が働く等加速度運動として v=v_0-ft/m とする。",
+          "strategyReason": "公式または標準的な立式を短く再現でき、先に回収する価値が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-1b",
+          "label": "Ⅰ第2問 問1（b）",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "作用反作用で弾丸から木片への力を +f 、ばね力を -kx と符号付きで合成する。",
+          "strategyReason": "公式または標準的な立式を短く再現でき、先に回収する価値が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-1c",
+          "label": "Ⅰ第2問 問1（c）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "一定外力を含む運動方程式から振動中心をずらし、初期条件を適用する必要がある。",
+          "strategyReason": "解法は再現できるが処理量または条件整理が重い。短い小問を先に終え、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "Ⅰ第2問 問2",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "二物体の速度式、角振動数、指定時刻を結びつける式変形が長く、分母整理まで負荷が高い。",
+          "strategyReason": "複数段階の式変形または前問依存が強く、苦手層では計算ミスにさらされる。高効率の独立小問を優先して本問は見送る。 得意層も同じ配点帯の短問を先に処理してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "Ⅰ第2問 問3",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "前問の複雑な f と単振動速度を力積の関係へ代入し、式を整理する必要がある。",
+          "strategyReason": "複数段階の式変形または前問依存が強く、苦手層では計算ミスにさらされる。高効率の独立小問を優先して本問は見送る。 得意層も同じ配点帯の短問を先に処理してから戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-2"
+            ],
+            "strong_subject": [
+              "phys-q2-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-4",
+          "label": "Ⅰ第2問 問4",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "合体前の時刻に、一体後の単振動の半周期を加える構造を読み取る問題である。",
+          "strategyReason": "解法は再現できるが処理量または条件整理が重い。短い小問を先に終え、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-2"
+            ],
+            "strong_subject": [
+              "phys-q2-2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-mq03",
+      "label": "Ⅰ 第3問",
+      "sourceTitle": "球形容器内の粒子と光子",
+      "requirements": [
+        3.5,
+        4,
+        2.6,
+        1.6,
+        3
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-a1",
+          "label": "Ⅰ第3問 A 問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "壁に垂直な速度成分 v\\cos\\theta の向きだけが反転する基本的な弾性衝突である。",
+          "strategyReason": "公式または標準的な立式を短く再現でき、先に回収する価値が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-a2",
+          "label": "Ⅰ第3問 A 問2",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "移動距離を速さで割って衝突間隔を出し、その逆数を取るだけである。",
+          "strategyReason": "公式または標準的な立式を短く再現でき、先に回収する価値が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-a3",
+          "label": "Ⅰ第3問 A 問3",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "力積毎秒を平均力に直し、球面積 4\\pi r^2 で割る段階までつなぐ必要がある。",
+          "strategyReason": "解法は再現できるが処理量または条件整理が重い。短い小問を先に終え、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-a1",
+              "phys-q3-a2"
+            ],
+            "strong_subject": [
+              "phys-q3-a1",
+              "phys-q3-a2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-b4",
+          "label": "Ⅰ第3問 B 問4",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "粒子の式で mv を hf/c 、速さを c と読み替えると入射角が消える。",
+          "strategyReason": "公式または標準的な立式を短く再現でき、先に回収する価値が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-b5",
+          "label": "Ⅰ第3問 B 問5",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "前問の光子1個あたりの力に N を掛け、球面積で割る標準処理である。",
+          "strategyReason": "公式または標準的な立式を短く再現でき、先に回収する価値が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-b4"
+            ],
+            "strong_subject": [
+              "phys-q3-b4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-b6",
+          "label": "Ⅰ第3問 B 問6",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "前問の式と体積公式を比べれば E/V=3p と直ちに出る。",
+          "strategyReason": "公式または標準的な立式を短く再現でき、先に回収する価値が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-b5"
+            ],
+            "strong_subject": [
+              "phys-q3-b5"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-mq04",
+      "label": "Ⅱ",
+      "sourceTitle": "磁場中を運動する金属棒",
+      "requirements": [
+        4.2,
+        4.2,
+        3.7,
+        2.9,
+        3.9
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q4-1",
+          "label": "Ⅱ 問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "回路面積 S=x^2\\tan\\theta を作り、一次の微小変化だけを残す標準導出である。",
+          "strategyReason": "公式または標準的な立式を短く再現でき、先に回収する価値が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-2",
+          "label": "Ⅱ 問2",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "誘導起電力と抵抗がともに x に比例し、比で x が消えることを確認する。",
+          "strategyReason": "公式または標準的な立式を短く再現でき、先に回収する価値が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-1"
+            ],
+            "strong_subject": [
+              "phys-q4-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-3",
+          "label": "Ⅱ 問3",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "電流、棒の長さ、磁場を順に掛け、力の向きをレンツの法則で判定する必要がある。",
+          "strategyReason": "解法は再現できるが処理量または条件整理が重い。短い小問を先に終え、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-2"
+            ],
+            "strong_subject": [
+              "phys-q4-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-4a",
+          "label": "Ⅱ 問4（a）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "問題文の誘導に沿って保存量へ初期条件 x=0,v=v_0 を代入する。",
+          "strategyReason": "解法は再現できるが処理量または条件整理が重い。短い小問を先に終え、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-3"
+            ],
+            "strong_subject": [
+              "phys-q4-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-4b",
+          "label": "Ⅱ 問4（b）",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "終端条件を速度式へ代入して正の平方根を選ぶ標準的な後続問題である。",
+          "strategyReason": "解法は再現できるが処理量または条件整理が重い。短い小問を先に終え、残り時間で戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-4a"
+            ],
+            "strong_subject": [
+              "phys-q4-4a"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-4c",
+          "label": "Ⅱ 問4（c）",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 5,
+          "difficultyReason": "速度の二次式を運動エネルギー差へ代入して展開するか、時間積分を位置積分へ変換する必要がある。",
+          "strategyReason": "複数段階の式変形または前問依存が強く、苦手層では計算ミスにさらされる。高効率の独立小問を優先して本問は見送る。 得意層も同じ配点帯の短問を先に処理してから戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-4a"
+            ],
+            "strong_subject": [
+              "phys-q4-4a"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": null
+}

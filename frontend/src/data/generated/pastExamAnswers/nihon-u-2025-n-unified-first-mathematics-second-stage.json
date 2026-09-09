@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "lexus-past-exam-answer-page.v1",
+  "packageId": "nihon-u-2025-n-unified-first-mathematics-second-stage",
+  "route": {
+    "university": "nihon-u",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/nihon-u/2025/mathematics-n-unified-first-second-stage/answers/"
+  },
+  "university": {
+    "id": "nihon-u",
+    "name": "日本大学医学部"
+  },
+  "exam": {
+    "year": "2025",
+    "label": "N全学統一方式第1期",
+    "stage": "二次試験",
+    "duration": "数学 60分"
+  },
+  "subject": {
+    "id": "mathematics",
+    "name": "数学",
+    "english": "MATHEMATICS"
+  },
+  "document": {
+    "role": "answers",
+    "pageUnit": "major_question",
+    "majorQuestions": [
+      {
+        "id": "major-question-01",
+        "label": "第1問",
+        "order": 1,
+        "html": "<article class=\"source-page-card major-question-card answer-major-card\" id=\"major-question-01\" data-major-question-id=\"major-question-01\"><h2>第1問 解答・解説</h2><div class=\"answer-explanation\"><section class=\"answer-explanation-section\"><h3>(1)　絶対値の符号が変わるx=0で分ける</h3><aside class=\"source-note answer-note\"><strong>最初の一手</strong><p>積分区間−1≦x≦2の途中で|x|の式が変わるため、x=0で区間を二つに分けます。</p></aside><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-2a5ba11390a9\"><span class=\"answer-formula__purpose\">絶対値の符号が変わるx=0で分ける</span><div class=\"answer-formula__math\" data-katex=\"\\int_{-1}^{2}(x+|x|+2)^2dx=\\int_{-1}^{0}4dx+4\\int_{0}^{2}(x+1)^2dx\" data-display-mode=\"true\"></div></div><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-2a5ba11390a9\"><span class=\"answer-formula__purpose\">絶対値の符号が変わるx=0で分ける</span><div class=\"answer-formula__math\" data-katex=\"=4+4\\left(9-\\frac13\\right)=\\frac{116}{3}\" data-display-mode=\"true\"></div></div></section><section class=\"answer-explanation-section\"><h3>(2)　指数の微分係数2を調整する</h3><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-c9bede26382d\"><span class=\"answer-formula__purpose\">指数の微分係数2を調整する</span><div class=\"answer-formula__math\" data-katex=\"\\int_{1}^{\\log2}e^{2x}dx=\\left[\\frac12e^{2x}\\right]_{1}^{\\log2}=2-\\frac{e^2}{2}\" data-display-mode=\"true\"></div></div></section><section class=\"answer-explanation-section\"><h3>(3)　半角公式でsin²xを一次化する</h3><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-2df2d723ab56\"><span class=\"answer-formula__purpose\">半角公式でsin²xを一次化する</span><div class=\"answer-formula__math\" data-katex=\"\\sin^2x=\\frac{1-\\cos2x}{2}\" data-display-mode=\"true\"></div></div><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-2df2d723ab56\"><span class=\"answer-formula__purpose\">半角公式でsin²xを一次化する</span><div class=\"answer-formula__math\" data-katex=\"\\int_0^{\\pi/6}\\sin^2x\\,dx=\\frac{\\pi}{12}-\\frac{\\sqrt3}{8}\" data-display-mode=\"true\"></div></div></section><section class=\"answer-explanation-section\"><h3>(4)　x=3tanθと置く</h3><p class=\"prose\">x=3tanθと置くと、x=0,3はθ=0,π/4に対応し、分母の1+tan²θとdxの1/cos²θが打ち消し合います。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-e107cb4248c7\"><span class=\"answer-formula__purpose\">x=3tanθと置く</span><div class=\"answer-formula__math\" data-katex=\"\\int_0^3\\frac{dx}{x^2+9}=\\int_0^{\\pi/4}\\frac13d\\theta=\\frac{\\pi}{12}\" data-display-mode=\"true\"></div></div><aside class=\"source-note answer-note\"><strong>基本事項</strong><p>絶対値は符号変化点で分割、三角関数の偶数乗は半角公式、1/(x²+a²)はx=a tanθが基本です。</p></aside></section></div></article>"
+      },
+      {
+        "id": "major-question-02",
+        "label": "第2問",
+        "order": 2,
+        "html": "<article class=\"source-page-card major-question-card answer-major-card\" id=\"major-question-02\" data-major-question-id=\"major-question-02\"><h2>第2問 解答・解説</h2><div class=\"answer-explanation\"><section class=\"answer-explanation-section\"><h3>(1)　共有点のx座標方程式を作る</h3><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-5a3afb51114a\"><span class=\"answer-formula__purpose\">共有点のx座標方程式を作る</span><div class=\"answer-formula__math\" data-katex=\"2x+k=\\sqrt{x}\\quad\\Longrightarrow\\quad4x^2+(4k-1)x+k^2=0\" data-display-mode=\"true\"></div></div><p class=\"prose\">2乗した式だけで決めず、元の平方根関数との位置関係も確認します。接するときの境界は判別式D=0です。</p><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"ans-q2-k-range-graph\"><div role=\"img\" aria-label=\"直線 y=2x、y=2x+1/8 と曲線 y=√x の位置関係（図版準備中）\" style=\"aspect-ratio:0.821\"><strong>図版準備中</strong><p>直線 y=2x、y=2x+1/8 と曲線 y=√x の位置関係</p></div><figcaption>図の位置・大きさを確保しています。図を使う説明は確認完了までレビュー中です。</figcaption></figure><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-5a3afb51114a\"><span class=\"answer-formula__purpose\">共有点のx座標方程式を作る</span><div class=\"answer-formula__math\" data-katex=\"D=(4k-1)^2-16k^2=1-8k\" data-display-mode=\"true\"></div></div><p class=\"prose\">接する境界はk=1/8、直線が原点を通る境界はk=0です。したがって異なる2共有点をもつ範囲は0≦k&lt;1/8です。</p></section><section class=\"answer-explanation-section\"><h3>(2)　2解α,βを円板法へ入れる</h3><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-4cc5a5e522b2\"><span class=\"answer-formula__purpose\">2解α,βを円板法へ入れる</span><div class=\"answer-formula__math\" data-katex=\"\\alpha=\\frac{1-4k-\\sqrt{1-8k}}8,\\qquad\\beta=\\frac{1-4k+\\sqrt{1-8k}}8\" data-display-mode=\"true\"></div></div><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"ans-q2-rotation-region\"><div role=\"img\" aria-label=\"曲線 y=√x と直線 y=2x+k に挟まれた回転領域（図版準備中）\" style=\"aspect-ratio:0.840\"><strong>図版準備中</strong><p>曲線 y=√x と直線 y=2x+k に挟まれた回転領域</p></div><figcaption>図の位置・大きさを確保しています。図を使う説明は確認完了までレビュー中です。</figcaption></figure><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-4cc5a5e522b2\"><span class=\"answer-formula__purpose\">2解α,βを円板法へ入れる</span><div class=\"answer-formula__math\" data-katex=\"V(k)=\\int_\\alpha^\\beta\\pi(\\sqrt{x})^2dx=\\frac\\pi2(\\beta+\\alpha)(\\beta-\\alpha)\" data-display-mode=\"true\"></div></div><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-4cc5a5e522b2\"><span class=\"answer-formula__purpose\">2解α,βを円板法へ入れる</span><div class=\"answer-formula__math\" data-katex=\"V(k)=\\frac{(1-4k)\\sqrt{1-8k}}{32}\\pi\" data-display-mode=\"true\"></div></div><aside class=\"source-note answer-note\"><strong>式整理</strong><p>β²−α²を直接展開せず、(β+α)(β−α)にすると短く計算できます。</p></aside><p class=\"prose\">x軸回転では半径が√xなので、断面積はπ(√x)²=πxです。</p><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"ans-q2-volume-explanation\"><div role=\"img\" aria-label=\"曲線 y=f(x) の下の領域を x 軸まわりに回転する説明図（図版準備中）\" style=\"aspect-ratio:0.800\"><strong>図版準備中</strong><p>曲線 y=f(x) の下の領域を x 軸まわりに回転する説明図</p></div><figcaption>図の位置・大きさを確保しています。図を使う説明は確認完了までレビュー中です。</figcaption></figure></section></div></article>"
+      },
+      {
+        "id": "major-question-03",
+        "label": "第3問",
+        "order": 3,
+        "html": "<article class=\"source-page-card major-question-card answer-major-card\" id=\"major-question-03\" data-major-question-id=\"major-question-03\"><h2>第3問 解答・解説</h2><div class=\"answer-explanation\"><section class=\"answer-explanation-section\"><h3>(1)　両辺をxで微分する</h3><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-0edc8134c27a\"><span class=\"answer-formula__purpose\">両辺をxで微分する</span><div class=\"answer-formula__math\" data-katex=\"\\frac{d}{dx}\\int_0^x f(t)dt=f(x)\" data-display-mode=\"true\"></div></div><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-0edc8134c27a\"><span class=\"answer-formula__purpose\">両辺をxで微分する</span><div class=\"answer-formula__math\" data-katex=\"f(x)=\\frac1{x+\\sqrt{1+x^2}}\\left(1+\\frac{x}{\\sqrt{1+x^2}}\\right)=\\frac1{\\sqrt{1+x^2}}\" data-display-mode=\"true\"></div></div></section><section class=\"answer-explanation-section\"><h3>(2)　二階導関数の符号変化を見る</h3><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-fb78f3aa4335\"><span class=\"answer-formula__purpose\">二階導関数の符号変化を見る</span><div class=\"answer-formula__math\" data-katex=\"f&#39;&#39;(x)=\\frac{2x^2-1}{(\\sqrt{1+x^2})^5}\" data-display-mode=\"true\"></div></div><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"ans-q3-convexity-table\"><div role=\"img\" aria-label=\"f、f&#39;、f&#39;&#39; の符号と凹凸を示す増減・凹凸表（図版準備中）\" style=\"aspect-ratio:0.800\"><strong>図版準備中</strong><p>f、f&#39;、f&#39;&#39; の符号と凹凸を示す増減・凹凸表</p></div><figcaption>図の位置・大きさを確保しています。図を使う説明は確認完了までレビュー中です。</figcaption></figure><p class=\"prose\">x≧0で分母は正なので、分子2x²−1の符号が変わるx0=1/√2が変曲点です。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-fb78f3aa4335\"><span class=\"answer-formula__purpose\">二階導関数の符号変化を見る</span><div class=\"answer-formula__math\" data-katex=\"\\int_0^{x_0}f(x)dx=\\log\\left(x_0+\\sqrt{1+x_0^2}\\right)=\\log\\frac{\\sqrt6+\\sqrt2}{2}\" data-display-mode=\"true\"></div></div></section><section class=\"answer-explanation-section\"><h3>(3)　y軸回転を横切片で積み上げる</h3><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"ans-q3-y-axis-rotation\"><div role=\"img\" aria-label=\"y=f(x) と y 軸に囲まれた領域を y 軸まわりに回転する図（図版準備中）\" style=\"aspect-ratio:0.800\"><strong>図版準備中</strong><p>y=f(x) と y 軸に囲まれた領域を y 軸まわりに回転する図</p></div><figcaption>図の位置・大きさを確保しています。図を使う説明は確認完了までレビュー中です。</figcaption></figure><p class=\"prose\">0≦y≦√6/3では半径x0の円板、√6/3≦y≦1では曲線までの半径xをもつ円板として体積を分けます。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-76abdca57abd\"><span class=\"answer-formula__purpose\">y軸回転を横切片で積み上げる</span><div class=\"answer-formula__math\" data-katex=\"V=\\pi x_0^2\\frac{\\sqrt6}{3}+\\int_{\\sqrt6/3}^{1}\\pi x^2dy\" data-display-mode=\"true\"></div></div><p class=\"prose\">dy=f&#39;(x)dxへ変換し、x²f&#39;(x)を部分積分すると、元のf(x)の積分に戻せます。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-76abdca57abd\"><span class=\"answer-formula__purpose\">y軸回転を横切片で積み上げる</span><div class=\"answer-formula__math\" data-katex=\"V=2\\pi(\\sqrt{1+x_0^2}-1)=(\\sqrt6-2)\\pi\" data-display-mode=\"true\"></div></div><aside class=\"source-note answer-note\"><strong>別解</strong><p>f(x)=1/√(1+x²)をxについて解き、x²=1/y²−1としてyで直接積分しても同じ値になります。</p></aside><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-76abdca57abd\"><span class=\"answer-formula__purpose\">y軸回転を横切片で積み上げる</span><div class=\"answer-formula__math\" data-katex=\"\\frac{\\sqrt6}{6}\\pi+\\pi\\int_{\\sqrt6/3}^{1}\\left(\\frac1{y^2}-1\\right)dy=(\\sqrt6-2)\\pi\" data-display-mode=\"true\"></div></div></section><section class=\"answer-explanation-section\"><h3>y軸回転体の一般的な二つの処理</h3><p class=\"prose\">積分変数をxへ変換する方法と、y=f(x)をx=g(y)へ解いてyで積分する方法があります。図形と関数形に応じて短い方を選びます。</p><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"ans-q3-shell-explanation\"><div role=\"img\" aria-label=\"y=f(x) の網かけ部分を y 軸まわりに回転する一般説明図（図版準備中）\" style=\"aspect-ratio:0.831\"><strong>図版準備中</strong><p>y=f(x) の網かけ部分を y 軸まわりに回転する一般説明図</p></div><figcaption>図の位置・大きさを確保しています。図を使う説明は確認完了までレビュー中です。</figcaption></figure><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-9de6432efb1b\"><span class=\"answer-formula__purpose\">y軸回転体の一般的な二つの処理</span><div class=\"answer-formula__math\" data-katex=\"\\int_a^b\\pi x^2dy=\\int_{x_a}^{x_b}\\pi x^2f&#39;(x)dx\" data-display-mode=\"true\"></div></div><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-9de6432efb1b\"><span class=\"answer-formula__purpose\">y軸回転体の一般的な二つの処理</span><div class=\"answer-formula__math\" data-katex=\"\\int_a^b\\pi x^2dy=\\int_a^b\\pi\\{g(y)\\}^2dy\" data-display-mode=\"true\"></div></div><aside class=\"source-note answer-note\"><strong>講評</strong><p>60分・3大問の全問記述式です。第1問と第2問は基本計算を確実に取り、第3問は(1)(2)を先に回収して回転体へ進む構成が有効です。</p></aside></section></div></article>"
+      }
+    ]
+  },
+  "source": {
+    "contentProvenance": "editorial_adaptation_import",
+    "reference": "projects/universities/nihon-u/past-exams/working/2025/n-unified-first/second-stage/mathematics/source-html/editorial-explanations.json",
+    "sha256": "944824dfbd242d60d57ede5b03c8b5196ddf9792cf1861dd2e91836e36dff8b4",
+    "needsHumanReview": true,
+    "rightsStatus": "review_required",
+    "restrictedAssetsCopied": false,
+    "independentlyReauthored": false,
+    "reviewNote": "保存済み学習者向け解説のステージング取り込み版。数式・論理・図版の詳細校正前。"
+  },
+  "links": {
+    "questions": "/past-exam-library/nihon-u/2025/mathematics-n-unified-first-second-stage/questions/",
+    "universityLibrary": "/past-exam-library/nihon-u/",
+    "analysis": "/past-exam-library/nihon-u/2025/mathematics-n-unified-first-second-stage/analysis/"
+  }
+}

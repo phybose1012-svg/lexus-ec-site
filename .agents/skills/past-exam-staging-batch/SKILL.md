@@ -1,0 +1,38 @@
+---
+name: past-exam-staging-batch
+description: Import existing semantic past-exam packages serially into the Lexus staging library, preserving completed editorial pages and separating source defects for a repair session. Use for user-authorized bulk staging drafts, not independently authored finished explanations or production publication.
+---
+
+# Serial staging import
+
+This mode is for the user's explicit workflow: bring existing HTML packages into the shared staging site, while a separate correction session handles fine review. A projected learner edition is not a newly solved, independently authored answer. Never stamp it `original_editorial` or report it as mathematically verified.
+
+## Boundaries
+
+- Keep the source repository read-only. `public-candidate/questions` is the question source; `editorial-explanations.json` with `provenance: editorial_adaptation` is the separately identified learner edition, not `generated/internal/source-answers` or the raw reconstruction. Preserve source reference/hash and the human-review status.
+- Shared staging needs user authorization; a `noindex` URL is still reachable. The 2026-09-09 user instruction authorizes immediate staging pushes of this batch, not production publication or a claim that rights review is complete.
+- Restrict imported answer snapshots to staging review. Do not copy restricted crops. Keep each required figure's position, aspect ratio and semantic description as a visible placeholder until an independently drawn figure is ready. A placeholder means unfinished work, not “figure unnecessary”.
+- Preserve existing `pastExamAnswerSources/<id>.json` packages. They are independently authored and human-refined. The batch adapter must refuse to overwrite them. Do not overwrite another contributor's new package while pushing.
+- Source IDs are not unique across exam stages. Use the full directory tuple university/year/method/stage/subject as identity. Retain established default URLs; additional variants get separate URL segments and university-table rows. Validate all three cross-links by package ID.
+
+## Scripts (run from frontend)
+
+1. `node scripts/audit-past-exam-batch.mjs <source-repository>` records the exact 67-package starting inventory and extraction failures.
+2. `node scripts/import-past-exam-batch.mjs <source-repository> [package-id-or-university-id]` imports serially and writes resumable status plus per-package repair prompts. No omitted argument starts parallel agents.
+3. `npm run build` regenerates source projections and analyses using tracked local snapshots; it must not require the source checkout in CI.
+4. `node scripts/audit-past-exam-math.mjs` checks TeX syntax using the deployed KaTeX runtime, including each formula's actual display mode. It does not verify the mathematics.
+5. Run batch, analysis, answer, notation, UI and SEO tests after the build completes. Then inspect desktop/mobile rendering and print. Keep machine checks and actual visual review distinct in reports.
+
+## Localize failures
+
+- Unverifiable target arithmetic must not block otherwise valid difficulty/priority evidence. `deferTargets` extracts that evidence, requires `targetReviewStatus: source-repair-required`, and leaves a visible target section without invented scores. It must never silently recompute the source report into a different plan.
+- Missing analysis data shows a pending page, not a 0-point chart or fabricated priorities. Missing explanation data shows a pending page, not a guessed answer key.
+- A malformed table reserves only that table, preserving surrounding explanations. Record page ID, major ID, caption and observed column counts.
+- A Windows-path check must not reject legitimate TeX such as `C:\ (x-7)^2=17` or `\alpha:\beta`. Check actual local-path structure and URL attributes without weakening script/event-handler rejection.
+- Imported formula-purpose labels are deduplicated in `pastExamBatch/formula-purposes.json` and remain marked for editorial review. When refining a package, reuse the reviewed shared purpose library; migrate only distinct useful labels into it.
+
+## Handoff and completion
+
+Use `pastExamBatch/status.json`, upstream open issues, `math-audit.json`, and `docs/handoffs/past-exam-batch/<id>.md`. Report counts separately: routes created, substantive question/answer/analysis bodies, deferred targets, pending diagrams, and source packages missing material. Creating three route shells is not completing three bodies.
+
+Before pushing, fetch and integrate staging without force-push; build and test the actual combined tree. Verify deployment using real staged URLs. Leave a precise continuation log for unfinished figures or source repairs. The batch runner is resumable, but does not run itself after the session stops.

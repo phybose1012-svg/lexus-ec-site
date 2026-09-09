@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "lexus-ec.past-exam-question-page.v1",
+  "packageId": "jichi-medical-2025-general-mathematics-second-stage",
+  "route": {
+    "university": "jichi-medical",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/jichi-medical/2025/mathematics-general-second-stage/questions/"
+  },
+  "university": {
+    "id": "jichi-medical",
+    "name": "自治医科大学"
+  },
+  "exam": {
+    "year": "2025",
+    "label": "一般選抜",
+    "stage": "二次試験",
+    "duration": "数学 30分"
+  },
+  "subject": {
+    "id": "mathematics",
+    "name": "数学",
+    "english": "MATHEMATICS"
+  },
+  "document": {
+    "role": "questions",
+    "pageUnit": "major_question",
+    "sharedInstructionsHtml": "<section class=\"source-page-card question-shared-instructions\" data-question-shared-instructions><div class=\"page-kicker\">全大問共通</div><h2>2025年度 一般選抜 第2次試験 医学部 数学</h2><p class=\"prose\">数学（30分）</p></section>",
+    "printNotes": [
+      "各設問に記載された解答形式・記号・単位の指定に従ってください。",
+      "図版準備中・内容確認中の設問は、確認が完了するまで演習対象外です。"
+    ],
+    "questions": [
+      {
+        "id": "major-question-01",
+        "label": "問題",
+        "order": 1,
+        "sourcePageIds": [
+          "jichi-medical-2025-general-mathematics-questions-p001",
+          "jichi-medical-2025-general-mathematics-questions-p002"
+        ],
+        "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-01\" data-major-question-id=\"major-question-01\"><h2>問題</h2><p class=\"prose\">座標平面上（原点を <span class=\"math-inline\" data-katex=\"O\" data-display-mode=\"false\">O</span> とする）において、円 <span class=\"math-inline\" data-katex=\"C\" data-display-mode=\"false\">C</span>、直線 <span class=\"math-inline\" data-katex=\"\\ell_1\" data-display-mode=\"false\">\\ell_1</span>、直線 <span class=\"math-inline\" data-katex=\"\\ell_2\" data-display-mode=\"false\">\\ell_2</span> について考える。</p><div class=\"formula\" data-katex=\"C:\\ (x-7)^2+(y-7)^2=17\" data-display-mode=\"true\">C:\\ (x-7)^2+(y-7)^2=17</div><div class=\"formula\" data-katex=\"\\ell_1:\\ x+y=9\" data-display-mode=\"true\">\\ell_1:\\ x+y=9</div><div class=\"formula\" data-katex=\"\\ell_2:\\ mx-y-m+8=0\\quad(m&gt;-1,\\ m\\text{ は実数})\" data-display-mode=\"true\">\\ell_2:\\ mx-y-m+8=0\\quad(m&gt;-1,\\ m\\text{ は実数})</div><p class=\"prose\">点 <span class=\"math-inline\" data-katex=\"A\" data-display-mode=\"false\">A</span> の座標を <span class=\"math-inline\" data-katex=\"(1,8)\" data-display-mode=\"false\">(1,8)</span>、円 <span class=\"math-inline\" data-katex=\"C\" data-display-mode=\"false\">C</span> の中心の点を <span class=\"math-inline\" data-katex=\"B\" data-display-mode=\"false\">B</span> とする。</p><p class=\"prose\">直線 <span class=\"math-inline\" data-katex=\"\\ell_1\" data-display-mode=\"false\">\\ell_1</span> と円 <span class=\"math-inline\" data-katex=\"C\" data-display-mode=\"false\">C</span> との異なる2つの交点を <span class=\"math-inline\" data-katex=\"Q\" data-display-mode=\"false\">Q</span>、<span class=\"math-inline\" data-katex=\"R\" data-display-mode=\"false\">R</span> とする（2つの交点 <span class=\"math-inline\" data-katex=\"Q\" data-display-mode=\"false\">Q</span>、<span class=\"math-inline\" data-katex=\"R\" data-display-mode=\"false\">R</span> のうち点 <span class=\"math-inline\" data-katex=\"A\" data-display-mode=\"false\">A</span> に近い点を <span class=\"math-inline\" data-katex=\"Q\" data-display-mode=\"false\">Q</span> とする）。</p><p class=\"prose\">以下の設問に答えよ。</p><h3>1）</h3><p class=\"prose\">直線 <span class=\"math-inline\" data-katex=\"\\ell_1\" data-display-mode=\"false\">\\ell_1</span> と円 <span class=\"math-inline\" data-katex=\"C\" data-display-mode=\"false\">C</span> との2つの交点 <span class=\"math-inline\" data-katex=\"Q\" data-display-mode=\"false\">Q</span>、<span class=\"math-inline\" data-katex=\"R\" data-display-mode=\"false\">R</span> の座標を求め、線分 <span class=\"math-inline\" data-katex=\"AQ\" data-display-mode=\"false\">AQ</span> と線分 <span class=\"math-inline\" data-katex=\"AR\" data-display-mode=\"false\">AR</span> の長さを求めよ。</p><h3>2）</h3><p class=\"prose\">直線 <span class=\"math-inline\" data-katex=\"\\ell_2\" data-display-mode=\"false\">\\ell_2</span> が円 <span class=\"math-inline\" data-katex=\"C\" data-display-mode=\"false\">C</span> と異なる2つの点 <span class=\"math-inline\" data-katex=\"P\" data-display-mode=\"false\">P</span>、<span class=\"math-inline\" data-katex=\"S\" data-display-mode=\"false\">S</span> で交わる場合（2つの交点 <span class=\"math-inline\" data-katex=\"P\" data-display-mode=\"false\">P</span>、<span class=\"math-inline\" data-katex=\"S\" data-display-mode=\"false\">S</span> のうち点 <span class=\"math-inline\" data-katex=\"A\" data-display-mode=\"false\">A</span> に近い点を <span class=\"math-inline\" data-katex=\"P\" data-display-mode=\"false\">P</span> とする）、<span class=\"math-inline\" data-katex=\"m\" data-display-mode=\"false\">m</span> のとりうる値の範囲を求めよ。</p><aside class=\"source-note\"><strong>共通条件</strong> 以下の設問3）、4）、5）は設問2）の条件を満たすものとする。</aside><h3>3）</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"PQ\\parallel SR\" data-display-mode=\"false\">PQ\\parallel SR</span> となるとき、<span class=\"math-inline\" data-katex=\"AP=AQ\" data-display-mode=\"false\">AP=AQ</span>、<span class=\"math-inline\" data-katex=\"AR=AS\" data-display-mode=\"false\">AR=AS</span> であることを示すとともに、直線 <span class=\"math-inline\" data-katex=\"AB\" data-display-mode=\"false\">AB</span> が <span class=\"math-inline\" data-katex=\"\\angle SAR\" data-display-mode=\"false\">\\angle SAR</span> の二等分線となることを証明せよ。</p><h3>4）</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"PQ\\parallel SR\" data-display-mode=\"false\">PQ\\parallel SR</span> となるときの <span class=\"math-inline\" data-katex=\"m\" data-display-mode=\"false\">m</span> の値を求めよ。</p><h3>5）</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"PQ\\parallel SR\" data-display-mode=\"false\">PQ\\parallel SR</span> であるとき、四角形 <span class=\"math-inline\" data-katex=\"PQRS\" data-display-mode=\"false\">PQRS</span> の面積を求めよ。</p></article>"
+      }
+    ]
+  },
+  "source": {
+    "sourcePackageId": "jichi-medical-2025-general-mathematics",
+    "reference": "projects/universities/jichi-medical/past-exams/working/2025/general/second-stage/mathematics/source-html/generated/public-candidate/questions",
+    "buildKind": "publication-candidate",
+    "contentProvenance": "source_projection",
+    "publicationCandidate": true,
+    "rightsStatus": "review_required",
+    "needsHumanReview": true
+  },
+  "links": {
+    "universityLibrary": "/past-exam-library/jichi-medical/",
+    "analysis": "/past-exam-library/jichi-medical/2025/mathematics-general-second-stage/analysis/",
+    "universityInformation": null
+  }
+}

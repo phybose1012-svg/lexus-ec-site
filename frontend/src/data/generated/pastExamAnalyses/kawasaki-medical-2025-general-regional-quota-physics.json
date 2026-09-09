@@ -1,0 +1,552 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "kawasaki-medical-2025-general-regional-quota-physics",
+  "route": {
+    "university": "kawasaki-medical",
+    "year": "2025",
+    "subject": "physics",
+    "path": "/past-exam-library/kawasaki-medical/2025/physics/analysis/"
+  },
+  "university": "川崎医科大学",
+  "year": 2025,
+  "subject": "物理",
+  "examLabel": "一般選抜・地域枠選抜",
+  "duration": "理科2科目 合計120分",
+  "format": "選択・数値解答など（各設問を参照）",
+  "examTotal": null,
+  "headline": "原子と原子核",
+  "summary": "第Ⅰ問は原子と原子核、第Ⅱ問は運動量と力積・仕事と力学的エネルギー、第Ⅲ問は力のつり合いと運動の法則・気体の状態変化と熱力学、第Ⅳ問は光の反射・屈折とレンズ・光の干渉と回折、第Ⅴ問は原子と原子核。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "物理が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "物理が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "第Ⅰ問",
+      "title": "クォーク模型と陽子・中性子",
+      "subtitle": "原子と原子核",
+      "summary": "アップクォークとダウンクォークの電気量から、陽子と中性子を構成する個数を決める。2つの連立条件を短く処理する原子分野の入口問題である。",
+      "studyAction": "核子のクォーク構成。電気量保存",
+      "requirements": [
+        2,
+        2,
+        2,
+        1,
+        2
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "問1",
+          "title": "陽子と中性子をそれぞれ3個のアップクォーク \\(u\\) とダウンクォーク \\(d\\) の組合せで表す。電気量 \\(2e/3\\)、\\(-e/3\\) と全クォーク数3から、陽子の空欄アと中性子の空欄イに入る組合せを選ぶ。",
+          "note": "短い連立条件で2成分をまとめて回収できる。想定1.1分に対して仮5点で、両層とも最初に確保する。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        }
+      ],
+      "questionsPath": "/past-exam-library/kawasaki-medical/2025/physics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/kawasaki-medical/2025/physics/answers/#major-question-01"
+    },
+    {
+      "id": "phys-q2",
+      "label": "第Ⅱ問",
+      "title": "同符号荷電粒子の反発衝突",
+      "subtitle": "運動量と力積・仕事と力学的エネルギー・静電気力と電場・電位",
+      "summary": "静止粒子へ近づく同符号荷電粒子について、運動量保存と力学的エネルギー保存を組み合わせ、最接近距離、必要エネルギー、各量の時間変化を追う。",
+      "studyAction": "2物体系の運動量保存。クーロン位置エネルギー",
+      "requirements": [
+        4,
+        3.6,
+        3.2,
+        2.9,
+        4.4
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "問1",
+          "title": "質量 \\(m_1\\)、電気量 \\(q_1\\) の粒子1が、静止した質量 \\(m_2\\)、電気量 \\(q_2\\) の粒子2へ遠方から速さ \\(v_1\\)、運動エネルギー \\(K_1\\) で接近する。最接近時の共通速度と最接近距離を運動量保存・エネルギー保存から選ぶ。",
+          "note": "保存則2本を順番に使う再現可能な標準問題だが、文字式整理と2成分選択がある。苦手層は短問の後、得意層は流れの起点として先に解く。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "問2",
+          "title": "粒子1をアルファ粒子、粒子2を炭素12原子核として、最接近距離が \\(3.2\\times10^{-15}\\,\\mathrm m\\) 以下になる入射運動エネルギー \\(K_1\\) の下限をMeVで選ぶ。",
+          "note": "式の代入、指数、単位換算が連続し計算ミスへ露出する。苦手層は他の短問を優先し、得意層も全体回収後に戻る。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 4
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "問3",
+          "title": "同符号の2粒子が反発衝突する前後について、粒子1の速さ、粒子2の速さ、運動エネルギーの和、粒子間距離の時間変化を表す4つのグラフを選ぶ。",
+          "note": "計算は少ないが4グラフを一貫して判定する必要がある。苦手層は明確な短問を先にし、得意層は物理的変化を追って回収する。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        }
+      ],
+      "questionsPath": "/past-exam-library/kawasaki-medical/2025/physics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/kawasaki-medical/2025/physics/answers/#major-question-02"
+    },
+    {
+      "id": "phys-q3",
+      "label": "第Ⅲ問",
+      "title": "ばね付きピストンと理想気体",
+      "subtitle": "力のつり合いと運動の法則・気体の状態変化と熱力学",
+      "summary": "ばねで拘束されたピストンをヒーターでゆっくり動かし、力のつり合いから圧力変化を求め、仕事、状態方程式、熱力学第一法則へつなぐ。",
+      "studyAction": "ピストンの力のつり合い。単原子分子理想気体の内部エネルギー",
+      "requirements": [
+        3.2,
+        3.4,
+        2.4,
+        2,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "問1",
+          "title": "初期状態で圧力 \\(p_0\\)、体積 \\(SL\\)、温度 \\(T_0\\) の単原子分子理想気体について、内部エネルギーを \\(p_0,S,L\\) で表した選択肢から選ぶ。",
+          "note": "定型公式を1回置換するだけで、想定1.1分・仮4点と効率が高い。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "問2",
+          "title": "断面積 \\(S\\) の軽いピストンが \\(L\\) から \\(3L\\) へ動き、停止時の気体圧が \\(3p_0\\) となる。大気圧とばねの力を含むつり合いからばね定数を求める。",
+          "note": "力のつり合いを最終状態だけに書けば短く、後続の圧力変化も理解しやすい。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "問3",
+          "title": "ばね付きピストンが \\(L\\) から \\(3L\\) まで準静的に動く間に、気体が外部へした仕事を圧力と体積の直線変化から求める。",
+          "note": "p-V図を直線として描く手順は再現可能だが、苦手層は圧力変化の整理に時間がかかるため短問後に回す。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-4",
+          "label": "問4",
+          "title": "最終状態 \\(p=3p_0\\)、\\(V=3SL\\) と初期状態 \\(p_0,SL,T_0\\) を状態方程式で比較し、停止時の温度を求める。",
+          "note": "前問に依存せず状態量だけで処理でき、短時間で回収できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-5",
+          "label": "問5",
+          "title": "初期から最終状態までにヒーターが気体へ与えた熱量を、単原子分子理想気体の内部エネルギー変化と、気体がした仕事の和から求める。",
+          "note": "式自体は定型だが2つの前結果を統合する。苦手層は問1・2・4を先に確保し、問3まで解けたら戻る。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        }
+      ],
+      "questionsPath": "/past-exam-library/kawasaki-medical/2025/physics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/kawasaki-medical/2025/physics/answers/#major-question-03"
+    },
+    {
+      "id": "phys-q4",
+      "label": "第Ⅳ問",
+      "title": "薄膜干渉",
+      "subtitle": "光の反射・屈折とレンズ・光の干渉と回折",
+      "summary": "空気・薄膜・ガラスの境界で反射する2光線について、幾何学的な光路差と反射時の位相変化を整理し、暗線条件を決める。",
+      "studyAction": "スネルの法則。光路長",
+      "requirements": [
+        3.5,
+        3.5,
+        1.6,
+        1.2,
+        3.4
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q4-1",
+          "label": "問1",
+          "title": "薄膜内を進む光①と表面反射する光②の波面図で、空気中の経路B′→Eと同じ光路長をもつ経路を幾何学的に選ぶ。",
+          "note": "計算はないが図の対応確認が必要で、苦手層は定型計算問を優先する。得意層は後続の光路差の入口として先に解く。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q4-2",
+          "label": "問2",
+          "title": "屈折率 \\(n\\)、厚さ \\(d\\) の薄膜へ空気中から入射角 \\(i\\) で光が入る。屈折角と幾何学的経路差を消去し、2光線の光路差を \\(n,d,i\\) で表す。",
+          "note": "薄膜干渉の定型導出だが図と式の往復がある。苦手層は暗記式だけで即答せず短問後に確認し、得意層は標準手順で回収する。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q4-3",
+          "label": "問3",
+          "title": "薄膜の裏面Dと表面Eで反射する2光線について、いずれも低屈折率側から高屈折率側への反射であることから、各反射の位相変化を選ぶ。",
+          "note": "基本則1つで2成分を回収でき、仮5点に対する効率が高い。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q4-4",
+          "label": "問4",
+          "title": "問2の光路差と問3の反射位相を踏まえ、Fで観測する反射光が最も暗くなる光路差の条件を、整数 \\(m=0,1,2,\\ldots\\) と波長 \\(\\lambda\\) で選ぶ。",
+          "note": "前2問の整理ができれば短いが、位相差の数え違いが起こりやすい。苦手層は基本問後、得意層は連続して処理する。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 4
+        }
+      ],
+      "questionsPath": "/past-exam-library/kawasaki-medical/2025/physics/questions/#major-question-04",
+      "answersPath": "/past-exam-library/kawasaki-medical/2025/physics/answers/#major-question-04"
+    },
+    {
+      "id": "phys-q5",
+      "label": "第Ⅴ問",
+      "title": "ウラン同位体の半減期",
+      "subtitle": "原子と原子核",
+      "summary": "半減期が異なるウラン235とウラン238の個数を指数関数で表し、未来・過去の個数と同位体比が指定値になる時刻を求める。",
+      "studyAction": "半減期の指数式。分数指数",
+      "requirements": [
+        2.3,
+        3.3,
+        2.3,
+        1.6,
+        2.6
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q5-1",
+          "label": "問1",
+          "title": "半減期が \\(T\\) のウラン235が、\\(t=0\\) で \\(n\\) 個ある。\\(t=3T\\) の個数が \\(n\\) の何倍かを選ぶ。",
+          "note": "半減回数を数えるだけの最短問で、両層とも確実に回収する。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q5-2",
+          "label": "問2",
+          "title": "半減期が \\(6T\\) のウラン238が、\\(t=0\\) で \\(m\\) 個ある。\\(t=3T\\) の個数が \\(m\\) の何倍かを選ぶ。",
+          "note": "問1と同じ指数式へ分数を入れるだけで、短時間に回収できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q5-3",
+          "label": "問3",
+          "title": "\\(t=0\\) でウラン235が \\(n\\) 個、ウラン238が \\(m\\) 個ある。6Tだけ過去の \\(t=-6T\\) における個数 \\(n'\\)、\\(m'\\) をそれぞれ \\(n,m\\) の倍数で選ぶ。",
+          "note": "時間の符号だけ注意すれば2成分を短く回収でき、仮5点と効率が高い。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q5-4",
+          "label": "問4",
+          "title": "ウラン235とウラン238の個数比が、\\(t=0\\) の比 \\(n/m\\) の4倍になる時刻を求める。半減期 \\(T\\) と \\(6T\\) の指数差を使い、\\(T\\) の倍数で選ぶ。",
+          "note": "指数比の整理は標準手順だが符号と分母6の処理がある。苦手層は問1〜3を先に確保し、得意層は大問を完結させる。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        }
+      ],
+      "questionsPath": "/past-exam-library/kawasaki-medical/2025/physics/questions/#major-question-05",
+      "answersPath": "/past-exam-library/kawasaki-medical/2025/physics/answers/#major-question-05"
+    }
+  ],
+  "difficultyCounts": [
+    6,
+    4,
+    6,
+    1
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 75,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 66,
+        "targetPercent": 88,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 29.2,
+        "maximum": {
+          "points": 66,
+          "minutes": 59.2,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4"
+          ]
+        },
+        "now": {
+          "points": 35,
+          "minutes": 38.3,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-4",
+            "phys-q4-3",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 71,
+          "minutes": 63.4,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q2-1",
+            "phys-q2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4"
+          ]
+        },
+        "title": "物理が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 66,
+          "minutes": 59.2,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4"
+          ]
+        },
+        "additional": [
+          {
+            "id": "phys-q2-3",
+            "label": "第Ⅱ問 問3"
+          },
+          {
+            "id": "phys-q3-3",
+            "label": "第Ⅲ問 問3"
+          },
+          {
+            "id": "phys-q3-5",
+            "label": "第Ⅲ問 問5"
+          },
+          {
+            "id": "phys-q4-1",
+            "label": "第Ⅳ問 問1"
+          },
+          {
+            "id": "phys-q4-2",
+            "label": "第Ⅳ問 問2"
+          },
+          {
+            "id": "phys-q4-4",
+            "label": "第Ⅳ問 問4"
+          },
+          {
+            "id": "phys-q5-4",
+            "label": "第Ⅴ問 問4"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 60,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 7.3,
+        "maximum": {
+          "points": 75,
+          "minutes": 34.2,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4"
+          ]
+        },
+        "now": {
+          "points": 71,
+          "minutes": 30,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q2-1",
+            "phys-q2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 75,
+          "minutes": 34.2,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4"
+          ]
+        },
+        "title": "物理が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 71,
+          "minutes": 30,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q2-1",
+            "phys-q2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4"
+          ]
+        },
+        "additional": []
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kawasaki-medical/past-exams/working/2025/general-regional-quota/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "7096a5ff76e3127d6c33e175ab044ac63254569d2c2307f8cc7f8f79d23a650d",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/kawasaki-medical/2025/physics/questions/",
+    "answers": "/past-exam-library/kawasaki-medical/2025/physics/answers/",
+    "university": "/past-exam-library/kawasaki-medical/"
+  }
+}

@@ -1,0 +1,367 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "nihon-u-2025-n-unified-first-mathematics-second-stage",
+  "route": {
+    "university": "nihon-u",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/nihon-u/2025/mathematics-n-unified-first-second-stage/analysis/"
+  },
+  "university": "日本大学医学部",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "N全学統一方式第1期",
+  "duration": "数学 60分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "積分法・指数関数・対数関数",
+  "summary": "第1問は積分法・指数関数・対数関数、第2問は図形と方程式・2次関数、第3問は微分法・積分法。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "title": "定積分の基本計算4題",
+      "subtitle": "積分法・指数関数・対数関数・三角関数",
+      "summary": "絶対値、指数関数、三角関数の半角公式、三角置換を用いる独立した定積分4題。",
+      "studyAction": "絶対値の符号変化点で積分区間を分ける。指数関数を合成関数として積分する",
+      "requirements": [
+        1,
+        3,
+        2.5,
+        3.5,
+        2.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "title": "絶対値の符号で区間を分けて定積分を求める。",
+          "note": "区間分割に気づけば確実に計算できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "title": "指数関数の定積分を求める。",
+          "note": "最短で回収できる独立小問である。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)",
+          "title": "半角公式でsin²xの定積分を求める。",
+          "note": "公式を正しく書けば安定して得点できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q1-4",
+          "label": "(4)",
+          "title": "x=3tanθと置いて有理関数を積分する。",
+          "note": "典型置換を知っていれば一本道である。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        }
+      ],
+      "questionsPath": "/past-exam-library/nihon-u/2025/mathematics-n-unified-first-second-stage/questions/#major-question-01",
+      "answersPath": "/past-exam-library/nihon-u/2025/mathematics-n-unified-first-second-stage/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "title": "直線と平方根関数の共有点・回転体",
+      "subtitle": "図形と方程式・2次関数・積分法",
+      "summary": "直線とy=√xの共有点が2個となる定数範囲を求め、共有点間の√x下の領域をx軸回転した体積をkで表す。",
+      "studyAction": "平方根方程式の定義域と符号を確認する。判別式と接線条件で共有点数を判定する",
+      "requirements": [
+        4,
+        4.6,
+        3.6,
+        4,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "title": "異なる2共有点をもつkの範囲を求める。",
+          "note": "図形的境界と判別式を併用するため、条件確認に時間を要する。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 9
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)",
+          "title": "共有点間の領域をx軸回転した体積V(k)を求める。",
+          "note": "前問依存で式整理も長いが、体積公式自体は典型である。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 11
+        }
+      ],
+      "questionsPath": "/past-exam-library/nihon-u/2025/mathematics-n-unified-first-second-stage/questions/#major-question-02",
+      "answersPath": "/past-exam-library/nihon-u/2025/mathematics-n-unified-first-second-stage/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "title": "積分方程式・変曲点・y軸回転体",
+      "subtitle": "微分法・積分法・指数関数・対数関数",
+      "summary": "積分方程式を微分してfを求め、変曲点と定積分を決定し、曲線下の領域をy軸回転した体積を求める。",
+      "studyAction": "微積分学の基本定理で積分方程式を微分する。合成関数を整理してfを簡約する",
+      "requirements": [
+        3.3,
+        4.5,
+        4.2,
+        4,
+        4.2
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "title": "積分方程式を微分してf(x)を求める。",
+          "note": "後続の基礎で、定型的に処理できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "title": "変曲点x0と0からx0までの定積分を求める。",
+          "note": "微分計算はやや長いが、変曲点判定は典型である。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)",
+          "title": "曲線下の領域をy軸回転した体積を求める。",
+          "note": "最も処理量が多く、他の確実な小問を回収した後に扱う。",
+          "difficulty": 3,
+          "weak": 1,
+          "strong": 1,
+          "points": 8
+        }
+      ],
+      "questionsPath": "/past-exam-library/nihon-u/2025/mathematics-n-unified-first-second-stage/questions/#major-question-03",
+      "answersPath": "/past-exam-library/nihon-u/2025/mathematics-n-unified-first-second-stage/answers/#major-question-03"
+    }
+  ],
+  "difficultyCounts": [
+    3,
+    2,
+    3,
+    1
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 60,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 47,
+        "targetPercent": 78.3,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 16.8,
+        "maximum": {
+          "points": 47,
+          "minutes": 57.8,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "now": {
+          "points": 25,
+          "minutes": 37.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q3-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 60,
+          "minutes": 73.9,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "title": "数学が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 47,
+          "minutes": 57.8,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q2-1",
+            "label": "第2問 (1)"
+          },
+          {
+            "id": "math-q2-2",
+            "label": "第2問 (2)"
+          },
+          {
+            "id": "math-q3-2",
+            "label": "第3問 (2)"
+          }
+        ],
+        "routeKind": "replacement",
+        "replaced": [
+          {
+            "id": "math-q1-4",
+            "label": "第1問 (4)"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 48,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 4.2,
+        "maximum": {
+          "points": 60,
+          "minutes": 42.2,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "now": {
+          "points": 52,
+          "minutes": 34.7,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 60,
+          "minutes": 42.2,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3"
+          ]
+        },
+        "title": "数学が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 52,
+          "minutes": 34.7,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "additional": []
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/nihon-u/past-exams/working/2025/n-unified-first/second-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "c92c47beab428a31c18e9f32bd1f7eec970bb36ead3854860bf70a29253d439b",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/nihon-u/2025/mathematics-n-unified-first-second-stage/questions/",
+    "answers": "/past-exam-library/nihon-u/2025/mathematics-n-unified-first-second-stage/answers/",
+    "university": "/past-exam-library/nihon-u/"
+  }
+}

@@ -25,7 +25,7 @@ const round1 = (n) => Math.round((n + 1e-12) * 10) / 10;
 // Match the source time model: round each adjusted subquestion time before summing.
 export const profileMinutes = (questions, field, multiplier) => round1(questions.reduce((n, q) => n + round1(q.time[field] * multiplier), 0));
 function sameNumber(actual, expected, label) {
-  if (!Number.isFinite(actual) || actual !== expected) throw new Error(`Stale or invalid target ${label}`);
+  if (!Number.isFinite(actual) || actual !== expected) throw new Error(`Stale or invalid target ${label}: observed ${actual}; expected ${expected}`);
 }
 
 // Report hero cards are allowed to round a canonical one-decimal percentage to
@@ -33,7 +33,7 @@ function sameNumber(actual, expected, label) {
 // to carry, and is validated against, the exact derived percentage.
 function sameHeadlinePercent(actual, expected, label) {
   if (!Number.isFinite(actual) || (actual !== expected && actual !== Math.round(expected))) {
-    throw new Error(`Stale or invalid target ${label}`);
+    throw new Error(`Stale or invalid target ${label}: observed ${actual}; canonical ${expected} (or rounded ${Math.round(expected)})`);
   }
 }
 
@@ -89,7 +89,10 @@ export function extractTargetAnalysis(html, metadata, derived) {
       const ids = sourcePlan.subquestion_ids;
       if (!Array.isArray(ids) || new Set(ids).size !== ids.length) throw new Error("Invalid target question selection");
       const selected = ids.map((qid) => questions.find((q) => q.id === qid));
-      if (selected.some((q) => !q || !policy.target_optimization.candidate_actions.includes(q.strategy[key]) || q.optimization_prerequisites[key].some((qid) => !ids.includes(qid)))) throw new Error("Invalid target prerequisite or candidate");
+      const invalid = selected.flatMap((q, i) => !q ? [`missing question ${ids[i]}`]
+        : !policy.target_optimization.candidate_actions.includes(q.strategy[key]) ? [`${q.id}: ineligible action ${q.strategy[key]}`]
+        : q.optimization_prerequisites[key].filter((qid) => !ids.includes(qid)).map(qid => `${q.id}: requires absent ${qid}`));
+      if (invalid.length) throw new Error(`Invalid target prerequisite or candidate (${id}, ${isMaximum ? 'target_plan' : sourcePlan === profile.now ? 'now' : 'now_plus_later'}): ${invalid.join('; ')}`);
       const points = sourcePlan[isMaximum ? "theoretical_max_points" : "points"];
       sameNumber(points, selected.reduce((n, q) => n + q.scoring.points, 0), `${id} plan points`);
       const judgment = profileMinutes(questions, "initial_judgment_minutes", time.initial_judgment_multiplier);
@@ -115,7 +118,7 @@ export function extractTargetAnalysis(html, metadata, derived) {
 }
 
 // Adapter for the saved student-report HTML. Never execute source scripts or copy its markup.
-export function extractAnalysis(html, metadata, sourceRef, derived) {
+export function extractAnalysis(html, metadata, sourceRef, derived, options = {}) {
   if (metadata.schema_version !== "medical-entrance-past-exam-analysis.v6") throw new Error("Unsupported analysis metadata schema");
   if (!html.includes('data-report-mode="student"')) throw new Error("Expected a student analysis report");
   const title = plain(capture(html, /<title>([\s\S]*?)<\/title>/, "title"));
@@ -164,7 +167,7 @@ export function extractAnalysis(html, metadata, sourceRef, derived) {
     schemaVersion: "lexus-analysis-evidence.v1", package: metadata.package,
     source: { project: "shidai-igakubu-gokaku-dokuhon", html: sourceRef, sha256: crypto.createHash("sha256").update(html).digest("hex"), approved: metadata.review.approved === true && !html.includes("編集責任者未承認") },
     axes: reportAxes, aggregation: "provisional_points_weighted_mean", majorQuestions,
-    targetAnalysis: extractTargetAnalysis(html, metadata, derived),
+    targetAnalysis: options.deferTargets === true ? null : extractTargetAnalysis(html, metadata, derived),
   };
 }
 

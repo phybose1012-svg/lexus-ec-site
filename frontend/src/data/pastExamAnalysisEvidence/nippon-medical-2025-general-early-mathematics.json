@@ -1,0 +1,467 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "nippon-medical-2025-general-early-mathematics",
+    "university_id": "nippon-medical",
+    "university_name": "日本医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-early",
+    "exam_method_name": "一般選抜・前期",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 90,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "2025年度入学者選抜要項の第1次試験枠は11:05〜12:55と記載される一方、原本問題冊子には数学（90分）と明記されている。本分析の解答時間モデルは受験生が実際に問題へ取り組む原本表記90分を用いる。"
+    },
+    "total_points": 300
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/nippon-medical/past-exams/working/2025/general-early/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "88dc77f06ca9289ad5865c23cb6e1ae7149efd38d76ec2897830c3173afcd66d",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第Ⅰ問",
+      "sourceTitle": "反復試行で定まる複素数",
+      "requirements": [
+        0.4,
+        3.7,
+        2.7,
+        3.3,
+        3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "問1",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 30,
+          "difficultyReason": "確率部分は典型だが、掛け算と割り算を偏角・絶対値へ同時に反映して一般項を整理する必要がある。",
+          "strategyReason": "後続2問の前提となり、定型的な極形式計算でまとまった配点を確保できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "問2",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 20,
+          "difficultyReason": "隣接項比を1と比較する標準手順であるが、増加から減少へ切り替わる整数境界を正確に読む必要がある。",
+          "strategyReason": "問1の確率式を利用し、短い比の計算で得点できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-1"
+            ],
+            "strong_subject": [
+              "math-q1-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-3",
+          "label": "問3",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 20,
+          "difficultyReason": "偏角条件を一次不定方程式へ直し、 0\\leqq k\\leqq2025 を満たす整数パラメータの個数を数える。",
+          "strategyReason": "問1の極形式が必要で、整数範囲の端点処理に時間を要するため苦手層は後回しが安全。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-1"
+            ],
+            "strong_subject": [
+              "math-q1-1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第Ⅱ問",
+      "sourceTitle": "正四面体と空間ベクトル",
+      "requirements": [
+        3.8,
+        3.4,
+        3.8,
+        2.8,
+        3.8
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "正三角形と余弦定理から内積を求める直接的な導入問題。",
+          "strategyReason": "短時間で確実に取れ、後続計算の基礎になる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "問2",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 20,
+          "difficultyReason": "係数和1の平面条件と2本の直交条件から3元連立方程式を解く必要がある。",
+          "strategyReason": "連立の型が明確で問4にも必要なため、式を丁寧に立てて処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1"
+            ],
+            "strong_subject": [
+              "math-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q2-3",
+          "label": "問3",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 20,
+          "difficultyReason": "内心の辺比を空間ベクトルの内分公式へつなぐ必要があり、図形情報の変換が要る。",
+          "strategyReason": "方針が立てば標準だが、内心の比の取り違えが起こりやすい。苦手層は短問確保後に戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-1"
+            ],
+            "strong_subject": [
+              "math-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q2-4",
+          "label": "問4",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 35,
+          "difficultyReason": "問2・問3の結果から5点の共面性を示し、相似・面積比・空間距離を組み合わせてxへ到達する長い論証が必要。",
+          "strategyReason": "高配点候補だが前提依存と論証量が大きい。両層とも他の独立小問を確保した後に着手する。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q2-2",
+              "math-q2-3"
+            ],
+            "strong_subject": [
+              "math-q2-2",
+              "math-q2-3"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第Ⅲ問",
+      "sourceTitle": "座標空間における2点間距離の最小値",
+      "requirements": [
+        3.9,
+        3.4,
+        3.2,
+        2.9,
+        3.6
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "媒介変数p,qを消去して y^2+z^2=k/2 と整理する標準的な軌跡処理。",
+          "strategyReason": "後続問の構造を与える短い導入で、確実に確保したい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "問2",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "座標から \\sqrt{3^2+4^2} を計算するだけの独立した短問。",
+          "strategyReason": "最短時間で確実に取れる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-3",
+          "label": "問3",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "x座標を保ち、x軸からの距離5をy座標へ移す回転の基本。",
+          "strategyReason": "問2の結果から直ちに得られ、問4の前提になる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-2"
+            ],
+            "strong_subject": [
+              "math-q3-2"
+            ]
+          }
+        },
+        {
+          "id": "math-q3-4",
+          "label": "問4",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 35,
+          "difficultyReason": "断面円上の最近点問題を平面上へ移し、四次式の増減または三角合成で大域最小を示す必要がある。",
+          "strategyReason": "長い最小化で計算ミスの危険が大きい。独立短問を先に回収し、残り時間で原本の主解法をなぞる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1",
+              "math-q3-2",
+              "math-q3-3"
+            ],
+            "strong_subject": [
+              "math-q3-1",
+              "math-q3-2",
+              "math-q3-3"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q4",
+      "label": "第Ⅳ問",
+      "sourceTitle": "積分方程式と偶奇分解",
+      "requirements": [
+        0,
+        3.8,
+        3.1,
+        3.7,
+        3.3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "定義に -x を代入して符号を確認するだけの基本証明。",
+          "strategyReason": "問3の偶奇分解にも使う短い定型証明である。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-2",
+          "label": "問2",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 35,
+          "difficultyReason": "差分商から微分可能性を示し、対数微分型の原始関数と積分因子を順に用いる。誘導は丁寧だが3段階の論証が必要。",
+          "strategyReason": "誘導に沿えば再現性が高く、第Ⅳ問の中核で問3の前提でもある。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-3",
+          "label": "問3",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 20,
+          "difficultyReason": "fを偶関数部分と奇関数部分へ分け、対称区間で奇関数の積分が0になることを利用する。",
+          "strategyReason": "問1と問2の結果をそのまま接続でき、複雑な直接積分を避けられる。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q4-1",
+              "math-q4-2"
+            ],
+            "strong_subject": [
+              "math-q4-1",
+              "math-q4-2"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 300,
+    "timeBudgetMinutes": 90,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 160,
+        "targetPercent": 53.3,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 37.2,
+        "maximum": {
+          "points": 160,
+          "minutes": 87.9,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "now": {
+          "points": 190,
+          "minutes": 101.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 300,
+          "minutes": 155.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 240,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 9.3,
+        "maximum": {
+          "points": 300,
+          "minutes": 88,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "now": {
+          "points": 230,
+          "minutes": 66.4,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 300,
+          "minutes": 88,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        }
+      }
+    ]
+  }
+}

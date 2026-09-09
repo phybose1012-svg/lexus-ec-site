@@ -1,0 +1,374 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "kanazawa-medical-2025-general-early-mathematics",
+  "route": {
+    "university": "kanazawa-medical",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/kanazawa-medical/2025/mathematics/analysis/"
+  },
+  "university": "金沢医科大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "一般選抜（前期）",
+  "duration": "数学 60分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "ベクトル・確率",
+  "summary": "第1問はベクトル・確率、第2問は図形と方程式・微分法、第3問は数列・データの分析、第4問は図形と方程式・微分法。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "title": "さいころで定まる2ベクトルと確率",
+      "subtitle": "ベクトル・確率",
+      "summary": "3個のさいころの目から2つの平面ベクトルを作り、大きさの最大・最小、特定の大きさ、垂直・平行・鈍角となる確率を数える。全216通りを基準に、内積や平行条件を整数の範囲で絞り込む小問群である。",
+      "studyAction": "ベクトルの大きさと内積の計算。平行条件を成分で表す処理",
+      "requirements": [
+        2,
+        3.7,
+        3.7,
+        3.3,
+        4.3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "title": "3個のさいころの目を \\(a,b,c\\) とし、\\(\\vec p=(a-b,c)\\) とする。\\(|\\vec p|\\) の最大値と最小値を求め、さらに \\(|\\vec p|=5\\) となる確率を求める。",
+          "note": "最大・最小を先に確保でき、確率も平方数の分解を3場合に限定できる。第1問の中で最も再現しやすい入口である。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 11
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "title": "\\(\\vec p=(a-b,c)\\)、\\(\\vec q=(a,b-1)\\) が垂直になる確率と、平行になる確率をそれぞれ求める。垂直は内積0、平行は成分の行列式0を整数範囲で調べる。",
+          "note": "得意層は条件式から有限列挙へ進めるが、苦手層は場合漏れが起きやすく7分を要する。第3問の短い数列小問を先に回収してから戻る。",
+          "difficulty": 3,
+          "weak": 1,
+          "strong": 0,
+          "points": 11
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)",
+          "title": "\\(\\vec p=(a-b,c)\\) と \\(\\vec q=(a,b-1)\\) のなす角が鈍角、すなわち \\(\\vec p\\cdot\\vec q<0\\) となる確率を求める。",
+          "note": "11点に対して整数の不等式列挙が長く、苦手層は再現性が低い。得意層も他大問を一巡してから6通りを丁寧に確認する。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 11
+        }
+      ],
+      "questionsPath": "/past-exam-library/kanazawa-medical/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/kanazawa-medical/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "title": "放物線の共通接線と面積",
+      "subtitle": "図形と方程式・微分法・積分法",
+      "summary": "点から下に開く放物線へ引く2接線を判別式で求め、その2直線へ同時に接する上に開く放物線を決定する。接点、積分面積、三角形の面積と面積比までを一続きに処理する空欄補充問題である。",
+      "studyAction": "点を通る直線を傾きで置く。二次方程式の重解条件による接線判定",
+      "requirements": [
+        4,
+        4,
+        5,
+        4,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "第2問",
+          "title": "点A\\((4,-5)\\)から放物線 \\(y=-x^2+10x-33\\) へ引く2接線を求め、両方へ接する放物線 \\(y=x^2+mx+n\\) を決定する。さらに3曲線で囲まれた面積、接点B・CとAが作る三角形の面積、頂点Dによる3三角形の面積比を求める。",
+          "note": "得意層は重解条件から一続きに解けるが、苦手層は10分の長い連鎖で前半の誤りが全空欄へ波及する。短い第3問を先に確保してから、接線までを区切って戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 12
+        }
+      ],
+      "questionsPath": "/past-exam-library/kanazawa-medical/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/kanazawa-medical/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "title": "奇数の群数列と分散・標準偏差",
+      "subtitle": "数列・データの分析",
+      "summary": "正の奇数列を第m群に2m個ずつ区切り、群境界の項数から所属位置と一般項を求める。等差数列の平均、対称な偏差の平方和による分散、標準偏差の不等式へ段階的に進む。",
+      "studyAction": "群末までの項数の和の計算。奇数列の項番号と値の対応",
+      "requirements": [
+        0,
+        3,
+        2.5,
+        4,
+        3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "title": "第m群に2m個ずつ正の奇数を並べた群数列で、値99が何群の何項目にあるかを求める。",
+          "note": "短い項番号計算だけで10点を確保でき、第3問の後続にも必要な群境界を確認できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 10
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "title": "第n群の第1項が奇数列全体の何番目かを群末項数から求め、そのデータをnの二次式で表す。",
+          "note": "(1)で確認した群境界をそのまま一般化する短い式変形で、後続の平均・分散の起点にもなる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 11
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)",
+          "title": "第n群の2n個の奇数データについて、等差数列の平均を求め、平均からの偏差が対称な奇数列になることを使って分散をnの式で表す。",
+          "note": "平均までは確保しやすいが、分散の平方和計算が長く組合せ空欄のため部分的正解が得点へつながらない可能性がある。苦手層は(1)(2)(4)を先に見る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 11
+        },
+        {
+          "id": "math-q3-4",
+          "label": "(4)",
+          "title": "第n群の分散が \\(\\frac43n^2-\\frac13\\) であることを用い、標準偏差が20を超える最小の自然数nを求める。",
+          "note": "(3)の分散式が必要だが、その式さえ使えれば短い不等式処理で11点を狙える。苦手層も(3)の結果が確定したら戻る。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 11
+        }
+      ],
+      "questionsPath": "/past-exam-library/kanazawa-medical/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/kanazawa-medical/2025/mathematics/answers/#major-question-03"
+    },
+    {
+      "id": "math-q4",
+      "label": "第4問",
+      "title": "放物線と半円の接線・面積",
+      "subtitle": "図形と方程式・微分法・積分法",
+      "summary": "上半分の放物線と半円が交わる点で、半円の接線が与えられている。点と直線の距離、接点座標、放物線の係数を決め、扇形と積分の差、放物線の接線と面積を順に求める空欄補充問題である。",
+      "studyAction": "円の中心から接線までの距離による半径決定。円と接線の共有点計算",
+      "requirements": [
+        5,
+        4,
+        5,
+        4,
+        5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "第4問",
+          "title": "曲線 \\(y^2=4px\\ (y\\geqq0)\\) と半円 \\(x^2+y^2=r^2\\ (y\\geqq0)\\) が点Aで交わり、半円のAにおける接線が \\(x+\\sqrt3y-8=0\\) である。半径r、p、Aの座標、両曲線とy軸で囲まれた面積、放物線のAにおける接線、放物線・接線・x軸で囲まれた面積を求める。",
+          "note": "前半の半径・接点は取りやすい一方、面積2種類まで完走するには図の領域判定と積分が必要で9分を要する。苦手層は第3問を先に確保し、前半空欄から段階的に戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 12
+        }
+      ],
+      "questionsPath": "/past-exam-library/kanazawa-medical/2025/mathematics/questions/#major-question-04",
+      "answersPath": "/past-exam-library/kanazawa-medical/2025/mathematics/answers/#major-question-04"
+    }
+  ],
+  "difficultyCounts": [
+    2,
+    2,
+    3,
+    2
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 66,
+        "targetPercent": 66,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 20.4,
+        "maximum": {
+          "points": 66,
+          "minutes": 54.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1"
+          ]
+        },
+        "now": {
+          "points": 32,
+          "minutes": 31,
+          "questionIds": [
+            "math-q1-1",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 89,
+          "minutes": 79.8,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1"
+          ]
+        },
+        "title": "数学が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 66,
+          "minutes": 54.3,
+          "questionIds": [
+            "math-q1-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1"
+          ]
+        },
+        "additional": [
+          {
+            "id": "math-q3-3",
+            "label": "第3問 (3)"
+          },
+          {
+            "id": "math-q3-4",
+            "label": "第3問 (4)"
+          },
+          {
+            "id": "math-q4-1",
+            "label": "第4問 第4問"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 5.1,
+        "maximum": {
+          "points": 100,
+          "minutes": 50.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1"
+          ]
+        },
+        "now": {
+          "points": 89,
+          "minutes": 44.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 50.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1"
+          ]
+        },
+        "title": "数学が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 89,
+          "minutes": 44.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q4-1"
+          ]
+        },
+        "additional": []
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kanazawa-medical/past-exams/working/2025/general-early/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "627879792340628fb761bf8d50f9d35d68ef2567f19864ea49f3b52b1dfe1cf2",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/kanazawa-medical/2025/mathematics/questions/",
+    "answers": "/past-exam-library/kanazawa-medical/2025/mathematics/answers/",
+    "university": "/past-exam-library/kanazawa-medical/"
+  }
+}

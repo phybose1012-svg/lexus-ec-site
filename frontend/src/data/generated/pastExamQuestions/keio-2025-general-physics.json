@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "lexus-ec.past-exam-question-page.v1",
+  "packageId": "keio-2025-general-physics",
+  "route": {
+    "university": "keio",
+    "year": "2025",
+    "subject": "physics",
+    "path": "/past-exam-library/keio/2025/physics/questions/"
+  },
+  "university": {
+    "id": "keio",
+    "name": "慶應義塾大学"
+  },
+  "exam": {
+    "year": "2025",
+    "label": "一般選抜",
+    "stage": "一次試験",
+    "duration": "理科2科目 合計120分"
+  },
+  "subject": {
+    "id": "physics",
+    "name": "物理",
+    "english": "PHYSICS"
+  },
+  "document": {
+    "role": "questions",
+    "pageUnit": "major_question",
+    "sharedInstructionsHtml": "<section class=\"source-page-card question-shared-instructions\" data-question-shared-instructions><div class=\"page-kicker\">全大問共通</div><h2>2025年度 一般選抜 物理</h2><p class=\"prose\">物理（2科目120分）</p></section>",
+    "printNotes": [
+      "各設問に記載された解答形式・記号・単位の指定に従ってください。",
+      "図版準備中・内容確認中の設問は、確認が完了するまで演習対象外です。"
+    ],
+    "questions": [
+      {
+        "id": "major-question-01",
+        "label": "I",
+        "order": 1,
+        "sourcePageIds": [
+          "keio-2025-general-physics-questions-p001"
+        ],
+        "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-01\" data-major-question-id=\"major-question-01\"><h2>I</h2><h3>問1</h3><p class=\"prose\">図1のように、水平右向きに x 軸、鉛直上向きに y 軸をとる。原点 O から、x 軸に対して角度 θ の方向へ、質量 m の小球を速さ v₀ で打ち出す。重力加速度の大きさを g、床との鉛直方向の反発係数を e とし、空気抵抗は無視する。</p><div class=\"formula\" data-katex=\"0&lt;\\theta&lt;90^\\circ,\\qquad 0&lt;e&lt;1\" data-display-mode=\"true\">0&lt;\\theta&lt;90^\\circ,\\qquad 0&lt;e&lt;1</div><p class=\"prose\">打ち出す時刻を t=0、n 回目の衝突時刻を tₙ、その直後の速度を vₙ とする。必要なら次式を用いよ。</p><div class=\"formula\" data-katex=\"1+e+e^2+\\cdots+e^{n-1}=\\frac{1-e^n}{1-e}\" data-display-mode=\"true\">1+e+e^2+\\cdots+e^{n-1}=\\frac{1-e^n}{1-e}</div><div class=\"formula\" data-katex=\"\\lim_{n\\to\\infty}e^n=0\" data-display-mode=\"true\">\\lim_{n\\to\\infty}e^n=0</div><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q1-projectile\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure><p class=\"prose\">(a) 最初の床衝突までに水平方向へ最も遠く進む角度 θ を答えよ。</p><p class=\"prose\">(b) t₁ と v₁ を答えよ。</p><p class=\"prose\">(c) tₙ と vₙ を答えよ。</p><p class=\"prose\">(d) n が無限大のときの衝突時刻までに進む水平距離を答えよ。</p><h3>問2</h3><p class=\"prose\">(e) ベクレル（Bq）とグレイ（Gy）の定義を簡潔に述べよ。</p><p class=\"prose\">(f) 人体影響の評価に等価線量・実効線量（Sv）を用いる理由を簡潔に述べよ。</p></article>"
+      },
+      {
+        "id": "major-question-02",
+        "label": "II",
+        "order": 2,
+        "sourcePageIds": [
+          "keio-2025-general-physics-questions-p002",
+          "keio-2025-general-physics-questions-p003",
+          "keio-2025-general-physics-questions-p004",
+          "keio-2025-general-physics-questions-p005"
+        ],
+        "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-02\" data-major-question-id=\"major-question-02\"><h2>II</h2><p class=\"prose\">真空・空気の透磁率を μ₀ とし、数値計算では次の値を用いる。地磁気は0として無視する。</p><div class=\"formula\" data-katex=\"\\mu_0=1.3\\times10^{-6}\\ \\mathrm{N/A^2}\" data-display-mode=\"true\">\\mu_0=1.3\\times10^{-6}\\ \\mathrm{N/A^2}</div><div class=\"formula\" data-katex=\"\\frac{\\Delta\\sin\\omega t}{\\Delta t}\\simeq\\omega\\cos\\omega t\" data-display-mode=\"true\">\\frac{\\Delta\\sin\\omega t}{\\Delta t}\\simeq\\omega\\cos\\omega t</div><div class=\"formula\" data-katex=\"\\sin^3\\omega t=\\frac{3\\sin\\omega t-\\sin3\\omega t}{4}\" data-display-mode=\"true\">\\sin^3\\omega t=\\frac{3\\sin\\omega t-\\sin3\\omega t}{4}</div><h3>問1</h3><p class=\"prose\">(a) ①鉄、②銅、③アルミニウム、④コバルトおよびニッケル、⑤水、⑥空気を、常磁性体・強磁性体・反磁性体に分類せよ。</p><p class=\"prose\">(b) 磁気量の単位をSI基本単位 kg, m, A, s で答えよ。</p><p class=\"prose\">(c) 半径 r、十分長い長さ h、単位長さあたり n 回巻き、電流 I のソレノイド内部の磁場の強さを答えよ。</p><p class=\"prose\">(d) 巻き数 N、磁束 Φ(t) のコイルに生じる誘導起電力の大きさを答えよ。</p><p class=\"prose\">心臓周囲の磁場は 10⁻⁶ A/m 程度である。コイル回転方式（問3）と強磁性体の磁化特性を用いる方式（問4）を考える。計測対象磁場 H₀ は一様で時間不変とし、数値計算では次の値を用いる。</p><div class=\"formula\" data-katex=\"H_0=1.0\\times10^{-6}\\ \\mathrm{A/m}\" data-display-mode=\"true\">H_0=1.0\\times10^{-6}\\ \\mathrm{A/m}</div><h3>問2</h3><p class=\"prose\">(e) 電流と磁場の双方に垂直な方向へ起電力が生じる現象名を答えよ。</p><h3>問3　コイルを回転させる磁場計測法</h3><p class=\"prose\">(f) 辺の長さ h の1回巻き正方形コイルを、一様な静磁場 H₀ 中で周波数 f で回転させる。時刻0で磁場とコイル面のなす角を0とし、端子Y基準の端子X電圧 VXY の大きさを答えよ。</p><p class=\"prose\">(g) h=0.10 m のとき、実効値が1.0 nVとなる f を有効数字1桁で答えよ。</p><p class=\"prose\">(h) 導線一辺の質量を0.010 gとし、(g)の条件で回転軸と平行な各辺に働く遠心力を有効数字1桁で答えよ。</p><p class=\"prose\">(i) この計測法による心臓近辺の磁場計測の実現可能性を考察せよ。</p><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q3-rotating-coil\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure><h3>問4　強磁性体の磁化特性を利用する磁場計測法</h3><p class=\"prose\">強磁性体内で次の関係を仮定する。</p><div class=\"formula\" data-katex=\"B=aH-bH^3\\qquad(a&gt;0,\\ b&gt;0)\" data-display-mode=\"true\">B=aH-bH^3\\qquad(a&gt;0,\\ b&gt;0)</div><p class=\"prose\">底面積 S、長さ L の磁気コアに単位長さあたり n 回巻いたソレノイドを作り、交流電流を流す。</p><div class=\"formula\" data-katex=\"I(t)=I_0\\sin\\omega t,\\qquad H_{\\mathrm{cur}}=H_1\\sin\\omega t\" data-display-mode=\"true\">I(t)=I_0\\sin\\omega t,\\qquad H_{\\mathrm{cur}}=H_1\\sin\\omega t</div><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q4-core-setup\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure><p class=\"prose\">(j) H₁ を答えよ。</p><p class=\"prose\">(k) さらに N 回巻きの測定コイルを置く。端子F基準の端子E電圧 VEF の式にある3つの空欄を答えよ。</p><div class=\"formula\" data-katex=\"|V_{EF}|=|\\boxed{\\phantom{X}}\\sin2\\omega t\" data-display-mode=\"true\">|V_{EF}|=|\\boxed{\\phantom{X}}\\sin2\\omega t</div><div class=\"formula\" data-katex=\"+\\boxed{\\phantom{X}}\\cos\\omega t\" data-display-mode=\"true\">+\\boxed{\\phantom{X}}\\cos\\omega t</div><div class=\"formula\" data-katex=\"\\times(\\sin^2\\omega t+\\boxed{\\phantom{X}})|\" data-display-mode=\"true\">\\times(\\sin^2\\omega t+\\boxed{\\phantom{X}})|</div><p class=\"prose\">(l) 2組の検出器を使い、H₀ に比例しない不要信号を消す結線を、配線が交差しないよう解答図へ描け。</p><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q4-wiring-template\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure><p class=\"prose\">(m) 不要信号消去後の電圧の実効値を答えよ。</p><p class=\"prose\">(n) 次の条件で実効値を有効数字1桁で答えよ。</p><div class=\"formula\" data-katex=\"H_1^2=\\frac{a}{3b},\\quad \\omega=1.0\\times10^5\\ \\mathrm{rad/s}\" data-display-mode=\"true\">H_1^2=\\frac{a}{3b},\\quad \\omega=1.0\\times10^5\\ \\mathrm{rad/s}</div><div class=\"formula\" data-katex=\"N=100,\\quad a=1.0\\times10^4,\\quad S=1.0\\times10^{-8}\\ \\mathrm{m^2}\" data-display-mode=\"true\">N=100,\\quad a=1.0\\times10^4,\\quad S=1.0\\times10^{-8}\\ \\mathrm{m^2}</div><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q4-dual-detectors\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure><p class=\"prose\">図5：A・BおよびC・Dは励磁コイル、E・FおよびG・Hは測定コイルの端子である。</p></article>"
+      },
+      {
+        "id": "major-question-03",
+        "label": "III",
+        "order": 3,
+        "sourcePageIds": [
+          "keio-2025-general-physics-questions-p005",
+          "keio-2025-general-physics-questions-p006",
+          "keio-2025-general-physics-questions-p007"
+        ],
+        "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-03\" data-major-question-id=\"major-question-03\"><h2>III</h2><p class=\"prose\">気体定数は次の値を用いる。</p><div class=\"formula\" data-katex=\"R=8.3\\ \\mathrm{J/(mol\\,K)}\" data-display-mode=\"true\">R=8.3\\ \\mathrm{J/(mol\\,K)}</div><h3>問1</h3><p class=\"prose\">液体の水と水蒸気が気液平衡にあるときの圧力を飽和水蒸気圧という。水蒸気は理想気体に従い、液体の体積は無視する。密閉容器の条件は次のとおりである。</p><div class=\"formula\" data-katex=\"n=1.0\\times10^{-4}\\ \\mathrm{mol},\\qquad V=10\\ \\mathrm{cm^3}\" data-display-mode=\"true\">n=1.0\\times10^{-4}\\ \\mathrm{mol},\\qquad V=10\\ \\mathrm{cm^3}</div><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q1-vapor-pressure-graph\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure><p class=\"prose\">(a) 80℃、(b) 40℃で十分待った後の水蒸気の圧力と物質量を、それぞれ有効数字2桁で答えよ。</p><h3>問2</h3><p class=\"prose\">理想気体の断熱変化ではポアソンの法則が成立する。</p><div class=\"formula\" data-katex=\"pV^\\gamma=\\text{一定}\" data-display-mode=\"true\">pV^\\gamma=\\text{一定}</div><p class=\"prose\">圧力 p、温度 T から微小な断熱変化をする場合、次の関係が成り立つ。</p><div class=\"formula\" data-katex=\"p^AT^\\gamma=\\text{一定}\" data-display-mode=\"true\">p^AT^\\gamma=\\text{一定}</div><div class=\"formula\" data-katex=\"\\Delta T=B\\frac{T}{p}\\Delta p\" data-display-mode=\"true\">\\Delta T=B\\frac{T}{p}\\Delta p</div><p class=\"prose\">(c) A、B を γ で答えよ。必要なら一次近似を用いる。</p><h3>問3</h3><p class=\"prose\">鉛直上向きを正に高度 h を定義し、圧力・温度・密度を p、T、ρ とする。大気は平均分子量 M の理想気体、重力加速度の大きさは g とする。</p><p class=\"prose\">厚さ Δh の仮想大気層のつり合いから次のように表す。</p><div class=\"formula\" data-katex=\"\\Delta p=-C\\Delta h\" data-display-mode=\"true\">\\Delta p=-C\\Delta h</div><p class=\"prose\">(d) C を ρ、g で答えよ。(e) 理想気体で書き換え、M、p、T、g、R で答えよ。</p><p class=\"prose\">空気塊が高度 h から h+Δh までゆっくり断熱上昇するとする。</p><div class=\"formula\" data-katex=\"\\Delta T=-D\\Delta h\" data-display-mode=\"true\">\\Delta T=-D\\Delta h</div><p class=\"prose\">(f) D を答えよ。(g) 次の条件で ΔT を有効数字2桁で答えよ。</p><div class=\"formula\" data-katex=\"B=0.29,\\quad g=10\\ \\mathrm{m/s^2},\\quad M=29\" data-display-mode=\"true\">B=0.29,\\quad g=10\\ \\mathrm{m/s^2},\\quad M=29</div><div class=\"formula\" data-katex=\"\\Delta h=1.0\\times10^2\\ \\mathrm m\" data-display-mode=\"true\">\\Delta h=1.0\\times10^2\\ \\mathrm m</div><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"q3-atmosphere-diagrams\"><div role=\"img\" aria-label=\"問題で参照する図（図版準備中）\"><strong>図版準備中</strong><p>問題で参照する図</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure><p class=\"prose\">大気自身の高度差による温度差を、空気塊の断熱温度変化とは別の記号で表す。</p><div class=\"formula\" data-katex=\"\\overline{\\Delta T}\" data-display-mode=\"true\">\\overline{\\Delta T}</div><p class=\"prose\">(h) 上昇した空気塊が自重で元の高度へ下降するために必要な、空気塊と周囲大気の温度差の大小関係を、導出過程とともに答えよ。</p><p class=\"prose\">(i) 上昇中に水滴が生じる場合を次のように表す。</p><div class=\"formula\" data-katex=\"\\Delta T=-D\\prime\\Delta h\" data-display-mode=\"true\">\\Delta T=-D\\prime\\Delta h</div><p class=\"prose\">水滴が生じない場合の D と D′ の大小関係を、理由とともに答えよ。</p></article>"
+      }
+    ]
+  },
+  "source": {
+    "sourcePackageId": "keio-2025-general-physics",
+    "reference": "projects/universities/keio/past-exams/working/2025/general/first-stage/physics/source-html/generated/public-candidate/questions",
+    "buildKind": "publication-candidate",
+    "contentProvenance": "source_projection",
+    "publicationCandidate": true,
+    "rightsStatus": "review_required",
+    "needsHumanReview": true
+  },
+  "links": {
+    "universityLibrary": "/past-exam-library/keio/",
+    "analysis": "/past-exam-library/keio/2025/physics/analysis/",
+    "universityInformation": null
+  }
+}

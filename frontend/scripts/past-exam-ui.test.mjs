@@ -122,6 +122,11 @@ test("all analysis pages use the shared discard label", () => {
     const path = `dist/${data.route.path.replace(/^\//, "")}index.html`;
     const nodes = descendants(parse(read(path)));
     const discarded = findClass(nodes, "priority-2");
+    if (data.pendingReason) {
+      assert.equal(discarded.length, 0, 'Missing analysis must not fabricate priorities');
+      assert.equal(findClass(nodes, 'analysis-target-score').length, 0, 'Missing analysis must not fabricate scores');
+      continue;
+    }
     discardedCount += discarded.length;
     assert.ok(discarded.every((node) => text(node) === "捨てる"), file);
     assert.equal(findClass(nodes, "analysis-small-note").some((node) => text(node).includes("「見送る」は")), false, file);

@@ -1,0 +1,732 @@
+{
+  "schemaVersion": "lexus-staging-answer-snapshot.v1",
+  "question": {
+    "schemaVersion": "lexus-ec.past-exam-question-page.v1",
+    "packageId": "kindai-2025-general-first-a-mathematics",
+    "route": {
+      "university": "kindai",
+      "year": "2025",
+      "subject": "mathematics",
+      "path": "/past-exam-library/kindai/2025/mathematics/questions/"
+    },
+    "university": {
+      "id": "kindai",
+      "name": "近畿大学"
+    },
+    "exam": {
+      "year": "2025",
+      "label": "一般入試・前期（A日程）",
+      "stage": "一次試験",
+      "duration": "数学 60分"
+    },
+    "subject": {
+      "id": "mathematics",
+      "name": "数学",
+      "english": "MATHEMATICS"
+    },
+    "document": {
+      "role": "questions",
+      "pageUnit": "major_question",
+      "sharedInstructionsHtml": "<section class=\"source-page-card question-shared-instructions\" data-question-shared-instructions><div class=\"page-kicker\">全大問共通</div><h2>2025年度 一般入試・前期（A日程） 医学部 数学</h2><p class=\"prose\">（60分）</p><h3>注意</h3><p class=\"prose\">問題の文中の <span class=\"answer-slot\">ア</span>、<span class=\"answer-slot\">イウ</span> などには、特に指示のないかぎり、数値または符号（−）が入る。これらを次の方法で解答用紙の指定欄にマークせよ。</p><p class=\"prose\">（1）ア、イ、ウ、…の一つ一つは、それぞれ0から9までの数字、または−の符号のいずれか一つに対応する。それらをア、イ、ウ、…で示された解答欄にマークする。</p><p class=\"prose\">例　<span class=\"answer-slot\">アイ</span> に <span class=\"math-inline\" data-katex=\"-8\" data-display-mode=\"false\">-8</span> と答えたいとき。</p><figure class=\"crop-card\" data-crop-id=\"notice-mark-example-1\" data-replacement-status=\"pending_redraw\"><div class=\"replacement-pending\">図版の模写差し替え待ち<br>原本クロップは公開候補へ含めていません</div><figcaption>注意事項（1）のマークシート記入例。ア欄で−、イ欄で8を塗りつぶす例。（差し替え待ち）</figcaption></figure><p class=\"prose\">（2）分数形で解答する場合は、既約分数（それ以上約分できない分数）で答える。分数の符号は分子につけ、分母につけてはならない。</p><p class=\"prose\">例　<span class=\"math-inline\" data-katex=\"\\dfrac{\\boxed{\\text{ウエ}}}{\\boxed{\\text{オ}}}\" data-display-mode=\"false\">\\dfrac{\\boxed{\\text{ウエ}}}{\\boxed{\\text{オ}}}</span> に <span class=\"math-inline\" data-katex=\"-\\dfrac45\" data-display-mode=\"false\">-\\dfrac45</span> と答えたいとき。</p><figure class=\"crop-card\" data-crop-id=\"notice-mark-example-2\" data-replacement-status=\"pending_redraw\"><div class=\"replacement-pending\">図版の模写差し替え待ち<br>原本クロップは公開候補へ含めていません</div><figcaption>注意事項（2）の分数のマークシート記入例。ウ欄で−、エ欄で4、オ欄で5を塗りつぶす例。（差し替え待ち）</figcaption></figure><p class=\"prose\">（3）根号を含む形で解答する場合は、根号の中に現れる自然数が最小となる形で答える。例えば、<span class=\"math-inline\" data-katex=\"\\boxed{\\text{カ}}\\sqrt{\\boxed{\\text{キ}}}\" data-display-mode=\"false\">\\boxed{\\text{カ}}\\sqrt{\\boxed{\\text{キ}}}</span> に <span class=\"math-inline\" data-katex=\"4\\sqrt2\" data-display-mode=\"false\">4\\sqrt2</span> と答えるところを、<span class=\"math-inline\" data-katex=\"2\\sqrt8\" data-display-mode=\"false\">2\\sqrt8</span> のように答えてはならない。</p><p class=\"prose\">（4）根号を含む分数形で解答する場合も、分母・分子を整数で共通に約せる形や、根号内の自然数をさらに小さくできる形で答えてはならない。</p><p class=\"prose\">（5）選択肢から一つを選んで、番号を答える場合もある。</p></section>",
+      "printNotes": [
+        "各設問に記載された解答形式・記号・単位の指定に従ってください。",
+        "図版準備中・内容確認中の設問は、確認が完了するまで演習対象外です。"
+      ],
+      "questions": [
+        {
+          "id": "major-question-01",
+          "label": "Ⅰ",
+          "order": 1,
+          "sourcePageIds": [
+            "kindai-2025-general-first-a-mathematics-questions-p002"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-01\" data-major-question-id=\"major-question-01\"><h2>Ⅰ</h2><p class=\"prose\">関数 <span class=\"math-inline\" data-katex=\"f(x)=\\log_{5}(1-\\cos 2x-3\\cos x)\" data-display-mode=\"false\">f(x)=\\log_{5}(1-\\cos 2x-3\\cos x)</span> を考える。ただし、<span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> の値は <span class=\"math-inline\" data-katex=\"0\\leqq x&lt;2\\pi\" data-display-mode=\"false\">0\\leqq x&lt;2\\pi</span> において <span class=\"math-inline\" data-katex=\"f(x)\" data-display-mode=\"false\">f(x)</span> が定義されるもののみを考える。</p><p class=\"prose\">（1）<span class=\"math-inline\" data-katex=\"t=\\cos x\" data-display-mode=\"false\">t=\\cos x</span> とおく。<span class=\"math-inline\" data-katex=\"f(x)\" data-display-mode=\"false\">f(x)</span> を <span class=\"math-inline\" data-katex=\"t\" data-display-mode=\"false\">t</span> を用いて表すと、<span class=\"math-inline\" data-katex=\"\\log_{5}(\\boxed{\\text{アイ}}t^{2}-\\boxed{\\text{ウ}}t+\\boxed{\\text{エ}})\" data-display-mode=\"false\">\\log_{5}(\\boxed{\\text{アイ}}t^{2}-\\boxed{\\text{ウ}}t+\\boxed{\\text{エ}})</span> である。</p><p class=\"prose\">（2）<span class=\"math-inline\" data-katex=\"f(x)\" data-display-mode=\"false\">f(x)</span> が定義される <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> のとりうる値の範囲は、<span class=\"math-inline\" data-katex=\"\\dfrac{\\boxed{\\text{オ}}}{\\boxed{\\text{カ}}}\\pi&lt;x&lt;\\dfrac{\\boxed{\\text{キ}}}{\\boxed{\\text{ク}}}\\pi\" data-display-mode=\"false\">\\dfrac{\\boxed{\\text{オ}}}{\\boxed{\\text{カ}}}\\pi&lt;x&lt;\\dfrac{\\boxed{\\text{キ}}}{\\boxed{\\text{ク}}}\\pi</span> である。</p><p class=\"prose\">（3）<span class=\"math-inline\" data-katex=\"f(x)\" data-display-mode=\"false\">f(x)</span> の最大値は <span class=\"math-inline\" data-katex=\"\\boxed{\\text{ケ}}-\\log_{5}\\boxed{\\text{コ}}\" data-display-mode=\"false\">\\boxed{\\text{ケ}}-\\log_{5}\\boxed{\\text{コ}}</span> である。また、<span class=\"math-inline\" data-katex=\"f(x)\" data-display-mode=\"false\">f(x)</span> が最大となるとき、<span class=\"math-inline\" data-katex=\"\\cos x\" data-display-mode=\"false\">\\cos x</span> の値は <span class=\"math-inline\" data-katex=\"\\dfrac{\\boxed{\\text{サシ}}}{\\boxed{\\text{ス}}}\" data-display-mode=\"false\">\\dfrac{\\boxed{\\text{サシ}}}{\\boxed{\\text{ス}}}</span> である。</p><p class=\"prose\">（4）<span class=\"math-inline\" data-katex=\"5^{f(x)}\" data-display-mode=\"false\">5^{f(x)}</span> がとりうる最大の整数の値は <span class=\"answer-slot\">セ</span> である。また、<span class=\"math-inline\" data-katex=\"5^{f(x)}\" data-display-mode=\"false\">5^{f(x)}</span> が整数となる <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> の総数は <span class=\"answer-slot\">ソ</span> であり、<span class=\"math-inline\" data-katex=\"5^{f(x)}\" data-display-mode=\"false\">5^{f(x)}</span> が整数となる <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> の総和は <span class=\"math-inline\" data-katex=\"\\boxed{\\text{タ}}\\pi\" data-display-mode=\"false\">\\boxed{\\text{タ}}\\pi</span> である。</p><p class=\"prose\">（5）<span class=\"math-inline\" data-katex=\"20^{f(x)}\" data-display-mode=\"false\">20^{f(x)}</span> がとりうる最大の整数の値は <span class=\"answer-slot\">チ</span> である。また、<span class=\"math-inline\" data-katex=\"20^{f(x)}\" data-display-mode=\"false\">20^{f(x)}</span> が整数となる <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> の総数は <span class=\"answer-slot\">ツテ</span> であり、<span class=\"math-inline\" data-katex=\"20^{f(x)}\" data-display-mode=\"false\">20^{f(x)}</span> が整数となる <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> の総和は <span class=\"math-inline\" data-katex=\"\\boxed{\\text{トナ}}\\pi\" data-display-mode=\"false\">\\boxed{\\text{トナ}}\\pi</span> である。ただし、<span class=\"math-inline\" data-katex=\"\\log_{10}2=0.3010\" data-display-mode=\"false\">\\log_{10}2=0.3010</span>、<span class=\"math-inline\" data-katex=\"\\log_{10}3=0.4771\" data-display-mode=\"false\">\\log_{10}3=0.4771</span>、<span class=\"math-inline\" data-katex=\"\\log_{10}7=0.8451\" data-display-mode=\"false\">\\log_{10}7=0.8451</span> とする。</p></article>"
+        },
+        {
+          "id": "major-question-02",
+          "label": "Ⅱ",
+          "order": 2,
+          "sourcePageIds": [
+            "kindai-2025-general-first-a-mathematics-questions-p003"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-02\" data-major-question-id=\"major-question-02\"><h2>Ⅱ</h2><p class=\"prose\"><span class=\"math-inline\" data-katex=\"0&lt;p&lt;1\" data-display-mode=\"false\">0&lt;p&lt;1</span> とする。表が出る確率が <span class=\"math-inline\" data-katex=\"p\" data-display-mode=\"false\">p</span>、裏が出る確率が <span class=\"math-inline\" data-katex=\"1-p\" data-display-mode=\"false\">1-p</span> である1枚の硬貨Aがある。</p><p class=\"prose\">（1）<span class=\"math-inline\" data-katex=\"p=\\dfrac13\" data-display-mode=\"false\">p=\\dfrac13</span> とする。硬貨Aを3回続けて投げるとき、表がちょうど2回出る確率は <span class=\"math-inline\" data-katex=\"\\dfrac{\\boxed{\\text{ア}}}{\\boxed{\\text{イ}}}\" data-display-mode=\"false\">\\dfrac{\\boxed{\\text{ア}}}{\\boxed{\\text{イ}}}</span> であり、少なくとも1回表が出る確率は <span class=\"math-inline\" data-katex=\"\\dfrac{\\boxed{\\text{ウエ}}}{\\boxed{\\text{オカ}}}\" data-display-mode=\"false\">\\dfrac{\\boxed{\\text{ウエ}}}{\\boxed{\\text{オカ}}}</span> である。</p><p class=\"prose\">（2）<span class=\"math-inline\" data-katex=\"n\" data-display-mode=\"false\">n</span> を2以上の自然数とする。硬貨Aを <span class=\"math-inline\" data-katex=\"n\" data-display-mode=\"false\">n</span> 回続けて投げる試行において、表が2回以上続けて出ない事象を <span class=\"math-inline\" data-katex=\"X_n\" data-display-mode=\"false\">X_n</span> とする。</p><p class=\"prose\">（i）<span class=\"math-inline\" data-katex=\"X_n\" data-display-mode=\"false\">X_n</span> のうち、<span class=\"math-inline\" data-katex=\"n\" data-display-mode=\"false\">n</span> 回目に表、<span class=\"math-inline\" data-katex=\"n\" data-display-mode=\"false\">n</span> 回目に裏が出る場合の数を、それぞれ <span class=\"math-inline\" data-katex=\"a_n,b_n\" data-display-mode=\"false\">a_n,b_n</span> とするとき、<span class=\"math-inline\" data-katex=\"a_2=\\boxed{\\text{キ}}\" data-display-mode=\"false\">a_2=\\boxed{\\text{キ}}</span>、<span class=\"math-inline\" data-katex=\"b_2=\\boxed{\\text{ク}}\" data-display-mode=\"false\">b_2=\\boxed{\\text{ク}}</span>、<span class=\"math-inline\" data-katex=\"a_3=\\boxed{\\text{ケ}}\" data-display-mode=\"false\">a_3=\\boxed{\\text{ケ}}</span>、<span class=\"math-inline\" data-katex=\"b_3=\\boxed{\\text{コ}}\" data-display-mode=\"false\">b_3=\\boxed{\\text{コ}}</span>、<span class=\"math-inline\" data-katex=\"a_4=\\boxed{\\text{サ}}\" data-display-mode=\"false\">a_4=\\boxed{\\text{サ}}</span>、<span class=\"math-inline\" data-katex=\"b_4=\\boxed{\\text{シ}}\" data-display-mode=\"false\">b_4=\\boxed{\\text{シ}}</span> である。</p><p class=\"prose\">（ii）<span class=\"math-inline\" data-katex=\"p=\\dfrac12\" data-display-mode=\"false\">p=\\dfrac12</span> とする。<span class=\"math-inline\" data-katex=\"X_n\" data-display-mode=\"false\">X_n</span> の確率を <span class=\"math-inline\" data-katex=\"P(X_n)\" data-display-mode=\"false\">P(X_n)</span> とするとき、<span class=\"math-inline\" data-katex=\"P(X_5)=\\dfrac{\\boxed{\\text{スセ}}}{\\boxed{\\text{ソタ}}}\" data-display-mode=\"false\">P(X_5)=\\dfrac{\\boxed{\\text{スセ}}}{\\boxed{\\text{ソタ}}}</span>、<span class=\"math-inline\" data-katex=\"P(X_{10})=\\dfrac{\\boxed{\\text{チ}}}{\\boxed{\\text{ツテ}}}\" data-display-mode=\"false\">P(X_{10})=\\dfrac{\\boxed{\\text{チ}}}{\\boxed{\\text{ツテ}}}</span> である。</p><p class=\"prose\">（3）硬貨Aを続けて投げる試行において、次の2つのことがわかっている。</p><div class=\"structured-list structured-list--conditions\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">・</div><div class=\"structured-list__text\">Aを5回続けて投げる試行において、表がちょうど3回出る確率は、表が3回以上出てかつ表がちょうど3回続けて出る確率よりも大きい。</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">・</div><div class=\"structured-list__text\">Aを15回続けて投げる試行において、表がちょうど <span class=\"math-inline\" data-katex=\"k\" data-display-mode=\"false\">k</span> 回（<span class=\"math-inline\" data-katex=\"0\\leqq k\\leqq15\" data-display-mode=\"false\">0\\leqq k\\leqq15</span>）出る確率を比較すると、確率が最大となるのは <span class=\"math-inline\" data-katex=\"k=12\" data-display-mode=\"false\">k=12</span> のときのみである。</div></div></div><p class=\"prose\">このとき、<span class=\"math-inline\" data-katex=\"p\" data-display-mode=\"false\">p</span> のとりうる値の範囲は <span class=\"math-inline\" data-katex=\"\\dfrac{\\boxed{\\text{ト}}}{\\boxed{\\text{ナ}}}&lt;p&lt;\\dfrac{\\boxed{\\text{ニ}}}{\\boxed{\\text{ヌ}}}\" data-display-mode=\"false\">\\dfrac{\\boxed{\\text{ト}}}{\\boxed{\\text{ナ}}}&lt;p&lt;\\dfrac{\\boxed{\\text{ニ}}}{\\boxed{\\text{ヌ}}}</span> である。</p></article>"
+        },
+        {
+          "id": "major-question-03",
+          "label": "Ⅲ",
+          "order": 3,
+          "sourcePageIds": [
+            "kindai-2025-general-first-a-mathematics-questions-p004"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-03\" data-major-question-id=\"major-question-03\"><h2>Ⅲ</h2><p class=\"prose\">原点をOとする座標空間において、3点 <span class=\"math-inline\" data-katex=\"A(4,0,0)\" data-display-mode=\"false\">A(4,0,0)</span>、<span class=\"math-inline\" data-katex=\"B(0,4,0)\" data-display-mode=\"false\">B(0,4,0)</span>、<span class=\"math-inline\" data-katex=\"C(0,0,4)\" data-display-mode=\"false\">C(0,0,4)</span> を考える。</p><p class=\"prose\">（1）線分BCの中点とOの距離は <span class=\"math-inline\" data-katex=\"\\boxed{\\text{ア}}\\sqrt{\\boxed{\\text{イ}}}\" data-display-mode=\"false\">\\boxed{\\text{ア}}\\sqrt{\\boxed{\\text{イ}}}</span> である。また、<span class=\"math-inline\" data-katex=\"\\triangle ABC\" data-display-mode=\"false\">\\triangle ABC</span> の面積は <span class=\"math-inline\" data-katex=\"\\boxed{\\text{ウ}}\\sqrt{\\boxed{\\text{エ}}}\" data-display-mode=\"false\">\\boxed{\\text{ウ}}\\sqrt{\\boxed{\\text{エ}}}</span> である。</p><p class=\"prose\">（2）Oから平面ABCに下ろした垂線の長さは <span class=\"math-inline\" data-katex=\"\\dfrac{\\boxed{\\text{オ}}\\sqrt{\\boxed{\\text{カ}}}}{\\boxed{\\text{キ}}}\" data-display-mode=\"false\">\\dfrac{\\boxed{\\text{オ}}\\sqrt{\\boxed{\\text{カ}}}}{\\boxed{\\text{キ}}}</span> である。</p><p class=\"prose\">（3）球面 <span class=\"math-inline\" data-katex=\"x^{2}+y^{2}+z^{2}=8\" data-display-mode=\"false\">x^{2}+y^{2}+z^{2}=8</span> と平面ABCが交わってできる円を <span class=\"math-inline\" data-katex=\"D\" data-display-mode=\"false\">D</span> とし、点 <span class=\"math-inline\" data-katex=\"X(p,q,r)\" data-display-mode=\"false\">X(p,q,r)</span> が <span class=\"math-inline\" data-katex=\"D\" data-display-mode=\"false\">D</span> 上を動くとする。</p><p class=\"prose\">（i）<span class=\"math-inline\" data-katex=\"D\" data-display-mode=\"false\">D</span> の半径は <span class=\"math-inline\" data-katex=\"\\dfrac{\\boxed{\\text{ク}}\\sqrt{\\boxed{\\text{ケ}}}}{\\boxed{\\text{コ}}}\" data-display-mode=\"false\">\\dfrac{\\boxed{\\text{ク}}\\sqrt{\\boxed{\\text{ケ}}}}{\\boxed{\\text{コ}}}</span> である。</p><p class=\"prose\">（ii）<span class=\"math-inline\" data-katex=\"q+r\" data-display-mode=\"false\">q+r</span>、<span class=\"math-inline\" data-katex=\"qr\" data-display-mode=\"false\">qr</span> をそれぞれ <span class=\"math-inline\" data-katex=\"p\" data-display-mode=\"false\">p</span> を用いて表すと、<span class=\"math-inline\" data-katex=\"q+r=\\boxed{\\text{サ}}-p\" data-display-mode=\"false\">q+r=\\boxed{\\text{サ}}-p</span>、<span class=\"math-inline\" data-katex=\"qr=(p-\\boxed{\\text{シ}})^{2}\" data-display-mode=\"false\">qr=(p-\\boxed{\\text{シ}})^{2}</span> である。</p><p class=\"prose\">（iii）<span class=\"math-inline\" data-katex=\"p\" data-display-mode=\"false\">p</span> のとりうる値の範囲は <span class=\"math-inline\" data-katex=\"\\boxed{\\text{ス}}\\leqq p\\leqq\\dfrac{\\boxed{\\text{セ}}}{\\boxed{\\text{ソ}}}\" data-display-mode=\"false\">\\boxed{\\text{ス}}\\leqq p\\leqq\\dfrac{\\boxed{\\text{セ}}}{\\boxed{\\text{ソ}}}</span> である。</p><p class=\"prose\">（iv）3点 <span class=\"math-inline\" data-katex=\"P(p,0,0)\" data-display-mode=\"false\">P(p,0,0)</span>、<span class=\"math-inline\" data-katex=\"Q(0,q,0)\" data-display-mode=\"false\">Q(0,q,0)</span>、<span class=\"math-inline\" data-katex=\"R(0,0,r)\" data-display-mode=\"false\">R(0,0,r)</span> を頂点とする <span class=\"math-inline\" data-katex=\"\\triangle PQR\" data-display-mode=\"false\">\\triangle PQR</span> の面積を <span class=\"math-inline\" data-katex=\"S\" data-display-mode=\"false\">S</span> とする。<span class=\"math-inline\" data-katex=\"S\" data-display-mode=\"false\">S</span> を <span class=\"math-inline\" data-katex=\"p\" data-display-mode=\"false\">p</span> を用いて表すと、<span class=\"math-inline\" data-katex=\"S=\\sqrt{\\boxed{\\text{タチ}}p^{3}+\\boxed{\\text{ツ}}p^{2}-\\boxed{\\text{テ}}p+\\boxed{\\text{ト}}}\" data-display-mode=\"false\">S=\\sqrt{\\boxed{\\text{タチ}}p^{3}+\\boxed{\\text{ツ}}p^{2}-\\boxed{\\text{テ}}p+\\boxed{\\text{ト}}}</span> であり、<span class=\"math-inline\" data-katex=\"S\" data-display-mode=\"false\">S</span> の最小値は <span class=\"math-inline\" data-katex=\"\\dfrac{\\boxed{\\text{ナ}}\\sqrt{\\boxed{\\text{ニヌ}}}}{\\boxed{\\text{ネ}}}\" data-display-mode=\"false\">\\dfrac{\\boxed{\\text{ナ}}\\sqrt{\\boxed{\\text{ニヌ}}}}{\\boxed{\\text{ネ}}}</span> である。</p></article>"
+        }
+      ]
+    },
+    "source": {
+      "sourcePackageId": "kindai-2025-general-first-a-mathematics",
+      "reference": "projects/universities/kindai/past-exams/working/2025/general-first-a/first-stage/mathematics/source-html/generated/public-candidate/questions",
+      "buildKind": "publication-candidate",
+      "contentProvenance": "source_projection",
+      "publicationCandidate": true,
+      "rightsStatus": "review_required",
+      "needsHumanReview": true
+    },
+    "links": {
+      "universityLibrary": "/past-exam-library/kindai/",
+      "analysis": "/past-exam-library/kindai/2025/mathematics/analysis/",
+      "universityInformation": null
+    }
+  },
+  "editorial": {
+    "schema_version": "medical-entrance-past-exam-editorial-explanation.v2",
+    "package_id": "kindai-2025-general-first-a-mathematics",
+    "document_role": "answers",
+    "source_reconstruction_path": "reconstruction.json",
+    "audience": "learner",
+    "provenance": "editorial_adaptation",
+    "style_policy": {
+      "preserve_source_method": true,
+      "preserve_source_reasoning_order": true,
+      "forbid_answer_backward_reasoning": true
+    },
+    "reader_structure": {
+      "page_unit": "major_question",
+      "assignment": "explicit_per_block",
+      "source_page_records_preserved_for_provenance": true,
+      "major_questions": [
+        {
+          "id": "major-question-01",
+          "label": "第Ⅰ問",
+          "order": 1
+        },
+        {
+          "id": "major-question-02",
+          "label": "第Ⅱ問",
+          "order": 2
+        },
+        {
+          "id": "major-question-03",
+          "label": "第Ⅲ問",
+          "order": 3
+        }
+      ]
+    },
+    "pages": [
+      {
+        "source_page_id": "kindai-2025-general-first-a-mathematics-answers-p001",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第Ⅰ問　対数関数と整数値（学習者向け解説）",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "（1）",
+                "value": "アイ −2／ウ 3／エ 2"
+              },
+              {
+                "label": "（2）",
+                "value": "オ 1／カ 3／キ 5／ク 3"
+              },
+              {
+                "label": "（3）",
+                "value": "ケ 2／コ 8／サシ −3／ス 4"
+              },
+              {
+                "label": "（4）",
+                "value": "セ 3／ソ 7／タ 7"
+              },
+              {
+                "label": "（5）",
+                "value": "チ 8／ツテ 18／トナ 18"
+              }
+            ],
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(1)　二倍角公式で真数を二次式にする",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "note",
+            "label": "最初の一手",
+            "text": "対数の真数を直接扱う前に、\\(t=\\cos x\\) と置ける形へ変えます。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "1-\\cos 2x-3\\cos x=-2\\cos^2x-3\\cos x+2",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "f(x)=\\log_5(-2t^2-3t+2)",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(2)　真数条件とcosの値域を重ねる",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "-2t^2-3t+2>0\\iff(2t-1)(t+2)<0",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "二次不等式から \\(-2<t<1/2\\)。さらに \\(-1\\le t\\le1\\) と重ねると \\(-1\\le t<1/2\\) です。単位円に戻して \\(\\pi/3<x<5\\pi/3\\) を得ます。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "crop",
+            "asset_id": "a1-domain-circle",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(3)　真数の最大値を平方完成で求める",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "-2t^2-3t+2=-2\\left(t+\\frac34\\right)^2+\\frac{25}{8}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "底5は1より大きいので、真数が最大のとき \\(f\\) も最大です。よって最大値は \\(\\log_5(25/8)=2-\\log_5 8\\)、そのとき \\(\\cos x=-3/4\\) です。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "crop",
+            "asset_id": "a1-parabola",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kindai-2025-general-first-a-mathematics-answers-p002",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(4)　整数水平線との交点を数える",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "\\(5^{f(x)}=-2t^2-3t+2\\le25/8\\) なので、最大の整数は3です。整数値1、2、3ごとに二次方程式の解を調べ、各 \\(t\\) に対応する角 \\(x\\) を数えます。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "crop",
+            "asset_id": "a2-unit-circle",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "\\(t=-1\\) には \\(x=\\pi\\) が1個、\\(-1<t<1/2\\) の各 \\(t\\) には和が \\(2\\pi\\) となる2個の角が対応します。したがって総数は7、総和は \\(7\\pi\\) です。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(5)　最大値を常用対数で挟む",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\log_{10}\\left(20^{\\log_5(25/8)}\\right)=\\left(2-\\frac{3\\log_{10}2}{1-\\log_{10}2}\\right)(1+\\log_{10}2)\\fallingdotseq0.9213",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "\\(\\log_{10}8=0.9030<0.9213<\\log_{10}9\\) なので、最大の整数は8です。",
+            "major_question_id": "major-question-01"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kindai-2025-general-first-a-mathematics-answers-p003",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "\\(g(t)=3\\) では \\(20^{\\log_5 3}\\) は7と8の間です。したがって8に対応する \\(t\\) は頂点近くの2個で、角 \\(x\\) は4個です。1から7には各2個ずつ対応するので、総数は \\(4+2\\times7=18\\)、総和は \\(4\\pi+2\\pi\\times7=18\\pi\\) です。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第Ⅱ問　硬貨列と二項確率（学習者向け解説）",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "（1）",
+                "value": "ア 2／イ 9／ウエ 19／オカ 27"
+              },
+              {
+                "label": "（2）（i）",
+                "value": "キ 1／ク 2／ケ 2／コ 3／サ 3／シ 5"
+              },
+              {
+                "label": "（2）（ii）",
+                "value": "スセ 13／ソタ 32／チ 9／ツテ 64"
+              },
+              {
+                "label": "（3）",
+                "value": "ト 3／ナ 4／ニ 7／ヌ 9"
+              }
+            ],
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(1)　ちょうど2回と少なくとも1回",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "{}_3C_2\\left(\\frac13\\right)^2\\frac23=\\frac29",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "1-\\left(\\frac23\\right)^3=\\frac{19}{27}",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(2)(i)　末尾が表か裏かで分ける",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "表が2回続かない列を末尾別に列挙すると、\\(a_2=1,b_2=2\\)、\\(a_3=2,b_3=3\\)、\\(a_4=3,b_4=5\\) です。",
+            "major_question_id": "major-question-02"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kindai-2025-general-first-a-mathematics-answers-p004",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(2)(ii)　フィボナッチ型の漸化式を使う",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "a_{n+1}=b_n,\\qquad b_{n+1}=a_n+b_n=b_{n-1}+b_n",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "\\(a_5=5,b_5=8\\) なので \\(P(X_5)=13/32\\)。同じ漸化式から \\(a_{10}=55,b_{10}=89\\) となり、\\(P(X_{10})=(55+89)/2^{10}=9/64\\) です。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(3)　条件を二つの不等式に分ける",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "最初の条件では、表3回の全10通りと、3連続を含む表3回・表4回の場合を比較します。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "{}_5C_3p^3(1-p)^2>3p^3(1-p)^2+2p^4(1-p)\\iff p<\\frac79",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "次に15回中の表の回数を \\(k\\) とした確率 \\(P(k)\\) の隣接項比を調べます。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac{P(k+1)}{P(k)}=\\frac{p(15-k)}{(k+1)(1-p)}",
+            "major_question_id": "major-question-02"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kindai-2025-general-first-a-mathematics-answers-p005",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "12回がただ一つの最大項となる条件は \\(11<16p-1<12\\)、すなわち \\(3/4<p<13/16\\) です。先の \\(p<7/9\\) と重ねて \\(3/4<p<7/9\\) を得ます。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第Ⅲ問　球と平面の交円（学習者向け解説）",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "（1）",
+                "value": "ア 2／イ 2／ウ 8／エ 3"
+              },
+              {
+                "label": "（2）",
+                "value": "オ 4／カ 3／キ 3"
+              },
+              {
+                "label": "（3）（i）",
+                "value": "ク 2／ケ 6／コ 3"
+              },
+              {
+                "label": "（3）（ii）",
+                "value": "サ 4／シ 2"
+              },
+              {
+                "label": "（3）（iii）",
+                "value": "ス 0／セ 8／ソ 3"
+              },
+              {
+                "label": "（3）（iv）",
+                "value": "タチ −2／ツ 8／テ 8／ト 4／ナ 2／ニヌ 33／ネ 9"
+              }
+            ],
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(1)　中点と正三角形を確認する",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "BCの中点は \\(M(0,2,2)\\) なので \\(OM=2\\sqrt2\\)。またABCは一辺 \\(4\\sqrt2\\) の正三角形です。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "[ABC]=\\frac12(4\\sqrt2)^2\\sin\\frac\\pi3=8\\sqrt3",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "crop",
+            "asset_id": "a5-coordinate-space",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(2)　対称性から垂足を重心と見る",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "Oから平面ABCへの垂足HはA、B、Cから等距離です。正三角形では外心と重心が一致するため \\(H(4/3,4/3,4/3)\\) です。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "crop",
+            "asset_id": "a5-plane-circle",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "OH=\\sqrt{3\\left(\\frac43\\right)^2}=\\frac{4\\sqrt3}{3}",
+            "major_question_id": "major-question-03"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kindai-2025-general-first-a-mathematics-answers-p006",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(3)(i)　球の半径と中心から平面までの距離を使う",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "XH=\\sqrt{OX^2-OH^2}=\\sqrt{8-\\frac{16}{3}}=\\frac{2\\sqrt6}{3}",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "crop",
+            "asset_id": "a6-right-triangle",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(3)(ii)　和と積をpに集約する",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "球面条件と交円の中心Hからの距離条件を比べると \\(p+q+r=4\\) です。よって \\(q+r=4-p\\)。さらに \\(q^2+r^2=8-p^2\\) と和の二乗を使います。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "qr=\\frac{(q+r)^2-(q^2+r^2)}2=(p-2)^2",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(3)(iii)　qとrの実数条件を判別式で表す",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "(p-4)^2-4(p-2)^2=-3p^2+8p\\ge0",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "したがって \\(0\\le p\\le8/3\\) です。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "heading",
+            "level": 3,
+            "text": "(3)(iv)　面積を一変数化する",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "S=\\frac12\\sqrt{(p^2+q^2)(p^2+r^2)-p^4}",
+            "major_question_id": "major-question-03"
+          }
+        ]
+      },
+      {
+        "source_page_id": "kindai-2025-general-first-a-mathematics-answers-p007",
+        "blocks": [
+          {
+            "type": "formula",
+            "latex": "S=\\sqrt{-2p^3+8p^2-8p+4}",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "根号内を \\(F(p)\\) と置き、先に \\(F\\) を区間 \\(0\\le p\\le8/3\\) で最小化します。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "F'(p)=-6p^2+16p-8=-2(3p-2)(p-2)",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "table",
+            "headers": [
+              "p",
+              "0",
+              "…",
+              "2/3",
+              "…",
+              "2",
+              "…",
+              "8/3"
+            ],
+            "rows": [
+              [
+                "F'(p)",
+                "−",
+                "",
+                "0",
+                "+",
+                "0",
+                "−",
+                ""
+              ],
+              [
+                "F(p)",
+                "4",
+                "↘",
+                "44/27",
+                "↗",
+                "4",
+                "↘",
+                "44/27"
+              ]
+            ],
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "増減から \\(F\\) の最小値は \\(44/27\\)。よって面積の最小値は \\(\\sqrt{44/27}=2\\sqrt{33}/9\\) です。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "note",
+            "label": "確認",
+            "text": "根号は単調増加なので、面積Sの最小化は根号内Fの最小化に置き換えられます。",
+            "major_question_id": "major-question-03"
+          }
+        ]
+      }
+    ],
+    "review": {
+      "needs_human_review": true,
+      "editorial_status": "draft_for_subject_editor",
+      "mathematical_consistency_checked": true,
+      "answer_key_checked": true,
+      "source_transcription_preserved": true,
+      "source_route_checked": true,
+      "reader_structure_checked": true
+    }
+  },
+  "assets": [
+    {
+      "id": "notice-mark-example-1",
+      "kind": "source_crop",
+      "source_page_id": "kindai-2025-general-first-a-mathematics-questions-p001",
+      "crop_box_pixels": [
+        348,
+        333,
+        874,
+        762
+      ],
+      "source_crop_path": "assets/crops/notice-mark-example-1/source.png",
+      "replacement_path": "assets/crops/notice-mark-example-1/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "注意事項（1）のマークシート記入例。ア欄で−、イ欄で8を塗りつぶす例。"
+    },
+    {
+      "id": "notice-mark-example-2",
+      "kind": "source_crop",
+      "source_page_id": "kindai-2025-general-first-a-mathematics-questions-p001",
+      "crop_box_pixels": [
+        333,
+        578,
+        874,
+        907
+      ],
+      "source_crop_path": "assets/crops/notice-mark-example-2/source.png",
+      "replacement_path": "assets/crops/notice-mark-example-2/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "注意事項（2）の分数のマークシート記入例。ウ欄で−、エ欄で4、オ欄で5を塗りつぶす例。"
+    },
+    {
+      "id": "a1-domain-circle",
+      "kind": "source_crop",
+      "source_page_id": "kindai-2025-general-first-a-mathematics-answers-p001",
+      "crop_box_pixels": [
+        498,
+        483,
+        874,
+        887
+      ],
+      "source_crop_path": "assets/crops/a1-domain-circle/source.png",
+      "replacement_path": "assets/crops/a1-domain-circle/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "単位円上で cos x の範囲と x の定義域を示す図。"
+    },
+    {
+      "id": "a1-parabola",
+      "kind": "source_crop",
+      "source_page_id": "kindai-2025-general-first-a-mathematics-answers-p001",
+      "crop_box_pixels": [
+        498,
+        698,
+        874,
+        1241
+      ],
+      "source_crop_path": "assets/crops/a1-parabola/source.png",
+      "replacement_path": "assets/crops/a1-parabola/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "放物線 y=g(t)=-2t²-3t+2 と頂点、定義域を示すグラフ。"
+    },
+    {
+      "id": "a2-unit-circle",
+      "kind": "source_crop",
+      "source_page_id": "kindai-2025-general-first-a-mathematics-answers-p002",
+      "crop_box_pixels": [
+        478,
+        0,
+        874,
+        502
+      ],
+      "source_crop_path": "assets/crops/a2-unit-circle/source.png",
+      "replacement_path": "assets/crops/a2-unit-circle/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "g(t)=3 のときの t=-1,-1/2 に対応する単位円上の x を示す図。"
+    },
+    {
+      "id": "a5-coordinate-space",
+      "kind": "source_crop",
+      "source_page_id": "kindai-2025-general-first-a-mathematics-answers-p005",
+      "crop_box_pixels": [
+        463,
+        503,
+        874,
+        997
+      ],
+      "source_crop_path": "assets/crops/a5-coordinate-space/source.png",
+      "replacement_path": "assets/crops/a5-coordinate-space/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "座標空間の原点OとA、B、C、垂足Hを示す図。"
+    },
+    {
+      "id": "a5-plane-circle",
+      "kind": "source_crop",
+      "source_page_id": "kindai-2025-general-first-a-mathematics-answers-p005",
+      "crop_box_pixels": [
+        483,
+        803,
+        874,
+        1241
+      ],
+      "source_crop_path": "assets/crops/a5-plane-circle/source.png",
+      "replacement_path": "assets/crops/a5-plane-circle/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "正三角形ABCとその中心H、切り口の円D、点Xを示す平面図。"
+    },
+    {
+      "id": "a6-right-triangle",
+      "kind": "source_crop",
+      "source_page_id": "kindai-2025-general-first-a-mathematics-answers-p006",
+      "crop_box_pixels": [
+        458,
+        0,
+        874,
+        542
+      ],
+      "source_crop_path": "assets/crops/a6-right-triangle/source.png",
+      "replacement_path": "assets/crops/a6-right-triangle/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "直角三角形OXHで、OX、OH、XHの関係を示す図。"
+    }
+  ],
+  "sourceReference": "projects/universities/kindai/past-exams/working/2025/general-first-a/first-stage/mathematics/source-html/editorial-explanations.json",
+  "sha256": "6049fc9550508a65f1c19c865df711515fc6c3e5f4a53cd213e3c596e4f72df6"
+}

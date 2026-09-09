@@ -1,0 +1,1176 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "hyogo-medical-2025-general-a-b-physics",
+    "university_id": "hyogo-medical",
+    "university_name": "兵庫医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-a-b",
+    "exam_method_name": "一般選抜A・B（共通問題）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 120,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "一般選抜Aは理科2科目を通し120分、一般選抜Bは物理1科目60分。分析上の物理時間は共通して60分とする。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/hyogo-medical/past-exams/working/2025/general-a-b/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "f16c579fb5b2014b218a4124fcd7c7007bf24b802c2b3555d32f67f31b346bd9",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "［問1］",
+      "sourceTitle": "水平・傾斜平面上の小球の円運動",
+      "requirements": [
+        2.8,
+        3.1,
+        3.2,
+        3.2,
+        3.2
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "力の向き、向心方向、エネルギー保存を図に即して整理する必要がある。",
+          "strategyReason": "仮2点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "(2)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "力の向き、向心方向、エネルギー保存を図に即して整理する必要がある。",
+          "strategyReason": "仮2点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-1"
+            ],
+            "strong_subject": [
+              "phys-q1-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "(3)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "力の向き、向心方向、エネルギー保存を図に即して整理する必要がある。",
+          "strategyReason": "仮2点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-2"
+            ],
+            "strong_subject": [
+              "phys-q1-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "(4)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "力の向き、向心方向、エネルギー保存を図に即して整理する必要がある。",
+          "strategyReason": "仮2点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-3"
+            ],
+            "strong_subject": [
+              "phys-q1-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-5",
+          "label": "(5)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "力の向き、向心方向、エネルギー保存を図に即して整理する必要がある。",
+          "strategyReason": "仮2点。前問依存または計算負荷があり、基本問題の後に戻る。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-6",
+          "label": "(6)",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "力の向き、向心方向、エネルギー保存を図に即して整理する必要がある。",
+          "strategyReason": "仮2点。前問依存または計算負荷があり、基本問題の後に戻る。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-5"
+            ],
+            "strong_subject": [
+              "phys-q1-5"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-7",
+          "label": "(7)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "力の向き、向心方向、エネルギー保存を図に即して整理する必要がある。",
+          "strategyReason": "仮2点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-8",
+          "label": "(8)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "力の向き、向心方向、エネルギー保存を図に即して整理する必要がある。",
+          "strategyReason": "仮2点。前問依存または計算負荷があり、基本問題の後に戻る。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-7"
+            ],
+            "strong_subject": [
+              "phys-q1-7"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-9",
+          "label": "(9)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "力の向き、向心方向、エネルギー保存を図に即して整理する必要がある。",
+          "strategyReason": "仮2点。前問依存または計算負荷があり、基本問題の後に戻る。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-8"
+            ],
+            "strong_subject": [
+              "phys-q1-8"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-10",
+          "label": "(10)",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 1,
+          "difficultyReason": "力の向き、向心方向、エネルギー保存を図に即して整理する必要がある。",
+          "strategyReason": "仮1点。前問依存または計算負荷があり、基本問題の後に戻る。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-6",
+              "phys-q1-8",
+              "phys-q1-9"
+            ],
+            "strong_subject": [
+              "phys-q1-6",
+              "phys-q1-8",
+              "phys-q1-9"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-11",
+          "label": "(11)",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 1,
+          "difficultyReason": "力の向き、向心方向、エネルギー保存を図に即して整理する必要がある。",
+          "strategyReason": "仮1点。前問依存または計算負荷があり、基本問題の後に戻る。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-10"
+            ],
+            "strong_subject": [
+              "phys-q1-10"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "［問2］",
+      "sourceTitle": "電気伝導の微視的モデルと半導体",
+      "requirements": [
+        2.5,
+        3,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1-1",
+          "label": "(1)①",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 1,
+          "difficultyReason": "電場・電気力・ドリフト速度・電流・抵抗のつながりを順に追う。",
+          "strategyReason": "仮1点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-1-2",
+          "label": "②",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 1,
+          "difficultyReason": "電場・電気力・ドリフト速度・電流・抵抗のつながりを順に追う。",
+          "strategyReason": "仮1点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1-1"
+            ],
+            "strong_subject": [
+              "phys-q2-1-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-1-3",
+          "label": "③",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 1,
+          "difficultyReason": "電場・電気力・ドリフト速度・電流・抵抗のつながりを順に追う。",
+          "strategyReason": "仮1点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1-2"
+            ],
+            "strong_subject": [
+              "phys-q2-1-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-1-4",
+          "label": "④",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 1,
+          "difficultyReason": "電場・電気力・ドリフト速度・電流・抵抗のつながりを順に追う。",
+          "strategyReason": "仮1点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1-3"
+            ],
+            "strong_subject": [
+              "phys-q2-1-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-1-5",
+          "label": "⑤",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 1,
+          "difficultyReason": "電場・電気力・ドリフト速度・電流・抵抗のつながりを順に追う。",
+          "strategyReason": "仮1点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1-4"
+            ],
+            "strong_subject": [
+              "phys-q2-1-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-1-6",
+          "label": "⑥",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 1,
+          "difficultyReason": "電場・電気力・ドリフト速度・電流・抵抗のつながりを順に追う。",
+          "strategyReason": "仮1点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1-5"
+            ],
+            "strong_subject": [
+              "phys-q2-1-5"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-1-7",
+          "label": "⑦",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 1,
+          "difficultyReason": "電場・電気力・ドリフト速度・電流・抵抗のつながりを順に追う。",
+          "strategyReason": "仮1点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1-6"
+            ],
+            "strong_subject": [
+              "phys-q2-1-6"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-1-8",
+          "label": "⑧",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 1,
+          "difficultyReason": "電場・電気力・ドリフト速度・電流・抵抗のつながりを順に追う。",
+          "strategyReason": "仮1点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1-7"
+            ],
+            "strong_subject": [
+              "phys-q2-1-7"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-1-9",
+          "label": "⑨",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 1,
+          "difficultyReason": "電場・電気力・ドリフト速度・電流・抵抗のつながりを順に追う。",
+          "strategyReason": "仮1点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1-8"
+            ],
+            "strong_subject": [
+              "phys-q2-1-8"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-1-10",
+          "label": "⑩",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 1,
+          "difficultyReason": "電場・電気力・ドリフト速度・電流・抵抗のつながりを順に追う。",
+          "strategyReason": "仮1点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1-9"
+            ],
+            "strong_subject": [
+              "phys-q2-1-9"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-1-11",
+          "label": "⑪",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 1,
+          "difficultyReason": "電場・電気力・ドリフト速度・電流・抵抗のつながりを順に追う。",
+          "strategyReason": "仮1点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1-10"
+            ],
+            "strong_subject": [
+              "phys-q2-1-10"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-1-12",
+          "label": "⑫",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 1,
+          "difficultyReason": "電場・電気力・ドリフト速度・電流・抵抗のつながりを順に追う。",
+          "strategyReason": "仮1点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1-11"
+            ],
+            "strong_subject": [
+              "phys-q2-1-11"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-1-13",
+          "label": "⑬",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 1,
+          "difficultyReason": "電場・電気力・ドリフト速度・電流・抵抗のつながりを順に追う。",
+          "strategyReason": "仮1点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1-12"
+            ],
+            "strong_subject": [
+              "phys-q2-1-12"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-1-14",
+          "label": "⑭",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 1,
+          "difficultyReason": "電場・電気力・ドリフト速度・電流・抵抗のつながりを順に追う。",
+          "strategyReason": "仮1点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1-13"
+            ],
+            "strong_subject": [
+              "phys-q2-1-13"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-2-1",
+          "label": "(2)①",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "金属と半導体の温度特性の違いをキャリア数で説明する。",
+          "strategyReason": "仮2点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2-2",
+          "label": "②",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "半導体の基本事項を正確に適用する。",
+          "strategyReason": "仮2点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2-3",
+          "label": "③",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "半導体の基本事項を正確に適用する。",
+          "strategyReason": "仮2点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q3",
+      "label": "［問3］",
+      "sourceTitle": "理想気体の熱力学サイクル",
+      "requirements": [
+        3.1,
+        3.2,
+        3.6,
+        3.6,
+        3.6
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "定圧・定積・断熱変化の関係と熱力学第一法則を使い分ける。",
+          "strategyReason": "仮3点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "(2)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "定圧・定積・断熱変化の関係と熱力学第一法則を使い分ける。",
+          "strategyReason": "仮3点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-1"
+            ],
+            "strong_subject": [
+              "phys-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "(3)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "定圧・定積・断熱変化の関係と熱力学第一法則を使い分ける。",
+          "strategyReason": "仮3点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-4",
+          "label": "(4)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "定圧・定積・断熱変化の関係と熱力学第一法則を使い分ける。",
+          "strategyReason": "仮4点。前問依存または計算負荷があり、基本問題の後に戻る。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-1"
+            ],
+            "strong_subject": [
+              "phys-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-5",
+          "label": "(5)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "定圧・定積・断熱変化の関係と熱力学第一法則を使い分ける。",
+          "strategyReason": "仮3点。前問依存または計算負荷があり、基本問題の後に戻る。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-2",
+              "phys-q3-3"
+            ],
+            "strong_subject": [
+              "phys-q3-2",
+              "phys-q3-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-6",
+          "label": "(6)",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "定圧・定積・断熱変化の関係と熱力学第一法則を使い分ける。",
+          "strategyReason": "仮4点。前問依存または計算負荷があり、基本問題の後に戻る。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-4",
+              "phys-q3-5"
+            ],
+            "strong_subject": [
+              "phys-q3-4",
+              "phys-q3-5"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q4",
+      "label": "［問4］",
+      "sourceTitle": "半球による波面の進行と光の屈折",
+      "requirements": [
+        3,
+        3.2,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q4-1",
+          "label": "(1)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "ホイヘンスの原理、屈折の法則、小角近似と図形関係を一貫して結ぶ必要がある。",
+          "strategyReason": "仮3点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "ホイヘンスの原理、屈折の法則、小角近似と図形関係を一貫して結ぶ必要がある。",
+          "strategyReason": "仮3点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-1"
+            ],
+            "strong_subject": [
+              "phys-q4-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-3",
+          "label": "(3)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "ホイヘンスの原理、屈折の法則、小角近似と図形関係を一貫して結ぶ必要がある。",
+          "strategyReason": "仮3点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-1"
+            ],
+            "strong_subject": [
+              "phys-q4-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-4",
+          "label": "(4)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "ホイヘンスの原理、屈折の法則、小角近似と図形関係を一貫して結ぶ必要がある。",
+          "strategyReason": "仮4点。前問依存または計算負荷があり、基本問題の後に戻る。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-5",
+          "label": "(5)",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "ホイヘンスの原理、屈折の法則、小角近似と図形関係を一貫して結ぶ必要がある。",
+          "strategyReason": "仮3点。前問依存または計算負荷があり、基本問題の後に戻る。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-4"
+            ],
+            "strong_subject": [
+              "phys-q4-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-6",
+          "label": "(6)",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "ホイヘンスの原理、屈折の法則、小角近似と図形関係を一貫して結ぶ必要がある。",
+          "strategyReason": "仮4点。前問依存または計算負荷があり、基本問題の後に戻る。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-5"
+            ],
+            "strong_subject": [
+              "phys-q4-5"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q5",
+      "label": "［問5］",
+      "sourceTitle": "太陽内部の核融合反応とエネルギー",
+      "requirements": [
+        2.9,
+        3,
+        3.1,
+        3.1,
+        3.1
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q5-1",
+          "label": "(1)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "質量数・原子番号・粒子数とE=mc²を反応式全体で保存する。",
+          "strategyReason": "仮3点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q5-2",
+          "label": "(2)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "質量数・原子番号・粒子数とE=mc²を反応式全体で保存する。",
+          "strategyReason": "仮3点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q5-3",
+          "label": "(3)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "質量数・原子番号・粒子数とE=mc²を反応式全体で保存する。",
+          "strategyReason": "仮4点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q5-4",
+          "label": "(4)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "質量数・原子番号・粒子数とE=mc²を反応式全体で保存する。",
+          "strategyReason": "仮3点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q5-3"
+            ],
+            "strong_subject": [
+              "phys-q5-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q5-5",
+          "label": "(5)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "質量数・原子番号・粒子数とE=mc²を反応式全体で保存する。",
+          "strategyReason": "仮3点。短時間で回収しやすい。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q5-3"
+            ],
+            "strong_subject": [
+              "phys-q5-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q5-6",
+          "label": "(6)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "質量数・原子番号・粒子数とE=mc²を反応式全体で保存する。",
+          "strategyReason": "仮4点。前問依存または計算負荷があり、基本問題の後に戻る。 得意層は流れを保って処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q5-5"
+            ],
+            "strong_subject": [
+              "phys-q5-5"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 23,
+        "targetPercent": 23,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 48,
+        "maximum": {
+          "points": 23,
+          "minutes": 59.7,
+          "questionIds": [
+            "phys-q2-1-1",
+            "phys-q2-1-2",
+            "phys-q2-1-3",
+            "phys-q2-2-2",
+            "phys-q2-2-3",
+            "phys-q3-1",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4"
+          ]
+        },
+        "now": {
+          "points": 64,
+          "minutes": 95.6,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-7",
+            "phys-q2-1-1",
+            "phys-q2-1-2",
+            "phys-q2-1-3",
+            "phys-q2-1-4",
+            "phys-q2-1-5",
+            "phys-q2-1-6",
+            "phys-q2-1-7",
+            "phys-q2-1-8",
+            "phys-q2-1-9",
+            "phys-q2-1-10",
+            "phys-q2-1-11",
+            "phys-q2-1-12",
+            "phys-q2-1-13",
+            "phys-q2-1-14",
+            "phys-q2-2-1",
+            "phys-q2-2-2",
+            "phys-q2-2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4",
+            "phys-q5-5"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 139.2,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q1-8",
+            "phys-q1-9",
+            "phys-q1-10",
+            "phys-q1-11",
+            "phys-q2-1-1",
+            "phys-q2-1-2",
+            "phys-q2-1-3",
+            "phys-q2-1-4",
+            "phys-q2-1-5",
+            "phys-q2-1-6",
+            "phys-q2-1-7",
+            "phys-q2-1-8",
+            "phys-q2-1-9",
+            "phys-q2-1-10",
+            "phys-q2-1-11",
+            "phys-q2-1-12",
+            "phys-q2-1-13",
+            "phys-q2-1-14",
+            "phys-q2-2-1",
+            "phys-q2-2-2",
+            "phys-q2-2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q4-5",
+            "phys-q4-6",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4",
+            "phys-q5-5",
+            "phys-q5-6"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 72,
+        "targetPercent": 72,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 12,
+        "maximum": {
+          "points": 90,
+          "minutes": 59.2,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-7",
+            "phys-q2-1-1",
+            "phys-q2-1-2",
+            "phys-q2-1-3",
+            "phys-q2-1-4",
+            "phys-q2-1-5",
+            "phys-q2-1-6",
+            "phys-q2-1-7",
+            "phys-q2-1-8",
+            "phys-q2-1-9",
+            "phys-q2-1-10",
+            "phys-q2-1-11",
+            "phys-q2-1-12",
+            "phys-q2-1-13",
+            "phys-q2-1-14",
+            "phys-q2-2-1",
+            "phys-q2-2-2",
+            "phys-q2-2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q4-5",
+            "phys-q4-6",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4",
+            "phys-q5-5",
+            "phys-q5-6"
+          ]
+        },
+        "now": {
+          "points": 100,
+          "minutes": 72.2,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q1-8",
+            "phys-q1-9",
+            "phys-q1-10",
+            "phys-q1-11",
+            "phys-q2-1-1",
+            "phys-q2-1-2",
+            "phys-q2-1-3",
+            "phys-q2-1-4",
+            "phys-q2-1-5",
+            "phys-q2-1-6",
+            "phys-q2-1-7",
+            "phys-q2-1-8",
+            "phys-q2-1-9",
+            "phys-q2-1-10",
+            "phys-q2-1-11",
+            "phys-q2-1-12",
+            "phys-q2-1-13",
+            "phys-q2-1-14",
+            "phys-q2-2-1",
+            "phys-q2-2-2",
+            "phys-q2-2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q4-5",
+            "phys-q4-6",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4",
+            "phys-q5-5",
+            "phys-q5-6"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 72.2,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q1-8",
+            "phys-q1-9",
+            "phys-q1-10",
+            "phys-q1-11",
+            "phys-q2-1-1",
+            "phys-q2-1-2",
+            "phys-q2-1-3",
+            "phys-q2-1-4",
+            "phys-q2-1-5",
+            "phys-q2-1-6",
+            "phys-q2-1-7",
+            "phys-q2-1-8",
+            "phys-q2-1-9",
+            "phys-q2-1-10",
+            "phys-q2-1-11",
+            "phys-q2-1-12",
+            "phys-q2-1-13",
+            "phys-q2-1-14",
+            "phys-q2-2-1",
+            "phys-q2-2-2",
+            "phys-q2-2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q4-5",
+            "phys-q4-6",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4",
+            "phys-q5-5",
+            "phys-q5-6"
+          ]
+        }
+      }
+    ]
+  }
+}

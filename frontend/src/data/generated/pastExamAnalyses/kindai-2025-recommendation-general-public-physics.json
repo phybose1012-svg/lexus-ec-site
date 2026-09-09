@@ -1,0 +1,380 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "kindai-2025-recommendation-general-public-physics",
+  "route": {
+    "university": "kindai",
+    "year": "2025",
+    "subject": "physics",
+    "path": "/past-exam-library/kindai/2025/physics-recommendation-general-public-first-stage/analysis/"
+  },
+  "university": "近畿大学",
+  "year": 2025,
+  "subject": "物理",
+  "examLabel": "推薦入試（一般公募）",
+  "duration": "物理 60分",
+  "format": "選択・数値解答など（各設問を参照）",
+  "examTotal": null,
+  "headline": "運動量と力積・万有引力",
+  "summary": "Iは運動量と力積・万有引力、IIはコンデンサー・交流と電磁波。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "物理が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "物理が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "I",
+      "title": "弾性散乱・粒子流と万有引力による双曲線軌道",
+      "subtitle": "運動量と力積・万有引力",
+      "summary": "なめらかな球との弾性衝突から散乱方向と壁面到達位置を求め、多数粒子の到達分布へ拡張する。後半は面積速度と力学的エネルギーを用いて太陽近傍の双曲線軌道と散乱角を導く。",
+      "studyAction": "反発係数1の斜め衝突を成分で扱う。衝突後の直線運動と壁面幾何を結ぶ",
+      "requirements": [
+        3.7,
+        3.3,
+        3.4,
+        3.4,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-a1",
+          "label": "I-A（1〜3）",
+          "title": "弾性衝突で速さが保存されること、入射角と反射角の関係、球から受ける力積を求める。",
+          "note": "大問の導入で後続の散乱幾何の基礎になる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 9
+        },
+        {
+          "id": "phys-q1-a2",
+          "label": "I-A（4〜7）",
+          "title": "壁へ到達する条件と到達距離を衝突角の幾何から求め、指定角での距離を評価する。",
+          "note": "I-A前半の角度関係を使えば幾何計算へ一本道で進める。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 9
+        },
+        {
+          "id": "phys-q1-b",
+          "label": "I-B（8〜10）",
+          "title": "球へ衝突する粒子数と壁へ到達する粒子数を、円筒体積と断面積の差から求める。",
+          "note": "前問の境界半径が分かれば体積差として短く処理できる。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 9
+        },
+        {
+          "id": "phys-q1-c1",
+          "label": "I-C（11〜13）",
+          "title": "万有引力の位置エネルギー、面積速度、遠方での面積速度を表す。",
+          "note": "天体運動の基本式をそのまま用いる独立性の高い得点源である。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 9
+        },
+        {
+          "id": "phys-q1-c2",
+          "label": "I-C（14〜16）",
+          "title": "面積速度で接線速度を消去し、有効ポテンシャルの平方完成から特性距離・最大動径速度・近日点を導く。",
+          "note": "計算量と前問依存が大きく、基本項目を回収してから取り組むべきである。",
+          "difficulty": 3,
+          "weak": 1,
+          "strong": 1,
+          "points": 10
+        },
+        {
+          "id": "phys-q1-c3",
+          "label": "I-C（17・18）",
+          "title": "双曲線軌道の対称性と小角近似から散乱角および平面上のずれを求める。",
+          "note": "前問までの補助量がそろえば進められるが、図の読解負荷が高い。",
+          "difficulty": 3,
+          "weak": 1,
+          "strong": 1,
+          "points": 9
+        }
+      ],
+      "questionsPath": "/past-exam-library/kindai/2025/physics-recommendation-general-public-first-stage/questions/#major-question-01",
+      "answersPath": "/past-exam-library/kindai/2025/physics-recommendation-general-public-first-stage/answers/#major-question-01"
+    },
+    {
+      "id": "phys-q2",
+      "label": "II",
+      "title": "誘電体入りコンデンサーと損失を表すRC並列交流回路",
+      "subtitle": "コンデンサー・交流と電磁波",
+      "summary": "電池接続中の誘電体挿入による電場・電荷・電気容量の変化を確認し、分極の遅れを抵抗とコンデンサーの並列等価回路で表す。電流の位相差から等価抵抗と消費電力を求める。",
+      "studyAction": "平行板コンデンサーの基本式を使う。電池接続中に一定となる量を判定する",
+      "requirements": [
+        3.6,
+        4,
+        3,
+        2.6,
+        3.2
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-a1",
+          "label": "II-A（1・2・ア・イ）",
+          "title": "平行板コンデンサーの電場と電気容量を求め、誘電分極が生む表面電荷と電場の作用を説明する。",
+          "note": "独立した基本事項で短時間に回収できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 9
+        },
+        {
+          "id": "phys-q2-a2",
+          "label": "II-A（3〜5）",
+          "title": "電池につないだまま誘電体を挿入したときの電場・電荷・電気容量の倍率を求める。",
+          "note": "電池接続中は電位差一定という定型判断で処理できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 9
+        },
+        {
+          "id": "phys-q2-b1",
+          "label": "II-B（6・7）",
+          "title": "RC並列等価回路で抵抗電流とコンデンサー電流の振幅を求め、ベクトル図へ対応させる。",
+          "note": "交流回路の基本式で独立して回収でき、後続の位相差計算の土台になる。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 9
+        },
+        {
+          "id": "phys-q2-b2",
+          "label": "II-B（8・9）",
+          "title": "位相差δから等価抵抗Rを求め、抵抗で消費される平均電力を導く。",
+          "note": "前問の電流振幅が得られれば、位相図と電力公式から処理できる。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 9
+        },
+        {
+          "id": "phys-q2-c",
+          "label": "II-C（10・11）",
+          "title": "追加抵抗rの平均電力と、等価抵抗を含む回路全体の平均電力を求める。",
+          "note": "抵抗の電力は独立に加算でき、II-BのRを再利用できる。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 9
+        }
+      ],
+      "questionsPath": "/past-exam-library/kindai/2025/physics-recommendation-general-public-first-stage/questions/#major-question-02",
+      "answersPath": "/past-exam-library/kindai/2025/physics-recommendation-general-public-first-stage/answers/#major-question-02"
+    }
+  ],
+  "difficultyCounts": [
+    2,
+    2,
+    5,
+    2
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 64,
+        "targetPercent": 64,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 20.4,
+        "maximum": {
+          "points": 64,
+          "minutes": 58,
+          "questionIds": [
+            "phys-q1-a1",
+            "phys-q1-c1",
+            "phys-q1-c2",
+            "phys-q2-a1",
+            "phys-q2-a2",
+            "phys-q2-b1",
+            "phys-q2-b2"
+          ]
+        },
+        "now": {
+          "points": 81,
+          "minutes": 66.8,
+          "questionIds": [
+            "phys-q1-a1",
+            "phys-q1-a2",
+            "phys-q1-b",
+            "phys-q1-c1",
+            "phys-q2-a1",
+            "phys-q2-a2",
+            "phys-q2-b1",
+            "phys-q2-b2",
+            "phys-q2-c"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 83.3,
+          "questionIds": [
+            "phys-q1-a1",
+            "phys-q1-a2",
+            "phys-q1-b",
+            "phys-q1-c1",
+            "phys-q1-c2",
+            "phys-q1-c3",
+            "phys-q2-a1",
+            "phys-q2-a2",
+            "phys-q2-b1",
+            "phys-q2-b2",
+            "phys-q2-c"
+          ]
+        },
+        "title": "物理が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 64,
+          "minutes": 58,
+          "questionIds": [
+            "phys-q1-a1",
+            "phys-q1-c1",
+            "phys-q1-c2",
+            "phys-q2-a1",
+            "phys-q2-a2",
+            "phys-q2-b1",
+            "phys-q2-b2"
+          ]
+        },
+        "additional": [
+          {
+            "id": "phys-q1-c2",
+            "label": "I I-C（14〜16）"
+          }
+        ],
+        "routeKind": "replacement",
+        "replaced": [
+          {
+            "id": "phys-q1-a2",
+            "label": "I I-A（4〜7）"
+          },
+          {
+            "id": "phys-q1-b",
+            "label": "I I-B（8〜10）"
+          },
+          {
+            "id": "phys-q2-c",
+            "label": "II II-C（10・11）"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 5.1,
+        "maximum": {
+          "points": 100,
+          "minutes": 46.8,
+          "questionIds": [
+            "phys-q1-a1",
+            "phys-q1-a2",
+            "phys-q1-b",
+            "phys-q1-c1",
+            "phys-q1-c2",
+            "phys-q1-c3",
+            "phys-q2-a1",
+            "phys-q2-a2",
+            "phys-q2-b1",
+            "phys-q2-b2",
+            "phys-q2-c"
+          ]
+        },
+        "now": {
+          "points": 81,
+          "minutes": 35.8,
+          "questionIds": [
+            "phys-q1-a1",
+            "phys-q1-a2",
+            "phys-q1-b",
+            "phys-q1-c1",
+            "phys-q2-a1",
+            "phys-q2-a2",
+            "phys-q2-b1",
+            "phys-q2-b2",
+            "phys-q2-c"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 46.8,
+          "questionIds": [
+            "phys-q1-a1",
+            "phys-q1-a2",
+            "phys-q1-b",
+            "phys-q1-c1",
+            "phys-q1-c2",
+            "phys-q1-c3",
+            "phys-q2-a1",
+            "phys-q2-a2",
+            "phys-q2-b1",
+            "phys-q2-b2",
+            "phys-q2-c"
+          ]
+        },
+        "title": "物理が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 81,
+          "minutes": 35.8,
+          "questionIds": [
+            "phys-q1-a1",
+            "phys-q1-a2",
+            "phys-q1-b",
+            "phys-q1-c1",
+            "phys-q2-a1",
+            "phys-q2-a2",
+            "phys-q2-b1",
+            "phys-q2-b2",
+            "phys-q2-c"
+          ]
+        },
+        "additional": []
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kindai/past-exams/working/2025/recommendation-general-public/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "e8ba2acf98227febd846eaeac1d9d8c6c1b052abca1c85bf61767833779d77c5",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/kindai/2025/physics-recommendation-general-public-first-stage/questions/",
+    "answers": "/past-exam-library/kindai/2025/physics-recommendation-general-public-first-stage/answers/",
+    "university": "/past-exam-library/kindai/"
+  }
+}

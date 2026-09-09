@@ -1,0 +1,368 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "tohoku-medical-pharmaceutical-2025-general-physics",
+    "university_id": "tohoku-medical-pharmaceutical",
+    "university_name": "東北医科薬科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 120,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "問題原本p.1に「2科目120分」と明記される。物理単独の公式時間はないため、分析では2科目を等分した60分を編集上の仮時間予算とする。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/tohoku-medical-pharmaceutical/past-exams/working/2025/general/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "25db0f7c7caa2836e425e7160212be8352748708cf6c3e3d5463c794707188be",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "第Ⅰ問",
+      "sourceTitle": "円弧状パイプ内の運動・衝突・台車",
+      "requirements": [
+        3.7,
+        4,
+        3.9,
+        3.4,
+        4.2
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1-1",
+          "label": "問1(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "高さの差を読んで力学的エネルギー保存を1回使う。",
+          "strategyReason": "典型的な保存則で短時間に確保できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-1-2",
+          "label": "問1(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "斜方投射を二段階の鉛直運動と水平等速運動へ分け、4欄を連続処理する。",
+          "strategyReason": "解答欄は多いが根号整理が長く、苦手層は後回しが安全。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-2-1",
+          "label": "問2(1)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "衝突直前速度を保存則で出し、運動量保存と反発係数を連立する。",
+          "strategyReason": "標準的な衝突連立で独立して得点できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-2-2",
+          "label": "問2(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "単振り子の半周期と微小角近似を、前問の衝突後速度へ接続する。",
+          "strategyReason": "前問依存で近似式まで必要なため苦手層は一旦飛ばす。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-2-1"
+            ],
+            "strong_subject": [
+              "phys-q1-2-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-3-1",
+          "label": "問3(1)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "重心位置不変で負の座標を出し、水平運動量保存とエネルギー保存を連立する。",
+          "strategyReason": "座標符号と連立の両方が必要で差がつく。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-3-2",
+          "label": "問3(2)",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 5,
+          "difficultyReason": "重心位置不変に加え、相対速度の水平成分を運動量保存へ接続する。",
+          "strategyReason": "相対速度の向きと成分が難しく、最後に戻る設問。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-3-1"
+            ],
+            "strong_subject": [
+              "phys-q1-3-1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "第Ⅱ問",
+      "sourceTitle": "定電流電源・RC回路・LC電気振動",
+      "requirements": [
+        3.2,
+        3.4,
+        2.2,
+        1.6,
+        3
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1-1",
+          "label": "問1(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "十分時間後はコンデンサー枝に電流が流れないと判断するだけでよい。",
+          "strategyReason": "オームの法則を直接使える。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-1-2",
+          "label": "問1(2)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "前問の電圧をP=VIとQ=CVへ代入する。",
+          "strategyReason": "基本式2本で2欄を確保できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1-1"
+            ],
+            "strong_subject": [
+              "phys-q2-1-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-1-3",
+          "label": "問1(3)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "瞬時には電気量一定、定常後は抵抗電圧が元に戻るという時間スケールを分ける。",
+          "strategyReason": "計算は少なく、電気量一定を押さえれば短い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2-1",
+          "label": "問2(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "定常電流下でコイル電圧0、コンデンサー電圧0を使う。",
+          "strategyReason": "定常状態の基本事項で2欄を確保できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2-2",
+          "label": "問2(2)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "コンデンサー電圧は瞬時に変わらないため直後も0である。",
+          "strategyReason": "直前直後の連続性だけで判断できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2-3",
+          "label": "問2(3)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "コイル磁気エネルギーとコンデンサー静電エネルギーの保存を使う。",
+          "strategyReason": "標準的なエネルギー保存だが根号整理が必要。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-2-1"
+            ],
+            "strong_subject": [
+              "phys-q2-2-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-2-4",
+          "label": "問2(4)",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "LC振動周期の4分の1を使い、IとCへの依存性を読む。",
+          "strategyReason": "周期式を思い出せれば短く得点できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q3",
+      "label": "第Ⅲ問",
+      "sourceTitle": "ピストン気体の熱サイクル",
+      "requirements": [
+        4.2,
+        4.2,
+        4,
+        3.2,
+        4.2
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "ピストンのつり合いと状態方程式を順に使う。",
+          "strategyReason": "標準公式を直接適用できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "問2",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "体積2倍から温度2倍を出し、単原子気体の定積・定圧モル比熱を使う。",
+          "strategyReason": "過程を定圧と見抜けば一本道。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-1"
+            ],
+            "strong_subject": [
+              "phys-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "問3",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 5,
+          "difficultyReason": "ポアソンの法則、力のつり合い、状態方程式、第一法則を連続して使う。",
+          "strategyReason": "式の連鎖が長く、他の短問を先に確保する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-2"
+            ],
+            "strong_subject": [
+              "phys-q3-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-4",
+          "label": "問4",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 5,
+          "difficultyReason": "定圧C→Dと断熱D→Aを組み合わせ、複数の状態量を前問から引き継ぐ。",
+          "strategyReason": "前問依存が強く4欄あるため最後の候補。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-3"
+            ],
+            "strong_subject": [
+              "phys-q3-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-5",
+          "label": "問5",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "一サイクルの内部エネルギー変化0から、吸熱と放熱の差を取る。",
+          "strategyReason": "問2と問4の熱量がそろえば差を取るだけ。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-4"
+            ],
+            "strong_subject": [
+              "phys-q3-4"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": null
+}

@@ -65,7 +65,8 @@ function assertSafeFragment(fragment, sourceName) {
     /\son[a-z]+\s*=/i,
     /javascript\s*:/i,
     /\bsrcset\s*=/i,
-    /[A-Za-z]:\\/,
+    /\b(?:src|href)\s*=\s*["'][A-Za-z]:/i,
+    /\b[A-Za-z]:\\[A-Za-z0-9_. -]+\\/,
   ];
   const unsafe = unsafePatterns.find((pattern) => pattern.test(fragment));
   if (unsafe) {
@@ -293,6 +294,15 @@ async function main() {
     );
     sourceFragment = removeRedundantMajorQuestionKickers(sourceFragment);
     if (figures) sourceFragment = replaceSourceFigures(sourceFragment, figures);
+    if (args['defer-crops'] === 'true') {
+      // Staging bulk imports reserve required figures; restricted source images
+      // are never copied merely to make an incomplete reader appear complete.
+      sourceFragment = sourceFragment.replace(/<figure\b[^>]*\bdata-crop-id="([^"]+)"[^>]*>[\s\S]*?<\/figure>/g, (figure, id) => {
+        const alt = figure.match(/\balt="([^"]*)"/)?.[1] ?? '問題で参照する図';
+        if (!/^[a-z0-9-]+$/.test(id)) throw new Error('Invalid deferred crop identifier');
+        return `<figure class="batch-figure-pending" data-figure-placeholder="true" data-figure-id="${id}"><div role="img" aria-label="${alt}（図版準備中）"><strong>図版準備中</strong><p>${alt}</p></div><figcaption>図の位置を確保しています。図を使う設問は確認完了まで演習対象外です。</figcaption></figure>`;
+      });
+    }
     assertSafeFragment(sourceFragment, filename);
     const questionHtml = await rewriteAndCopyAssets(
       removeInternalSourceNotes(sourceFragment),
@@ -319,10 +329,12 @@ async function main() {
   await mkdir(path.dirname(katexDestination), { recursive: true });
   await cp(katexSource, katexDestination, { recursive: true, force: true });
 
-  const routePath = `/past-exam-library/${args["university-id"]}/${args.year}/${args["subject-id"]}/questions/`;
+  const segment = args['route-segment'] ?? args['subject-id'];
+  if (!/^[a-z0-9-]+$/.test(segment)) throw new Error('Invalid route segment');
+  const routePath = `/past-exam-library/${args["university-id"]}/${args.year}/${segment}/questions/`;
   const output = {
     schemaVersion: "lexus-ec.past-exam-question-page.v1",
-    packageId,
+    packageId: args['library-package-id'] ?? packageId,
     route: {
       university: args["university-id"],
       year: args.year,
@@ -352,6 +364,7 @@ async function main() {
       questions,
     },
     source: {
+      sourcePackageId: packageId,
       reference: toPosix(args["source-reference"]),
       buildKind: sourceBuildKind,
       contentProvenance: indexReconstruction.content_provenance ?? "unknown",

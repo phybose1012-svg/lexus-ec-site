@@ -1,0 +1,378 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "tokyo-womens-medical-2025-general-mathematics",
+    "university_id": "tokyo-womens-medical",
+    "university_name": "東京女子医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 60,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "問題原本p.1に数学60分と明記されている。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/tokyo-womens-medical/past-exams/working/2025/general/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "823ed8a8b5b83a5f3dffaeaaf8e162b8f967ff4ee5b5c6cdb9ea7642715c1e51",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "sourceTitle": "確率・逆関数の微分・得点列の数え上げ",
+      "requirements": [
+        0,
+        2.7,
+        2,
+        3,
+        2.3
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "①",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "『123』を1個のかたまりとして7個を並べる典型的な確率計算。",
+          "strategyReason": "全体を 9! 、条件を満たす並びを 7! とする一本道で、短時間に9点を狙える。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "②",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "変数を入れ換え、 dy/dx=1/(dx/dy) と三角関数の恒等式を使う典型問題。",
+          "strategyReason": "逆関数の微分公式と 1+\\tan^2y=1/\\cos^2y が直結し、処理量が少ない。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-3",
+          "label": "③",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "赤白の回数の組を漏れなく列挙し、各組について二項係数で順序を数えて合計する。",
+          "strategyReason": "2x+y=8 の5組を列挙して組合せを足す再現可能な手順であり、計算量も管理できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "sourceTitle": "正多面体の外接球・内接球",
+      "requirements": [
+        5,
+        3,
+        3,
+        4,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "①",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "立体の断面を読み、底面の重心と高さ、外接球中心の位置関係を順に組み立てる必要がある。",
+          "strategyReason": "断面を作れば三平方で進むが、立体の高さと球中心の関係を図から正しく設定する必要がある。苦手層は独立短問を先に確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q2-2",
+          "label": "②",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 9,
+          "difficultyReason": "正八面体の断面と内接円を読み、面積を2通りに表して半径を決める必要がある。",
+          "strategyReason": "断面の辺長と内接円への高さを対応させるまでが重い。短い確率・微分・距離公式の問題を先に解き、立体図を落ち着いて再構成できる時間に戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "sourceTitle": "放物線と直線の共有点・三角形面積の最大",
+      "requirements": [
+        1.7,
+        3.4,
+        2.8,
+        3.4,
+        2.4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "①",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "共有点の x 座標を与える2次方程式を作り、判別式 D>0 と k>0 を併用する。",
+          "strategyReason": "交点条件を判別式へ移す典型問題で、計算も短い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-2",
+          "label": "②",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "直線を一般形へ直して距離公式へ代入し、 k>0 で絶対値を外す。",
+          "strategyReason": "距離公式への代入だけで9点を狙える高効率の小問。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q3-3",
+          "label": "③",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 10,
+          "difficultyReason": "解と係数の関係から弦長を作り、距離との積を3次式の最大化へ結び付ける複合問題。",
+          "strategyReason": "弦長の導出、面積関数化、微分が連続して計算負荷が高い。①②と独立短問を先に確保し、残り時間が十分なら戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q3-1",
+              "math-q3-2"
+            ],
+            "strong_subject": [
+              "math-q3-1",
+              "math-q3-2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q4",
+      "label": "第4問",
+      "sourceTitle": "複素数平面の回転と垂直関係",
+      "requirements": [
+        4.3,
+        3.3,
+        2,
+        4,
+        3.7
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "①",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "図の向きを確認し、時計回りを -i 、反時計回りを i の乗算で表す。",
+          "strategyReason": "正方形の向きさえ確認できれば \\pm i 倍で直ちに表せる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q4-2",
+          "label": "②",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 9,
+          "difficultyReason": "前問の回転表示を中点公式へ代入し、絶対値と商の偏角から長さと角度を同時に読む。",
+          "strategyReason": "中点公式は短いが、差 z_C-z_B が線分BCを表すことと、係数 i の回転を同時に読む必要がある。苦手層は①を確保後に戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q4-1"
+            ],
+            "strong_subject": [
+              "math-q4-1"
+            ]
+          }
+        },
+        {
+          "id": "math-q4-3",
+          "label": "③",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 9,
+          "difficultyReason": "原点をFへ取り直し、2本の線分の方向を複素数の差で表して90度回転を読み取る。",
+          "strategyReason": "計算自体は短いが、原点変更と線分方向の対応を図から再構成する必要がある。第1・3問の短問を確保し、第4問①②の回転表現に慣れてから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 73,
+        "targetPercent": 73,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 22.4,
+        "maximum": {
+          "points": 73,
+          "minutes": 58.5,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "now": {
+          "points": 54,
+          "minutes": 45.7,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 81,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 5.6,
+        "maximum": {
+          "points": 100,
+          "minutes": 44.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        },
+        "now": {
+          "points": 72,
+          "minutes": 29.1,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q4-1",
+            "math-q4-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 44.6,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q4-1",
+            "math-q4-2",
+            "math-q4-3"
+          ]
+        }
+      }
+    ]
+  }
+}

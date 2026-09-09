@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "lexus-past-exam-answer-page.v1",
+  "packageId": "st-marianna-2025-general-early-mathematics",
+  "route": {
+    "university": "st-marianna",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/st-marianna/2025/mathematics/answers/"
+  },
+  "university": {
+    "id": "st-marianna",
+    "name": "聖マリアンナ医科大学"
+  },
+  "exam": {
+    "year": "2025",
+    "label": "一般選抜（前期）",
+    "stage": "一次試験",
+    "duration": "数学 90分"
+  },
+  "subject": {
+    "id": "mathematics",
+    "name": "数学",
+    "english": "MATHEMATICS"
+  },
+  "document": {
+    "role": "answers",
+    "pageUnit": "major_question",
+    "majorQuestions": [
+      {
+        "id": "major-question-01",
+        "label": "第1問",
+        "order": 1,
+        "html": "<article class=\"source-page-card major-question-card answer-major-card\" id=\"major-question-01\" data-major-question-id=\"major-question-01\"><h2>第1問 解答・解説</h2><div class=\"answer-explanation\"><aside class=\"source-note answer-note\"><strong>この大問の進め方</strong><p>(1)で正のn乗根を定義し、(2)では両辺のn乗が同じで、どちらも正であることを確認します。</p></aside><p class=\"prose\">(1) n乗するとaになる数のうち、正の数をn乗根とします。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-b365ad6e7b79\"><span class=\"answer-formula__purpose\">解答</span><div class=\"answer-formula__math\" data-katex=\"\\sqrt[n]{a}&gt;0,\\qquad (\\sqrt[n]{a})^n=a\" data-display-mode=\"true\"></div></div><p class=\"prose\">(2) まず2つの式をn乗すると、どちらもa^mになります。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-b365ad6e7b79\"><span class=\"answer-formula__purpose\">解答</span><div class=\"answer-formula__math\" data-katex=\"(\\sqrt[n]{a^m})^n=a^m\" data-display-mode=\"true\"></div></div><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-b365ad6e7b79\"><span class=\"answer-formula__purpose\">解答</span><div class=\"answer-formula__math\" data-katex=\"((\\sqrt[n]{a})^m)^n=((\\sqrt[n]{a})^n)^m=a^m\" data-display-mode=\"true\"></div></div><p class=\"prose\">両者はともに正なので、a^mの正のn乗根として一致します。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-b365ad6e7b79\"><span class=\"answer-formula__purpose\">解答</span><div class=\"answer-formula__math\" data-katex=\"\\sqrt[n]{a^m}=(\\sqrt[n]{a})^m\" data-display-mode=\"true\"></div></div></div></article>"
+      },
+      {
+        "id": "major-question-02",
+        "label": "第2問",
+        "order": 2,
+        "html": "<article class=\"source-page-card major-question-card answer-major-card\" id=\"major-question-02\" data-major-question-id=\"major-question-02\"><h2>第2問 解答・解説</h2><div class=\"answer-explanation\"><aside class=\"source-note answer-note\"><strong>この大問の進め方</strong><p>(1)〜(3)は端の固定と重複順列です。(4)(5)はcを除いたa,bの並びを先に考え、隣接する同じ文字の間へcを入れます。</p></aside><section class=\"answer-key-panel\"><h3>解答</h3><dl class=\"batch-answer-key\"><div><dt>(1)</dt><dd>ア 4200</dd></div><div><dt>(2)</dt><dd>イ 1260</dd></div><div><dt>(3)</dt><dd>ウ 560</dd></div><div><dt>(4)</dt><dd>エ 1</dd></div><div><dt>(4)</dt><dd>オ 10</dd></div><div><dt>(5)</dt><dd>カ 36</dd></div></dl></section><p class=\"prose\">(1) a3個、b4個、c3個の重複順列です。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-981df7144c90\"><span class=\"answer-formula__purpose\">解答一覧</span><div class=\"answer-formula__math\" data-katex=\"\\frac{10!}{3!4!3!}=4200\" data-display-mode=\"true\"></div></div><p class=\"prose\">(2) 左端のaを固定し、残り9文字を並べます。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-981df7144c90\"><span class=\"answer-formula__purpose\">解答一覧</span><div class=\"answer-formula__math\" data-katex=\"\\frac{9!}{2!4!3!}=1260\" data-display-mode=\"true\"></div></div><p class=\"prose\">(3) 左端a・右端bを固定し、残るa2個、b3個、c3個を並べます。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-bbb6693ae9d7\"><span class=\"answer-formula__purpose\">(3)〜(5)</span><div class=\"answer-formula__math\" data-katex=\"\\frac{8!}{2!3!3!}=560\" data-display-mode=\"true\"></div></div><p class=\"prose\">(4) aabbbabでは、aaとbbの間へ3個のcを入れる位置が1通りに決まります。ababbabでは中央のbbの間へ1個を入れ、残り2個をほかの5か所から選びます。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-bbb6693ae9d7\"><span class=\"answer-formula__purpose\">(3)〜(5)</span><div class=\"answer-formula__math\" data-katex=\"1,\\qquad {}_5C_2=10\" data-display-mode=\"true\"></div></div><p class=\"prose\">(5) 先頭a・末尾bを固定し、残るa2個とb3個の並び10通りを、同じ文字の隣接箇所数で分類します。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-bbb6693ae9d7\"><span class=\"answer-formula__purpose\">(3)〜(5)</span><div class=\"answer-formula__math\" data-katex=\"{}_5C_2=10\" data-display-mode=\"true\"></div></div><p class=\"prose\">隣接箇所が4以上の型は0通り、3か所の型は6個、1か所の型は3個あり、それぞれcの入れ方が0、1、10通りです。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-bbb6693ae9d7\"><span class=\"answer-formula__purpose\">(3)〜(5)</span><div class=\"answer-formula__math\" data-katex=\"1\\cdot6+10\\cdot3=36\" data-display-mode=\"true\"></div></div></div></article>"
+      },
+      {
+        "id": "major-question-03",
+        "label": "第3問",
+        "order": 3,
+        "html": "<article class=\"source-page-card major-question-card answer-major-card\" id=\"major-question-03\" data-major-question-id=\"major-question-03\"><h2>第3問 解答・解説</h2><div class=\"answer-explanation\"><aside class=\"source-note answer-note\"><strong>この大問の進め方</strong><p>t=sin xで絶対値の中を2次式にし、符号で場合分けします。最後はtの解1個がxの解何個へ戻るかを数えます。</p></aside><section class=\"answer-key-panel\"><h3>解答</h3><dl class=\"batch-answer-key\"><div><dt>(1)</dt><dd>キ <span class=\"math-inline\" data-katex=\"-\\dfrac{\\sqrt{3}}{2}\" data-display-mode=\"false\"></span></dd></div><div><dt>(1)</dt><dd>ク <span class=\"math-inline\" data-katex=\"\\dfrac{\\sqrt{3}}{2}\" data-display-mode=\"false\"></span></dd></div><div><dt>(2)</dt><dd>ケ 5</dd></div><div><dt>(2)</dt><dd>コ <span class=\"math-inline\" data-katex=\"-2\\sqrt{3}\" data-display-mode=\"false\"></span></dd></div><div><dt>(3)</dt><dd>サ 3</dd></div><div><dt>(4)</dt><dd>シ <span class=\"math-inline\" data-katex=\"2\\sqrt{3}\" data-display-mode=\"false\"></span></dd></div><div><dt>(4)</dt><dd>ス 4</dd></div></dl></section><p class=\"prose\">t=sin xとすると、cos2x=1-2t²より次の形です。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-981df7144c90\"><span class=\"answer-formula__purpose\">解答一覧</span><div class=\"answer-formula__math\" data-katex=\"f(x)=4t+|3-4t^2|\" data-display-mode=\"true\"></div></div><p class=\"prose\">3-4t²が0以上の範囲では、絶対値を外すと-4t²+4t+3になります。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-981df7144c90\"><span class=\"answer-formula__purpose\">解答一覧</span><div class=\"answer-formula__math\" data-katex=\"-\\frac{\\sqrt3}{2}\\leqq t\\leqq\\frac{\\sqrt3}{2}\" data-display-mode=\"true\"></div></div><p class=\"prose\">2つの2次関数の枝と端点を比べると、最大値は5、最小値は-2√3です。</p><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"a3-graph-abs-quadratic\"><div role=\"img\" aria-label=\"第3問の解説図。y=4t+|3-4t^2| のグラフ。t軸上の-1から1の範囲を実線、範囲外を破線で示し、最大値5、極大値2√3、値3、最小値-2√3、t=1/2 などの目盛りを補助線付きで示している（図版準備中）\" style=\"aspect-ratio:0.869\"><strong>図版準備中</strong><p>第3問の解説図。y=4t+|3-4t^2| のグラフ。t軸上の-1から1の範囲を実線、範囲外を破線で示し、最大値5、極大値2√3、値3、最小値-2√3、t=1/2 などの目盛りを補助線付きで示している</p></div><figcaption>図の位置・大きさを確保しています。図を使う説明は確認完了までレビュー中です。</figcaption></figure><p class=\"prose\">t=0には0≦x≦2πで3個のxが対応するため、y=3との共有点は3個です。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-be4d349bf466\"><span class=\"answer-formula__purpose\">(3)・(4)</span><div class=\"answer-formula__math\" data-katex=\"2\\sqrt3&lt;k&lt;4\" data-display-mode=\"true\"></div></div></div></article>"
+      },
+      {
+        "id": "major-question-04",
+        "label": "第4問",
+        "order": 4,
+        "html": "<article class=\"source-page-card major-question-card answer-major-card\" id=\"major-question-04\" data-major-question-id=\"major-question-04\"><h2>第4問 解答・解説</h2><div class=\"answer-explanation\"><aside class=\"source-note answer-note\"><strong>この大問の進め方</strong><p>(1)は2つのrを等置します。(2)(3)はr²=x²+y²、rsinθ=y、rcosθ=xを使います。(4)は対称性を利用して差を積分します。</p></aside><section class=\"answer-key-panel\"><h3>解答</h3><dl class=\"batch-answer-key\"><div><dt>(1)</dt><dd>セ <span class=\"math-inline\" data-katex=\"\\dfrac{3\\pi}{4}\" data-display-mode=\"false\"></span></dd></div><div><dt>(1)</dt><dd>ソ <span class=\"math-inline\" data-katex=\"\\dfrac{7\\pi}{4}\" data-display-mode=\"false\"></span></dd></div><div><dt>(2)</dt><dd>タ <span class=\"math-inline\" data-katex=\"\\dfrac{1}{4}x^{2}-1\" data-display-mode=\"false\"></span></dd></div><div><dt>(3)</dt><dd>チ <span class=\"math-inline\" data-katex=\"-\\dfrac{1}{4}y^{2}+1\" data-display-mode=\"false\"></span></dd></div><div><dt>(3)</dt><dd>ツ <span class=\"math-inline\" data-katex=\"1-x\" data-display-mode=\"false\"></span></dd></div></dl></section><p class=\"prose\">(1) 2つの動径を等置するとsinθ=-cosθです。0≦θ&lt;2πより偏角を決め、rへ戻します。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-981df7144c90\"><span class=\"answer-formula__purpose\">解答一覧</span><div class=\"answer-formula__math\" data-katex=\"\\theta=\\frac{3\\pi}{4},\\quad\\frac{7\\pi}{4}\" data-display-mode=\"true\"></div></div><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-981df7144c90\"><span class=\"answer-formula__purpose\">解答一覧</span><div class=\"answer-formula__math\" data-katex=\"r=4+2\\sqrt2,\\quad4-2\\sqrt2\" data-display-mode=\"true\"></div></div><p class=\"prose\">(2) r-rsinθ=2へr=√(x²+y²)、rsinθ=yを入れて2乗します。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-981df7144c90\"><span class=\"answer-formula__purpose\">解答一覧</span><div class=\"answer-formula__math\" data-katex=\"y=\\frac14x^2-1\" data-display-mode=\"true\"></div></div><p class=\"prose\">(3) 同様にr+rcosθ=2を変換します。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-981df7144c90\"><span class=\"answer-formula__purpose\">解答一覧</span><div class=\"answer-formula__math\" data-katex=\"x=-\\frac14y^2+1\" data-display-mode=\"true\"></div></div><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-981df7144c90\"><span class=\"answer-formula__purpose\">解答一覧</span><div class=\"answer-formula__math\" data-katex=\"y=2\\sqrt{1-x}\\quad\\text{または}\\quad y=-2\\sqrt{1-x}\" data-display-mode=\"true\"></div></div><p class=\"prose\">C1とC2は直線y=-xに関して対称です。交点のx座標をα=-2√2-2、β=2√2-2とします。</p><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"a4-area-c1-c2\"><div role=\"img\" aria-label=\"第4問(4)の解説図。放物線 C1 と C2、直線 y=-x を xy 平面に描き、2曲線で囲まれた部分を網掛けで示す。x軸上に α と β を記入している（図版準備中）\" style=\"aspect-ratio:1.043\"><strong>図版準備中</strong><p>第4問(4)の解説図。放物線 C1 と C2、直線 y=-x を xy 平面に描き、2曲線で囲まれた部分を網掛けで示す。x軸上に α と β を記入している</p></div><figcaption>図の位置・大きさを確保しています。図を使う説明は確認完了までレビュー中です。</figcaption></figure><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-cbe3b52ccdb4\"><span class=\"answer-formula__purpose\">(4)</span><div class=\"answer-formula__math\" data-katex=\"S=2\\int_{\\alpha}^{\\beta}\\left(-x-\\left(\\frac14x^2-1\\right)\\right)dx\" data-display-mode=\"true\"></div></div><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-cbe3b52ccdb4\"><span class=\"answer-formula__purpose\">(4)</span><div class=\"answer-formula__math\" data-katex=\"S=\\frac12\\int_{\\alpha}^{\\beta}(x-\\alpha)(\\beta-x)dx\" data-display-mode=\"true\"></div></div><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-cbe3b52ccdb4\"><span class=\"answer-formula__purpose\">(4)</span><div class=\"answer-formula__math\" data-katex=\"S=\\frac1{12}(\\beta-\\alpha)^3=\\frac{32\\sqrt2}{3}\" data-display-mode=\"true\"></div></div><figure class=\"batch-figure-pending\" data-figure-placeholder=\"true\" data-figure-id=\"a4-unit-circle-line\"><div role=\"img\" aria-label=\"第4問(1)の解説図。単位円 x^2+y^2=1 と直線 y=-x の2交点を示し、座標 ±1/√2 を破線の補助線で示している（図版準備中）\" style=\"aspect-ratio:1.182\"><strong>図版準備中</strong><p>第4問(1)の解説図。単位円 x^2+y^2=1 と直線 y=-x の2交点を示し、座標 ±1/√2 を破線の補助線で示している</p></div><figcaption>図の位置・大きさを確保しています。図を使う説明は確認完了までレビュー中です。</figcaption></figure><p class=\"prose\">極方程式から直交座標へ移るときは、2乗前の右辺が非負である条件も確認します。</p><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-73db9da89473\"><span class=\"answer-formula__purpose\">第4問の変換確認</span><div class=\"answer-formula__math\" data-katex=\"\\sqrt{x^2+y^2}=y+2,\\qquad y\\geqq-2\" data-display-mode=\"true\"></div></div><div class=\"formula answer-formula\" data-formula-purpose=\"source-goal-73db9da89473\"><span class=\"answer-formula__purpose\">第4問の変換確認</span><div class=\"answer-formula__math\" data-katex=\"\\sqrt{x^2+y^2}=2-x,\\qquad x\\leqq2\" data-display-mode=\"true\"></div></div></div></article>"
+      }
+    ]
+  },
+  "source": {
+    "contentProvenance": "editorial_adaptation_import",
+    "reference": "projects/universities/st-marianna/past-exams/working/2025/general-early/first-stage/mathematics/source-html/editorial-explanations.json",
+    "sha256": "3226b5a28f0c0d1ac661f7c48791211ef85831de6827f93edff567c0d7048dd2",
+    "needsHumanReview": true,
+    "rightsStatus": "review_required",
+    "restrictedAssetsCopied": false,
+    "independentlyReauthored": false,
+    "reviewNote": "保存済み学習者向け解説のステージング取り込み版。数式・論理・図版の詳細校正前。"
+  },
+  "links": {
+    "questions": "/past-exam-library/st-marianna/2025/mathematics/questions/",
+    "universityLibrary": "/past-exam-library/st-marianna/",
+    "analysis": "/past-exam-library/st-marianna/2025/mathematics/analysis/"
+  }
+}

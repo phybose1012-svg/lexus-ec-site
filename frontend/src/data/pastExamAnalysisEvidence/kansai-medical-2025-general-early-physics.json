@@ -1,0 +1,502 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "kansai-medical-2025-general-early-physics",
+    "university_id": "kansai-medical",
+    "university_name": "関西医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-early",
+    "exam_method_name": "一般選抜試験（前期）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 120,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "問題冊子表紙に理科2科目120分と明記。物理単独の公式時間ではない。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kansai-medical/past-exams/working/2025/general-early/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "eacd25e709cfe98e418839e3e071d64b16e6ec516d89bf7a708ad87132c6dcfa",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "Ⅰ",
+      "sourceTitle": "記録タイマーによる重力加速度の測定",
+      "requirements": [
+        2.6,
+        2.6,
+        2,
+        2,
+        2.6
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "振動数の逆数を取る一段の計算である。",
+          "strategyReason": "短時間で確実に回収しやすい仮4点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "問2",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "距離を経過時間で割る標準的な処理である。",
+          "strategyReason": "表の値を正しく読めば回収しやすい仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-1"
+            ],
+            "strong_subject": [
+              "phys-q1-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "問3",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "横軸が時間ではなく区間番号であることを踏まえた二段の換算が必要である。",
+          "strategyReason": "読み違いの影響が大きいため苦手層は基本設問後に戻る仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-2"
+            ],
+            "strong_subject": [
+              "phys-q1-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "問4",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "前問の加速度を時刻へ適用する必要がある。",
+          "strategyReason": "前問の結果があれば短く処理できる仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-3"
+            ],
+            "strong_subject": [
+              "phys-q1-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-5",
+          "label": "問5",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "運動を妨げる力を装置図から特定する知識問題である。",
+          "strategyReason": "計算不要で独立に回収できる仮4点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "Ⅱ",
+      "sourceTitle": "サイクロトロンと荷電粒子の運動",
+      "requirements": [
+        3.2,
+        3.6,
+        2.2,
+        2.2,
+        3.2
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "磁場に垂直な速度へローレンツ力を適用する典型問題である。",
+          "strategyReason": "公式と向心方向で回収しやすい仮4点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "問2",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "向心力とローレンツ力を等置する標準導出である。",
+          "strategyReason": "後続設問の基礎にもなる仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1"
+            ],
+            "strong_subject": [
+              "phys-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "問3",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "円運動周期と電圧反転の対応を読み取る必要がある。",
+          "strategyReason": "問2の周期を半分にすればよい仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-2"
+            ],
+            "strong_subject": [
+              "phys-q2-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-4",
+          "label": "問4",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "円運動の速さと電場が与える累積エネルギーを結ぶ必要がある。",
+          "strategyReason": "複数式を接続するため苦手層は後回しにする仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-2"
+            ],
+            "strong_subject": [
+              "phys-q2-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-5",
+          "label": "問5",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "加速と減速を交互に追い、軌道半径の大小を図へ反映する必要がある。",
+          "strategyReason": "描図の検証に時間を要するため苦手層は最後に戻る仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-2"
+            ],
+            "strong_subject": [
+              "phys-q2-2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q3",
+      "label": "Ⅲ",
+      "sourceTitle": "超音波ドップラー法による心筋層の測定",
+      "requirements": [
+        2.7,
+        3,
+        2.4,
+        1.7,
+        3
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-A",
+          "label": "A",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "球殻体積一定から外面も外向きに動くと判断する。",
+          "strategyReason": "後続式の向きを決める仮4点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-a",
+          "label": "ア",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "観測者が音源へ近づくドップラー式を適用する。",
+          "strategyReason": "標準公式の一段適用である仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-A"
+            ],
+            "strong_subject": [
+              "phys-q3-A"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-i",
+          "label": "イ",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "動く観測者と動く音源の二段階を接続する。",
+          "strategyReason": "アの結果を順に代入できる仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-a"
+            ],
+            "strong_subject": [
+              "phys-q3-a"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-u",
+          "label": "ウ",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "ドップラー式を速度について整理する必要がある。",
+          "strategyReason": "イの式変形で回収できる仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-i"
+            ],
+            "strong_subject": [
+              "phys-q3-i"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-e",
+          "label": "エ",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "ウの添字を置き換えるだけである。",
+          "strategyReason": "直前の式を再利用できる仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-u"
+            ],
+            "strong_subject": [
+              "phys-q3-u"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-o",
+          "label": "オ",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "周期運動の半周期を答える。",
+          "strategyReason": "独立して短時間に回収できる仮4点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-ka",
+          "label": "カ",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "二つの変位の差を半周期にわたり計算する。",
+          "strategyReason": "速度差と時間の積で整理できる仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-e",
+              "phys-q3-o"
+            ],
+            "strong_subject": [
+              "phys-q3-e",
+              "phys-q3-o"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-ki",
+          "label": "キ",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "時刻差を往復距離へ直し2で割る必要がある。",
+          "strategyReason": "往復係数2に注意すれば回収できる仮4点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-ku",
+          "label": "ク",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "速度式、周期、到達時刻差を一つの比へ統合する。",
+          "strategyReason": "前半の複数結果を統合するため苦手層は最後に戻る仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-ka",
+              "phys-q3-ki"
+            ],
+            "strong_subject": [
+              "phys-q3-ka",
+              "phys-q3-ki"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q4",
+      "label": "Ⅳ",
+      "sourceTitle": "ルテチウム・ハフニウム宇宙核時計",
+      "requirements": [
+        2.8,
+        2.8,
+        2.5,
+        1.7,
+        2.3
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q4-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "ベータ崩壊の原子番号変化を適用する知識問題である。",
+          "strategyReason": "独立して確実に回収したい仮5点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-2",
+          "label": "問2",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "半減期の残存式を初期値について解く。",
+          "strategyReason": "後続設問の基礎となる仮5点。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-3",
+          "label": "問3",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "初期個数と現在個数の差を崩壊生成数へ対応させる。",
+          "strategyReason": "問2から直接つなげられる仮5点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-2"
+            ],
+            "strong_subject": [
+              "phys-q4-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-4",
+          "label": "問4",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "問3の生成数へ初期個数を加える一段の処理である。",
+          "strategyReason": "前問結果を利用して短く回収できる仮5点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-3"
+            ],
+            "strong_subject": [
+              "phys-q4-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-5",
+          "label": "問5",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "比の式から傾きを同定し、常用対数で指数を解く必要がある。",
+          "strategyReason": "対数計算を含むため苦手層は基本設問後に戻る仮4点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-4"
+            ],
+            "strong_subject": [
+              "phys-q4-4"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": null
+}

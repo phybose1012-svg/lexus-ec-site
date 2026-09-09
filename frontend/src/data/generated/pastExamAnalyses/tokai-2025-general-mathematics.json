@@ -1,0 +1,453 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "tokai-2025-general-mathematics",
+  "route": {
+    "university": "tokai",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/tokai/2025/mathematics/analysis/"
+  },
+  "university": "東海大学",
+  "year": 2025,
+  "subject": "数学",
+  "examLabel": "一般選抜",
+  "duration": "数学 70分",
+  "format": "解答形式は問題文を参照",
+  "examTotal": null,
+  "headline": "数列・指数関数・対数関数",
+  "summary": "第1問は数列・指数関数・対数関数、第2問はベクトル・図形と計量、第3問は図形と方程式・図形の性質。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "数学が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "数学が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "title": "数列・指数・組合せ・複素数・三角関数・放物線の小問集合",
+      "subtitle": "数列・指数関数・対数関数・2次関数",
+      "summary": "部分分数、指数関数の最大、二項展開と合同、重複組合せ、複素数の虚部、三角関数、放物線と面積比を扱う。",
+      "studyAction": "部分分数分解。平方完成",
+      "requirements": [
+        0.9,
+        3.5,
+        2.9,
+        3.5,
+        3.2
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "title": "部分分数分解で望遠和を作り、有限和を求める。",
+          "note": "短時間で確実に回収しやすい。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "title": "指数を2次式へ直し、平方完成で最大値を求める。",
+          "note": "平方完成だけで完結する。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)",
+          "title": "二項係数を求め、展開式へ25を代入して26の26乗の625による余りを求める。",
+          "note": "係数は容易だが余りの発想に一段必要。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q1-4",
+          "label": "(4)",
+          "title": "1から6の目から重複を許して3個選ぶ組合せを数える。",
+          "note": "典型対応を見抜けば短い。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q1-5",
+          "label": "(5)",
+          "title": "z=1+xiとしてzの3乗の虚部を3次関数にし、x>0での値域を求める。",
+          "note": "展開後は標準的な微分である。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q1-6",
+          "label": "(6)",
+          "title": "象限に注意して2αとβの三角比を求め、加法定理を適用する。",
+          "note": "符号に注意すれば定型計算である。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q1-7",
+          "label": "(7)",
+          "title": "放物線と直線の交点、2領域の積分面積、面積比からaを求める。",
+          "note": "小問集合内では工程が長い。",
+          "difficulty": 2,
+          "weak": 2,
+          "strong": 1,
+          "points": 7
+        }
+      ],
+      "questionsPath": "/past-exam-library/tokai/2025/mathematics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/tokai/2025/mathematics/answers/#major-question-01"
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "title": "四面体の内積・垂線の足・交点比",
+      "subtitle": "ベクトル・図形と計量",
+      "summary": "辺長から内積を求め、平面への垂線の足を位置ベクトルで決定し、直線の交点比を求める。",
+      "studyAction": "余弦定理と内積。垂直条件",
+      "requirements": [
+        3.5,
+        3.5,
+        3.3,
+        3.5,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "(1)",
+          "title": "正三角形と直角三角形の辺長からp・qとq・rの内積を求める。",
+          "note": "後続の基礎となる定型計算。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q2-2",
+          "label": "(2)",
+          "title": "余弦定理で角PORの余弦を求め、p・rの内積へ変換する。",
+          "note": "(1)と独立して標準公式で解ける。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q2-3",
+          "label": "(3)",
+          "title": "RHがpとqに垂直である条件を連立し、垂線の足Hの係数x,yを求める。",
+          "note": "設定が読めれば連立一次方程式へ帰着する。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 7
+        },
+        {
+          "id": "math-q2-4",
+          "label": "(4)",
+          "title": "LをOQ上とPH上の2通りで表して係数比較し、OL:LQを求める。",
+          "note": "前問依存で式設定に時間を要する。",
+          "difficulty": 2,
+          "weak": 2,
+          "strong": 1,
+          "points": 7
+        }
+      ],
+      "questionsPath": "/past-exam-library/tokai/2025/mathematics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/tokai/2025/mathematics/answers/#major-question-02"
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "title": "直角三角形の内接円・接円と面積",
+      "subtitle": "図形と方程式・図形の性質・三角関数",
+      "summary": "角の二等分線、内接円、接する円の相似的な位置関係を座標化し、円弧で囲まれる面積を求める。",
+      "studyAction": "角の二等分線。内接円半径",
+      "requirements": [
+        4.1,
+        2.9,
+        3,
+        3.7,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "(1)",
+          "title": "60度の角の二等分線を30度の傾きから求める。",
+          "note": "最短で回収できる導入。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q3-2",
+          "label": "(2)",
+          "title": "直角三角形の接線長または面積から内接円半径と中心のx座標を求める。",
+          "note": "典型的な内接円計算。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q3-3",
+          "label": "(3)",
+          "title": "円中心と近い交点Dの位置関係からx座標を求める。",
+          "note": "図の位置関係が読めれば短い。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "math-q3-4",
+          "label": "(4)",
+          "title": "OA・OBと円Cに接する円C'の相似的配置から半径と中心座標を求める。",
+          "note": "前問までの図を再利用できる。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 6
+        },
+        {
+          "id": "math-q3-5",
+          "label": "(5)",
+          "title": "台形から2扇形を除いて曲線領域の面積を求め、円C'の面積との比を整理する。",
+          "note": "70分試験の終盤として計算負荷が高い。",
+          "difficulty": 3,
+          "weak": 2,
+          "strong": 1,
+          "points": 7
+        }
+      ],
+      "questionsPath": "/past-exam-library/tokai/2025/mathematics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/tokai/2025/mathematics/answers/#major-question-03"
+    }
+  ],
+  "difficultyCounts": [
+    5,
+    5,
+    5,
+    1
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 70,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 31,
+        "targetPercent": 31,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 48,
+        "maximum": {
+          "points": 31,
+          "minutes": 69.2,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1"
+          ]
+        },
+        "now": {
+          "points": 42,
+          "minutes": 79,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1",
+            "math-q3-2"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 79,
+          "minutes": 117.4,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q1-6",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4"
+          ]
+        },
+        "title": "数学が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 31,
+          "minutes": 69.2,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q3-1"
+          ]
+        },
+        "additional": [],
+        "routeKind": "replacement",
+        "replaced": [
+          {
+            "id": "math-q1-4",
+            "label": "第1問 (4)"
+          },
+          {
+            "id": "math-q3-2",
+            "label": "第3問 (2)"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 74,
+        "targetPercent": 74,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 12,
+        "maximum": {
+          "points": 93,
+          "minutes": 70,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q1-6",
+            "math-q1-7",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4"
+          ]
+        },
+        "now": {
+          "points": 79,
+          "minutes": 58,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q1-6",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 78,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q1-6",
+            "math-q1-7",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q2-4",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4",
+            "math-q3-5"
+          ]
+        },
+        "title": "数学が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 79,
+          "minutes": 58,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q1-5",
+            "math-q1-6",
+            "math-q2-1",
+            "math-q2-2",
+            "math-q2-3",
+            "math-q3-1",
+            "math-q3-2",
+            "math-q3-3",
+            "math-q3-4"
+          ]
+        },
+        "additional": []
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/tokai/past-exams/working/2025/general/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "13b62a8a6a97de61abf20568fb0cd45e11e56299bb102e5da9b0482f3e11028f",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/tokai/2025/mathematics/questions/",
+    "answers": "/past-exam-library/tokai/2025/mathematics/answers/",
+    "university": "/past-exam-library/tokai/"
+  }
+}

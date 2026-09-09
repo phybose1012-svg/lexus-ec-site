@@ -1,5 +1,6 @@
 ---
 import SiteLayout from "../../../../../layouts/SiteLayout.astro";
+import "../../../../../styles/past-exam-batch.css";
 import PastExamBreadcrumbs from "../../../../../components/past-exam/PastExamBreadcrumbs.astro";
 import PastExamSeoHead from "../../../../../components/past-exam/PastExamSeoHead.astro";
 import { buildExamDocumentSeo, PAST_EXAM_SOCIAL_IMAGE, PAST_EXAM_SOCIAL_IMAGE_ALT, summarizeQuestionLabels } from "../../../../../lib/pastExamSeo.mjs";
@@ -56,7 +57,7 @@ export function getStaticPaths() {
     params: {
       university: page.route.university,
       year: page.route.year,
-      subject: page.route.subject,
+      subject: page.route.path.split('/').filter(Boolean).at(-2),
     },
     props: { page },
   }));
@@ -66,6 +67,9 @@ const { page } = Astro.props as { page: AnswerPageData };
 const questionSummary = summarizeQuestionLabels(page.document.majorQuestions.map((major) => major.label));
 const { title, description, canonical, breadcrumbs, structuredData } = buildExamDocumentSeo({
   mode: "answers",
+  originalEditorial: page.source.contentProvenance === 'original_editorial',
+  pending: page.source.contentProvenance === 'missing-source',
+  variantLabel: page.route.path.split('/').filter(Boolean).at(-2) !== page.route.subject ? `${page.exam.label} ${page.exam.stage}` : undefined,
   university: page.university.name,
   year: page.exam.year,
   subject: page.subject.name,
@@ -166,7 +170,11 @@ const reviewRequired = page.source.needsHumanReview;
 
       <aside class="past-exam-question-note">
         <strong>解答・解説について</strong>
-        <p>掲載している問題をもとにレクサスE.C.が独自作成しています。元解答の文章・表・図版は転載していません。</p>
+        <p>{page.source.contentProvenance === 'editorial_adaptation_import'
+          ? '保存済みの学習者向け解説を取り込んだステージング確認版です。解法・表現の詳細校正と図版の作成は未完了です。'
+          : page.source.contentProvenance === 'original_editorial'
+          ? '掲載している問題をもとにレクサスE.C.が独自作成しています。元解答の文章・表・図版は転載していません。'
+          : '解答・解説の元データを確認しています。確認できていない解答は掲載していません。'}</p>
       </aside>
     </div>
 

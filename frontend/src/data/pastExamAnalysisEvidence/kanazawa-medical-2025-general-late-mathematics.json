@@ -1,0 +1,294 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "kanazawa-medical-2025-general-late-mathematics",
+    "university_id": "kanazawa-medical",
+    "university_name": "金沢医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-late",
+    "exam_method_name": "一般選抜（後期）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "mathematics",
+    "subject_name": "数学",
+    "time_limit": {
+      "kind": "subject_only",
+      "minutes": 60,
+      "subject_ids": [
+        "mathematics"
+      ],
+      "note": "問題原本p.1に数学60分と明記されている。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kanazawa-medical/past-exams/working/2025/general-late/first-stage/mathematics/preview-html/public-preview/index.html",
+    "sha256": "9e0ad381d6840702f23729704f499b2c8ef5c746b78d60c3f769339e83e7e26c",
+    "approved": false
+  },
+  "axes": [
+    "図形処理",
+    "数式処理",
+    "計算量",
+    "問題パターン知識",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "math-q1",
+      "label": "第1問",
+      "sourceTitle": "さいころで定まる放物線と確率",
+      "requirements": [
+        1,
+        3,
+        3.3,
+        3.3,
+        3.5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q1-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 14,
+          "difficultyReason": "平方完成後の軸を読み、a+c=b+6を和の組数として数える基本的な確率である。",
+          "strategyReason": "軸の式が直ちに得られ、b=1から6までの組数が等差的に減るため、最初に確保しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 14,
+          "difficultyReason": "不等式b>a/2+cを整数条件へ直し、a=1から6まで重複なく列挙する管理力が要る。",
+          "strategyReason": "得意層は整数境界を整理して回収できるが、苦手層は場合漏れが起きやすいため一巡後に戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "math-q1-3",
+          "label": "(3)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 14,
+          "difficultyReason": "2本の厳密不等式を同時に満たす整数範囲をaごとに調べるため、(2)の列挙を正確に引き継ぐ必要がある。",
+          "strategyReason": "(2)の候補を再利用できれば短縮できるが、独立に始めると列挙量が大きい。",
+          "prerequisites": {
+            "weak_subject": [
+              "math-q1-2"
+            ],
+            "strong_subject": [
+              "math-q1-2"
+            ]
+          }
+        },
+        {
+          "id": "math-q1-4",
+          "label": "(4)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 14,
+          "difficultyReason": "接線条件を重解へ変換した後、(a-1)^2=2(a-1)(b-c)+9の整数解を分類する必要がある。",
+          "strategyReason": "判別式の整理は典型だが、60分試験ではa別の成立条件確認に時間を使うため、苦手層は後半へ回す。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q2",
+      "label": "第2問",
+      "sourceTitle": "直角三角形周上の動点と面積",
+      "requirements": [
+        4,
+        3,
+        4,
+        4,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q2-1",
+          "label": "第2問",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 14,
+          "difficultyReason": "相対速度と相似は基本事項だが、P,Qが辺を移る時刻を境に3本の面積式を正しくつなぐ必要がある。",
+          "strategyReason": "図と区間を対応できれば空欄が連鎖して得点効率が高い。各区間の開始時刻を先に書いてから面積を立てる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q3",
+      "label": "第3問",
+      "sourceTitle": "3直線が作る正三角形",
+      "requirements": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "subquestions": [
+        {
+          "id": "math-q3-1",
+          "label": "第3問",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 15,
+          "difficultyReason": "傾きの加法定理、正三角形の面積、方向ベクトルを一続きに運用する必要があり、符号と頂点の向きを誤りやすい。",
+          "strategyReason": "得意層は傾きと方向ベクトルを整理すれば連続回収できる。苦手層は第2問を先に確保し、時間を残して戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "math-q4",
+      "label": "第4問",
+      "sourceTitle": "正四角錐の空間ベクトル・切断・体積",
+      "requirements": [
+        5,
+        5,
+        5,
+        4,
+        5
+      ],
+      "subquestions": [
+        {
+          "id": "math-q4-1",
+          "label": "第4問",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 15,
+          "difficultyReason": "重心・内積・平面上の一次結合・体積比が長く連鎖し、空間図形を座標へ落とす方針を自力で保つ必要がある。",
+          "strategyReason": "15点に対して処理の連鎖が最長で、苦手層は他3大問を優先する。得意層も最後に残り時間を確認して着手する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "official_subject",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 70,
+        "targetPercent": 70,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 18.8,
+        "maximum": {
+          "points": 70,
+          "minutes": 59.4,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1"
+          ]
+        },
+        "now": {
+          "points": 28,
+          "minutes": 36.9,
+          "questionIds": [
+            "math-q1-1",
+            "math-q2-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 85,
+          "minutes": 72.9,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q3-1"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 4.7,
+        "maximum": {
+          "points": 100,
+          "minutes": 51.7,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q4-1"
+          ]
+        },
+        "now": {
+          "points": 85,
+          "minutes": 40.7,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q3-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 51.7,
+          "questionIds": [
+            "math-q1-1",
+            "math-q1-2",
+            "math-q1-3",
+            "math-q1-4",
+            "math-q2-1",
+            "math-q3-1",
+            "math-q4-1"
+          ]
+        }
+      }
+    ]
+  }
+}

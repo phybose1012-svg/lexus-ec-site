@@ -1,0 +1,716 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "tokyo-womens-medical-2025-general-physics",
+  "route": {
+    "university": "tokyo-womens-medical",
+    "year": "2025",
+    "subject": "physics",
+    "path": "/past-exam-library/tokyo-womens-medical/2025/physics/analysis/"
+  },
+  "university": "東京女子医科大学",
+  "year": 2025,
+  "subject": "物理",
+  "examLabel": "一般選抜",
+  "duration": "理科2科目 合計120分",
+  "format": "選択・数値解答など（各設問を参照）",
+  "examTotal": null,
+  "headline": "運動の表し方・仕事と力学的エネルギー",
+  "summary": "第Ⅰ問は運動の表し方・仕事と力学的エネルギー、第Ⅱ問は熱量と物質の状態・気体の状態変化と熱力学、第Ⅲ問は静電気力と電場・電位・コンデンサー。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "物理が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "物理が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "第Ⅰ問",
+      "title": "放物運動・円運動・運動量保存",
+      "subtitle": "運動の表し方・仕事と力学的エネルギー・運動量と力積",
+      "summary": "速度―時間グラフを用いる跳ね返り運動、ばねによる等速円運動、可動台上の物体を扱う。",
+      "studyAction": "速度―時間グラフの面積を変位として読む。反発係数と速度成分を結ぶ",
+      "requirements": [
+        2.8,
+        3.1,
+        2.8,
+        1.8,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-a-1",
+          "label": "A(1)",
+          "title": "鉛直速度の時間変化グラフの面積から、最高点までの時間を求める。",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q1-a-2",
+          "label": "A(2)",
+          "title": "最初の衝突後に再び最高点へ達するまでの時間を求める。",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q1-a-3",
+          "label": "A(3)",
+          "title": "水平方向の変位と鉛直速度グラフから、最初に投げた速さを求める。",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q1-a-4",
+          "label": "A(4)",
+          "title": "一度跳ね返った直後の速さを求める。",
+          "note": "式の連鎖または条件整理が長いため、短問を確保してから戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q1-a-5",
+          "label": "A(5)",
+          "title": "地面との反発係数を求め、二度目の衝突までの速度グラフを選ぶ。",
+          "note": "式の連鎖または条件整理が長いため、短問を確保してから戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q1-b-1",
+          "label": "B(1)",
+          "title": "ばねにつながれた小球の等速円運動について運動方程式を立てる。",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q1-b-2",
+          "label": "B(2)",
+          "title": "ばねが自然長のa倍となる回転数の上限を求める。",
+          "note": "式の連鎖または条件整理が長いため、短問を確保してから戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q1-c-1",
+          "label": "C(1)",
+          "title": "可動台上を滑る物体と台の地面に対する速度を求める。",
+          "note": "式の連鎖または条件整理が長いため、短問を確保してから戻る。",
+          "difficulty": 3,
+          "weak": 1,
+          "strong": 1,
+          "points": 4
+        },
+        {
+          "id": "phys-q1-c-2",
+          "label": "C(2)",
+          "title": "物体と台が相対的に静止したときの速度と失われた力学的エネルギーを求める。",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        }
+      ],
+      "questionsPath": "/past-exam-library/tokyo-womens-medical/2025/physics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/tokyo-womens-medical/2025/physics/answers/#major-question-01"
+    },
+    {
+      "id": "phys-q2",
+      "label": "第Ⅱ問",
+      "title": "熱・波動・光・原子の選択問題",
+      "subtitle": "熱量と物質の状態・気体の状態変化と熱力学・波の性質",
+      "summary": "熱力学、波動、音・光、量子・原子核から独立した12問を選択式で問う。",
+      "studyAction": "現象に対応する基本法則を素早く特定する。グラフと実験条件を読み分ける",
+      "requirements": [
+        2.2,
+        3,
+        2.2,
+        1.2,
+        2.2
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-a",
+          "label": "A",
+          "title": "水と金属の熱平衡から金属の比熱を選ぶ。（正答イ）",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-b",
+          "label": "B",
+          "title": "気体分子の速さ分布と温度変化を表すグラフを選ぶ。（正答コ）",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-c",
+          "label": "C",
+          "title": "気体の定圧膨張で加えた熱量を第一法則から選ぶ。（正答ウ）",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-d",
+          "label": "D",
+          "title": "両端固定弦の定常波の節と腹を判定する。（正答イ）",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-e",
+          "label": "E",
+          "title": "凹面鏡による像の位置と性質を選ぶ。（正答ア）",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-f",
+          "label": "F",
+          "title": "移動する音源からの反射音の振動数を選ぶ。（正答ク）",
+          "note": "式の連鎖または条件整理が長いため、短問を確保してから戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-g",
+          "label": "G",
+          "title": "ミリカンの実験で油滴の電荷量を選ぶ。（正答エ）",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-h",
+          "label": "H",
+          "title": "X線光子のエネルギーと波長の関係を選ぶ。（正答オ）",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-i",
+          "label": "I",
+          "title": "電子線回折の条件とド・ブロイ波長を選ぶ。（正答ウ）",
+          "note": "式の連鎖または条件整理が長いため、短問を確保してから戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-j",
+          "label": "J",
+          "title": "α線・β線・γ線の性質の組合せを選ぶ。（正答カ）",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-k",
+          "label": "K",
+          "title": "放射性元素の半減期から残存割合を選ぶ。（正答ア）",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-l",
+          "label": "L",
+          "title": "核反応式の質量数・原子番号を保存して選ぶ。（正答セ）",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        }
+      ],
+      "questionsPath": "/past-exam-library/tokyo-womens-medical/2025/physics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/tokyo-womens-medical/2025/physics/answers/#major-question-02"
+    },
+    {
+      "id": "phys-q3",
+      "label": "第Ⅲ問",
+      "title": "静電場・RC回路・電磁誘導",
+      "subtitle": "静電気力と電場・電位・コンデンサー・直流回路",
+      "summary": "点電荷の合成電場と仕事、コンデンサー回路の過渡・定常状態、導体棒の電磁誘導を扱う。",
+      "studyAction": "電場と電位を重ね合わせる。コンデンサー回路の直後と定常状態を区別する",
+      "requirements": [
+        2.8,
+        3,
+        2.8,
+        1.8,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-a-1",
+          "label": "A(1)",
+          "title": "2個の点電荷がつくる合成電場の向きと大きさを求める。",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-a-2",
+          "label": "A(2)",
+          "title": "点電荷を電場中で移動するのに必要な仕事を求める。",
+          "note": "式の連鎖または条件整理が長いため、短問を確保してから戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-b-1",
+          "label": "B(1)",
+          "title": "スイッチ投入直後の回路電流を求める。",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q3-b-2",
+          "label": "B(2)",
+          "title": "十分時間後のコンデンサーの電気量を求める。",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-b-3",
+          "label": "B(3)",
+          "title": "十分時間後に流れる電流を求める。",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q3-c-1",
+          "label": "C(1)",
+          "title": "斜面上を滑る導体棒の誘導電流の向きと大きさを求める。",
+          "note": "典型法則を特定できれば、制限時間内に得点しやすい。",
+          "difficulty": 2,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-c-2",
+          "label": "C(2)",
+          "title": "導体棒の終端速度を求める。",
+          "note": "式の連鎖または条件整理が長いため、短問を確保してから戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-c-3",
+          "label": "C(3)",
+          "title": "重力が単位時間にする仕事とジュール熱を求める。",
+          "note": "式の連鎖または条件整理が長いため、短問を確保してから戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 4
+        }
+      ],
+      "questionsPath": "/past-exam-library/tokyo-womens-medical/2025/physics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/tokyo-womens-medical/2025/physics/answers/#major-question-03"
+    }
+  ],
+  "difficultyCounts": [
+    15,
+    0,
+    13,
+    1
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 50,
+        "targetPercent": 50,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 36.4,
+        "maximum": {
+          "points": 50,
+          "minutes": 59.9,
+          "questionIds": [
+            "phys-q1-b-1",
+            "phys-q1-c-2",
+            "phys-q2-a",
+            "phys-q2-b",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-e",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q2-h",
+            "phys-q2-i",
+            "phys-q2-j",
+            "phys-q2-k",
+            "phys-q2-l",
+            "phys-q3-b-1",
+            "phys-q3-b-3"
+          ]
+        },
+        "now": {
+          "points": 66,
+          "minutes": 72.7,
+          "questionIds": [
+            "phys-q1-a-1",
+            "phys-q1-a-2",
+            "phys-q1-a-3",
+            "phys-q1-b-1",
+            "phys-q1-c-2",
+            "phys-q2-a",
+            "phys-q2-b",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-e",
+            "phys-q2-g",
+            "phys-q2-h",
+            "phys-q2-j",
+            "phys-q2-k",
+            "phys-q2-l",
+            "phys-q3-a-1",
+            "phys-q3-b-1",
+            "phys-q3-b-2",
+            "phys-q3-b-3",
+            "phys-q3-c-1"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 99.8,
+          "questionIds": [
+            "phys-q1-a-1",
+            "phys-q1-a-2",
+            "phys-q1-a-3",
+            "phys-q1-a-4",
+            "phys-q1-a-5",
+            "phys-q1-b-1",
+            "phys-q1-b-2",
+            "phys-q1-c-1",
+            "phys-q1-c-2",
+            "phys-q2-a",
+            "phys-q2-b",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-e",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q2-h",
+            "phys-q2-i",
+            "phys-q2-j",
+            "phys-q2-k",
+            "phys-q2-l",
+            "phys-q3-a-1",
+            "phys-q3-a-2",
+            "phys-q3-b-1",
+            "phys-q3-b-2",
+            "phys-q3-b-3",
+            "phys-q3-c-1",
+            "phys-q3-c-2",
+            "phys-q3-c-3"
+          ]
+        },
+        "title": "物理が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 50,
+          "minutes": 59.9,
+          "questionIds": [
+            "phys-q1-b-1",
+            "phys-q1-c-2",
+            "phys-q2-a",
+            "phys-q2-b",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-e",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q2-h",
+            "phys-q2-i",
+            "phys-q2-j",
+            "phys-q2-k",
+            "phys-q2-l",
+            "phys-q3-b-1",
+            "phys-q3-b-3"
+          ]
+        },
+        "additional": [
+          {
+            "id": "phys-q2-f",
+            "label": "第Ⅱ問 F"
+          },
+          {
+            "id": "phys-q2-i",
+            "label": "第Ⅱ問 I"
+          }
+        ],
+        "routeKind": "replacement",
+        "replaced": [
+          {
+            "id": "phys-q1-a-1",
+            "label": "第Ⅰ問 A(1)"
+          },
+          {
+            "id": "phys-q1-a-2",
+            "label": "第Ⅰ問 A(2)"
+          },
+          {
+            "id": "phys-q1-a-3",
+            "label": "第Ⅰ問 A(3)"
+          },
+          {
+            "id": "phys-q3-a-1",
+            "label": "第Ⅲ問 A(1)"
+          },
+          {
+            "id": "phys-q3-b-2",
+            "label": "第Ⅲ問 B(2)"
+          },
+          {
+            "id": "phys-q3-c-1",
+            "label": "第Ⅲ問 C(1)"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 9.1,
+        "maximum": {
+          "points": 100,
+          "minutes": 51.2,
+          "questionIds": [
+            "phys-q1-a-1",
+            "phys-q1-a-2",
+            "phys-q1-a-3",
+            "phys-q1-a-4",
+            "phys-q1-a-5",
+            "phys-q1-b-1",
+            "phys-q1-b-2",
+            "phys-q1-c-1",
+            "phys-q1-c-2",
+            "phys-q2-a",
+            "phys-q2-b",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-e",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q2-h",
+            "phys-q2-i",
+            "phys-q2-j",
+            "phys-q2-k",
+            "phys-q2-l",
+            "phys-q3-a-1",
+            "phys-q3-a-2",
+            "phys-q3-b-1",
+            "phys-q3-b-2",
+            "phys-q3-b-3",
+            "phys-q3-c-1",
+            "phys-q3-c-2",
+            "phys-q3-c-3"
+          ]
+        },
+        "now": {
+          "points": 96,
+          "minutes": 48.8,
+          "questionIds": [
+            "phys-q1-a-1",
+            "phys-q1-a-2",
+            "phys-q1-a-3",
+            "phys-q1-a-4",
+            "phys-q1-a-5",
+            "phys-q1-b-1",
+            "phys-q1-b-2",
+            "phys-q1-c-2",
+            "phys-q2-a",
+            "phys-q2-b",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-e",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q2-h",
+            "phys-q2-i",
+            "phys-q2-j",
+            "phys-q2-k",
+            "phys-q2-l",
+            "phys-q3-a-1",
+            "phys-q3-a-2",
+            "phys-q3-b-1",
+            "phys-q3-b-2",
+            "phys-q3-b-3",
+            "phys-q3-c-1",
+            "phys-q3-c-2",
+            "phys-q3-c-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 51.2,
+          "questionIds": [
+            "phys-q1-a-1",
+            "phys-q1-a-2",
+            "phys-q1-a-3",
+            "phys-q1-a-4",
+            "phys-q1-a-5",
+            "phys-q1-b-1",
+            "phys-q1-b-2",
+            "phys-q1-c-1",
+            "phys-q1-c-2",
+            "phys-q2-a",
+            "phys-q2-b",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-e",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q2-h",
+            "phys-q2-i",
+            "phys-q2-j",
+            "phys-q2-k",
+            "phys-q2-l",
+            "phys-q3-a-1",
+            "phys-q3-a-2",
+            "phys-q3-b-1",
+            "phys-q3-b-2",
+            "phys-q3-b-3",
+            "phys-q3-c-1",
+            "phys-q3-c-2",
+            "phys-q3-c-3"
+          ]
+        },
+        "title": "物理が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 96,
+          "minutes": 48.8,
+          "questionIds": [
+            "phys-q1-a-1",
+            "phys-q1-a-2",
+            "phys-q1-a-3",
+            "phys-q1-a-4",
+            "phys-q1-a-5",
+            "phys-q1-b-1",
+            "phys-q1-b-2",
+            "phys-q1-c-2",
+            "phys-q2-a",
+            "phys-q2-b",
+            "phys-q2-c",
+            "phys-q2-d",
+            "phys-q2-e",
+            "phys-q2-f",
+            "phys-q2-g",
+            "phys-q2-h",
+            "phys-q2-i",
+            "phys-q2-j",
+            "phys-q2-k",
+            "phys-q2-l",
+            "phys-q3-a-1",
+            "phys-q3-a-2",
+            "phys-q3-b-1",
+            "phys-q3-b-2",
+            "phys-q3-b-3",
+            "phys-q3-c-1",
+            "phys-q3-c-2",
+            "phys-q3-c-3"
+          ]
+        },
+        "additional": []
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/tokyo-womens-medical/past-exams/working/2025/general/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "251f8ead6c62facc6433521049c5185671e4d7a584833d1666c96bdf2266086d",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/tokyo-womens-medical/2025/physics/questions/",
+    "answers": "/past-exam-library/tokyo-womens-medical/2025/physics/answers/",
+    "university": "/past-exam-library/tokyo-womens-medical/"
+  }
+}

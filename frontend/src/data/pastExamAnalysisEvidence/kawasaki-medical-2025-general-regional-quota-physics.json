@@ -1,0 +1,518 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "kawasaki-medical-2025-general-regional-quota-physics",
+    "university_id": "kawasaki-medical",
+    "university_name": "川崎医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-regional-quota",
+    "exam_method_name": "一般選抜・地域枠選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 120,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "理科は物理・化学・生物から2科目を選択し、2科目を合わせて120分で解答する。原本問題冊子にも「物理（2科目120分）」と印刷されている。物理単独の公式試験時間はない。"
+    },
+    "total_points": 75
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/kawasaki-medical/past-exams/working/2025/general-regional-quota/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "7096a5ff76e3127d6c33e175ab044ac63254569d2c2307f8cc7f8f79d23a650d",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "第Ⅰ問",
+      "sourceTitle": "クォーク模型と陽子・中性子",
+      "requirements": [
+        2,
+        2,
+        2,
+        1,
+        2
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "粒子数の和と電気量の2条件を立てれば、陽子 uud 、中性子 udd が直ちに決まる。",
+          "strategyReason": "短い連立条件で2成分をまとめて回収できる。想定1.1分に対して仮5点で、両層とも最初に確保する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "第Ⅱ問",
+      "sourceTitle": "同符号荷電粒子の反発衝突",
+      "requirements": [
+        4,
+        3.6,
+        3.2,
+        2.9,
+        4.4
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "問1",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "最接近時に相対速度が0となることを見抜き、運動量保存で共通速度、エネルギー保存でクーロン位置エネルギーを結ぶ必要がある。",
+          "strategyReason": "保存則2本を順番に使う再現可能な標準問題だが、文字式整理と2成分選択がある。苦手層は短問の後、得意層は流れの起点として先に解く。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "問2",
+          "difficulty": "発展レベル",
+          "weak": "捨てる！",
+          "strong": "後回し",
+          "points": 4,
+          "difficultyReason": "問1の一般式へ質量比と電気量を代入し、SI単位からeV・MeVへ換算する長い数値処理が必要である。",
+          "strategyReason": "式の代入、指数、単位換算が連続し計算ミスへ露出する。苦手層は他の短問を優先し、得意層も全体回収後に戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1"
+            ],
+            "strong_subject": [
+              "phys-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "問3",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "反発力による減速・加速と、最接近時に距離および運動エネルギー和が最小になることを4つのグラフへ対応させる判断問題である。",
+          "strategyReason": "計算は少ないが4グラフを一貫して判定する必要がある。苦手層は明確な短問を先にし、得意層は物理的変化を追って回収する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q3",
+      "label": "第Ⅲ問",
+      "sourceTitle": "ばね付きピストンと理想気体",
+      "requirements": [
+        3.2,
+        3.4,
+        2.4,
+        2,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "U=3nRT/2 と状態方程式 nRT_0=p_0SL を直接組み合わせる。",
+          "strategyReason": "定型公式を1回置換するだけで、想定1.1分・仮4点と効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "問2",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "最終状態の圧力差 2p_0 が伸び 2L のばね力に対応することを式にする。",
+          "strategyReason": "力のつり合いを最終状態だけに書けば短く、後続の圧力変化も理解しやすい。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "問3",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "力のつり合いから圧力が体積とともに直線的に増すことを捉え、p-V図の台形面積を計算する。",
+          "strategyReason": "p-V図を直線として描く手順は再現可能だが、苦手層は圧力変化の整理に時間がかかるため短問後に回す。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-4",
+          "label": "問4",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "物質量一定の状態方程式で T\\propto pV を使えば、温度比が直ちに求まる。",
+          "strategyReason": "前問に依存せず状態量だけで処理でき、短時間で回収できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-5",
+          "label": "問5",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "熱力学第一法則 Q=\\Delta U+W へ、問3の仕事と問4の温度から得た内部エネルギー変化を正しい符号で入れる。",
+          "strategyReason": "式自体は定型だが2つの前結果を統合する。苦手層は問1・2・4を先に確保し、問3まで解けたら戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-3",
+              "phys-q3-4"
+            ],
+            "strong_subject": [
+              "phys-q3-3",
+              "phys-q3-4"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q4",
+      "label": "第Ⅳ問",
+      "sourceTitle": "薄膜干渉",
+      "requirements": [
+        3.5,
+        3.5,
+        1.6,
+        1.2,
+        3.4
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q4-1",
+          "label": "問1",
+          "difficulty": "基本＋αレベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "同位相の波面と直角条件を読み、対応する経路B→Cを見いだす図形判断が必要である。",
+          "strategyReason": "計算はないが図の対応確認が必要で、苦手層は定型計算問を優先する。得意層は後続の光路差の入口として先に解く。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-2",
+          "label": "問2",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "薄膜内の往復光路から空気中の差を引き、 \\sin i=n\\sin r で r を消去する必要がある。",
+          "strategyReason": "薄膜干渉の定型導出だが図と式の往復がある。苦手層は暗記式だけで即答せず短問後に確認し、得意層は標準手順で回収する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-3",
+          "label": "問3",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "高屈折率側での反射では位相が \\pi ずれるという基本則をD・Eへ同じように適用する。",
+          "strategyReason": "基本則1つで2成分を回収でき、仮5点に対する効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-4",
+          "label": "問4",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "2回の反射位相変化が相対的に打ち消し合うことを確認し、弱め合いの半整数条件へ結ぶ必要がある。",
+          "strategyReason": "前2問の整理ができれば短いが、位相差の数え違いが起こりやすい。苦手層は基本問後、得意層は連続して処理する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-2",
+              "phys-q4-3"
+            ],
+            "strong_subject": [
+              "phys-q4-2",
+              "phys-q4-3"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q5",
+      "label": "第Ⅴ問",
+      "sourceTitle": "ウラン同位体の半減期",
+      "requirements": [
+        2.3,
+        3.3,
+        2.3,
+        1.6,
+        2.6
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q5-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "3回の半減で (1/2)^3=1/8 と直ちに求まる。",
+          "strategyReason": "半減回数を数えるだけの最短問で、両層とも確実に回収する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q5-2",
+          "label": "問2",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "経過時間は半減期の1/2なので、 (1/2)^{1/2}=1/\\sqrt2 と分数指数で表す。",
+          "strategyReason": "問1と同じ指数式へ分数を入れるだけで、短時間に回収できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q5-3",
+          "label": "問3",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "過去へ戻ると半減の逆で個数が増える。ウラン235は6回で64倍、ウラン238は1回で2倍となる。",
+          "strategyReason": "時間の符号だけ注意すれば2成分を短く回収でき、仮5点と効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q5-4",
+          "label": "問4",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 5,
+          "difficultyReason": "2つの指数関数の比を (1/2)^{5t/(6T)} に整理し、4を2のべきへ直して負の時刻を求める。",
+          "strategyReason": "指数比の整理は標準手順だが符号と分母6の処理がある。苦手層は問1〜3を先に確保し、得意層は大問を完結させる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 75,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 66,
+        "targetPercent": 88,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 29.2,
+        "maximum": {
+          "points": 66,
+          "minutes": 59.2,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4"
+          ]
+        },
+        "now": {
+          "points": 35,
+          "minutes": 38.3,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-4",
+            "phys-q4-3",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 71,
+          "minutes": 63.4,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q2-1",
+            "phys-q2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 60,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 7.3,
+        "maximum": {
+          "points": 75,
+          "minutes": 34.2,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4"
+          ]
+        },
+        "now": {
+          "points": 71,
+          "minutes": 30,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q2-1",
+            "phys-q2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 75,
+          "minutes": 34.2,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q4-1",
+            "phys-q4-2",
+            "phys-q4-3",
+            "phys-q4-4",
+            "phys-q5-1",
+            "phys-q5-2",
+            "phys-q5-3",
+            "phys-q5-4"
+          ]
+        }
+      }
+    ]
+  }
+}

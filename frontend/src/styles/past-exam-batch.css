@@ -1,0 +1,12 @@
+/* Imported review drafts share the approved white, narrow reading surface. */
+.batch-figure-pending {max-width:560px;margin:1.8rem auto;color:#466077;font-family:var(--font-sans,sans-serif)}
+.batch-figure-pending > div {display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:170px;max-height:370px;padding:24px;background:#f7f9fb;border:1px dashed #b9c6cf;border-radius:6px;text-align:center}
+.batch-figure-pending p {font-size:.9rem;max-width:38ch;line-height:1.8}
+.batch-figure-pending figcaption {font-size:.75rem;line-height:1.7;margin-top:8px}
+.batch-answer-key {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));margin:0;gap:1px;background:#d7e0e7;border:1px solid #d7e0e7}
+.batch-answer-key > div {display:flex;align-items:center;gap:18px;padding:14px;background:white;min-width:0;overflow-x:auto}
+.batch-answer-key dt {font-weight:bold;flex-shrink:0}
+.batch-answer-key dd {margin:0}
+.batch-answer-list {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px;padding:0;list-style:none}
+.batch-answer-list li {padding:12px;border:1px solid #d7e0e7;overflow-x:auto}
+@media print {.batch-figure-pending {break-inside:avoid}.batch-figure-pending > div {background:white;max-height:55mm;min-height:30mm}.batch-answer-key>div {break-inside:avoid}}

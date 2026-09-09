@@ -1,0 +1,372 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "jikei-2025-general-physics",
+    "university_id": "jikei",
+    "university_name": "東京慈恵会医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 120,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "募集要項と問題原本は理科2科目を通して120分と示す。物理単独の公式時間はないため、分析では2科目を等分した60分を編集上の仮時間予算とする。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/jikei/past-exams/working/2025/general/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "3a58c6a058d7b8acc1ad3c32b69d9d906ef15d280f847597fefd27d4c965fedd",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "第1問",
+      "sourceTitle": "断熱容器間の気体移動と熱力学第二法則",
+      "requirements": [
+        3.7,
+        4.3,
+        2.9,
+        1.9,
+        3.7
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "両ピストンで気体が受ける仕事と外部へする仕事の符号をそろえる。",
+          "strategyReason": "保存則と状態量を整理すれば再現可能な得点源になる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "問2",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "内部エネルギー変化、正味仕事、両端の状態方程式を一つの式へまとめる。",
+          "strategyReason": "保存則と状態量を整理すれば再現可能な得点源になる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-1"
+            ],
+            "strong_subject": [
+              "phys-q1-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "問3",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "問2の状態量関係と比熱比5/3をべき乗式へ代入する。",
+          "strategyReason": "保存則と状態量を整理すれば再現可能な得点源になる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-2"
+            ],
+            "strong_subject": [
+              "phys-q1-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "問4",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 12,
+          "difficultyReason": "第一法則と状態方程式を微小変化で展開し、対数微分で積分形へ移す。",
+          "strategyReason": "論証または発想の比重が高いため、短い保存則問題を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-5",
+          "label": "問5",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 10,
+          "difficultyReason": "二状態を吸熱過程と可逆断熱過程で結び、熱効率1の矛盾を論証する。",
+          "strategyReason": "論証または発想の比重が高いため、短い保存則問題を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-3"
+            ],
+            "strong_subject": [
+              "phys-q1-3"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "第2問",
+      "sourceTitle": "ガンマ線放出・質量エネルギー等価・加速系",
+      "requirements": [
+        3.9,
+        4.4,
+        3,
+        2,
+        3.9
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "問1",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 6,
+          "difficultyReason": "エネルギー、振動数、波長、運動量の基本式を順に結ぶ。",
+          "strategyReason": "保存則と状態量を整理すれば再現可能な得点源になる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "問2",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "運動量保存で反跳速度を求め、静止・運動・光子エネルギーを加える。",
+          "strategyReason": "保存則と状態量を整理すれば再現可能な得点源になる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1"
+            ],
+            "strong_subject": [
+              "phys-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "問3",
+          "difficulty": "標準レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 8,
+          "difficultyReason": "結晶質量を無限大とする極限で反跳運動エネルギーが0へ近づく。",
+          "strategyReason": "保存則と状態量を整理すれば再現可能な得点源になる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-2"
+            ],
+            "strong_subject": [
+              "phys-q2-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-4",
+          "label": "問4",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 10,
+          "difficultyReason": "飛行時間中の検出器の速度変化を求め、光のドップラー式を一次まで展開する。",
+          "strategyReason": "論証または発想の比重が高いため、短い保存則問題を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-3"
+            ],
+            "strong_subject": [
+              "phys-q2-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-5",
+          "label": "問5",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 8,
+          "difficultyReason": "位置エネルギーの減少方向が力の向きであることを用いる。",
+          "strategyReason": "論証または発想の比重が高いため、短い保存則問題を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-4"
+            ],
+            "strong_subject": [
+              "phys-q2-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-6",
+          "label": "問6",
+          "difficulty": "発展レベル",
+          "weak": "後回し",
+          "strong": "後回し",
+          "points": 8,
+          "difficultyReason": "前問までの結果を運動方程式、質量とエネルギーの等価性へつなげて文章化する。",
+          "strategyReason": "論証または発想の比重が高いため、短い保存則問題を確保してから戻る。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-5"
+            ],
+            "strong_subject": [
+              "phys-q2-5"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 52,
+        "targetPercent": 52,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 24.4,
+        "maximum": {
+          "points": 52,
+          "minutes": 59.3,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3"
+          ]
+        },
+        "now": {
+          "points": 52,
+          "minutes": 59.3,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 102.5,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q2-6"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 6.1,
+        "maximum": {
+          "points": 100,
+          "minutes": 58,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q2-6"
+          ]
+        },
+        "now": {
+          "points": 74,
+          "minutes": 42.8,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 58,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q2-6"
+          ]
+        }
+      }
+    ]
+  }
+}

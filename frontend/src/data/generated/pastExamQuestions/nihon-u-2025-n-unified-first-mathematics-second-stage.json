@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "lexus-ec.past-exam-question-page.v1",
+  "packageId": "nihon-u-2025-n-unified-first-mathematics-second-stage",
+  "route": {
+    "university": "nihon-u",
+    "year": "2025",
+    "subject": "mathematics",
+    "path": "/past-exam-library/nihon-u/2025/mathematics-n-unified-first-second-stage/questions/"
+  },
+  "university": {
+    "id": "nihon-u",
+    "name": "日本大学医学部"
+  },
+  "exam": {
+    "year": "2025",
+    "label": "N全学統一方式第1期",
+    "stage": "二次試験",
+    "duration": "数学 60分"
+  },
+  "subject": {
+    "id": "mathematics",
+    "name": "数学",
+    "english": "MATHEMATICS"
+  },
+  "document": {
+    "role": "questions",
+    "pageUnit": "major_question",
+    "sharedInstructionsHtml": "<section class=\"source-page-card question-shared-instructions\" data-question-shared-instructions><div class=\"page-kicker\">全大問共通</div><h2>2025年度 N全学統一方式第1期 二次試験 数学</h2><p class=\"prose\">数学（60分）</p></section>",
+    "printNotes": [
+      "各設問に記載された解答形式・記号・単位の指定に従ってください。",
+      "図版準備中・内容確認中の設問は、確認が完了するまで演習対象外です。"
+    ],
+    "questions": [
+      {
+        "id": "major-question-01",
+        "label": "第1問",
+        "order": 1,
+        "sourcePageIds": [
+          "nihon-u-2025-n-unified-first-mathematics-questions-p001"
+        ],
+        "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-01\" data-major-question-id=\"major-question-01\"><h2>1</h2><p class=\"prose\">次の定積分の値を求めよ。</p><p class=\"prose\">(1)</p><div class=\"formula\" data-katex=\"\\int_{-1}^{2}(x+|x|+2)^2\\,dx\" data-display-mode=\"true\">\\int_{-1}^{2}(x+|x|+2)^2\\,dx</div><p class=\"prose\">(2)</p><div class=\"formula\" data-katex=\"\\int_{1}^{\\log 2}e^{2x}\\,dx\" data-display-mode=\"true\">\\int_{1}^{\\log 2}e^{2x}\\,dx</div><p class=\"prose\">(3)</p><div class=\"formula\" data-katex=\"\\int_{0}^{\\pi/6}\\sin^2 x\\,dx\" data-display-mode=\"true\">\\int_{0}^{\\pi/6}\\sin^2 x\\,dx</div><p class=\"prose\">(4)</p><div class=\"formula\" data-katex=\"\\int_{0}^{3}\\frac{dx}{x^2+9}\" data-display-mode=\"true\">\\int_{0}^{3}\\frac{dx}{x^2+9}</div></article>"
+      },
+      {
+        "id": "major-question-02",
+        "label": "第2問",
+        "order": 2,
+        "sourcePageIds": [
+          "nihon-u-2025-n-unified-first-mathematics-questions-p002"
+        ],
+        "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-02\" data-major-question-id=\"major-question-02\"><h2>2</h2><p class=\"prose\"><span class=\"math-inline\" data-katex=\"k\" data-display-mode=\"false\">k</span> を定数とする。2つの曲線</p><div class=\"formula\" data-katex=\"y=2x+k\\qquad\\cdots\\cdots\\text{①}\" data-display-mode=\"true\">y=2x+k\\qquad\\cdots\\cdots\\text{①}</div><div class=\"formula\" data-katex=\"y=\\sqrt{x}\\quad(x\\geqq 0)\\qquad\\cdots\\cdots\\text{②}\" data-display-mode=\"true\">y=\\sqrt{x}\\quad(x\\geqq 0)\\qquad\\cdots\\cdots\\text{②}</div><p class=\"prose\">について、次の問いに答えよ。</p><p class=\"prose\">(1) 2つの曲線①、②が異なる2つの共有点をもつような定数 <span class=\"math-inline\" data-katex=\"k\" data-display-mode=\"false\">k</span> の値の範囲を求めよ。</p><p class=\"prose\">(2) <span class=\"math-inline\" data-katex=\"k\" data-display-mode=\"false\">k</span> が(1)で求めた範囲にあるとき、2つの曲線①、②の共有点の <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> 座標を <span class=\"math-inline\" data-katex=\"\\alpha,\\beta\\ (\\alpha&lt;\\beta)\" data-display-mode=\"false\">\\alpha,\\beta\\ (\\alpha&lt;\\beta)</span> とする。曲線②と2直線 <span class=\"math-inline\" data-katex=\"x=\\alpha,\\ x=\\beta\" data-display-mode=\"false\">x=\\alpha,\\ x=\\beta</span> および <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> 軸で囲まれた図形を、<span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> 軸のまわりに1回転してできる立体の体積 <span class=\"math-inline\" data-katex=\"V(k)\" data-display-mode=\"false\">V(k)</span> を、<span class=\"math-inline\" data-katex=\"k\" data-display-mode=\"false\">k</span> を用いて表せ。</p></article>"
+      },
+      {
+        "id": "major-question-03",
+        "label": "第3問",
+        "order": 3,
+        "sourcePageIds": [
+          "nihon-u-2025-n-unified-first-mathematics-questions-p003"
+        ],
+        "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-03\" data-major-question-id=\"major-question-03\"><h2>3</h2><p class=\"prose\">関数 <span class=\"math-inline\" data-katex=\"f(x)\" data-display-mode=\"false\">f(x)</span> は次の等式を満たすものとする。</p><div class=\"formula\" data-katex=\"\\int_0^x f(t)\\,dt=\\log\\left(x+\\sqrt{1+x^2}\\right)\" data-display-mode=\"true\">\\int_0^x f(t)\\,dt=\\log\\left(x+\\sqrt{1+x^2}\\right)</div><p class=\"prose\">次の問いに答えよ。</p><p class=\"prose\">(1) <span class=\"math-inline\" data-katex=\"f(x)\" data-display-mode=\"false\">f(x)</span> を求めよ。</p><p class=\"prose\">(2) <span class=\"math-inline\" data-katex=\"x\\geqq0\" data-display-mode=\"false\">x\\geqq0</span> とする。曲線 <span class=\"math-inline\" data-katex=\"y=f(x)\" data-display-mode=\"false\">y=f(x)</span> の変曲点の <span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> 座標を <span class=\"math-inline\" data-katex=\"x_0\" data-display-mode=\"false\">x_0</span> とするとき、<span class=\"math-inline\" data-katex=\"x_0\" data-display-mode=\"false\">x_0</span> と <span class=\"math-inline\" data-katex=\"\\displaystyle\\int_0^{x_0}f(x)\\,dx\" data-display-mode=\"false\">\\displaystyle\\int_0^{x_0}f(x)\\,dx</span> を求めよ。</p><p class=\"prose\">(3) <span class=\"math-inline\" data-katex=\"0\\leqq x\\leqq x_0\" data-display-mode=\"false\">0\\leqq x\\leqq x_0</span> における曲線 <span class=\"math-inline\" data-katex=\"y=f(x)\" data-display-mode=\"false\">y=f(x)</span> と、<span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span> 軸、<span class=\"math-inline\" data-katex=\"y\" data-display-mode=\"false\">y</span> 軸および直線 <span class=\"math-inline\" data-katex=\"x=x_0\" data-display-mode=\"false\">x=x_0</span> で囲まれた図形を、<span class=\"math-inline\" data-katex=\"y\" data-display-mode=\"false\">y</span> 軸のまわりに1回転してできる立体の体積を求めよ。ただし、<span class=\"math-inline\" data-katex=\"x_0\" data-display-mode=\"false\">x_0</span> は(2)で求めた値とする。</p></article>"
+      }
+    ]
+  },
+  "source": {
+    "sourcePackageId": "nihon-u-2025-n-unified-first-mathematics",
+    "reference": "projects/universities/nihon-u/past-exams/working/2025/n-unified-first/second-stage/mathematics/source-html/generated/public-candidate/questions",
+    "buildKind": "publication-candidate",
+    "contentProvenance": "source_projection",
+    "publicationCandidate": true,
+    "rightsStatus": "review_required",
+    "needsHumanReview": true
+  },
+  "links": {
+    "universityLibrary": "/past-exam-library/nihon-u/",
+    "analysis": "/past-exam-library/nihon-u/2025/mathematics-n-unified-first-second-stage/analysis/",
+    "universityInformation": null
+  }
+}

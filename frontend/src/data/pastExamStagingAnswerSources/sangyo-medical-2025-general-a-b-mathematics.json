@@ -1,0 +1,811 @@
+{
+  "schemaVersion": "lexus-staging-answer-snapshot.v1",
+  "question": {
+    "schemaVersion": "lexus-ec.past-exam-question-page.v1",
+    "packageId": "sangyo-medical-2025-general-a-b-mathematics",
+    "route": {
+      "university": "sangyo-medical",
+      "year": "2025",
+      "subject": "mathematics",
+      "path": "/past-exam-library/sangyo-medical/2025/mathematics/questions/"
+    },
+    "university": {
+      "id": "sangyo-medical",
+      "name": "産業医科大学"
+    },
+    "exam": {
+      "year": "2025",
+      "label": "一般選抜A・B",
+      "stage": "一次試験",
+      "duration": "数学 100分"
+    },
+    "subject": {
+      "id": "mathematics",
+      "name": "数学",
+      "english": "MATHEMATICS"
+    },
+    "document": {
+      "role": "questions",
+      "pageUnit": "major_question",
+      "sharedInstructionsHtml": "<section class=\"source-page-card question-shared-instructions\" data-question-shared-instructions><div class=\"page-kicker\">全大問共通</div><h2>2025年度 一般選抜 数学</h2><p class=\"prose\">数学（100分）</p><aside class=\"source-note\"><strong>注意</strong> 問題3、4は解答に至る流れがわかるように導出も記述すること。ただし、途中の式変形などは適宜省略すること。</aside></section>",
+      "printNotes": [
+        "各設問に記載された解答形式・記号・単位の指定に従ってください。",
+        "図版準備中・内容確認中の設問は、確認が完了するまで演習対象外です。"
+      ],
+      "questions": [
+        {
+          "id": "major-question-01",
+          "label": "第1問",
+          "order": 1,
+          "sourcePageIds": [
+            "sangyo-medical-2025-general-a-b-mathematics-questions-p001",
+            "sangyo-medical-2025-general-a-b-mathematics-questions-p002"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-01\" data-major-question-id=\"major-question-01\"><h2>1</h2><p class=\"prose\">次の文章を読んで以下の設問に答えなさい。既約分数または有効数字2桁で答えること。</p><p class=\"prose\">ある人の酸素運搬と酸素消費量に関して次のことがわかっている。</p><div class=\"structured-list structured-list--facts\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__text\">心拍出量（1分間に心臓から全身へ送り出される動脈血の体積）：<span class=\"math-inline\" data-katex=\"5.0\\,\\mathrm{L}\" data-display-mode=\"false\">5.0\\,\\mathrm{L}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__text\">血中ヘモグロビン濃度：<span class=\"math-inline\" data-katex=\"15\\,\\mathrm{g/dL}\" data-display-mode=\"false\">15\\,\\mathrm{g/dL}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__text\"><span class=\"math-inline\" data-katex=\"1\\,\\mathrm{g}\" data-display-mode=\"false\">1\\,\\mathrm{g}</span>のヘモグロビンが結合できる酸素の最大量：<span class=\"math-inline\" data-katex=\"6.0\\times10^{-5}\" data-display-mode=\"false\">6.0\\times10^{-5}</span>モル（動脈血に含まれているヘモグロビン全てが酸素と結合している場合）</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__text\">心臓から全身へ送り出されるとき血液に含まれているヘモグロビンは全て酸素と結合しているが、全身をまわる間に酸素は消費され、心臓に戻ってくるときには酸素と結合している割合は<span class=\"math-inline\" data-katex=\"80\\%\" data-display-mode=\"false\">80\\%</span>になっている。</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__text\">呼吸によって1分間に肺に入ってくる空気の量：<span class=\"math-inline\" data-katex=\"6.0\\,\\mathrm{L}\" data-display-mode=\"false\">6.0\\,\\mathrm{L}</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__text\">空気中の酸素の割合：<span class=\"math-inline\" data-katex=\"20\\%\" data-display-mode=\"false\">20\\%</span></div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__text\">酸素は肺によってのみ体内に吸収される。</div></div></div><p class=\"prose\">血液中の酸素はヘモグロビンと結合しているものだけとする。</p><p class=\"prose\"><span class=\"math-inline\" data-katex=\"1\\,\\mathrm{L}=10\\,\\mathrm{dL}=1000\\,\\mathrm{mL}\" data-display-mode=\"false\">1\\,\\mathrm{L}=10\\,\\mathrm{dL}=1000\\,\\mathrm{mL}</span>である。</p><h3>(1)</h3><p class=\"prose\">1分間に心臓から全身へ送り出される血液中に含まれるヘモグロビンの量は何<span class=\"math-inline\" data-katex=\"\\mathrm{g}\" data-display-mode=\"false\">\\mathrm{g}</span>か答えなさい。</p><h3>(2)</h3><p class=\"prose\">1分間に心臓から全身へ送り出される血液中に含まれる酸素の量は何モルか答えなさい。</p><h3>(3)</h3><p class=\"prose\">1分間に消費される酸素の量は何モルか答えなさい。</p><h3>(4)</h3><p class=\"prose\">呼吸によって1分間に肺に入ってくる酸素の量は何モルか答えなさい。ただし、酸素1モルは<span class=\"math-inline\" data-katex=\"22.4\\,\\mathrm{L}\" data-display-mode=\"false\">22.4\\,\\mathrm{L}</span>である。</p><h3>(5)</h3><p class=\"prose\">消費量と同量の酸素を肺が吸収しているとき、肺での酸素吸収率は何<span class=\"math-inline\" data-katex=\"\\%\" data-display-mode=\"false\">\\%</span>か答えなさい。</p></article>"
+        },
+        {
+          "id": "major-question-02",
+          "label": "第2問",
+          "order": 2,
+          "sourcePageIds": [
+            "sangyo-medical-2025-general-a-b-mathematics-questions-p002",
+            "sangyo-medical-2025-general-a-b-mathematics-questions-p003"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-02\" data-major-question-id=\"major-question-02\"><h2>2</h2><p class=\"prose\">(1)から(10)の設問に答えなさい。答えが分数になるときは、既約分数で書くこと。</p><h3>(1)</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span>に関する5次方程式 <span class=\"math-inline\" data-katex=\"x^5-2x^4+5x^3-10x^2+4x-8=0\" data-display-mode=\"false\">x^5-2x^4+5x^3-10x^2+4x-8=0</span> は実数解を1つ、純虚数の解を4つ持っている。これらの解を求めなさい。虚数単位を<span class=\"math-inline\" data-katex=\"i\" data-display-mode=\"false\">i</span>とする。</p><h3>(2)</h3><p class=\"prose\">ベクトル<span class=\"math-inline\" data-katex=\"\\vec a=(5,5)\" data-display-mode=\"false\">\\vec a=(5,5)</span>、<span class=\"math-inline\" data-katex=\"\\vec b=(-1,-3)\" data-display-mode=\"false\">\\vec b=(-1,-3)</span>とする。ベクトル<span class=\"math-inline\" data-katex=\"\\vec p\" data-display-mode=\"false\">\\vec p</span>は<span class=\"math-inline\" data-katex=\"(\\vec p-\\vec a)\\cdot(\\vec p-\\vec b)=0\" data-display-mode=\"false\">(\\vec p-\\vec a)\\cdot(\\vec p-\\vec b)=0</span>を満たす。また、ベクトル<span class=\"math-inline\" data-katex=\"\\vec c=(2,1)\" data-display-mode=\"false\">\\vec c=(2,1)</span>に対して、ベクトル<span class=\"math-inline\" data-katex=\"\\vec x\" data-display-mode=\"false\">\\vec x</span>は<span class=\"math-inline\" data-katex=\"(\\vec x-\\vec p)\\cdot(\\vec p-\\vec c)=0\" data-display-mode=\"false\">(\\vec x-\\vec p)\\cdot(\\vec p-\\vec c)=0</span>を満たす。このとき<span class=\"math-inline\" data-katex=\"|\\vec x-\\vec c|\" data-display-mode=\"false\">|\\vec x-\\vec c|</span>の最小値を求めなさい。</p><h3>(3)</h3><div class=\"formula\" data-katex=\"\\int_{-1}^{1}\\left(x+3\\sqrt{|x|}+(x+\\sin x)^3\\right)dx\\text{ を求めなさい。}\" data-display-mode=\"true\">\\int_{-1}^{1}\\left(x+3\\sqrt{|x|}+(x+\\sin x)^3\\right)dx\\text{ を求めなさい。}</div><h3>(4)</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"25^{119}\" data-display-mode=\"false\">25^{119}</span>は167桁の数である。<span class=\"math-inline\" data-katex=\"25^{29}\" data-display-mode=\"false\">25^{29}</span>は何桁の数になるか答えなさい。</p><h3>(5)</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"2xy+4x-9y=36\" data-display-mode=\"false\">2xy+4x-9y=36</span>を満たす整数<span class=\"math-inline\" data-katex=\"x,y\" data-display-mode=\"false\">x,y</span>の組は全部でいくつあるか答えなさい。</p><h3>(6)</h3><p class=\"prose\">四面体OABCは全ての面が合同である。<span class=\"math-inline\" data-katex=\"\\mathrm{OA}=2\\sqrt2\" data-display-mode=\"false\">\\mathrm{OA}=2\\sqrt2</span>、<span class=\"math-inline\" data-katex=\"\\mathrm{OB}=\\sqrt5\" data-display-mode=\"false\">\\mathrm{OB}=\\sqrt5</span>、<span class=\"math-inline\" data-katex=\"\\mathrm{AB}=3\" data-display-mode=\"false\">\\mathrm{AB}=3</span>のとき、この四面体の体積を求めなさい。</p><h3>(7)</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"y=\\log(px)\" data-display-mode=\"false\">y=\\log(px)</span>、<span class=\"math-inline\" data-katex=\"x=1\" data-display-mode=\"false\">x=1</span>、<span class=\"math-inline\" data-katex=\"x=2\" data-display-mode=\"false\">x=2</span>および<span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span>軸で囲まれた領域を<span class=\"math-inline\" data-katex=\"x\" data-display-mode=\"false\">x</span>軸のまわりに回転させた図形を考える。この図形の体積が最小になる<span class=\"math-inline\" data-katex=\"p\" data-display-mode=\"false\">p</span>の値は<span class=\"math-inline\" data-katex=\"Ae\" data-display-mode=\"false\">Ae</span>である。<span class=\"math-inline\" data-katex=\"A\" data-display-mode=\"false\">A</span>を答えなさい。ただし<span class=\"math-inline\" data-katex=\"e\" data-display-mode=\"false\">e</span>は自然対数の底である。</p><h3>(8)</h3><p class=\"prose\">1から8までの数字が等しい確率で出る正八面体のサイコロがある。このサイコロを7が2度出るまで振り続ける。5回目で2度目の7が出る確率を求めなさい。</p><h3>(9)</h3><p class=\"prose\">次の連立方程式を解きなさい。ただし<span class=\"math-inline\" data-katex=\"0&lt;y\\leqq x&lt;\\pi\" data-display-mode=\"false\">0&lt;y\\leqq x&lt;\\pi</span>とする。</p><div class=\"formula\" data-katex=\"\\begin{cases}\\sin(2x-y)+\\sin(x-2y)=-\\sin x+\\sin y\\\\\\cos x+\\cos y=\\sin x+\\sin y\\end{cases}\" data-display-mode=\"true\">\\begin{cases}\\sin(2x-y)+\\sin(x-2y)=-\\sin x+\\sin y\\\\\\cos x+\\cos y=\\sin x+\\sin y\\end{cases}</div><p class=\"prose\">必要であれば以下の公式を用いてもよい。</p><div class=\"formula\" data-katex=\"\\cos3\\theta=4\\cos^3\\theta-3\\cos\\theta,\\qquad \\sin3\\theta=3\\sin\\theta-4\\sin^3\\theta\" data-display-mode=\"true\">\\cos3\\theta=4\\cos^3\\theta-3\\cos\\theta,\\qquad \\sin3\\theta=3\\sin\\theta-4\\sin^3\\theta</div><h3>(10)</h3><p class=\"prose\">外接する2つの円<span class=\"math-inline\" data-katex=\"C_1,C_2\" data-display-mode=\"false\">C_1,C_2</span>があり、直線<span class=\"math-inline\" data-katex=\"l\" data-display-mode=\"false\">l</span>は円<span class=\"math-inline\" data-katex=\"C_1\" data-display-mode=\"false\">C_1</span>と点P、円<span class=\"math-inline\" data-katex=\"C_2\" data-display-mode=\"false\">C_2</span>と点Qで接している。円<span class=\"math-inline\" data-katex=\"C_1,C_2\" data-display-mode=\"false\">C_1,C_2</span>の中心を結ぶ直線が直線<span class=\"math-inline\" data-katex=\"l\" data-display-mode=\"false\">l</span>と交わる点をRとする。円<span class=\"math-inline\" data-katex=\"C_1\" data-display-mode=\"false\">C_1</span>の半径が2、円<span class=\"math-inline\" data-katex=\"C_2\" data-display-mode=\"false\">C_2</span>の半径が6であるとき、線分PRの長さを求めなさい。</p></article>"
+        },
+        {
+          "id": "major-question-03",
+          "label": "第3問",
+          "order": 3,
+          "sourcePageIds": [
+            "sangyo-medical-2025-general-a-b-mathematics-questions-p004"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-03\" data-major-question-id=\"major-question-03\"><h2>3</h2><p class=\"prose\">実数<span class=\"math-inline\" data-katex=\"t\" data-display-mode=\"false\">t</span>に対して、円<span class=\"math-inline\" data-katex=\"C:x^2+y^2-2(t-1)x+ty+2t-3=0\" data-display-mode=\"false\">C:x^2+y^2-2(t-1)x+ty+2t-3=0</span>を考える。<span class=\"math-inline\" data-katex=\"t\" data-display-mode=\"false\">t</span>の値が変化すると、円<span class=\"math-inline\" data-katex=\"C\" data-display-mode=\"false\">C</span>の中心はある直線上を移動し、円の大きさも変化する。以下の問いに答えなさい。答えが分数の場合は既約分数の形にすること。</p><h3>(1)</h3><p class=\"prose\">円<span class=\"math-inline\" data-katex=\"C\" data-display-mode=\"false\">C</span>の中心が通る直線の式を<span class=\"math-inline\" data-katex=\"y=ax+b\" data-display-mode=\"false\">y=ax+b</span>の形で表したときの<span class=\"math-inline\" data-katex=\"a,b\" data-display-mode=\"false\">a,b</span>を求めなさい。</p><h3>(2)</h3><p class=\"prose\">円<span class=\"math-inline\" data-katex=\"C\" data-display-mode=\"false\">C</span>の半径が最小になるときの<span class=\"math-inline\" data-katex=\"t\" data-display-mode=\"false\">t</span>の値と中心の座標を求めなさい。</p><h3>(3)</h3><p class=\"prose\">任意の<span class=\"math-inline\" data-katex=\"t\" data-display-mode=\"false\">t</span>に対して、円<span class=\"math-inline\" data-katex=\"C\" data-display-mode=\"false\">C</span>がつねに通る点が2つある。その2点のうち、<span class=\"math-inline\" data-katex=\"y\" data-display-mode=\"false\">y</span>座標が負となる点を点A、もう1点を点Bとする。点A、Bの座標を求めなさい。</p><h3>(4)</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"t=1\" data-display-mode=\"false\">t=1</span>のとき、円<span class=\"math-inline\" data-katex=\"C\" data-display-mode=\"false\">C</span>の中心と点Aを結ぶ直線が点A以外で円<span class=\"math-inline\" data-katex=\"C\" data-display-mode=\"false\">C</span>と交わる点を点Pとする。点Pと(3)の点A、Bがなす三角形PABの面積を求めなさい。</p></article>"
+        },
+        {
+          "id": "major-question-04",
+          "label": "第4問",
+          "order": 4,
+          "sourcePageIds": [
+            "sangyo-medical-2025-general-a-b-mathematics-questions-p005"
+          ],
+          "html": "<article class=\"source-page-card major-question-card\" id=\"major-question-04\" data-major-question-id=\"major-question-04\"><h2>4</h2><p class=\"prose\">1回に1個または2個食べることができるお菓子がある。<span class=\"math-inline\" data-katex=\"n\" data-display-mode=\"false\">n</span>個までの食べ方の数を<span class=\"math-inline\" data-katex=\"a_n\" data-display-mode=\"false\">a_n</span>とする（<span class=\"math-inline\" data-katex=\"n\" data-display-mode=\"false\">n</span>は自然数とする）。たとえば<span class=\"math-inline\" data-katex=\"n=3\" data-display-mode=\"false\">n=3</span>ならば、次の3とおりの食べ方があるので<span class=\"math-inline\" data-katex=\"a_3=3\" data-display-mode=\"false\">a_3=3</span>である。同じ順番の食べ方はない。</p><div class=\"structured-list structured-list--values\" role=\"list\"><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">(i)</div><div class=\"structured-list__text\">1回に1個ずつ、3回で食べる。</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">(ii)</div><div class=\"structured-list__text\">1回目で2個、2回目で1個食べる。</div></div><div class=\"structured-list__item\" role=\"listitem\"><div class=\"structured-list__label\">(iii)</div><div class=\"structured-list__text\">1回目で1個、2回目で2個食べる。</div></div></div><h3>(1)</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"a_5\" data-display-mode=\"false\">a_5</span>を答えなさい。</p><h3>(2)</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"n\\geqq3\" data-display-mode=\"false\">n\\geqq3</span>のときに、<span class=\"math-inline\" data-katex=\"a_n\" data-display-mode=\"false\">a_n</span>を<span class=\"math-inline\" data-katex=\"a_{n-1}\" data-display-mode=\"false\">a_{n-1}</span>と<span class=\"math-inline\" data-katex=\"a_{n-2}\" data-display-mode=\"false\">a_{n-2}</span>を使って表しなさい。</p><h3>(3)</h3><p class=\"prose\"><span class=\"math-inline\" data-katex=\"a_n\" data-display-mode=\"false\">a_n</span>の一般項は <span class=\"math-inline\" data-katex=\"a_n=\\dfrac{1}{A}(B^{n+1}-C^{n+1})\" data-display-mode=\"false\">a_n=\\dfrac{1}{A}(B^{n+1}-C^{n+1})</span> と表すことができる。<span class=\"math-inline\" data-katex=\"A,B,C\" data-display-mode=\"false\">A,B,C</span>を求めなさい。</p><h3>(4)</h3><div class=\"formula\" data-katex=\"\\lim_{n\\to\\infty}\\frac{a_{n+1}}{a_n}\\text{ を求めなさい。}\" data-display-mode=\"true\">\\lim_{n\\to\\infty}\\frac{a_{n+1}}{a_n}\\text{ を求めなさい。}</div></article>"
+        }
+      ]
+    },
+    "source": {
+      "sourcePackageId": "sangyo-medical-2025-general-a-b-mathematics",
+      "reference": "projects/universities/sangyo-medical/past-exams/working/2025/general-a-b/first-stage/mathematics/source-html/generated/public-candidate/questions",
+      "buildKind": "publication-candidate",
+      "contentProvenance": "source_projection",
+      "publicationCandidate": true,
+      "rightsStatus": "review_required",
+      "needsHumanReview": true
+    },
+    "links": {
+      "universityLibrary": "/past-exam-library/sangyo-medical/",
+      "analysis": "/past-exam-library/sangyo-medical/2025/mathematics/analysis/",
+      "universityInformation": null
+    }
+  },
+  "editorial": {
+    "schema_version": "medical-entrance-past-exam-editorial-explanation.v2",
+    "package_id": "sangyo-medical-2025-general-a-b-mathematics",
+    "document_role": "answers",
+    "source_reconstruction_path": "reconstruction.json",
+    "audience": "数学が苦手、または数学に抵抗感がある私立医学部受験生",
+    "provenance": "editorial_adaptation",
+    "style_policy": {
+      "id": "lexus-learner-friendly-mathematics.v1",
+      "sequence": [
+        "何を求めるか",
+        "最初にすること",
+        "その理由",
+        "計算",
+        "結論"
+      ],
+      "short_paragraphs": true,
+      "expert_shortcuts_are_optional": true,
+      "main_route_is_reproducible": true,
+      "preserve_answers_and_conditions": true,
+      "preserve_source_method": true,
+      "preserve_source_reasoning_order": true,
+      "forbid_answer_backward_reasoning": true,
+      "use_katex_for_all_mathematics": true
+    },
+    "reader_structure": {
+      "page_unit": "major_question",
+      "assignment": "explicit_per_block",
+      "source_page_records_preserved_for_provenance": true,
+      "major_questions": [
+        {
+          "id": "major-question-01",
+          "label": "第1問",
+          "order": 1
+        },
+        {
+          "id": "major-question-02",
+          "label": "第2問",
+          "order": 2
+        },
+        {
+          "id": "major-question-03",
+          "label": "第3問",
+          "order": 3
+        },
+        {
+          "id": "major-question-04",
+          "label": "第4問",
+          "order": 4
+        }
+      ]
+    },
+    "pages": [
+      {
+        "source_page_id": "sangyo-medical-2025-general-a-b-mathematics-answers-p001",
+        "blocks": [
+          {
+            "type": "note",
+            "label": "この大問の進め方",
+            "text": "最初にLとdL、gとモルをそろえます。(3)は酸素結合割合の低下分、(5)は消費量÷肺へ入る量です。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第1問 解答",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "(1)",
+                "value": "\\(7.5\\times10^2\\,\\mathrm{g}\\)"
+              },
+              {
+                "label": "(2)",
+                "value": "\\(4.5\\times10^{-2}\\)モル"
+              },
+              {
+                "label": "(3)",
+                "value": "\\(9.0\\times10^{-3}\\)モル"
+              },
+              {
+                "label": "(4)",
+                "value": "\\(5.4\\times10^{-2}\\)モル"
+              },
+              {
+                "label": "(5)",
+                "value": "\\(17\\%\\)"
+              }
+            ],
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "(1) 5.0 Lは50 dLなので、ヘモグロビン量は次の通りです。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "15\\times50=7.5\\times10^2\\ \\mathrm{g}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "(2) 1 g当たりの最大結合量を掛けます。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "6.0\\times10^{-5}\\times7.5\\times10^2=4.5\\times10^{-2}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "(3) 心臓から出たとき100%、全身を回った後80%なので、20%が消費されます。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "4.5\\times10^{-2}\\times0.2=9.0\\times10^{-3}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "(4) 6.0 Lの20%が酸素で、22.4 Lが1モルです。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac{6.0\\times0.2}{22.4}=5.4\\times10^{-2}",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "prose",
+            "text": "(5) 消費量を肺へ入る酸素量で割り、100を掛けます。",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "formula",
+            "latex": "100\\times\\frac{9.0\\times10^{-3}}{5.4\\times10^{-2}}=17\\%",
+            "major_question_id": "major-question-01"
+          },
+          {
+            "type": "note",
+            "label": "この大問の進め方",
+            "text": "10題は独立です。最初に因数分解、対称性、約数、二項確率など短い型を拾い、重い積分・三角方程式は後回しにします。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第2問 解答一覧",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "answer_key",
+            "items": [
+              {
+                "label": "(1)",
+                "value": "\\(2,\\pm{}i,\\pm{}2i\\)"
+              },
+              {
+                "label": "(2)",
+                "value": "5"
+              },
+              {
+                "label": "(3)",
+                "value": "4"
+              },
+              {
+                "label": "(4)",
+                "value": "41桁"
+              },
+              {
+                "label": "(5)",
+                "value": "6組"
+              },
+              {
+                "label": "(6)",
+                "value": "2"
+              },
+              {
+                "label": "(7)",
+                "value": "\\(\\frac14\\)"
+              },
+              {
+                "label": "(8)",
+                "value": "\\(\\frac{343}{8192}\\)"
+              },
+              {
+                "label": "(9)",
+                "value": "\\(x=y=\\frac\\pi4\\)"
+              },
+              {
+                "label": "(10)",
+                "value": "\\(2\\sqrt3\\)"
+              }
+            ],
+            "major_question_id": "major-question-02"
+          }
+        ]
+      },
+      {
+        "source_page_id": "sangyo-medical-2025-general-a-b-mathematics-answers-p002",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第2問 (1)〜(5)",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "(1) x-2をまとめ、残りをx²の2次式として因数分解します。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "(x-2)(x^2+1)(x^2+4)=0",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "(2) PはABを直径とする円上を動き、XはPでの接線上を動きます。最小距離は中心Cから接点までの半径です。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "C=\\frac{a+b}{2}=(2,1),\\qquad AC=5",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "crop",
+            "asset_id": "a2-tangent-circle",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "(3) y=xとy=(x+sin x)³は奇関数です。3√|x|だけが偶関数として残ります。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "2\\int_0^1 3\\sqrt{x}\\,dx=4",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "(4) 25^119が167桁なので10^166≤25^119<10^167です。指数を29/119倍して25^29を挟みます。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "10^{40}<25^{29}<10^{41}",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "(5) 積が18になる整数の因数組を列挙します。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "(2x-9)(y+2)=18",
+            "major_question_id": "major-question-02"
+          }
+        ]
+      },
+      {
+        "source_page_id": "sangyo-medical-2025-general-a-b-mathematics-answers-p003",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第2問 (6)・(7)",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "(6) 合同な面をもつ四面体を図示し、底面の高さOH=2、高さCS=2を得ます。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "V=\\frac13\\left(\\frac12\\cdot3\\cdot2\\right)\\cdot2=2",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "crop",
+            "asset_id": "a2-tetrahedron",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "(7) 回転体の体積をlog pの2次関数として整理します。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac1\\pi V(p)=\\int_1^2(\\log p+\\log x)^2\\,dx",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "=(\\log p+2\\log2-1)^2+\\text{定数}",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "平方部分が0のとき最小です。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "\\log p=1-2\\log2=\\log\\frac e4",
+            "major_question_id": "major-question-02"
+          }
+        ]
+      },
+      {
+        "source_page_id": "sangyo-medical-2025-general-a-b-mathematics-answers-p004",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第2問 (8)・(9)",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "(8) 最初の4回で7がちょうど1回、5回目に7が出る並びです。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "{}_4C_1\\frac18\\left(\\frac78\\right)^3\\frac18=\\frac{343}{8192}",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "(9) 第2式を和積公式で変形し、定義域から(x+y)/2=π/4を得ます。第1式も和積公式と三倍角公式で変形します。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac{x+y}{2}=\\frac\\pi4",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "u=\\sin\\frac{x-y}{2}",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "4u(u-1)(u+1)=0",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "0<y≤x<πより(x-y)/2=0を選びます。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "x=y=\\frac\\pi4",
+            "major_question_id": "major-question-02"
+          }
+        ]
+      },
+      {
+        "source_page_id": "sangyo-medical-2025-general-a-b-mathematics-answers-p005",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第2問 (10)",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "prose",
+            "text": "中心を結ぶ線と共通接線でできる直角三角形からPQ=4√3です。半径比2:6を使う相似でPRを求めます。",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "2:6=PR:(PR+4\\sqrt3)",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "formula",
+            "latex": "PR=2\\sqrt3",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "crop",
+            "asset_id": "a2-tangent-circles",
+            "major_question_id": "major-question-02"
+          },
+          {
+            "type": "note",
+            "label": "この大問の進め方",
+            "text": "円を平方完成して中心と半径を読み取ります。中心のt表示、半径平方、tの恒等式、円周角の順に前問をつなぎます。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第3問 (1)",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "\\left(x-(t-1)\\right)^2+\\left(y+\\frac t2\\right)^2=r^2",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "r^2=\\frac54t^2-4t+4",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "中心は \\((x,y)=(t-1,-t/2)\\) です。\\(t\\) を消去します。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "y=-\\frac12x-\\frac12",
+            "major_question_id": "major-question-03"
+          }
+        ]
+      },
+      {
+        "source_page_id": "sangyo-medical-2025-general-a-b-mathematics-answers-p006",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第3問 (2)〜(4)",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "(2) 半径平方をtの平方で完成します。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "r^2=\\frac54\\left(t-\\frac85\\right)^2+\\frac45",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "t=\\frac85",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "C=\\left(\\frac35,-\\frac45\\right)",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "(3) 円の式をtの恒等式と見て、tの係数と定数項を0にします。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "-2x-y+2=0",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "x^2+y^2+2x-3=0",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "A\\left(\\frac15,-\\frac85\\right)",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "B(1,0)",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "(4) \\(t=1\\) では \\(AP\\) が直径なので \\(\\angle ABP=90^\\circ\\) です。\\(AB\\) と \\(AP\\) から \\(PB\\) を求めます。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "AB=\\frac{4\\sqrt5}{5},\\qquad AP=\\sqrt5",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "PB=\\frac{3\\sqrt5}{5}",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "formula",
+            "latex": "[PAB]=\\frac12\\cdot AB\\cdot PB=\\frac65",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "crop",
+            "asset_id": "a3-circle-triangle",
+            "major_question_id": "major-question-03"
+          }
+        ]
+      },
+      {
+        "source_page_id": "sangyo-medical-2025-general-a-b-mathematics-answers-p007",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第3問の確認",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "prose",
+            "text": "中心は平方完成、最小半径はtの2次関数、固定通過点は恒等式、面積は直径に対する円周角を使う、という役割分担です。",
+            "major_question_id": "major-question-03"
+          },
+          {
+            "type": "note",
+            "label": "この大問の進め方",
+            "text": "5個の例を列挙して規則を確認し、最後に1個食べる場合と2個食べる場合へ分けます。一般項は特性方程式の2根、極限は絶対値の大きい根で割ります。",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第4問 (1)・(2)",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "prose",
+            "text": "(1) 1と2の和が5になる順序付き列を数えると8通りです。",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "formula",
+            "latex": "a_5=8",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "prose",
+            "text": "(2) 最後に1個食べる前はn-1個、最後に2個食べる前はn-2個を食べ終えています。",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "formula",
+            "latex": "a_n=a_{n-1}+a_{n-2}",
+            "major_question_id": "major-question-04"
+          }
+        ]
+      },
+      {
+        "source_page_id": "sangyo-medical-2025-general-a-b-mathematics-answers-p008",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第4問 (3)",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "prose",
+            "text": "特性方程式の2根をα=(1-√5)/2、β=(1+√5)/2とします。漸化式を2本の等比型へ変形します。",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "formula",
+            "latex": "a_{n+1}-\\alpha a_n=\\beta^{n+1}",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "formula",
+            "latex": "a_{n+1}-\\beta a_n=\\alpha^{n+1}",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "prose",
+            "text": "2式の差から一般項を得ます。",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "formula",
+            "latex": "a_n=\\frac1{\\sqrt5}\\left(\\beta^{n+1}-\\alpha^{n+1}\\right)",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "formula",
+            "latex": "A=\\sqrt5",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "formula",
+            "latex": "B=\\frac{1+\\sqrt5}{2},\\qquad C=\\frac{1-\\sqrt5}{2}",
+            "major_question_id": "major-question-04"
+          }
+        ]
+      },
+      {
+        "source_page_id": "sangyo-medical-2025-general-a-b-mathematics-answers-p009",
+        "blocks": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "第4問 (4)",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "prose",
+            "text": "\\(1<B\\)、\\(-1<C<0\\) なので、分母分子を大きい方の \\(B^{n+1}\\) で割ります。",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "formula",
+            "latex": "\\frac{a_{n+1}}{a_n}=\\frac{B-C(C/B)^{n+1}}{1-(C/B)^{n+1}}",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "prose",
+            "text": "|C/B|<1より、その累乗は0へ収束します。",
+            "major_question_id": "major-question-04"
+          },
+          {
+            "type": "formula",
+            "latex": "\\lim_{n\\to\\infty}\\frac{a_{n+1}}{a_n}=B=\\frac{1+\\sqrt5}{2}",
+            "major_question_id": "major-question-04"
+          }
+        ]
+      }
+    ],
+    "review": {
+      "needs_human_review": true,
+      "editorial_status": "draft_for_subject_editor",
+      "mathematical_consistency_checked": true,
+      "answer_key_checked": true,
+      "source_transcription_preserved": true,
+      "source_route_checked": true,
+      "reader_structure_checked": true
+    }
+  },
+  "assets": [
+    {
+      "id": "a2-tangent-circle",
+      "kind": "source_crop",
+      "source_page_id": "sangyo-medical-2025-general-a-b-mathematics-answers-p002",
+      "crop_box_pixels": [
+        428,
+        188,
+        874,
+        792
+      ],
+      "source_crop_path": "assets/crops/a2-tangent-circle/source.png",
+      "replacement_path": "assets/crops/a2-tangent-circle/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "点A・Bを直径とする円、中心C、円周上の点Pと接線上の点Xを示す図"
+    },
+    {
+      "id": "a2-tetrahedron",
+      "kind": "source_crop",
+      "source_page_id": "sangyo-medical-2025-general-a-b-mathematics-answers-p003",
+      "crop_box_pixels": [
+        403,
+        0,
+        874,
+        782
+      ],
+      "source_crop_path": "assets/crops/a2-tetrahedron/source.png",
+      "replacement_path": "assets/crops/a2-tetrahedron/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "底面三角形OABと、垂線CS・STを含む四面体OABCの補助図"
+    },
+    {
+      "id": "a2-tangent-circles",
+      "kind": "source_crop",
+      "source_page_id": "sangyo-medical-2025-general-a-b-mathematics-answers-p005",
+      "crop_box_pixels": [
+        398,
+        213,
+        874,
+        772
+      ],
+      "source_crop_path": "assets/crops/a2-tangent-circles/source.png",
+      "replacement_path": "assets/crops/a2-tangent-circles/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "外接する円C1・C2、共通接線l、接点P・Q、中心線との交点Rを示す図"
+    },
+    {
+      "id": "a3-circle-triangle",
+      "kind": "source_crop",
+      "source_page_id": "sangyo-medical-2025-general-a-b-mathematics-answers-p006",
+      "crop_box_pixels": [
+        463,
+        528,
+        874,
+        1082
+      ],
+      "source_crop_path": "assets/crops/a3-circle-triangle/source.png",
+      "replacement_path": "assets/crops/a3-circle-triangle/replacement.svg",
+      "replacement_status": "pending_redraw",
+      "rights_status": "restricted",
+      "alt": "円周上の点A・B・Pがつくる直角三角形ABPを示す図"
+    }
+  ],
+  "sourceReference": "projects/universities/sangyo-medical/past-exams/working/2025/general-a-b/first-stage/mathematics/source-html/editorial-explanations.json",
+  "sha256": "efd9b8e422df06b924b5162a184a83afa6bec72f8632e9d1c69c31b160ced714"
+}

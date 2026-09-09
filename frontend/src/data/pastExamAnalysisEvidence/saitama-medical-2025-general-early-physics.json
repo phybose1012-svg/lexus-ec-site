@@ -1,0 +1,734 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "saitama-medical-2025-general-early-physics",
+    "university_id": "saitama-medical",
+    "university_name": "埼玉医科大学",
+    "academic_year": 2025,
+    "exam_method_id": "general-early",
+    "exam_method_name": "一般選抜（前期）",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 90,
+      "subject_ids": [
+        "physics",
+        "chemistry",
+        "biology"
+      ],
+      "note": "問題原本に理科2科目90分と明記。物理・化学・生物から2科目を選択する枠として扱う。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/saitama-medical/past-exams/working/2025/general-early/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "3b74056afed2c89102349e35dff4e32228b84fc0e700064bb701afa48cd56c4b",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-mq01",
+      "label": "第1問",
+      "sourceTitle": "半円筒面内の鉛直円運動と離脱後の放物運動",
+      "requirements": [
+        4,
+        4,
+        3.7,
+        3.7,
+        3.7
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "〔1〕",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "基本法則に条件整理または短い式変形を加える必要がある。",
+          "strategyReason": "基本法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "〔2〕",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "基本法則に条件整理または短い式変形を加える必要がある。",
+          "strategyReason": "基本法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "〔3〕",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "複数の法則・前問結果を接続し、符号や代数処理を保つ必要がある。",
+          "strategyReason": "立式経路は既知だが複数式の接続と代数整理が必要なため、各大問の基本設問を先に回収してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "〔4〕",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "複数の法則・前問結果を接続し、符号や代数処理を保つ必要がある。",
+          "strategyReason": "立式経路は既知だが複数式の接続と代数整理が必要なため、各大問の基本設問を先に回収してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-5",
+          "label": "〔5〕",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "複数の法則・前問結果を接続し、符号や代数処理を保つ必要がある。",
+          "strategyReason": "立式経路は既知だが複数式の接続と代数整理が必要なため、各大問の基本設問を先に回収してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-6",
+          "label": "〔6〕",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "複数の法則・前問結果を接続し、符号や代数処理を保つ必要がある。",
+          "strategyReason": "立式経路は既知だが複数式の接続と代数整理が必要なため、各大問の基本設問を先に回収してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-7",
+          "label": "〔7〕",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "複数の法則・前問結果を接続し、符号や代数処理を保つ必要がある。",
+          "strategyReason": "立式経路は既知だが複数式の接続と代数整理が必要なため、各大問の基本設問を先に回収してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-8",
+          "label": "〔8〕",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "複数の法則・前問結果を接続し、符号や代数処理を保つ必要がある。",
+          "strategyReason": "前問結果を複数段階で引き継ぐ長い処理となるため、苦手層は他の基本・標準設問の回収を優先する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-9",
+          "label": "〔9〕",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "複数の法則・前問結果を接続し、符号や代数処理を保つ必要がある。",
+          "strategyReason": "前問結果を複数段階で引き継ぐ長い処理となるため、苦手層は他の基本・標準設問の回収を優先する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-mq02",
+      "label": "第2問",
+      "sourceTitle": "理想気体の断熱圧縮と非準静的変化",
+      "requirements": [
+        3.8,
+        3.8,
+        3.3,
+        3.3,
+        3.3
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-10",
+          "label": "〔10〕",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "複数の法則・前問結果を接続し、符号や代数処理を保つ必要がある。",
+          "strategyReason": "立式経路は既知だが複数式の接続と代数整理が必要なため、各大問の基本設問を先に回収してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-11",
+          "label": "〔11〕",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "基本法則に条件整理または短い式変形を加える必要がある。",
+          "strategyReason": "基本法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-12",
+          "label": "〔12〕",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "複数の法則・前問結果を接続し、符号や代数処理を保つ必要がある。",
+          "strategyReason": "立式経路は既知だが複数式の接続と代数整理が必要なため、各大問の基本設問を先に回収してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-13",
+          "label": "〔13〕",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "定義または基本式を直接適用する一段階の処理である。",
+          "strategyReason": "基本法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-14",
+          "label": "〔14〕",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "基本法則に条件整理または短い式変形を加える必要がある。",
+          "strategyReason": "基本法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-15",
+          "label": "〔15〕",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 4,
+          "difficultyReason": "複数の法則・前問結果を接続し、符号や代数処理を保つ必要がある。",
+          "strategyReason": "立式経路は既知だが複数式の接続と代数整理が必要なため、各大問の基本設問を先に回収してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-16",
+          "label": "〔16〕",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "定義または基本式を直接適用する一段階の処理である。",
+          "strategyReason": "基本法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-17",
+          "label": "〔17〕",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "複数の法則・前問結果を接続し、符号や代数処理を保つ必要がある。",
+          "strategyReason": "立式経路は既知だが複数式の接続と代数整理が必要なため、各大問の基本設問を先に回収してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-mq03",
+      "label": "第3問",
+      "sourceTitle": "一様電場中の電位と点電荷の運動",
+      "requirements": [
+        3.4,
+        3.4,
+        2.7,
+        2.7,
+        2.7
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-18",
+          "label": "〔18〕",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "定義または基本式を直接適用する一段階の処理である。",
+          "strategyReason": "基本法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-19",
+          "label": "〔19〕",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "定義または基本式を直接適用する一段階の処理である。",
+          "strategyReason": "基本法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-20",
+          "label": "〔20〕",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "定義または基本式を直接適用する一段階の処理である。",
+          "strategyReason": "基本法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-21",
+          "label": "〔21〕",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "定義または基本式を直接適用する一段階の処理である。",
+          "strategyReason": "基本法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-22",
+          "label": "〔22〕",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "定義または基本式を直接適用する一段階の処理である。",
+          "strategyReason": "基本法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-23",
+          "label": "〔23〕",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "定義または基本式を直接適用する一段階の処理である。",
+          "strategyReason": "基本法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-24",
+          "label": "〔24〕",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "定義または基本式を直接適用する一段階の処理である。",
+          "strategyReason": "基本法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-25",
+          "label": "〔25〕",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "定義または基本式を直接適用する一段階の処理である。",
+          "strategyReason": "基本法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-26",
+          "label": "〔26〕",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "基本法則に条件整理または短い式変形を加える必要がある。",
+          "strategyReason": "基本法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-27",
+          "label": "〔27〕",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "基本法則に条件整理または短い式変形を加える必要がある。",
+          "strategyReason": "基本法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-28",
+          "label": "〔28〕",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "複数の法則・前問結果を接続し、符号や代数処理を保つ必要がある。",
+          "strategyReason": "立式経路は既知だが複数式の接続と代数整理が必要なため、各大問の基本設問を先に回収してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-29",
+          "label": "〔29〕",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "複数の法則・前問結果を接続し、符号や代数処理を保つ必要がある。",
+          "strategyReason": "立式経路は既知だが複数式の接続と代数整理が必要なため、各大問の基本設問を先に回収してから戻る。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-30",
+          "label": "〔30〕",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "複数の法則・前問結果を接続し、符号や代数処理を保つ必要がある。",
+          "strategyReason": "前問結果を複数段階で引き継ぐ長い処理となるため、苦手層は他の基本・標準設問の回収を優先する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-31",
+          "label": "〔31〕",
+          "difficulty": "標準レベル",
+          "weak": "捨てる！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "複数の法則・前問結果を接続し、符号や代数処理を保つ必要がある。",
+          "strategyReason": "前問結果を複数段階で引き継ぐ長い処理となるため、苦手層は他の基本・標準設問の回収を優先する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 45,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 58,
+        "targetPercent": 58,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 23.8,
+        "maximum": {
+          "points": 58,
+          "minutes": 44.5,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q2-10",
+            "phys-q2-11",
+            "phys-q2-12",
+            "phys-q2-13",
+            "phys-q2-14",
+            "phys-q2-16",
+            "phys-q3-18",
+            "phys-q3-19",
+            "phys-q3-20",
+            "phys-q3-21",
+            "phys-q3-22",
+            "phys-q3-23",
+            "phys-q3-24",
+            "phys-q3-25",
+            "phys-q3-26"
+          ]
+        },
+        "now": {
+          "points": 53,
+          "minutes": 41.8,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q2-11",
+            "phys-q2-13",
+            "phys-q2-14",
+            "phys-q2-16",
+            "phys-q3-18",
+            "phys-q3-19",
+            "phys-q3-20",
+            "phys-q3-21",
+            "phys-q3-22",
+            "phys-q3-23",
+            "phys-q3-24",
+            "phys-q3-25",
+            "phys-q3-26",
+            "phys-q3-27"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 90,
+          "minutes": 64.9,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q2-10",
+            "phys-q2-11",
+            "phys-q2-12",
+            "phys-q2-13",
+            "phys-q2-14",
+            "phys-q2-15",
+            "phys-q2-16",
+            "phys-q2-17",
+            "phys-q3-18",
+            "phys-q3-19",
+            "phys-q3-20",
+            "phys-q3-21",
+            "phys-q3-22",
+            "phys-q3-23",
+            "phys-q3-24",
+            "phys-q3-25",
+            "phys-q3-26",
+            "phys-q3-27",
+            "phys-q3-28",
+            "phys-q3-29"
+          ]
+        }
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 6.7,
+        "maximum": {
+          "points": 100,
+          "minutes": 39.7,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q1-8",
+            "phys-q1-9",
+            "phys-q2-10",
+            "phys-q2-11",
+            "phys-q2-12",
+            "phys-q2-13",
+            "phys-q2-14",
+            "phys-q2-15",
+            "phys-q2-16",
+            "phys-q2-17",
+            "phys-q3-18",
+            "phys-q3-19",
+            "phys-q3-20",
+            "phys-q3-21",
+            "phys-q3-22",
+            "phys-q3-23",
+            "phys-q3-24",
+            "phys-q3-25",
+            "phys-q3-26",
+            "phys-q3-27",
+            "phys-q3-28",
+            "phys-q3-29",
+            "phys-q3-30",
+            "phys-q3-31"
+          ]
+        },
+        "now": {
+          "points": 100,
+          "minutes": 39.7,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q1-8",
+            "phys-q1-9",
+            "phys-q2-10",
+            "phys-q2-11",
+            "phys-q2-12",
+            "phys-q2-13",
+            "phys-q2-14",
+            "phys-q2-15",
+            "phys-q2-16",
+            "phys-q2-17",
+            "phys-q3-18",
+            "phys-q3-19",
+            "phys-q3-20",
+            "phys-q3-21",
+            "phys-q3-22",
+            "phys-q3-23",
+            "phys-q3-24",
+            "phys-q3-25",
+            "phys-q3-26",
+            "phys-q3-27",
+            "phys-q3-28",
+            "phys-q3-29",
+            "phys-q3-30",
+            "phys-q3-31"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 39.7,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q1-8",
+            "phys-q1-9",
+            "phys-q2-10",
+            "phys-q2-11",
+            "phys-q2-12",
+            "phys-q2-13",
+            "phys-q2-14",
+            "phys-q2-15",
+            "phys-q2-16",
+            "phys-q2-17",
+            "phys-q3-18",
+            "phys-q3-19",
+            "phys-q3-20",
+            "phys-q3-21",
+            "phys-q3-22",
+            "phys-q3-23",
+            "phys-q3-24",
+            "phys-q3-25",
+            "phys-q3-26",
+            "phys-q3-27",
+            "phys-q3-28",
+            "phys-q3-29",
+            "phys-q3-30",
+            "phys-q3-31"
+          ]
+        }
+      }
+    ]
+  }
+}

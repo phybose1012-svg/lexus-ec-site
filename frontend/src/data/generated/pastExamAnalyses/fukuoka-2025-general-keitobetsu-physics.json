@@ -1,0 +1,700 @@
+{
+  "schemaVersion": "lexus-analysis-page.v1",
+  "packageId": "fukuoka-2025-general-keitobetsu-physics",
+  "route": {
+    "university": "fukuoka",
+    "year": "2025",
+    "subject": "physics",
+    "path": "/past-exam-library/fukuoka/2025/physics/analysis/"
+  },
+  "university": "福岡大学",
+  "year": 2025,
+  "subject": "物理",
+  "examLabel": "一般選抜（系統別日程）",
+  "duration": "理科2科目 合計120分",
+  "format": "選択・数値解答など（各設問を参照）",
+  "examTotal": null,
+  "headline": "音波",
+  "summary": "〔Ⅰ〕は音波、〔Ⅱ〕は直流回路・電流と磁場、〔Ⅲ〕は運動の表し方・運動量と力積。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "物理が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "物理が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "phys-mq01",
+      "label": "〔Ⅰ〕",
+      "title": "風や反射板がある場合のドップラー効果",
+      "subtitle": "音波",
+      "summary": "音源の接近、風による媒質移動、移動反射板による二段階ドップラー効果とうなりを、波長と観測振動数の関係から追うマーク問題。",
+      "studyAction": "基準系ごとに音速・音源速度・観測者速度を整理する力。波長と振動数を距離・波数から立式する力",
+      "requirements": [
+        3.5,
+        3.5,
+        2.8,
+        2.8,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "(1)",
+          "title": "静止観測者へ速さ \\(v_S\\) で近づく音源が時間 \\(t\\) に進む距離を選ぶ。",
+          "note": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "(2)",
+          "title": "近づく音源が作る前方の波長を、時間 \\(t\\) の波面間距離と発生波数 \\(ft\\) から選ぶ。",
+          "note": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "(3)",
+          "title": "音源が観測者へ近づくとき、静止観測者が聞く振動数を、音速 \\(V\\) と前方波長から選ぶ。",
+          "note": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "(4)",
+          "title": "近づく音源を静止観測者が聞く音の高さが、音源静止時より高いか低いかを判断する。",
+          "note": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q1-5",
+          "label": "(5)",
+          "title": "音源から観測者へ向かって速さ \\(w\\) の風が吹くとき、地面に対する音の速さを選ぶ。",
+          "note": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q1-6",
+          "label": "(6)",
+          "title": "風中で観測者側へ進む波の波長を、地面基準の音速 \\(V-w\\)、音源速度 \\(v_S\\)、発生振動数 \\(f\\) から選ぶ。",
+          "note": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q1-7",
+          "label": "(7)",
+          "title": "風中で音源が観測者へ近づくとき、静止観測者が聞く振動数を、地面基準の音速と前方波長から選ぶ。",
+          "note": "立式経路は既知だが、複数式の接続と代数整理が必要で計算ミスへ露出し、基準実行時間1.8分を要する。各大問の基本設問を先に回収し、残り時間で戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q1-8",
+          "label": "(8)",
+          "title": "静止音源から反射板へ向かう音を、速さ \\(v_R\\) で音源へ近づく反射板が受け取る振動数を選ぶ。",
+          "note": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q1-9",
+          "label": "(9)",
+          "title": "音を受けた反射板を移動音源とみなし、静止観測者が聞く反射音の振動数を選ぶ。",
+          "note": "立式経路は既知だが、複数式の接続と代数整理が必要で計算ミスへ露出し、基準実行時間1.8分を要する。各大問の基本設問を先に回収し、残り時間で戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q1-10",
+          "label": "(10)",
+          "title": "直接音 \\(f\\) と反射音の振動数差から、観測者が聞くうなりの周期を選ぶ。",
+          "note": "立式経路は既知だが、複数式の接続と代数整理が必要で計算ミスへ露出し、基準実行時間1.8分を要する。各大問の基本設問を先に回収し、残り時間で戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        }
+      ],
+      "questionsPath": "/past-exam-library/fukuoka/2025/physics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/fukuoka/2025/physics/answers/#major-question-01"
+    },
+    {
+      "id": "phys-mq02",
+      "label": "〔Ⅱ〕",
+      "title": "傾斜レール上の導体棒と誘導起電力",
+      "subtitle": "直流回路・電流と磁場・力のつり合いと運動の法則",
+      "summary": "傾斜レール上の導体棒について、直流回路と磁力の静止条件から始め、運動による磁束変化・誘導起電力・終端速度・電力収支を追うマーク問題。",
+      "studyAction": "オームの法則と磁場中の電流が受ける力を結ぶ力。傾斜方向の力のつり合いを成分で表す力",
+      "requirements": [
+        3.6,
+        3.6,
+        2.9,
+        2.9,
+        2.9
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "(1)",
+          "title": "起電力 \\(E\\)、抵抗 \\(R\\) の閉回路で静止する導体棒pqを流れる電流を選ぶ。",
+          "note": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "(2)",
+          "title": "長さ \\(L\\) の導体棒に電流が流れ、鉛直磁場 \\(B\\) 中で受ける磁力の大きさを選ぶ。",
+          "note": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "(3)",
+          "title": "傾斜角 \\(\\theta\\) のレール上で導体棒が静止する条件から、起電力 \\(E\\) を \\(m,g,B,L,R,\\theta\\) で表す式を選ぶ。",
+          "note": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-4",
+          "label": "(4)",
+          "title": "棒が速さ \\(v\\) でレールに沿って動く短時間 \\(\\Delta t\\) に、閉回路を貫く磁束が増える量を選ぶ。",
+          "note": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-5",
+          "label": "(5)",
+          "title": "導体棒の運動によって生じる誘導起電力を、磁束変化率から選ぶ。",
+          "note": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-6",
+          "label": "(6)",
+          "title": "起電力 \\(E_1\\) の電池と運動起電力が逆向きに働く回路電流を選ぶ。",
+          "note": "立式経路は既知だが、複数式の接続と代数整理が必要で計算ミスへ露出し、基準実行時間1.7分を要する。各大問の基本設問を先に回収し、残り時間で戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-7",
+          "label": "(7)",
+          "title": "運動中の導体棒が回路電流によって磁場から受ける力の大きさを選ぶ。",
+          "note": "立式経路は既知だが、複数式の接続と代数整理が必要で計算ミスへ露出し、基準実行時間1.8分を要する。各大問の基本設問を先に回収し、残り時間で戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-8",
+          "label": "(8)",
+          "title": "導体棒が終端速度へ達したとき、レール方向の力のつり合いから回路電流を選ぶ。",
+          "note": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-9",
+          "label": "(9)",
+          "title": "終端状態の電流条件と運動中の回路電流式を等置し、導体棒の終端速度を選ぶ。",
+          "note": "立式経路は既知だが、複数式の接続と代数整理が必要で計算ミスへ露出し、基準実行時間2.4分を要する。各大問の基本設問を先に回収し、残り時間で戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-10",
+          "label": "(10)",
+          "title": "終端状態で電池が単位時間に供給する電気エネルギーを、電池電力 \\(E_1I\\) から選ぶ。",
+          "note": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-11",
+          "label": "(11)",
+          "title": "終端状態で抵抗が単位時間に消費する電気エネルギーを、ジュール熱 \\(RI^2\\) から選ぶ。",
+          "note": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 3
+        }
+      ],
+      "questionsPath": "/past-exam-library/fukuoka/2025/physics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/fukuoka/2025/physics/answers/#major-question-02"
+    },
+    {
+      "id": "phys-mq03",
+      "label": "〔Ⅲ〕",
+      "title": "水平投射した小球の45度斜面への反復衝突",
+      "subtitle": "運動の表し方・運動量と力積",
+      "summary": "水平投射から斜面衝突までの放物運動、斜面座標への速度分解、はねかえり係数、反発後の再衝突を順に導く記述問題。",
+      "studyAction": "水平投射をx・y成分へ分ける力。45度斜面の座標条件を使う力",
+      "requirements": [
+        3.7,
+        3.7,
+        3.1,
+        3.1,
+        3.1
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "(1)",
+          "title": "原点Oから水平投射された小球が45度斜面へ初めて衝突する時刻を、\\(x=v_0t\\) と \\(y=gt^2/2\\)、斜面条件 \\(x=y\\) から求める。",
+          "note": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "(2)",
+          "title": "第1回衝突時刻を水平位置 \\(x=v_0t\\) へ代入し、衝突点のx座標を求める。",
+          "note": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "(3)",
+          "title": "第1回衝突直前の速度について、水平成分と鉛直成分の大きさを求める。",
+          "note": "教科書の典型法則を短い手順で適用でき、先に回収する設問として再現性と得点効率が高い。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 4
+        },
+        {
+          "id": "phys-q3-4",
+          "label": "(4)",
+          "title": "第1回衝突直前の速度を、45度斜面に平行な成分と垂直な成分へ分解する。",
+          "note": "立式経路は既知だが、複数式の接続と代数整理が必要で計算ミスへ露出し、基準実行時間1.8分を要する。各大問の基本設問を先に回収し、残り時間で戻る。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q3-5",
+          "label": "(5)",
+          "title": "はねかえり係数 \\(e\\) を用い、衝突直後の斜面平行・垂直速度成分の大きさを求める。",
+          "note": "立式経路は既知だが、複数式の接続と代数整理が必要で計算ミスへ露出し、基準実行時間1.5分を要する。各大問の基本設問を先に回収し、残り時間で戻る。",
+          "difficulty": 1,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q3-6",
+          "label": "(6)",
+          "title": "衝突直後の斜面平行・垂直速度を、再び水平x成分と鉛直y成分へ変換する。",
+          "note": "立式経路は既知だが、複数式の接続と代数整理が必要で計算ミスへ露出し、基準実行時間2.3分を要する。各大問の基本設問を先に回収し、残り時間で戻る。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q3-7",
+          "label": "(7)",
+          "title": "第1回衝突後の放物運動と斜面条件 \\(x=y\\) を用い、第2回衝突までの時間を求める。",
+          "note": "前段の結果を複数引き継ぐ長い立式と整理が必要で、計算ミスへ強く露出し、基準実行時間2.8分を要する。他の基本・標準設問を回収した後に十分な時間が残る場合だけ戻る。",
+          "difficulty": 2,
+          "weak": 2,
+          "strong": 0,
+          "points": 5
+        },
+        {
+          "id": "phys-q3-8",
+          "label": "(8)",
+          "title": "第1回衝突点、反発後の水平速度、第2回衝突までの時間から、第2回衝突位置のx座標を求める。",
+          "note": "前段の結果を複数引き継ぐ長い立式と整理が必要で、計算ミスへ強く露出し、基準実行時間2.4分を要する。他の基本・標準設問を回収した後に十分な時間が残る場合だけ戻る。",
+          "difficulty": 2,
+          "weak": 2,
+          "strong": 0,
+          "points": 5
+        }
+      ],
+      "questionsPath": "/past-exam-library/fukuoka/2025/physics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/fukuoka/2025/physics/answers/#major-question-03"
+    }
+  ],
+  "difficultyCounts": [
+    12,
+    8,
+    9,
+    0
+  ],
+  "targets": {
+    "basis": "provisional_editorial",
+    "timeBudgetBasis": "provisional_editorial",
+    "totalPoints": 100,
+    "timeBudgetMinutes": 60,
+    "profiles": [
+      {
+        "id": "weak",
+        "targetPoints": 50,
+        "targetPercent": 50,
+        "reliabilityFactor": 1,
+        "rounding": "none",
+        "judgmentMultiplier": 4,
+        "executionMultiplier": 1.5,
+        "scanMinutes": 36.8,
+        "maximum": {
+          "points": 50,
+          "minutes": 59.5,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-8",
+            "phys-q2-10",
+            "phys-q2-11",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4"
+          ]
+        },
+        "now": {
+          "points": 57,
+          "minutes": 64.3,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-8",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q2-8",
+            "phys-q2-10",
+            "phys-q2-11",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 90,
+          "minutes": 89.8,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q1-8",
+            "phys-q1-9",
+            "phys-q1-10",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q2-6",
+            "phys-q2-7",
+            "phys-q2-8",
+            "phys-q2-9",
+            "phys-q2-10",
+            "phys-q2-11",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6"
+          ]
+        },
+        "title": "物理が苦手なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 50,
+          "minutes": 59.5,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-8",
+            "phys-q2-10",
+            "phys-q2-11",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4"
+          ]
+        },
+        "additional": [
+          {
+            "id": "phys-q3-4",
+            "label": "〔Ⅲ〕 (4)"
+          }
+        ],
+        "routeKind": "replacement",
+        "replaced": [
+          {
+            "id": "phys-q1-6",
+            "label": "〔Ⅰ〕 (6)"
+          },
+          {
+            "id": "phys-q1-8",
+            "label": "〔Ⅰ〕 (8)"
+          },
+          {
+            "id": "phys-q2-4",
+            "label": "〔Ⅱ〕 (4)"
+          },
+          {
+            "id": "phys-q2-5",
+            "label": "〔Ⅱ〕 (5)"
+          }
+        ]
+      },
+      {
+        "id": "strong",
+        "targetPoints": 80,
+        "targetPercent": 80,
+        "reliabilityFactor": 0.8,
+        "rounding": "floor_to_whole_point",
+        "judgmentMultiplier": 1,
+        "executionMultiplier": 1,
+        "scanMinutes": 9.2,
+        "maximum": {
+          "points": 100,
+          "minutes": 49.3,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q1-8",
+            "phys-q1-9",
+            "phys-q1-10",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q2-6",
+            "phys-q2-7",
+            "phys-q2-8",
+            "phys-q2-9",
+            "phys-q2-10",
+            "phys-q2-11",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6",
+            "phys-q3-7",
+            "phys-q3-8"
+          ]
+        },
+        "now": {
+          "points": 100,
+          "minutes": 49.3,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q1-8",
+            "phys-q1-9",
+            "phys-q1-10",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q2-6",
+            "phys-q2-7",
+            "phys-q2-8",
+            "phys-q2-9",
+            "phys-q2-10",
+            "phys-q2-11",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6",
+            "phys-q3-7",
+            "phys-q3-8"
+          ]
+        },
+        "nowPlusLater": {
+          "points": 100,
+          "minutes": 49.3,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q1-8",
+            "phys-q1-9",
+            "phys-q1-10",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q2-6",
+            "phys-q2-7",
+            "phys-q2-8",
+            "phys-q2-9",
+            "phys-q2-10",
+            "phys-q2-11",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6",
+            "phys-q3-7",
+            "phys-q3-8"
+          ]
+        },
+        "title": "物理が得意なら",
+        "summary": "優先度と前問依存を考慮した得点計画。",
+        "focus": "先に解く問題を確保し、残り時間に応じて追加候補へ進みます。時間内に収まらない場合は、下の優先度表で切り替える問題を確認しましょう。",
+        "route": {
+          "points": 100,
+          "minutes": 49.3,
+          "questionIds": [
+            "phys-q1-1",
+            "phys-q1-2",
+            "phys-q1-3",
+            "phys-q1-4",
+            "phys-q1-5",
+            "phys-q1-6",
+            "phys-q1-7",
+            "phys-q1-8",
+            "phys-q1-9",
+            "phys-q1-10",
+            "phys-q2-1",
+            "phys-q2-2",
+            "phys-q2-3",
+            "phys-q2-4",
+            "phys-q2-5",
+            "phys-q2-6",
+            "phys-q2-7",
+            "phys-q2-8",
+            "phys-q2-9",
+            "phys-q2-10",
+            "phys-q2-11",
+            "phys-q3-1",
+            "phys-q3-2",
+            "phys-q3-3",
+            "phys-q3-4",
+            "phys-q3-5",
+            "phys-q3-6",
+            "phys-q3-7",
+            "phys-q3-8"
+          ]
+        },
+        "additional": []
+      }
+    ]
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/fukuoka/past-exams/working/2025/general-keitobetsu/first-stage/physics/preview-html/public-preview/index.html",
+    "sha256": "bfbc115a7787b549db30da0713051c65ea21132f5885922984a095c5eee21fb8",
+    "approved": false
+  },
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "links": {
+    "questions": "/past-exam-library/fukuoka/2025/physics/questions/",
+    "answers": "/past-exam-library/fukuoka/2025/physics/answers/",
+    "university": "/past-exam-library/fukuoka/"
+  }
+}
