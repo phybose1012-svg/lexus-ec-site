@@ -55,6 +55,8 @@ SVGs loaded through `<img>` do not reliably inherit page fonts. Embed the shippe
 ## Physics checks
 
 - Establish the coordinate system and positive directions before drawing arrows. Check arrowheads after every transform or mirroring operation.
+- Read the subquestions before drawing their setup. If a direction, trajectory, force, or numerical landmark is itself asked for, do not introduce its solved value into the question figure. Put solution-only information in a separately registered answer figure; distinguish a given coordinate-axis direction from an unknown field direction.
+- Read relevant endnotes as well as nearby equations. A positive squared expression does not prove that a future turning point or other physical event occurs: check signed velocity, allowed parameter range, and intervening collisions. If the source explicitly asks for a mathematical extension of an expression, that graph may be drawn with the limitation visible in its heading/caption and alt text; do not present it as a validated physical prediction or silently discard a source caveat missing from the learner edition. Keep unresolved physical applicability in the review gate and repair handoff.
 - For circuits and induction diagrams, verify terminal order, polarity, winding orientation, current direction, magnetic-flux direction, switch state, and which components are connected or open.
 - For mechanics/orbits, verify the attracting center, distance measured from that center, velocity direction, and which bodies remain after a separation.
 - For optics, verify surface order, curvature, focus/center locations, ray direction, phase-reversal assumptions, and whether thickness or gap has been exaggerated.

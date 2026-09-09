@@ -20,3 +20,8 @@ test('Fujita explanation gate names the affected subquestions without changing q
  assert.equal(html.replace(/<aside[\s\S]*?<\/aside>/,''),body);
  assert.equal(withReviewNotice(original,'fujita-health-2025-general-early-mathematics','major-question-02'),original);
 });
+test('Fujita physics distinguishes mathematical plotting from physical highest-point applicability',()=>{
+ const result=withReviewNotice(original,'fujita-health-2025-general-early-physics','major-question-04');
+ assert.match(result,/数式のグラフ/);assert.match(result,/学習者向けHTMLから抜けています/);assert.match(result,/再衝突/);
+ assert.equal(result.replace(/<aside[\s\S]*?<\/aside>/,''),original);
+});

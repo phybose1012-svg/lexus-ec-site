@@ -1,5 +1,11 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'fujita-health-2025-general-early-physics':{
+  'major-question-04':{
+   title:'第4問・問9〜10の解説は前提を確認中です',
+   message:'元解答は問10を「数式のグラフ」として扱っていますが、この限定が学習者向けHTMLから抜けています。下向きの速度や再衝突を含む物理的な適用範囲は確認中です。以下のグラフも数式の可視化に限り、確認完了まで正式な演習・採点用に使用しないでください。',
+  },
+ },
  'fujita-health-2025-general-early-mathematics':{
   'major-question-01':{
    title:'第1問の解説は一部確認中です',

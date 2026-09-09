@@ -15,8 +15,6 @@
 
 ## 検出事項
 
-- **questions / figures-pending**: Question figures require independent reconstruction; dependent questions remain review-only.（6件）
-- **answers / figures-pending**: Required visual positions retained; no restricted answer crop copied.（4件）
 - **answers / editorial-review**: Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch.
 - **analysis-targets / source-error**: Invalid target prerequisite or candidate (weak, now_plus_later): phys-q2-7: requires absent phys-q2-6
 - **analysis-targets / pending**: Target section retained but scores withheld until validated source is supplied.
@@ -24,3 +22,13 @@
 ## 完了報告
 
 修正した正本の位置、原文→修正後、根拠となるページ・計算、再生成したHTML、テスト結果、未解決事項を列挙する。過去問ライブラリーの再取り込み先IDは `fujita-health-2025-general-early-physics`。既存の独自解説へ昇格済みのパッケージは一括取込で上書きしない。
+
+## 元データの未解決項目
+
+元のissues.jsonから取得した編集メモです。完了済みという意味ではありません。
+
+- **official-score-source-review**: 2025年度募集要項原本で、理科2科目200点から物理100点とする科目別換算の扱いを科目担当兼編集責任者が再確認する。
+- **provisional-subquestion-scoring-review**: 28小問へ割り当てた仮配点3点または4点、合計100点を科目担当兼編集責任者が確認する。公式小問別配点ではない。
+- **provisional-subject-time-budget-review**: 理科2科目120分を等分した物理60分の仮時間配分を確認する。
+- **rights-and-redraw-review**: 問題・解答原本の公開利用範囲を確認し、原本図版クロップ10点を模写差し替えする。restricted/pending_redrawの間は内部レビュー限定とする。
+- **subject-editor-review**: 物理科目担当者が原本13ページ、4大問28小問・32解答成分、学習者向け解説、分析を一括レビューし、manifestのvisual_reviewedとanalysis.review.approvedを明示判断する。
