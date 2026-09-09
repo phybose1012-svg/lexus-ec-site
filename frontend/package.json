@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "admin:api": "node ./scripts/admin-local-api.mjs",
+    "figure-editor:start": "node ./scripts/start-figure-editor.mjs",
     "figure-editor:sync": "node ./scripts/sync-figure-editor.mjs",
     "figure-editor:check": "tsc -p tsconfig.figure-editor.json",
     "past-exam:import": "node ../.agents/skills/past-exam-question-importer/scripts/import-question-page.mjs",

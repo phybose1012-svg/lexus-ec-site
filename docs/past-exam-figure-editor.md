@@ -39,18 +39,30 @@ ls dist/_astro | grep -ic figureeditor              # 0 ← ここも見る
 `client:only` の島は、HTML から参照されなくなっても資産としては出る（配布物の
 ある機械で main をビルドしたとき、どこからも参照されない 7.3MB が出た）。
 
-## 使い方
+## 使い方（手元）
+
+リポジトリ直下の **「図版を直す.cmd」をダブルクリック**する。それだけ。
+
+必要なものを入れる → 保存先を上げる → ページを組み立てる → ブラウザで開く、
+までを 1 つでやる。終わるときは開いた黒い画面を閉じる（サーバも一緒に止まる）。
+
+端末から動かすなら同じものが `npm run figure-editor:start`。
+
+止まったときは黒い画面に日本語で理由が出る。よくあるのは 2 つ。
+
+- **Node.js が入っていません** … <https://nodejs.org/ja> の LTS 版を入れて再起動
+- **別のフォルダの保存先が動いています** … 画面は最初に応答した保存先へ書くので、
+  別のフォルダのものが先に動いていると**そちらへ書き込まれる**。止めて開き直す
+
+配布物（`vendor/figure-editor/`）は履歴に入っているので、取り直す必要はない。
+FIBONA 側を作り直したときだけ、こちらへ写して commit する。
 
 ```bash
-# 1. FIBONA 側で配布物を作る（別リポジトリ / frontend で）
+# FIBONA 側（別リポジトリ / frontend で）
 npm run build:lib
 
-# 2. こちらへ写す
+# こちらへ写す（既定は C:/dev/math）
 npm run figure-editor:sync
-
-# 3. 保存先の API と、開発サーバを上げる
-npm run admin:api
-npm run dev
 ```
 
 FIBONA が `C:/dev/math` に無いときは場所を渡す。
