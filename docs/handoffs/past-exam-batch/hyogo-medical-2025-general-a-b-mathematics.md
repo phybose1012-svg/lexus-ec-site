@@ -15,7 +15,6 @@
 
 ## 検出事項
 
-- **answers / figures-pending**: Required visual positions retained; no restricted answer crop copied.（5件）
 - **answers / editorial-review**: Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch.
 - **analysis-targets / source-error**: Invalid target prerequisite or candidate (weak, now): math-q2-5: requires absent math-q2-4
 - **analysis-targets / pending**: Target section retained but scores withheld until validated source is supplied.
@@ -23,3 +22,14 @@
 ## 完了報告
 
 修正した正本の位置、原文→修正後、根拠となるページ・計算、再生成したHTML、テスト結果、未解決事項を列挙する。過去問ライブラリーの再取り込み先IDは `hyogo-medical-2025-general-a-b-mathematics`。既存の独自解説へ昇格済みのパッケージは一括取込で上書きしない。
+
+## 元データの未解決項目
+
+元のissues.jsonから取得した編集メモです。完了済みという意味ではありません。
+
+- **provisional-subquestion-scoring-review**: {"id":"provisional-subquestion-scoring-review","status":"open","severity":"review_required","summary":"15主設問の仮配点合計100点は編集上の配分であり、公式小問別配点ではない。","owner":"subject_editor"}
+- **lexus-time-and-target-review**: {"id":"lexus-time-and-target-review","status":"open","severity":"review_required","summary":"小問別時間と層別Lexus目標は、公式90分を用いた編集モデルによる仮定である。","owner":"subject_editor"}
+- **learner-editorial-review**: {"id":"learner-editorial-review","status":"open","severity":"review_required","summary":"学習者向け解説は原本の解法順を保った編集稿であり、数学担当による論理・式変形・答案表現の確認が必要。","owner":"subject_editor"}
+- **restricted-crop-redraw-review**: {"id":"restricted-crop-redraw-review","status":"open","severity":"publication_blocker","summary":"内部限定クロップ5点はpending_redrawであり、公開前に模写差し替えと対応確認が必要。","owner":"art_and_rights"}
+- **rights-review**: {"id":"rights-review","status":"open","severity":"publication_blocker","summary":"原本問題・解答解説のrights_statusはunknown。公開判断前に権利確認が必要。","owner":"rights"}
+- **subject-editor-review**: {"id":"subject-editor-review","status":"open","severity":"publication_blocker","summary":"科目担当＝編集責任者による原本、分析、解説、表示の一括承認が未了。","owner":"subject_editor"}
