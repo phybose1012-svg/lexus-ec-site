@@ -1,5 +1,23 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'kansai-medical-2025-general-early-physics':{
+  'major-question-01':{
+   title:'実験データと瞬間速度の解法を確認中です',
+   message:'静止から落下する条件、測定表の距離、問4の瞬間速度の求め方に整合しない箇所があります。表と図は原本の測定値を保持しています。問2〜4を一貫した演習・採点に用いることは、元データの修復・確認完了までお待ちください。',
+  },
+  'major-question-02':{
+   title:'問1の軸表記は元HTMLの修復待ちです',
+   message:'問1の到達先は原本ではx軸ですが、元HTMLではy軸になっています。該当問は修復まで演習・採点の対象外としてください。問題図は原本の条件、解説図は独立した円運動計算から作成しています。',
+  },
+  'major-question-03':{
+   title:'厚さの変化量と近似の説明を補足確認中です',
+   message:'解説中の正の「厚さ変化量」は、厚さの減少量を表しています。符号付きの変化との区別、音速が内外面の速さより十分大きい近似の説明を元HTMLへ補足するよう依頼しています。',
+  },
+  'major-question-04':{
+   title:'同位体の原子番号が元HTMLから欠落しています',
+   message:'原本のルテチウム175・176には原子番号71が付いていますが、元HTMLではこの添字が抜けています。問1の演習・採点は修復後に行ってください。問5の年代は、問題で指定された近似対数値を用いる計算です。',
+  },
+ },
  'kansai-medical-2025-general-early-mathematics':{
   'major-question-04':{
    title:'増減表と回転後の包含の説明を修復待ちです',
@@ -129,6 +147,10 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'kansai-medical-2025-general-early-physics':{
+  title:'問題・解説と目標点の計画を修復待ちです',
+  message:'軸表記・同位体番号・実験モデルと、解説の近似や符号の説明を確認中です。苦手層の「今解く」計画は前提小問が欠け、仮時間も超えるため目標点は保留しています。難度と配点は編集上の仮評価です。',
+ },
  'kansai-medical-2025-general-early-mathematics':{
   title:'第Ⅳ問の回転に関する説明は補足確認中です',
   message:'回転したTがSに含まれることと、S全体の回転対称性は異なります。元HTMLの包含の説明と増減表を修復待ちです。目標点・配点・時間は編集上の仮設定として確認してください。',
