@@ -15,10 +15,18 @@
 
 ## 検出事項
 
-- **questions / figures-pending**: Question figures require independent reconstruction; dependent questions remain review-only.（11件）
-- **answers / figures-pending**: Required visual positions retained; no restricted answer crop copied.（2件）
 - **answers / editorial-review**: Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch.
 
 ## 完了報告
 
 修正した正本の位置、原文→修正後、根拠となるページ・計算、再生成したHTML、テスト結果、未解決事項を列挙する。過去問ライブラリーの再取り込み先IDは `international-health-welfare-2025-general-physics`。既存の独自解説へ昇格済みのパッケージは一括取込で上書きしない。
+
+## 元データの未解決項目
+
+元のissues.jsonから取得した編集メモです。完了済みという意味ではありません。
+
+- **official-score-source-review**: 2025年度医学部一般選抜の物理100点、理科2科目200点、第一次試験合計600点を、2025年度学生募集要項の公式PDF原本で科目担当兼編集責任者が再確認する。現パッケージでは原本問題の『2科目120分』と公開二次情報で照合している。
+- **provisional-subquestion-scoring-review**: 26小問へ割り当てた仮配点（3点または4点、合計100点）を科目担当兼編集責任者が確認する。第2問問1は張力と外力の2解答成分を持つが1小問4点としている。公式の小問別配点ではない。
+- **provisional-subject-time-budget-review**: 公式の理科2科目合計120分とは別に、得点効率計算用として物理60分を仮設定した。科目担当兼編集責任者がこの等分モデルを確認する。
+- **rights-and-redraw-review**: 問題・解答原本の公開利用範囲を確認し、原本図版クロップ13点の模写差し替えと内容確認を行う。rights_statusがunknown/restricted、replacement_statusがpending_redrawの間、原本ページ画像・原本クロップ・解答解説は内部レビュー限定とする。
+- **subject-editor-review**: 物理科目担当者が、原本22ページのHTML転記、5大問・26小問・27解答枠の構造、学習者向け解説、難易度、五角形評価、層別所要時間、戦略、仮配点、得点効率、Lexus目標をパッケージ単位で確認し、manifestのvisual_reviewedとanalysisのreview.approvedを明示的に判断する。

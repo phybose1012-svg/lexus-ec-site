@@ -67,7 +67,10 @@ for(let index=0;index<inventory.length;index++) {
     const manifestFile=path.join(data,'pastExamFigures',file);
     const figures=fs.existsSync(manifestFile)?loadFigureManifest(manifestFile,path.join(frontend,'public'),entry.id):null;
     if(figures)args.push('--figure-manifest',manifestFile);
-    write(overrideFile,{packageId:item.id,operations:[],printNotes:['各設問に記載された解答形式・記号・単位の指定に従ってください。','図版準備中・内容確認中の設問は、確認が完了するまで演習対象外です。']});
+    const supplementsFile=path.join(data,'pastExamBatch/question-supplements',file);
+    const supplements=fs.existsSync(supplementsFile)?read(supplementsFile):null;
+    if(supplements&&(supplements.packageId!==entry.id||!Array.isArray(supplements.operations)))throw new Error('Invalid package-scoped question supplements');
+    write(overrideFile,{packageId:item.id,operations:supplements?.operations??[],printNotes:['各設問に記載された解答形式・記号・単位の指定に従ってください。','図版準備中・内容確認中の設問は、確認が完了するまで演習対象外です。']});
     execFileSync(process.execPath,[path.join(repo,'.agents/skills/past-exam-question-importer/scripts/import-question-page.mjs'),...args,'--overrides',overrideFile],{cwd:repo,stdio:'pipe'});
     const q=read(questionFile);
     const imgs=q.document.questions.flatMap(q=>[...q.html.matchAll(/<img\b[^>]*src="([^"]+)"/g)].map(m=>m[1]));

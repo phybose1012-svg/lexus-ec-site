@@ -1,5 +1,15 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'international-health-welfare-2025-general-physics':{
+  'major-question-02':{
+   title:'第2問の加速度記号と、つり合いの説明を確認中です',
+   message:'冒頭はaを相対加速度としていますが、問2以降はaが床から見たPの加速度、a_rが相対加速度です。図と解説は後者に対応します。また、外力f=TはP・Q・滑車をまとめた系の水平つり合いで考えます。元HTMLの修復までは記号の定義に注意してください。',
+  },
+  'major-question-04':{
+   title:'第4問・問5の選択肢を照合中です',
+   message:'ポアソンの法則から得られる式と、選択肢①の指数表記が一致していません。正しい選択肢が元HTMLにないため、原本照合・修復が済むまで問5（解答番号22）は採点対象外としてください。',
+  },
+ },
  'international-health-welfare-2025-general-mathematics':{
   'major-question-01':{
    title:'第1問(C)・(E)の問題と解答を照合中です',
@@ -63,6 +73,10 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'international-health-welfare-2025-general-physics':{
+  title:'一部の問題表記は元データを照合中です',
+  message:'第2問の加速度記号、第4問・問5の選択肢に不整合があります。分析・目標点は編集確認用の暫定表示です。原本修復後に該当設問の評価・選択順序を再確認してください。',
+ },
  'international-health-welfare-2025-general-mathematics':{
   title:'分析の前提となる問題・解説を照合中です',
   message:'第1問の対数・双曲線、第2問の点の定義、第3問の確率の定義と解答欄、第4問の積分に元HTMLの不整合があります。以下の分析は元データのレビュー用表示です。目標点や選択順序を学習・出願判断の根拠として使わず、問題の修復後に評価を再確認してください。',

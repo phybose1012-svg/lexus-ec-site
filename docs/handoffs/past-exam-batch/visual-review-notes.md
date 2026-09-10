@@ -4,6 +4,8 @@
 
 国際医療福祉大学2025数学の詳細な不整合は[専用の原本照合・修復依頼](international-health-welfare-math-source-review.md)を確認すること。
 
+国際医療福祉大学2025物理の加速度記号・指数欠損・図表の意味情報は[物理の原本照合・修復依頼](international-health-welfare-physics-source-review.md)を確認すること。
+
 ## 獨協医科大学 2025年度・前期・一次・数学
 
 対象ID：`dokkyo-medical-2025-general-early-mathematics`。
