@@ -15,10 +15,18 @@
 
 ## 検出事項
 
-- **questions / figures-pending**: Question figures require independent reconstruction; dependent questions remain review-only.（2件）
-- **answers / figures-pending**: Required visual positions retained; no restricted answer crop copied.（5件）
 - **answers / editorial-review**: Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch.
 
 ## 完了報告
 
 修正した正本の位置、原文→修正後、根拠となるページ・計算、再生成したHTML、テスト結果、未解決事項を列挙する。過去問ライブラリーの再取り込み先IDは `kanazawa-medical-2025-general-late-mathematics`。既存の独自解説へ昇格済みのパッケージは一括取込で上書きしない。
+
+## 元データの未解決項目
+
+元のissues.jsonから取得した編集メモです。完了済みという意味ではありません。
+
+- **provisional-scoring-review**: 公式の小問別配点は非公表。7論理小問へ14〜15点を配して合計100点とした仮配点を、科目担当者＝編集責任者が確認する。
+- **strategy-time-review**: 数学60分を用いた小問別時間、苦手・得意層戦略、Lexus目標の編集モデルを科目担当者が確認する。
+- **editorial-explanation-review**: 学習者向け解説10原本頁分について、原本の方法・順序・答えを保っていることを原本転記ビューと並べて科目担当者が確認する。
+- **rights-and-redraw-review**: 内部限定の原本クロップ7点の権利を確認し、replacement.svgを用意して科目担当者の許可後に一括反映する。確認前は公開候補を非公開に保つ。
+- **subject-editor-approval**: 原本13頁の人間目視、分析・解説の一括照合、パッケージ全体の承認を科目担当者＝編集責任者が行う。AI検査だけでvisual_reviewedやapprovedをtrueにしない。

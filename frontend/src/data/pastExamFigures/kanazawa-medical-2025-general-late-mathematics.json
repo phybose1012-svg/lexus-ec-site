@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "lexus-past-exam-figures.v1",
+  "packageId": "kanazawa-medical-2025-general-late-mathematics",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "問題条件から動点の座標、区分面積、正三角形、四角錐の3次元座標と切断面を独立計算した。原本クロップのトレース・埋込なし。第3問の負号、第4問のベクトル矢印等は元HTML修復待ち。元データの権利・人間レビュー未了を維持。"
+  },
+  "items": [
+    {
+      "id": "q2-right-triangle",
+      "src": "/assets/past-exams/kanazawa-medical-2025-general-late-mathematics/figures/q2-right-triangle.svg",
+      "width": 500,
+      "height": 470,
+      "alt": "直角はA、AB=15 cm、AC=20 cm、BC=25 cm。PはAからBへ時計回りに毎秒1 cm、QはAからCへ反時計回りに毎秒2 cmで進む。",
+      "caption": "第2問：P・Qの位置は出発後の一例。矢印は進む向きを示す。"
+    },
+    {
+      "id": "q4-square-pyramid",
+      "src": "/assets/past-exams/kanazawa-medical-2025-general-late-mathematics/figures/q4-square-pyramid.svg",
+      "width": 500,
+      "height": 476,
+      "alt": "底面の頂点はO、A、D、Bの順。底面は一辺2の正方形、頂点Cからの4側面は正三角形。奥側の辺OB、BD、BCを破線で示す。",
+      "caption": "第4問：正四角錐の平行投影。画面上の長さや角度を測って求めるものではありません。"
+    },
+    {
+      "id": "ans-q2-early-stages",
+      "src": "/assets/past-exams/kanazawa-medical-2025-general-late-mathematics/figures/ans-q2-early-stages.svg",
+      "width": 500,
+      "height": 866,
+      "alt": "上段は0<t≦10でPがAB、QがACにあり、AP=t、AQ=2t。下段は10<t≦15でQがCBへ進み、ACへの垂線の足がH。三角形APQを塗り分ける。",
+      "caption": "第2問：区間内の代表位置。QHとCHを区別し、APを底辺とした高さAHを求める。"
+    },
+    {
+      "id": "ans-q2-late-stage-and-graph",
+      "src": "/assets/past-exams/kanazawa-medical-2025-general-late-mathematics/figures/ans-q2-late-stage-and-graph.svg",
+      "width": 500,
+      "height": 903,
+      "alt": "上段は15<t<20でB、P、Q、Cの順。PIはABへの垂線、QHはACへの垂線。下段はS=t²、S=−4t²/5+18t、S=−18t+360を各区間だけ描き、最大点は(45/4,405/4)。",
+      "caption": "第2問：三角形APQの面積。端点0秒・20秒は除外、10秒・15秒では連続。"
+    },
+    {
+      "id": "ans-q3-equilateral-lines",
+      "src": "/assets/past-exams/kanazawa-medical-2025-general-late-mathematics/figures/ans-q3-equilateral-lines.svg",
+      "width": 500,
+      "height": 703,
+      "alt": "直線① y=√3x/2+1、② y=−3√3x−20、③ y=−√3x/5+22。交点A(−2√3,−2)、B(10√3,16)、C(−5√3,25)は一辺6√21の正三角形をなす。",
+      "caption": "第3問：等縮尺。傾きの負号は問題原本と独立計算に基づく。元HTMLの符号欠落は修復待ち。"
+    },
+    {
+      "id": "ans-q4-coordinate-model",
+      "src": "/assets/past-exams/kanazawa-medical-2025-general-late-mathematics/figures/ans-q4-coordinate-model.svg",
+      "width": 500,
+      "height": 632,
+      "alt": "Oを原点、OA方向をx、OB方向をy、底面に垂直な上向きをzとする。A(2,0,0)、B(0,2,0)、D(2,2,0)、底面中心H(1,1,0)、頂点C(1,1,√2)。",
+      "caption": "第4問：底面の対角線の交点Hから頂点Cへ垂線を引く。"
+    },
+    {
+      "id": "ans-q4-sectioned-pyramid",
+      "src": "/assets/past-exams/kanazawa-medical-2025-general-late-mathematics/figures/ans-q4-sectioned-pyramid.svg",
+      "width": 500,
+      "height": 990,
+      "alt": "平面OG1G2と四角錐の交わりはOLNM。LはAC上、MはBC上、NはDC上。G1はLN、G2はMN上。下段の等縮尺の側面CADではCL/CA=3/4、CN/CD=3/5、三角形CLNとCADの面積比9:20。",
+      "caption": "第4問：上段は平行投影、下段は側面CAD。切断面は三角形OG₁G₂そのものではない。"
+    }
+  ]
+}

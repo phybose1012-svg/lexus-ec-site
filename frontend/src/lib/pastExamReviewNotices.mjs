@@ -1,5 +1,19 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'kanazawa-medical-2025-general-late-mathematics':{
+  'major-question-01':{
+   title:'解説の式の区切りと、場合分けを修復待ちです',
+   message:'(4)の二次方程式が別々の数式枠へ分断され、途中の項だけが独立した式のように見えます。確率の答えは全216通りの検算と一致していますが、該当導出は元HTMLの修復完了まで編集確認用として扱ってください。',
+  },
+  'major-question-03':{
+   title:'傾きの負号が元HTMLから欠落しています',
+   message:'最初に並ぶ2つ目の傾きは、問題・解答原本では負です。元HTMLの問題と解説ではこの負号が抜けています。解説ページの図は原本条件から独立計算したものですが、本文の修復までは第3問を演習・採点の対象外としてください。',
+  },
+  'major-question-04':{
+   title:'問題のベクトル記号と解説の途中式を修復待ちです',
+   message:'冒頭で求める関係はG₁G₂とABのベクトルの関係ですが、元HTMLから矢印が抜けています。切断点を求める連立式なども省略されています。図は独立した座標計算に基づきますが、該当設問・導出の正式な教材利用は本文の修復後にしてください。',
+  },
+ },
  'kanazawa-medical-2025-general-early-physics':{
   'major-question-01':{
    title:'(2)の近似条件と、(3)の記号説明を補足確認中です',
@@ -109,6 +123,10 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'kanazawa-medical-2025-general-late-mathematics':{
+  title:'問題の記号と配点の説明は元HTMLの修復待ちです',
+  message:'第3問の負号、第4問のベクトル矢印、解説の途中式を修復待ちです。元分析の配点説明も実データと一致していません。現在は7つの論理小問・仮配点100点の集計を表示しており、目標点を含め編集確認用です。',
+ },
  'kanazawa-medical-2025-general-early-physics':{
   title:'近似の説明と分析用語は元HTMLの修復待ちです',
   message:'第1問(2)の一次近似の説明と、分析の「光行差」という用語を修復待ちです。第2問も代入過程の補足を依頼しています。配点・目標点・所要時間は編集上の仮設定として、修復後に再確認します。',
