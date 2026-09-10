@@ -23,7 +23,7 @@
   "source": {
     "project": "shidai-igakubu-gokaku-dokuhon",
     "html": "shidai-igakubu-gokaku-dokuhon/projects/universities/keio/past-exams/working/2025/general/first-stage/mathematics/preview-html/public-preview/index.html",
-    "sha256": "d5b90ec511289b0e0fad4ff96d575d4a30bf893e478bc85d27ea067ae5262609",
+    "sha256": "a93a151076c0504b6d455170b89c02513baf29126b7813489616b4f08b66f127",
     "approved": false
   },
   "axes": [
@@ -41,10 +41,10 @@
       "sourceTitle": "統計・積分・複素数・整数の小問集合",
       "requirements": [
         0.6,
-        3,
+        3.1,
         2.8,
         3.4,
-        2.8
+        3
       ],
       "subquestions": [
         {
@@ -53,9 +53,9 @@
           "difficulty": "基本レベル",
           "weak": "今解く！",
           "strong": "今解く！",
-          "points": 10,
+          "points": 8,
           "difficultyReason": "平均と標準偏差から標準化し、与えられた正規分布表を読む基本手順で完結する。",
-          "strategyReason": "表と標準化の対応が明確で、両層が早期に確保したい。",
+          "strategyReason": "両層とも標準化と表の対称性で処理できる。得意層4分、苦手層6分の実行を見込み、最初に確保する。",
           "prerequisites": {
             "weak_subject": [],
             "strong_subject": []
@@ -67,9 +67,9 @@
           "difficulty": "基本＋αレベル",
           "weak": "今解く！",
           "strong": "今解く！",
-          "points": 10,
+          "points": 6,
           "difficultyReason": "部分積分を正確に実行し、区間端で評価する必要がある。",
-          "strategyReason": "確率密度の積分条件が見えれば短時間の定型計算になる。",
+          "strategyReason": "全確率1から部分積分1回へ進める。得意層3分、苦手層4.5分の実行で見通しが立ち、両層の優先枠とする。",
           "prerequisites": {
             "weak_subject": [],
             "strong_subject": []
@@ -81,9 +81,9 @@
           "difficulty": "基本＋αレベル",
           "weak": "今解く！",
           "strong": "今解く！",
-          "points": 10,
+          "points": 6,
           "difficultyReason": "区分幅π/(2n)に合わせて係数を補う必要がある。",
-          "strategyReason": "区分求積の型を認識できれば計算は短い。",
+          "strategyReason": "区分幅と外側の係数を合わせれば積分は短い。得意層4分、苦手層6分を見込む。型が見えなければ一巡後に戻る。",
           "prerequisites": {
             "weak_subject": [],
             "strong_subject": []
@@ -95,9 +95,9 @@
           "difficulty": "基本＋αレベル",
           "weak": "後回し",
           "strong": "今解く！",
-          "points": 10,
+          "points": 8,
           "difficultyReason": "極形式、ド・モアブル、正三角形の面積を連続して扱う。",
-          "strategyReason": "得意層には典型だが、苦手層は偏角と面積の接続に時間を要する。",
+          "strategyReason": "得意層は極形式から正三角形へ5分で進める。苦手層は偏角・絶対値・面積の接続に7.5分を見込むため、短い積分を先にする。",
           "prerequisites": {
             "weak_subject": [],
             "strong_subject": []
@@ -109,9 +109,9 @@
           "difficulty": "標準レベル",
           "weak": "後回し",
           "strong": "今解く！",
-          "points": 10,
+          "points": 12,
           "difficultyReason": "無理数性を用いた背理法を明示し、二次不定方程式の整数解を漏れなく調べる記述問題である。",
-          "strategyReason": "方針は素直だが答案記述まで含めると時間が必要。",
+          "strategyReason": "得意層は係数条件から整数の範囲を絞り6分で記述する。苦手層は9分を見込み、分母が0でない理由と列挙の漏れを確認できる時間を残す。",
           "prerequisites": {
             "weak_subject": [],
             "strong_subject": []
@@ -126,8 +126,8 @@
       "requirements": [
         0,
         4,
-        4,
-        3.5,
+        3.6,
+        3.6,
         4
       ],
       "subquestions": [
@@ -137,9 +137,9 @@
           "difficulty": "標準レベル",
           "weak": "後回し",
           "strong": "後回し",
-          "points": 10,
+          "points": 18,
           "difficultyReason": "状態別の遷移確率を整理し、非同次型を補助数列で等比化する必要がある。",
-          "strategyReason": "計算は長いが誘導があり、まとまった時間を確保して処理する価値がある。",
+          "strategyReason": "一般項の形は誘導されるが、2段の等比化が必要。得意層10分、苦手層15分のまとまった実行枠を確保し、初期値で検算する。",
           "prerequisites": {
             "weak_subject": [],
             "strong_subject": []
@@ -149,11 +149,11 @@
           "id": "math-q2-2",
           "label": "（2）（そ〜て）",
           "difficulty": "標準レベル",
-          "weak": "捨てる！",
+          "weak": "後回し",
           "strong": "今解く！",
-          "points": 10,
+          "points": 12,
           "difficultyReason": "X_nの幾何型分布を見抜けば等比和で進むが、二乗期待値まで正確に処理する必要がある。",
-          "strategyReason": "得意層は分布を直接作って取れるが、苦手層は指数変換と分散計算が重い。",
+          "strategyReason": "(1)の連立漸化式を解かなくても、最初の白玉までの回数から分布を直接作れる。得意層6分、苦手層9分を見込む。苦手層も独立した回収候補とし、末端確率と二乗期待値の計算に時間を配る。",
           "prerequisites": {
             "weak_subject": [],
             "strong_subject": []
@@ -168,9 +168,9 @@
       "requirements": [
         0.4,
         4.2,
-        3.8,
-        3.4,
-        4
+        3.7,
+        3.6,
+        3.9
       ],
       "subquestions": [
         {
@@ -179,9 +179,9 @@
           "difficulty": "基本レベル",
           "weak": "今解く！",
           "strong": "今解く！",
-          "points": 10,
+          "points": 6,
           "difficultyReason": "代入と展開だけで完結する短い計算である。",
-          "strategyReason": "独立した展開問題で最優先の得点源。",
+          "strategyReason": "前後の証明に依存しない展開問題。得意層3分、苦手層4.5分で処理し、最優先の回収枠にする。",
           "prerequisites": {
             "weak_subject": [],
             "strong_subject": []
@@ -194,8 +194,8 @@
           "weak": "後回し",
           "strong": "今解く！",
           "points": 10,
-          "difficultyReason": "最高次係数またはHの値域と根の個数を用いて、論理を文章化する必要がある。",
-          "strategyReason": "計算は少ないが証明の構成力が必要。",
+          "difficultyReason": "非定数Hが異なる値を十分多くとることを述べ、Gの根の個数と次数を比較して論証する。計算よりも論理の明示に難しさがある。",
+          "strategyReason": "原本の経路はHの値域、異なるm+1個の根、因数定理の順。得意層6分、苦手層9分を見込む。苦手層は証明文の構成に時間を要するが、計算量は少ない。",
           "prerequisites": {
             "weak_subject": [],
             "strong_subject": []
@@ -207,27 +207,23 @@
           "difficulty": "標準レベル",
           "weak": "捨てる！",
           "strong": "後回し",
-          "points": 10,
+          "points": 12,
           "difficultyReason": "前問の証明を関数関係へ適用し、3本の条件を連立する複合処理である。",
-          "strategyReason": "後続の土台だが論理と計算が重く、強い層も時間を確保して扱う。",
+          "strategyReason": "得意層は8分で命題の適用と3条件の連立を行う。苦手層は12分に加え構造の読み取り負担が大きいため優先しない。(1)(ii)の命題は問題文で与えられ、証明答案の完成を着手条件にはしない。",
           "prerequisites": {
-            "weak_subject": [
-              "math-q3-1ii"
-            ],
-            "strong_subject": [
-              "math-q3-1ii"
-            ]
+            "weak_subject": [],
+            "strong_subject": []
           }
         },
         {
           "id": "math-q3-2ii",
           "label": "（2）（ii）（き〜こ）",
-          "difficulty": "発展レベル",
+          "difficulty": "標準レベル",
           "weak": "捨てる！",
           "strong": "後回し",
           "points": 10,
-          "difficultyReason": "パラメータ条件、増減、重解をもつ三次方程式の係数比較を連続して行う。",
-          "strategyReason": "前提依存が強く、式も長いため後半の選択問題とする。",
+          "difficultyReason": "三次式の微分・判別式・増減、重根を使った係数比較という標準手順の組合せ。式は長いが新しい非定型の発想は要しない。",
+          "strategyReason": "得意層は(i)の係数を使い7分で判別式・増減・係数比較をつなぐ。苦手層は前提の(i)も必要なため合わせて22.5分の実行となり、独立した小問を優先する。",
           "prerequisites": {
             "weak_subject": [
               "math-q3-2i"
@@ -243,9 +239,9 @@
           "difficulty": "発展レベル",
           "weak": "捨てる！",
           "strong": "後回し",
-          "points": 10,
+          "points": 12,
           "difficultyReason": "接線計算、平行移動、置換積分、パラメータ微分を長く正確につなぐ必要がある。",
-          "strategyReason": "完答までの工程が多く、強い層も残時間を見て着手する。",
+          "strategyReason": "得意層は(i)を土台として8分で接線・2段の置換・増減を処理する。苦手層は(i)と合わせ24分の実行となり、符号や積分端の管理も重いため優先しない。(ii)の極値の答えは使わない。",
           "prerequisites": {
             "weak_subject": [
               "math-q3-2i"
@@ -262,11 +258,11 @@
       "label": "IV",
       "sourceTitle": "正方形・立方体の反射折れ線",
       "requirements": [
-        4.3,
-        4,
-        3.7,
-        4.3,
-        4.3
+        4.4,
+        4.1,
+        3.9,
+        4.4,
+        4.6
       ],
       "subquestions": [
         {
@@ -277,7 +273,7 @@
           "strong": "後回し",
           "points": 10,
           "difficultyReason": "等角条件を反射と結び付け、展開後の交点がどの辺に乗るかを場合分けする発想が難しい。",
-          "strategyReason": "反射の発想が見えないと停滞するため、強い層も後半に回す。",
+          "strategyReason": "得意層でも図を展開する判断と境界の管理に9分を見込むため後回し。苦手層は13.5分に加え図の見通しを立てる負担があり、I・IIの回収を先にする。",
           "prerequisites": {
             "weak_subject": [],
             "strong_subject": []
@@ -286,12 +282,12 @@
         {
           "id": "math-q4-2i",
           "label": "（2）（i）（か）",
-          "difficulty": "標準レベル",
+          "difficulty": "基本＋αレベル",
           "weak": "後回し",
           "strong": "今解く！",
-          "points": 10,
-          "difficultyReason": "直線の比例式から平面との交点を求める局所的な計算である。",
-          "strategyReason": "大問全体は重いが、この小問は独立に交点計算だけで取れる。",
+          "points": 6,
+          "difficultyReason": "与えられた射影の直線から比例計算をする1空欄問題。面の直交条件が射影を正当化することを押さえる必要がある。",
+          "strategyReason": "平面の直交条件から水平射影の直線を使う局所問題で、(1)や(2)(ii)の完答は不要。得意層3分、苦手層4.5分を見込み、苦手層は長い共通条件を読み終えた後に回収する。",
           "prerequisites": {
             "weak_subject": [],
             "strong_subject": []
@@ -302,17 +298,13 @@
           "label": "（2）（ii）（き〜そ）",
           "difficulty": "発展レベル",
           "weak": "捨てる！",
-          "strong": "捨てる！",
-          "points": 10,
+          "strong": "後回し",
+          "points": 14,
           "difficultyReason": "三次元の複数面反射と範囲条件を同時に管理する本試験最重量級の問題である。",
-          "strategyReason": "前半の確実な得点を守るため、100分では原則として最後の挑戦枠に限定する。",
+          "strategyReason": "得意層は14分で3面の展開と逆反射、同時到達の境界を確認する終盤候補。苦手層は21分を要するため優先しない。展開直線から前半座標も直接求まるので(i)の解答完成を必須依存としない。",
           "prerequisites": {
-            "weak_subject": [
-              "math-q4-2i"
-            ],
-            "strong_subject": [
-              "math-q4-2i"
-            ]
+            "weak_subject": [],
+            "strong_subject": []
           }
         }
       ]
@@ -326,28 +318,28 @@
     "profiles": [
       {
         "id": "weak",
-        "targetPoints": 70,
-        "targetPercent": 46.7,
+        "targetPoints": 58,
+        "targetPercent": 38.7,
         "reliabilityFactor": 1,
         "rounding": "none",
         "judgmentMultiplier": 4,
         "executionMultiplier": 1.5,
         "scanMinutes": 54.4,
         "maximum": {
-          "points": 70,
+          "points": 58,
           "minutes": 99.4,
           "questionIds": [
             "math-q1-1",
             "math-q1-2",
-            "math-q1-3",
             "math-q1-4",
+            "math-q1-5",
+            "math-q2-2",
             "math-q3-1i",
-            "math-q3-1ii",
             "math-q4-2i"
           ]
         },
         "now": {
-          "points": 40,
+          "points": 26,
           "minutes": 75.4,
           "questionIds": [
             "math-q1-1",
@@ -357,8 +349,8 @@
           ]
         },
         "nowPlusLater": {
-          "points": 90,
-          "minutes": 120.4,
+          "points": 92,
+          "minutes": 129.4,
           "questionIds": [
             "math-q1-1",
             "math-q1-2",
@@ -366,6 +358,7 @@
             "math-q1-4",
             "math-q1-5",
             "math-q2-1",
+            "math-q2-2",
             "math-q3-1i",
             "math-q3-1ii",
             "math-q4-2i"
@@ -374,16 +367,16 @@
       },
       {
         "id": "strong",
-        "targetPoints": 112,
-        "targetPercent": 74.7,
+        "targetPoints": 108,
+        "targetPercent": 72,
         "reliabilityFactor": 0.8,
         "rounding": "floor_to_whole_point",
         "judgmentMultiplier": 1,
         "executionMultiplier": 1,
         "scanMinutes": 13.6,
         "maximum": {
-          "points": 140,
-          "minutes": 96.6,
+          "points": 136,
+          "minutes": 95.6,
           "questionIds": [
             "math-q1-1",
             "math-q1-2",
@@ -402,8 +395,8 @@
           ]
         },
         "now": {
-          "points": 90,
-          "minutes": 56.6,
+          "points": 74,
+          "minutes": 53.6,
           "questionIds": [
             "math-q1-1",
             "math-q1-2",
@@ -417,8 +410,8 @@
           ]
         },
         "nowPlusLater": {
-          "points": 140,
-          "minutes": 96.6,
+          "points": 150,
+          "minutes": 109.6,
           "questionIds": [
             "math-q1-1",
             "math-q1-2",
@@ -433,7 +426,8 @@
             "math-q3-2ii",
             "math-q3-2iii",
             "math-q4-1",
-            "math-q4-2i"
+            "math-q4-2i",
+            "math-q4-2ii"
           ]
         }
       }

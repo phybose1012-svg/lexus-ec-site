@@ -1,11 +1,9 @@
 // Mathematical, publication-gate, and SVG tests for 慶應義塾大学 2025 一般選抜 数学.
 //
 // Important source boundary:
-// The current public-candidate question HTML has known transcription blockers in
-// II, III and IV(2).  It is therefore inspected only for its review gate and the
-// explicit IV(2) repair sentinel.  No answer below is inferred from, or compared
-// against, those defective fragments.  Expected values are recomputed from the
-// five original question-page images and elementary mathematics in this file.
+// The 2026-09-10 repaired candidate restores II, III and IV(2). Verify those
+// conditions explicitly, retaining human/rights gates. Expected answers below
+// are independently recomputed rather than trusted from the remediation report.
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
@@ -53,7 +51,7 @@ const textContent = (node) => nodes(node)
   .join("")
   .replace(/\s+/g, "");
 
-test("the package stays review-gated while the known canonical repair is pending", () => {
+test("the repaired package restores the full conditions while retaining human/rights gates", () => {
   assert.equal(questions.packageId, packageId);
   assert.equal(questions.route.path, `${routeBase}/questions/`);
   assert.deepEqual(questions.document.questions.map(({ id, label }) => ({ id, label })), [
@@ -71,16 +69,23 @@ test("the package stays review-gated while the known canonical repair is pending
   assert.equal(generatedAnswers.source.needsHumanReview, true);
   assert.equal(evidence.source.approved, false);
 
-  // This phrase is a repair sentinel, not accepted question content.  Once the
-  // canonical IV(2) condition is restored, this assertion should fail so that
-  // the source gate and this test can be deliberately reviewed together.
   const q4 = questions.document.questions.find((item) => item.id === "major-question-04");
-  assert.match(q4.html, /問題文記載の等角条件/);
+  assert.doesNotMatch(q4.html, /問題文記載の等角条件|IV（続き）|p_3,q_3/);
+  assert.match(q4.html, /定める平面と直交し/);
+  assert.match(q4.html, /この2つの面が共有する線分/);
+  assert.match(q4.html, /Q_3\(a,b,0\)/);
+  assert.match(q4.html, /a_2=\\boxed\{\\text\{か\}\}/);
+  const q3 = questions.document.questions[2].html;
+  const q3Math = nodes(parse(q3)).map(n => attr(n, "data-katex")).filter(Boolean);
+  assert.ok(q3Math.includes("g(h(x))-\\left(\\{h(x)\\}^3+b\\{g(x)\\}^2+ch(x)+d\\right)=0"));
+  assert.ok(q3Math.includes("F(a)=\\int_0^a\\left\\{g(x)-\\boxed{\\text{さ}}x-\\boxed{\\text{し}}-2(x-a)\\right\\}e^{-\\frac{(x-a)^2}{2}}\\,dx"));
+  assert.doesNotMatch(q3, /R_a|Phi_a|III（続き）/);
   const iv2 = answers.document.majorQuestions
     .find((item) => item.id === "major-question-04")
     .sections.find((section) => section.title.startsWith("（2）（ii）"));
-  assert.match(JSON.stringify(iv2), /公開用問題データの修復後/);
-  assert.match(JSON.stringify(iv2), /解説の確認待ち/);
+  assert.doesNotMatch(JSON.stringify(iv2), /修復後に|確認待ち/);
+  assert.match(JSON.stringify(iv2), /必要十分/);
+  assert.match(JSON.stringify(iv2), /Q_4=\(1,0,1\)/);
 });
 
 test("answer and analysis models cover all 15 independently identified subquestions", () => {
@@ -95,7 +100,7 @@ test("answer and analysis models cover all 15 independently identified subquesti
   assert.equal(analysisItems.reduce((sum, item) => sum + item.points, 0), 150);
   assert.deepEqual(
     [0, 1, 2, 3].map((level) => analysisItems.filter((item) => item.difficulty === level).length),
-    [2, 4, 5, 4],
+    [2, 5, 5, 3],
   );
   assert.equal(analysis.format, "空所補充・記述式併用");
   assert.equal(analysis.duration, "数学 100分（問題冊子記載）");
@@ -104,8 +109,26 @@ test("answer and analysis models cover all 15 independently identified subquesti
   assert.equal(evidence.targetAnalysis.timeBudgetMinutes, 100);
   const weak = evidence.targetAnalysis.profiles.find((profile) => profile.id === "weak");
   const strong = evidence.targetAnalysis.profiles.find((profile) => profile.id === "strong");
-  assert.deepEqual([weak.targetPoints, weak.targetPercent], [70, 46.7]);
-  assert.deepEqual([strong.targetPoints, strong.targetPercent, strong.reliabilityFactor], [112, 74.7, 0.8]);
+  assert.deepEqual([weak.targetPoints, weak.targetPercent, weak.maximum.minutes], [58, 38.7, 99.4]);
+  assert.deepEqual([strong.targetPoints, strong.targetPercent, strong.reliabilityFactor], [108, 72, 0.8]);
+  assert.deepEqual([strong.maximum.points, strong.maximum.minutes], [136, 95.6]);
+  assert.deepEqual(analysis.majorQuestions.map(m => m.subquestions.map(q => q.points)), [[8,6,6,8,12],[18,12],[6,10,12,10,12],[10,6,14]]);
+  assert.ok(weak.now.questionIds.includes("math-q1-3"));
+  assert.ok(!weak.maximum.questionIds.includes("math-q1-3"));
+  assert.deepEqual(weak.maximum.questionIds, ["math-q1-1","math-q1-2","math-q1-4","math-q1-5","math-q2-2","math-q3-1i","math-q4-2i"]);
+  const weakView = analysis.targets.profiles.find(p => p.id === "weak");
+  assert.equal(weakView.routeKind, "replacement");
+  assert.deepEqual(weakView.replaced.map(q => q.id), ["math-q1-3"]);
+});
+
+test("III restores both variation tables and both substitution-bound tables", () => {
+  const iii = answers.document.majorQuestions[2].sections;
+  const extremaTable = iii[3].blocks.find(b => b.variant === "variation");
+  assert.deepEqual(extremaTable.rows[0], ["\\(g'(x)\\)", "", "+", "0", "−", "0", "+", ""]);
+  const integralTables = iii[4].blocks.filter(b => b.type === "table");
+  assert.equal(integralTables.length, 3);
+  assert.deepEqual(integralTables[1].rows, [["\\(t\\)", "\\(-a\\)", "\\(0\\)"], ["\\(u\\)", "\\(-a^2/2\\)", "\\(0\\)"]]);
+  assert.deepEqual(integralTables[2].rows[0], ["\\(F'(a)\\)", "", "+", "0", "−", "0", "+", "0", "−", ""]);
 });
 
 test("answer-key fractions use the opt-in KaTeX target without visible raw TeX", () => {
@@ -222,7 +245,7 @@ test("II(2): the truncated geometric score gives the published expectation and v
   }
 });
 
-test("III(1): composition coefficients and the leading-term proof are mathematically sufficient", () => {
+test("III(1): composition coefficients and the distinct-roots proof agree with the intended route", () => {
   const P = (x) => 3 * x ** 3 - 9 * x ** 2 + 7 * x;
   const Q = (x) => 2 * x ** 2 + 1;
   const composed = (x) => 24 * x ** 6 - 4 * x ** 2 + 1;
@@ -237,8 +260,9 @@ test("III(1): composition coefficients and the leading-term proof are mathematic
   }
   assert.equal(valuesOf("major-question-03", "（1）（ii）").結論, "a_m=\\cdots=a_0=0");
   const proof = JSON.stringify(sections.find((section) => section.title.startsWith("（1）（ii）")));
-  assert.match(proof, /a_kb_n\^kx\^\{kn\}/);
-  assert.match(proof, /反します/);
+  assert.match(proof, /異なる零点を高々/);
+  assert.match(proof, /m\+1/);
+  assert.match(proof, /連続/);
 });
 
 test("III(2)(i)-(ii): coefficient conditions, extrema, and the third intersection are identities", () => {
@@ -426,27 +450,24 @@ const pointsOf = (svg, className) => {
   return match[1].split(/\s+/).map((pair) => pair.split(",").map(Number));
 };
 
-test("the two IV(1) SVGs are original, safe, and geometrically faithful", () => {
-  const expectedIds = ["a13-square-reflection-case1", "a13-square-reflection-case2"];
+test("the IV SVGs are original, safe, and geometrically faithful", () => {
+  const expectedIds = ["a13-square-reflection-case1", "a13-square-reflection-case2", "iv2-cube-unfolding"];
   assert.equal(manifest.packageId, packageId);
   assert.equal(manifest.contentProvenance, "original_editorial");
   assert.equal(manifest.restrictedSourceCopied, false);
   assert.equal(manifest.review.needsHumanReview, true);
   assert.deepEqual(manifest.items.map((item) => item.id), expectedIds);
-  assert.equal(registry.byId.size, 2);
+  assert.equal(registry.byId.size, 3);
 
   const figureBlocks = blocks.filter((block) => block.type === "figure");
   assert.deepEqual(figureBlocks.map((block) => block.assetId), expectedIds);
   const iv2 = answers.document.majorQuestions
     .find((major) => major.id === "major-question-04")
     .sections.find((section) => section.title.startsWith("（2）（ii）"));
-  assert.equal(iv2.blocks.some((block) => block.type === "figure"), false);
-  assert.ok(manifest.items.every((item) => !/cube|立方体/iu.test(`${item.id} ${item.src} ${item.alt} ${item.caption}`)));
-  assert.match(manifest.review.notes, /立方体図は推測作成していない/);
+  assert.equal(iv2.blocks.some((block) => block.assetId === "iv2-cube-unfolding"), true);
+  assert.match(manifest.review.notes, /直交平面・共有線分・等角条件/);
 
   for (const item of manifest.items) {
-    assert.equal(item.width, 920);
-    assert.equal(item.height, 455);
     assert.ok(item.alt.length >= 100, item.id);
     const svg = read(`public${item.src}`);
     assert.equal(unsafeSvgReason(svg), null, item.id);
@@ -456,6 +477,22 @@ test("the two IV(1) SVGs are original, safe, and geometrically faithful", () => 
     assert.doesNotMatch(svg, /\b(?:href|xlink:href|on[a-z]+)\s*=/i);
     assert.doesNotMatch(svg, /data:image\//i);
     assert.match(svg, /\.math \.mi\{font-family:'KaTeX_Math'/);
+
+    if (item.id === "iv2-cube-unfolding") {
+      assert.equal(item.width, 460);
+      assert.equal(item.height, 890);
+      assert.match(svg, /data-reflection-planes="z=1,y=1,z=2"/);
+      const cubePath = pointsOf(svg, "straight");
+      const sampleTimes = [0, 1/2, 1/1.2, 1, 1.5];
+      cubePath.forEach(([x,y], i) => {
+        const t = sampleTimes[i];
+        assert.ok(close(x, 190+180*0.5*t-66*1.2*t, 0.01));
+        assert.ok(close(y, 425+34*0.5*t+26*1.2*t-106*2*t, 0.01));
+      });
+      continue;
+    }
+    assert.equal(item.width, 920);
+    assert.equal(item.height, 455);
 
     const p = Number(svg.match(/data-representative-p="([^"]+)"/)?.[1]);
     const boundary = svg.match(/data-first-boundary="([^"]+)"/)?.[1];
@@ -529,7 +566,7 @@ test("built question, answer, and analysis pages retain noindex SEO and semantic
   const analysisPage = nodes(parse(fs.readFileSync(built.analysis, "utf8")));
   assert.equal(questionPage.filter((node) => hasClass(node, "major-question-card")).length, 4);
   assert.equal(answerPage.filter((node) => hasClass(node, "answer-major-card")).length, 4);
-  assert.equal(answerPage.filter((node) => hasClass(node, "past-exam-figure")).length, 2);
+  assert.equal(answerPage.filter((node) => hasClass(node, "past-exam-figure")).length, 3);
   assert.equal(answerPage.some((node) => hasClass(node, "answer-figure-placeholder")), false);
   assert.equal(analysisPage.filter((node) => hasClass(node, "analysis-major-detail")).length, 4);
   assert.match(textContent(analysisPage[0]), /小問合計15問/);

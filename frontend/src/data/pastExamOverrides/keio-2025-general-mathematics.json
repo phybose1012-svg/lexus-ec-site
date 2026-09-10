@@ -1,0 +1,41 @@
+{
+  "packageId": "keio-2025-general-mathematics",
+  "notes": "修復済み正本の文章・式・条件は変更しない。原本の改ページに由来する続き見出しと文中分断だけをウェブ表示上でつなぐ。",
+  "operations": [
+    {
+      "scope": "major-question-01",
+      "type": "replace-text",
+      "from": "<h2>I（続き）</h2>",
+      "to": "",
+      "expectedMatches": 1
+    },
+    {
+      "scope": "major-question-02",
+      "type": "replace-text",
+      "from": "<h2>II（続き）</h2>",
+      "to": "",
+      "expectedMatches": 1
+    },
+    {
+      "scope": "major-question-03",
+      "type": "replace-text",
+      "from": "<h2>III（続き）</h2>",
+      "to": "",
+      "expectedMatches": 1
+    },
+    {
+      "scope": "major-question-03",
+      "type": "replace-text",
+      "from": "次式</p><p class=\"prose\">であり、",
+      "to": "次式であり、",
+      "expectedMatches": 1
+    },
+    {
+      "scope": "major-question-04",
+      "type": "replace-text",
+      "from": "の</p><h2>IV（続き）</h2><p class=\"prose\">辺上にもない。",
+      "to": "の辺上にもない。",
+      "expectedMatches": 1
+    }
+  ]
+}

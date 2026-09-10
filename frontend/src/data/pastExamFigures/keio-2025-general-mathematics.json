@@ -5,7 +5,7 @@
   "restrictedSourceCopied": false,
   "review": {
     "needsHumanReview": true,
-    "notes": "公開問題IV(1)の座標・等角条件と、反射による独立導出から作成した独自SVG。制限付き参照画像のトレース・埋め込み・複製は行っていない。公開候補HTMLで等角条件が欠落しているIV(2)の立方体図は推測作成していない。"
+    "notes": "問題IVの座標・等角条件と、反射による独立導出から作成した独自SVG。IV(2)は2026-09-10に修復された直交平面・共有線分・等角条件を確認し、反射面z=1、y=1、z=2と座標を独立検算して作図。制限付き参照画像のトレース・埋め込み・複製は行っていない。人間の内容承認は未完了。"
   },
   "items": [
     {
@@ -23,6 +23,14 @@
       "alt": "正方形S内でP0からP1、P2、P3、P4へ反射する折れ線と、辺y=1、x=1、y=2で順に展開して5点が一直線に並ぶ対応図。2/3<p<1では展開線がx=2より先にy=3へ達し、P4=((3p-2)/2,1)となる。p=4/5を用いた模式図。",
       "caption": "2/3<p<1：反射を展開すると、直線は x=2 より先に y=3 へ達する。",
       "src": "/assets/past-exams/keio-2025-general-mathematics/figures/a13-square-reflection-case2.svg"
+    },
+    {
+      "id": "iv2-cube-unfolding",
+      "width": 460,
+      "height": 890,
+      "alt": "立方体をz=1、y=1、z=2の順に反射して展開した模式図。Q0、Q1、展開後のQ2、Q3、Q4が直線t(a,2−b,2)に並ぶ。a=1/2、b=4/5の例ではQ3の次にz=3へ到達する。一般の場合はx=1、y=2、z=3への到達時刻を比較する。",
+      "caption": "立方体を面で展開した配置例。Q₃′の先では、3つの面への到達時刻の最小値でQ₄を決めます。",
+      "src": "/assets/past-exams/keio-2025-general-mathematics/figures/iv2-cube-unfolding.svg"
     }
   ]
 }

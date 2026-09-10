@@ -1,7 +1,7 @@
 // Original SVG diagrams for Keio University 2025 general mathematics.
 //
-// The two drawings below are derived from the published coordinates and the
-// equal-angle (reflection) condition in problem IV(1). Restricted answer-book
+// The drawings below are derived from the published coordinates and the
+// equal-angle (reflection) conditions in problem IV. Restricted answer-book
 // crops only establish that these two cases need a visual; they are not traced,
 // embedded, or copied.
 import assert from "node:assert/strict";
@@ -182,7 +182,7 @@ function renderCase(spec) {
   body += polyline(foldedPoints, 'class="ray" data-path="P0-P1-P2-P3-P4"');
   for (const [name, value] of Object.entries(data.folded)) {
     const [x, y] = foldPoint(value);
-    const [dx, dy] = labelOffsets.folded[name];
+    const [dx, dy] = name === "P4" && data.firstBoundary === "y=3" ? [-12, -15] : labelOffsets.folded[name];
     body += circle(x, y, name === "P0" || name === "P4" ? 5.5 : 4.8, name === "P4" ? 'class="point-end"' : 'class="point"');
     body += pointLabel(x + dx, y + dy, name.slice(1));
   }
@@ -212,7 +212,7 @@ function renderCase(spec) {
   body += polyline(unfoldedPoints, 'class="straight" data-path="P0-P1-P2-prime-P3-prime-P4-prime"');
   for (const [name, value] of Object.entries(data.unfolded)) {
     const [x, y] = unfoldPoint(value);
-    const [dx, dy] = labelOffsets.unfolded[name];
+    const [dx, dy] = name === "P4" && data.firstBoundary === "y=3" ? [15, 22] : labelOffsets.unfolded[name];
     body += circle(x, y, name === "P4" ? 5.7 : 4.7, name === "P4" ? 'class="point-end" data-point="P4-prime"' : 'class="point"');
     body += pointLabel(x + dx, y + dy, name.slice(1), name === "P2" || name === "P3" || name === "P4");
   }
@@ -241,6 +241,58 @@ fs.mkdirSync(output, { recursive: true });
 for (const spec of drawingCases) {
   add(spec.id, 920, 455, spec.alt, spec.caption, renderCase(spec));
 }
+
+// IV(2): independently derived from the restored perpendicular-plane and
+// equal-angle conditions. The displayed sample is not an additional condition.
+const projectCube = ([x, y, z]) => [190 + 180 * x - 66 * y, 425 + 34 * x + 26 * y - 106 * z];
+const sampleA = 1 / 2;
+const sampleB = 4 / 5;
+const cubeTimes = [0, 1 / 2, 1 / (2 - sampleB), 1, 3 / 2];
+const cubePoints = cubeTimes.map(t => [sampleA * t, (2 - sampleB) * t, 2 * t]);
+assert.ok(cubeTimes.at(-1) < 1 / sampleA && cubeTimes.at(-1) < 2 / (2 - sampleB));
+let cubeBody = '<g data-cube-a="0.5" data-cube-b="0.8" data-reflection-planes="z=1,y=1,z=2">';
+cubeBody += plainText(30, 38, "面の反射を展開すると、経路は一直線", 'class="panel-title"');
+cubeBody += mathText(30, 69, [mi("a"), rm("=1/2, "), mi("b"), rm("=4/5"), jp(" の配置例（座標を斜めから投影）")], '', true);
+for (const [y0, z0] of [[0, 0], [0, 1], [1, 1], [1, 2]]) {
+  const vertices = Array.from({ length: 8 }, (_, i) => [i & 1, y0 + ((i >> 1) & 1), z0 + ((i >> 2) & 1)]);
+  for (let i = 0; i < 8; i += 1) for (const bit of [1, 2, 4]) if (!(i & bit)) {
+    cubeBody += line(...projectCube(vertices[i]), ...projectCube(vertices[i | bit]), 'stroke="#b9c5cf" stroke-width="1.2"');
+  }
+}
+for (const plane of [
+  [[0, 0, 1], [1, 0, 1], [1, 1, 1], [0, 1, 1], [0, 0, 1]],
+  [[0, 1, 1], [1, 1, 1], [1, 1, 2], [0, 1, 2], [0, 1, 1]],
+  [[0, 1, 2], [1, 1, 2], [1, 2, 2], [0, 2, 2], [0, 1, 2]],
+]) cubeBody += polyline(plane.map(projectCube), 'class="reflection-edge" fill="none"');
+cubeBody += polyline(cubePoints.map(projectCube), 'class="straight" data-path="Q0-Q1-Q2-prime-Q3-prime-Q4-prime"');
+cubePoints.forEach((point, i) => {
+  const [x, y] = projectCube(point);
+  cubeBody += circle(x, y, 4.7, i === 4 ? 'class="point-end"' : 'class="point"');
+  cubeBody += mathText(x + (i ? 19 : -29), y + (i ? 5 : 25), [mi("Q"), sub(i), ...(i >= 2 ? [rm("′")] : [])], 'style="paint-order:stroke;stroke:white;stroke-width:6px;stroke-linejoin:round"');
+});
+cubeBody += line(355, 350, 377, 358, 'stroke="#607589" stroke-width="1"');
+cubeBody += mathText(382, 364, [mi("z"), rm("=1")], 'style="paint-order:stroke;stroke:white;stroke-width:6px"', true);
+cubeBody += line(100, 308, 149, 305, 'stroke="#607589" stroke-width="1"');
+cubeBody += mathText(57, 314, [mi("y"), rm("=1")], 'style="paint-order:stroke;stroke:white;stroke-width:6px"', true);
+cubeBody += line(290, 284, 313, 292, 'stroke="#607589" stroke-width="1"');
+cubeBody += mathText(320, 298, [mi("z"), rm("=2")], 'style="paint-order:stroke;stroke:white;stroke-width:6px"', true);
+// Stack the calculation key below the geometry so labels remain legible when
+// the SVG is scaled to a narrow phone viewport.
+cubeBody += '<g transform="translate(-418 415)">';
+cubeBody += rect(443, 105, 410, 342, 'rx="10" class="callout"');
+cubeBody += plainText(465, 136, "展開した面の順序", 'class="panel-title"');
+cubeBody += mathText(465, 171, [mi("z"), rm("=1 → "), mi("y"), rm("=1 → "), mi("z"), rm("=2")]);
+cubeBody += plainText(465, 212, "原点と Q₃′ を結ぶ直線", 'class="muted"');
+cubeBody += mathText(465, 246, [rm("("), mi("x"), rm(","), mi("y"), rm(","), mi("z"), rm(")="), mi("t"), rm("("), mi("a"), rm(",2−"), mi("b"), rm(",2)")]);
+cubeBody += plainText(465, 289, "Q₃′ の先では到達時刻を比較", 'class="muted"');
+cubeBody += mathText(465, 324, [mi("x"), rm("=1: "), mi("t"), rm("=1/"), mi("a")]);
+cubeBody += mathText(465, 360, [mi("y"), rm("=2: "), mi("t"), rm("=2/(2−"), mi("b"), rm(")")]);
+cubeBody += mathText(465, 396, [mi("z"), rm("=3: "), mi("t"), rm("=3/2")]);
+cubeBody += '</g>';
+cubeBody += '</g>';
+add("iv2-cube-unfolding", 460, 890,
+  "立方体をz=1、y=1、z=2の順に反射して展開した模式図。Q0、Q1、展開後のQ2、Q3、Q4が直線t(a,2−b,2)に並ぶ。a=1/2、b=4/5の例ではQ3の次にz=3へ到達する。一般の場合はx=1、y=2、z=3への到達時刻を比較する。",
+  "立方体を面で展開した配置例。Q₃′の先では、3つの面への到達時刻の最小値でQ₄を決めます。", cubeBody);
 handoff.report();
 
 const manifest = {
@@ -250,7 +302,7 @@ const manifest = {
   restrictedSourceCopied: false,
   review: {
     needsHumanReview: true,
-    notes: "公開問題IV(1)の座標・等角条件と、反射による独立導出から作成した独自SVG。制限付き参照画像のトレース・埋め込み・複製は行っていない。公開候補HTMLで等角条件が欠落しているIV(2)の立方体図は推測作成していない。",
+    notes: "問題IVの座標・等角条件と、反射による独立導出から作成した独自SVG。IV(2)は2026-09-10に修復された直交平面・共有線分・等角条件を確認し、反射面z=1、y=1、z=2と座標を独立検算して作図。制限付き参照画像のトレース・埋め込み・複製は行っていない。人間の内容承認は未完了。",
   },
   items: figures,
 };
