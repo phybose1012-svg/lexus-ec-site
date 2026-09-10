@@ -256,3 +256,5 @@
 - PC通常幅と390pxの3ページでh1=1・TeXエラー0・ページ横はみ出しなし。問題2図/解説5図を読込、全7図を狭幅本文で目視。分析の7論理小問/100点・円グラフ14/14/57/15・暫定目標70/80点を確認。検証viewport解除後の通常幅は1280px。対象だけ縦長図の高さ制限を解除し、印刷は最大150mm幅/200mm高。印刷CSSの機械回帰は成功、実際の印刷/PDFプレビュー目視は未実施。
 - 復旧確認時のfetchではorigin/stagingに未統合コミットなし。専用preview 4337は稼働しており、再起動不要だった。ユーザーの4330・別担当プロセス・元repoの慶應修復差分は変更していない。既存の自動再開automation-2はACTIVE・30分間隔を維持、重複作成していない。
 - 次は **関西医科大学2025前期数学**（`kansai-medical-2025-general-early-mathematics`）、元パス `projects/universities/kansai-medical/past-exams/working/2025/general-early/first-stage/mathematics`。台帳の解説6図とissuesだけ確認済み、問題/原解答/学習者/原本PNG/分析の全問監査は未着手。台帳にⅣ(2)の転記修正履歴があるので原本との再照合を先に行う。続いて同前期物理（問題5図/解説1図、目標点は前提依存の不整合で保留）。順天堂物理は他担当のため触らない。
+
+- 金沢後期数学 `b0d00ddd` をstaging→作業ブランチへ通常push。Cloudflare commit checkはcompleted/success。staging実URLの3ページでh1=1・noindex/nofollow・TeXエラー0・横はみ出しなし、問題2図/解説5図の読込、問題/解説の修復注記各3・分析1、暫定目標70/80点を確認した。配信済み切断図のラベル分離も目視。全体315図保留の状態を配信確認済み。実機印刷プレビューは未確認のまま。viewportを解除し、専用preview 4337（session 60988）を終了した。確認用タブ2を閉じる。次回は上記の関西前期数学の全問監査から。後追い配信記録は作業ブランチだけへ保存し、次回の内容pushでstagingに含める。
