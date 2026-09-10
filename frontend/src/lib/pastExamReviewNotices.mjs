@@ -1,5 +1,15 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'kanazawa-medical-2025-general-early-mathematics':{
+  'major-question-03':{
+   title:'(4)のマーク欄は元HTMLの修復待ちです',
+   message:'原本の2桁の解答欄「ワヲ」が、HTMLでは「ワ」だけになっています。解答18の変更ではありません。解答欄の復元までは(4)をマーク式の採点対象外としてください。',
+  },
+  'major-question-04':{
+   title:'交点と接点を区別してご覧ください',
+   message:'元解説の見出しは紛らわしい表現ですが、Aは円と放物線の交点であり、2曲線が接しているわけではありません。前半は円の接線、後半は放物線の接線を使います。本文の見出しと補足説明は修復待ちです。',
+  },
+ },
  'jikei-2025-general-physics':{
   'major-question-01':{
    title:'問3・問4・問5の条件を元HTMLへ復元待ちです',
@@ -93,6 +103,10 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'kanazawa-medical-2025-general-early-mathematics':{
+  title:'解答欄と解説の一部は元HTMLの修復待ちです',
+  message:'第3問(4)のマーク欄、第4問の交点・接点の見出しを修復待ちです。第3問(4)は(3)の分散の結果が必要です。分析・目標点は編集上の仮設定として、問題・解説の修復後に再確認します。',
+ },
  'jikei-2025-general-physics':{
   title:'問題・解説の一部は元HTMLの修復待ちです',
   message:'求める比、反証の仮定、近似条件などに転記の欠落があります。分析・目標点は編集確認用です。問題と解説を修復した後、難易度・所要時間・解く順番を再確認してください。',
