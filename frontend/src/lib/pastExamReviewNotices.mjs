@@ -1,5 +1,15 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'jichi-medical-2025-general-physics':{
+  'major-question-14':{
+   title:'問題18の力の説明を補足確認中です',
+   message:'40 Nと9.0 Nは別々の実験の力です。元解説では、それぞれの接地点まわりのモーメントを使って両実験を結び付ける説明が不足しています。該当する説明を補足確認中です。',
+  },
+  'major-question-16':{
+   title:'問題20の「必要十分条件」の前提を確認中です',
+   message:'静かに離した位置Pから滑り始める条件と、動き始めた後にOを通り越す条件は別です。問題文が始動を前提としているかを確認するまで、問題20は演習・採点の対象外としてください。',
+  },
+ },
  'international-health-welfare-2025-general-physics':{
   'major-question-02':{
    title:'第2問の加速度記号と、つり合いの説明を確認中です',

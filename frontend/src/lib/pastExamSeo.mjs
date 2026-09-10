@@ -26,13 +26,22 @@ export function serializeJsonLd(data) {
  * @param {string[]} labels
  */
 export function summarizeQuestionLabels(labels) {
-  const ranges = labels.map((label) => String(label).trim().match(/^問題\s*(\d+)(?:\s*[〜～]\s*(\d+))?$/));
-  if (labels.length > 0 && ranges.every(Boolean)) {
-    const count = ranges.reduce((total, match) => {
-      const first = Number(match[1]);
-      const last = Number(match[2] ?? match[1]);
-      return total + last - first + 1;
-    }, 0);
+  // Lists such as 問題7・8 are a shared stem, just like 問題1〜3.
+  const groups = labels.map((label) => {
+    const matched = String(label).trim().match(/^問題\s*(\d[\d\s・〜～]*)$/);
+    if (!matched) return null;
+    const ranges = matched[1].split("・").map((part) => part.trim().match(/^(\d+)(?:\s*[〜～]\s*(\d+))?$/));
+    if (!ranges.every(Boolean)) return null;
+    let count = 0;
+    for (const range of ranges) {
+      const first = Number(range[1]), last = Number(range[2] ?? range[1]);
+      if (!Number.isSafeInteger(first) || !Number.isSafeInteger(last) || first < 1 || last < first) return null;
+      count += last - first + 1;
+    }
+    return count;
+  });
+  if (labels.length > 0 && groups.every((count) => count !== null)) {
+    const count = groups.reduce((total, size) => total + size, 0);
     return { label: "問題", count, unit: "問", grouping: "問題別", display: `${count}問`, print: `問題${count}問` };
   }
   return { label: "大問", count: labels.length, unit: "題", grouping: "大問別", display: `${labels.length}題`, print: `大問${labels.length}題` };

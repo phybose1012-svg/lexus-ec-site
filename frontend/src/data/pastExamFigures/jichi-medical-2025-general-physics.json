@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "lexus-past-exam-figures.v1",
+  "packageId": "jichi-medical-2025-general-physics",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "問題条件から独自座標で生成。回路の接続/電池極性、波の同位相、PV目盛、棒の左右、ばねのP-O-Q順序を原図の意味と照合。原図の画素・パス・座標は複製していない。問題20の始動条件と目標点の時間モデルは元データ修復待ち。人間によるレビューは未完了。"
+  },
+  "items": [
+    {
+      "id": "q1-3-circuit",
+      "src": "/assets/past-exams/jichi-medical-2025-general-physics/figures/q1-3-circuit.svg",
+      "width": 760,
+      "height": 470,
+      "alt": "電池の正極からS1を通ってコンデンサーCへ、戻りに抵抗Rがある充電回路。S2を閉じるとCとLだけの閉回路になる。両スイッチは開いている。",
+      "caption": "電気振動の回路"
+    },
+    {
+      "id": "q4-particle-diagram",
+      "src": "/assets/past-exams/jichi-medical-2025-general-physics/figures/q4-particle-diagram.svg",
+      "width": 760,
+      "height": 515,
+      "alt": "磁場Bは紙面の裏向き。正電荷qは原点Oからy軸正方向に速さvで発射される。解答となる軌道は描いていない。",
+      "caption": "磁場と粒子の初速度"
+    },
+    {
+      "id": "q10-wave-interference",
+      "src": "/assets/past-exams/jichi-medical-2025-general-physics/figures/q10-wave-interference.svg",
+      "width": 760,
+      "height": 565,
+      "alt": "同位相の波源S1とS2から広がる円形波面。両波源で同じ半径の実線が山、破線が谷を表す。節線と腹線は解答する内容なので描かない。波面の間隔は模式的。",
+      "caption": "同位相の波の山と谷（模式図）"
+    },
+    {
+      "id": "q11-open-pipe",
+      "src": "/assets/past-exams/jichi-medical-2025-general-physics/figures/q11-open-pipe.svg",
+      "width": 760,
+      "height": 495,
+      "alt": "両端が開いた管の左外側に振動数f0のスピーカー。管長30cmで共鳴し、その次は40cmで共鳴する。振動の次数や波長は未記入。",
+      "caption": "開管の長さを30 cmから40 cmへ"
+    },
+    {
+      "id": "q13-total-reflection",
+      "src": "/assets/past-exams/jichi-medical-2025-general-physics/figures/q13-total-reflection.svg",
+      "width": 760,
+      "height": 455,
+      "alt": "水平な境界面Sの上に半径rの不透明な円盤。その中心の真下、深さDに点光源があり、上は屈折率1の空気、下は屈折率√2の油。rとDは縮尺をそろえていない。",
+      "caption": "円盤と点光源の配置（断面の模式図）"
+    },
+    {
+      "id": "q14-lenses",
+      "src": "/assets/past-exams/jichi-medical-2025-general-physics/figures/q14-lenses.svg",
+      "width": 760,
+      "height": 475,
+      "alt": "物体の60cm右に焦点距離20cmの凸レンズA、さらに25cm右に焦点距離の大きさ10cmの凹レンズB。像と屈折後の光線は解答なので示さない。距離と形状は模式的。",
+      "caption": "凸レンズと凹レンズの配置（模式図）"
+    },
+    {
+      "id": "q15-pv-cycle",
+      "src": "/assets/past-exams/jichi-medical-2025-general-physics/figures/q15-pv-cycle.svg",
+      "width": 760,
+      "height": 520,
+      "alt": "圧力体積図。AはV,p、BはV,3p、Cは3V,p。AからBへ定積加熱、BからCへ等温膨張、CからAへ定圧圧縮。",
+      "caption": "A→B→C→Aのサイクル"
+    },
+    {
+      "id": "q18-rod",
+      "src": "/assets/past-exams/jichi-medical-2025-general-physics/figures/q18-rod.svg",
+      "width": 760,
+      "height": 475,
+      "alt": "同じ不均一な棒の長さは1.0m。上段では左端が接地し右端を40Nで上げ、下段では右端が接地し左端を9.0Nで上げて静止させる。傾きを誇張し、二つの実験を分けた図。",
+      "caption": "一端ずつ持ち上げる二つの実験（傾きは誇張）"
+    },
+    {
+      "id": "q20-25-spring",
+      "src": "/assets/past-exams/jichi-medical-2025-general-physics/figures/q20-25-spring.svg",
+      "width": 760,
+      "height": 430,
+      "alt": "壁に固定したばねにつながる質量mの小球BはPに置かれている。右側に自然長の位置O、そのさらに右にQがあり、PO=p、OQ=q。力や速さ最大の点は未記入。",
+      "caption": "P・O・Qとばねの縮み・伸び（模式図）"
+    }
+  ]
+}
