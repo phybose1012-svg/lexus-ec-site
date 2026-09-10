@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "lexus-past-exam-figures.v1",
+  "packageId": "kawasaki-medical-2025-general-regional-quota-mathematics",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "全8図は問題条件と独立した座標・積分・複素数計算から作図。等縮尺は円・角・法線・面積比で維持。絶対値関数の概形のみ軸の縮尺が異なる。原本クロップのトレース・埋込なし。学習者版の方向誤記、導出・増減表の欠落は修復依頼と注記を維持し、権利・人間レビューを自動承認しない。"
+  },
+  "items": [
+    {
+      "id": "ans-q1-circle-angles",
+      "src": "/assets/past-exams/kawasaki-medical-2025-general-regional-quota-mathematics/figures/ans-q1-circle-angles.svg",
+      "width": 520,
+      "height": 690,
+      "alt": "円Kの直径はA(2,8)B(6,0)。C(−2/5,16/5)とD(2,0)も円周上。CEはADに垂直でE(2,16/5)。角ADCがα、角BCDと角BADがβ。",
+      "caption": "第1問(2)：補助線CEと、同じ弧BDに対する円周角。"
+    },
+    {
+      "id": "ans-q1-sine-triangle",
+      "src": "/assets/past-exams/kawasaki-medical-2025-general-regional-quota-mathematics/figures/ans-q1-sine-triangle.svg",
+      "width": 520,
+      "height": 297,
+      "alt": "底辺11、高さ2、斜辺5√5の直角三角形。底辺と斜辺のなす角はα−βで、tan(α−β)=2/11に対応する。",
+      "caption": "第1問(2)：正の鋭角α−βの三角比を読むための相似な三角形。"
+    },
+    {
+      "id": "ans-q1-region",
+      "src": "/assets/past-exams/kawasaki-medical-2025-general-regional-quota-mathematics/figures/ans-q1-region.svg",
+      "width": 520,
+      "height": 743,
+      "alt": "領域Lは線分AC、円K上でDを含む弧CB、線分BAに囲まれ境界を含む。CとBでの接線の傾きは−11/2と1/2。ax−y=kのkを大きくすると直線y=ax−kは下へ動く。",
+      "caption": "第1問(3)：両端で接する傾きが場合分けの境界。円の全体を可動領域としない。"
+    },
+    {
+      "id": "ans-q2-c1-area",
+      "src": "/assets/past-exams/kawasaki-medical-2025-general-regional-quota-mathematics/figures/ans-q2-c1-area.svg",
+      "width": 520,
+      "height": 573,
+      "alt": "C1はy=log(x+1)、法線ℓはy=−2x+2+log2。交点T(1,log2)とy軸の間で、ℓが上側、C1が下側。",
+      "caption": "第2問(1)(i)：0から1まで「法線−曲線」を積分する領域。"
+    },
+    {
+      "id": "ans-q2-c2-area",
+      "src": "/assets/past-exams/kawasaki-medical-2025-general-regional-quota-mathematics/figures/ans-q2-c2-area.svg",
+      "width": 520,
+      "height": 616,
+      "alt": "C2はp=−1、q=2log2とした形状例。T(1,log2)を通り、0から1で法線ℓより下にある。パラメータの答えp=−1/2を先取りした図ではない。",
+      "caption": "第2問(1)(ii)：p=−1は形状説明の一例。実際の係数は面積条件から決める。"
+    },
+    {
+      "id": "ans-q2-absolute-value",
+      "src": "/assets/past-exams/kawasaki-medical-2025-general-regional-quota-mathematics/figures/ans-q2-absolute-value.svg",
+      "width": 520,
+      "height": 528,
+      "alt": "0<a<1の代表例a=0.45におけるy=|log(x+a)|。x=1−aで0、左は−log(x+a)、右はlog(x+a)。区間0から1の両側の面積を足す。a=1では左区間がなくなる。",
+      "caption": "第2問(2)：絶対値の積分はx=1−aで分割。図は0<a<1の形状例。"
+    },
+    {
+      "id": "ans-q3-farthest-point",
+      "src": "/assets/past-exams/kawasaki-medical-2025-general-regional-quota-mathematics/figures/ans-q3-farthest-point.svg",
+      "width": 520,
+      "height": 684,
+      "alt": "複素平面のA(2,4)、B(1,−3)、B中心で半径√2の円。Aから最遠の点C1(4/5,−22/5)はABをB側へ延長した位置。円周上の別の点Cも示す。",
+      "caption": "第3問(2)：AB=5√2、BC₁=√2なので最大距離は6√2。"
+    },
+    {
+      "id": "ans-q3-area-ratio",
+      "src": "/assets/past-exams/kawasaki-medical-2025-general-regional-quota-mathematics/figures/ans-q3-area-ratio.svg",
+      "width": 520,
+      "height": 1263,
+      "alt": "面積最大の2場合を分けて表示。P1=(5/3,5/3)、P2=(5/4,−5/4)は直線AB上。上段ではQ1=(3,−3)とP1、下段ではQ2=(4,4)とP2を結ぶ。直線ABが各三角形を5:7に分ける。",
+      "caption": "第3問(3)：どちらも共有する高さを使い、面積比をOQ上の線分比で求める。"
+    }
+  ]
+}

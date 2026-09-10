@@ -1,5 +1,19 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'kawasaki-medical-2025-general-regional-quota-mathematics':{
+  'major-question-01':{
+   title:'解説の移動方向と導出・増減表を修復待ちです',
+   message:'(3)でkを最大にするには、直線y=ax−kを下へ動かします。元解説の「上へ」は誤記です。(1)(2)の途中式、場合分けの根拠、増減表も省略されています。図は問題条件から独立計算したものですが、該当解説は本文修復まで編集確認用としてご覧ください。',
+  },
+  'major-question-02':{
+   title:'面積の導出と、絶対値積分の式を修復待ちです',
+   message:'(1)(ii)の面積条件へ代入する式と係数の導出、(2)の増減表などが省略されています。(2)の積分は2つの項を足す式ですが、元HTMLで別々の数式枠に分断されています。本文の修復までは該当導出を正式な教材として使用しないでください。',
+  },
+  'major-question-03':{
+   title:'円の除外点と、面積比の説明を補足確認中です',
+   message:'zw=10なのでw=0は除きます。元解説ではこの条件と、最大面積から5:7へ至る過程が省略されています。偏角の範囲も補足確認中です。図は最大となる2つの場合を別々に示していますが、解説本文は修復待ちです。',
+  },
+ },
  'kansai-medical-2025-general-early-physics':{
   'major-question-01':{
    title:'実験データと瞬間速度の解法を確認中です',
@@ -147,6 +161,10 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'kawasaki-medical-2025-general-regional-quota-mathematics':{
+  title:'解説と分析の形式・時間モデルを確認中です',
+  message:'解説の移動方向・途中式・増減表を修復待ちです。試験は数字等をマークする形式ですが、元分析は記述式になっています。目標点は編集上の仮設定で、合格に必要な点数ではありません。苦手層のモデルは判断だけで60分を見込むため、その前提も再確認を依頼しています。',
+ },
  'kansai-medical-2025-general-early-physics':{
   title:'問題・解説と目標点の計画を修復待ちです',
   message:'軸表記・同位体番号・実験モデルと、解説の近似や符号の説明を確認中です。苦手層の「今解く」計画は前提小問が欠け、仮時間も超えるため目標点は保留しています。難度と配点は編集上の仮評価です。',
