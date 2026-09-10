@@ -1,5 +1,11 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'kanazawa-medical-2025-general-early-physics':{
+  'major-question-01':{
+   title:'(2)の近似条件と、(3)の記号説明を補足確認中です',
+   message:'元解説は、観測周期の補正を一次近似として扱う説明が不足しています。また(3)の速度・半径記号の定義が学習者版で省略されています。図は問題条件から作図しましたが、該当解説は修復待ちの編集確認用としてご覧ください。',
+  },
+ },
  'kanazawa-medical-2025-general-early-mathematics':{
   'major-question-03':{
    title:'(4)のマーク欄は元HTMLの修復待ちです',
@@ -103,6 +109,10 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'kanazawa-medical-2025-general-early-physics':{
+  title:'近似の説明と分析用語は元HTMLの修復待ちです',
+  message:'第1問(2)の一次近似の説明と、分析の「光行差」という用語を修復待ちです。第2問も代入過程の補足を依頼しています。配点・目標点・所要時間は編集上の仮設定として、修復後に再確認します。',
+ },
  'kanazawa-medical-2025-general-early-mathematics':{
   title:'解答欄と解説の一部は元HTMLの修復待ちです',
   message:'第3問(4)のマーク欄、第4問の交点・接点の見出しを修復待ちです。第3問(4)は(3)の分散の結果が必要です。分析・目標点は編集上の仮設定として、問題・解説の修復後に再確認します。',
