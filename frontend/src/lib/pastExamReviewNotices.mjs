@@ -1,5 +1,19 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'kindai-2025-general-first-a-mathematics':{
+  'major-question-01':{
+   title:'共通注意の例と、整数値を数える説明を補足待ちです',
+   message:'共通注意の根号を含む分数の具体例が元HTMLで省略されています。また解説のg(t)の定義と、整数値ごとの解の個数・常用対数による比較を補足待ちです。新しい図は条件から独立計算していますが、該当する説明は修復まで編集確認用としてご覧ください。',
+  },
+  'major-question-02':{
+   title:'漸化式と「ちょうど3連続」の説明を修復待ちです',
+   message:'元解説は、末尾別の列挙・漸化式の理由・確率の比較過程を省略しています。「3連続を含む」だけでは4連続以上との区別も曖昧です。原本の「裏表」の転記も修復を依頼しています。本文の修復までは該当解説を正式な教材・採点根拠に使わないでください。',
+  },
+  'major-question-03':{
+   title:'増減表の符号位置と、式をつなぐ説明を修復待ちです',
+   message:'元HTMLの増減表では、最初の負符号が開区間でなく端点の欄にずれています。垂足・座標条件・判別式・面積公式の導出も補足待ちです。図は条件から独立作成しましたが、該当表と導出は修復まで編集確認用として扱ってください。',
+  },
+ },
  'keio-2025-general-physics':{
   'major-question-01':{
    title:'速度ベクトル・与式と解説の省略を修復待ちです',
@@ -197,6 +211,10 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'kindai-2025-general-first-a-mathematics':{
+  title:'本文の補足と、目標点の時間前提を確認中です',
+  message:'48点／80点は元の仮配点・時間モデルからの編集上の目安で、合格に必要な点数ではありません。数学60分は原本の時間です。苦手層の計画は全問の判断だけで29.6分を見込んでおり、実測に基づく値ではありません。解説の補足後に所要時間・前問依存・評価理由を再確認します。',
+ },
  'keio-2025-general-physics':{
   title:'本文の欠落と解く順番の前提を修復待ちです',
   message:'元HTMLの式・定数・解答の欠落と、苦手層の「今解く」に必要な前問が含まれない不整合があります。目標点は保留を継続しています。100点・60分は分析上の仮設定を含むため、本文修復後に難易度・所要時間・前提問題を再評価してください。',

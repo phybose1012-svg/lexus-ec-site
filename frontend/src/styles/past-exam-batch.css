@@ -22,3 +22,8 @@
   break-inside: avoid;
 }
 .past-exam-source-review p { margin: .35rem 0 0; }
+/* A mark example is a two-field lookup, not a full-width score table. */
+.past-exam-question-page .source-table[data-kindai-mark-example] {
+  max-width: 30rem;
+  margin-inline: auto;
+}
