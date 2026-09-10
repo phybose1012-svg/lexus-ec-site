@@ -1,5 +1,15 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'jikei-2025-general-physics':{
+  'major-question-01':{
+   title:'問3・問4・問5の条件を元HTMLへ復元待ちです',
+   message:'問3は原本で求める比とHTMLの式が異なり、問4の微小変化の条件、問5の反証に使う仮定も省略されています。図は原本の意味を確認して作図しましたが、本文修復までは該当設問を演習・採点の対象外としてください。',
+  },
+  'major-question-02':{
+   title:'問3以降の近似条件と説明を補足確認中です',
+   message:'元HTMLには、反跳を無視できる極限の条件、光のドップラー効果の近似条件、位置エネルギーの座標の説明が不足しています。問6の記述内容も原本の趣旨と照合済みの修復待ちです。該当箇所は正式な教材として使わず、編集確認用としてご覧ください。',
+  },
+ },
  'jichi-medical-2025-general-physics':{
   'major-question-14':{
    title:'問題18の力の説明を補足確認中です',
@@ -83,6 +93,10 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'jikei-2025-general-physics':{
+  title:'問題・解説の一部は元HTMLの修復待ちです',
+  message:'求める比、反証の仮定、近似条件などに転記の欠落があります。分析・目標点は編集確認用です。問題と解説を修復した後、難易度・所要時間・解く順番を再確認してください。',
+ },
  'international-health-welfare-2025-general-physics':{
   title:'一部の問題表記は元データを照合中です',
   message:'第2問の加速度記号、第4問・問5の選択肢に不整合があります。分析・目標点は編集確認用の暫定表示です。原本修復後に該当設問の評価・選択順序を再確認してください。',

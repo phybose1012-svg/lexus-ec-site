@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "lexus-past-exam-figures.v1",
+  "packageId": "jikei-2025-general-physics",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "原本の問題4ページ・解答8ページを意味照合し、問題条件と独立計算から生成。原図の画素/座標/パスは複製していない。PV図は第二法則の反証であり、実在する不可逆過程の逆再生を主張しない。問1の問3/5、問2の近似条件など元HTMLの欠落は別の修復依頼に記録。原本解答p003の定圧吸熱による別解図は元manifest自体から欠落しており別途修復待ち。人間レビューと権利承認は未完了。"
+  },
+  "items": [
+    {
+      "id": "q1-fig-insulated-cylinders",
+      "src": "/assets/past-exams/jikei-2025-general-physics/figures/q1-fig-insulated-cylinders.svg",
+      "width": 680,
+      "height": 590,
+      "alt": "初めは断熱容器Aだけに温度TA、圧力PA、体積VAの気体があり、容器Bは空。両底部を多孔質体入りの断熱管でつなぐ。おもりで保つPBはPAより低く、気体はAからBへ移る。寸法は模式的。",
+      "caption": "断熱容器と気体の移動（初めの状態・模式図）"
+    },
+    {
+      "id": "q2-fig-accelerating-cart",
+      "src": "/assets/past-exams/jikei-2025-general-physics/figures/q2-fig-accelerating-cart.svg",
+      "width": 680,
+      "height": 435,
+      "alt": "台車はx軸正方向に加速度aで進む。結晶は右、検出器はその後方の左にあり間隔はΔx。ガンマ線は結晶からx軸負方向へ進む。力や観測エネルギーは問題で求めるため示さない。",
+      "caption": "加速する台車とガンマ線（模式図）"
+    },
+    {
+      "id": "a1-fig-pv-cycle",
+      "src": "/assets/past-exams/jikei-2025-general-physics/figures/a1-fig-pv-cycle.svg",
+      "width": 680,
+      "height": 755,
+      "alt": "第二法則の反証用の仮想サイクル。IはVB,PB、IIはVA,PAで両者のPVは等しい。IからIIへP×Vのγ乗が減る断熱移動を仮定し、その経路は描かない。IIからIIIへ定積吸熱、IIIからIへP×Vのγ乗が一定の可逆断熱膨張を行う。実現できる熱機関を示す図ではない。",
+      "caption": "反証のための仮想サイクル（I→IIの経路は未指定）"
+    },
+    {
+      "id": "a2-fig-gamma-recoil",
+      "src": "/assets/past-exams/jikei-2025-general-physics/figures/a2-fig-gamma-recoil.svg",
+      "width": 680,
+      "height": 640,
+      "alt": "放出前は質量Mの粒子が静止。放出後はガンマ線光子が左、質量M−mの粒子が右へ進み、運動量の大きさはともにPで全運動量0を保つ。波形は光子の進行方向を示す模式表現。",
+      "caption": "ガンマ線放出と粒子の反跳（模式図）"
+    }
+  ]
+}
