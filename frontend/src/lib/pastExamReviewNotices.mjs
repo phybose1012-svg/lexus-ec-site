@@ -1,5 +1,27 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'kawasaki-medical-2025-general-regional-quota-physics':{
+  'major-question-01':{
+   title:'共通注意・定数表とマーク記号を修復待ちです',
+   message:'共通注意の小数マーク例、定数表の省略、クォークの最終選択肢記号に転記の不備があります。原本では⓪・⊕・⊖も使います。修復前のマーク例・選択肢は演習や採点に使わず、編集確認用としてご覧ください。',
+  },
+  'major-question-02':{
+   title:'選択肢・解答記号と「速度」の表記を修復待ちです',
+   message:'ウの一部の式、エの選択肢と解答記号に不備があります。また符号付きの「速度」が「速さ」に置き換わっています。新しい図は原本の9選択肢の概形を表しますが、該当問題・解説は本文修復まで演習や採点に使用しないでください。',
+  },
+  'major-question-03':{
+   title:'選択肢・解答記号と導出を修復待ちです',
+   message:'コ〜セの選択肢が省略され、シ・セの解答記号も原本と一致していません。図は力のつり合いと仕事を独立計算したものです。圧力と体積の関係を導く説明も補足待ちなので、修復まで該当問題・解説は編集確認用として扱ってください。',
+  },
+  'major-question-04':{
+   title:'選択肢と波面・光路差の説明を修復待ちです',
+   message:'タ・テの選択肢が欠け、チ・ツの一部の角度が誤転記されています。波面と反射経路の図は独立生成しましたが、元HTMLの導出は省略されています。2本の光がそれぞれ反射することも含め、本文修復まで演習・採点には使用しないでください。',
+  },
+  'major-question-05':{
+   title:'同位体比の条件と選択肢を修復待ちです',
+   message:'「両時刻の割合は等しい」という元HTMLの記述は、32倍になる条件と矛盾しています。選択肢の省略と、ニの解答記号の誤転記もあります。原本照合・修復後に演習や採点へ使用してください。',
+  },
+ },
  'kawasaki-medical-2025-general-regional-quota-mathematics':{
   'major-question-01':{
    title:'解説の移動方向と導出・増減表を修復待ちです',
@@ -161,6 +183,10 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'kawasaki-medical-2025-general-regional-quota-physics':{
+  title:'問題・解説の修復と分析の前提を確認中です',
+  message:'選択肢・解答記号・速度と速さの区別・半減期条件を修復待ちです。75点・60分は編集上の仮設定で、大学公表の物理単独配点・時間ではありません。目標点66点／60点は元の層別計算方針を保持しており、合格に必要な点数ではありません。本文修復後に前問依存と所要時間も再確認します。',
+ },
  'kawasaki-medical-2025-general-regional-quota-mathematics':{
   title:'解説と分析の形式・時間モデルを確認中です',
   message:'解説の移動方向・途中式・増減表を修復待ちです。試験は数字等をマークする形式ですが、元分析は記述式になっています。目標点は編集上の仮設定で、合格に必要な点数ではありません。苦手層のモデルは判断だけで60分を見込むため、その前提も再確認を依頼しています。',
