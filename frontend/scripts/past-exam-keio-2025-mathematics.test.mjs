@@ -451,6 +451,9 @@ const pointsOf = (svg, className) => {
 };
 
 test("the IV SVGs are original, safe, and geometrically faithful", () => {
+  const figureCss = read("src/styles/past-exam-figures.css");
+  assert.ok(figureCss.includes('.past-exam-figure img[src="/assets/past-exams/keio-2025-general-mathematics/figures/iv2-cube-unfolding.svg"] { max-height: none; height: auto; }'));
+  assert.ok(figureCss.includes('body.is-printing-past-exam-document .past-exam-figure img[src="/assets/past-exams/keio-2025-general-mathematics/figures/iv2-cube-unfolding.svg"] { max-height: 200mm; max-width: 150mm; width: auto; }'));
   const expectedIds = ["a13-square-reflection-case1", "a13-square-reflection-case2", "iv2-cube-unfolding"];
   assert.equal(manifest.packageId, packageId);
   assert.equal(manifest.contentProvenance, "original_editorial");
