@@ -53,4 +53,4 @@
 
 配信結果は継続ログの最新記録を参照。
 
-初回内容commit `2fe53db0` をstaging/作業ブランチへ通常push済み。Cloudflare commit checkはsuccess。図の高さ制限を解除する後続commitは別途配信確認する。
+初回内容commit `2fe53db0` と図の高さ制限を解除した `29afb6ae` をstaging/作業ブランチへ通常push済み。Cloudflare commit checkはともにsuccess。stagingの問題・解説・分析で更新内容、noindex、KaTeXエラー0、ページ横幅超過なしを確認。最終CSS `answers.DDJnyQgW.css` は新規GET/新規タブで配信確認済み（既存タブには旧CSSが残ったためキャッシュを区別）。立方体は390px画面で301×582px、PCで460×890px、max-height:noneで表示され、スマートフォン実画面も目視済み。確認用4337サーバーを終了、画面幅をリセットし、この作業で開いた確認用タブを閉じた。
