@@ -327,3 +327,7 @@
 - 対象packageだけ画面の高さ390px制限を外し、印刷は最大150mm幅／200mm高。印刷CSSの回帰は成功、実際の印刷／PDFプレビュー目視は未実施。確認用はタブ7とpreview4337（session25545）だけ。既存Cloudflare/GitHub運用のまま公開し、Sitesへの移行はしない。
 - 次は **慶應義塾大学2025物理**。ID `keio-2025-general-physics`、元パス `projects/universities/keio/past-exams/working/2025/general/first-stage/physics`。問題7図／解説1図が保留。苦手nowのphys-q1-d→q1-c、q2-m→q2-l/k、q3-f→q3-cの依存欠けで目標点保留。台帳以外は未読。既存独自編集の慶應数学／他担当の順天堂物理は触らない。
 - 公開前fetch時にorigin/stagingに未統合変更なし。以下へ配信結果を追記するまでは川崎物理6図はローカル検証済み・未配信。
+
+- 川崎物理 `b02051b6` をstaging→作業ブランチへ通常push済み。Cloudflare commit checkはcompleted/success（最終確認 `afbf5e31-ddaf-4b1b-8801-6407de6e448e`）。staging実URL3ページでHTTP200・h1が1・noindex・注意書き5/5/1、公開6SVGがローカル検証済みファイルと全バイト一致することを確認。配信後のブラウザー目視は追加しておらず、PC／390px目視は同じ内容のローカル検証。全体289図保留・19目標点保留の状態で配信済み。
+- 検証viewportを解除し、専用タブ7を閉じた。復旧時に再起動したpreview4337（session25545）は今回は維持するので、次回はポート確認して再利用し、重複起動しない。配信後記録は作業ブランチだけへ保存し次の内容pushに含める。
+- 配信待ちに次の慶應物理issues全5件とreconstruction内assets8件を読解。問題7図は反発投射、回転コイル2状態、磁気コア／コイル2図、未記入の結線枠、端子A〜Hの2検出器、水の飽和蒸気圧グラフ、大気層／上昇気塊。解説1図は不要信号を除く結線。原本18ページ／3大問29設問、仮100点・60分。**本文・原解答・学習者版・原本画像・analysisは未読**。assetsは独立したassets.jsonではなくreconstruction.json内にある。コイルの端子／巻き向きと解答枠への先出し、飽和蒸気圧の数値を原本・条件から確定してから作図する。
