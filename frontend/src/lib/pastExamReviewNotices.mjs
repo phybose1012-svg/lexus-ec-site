@@ -1,5 +1,11 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'kansai-medical-2025-general-early-mathematics':{
+  'major-question-04':{
+   title:'増減表と回転後の包含の説明を修復待ちです',
+   message:'元HTMLの増減表で、最初の区間の正符号が端点の欄にずれています。また、回転後の上辺全体が上面以下である説明が省略されています。図は独立計算に基づきますが、該当解説は本文修復まで編集確認用です。S全体が120度回転に不変という意味ではありません。',
+  },
+ },
  'kanazawa-medical-2025-general-late-mathematics':{
   'major-question-01':{
    title:'解説の式の区切りと、場合分けを修復待ちです',
@@ -123,6 +129,10 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'kansai-medical-2025-general-early-mathematics':{
+  title:'第Ⅳ問の回転に関する説明は補足確認中です',
+  message:'回転したTがSに含まれることと、S全体の回転対称性は異なります。元HTMLの包含の説明と増減表を修復待ちです。目標点・配点・時間は編集上の仮設定として確認してください。',
+ },
  'kanazawa-medical-2025-general-late-mathematics':{
   title:'問題の記号と配点の説明は元HTMLの修復待ちです',
   message:'第3問の負号、第4問のベクトル矢印、解説の途中式を修復待ちです。元分析の配点説明も実データと一致していません。現在は7つの論理小問・仮配点100点の集計を表示しており、目標点を含め編集確認用です。',

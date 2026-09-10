@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "lexus-past-exam-figures.v1",
+  "packageId": "kansai-medical-2025-general-early-mathematics",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "全6図は問題条件と独立計算による新規図。円の直角、焦点/準線、共有点数、断面積、回転後の線分全体の包含を検算。元HTMLの欠落した定義域・増減表の符号位置・導出省略は別の修復依頼で管理。原本クロップのトレース/コピーなし。権利・人間レビューは未承認。"
+  },
+  "items": [
+    {
+      "id": "a1-circle-figure",
+      "src": "/assets/past-exams/kansai-medical-2025-general-early-mathematics/figures/a1-circle-figure.svg",
+      "width": 500,
+      "height": 490,
+      "alt": "直径OAが2の円C。円周上Pでは角OPAが直角で、OP=r、角POA=θよりr=2cosθ。",
+      "caption": "Ⅰ(1)：円の極方程式。点Pは条件を満たす一例です。"
+    },
+    {
+      "id": "a1-parabola-figures",
+      "src": "/assets/past-exams/kansai-medical-2025-general-early-mathematics/figures/a1-parabola-figures.svg",
+      "width": 500,
+      "height": 958,
+      "alt": "放物線Dの焦点は原点O、準線はx=a/2。aが正なら左向き、負なら右向きに開く。Qから準線への足HについてOQ=QH。",
+      "caption": "Ⅰ(1)：aの正負で向きと距離の式が変わります。2図は各符号の代表例です。"
+    },
+    {
+      "id": "a3-intersection-graph",
+      "src": "/assets/past-exams/kansai-medical-2025-general-early-mathematics/figures/a3-intersection-graph.svg",
+      "width": 500,
+      "height": 602,
+      "alt": "h(x)=−4cos²x+4cosx、0<x<2π。π/3と5π/3で最大値1、πで最小値−8。両端は除外。代表の水平線y=kとの交点を示す。",
+      "caption": "Ⅰ(2)：補助関数と水平線。元の2曲線をそのまま描いた図ではありません。"
+    },
+    {
+      "id": "a9-solid-height-graph",
+      "src": "/assets/past-exams/kansai-medical-2025-general-early-mathematics/figures/a9-solid-height-graph.svg",
+      "width": 500,
+      "height": 504,
+      "alt": "領域Sの高さh(x)=4x³−3x+1の−1≦x≦1におけるグラフ。−1と1/2で0、−1/2と1で2。Tは1/2≦x≦1の範囲。",
+      "caption": "Ⅳ(2)：全域で高さは非負。金色はTに対応するxの範囲です。"
+    },
+    {
+      "id": "a10-cross-section-figure",
+      "src": "/assets/past-exams/kansai-medical-2025-general-early-mathematics/figures/a10-cross-section-figure.svg",
+      "width": 500,
+      "height": 526,
+      "alt": "xを固定したyz平面に平行な断面ABCD。Aは負のy側、Bは正のy側、CはBの真上、DはAの真上。底辺2√(1−x²)、高さ4x³−3x+1。",
+      "caption": "Ⅳ(2)：断面を正面から表示。図はx=√3/2の代表例で、辺長の式は一般のxを表します。"
+    },
+    {
+      "id": "a12-rotation-figure",
+      "src": "/assets/past-exams/kansai-medical-2025-general-early-mathematics/figures/a12-rotation-figure.svg",
+      "width": 500,
+      "height": 968,
+      "alt": "上段は円板上の弦ABをz軸周りに反時計回り120度回したA′B′。下段は回転後上辺C′D′のxz射影。両端が上面にあり途中も上面以下なので回転後TはSに含まれる。S全体の回転対称性ではない。",
+      "caption": "Ⅳ(4)：α=30度の例。上辺の両端だけでなく、線分全体が上面以下であることを確認します。"
+    }
+  ]
+}
