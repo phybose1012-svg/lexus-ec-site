@@ -10,6 +10,8 @@
 
 自治医科大学2025数学・二次試験の二乗条件・傾き角の範囲・ベクトルの長さ調整・小数配点表示は[二次数学の修復依頼](jichi-second-stage-math-source-review.md)を確認すること。一次数学とは別パッケージ。
 
+Lexus側の追加表示所見：自治二次数学の問題/解答のブラウザーtitleには「二次試験」があるが、分析のtitleには段階が含まれない。URLは `mathematics-general-second-stage` で正しく分離されている。別方式・段階の分析SEOを次の微修正時に共通テンプレートで点検する（元HTMLの欠落と混同しない）。
+
 ## 獨協医科大学 2025年度・前期・一次・数学
 
 対象ID：`dokkyo-medical-2025-general-early-mathematics`。
