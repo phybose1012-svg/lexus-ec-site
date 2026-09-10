@@ -409,3 +409,11 @@
 - 復旧確認は全320テスト成功、既存buildの14,771 TeXエラー0、build-input成功、Git接続検査・diff検査成功・残留lockなし。開始HEAD/GitHub作業ブランチfa90f2de、staging19fef2c4、fetch後に未統合変更0。新規buildは未実施でdistは06:22台のまま。
 - preview4337は127.0.0.1／localhostで対象3ページ正常。ポート列挙の権限制限で停止を疑ったが直接HTTPで確認でき、再起動不要。ステージング全201ページのHTTP200・h1・noindex・canonical検査は失敗0、Cloudflare check success。巻き戻し・再配信は不要。
 - automation-2はACTIVE・30分間隔・同じタスク、設定変更なし。元repoの別担当の慶應数学修復差分は保持。今回は再開メモだけを作業ブランチに保存し、未検証のコード・図はstagingへ送らない。続きは最新再開メモにあるラベル調整と図の目視から行い、近畿数学や元原本監査を最初から繰り返さない。
+
+## 2026-09-11 08:57 JST・取込／build後のPC停止確認
+
+- 近畿前期A物理の13図は衝突調整・正式修復依頼12区分・対象取込・report・08:46台buildまで進んだ未コミット状態で残存。前節の「未取込／未build」は旧情報。**次は狭幅の図を1枚ずつ目視するところから。** [再開メモ先頭](kindai-physics-recovery-checkpoint.md)に完了／未完了を更新した。
+- 今回の再検査は全322回帰成功、14,771 TeX描画エラー0、build-input正常、全13SVGのpublic／dist／preview HTTPバイト一致。Git接続検査・diff検査成功、管理ディレクトリ直下lock0、未完了Git操作なし。保存済み作業の破損は検出せず、巻き戻し・再生成・プロセス再起動は不要だった。
+- 既存preview4337は127.0.0.1／localhost両方で対象3ページ正常。CUA tab13も応答。全201ステージングURLのHTTP200・h1・noindex・canonical検査は失敗0、既存Cloudflare check success。初回のsandbox外部通信拒否は許可済み環境で再検査して解消し、サイト障害とは扱わない。
+- fetch後HEAD/GitHub作業ブランチ0e79565a、staging19fef2c4、文書3コミット先行・未統合0。ローカル登録図保留262／目標保留19、**配信済みは275／19のまま**。元repoの他担当差分を保持。automation-2はACTIVE・30分間隔を維持し、今回は再開メモのみ作業ブランチへ保存する。
+- 残りは問題／解説の390px・一部PC、分析下側と目標、追加所見（II-A4図のϕ′等の導入位置）の修復依頼化、検証後commit／staging配信／実URL確認。実印刷／PDFは未実施。中断時の一括画像出力超過を目視成功と数えず、原本監査や完成図を最初から繰り返さない。
