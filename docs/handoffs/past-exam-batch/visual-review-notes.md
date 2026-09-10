@@ -2,6 +2,8 @@
 
 本ファイルは手動追記用。importerの再実行で上書きしない。修正済み項目も、根拠と修正コミットを添えて履歴を残す。
 
+国際医療福祉大学2025数学の詳細な不整合は[専用の原本照合・修復依頼](international-health-welfare-math-source-review.md)を確認すること。
+
 ## 獨協医科大学 2025年度・前期・一次・数学
 
 対象ID：`dokkyo-medical-2025-general-early-mathematics`。

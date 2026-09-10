@@ -10,14 +10,17 @@ import PastExamContents from "../../../../../components/past-exam/PastExamConten
 import { analysisPages, type AnalysisPage } from "../../../../../data/pastExamAnalyses";
 import { buildDifficultyPie } from "../../../../../lib/pastExamDifficultyPie.mjs";
 import { inline } from "../../../../../lib/pastExamInline.mjs";
+import { analysisReviewNotices } from "../../../../../lib/pastExamReviewNotices.mjs";
 import "../../../../../styles/past-exam-library.css";
 import "../../../../../styles/past-exam-question.css";
 import "../../../../../styles/past-exam-analysis.css";
+import "../../../../../styles/past-exam-batch.css";
 
 export function getStaticPaths() {
   return analysisPages.map((page) => ({ params: { university: page.route.university, year: page.route.year, subject: page.route.path.split('/').filter(Boolean).at(-2) }, props: { page } }));
 }
 const { page } = Astro.props as { page: AnalysisPage };
+const sourceReview = analysisReviewNotices[page.packageId];
 const { title, description, canonical, breadcrumbs, structuredData } = buildExamDocumentSeo({
   mode: "analysis",
   pending: Boolean(page.pendingReason),
@@ -84,6 +87,7 @@ const targetReviewNote = page.targetReviewNote
     <PastExamDocumentTabs current="analysis" questions={page.links.questions} answers={page.links.answers} analysis={page.route.path} />
 
     <div class="analysis-body">
+      {sourceReview && <div class="content"><aside class="past-exam-source-review" role="note" data-source-review="required"><strong>{sourceReview.title}</strong><p>{sourceReview.message}</p></aside></div>}
       {page.pendingReason && <section class="content source-page-card"><h2>分析データを確認しています</h2><p>{page.pendingReason}</p></section>}
       {!page.pendingReason && <>
       <div class="analysis-introduction content">

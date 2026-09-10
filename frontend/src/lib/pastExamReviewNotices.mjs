@@ -1,5 +1,23 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'international-health-welfare-2025-general-mathematics':{
+  'major-question-01':{
+   title:'第1問(C)・(E)の問題と解答を照合中です',
+   message:'対数不等式の定数、双曲線の焦点と接点について、問題HTMLと解答の式が一致していません。原本照合・修復が完了するまで(C)・(E)は演習・採点の対象外としてください。',
+  },
+  'major-question-02':{
+   title:'第2問(2)の解説文を確認中です',
+   message:'Mは2本の接線の接点R・Sの中点です。元解説にはQ・Rの中点とする誤記と、四角形ABCDを正方形とする誤記があります。追加した軌跡図は問題の接点中点から計算しています。',
+  },
+  'major-question-03':{
+   title:'第3問(3)(ii)の解答欄を照合中です',
+   message:'元問題HTMLに漸化式・一般項が完成した形で記載されています。またp_nはAにいる確率ですが、元解説にはDとする誤記があります。解答欄の復元までは該当設問を採点しないでください。「通る」が辺上の通過を含む点も原本で確認しています。',
+  },
+  'major-question-04':{
+   title:'第4問の符号説明と最終積分を確認中です',
+   message:'(2)(ii)の絶対値を外す区間の説明が逆になっており、(3)の積分値と対数の変形にも不整合があります。三角形はx>0の条件から描いていますが、該当解説・最終解答の教材利用は原本照合・修復後にしてください。',
+  },
+ },
  'hyogo-medical-2025-general-a-b-physics':{
   'major-question-01':{
    title:'問1(4)・(6)・(10)の速度条件は元データを確認中です',
@@ -41,6 +59,13 @@ export const reviewNotices={
    title:'第4問・問3〜4は元データを確認中です',
    message:'問題文の電流条件「I₀/6」と解説の「I₀」が一致していません。原本と照合するまで、問3〜4は演習・採点の対象外としてください。',
   },
+ },
+};
+/** @type {Record<string, {title: string, message: string}>} */
+export const analysisReviewNotices={
+ 'international-health-welfare-2025-general-mathematics':{
+  title:'分析の前提となる問題・解説を照合中です',
+  message:'第1問の対数・双曲線、第2問の点の定義、第3問の確率の定義と解答欄、第4問の積分に元HTMLの不整合があります。以下の分析は元データのレビュー用表示です。目標点や選択順序を学習・出願判断の根拠として使わず、問題の修復後に評価を再確認してください。',
  },
 };
 const escape=value=>String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');

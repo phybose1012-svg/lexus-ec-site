@@ -15,10 +15,17 @@
 
 ## 検出事項
 
-- **questions / figures-pending**: Question figures require independent reconstruction; dependent questions remain review-only.（1件）
-- **answers / figures-pending**: Required visual positions retained; no restricted answer crop copied.（2件）
 - **answers / editorial-review**: Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch.
 
 ## 完了報告
 
 修正した正本の位置、原文→修正後、根拠となるページ・計算、再生成したHTML、テスト結果、未解決事項を列挙する。過去問ライブラリーの再取り込み先IDは `international-health-welfare-2025-general-mathematics`。既存の独自解説へ昇格済みのパッケージは一括取込で上書きしない。
+
+## 元データの未解決項目
+
+元のissues.jsonから取得した編集メモです。完了済みという意味ではありません。
+
+- **official-score-source-review**: 2025年度医学部一般選抜の数学200点、第一次試験合計600点を、2025年度学生募集要項の公式PDF原本で科目担当兼編集責任者が再確認する。現パッケージでは原本問題の『数学80分』と公開二次情報で照合している。
+- **provisional-subquestion-scoring-review**: 16小問へ割り当てた仮配点（12点または13点、合計200点）を科目担当兼編集責任者が確認する。公式の小問別配点ではない。
+- **rights-and-redraw-review**: 問題・解答原本の公開利用範囲を確認し、原本図版クロップ4点の模写差し替えと内容確認を行う。rights_statusがunknown/restricted、replacement_statusがpending_redrawの間、原本ページ画像・原本クロップ・原本解答解説は内部レビュー限定とする。
+- **subject-editor-review**: 数学科目担当者が、原本16ページのHTML転記、4大問・16小問の構造、学習者向け解説、難易度、五角形評価、層別所要時間、戦略、仮配点、得点効率、Lexus目標をパッケージ単位で確認し、manifestのvisual_reviewedとanalysisのreview.approvedを明示的に判断する。

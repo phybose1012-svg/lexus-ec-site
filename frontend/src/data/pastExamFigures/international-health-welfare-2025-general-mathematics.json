@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "lexus-past-exam-figures.v1",
+  "packageId": "international-health-welfare-2025-general-mathematics",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "正六角形のラベル順のみ原図から意味情報として確認し、単位円上の座標から独立生成。軌跡はQ=(s,v)と接線方程式からM=(s,−4s²−v−2)を導出し描画。原文・原解説に対数/双曲線/確率の定義/定積分の不整合があるため、本文と分析を要確認のまま維持し修正依頼へ分離。原図クロップは複製・トレースしていない。"
+  },
+  "items": [
+    {
+      "id": "q3-regular-hexagon",
+      "src": "/assets/past-exams/international-health-welfare-2025-general-mathematics/figures/q3-regular-hexagon.svg",
+      "width": 700,
+      "height": 535,
+      "alt": "一辺1の正六角形。AからB、C、D、E、Fが反時計回りに並び、Aの反対側がD。点PはAから出発する。",
+      "caption": "第3問：頂点の順序と移動規則。解答の経路は描き込んでいない。"
+    },
+    {
+      "id": "ans-q2-locus",
+      "src": "/assets/past-exams/international-health-welfare-2025-general-mathematics/figures/ans-q2-locus.svg",
+      "width": 700,
+      "height": 655,
+      "alt": "Qが四角形ABCDを一周すると、接点R・Sの中点Mは3つの放物線弧とx=3の線分で囲まれた領域の境界をたどる。A′=(0,−5)、B′=(1,−6)、C′=(3,−38)、D′=(3,−39)。",
+      "caption": "第2問(2)：縦横の目盛りは異なる。囲まれる面積は9/2。"
+    },
+    {
+      "id": "ans-q4-triangle",
+      "src": "/assets/past-exams/international-health-welfare-2025-general-mathematics/figures/ans-q4-triangle.svg",
+      "width": 700,
+      "height": 425,
+      "alt": "角2αの隣辺が1、対辺がx、斜辺が√(x²+1)の直角三角形。x>0、0<2α<π/2なので各辺の長さは正。",
+      "caption": "第4問(2)(ii)：三角比をxで表すための補助図。辺の比率は配置例。"
+    }
+  ]
+}

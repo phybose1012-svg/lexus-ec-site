@@ -5,6 +5,7 @@ import path from "node:path";
 import process from "node:process";
 import { loadFigureManifest, replaceSourceFigures } from "../../../../frontend/src/lib/pastExamFigures.mjs";
 import { normalizeInequalities } from "../../../../frontend/src/lib/mathNotation.mjs";
+import { ensureMajorQuestionHeading } from "../../../../frontend/src/lib/pastExamHeadings.mjs";
 
 function parseArguments(argv) {
   const values = {};
@@ -293,6 +294,7 @@ async function main() {
       overrides,
     );
     sourceFragment = removeRedundantMajorQuestionKickers(sourceFragment);
+    sourceFragment = ensureMajorQuestionHeading(sourceFragment, pageRecord.label);
     if (figures) sourceFragment = replaceSourceFigures(sourceFragment, figures, { allowDeferred: args['defer-crops'] === 'true' });
     if (args['defer-crops'] === 'true') {
       // Staging bulk imports reserve required figures; restricted source images
