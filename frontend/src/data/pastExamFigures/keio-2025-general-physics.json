@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "lexus-past-exam-figures.v1",
+  "packageId": "keio-2025-general-physics",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "原本18ページの意味を照合し、投射は運動方程式、コイルは同一巻き向きと端子接続、気体図は与条件から独自生成。蒸気圧はNISTのStull係数から独立計算。原本cropを埋込・トレースしない。元HTMLの式・定数・解答欠落と分析の前提依存不備は別途修復待ち、人間レビュー未承認。"
+  },
+  "items": [
+    {
+      "id": "q1-projectile",
+      "src": "/assets/past-exams/keio-2025-general-physics/figures/q1-projectile.svg",
+      "width": 520,
+      "height": 290,
+      "alt": "床から角θ、速さv0で投射した小球m。xは右、yは上、重力は下。床での反発後も水平速度は一定で、放物線の高さと幅が順次小さくなる。",
+      "caption": "反発投射の模式図。角度・反発係数は代表例。"
+    },
+    {
+      "id": "q3-rotating-coil",
+      "src": "/assets/past-exams/keio-2025-general-physics/figures/q3-rotating-coil.svg",
+      "width": 520,
+      "height": 750,
+      "alt": "上は辺hの1回巻き正方形コイルと回転軸、外向きの力F、端子X/Y。下はXY側から見たコイル面と水平な磁場H0の角θ。",
+      "caption": "図1・図2：回転コイルと角度の定義。"
+    },
+    {
+      "id": "q4-core-setup",
+      "src": "/assets/past-exams/keio-2025-general-physics/figures/q4-core-setup.svg",
+      "width": 520,
+      "height": 1090,
+      "alt": "図3は交流電源と励磁コイルAB。図4(a)は測定コイルEFを重ね、Eを電圧計の正側、Fを負側へ接続。図4(b)は同じ端子接続を回路記号で示す。H0はコア軸の上向き。",
+      "caption": "励磁・測定コイルの実配置と等価回路。巻き数は模式化。"
+    },
+    {
+      "id": "q4-wiring-template",
+      "src": "/assets/past-exams/keio-2025-general-physics/figures/q4-wiring-template.svg",
+      "width": 520,
+      "height": 828,
+      "alt": "未記入の解答用回路。励磁コイルAB/CDのDと交流電源下端、測定コイルEF/GHのHと電圧計負側だけが既設線でつながり、その他の端子は開放されている。",
+      "caption": "解答用の枠。未記入の端子へ正解配線を追加していない。"
+    },
+    {
+      "id": "q4-dual-detectors",
+      "src": "/assets/past-exams/keio-2025-general-physics/figures/q4-dual-detectors.svg",
+      "width": 520,
+      "height": 602,
+      "alt": "2本のコアに同じ巻き向きの励磁AB/CDと測定EF/GHを重ねる。静磁場H0はコアに平行で上向き。2検出器間の磁気結合は無視する。",
+      "caption": "図5：同じ構造の検出器を2組用意する。"
+    },
+    {
+      "id": "q1-vapor-pressure-graph",
+      "src": "/assets/past-exams/keio-2025-general-physics/figures/q1-vapor-pressure-graph.svg",
+      "width": 520,
+      "height": 628,
+      "alt": "水の飽和蒸気圧の独立計算曲線。横軸は0〜100℃、縦軸は0〜10万Pa、補助格子は2.5℃と2500Pa。解答温度の点や読み取り値は示していない。",
+      "caption": "NISTのAntoine式（Stull, 1947）から再計算した参考曲線。"
+    },
+    {
+      "id": "q3-atmosphere-diagrams",
+      "src": "/assets/past-exams/keio-2025-general-physics/figures/q3-atmosphere-diagrams.svg",
+      "width": 520,
+      "height": 790,
+      "alt": "上は高度hからh+Δhの薄層で下側圧力p、上側p+Δp、重力gは下向き。下は気塊が(p,T)から(p+Δp,T+ΔT)へゆっくり上昇する模式図。",
+      "caption": "図2・図3：仮想大気層と上昇する空気塊。"
+    },
+    {
+      "id": "ans-q4-wiring",
+      "src": "/assets/past-exams/keio-2025-general-physics/figures/ans-q4-wiring.svg",
+      "width": 520,
+      "height": 879,
+      "alt": "既設の電源下端-Dと電圧計負側-Hを維持し、電源上端-B、A-C、電圧計正側-E、F-Gを追加。励磁はB→AとC→Dで逆向き、測定電圧はEFとGHの和。",
+      "caption": "問4(l)：金色が追加配線。交差のない結線例。"
+    }
+  ]
+}

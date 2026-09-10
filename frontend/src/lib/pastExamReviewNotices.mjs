@@ -1,5 +1,19 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'keio-2025-general-physics':{
+  'major-question-01':{
+   title:'速度ベクトル・与式と解説の省略を修復待ちです',
+   message:'元HTMLでは使用する記号・与えられた極限式の一部と、n回反発後の速度ベクトルや単位の定義が省略されています。図は運動方程式から作成していますが、本文修復までは編集確認用とし、該当問題・解説を演習や採点に使用しないでください。',
+  },
+  'major-question-02':{
+   title:'与式・定数と複数の解答が元HTMLから欠落しています',
+   message:'問4(k)の空欄式の構造、(n)の定数に含まれる真空の透磁率、前半の知識問題の答えや誘導電圧の時間依存などを修復待ちです。結線図は原条件と符号を確認して作図しましたが、本文は修復まで演習・採点に使わないでください。',
+  },
+  'major-question-03':{
+   title:'数値の結論と微小変化・安定性の説明を補足待ちです',
+   message:'元HTMLで水蒸気量などの最終値、近似の条件、式をつなぐ説明が省略されています。周囲の温度が必ず上空ほど低いという前提も不要です。図は与条件と公開物性式から作成していますが、該当解説は本文修復まで編集確認用としてご覧ください。',
+  },
+ },
  'kawasaki-medical-2025-general-regional-quota-physics':{
   'major-question-01':{
    title:'共通注意・定数表とマーク記号を修復待ちです',
@@ -183,6 +197,10 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'keio-2025-general-physics':{
+  title:'本文の欠落と解く順番の前提を修復待ちです',
+  message:'元HTMLの式・定数・解答の欠落と、苦手層の「今解く」に必要な前問が含まれない不整合があります。目標点は保留を継続しています。100点・60分は分析上の仮設定を含むため、本文修復後に難易度・所要時間・前提問題を再評価してください。',
+ },
  'kawasaki-medical-2025-general-regional-quota-physics':{
   title:'問題・解説の修復と分析の前提を確認中です',
   message:'選択肢・解答記号・速度と速さの区別・半減期条件を修復待ちです。75点・60分は編集上の仮設定で、大学公表の物理単独配点・時間ではありません。目標点66点／60点は元の層別計算方針を保持しており、合格に必要な点数ではありません。本文修復後に前問依存と所要時間も再確認します。',

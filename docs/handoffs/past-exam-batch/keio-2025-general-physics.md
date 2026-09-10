@@ -15,8 +15,8 @@
 
 ## 検出事項
 
-- **questions / figures-pending**: Question figures require independent reconstruction; dependent questions remain review-only.（7件）
-- **answers / figures-pending**: Required visual positions retained; no restricted answer crop copied.（1件）
+原本18ページ・全29設問の照合による[詳細な修復依頼](keio-physics-source-review.md)も必ず確認してください。II(k)の空欄式、II(n)のμ0、学習者版の答えの欠落、原解答の符号誤記と丸め方の区別、分析の前問依存を整理しています。独自SVG8図の実装は本文修復完了を意味しません。
+
 - **answers / editorial-review**: Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch.
 - **analysis-targets / source-error**: Invalid target prerequisite or candidate (weak, now): phys-q1-d: requires absent phys-q1-c; phys-q2-m: requires absent phys-q2-l; phys-q2-m: requires absent phys-q2-k; phys-q3-f: requires absent phys-q3-c
 - **analysis-targets / pending**: Target section retained but scores withheld until validated source is supplied.
@@ -24,3 +24,13 @@
 ## 完了報告
 
 修正した正本の位置、原文→修正後、根拠となるページ・計算、再生成したHTML、テスト結果、未解決事項を列挙する。過去問ライブラリーの再取り込み先IDは `keio-2025-general-physics`。既存の独自解説へ昇格済みのパッケージは一括取込で上書きしない。
+
+## 元データの未解決項目
+
+元のissues.jsonから取得した編集メモです。完了済みという意味ではありません。
+
+- **official-score-time-review**: 公式の理科2科目一括120分・200点から物理60分・100点とした仮時間、29設問への2〜5点仮配点を募集要項原本と科目担当者が確認する。
+- **lexus-time-model-review**: 物理60分の仮設定に基づく得意・苦手層の時間倍率、設問依存、Lexus目標を確認する。
+- **learner-editorial-review**: 3大問29設問の学習者向け解説について、反発衝突、非線形磁気計測、断熱減率の導出と数値を物理科目担当者が確認する。
+- **rights-and-redraw-review**: 問題・解答原本の公開利用範囲を確認し、restrictedかつpending_redrawの原本図版クロップ8点を模写差し替えする。
+- **subject-editor-review**: 物理科目担当者が原本18ページ、3大問29設問、学習者向け解説、分析を一括レビューし、manifestのvisual_reviewedとanalysis.review.approvedを明示判断する。
