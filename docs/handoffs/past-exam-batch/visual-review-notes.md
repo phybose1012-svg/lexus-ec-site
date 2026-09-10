@@ -8,6 +8,8 @@
 
 自治医科大学2025物理の始動条件・二つの実験の力・振動中心・目標時間モデルは[自治物理の修復依頼](jichi-physics-source-review.md)を確認すること。
 
+自治医科大学2025数学・二次試験の二乗条件・傾き角の範囲・ベクトルの長さ調整・小数配点表示は[二次数学の修復依頼](jichi-second-stage-math-source-review.md)を確認すること。一次数学とは別パッケージ。
+
 ## 獨協医科大学 2025年度・前期・一次・数学
 
 対象ID：`dokkyo-medical-2025-general-early-mathematics`。

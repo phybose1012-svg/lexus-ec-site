@@ -7,6 +7,7 @@
 .past-exam-figure img[src^="/assets/past-exams/hyogo-medical-2025-general-a-b-mathematics/"] { max-height: none; }
 .past-exam-figure img[src^="/assets/past-exams/international-health-welfare-2025-general-physics/"] { max-height: none; height: auto; }
 .past-exam-figure img[src^="/assets/past-exams/jichi-medical-2025-general-physics/"] { max-height: none; height: auto; }
+.past-exam-figure img[src^="/assets/past-exams/jichi-medical-2025-general-mathematics-second-stage/"] { max-height: none; height: auto; }
 @media screen and (max-width: 600px) {
   [data-past-exam-package="international-health-welfare-2025-general-physics"] .past-exam-figure[data-figure-id="q2-vectors"] { overflow-x: auto; }
   [data-past-exam-package="international-health-welfare-2025-general-physics"] .past-exam-figure[data-figure-id="q2-vectors"]::before { content: "選択肢の図は左右にスクロールできます"; display: block; margin-bottom: 10px; font-size: .8rem; color: #52657b; }
@@ -21,4 +22,5 @@
   body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/hyogo-medical-2025-general-a-b-mathematics/"] { max-height: 200mm; max-width: 150mm; }
   body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/international-health-welfare-2025-general-physics/"] { max-height: 200mm; max-width: 150mm; width: auto; }
   body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/jichi-medical-2025-general-physics/"] { max-height: 200mm; max-width: 150mm; width: auto; }
+  body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/jichi-medical-2025-general-mathematics-second-stage/"] { max-height: 200mm; max-width: 150mm; width: auto; }
 }

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "lexus-past-exam-figures.v1",
+  "packageId": "jichi-medical-2025-general-mathematics-second-stage",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "二次試験の円と直線から交点・角・距離を独立計算。全体図は平行条件を先取りしない。制限付きcropは参照・複製せず、傾き角は符号付きで作図。"
+  },
+  "items": [
+    {
+      "id": "ans-overview-diagram",
+      "src": "/assets/past-exams/jichi-medical-2025-general-mathematics-second-stage/figures/ans-overview-diagram.svg",
+      "width": 700,
+      "height": 685,
+      "alt": "中心B(7,7)、半径√17の円Cと点A(1,8)を通る2直線。ℓ₁上はA,Q(3,6),R(6,3)の順、ℓ₂上はA,P,Sの順。ℓ₂はm=1/5の一例で、PQとSRの平行は仮定していない。",
+      "caption": "1）・2）：円と2直線の全体像。ℓ₂の傾きは例示。"
+    },
+    {
+      "id": "ans-proof-diagram",
+      "src": "/assets/past-exams/jichi-medical-2025-general-mathematics-second-stage/figures/ans-proof-diagram.svg",
+      "width": 700,
+      "height": 675,
+      "alt": "PQとSRが平行な円内接四角形PQRS。∠AQP=α₁、∠ARS=α₂、∠APQ=β₁、∠ASR=β₂を各頂点に示す。ABは共通辺、BPとBQは円の半径。",
+      "caption": "3）：角の等しさから二等辺三角形と合同を示す。"
+    },
+    {
+      "id": "ans-midpoint-diagram",
+      "src": "/assets/past-exams/jichi-medical-2025-general-mathematics-second-stage/figures/ans-midpoint-diagram.svg",
+      "width": 700,
+      "height": 675,
+      "alt": "Aと円の中心Bを結ぶ直線が弦PQとMで直交し、MP=MQ。AM=14/√37、QM=10/√37。四角形PQRSと、面積差に用いる大小の三角形を同じ配置に示す。",
+      "caption": "4）・5）：中点・垂線から弦の長さと面積を求める。"
+    },
+    {
+      "id": "ans-alternative-diagram",
+      "src": "/assets/past-exams/jichi-medical-2025-general-mathematics-second-stage/figures/ans-alternative-diagram.svg",
+      "width": 700,
+      "height": 845,
+      "alt": "上段はABで二等分された∠SARの正の角θ。下段は水平右向きからARとABへの時計回りの角θ₁とθ₂で、θ₁=−π/4、θ₂=arctan(−1/6)、θ=θ₂−θ₁>0。方向は正確で線分長は模式的。",
+      "caption": "別解4）：図形の角θと、符号付きの傾き角を区別する。"
+    },
+    {
+      "id": "ans-trig-triangle",
+      "src": "/assets/past-exams/jichi-medical-2025-general-mathematics-second-stage/figures/ans-trig-triangle.svg",
+      "width": 650,
+      "height": 445,
+      "alt": "角θの隣辺が7、対辺が5、斜辺が√74の直角三角形。tan θ=5/7、sin θ cos θ=35/74となる。",
+      "caption": "別解5）：三角比を辺の比として計算する。"
+    }
+  ]
+}

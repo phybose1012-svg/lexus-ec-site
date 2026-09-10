@@ -15,7 +15,6 @@
 
 ## 検出事項
 
-- **answers / figures-pending**: Required visual positions retained; no restricted answer crop copied.（5件）
 - **answers / editorial-review**: Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch.
 - **analysis-targets / source-error**: Stale or invalid target weak strategy points: observed 8; expected 7.5
 - **analysis-targets / pending**: Target section retained but scores withheld until validated source is supplied.
@@ -23,3 +22,11 @@
 ## 完了報告
 
 修正した正本の位置、原文→修正後、根拠となるページ・計算、再生成したHTML、テスト結果、未解決事項を列挙する。過去問ライブラリーの再取り込み先IDは `jichi-medical-2025-general-mathematics-second-stage`。既存の独自解説へ昇格済みのパッケージは一括取込で上書きしない。
+
+## 元データの未解決項目
+
+元のissues.jsonから取得した編集メモです。完了済みという意味ではありません。
+
+- **provisional-subquestion-scoring-review**: 公式科目配点12.5点を5設問へ各2.5点で均等配分した仮配点を、数学科目担当兼編集責任者が確認する。30分・12.5点は2025年度公式募集要項で確認済みだが、設問別配点は公式配点ではない。
+- **rights-and-redraw-review**: 解答側図版crop 5点（ans-overview-diagram、ans-proof-diagram、ans-midpoint-diagram、ans-alternative-diagram、ans-trig-triangle）を模写差し替えし、内容と権利を確認する。rights_statusがrestricted、replacement_statusがpending_redrawの間、原本ページ画像・原本crop・原本解答解説は内部レビュー限定とする。
+- **subject-editor-review**: 数学科目担当者が原本8ページのHTML転記、1大問・5小問の構造、学習者向け解説、難易度、五角形評価、層別所要時間、戦略、仮配点、得点効率、Lexus目標をパッケージ単位で確認し、manifestのvisual_reviewedとanalysisのreview.approvedを明示的に判断する。
