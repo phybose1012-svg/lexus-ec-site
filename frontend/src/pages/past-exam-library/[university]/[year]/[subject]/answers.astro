@@ -104,7 +104,7 @@ const reviewRequired = page.source.needsHumanReview;
     <PastExamSeoHead structuredData={structuredData} />
   </Fragment>
 
-  <main id="past-exam-content" tabindex="-1" class:list={["past-exam-question-page past-exam-answer-page", { "past-exam-physics-page": page.subject.id === "physics" }]}>
+  <main id="past-exam-content" tabindex="-1" data-past-exam-package={page.packageId} class:list={["past-exam-question-page past-exam-answer-page", { "past-exam-physics-page": page.subject.id === "physics" }]}>
     <PastExamPrintBranding />
 
     <header class="past-exam-question-header">

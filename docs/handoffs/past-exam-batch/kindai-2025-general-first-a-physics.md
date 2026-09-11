@@ -15,8 +15,6 @@
 
 ## 検出事項
 
-- **questions / figures-pending**: Question figures require independent reconstruction; dependent questions remain review-only.（8件）
-- **answers / figures-pending**: Required visual positions retained; no restricted answer crop copied.（5件）
 - **answers / editorial-review**: Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch.
 - **analysis-targets / source-error**: Invalid target prerequisite or candidate (weak, now): phys-q2-a5: requires absent phys-q2-a4
 - **analysis-targets / pending**: Target section retained but scores withheld until validated source is supplied.
@@ -24,3 +22,14 @@
 ## 完了報告
 
 修正した正本の位置、原文→修正後、根拠となるページ・計算、再生成したHTML、テスト結果、未解決事項を列挙する。過去問ライブラリーの再取り込み先IDは `kindai-2025-general-first-a-physics`。既存の独自解説へ昇格済みのパッケージは一括取込で上書きしない。
+
+## 元データの未解決項目
+
+元のissues.jsonから取得した編集メモです。完了済みという意味ではありません。
+
+- **official-score-source-review**: 2025年度医学部一般前期A日程の募集要項原本で理科2科目の公式合算配点200点を再確認し、分析用の物理100点等分仮換算を科目担当兼編集責任者が判断する。
+- **provisional-subquestion-scoring-review**: 12小問へ割り当てた仮配点8点または9点、合計100点を確認する。公式小問別配点ではない。
+- **provisional-subject-time-budget-review**: 理科2科目120分を等分した物理60分の仮時間配分を確認する。
+- **rights-and-redraw-review**: 問題・解答原本の公開利用範囲を確認し、原本図版クロップ13点を模写差し替えする。restricted/pending_redrawの間は内部レビュー限定とする。
+- **source-html-record-reconciliation**: SOURCE-HTML-RECORD.mdに残る内部トップ科目名誤表示・blocked記述は現在の生成HTMLでは物理表示へ解消済み。原本HTMLレーンの記録管理者が履歴を保ったまま状態表現を更新する。
+- **subject-editor-review**: 物理科目担当者が原本20ページ、2大問12分析小問・33解答欄相当、学習者向け解説、分析を一括レビューし、manifestのvisual_reviewedとanalysis.review.approvedを明示判断する。

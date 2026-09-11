@@ -1,5 +1,15 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'kindai-2025-general-first-a-physics':{
+  'major-question-01':{
+   title:'絶対値・角度条件と近似の説明を修復待ちです',
+   message:'元HTMLはI-Aの解答欄を囲む絶対値と、I-Bの直角・座標条件を省略しています。解答一覧の別解にも符号の転記不備があります。また、ばねを長く伸ばすことだけから角度が0になるとはいえません。図は原条件から構成していますが、本文の修復までは該当問題・解説を演習や採点に使わないでください。',
+  },
+  'major-question-02':{
+   title:'座標軸・長さの因子と偏向角の記号を修復待ちです',
+   message:'元HTMLの式(4)では長さlの因子が欠け、途中の近似式にも転記不備があります。観察方向・電磁場の向きや角度の定義も原本との再照合が必要です。図は独立計算した模式図ですが、修復まで該当問題・解説を正式な演習・採点の根拠にしないでください。',
+  },
+ },
  'kindai-2025-general-first-a-mathematics':{
   'major-question-01':{
    title:'共通注意の例と、整数値を数える説明を補足待ちです',
@@ -211,6 +221,10 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'kindai-2025-general-first-a-physics':{
+  title:'本文と、解く順番・試験形式の分析を修復待ちです',
+  message:'苦手層の「今解く」に、その設問が必要とする前問が含まれないため、目標点は保留しています。元分析は記入式を含む試験をマーク式としており、解答欄の対応も未登録です。100点・60分は編集上の仮設定を含むので、本文と分析の修復後に評価・所要時間を再確認します。',
+ },
  'kindai-2025-general-first-a-mathematics':{
   title:'本文の補足と、目標点の時間前提を確認中です',
   message:'48点／80点は元の仮配点・時間モデルからの編集上の目安で、合格に必要な点数ではありません。数学60分は原本の時間です。苦手層の計画は全問の判断だけで29.6分を見込んでおり、実測に基づく値ではありません。解説の補足後に所要時間・前問依存・評価理由を再確認します。',
