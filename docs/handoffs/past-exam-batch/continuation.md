@@ -479,3 +479,7 @@
 - 印刷CSS等の機械回帰は成功、実際の印刷／PDFプレビュー目視は未実施。preview4337継続。Sitesへ移行せず既存GitHub／Cloudflare stagingを使用。他担当・独自解説5件・人間編集SVG/trioは保護。fetch時stagingの未統合コミット0。
 - ローカル台帳67package／201route、実本文67問題・65解説・64分析、登録図保留240／目標点保留19。以下の配信確認を追記するまでは今回19図は未配信。
 - **次は北里大学2025一般選抜・数学**、ID `kitasato-2025-general-mathematics`、元パス `projects/universities/kitasato/past-exams/working/2025/general/first-stage/mathematics`。台帳は問題図0／解説図1（ans-q2-function-graph）、3大問10論理問、仮配点各15点・合計150点、原本15ページ。これは台帳記録のみで、問題／原解答／学習者／原本PNG／全分析の本文は未読。現在の物理の実配信確認後にこの対象を内容から監査する。
+
+- 13:40 JST配信確認：内容コミット `f9a134cf6c789d1a3212aaabc14e52ed6f0fd87e` をstaging→作業ブランチへ通常push済み。Cloudflareはcompleted/success（deployment `b1fe1864-970e-42dd-a33a-97d50ebe9596`）。実3URLのHTTP200・h1=1・noindex・注記2/2/1、19SVGの配信バイトとローカルの一致を確認。全201ルートのHTTP／h1／noindex／canonical検査も失敗0。最初の実URL検査コマンドは引用符の構文エラーだったため修正再実行し、成功した後者の結果のみを採用した。
+- 登録図保留240／目標点保留19の状態で配信済み。新規実装33ファイルは保存済みで、配信後記録を加える直前のtreeはクリーン。元正本4ファイルのhashは復旧時と一致し、他担当には触れていない。tab18はローカル分析の確認用、viewportを1280pxへ戻して残している。preview4337も維持。
+- この配信後追記と復旧メモの更新だけは作業ブランチへ保存し、stagingには次の検証済み内容push時に含める。**次のheartbeatは北里数学の元本文・原本・全分析の監査から。近畿推薦物理の19図を再作業しないこと。** 元HTML修復待ちは正式修復依頼に残り、図完成は教材全体の人間レビュー・権利承認ではない。
