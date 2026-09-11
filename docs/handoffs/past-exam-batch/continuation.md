@@ -575,3 +575,10 @@
 - **20:53 JST配信確認：** 内容コミット `01b25e9ba0299f435dc069baa0f45f52e36af875` をstaging→作業branchへ通常push。Cloudflare completed/success（最終deployment `55a09619-e042-45fc-9608-17bc51fbd2a3`）。実3URL HTTP200/h1=1/noindex、図4/0/0・レビュー注記3/3/1、4SVGの配信バイトとローカル一致、全201ルートHTTP/h1/noindex/canonical検証失敗0。
 - 実配信の問題ページのブラウザーDOMでも4図すべて読み込み・650〜680px表示、数式エラー0、文書幅1265px。公開待ち中には等速円運動図の最終PC表示も目視。検証用tab1を閉じ、viewport overrideはreset済み。preview4337と定期継続は維持。
 - **配信済み図保留220／目標保留19。** 今回の完了は4図・編集確認用3ページの更新であり、元HTML修復・目標点・権利・人間レビュー・実印刷は未完了。作業treeは配信後記録前にクリーン。記録のみ作業branchへ保存し、stagingには次の検証済み内容push時に含める。次回は杏林数学の本文監査から。久留米物理4図を再作業しない。
+
+## 2026-09-11 21:33 JST・PC停止後の確認と杏林数学の読解地点保全
+
+- Git connectivity/diff正常、残留lockなし。復旧開始時HEAD/作業remote7e2518c9、staging01b25e9b。未保存コード・未push・保存済みサイトの破損を検出せず。元repoの別担当慶應修復は保持。
+- 既存buildに全376回帰成功・14,829 TeXエラー0、build-input正常。preview4337/実staging HTTP200、全201ルート検証失敗0。再起動・再ビルド・再配信は不要。automation-2 ACTIVE/30分のまま。
+- 杏林数学は24原本・全問題/原解答/learner・analysis8問まで監査が進んでいた。**derivedと分析HTMLは過大出力で未読、11図と2補足表は未実装。** [詳細再開メモ](kyorin-math-recovery-checkpoint.md)に独立計算、円柱面の展開図/双曲線の誤転記・確率初期条件の欠落、図計画と保留を保存。次回は未読部分から再開し、全読解をやり直さない。
+- 今回は復旧文書だけ作業branchへ保存。ステージングは変更せず、検証済み内容の次回pushに記録を含める。実画面/PDFの再目視は今回未実施。
