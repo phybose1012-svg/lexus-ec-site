@@ -1,5 +1,15 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'kindai-2025-recommendation-general-public-physics':{
+  'major-question-01':{
+   title:'角度条件・符号と距離の式を修復待ちです',
+   message:'元HTMLにはα・βの範囲、cosθ₂の符号、求める変数名、解説の線分名に転記不備があります。図は原条件から独立計算していますが、該当箇所は原本修復まで演習・採点に使用しないでください。面積速度や近似の説明も補足待ちです。',
+  },
+  'major-question-02':{
+   title:'空欄に掛かる因子と交流の説明を修復待ちです',
+   message:'元HTMLでは容量の式の空欄5と、電流の式の空欄7に掛かる因子が原本と異なり、解答一覧と一致しません。Ⅱ-Aの5、Ⅱ-Bの7は修復まで演習・採点の対象外です。実素子の誘電損失と理想容量の区別、電流の瞬時値と振幅の説明も確認中です。',
+  },
+ },
  'kindai-2025-recommendation-general-public-mathematics':{
   'major-question-01':{
    title:'解答欄の文字数と、不等式の証明を修復待ちです',
@@ -235,6 +245,10 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'kindai-2025-recommendation-general-public-physics':{
+  title:'本文の修復と試験形式・時間モデルの確認待ちです',
+  message:'元分析は数式・語句の記入欄をマーク式とし、解答欄の構造も未登録です。64点／80点は仮配点と時間モデルによる編集上の目安で、合格点ではありません。苦手層の64点計画には発展レベルの設問も入るため、本文修復後に時間と優先順位を再確認します。',
+ },
  'kindai-2025-recommendation-general-public-mathematics':{
   title:'本文修復後に評価と所要時間を再確認します',
   message:'問題のマーク欄と統計表、解説の証明・偏差表を修復待ちです。53点／80点は元の仮配点・時間モデルによる編集上の目安で、合格に必要な点数ではありません。苦手層は判断だけで25.6分を見込むモデルです。本文修復後に評価・時間・前問依存を再確認します。',
