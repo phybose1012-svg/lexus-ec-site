@@ -710,3 +710,7 @@
 - PC1280で全6図の実表示とKaTeX書体を目視。390pxは全3ページh1=1/数式エラー0/文書375px、図620pxを枠内スクロール。電位グラフ左右端、解説図の左右端と中心角を実スクロール目視。分析円グラフ・凡例・目標保留を両幅で確認。印刷CSS回帰は成功、実印刷/PDFは未実施。初回タブはbuild中の未出力ページに到達できなかったが、build完了後同じtab9を再利用して正常確認。
 - fetch時staging未統合0。ローカル67package/201route、実本文67問題/65解説/64分析、図保留171/目標保留19。配信確認までは配信済み図保留177。
 - 次は **埼玉医科大学2025前期数学**、ID `saitama-medical-2025-general-early-mathematics`、元パス `projects/universities/saitama-medical/past-exams/working/2025/general-early/first-stage/mathematics`。問題1図/解説2図、analysis imported。本文/原本/全分析は未読。日本医科大学の完成図をやり直さない。
+
+- **08:18 JST配信確認：** 内容コミット `ee7acd74c1314b80b7c897dbc1546def5998dbba` をstaging→作業branchへ通常push。Cloudflare completed/success（deployment `5111e368-cf7d-427b-af9a-d1722be76437`）。実3URL HTTP200/h1=1/noindex/canonical、図5/1/0・レビュー注記3/3/1、新分析要約と目標保留文、6SVGの配信バイトとローカル一致を確認。全201ルート検証失敗0。
+- 実配信解説も390pxのブラウザーDOMで図読込/幅620px、数式エラー0、文書幅375pxを確認。最終contact sheetも再目視。tab9を閉じviewport override reset済み。preview4337と既存自動継続は保持。
+- **配信済み図保留171／目標保留19。** 完了は6独立図と編集確認用3ページの更新であり、元HTMLのE₁修復・目標点の表示/依存修復・権利・人間承認・実印刷の完了ではない。配信後記録のみ作業branchへ保存し、stagingは次の検証済み内容push時に更新する。次回は埼玉医科大学前期数学の未読本文から。
