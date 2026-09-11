@@ -525,3 +525,7 @@
 - 分析は3大問17問・29マーク欄、仮100点、難度4/7/6/0問・配点21/42/37/0点を保持。IIIの電場・磁場を別実験として要約。苦手当初63点54.4分からI問2・I問5・III問1を外しIII問7を加える53点49.4分の置換を表示。得意の実行計画は100点48分、目標は80点で区別。PC／狭幅でカード・円グラフを確認。問題／解説各3注記・分析1注記を維持。
 - ローカル台帳は67package／201route、実本文67問題・65解説・64分析、登録図保留231／目標保留19。最新fetchでstagingの未統合変更なし。以下に配信結果を記すまでは未配信。preview4337維持、確認tab20（127.0.0.1）使用。最初のlocalhostはERR_BLOCKED_BY_CLIENTだったが127.0.0.1で正常。
 - **次は久留米2025一般前期数学**、ID `kurume-2025-general-early-mathematics`、元パス `projects/universities/kurume/past-exams/working/2025/general-early/first-stage/mathematics`。台帳上問題2図／解説5図・analysis imported。本文・原本・全分析は未読。北里物理8図を再作業せず、久留米の元本文監査から直列に進める。
+
+- **16:57 JST配信確認：** 内容コミット `4cebe68277bb1207193c927efca5937e319cf23a` をstaging→作業ブランチへ通常push済み。Cloudflare completed/success（deployment `0a91dcac-1561-4632-b011-130ebb06d409`）。実3URLでHTTP200・h1=1・noindex・canonical・図7/1/0・注記3/3/1、8SVGの配信バイトとローカルの一致を確認。全201ルート検証も失敗0。
+- 実配信の解説DOMも図755px原寸／680px表示・読込完了、h1=1・TeXエラー0・文書幅1265pxで正常。確認tab20を閉じ、viewport1280×720へ復帰済み。preview4337継続。今回の公開完了は独自図と編集確認用3ページの更新であり、原HTMLの修復・権利・人間承認・実印刷の完了ではない。**配信済み登録図保留231／目標保留19。**
+- 配信後記録のみを作業ブランチへ保存し、次の検証済み内容push時にstagingへ含める。次は久留米一般前期数学の未読本文から直列継続する。
