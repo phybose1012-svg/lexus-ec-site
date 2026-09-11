@@ -450,3 +450,13 @@
 - 印刷CSS等の回帰は成功、実印刷／PDFプレビュー目視は未実施。preview4337継続。ブラウザーの127.0.0.1はblockedだったがlocalhostは正常で、確認専用tab16を使用。失敗したtab15も最後に閉じる。元repoの他担当差分・独自解説5件・人間編集SVG/trioは保持した。
 - ローカル台帳は67package／201route、実本文67問題・65解説・64分析、登録図保留259／目標点保留19。共通注意と欠落した解説表のような台帳外の未解決視覚情報があるため、登録図件数を全欠落図表の厳密総数としない。最新fetchでstagingの未統合変更なし。下に実配信結果を記すまでは未配信。
 - 次は **近畿大学2025推薦入試（一般公募）物理**、ID `kindai-2025-recommendation-general-public-physics`、元パス `projects/universities/kindai/past-exams/working/2025/recommendation-general-public/first-stage/physics`。台帳は問題9図／解説10図、2大問11分析問・31解答欄相当、原本19ページ、analysis imported。これは台帳記録のみで、元本文・原解答・学習者・原本PNG・analysis・derivedの実読はまだ。SOURCE-HTML-RECORDの古いblocked記録と現在HTMLを照合し、内容から監査して直列に進める。
+
+- 内容コミット `775811ab6d9e5914f63fcbad362999039d953371` をstaging→作業ブランチへ通常push済み。Cloudflare checkはcompleted/success。実3URLのHTTP200・h1=1・noindex・canonical・注記3/3/1、問題の共通注意2表、解説3SVGの配信バイトとローカルの一致を確認。全201ルートの配信検査も失敗0。登録図保留259／目標点保留19の状態で配信済みです。元正本4ファイルのSHA-256も再開メモ掲載値と一致。元HTML修復・権利・人間レビュー・実印刷は未完了のままで、教材全体の完成とはしません。
+
+## 2026-09-11 11:25 JST台・PC停止後の復旧確認と配信記録の保全
+
+- 中断したのは配信後の確認・記録段階でした。開始時サイトtreeはクリーン。Git接続検査・diff検査成功、Git管理ディレクトリ直下に残留lock／merge／rebase途中の記録なし。fetch後もHEAD・GitHub作業ブランチ・stagingがすべて `775811ab`、双方の差分コミット0。コードの消失・破損やpush途中の状態は検出していません。
+- 既存buildへの全330回帰テスト成功、14,771 TeXターゲットの表示エラー0、build-input正常。今回新規buildは不要で実施せず、11:07:57の検証済み成果物を維持しました。preview4337の対象3ページがHTTP200・h1=1・noindexで正常、再起動や重複起動は不要でした。
+- Cloudflare commit check successを再確認（確認URLのdeployment `7e37947f-a407-45ee-9c78-bee404caca3b`）。ステージング全201ルートのHTTP200・h1・noindex・canonicalを再検査し失敗0。実配信解説をブラウザーDOMでも確認し、3図がすべて読み込まれ、h1=1・数式エラー0・1280px時の文書幅1265pxで横はみ出しなし。今回の新規スクリーンショット目視・実印刷は行っていません。確認専用tab15（空白）／16（ローカル分析）／17（配信解説）が残っており、未知のタブは閉じないこと。
+- automation-2はACTIVE・30分間隔・同じタスクで存続。重複作成や設定変更をしていません。元repoの他担当による慶應数学の未コミット修復は保持しました。今回の保存対象はこの記録と再開メモだけで、作業ブランチのみにcommit／pushし、次の検証済み内容のpushに含めます。stagingの巻き戻し・再配信・main変更は不要です。
+- **次は近畿2025推薦入試（一般公募）物理の元本文・原解答・学習者・原本19PNG・全分析の監査から再開。配信済みの推薦数学3図・2表を再作業しないでください。**
