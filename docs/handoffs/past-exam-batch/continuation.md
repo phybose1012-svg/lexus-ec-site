@@ -634,3 +634,7 @@
 - PC1280/390pxで3ページh1=1、TeXエラー0、文書幅1265/375px。3図すべて実ブラウザーで目視し、PCは約680px、狭幅は302px枠内620pxを左右へスクロールして両端を確認。図内書体は本文KaTeXと一致。分析の円グラフと両目標カード、問題IV/VIの修復注記を目視。印刷CSS回帰は成功、実印刷/PDF目視は未実施。
 - fetch時staging未統合0。ローカル67package/201route、実本文67問題/65解説/64分析、図保留198/目標保留19。配信完了は以下の公開確認を参照。検証tab5/preview4337を使用。
 - 次は **日本大学2025 N全学統一第1期一次物理**、ID `nihon-u-2025-n-unified-first-physics`、元パス `projects/universities/nihon-u/past-exams/working/2025/n-unified-first/first-stage/physics`。問題7図/解説3図、analysis imported。本文・原本・全分析は未読。数学の3図を作り直さず、物理の内容監査から直列に進める。
+
+- **02:14 JST配信確認：** 内容コミット `5bab47f2c3388b3061dce7b512159e7bcbc4e756` をstaging→作業branchへ通常push。Cloudflare completed/success（最終deployment `2c4f2bb4-d6e9-421f-9483-d954fc0aefbe`）。実3URL HTTP200/h1=1/noindex/canonical、図0/3/0・修復注記6/6/1、新分析概要と4科目合計、全3SVGの配信バイトとローカル一致を確認。全201ルート検証も失敗0。
+- 実配信解説を390pxのブラウザーDOMで確認し、3図読込/幅620px、数式エラー0、文書幅375px。検証tab5を閉じviewport override reset済み。preview4337・定期継続は維持。
+- **配信済み図保留198／目標保留19。** 完了は独立図と編集確認用3ページの更新。元HTML修復・時間モデルの承認・権利・人間レビュー・実印刷は未完了。配信後記録のみ作業branchへ保存し、次の検証済み内容push時にstagingへ含める。次回は上記日本大学物理の未読本文から進める。
