@@ -593,3 +593,8 @@
 - 最終build22:25:55 JST・1118ページ、完了後384回帰成功、14,857 TeXエラー0。PC1280/390で問題・解説・分析h1=1/数式エラー0/文書横はみ出しなし、全11図読込成功。両表と左右端、四次曲線、球、分析円グラフ・PC目標カード、問題修復注記を目視。印刷CSS回帰成功、実印刷/PDF目視は未実施。
 - ローカル67package/201route、実本文67問題/65解説/64分析、図保留209/目標保留19。fetchでstaging未統合0。既存独自解説5件・人間編集図・別担当元repo差分を保持。以下に配信結果を記すまでは未配信。検証tab2/preview4337使用。
 - 次は **杏林大学2025一般物理**、ID `kyorin-2025-general-physics`。元パス `projects/universities/kyorin/past-exams/working/2025/general/first-stage/physics`、台帳上問題4図/解説4図。本文・原本・全分析は未読。数学11図をやり直さず内容監査から直列継続する。
+
+- **22:35 JST配信確認：** 内容コミット `5a60881b3a175b886f05fea5b3c0d78faaf26a71` をstaging→作業branchへ通常push済み。Cloudflare completed/success（最終deployment `e7933c9d-0540-4a2d-9814-5034ddb208c3`）。実3URL HTTP200/h1=1/noindex、図0/11/0、解説の斜線4セルと2表、修復注記と新分析要約、全11SVGの配信バイトとローカルの一致を確認。全201ルート検証失敗0。
+- 配信待ちに最終PC増減表と狭幅の苦手/得意両目標カードを追加目視。実配信解説の390pxブラウザーDOMも11図読込/幅620px、2表、数式エラー0、文書幅375px。検証tab2を閉じ、viewport override reset済み。preview4337・定期継続を維持。
+- **配信済み図保留209/目標保留19。** 今回の完了は独立図表と編集確認用3ページの更新であり、元HTMLの修復・権利・人間承認・実印刷の完了ではない。杏林物理は `weak, now_plus_later: phys-q2-c requires absent phys-q2-b` のため目標保留であることを台帳で確認済み。未読の本文監査から進め、依存関係を勝手に変更しない。
+- この配信後記録のみ作業branchへ保存し、stagingには次の検証済み内容push時に含める。
