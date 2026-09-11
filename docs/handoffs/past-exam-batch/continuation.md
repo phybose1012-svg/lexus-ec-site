@@ -638,3 +638,8 @@
 - **02:14 JST配信確認：** 内容コミット `5bab47f2c3388b3061dce7b512159e7bcbc4e756` をstaging→作業branchへ通常push。Cloudflare completed/success（最終deployment `2c4f2bb4-d6e9-421f-9483-d954fc0aefbe`）。実3URL HTTP200/h1=1/noindex/canonical、図0/3/0・修復注記6/6/1、新分析概要と4科目合計、全3SVGの配信バイトとローカル一致を確認。全201ルート検証も失敗0。
 - 実配信解説を390pxのブラウザーDOMで確認し、3図読込/幅620px、数式エラー0、文書幅375px。検証tab5を閉じviewport override reset済み。preview4337・定期継続は維持。
 - **配信済み図保留198／目標保留19。** 完了は独立図と編集確認用3ページの更新。元HTML修復・時間モデルの承認・権利・人間レビュー・実印刷は未完了。配信後記録のみ作業branchへ保存し、次の検証済み内容push時にstagingへ含める。次回は上記日本大学物理の未読本文から進める。
+
+## 2026-09-12 02:50 JST・PC停止後の復旧
+
+- 停止していたローカルpreview4337を非表示で再起動し、ライブラリーHTTP200を確認。Git connectivity/diff正常・残留lockなし。fetch後staging未統合0、作業remoteへの未push0。400回帰成功、14,857 TeXエラー0、build-input正常、実staging201ルート失敗0。再ビルド・再配信は不要。
+- 日本大学第1期物理は問題1〜3と資料記録まで読解済み、作図・編集は未着手。[具体的な再開地点](nihon-first-physics-recovery-checkpoint.md)を保存。原本PNG未確認のため衝突問題の疑義は確定扱いにしない。元repoの他担当差分を保持し、automation-2 ACTIVE/30分を維持。今回の記録だけ作業branchに保存する。
