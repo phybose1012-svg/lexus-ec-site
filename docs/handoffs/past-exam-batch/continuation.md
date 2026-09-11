@@ -672,3 +672,8 @@
 - **05:15 JST配信確認：** 内容 `a1d3dff6c1489456f5b99d1a3bb70e0f471a5a3f` をstaging→作業branchへ通常push。Cloudflare completed/success（deployment `a2aed520-3f5b-435f-9186-4ff20adaadc1`）。実3URL HTTP200/h1=1/noindex/canonical、図0/5/0、修復注記2/2/1、新分析文言と凹凸矢印を確認。全5SVG配信バイト一致、全201ルート失敗0。狭幅実staging DOMでも5図読込・図620px/表360px・文書375px・TeXエラー0。tab7閉鎖、viewport reset、preview4337維持。
 - **配信済み図保留182／目標保留19。** 表1件を含む6配置の保留を解消したが、元HTML修復・公式配点根拠・権利・人間承認は未完了。原本の表画像は公開していない。修復担当には上記8区分のMarkdownを渡せる。
 - 次対象の存在確認だけ実施：日本医科大学2022後期数学は `analysis.json`、`derived.json`、`source-html/editorial-explanations.json` が現在も存在しない。既存の修復待ちを維持し、次回は **日本医科大学2025前期数学**（`nippon-medical-2025-general-early-mathematics`、問題0図/解説5図、analysis imported）の未読本文から進める。2022を生成済みと報告しない。
+
+## 2026-09-12 05:52 JST・PC再停止後の復旧
+
+- preview4337の停止を確認し、非表示で再起動、HTTP200。保存済みサイトはGit connectivity/diff正常・未コミット差分なし・remote作業branchとHEAD一致。実staging201ルート失敗0、413回帰成功、14,873 TeXエラー0、build-input正常。再ビルド/再配信は不要。元repoの別担当差分は保持。
+- 日本医科大学2025前期数学は全文と問題4PNG/解答01〜06PNGを読解済み。作図・編集は未着手。[中断時の発見事項と具体的な再開地点](nippon-early-math-recovery-checkpoint.md)を保存。次は解答07〜11PNGと全分析監査から。定期継続は既存ACTIVE設定を維持し、完了済みパッケージをやり直さない。
