@@ -15,10 +15,18 @@
 
 ## 検出事項
 
-- **questions / figures-pending**: Question figures require independent reconstruction; dependent questions remain review-only.（7件）
-- **answers / figures-pending**: Required visual positions retained; no restricted answer crop copied.（3件）
 - **answers / editorial-review**: Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch.
 
 ## 完了報告
 
 修正した正本の位置、原文→修正後、根拠となるページ・計算、再生成したHTML、テスト結果、未解決事項を列挙する。過去問ライブラリーの再取り込み先IDは `nihon-u-2025-n-unified-first-physics`。既存の独自解説へ昇格済みのパッケージは一括取込で上書きしない。
+
+## 元データの未解決項目
+
+元のissues.jsonから取得した編集メモです。完了済みという意味ではありません。
+
+- **official-score-review**: 物理100点への仮換算と25小問各4点の仮配点を募集要項原本と科目担当者が確認する。公式小問別配点ではない。
+- **lexus-time-model-review**: 原本明記の60分を前提とした得意・苦手層の時間倍率、前問依存、Lexus目標を確認する。
+- **learner-editorial-review**: 5大問25小問の学習者向け解説について、力積の符号、熱力学の状態、干渉条件、誘導電流の向き、核計算を物理科目担当者が確認する。
+- **rights-and-redraw-review**: 問題・解答原本の公開利用範囲を確認し、原本図版クロップ10点を模写差し替えする。restricted/pending_redrawの間は内部レビュー限定とする。
+- **subject-editor-review**: 物理科目担当者が原本19ページ、5大問25小問、学習者向け解説、分析を一括レビューし、manifestのvisual_reviewedとanalysis.review.approvedを明示判断する。
