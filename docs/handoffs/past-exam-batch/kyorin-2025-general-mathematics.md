@@ -15,9 +15,17 @@
 
 ## 検出事項
 
-- **answers / figures-pending**: Required visual positions retained; no restricted answer crop copied.（11件）
 - **answers / editorial-review**: Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch.
 
 ## 完了報告
 
 修正した正本の位置、原文→修正後、根拠となるページ・計算、再生成したHTML、テスト結果、未解決事項を列挙する。過去問ライブラリーの再取り込み先IDは `kyorin-2025-general-mathematics`。既存の独自解説へ昇格済みのパッケージは一括取込で上書きしない。
+
+## 元データの未解決項目
+
+元のissues.jsonから取得した編集メモです。完了済みという意味ではありません。
+
+- **official-score-source-review**: 2025年度一般選抜1次試験の数学100点を、大学公式募集要項の保存原本で科目担当兼編集責任者が再確認する。数学70分は問題原本p.1で確認済み。
+- **provisional-subquestion-scoring-review**: 印刷上の8小問へ割り当てた仮配点12点または13点（合計100点）を科目担当兼編集責任者が確認する。公式の小問別配点ではない。
+- **rights-and-redraw-review**: 問題・解答原本の公開利用範囲を確認し、4次関数グラフ、直角三角形、直交円柱・八面体・断面図など解答図版11点を模写差し替えして内容確認を行う。rights_statusがunknown/restricted、replacement_statusがpending_redrawの間、原本ページ画像・原本クロップ・原本解答解説は内部レビュー限定とする。
+- **subject-editor-review**: 数学科目担当者が、原本24ページのHTML転記、3大問・8小問の構造、学習者向け解説、難易度、五角形評価、層別所要時間、戦略、仮配点、得点効率、Lexus目標をパッケージ単位で確認し、manifestのvisual_reviewedとanalysisのreview.approvedを明示的に判断する。

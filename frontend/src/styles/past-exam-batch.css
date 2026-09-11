@@ -1,4 +1,14 @@
 /* Imported review drafts share the approved white, narrow reading surface. */
+.past-exam-answer-page[data-past-exam-package="kyorin-2025-general-mathematics"] .answer-table-scroll--variation { max-width: 620px; margin-inline: auto; }
+.past-exam-answer-page[data-past-exam-package="kyorin-2025-general-mathematics"] .answer-table--variation { min-width: 0; width: 430px; max-width: none; font-size: 1rem; margin-inline: auto; }
+.past-exam-answer-page[data-past-exam-package="kyorin-2025-general-mathematics"] .answer-table--variation:has(thead th:nth-child(8)) { width: 600px; }
+.past-exam-answer-page[data-past-exam-package="kyorin-2025-general-mathematics"] .answer-table--variation :is(th,td):first-child { width: 80px; }
+.past-exam-answer-page[data-past-exam-package="kyorin-2025-general-mathematics"] .answer-table--variation :is(th,td):nth-child(n+2) { width: 60px; }
+.past-exam-answer-page[data-past-exam-package="kyorin-2025-general-mathematics"] .answer-table--variation:has(thead th:nth-child(8)) :is(th,td):nth-child(2n+2) { width: 46px; }
+.past-exam-answer-page[data-past-exam-package="kyorin-2025-general-mathematics"] .answer-table--variation:has(thead th:nth-child(8)) :is(th,td):nth-child(2n+3) { width: 88px; }
+@media print {
+  body.is-printing-past-exam-document [data-past-exam-package="kyorin-2025-general-mathematics"] .answer-table--variation { min-width: 0; max-width: 150mm; font-size: 10pt; }
+}
 .past-exam-answer-page[data-past-exam-package="kurume-2025-general-early-mathematics"] .answer-table-scroll--variation { max-width: 640px; margin-inline: auto; }
 .past-exam-answer-page[data-past-exam-package="kurume-2025-general-early-mathematics"] .answer-table--variation { min-width: 0; width: 420px; max-width: none; font-size: 1rem; margin-inline: auto; }
 .past-exam-answer-page[data-past-exam-package="kurume-2025-general-early-mathematics"] .answer-table--variation:has(thead th:nth-child(8)) { width: 580px; }

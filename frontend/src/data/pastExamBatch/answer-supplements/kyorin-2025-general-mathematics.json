@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "lexus-answer-supplement.v1",
+  "packageId": "kyorin-2025-general-mathematics",
+  "sourceSha256": "9b4ba15e01d3eef976cabc1961f376f1e4fd03c6c908aebba1da0cd5f1ca3473",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "関数と断面積の式から独立に検算した増減表。原本画像は複製しない。本文修復と人間レビューは保留。"
+  },
+  "operations": [
+    {
+      "type": "insert-after",
+      "expectedMatches": 1,
+      "anchor": {
+        "major_question_id": "major-question-01",
+        "type": "formula",
+        "latex": "f'(x)=6x(x+1)(2x-1)"
+      },
+      "blocks": [
+        {
+          "type": "prose",
+          "major_question_id": "major-question-01",
+          "text": "導関数の符号と3つの停留点の値を表にすると、水平線との交点数を判断できます。"
+        },
+        {
+          "type": "table",
+          "major_question_id": "major-question-01",
+          "caption": "増減表",
+          "headers": [
+            "\\(x\\)",
+            "…",
+            "\\(-1\\)",
+            "…",
+            "\\(0\\)",
+            "…",
+            "\\(1/2\\)",
+            "…"
+          ],
+          "rows": [
+            [
+              "\\(f'(x)\\)",
+              "\\(-\\)",
+              "\\(0\\)",
+              "\\(+\\)",
+              "\\(0\\)",
+              "\\(-\\)",
+              "\\(0\\)",
+              "\\(+\\)"
+            ],
+            [
+              "\\(f(x)\\)",
+              "↘",
+              "\\(-1\\)",
+              "↗",
+              "\\(1\\)",
+              "↘",
+              "\\(11/16\\)",
+              "↗"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "insert-after",
+      "expectedMatches": 1,
+      "anchor": {
+        "major_question_id": "major-question-03",
+        "type": "formula",
+        "latex": "\\frac{dS}{d\\theta}=2+2\\cos2\\theta-2\\sin2\\theta"
+      },
+      "blocks": [
+        {
+          "type": "prose",
+          "major_question_id": "major-question-03",
+          "text": "導関数は \\(4\\cos\\theta(\\cos\\theta-\\sin\\theta)\\) と整理できます。\\(0<\\theta<\\pi/2\\) で符号を調べます。端点は対象範囲に含まれないので斜線にします。"
+        },
+        {
+          "type": "table",
+          "major_question_id": "major-question-03",
+          "caption": "断面積の増減表",
+          "headers": [
+            "\\(\\theta\\)",
+            "\\(0\\)",
+            "…",
+            "\\(\\pi/4\\)",
+            "…",
+            "\\(\\pi/2\\)"
+          ],
+          "rows": [
+            [
+              "\\(dS/d\\theta\\)",
+              "[[no-value]]",
+              "\\(+\\)",
+              "\\(0\\)",
+              "\\(-\\)",
+              "[[no-value]]"
+            ],
+            [
+              "\\(S\\)",
+              "[[no-value]]",
+              "↗",
+              "\\(\\pi/2\\)",
+              "↘",
+              "[[no-value]]"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
