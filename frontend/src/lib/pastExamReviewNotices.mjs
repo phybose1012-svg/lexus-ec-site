@@ -1,5 +1,10 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'kitasato-2025-general-physics':{
+  'major-question-01':{title:'積記号と解説の途中式を修復待ちです',message:'元HTMLの積記号に制御文字が混入しています。解説は計算結果までの式と、ドップラー効果で直接音の変化が先に届く説明を省略しています。図は問題条件から独立作図しましたが、本文の修復までは編集確認用として扱い、演習・採点には使用しないでください。'},
+  'major-question-02':{title:'選択肢・時間記号と途中式を修復待ちです',message:'元HTMLでは解答欄19に原本にない選択肢が加わり、欄22の選択肢にも転記違いがあります。解説のTは周期ではなく加速時間で、停止時の位相とエネルギーの式も補足が必要です。図は初期条件から作成していますが、本文の修復までは演習・採点に使用しないでください。'},
+  'major-question-03':{title:'式の表記と円弧の説明を補足待ちです',message:'元HTMLの積記号、数式書体、極板間からスクリーンまでの式の導出を確認中です。電場偏向と磁場偏向は別の実験です。円弧の補助図は独立計算しましたが、解説の途中式・角度の定義は元HTMLでの補足待ちです。'},
+ },
  'kitasato-2025-general-mathematics':{
   'major-question-01':{title:'解説の途中式・場合分けを補足待ちです',message:'問題条件と解答値の変更ではありません。最近整数の比較、垂直条件の展開、内分と外分の区別、別解の手順を元HTMLで補足する必要があります。確率の表は問題条件から独立に計算して追加しました。解説全体は引き続き編集確認用です。'},
   'major-question-02':{title:'図・増減表を追加し、積分の説明を確認中です',message:'図と増減表は関数から独立計算しました。元の解説は平方前の符号条件、積分範囲、y軸回転で用いる逆関数の枝と円錐を引く理由を省略しています。解答値の変更ではなく、説明の補足待ちです。'},
@@ -250,6 +255,7 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'kitasato-2025-general-physics':{title:'仮時間・仮配点と元HTMLを編集確認中です',message:'理科2科目100分・200点から物理50分・100点へ仮配分した分析モデルです。53点／80点は合格ラインではありません。17設問に含まれる29マーク欄の構造、選択肢と解説の修復後の所要時間は再確認が必要です。'},
  'kitasato-2025-general-mathematics':{title:'仮配点と解説の補足は編集確認中です',message:'数学150点・80分に対し、10論理小問を各15点として計算した仮モデルです。75点／108点は合格ラインではありません。第1問の12空欄を含む解答構造と、解説の補足後の所要時間を元データで再確認します。'},
  'kindai-2025-recommendation-general-public-physics':{
   title:'本文の修復と試験形式・時間モデルの確認待ちです',
