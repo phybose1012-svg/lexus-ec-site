@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "lexus-past-exam-figures.v1",
+  "packageId": "kyorin-2025-general-physics",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "8図は問題条件・独立計算から構成し原本クロップをコピーしない。第Ⅱ問の選択肢と式、解説の途中式・摩擦条件、目標点依存関係は元HTML修復待ち。図の追加は本文・権利・人間レビューの承認を意味しない。"
+  },
+  "items": [
+    {
+      "id": "q2-spring-wall",
+      "src": "/assets/past-exams/kyorin-2025-general-physics/figures/q2-spring-wall.svg",
+      "width": 710,
+      "height": 285,
+      "alt": "壁の右に質量αmのB、ばね定数k・自然長Lのばね、質量mのA。初期のBを原点Oとし、Aへ向かう向きをx軸正方向にとる。",
+      "caption": "第Ⅱ問 図1　ばねと2つの小球（模式図）。"
+    },
+    {
+      "id": "q2-graph-choices",
+      "src": "/assets/past-exams/kyorin-2025-general-physics/figures/q2-graph-choices.svg",
+      "width": 720,
+      "height": 610,
+      "alt": "グラフ選択肢①〜⑥。①正の定数、②余弦の絶対値形、③折れ線の振動、④正の中心の周りで初め増加、⑤正の最小値から滑らかに増加、⑥最大値からゼロまで滑らかに減少する反復。時間・振幅の数値指定はない。",
+      "caption": "第Ⅱ問（a）ア・イの解答群。番号順は①②／③④／⑤⑥。"
+    },
+    {
+      "id": "ans-q2-force-graph",
+      "src": "/assets/past-exams/kyorin-2025-general-physics/figures/ans-q2-force-graph.svg",
+      "width": 760,
+      "height": 415,
+      "alt": "Aに働く符号つき弾性力fAは初め正の最大値で、ゼロを横切る余弦波。Bの垂直抗力と静止摩擦力の和の大きさはこの力の絶対値。",
+      "caption": "符号つきの力と、力の大きさを区別する。"
+    },
+    {
+      "id": "ans-q2-center-of-mass",
+      "src": "/assets/past-exams/kyorin-2025-general-physics/figures/ans-q2-center-of-mass.svg",
+      "width": 740,
+      "height": 418,
+      "alt": "BとAの間の重心G。GB=b、GA=a。Bにはαmg、Aにはmgの重力が下向きに働き、モーメントよりma=αmb。距離比はAG対GBがα対1。模式的な位置でありαの数値は指定していない。",
+      "caption": "重心の内分比を求める補助図。運動中の全ての力を描いた図ではありません。"
+    },
+    {
+      "id": "q3-bridge-circuit",
+      "src": "/assets/past-exams/kyorin-2025-general-physics/figures/q3-bridge-circuit.svg",
+      "width": 850,
+      "height": 600,
+      "alt": "9.0V電池の正極につながる上側にR1とR3、下側にR2と可変抵抗R4。R1・R2間のaとR3・R4間のbをダイオードDで結び、カソードはa側、アノードはb側。",
+      "caption": "第Ⅲ問 図1　ダイオードを含むブリッジ回路。"
+    },
+    {
+      "id": "q3-diode-graph",
+      "src": "/assets/past-exams/kyorin-2025-general-physics/figures/q3-diode-graph.svg",
+      "width": 800,
+      "height": 495,
+      "alt": "横軸VD[V]、縦軸ID[A]。0.50Vまでは電流0。直線部分は0.50V・0Aと1.0V・0.030Aを通る。",
+      "caption": "第Ⅲ問 図2　ダイオードの電圧―電流特性。"
+    },
+    {
+      "id": "ans-q3-bridge-current",
+      "src": "/assets/past-exams/kyorin-2025-general-physics/figures/ans-q3-bridge-current.svg",
+      "width": 850,
+      "height": 600,
+      "alt": "R4が1.0Ωの回路。逆バイアスでダイオード枝を開放する。左枝I1はR1とR2を下向きに、右枝I2はR3とR4を下向きに流れる。電池負極につながる下側cを0Vとする。",
+      "caption": "第Ⅲ問（2）（a）中央の枝を開放した等価回路。"
+    },
+    {
+      "id": "ans-q3-kirchhoff-circuit",
+      "src": "/assets/past-exams/kyorin-2025-general-physics/figures/ans-q3-kirchhoff-circuit.svg",
+      "width": 870,
+      "height": 620,
+      "alt": "上側d-e-f、下側c-g-h、中央a-b。左上電流I1、右上I3は下向き。ダイオード電流IDはbからaへ。左下はI1+ID、右下はI3−ID。R4は7.0Ω、（3）では12Ωに置き換える。",
+      "caption": "第Ⅲ問（2）（c）枝電流と閉回路の記号。"
+    }
+  ]
+}

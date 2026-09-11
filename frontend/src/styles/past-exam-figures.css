@@ -1,4 +1,5 @@
 .past-exam-figure { margin: 24px auto; max-width: 680px; break-inside: avoid; }
+.past-exam-figure img[src^="/assets/past-exams/kyorin-2025-general-physics/"] { max-height: none; height: auto; }
 .past-exam-figure img[src^="/assets/past-exams/kyorin-2025-general-mathematics/"] { max-height: none; height: auto; }
 .past-exam-figure img[src^="/assets/past-exams/kurume-2025-general-early-physics/"] { max-height: none; height: auto; }
 .past-exam-figure img[src^="/assets/past-exams/kitasato-2025-general-physics/"] { max-height: none; height: auto; }
@@ -26,6 +27,9 @@
 .past-exam-figure img[src^="/assets/past-exams/kansai-medical-2025-general-early-physics/"] { max-height: none; height: auto; }
 .past-exam-figure img[src="/assets/past-exams/keio-2025-general-mathematics/figures/iv2-cube-unfolding.svg"] { max-height: none; height: auto; }
 @media screen and (max-width: 600px) {
+  [data-past-exam-package="kyorin-2025-general-physics"] .past-exam-figure { overflow-x: auto; }
+  [data-past-exam-package="kyorin-2025-general-physics"] .past-exam-figure::before { content: "図は左右にスクロールできます"; display: block; margin-bottom: 10px; font-size: .8rem; color: #52657b; }
+  .past-exam-figure img[src^="/assets/past-exams/kyorin-2025-general-physics/"] { min-width: 680px; }
   [data-past-exam-package="kyorin-2025-general-mathematics"] .past-exam-figure { overflow-x: auto; }
   [data-past-exam-package="kyorin-2025-general-mathematics"] .past-exam-figure::before { content: "図は左右にスクロールできます"; display: block; margin-bottom: 10px; font-size: .8rem; color: #52657b; }
   .past-exam-figure img[src^="/assets/past-exams/kyorin-2025-general-mathematics/"] { min-width: 620px; }
@@ -53,6 +57,7 @@
   .past-exam-figure img[src="/assets/past-exams/international-health-welfare-2025-general-physics/figures/q2-vectors.svg"] { min-width: 560px; }
 }
 @media print {
+  body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/kyorin-2025-general-physics/"] { max-height: 200mm; max-width: 150mm; width: auto; }
   body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/kyorin-2025-general-mathematics/"] { max-height: 200mm; max-width: 150mm; width: auto; }
   body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/kurume-2025-general-early-physics/"] { max-height: 200mm; max-width: 150mm; width: auto; }
   body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/kurume-2025-general-early-mathematics/"] { max-height: 200mm; max-width: 150mm; width: auto; }
