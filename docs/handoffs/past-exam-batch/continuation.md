@@ -669,3 +669,6 @@
 - PC1280と狭幅390で3ページh1=1、TeXエラー0、文書幅1265/375px。全5図をPC実表示で目視し、狭幅620px図の両端、360px表の両端をスクロール確認。分析円グラフと両目標カードも両幅で目視。実印刷/PDFの目視は未実施（印刷CSSの既存回帰とは区別）。preview4337・検証tab7使用。
 - 次候補は日本医科大学2022後期数学（answers/analysis source-repair-required、元資料が更新されたか確認）。依然不足なら保留継続し、日本医科大学2025前期数学（問題0図/解説5図、analysis imported）へ直列に進む。両パッケージの本文は今回未読。
 - 最終build05:09:08 JST・1118ページ。完了後413回帰成功、14,873 TeXエラー0。以下のpush/実配信結果を確認してから公開済み件数を更新する。
+- **05:15 JST配信確認：** 内容 `a1d3dff6c1489456f5b99d1a3bb70e0f471a5a3f` をstaging→作業branchへ通常push。Cloudflare completed/success（deployment `a2aed520-3f5b-435f-9186-4ff20adaadc1`）。実3URL HTTP200/h1=1/noindex/canonical、図0/5/0、修復注記2/2/1、新分析文言と凹凸矢印を確認。全5SVG配信バイト一致、全201ルート失敗0。狭幅実staging DOMでも5図読込・図620px/表360px・文書375px・TeXエラー0。tab7閉鎖、viewport reset、preview4337維持。
+- **配信済み図保留182／目標保留19。** 表1件を含む6配置の保留を解消したが、元HTML修復・公式配点根拠・権利・人間承認は未完了。原本の表画像は公開していない。修復担当には上記8区分のMarkdownを渡せる。
+- 次対象の存在確認だけ実施：日本医科大学2022後期数学は `analysis.json`、`derived.json`、`source-html/editorial-explanations.json` が現在も存在しない。既存の修復待ちを維持し、次回は **日本医科大学2025前期数学**（`nippon-medical-2025-general-early-mathematics`、問題0図/解説5図、analysis imported）の未読本文から進める。2022を生成済みと報告しない。
