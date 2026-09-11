@@ -571,3 +571,7 @@
 - 機械検証は28解答キー、円すい/気球/回路の不変量、独立DPを含む。元計画の第2問(7)が(6)を含まない依存関係不整合のため目標点保留を維持。図完成・28キー検算は学習者本文全体の承認ではない。[正式修復依頼7区分](kurume-physics-source-review.md)を参照。
 - 台帳67package/201route、実本文67問題・65解説・64分析、ローカル図保留220/目標保留19。fetch時のstaging未統合0。以下に実配信確認を追記するまでは4図は未配信。
 - **次は杏林大学2025一般数学**、ID `kyorin-2025-general-mathematics`、元パス `projects/universities/kyorin/past-exams/working/2025/general/first-stage/mathematics`。台帳上問題0図/解説11図、3大問8小問・原本24ページ、数学70分。本文・原本・分析は未読。久留米物理の配信確認後、杏林の内容監査から直列継続する。
+
+- **20:53 JST配信確認：** 内容コミット `01b25e9ba0299f435dc069baa0f45f52e36af875` をstaging→作業branchへ通常push。Cloudflare completed/success（最終deployment `55a09619-e042-45fc-9608-17bc51fbd2a3`）。実3URL HTTP200/h1=1/noindex、図4/0/0・レビュー注記3/3/1、4SVGの配信バイトとローカル一致、全201ルートHTTP/h1/noindex/canonical検証失敗0。
+- 実配信の問題ページのブラウザーDOMでも4図すべて読み込み・650〜680px表示、数式エラー0、文書幅1265px。公開待ち中には等速円運動図の最終PC表示も目視。検証用tab1を閉じ、viewport overrideはreset済み。preview4337と定期継続は維持。
+- **配信済み図保留220／目標保留19。** 今回の完了は4図・編集確認用3ページの更新であり、元HTML修復・目標点・権利・人間レビュー・実印刷は未完了。作業treeは配信後記録前にクリーン。記録のみ作業branchへ保存し、stagingには次の検証済み内容push時に含める。次回は杏林数学の本文監査から。久留米物理4図を再作業しない。
