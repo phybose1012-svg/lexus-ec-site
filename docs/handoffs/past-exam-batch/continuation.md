@@ -693,3 +693,8 @@
 - **06:48 JST配信確認：** 内容 `7cbd2811e0283432211f639862ede30215b09b08` をstaging→作業branchへ通常push。Cloudflare completed/success（deployment `c50d02e0-d044-4210-a476-059a8f02ab06`）。実3URL HTTP200/h1=1/noindex/canonical、図0/5/0・レビュー注記4/4/1、新分析見出しとHTML表、全5SVG配信バイト一致。全201ルート失敗0。
 - 実stagingの390pxブラウザーでも5図読込/図650px/表360px/文書375px/数式エラー0を確認。配信待ちに射影図の左右端・中間の座標ラベルも狭幅で目視。tab8を閉じviewport reset、preview4337と既存定期継続を維持。
 - **配信済み図保留177／目標保留19。** 完了は独立図表と編集確認用3ページの更新であり、元HTML修復・権利・人間承認・実印刷の完了ではない。次の日本医科大学前期物理は問題5図/解説1図、目標保留理由は `weak headline: observed 62; canonical 62.5 (or rounded 63)`。現在の原本/分析は未読。丸めの根拠を確認せずゲートを外さない。配信後記録だけ作業branchへ保存し、次の検証済み内容push時にstagingへ含める。
+
+## 2026-09-12 07:24 JST・PC停止後の確認
+
+- 保存済みサイトはclean、Git connectivity正常・残留lockなし。fetch後staging未統合0、作業remoteへの未push0。preview4337はHTTP200で動作しており再起動不要。build-input正常、420回帰成功、14,898 TeXエラー0、実staging全201ルート失敗0。再ビルド・再配信は不要。
+- 日本医科大学前期物理は問題本文3ページ読了、原本画像と解答・分析の大部分は未読。具体的な読解メモと元hashを[再開地点](nippon-early-physics-recovery-checkpoint.md)へ保存した。作図・編集は未着手。元repoの別担当差分を保持し、既存ACTIVE/30分の自動継続設定を維持。今回の復旧記録のみ作業branchへ保存する。
