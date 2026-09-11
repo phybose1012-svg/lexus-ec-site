@@ -2,6 +2,8 @@
 
 2026-09-12 05:52 JST。これは中断時の読解メモであり、修復完了・公開承認ではない。
 
+**06:48 JST追記：この中断地点の残作業は実施済み。** 独立5SVG・HTML表・分析の更新は `7cbd2811e0283432211f639862ede30215b09b08` でステージング配信を確認。以下は履歴として残す。元HTML修復は [正式修復依頼](nippon-early-math-source-review.md)、次対象は [continuation.md](continuation.md) を参照し、この読解地点からやり直さない。
+
 ## 復旧状態
 
 - 作業branch `codex/keio-2025-mathematics` の中断時HEADは `57c49f7f8d52fb14c1bc9442792161b72e0d62f6`。同じSHAがremoteに保存済み。stagingは `a1d3dff6c1489456f5b99d1a3bb70e0f471a5a3f`。

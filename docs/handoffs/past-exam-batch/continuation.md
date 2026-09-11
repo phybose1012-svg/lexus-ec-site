@@ -689,3 +689,7 @@
 - PC1280/390pxで3ページh1=1/数式エラー0/文書幅1265・375px。全5図はPCで目視、狭幅は650px図の空間/平面両パネルと360px表の両端を実スクロール確認。分析円グラフ・両目標カードを両幅で目視。印刷CSSの回帰は成功、今回の実印刷/PDF目視は未実施。tab8/preview4337使用。
 - fetch時staging未統合0。ローカル67package/201route、本文67問題/65解説/64分析、図保留177/目標保留19。以下の配信確認までは配信済み図保留182。
 - 次は **日本医科大学2025前期物理**、ID `nippon-medical-2025-general-early-physics`、元パス `projects/universities/nippon-medical/past-exams/working/2025/general-early/first-stage/physics`。台帳は問題/解説imported・targets-deferred。本文/原本/全分析は未読。目標保留を推測で解除せず、独立実装できる箇所から直列継続する。
+
+- **06:48 JST配信確認：** 内容 `7cbd2811e0283432211f639862ede30215b09b08` をstaging→作業branchへ通常push。Cloudflare completed/success（deployment `c50d02e0-d044-4210-a476-059a8f02ab06`）。実3URL HTTP200/h1=1/noindex/canonical、図0/5/0・レビュー注記4/4/1、新分析見出しとHTML表、全5SVG配信バイト一致。全201ルート失敗0。
+- 実stagingの390pxブラウザーでも5図読込/図650px/表360px/文書375px/数式エラー0を確認。配信待ちに射影図の左右端・中間の座標ラベルも狭幅で目視。tab8を閉じviewport reset、preview4337と既存定期継続を維持。
+- **配信済み図保留177／目標保留19。** 完了は独立図表と編集確認用3ページの更新であり、元HTML修復・権利・人間承認・実印刷の完了ではない。次の日本医科大学前期物理は問題5図/解説1図、目標保留理由は `weak headline: observed 62; canonical 62.5 (or rounded 63)`。現在の原本/分析は未読。丸めの根拠を確認せずゲートを外さない。配信後記録だけ作業branchへ保存し、次の検証済み内容push時にstagingへ含める。
