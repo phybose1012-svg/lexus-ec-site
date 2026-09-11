@@ -1,5 +1,19 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'kindai-2025-recommendation-general-public-mathematics':{
+  'major-question-01':{
+   title:'解答欄の文字数と、不等式の証明を修復待ちです',
+   message:'元HTMLでは(1)の3文字の解答欄「ウエオ」から「オ」が欠けています。(3)の展開・帰納法・別解も原本から省略されています。修復までは該当箇所を演習・採点に使わず、編集確認用としてご覧ください。',
+  },
+  'major-question-02':{
+   title:'(1)の統計表に転記不備があります',
+   message:'元HTMLではBの点数が0ですが、原本は6です。このままでは平均・分散の条件と解答が一致しません。(1)は修復まで演習・採点の対象外です。(2)(3)の偏差表と式をつなぐ説明も補足待ちです。',
+  },
+  'major-question-03':{
+   title:'関数・共有点の定義と条件整理を補足待ちです',
+   message:'元の学習者向けHTMLはf・gやx₁・x₂の導入、積分範囲、整数候補を絞る説明を省略しています。図は問題条件から独立計算しましたが、解説本文は修復まで編集確認用として扱ってください。',
+  },
+ },
  'kindai-2025-general-first-a-physics':{
   'major-question-01':{
    title:'絶対値・角度条件と近似の説明を修復待ちです',
@@ -221,6 +235,10 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'kindai-2025-recommendation-general-public-mathematics':{
+  title:'本文修復後に評価と所要時間を再確認します',
+  message:'問題のマーク欄と統計表、解説の証明・偏差表を修復待ちです。53点／80点は元の仮配点・時間モデルによる編集上の目安で、合格に必要な点数ではありません。苦手層は判断だけで25.6分を見込むモデルです。本文修復後に評価・時間・前問依存を再確認します。',
+ },
  'kindai-2025-general-first-a-physics':{
   title:'本文と、解く順番・試験形式の分析を修復待ちです',
   message:'苦手層の「今解く」に、その設問が必要とする前問が含まれないため、目標点は保留しています。元分析は記入式を含む試験をマーク式としており、解答欄の対応も未登録です。100点・60分は編集上の仮設定を含むので、本文と分析の修復後に評価・所要時間を再確認します。',
