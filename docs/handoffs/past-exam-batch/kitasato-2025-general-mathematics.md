@@ -15,9 +15,16 @@
 
 ## 検出事項
 
-- **answers / figures-pending**: Required visual positions retained; no restricted answer crop copied.（1件）
 - **answers / editorial-review**: Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch.
 
 ## 完了報告
 
 修正した正本の位置、原文→修正後、根拠となるページ・計算、再生成したHTML、テスト結果、未解決事項を列挙する。過去問ライブラリーの再取り込み先IDは `kitasato-2025-general-mathematics`。既存の独自解説へ昇格済みのパッケージは一括取込で上書きしない。
+
+## 元データの未解決項目
+
+元のissues.jsonから取得した編集メモです。完了済みという意味ではありません。
+
+- **provisional-subquestion-scoring-review**: 10論理小問へ各15点を割り当てた仮配点（合計150点）を科目担当兼編集責任者が確認する。数学150点は2025年度大学公式募集要項で確認済みだが、小問別配点は公式配点ではない。
+- **rights-and-redraw-review**: 問題・解答原本の公開利用範囲を確認し、解答第2問の図版crop ans-q2-function-graphを模写差し替えして内容確認を行う。rights_statusがrestricted、replacement_statusがpending_redrawの間、原本ページ画像・原本クロップ・原本解答解説は内部レビュー限定とする。
+- **subject-editor-review**: 数学科目担当者が原本15ページのHTML転記、3大問・10小問の構造、学習者向け解説、難易度、五角形評価、層別所要時間、戦略、仮配点、得点効率、Lexus目標をパッケージ単位で確認し、manifestのvisual_reviewedとanalysisのreview.approvedを明示的に判断する。

@@ -1,4 +1,15 @@
 /* Imported review drafts share the approved white, narrow reading surface. */
+/* Six columns here, not the much wider Iwate concavity table. */
+.past-exam-answer-page[data-past-exam-package="kitasato-2025-general-mathematics"] .answer-table-scroll { max-width: 600px; margin-inline: auto; }
+.past-exam-answer-page[data-past-exam-package="kitasato-2025-general-mathematics"] .answer-table:not(.answer-table--variation) :is(th,td) { padding-inline: 5px; }
+.past-exam-answer-page[data-past-exam-package="kitasato-2025-general-mathematics"] .answer-table:not(.answer-table--variation) thead th { white-space: nowrap; }
+.past-exam-answer-page[data-past-exam-package="kitasato-2025-general-mathematics"] .answer-table-scroll--variation { max-width: 520px; }
+.past-exam-answer-page[data-past-exam-package="kitasato-2025-general-mathematics"] .answer-table--variation { min-width: 0; max-width: 520px; font-size: 1rem; }
+.past-exam-answer-page[data-past-exam-package="kitasato-2025-general-mathematics"] .answer-table--variation :is(th,td):first-child { width: 64px; }
+.past-exam-answer-page[data-past-exam-package="kitasato-2025-general-mathematics"] .answer-table--variation :is(th,td):nth-child(2n + 3) { width: 38px; }
+@media print {
+  body.is-printing-past-exam-document [data-past-exam-package="kitasato-2025-general-mathematics"] .answer-table--variation { min-width: 0; max-width: 150mm; font-size: 10pt; }
+}
 .batch-figure-pending {max-width:560px;margin:1.8rem auto;color:#466077;font-family:var(--font-sans,sans-serif)}
 .batch-figure-pending > div {display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:170px;max-height:370px;padding:24px;background:#f7f9fb;border:1px dashed #b9c6cf;border-radius:6px;text-align:center}
 .batch-figure-pending p {font-size:.9rem;max-width:38ch;line-height:1.8}

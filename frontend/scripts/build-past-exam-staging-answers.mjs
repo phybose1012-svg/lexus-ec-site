@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {normalizeInequalitiesDeep} from '../src/lib/mathNotation.mjs';
 import {inline,escapeHtml} from '../src/lib/pastExamInline.mjs';
 import {loadFigureManifest,renderRegisteredFigure} from '../src/lib/pastExamFigures.mjs';
+import {applyAnswerSupplement} from './lib/past-exam-answer-supplements.mjs';
 export {inline,escapeHtml};
 
 const dataRoot=fileURLToPath(new URL('../src/data/',import.meta.url));
@@ -16,7 +17,10 @@ export function purposeFor(title) {
 }
 export function renderProjection(snapshot, purposes=new Map()) {
   if(snapshot.schemaVersion!=='lexus-staging-answer-snapshot.v1'||snapshot.editorial?.provenance!=='editorial_adaptation') throw new Error('Only separately identified editorial adaptations can be projected');
-  const {question,editorial,assets}=normalizeInequalitiesDeep(snapshot);
+  const supplementFile=path.join(dataRoot,'pastExamBatch/answer-supplements',`${snapshot.question.packageId}.json`);
+  const supplementText=fs.existsSync(supplementFile)?fs.readFileSync(supplementFile,'utf8'):null;
+  const supplement=supplementText?JSON.parse(supplementText):null;
+  const {question,editorial,assets}=normalizeInequalitiesDeep({...snapshot,editorial:applyAnswerSupplement(snapshot,supplement)});
   const manifestFile=path.join(dataRoot,'pastExamFigures',`${question.packageId}.json`);
   const figures=fs.existsSync(manifestFile)?loadFigureManifest(manifestFile,fileURLToPath(new URL('../public/',import.meta.url)),question.packageId):null;
   if(editorial.package_id!==question.source.sourcePackageId) throw new Error('Source package mismatch');
@@ -35,7 +39,8 @@ export function renderProjection(snapshot, purposes=new Map()) {
     if(block.type==='table') {
       if(!block.headers?.length||block.rows?.some(r=>r.length!==block.headers.length)) return `<aside class="source-note" data-blocked-table="true"><strong>表の確認中</strong><p>${inline(block.caption||'この箇所の表')}：元データの列数が一致していないため、確認後に掲載します。</p></aside>`;
       const variation=/増減|凹凸/.test(block.caption??'');
-      return `<div class="table-scroll answer-table-scroll${variation?' answer-table-scroll--variation':''}" role="region" tabindex="0"><table class="source-table answer-table${variation?' answer-table--variation':''}"><caption>${inline(block.caption)}</caption><thead><tr>${block.headers.map(c=>`<th scope="col">${inline(c)}</th>`).join('')}</tr></thead><tbody>${block.rows.map(r=>`<tr>${r.map((c,i)=>i===0?`<th scope="row">${inline(c)}</th>`:/^(未定義|定義されない)$/.test(c)?'<td class="answer-table__no-value" aria-label="値なし"></td>':`<td>${inline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+      const noValue='<td class="answer-table__no-value" aria-label="値なし"><svg class="answer-table__diagonal" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><line x1="0" y1="0" x2="100" y2="100" vector-effect="non-scaling-stroke"/></svg></td>';
+      return `<div class="table-scroll answer-table-scroll${variation?' answer-table-scroll--variation':''}" role="region" aria-label="${escapeHtml(block.caption)}" tabindex="0"><table class="source-table answer-table${variation?' answer-table--variation':''}"><caption>${inline(block.caption)}</caption><thead><tr>${block.headers.map(c=>`<th scope="col">${inline(c)}</th>`).join('')}</tr></thead><tbody>${block.rows.map(r=>`<tr>${r.map((c,i)=>i===0?`<th scope="row">${inline(c)}</th>`:/^(未定義|定義されない|\[\[no-value\]\])$/.test(c)?noValue:`<td>${inline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
     }
     if(block.type==='crop') {
       const asset=assets.find(a=>a.id===block.asset_id);
@@ -64,7 +69,7 @@ export function renderProjection(snapshot, purposes=new Map()) {
     html+=(sectionOpen?'</section>':'')+'</div></article>';
     return {id:q.id,label:q.label,order:i+1,html};
   });
-  return {schemaVersion:'lexus-past-exam-answer-page.v1',packageId:question.packageId,route:{...question.route,path:question.route.path.replace(/questions\/$/,'answers/')},university:question.university,exam:question.exam,subject:question.subject,document:{role:'answers',pageUnit:'major_question',majorQuestions:majors},source:{contentProvenance:'editorial_adaptation_import',reference:snapshot.sourceReference,sha256:snapshot.sha256,needsHumanReview:true,rightsStatus:'review_required',restrictedAssetsCopied:false,independentlyReauthored:false,reviewNote:'保存済み学習者向け解説のステージング取り込み版。数式・論理・図版の詳細校正前。'},links:{questions:question.route.path,universityLibrary:question.links.universityLibrary,analysis:question.links.analysis}};
+  return {schemaVersion:'lexus-past-exam-answer-page.v1',packageId:question.packageId,route:{...question.route,path:question.route.path.replace(/questions\/$/,'answers/')},university:question.university,exam:question.exam,subject:question.subject,document:{role:'answers',pageUnit:'major_question',majorQuestions:majors},source:{contentProvenance:'editorial_adaptation_import',reference:snapshot.sourceReference,sha256:snapshot.sha256,...(supplement?{supplement:{reference:`frontend/src/data/pastExamBatch/answer-supplements/${question.packageId}.json`,sha256:crypto.createHash('sha256').update(supplementText).digest('hex'),contentProvenance:supplement.contentProvenance,needsHumanReview:true}}:{}),needsHumanReview:true,rightsStatus:'review_required',restrictedAssetsCopied:false,independentlyReauthored:false,reviewNote:'保存済み学習者向け解説のステージング取り込み版。数式・論理・図版の詳細校正前。'},links:{questions:question.route.path,universityLibrary:question.links.universityLibrary,analysis:question.links.analysis}};
 }
 export function buildAll() {
   const dir=path.join(dataRoot,'pastExamStagingAnswerSources');

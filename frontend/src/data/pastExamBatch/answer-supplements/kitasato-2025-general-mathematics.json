@@ -1,0 +1,130 @@
+{
+  "schemaVersion": "lexus-answer-supplement.v1",
+  "packageId": "kitasato-2025-general-mathematics",
+  "sourceSha256": "ca6f4f25570f9faa3f5c0cc2a905ea03399b025f803ad6a996b1af939006a343",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "問題のカード64経路と導関数から独立に構成したHTML表。原本の表画像・文章は複製しない。元HTMLの説明補足と権利レビューは未完了。"
+  },
+  "operations": [
+    {
+      "type": "insert-after",
+      "expectedMatches": 1,
+      "anchor": {
+        "major_question_id": "major-question-01",
+        "type": "prose",
+        "text": "3回の和が8になる並びを、2回目に3を引く場合と1回目に3を引く場合に分けます。"
+      },
+      "blocks": [
+        {
+          "type": "prose",
+          "major_question_id": "major-question-01",
+          "text": "どちらの箱もカードは4枚です。数字ではなくカードを区別すれば、3回の経路は64通りで等確率です。箱Bの「3」は2枚あるため、数字の並びが同じでも経路は2通りになる場合があります。"
+        },
+        {
+          "type": "table",
+          "major_question_id": "major-question-01",
+          "caption": "和が8になる5種類の並び",
+          "headers": [
+            "1回目",
+            "2回目",
+            "3回目",
+            "カードの経路数",
+            "確率"
+          ],
+          "rows": [
+            [
+              "\\(0\\)",
+              "\\(3\\)",
+              "\\(5\\)",
+              "1",
+              "\\(\\dfrac{1}{64}\\)"
+            ],
+            [
+              "\\(1\\)",
+              "\\(3\\)",
+              "\\(4\\)",
+              "1",
+              "\\(\\dfrac{1}{64}\\)"
+            ],
+            [
+              "\\(2\\)",
+              "\\(3\\)",
+              "\\(3\\)",
+              "2",
+              "\\(\\dfrac{2}{64}\\)"
+            ],
+            [
+              "\\(3\\)",
+              "\\(4\\)",
+              "\\(1\\)",
+              "1",
+              "\\(\\dfrac{1}{64}\\)"
+            ],
+            [
+              "\\(3\\)",
+              "\\(5\\)",
+              "\\(0\\)",
+              "1",
+              "\\(\\dfrac{1}{64}\\)"
+            ]
+          ]
+        },
+        {
+          "type": "prose",
+          "major_question_id": "major-question-01",
+          "text": "該当する経路は1＋1＋2＋1＋1＝6通りです。表の確率を合計すると、次の値になります。"
+        }
+      ]
+    },
+    {
+      "type": "insert-after",
+      "expectedMatches": 1,
+      "anchor": {
+        "major_question_id": "major-question-02",
+        "type": "formula",
+        "latex": "f'(x)=0\\Longrightarrow x=-\\frac2{\\sqrt5}"
+      },
+      "blocks": [
+        {
+          "type": "prose",
+          "major_question_id": "major-question-02",
+          "text": "導関数の符号と、端点・停留点での関数値をまとめます。両端では導関数の値を置かず、斜線で示します。"
+        },
+        {
+          "type": "table",
+          "major_question_id": "major-question-02",
+          "caption": "増減表",
+          "headers": [
+            "\\(x\\)",
+            "\\(-1\\)",
+            "…",
+            "\\(-\\frac2{\\sqrt5}\\)",
+            "…",
+            "\\(1\\)"
+          ],
+          "rows": [
+            [
+              "\\(f'(x)\\)",
+              "[[no-value]]",
+              "\\(-\\)",
+              "\\(0\\)",
+              "\\(+\\)",
+              "[[no-value]]"
+            ],
+            [
+              "\\(f(x)\\)",
+              "\\(-2\\)",
+              "↘",
+              "\\(-\\sqrt5\\)",
+              "↗",
+              "\\(2\\)"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
