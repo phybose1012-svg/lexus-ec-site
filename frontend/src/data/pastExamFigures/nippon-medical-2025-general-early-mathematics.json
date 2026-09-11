@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "lexus-past-exam-figures.v1",
+  "packageId": "nippon-medical-2025-general-early-mathematics",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "与えられた辺長・座標・回転の条件から独立生成。図内のX/Yは回転前/後を区別する。HTML表は独立導出。元本文の論証欠落・権利・人間承認は未完了。"
+  },
+  "items": [
+    {
+      "id": "ans-q2-djhi-plane",
+      "src": "/assets/past-exams/nippon-medical-2025-general-early-mathematics/figures/ans-q2-djhi-plane.svg",
+      "width": 660,
+      "height": 540,
+      "alt": "O,A,D,H,Iが同一平面上。JはDからOHへ下ろした垂線の足。DHIとOHIは底辺IHを共有し、高さの比はJH:OH=1−x:1。Dは説明用の位置。",
+      "caption": "△DHIと△OHIの面積を、高さの比で比較します。"
+    },
+    {
+      "id": "ans-q2-tetrahedron",
+      "src": "/assets/past-exams/nippon-medical-2025-general-early-mathematics/figures/ans-q2-tetrahedron.svg",
+      "width": 710,
+      "height": 550,
+      "alt": "辺長OA=OB=AB=1、OC=BC=√3、AC=2の四面体。HはOから平面ABCへの垂線の足、Iは三角形ABCの内心、DはOA上。",
+      "caption": "辺長から独立に構成した四面体の投影図。"
+    },
+    {
+      "id": "ans-q2-incenter",
+      "src": "/assets/past-exams/nippon-medical-2025-general-early-mathematics/figures/ans-q2-incenter.svg",
+      "width": 770,
+      "height": 550,
+      "alt": "AB=1、BC=√3、AC=2の直角三角形。内心Iと、角Aの二等分線がBCと交わる点Kを示す。BK:KC=1:2、AI:IK=√3:1。",
+      "caption": "内心の位置を、角の二等分線と内分比で求めます。"
+    },
+    {
+      "id": "ans-q3-space-geometry",
+      "src": "/assets/past-exams/nippon-medical-2025-general-early-mathematics/figures/ans-q3-space-geometry.svg",
+      "width": 835,
+      "height": 510,
+      "alt": "左はx=2の断面円を例にAと最短点Xを同じ角度だけ回してBとYへ移す投影図。右は回転後のxy平面でB(1,5,0)と放物線上Y(2,1,0)の最短距離を示す。",
+      "caption": "空間の回転と、回転後の平面内の最小化を分けて考えます。"
+    },
+    {
+      "id": "ans-q3-yz-projection",
+      "src": "/assets/past-exams/nippon-medical-2025-general-early-mathematics/figures/ans-q3-yz-projection.svg",
+      "width": 725,
+      "height": 570,
+      "alt": "yz平面への射影でB′(5,0)をA′(3,4)へ戻すのと同じ回転により、Y′(1,0)はX′(3/5,4/5)へ移る。半径5と1、角度が共通。",
+      "caption": "最短点の座標を、回転前の向きに戻します。"
+    }
+  ]
+}

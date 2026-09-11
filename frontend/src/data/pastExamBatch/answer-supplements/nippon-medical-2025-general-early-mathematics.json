@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "lexus-answer-supplement.v1",
+  "packageId": "nippon-medical-2025-general-early-mathematics",
+  "sourceSha256": "c638006a24e84b01861970bda263460f3c493717001b74906825c6cf2f227cae",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "回転不変性・断面円の最近点と導関数から独立に補足した説明とHTML増減表。元learnerの別解と他の途中式は修復待ち。"
+  },
+  "operations": [
+    {
+      "type": "insert-after",
+      "expectedMatches": 1,
+      "anchor": {
+        "type": "formula",
+        "major_question_id": "major-question-03",
+        "latex": "AH=\\sqrt{3^2+4^2}=5,\\qquad B=(1,5,0)"
+      },
+      "blocks": [
+        {
+          "type": "prose",
+          "major_question_id": "major-question-03",
+          "text": "集合\\(S\\)は\\(x\\)軸のまわりに回しても変わらず、距離も保たれます。回転後、各断面円で\\(B\\)に最も近い点は正の\\(y\\)軸方向にあります。この点を\\(Y=(2p^2,p,0)\\)、\\(p\\geqq0\\)と置きます。以下の距離式の\\(X_k\\)はこの回転後の点\\(Y\\)を表し、元の点\\(X\\)とは区別します。"
+        }
+      ]
+    },
+    {
+      "type": "insert-after",
+      "expectedMatches": 1,
+      "anchor": {
+        "type": "formula",
+        "major_question_id": "major-question-03",
+        "latex": "\\frac{d}{dp}|BX_k|^2=2(p-1)(8p^2+8p+5)"
+      },
+      "blocks": [
+        {
+          "type": "prose",
+          "major_question_id": "major-question-03",
+          "text": "距離の2乗を\\(F(p)\\)とします。\\(8p^2+8p+5=8(p+1/2)^2+3\\)は正なので、導関数の符号は\\(p-1\\)で決まります。\\(p=0\\)は集合\\(S\\)の頂点も含めて比較するための端点です。"
+        },
+        {
+          "type": "table",
+          "major_question_id": "major-question-03",
+          "caption": "距離の2乗 F(p) の増減表",
+          "headers": [
+            "\\(p\\)",
+            "\\(0\\)",
+            "…",
+            "\\(1\\)",
+            "…"
+          ],
+          "rows": [
+            [
+              "\\(F'(p)\\)",
+              "\\(-10\\)",
+              "\\(-\\)",
+              "\\(0\\)",
+              "\\(+\\)"
+            ],
+            [
+              "\\(F(p)\\)",
+              "\\(26\\)",
+              "↘",
+              "\\(17\\)",
+              "↗"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

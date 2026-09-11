@@ -1,5 +1,11 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'nippon-medical-2025-general-early-mathematics':{
+  'major-question-01':{title:'解説の途中式は補足確認中です',message:'極形式・隣接確率比・整数範囲の説明を元HTMLの修復担当へ依頼しています。数値だけでなく条件からの導出を確認してください。'},
+  'major-question-02':{title:'四面体の呼び方と解説順序を確認中です',message:'この図形は正四面体ではありません。解説の問2・問3の結果を問4へつなぐ順序と、長さ・面積を求める途中式は修復待ちです。'},
+  'major-question-03':{title:'回転と別解の説明は補足確認中です',message:'回転前の点Xと回転後の点Yを図で区別し、増減表を補足しました。元HTMLの別解は結論までの途中計算が欠けており、修復待ちです。'},
+  'major-question-04':{title:'証明の途中過程は補足確認中です',message:'微分可能性を示す差商の極限、初期条件の適用、偶奇性を使う計算について、元HTMLへの補足を依頼しています。'},
+ },
  'nihon-u-2025-n-unified-first-mathematics-second-stage':{
   'major-question-02':{title:'共有点の条件の説明を補足待ちです',message:'図は平方根関数と直線から独立に作成しました。二乗した方程式の解を元の式へ戻す確認と、境界を含むかどうかの説明は、元の学習者向け解説で補足待ちです。'},
   'major-question-03':{title:'凹凸表を追加し、途中式の説明を補足待ちです',message:'凹凸表と回転領域を独立計算で追加しました。変曲点とそのx座標の言い分け、積分変数を変える際の上下端、部分積分の途中式について、元の学習者向け解説の修復を待っています。'}
@@ -296,6 +302,7 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'nippon-medical-2025-general-early-mathematics':{title:'時間モデルと解説は確認中です',message:'問題冊子の数学90分を計算に使っていますが、公式日程の11:05〜12:55との関係は確認待ちです。小問配点・所要時間・目標点は編集上の仮設定で、合格ラインではありません。元HTMLの図形名・論証・解答形式の修復後に再評価します。'},
  'nihon-u-2025-n-unified-first-mathematics-second-stage':{title:'配点の根拠を確認中です',message:'元分析は各大問20点・合計60点を公式としていますが、指定された原本画像ではその記載を確認できませんでした。ここでは元データの60点換算による仮配点・目標として表示します。公式配点や合格ラインの保証ではありません。対象は一次ではなく二次試験です。'},
  'nihon-u-2025-n-unified-first-physics':{title:'本文修復前の編集用分析です',message:'元問題の条件・選択肢・解説に転記不備があるため、原本に基づく出題傾向の確認用です。100点・各小問4点は分析用の仮換算で、合格最低点ではありません。時間モデルと前問依存は科目担当者の確認待ちです。'},
  'nihon-u-2025-n-unified-first-mathematics':{title:'問題表記と時間モデルは編集確認中です',message:'第Ⅳ・Ⅵ問の表記は元HTML修復待ちです。苦手層の一巡判断35.6分という仮定と、一部の所要時間比較も確認中です。目標点は仮配点による編集上の目安で、合格点ではありません。一次試験の公表成績は標準化得点のため、素点と合格者最低点は直接比較できません。'},
