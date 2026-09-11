@@ -15,8 +15,6 @@
 
 ## 検出事項
 
-- **questions / figures-pending**: Question figures require independent reconstruction; dependent questions remain review-only.（5件）
-- **answers / figures-pending**: Required visual positions retained; no restricted answer crop copied.（1件）
 - **answers / editorial-review**: Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch.
 - **analysis-targets / source-error**: Stale or invalid target weak headline: observed 62; canonical 62.5 (or rounded 63)
 - **analysis-targets / pending**: Target section retained but scores withheld until validated source is supplied.
@@ -24,3 +22,15 @@
 ## 完了報告
 
 修正した正本の位置、原文→修正後、根拠となるページ・計算、再生成したHTML、テスト結果、未解決事項を列挙する。過去問ライブラリーの再取り込み先IDは `nippon-medical-2025-general-early-physics`。既存の独自解説へ昇格済みのパッケージは一括取込で上書きしない。
+
+## 元データの未解決項目
+
+元のissues.jsonから取得した編集メモです。完了済みという意味ではありません。
+
+- **provisional-subquestion-scoring-review**: {"id":"provisional-subquestion-scoring-review","status":"open","severity":"review_required","summary":"7小問の仮配点合計200点は編集上の配分であり、公式小問別配点ではない。","owner":"subject_editor"}
+- **combined-time-allocation-review**: {"id":"combined-time-allocation-review","status":"open","severity":"review_required","summary":"原本記載は理科2科目合計120分。分析では物理へ60分を仮配分しており、科目担当による妥当性確認が必要。","owner":"editorial_lead"}
+- **lexus-time-and-target-review**: {"id":"lexus-time-and-target-review","status":"open","severity":"review_required","summary":"小問別時間とLexus目標は編集モデルによる仮定であり、科目担当の確認が必要。","owner":"subject_editor"}
+- **learner-editorial-review**: {"id":"learner-editorial-review","status":"open","severity":"review_required","summary":"学習者向け解説は原本の解法順を保った編集稿であり、物理担当による論理・式・単位・有効数字の確認が必要。","owner":"subject_editor"}
+- **restricted-crop-redraw-review**: {"id":"restricted-crop-redraw-review","status":"open","severity":"publication_blocker","summary":"内部限定クロップ6点はpending_redrawであり、公開前に模写差し替えと対応確認が必要。","owner":"art_and_rights"}
+- **rights-review**: {"id":"rights-review","status":"open","severity":"publication_blocker","summary":"原本問題・解答解説のrights_statusはunknownで、クロップはrestricted。公開判断前に権利確認が必要。","owner":"rights"}
+- **subject-editor-review**: {"id":"subject-editor-review","status":"open","severity":"publication_blocker","summary":"科目担当＝編集責任者による原本、分析、学習者向け解説、表示の一括承認が未了。","owner":"subject_editor"}

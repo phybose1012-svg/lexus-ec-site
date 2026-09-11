@@ -95,6 +95,15 @@
   body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/kansai-medical-2025-general-early-physics/"] { max-height: 200mm; max-width: 150mm; width: auto; }
   body.is-printing-past-exam-document .past-exam-figure img[src="/assets/past-exams/keio-2025-general-mathematics/figures/iv2-cube-unfolding.svg"] { max-height: 200mm; max-width: 150mm; width: auto; }
 }
+.past-exam-figure img[src^="/assets/past-exams/nippon-medical-2025-general-early-physics/"] { max-height: none; height: auto; }
+@media screen and (max-width: 600px) {
+ [data-past-exam-package="nippon-medical-2025-general-early-physics"] .past-exam-figure { overflow-x: auto; }
+ [data-past-exam-package="nippon-medical-2025-general-early-physics"] .past-exam-figure::before { content: "図は左右にスクロールできます"; display: block; font-size: .8rem; color: #52657b; margin-bottom: 10px; }
+ .past-exam-figure img[src^="/assets/past-exams/nippon-medical-2025-general-early-physics/"] { min-width: 620px; }
+}
+@media print {
+ body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/nippon-medical-2025-general-early-physics/"] { max-height: 200mm; max-width: 150mm; width: auto; }
+}
 .past-exam-figure img[src^="/assets/past-exams/nippon-medical-2025-general-early-mathematics/"] { max-height: none; height: auto; }
 .past-exam-answer-page[data-past-exam-package="nippon-medical-2025-general-early-mathematics"] .answer-table-scroll--variation { width: fit-content; max-width: 100%; margin-inline: auto; border: 0; }
 .past-exam-answer-page[data-past-exam-package="nippon-medical-2025-general-early-mathematics"] .answer-table--variation { width: 360px; min-width: 360px; table-layout: fixed; }

@@ -1,5 +1,10 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'nippon-medical-2025-general-early-physics':{
+  'major-question-01':{title:'記号の定義と途中式を補足確認中です',message:'図は条件から独立に作成しました。元の学習者向け解説では質量の記号、離脱条件を連立する過程、遠心力を扱う立場の説明が不足しており、修復を依頼しています。'},
+  'major-question-02':{title:'電場の式に誤記があり、修復待ちです',message:'元の学習者向け解説で、最初の区間の電場E₁の値がグラフの傾きと一致していません。図の目盛りは原本と照合済みですが、この大問は本文修復まで演習・採点に使わず編集確認用としてください。変数の定義、境界条件と時間計算の途中式も補足待ちです。'},
+  'major-question-03':{title:'式の意味と前問の参照を補足確認中です',message:'熱量・仕事の正負と、放出熱の大きさを区別してください。元の解説では熱効率に必要な前問の参照と、分数の指数を整理する過程の補足を依頼しています。'},
+ },
  'nippon-medical-2025-general-early-mathematics':{
   'major-question-01':{title:'解説の途中式は補足確認中です',message:'極形式・隣接確率比・整数範囲の説明を元HTMLの修復担当へ依頼しています。数値だけでなく条件からの導出を確認してください。'},
   'major-question-02':{title:'四面体の呼び方と解説順序を確認中です',message:'この図形は正四面体ではありません。解説の問2・問3の結果を問4へつなぐ順序と、長さ・面積を求める途中式は修復待ちです。'},
@@ -302,6 +307,7 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'nippon-medical-2025-general-early-physics':{title:'目標割合の表示と前問依存は修復待ちです',message:'元HTMLの目標割合が正本の小数値と一致せず、熱効率に必要な前問の登録も不足しているため、目標点は保留しています。7小問に20の記入欄があります。小問配点と物理60分は編集上の仮設定で、問題冊子の時間は理科2科目120分です。'},
  'nippon-medical-2025-general-early-mathematics':{title:'時間モデルと解説は確認中です',message:'問題冊子の数学90分を計算に使っていますが、公式日程の11:05〜12:55との関係は確認待ちです。小問配点・所要時間・目標点は編集上の仮設定で、合格ラインではありません。元HTMLの図形名・論証・解答形式の修復後に再評価します。'},
  'nihon-u-2025-n-unified-first-mathematics-second-stage':{title:'配点の根拠を確認中です',message:'元分析は各大問20点・合計60点を公式としていますが、指定された原本画像ではその記載を確認できませんでした。ここでは元データの60点換算による仮配点・目標として表示します。公式配点や合格ラインの保証ではありません。対象は一次ではなく二次試験です。'},
  'nihon-u-2025-n-unified-first-physics':{title:'本文修復前の編集用分析です',message:'元問題の条件・選択肢・解説に転記不備があるため、原本に基づく出題傾向の確認用です。100点・各小問4点は分析用の仮換算で、合格最低点ではありません。時間モデルと前問依存は科目担当者の確認待ちです。'},
