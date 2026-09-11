@@ -1,5 +1,7 @@
 # 日本大学2025 N第1期一次物理：停止後の再開地点
 
+> この中断地点からの監査・10図の実装・分析整理は完了し、2026-09-12に内容コミット `af236caaf0bbfe7ba49a0828878a22246910371d` をstagingへ配信しました。再作業せず、最新の `continuation.md` と `nihon-first-physics-source-review.md` を参照してください。元HTML修復・権利・人間承認は未完了です。以下は中断時点の履歴です。
+
 2026-09-12 02:50 JST。対象ID `nihon-u-2025-n-unified-first-physics`。
 
 ## 保存状態

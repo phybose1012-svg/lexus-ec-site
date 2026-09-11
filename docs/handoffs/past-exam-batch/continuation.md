@@ -653,3 +653,7 @@
 - 最終build03:35:08 JST・1118ページ、完了後407回帰成功・14,857 TeXエラー0。PC1280/390で3ページh1=1/TeXエラー0/文書幅1265・375px、問題7/解説3図の読込成功。全10図を実ブラウザーPCで目視。狭幅は図650pxを枠内スクロールし、光学断面・暗環4選択肢・摩擦速度図の両端を実操作で確認。分析円グラフと両目標カードも両幅で目視。印刷CSS回帰は成功、実印刷/PDF目視は今回未実施。
 - fetchでstaging未統合0。ローカル67package/201route、本文67問題/65解説/64分析、図保留188/目標保留19。以下の配信確認までは図保留の配信済み値は198。tab6/preview4337使用。
 - 次は **日本大学2025 N第1期・二次数学**、ID `nihon-u-2025-n-unified-first-mathematics-second-stage`、元パス `projects/universities/nihon-u/past-exams/working/2025/n-unified-first/second-stage/mathematics`、台帳上問題0図/解説6図・analysis imported。本文・原本・全分析は未読。今回の物理の配信を確認してから直列に進める。
+
+- **03:45 JST配信確認：** 内容コミット `af236caaf0bbfe7ba49a0828878a22246910371d` をstaging→作業branchへ通常push。Cloudflare completed/success（最終deployment `a82e5172-26e8-448a-9c51-c96ed1aaf730`）。実3URL HTTP200/h1=1/noindex/canonical、図7/3/0、修復注記5/5/1、新分析headline、10SVGの配信バイトとローカル一致を確認。全201ルート検証失敗0。
+- 実配信解説を390pxのブラウザーDOMでも確認し、3図読込/650px、数式エラー0、文書幅375px。検証tab6を閉じviewport override reset済み。preview4337・定期継続を維持。
+- **配信済み図保留188／目標保留19。** 完了は10独立図と編集確認用3ページの更新であり、元問題・解説の修復、権利、人間承認、実印刷は未完了。元learner本文は変更していない。修復依頼16区分を別担当へ渡せる状態。この配信後記録のみ作業branchへ保存し、次の検証済み内容push時にstagingへ含める。次回は二次数学の未読本文から進める。
