@@ -8,6 +8,7 @@
 .past-exam-figure img[src^="/assets/past-exams/kawasaki-medical-2025-general-regional-quota-physics/"] { max-height: none; height: auto; }
 .past-exam-figure img { display: block; width: auto; max-width: 100%; max-height: 390px; margin-inline: auto; }
 .past-exam-figure figcaption { margin: 10px 0 0; color: #52657b; font-size: .875rem; line-height: 1.7; text-align: center; }
+.past-exam-figure img[src^="/assets/past-exams/kurume-2025-general-early-mathematics/"] { max-height: none; height: auto; }
 /* Multi-panel Fujita figures need their width, not a fixed height, to set scale. */
 .past-exam-figure img[src^="/assets/past-exams/fujita-health-2025-general-early-mathematics/"] { max-height: none; }
 .past-exam-figure img[src="/assets/past-exams/fujita-health-2025-general-early-physics/figures/a4-solution-graph.svg"] { max-height: none; }
@@ -23,6 +24,10 @@
 .past-exam-figure img[src^="/assets/past-exams/kansai-medical-2025-general-early-physics/"] { max-height: none; height: auto; }
 .past-exam-figure img[src="/assets/past-exams/keio-2025-general-mathematics/figures/iv2-cube-unfolding.svg"] { max-height: none; height: auto; }
 @media screen and (max-width: 600px) {
+  [data-past-exam-package="kurume-2025-general-early-mathematics"] .past-exam-figure { overflow-x: auto; }
+  [data-past-exam-package="kurume-2025-general-early-mathematics"] .past-exam-figure::before { content: "図は左右にスクロールできます"; display: block; margin-bottom: 10px; font-size: .8rem; color: #52657b; }
+  .past-exam-figure img[src^="/assets/past-exams/kurume-2025-general-early-mathematics/"] { min-width: 620px; }
+  .past-exam-figure img[src$="/kurume-2025-general-early-mathematics/figures/a5-w-cross-section-zoom.svg"] { min-width: 740px; }
   [data-past-exam-package="kitasato-2025-general-physics"] .past-exam-figure { overflow-x: auto; }
   [data-past-exam-package="kitasato-2025-general-physics"] .past-exam-figure::before { content: "図は左右にスクロールできます"; display: block; margin-bottom: 10px; font-size: .8rem; color: #52657b; }
   .past-exam-figure img[src^="/assets/past-exams/kitasato-2025-general-physics/"] { min-width: 620px; }
@@ -40,6 +45,7 @@
   .past-exam-figure img[src="/assets/past-exams/international-health-welfare-2025-general-physics/figures/q2-vectors.svg"] { min-width: 560px; }
 }
 @media print {
+  body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/kurume-2025-general-early-mathematics/"] { max-height: 200mm; max-width: 150mm; width: auto; }
   body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/kitasato-2025-general-physics/"] { max-height: 200mm; max-width: 150mm; width: auto; }
   body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/kitasato-2025-general-mathematics/"] { max-height: 200mm; max-width: 150mm; width: auto; }
   body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/kindai-2025-general-first-a-physics/"] { max-height: 200mm; max-width: 150mm; width: auto; }

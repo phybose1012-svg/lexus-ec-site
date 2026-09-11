@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "lexus-answer-supplement.v1",
+  "packageId": "kurume-2025-general-early-mathematics",
+  "sourceSha256": "d9629d8ce2735e4225c615eec23a69dbf9d618a3da0763e8dfad7985c31536c5",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "導関数の因数と各停留点への代入から独立に作成した増減表2件。学習者版で欠落した表を補う。元の途中式と権利・人間レビューは修復待ち。"
+  },
+  "operations": [
+    {
+      "type": "insert-after",
+      "expectedMatches": 1,
+      "anchor": {
+        "major_question_id": "major-question-03",
+        "type": "formula",
+        "latex": "f'(x)=6(x+1)(2x+1)"
+      },
+      "blocks": [
+        {
+          "type": "prose",
+          "major_question_id": "major-question-03",
+          "text": "導関数の符号は次のように変わります。極大・極小を確認してから、2点を通る直線を求めます。"
+        },
+        {
+          "type": "table",
+          "major_question_id": "major-question-03",
+          "caption": "3次関数の増減表",
+          "headers": [
+            "\\(x\\)",
+            "…",
+            "\\(-1\\)",
+            "…",
+            "\\(-\\dfrac12\\)",
+            "…"
+          ],
+          "rows": [
+            [
+              "\\(f'(x)\\)",
+              "\\(+\\)",
+              "\\(0\\)",
+              "\\(-\\)",
+              "\\(0\\)",
+              "\\(+\\)"
+            ],
+            [
+              "\\(f(x)\\)",
+              "↗",
+              "\\(2\\)",
+              "↘",
+              "\\(\\dfrac74\\)",
+              "↗"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "insert-after",
+      "expectedMatches": 1,
+      "anchor": {
+        "major_question_id": "major-question-03",
+        "type": "formula",
+        "latex": "g'(x)=12(x-1)(x^2-x-1)"
+      },
+      "blocks": [
+        {
+          "type": "table",
+          "major_question_id": "major-question-03",
+          "caption": "4次関数の増減表",
+          "headers": [
+            "\\(x\\)",
+            "…",
+            "\\(\\dfrac{1-\\sqrt5}{2}\\)",
+            "…",
+            "\\(1\\)",
+            "…",
+            "\\(\\dfrac{1+\\sqrt5}{2}\\)",
+            "…"
+          ],
+          "rows": [
+            [
+              "\\(g'(x)\\)",
+              "\\(-\\)",
+              "\\(0\\)",
+              "\\(+\\)",
+              "\\(0\\)",
+              "\\(-\\)",
+              "\\(0\\)",
+              "\\(+\\)"
+            ],
+            [
+              "\\(g(x)\\)",
+              "↘",
+              "極小",
+              "↗",
+              "\\(7\\)",
+              "↘",
+              "極小",
+              "↗"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

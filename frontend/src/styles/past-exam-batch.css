@@ -1,4 +1,13 @@
 /* Imported review drafts share the approved white, narrow reading surface. */
+.past-exam-answer-page[data-past-exam-package="kurume-2025-general-early-mathematics"] .answer-table-scroll--variation { max-width: 640px; margin-inline: auto; }
+.past-exam-answer-page[data-past-exam-package="kurume-2025-general-early-mathematics"] .answer-table--variation { min-width: 0; width: 420px; max-width: none; font-size: 1rem; margin-inline: auto; }
+.past-exam-answer-page[data-past-exam-package="kurume-2025-general-early-mathematics"] .answer-table--variation:has(thead th:nth-child(8)) { width: 580px; }
+.past-exam-answer-page[data-past-exam-package="kurume-2025-general-early-mathematics"] .answer-table--variation :is(th,td):first-child { width: 64px; }
+.past-exam-answer-page[data-past-exam-package="kurume-2025-general-early-mathematics"] .answer-table--variation :is(th,td):nth-child(2n + 2) { width: 44px; }
+.past-exam-answer-page[data-past-exam-package="kurume-2025-general-early-mathematics"] .answer-table--variation :is(th,td):nth-child(2n + 3) { width: 90px; }
+@media print {
+  body.is-printing-past-exam-document [data-past-exam-package="kurume-2025-general-early-mathematics"] .answer-table--variation { min-width: 0; max-width: 150mm; font-size: 10pt; }
+}
 /* Six columns here, not the much wider Iwate concavity table. */
 .past-exam-answer-page[data-past-exam-package="kitasato-2025-general-mathematics"] .answer-table-scroll { max-width: 600px; margin-inline: auto; }
 .past-exam-answer-page[data-past-exam-package="kitasato-2025-general-mathematics"] .answer-table:not(.answer-table--variation) :is(th,td) { padding-inline: 5px; }
