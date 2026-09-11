@@ -714,3 +714,9 @@
 - **08:18 JST配信確認：** 内容コミット `ee7acd74c1314b80b7c897dbc1546def5998dbba` をstaging→作業branchへ通常push。Cloudflare completed/success（deployment `5111e368-cf7d-427b-af9a-d1722be76437`）。実3URL HTTP200/h1=1/noindex/canonical、図5/1/0・レビュー注記3/3/1、新分析要約と目標保留文、6SVGの配信バイトとローカル一致を確認。全201ルート検証失敗0。
 - 実配信解説も390pxのブラウザーDOMで図読込/幅620px、数式エラー0、文書幅375pxを確認。最終contact sheetも再目視。tab9を閉じviewport override reset済み。preview4337と既存自動継続は保持。
 - **配信済み図保留171／目標保留19。** 完了は6独立図と編集確認用3ページの更新であり、元HTMLのE₁修復・目標点の表示/依存修復・権利・人間承認・実印刷の完了ではない。配信後記録のみ作業branchへ保存し、stagingは次の検証済み内容push時に更新する。次回は埼玉医科大学前期数学の未読本文から。
+
+## 2026-09-12 08:56 JST・PC停止後の確認
+
+- 保存済みサイトはclean、Git connectivity/diff正常、残留lockなし。fetch後staging未統合0、作業branch未push0。preview4337はHTTP200で再起動不要。build-input正常、426回帰成功、14,898 TeXエラー0、実staging全201ルート失敗0。再ビルド・再配信は不要。元repoの別担当差分を保持。
+- 埼玉医科大学2025前期数学は問題再構成と原本4PNGを読了。解答全8PNG・learner・全分析は未読、作図・取込未着手。[再開メモ](saitama-early-math-recovery-checkpoint.md)へ原本の負号脱落などの発見、独立計算メモと元4正本hashを保存。次は解答監査から再開する。
+- 既存automation-2のACTIVE/30分設定を確認し、変更・重複作成なし。今回の復旧記録のみ作業branchへ保存し、サイト配信には変更を加えない。
