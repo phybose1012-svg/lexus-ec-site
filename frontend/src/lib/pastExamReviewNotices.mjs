@@ -1,5 +1,9 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'nihon-u-2025-n-unified-first-mathematics-second-stage':{
+  'major-question-02':{title:'共有点の条件の説明を補足待ちです',message:'図は平方根関数と直線から独立に作成しました。二乗した方程式の解を元の式へ戻す確認と、境界を含むかどうかの説明は、元の学習者向け解説で補足待ちです。'},
+  'major-question-03':{title:'凹凸表を追加し、途中式の説明を補足待ちです',message:'凹凸表と回転領域を独立計算で追加しました。変曲点とそのx座標の言い分け、積分変数を変える際の上下端、部分積分の途中式について、元の学習者向け解説の修復を待っています。'}
+ },
  'nihon-u-2025-n-unified-first-physics':{
   'major-question-01':{title:'条件・選択肢・角度の式を修復待ちです',message:'原本にある反発係数の数値指定が元HTMLで欠落し、複数の選択肢と解説の成分比にも転記不備があります。図は原本条件から独立に作成しました。この大問は修復まで演習・採点に使わず、編集確認用としてご覧ください。'},
   'major-question-02':{title:'外圧・選択肢と状態の説明を修復待ちです',message:'外気圧の指定や選択肢に転記不備があります。最後の内部エネルギー保存は、加熱前ではなく状態ⅢからⅣへの変化について適用します。元の本文の修復まで編集確認用です。'},
@@ -292,6 +296,7 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'nihon-u-2025-n-unified-first-mathematics-second-stage':{title:'配点の根拠を確認中です',message:'元分析は各大問20点・合計60点を公式としていますが、指定された原本画像ではその記載を確認できませんでした。ここでは元データの60点換算による仮配点・目標として表示します。公式配点や合格ラインの保証ではありません。対象は一次ではなく二次試験です。'},
  'nihon-u-2025-n-unified-first-physics':{title:'本文修復前の編集用分析です',message:'元問題の条件・選択肢・解説に転記不備があるため、原本に基づく出題傾向の確認用です。100点・各小問4点は分析用の仮換算で、合格最低点ではありません。時間モデルと前問依存は科目担当者の確認待ちです。'},
  'nihon-u-2025-n-unified-first-mathematics':{title:'問題表記と時間モデルは編集確認中です',message:'第Ⅳ・Ⅵ問の表記は元HTML修復待ちです。苦手層の一巡判断35.6分という仮定と、一部の所要時間比較も確認中です。目標点は仮配点による編集上の目安で、合格点ではありません。一次試験の公表成績は標準化得点のため、素点と合格者最低点は直接比較できません。'},
  'kyorin-2025-general-physics':{title:'問題の転記と目標点の依存関係を確認中です',message:'第Ⅱ問の選択肢と式は元HTML修復待ちです。また、元の優先順位では第Ⅱ問（c）が必要とする（b）を含まない構成があります。目標点は修復・再検証まで保留し、仮配点による難易度分布のみ参考表示します。理科2科目100分に対する物理50分・75点は編集上の仮配分で、合格点ではありません。'},

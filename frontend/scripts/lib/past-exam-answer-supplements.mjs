@@ -7,7 +7,9 @@ export function applyAnswerSupplement(snapshot, supplement) {
     throw Error('Answer supplement identity, provenance or source hash mismatch');
   if(!Array.isArray(supplement.operations)||!supplement.operations.length)throw Error('Empty answer supplement');
   for(const op of supplement.operations){
-    if(op.type!=='insert-after'||op.expectedMatches!==1||!op.anchor?.major_question_id||!['prose','formula'].includes(op.anchor.type)||!Array.isArray(op.blocks)||!op.blocks.length)
+    const replaceTable=op.type==='replace-crop-with-table';
+    const validAnchor=replaceTable?op.anchor?.type==='crop'&&typeof op.anchor.asset_id==='string'&&op.anchor.asset_id.length>0:['prose','formula'].includes(op.anchor?.type);
+    if((op.type!=='insert-after'&&!replaceTable)||op.expectedMatches!==1||!op.anchor?.major_question_id||!validAnchor||!Array.isArray(op.blocks)||!op.blocks.length|| (replaceTable&&(op.blocks.length!==1||op.blocks[0].type!=='table')))
       throw Error('Unsupported answer supplement operation');
     const matches=[];
     for(const p of editorial.pages)for(let i=0;i<p.blocks.length;i++){
@@ -22,7 +24,7 @@ export function applyAnswerSupplement(snapshot, supplement) {
         if(editorial.pages.some(p=>p.blocks.some(b=>b.type==='table'&&b.caption===block.caption)))throw Error('Supplemental table is already present; review upstream repair');
       }
     }
-    matches[0][0].blocks.splice(matches[0][1]+1,0,...structuredClone(op.blocks));
+    matches[0][0].blocks.splice(matches[0][1]+(replaceTable?0:1),replaceTable?1:0,...structuredClone(op.blocks));
   }
   return editorial;
 }

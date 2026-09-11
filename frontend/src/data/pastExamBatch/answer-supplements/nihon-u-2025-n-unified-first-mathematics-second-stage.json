@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "lexus-answer-supplement.v1",
+  "packageId": "nihon-u-2025-n-unified-first-mathematics-second-stage",
+  "sourceSha256": "944824dfbd242d60d57ede5b03c8b5196ddf9792cf1861dd2e91836e36dff8b4",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "f(x)=(1+x²)^(-1/2)の導関数から独立計算したHTML凹凸表。元画像を複製せず、表用crop一箇所だけを置換。"
+  },
+  "operations": [
+    {
+      "type": "replace-crop-with-table",
+      "expectedMatches": 1,
+      "anchor": {
+        "type": "crop",
+        "major_question_id": "major-question-03",
+        "asset_id": "ans-q3-convexity-table"
+      },
+      "blocks": [
+        {
+          "type": "table",
+          "major_question_id": "major-question-03",
+          "caption": "増減・凹凸表",
+          "headers": [
+            "\\(x\\)",
+            "\\(0\\)",
+            "…",
+            "\\(1/\\sqrt2\\)",
+            "…"
+          ],
+          "rows": [
+            [
+              "\\(f'(x)\\)",
+              "\\(0\\)",
+              "\\(-\\)",
+              "\\(-\\)",
+              "\\(-\\)"
+            ],
+            [
+              "\\(f''(x)\\)",
+              "\\(-\\)",
+              "\\(-\\)",
+              "\\(0\\)",
+              "\\(+\\)"
+            ],
+            [
+              "\\(f(x)\\)",
+              "\\(1\\)",
+              "[[trend:decrease:concave-down]]",
+              "\\(\\sqrt6/3\\)",
+              "[[trend:decrease:concave-up]]"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

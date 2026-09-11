@@ -95,3 +95,12 @@
   body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/kansai-medical-2025-general-early-physics/"] { max-height: 200mm; max-width: 150mm; width: auto; }
   body.is-printing-past-exam-document .past-exam-figure img[src="/assets/past-exams/keio-2025-general-mathematics/figures/iv2-cube-unfolding.svg"] { max-height: 200mm; max-width: 150mm; width: auto; }
 }
+.past-exam-figure img[src^="/assets/past-exams/nihon-u-2025-n-unified-first-mathematics-second-stage/"] { max-height: none; height: auto; }
+@media screen and (max-width: 600px) {
+  [data-past-exam-package="nihon-u-2025-n-unified-first-mathematics-second-stage"] .past-exam-figure { overflow-x: auto; }
+  [data-past-exam-package="nihon-u-2025-n-unified-first-mathematics-second-stage"] .past-exam-figure::before { content: "図は左右にスクロールできます"; display: block; font-size: .8rem; color: #52657b; margin-bottom: 10px; }
+  .past-exam-figure img[src^="/assets/past-exams/nihon-u-2025-n-unified-first-mathematics-second-stage/"] { min-width: 620px; }
+}
+@media print {
+ body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/nihon-u-2025-n-unified-first-mathematics-second-stage/"] { max-height: 200mm; max-width: 150mm; width: auto; }
+}

@@ -6,6 +6,7 @@ import {normalizeInequalitiesDeep} from '../src/lib/mathNotation.mjs';
 import {inline,escapeHtml} from '../src/lib/pastExamInline.mjs';
 import {loadFigureManifest,renderRegisteredFigure} from '../src/lib/pastExamFigures.mjs';
 import {applyAnswerSupplement} from './lib/past-exam-answer-supplements.mjs';
+import {renderVariationTrend} from '../src/lib/pastExamVariationTrend.mjs';
 export {inline,escapeHtml};
 
 const dataRoot=fileURLToPath(new URL('../src/data/',import.meta.url));
@@ -40,7 +41,7 @@ export function renderProjection(snapshot, purposes=new Map()) {
       if(!block.headers?.length||block.rows?.some(r=>r.length!==block.headers.length)) return `<aside class="source-note" data-blocked-table="true"><strong>表の確認中</strong><p>${inline(block.caption||'この箇所の表')}：元データの列数が一致していないため、確認後に掲載します。</p></aside>`;
       const variation=/増減|凹凸/.test(block.caption??'');
       const noValue='<td class="answer-table__no-value" aria-label="値なし"><svg class="answer-table__diagonal" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><line x1="0" y1="0" x2="100" y2="100" vector-effect="non-scaling-stroke"/></svg></td>';
-      return `<div class="table-scroll answer-table-scroll${variation?' answer-table-scroll--variation':''}" role="region" aria-label="${escapeHtml(block.caption)}" tabindex="0"><table class="source-table answer-table${variation?' answer-table--variation':''}"><caption>${inline(block.caption)}</caption><thead><tr>${block.headers.map(c=>`<th scope="col">${inline(c)}</th>`).join('')}</tr></thead><tbody>${block.rows.map(r=>`<tr>${r.map((c,i)=>i===0?`<th scope="row">${inline(c)}</th>`:/^(未定義|定義されない|\[\[no-value\]\])$/.test(c)?noValue:`<td>${inline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+return `<div class="table-scroll answer-table-scroll${variation?' answer-table-scroll--variation':''}" role="region" aria-label="${escapeHtml(block.caption)}" tabindex="0"><table class="source-table answer-table${variation?' answer-table--variation':''}"><caption>${inline(block.caption)}</caption><thead><tr>${block.headers.map(c=>`<th scope="col">${inline(c)}</th>`).join('')}</tr></thead><tbody>${block.rows.map(r=>`<tr>${r.map((c,i)=>i===0?`<th scope="row">${inline(c)}</th>`:/^(未定義|定義されない|\[\[no-value\]\])$/.test(c)?noValue:`<td>${(variation&&renderVariationTrend(c,block.caption))||inline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
     }
     if(block.type==='crop') {
       const asset=assets.find(a=>a.id===block.asset_id);

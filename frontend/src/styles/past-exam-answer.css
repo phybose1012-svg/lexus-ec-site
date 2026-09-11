@@ -528,3 +528,7 @@
     line-height: 1.65;
   }
 }
+.past-exam-answer-page[data-past-exam-package="nihon-u-2025-n-unified-first-mathematics-second-stage"] .answer-table--variation { min-width: 0; width: 360px; max-width: none; margin-inline: auto; }
+.past-exam-answer-page[data-past-exam-package="nihon-u-2025-n-unified-first-mathematics-second-stage"] .answer-table--variation :is(th,td):first-child { width: 64px; }
+.past-exam-answer-page[data-past-exam-package="nihon-u-2025-n-unified-first-mathematics-second-stage"] .answer-table--variation :is(th,td):nth-child(2n+2) { width: 95px; }
+.past-exam-answer-page[data-past-exam-package="nihon-u-2025-n-unified-first-mathematics-second-stage"] .answer-table--variation :is(th,td):nth-child(2n+3) { width: 46px; }
