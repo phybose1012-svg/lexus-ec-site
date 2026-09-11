@@ -9,6 +9,8 @@ test('Kyorin physics: nuclear conversion, momentum partition, significant digits
  const massLoss=13.99925+1.00866-13.99996-1.00728;close(massLoss,.00067);const energy=massLoss*roundedU*c*c/(1e6*e),share=energy*1.00728/(13.99996+1.00728);assert.equal(energy.toPrecision(2),'0.63');assert.equal(share.toPrecision(2),'0.042');close(share/(energy-share),1.00728/13.99996);close((.3+.48)/.3*15,39);close(.5**(30/15),.25);
 });
 test('Kyorin physics: graph choices retain phase, sign, zeros and label order',()=>{
+ // The triangle has 2.5 cycles over 0..5π, not the 5 arches of choice ②.
+ close(choiceValue(3,0),.9);close(choiceValue(3,Math.PI),.25);close(choiceValue(3,2*Math.PI),.9);close(choiceValue(3,5*Math.PI),.25);
  close(choiceValue(2,0),.65);close(choiceValue(2,Math.PI/2),0);close(choiceValue(5,0),.4);assert.ok(choiceValue(5,.1)>choiceValue(5,0));close(choiceValue(6,Math.PI),0);assert.ok(choiceValue(4,.01)>choiceValue(4,0));for(let i=0;i<501;i++)for(let n=1;n<=6;n++)assert.ok(choiceValue(n,i*Math.PI/100)>=-1e-9);
  const s=fs.readFileSync(new URL(`../public/assets/past-exams/${packageId}/figures/q2-graph-choices.svg`,import.meta.url),'utf8');for(const c of ['①','②','③','④','⑤','⑥'])assert.equal(s.split(`>${c}</text>`).length-1,1);
 });
