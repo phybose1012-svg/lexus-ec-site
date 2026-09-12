@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "lexus-answer-supplement.v1",
+  "packageId": "saitama-medical-2025-general-early-mathematics",
+  "sourceSha256": "88a08b4aeed67ae0987e752af08dca9d03901eb03ebf4067d0cccf52fa37ffb8",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "導関数から独立に再構成した2つのHTML増減表。元の解答欄20と説明の欠落は別途修復待ち。"
+  },
+  "operations": [
+    {
+      "type": "insert-after",
+      "expectedMatches": 1,
+      "anchor": {
+        "type": "formula",
+        "major_question_id": "major-question-01",
+        "latex": "x=\\log\\sqrt3=\\frac12\\log3"
+      },
+      "blocks": [
+        {
+          "type": "table",
+          "major_question_id": "major-question-01",
+          "caption": "指数関数の増減表",
+          "headers": [
+            "\\(x\\)",
+            "…",
+            "\\(\\frac12\\log3\\)",
+            "…"
+          ],
+          "rows": [
+            [
+              "\\(f'(x)\\)",
+              "\\(-\\)",
+              "\\(0\\)",
+              "\\(+\\)"
+            ],
+            [
+              "\\(f(x)\\)",
+              "↘",
+              "最小",
+              "↗"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "insert-after",
+      "expectedMatches": 1,
+      "anchor": {
+        "type": "formula",
+        "major_question_id": "major-question-02",
+        "latex": "f'(k)=\\frac{-2(k^2+k-1)}{(k^2+1)^2}"
+      },
+      "blocks": [
+        {
+          "type": "prose",
+          "major_question_id": "major-question-02",
+          "text": "ここでは\\(k>0\\)の範囲だけを比較します。\\(k_1=(-1+\\sqrt5)/2\\)と置くと、増減は次の表になります。"
+        },
+        {
+          "type": "table",
+          "major_question_id": "major-question-02",
+          "caption": "移動量を決める関数の増減表",
+          "headers": [
+            "\\(k\\)",
+            "\\(0\\)",
+            "…",
+            "\\(k_1\\)",
+            "…"
+          ],
+          "rows": [
+            [
+              "\\(f'(k)\\)",
+              "[[no-value]]",
+              "\\(+\\)",
+              "\\(0\\)",
+              "\\(-\\)"
+            ],
+            [
+              "\\(f(k)\\)",
+              "[[no-value]]",
+              "↗",
+              "最大",
+              "↘"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

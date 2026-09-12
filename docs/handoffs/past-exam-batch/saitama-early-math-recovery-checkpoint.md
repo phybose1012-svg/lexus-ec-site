@@ -1,5 +1,7 @@
 # 埼玉医科大学2025前期数学・PC停止後の再開地点
 
+> 2026-09-13更新：以下は中断当時の記録。解答8ページ・全分析の監査、3SVG、2HTML増減表、分析編集、最終432テストは完了。最新の配信状況と次の対象は `continuation.md` の2026-09-13欄を参照し、未読段階からやり直さない。原本修復は `saitama-early-math-source-review.md` の8区分が別担当待ち。
+
 2026-09-12。対象は `saitama-medical-2025-general-early-mathematics`。
 元repoは読み取り専用：`C:/---hp/shidai-igakubu-gokaku-dokuhon`。
 対象相対パス：`projects/universities/saitama-medical/past-exams/working/2025/general-early/first-stage/mathematics`。

@@ -1,5 +1,9 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'saitama-medical-2025-general-early-mathematics':{
+  'major-question-02':{title:'解答欄の符号と解答一覧を修復待ちです',message:'問3の最後の式で、元HTMLは原本の解答欄の外にある符号を落とし、解答一覧にも不一致があります。増減表は独立計算で追加しましたが、この大問は本文修復まで演習・採点に使わず編集確認用としてください。'},
+  'major-question-03':{title:'角の対応と途中式は補足確認中です',message:'図は座標と角の関係から独立に作成しました。相似を示す角の対応、傾きの範囲、線分の長さを求める途中式と別解の説明は元HTMLへの補足を依頼しています。'},
+ },
  'nippon-medical-2025-general-early-physics':{
   'major-question-01':{title:'記号の定義と途中式を補足確認中です',message:'図は条件から独立に作成しました。元の学習者向け解説では質量の記号、離脱条件を連立する過程、遠心力を扱う立場の説明が不足しており、修復を依頼しています。'},
   'major-question-02':{title:'電場の式に誤記があり、修復待ちです',message:'元の学習者向け解説で、最初の区間の電場E₁の値がグラフの傾きと一致していません。図の目盛りは原本と照合済みですが、この大問は本文修復まで演習・採点に使わず編集確認用としてください。変数の定義、境界条件と時間計算の途中式も補足待ちです。'},
@@ -307,6 +311,7 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'saitama-medical-2025-general-early-mathematics':{title:'仮配点と元の解答表示は確認中です',message:'数学50分は問題冊子の記載です。科目100点の出典整理、小問別の仮配点・想定時間・目標点は編集確認中で、合格ラインを示すものではありません。元HTMLの解答欄の符号・解答一覧・説明は修復後に再確認します。'},
  'nippon-medical-2025-general-early-physics':{title:'目標割合の表示と前問依存は修復待ちです',message:'元HTMLの目標割合が正本の小数値と一致せず、熱効率に必要な前問の登録も不足しているため、目標点は保留しています。7小問に20の記入欄があります。小問配点と物理60分は編集上の仮設定で、問題冊子の時間は理科2科目120分です。'},
  'nippon-medical-2025-general-early-mathematics':{title:'時間モデルと解説は確認中です',message:'問題冊子の数学90分を計算に使っていますが、公式日程の11:05〜12:55との関係は確認待ちです。小問配点・所要時間・目標点は編集上の仮設定で、合格ラインではありません。元HTMLの図形名・論証・解答形式の修復後に再評価します。'},
  'nihon-u-2025-n-unified-first-mathematics-second-stage':{title:'配点の根拠を確認中です',message:'元分析は各大問20点・合計60点を公式としていますが、指定された原本画像ではその記載を確認できませんでした。ここでは元データの60点換算による仮配点・目標として表示します。公式配点や合格ラインの保証ではありません。対象は一次ではなく二次試験です。'},
