@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "lexus-past-exam-figure-trio.v1",
+  "packageId": "jichi-medical-2025-general-mathematics",
+  "figureId": "ans-q11-space-projection",
+  "trio": {
+    "domain": "type UserShape\n",
+    "substance": "\nUserShape newPolygon1\nUserShape newPolygon2\nUserShape newPoint1\nUserShape newPoint2\nUserShape newPoint3\nUserShape newPoint4\nUserShape newPoint5\nUserShape newPolyline1\nUserShape newLabel1\nUserShape userShape1\nUserShape userShape2\nUserShape userShape3\nUserShape userShape4\n",
+    "style": "canvas {\n  width = 720\n  height = 510\n}\n\nforall UserShape `newPolygon1` {\n  `newPolygon1`.shape = Polygon {\n    points: [(-224.5104, -181.423), (49.4382, -179.1024), (170.2944, -28.2187), (-91.8959, -30.1912)]\n    fillColor: none()\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.559748\n  }\n}\n\nforall UserShape `newPolygon2` {\n  `newPolygon2`.shape = Polygon {\n    points: [(-69.7393, -98.2158), (25.3919, -100.4897), (27.2416, 69.7601)]\n    fillColor: none()\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.559748\n  }\n}\n\nforall UserShape `newPolygon2` {\n  override `newPolygon2`.shape.points = [(-72.6427, -94.6591), (56.2306, -94.1906), (56.042, 127.5474)]\n  override `newPolygon2`.shape.strokeWidth = 2.052696\n}\n\nforall UserShape `newPoint1` {\n  `newPoint1`.shape = Circle {    center: (54.9873, 126.3814)\n    r: 5.9\n    fillColor: rgba(0, 0, 0, 1)\n    strokeColor: none()\n    strokeWidth: 0}\n}\n\nforall UserShape `newPoint2` {\n  `newPoint2`.shape = Circle {    center: (-75.215, -95.7862)\n    r: 5.9\n    fillColor: rgba(0, 0, 0, 1)\n    strokeColor: none()\n    strokeWidth: 0}\n}\n\nforall UserShape `newPoint3` {\n  `newPoint3`.shape = Circle {    center: (56.4586, -95.6683)\n    r: 5.9\n    fillColor: rgba(0, 0, 0, 1)\n    strokeColor: none()\n    strokeWidth: 0}\n}\n\nforall UserShape `newPoint4` {\n  `newPoint4`.shape = Circle {\n    center: (96.3895, -57.5896)\n    r: 5.9\n    fillColor: rgba(0, 0, 0, 1)\n    strokeColor: none()\n    strokeWidth: 0\n  }\n}\n\nforall UserShape `newPoint5` {\n  `newPoint5`.shape = Circle {\n\n    center: (24.5335, -132.9064)\n    r: 5.9\n    fillColor: rgba(0, 0, 0, 1)\n    strokeColor: none()\n    strokeWidth: 0\n  \n  }\n}\n\nforall UserShape `newPolyline1` {\n  `newPolyline1`.shape = Polyline {\n    points: [(56.3751, -70.8636), (69.2499, -55.2298), (69.7128, -82.6866)]\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.559748\n    fillColor: none()\n    startArrowhead: \"\"\n    endArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `newLabel1` {\n  `newLabel1`.shape = Equation {\n    string: \"\\mathrm{A}\"\n    center: (-91.8011, -96.7314)\n    fontSize: \"17.33px\"\n    fillColor: rgba(0, 0, 0, 1)\n  }\n}\n\nforall UserShape `userShape1` {\n  `userShape1`.shape = Equation {\n\n    string: \"\\mathrm{B}\"\n    center: (9.1646, -133.3228)\n    fontSize: \"17.33px\"\n    fillColor: rgba(0, 0, 0, 1)\n  \n  }\n}\n\nforall UserShape `userShape2` {\n  `userShape2`.shape = Equation {\n\n\n    string: \"\\mathrm{C}\"\n    center: (82.1415, -56.7593)\n    fontSize: \"17.33px\"\n    fillColor: rgba(0, 0, 0, 1)\n  \n  \n  }\n}\n\nforall UserShape `userShape3` {\n  `userShape3`.shape = Equation {\n\n\n\n    string: \"\\mathrm{H}\"\n    center: (73.9507, -95.7498)\n    fontSize: \"17.33px\"\n    fillColor: rgba(0, 0, 0, 1)\n  \n  \n  \n  }\n}\n\nforall UserShape `userShape4` {\n  `userShape4`.shape = Equation {\n\n\n\n\n    string: \"\\mathrm{O}\"\n    center: (55.3641, 144.7483)\n    fontSize: \"17.33px\"\n    fillColor: rgba(0, 0, 0, 1)\n  \n  \n  \n  \n  }\n}\n",
+    "variation": "fibona-svg-import",
+    "editorState": {
+      "version": 1,
+      "layerOrder": [],
+      "groups": [],
+      "hiddenPaths": [],
+      "deletedPaths": [],
+      "originalPointCounts": {
+        "newPolygon1.shape": 4,
+        "newPolygon2.shape": 3,
+        "newPolyline1.shape": 3
+      },
+      "originalPoints": {
+        "newPolygon1.shape": [
+          {
+            "x": -224.5104,
+            "y": -181.423
+          },
+          {
+            "x": 49.4382,
+            "y": -179.1024
+          },
+          {
+            "x": 170.2944,
+            "y": -28.2187
+          },
+          {
+            "x": -91.8959,
+            "y": -30.1912
+          }
+        ],
+        "newPolygon2.shape": [
+          {
+            "x": -72.64268876219292,
+            "y": -94.65905071586397
+          },
+          {
+            "x": 56.230611237807075,
+            "y": -94.19055071586398
+          },
+          {
+            "x": 56.042011237807074,
+            "y": 127.54744928413602
+          }
+        ],
+        "newPolyline1.shape": [
+          {
+            "x": 56.3751,
+            "y": -70.8636
+          },
+          {
+            "x": 69.2499,
+            "y": -55.2298
+          },
+          {
+            "x": 69.7128,
+            "y": -82.6866
+          }
+        ]
+      },
+      "smoothnessLevel": {
+        "newPolygon1.shape": 1,
+        "newPolygon2.shape": 1,
+        "newPolyline1.shape": 1
+      },
+      "arcMetadata": {},
+      "regularPolygonMetadata": {}
+    }
+  }
+}
