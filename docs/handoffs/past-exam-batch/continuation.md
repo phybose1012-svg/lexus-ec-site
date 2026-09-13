@@ -812,3 +812,5 @@
 - PC1280で全11図、狭幅390でグラフの左右端・薄膜の左/中央/右、分析の配点円グラフ・凡例・目標保留を目視。3ページともh1=1、数式エラー0、文書1265/375px。狭幅図650pxを問題315px・解説301px枠内で横スクロールできる。印刷CSS150mm/200mm上限を適用し機械回帰成功、今回の実印刷/PDF目視は未実施。
 - ローカル67package/201route、本文67問題/65解説/64分析、図保留137／目標保留20。配信成功確認までは配信済み図保留148。preview localhost4337、検証tab7。
 - 次は **聖マリアンナ医科大学2025年度前期・数学** `st-marianna-2025-general-early-mathematics`。元パス `projects/universities/st-marianna/past-exams/working/2025/general-early/first-stage/mathematics`。台帳は問題0図/解説3図・analysis imported。本文・原本・分析は未読。完成済み昭和数学・物理をやり直さず、ここから直列継続。
+
+- 内容commit `b158e53f` の初回staging pushはnon-fast-forwardで安全に拒否された。検証中の別担当更新 `2d3009c8`（岩手医科大学数学q2-geometry.svgとtrio）をfetchし、`5e3f78bf`で通常merge。両ファイルはリモートと完全一致のまま保存。統合後build12:15:38 JST・1118ページ、463テスト再成功・14,945TeXエラー0。人間編集SVGはpublic/dist/origin/stagingの3者バイト一致。新しい全体を再検証してから通常pushする。
