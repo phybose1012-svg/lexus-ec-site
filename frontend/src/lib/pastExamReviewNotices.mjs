@@ -1,5 +1,9 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'teikyo-2025-general-mathematics':{
+  'major-question-04':{title:'(1)の恒等式は元HTMLの修復待ちです',message:'問題の積分恒等式が数式ではなく画像枠だけになっているため、(1)の演習・採点は保留します。(2)のグラフは条件から独立に作成しました。解説に残る数式用の画像枠も、本文との重複を確認して修復予定です。'},
+  'major-question-05':{title:'(2)の恒等式は修復待ち、(1)の増減表は補足済みです',message:'(2)の条件式が問題HTMLから欠落しており、演習・採点は保留します。内部転記にはpの誤記もありますが、この学習者向け解説のp＝−3、q＝13/6は積分条件から確認済みです。(1)には独立計算した増減表とグラフを掲載しました。'},
+ },
  'st-marianna-2025-general-early-physics':{
   'major-question-01':{title:'丸めと途中計算の説明を確認中です',message:'元HTMLではばね定数の近似を等号で結んでおり、伸び②の導出も省略されています。物質波は原本解答が採用した非相対論的計算です。式と有効数字の説明を修復担当へ確認依頼しています。'},
   'major-question-02':{title:'空欄⑫と会話文を修復待ちです',message:'原本の⑫は物体2の加速度A₂＝A−aですが、元HTMLはA₁の式へ変更されています。図と現本文のa₀は原本のaに対応します。会話・正方向・相対加速度の説明にも欠落があり、修復まで演習・採点は保留です。'},
@@ -352,6 +356,7 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'teikyo-2025-general-mathematics':{title:'別日程2日分の集計です。目標点は日別計算の修復待ちです',message:'数学①・②は各100点、合計200点の編集集計です。1回の数学試験が200点ではありません。元の目標モデルは別日程間で時間を融通しているため保留しました。問題の積分恒等式2か所も修復待ちです。'},
  'st-marianna-2025-general-early-physics':{title:'元HTMLと仮時間モデルを編集確認中です',message:'100点換算・物理75分は理科2科目200点・150分を等分した分析用の仮設定です。苦手層は一巡判断に34.4分を見込むため、その前提を確認します。目標44点／75点は合格ラインではありません。本文・選択肢の修復後に18項目の難度と所要時間を再確認します。'},
  'st-marianna-2025-general-early-mathematics':{title:'目標点の時間前提と解説を確認中です',message:'26点／68点は仮配点100点と編集上の時間モデルによる目安で、合格に必要な点数ではありません。数学90分は原本記載ですが、苦手層の判断だけで70分という前提は実測値ではなく再確認を依頼しています。解説修復後に所要時間と前問依存も再評価します。'},
  'showa-medical-2025-general-i-physics':{title:'目標点と一部の設問条件は確認待ちです',message:'仮配点100点・物理70分は編集上の設定です。苦手層の優先集合は第2問(3)・第4問(7)の前提が不足し、薄膜(7)の屈折角も入射条件と両立しません。25項目の評価は元資料を保持し、目標点は修復まで掲載を保留します。'},

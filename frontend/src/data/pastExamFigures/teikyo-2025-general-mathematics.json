@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "lexus-past-exam-figures.v1",
+  "packageId": "teikyo-2025-general-mathematics",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "条件の関数・辺長・角度から独立生成。数式だけのcrop5点はSVGへ変換せず、元HTMLの意味構造修復を待つ。"
+  },
+  "items": [
+    {
+      "id": "a-math1-q2-parabola",
+      "src": "/assets/past-exams/teikyo-2025-general-mathematics/figures/a-math1-q2-parabola.svg",
+      "width": 830,
+      "height": 540,
+      "alt": "y=−3t²+3t+2、−1から1の放物線。頂点は(1/2,11/4)、両端は(−1,−4)と(1,2)。",
+      "caption": "置き換えたtと元の角θの解の個数を区別します。"
+    },
+    {
+      "id": "a-math1-q4-graph",
+      "src": "/assets/past-exams/teikyo-2025-general-mathematics/figures/a-math1-q4-graph.svg",
+      "width": 800,
+      "height": 510,
+      "alt": "y=|x²−1|−2。x切片は±√3、y切片は−1、最小点は(−1,−2)と(1,−2)。",
+      "caption": "絶対値の中身の符号で、2つの放物線をつなぎます。"
+    },
+    {
+      "id": "a-math2-q1-variation",
+      "src": "/assets/past-exams/teikyo-2025-general-mathematics/figures/a-math2-q1-variation.svg",
+      "width": 820,
+      "height": 665,
+      "alt": "F(x)=x³−3x²−6x。α=1−√3で極大値−8+6√3、β=1+√3で極小値−8−6√3。両極値の間に水平線を引くと交点は3個。",
+      "caption": "増減表はHTMLで掲載し、ここには交点を読むグラフを示します。"
+    },
+    {
+      "id": "a-math2-q4-graphs",
+      "src": "/assets/past-exams/teikyo-2025-general-mathematics/figures/a-math2-q4-graphs.svg",
+      "width": 850,
+      "height": 850,
+      "alt": "上はAB=7、BC=3、角B=2角Aを満たす三角形。下は0から2πにおけるy=sin x+√3 cos x。切片は2π/3、5π/3と√3。",
+      "caption": "(1)の三角形と(2)の三角関数は、別々の図です。"
+    }
+  ]
+}

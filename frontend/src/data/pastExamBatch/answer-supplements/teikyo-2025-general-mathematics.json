@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "lexus-answer-supplement.v1",
+  "packageId": "teikyo-2025-general-mathematics",
+  "sourceSha256": "640d2172a211da3b6cb6996708b310ac38820ab0712b5221ec03a97c90ad36ff",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "Fの導関数の符号から独立計算。図と表を分離し、取込解説の出典状態は変更しない。"
+  },
+  "operations": [
+    {
+      "type": "insert-after",
+      "expectedMatches": 1,
+      "anchor": {
+        "type": "prose",
+        "major_question_id": "major-question-05",
+        "text": "\\(F'(x)=0\\) より \\(x=1\\pm\\sqrt3\\) です。\\(\\alpha=1-\\sqrt3\\)、\\(\\beta=1+\\sqrt3\\) とおくと、増減表は原本の次の表のようになります。"
+      },
+      "blocks": [
+        {
+          "type": "table",
+          "major_question_id": "major-question-05",
+          "variant": "variation",
+          "caption": "3次関数Fの増減表",
+          "headers": [
+            "\\(x\\)",
+            "…",
+            "\\(\\alpha\\)",
+            "…",
+            "\\(\\beta\\)",
+            "…"
+          ],
+          "rows": [
+            [
+              "\\(F'(x)\\)",
+              "+",
+              "0",
+              "−",
+              "0",
+              "+"
+            ],
+            [
+              "\\(F(x)\\)",
+              "↗",
+              "\\(F(\\alpha)\\)",
+              "↘",
+              "\\(F(\\beta)\\)",
+              "↗"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
