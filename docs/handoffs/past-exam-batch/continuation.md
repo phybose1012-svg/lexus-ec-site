@@ -795,3 +795,7 @@
 - 自動継続の接続確認ツールは直前の手動ターンで一時エラーだったが、11:26 JSTに既存1分間隔のheartbeatが実起動した。重複作成・設定変更なし。preview localhost4337、検証tab6。初回の404はビルド中にアクセスしたためで、ビルド終了後reloadで正常化。
 - ローカル67package/201route、本文67問題/65解説/64分析、図保留148・目標保留20。fetchでstaging未統合0。配信成功確認までは配信済み図保留154。
 - 次は **昭和医科大学2025年度Ⅰ期物理**、`showa-medical-2025-general-i-physics`、元パス `projects/universities/showa-medical/past-exams/working/2025/general-i/first-stage/physics`。問題7図/解説4図、25評価、理科2科目140分に物理70分を仮配分。目標は苦手「今解く」のphys-q2-3→q2-2、q4-7→q4-6欠落で保留。本文・原本・全分析は未読。前提不足を推測で解除せず、完成済み数学をやり直さず継続する。
+
+- **配信確認：** 内容 `477c8f44722a134741f1e85f0e282992aa6857df` をstaging→作業branchへ通常push。Cloudflare completed/success（deployment `f604692a-de12-4930-9dc8-16355d967241`）。実3URL HTTP200/h1=1/noindex、レビュー注記4/4/1、新分析見出し、全6SVG配信バイト一致。全201ルート検査も終了コード0・失敗0（canonical含む）。単発検査の初回はPowerShell引用符による構文エラーで未実行、修正後に全項目通過。
+- 実stagingの390pxブラウザーでも6図読込/650px・文書375px・数式エラー0・h1=1を確認。検証tab6を閉じviewport reset済み。preview localhost4337と既存1分間隔の直列継続を維持。
+- **配信済み図保留148／目標保留20。** 完了は独立図と編集確認用3ページの更新。元HTML修復・権利・人間承認・実印刷は未完了。配信後記録のみ作業branchへ保存し、次の検証済み内容push時にstagingへ含める。次回は上記の昭和医科大学Ⅰ期物理から。
