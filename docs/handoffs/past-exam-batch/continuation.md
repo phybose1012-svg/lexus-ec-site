@@ -814,3 +814,7 @@
 - 次は **聖マリアンナ医科大学2025年度前期・数学** `st-marianna-2025-general-early-mathematics`。元パス `projects/universities/st-marianna/past-exams/working/2025/general-early/first-stage/mathematics`。台帳は問題0図/解説3図・analysis imported。本文・原本・分析は未読。完成済み昭和数学・物理をやり直さず、ここから直列継続。
 
 - 内容commit `b158e53f` の初回staging pushはnon-fast-forwardで安全に拒否された。検証中の別担当更新 `2d3009c8`（岩手医科大学数学q2-geometry.svgとtrio）をfetchし、`5e3f78bf`で通常merge。両ファイルはリモートと完全一致のまま保存。統合後build12:15:38 JST・1118ページ、463テスト再成功・14,945TeXエラー0。人間編集SVGはpublic/dist/origin/stagingの3者バイト一致。新しい全体を再検証してから通常pushする。
+
+- **配信確認：** 統合済み `adf5ce7ea4b95b1c50c0de6e9eb4a9d773fd7abe` をstaging・作業branchへ通常push。Cloudflare completed/success（deployment `a54654ce-893e-4509-beb5-6513adb53262`）。実3URL HTTP200・h1=1・noindex・新内容とレビュー注記を確認。全11SVG配信バイトとpublic一致。全201ルート検査も `checked: 201, failures: []`。初回のネットワーク制限によるEACCESはサイト不具合ではなく、許可付き再実行で通過。
+- 実stagingの390pxブラウザーで解説4図の読込・650px幅・文書375px・数式エラー0・h1=1を確認。検証tab7を閉じviewport reset済み。preview localhost4337と既存1分間隔の直列継続を維持。
+- **配信済み図保留137／目標保留20。** 図と編集確認用3ページの更新完了。薄膜第4問(7)の条件・目標点は確認待ちを保持し、元HTML修復・権利・人間承認・実印刷を完了扱いにしない。配信後記録のみ作業branchへ保存し、次の検証済み内容push時にstagingへ含める。次回は聖マリアンナ医科大学2025年度前期・数学の未読本文から。
