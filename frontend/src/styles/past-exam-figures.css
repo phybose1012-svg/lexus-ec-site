@@ -190,6 +190,15 @@
  body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/st-marianna-2025-general-early-physics/"] { max-height: 200mm; max-width: 150mm; width: auto; }
 }
 .past-exam-figure img[src^="/assets/past-exams/teikyo-2025-general-mathematics/"] { max-height: none; height: auto; }
+.past-exam-figure img[src^="/assets/past-exams/teikyo-2025-general-physics/"] { max-height: none; height: auto; }
+@media screen and (max-width: 700px) {
+ [data-past-exam-package="teikyo-2025-general-physics"] .past-exam-figure { overflow-x: auto; }
+ [data-past-exam-package="teikyo-2025-general-physics"] .past-exam-figure::before { content: "図は左右にスクロールできます"; display: block; font-size: .8rem; color: #52657b; margin-bottom: 10px; }
+ .past-exam-figure img[src^="/assets/past-exams/teikyo-2025-general-physics/"] { min-width: 700px; }
+}
+@media print {
+ body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/teikyo-2025-general-physics/"] { max-height: 200mm; max-width: 150mm; width: auto; }
+}
 .past-exam-answer-page[data-past-exam-package="teikyo-2025-general-mathematics"] .answer-table-scroll { width: fit-content; max-width: 100%; margin-inline: auto; }
 .past-exam-answer-page[data-past-exam-package="teikyo-2025-general-mathematics"] .answer-table { width: 480px; min-width: 480px; font-size: 1rem; table-layout: fixed; }
 .past-exam-answer-page[data-past-exam-package="teikyo-2025-general-mathematics"] .answer-table--variation :is(th,td):nth-child(n) { width: 80px; min-width: 0; padding: 10px 5px; }

@@ -12,33 +12,552 @@
   "subject": "物理",
   "examLabel": "一般選抜",
   "duration": "選択2科目 合計120分",
-  "format": "確認中",
-  "headline": "分析データの確認中",
-  "summary": "",
-  "requirementsSummary": "",
+  "format": "選択・数値解答など（各設問を参照）",
+  "examTotal": null,
+  "headline": "単振動・仕事と力学的エネルギー",
+  "summary": "①-1は単振動・仕事と力学的エネルギー、①-2は力のつり合いと運動の法則・仕事と力学的エネルギー、①-3は光の反射・屈折とレンズ、②-1は原子と原子核、②-2は気体の状態変化と熱力学・剛体のつり合い、②-3は力のつり合いと運動の法則・運動の表し方。独立して解ける設問から着手し、後半の条件を読み落とさないようにしましょう。",
+  "requirementsSummary": "保存済み分析に基づく出題内容。",
+  "profiles": [
+    {
+      "id": "weak",
+      "title": "物理が苦手なら",
+      "text": "基本レベルでも短時間で答えが出るとは限りません。独立して解ける短い問題を探し、点数を積み上げましょう。前問の結果が必要な設問は、その結果を確保できてから取り組みます。"
+    },
+    {
+      "id": "strong",
+      "title": "物理が得意なら",
+      "text": "基本レベル・基本＋αレベルの取りこぼしをなくすことを最優先にします。長い計算や条件整理に時間がかかる問題は、残り時間を確認してから着手しましょう。"
+    }
+  ],
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "①-1",
+      "title": "歩行を単振り子で近似するモデル",
+      "subtitle": "単振動・仕事と力学的エネルギー",
+      "summary": "脚を単振り子として扱い、周期・最大速度・運動エネルギーを求め、歩行全体の仕事をkcalへ換算する。",
+      "studyAction": "単振り子の周期と角振動数を使う。最大速度と運動エネルギーを結ぶ",
+      "requirements": [
+        1.7,
+        1.7,
+        1.8,
+        1.9,
+        1.7
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "(1)",
+          "title": "単振り子の周期をLとgで表す。",
+          "note": "公式選択だけで仮2.5点を回収できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "(2)",
+          "title": "振幅と角振動数から最大速度を表す。",
+          "note": "前問の式を利用する短い導出。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "(3)",
+          "title": "数値を代入して周期を求める。",
+          "note": "前問公式への代入で確実性が高い。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "(4)",
+          "title": "脚先の最大速度を数値計算する。",
+          "note": "独立に再計算しやすい仮2.5点。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q1-5",
+          "label": "(5)",
+          "title": "最大速度から最大運動エネルギーを求める。",
+          "note": "(4)の値を二乗するだけで到達できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q1-6",
+          "label": "(6)",
+          "title": "歩数と効率を考えて仕事をkcal換算する。",
+          "note": "条件整理に時間がかかるため苦手層は後回し。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        }
+      ],
+      "questionsPath": "/past-exam-library/teikyo/2025/physics/questions/#major-question-01",
+      "answersPath": "/past-exam-library/teikyo/2025/physics/answers/#major-question-01"
+    },
+    {
+      "id": "phys-q2",
+      "label": "①-2",
+      "title": "水中の木片に働く浮力と運動",
+      "subtitle": "力のつり合いと運動の法則・仕事と力学的エネルギー・運動の表し方",
+      "summary": "直方体の木片の浮力を位置の関数として表し、グラフ・仕事・加速度・到達高さを一貫して求める。",
+      "studyAction": "浸水体積から浮力を立式する。力-位置グラフを仕事として読む",
+      "requirements": [
+        2.2,
+        2.3,
+        2,
+        1.6,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "(1)",
+          "title": "浮力と重力のつり合いから底面位置を求める。",
+          "note": "浮力の基本式で解ける。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "(2)",
+          "title": "木片位置に対する浮力のグラフを選ぶ。",
+          "note": "図と変数の対応確認に時間を要する。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "(3)",
+          "title": "浮力-位置グラフの面積から仕事を求める。",
+          "note": "三角形面積で短く回収できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q2-4",
+          "label": "(4)",
+          "title": "浮力と重力の仕事から最高点を求める。",
+          "note": "前問の仕事を利用できる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q2-5",
+          "label": "(5)",
+          "title": "木片が全没している間の加速度を求める。",
+          "note": "独立した運動方程式で解ける。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q2-6",
+          "label": "(6)",
+          "title": "等加速度運動から水面到達時の速度を求める。",
+          "note": "(5)が解ければ定型計算。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q2-7",
+          "label": "(7)",
+          "title": "より深い初期位置から放したときの最高点を求める。",
+          "note": "区間分けを要する大問の最終設問。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        }
+      ],
+      "questionsPath": "/past-exam-library/teikyo/2025/physics/questions/#major-question-02",
+      "answersPath": "/past-exam-library/teikyo/2025/physics/answers/#major-question-02"
+    },
+    {
+      "id": "phys-q3",
+      "label": "①-3",
+      "title": "組み合わせレンズによる顕微鏡",
+      "subtitle": "光の反射・屈折とレンズ",
+      "summary": "対物レンズと結像レンズの距離・焦点距離・倍率を順に求め、撮像できる物体範囲へつなぐ。",
+      "studyAction": "倍率と物像距離の関係を立てる。薄レンズの公式を使う",
+      "requirements": [
+        2.2,
+        1.9,
+        2.1,
+        2.1,
+        1.9
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "空欄1〜4",
+          "title": "物体から対物レンズまでの距離を求める。",
+          "note": "2本の一次関係で求まる。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "空欄5〜8",
+          "title": "対物レンズから像までの距離を求める。",
+          "note": "(1)と同時に回収できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "空欄9〜12",
+          "title": "対物レンズの焦点距離を求める。",
+          "note": "逆数計算でミスしやすい。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q3-4",
+          "label": "空欄13〜16",
+          "title": "対物像から結像レンズまでの距離を求める。",
+          "note": "第二レンズの物像距離を新たに定義する。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q3-5",
+          "label": "空欄17〜20",
+          "title": "2枚のレンズによる総合倍率を求める。",
+          "note": "倍率10倍と2倍の積。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q3-6",
+          "label": "空欄21〜24",
+          "title": "撮像素子寸法から物体側の視野幅を求める。",
+          "note": "総合倍率があれば比例計算。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        }
+      ],
+      "questionsPath": "/past-exam-library/teikyo/2025/physics/questions/#major-question-03",
+      "answersPath": "/past-exam-library/teikyo/2025/physics/answers/#major-question-03"
+    },
+    {
+      "id": "phys-q4",
+      "label": "②-1",
+      "title": "ヨウ素131の放射線と等価線量",
+      "subtitle": "原子と原子核",
+      "summary": "β崩壊、半減期、光子エネルギーの単位換算を確認し、幾何条件を含む等価線量を評価する。",
+      "studyAction": "核種変化から崩壊を判定する。半減期の指数変化を扱う",
+      "requirements": [
+        2.1,
+        1.6,
+        1.6,
+        2.2,
+        1.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q4-1",
+          "label": "(1)",
+          "title": "原子番号の変化からβ崩壊を選ぶ。",
+          "note": "短時間の知識問題。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 2
+        },
+        {
+          "id": "phys-q4-2",
+          "label": "(2)",
+          "title": "1/16になる時間を半減期から求める。",
+          "note": "指数関係が単純。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q4-3",
+          "label": "(3)",
+          "title": "364keVをJへ換算する。",
+          "note": "換算式が与えられ確実性が高い。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q4-4",
+          "label": "(4)",
+          "title": "等価線量の単位名を答える。",
+          "note": "即答可能な語句問題。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 2
+        },
+        {
+          "id": "phys-q4-5",
+          "label": "(5)",
+          "title": "介助者が受ける等価線量を数値計算する。",
+          "note": "長い数値代入で時間リスクが高い。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q4-6",
+          "label": "(6)",
+          "title": "mSvへ換算して表の範囲を選ぶ。",
+          "note": "(5)の結果を表に照合するだけ。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 2
+        }
+      ],
+      "questionsPath": "/past-exam-library/teikyo/2025/physics/questions/#major-question-04",
+      "answersPath": "/past-exam-library/teikyo/2025/physics/answers/#major-question-04"
+    },
+    {
+      "id": "phys-q5",
+      "label": "②-2",
+      "title": "ガソリンエンジンとオットーサイクル",
+      "subtitle": "気体の状態変化と熱力学・剛体のつり合い・運動の表し方",
+      "summary": "断熱圧縮と熱効率から始め、排気量・回転数・トルクを用いてエンジンの仕事率と馬力を求める。",
+      "studyAction": "断熱変化とオットー効率を使う。回転数と4行程の関係を読む",
+      "requirements": [
+        2,
+        2,
+        2.2,
+        2.4,
+        2.5
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q5-1",
+          "label": "1",
+          "title": "断熱圧縮後の温度を求める。",
+          "note": "式と近似値が与えられている。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q5-2",
+          "label": "2",
+          "title": "オットーサイクルの熱効率を求める。",
+          "note": "問1の中間値を再利用できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q5-3",
+          "label": "3",
+          "title": "総排気量から1気筒当たりの排気量を求める。",
+          "note": "単純な割り算。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q5-4",
+          "label": "4",
+          "title": "回転数から1秒当たりのサイクル数を求める。",
+          "note": "単位を秒へ直せば短い。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q5-5",
+          "label": "5",
+          "title": "排気量と内径からピストンの総移動距離を求める。",
+          "note": "幾何と4行程の読み取りが重なる。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q5-6",
+          "label": "6",
+          "title": "トルクと回転数からエンジンの仕事率を求める。",
+          "note": "トルクの物理的意味を使うため苦手層は後回し。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        },
+        {
+          "id": "phys-q5-7",
+          "label": "7",
+          "title": "kWを仏馬力psへ換算する。",
+          "note": "換算定義が問題文に示されている。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        }
+      ],
+      "questionsPath": "/past-exam-library/teikyo/2025/physics/questions/#major-question-05",
+      "answersPath": "/past-exam-library/teikyo/2025/physics/answers/#major-question-05"
+    },
+    {
+      "id": "phys-q6",
+      "label": "②-3",
+      "title": "反発力を受ける2球の等加速度運動",
+      "subtitle": "力のつり合いと運動の法則・運動の表し方",
+      "summary": "一定の斥力を受ける質量の異なる2球について、加速度・速度・位置を順に立式し、力が消える時刻を求める。",
+      "studyAction": "作用反作用と符号をそろえる。等加速度運動の速度・位置式を書く",
+      "requirements": [
+        2.2,
+        1.6,
+        1.6,
+        1.3,
+        2.1
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q6-1",
+          "label": "(1)",
+          "title": "小球Aの加速度を求める。",
+          "note": "符号確認だけの基本式。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q6-2",
+          "label": "(2)",
+          "title": "小球Bの加速度を求める。",
+          "note": "(1)と対称に処理できる。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q6-3",
+          "label": "(3)",
+          "title": "小球Aの速度を時刻tの式で表す。",
+          "note": "v=v0+atの直接適用。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q6-4",
+          "label": "(4)",
+          "title": "小球Bの速度を時刻tの式で表す。",
+          "note": "(2)の加速度をそのまま使う。",
+          "difficulty": 0,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q6-5",
+          "label": "(5)",
+          "title": "小球Aの位置を時刻tの式で表す。",
+          "note": "定型式の適用。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q6-6",
+          "label": "(6)",
+          "title": "小球Bの位置を時刻tの式で表す。",
+          "note": "初期位置に注意すれば定型。",
+          "difficulty": 1,
+          "weak": 0,
+          "strong": 0,
+          "points": 2.5
+        },
+        {
+          "id": "phys-q6-7",
+          "label": "(7)",
+          "title": "球間距離が再びR0となる時刻を求める。",
+          "note": "位置式2本と終了条件を統合する。",
+          "difficulty": 2,
+          "weak": 1,
+          "strong": 0,
+          "points": 3
+        }
+      ],
+      "questionsPath": "/past-exam-library/teikyo/2025/physics/questions/#major-question-06",
+      "answersPath": "/past-exam-library/teikyo/2025/physics/answers/#major-question-06"
+    }
+  ],
   "difficultyCounts": [
-    0,
-    0,
-    0,
+    18,
+    12,
+    9,
     0
   ],
-  "examTotal": null,
-  "profiles": [],
   "targets": {
     "basis": "provisional_editorial",
     "timeBudgetBasis": "provisional_editorial",
-    "totalPoints": 0,
+    "totalPoints": 100,
     "timeBudgetMinutes": null,
     "profiles": []
   },
-  "majorQuestions": [],
   "source": {
-    "approved": false,
     "project": "shidai-igakubu-gokaku-dokuhon",
-    "html": "projects/universities/teikyo/past-exams/working/2025/general/first-stage/physics/source-html/generated/public-candidate/questions",
-    "sha256": ""
+    "html": "projects/universities/teikyo/past-exams/working/2025/general/first-stage/physics/generated/public-preview/index.html",
+    "sha256": "0576cb3b631ae2bbbc39d40fd99c0918d10494af9c9e387bb82d983c14504bae",
+    "approved": false
   },
-  "pendingReason": "対応する分析HTMLの出題構成・配点・目標点を確認しています。検証できたデータが揃い次第、このページへ反映します。",
+  "editorialNotes": [
+    "保存済み分析の難易度・優先度・計算を保持したステージング向け要約。細部の校正は別担当へ。"
+  ],
+  "targetReviewNote": "元データの目標点・所要時間・前問依存を確認しています。数値は検証完了後に掲載します。",
   "links": {
     "questions": "/past-exam-library/teikyo/2025/physics/questions/",
     "answers": "/past-exam-library/teikyo/2025/physics/answers/",

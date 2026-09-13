@@ -2742,33 +2742,26 @@
       ],
       "issues": [
         {
-          "scope": "questions",
-          "kind": "figures-pending",
-          "count": 9,
-          "message": "Question figures require independent reconstruction; dependent questions remain review-only."
-        },
-        {
-          "scope": "answers",
-          "kind": "figures-pending",
-          "count": 1,
-          "message": "Required visual positions retained; no restricted answer crop copied."
-        },
-        {
           "scope": "answers",
           "kind": "editorial-review",
           "message": "Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch."
         },
         {
-          "scope": "analysis",
+          "scope": "analysis-targets",
           "kind": "source-error",
-          "message": "ENOENT: no such file or directory, open 'C:\\---hp\\shidai-igakubu-gokaku-dokuhon\\projects\\universities\\teikyo\\past-exams\\working\\2025\\general\\first-stage\\physics\\preview-html\\public-preview\\index.html'"
+          "message": "物理①・②は別日程ですが、元分析は6大問39問を100点・60分にまとめています。各日単位の配点・時間モデルが未検証のため、目標点を保留します。 (docs/handoffs/past-exam-batch/teikyo-physics-source-review.md)"
+        },
+        {
+          "scope": "analysis-targets",
+          "kind": "pending",
+          "message": "Target section retained but scores withheld until validated source is supplied."
         }
       ],
       "questions": "imported",
-      "questionFigures": 9,
+      "questionFigures": 0,
       "answers": "editorial-adaptation-imported",
-      "answerFigures": 1,
-      "analysis": "source-repair-required"
+      "answerFigures": 0,
+      "analysis": "targets-deferred"
     },
     {
       "id": "toho-2025-general-mathematics",

@@ -1,0 +1,780 @@
+{
+  "schemaVersion": "lexus-analysis-evidence.v1",
+  "package": {
+    "id": "teikyo-2025-general-physics",
+    "university_id": "teikyo",
+    "university_name": "帝京大学",
+    "academic_year": 2025,
+    "exam_method_id": "general",
+    "exam_method_name": "一般選抜",
+    "exam_stage": "first_stage_academic",
+    "subject_id": "physics",
+    "subject_name": "物理",
+    "time_limit": {
+      "kind": "combined_subjects",
+      "minutes": 120,
+      "subject_ids": [
+        "mathematics",
+        "physics",
+        "chemistry",
+        "biology",
+        "japanese"
+      ],
+      "note": "英語必須に加え、数学・物理・化学・生物・国語から2科目を選択し、選択2科目を一括120分で解く。物理単独の公式時間ではない。"
+    },
+    "total_points": 100
+  },
+  "source": {
+    "project": "shidai-igakubu-gokaku-dokuhon",
+    "html": "projects/universities/teikyo/past-exams/working/2025/general/first-stage/physics/generated/public-preview/index.html",
+    "sha256": "0576cb3b631ae2bbbc39d40fd99c0918d10494af9c9e387bb82d983c14504bae",
+    "approved": false
+  },
+  "axes": [
+    "物理に関する知識",
+    "問題パターン知識",
+    "数式処理",
+    "計算量",
+    "問題咀嚼"
+  ],
+  "aggregation": "provisional_points_weighted_mean",
+  "majorQuestions": [
+    {
+      "id": "phys-q1",
+      "label": "①-1",
+      "sourceTitle": "歩行を単振り子で近似するモデル",
+      "requirements": [
+        1.7,
+        1.7,
+        1.8,
+        1.9,
+        1.7
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q1-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "周期公式を選ぶ基本確認。",
+          "strategyReason": "公式選択だけで仮2.5点を回収できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q1-2",
+          "label": "(2)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "vmax=Aωと周期公式をつなぐ。",
+          "strategyReason": "前問の式を利用する短い導出。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-1"
+            ],
+            "strong_subject": [
+              "phys-q1-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-3",
+          "label": "(3)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "平方根を含む直接計算。",
+          "strategyReason": "前問公式への代入で確実性が高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-1"
+            ],
+            "strong_subject": [
+              "phys-q1-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-4",
+          "label": "(4)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "導出済み式への代入。",
+          "strategyReason": "独立に再計算しやすい仮2.5点。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-2"
+            ],
+            "strong_subject": [
+              "phys-q1-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-5",
+          "label": "(5)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "運動モデルとエネルギー式の接続が必要。",
+          "strategyReason": "(4)の値を二乗するだけで到達できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-4"
+            ],
+            "strong_subject": [
+              "phys-q1-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q1-6",
+          "label": "(6)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "歩数・両脚・効率・単位換算を整理する。",
+          "strategyReason": "条件整理に時間がかかるため苦手層は後回し。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q1-5"
+            ],
+            "strong_subject": [
+              "phys-q1-5"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q2",
+      "label": "①-2",
+      "sourceTitle": "水中の木片に働く浮力と運動",
+      "requirements": [
+        2.2,
+        2.3,
+        2,
+        1.6,
+        2.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q2-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "密度と排水体積を使うつり合い。",
+          "strategyReason": "浮力の基本式で解ける。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-2",
+          "label": "(2)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "浸水長の変化を区分的な直線へ変換する。",
+          "strategyReason": "図と変数の対応確認に時間を要する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-1"
+            ],
+            "strong_subject": [
+              "phys-q2-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-3",
+          "label": "(3)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "グラフ面積を仕事へ読み替える。",
+          "strategyReason": "三角形面積で短く回収できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-2"
+            ],
+            "strong_subject": [
+              "phys-q2-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-4",
+          "label": "(4)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "2つの仕事の和を0と置く。",
+          "strategyReason": "前問の仕事を利用できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-3"
+            ],
+            "strong_subject": [
+              "phys-q2-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-5",
+          "label": "(5)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "一定の浮力と重力で運動方程式を立てる。",
+          "strategyReason": "独立した運動方程式で解ける。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q2-6",
+          "label": "(6)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "移動距離と加速度をv²公式へ入れる。",
+          "strategyReason": "(5)が解ければ定型計算。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-5"
+            ],
+            "strong_subject": [
+              "phys-q2-5"
+            ]
+          }
+        },
+        {
+          "id": "phys-q2-7",
+          "label": "(7)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "一定浮力区間と減少区間の仕事を合算する。",
+          "strategyReason": "区間分けを要する大問の最終設問。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q2-3",
+              "phys-q2-4"
+            ],
+            "strong_subject": [
+              "phys-q2-3",
+              "phys-q2-4"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q3",
+      "label": "①-3",
+      "sourceTitle": "組み合わせレンズによる顕微鏡",
+      "requirements": [
+        2.2,
+        1.9,
+        2.1,
+        2.1,
+        1.9
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q3-1",
+          "label": "空欄1〜4",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "距離和と倍率の連立。",
+          "strategyReason": "2本の一次関係で求まる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-2",
+          "label": "空欄5〜8",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "同じ連立式のもう一方。",
+          "strategyReason": "(1)と同時に回収できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-1"
+            ],
+            "strong_subject": [
+              "phys-q3-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-3",
+          "label": "空欄9〜12",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "レンズ公式と有効数字処理を行う。",
+          "strategyReason": "逆数計算でミスしやすい。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-1",
+              "phys-q3-2"
+            ],
+            "strong_subject": [
+              "phys-q3-1",
+              "phys-q3-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-4",
+          "label": "空欄13〜16",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "倍率条件とレンズ公式を再構成する。",
+          "strategyReason": "第二レンズの物像距離を新たに定義する。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q3-5",
+          "label": "空欄17〜20",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "各倍率を掛け合わせる。",
+          "strategyReason": "倍率10倍と2倍の積。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-1",
+              "phys-q3-4"
+            ],
+            "strong_subject": [
+              "phys-q3-1",
+              "phys-q3-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q3-6",
+          "label": "空欄21〜24",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "総合倍率で像寸法を物体寸法へ戻す。",
+          "strategyReason": "総合倍率があれば比例計算。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q3-5"
+            ],
+            "strong_subject": [
+              "phys-q3-5"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q4",
+      "label": "②-1",
+      "sourceTitle": "ヨウ素131の放射線と等価線量",
+      "requirements": [
+        2.1,
+        1.6,
+        1.6,
+        2.2,
+        1.8
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q4-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "崩壊の定義確認。",
+          "strategyReason": "短時間の知識問題。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-2",
+          "label": "(2)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "4半減期と判断する。",
+          "strategyReason": "指数関係が単純。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-3",
+          "label": "(3)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "接頭語と指数、有効数字を処理する。",
+          "strategyReason": "換算式が与えられ確実性が高い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-4",
+          "label": "(4)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "単位の知識確認。",
+          "strategyReason": "即答可能な語句問題。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q4-5",
+          "label": "(5)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "多数の条件とSI単位を一式へ代入する。",
+          "strategyReason": "長い数値代入で時間リスクが高い。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-3",
+              "phys-q4-4"
+            ],
+            "strong_subject": [
+              "phys-q4-3",
+              "phys-q4-4"
+            ]
+          }
+        },
+        {
+          "id": "phys-q4-6",
+          "label": "(6)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2,
+          "difficultyReason": "直前値の単位換算と大小比較。",
+          "strategyReason": "(5)の結果を表に照合するだけ。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q4-5"
+            ],
+            "strong_subject": [
+              "phys-q4-5"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q5",
+      "label": "②-2",
+      "sourceTitle": "ガソリンエンジンとオットーサイクル",
+      "requirements": [
+        2,
+        2,
+        2.2,
+        2.4,
+        2.5
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q5-1",
+          "label": "1",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "与式と指数近似を使う。",
+          "strategyReason": "式と近似値が与えられている。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q5-2",
+          "label": "2",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "同じ指数値を効率式へ代入する。",
+          "strategyReason": "問1の中間値を再利用できる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q5-1"
+            ],
+            "strong_subject": [
+              "phys-q5-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q5-3",
+          "label": "3",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "4気筒で等分する。",
+          "strategyReason": "単純な割り算。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q5-4",
+          "label": "4",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "4行程が2回転に対応することを読む。",
+          "strategyReason": "単位を秒へ直せば短い。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q5-5",
+          "label": "5",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "円柱体積と往復回数を結ぶ。",
+          "strategyReason": "幾何と4行程の読み取りが重なる。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q5-3"
+            ],
+            "strong_subject": [
+              "phys-q5-3"
+            ]
+          }
+        },
+        {
+          "id": "phys-q5-6",
+          "label": "6",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "1回転の仕事と毎秒回転数を組み合わせる。",
+          "strategyReason": "トルクの物理的意味を使うため苦手層は後回し。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q5-7",
+          "label": "7",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "重力による仕事率を1psとして換算する。",
+          "strategyReason": "換算定義が問題文に示されている。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q5-6"
+            ],
+            "strong_subject": [
+              "phys-q5-6"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "phys-q6",
+      "label": "②-3",
+      "sourceTitle": "反発力を受ける2球の等加速度運動",
+      "requirements": [
+        2.2,
+        1.6,
+        1.6,
+        1.3,
+        2.1
+      ],
+      "subquestions": [
+        {
+          "id": "phys-q6-1",
+          "label": "(1)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "向きを含めF=maを立てる。",
+          "strategyReason": "符号確認だけの基本式。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q6-2",
+          "label": "(2)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "質量kmを使う運動方程式。",
+          "strategyReason": "(1)と対称に処理できる。",
+          "prerequisites": {
+            "weak_subject": [],
+            "strong_subject": []
+          }
+        },
+        {
+          "id": "phys-q6-3",
+          "label": "(3)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "初速度と一定加速度を代入する。",
+          "strategyReason": "v=v0+atの直接適用。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q6-1"
+            ],
+            "strong_subject": [
+              "phys-q6-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q6-4",
+          "label": "(4)",
+          "difficulty": "基本レベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "初速度0と一定加速度を代入する。",
+          "strategyReason": "(2)の加速度をそのまま使う。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q6-2"
+            ],
+            "strong_subject": [
+              "phys-q6-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q6-5",
+          "label": "(5)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "符号を保って等加速度の位置式を使う。",
+          "strategyReason": "定型式の適用。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q6-1"
+            ],
+            "strong_subject": [
+              "phys-q6-1"
+            ]
+          }
+        },
+        {
+          "id": "phys-q6-6",
+          "label": "(6)",
+          "difficulty": "基本＋αレベル",
+          "weak": "今解く！",
+          "strong": "今解く！",
+          "points": 2.5,
+          "difficultyReason": "初期位置R0を落とさず立式する。",
+          "strategyReason": "初期位置に注意すれば定型。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q6-2"
+            ],
+            "strong_subject": [
+              "phys-q6-2"
+            ]
+          }
+        },
+        {
+          "id": "phys-q6-7",
+          "label": "(7)",
+          "difficulty": "標準レベル",
+          "weak": "後回し",
+          "strong": "今解く！",
+          "points": 3,
+          "difficultyReason": "2球の位置差を作り非零解を選ぶ。",
+          "strategyReason": "位置式2本と終了条件を統合する。",
+          "prerequisites": {
+            "weak_subject": [
+              "phys-q6-5",
+              "phys-q6-6"
+            ],
+            "strong_subject": [
+              "phys-q6-5",
+              "phys-q6-6"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "targetAnalysis": null
+}

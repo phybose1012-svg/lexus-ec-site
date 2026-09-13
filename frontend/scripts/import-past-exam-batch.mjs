@@ -11,6 +11,7 @@ import {loadFigureManifest} from '../src/lib/pastExamFigures.mjs';
 import {normalizeInequalitiesDeep} from '../src/lib/mathNotation.mjs';
 import {openUpstreamIssues,upstreamIssueText} from './lib/past-exam-upstream-issues.mjs';
 import {targetReviewHold} from './lib/past-exam-target-review-holds.mjs';
+import {analysisHtmlLocation} from './lib/past-exam-analysis-location.mjs';
 
 const frontend=fileURLToPath(new URL('../',import.meta.url));
 const repo=path.dirname(frontend);
@@ -101,16 +102,17 @@ for(let index=0;index<inventory.length;index++) {
     try {
       const meta=read(path.join(dir,'analysis.json'));
       const derived=read(path.join(dir,'derived.json'));
-      const htmlFile=path.join(dir,'preview-html/public-preview/index.html');
+      const htmlRelative=analysisHtmlLocation(dir);
+      const htmlFile=path.join(dir,htmlRelative);
       const html=fs.readFileSync(htmlFile,'utf8');
       let evidence;
       try {
         const hold=targetReviewHold(targetReviewHolds,entry.id,hash(path.join(dir,'analysis.json')));
         if(hold)throw new Error(hold);
-        evidence=extractAnalysis(html,meta,`${item.directory}/preview-html/public-preview/index.html`,derived);
+        evidence=extractAnalysis(html,meta,`${item.directory}/${htmlRelative}`,derived);
       }
       catch(error) {
-        evidence=extractAnalysis(html,meta,`${item.directory}/preview-html/public-preview/index.html`,derived,{deferTargets:true});
+        evidence=extractAnalysis(html,meta,`${item.directory}/${htmlRelative}`,derived,{deferTargets:true});
         status.issues.push({scope:'analysis-targets',kind:'source-error',message:error.message});
       }
       if(!evidence.targetAnalysis)status.issues.push({scope:'analysis-targets',kind:'pending',message:'Target section retained but scores withheld until validated source is supplied.'});

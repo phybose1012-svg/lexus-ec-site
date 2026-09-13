@@ -5,9 +5,9 @@
 ## 完成度を混同しない
 
 - 既存独自解説5件は保護。新規62件はステージングレビュー版。
-- 本文あり：問題67件 / 解説65件 / 分析64件。
-- 目標点保留：21件。図版の予約領域：120箇所。これらは完成扱いではない。
-- 本文欠損：iwate-medical-2025-general-chemistry、nippon-medical-2022-general-late-mathematics、teikyo-2025-general-physics。
+- 本文あり：問題67件 / 解説65件 / 分析65件。
+- 目標点保留：22件。図版の予約領域：110箇所。これらは完成扱いではない。
+- 本文欠損：iwate-medical-2025-general-chemistry、nippon-medical-2022-general-late-mathematics。
 - 既存学習者向け解説の取り込みは独立した再解答・論理検証ではない。ページ注記とメタデータでその違いを明記。
 
 ## 修正担当に渡すプロンプト
@@ -76,7 +76,7 @@
 |st-marianna-2025-general-early-mathematics|問題: imported; 解説: editorial-adaptation-imported; 分析: imported|[依頼](st-marianna-2025-general-early-mathematics.md)|[問題](https://staging.lexus-ec.pages.dev/past-exam-library/st-marianna/2025/mathematics/questions/)|
 |st-marianna-2025-general-early-physics|問題: imported; 解説: editorial-adaptation-imported; 分析: imported|[依頼](st-marianna-2025-general-early-physics.md)|[問題](https://staging.lexus-ec.pages.dev/past-exam-library/st-marianna/2025/physics/questions/)|
 |teikyo-2025-general-mathematics|問題: imported; 解説: editorial-adaptation-imported; 分析: targets-deferred|[依頼](teikyo-2025-general-mathematics.md)|[問題](https://staging.lexus-ec.pages.dev/past-exam-library/teikyo/2025/mathematics/questions/)|
-|teikyo-2025-general-physics|問題: imported; 解説: editorial-adaptation-imported; 分析: source-repair-required|[依頼](teikyo-2025-general-physics.md)|[問題](https://staging.lexus-ec.pages.dev/past-exam-library/teikyo/2025/physics/questions/)|
+|teikyo-2025-general-physics|問題: imported; 解説: editorial-adaptation-imported; 分析: targets-deferred|[依頼](teikyo-2025-general-physics.md)|[問題](https://staging.lexus-ec.pages.dev/past-exam-library/teikyo/2025/physics/questions/)|
 |toho-2025-general-mathematics|問題: imported; 解説: editorial-adaptation-imported; 分析: imported|[依頼](toho-2025-general-mathematics.md)|[問題](https://staging.lexus-ec.pages.dev/past-exam-library/toho/2025/mathematics/questions/)|
 |toho-2025-general-physics|問題: imported; 解説: editorial-adaptation-imported; 分析: targets-deferred|[依頼](toho-2025-general-physics.md)|[問題](https://staging.lexus-ec.pages.dev/past-exam-library/toho/2025/physics/questions/)|
 |tohoku-medical-pharmaceutical-2025-general-mathematics|問題: imported; 解説: editorial-adaptation-imported; 分析: imported|[依頼](tohoku-medical-pharmaceutical-2025-general-mathematics.md)|[問題](https://staging.lexus-ec.pages.dev/past-exam-library/tohoku-medical-pharmaceutical/2025/mathematics/questions/)|
