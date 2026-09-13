@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import {isHandEditedFigure} from './lib/past-exam-figure-handoff.mjs';
+import {unsafeSvgReason} from '../src/lib/svgSafety.mjs';
 import {packageId,quartic,derivative,sectionX,sectionZ,hexagon,surface,clippedDisk,dandelin,answerSupplement} from './build-kyorin-2025-general-mathematics-figures.mjs';
 const close=(a,b,tol=1e-9)=>assert.ok(Math.abs(a-b)<tol,`${a} != ${b}`);
 const integrate=(f,a,b,n=20000)=>{let s=0;for(let i=0;i<n;i++)s+=f(a+(i+.5)*(b-a)/n);return s*(b-a)/n;};
@@ -57,6 +60,13 @@ test('Kyorin targets: all 256 subsets respect rounded time and prerequisites',()
 });
 test('Kyorin assets and supplements preserve provenance and eleven stable slots',()=>{
  const manifest=JSON.parse(fs.readFileSync(new URL(`../src/data/pastExamFigures/${packageId}.json`,import.meta.url)));assert.equal(manifest.items.length,11);assert.equal(manifest.restrictedSourceCopied,false);assert.equal(manifest.review.needsHumanReview,true);
- for(const fig of manifest.items){const svg=fs.readFileSync(new URL(`../public${fig.src}`,import.meta.url),'utf8');assert.match(svg,/KaTeX_Main/);assert.match(svg,/KaTeX_Math/);assert.doesNotMatch(svg,/<(?:image|foreignObject|script)\b/);assert.ok(fig.alt.length>20);}
+ for(const fig of manifest.items){
+  const svg=fs.readFileSync(new URL(`../public${fig.src}`,import.meta.url),'utf8');
+  if(isHandEditedFigure(fileURLToPath(new URL('../',import.meta.url)),packageId,fig.id)){
+   const handoff=JSON.parse(fs.readFileSync(new URL(`../src/data/pastExamFigures/${packageId}/${fig.id}.trio.json`,import.meta.url)));
+   assert.equal(handoff.schemaVersion,'lexus-past-exam-figure-trio.v1');assert.equal(handoff.packageId,packageId);assert.equal(handoff.figureId,fig.id);assert.match(handoff.trio.style,/Equation/);assert.match(svg,/data-mml-node="math"/);
+  }else{assert.match(svg,/KaTeX_Main/);assert.match(svg,/KaTeX_Math/);}
+  assert.equal(unsafeSvgReason(svg),null);assert.doesNotMatch(svg,/<(?:image|foreignObject|script)\b/);assert.ok(fig.alt.length>20);
+ }
  const supplement=answerSupplement();assert.equal(supplement.operations.length,2);const tables=supplement.operations.flatMap(op=>op.blocks).filter(b=>b.type==='table');assert.equal(tables.length,2);for(const t of tables)assert.ok(t.rows.every(row=>row.length===t.headers.length));assert.equal(JSON.stringify(tables).match(/\[\[no-value\]\]/g).length,4);
 });

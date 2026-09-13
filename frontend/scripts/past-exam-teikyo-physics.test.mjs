@@ -28,7 +28,7 @@ test('Teikyo physics: lens conjugates, radiation units, four-stroke engine',()=>
  const Egamma=364e3*1.6e-19,dose=Egamma*1e8*3600*.4*1.7/(4*Math.PI*70);
  near(Egamma,5.824e-14,1e-25);assert.equal(Number(dose.toPrecision(3)),1.62e-5);assert.ok(dose*1e3>.01&&dose*1e3<.1);
  const stroke=(2460/4)/(3.14*(9.95/2)**2);near(stroke*4,31.6533215,1e-7);near(2000/4,500);
- near(300*10**.4,753.56592945,1e-7);near(1-10**(-.4),.60189282945,1e-8);near(6000/60/2,50);near(500*.628*50*10,157000);near(157000/735,213.60544218,1e-7);
+ near(300*10**.4,753.56592945,1e-7);near(1-10**(-.4),.60189282945,1e-8);near(6000/60/2,50);near(250*2*3.14*(6000/60),157000);near(157000/735,213.60544218,1e-7);
 });
 test('Teikyo physics: repulsive force gives positive separation curvature and return time',()=>{
  const m=1,k=2,F=1,v0=2,R=10,tMin=k*m*v0/((1+k)*F),t0=2*tMin;

@@ -126,8 +126,11 @@ test("build-*-figures.mjs は全部、控えを見てから書く", () => {
     let source = fs.readFileSync(path.join(scriptsDir, name), "utf8");
     if (/from ['"]\.\/lib\/past-exam-svg-author\.mjs['"]/.test(source)) {
       assert.match(source, /createSvgPackage\(/, `${name} が保護付きの生成枠を使用していない`);
-      assert.match(source, /pack\.add\(/);
-      assert.match(source, /pack\.save\(/);
+      const binding=source.match(/\b(?:const|let)\s+([A-Za-z_$][\w$]*)\s*=\s*createSvgPackage\(/)?.[1];
+      assert.ok(binding, `${name} が保護付きの生成枠を受け取っていない`);
+      const escaped=binding.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      assert.match(source, new RegExp(`\\b${escaped}\\.add\\(`));
+      assert.match(source, new RegExp(`\\b${escaped}\\.save\\(`));
       // The shared envelope owns writes. Its preservation behavior is tested
       // below with an actual hand-edited SVG, not merely an import-name check.
       source = fs.readFileSync(path.join(scriptsDir, 'lib/past-exam-svg-author.mjs'), 'utf8');

@@ -6,6 +6,10 @@
 - 元問題13PNG/解答7PNG・正本reconstruction/learner・分析39項目・derived・分析HTMLを読解済み。独立SVG10点と分析取り込み（generated/public-previewの保存先対応）、短い要約を作成。原本cropの複製なし。[修復担当への依頼](teikyo-physics-source-review.md)に浮力(7)の誤答、小角近似の不整合、エンジン途中式などを列挙。元repoは読み取り専用。
 - 物理①②を合算した100点/60分の目標モデルは保留。6大問39評価項目、正規化50+50点の証跡は保持。元解説はeditorial_adaptation_importのまま、独自解答済み・権利確認済みとは扱わない。
 - 実装段階の集計：67package/201route、本文67問題/65解説/65分析、図保留110・目標保留22。帝京物理の図予約は0。最終build・公開確認結果は次の追記を参照。
+- 19:43 JST build完了、1118ページ。帝京物理の独立物理検算・構造回帰7件成功、14973 TeXエラー0。生成器の再実行でSVG10＋manifestの11ファイル不変。全10PNG目視、PCでは歩行・振り子・解答グラフ・分析、390pxでは分析円グラフと図の左右を目視。3ページともh1=1、数式エラー0、文書幅PC1265/モバイル375px、全10図読込済み（モバイル700pxを315px枠内スクロール）。印刷CSSのサイズ制限は検査済み、実印刷/PDF目視は未実施。
+- 共有stagingの54889efeまでの12点の人間編集SVG/trioを132ceeaeで統合し、改変していない。杏林の既存回帰を手編集のEquation/TeXベクトル描画に対応（独立幾何検算と安全性検査は維持）。生成器保護テストは変数名pack固定ではなくcreateSvgPackageの実バインディングを検査するよう変更。
+- **全体回帰は489件中488成功・1件失敗。全件成功ではない。** 失敗は共有staging由来の `dokkyo-medical-2025-general-early-physics/figures/q5-molecular-selector.svg`（c75a094f）の `foreignObject`。中身はエディタで作った文字「小穴O」だが現行安全性契約では拒否対象。帝京物理由来ではなく、対象10SVGは安全性検査成功。他担当の手編集を削除したり、安全性検査を緩めたりせず保持した。修正担当には、該当trioの `newTextBox1` を通常SVG text/ベクトル文字として出力し、位置・書式を維持した上でforeignObjectをなくすこと、書戻し経路が既存検査を通過せず保存した理由を確認することを依頼する。今回はその別件を自動修正しない。
+- 専用配信QAは `qa/past-exam-batch/verify-teikyo-physics-release.mjs`。ローカル3URLのHTTP200/noindex/canonical、新内容、図10点＋共有更新の代表3点のpublic/dist/実配信バイト一致を確認。公開確認は次の記録を参照。
 
 ## 最新チェックポイント：2026-09-13・帝京大学2025年度数学
 
