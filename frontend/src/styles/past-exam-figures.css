@@ -107,6 +107,15 @@
  body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/nippon-medical-2025-general-early-physics/"],
  body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/saitama-medical-2025-general-early-physics/"] { max-height: 200mm; max-width: 150mm; width: auto; }
 }
+.past-exam-figure img[src^="/assets/past-exams/sangyo-medical-2025-general-a-b-physics/"] { max-height: none; height: auto; }
+@media screen and (max-width: 700px) {
+ [data-past-exam-package="sangyo-medical-2025-general-a-b-physics"] .past-exam-figure { overflow-x: auto; }
+ [data-past-exam-package="sangyo-medical-2025-general-a-b-physics"] .past-exam-figure::before { content: "図は左右にスクロールできます"; display: block; font-size: .8rem; color: #52657b; margin-bottom: 10px; }
+ .past-exam-figure img[src^="/assets/past-exams/sangyo-medical-2025-general-a-b-physics/"] { min-width: 650px; }
+}
+@media print {
+ body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/sangyo-medical-2025-general-a-b-physics/"] { max-height: 200mm; max-width: 150mm; width: auto; }
+}
 .past-exam-figure img[src^="/assets/past-exams/sangyo-medical-2025-general-a-b-mathematics/"] { max-height: none; height: auto; }
 .past-exam-answer-page[data-past-exam-package="sangyo-medical-2025-general-a-b-mathematics"] .answer-table-scroll { width: fit-content; max-width: 100%; margin-inline: auto; }
 .past-exam-answer-page[data-past-exam-package="sangyo-medical-2025-general-a-b-mathematics"] #major-question-02 .answer-table { width: 420px; min-width: 420px; }

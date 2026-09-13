@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "lexus-past-exam-figures.v1",
+  "packageId": "sangyo-medical-2025-general-a-b-physics",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": [
+      "条件から独立作図。制限付き原本cropの埋込み・トレースなし。",
+      "接続軌道・円弧・PV曲線・方向・スリット配置を数式で生成。数値比は模式図のためで問題への追加条件ではない。",
+      "φは本文のvarphiと一致。回答値は問題図へ入れない。力の大きさ・角度・平板の厚さは模式的。人間の科目・権利レビューは未完了。"
+    ]
+  },
+  "items": [
+    {
+      "id": "q1-track-diagram",
+      "src": "/assets/past-exams/sangyo-medical-2025-general-a-b-physics/figures/q1-track-diagram.svg",
+      "width": 940,
+      "height": 440,
+      "alt": "高さhのSから円弧ADBを経てGへ下る軌道。円弧の中心Cは高さd、半径a、両端の角はφ。右側の半円筒は中心O、直径GE、半径a。",
+      "caption": "図1　軌道のつながりと高さ（模式図）"
+    },
+    {
+      "id": "q2-pv-cycle-diagrams",
+      "src": "/assets/past-exams/sangyo-medical-2025-general-a-b-physics/figures/q2-pv-cycle-diagrams.svg",
+      "width": 810,
+      "height": 810,
+      "alt": "4種類のPVサイクルをA、B、C、D、Aの順で回る。Iは断熱と定積、IIは定圧と断熱、IIIは断熱・定圧・断熱・定積、IVは等温と断熱。",
+      "caption": "図2　4種類のサイクル（軸の尺度は模式的）"
+    },
+    {
+      "id": "q3-grating-geometry",
+      "src": "/assets/past-exams/sangyo-medical-2025-general-a-b-physics/figures/q3-grating-geometry.svg",
+      "width": 720,
+      "height": 450,
+      "alt": "同じ幅・等間隔dのスリットへ垂直に光が入る。1次明線へ向かう光の方向と直進方向の間の角がθA。",
+      "caption": "図3-1　回折格子と回折角（角度・幅は模式的）"
+    },
+    {
+      "id": "q3-screen-pattern",
+      "src": "/assets/past-exams/sangyo-medical-2025-general-a-b-physics/figures/q3-screen-pattern.svg",
+      "width": 720,
+      "height": 450,
+      "alt": "回折格子と平行なスクリーンが距離Lにある。直進方向のm0を中心に、両側へm1、m2、m3の明線が対称に並ぶ。",
+      "caption": "図3-2　平板を入れる前の明線（模式図）"
+    },
+    {
+      "id": "q3-alternate-slit-plates",
+      "src": "/assets/past-exams/sangyo-medical-2025-general-a-b-physics/figures/q3-alternate-slit-plates.svg",
+      "width": 720,
+      "height": 450,
+      "alt": "光の入射側で一つおきのスリット直前に同じ厚さの透明平板を入れる。新しい最寄り明線へ向かう光の回折角がθB。",
+      "caption": "図3-3　平板を交互に入れた回折格子（模式図）"
+    },
+    {
+      "id": "a1-circular-arc-forces",
+      "src": "/assets/past-exams/sangyo-medical-2025-general-a-b-physics/figures/a1-circular-arc-forces.svg",
+      "width": 780,
+      "height": 470,
+      "alt": "円弧外側の物体に重力mgが鉛直下向き、垂直抗力Nが中心Cと反対向きに働く。中心向きの合力はmg cosθ−N。",
+      "caption": "外側の円弧：中心向きの力を整理する"
+    },
+    {
+      "id": "a1-hollow-forces",
+      "src": "/assets/past-exams/sangyo-medical-2025-general-a-b-physics/figures/a1-hollow-forces.svg",
+      "width": 780,
+      "height": 480,
+      "alt": "半円筒の上半分では垂直抗力N′と重力の中心向き成分mg cosθ′が同じ向き。重力成分の点線矢印は平行移動して示す。",
+      "caption": "半円筒の内側：中心向きの力を加える"
+    }
+  ]
+}

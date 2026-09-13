@@ -1,5 +1,10 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'sangyo-medical-2025-general-a-b-physics':{
+  'major-question-01':{title:'問題条件と到達条件の説明を補足確認中です',message:'物体の大きさを無視する条件が元HTMLで省略されています。Eまで到達できる最小高さでは、半円筒だけでなく、その前の円弧を通過できることの確認も必要です。図は条件から独立に作成し、本文の補足を修復担当へ依頼しています。'},
+  'major-question-02':{title:'熱量・仕事の途中説明を補足確認中です',message:'図には各過程の種類と向きを示しました。元の解説では、受熱・放熱の判別、断熱過程の寄与と熱効率へ代入する式の説明を補足待ちです。'},
+  'major-question-03':{title:'位相差と近似の説明を補足確認中です',message:'元の解説は、明暗が等間隔という説明だけで中央が暗線になると結論しています。元の1次明線での位相差から導く根拠、近似等号、光路差による主解法の復元を依頼しています。図は問題条件から独立作成した模式図です。'},
+ },
  'sangyo-medical-2025-general-a-b-mathematics':{
   'major-question-01':{title:'丸めと単位の表記を確認中です',message:'元の解説では近似値を等号で結んでいます。有効数字2桁への丸めと、酸素量の単位を元HTMLで修復予定です。正式な教材としては確認完了をお待ちください。'},
   'major-question-02':{title:'導出過程と接線の条件は補足確認中です',message:'図と整数解の表は条件から独立に作成しました。四面体の高さ・積分・三角方程式の途中説明は元HTMLへの補足待ちです。(10)の図は異なる接点をもつ共通外接線の場合を表し、原本の条件表現も確認中です。'},
@@ -322,6 +327,7 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'sangyo-medical-2025-general-a-b-physics':{title:'仮配点と所要時間・前問依存を編集確認中です',message:'100点換算・物理50分は分析用の仮設定で、公式は理科2科目100分です。目標点は合格ラインではありません。苦手層は全問の一巡判断に22.8分を見込むモデルです。解説補足後の所要時間、円弧の通過確認への依存、波動の解く順番の説明を再確認します。'},
  'sangyo-medical-2025-general-a-b-mathematics':{title:'時間モデルと元解説を編集確認中です',message:'数学100分は問題冊子の記載です。100点換算・小問配点・所要時間・目標点は編集上の仮設定で、合格ラインではありません。苦手層は一巡判断だけで75.2分を見込むモデルのため、その前提と解説修復後の時間を確認します。'},
  'saitama-medical-2025-general-early-physics':{title:'前問依存を確認するため目標点を保留しています',message:'3大問・16小問に31の解答欄があります。以下の難易度・仮配点は解答欄単位の評価です。元分析では前問の結果を使う計算の依存登録が不足しており、目標点は修復後に再確認します。物理45分は理科2科目90分の仮配分、100点換算と欄別配点は編集確認用です。'},
  'saitama-medical-2025-general-early-mathematics':{title:'仮配点と元の解答表示は確認中です',message:'数学50分は問題冊子の記載です。科目100点の出典整理、小問別の仮配点・想定時間・目標点は編集確認中で、合格ラインを示すものではありません。元HTMLの解答欄の符号・解答一覧・説明は修復後に再確認します。'},
