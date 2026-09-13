@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "lexus-past-exam-figures.v1",
+  "packageId": "showa-medical-2025-general-i-mathematics",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": [
+      "全6図を問題条件から独立生成。元crop未使用。",
+      "区間端・対称移動・円環の内半径を区別。掲載元の解説省略は別途修復待ち。"
+    ]
+  },
+  "items": [
+    {
+      "id": "ans-q1-complex-triangle",
+      "src": "/assets/past-exams/showa-medical-2025-general-i-mathematics/figures/ans-q1-complex-triangle.svg",
+      "width": 760,
+      "height": 455,
+      "alt": "原点Oと複素数α、βの三角形。Oαは√2、Oβは4、なす角はπ/4。反射した配置も面積は等しい。",
+      "caption": "全体の回転・反射では、辺の長さと面積は変わりません。"
+    },
+    {
+      "id": "ans-q2-region",
+      "src": "/assets/past-exams/showa-medical-2025-general-i-mathematics/figures/ans-q2-region.svg",
+      "width": 760,
+      "height": 558,
+      "alt": "対数不等式の領域E。頂点は(1/2,1)、(1,2)、(2,1)、(1,1/2)。境界はy=2x、2/x、x/2、1/(2x)の各区間で、すべて含む。",
+      "caption": "境界を含む斜線部。補助線は座標の読み取り用です。"
+    },
+    {
+      "id": "ans-q2-integral-graph",
+      "src": "/assets/past-exams/showa-medical-2025-general-i-mathematics/figures/ans-q2-integral-graph.svg",
+      "width": 760,
+      "height": 560,
+      "alt": "y=1/√xの単調減少曲線と区間kからk+1の2つの長方形。下側の高さは1/√(k+1)、上側は1/√k。積分の面積は両者の間にある。",
+      "caption": "区間の幅は1。端点以外では高さが異なるため、面積の不等号は厳密です。"
+    },
+    {
+      "id": "ans-q3-tetrahedron",
+      "src": "/assets/past-exams/showa-medical-2025-general-i-mathematics/figures/ans-q3-tetrahedron.svg",
+      "width": 760,
+      "height": 550,
+      "alt": "A(p,q,0)、B(0,t,u)、C(0,t,−u)の四面体。BとCはy軸について対称で、OABは正三角形。一般の正符号の代表配置を射影した模式図。",
+      "caption": "p²+q²=1、t²+u²=1、qt=1/2。図は正符号の代表配置です。"
+    },
+    {
+      "id": "ans-q3-x-cross-section",
+      "src": "/assets/past-exams/showa-medical-2025-general-i-mathematics/figures/ans-q3-x-cross-section.svg",
+      "width": 940,
+      "height": 573,
+      "alt": "x=kの切断面と回転後の円環。s=1/√2、0<k<s。内半径k、外半径の2乗s²+(s−k)²。区間0からsで断面積を積分する。",
+      "caption": "s=1/√2 とした代表配置。端では円環の穴または厚みが消えます。"
+    },
+    {
+      "id": "ans-q3-z-cross-section",
+      "src": "/assets/past-exams/showa-medical-2025-general-i-mathematics/figures/ans-q3-z-cross-section.svg",
+      "width": 940,
+      "height": 573,
+      "alt": "z=kの切断面と回転後の円環。s=1/√2、0<k<s。内半径k、外半径の2乗s²+(s−k)²。下半分は対称で体積を2倍する。",
+      "caption": "s=1/√2 とした代表配置。端では円環の穴または厚みが消えます。"
+    }
+  ]
+}
