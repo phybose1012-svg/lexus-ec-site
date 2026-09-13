@@ -50,7 +50,10 @@ const show = import.meta.env.LEXUS_FIGURE_EDITOR === true;
         const link = document.createElement("a");
         link.className = "past-exam-figure__edit";
         link.setAttribute("style", style);
-        link.href = `/admin/figures/edit?package=${encodeURIComponent(packageId)}&figure=${encodeURIComponent(figureId)}`;
+        // 来た場所を連れていく。直したあと、エディタから 1 押しで戻れるように。
+        // referrer でも取れるが、画面を再読み込みすると消えるので URL に持たせる。
+        const from = encodeURIComponent(window.location.pathname);
+        link.href = `/admin/figures/edit?package=${encodeURIComponent(packageId)}&figure=${encodeURIComponent(figureId)}&from=${from}`;
         link.textContent = "✏️ 直す";
         link.title = `${figureId} を図形エディタで開く`;
         figure.appendChild(link);

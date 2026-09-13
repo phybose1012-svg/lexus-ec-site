@@ -52,6 +52,28 @@ function figureFromQuery(): { packageId: string; figureId: string } | null {
 }
 
 /**
+ * 戻り先のページ。「直す」を押したときの場所を ?from= で連れてきている。
+ *
+ * **受け取った文字列をそのまま行き先にしない。** 過去問ライブラリの中の
+ * 相対パスだけを通す。`//evil.example` のような「別のサイトへ飛ばす形」は
+ * ここで落とす。無ければ referrer を見て、それも無ければ一覧へ。
+ */
+function returnPath(): string {
+  if (typeof window === "undefined") return "/past-exam-library/";
+  const from = new URLSearchParams(window.location.search).get("from") ?? "";
+  if (/^\/past-exam-library\/[\w\-/]*$/.test(from)) return from;
+  try {
+    const referrer = new URL(document.referrer);
+    if (referrer.origin === window.location.origin && referrer.pathname.startsWith("/past-exam-library/")) {
+      return referrer.pathname;
+    }
+  } catch {
+    /* referrer が無い、または読めない */
+  }
+  return "/past-exam-library/";
+}
+
+/**
  * 読み込んだ中身から作る短い印（FNV-1a）。
  *
  * これを編集タブの名前に混ぜる。エディタは同じタブ名の編集途中の状態を
@@ -130,6 +152,7 @@ async function findLocalApi(): Promise<string | null> {
  */
 export default function FigureEditorIsland() {
   const [target] = useState(figureFromQuery);
+  const [backTo] = useState(returnPath);
   const packageId = target?.packageId ?? "";
   const figureId = target?.figureId ?? "";
   const [loaded, setLoaded] = useState<Loaded | null>(null);
@@ -357,6 +380,10 @@ export default function FigureEditorIsland() {
   return (
     <div className="figure-editor-island">
       <div className="figure-editor-island__bar">
+        {/* 直したら見に戻る。「直す」を押した場所を ?from= で連れてきている。 */}
+        <a className="figure-editor-island__back" href={backTo}>
+          ← 元のページへ
+        </a>
         <span>
           {packageId} / {figureId}
         </span>

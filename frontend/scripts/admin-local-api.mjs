@@ -402,31 +402,45 @@ const publishPastExamFigure = async (payload) => {
   // 名前だけを見ていたときは、中身が staging と 1 コミットも違わない作業用の
   // 枝からも送れなかった（実測）。行き止まりになるだけで、何も守れていない。
   //
-  // 通すのは 2 つの場合だけ。
-  //  - いま staging にいる
-  //  - いる枝の先頭が origin/staging と同じ（＝この図の分だけが増える）
-  // 先へ進んでいる枝は断る。**その枝の他のコミットまで一緒に公開されるため。**
-  if (status.branch !== targetBranch) {
-    await git(["fetch", "origin", targetBranch]).catch(() => "");
-    const head = (await git(["rev-parse", "HEAD"])).trim();
-    const remote = (await git(["rev-parse", `origin/${targetBranch}`]).catch(() => "")).trim();
-    if (!remote) {
-      return {
-        status: 409,
-        body: { error: `origin/${targetBranch} が見つかりません。`, status },
-      };
-    }
-    if (head !== remote) {
-      const ahead = (await git(["rev-list", "--count", `origin/${targetBranch}..HEAD`])).trim();
-      const behind = (await git(["rev-list", "--count", `HEAD..origin/${targetBranch}`])).trim();
+  // 遅れているだけなら、ここで追いつく。**人に任せると必ずまた止まる。**
+  // 他の人が staging を進めるたびに送れなくなり、そのつど手で追いついて
+  // もらうことになる（実際に 2 回起きた）。
+  //
+  // 断るのは「この枝が先へ進んでいる」ときだけ。そのまま送ると、その枝の
+  // 他のコミットまで一緒に公開されてしまう。
+  await git(["fetch", "origin", targetBranch]).catch(() => "");
+  const remote = (await git(["rev-parse", `origin/${targetBranch}`]).catch(() => "")).trim();
+  if (!remote) {
+    return {
+      status: 409,
+      body: { error: `origin/${targetBranch} が見つかりません。`, status },
+    };
+  }
+  const ahead = Number((await git(["rev-list", "--count", `origin/${targetBranch}..HEAD`])).trim());
+  if (ahead > 0) {
+    return {
+      status: 409,
+      body: {
+        error:
+          `いまいる枝（${status.branch || "（不明）"}）には ${targetBranch} に無いコミットが ${ahead} 個あります。` +
+          `そのまま送ると、この図以外の変更まで公開されてしまいます。${targetBranch} に移るか、先に揃えてください。`,
+        status,
+      },
+    };
+  }
+  const behind = Number((await git(["rev-list", "--count", `HEAD..origin/${targetBranch}`])).trim());
+  if (behind > 0) {
+    try {
+      await git(["merge", "--ff-only", `origin/${targetBranch}`]);
+    } catch (error) {
+      // 直しかけのファイルを、取り込む側も触っている。勝手に捨てない。
       return {
         status: 409,
         body: {
           error:
-            `いまいる枝（${status.branch || "（不明）"}）は ${targetBranch} と中身が違います` +
-            `（${targetBranch} に無いコミット ${ahead} 個 / 取り込んでいないコミット ${behind} 個）。` +
-            `そのまま送ると、この図以外の変更まで公開されてしまいます。${targetBranch} に移るか、先に揃えてください。`,
-          status,
+            `${targetBranch} に ${behind} 個の変更が来ていますが、取り込めませんでした: ` +
+            `${error instanceof Error ? error.message : String(error)}`,
+          status: await gitStatus(),
         },
       };
     }
