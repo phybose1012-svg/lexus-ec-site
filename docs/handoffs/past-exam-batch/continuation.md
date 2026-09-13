@@ -2,6 +2,8 @@
 
 ## 現在の停止境界：2026-09-13・帝京大学2025年度物理まで
 
+- **配信完了・停止：** `0171f6a7` をstaging/作業branchへ通常push。Cloudflare completed/success（deployment `a9c57d33-b4d2-44b3-9d51-1bc9e9110c4b`）。3ページの新本文・noindex・canonical・h1、SVG10点と人間編集の代表3点のpublic/dist/実staging配信バイト一致を専用QAで確認。全201ルートHTTP/h1/noindex/canonical失敗0。実stagingの3ページを390pxで開き、文書375px・h1=1・数式エラー0、10図700px読込済み。専用tab11を閉じ、viewportをreset。元正本4SHA不変。automation-2のPAUSEDを再確認し、変更していない。**次の大学に進まず、ここで停止。** 下記の元データ修復・別件SVG検査・実印刷は未完了。配信記録のみ作業branchへ保存する。
+
 - ユーザーが一旦停止後、「帝京の物理まで」と明示。今回の対象は帝京物理だけで、完了後は停止する。**automation-2はPAUSEDのまま**。下の過去ログにあるACTIVEや「次の大学へ進む」は現在の指示ではない。追加タスク・エージェント・自動再開を作らない。
 - 元問題13PNG/解答7PNG・正本reconstruction/learner・分析39項目・derived・分析HTMLを読解済み。独立SVG10点と分析取り込み（generated/public-previewの保存先対応）、短い要約を作成。原本cropの複製なし。[修復担当への依頼](teikyo-physics-source-review.md)に浮力(7)の誤答、小角近似の不整合、エンジン途中式などを列挙。元repoは読み取り専用。
 - 物理①②を合算した100点/60分の目標モデルは保留。6大問39評価項目、正規化50+50点の証跡は保持。元解説はeditorial_adaptation_importのまま、独自解答済み・権利確認済みとは扱わない。
