@@ -834,3 +834,7 @@
 - 公開直前に `17a48e60` / `c5538029`（自治医科大学2次数学ans-overview-diagramのSVG/trio）が追加されたため、`0d664f4d`で通常merge。再build12:47:44 JST後の回帰は468/469で、旧テストが手動編集SVGにもKaTeX埋込font名を要求して失敗。既存の`isHandEditedFigure`契約に合わせ、trioのschema/図ID一致とEquation・TeXベクトル描画を検証する分岐へ修正。未編集図のKaTeX検査と全図のscript/画像/外部参照/イベント禁止は保持。人間編集3SVG/3trioの実データはorigin/stagingと一致し、再生成していない。
 - 最終読解で「重複順列」と「同じものを含む順列」の用語混同も修復依頼へ追加。前者は個数無指定なら3の10乗、今回の指定個数の順列とは異なる。サイト分析の第2問見出し・要約だけを後者へ統一し、元データと仮数値は保持。最終再buildと回帰を実施してからpushする。
 - 最終build12:49:57 JST・1118ページ完了後、469/469テスト成功・14,966TeX表示エラー0。分析の用語修正を最終ビルドのブラウザーでも再確認。配信確認用スクリプトは`qa/past-exam-batch/verify-st-marianna-release.mjs`に保存し、新3ページ/3図と統合した人間編集3図の配信バイト一致を検証する。
+
+- **配信確認：** 内容 `d83cff84224225811289983f7484807f875a8c0f` をstaging・作業branchへ通常push。Cloudflare completed/success（deployment `7644355d-1a24-4f77-8a19-f8e44bc56385`）。実3URL HTTP200・h1=1・noindex/canonical・新補足表/分析内容を確認。全3SVGと統合した人間編集3SVGの配信バイト一致。公開後の全201ルート検査も `checked: 201, failures: []`。
+- 実staging解説を390pxブラウザーで確認。3図読込/700px、3表600px、文書375px・数式エラー0・h1=1。ローカルで確認したスクロール用寸法を維持。検証tab8を閉じviewport reset済み。preview localhost4337と既存1分間隔の直列継続を維持。
+- **配信済み図保留134／目標保留20。** 元HTML修復・時間モデル妥当性・権利・人間承認・実印刷は未完了。配信後記録のみ作業branchへ保存し、次の検証済み内容push時にstagingへ含める。次回は上記の **聖マリアンナ医科大学2025年度前期・物理** の未読本文から。数学の検証済み作業はやり直さない。
