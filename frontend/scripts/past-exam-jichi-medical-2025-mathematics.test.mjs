@@ -166,10 +166,20 @@ test("diagram geometry agrees with the published mathematical conditions", () =>
   for (const root of [-8, -2, 3]) assert.equal(quartic(root), 0);
 
   const tetraSvg = read("public/assets/past-exams/jichi-medical-2025-general-mathematics/figures/ans-q7-tetrahedron.svg");
+  if (isHandEditedFigure(frontendRoot, packageId, "ans-q7-tetrahedron")) {
+    const handoff = JSON.parse(read(`src/data/pastExamFigures/${packageId}/ans-q7-tetrahedron.trio.json`));
+    assert.equal(handoff.schemaVersion, "lexus-past-exam-figure-trio.v1");
+    assert.equal(handoff.packageId, packageId);
+    assert.equal(handoff.figureId, "ans-q7-tetrahedron");
+    assert.match(handoff.trio.style, /Equation/);
+    assert.match(tetraSvg, /data-mml-node="math"/);
+  } else {
+    // Coordinates describe the generator's layout, not a human-edited layout.
   assert.match(tetraSvg, /<line x1="207\.20" y1="260\.80" x2="470\.00" y2="260\.80" class="construction"/);
   assert.match(tetraSvg, /<polyline points="456\.00,260\.80 456\.00,274\.80 470\.00,274\.80"/);
   assert.match(tetraSvg, /<text x="482\.00" y="427\.00" class="math"/);
   assert.ok(!tetraSvg.includes('y="503.55"'));
+  }
 
   const tangentSvg = read("public/assets/past-exams/jichi-medical-2025-general-mathematics/figures/ans-q14-16-common-tangent.svg");
   assert.match(tangentSvg, /<path d="M116\.00,270\.00 A35\.00,35\.00 0 0 0 111\.31,252\.50"/);
