@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "lexus-past-exam-figure-trio.v1",
+  "packageId": "dokkyo-medical-2025-general-early-physics",
+  "figureId": "q1-conductor-model",
+  "trio": {
+    "domain": "type UserShape\n",
+    "substance": "UserShape rect_03m73o9\nUserShape path_1eujrza\nUserShape ellipse_11oyvki\nUserShape line_10wltxw\nUserShape text_0zoe3g9\nUserShape circle_0b8edcl\nUserShape text_0sn8xus\nUserShape line_0sj47jj\nUserShape text_1smxgk3\nUserShape text_0z19yb7\nUserShape line_11ytv8v\nUserShape text_1sa4cam\nUserShape text_1x8bhhd\nUserShape line_1jf3xcb\nUserShape line_0g329v1\nUserShape line_1h8bsro\nUserShape text_15vfglv\nUserShape line_17spaly\nUserShape line_1urodog\nUserShape line_0zpgykf\nUserShape text_0mgn5zm\nUserShape text_1xkxn8k\n",
+    "style": "canvas {\n  width = 700\n  height = 349\n}\n\nforall UserShape `rect_03m73o9` {\n  `rect_03m73o9`.shape = Rectangle {\n    center: (0, 0)\n    width: 700\n    height: 349\n    cornerRadius: 0\n    fillColor: rgba(1, 1, 1, 1)\n    strokeColor: none()\n  }\n}\n\nforall UserShape `path_1eujrza` {\n  `path_1eujrza`.shape = Path {\n    d: \"M -185 62.5 L 175 62.5 A 16 43 0 0 1 175 -23.5 L -185 -23.5 A 16 43 0 0 1 -185 62.5\"\n    fillColor: rgba(0.9176, 0.9451, 0.9608, 1)\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    strokeLinejoin: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `ellipse_11oyvki` {\n  `ellipse_11oyvki`.shape = Ellipse {\n    center: (175, 19.5)\n    rx: 43\n    ry: 16\n    fillColor: rgba(0.851, 0.9059, 0.9373, 1)\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    rotation: 90\n    transform: \"rotate(90 525 155)\"\n  }\n}\n\nforall UserShape `line_10wltxw` {\n  `line_10wltxw`.shape = Line {\n    start: (-297, 19.5)\n    end: (-219, 19.5)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"straight\"\n    endArrowheadSize: 0.603\n  }\n}\n\nforall UserShape `text_0zoe3g9` {\n  `text_0zoe3g9`.shape = Equation {\n    string: \"I\"\n    center: (-262, 49.0375)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `circle_0b8edcl` {\n  `circle_0b8edcl`.shape = Circle {\n    center: (24, 19.5)\n    r: 6.1\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeColor: rgba(1, 1, 1, 1)\n    strokeWidth: 1\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `text_0sn8xus` {\n  `text_0sn8xus`.shape = Equation {\n    string: \"\\mathrm{−}e\"\n    center: (25.5132, 35.4872)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `line_0sj47jj` {\n  `line_0sj47jj`.shape = Line {\n    start: (24.3122, 20.1973)\n    end: (-57.6878, 20.1973)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"straight\"\n    endArrowheadSize: 0.603\n  }\n}\n\nforall UserShape `text_1smxgk3` {\n  `text_1smxgk3`.shape = Equation {\n    string: \"v\"\n    center: (-48.8808, 35.322)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_0z19yb7` {\n  `text_0z19yb7`.shape = Equation {\n    string: \"S\"\n    center: (237.0625, 19.0375)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `line_11ytv8v` {\n  `line_11ytv8v`.shape = Line {\n    start: (216, 22.5)\n    end: (176.7539, 16.2329)\n    fillColor: none()\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.3\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `text_1sa4cam` {\n  `text_1sa4cam`.shape = Equation {\n    string: \"\\mathrm{+}\"\n    center: (-193.275, 89.7625)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_1x8bhhd` {\n  `text_1x8bhhd`.shape = Equation {\n    string: \"\\mathrm{−}\"\n    center: (177.725, 89.7625)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `line_1jf3xcb` {\n  `line_1jf3xcb`.shape = Line {\n    start: (-185, -68.5)\n    end: (175, -68.5)\n    fillColor: none()\n    strokeColor: rgba(0.4627, 0.5608, 0.6235, 1)\n    strokeWidth: 1.3\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_0g329v1` {\n  `line_0g329v1`.shape = Line {\n    start: (-185, -62.5)\n    end: (-185, -74.5)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_1h8bsro` {\n  `line_1h8bsro`.shape = Line {\n    start: (175, -62.5)\n    end: (175, -74.5)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `text_15vfglv` {\n  `text_15vfglv`.shape = Equation {\n    string: \"L\"\n    center: (-5, -47.9625)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `line_17spaly` {\n  `line_17spaly`.shape = Line {\n    start: (-185, -132.5)\n    end: (175, -132.5)\n    fillColor: none()\n    strokeColor: rgba(0.4627, 0.5608, 0.6235, 1)\n    strokeWidth: 1.3\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_1urodog` {\n  `line_1urodog`.shape = Line {\n    start: (-185, -126.5)\n    end: (-185, -138.5)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_0zpgykf` {\n  `line_0zpgykf`.shape = Line {\n    start: (175, -126.5)\n    end: (175, -138.5)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `text_0mgn5zm` {\n  `text_0mgn5zm`.shape = Equation {\n    string: \"V\"\n    center: (-5, -112.2375)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_1xkxn8k` {\n  `text_1xkxn8k`.shape = Text {\n    string: \"電圧\"\n    center: (239, -124.5)\n    fontSize: \"18px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    fontFamily: \"'Yu Gothic','Meiryo',sans-serif\"\n  }\n}\n",
+    "variation": "fibona-svg-import",
+    "editorState": {
+      "version": 1,
+      "layerOrder": [
+        "rect_03m73o9.shape",
+        "path_1eujrza.shape",
+        "ellipse_11oyvki.shape",
+        "line_10wltxw.shape",
+        "text_0zoe3g9.shape",
+        "circle_0b8edcl.shape",
+        "text_0sn8xus.shape",
+        "line_0sj47jj.shape",
+        "text_1smxgk3.shape",
+        "text_0z19yb7.shape",
+        "line_11ytv8v.shape",
+        "text_1sa4cam.shape",
+        "text_1x8bhhd.shape",
+        "line_1jf3xcb.shape",
+        "line_0g329v1.shape",
+        "line_1h8bsro.shape",
+        "text_15vfglv.shape",
+        "line_17spaly.shape",
+        "line_1urodog.shape",
+        "line_0zpgykf.shape",
+        "text_0mgn5zm.shape",
+        "text_1xkxn8k.shape"
+      ],
+      "groups": [],
+      "hiddenPaths": [],
+      "deletedPaths": [],
+      "originalPointCounts": {},
+      "originalPoints": {},
+      "smoothnessLevel": {},
+      "arcMetadata": {},
+      "regularPolygonMetadata": {}
+    }
+  }
+}
