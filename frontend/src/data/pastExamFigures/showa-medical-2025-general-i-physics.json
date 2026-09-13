@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "lexus-past-exam-figures.v1",
+  "packageId": "showa-medical-2025-general-i-physics",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "問題条件と独立計算から作図。restricted crop転用なし。発音時刻と到達時刻を区別し、問題図へ未解答の極値位置を入れない。薄膜問7の実現不能条件は元データ修復待ち。"
+  },
+  "items": [
+    {
+      "id": "q1-circular-source-layout",
+      "src": "/assets/past-exams/showa-medical-2025-general-i-physics/figures/q1-circular-source-layout.svg",
+      "width": 660,
+      "height": 430,
+      "alt": "中心O、半径rの円を音源Sが反時計回りに回る。Oから距離2rにPがあり、AはOP上の円周点。",
+      "caption": "音源と観測点の配置（B・Cの位置は問題で求める）"
+    },
+    {
+      "id": "q1-frequency-graph-answer-field",
+      "src": "/assets/past-exams/showa-medical-2025-general-i-physics/figures/q1-frequency-graph-answer-field.svg",
+      "width": 740,
+      "height": 390,
+      "alt": "振動数f(t)を記入する空欄。縦軸は振動数、横軸は発音時刻t、f0の水平基準線だけを示す。",
+      "caption": "グラフ記入欄"
+    },
+    {
+      "id": "ans-q1-tangent-geometry",
+      "src": "/assets/past-exams/showa-medical-2025-general-i-physics/figures/ans-q1-tangent-geometry.svg",
+      "width": 690,
+      "height": 450,
+      "alt": "Pから円への接点B・C。OBとBP、OCとCPが直交する。反時計回りの速度はBでPへ向かい、CでPから離れる。",
+      "caption": "接線方向と観測点方向が一致する2点"
+    },
+    {
+      "id": "ans-q1-projection-geometry",
+      "src": "/assets/past-exams/showa-medical-2025-general-i-physics/figures/ans-q1-projection-geometry.svg",
+      "width": 710,
+      "height": 470,
+      "alt": "OSの長さr、OPの長さ2r、PSの長さx。角SOPはωt、角SPOはθ。HとH′はそれぞれOからPS、SからOPへの垂線の足。",
+      "caption": "距離と視線方向の速度を求める補助図"
+    },
+    {
+      "id": "ans-q1-frequency-graph",
+      "src": "/assets/past-exams/showa-medical-2025-general-i-physics/figures/ans-q1-frequency-graph.svg",
+      "width": 830,
+      "height": 565,
+      "alt": "発音時刻tで表すf(t)。π/(3ω)で最小、π/ωでf0、5π/(3ω)で最大、2π/ωでf0。曲線はrω/V=0.35を例示し、極値と時刻は一般式。",
+      "caption": "観測振動数と発音時刻（亜音速の場合）"
+    },
+    {
+      "id": "q2-spring-masses-layout",
+      "src": "/assets/past-exams/showa-medical-2025-general-i-physics/figures/q2-spring-masses-layout.svg",
+      "width": 760,
+      "height": 380,
+      "alt": "左端固定の自然長ばねkの右端に質量mのAがある。Aの位置をx=0とし、右向きが正。右側には壁がある。",
+      "caption": "ばねと物体Aの初期配置（模式図）"
+    },
+    {
+      "id": "q3-rlc-series-circuit",
+      "src": "/assets/past-exams/showa-medical-2025-general-i-physics/figures/q3-rlc-series-circuit.svg",
+      "width": 710,
+      "height": 440,
+      "alt": "aとbの間に抵抗R、bとcの間にコイルL、cとdの間にコンデンサーC。dから交流電源Eを経てaへ戻る直列回路。",
+      "caption": "図1　端子順と素子の対応"
+    },
+    {
+      "id": "q3-ab-voltage-graph",
+      "src": "/assets/past-exams/showa-medical-2025-general-i-physics/figures/q3-ab-voltage-graph.svg",
+      "width": 750,
+      "height": 430,
+      "alt": "ab間の電圧は時刻0に0から増加する正弦波。周期T、最大値V0、最小値−V0で、T/2とTでも0になる。",
+      "caption": "図2　抵抗両端の電圧"
+    },
+    {
+      "id": "q4-normal-incidence-film",
+      "src": "/assets/past-exams/showa-medical-2025-general-i-physics/figures/q4-normal-incidence-film.svg",
+      "width": 710,
+      "height": 505,
+      "alt": "空気、薄膜n1、ガラスn2の順に並ぶ。n1はn2より大きい。垂直入射光Aは上面、Bは下面で反射。膜厚d。横ずれは光路を区別するための模式表示。",
+      "caption": "図1　垂直入射の2つの反射光"
+    },
+    {
+      "id": "q4-oblique-incidence-film",
+      "src": "/assets/past-exams/showa-medical-2025-general-i-physics/figures/q4-oblique-incidence-film.svg",
+      "width": 760,
+      "height": 515,
+      "alt": "CはA1から薄膜内へ屈折し下面で反射、Dは上面で反射してCと同じ方向へ出る。A1とA2を結ぶ線は入射光線に垂直な同一波面。入射角i、屈折角r。",
+      "caption": "図2　斜入射の光路（問7の数値条件は確認待ち）"
+    },
+    {
+      "id": "ans-q3-voltage-phasor",
+      "src": "/assets/past-exams/showa-medical-2025-general-i-physics/figures/ans-q3-voltage-phasor.svg",
+      "width": 770,
+      "height": 535,
+      "alt": "電流を右向き基準とし、抵抗電圧V0は同相、コイル電圧ωLI0は上、コンデンサー電圧I0/(ωC)は下。差の縦成分とV0の合成が電源電圧V3。",
+      "caption": "電圧の位相とベクトル合成（問6）"
+    }
+  ]
+}

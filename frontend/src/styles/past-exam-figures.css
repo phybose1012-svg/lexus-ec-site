@@ -177,3 +177,12 @@
 @media print {
  body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/nihon-u-2025-n-unified-first-mathematics-second-stage/"] { max-height: 200mm; max-width: 150mm; width: auto; }
 }
+.past-exam-figure img[src^="/assets/past-exams/showa-medical-2025-general-i-physics/"] { max-height: none; height: auto; }
+@media screen and (max-width: 700px) {
+ [data-past-exam-package="showa-medical-2025-general-i-physics"] .past-exam-figure { overflow-x: auto; }
+ [data-past-exam-package="showa-medical-2025-general-i-physics"] .past-exam-figure::before { content: "図は左右にスクロールできます"; display: block; font-size: .8rem; color: #52657b; margin-bottom: 10px; }
+ .past-exam-figure img[src^="/assets/past-exams/showa-medical-2025-general-i-physics/"] { min-width: 650px; }
+}
+@media print {
+ body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/showa-medical-2025-general-i-physics/"] { max-height: 200mm; max-width: 150mm; width: auto; }
+}
