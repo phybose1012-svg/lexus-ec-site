@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "lexus-past-exam-figure-trio.v1",
+  "packageId": "jichi-medical-2025-general-mathematics",
+  "figureId": "ans-q7-tetrahedron",
+  "trio": {
+    "domain": "type UserShape\n",
+    "substance": "UserShape newPolygon1\nUserShape newPolyline1\nUserShape newLine1\nUserShape newPolyline2\nUserShape newLine2\nUserShape newLine3\nUserShape newPolyline3\nUserShape newLabel1\nUserShape userShape1\nUserShape userShape2\nUserShape userShape3\nUserShape userShape4\nUserShape userShape5\n",
+    "style": "canvas {\n  width = 700\n  height = 500\n}\n\nforall UserShape `newPolygon1` {\n  `newPolygon1`.shape = Polygon {\n    points: [(-147.8214, -55.4707), (41.0067, -182.7471), (-10.1125, 149.0061)]\n    fillColor: none()\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.520691\n  }\n}\n\nforall UserShape `newPolyline1` {\n  `newPolyline1`.shape = Polyline {\n    points: [(-10.0176, 149.3897), (163.0668, -2.265), (41.5115, -182.7952)]\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.520691\n    fillColor: none()\n    startArrowhead: \"\"\n    endArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `newLine1` {\n  `newLine1`.shape = Line {\n    start: (-147.5961, -55.1443)\n    end: (163.0996, -2.5884)\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.520691\n    startArrowhead: \"\"\n    endArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowheadSize: 1\n  \n  strokeDasharray: \"5 5\"\n}\n}\n\nforall UserShape `newPolyline2` {\n  `newPolyline2`.shape = Polyline {\n    points: [(162.0316, -1.2617), (-69.9995, 61.3688)]\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.520691\n    fillColor: none()\n    startArrowhead: \"\"\n    endArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowheadSize: 1\n  \n  strokeDasharray: \"5 5\"\n}\n}\n\nforall UserShape `newLine2` {\n  `newLine2`.shape = Line {\n    start: (-69.403, 63.1583)\n    end: (40.946, -180.8024)\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.520691\n    startArrowhead: \"\"\n    endArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `newLine3` {\n  `newLine3`.shape = Line {\n    start: (-68.8065, 63.1583)\n    end: (110.1733, -81.9157)\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.520691\n    startArrowhead: \"\"\n    endArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowheadSize: 1\n  \n  strokeDasharray: \"5 5\"\n}\n}\n\nforall UserShape `newPolyline3` {\n  `newPolyline3`.shape = Polyline {\n    points: [(119.8233, -66.9505), (105.8947, -56.6997), (95.8908, -70.0947)]\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.520691\n    fillColor: none()\n    startArrowhead: \"\"\n    endArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `newLabel1` {\n  `newLabel1`.shape = Equation {\n    string: \"\\mathrm{A}\"\n    center: (-12.5914, 173.0829)\n    fontSize: \"20px\"\n    fillColor: rgba(0, 0, 0, 1)\n  }\n}\n\nforall UserShape `userShape1` {\n  `userShape1`.shape = Equation {\n\n    string: \"\\mathrm{B}\"\n    center: (-167.9822, -54.1167)\n    fontSize: \"20px\"\n    fillColor: rgba(0, 0, 0, 1)\n  \n  }\n}\n\nforall UserShape `userShape2` {\n  `userShape2`.shape = Equation {\n\n    string: \"\\mathrm{C}\"\n    center: (41.0739, -198.4875)\n    fontSize: \"20px\"\n    fillColor: rgba(0, 0, 0, 1)\n  \n  \n  }\n}\n\nforall UserShape `userShape3` {\n  `userShape3`.shape = Equation {\n\n    string: \"\\mathrm{D}\"\n    center: (176.7674, -1.2879)\n    fontSize: \"20px\"\n    fillColor: rgba(0, 0, 0, 1)\n  \n  \n  \n  }\n}\n\nforall UserShape `userShape4` {\n  `userShape4`.shape = Equation {\n\n    string: \"\\mathrm{M}\"\n    center: (127.082, -88.0729)\n    fontSize: \"20px\"\n    fillColor: rgba(0, 0, 0, 1)\n  \n  \n  \n  \n  }\n}\n\nforall UserShape `userShape5` {\n  `userShape5`.shape = Equation {\n\n    string: \"\\mathrm{P}\"\n    center: (-85.8945, 74.4175)\n    fontSize: \"20px\"\n    fillColor: rgba(0, 0, 0, 1)\n  \n  \n  \n  \n  \n  }\n}\n",
+    "variation": "fibona-svg-import",
+    "editorState": {
+      "version": 1,
+      "layerOrder": [],
+      "groups": [],
+      "hiddenPaths": [],
+      "deletedPaths": [],
+      "originalPointCounts": {
+        "newPolyline1.shape": 3,
+        "newPolygon1.shape": 3,
+        "newPolyline2.shape": 2,
+        "newPolyline3.shape": 3
+      },
+      "originalPoints": {
+        "newPolyline1.shape": [
+          {
+            "x": -10.0176,
+            "y": 149.3897
+          },
+          {
+            "x": 163.0668,
+            "y": -2.265
+          },
+          {
+            "x": 41.5115,
+            "y": -182.7952
+          }
+        ],
+        "newPolygon1.shape": [
+          {
+            "x": -147.8214,
+            "y": -55.4707
+          },
+          {
+            "x": 41.0067,
+            "y": -182.7471
+          },
+          {
+            "x": -10.1125,
+            "y": 149.0061
+          }
+        ],
+        "newPolyline2.shape": [
+          {
+            "x": 162.0316,
+            "y": -1.2617
+          },
+          {
+            "x": -69.9995,
+            "y": 61.3688
+          }
+        ],
+        "newPolyline3.shape": [
+          {
+            "x": 119.8233,
+            "y": -66.9505
+          },
+          {
+            "x": 105.8947,
+            "y": -56.6997
+          },
+          {
+            "x": 95.8908,
+            "y": -70.0947
+          }
+        ]
+      },
+      "smoothnessLevel": {
+        "newPolyline1.shape": 1,
+        "newPolygon1.shape": 1,
+        "newPolyline2.shape": 1,
+        "newPolyline3.shape": 1
+      },
+      "arcMetadata": {},
+      "regularPolygonMetadata": {}
+    }
+  }
+}
