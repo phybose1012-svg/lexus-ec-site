@@ -1,5 +1,11 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'sangyo-medical-2025-general-a-b-mathematics':{
+  'major-question-01':{title:'丸めと単位の表記を確認中です',message:'元の解説では近似値を等号で結んでいます。有効数字2桁への丸めと、酸素量の単位を元HTMLで修復予定です。正式な教材としては確認完了をお待ちください。'},
+  'major-question-02':{title:'導出過程と接線の条件は補足確認中です',message:'図と整数解の表は条件から独立に作成しました。四面体の高さ・積分・三角方程式の途中説明は元HTMLへの補足待ちです。(10)の図は異なる接点をもつ共通外接線の場合を表し、原本の条件表現も確認中です。'},
+  'major-question-03':{title:'共通点を求める式の符号を修復待ちです',message:'元HTMLの(3)にはyの係数の符号ミスがあります。問題条件からは「−2x＋y＋2＝0」となります。図はこの条件から独立に作成しましたが、本文修復まで演習・採点には使わず編集確認用としてください。'},
+  'major-question-04':{title:'漸化式の導出は補足確認中です',message:'食べる順序の表を独立に追加しました。等比数列へ変形する根拠と初項の計算は、元HTMLへの補足を依頼しています。'},
+ },
  'saitama-medical-2025-general-early-physics':{
   'major-question-01':{title:'選択肢と衝突の説明を修復待ちです',message:'元HTMLの選択肢に分数・根号の転記不一致があります。解説でも速さと水平成分、衝突回数の説明は補足待ちです。図は条件から独立に作成しましたが、この大問は本文修復まで演習・採点に使わず編集確認用としてください。'},
   'major-question-02':{title:'選択肢の指数を修復待ちです',message:'元HTMLの複数の選択肢で分数指数が原本と一致していません。大気の仕事とおもりの仕事を分ける説明も補足待ちです。本文修復まで演習・採点には使わないでください。'},
@@ -316,6 +322,7 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'sangyo-medical-2025-general-a-b-mathematics':{title:'時間モデルと元解説を編集確認中です',message:'数学100分は問題冊子の記載です。100点換算・小問配点・所要時間・目標点は編集上の仮設定で、合格ラインではありません。苦手層は一巡判断だけで75.2分を見込むモデルのため、その前提と解説修復後の時間を確認します。'},
  'saitama-medical-2025-general-early-physics':{title:'前問依存を確認するため目標点を保留しています',message:'3大問・16小問に31の解答欄があります。以下の難易度・仮配点は解答欄単位の評価です。元分析では前問の結果を使う計算の依存登録が不足しており、目標点は修復後に再確認します。物理45分は理科2科目90分の仮配分、100点換算と欄別配点は編集確認用です。'},
  'saitama-medical-2025-general-early-mathematics':{title:'仮配点と元の解答表示は確認中です',message:'数学50分は問題冊子の記載です。科目100点の出典整理、小問別の仮配点・想定時間・目標点は編集確認中で、合格ラインを示すものではありません。元HTMLの解答欄の符号・解答一覧・説明は修復後に再確認します。'},
  'nippon-medical-2025-general-early-physics':{title:'目標割合の表示と前問依存は修復待ちです',message:'元HTMLの目標割合が正本の小数値と一致せず、熱効率に必要な前問の登録も不足しているため、目標点は保留しています。7小問に20の記入欄があります。小問配点と物理60分は編集上の仮設定で、問題冊子の時間は理科2科目120分です。'},

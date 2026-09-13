@@ -15,9 +15,20 @@
 
 ## 検出事項
 
-- **answers / figures-pending**: Required visual positions retained; no restricted answer crop copied.（4件）
+全14原本ページと分析の監査で見つかった具体的な修復内容は、[修復担当向け詳細プロンプト（9区分）](sangyo-math-source-review.md)を参照してください。独立SVG4点・HTML補足表2点はサイト側で追加しましたが、元HTMLの符号・近似・導出不足・時間モデルは修復・編集確認待ちです。
+
 - **answers / editorial-review**: Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch.
 
 ## 完了報告
 
 修正した正本の位置、原文→修正後、根拠となるページ・計算、再生成したHTML、テスト結果、未解決事項を列挙する。過去問ライブラリーの再取り込み先IDは `sangyo-medical-2025-general-a-b-mathematics`。既存の独自解説へ昇格済みのパッケージは一括取込で上書きしない。
+
+## 元データの未解決項目
+
+元のissues.jsonから取得した編集メモです。完了済みという意味ではありません。
+
+- **provisional-scoring-review**: 保存原本で数学の科目満点を確認し、仮100点および第1問20・第2問40・第3問20・第4問20の編集配点を科目担当者が確認する。
+- **strategy-time-review**: 原本記載の数学100分を用いた23小問の時間、苦手・得意層戦略、Lexus目標を科目担当者が確認する。
+- **editorial-explanation-review**: 学習者向け解説9原本頁分が原本の答え・解法・順序を保つことを原本転記ビューと並べて科目担当者が確認する。
+- **rights-and-redraw-review**: 内部限定の原本クロップ4点の権利を確認し、replacement.svgを用意して承認後に模写へ差し替える。
+- **subject-editor-approval**: 原本14頁の人間目視、分析・解説・難易度・仮配点・戦略を科目担当者＝編集責任者が一括承認する。AI検査だけでvisual_reviewedやapprovedをtrueにしない。

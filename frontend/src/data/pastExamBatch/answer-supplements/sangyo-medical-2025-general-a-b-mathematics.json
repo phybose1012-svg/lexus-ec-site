@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "lexus-answer-supplement.v1",
+  "packageId": "sangyo-medical-2025-general-a-b-mathematics",
+  "sourceSha256": "efd9b8e422df06b924b5162a184a83afa6bec72f8632e9d1c69c31b160ced714",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "整数の奇約数と1・2の順序列を条件から独立列挙。元の導出不足は修復依頼へ分離。"
+  },
+  "operations": [
+    {
+      "type": "insert-after",
+      "expectedMatches": 1,
+      "anchor": {
+        "type": "formula",
+        "major_question_id": "major-question-02",
+        "latex": "(2x-9)(y+2)=18"
+      },
+      "blocks": [
+        {
+          "type": "prose",
+          "major_question_id": "major-question-02",
+          "text": "\\(d=2x-9\\)は18の奇数の約数です。正負を含む6個の候補について、\\(x=(d+9)/2,\\ y=18/d-2\\)から対応する整数を求めます。"
+        },
+        {
+          "type": "table",
+          "major_question_id": "major-question-02",
+          "caption": "奇数の約数と整数解の対応",
+          "headers": [
+            "\\(d\\)",
+            "\\(y+2\\)",
+            "\\(x\\)",
+            "\\(y\\)"
+          ],
+          "rows": [
+            [
+              "\\(-9\\)",
+              "\\(-2\\)",
+              "\\(0\\)",
+              "\\(-4\\)"
+            ],
+            [
+              "\\(-3\\)",
+              "\\(-6\\)",
+              "\\(3\\)",
+              "\\(-8\\)"
+            ],
+            [
+              "\\(-1\\)",
+              "\\(-18\\)",
+              "\\(4\\)",
+              "\\(-20\\)"
+            ],
+            [
+              "\\(1\\)",
+              "\\(18\\)",
+              "\\(5\\)",
+              "\\(16\\)"
+            ],
+            [
+              "\\(3\\)",
+              "\\(6\\)",
+              "\\(6\\)",
+              "\\(4\\)"
+            ],
+            [
+              "\\(9\\)",
+              "\\(2\\)",
+              "\\(9\\)",
+              "\\(0\\)"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "insert-after",
+      "expectedMatches": 1,
+      "anchor": {
+        "type": "formula",
+        "major_question_id": "major-question-04",
+        "latex": "a_5=8"
+      },
+      "blocks": [
+        {
+          "type": "prose",
+          "major_question_id": "major-question-04",
+          "text": "2個食べる回数で分けると、重複も数え漏れもなく確認できます。並びは左から食べる順です。"
+        },
+        {
+          "type": "table",
+          "major_question_id": "major-question-04",
+          "caption": "合計5個を食べる順序の確認",
+          "headers": [
+            "2個食べる回数",
+            "食べる順序",
+            "通り数"
+          ],
+          "rows": [
+            [
+              "0",
+              "(1, 1, 1, 1, 1)",
+              "1"
+            ],
+            [
+              "1",
+              "(1, 1, 1, 2) ／ (1, 1, 2, 1) ／ (1, 2, 1, 1) ／ (2, 1, 1, 1)",
+              "4"
+            ],
+            [
+              "2",
+              "(1, 2, 2) ／ (2, 1, 2) ／ (2, 2, 1)",
+              "3"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
