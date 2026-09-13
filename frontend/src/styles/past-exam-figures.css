@@ -179,6 +179,16 @@
 }
 .past-exam-figure img[src^="/assets/past-exams/showa-medical-2025-general-i-physics/"] { max-height: none; height: auto; }
 .past-exam-figure img[src^="/assets/past-exams/st-marianna-2025-general-early-mathematics/"] { max-height: none; height: auto; }
+.past-exam-figure img[src^="/assets/past-exams/st-marianna-2025-general-early-physics/"] { max-height: none; height: auto; }
+@media screen and (max-width: 700px) {
+ [data-past-exam-package="st-marianna-2025-general-early-physics"] .past-exam-figure { overflow-x: auto; }
+ [data-past-exam-package="st-marianna-2025-general-early-physics"] .past-exam-figure::before { content: "図は左右にスクロールできます"; display: block; font-size: .8rem; color: #52657b; margin-bottom: 10px; }
+ .past-exam-figure img[src^="/assets/past-exams/st-marianna-2025-general-early-physics/"] { min-width: 650px; }
+ .past-exam-figure img[src$="/st-marianna-2025-general-early-physics/figures/a3-answer-graphs.svg"] { min-width: 800px; }
+}
+@media print {
+ body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/st-marianna-2025-general-early-physics/"] { max-height: 200mm; max-width: 150mm; width: auto; }
+}
 .past-exam-answer-page[data-past-exam-package="st-marianna-2025-general-early-mathematics"] .answer-table-scroll { width: fit-content; max-width: 100%; margin-inline: auto; }
 .past-exam-answer-page[data-past-exam-package="st-marianna-2025-general-early-mathematics"] .answer-table { width: 600px; min-width: 600px; }
 @media screen and (max-width: 700px) {

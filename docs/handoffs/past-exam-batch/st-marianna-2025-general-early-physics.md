@@ -15,10 +15,18 @@
 
 ## 検出事項
 
-- **questions / figures-pending**: Question figures require independent reconstruction; dependent questions remain review-only.（9件）
-- **answers / figures-pending**: Required visual positions retained; no restricted answer crop copied.（1件）
 - **answers / editorial-review**: Imported learner-oriented adaptation; not independently reauthored or fully mathematically verified in this batch.
 
 ## 完了報告
 
 修正した正本の位置、原文→修正後、根拠となるページ・計算、再生成したHTML、テスト結果、未解決事項を列挙する。過去問ライブラリーの再取り込み先IDは `st-marianna-2025-general-early-physics`。既存の独自解説へ昇格済みのパッケージは一括取込で上書きしない。
+
+## 元データの未解決項目
+
+元のissues.jsonから取得した編集メモです。完了済みという意味ではありません。
+
+- **official-science-window-review**: 2025年度一般選抜（前期）の募集要項原本で、理科は物理・化学・生物から2科目選択、合計200点・150分であることを科目担当者が再確認する。
+- **provisional-score-and-time-review**: 分析用に物理100点・75分へ等分した仮設定と、18分析小問へ5〜7点、合計100点とした仮配点を科目担当兼編集責任者が判断する。公式の物理単独配点・時間、小問別配点ではない。
+- **rights-and-redraw-review**: 問題・解答原本の公開利用範囲を確認し、restricted/pending_redrawの原本図版クロップ10点を権利処理済み画像へ差し替える。完了までは内部レビュー限定とする。
+- **source-html-record-reconciliation**: SOURCE-HTML-RECORD.mdに残る内部トップ科目名『数学』の既知表示不具合記述と、今回原本どおりに補正した解答p.2／p.3間の5ブロック所属を、原本HTMLレーンの記録管理者が履歴を保って追記確認する。
+- **subject-editor-review**: 物理科目担当者が原本15ページ、問題ブロック50/50、5大問18分析小問、学習者向け解説、難易度・時間・戦略を一括レビューし、manifestのvisual_reviewedとanalysis.review.approvedを明示判断する。
