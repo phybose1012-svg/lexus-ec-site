@@ -1,0 +1,397 @@
+{
+  "schemaVersion": "lexus-past-exam-figure-trio.v1",
+  "packageId": "iwate-medical-2025-general-physics",
+  "figureId": "ans-q3-lens-geometry",
+  "trio": {
+    "domain": "type UserShape\n",
+    "substance": "UserShape rect_03m73o9\nUserShape path_01bkoyr\nUserShape path_086pmr4\nUserShape line_12so1kz\nUserShape line_1gg7vbh\nUserShape circle_17nrtj7\nUserShape circle_1jo6oea\nUserShape text_0wnrz3d\nUserShape text_10b2kzu\nUserShape line_0tzyc1q\nUserShape line_0b41ve0\nUserShape text_1upwra0\nUserShape text_0bo9fmv\nUserShape line_08sta51\nUserShape line_0g6i0dg\nUserShape line_06eq7tl\nUserShape line_1hkpv8r\nUserShape text_0z5ods7\nUserShape text_1gi433u\nUserShape line_09xbnk5\nUserShape line_0dneucq\nUserShape line_03fisrp\nUserShape text_08tkhgx\nUserShape line_0lcwt59\nUserShape text_16n4xbw\nUserShape line_0qexjrx\nUserShape text_1b3r3gz\nUserShape text_1u0vfbn\nUserShape text_0nn156h\nUserShape newArc1\nUserShape userShape1\nUserShape userShape2\nUserShape userShape3\n",
+    "style": "canvas {\n  width = 640\n  height = 470\n}\n\nforall UserShape `rect_03m73o9` {\n  `rect_03m73o9`.shape = Rectangle {\n    center: (0, 0)\n    width: 640\n    height: 470\n    cornerRadius: 0\n    fillColor: rgba(1, 1, 1, 1)\n    strokeColor: none()\n  }\n}\n\nforall UserShape `path_01bkoyr` {\n  `path_01bkoyr`.shape = Polyline {\n    points: [(-260, -118.1089), (-255, -120.9412), (-250, -123.6665), (-245, -126.2876), (-240, -128.8073), (-235, -131.2278), (-230, -133.5514), (-225, -135.7803), (-220, -137.9164), (-215, -139.9615), (-210, -141.9174), (-205, -143.7856), (-200, -145.5677), (-195, -147.265), (-190, -148.8787), (-185, -150.4102), (-180, -151.8605), (-175, -153.2307), (-170, -154.5217), (-165, -155.7345), (-160, -156.8699), (-155, -157.9286), (-150, -158.9113), (-145, -159.8188), (-140, -160.6516), (-135, -161.4102), (-130, -162.0951), (-125, -162.7068), (-120, -163.2456), (-115, -163.7119), (-110, -164.106), (-105, -164.4281), (-100, -164.6784), (-95, -164.8571), (-90, -164.9643), (-85, -165), (-80, -164.9643), (-75, -164.8571), (-70, -164.6784), (-65, -164.4281), (-60, -164.106), (-55, -163.7119), (-50, -163.2456), (-45, -162.7068), (-40, -162.0951), (-35, -161.4102), (-30, -160.6516), (-25, -159.8188), (-20, -158.9113), (-15, -157.9286), (-10, -156.8699), (-5, -155.7345), (0, -154.5217), (5, -153.2307), (10, -151.8605), (15, -150.4102), (20, -148.8787), (25, -147.265), (30, -145.5677), (35, -143.7856), (40, -141.9174), (45, -139.9615), (50, -137.9164), (55, -135.7803), (60, -133.5514), (65, -131.2278), (70, -128.8073), (75, -126.2876), (80, -123.6665), (85, -120.9412), (90, -118.1089)]\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    strokeLinejoin: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `path_086pmr4` {\n  `path_086pmr4`.shape = Polyline {\n    points: [(-260, -89.2407), (-255, -94.4107), (-250, -99.2843), (-245, -103.8854), (-240, -108.2348), (-235, -112.3499), (-230, -116.2459), (-225, -119.9359), (-220, -123.4313), (-215, -126.7424), (-210, -129.878), (-205, -132.8461), (-200, -135.6537), (-195, -138.3073), (-190, -140.8124), (-185, -143.1742), (-180, -145.3974), (-175, -147.486), (-170, -149.4438), (-165, -151.2742), (-160, -152.9803), (-155, -154.5648), (-150, -156.0303), (-145, -157.379), (-140, -158.6129), (-135, -159.7339), (-130, -160.7435), (-125, -161.6432), (-120, -162.4342), (-115, -163.1176), (-110, -163.6944), (-105, -164.1652), (-100, -164.5308), (-95, -164.7916), (-90, -164.9479), (-85, -165), (-80, -164.9479), (-75, -164.7916), (-70, -164.5308), (-65, -164.1652), (-60, -163.6944), (-55, -163.1176), (-50, -162.4342), (-45, -161.6432), (-40, -160.7435), (-35, -159.7339), (-30, -158.6129), (-25, -157.379), (-20, -156.0303), (-15, -154.5648), (-10, -152.9803), (-5, -151.2742), (0, -149.4438), (5, -147.486), (10, -145.3974), (15, -143.1742), (20, -140.8124), (25, -138.3073), (30, -135.6537), (35, -132.8461), (40, -129.878), (45, -126.7424), (50, -123.4313), (55, -119.9359), (60, -116.2459), (65, -112.3499), (70, -108.2348), (75, -103.8854), (80, -99.2843), (85, -94.4107), (90, -89.2407)]\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    strokeLinejoin: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_12so1kz` {\n  `line_12so1kz`.shape = Line {\n    start: (-85, 207)\n    end: (-85, -188)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"5 5\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_1gg7vbh` {\n  `line_1gg7vbh`.shape = Line {\n    start: (-276, -165)\n    end: (267, -165)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"5 5\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `circle_17nrtj7` {\n  `circle_17nrtj7`.shape = Circle {\n    center: (-85, 185)\n    r: 3\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `circle_1jo6oea` {\n  `circle_1jo6oea`.shape = Circle {\n    center: (-85, 75)\n    r: 3\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `text_0wnrz3d` {\n  `text_0wnrz3d`.shape = Equation {\n    string: \"O_{\\mathrm{1}}\"\n    center: (-107.5698, 182.6824)\n    fontSize: \"22px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_10b2kzu` {\n  `text_10b2kzu`.shape = Equation {\n    string: \"O_{\\mathrm{2}}\"\n    center: (-105.4525, 72.6825)\n    fontSize: \"22px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `line_0tzyc1q` {\n  `line_0tzyc1q`.shape = Line {\n    start: (-85, 185)\n    end: (90, -118.1089)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_0b41ve0` {\n  `line_0b41ve0`.shape = Line {\n    start: (-85, 75)\n    end: (90, -89.2407)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `text_1upwra0` {\n  `text_1upwra0`.shape = Equation {\n    string: \"R_{\\mathrm{1}}\"\n    center: (7.0362, 80.6842)\n    fontSize: \"22px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_0bo9fmv` {\n  `text_0bo9fmv`.shape = Equation {\n    string: \"R_{\\mathrm{2}}\"\n    center: (-22.131, 42.8552)\n    fontSize: \"22px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `line_08sta51` {\n  `line_08sta51`.shape = Line {\n    start: (-85, -118.1089)\n    end: (90, -118.1089)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"5 5\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_0g6i0dg` {\n  `line_0g6i0dg`.shape = Line {\n    start: (-85, -89.2407)\n    end: (90, -89.2407)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"5 5\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_06eq7tl` {\n  `line_06eq7tl`.shape = Line {\n    start: (90, -89.2407)\n    end: (90, -165)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"5 5\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_1hkpv8r` {\n  `line_1hkpv8r`.shape = Line {\n    start: (-85, -196)\n    end: (90, -196)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"straight\"\n    startArrowheadSize: 0.603\n    endArrowhead: \"straight\"\n    endArrowheadSize: 0.603\n  }\n}\n\nforall UserShape `text_0z5ods7` {\n  `text_0z5ods7`.shape = Equation {\n    string: \"r\"\n    center: (2.461, -218.259)\n    fontSize: \"22px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_1gi433u` {\n  `text_1gi433u`.shape = Equation {\n    string: \"P\"\n    center: (-100.739, -182.487)\n    fontSize: \"22px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `line_09xbnk5` {\n  `line_09xbnk5`.shape = Line {\n    start: (90, -118.1089)\n    end: (250, -118.1089)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"5 5\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_0dneucq` {\n  `line_0dneucq`.shape = Line {\n    start: (90, -89.2407)\n    end: (250, -89.2407)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"5 5\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_03fisrp` {\n  `line_03fisrp`.shape = Line {\n    start: (135, -89.2407)\n    end: (135, -118.1089)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"straight\"\n    startArrowheadSize: 0.603\n    endArrowhead: \"straight\"\n    endArrowheadSize: 0.603\n  }\n}\n\nforall UserShape `text_08tkhgx` {\n  `text_08tkhgx`.shape = Equation {\n    string: \"d\"\n    center: (149.72, -102.1508)\n    fontSize: \"22px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `line_0lcwt59` {\n  `line_0lcwt59`.shape = Line {\n    start: (194, -118.1089)\n    end: (194, -165)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"straight\"\n    startArrowheadSize: 0.603\n    endArrowhead: \"straight\"\n    endArrowheadSize: 0.603\n  }\n}\n\nforall UserShape `text_16n4xbw` {\n  `text_16n4xbw`.shape = Equation {\n    string: \"d_{\\mathrm{1}}\"\n    center: (213.5226, -141.5704)\n    fontSize: \"22px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `line_0qexjrx` {\n  `line_0qexjrx`.shape = Line {\n    start: (261, -89.2407)\n    end: (261, -165)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"straight\"\n    startArrowheadSize: 0.603\n    endArrowhead: \"straight\"\n    endArrowheadSize: 0.603\n  }\n}\n\nforall UserShape `text_1b3r3gz` {\n  `text_1b3r3gz`.shape = Equation {\n    string: \"d_{\\mathrm{2}}\"\n    center: (280.5226, -127.1363)\n    fontSize: \"22px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_1u0vfbn` {\n  `text_1u0vfbn`.shape = Equation {\n    string: \"R_{\\mathrm{1}}\\mathrm{ − }d_{\\mathrm{1}}\"\n    center: (-166.0443, 59.4334)\n    fontSize: \"17px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_0nn156h` {\n  `text_0nn156h`.shape = Equation {\n    string: \"R_{\\mathrm{2}}\\mathrm{ − }d_{\\mathrm{2}}\"\n    center: (-38.1006, -23.5917)\n    fontSize: \"17px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_0bo9fmv` {\n  override `text_0bo9fmv`.shape.center = (-18.258, 34.7637)\n  override `text_0bo9fmv`.shape.fontSize = \"17.83px\"\n  override `text_0bo9fmv`.shape.strokeWidth = 0.810165\n}\n\nforall UserShape `text_1upwra0` {\n  override `text_1upwra0`.shape.center = (5.3344, 79.9414)\n  override `text_1upwra0`.shape.fontSize = \"20.22px\"\n  override `text_1upwra0`.shape.strokeWidth = 0.918935\n}\n\nforall UserShape `newArc1` {\n  `newArc1`.shape = Path {\n    d: pathFromPoints(\"open\", [(-86.0431, 75.2923), (-78.7209, 71.7935), (-71.4735, 68.1421), (-64.3042, 64.3398), (-57.2161, 60.3881), (-50.2123, 56.2889), (-43.2959, 52.0439), (-36.47, 47.655), (-29.7374, 43.1241), (-23.1012, 38.4532), (-16.5642, 33.6443), (-10.1295, 28.6996), (-3.7996, 23.6212), (2.4224, 18.4114), (8.5341, 13.0724), (14.5325, 7.6066), (20.4152, 2.0163), (26.1795, -3.6959), (31.8229, -9.5275), (37.343, -15.4761), (42.7372, -21.539), (48.0033, -27.7135), (53.139, -33.997), (58.1419, -40.3866), (63.0099, -46.8796), (67.7409, -53.4731), (72.3327, -60.1643), (76.7835, -66.9501), (81.0911, -73.8277), (85.2537, -80.794), (89.2696, -87.8459)])\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.403678\n    fillColor: none()\n    startArrowhead: \"\"\n    endArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowheadSize: 1\n  \n  strokeDasharray: \"5 5\"\n}\n}\n\n\nforall UserShape `userShape1` {\n  `userShape1`.shape = Path {\n\n    d: pathFromPoints(\"open\", [(-83.9258, 182.569), (-75.3067, 174.6401), (-66.8556, 166.5324), (-58.5761, 158.2496), (-50.4718, 149.7951), (-42.5465, 141.1728), (-34.8034, 132.3865), (-27.246, 123.4398), (-19.8777, 114.3369), (-12.7016, 105.0817), (-5.7209, 95.6782), (1.0613, 86.1306), (7.6421, 76.443), (14.0186, 66.6197), (20.1879, 56.6651), (26.1474, 46.5834), (31.8945, 36.3792), (37.4266, 26.0568), (42.7413, 15.6208), (47.8363, 5.0759), (52.7094, -5.5735), (57.3583, -16.3226), (61.7811, -27.1667), (65.9759, -38.101), (69.9407, -49.1208), (73.6739, -60.2212), (77.1738, -71.3974), (80.4389, -82.6444), (83.4677, -93.9573), (86.259, -105.3311), (88.8114, -116.761)])\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.403678\n    fillColor: none()\n    startArrowhead: \"\"\n    endArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowheadSize: 1\n  \n  strokeDasharray: \"5 5\"\n\n  }\n}\n\n-- @math-figure-editor-label-backgrounds-v1 %7B%22text_0bo9fmv.shape%22%3A%22rgba(1%2C%201%2C%201%2C%201)%22%2C%22text_1upwra0.shape%22%3A%22rgba(1%2C%201%2C%201%2C%201)%22%7D\n\nforall UserShape `userShape2` {\n  `userShape2`.shape = Path {\n\n    d: pathFromPoints(\"open\", [(-84.1869, 72.972), (-82.5439, 67.7141), (-81.0114, 62.4229), (-79.5901, 57.1008), (-78.2805, 51.7501), (-77.0833, 46.3732), (-75.999, 40.9723), (-75.028, 35.5499), (-74.1707, 30.1084), (-73.4276, 24.6502), (-72.799, 19.1775), (-72.2852, 13.6929), (-71.8863, 8.1987), (-71.6025, 2.6974), (-71.434, -2.8086), (-71.3809, -8.317), (-71.4432, -13.8253), (-71.6208, -19.331), (-71.9136, -24.8319), (-72.3216, -30.3254), (-72.8445, -35.8091), (-73.4822, -41.2807), (-74.2343, -46.7377), (-75.1006, -52.1778), (-76.0806, -57.5986), (-77.1738, -62.9976), (-78.38, -68.3726), (-79.6984, -73.7211), (-81.1285, -79.0409), (-82.6698, -84.3295), (-84.3214, -89.5847)])\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.403678\n    fillColor: none()\n    startArrowhead: \"\"\n    endArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowheadSize: 1\n  \n  strokeDasharray: \"5 5\"\n\n  }\n}\n\nforall UserShape `userShape3` {\n  `userShape3`.shape = Path {\n\n\n    d: pathFromPoints(\"open\", [(-144.0498, 81.325), (-142.4068, 76.0671), (-140.8743, 70.7759), (-139.453, 65.4538), (-138.1434, 60.1031), (-136.9462, 54.7262), (-135.8619, 49.3253), (-134.8909, 43.9029), (-134.0336, 38.4614), (-133.2905, 33.0032), (-132.6619, 27.5305), (-132.1481, 22.0459), (-131.7492, 16.5517), (-131.4654, 11.0504), (-131.2969, 5.5444), (-131.2438, 0.036), (-131.3061, -5.4723), (-131.4837, -10.978), (-131.7765, -16.4789), (-132.1845, -21.9724), (-132.7074, -27.4561), (-133.3451, -32.9277), (-134.0972, -38.3847), (-134.9635, -43.8248), (-135.9435, -49.2456), (-137.0367, -54.6446), (-138.2429, -60.0196), (-139.5613, -65.3681), (-140.9914, -70.6879), (-142.5327, -75.9765), (-144.1843, -81.2317)])\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.403678\n    fillColor: none()\n    startArrowhead: \"\"\n    endArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowheadSize: 1\n  \n  strokeDasharray: \"5 5\"\n\n  \n  }\n}\n\nforall UserShape `userShape3` {\n  override `userShape3`.shape.d = pathFromPoints(\"open\", [(-86.7271, -89.1988), (-92.2943, -81.1885), (-97.5212, -72.9522), (-102.3987, -64.5042), (-106.9181, -55.8594), (-111.0715, -47.0329), (-114.8517, -38.0402), (-118.252, -28.8971), (-121.2664, -19.6196), (-123.8897, -10.2241), (-126.1173, -0.7269), (-127.9451, 8.8552), (-129.3702, 18.5054), (-130.3898, 28.2069), (-131.0023, 37.9426), (-131.2066, 47.6953), (-131.0023, 57.4481), (-130.3898, 67.1837), (-129.3702, 76.8852), (-127.9451, 86.5354), (-126.1173, 96.1176), (-123.8897, 105.6147), (-121.2664, 115.0103), (-118.252, 124.2877), (-114.8517, 133.4308), (-111.0715, 142.4235), (-106.9181, 151.25), (-102.3987, 159.8948), (-97.5212, 168.3428), (-92.2943, 176.5792), (-86.7271, 184.5894)])\n}\n",
+    "variation": "fibona-svg-import",
+    "editorState": {
+      "version": 1,
+      "layerOrder": [
+        "rect_03m73o9.shape",
+        "path_01bkoyr.shape",
+        "path_086pmr4.shape",
+        "line_12so1kz.shape",
+        "line_1gg7vbh.shape",
+        "circle_17nrtj7.shape",
+        "circle_1jo6oea.shape",
+        "text_0wnrz3d.shape",
+        "text_10b2kzu.shape",
+        "line_0tzyc1q.shape",
+        "line_0b41ve0.shape",
+        "line_08sta51.shape",
+        "line_0g6i0dg.shape",
+        "line_06eq7tl.shape",
+        "line_1hkpv8r.shape",
+        "text_0z5ods7.shape",
+        "text_1gi433u.shape",
+        "line_09xbnk5.shape",
+        "line_0dneucq.shape",
+        "line_03fisrp.shape",
+        "text_08tkhgx.shape",
+        "newArc1.shape",
+        "line_0lcwt59.shape",
+        "text_0bo9fmv.shape",
+        "text_16n4xbw.shape",
+        "line_0qexjrx.shape",
+        "text_1b3r3gz.shape",
+        "text_1u0vfbn.shape",
+        "text_0nn156h.shape",
+        "userShape1.shape",
+        "userShape2.shape",
+        "userShape3.shape",
+        "text_1upwra0.shape"
+      ],
+      "groups": [],
+      "hiddenPaths": [],
+      "deletedPaths": [],
+      "originalPointCounts": {
+        "path_086pmr4.shape": 71
+      },
+      "originalPoints": {
+        "path_086pmr4.shape": [
+          {
+            "x": -260,
+            "y": -89.2407
+          },
+          {
+            "x": -255,
+            "y": -94.4107
+          },
+          {
+            "x": -250,
+            "y": -99.2843
+          },
+          {
+            "x": -245,
+            "y": -103.8854
+          },
+          {
+            "x": -240,
+            "y": -108.2348
+          },
+          {
+            "x": -235,
+            "y": -112.3499
+          },
+          {
+            "x": -230,
+            "y": -116.2459
+          },
+          {
+            "x": -225,
+            "y": -119.9359
+          },
+          {
+            "x": -220,
+            "y": -123.4313
+          },
+          {
+            "x": -215,
+            "y": -126.7424
+          },
+          {
+            "x": -210,
+            "y": -129.878
+          },
+          {
+            "x": -205,
+            "y": -132.8461
+          },
+          {
+            "x": -200,
+            "y": -135.6537
+          },
+          {
+            "x": -195,
+            "y": -138.3073
+          },
+          {
+            "x": -190,
+            "y": -140.8124
+          },
+          {
+            "x": -185,
+            "y": -143.1742
+          },
+          {
+            "x": -180,
+            "y": -145.3974
+          },
+          {
+            "x": -175,
+            "y": -147.486
+          },
+          {
+            "x": -170,
+            "y": -149.4438
+          },
+          {
+            "x": -165,
+            "y": -151.2742
+          },
+          {
+            "x": -160,
+            "y": -152.9803
+          },
+          {
+            "x": -155,
+            "y": -154.5648
+          },
+          {
+            "x": -150,
+            "y": -156.0303
+          },
+          {
+            "x": -145,
+            "y": -157.379
+          },
+          {
+            "x": -140,
+            "y": -158.6129
+          },
+          {
+            "x": -135,
+            "y": -159.7339
+          },
+          {
+            "x": -130,
+            "y": -160.7435
+          },
+          {
+            "x": -125,
+            "y": -161.6432
+          },
+          {
+            "x": -120,
+            "y": -162.4342
+          },
+          {
+            "x": -115,
+            "y": -163.1176
+          },
+          {
+            "x": -110,
+            "y": -163.6944
+          },
+          {
+            "x": -105,
+            "y": -164.1652
+          },
+          {
+            "x": -100,
+            "y": -164.5308
+          },
+          {
+            "x": -95,
+            "y": -164.7916
+          },
+          {
+            "x": -90,
+            "y": -164.9479
+          },
+          {
+            "x": -85,
+            "y": -165
+          },
+          {
+            "x": -80,
+            "y": -164.9479
+          },
+          {
+            "x": -75,
+            "y": -164.7916
+          },
+          {
+            "x": -70,
+            "y": -164.5308
+          },
+          {
+            "x": -65,
+            "y": -164.1652
+          },
+          {
+            "x": -60,
+            "y": -163.6944
+          },
+          {
+            "x": -55,
+            "y": -163.1176
+          },
+          {
+            "x": -50,
+            "y": -162.4342
+          },
+          {
+            "x": -45,
+            "y": -161.6432
+          },
+          {
+            "x": -40,
+            "y": -160.7435
+          },
+          {
+            "x": -35,
+            "y": -159.7339
+          },
+          {
+            "x": -30,
+            "y": -158.6129
+          },
+          {
+            "x": -25,
+            "y": -157.379
+          },
+          {
+            "x": -20,
+            "y": -156.0303
+          },
+          {
+            "x": -15,
+            "y": -154.5648
+          },
+          {
+            "x": -10,
+            "y": -152.9803
+          },
+          {
+            "x": -5,
+            "y": -151.2742
+          },
+          {
+            "x": 0,
+            "y": -149.4438
+          },
+          {
+            "x": 5,
+            "y": -147.486
+          },
+          {
+            "x": 10,
+            "y": -145.3974
+          },
+          {
+            "x": 15,
+            "y": -143.1742
+          },
+          {
+            "x": 20,
+            "y": -140.8124
+          },
+          {
+            "x": 25,
+            "y": -138.3073
+          },
+          {
+            "x": 30,
+            "y": -135.6537
+          },
+          {
+            "x": 35,
+            "y": -132.8461
+          },
+          {
+            "x": 40,
+            "y": -129.878
+          },
+          {
+            "x": 45,
+            "y": -126.7424
+          },
+          {
+            "x": 50,
+            "y": -123.4313
+          },
+          {
+            "x": 55,
+            "y": -119.9359
+          },
+          {
+            "x": 60,
+            "y": -116.2459
+          },
+          {
+            "x": 65,
+            "y": -112.3499
+          },
+          {
+            "x": 70,
+            "y": -108.2348
+          },
+          {
+            "x": 75,
+            "y": -103.8854
+          },
+          {
+            "x": 80,
+            "y": -99.2843
+          },
+          {
+            "x": 85,
+            "y": -94.4107
+          },
+          {
+            "x": 90,
+            "y": -89.2407
+          }
+        ]
+      },
+      "smoothnessLevel": {
+        "path_086pmr4.shape": 1
+      },
+      "arcMetadata": {
+        "newArc1.shape": {
+          "start": {
+            "x": -86.04309835634905,
+            "y": 75.29226862357541
+          },
+          "end": {
+            "x": 89.2695695129583,
+            "y": -87.84590756143746
+          },
+          "angleU": 0.2,
+          "flipped": false
+        },
+        "userShape1.shape": {
+          "start": {
+            "x": -83.92577380305619,
+            "y": 182.5689601001123
+          },
+          "end": {
+            "x": 88.81139261395543,
+            "y": -116.76096705679447
+          },
+          "angleU": 0.2,
+          "flipped": false
+        },
+        "userShape2.shape": {
+          "start": {
+            "x": -84.18687612686585,
+            "y": 72.971999687845
+          },
+          "end": {
+            "x": -84.32141655700573,
+            "y": -89.58467318275211
+          },
+          "angleU": 0.2,
+          "flipped": false
+        },
+        "userShape3.shape": {
+          "start": {
+            "x": -86.72705297054398,
+            "y": -89.19876077740537
+          },
+          "end": {
+            "x": -86.72705297054398,
+            "y": 184.5893959305874
+          },
+          "angleU": 0.4,
+          "flipped": false
+        }
+      },
+      "regularPolygonMetadata": {}
+    }
+  }
+}
