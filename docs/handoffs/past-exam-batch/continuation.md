@@ -850,3 +850,7 @@
 - PC1280/390で3ページh1=1・数式エラー0・文書1265/375px。狭幅の問題650px/解答800pxを枠内で横スクロールし、回路の両端・4グラフ左右、分析円グラフ・両目標カードを目視。印刷は150mm/200mm上限とscreen-only最小幅の機械回帰を適用。今回の実印刷/PDF目視は未実施。
 - ローカル67package/201route、本文67問題/65解説/64分析、図保留124／目標保留20。配信成功確認までは配信済み図保留134。preview localhost4337、検証tab9、既存ACTIVE・1分間隔の自動継続を維持。追加タスク/サブエージェントなし。
 - 次は **帝京大学2025年度・数学** `teikyo-2025-general-mathematics`、元パス `projects/universities/teikyo/past-exams/working/2025/general/first-stage/mathematics`。問題2図/解説7図、数学①②の2日分8大問25小問を合計200点/120分とした集計に注意（受験生は1日分）。本文・原本・全分析は未読。完成済み聖マリアンナをやり直さず、この未読対象から継続する。
+
+- **配信確認：** 内容 `346c78beee62ac1e53d8f8e1068dfa92615cea77` をstaging・作業branchへ通常push。Cloudflare completed/success（deployment `0157ea2f-b066-45ec-a935-aec5f4bc9c3d`）。実3URL HTTP200/h1=1/noindex/canonical・新内容を確認。全10SVGおよび統合した人間編集5SVGの配信バイト一致。全201ルート検査も終了コード0・失敗0。初回の全ルート検査だけはcwd誤りで未実行となり、frontendから再実行して成功。
+- 実stagingの390px解説は1図読込/800px・文書375px・数式エラー0・h1=1、修復待ち注記を維持。検証tab9を閉じviewport reset済み。preview localhost4337と既存ACTIVE・1分間隔の直列継続は維持。公開検証スクリプトを `qa/past-exam-batch/verify-st-marianna-physics-release.mjs` に保存。
+- **配信済み図保留124／目標保留20。** 元HTML修復・前提レビュー・権利・人間承認・実印刷は未完了。配信記録とQAスクリプトだけ作業branchへ保存し、次の検証済み内容pushでstagingへ含める。次回は上記の帝京大学2025年度・数学の未読本文から。完成済みの読解・作図・検証を繰り返さない。
