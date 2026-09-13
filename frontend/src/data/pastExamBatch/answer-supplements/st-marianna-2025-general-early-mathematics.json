@@ -1,0 +1,173 @@
+{
+  "schemaVersion": "lexus-answer-supplement.v1",
+  "packageId": "st-marianna-2025-general-early-mathematics",
+  "sourceSha256": "3226b5a28f0c0d1ac661f7c48791211ef85831de6827f93edff567c0d7048dd2",
+  "contentProvenance": "original_editorial",
+  "restrictedSourceCopied": false,
+  "review": {
+    "needsHumanReview": true,
+    "notes": "文字列は全列挙、解の個数は区分二次方程式から独立検算。元HTMLの省略を補う限定的な表で、取込解説全体を独自解説へ変更しない。"
+  },
+  "operations": [
+    {
+      "type": "insert-after",
+      "expectedMatches": 1,
+      "anchor": {
+        "type": "prose",
+        "major_question_id": "major-question-02",
+        "text": "(5) 先頭a・末尾bを固定し、残るa2個とb3個の並び10通りを、同じ文字の隣接箇所数で分類します。"
+      },
+      "blocks": [
+        {
+          "type": "prose",
+          "major_question_id": "major-question-02",
+          "text": "両端の外側にはcを置けず、内部の6つのすき間には各1個までです。同じ文字が続くすき間へ必ずcを入れ、合計3個になるよう残りを選びます。"
+        },
+        {
+          "type": "table",
+          "major_question_id": "major-question-02",
+          "caption": "cを除いた10通りと、条件を満たす復元数",
+          "headers": [
+            "a・bの並び",
+            "同じ文字の隣接箇所",
+            "cの入れ方"
+          ],
+          "rows": [
+            [
+              "aaabbbb",
+              "5",
+              "0"
+            ],
+            [
+              "aababbb",
+              "3",
+              "1"
+            ],
+            [
+              "aabbabb",
+              "3",
+              "1"
+            ],
+            [
+              "aabbbab",
+              "3",
+              "1"
+            ],
+            [
+              "abaabbb",
+              "3",
+              "1"
+            ],
+            [
+              "abababb",
+              "1",
+              "10"
+            ],
+            [
+              "ababbab",
+              "1",
+              "10"
+            ],
+            [
+              "abbaabb",
+              "3",
+              "1"
+            ],
+            [
+              "abbabab",
+              "1",
+              "10"
+            ],
+            [
+              "abbbaab",
+              "3",
+              "1"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "insert-after",
+      "expectedMatches": 1,
+      "anchor": {
+        "type": "formula",
+        "major_question_id": "major-question-03",
+        "latex": "f(x)=4t+|3-4t^2|"
+      },
+      "blocks": [
+        {
+          "type": "prose",
+          "major_question_id": "major-question-03",
+          "text": "\\(-1\\leqq t\\leqq1\\)が定義域です。\\(|t|\\leqq\\sqrt3/2\\)では\\(g(t)=-4(t-1/2)^2+4\\)、残る2区間では\\(g(t)=4t^2+4t-3\\)になります。各区間の端点と頂点を比べます。"
+        }
+      ]
+    },
+    {
+      "type": "insert-after",
+      "expectedMatches": 1,
+      "anchor": {
+        "type": "prose",
+        "major_question_id": "major-question-03",
+        "text": "t=0には0≤x≤2πで3個のxが対応するため、y=3との共有点は3個です。"
+      },
+      "blocks": [
+        {
+          "type": "table",
+          "major_question_id": "major-question-03",
+          "caption": "置き換えた値1個に対応する元の解の個数",
+          "headers": [
+            "\\(t=\\sin x\\)",
+            "対応する\\(x\\)の個数"
+          ],
+          "rows": [
+            [
+              "\\(t=0\\)",
+              "3個（\\(0,\\pi,2\\pi\\)）"
+            ],
+            [
+              "\\(t=1\\) または \\(t=-1\\)",
+              "各1個"
+            ],
+            [
+              "\\(-1<t<0\\) または \\(0<t<1\\)",
+              "各2個"
+            ]
+          ]
+        },
+        {
+          "type": "prose",
+          "major_question_id": "major-question-03",
+          "text": "(4)は横線と上のグラフの交点を数え、その\\(t\\)に対応する\\(x\\)の個数へ戻します。3交点がすべて\\(0<t<1\\)にあるとき、\\(2+2+2=6\\)個です。境界では2交点に減るので除きます。"
+        },
+        {
+          "type": "table",
+          "major_question_id": "major-question-03",
+          "caption": "6個になる範囲と、両端での確認",
+          "headers": [
+            "\\(k\\)",
+            "異なる\\(t\\)の個数",
+            "元の共有点数"
+          ],
+          "rows": [
+            [
+              "\\(k=2\\sqrt3\\)",
+              "2個",
+              "4個"
+            ],
+            [
+              "\\(2\\sqrt3<k<4\\)",
+              "3個",
+              "6個"
+            ],
+            [
+              "\\(k=4\\)",
+              "2個",
+              "4個"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

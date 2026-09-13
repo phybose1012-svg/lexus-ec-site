@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import {isHandEditedFigure,handEditedTrioPath} from './lib/past-exam-figure-handoff.mjs';
 import {packageId,A,B,P,Q,R,S,M,radius,parallelSlope,overviewSlope,intersections,slopeBounds,theta1,theta2,theta} from './build-jichi-medical-2025-second-stage-mathematics-figures.mjs';
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-10,`${a} != ${b}`);
 const delta=(a,b)=>a.map((v,i)=>v-b[i]);
@@ -52,6 +54,15 @@ test('Five second-stage assets cannot overwrite the independently authored first
  for(const item of m.items){
   assert.ok(item.src.includes(`${packageId}/figures/`));
   const svg=fs.readFileSync(new URL(`../public${item.src}`,import.meta.url),'utf8');
-  assert.match(svg,/KaTeX_Main/);assert.match(svg,/KaTeX_Math/);assert.doesNotMatch(svg,/<(?:image|foreignObject|script)\b|[≤≥]/);
+  const root=fileURLToPath(new URL('../',import.meta.url));
+  if(isHandEditedFigure(root,packageId,item.id)){
+   // The editor renders TeX as local vector outlines, not embedded KaTeX fonts.
+   // Validate the editable source identity and outline representation; do not regenerate it.
+   const trio=JSON.parse(fs.readFileSync(handEditedTrioPath(root,packageId,item.id),'utf8'));
+   assert.equal(trio.schemaVersion,'lexus-past-exam-figure-trio.v1');assert.equal(trio.packageId,packageId);assert.equal(trio.figureId,item.id);
+   assert.match(trio.trio.style,/Equation\s*\{/);assert.match(svg,/data-mml-node="math"/);assert.match(svg,/data-c="[A-F0-9]+"/);
+  }else{assert.match(svg,/KaTeX_Main/);assert.match(svg,/KaTeX_Math/);}
+  assert.doesNotMatch(svg,/<(?:image|foreignObject|script)\b|[≤≥]/);
+  assert.doesNotMatch(svg,/\s(?:href|xlink:href|src)=["'](?:https?:|\/\/)|\son[a-z]+\s*=/i);
  }
 });
