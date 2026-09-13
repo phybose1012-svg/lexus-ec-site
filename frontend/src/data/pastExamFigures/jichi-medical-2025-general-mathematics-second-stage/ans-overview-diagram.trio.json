@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "lexus-past-exam-figure-trio.v1",
+  "packageId": "jichi-medical-2025-general-mathematics-second-stage",
+  "figureId": "ans-overview-diagram",
+  "trio": {
+    "domain": "type UserShape\n",
+    "substance": "UserShape rect_03m73o9\nUserShape text_1fr01pg\nUserShape circle_1h2ou51\nUserShape line_1bwd9hv\nUserShape line_03avyor\nUserShape text_1utmaht\nUserShape text_0sgf7da\nUserShape text_16j0pax\nUserShape path_1yapz61\nUserShape path_0ghn054\nUserShape path_0l5zrdd\nUserShape circle_1mr5a3i\nUserShape text_1f4otpa\nUserShape circle_0bkfkgb\nUserShape text_0nrs92p\nUserShape circle_1snu5qt\nUserShape text_1x5fpru\nUserShape circle_0l02nqz\nUserShape text_1100edb\nUserShape circle_0bx7f2n\nUserShape text_0wzs8zh\nUserShape circle_096xykj\nUserShape text_1kc2xrr\nUserShape text_0t94pra\nUserShape text_14ip8u6\nUserShape text_17jxxy7\nUserShape text_1dxc3ds\n",
+    "style": "canvas {\n  width = 700\n  height = 685\n}\n\nforall UserShape `rect_03m73o9` {\n  `rect_03m73o9`.shape = Rectangle {\n    center: (0, 0)\n    width: 700\n    height: 685\n    cornerRadius: 0\n    fillColor: rgba(1, 1, 1, 1)\n    strokeColor: none()\n  }\n}\n\nforall UserShape `text_1fr01pg` {\n  `text_1fr01pg`.shape = Text {\n    string: \"円と、A を通る2本の直線\"\n    center: (0, 316)\n    fontSize: \"20px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    fontFamily: \"'Yu Gothic','Meiryo',sans-serif\"\n  }\n}\n\nforall UserShape `circle_1h2ou51` {\n  `circle_1h2ou51`.shape = Circle {\n    center: (48, 55.5)\n    r: 185.5398\n    fillColor: rgba(0.9725, 0.9804, 0.9843, 1)\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `line_1bwd9hv` {\n  `line_1bwd9hv`.shape = Line {\n    start: (-280.5, -259.5)\n    end: (295.5, -259.5)\n    fillColor: none()\n    strokeColor: rgba(0.4627, 0.5608, 0.6235, 1)\n    strokeWidth: 1.3\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"straight\"\n    endArrowheadSize: 0.603\n  }\n}\n\nforall UserShape `line_03avyor` {\n  `line_03avyor`.shape = Line {\n    start: (-267, -273)\n    end: (-267, 289.5)\n    fillColor: none()\n    strokeColor: rgba(0.4627, 0.5608, 0.6235, 1)\n    strokeWidth: 1.3\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"straight\"\n    endArrowheadSize: 0.603\n  }\n}\n\nforall UserShape `text_1utmaht` {\n  `text_1utmaht`.shape = Equation {\n    string: \"x\"\n    center: (311.402, -261.604)\n    fontSize: \"32px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_0sgf7da` {\n  `text_0sgf7da`.shape = Equation {\n    string: \"y\"\n    center: (-288.41, 284.292)\n    fontSize: \"32px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_16j0pax` {\n  `text_16j0pax`.shape = Equation {\n    string: \"\\mathrm{O}\"\n    center: (-286.052, -277.822)\n    fontSize: \"32px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `path_1yapz61` {\n  `path_1yapz61`.shape = Polyline {\n    points: [(-267, 145.5), (160.5, -282)]\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    strokeLinejoin: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `path_0ghn054` {\n  `path_0ghn054`.shape = Polyline {\n    points: [(-253.5, 94.2), (273, 199.5)]\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    strokeLinejoin: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `path_0l5zrdd` {\n  `path_0l5zrdd`.shape = Polyline {\n    points: [(-222, 100.5), (48, 55.5)]\n    fillColor: none()\n    strokeColor: rgba(0.5725, 0.6471, 0.7098, 1)\n    strokeWidth: 1.3\n    strokeDasharray: \"5 5\"\n    strokeLinecap: \"round\"\n    strokeLinejoin: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `circle_1mr5a3i` {\n  `circle_1mr5a3i`.shape = Circle {\n    center: (-222, 100.5)\n    r: 3.5\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeColor: rgba(1, 1, 1, 1)\n    strokeWidth: 1\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `text_1f4otpa` {\n  `text_1f4otpa`.shape = Equation {\n    string: \"\\mathrm{A}\"\n    center: (-239, 73.956)\n    fontSize: \"32px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `circle_0bkfkgb` {\n  `circle_0bkfkgb`.shape = Circle {\n    center: (48, 55.5)\n    r: 3.5\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeColor: rgba(1, 1, 1, 1)\n    strokeWidth: 1\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `text_0nrs92p` {\n  `text_0nrs92p`.shape = Equation {\n    string: \"\\mathrm{B}\"\n    center: (68.144, 32.428)\n    fontSize: \"32px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `circle_1snu5qt` {\n  `circle_1snu5qt`.shape = Circle {\n    center: (-126.0849, 119.683)\n    r: 3.5\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeColor: rgba(1, 1, 1, 1)\n    strokeWidth: 1\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `text_1x5fpru` {\n  `text_1x5fpru`.shape = Equation {\n    string: \"\\mathrm{P}\"\n    center: (-137.4358, 144.8892)\n    fontSize: \"32px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `circle_0l02nqz` {\n  `circle_0l02nqz`.shape = Circle {\n    center: (-132, 10.5)\n    r: 3.5\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeColor: rgba(1, 1, 1, 1)\n    strokeWidth: 1\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `text_1100edb` {\n  `text_1100edb`.shape = Equation {\n    string: \"\\mathrm{Q}\"\n    center: (-158.6222, -4.7956)\n    fontSize: \"32px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `circle_0bx7f2n` {\n  `circle_0bx7f2n`.shape = Circle {\n    center: (3, -124.5)\n    r: 3.5\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeColor: rgba(1, 1, 1, 1)\n    strokeWidth: 1\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `text_0wzs8zh` {\n  `text_0wzs8zh`.shape = Equation {\n    string: \"\\mathrm{R}\"\n    center: (-9.856, -151.908)\n    fontSize: \"32px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `circle_096xykj` {\n  `circle_096xykj`.shape = Circle {\n    center: (184.0079, 181.7016)\n    r: 3.5\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeColor: rgba(1, 1, 1, 1)\n    strokeWidth: 1\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `text_1kc2xrr` {\n  `text_1kc2xrr`.shape = Equation {\n    string: \"\\mathrm{S}\"\n    center: (189.5174, 205.9965)\n    fontSize: \"32px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_0t94pra` {\n  `text_0t94pra`.shape = Equation {\n    string: \"ℓ_{\\mathrm{1}}\"\n    center: (152.0043, -227.2409)\n    fontSize: \"32px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_14ip8u6` {\n  `text_14ip8u6`.shape = Equation {\n    string: \"ℓ_{\\mathrm{2}}\"\n    center: (302.3674, 205.1984)\n    fontSize: \"32px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_17jxxy7` {\n  `text_17jxxy7`.shape = Equation {\n    string: \"\\mathrm{C}\"\n    center: (217.66, -68.572)\n    fontSize: \"32px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_1dxc3ds` {\n  `text_1dxc3ds`.shape = Text {\n    string: \"ℓ₂は2交点をもつ配置の一例。まだ平行の条件は置かない。\"\n    center: (0, -308)\n    fontSize: \"20px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    fontFamily: \"'Yu Gothic','Meiryo',sans-serif\"\n  }\n}\n",
+    "variation": "fibona-svg-import",
+    "editorState": {
+      "version": 1,
+      "layerOrder": [
+        "rect_03m73o9.shape",
+        "text_1fr01pg.shape",
+        "circle_1h2ou51.shape",
+        "line_1bwd9hv.shape",
+        "line_03avyor.shape",
+        "text_1utmaht.shape",
+        "text_0sgf7da.shape",
+        "text_16j0pax.shape",
+        "path_1yapz61.shape",
+        "path_0ghn054.shape",
+        "path_0l5zrdd.shape",
+        "circle_1mr5a3i.shape",
+        "text_1f4otpa.shape",
+        "circle_0bkfkgb.shape",
+        "text_0nrs92p.shape",
+        "circle_1snu5qt.shape",
+        "text_1x5fpru.shape",
+        "circle_0l02nqz.shape",
+        "text_1100edb.shape",
+        "circle_0bx7f2n.shape",
+        "text_0wzs8zh.shape",
+        "circle_096xykj.shape",
+        "text_1kc2xrr.shape",
+        "text_0t94pra.shape",
+        "text_14ip8u6.shape",
+        "text_17jxxy7.shape",
+        "text_1dxc3ds.shape"
+      ],
+      "groups": [],
+      "hiddenPaths": [],
+      "deletedPaths": [],
+      "originalPointCounts": {},
+      "originalPoints": {},
+      "smoothnessLevel": {},
+      "arcMetadata": {},
+      "regularPolygonMetadata": {}
+    }
+  }
+}
