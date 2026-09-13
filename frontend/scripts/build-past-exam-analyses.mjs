@@ -114,6 +114,8 @@ export function buildAnalysis(evidence, editorial, targetPolicies = defaultTarge
   const pointsTotal = majorQuestions.flatMap((m) => m.subquestions).reduce((n, s) => n + s.points, 0);
   if (pointsTotal !== p.total_points) throw new Error("Provisional point total mismatch");
   const questionIds = majorQuestions.flatMap((m) => m.subquestions.map((s) => s.id));
+  const questionStructure = editorial.questionStructure;
+  if (questionStructure && (questionStructure.assessmentUnit !== 'answer_slot' || !Number.isSafeInteger(questionStructure.numberedSubquestions) || questionStructure.numberedSubquestions < 1 || questionStructure.numberedSubquestions > questionIds.length)) throw new Error('Invalid question structure');
   // Validate the immutable source snapshot before applying an explicitly authored
   // package or university/subject policy. This keeps source evidence auditable
   // without hard-coding route IDs in the builder.
@@ -164,6 +166,7 @@ export function buildAnalysis(evidence, editorial, targetPolicies = defaultTarge
     route: { university: p.university_id, year: String(p.academic_year), subject: p.subject_id, path: `${root}analysis/` },
     university: p.university_name, year: p.academic_year, subject: p.subject_name, examLabel: editorial.examLabel ?? p.exam_method_name,
     duration: requireText(editorial.durationLabel ?? p.time_limit.note), format: requireText(editorial.format),
+    ...(questionStructure ? {questionStructure} : {}),
     examTotal: examTotal ? { points: examTotal.points, subjectCount: examTotal.subjectCount } : null,
     headline: requireText(editorial.headline), summary: requireText(editorial.summary), requirementsSummary: requireText(editorial.requirementsSummary),
     profiles: editorial.profiles.map((profile) => ({ id: profile.id, title: requireText(profile.title), text: requireText(profile.text) })),

@@ -47,5 +47,9 @@ test('Nippon early physics: six original assets and retained review gates',()=>{
  assert.equal(Object.keys(reviewNotices[packageId]).length,3);assert.match(reviewNotices[packageId]['major-question-02'].message,/E₁/);assert.match(analysisReviewNotices[packageId].message,/20/);
  const s=read(`pastExamStagingAnswerSources/${packageId}.json`),keys=s.editorial.pages.flatMap(p=>p.blocks).filter(b=>b.type==='answer_key').flatMap(b=>b.items);
  assert.equal(keys.length,7);assert.equal(keys.map(k=>k.value).join('／').split('／').length,20);assert.equal(s.editorial.provenance,'editorial_adaptation');
- const css=fs.readFileSync(new URL('../src/styles/past-exam-figures.css',import.meta.url),'utf8');assert.ok(css.includes(`img[src^="/assets/past-exams/${packageId}/"] { min-width: 620px; }`));assert.ok(css.includes(`body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/${packageId}/"] { max-height: 200mm; max-width: 150mm; width: auto; }`));
+ const css=fs.readFileSync(new URL('../src/styles/past-exam-figures.css',import.meta.url),'utf8');
+ const rules=[...css.matchAll(/([^{}]+)\{([^{}]*)\}/g)];
+ // Equivalent grouped selectors must not break this styling contract.
+ assert.ok(rules.some(([,selectors,body])=>selectors.includes(`img[src^="/assets/past-exams/${packageId}/"]`)&&/min-width:\s*620px/.test(body)));
+ assert.ok(rules.some(([,selectors,body])=>selectors.includes(`body.is-printing-past-exam-document .past-exam-figure img[src^="/assets/past-exams/${packageId}/"]`)&&/max-height:\s*200mm/.test(body)&&/max-width:\s*150mm/.test(body)&&/width:\s*auto/.test(body)));
 });

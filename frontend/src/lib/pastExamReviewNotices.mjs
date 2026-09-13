@@ -1,5 +1,10 @@
 // Reader-facing, scoped review gates. Remove only after canonical source repair.
 export const reviewNotices={
+ 'saitama-medical-2025-general-early-physics':{
+  'major-question-01':{title:'選択肢と衝突の説明を修復待ちです',message:'元HTMLの選択肢に分数・根号の転記不一致があります。解説でも速さと水平成分、衝突回数の説明は補足待ちです。図は条件から独立に作成しましたが、この大問は本文修復まで演習・採点に使わず編集確認用としてください。'},
+  'major-question-02':{title:'選択肢の指数を修復待ちです',message:'元HTMLの複数の選択肢で分数指数が原本と一致していません。大気の仕事とおもりの仕事を分ける説明も補足待ちです。本文修復まで演習・採点には使わないでください。'},
+  'major-question-03':{title:'選択肢の個数と符号を修復待ちです',message:'力積の選択肢は原本の10個に対して元HTMLが9個になっています。位置エネルギーの選択肢にも原本との相違があるため、本文修復まで編集確認用です。'},
+ },
  'saitama-medical-2025-general-early-mathematics':{
   'major-question-02':{title:'解答欄の符号と解答一覧を修復待ちです',message:'問3の最後の式で、元HTMLは原本の解答欄の外にある符号を落とし、解答一覧にも不一致があります。増減表は独立計算で追加しましたが、この大問は本文修復まで演習・採点に使わず編集確認用としてください。'},
   'major-question-03':{title:'角の対応と途中式は補足確認中です',message:'図は座標と角の関係から独立に作成しました。相似を示す角の対応、傾きの範囲、線分の長さを求める途中式と別解の説明は元HTMLへの補足を依頼しています。'},
@@ -311,6 +316,7 @@ export const reviewNotices={
 };
 /** @type {Record<string, {title: string, message: string}>} */
 export const analysisReviewNotices={
+ 'saitama-medical-2025-general-early-physics':{title:'前問依存を確認するため目標点を保留しています',message:'3大問・16小問に31の解答欄があります。以下の難易度・仮配点は解答欄単位の評価です。元分析では前問の結果を使う計算の依存登録が不足しており、目標点は修復後に再確認します。物理45分は理科2科目90分の仮配分、100点換算と欄別配点は編集確認用です。'},
  'saitama-medical-2025-general-early-mathematics':{title:'仮配点と元の解答表示は確認中です',message:'数学50分は問題冊子の記載です。科目100点の出典整理、小問別の仮配点・想定時間・目標点は編集確認中で、合格ラインを示すものではありません。元HTMLの解答欄の符号・解答一覧・説明は修復後に再確認します。'},
  'nippon-medical-2025-general-early-physics':{title:'目標割合の表示と前問依存は修復待ちです',message:'元HTMLの目標割合が正本の小数値と一致せず、熱効率に必要な前問の登録も不足しているため、目標点は保留しています。7小問に20の記入欄があります。小問配点と物理60分は編集上の仮設定で、問題冊子の時間は理科2科目120分です。'},
  'nippon-medical-2025-general-early-mathematics':{title:'時間モデルと解説は確認中です',message:'問題冊子の数学90分を計算に使っていますが、公式日程の11:05〜12:55との関係は確認待ちです。小問配点・所要時間・目標点は編集上の仮設定で、合格ラインではありません。元HTMLの図形名・論証・解答形式の修復後に再評価します。'},

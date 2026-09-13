@@ -5,6 +5,7 @@ export type AnalysisPage = {
   packageId: string;
   route: { university: string; year: string; subject: string; path: string };
   university: string; year: number; subject: string; examLabel: string; duration: string; format: string;
+  questionStructure?: {assessmentUnit: 'answer_slot'; numberedSubquestions: number};
   headline: string; summary: string; requirementsSummary: string;
   targetReviewNote?: string;
   pendingReason?: string;

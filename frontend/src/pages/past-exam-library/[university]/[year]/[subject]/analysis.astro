@@ -40,8 +40,10 @@ const total = page.majorQuestions.reduce((n, q) => n + q.subquestions.length, 0)
 const questionSummary = summarizeQuestionLabels(page.majorQuestions.map((major) => major.label));
 const usesNumberedProblems = questionSummary.label === "問題";
 const overviewTitle = usesNumberedProblems ? "問題ごとの特徴" : "大問ごとの特徴";
-const itemNoun = usesNumberedProblems ? "問題" : "小問";
-const itemCountSuffix = usesNumberedProblems ? "問" : "小問";
+const usesAnswerSlots = page.questionStructure?.assessmentUnit === 'answer_slot';
+const itemNoun = usesAnswerSlots ? "解答欄" : usesNumberedProblems ? "問題" : "小問";
+const itemCountSuffix = usesAnswerSlots ? "欄" : usesNumberedProblems ? "問" : "小問";
+const difficultyCountSuffix = usesAnswerSlots ? "欄" : "問";
 const totalPoints = page.majorQuestions.flatMap((q) => q.subquestions).reduce((n, q) => n + q.points, 0);
 const difficultyPoints = levels.map((_, level) => page.majorQuestions.flatMap((q) => q.subquestions).filter((q) => q.difficulty === level).reduce((n, q) => n + q.points, 0));
 const difficultySlices = page.pendingReason ? [] : buildDifficultyPie(difficultyPoints);
@@ -78,7 +80,7 @@ const targetReviewNote = page.targetReviewNote
           { label: "科目", value: page.subject },
           { label: "形式", value: page.format },
           { label: "試験時間", value: page.duration },
-          { label: usesNumberedProblems ? "問題・掲載区分" : "大問・小問", value: usesNumberedProblems ? `${questionSummary.count}問・${page.majorQuestions.length}セクション` : `${page.majorQuestions.length}題・${total}問` },
+          { label: usesNumberedProblems ? "問題・掲載区分" : "大問・小問", value: usesNumberedProblems ? `${questionSummary.count}問・${page.majorQuestions.length}セクション` : `${page.majorQuestions.length}題・${page.questionStructure?.numberedSubquestions ?? total}問` },
         ]} />
       </div>
     </header>
@@ -109,17 +111,18 @@ const targetReviewNote = page.targetReviewNote
           <h3>試験概要</h3>
           <dl class="analysis-distribution-totals">
             <div><dt>{usesNumberedProblems ? "問題合計" : "大問合計"}</dt><dd><strong>{usesNumberedProblems ? questionSummary.count : page.majorQuestions.length}</strong>{usesNumberedProblems ? "問" : "題"}</dd></div>
-            <div><dt>{usesNumberedProblems ? "掲載セクション" : "小問合計"}</dt><dd><strong>{usesNumberedProblems ? page.majorQuestions.length : total}</strong>{usesNumberedProblems ? "区分" : "問"}</dd></div>
+            <div><dt>{usesNumberedProblems ? "掲載セクション" : "小問合計"}</dt><dd><strong>{usesNumberedProblems ? page.majorQuestions.length : page.questionStructure?.numberedSubquestions ?? total}</strong>{usesNumberedProblems ? "区分" : "問"}</dd></div>
+            {usesAnswerSlots && <div><dt>解答欄合計</dt><dd><strong>{total}</strong>欄</dd></div>}
             <div><dt>配点合計</dt><dd><strong>{totalPoints}</strong>点{page.examTotal && <span class="analysis-exam-total"> / {page.examTotal.points}点 ({page.examTotal.subjectCount}科目合計)</span>}</dd></div>
           </dl>
           <div class="analysis-distribution-chart">
             <svg class="analysis-difficulty-pie" viewBox="0 0 220 220" width="220" height="220" role="img" aria-labelledby="difficulty-pie-title" aria-describedby="difficulty-pie-note">
-              <title id="difficulty-pie-title">{`仮配点合計${totalPoints}点の難易度別割合。${difficultySlices.map((s) => `${levels[s.level]} ${page.difficultyCounts[s.level]}問、推定${s.value}点`).join("。")}`}</title>
+              <title id="difficulty-pie-title">{`仮配点合計${totalPoints}点の難易度別割合。${difficultySlices.map((s) => `${levels[s.level]} ${page.difficultyCounts[s.level]}${difficultyCountSuffix}、推定${s.value}点`).join("。")}`}</title>
               {difficultySlices.filter((s) => s.value > 0).map((s) => <path class={`analysis-level-fill level-${s.level}`} d={s.path} />)}
               {difficultySlices.filter((s) => s.fraction >= 0.06).map((s) => <text x={s.labelX} y={s.labelY} text-anchor="middle" dominant-baseline="central" aria-hidden="true">{s.value}点</text>)}
             </svg>
             <ul class="analysis-legend">
-              {difficultySlices.map((s) => <li><i class={`analysis-level-fill level-${s.level}`} aria-hidden="true"></i><span class="analysis-legend-copy"><span>{levels[s.level]}</span><span class="analysis-legend-values"><b>{page.difficultyCounts[s.level]}問</b><small>（推定：{s.value}点）</small></span></span></li>)}
+              {difficultySlices.map((s) => <li><i class={`analysis-level-fill level-${s.level}`} aria-hidden="true"></i><span class="analysis-legend-copy"><span>{levels[s.level]}</span><span class="analysis-legend-values"><b>{page.difficultyCounts[s.level]}{difficultyCountSuffix}</b><small>（推定：{s.value}点）</small></span></span></li>)}
             </ul>
           </div>
           <small id="difficulty-pie-note">難易度別の仮配点割合です。大学公表の{itemNoun}別配点ではありません。</small>

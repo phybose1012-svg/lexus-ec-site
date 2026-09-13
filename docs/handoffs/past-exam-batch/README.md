@@ -6,7 +6,7 @@
 
 - 既存独自解説5件は保護。新規62件はステージングレビュー版。
 - 本文あり：問題67件 / 解説65件 / 分析64件。
-- 目標点保留：19件。図版の予約領域：168箇所。これらは完成扱いではない。
+- 目標点保留：20件。図版の予約領域：165箇所。これらは完成扱いではない。
 - 本文欠損：iwate-medical-2025-general-chemistry、nippon-medical-2022-general-late-mathematics、teikyo-2025-general-physics。
 - 既存学習者向け解説の取り込みは独立した再解答・論理検証ではない。ページ注記とメタデータでその違いを明記。
 
@@ -68,7 +68,7 @@
 |nippon-medical-2025-general-early-mathematics|問題: imported; 解説: editorial-adaptation-imported; 分析: imported|[依頼](nippon-medical-2025-general-early-mathematics.md)|[問題](https://staging.lexus-ec.pages.dev/past-exam-library/nippon-medical/2025/mathematics/questions/)|
 |nippon-medical-2025-general-early-physics|問題: imported; 解説: editorial-adaptation-imported; 分析: targets-deferred|[依頼](nippon-medical-2025-general-early-physics.md)|[問題](https://staging.lexus-ec.pages.dev/past-exam-library/nippon-medical/2025/physics/questions/)|
 |saitama-medical-2025-general-early-mathematics|問題: imported; 解説: editorial-adaptation-imported; 分析: imported|[依頼](saitama-medical-2025-general-early-mathematics.md)|[問題](https://staging.lexus-ec.pages.dev/past-exam-library/saitama-medical/2025/mathematics/questions/)|
-|saitama-medical-2025-general-early-physics|問題: imported; 解説: editorial-adaptation-imported; 分析: imported|[依頼](saitama-medical-2025-general-early-physics.md)|[問題](https://staging.lexus-ec.pages.dev/past-exam-library/saitama-medical/2025/physics/questions/)|
+|saitama-medical-2025-general-early-physics|問題: imported; 解説: editorial-adaptation-imported; 分析: targets-deferred|[依頼](saitama-medical-2025-general-early-physics.md)|[問題](https://staging.lexus-ec.pages.dev/past-exam-library/saitama-medical/2025/physics/questions/)|
 |sangyo-medical-2025-general-a-b-mathematics|問題: imported; 解説: editorial-adaptation-imported; 分析: imported|[依頼](sangyo-medical-2025-general-a-b-mathematics.md)|[問題](https://staging.lexus-ec.pages.dev/past-exam-library/sangyo-medical/2025/mathematics/questions/)|
 |sangyo-medical-2025-general-a-b-physics|問題: imported; 解説: editorial-adaptation-imported; 分析: imported|[依頼](sangyo-medical-2025-general-a-b-physics.md)|[問題](https://staging.lexus-ec.pages.dev/past-exam-library/sangyo-medical/2025/physics/questions/)|
 |showa-medical-2025-general-i-mathematics|問題: imported; 解説: editorial-adaptation-imported; 分析: imported|[依頼](showa-medical-2025-general-i-mathematics.md)|[問題](https://staging.lexus-ec.pages.dev/past-exam-library/showa-medical/2025/mathematics/questions/)|

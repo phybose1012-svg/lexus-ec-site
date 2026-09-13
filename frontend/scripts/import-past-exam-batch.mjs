@@ -10,6 +10,7 @@ import {durationLabelFor} from './past-exam-duration.mjs';
 import {loadFigureManifest} from '../src/lib/pastExamFigures.mjs';
 import {normalizeInequalitiesDeep} from '../src/lib/mathNotation.mjs';
 import {openUpstreamIssues,upstreamIssueText} from './lib/past-exam-upstream-issues.mjs';
+import {targetReviewHold} from './lib/past-exam-target-review-holds.mjs';
 
 const frontend=fileURLToPath(new URL('../',import.meta.url));
 const repo=path.dirname(frontend);
@@ -28,6 +29,7 @@ const ledger=fs.existsSync(ledgerFile)?read(ledgerFile).packages:[];
 const subjectNames={mathematics:'数学',physics:'物理',chemistry:'化学',biology:'生物'};
 const durationOverrides=read(path.join(data,'pastExamBatch/duration-overrides.json'));
 const packageOverrides=read(path.join(data,'pastExamBatch/package-overrides.json'));
+const targetReviewHolds=read(path.join(data,'pastExamBatch/target-review-holds.json'));
 for(const item of inventory) {
   const pieces=item.directory.split('/');
   const university=pieces[2],year=pieces[5],method=pieces[6],stage=pieces[7],subject=pieces[8];
@@ -102,7 +104,11 @@ for(let index=0;index<inventory.length;index++) {
       const htmlFile=path.join(dir,'preview-html/public-preview/index.html');
       const html=fs.readFileSync(htmlFile,'utf8');
       let evidence;
-      try {evidence=extractAnalysis(html,meta,`${item.directory}/preview-html/public-preview/index.html`,derived);}
+      try {
+        const hold=targetReviewHold(targetReviewHolds,entry.id,hash(path.join(dir,'analysis.json')));
+        if(hold)throw new Error(hold);
+        evidence=extractAnalysis(html,meta,`${item.directory}/preview-html/public-preview/index.html`,derived);
+      }
       catch(error) {
         evidence=extractAnalysis(html,meta,`${item.directory}/preview-html/public-preview/index.html`,derived,{deferTargets:true});
         status.issues.push({scope:'analysis-targets',kind:'source-error',message:error.message});
