@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "lexus-past-exam-figure-trio.v1",
+  "packageId": "iwate-medical-2025-general-mathematics",
+  "figureId": "q2-geometry",
+  "trio": {
+    "domain": "type UserShape\n",
+    "substance": "UserShape rect_03m73o9\nUserShape circle_07kamhq\nUserShape circle_1lfow9u\nUserShape path_1brcs1v\nUserShape line_18p4qhs\nUserShape line_111aiic\nUserShape line_18bfdwe\nUserShape circle_1fmn309\nUserShape circle_1uil8q5\nUserShape circle_1n3yd9b\nUserShape circle_1nos8i6\nUserShape circle_0sw20ez\nUserShape circle_01pgj4l\nUserShape circle_1qb3qiu\nUserShape text_1s3vmxb\nUserShape text_02qhnp5\nUserShape text_1graekm\nUserShape text_109vu91\nUserShape text_0scyhe5\nUserShape text_0tsaicw\nUserShape text_1on570u\nUserShape text_004he5p\nUserShape text_09rgh7z\nUserShape text_1fz3y12\nUserShape newPoint1\nUserShape newPoint2\n",
+    "style": "canvas {\n  width = 720\n  height = 500\n}\n\nforall UserShape `rect_03m73o9` {\n  `rect_03m73o9`.shape = Rectangle {\n    center: (0, 0)\n    width: 720\n    height: 500\n    cornerRadius: 0\n    fillColor: rgba(1, 1, 1, 1)\n    strokeColor: none()\n  }\n}\n\nforall UserShape `circle_07kamhq` {\n  `circle_07kamhq`.shape = Circle {\n    center: (0, 9.1833)\n    r: 201.6333\n    fillColor: none()\n    strokeColor: rgba(0.0902, 0.2471, 0.4118, 1)\n    strokeWidth: 2.2\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `circle_1lfow9u` {\n  `circle_1lfow9u`.shape = Circle {\n    center: (66, 150.4961)\n    r: 40.4961\n    fillColor: none()\n    strokeColor: rgba(0.7412, 0.5451, 0.1529, 1)\n    strokeWidth: 1.4\n    strokeDasharray: \"5 5\"\n  }\n}\n\nforall UserShape `path_1brcs1v` {\n  `path_1brcs1v`.shape = Polygon {\n    points: [(74.837, 196.4143), (-174.6196, 110), (174.6196, 110)]\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 2.2\n    strokeDasharray: \"\"\n    strokeLinejoin: \"round\"\n  }\n}\n\nforall UserShape `line_18p4qhs` {\n  `line_18p4qhs`.shape = Line {\n    start: (74.837, 196.4143)\n    end: (0, -192.45)\n    fillColor: none()\n    strokeColor: rgba(0.7412, 0.5451, 0.1529, 1)\n    strokeWidth: 2.2\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_111aiic` {\n  `line_111aiic`.shape = Line {\n    start: (0, 9.1833)\n    end: (-174.6196, 110)\n    fillColor: none()\n    strokeColor: rgba(0.6667, 0.7176, 0.7647, 1)\n    strokeWidth: 1.2\n    strokeDasharray: \"4 5\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_18bfdwe` {\n  `line_18bfdwe`.shape = Line {\n    start: (0, 9.1833)\n    end: (174.6196, 110)\n    fillColor: none()\n    strokeColor: rgba(0.6667, 0.7176, 0.7647, 1)\n    strokeWidth: 1.2\n    strokeDasharray: \"4 5\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `circle_1fmn309` {\n  `circle_1fmn309`.shape = Circle {\n    center: (74.837, 196.4143)\n    r: 4.5\n    fillColor: rgba(1, 1, 1, 1)\n    strokeColor: rgba(0.0902, 0.2471, 0.4118, 1)\n    strokeWidth: 2\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `circle_1uil8q5` {\n  `circle_1uil8q5`.shape = Circle {\n    center: (-174.6196, 110)\n    r: 4.5\n    fillColor: rgba(1, 1, 1, 1)\n    strokeColor: rgba(0.0902, 0.2471, 0.4118, 1)\n    strokeWidth: 2\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `circle_1n3yd9b` {\n  `circle_1n3yd9b`.shape = Circle {\n    center: (174.6196, 110)\n    r: 4.5\n    fillColor: rgba(1, 1, 1, 1)\n    strokeColor: rgba(0.0902, 0.2471, 0.4118, 1)\n    strokeWidth: 2\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `circle_1nos8i6` {\n  `circle_1nos8i6`.shape = Circle {\n    center: (58.2065, 110)\n    r: 4.5\n    fillColor: rgba(1, 1, 1, 1)\n    strokeColor: rgba(0.0902, 0.2471, 0.4118, 1)\n    strokeWidth: 2\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `circle_0sw20ez` {\n  `circle_0sw20ez`.shape = Circle {\n    center: (0, -192.45)\n    r: 4.5\n    fillColor: rgba(1, 1, 1, 1)\n    strokeColor: rgba(0.0902, 0.2471, 0.4118, 1)\n    strokeWidth: 2\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `circle_01pgj4l` {\n  `circle_01pgj4l`.shape = Circle {\n    center: (66, 150.4961)\n    r: 4\n    fillColor: rgba(1, 1, 1, 1)\n    strokeColor: rgba(0.0902, 0.2471, 0.4118, 1)\n    strokeWidth: 2\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `circle_1qb3qiu` {\n  `circle_1qb3qiu`.shape = Circle {\n    center: (0, 9.1833)\n    r: 4\n    fillColor: rgba(1, 1, 1, 1)\n    strokeColor: rgba(0.0902, 0.2471, 0.4118, 1)\n    strokeWidth: 2\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `text_1s3vmxb` {\n  `text_1s3vmxb`.shape = Equation {\n    string: \"A\"\n    center: (90.712, 215.9323)\n    fontSize: \"21px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_02qhnp5` {\n  `text_02qhnp5`.shape = Equation {\n    string: \"B\"\n    center: (-190.6501, 111.1715)\n    fontSize: \"21px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_1graekm` {\n  `text_1graekm`.shape = Equation {\n    string: \"C\"\n    center: (192.5996, 111.1715)\n    fontSize: \"21px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_109vu91` {\n  `text_109vu91`.shape = Equation {\n    string: \"D\"\n    center: (74.9005, 91.1715)\n    fontSize: \"21px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_0scyhe5` {\n  `text_0scyhe5`.shape = Equation {\n    string: \"E\"\n    center: (9.1668, -208.3638)\n    fontSize: \"21px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_0tsaicw` {\n  `text_0tsaicw`.shape = Equation {\n    string: \"I\"\n    center: (80.292, 153.6676)\n    fontSize: \"21px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_1on570u` {\n  `text_1on570u`.shape = Equation {\n    string: \"O\"\n    center: (18.0115, 10.3443)\n    fontSize: \"21px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_004he5p` {\n  `text_004he5p`.shape = Equation {\n    string: \"\\mathrm{2}\"\n    center: (-50.6413, 170.2001)\n    fontSize: \"21px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_09rgh7z` {\n  `text_09rgh7z`.shape = Equation {\n    string: \"\\mathrm{1}\"\n    center: (135.9783, 170.2001)\n    fontSize: \"21px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_1fz3y12` {\n  `text_1fz3y12`.shape = Equation {\n    string: \"\\mathrm{√7}\"\n    center: (2.2065, 86.3)\n    fontSize: \"21px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `newPoint1` {\n  `newPoint1`.shape = Circle {    center: (63.2922, 182.5109)\n    r: 4.3\n    fillColor: rgba(0, 0, 0, 1)\n    strokeColor: none()\n    strokeWidth: 0}\n}\n\nforall UserShape `newPoint2` {\n  `newPoint2`.shape = Circle {\n    center: (80.0315, 179.4903)\n    r: 4.3\n    fillColor: rgba(0, 0, 0, 1)\n    strokeColor: none()\n    strokeWidth: 0\n  }\n}\n",
+    "variation": "fibona-svg-import",
+    "editorState": {
+      "version": 1,
+      "layerOrder": [
+        "rect_03m73o9.shape",
+        "circle_07kamhq.shape",
+        "circle_1lfow9u.shape",
+        "path_1brcs1v.shape",
+        "line_18p4qhs.shape",
+        "line_111aiic.shape",
+        "line_18bfdwe.shape",
+        "circle_1fmn309.shape",
+        "circle_1uil8q5.shape",
+        "circle_1n3yd9b.shape",
+        "circle_1nos8i6.shape",
+        "circle_0sw20ez.shape",
+        "circle_01pgj4l.shape",
+        "circle_1qb3qiu.shape",
+        "text_1s3vmxb.shape",
+        "text_02qhnp5.shape",
+        "text_1graekm.shape",
+        "text_109vu91.shape",
+        "text_0scyhe5.shape",
+        "text_0tsaicw.shape",
+        "text_1on570u.shape",
+        "text_004he5p.shape",
+        "text_09rgh7z.shape",
+        "text_1fz3y12.shape"
+      ],
+      "groups": [],
+      "hiddenPaths": [],
+      "deletedPaths": [],
+      "originalPointCounts": {},
+      "originalPoints": {},
+      "smoothnessLevel": {},
+      "arcMetadata": {},
+      "regularPolygonMetadata": {}
+    }
+  }
+}
