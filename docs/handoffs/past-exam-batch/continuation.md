@@ -779,3 +779,7 @@
 - 印刷は既存専用CSSの150mm/200mm上限・通常幅解除を適用。機械回帰は成功、今回の実印刷/PDF目視は未実施。preview localhost4337、検証tab5を使用。既存ACTIVE・1分間隔の直列継続を維持、追加タスク/サブエージェントなし。
 - ローカル67package/201route、本文67問題/65解説/64分析、図保留154・目標保留20。公開前fetch時staging未統合0。配信成功確認までは配信済み図保留161。
 - 次は **昭和医科大学2025年度Ⅰ期・数学**、`showa-medical-2025-general-i-mathematics`。台帳は問題0図/解説6図・analysis imported。本文・原本・分析は未読。産業医科大学の完成図をやり直さず、次の未読箇所から直列継続する。
+
+- **配信確認：** 内容 `9ba181181642a7cbd20b00781beb21412436dd4f` をstaging→作業branchへ通常push。Cloudflare completed/success（deployment `5baa9e18-c241-4f00-bc48-7824908a7bdd`）。実3URL HTTP200・h1=1・新内容・レビュー注記3/3/1、全7SVGの配信バイト一致。公開完了後の全201ルート検査は終了コード0・失敗0（noindex/canonicalを含む）。
+- 実staging解説を390pxブラウザーでも確認し、2図読込・650px・文書375px・数式エラー0・h1=1。検証tab5を閉じviewport reset、preview localhost4337と既存1分間隔の直列継続を維持。
+- **配信済み図保留154／目標保留20。** 元HTML修復・公式根拠・権利・人間承認・実印刷は未完了。次の対象元パスは `projects/universities/showa-medical/past-exams/working/2025/general-i/first-stage/mathematics`。16主設問、英数140分に数学70分を仮配分した資料で、本文・原本・分析は未読。この配信後記録のみ作業branchへ保存し、次の検証済み内容pushにstagingへ含める。
