@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "lexus-past-exam-figure-trio.v1",
+  "packageId": "dokkyo-medical-2025-general-early-physics",
+  "figureId": "q1-resonance-doppler",
+  "trio": {
+    "domain": "type UserShape\n",
+    "substance": "UserShape rect_03m73o9\nUserShape text_0bgisoq\nUserShape line_11v1opt\nUserShape line_0jpnev6\nUserShape rect_1n6xinj\nUserShape line_0g3o4hq\nUserShape line_05duehx\nUserShape line_1vartta\nUserShape line_0bz8wl7\nUserShape text_048zl0z\nUserShape text_0hk09h3\nUserShape text_017fe99\nUserShape text_10nku2u\nUserShape text_15ku4lb\nUserShape text_0h8gtb6\nUserShape line_0fz7d11\nUserShape line_049t3qg\nUserShape rect_0ryc2l7\nUserShape line_0wvfdt7\nUserShape line_1545zf1\nUserShape line_0j3bpug\nUserShape line_13kbqyh\nUserShape text_0mklo9e\nUserShape text_10ertof\nUserShape text_1n5aqbt\nUserShape text_0e8npqt\nUserShape line_1qqo048\nUserShape text_0rgc63l\nUserShape newLine1\nUserShape userShape1\nUserShape newArc1\nUserShape newLine2\nUserShape newRectangle1\nUserShape userShape2\nUserShape userShape3\nUserShape userShape4\nUserShape userShape5\nUserShape userShape6\n",
+    "style": "canvas {\n  width = 720\n  height = 473\n}\n\nforall UserShape `rect_03m73o9` {\n  `rect_03m73o9`.shape = Rectangle {\n    center: (0, 0)\n    width: 720\n    height: 473\n    cornerRadius: 0\n    fillColor: rgba(1, 1, 1, 1)\n    strokeColor: none()\n  }\n}\n\nforall UserShape `text_0bgisoq` {\n  `text_0bgisoq`.shape = Text {\n    string: \"図3 静止している音源\"\n    center: (0, 212.5)\n    fontSize: \"18px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    fontFamily: \"'Yu Gothic','Meiryo',sans-serif\"\n  }\n}\n\nforall UserShape `line_11v1opt` {\n  `line_11v1opt`.shape = Line {\n    start: (-260, 161.5)\n    end: (100, 161.5)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_0jpnev6` {\n  `line_0jpnev6`.shape = Line {\n    start: (-260, 81.5)\n    end: (100, 81.5)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `rect_1n6xinj` {\n  `rect_1n6xinj`.shape = Rectangle {\n    center: (-57, 121.5)\n    width: 12\n    height: 80\n    cornerRadius: 0\n    fillColor: rgba(0.8392, 0.8902, 0.9216, 1)\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinejoin: \"round\"\n  }\n}\n\nforall UserShape `line_0g3o4hq` {\n  `line_0g3o4hq`.shape = Line {\n    start: (-314, 121.5)\n    end: (-63, 121.5)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_05duehx` {\n  `line_05duehx`.shape = Line {\n    start: (-57, 39.5)\n    end: (100, 39.5)\n    fillColor: none()\n    strokeColor: rgba(0.4627, 0.5608, 0.6235, 1)\n    strokeWidth: 1.3\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_1vartta` {\n  `line_1vartta`.shape = Line {\n    start: (-57, 45.5)\n    end: (-57, 33.5)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_0bz8wl7` {\n  `line_0bz8wl7`.shape = Line {\n    start: (100, 45.5)\n    end: (100, 33.5)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `text_048zl0z` {\n  `text_048zl0z`.shape = Equation {\n    string: \"L\"\n    center: (21.5, 60.0375)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_0hk09h3` {\n  `text_0hk09h3`.shape = Equation {\n    string: \"\\mathrm{S}\"\n    center: (196.1369, 40.5662)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_017fe99` {\n  `text_017fe99`.shape = Equation {\n    string: \"f_{\\mathrm{0}}\"\n    center: (193, 180.75)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_10nku2u` {\n  `text_10nku2u`.shape = Equation {\n    string: \"\\mathrm{P}\"\n    center: (-156.4875, 182.0375)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_15ku4lb` {\n  `text_15ku4lb`.shape = Text {\n    string: \"静止\"\n    center: (252, 122.5)\n    fontSize: \"18px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    fontFamily: \"'Yu Gothic','Meiryo',sans-serif\"\n  }\n}\n\nforall UserShape `text_0h8gtb6` {\n  `text_0h8gtb6`.shape = Text {\n    string: \"図4 遠ざかる音源\"\n    center: (0, -11.5)\n    fontSize: \"18px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    fontFamily: \"'Yu Gothic','Meiryo',sans-serif\"\n  }\n}\n\nforall UserShape `line_0fz7d11` {\n  `line_0fz7d11`.shape = Line {\n    start: (-260, -60.5)\n    end: (100, -60.5)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_049t3qg` {\n  `line_049t3qg`.shape = Line {\n    start: (-260, -140.5)\n    end: (100, -140.5)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `rect_0ryc2l7` {\n  `rect_0ryc2l7`.shape = Rectangle {\n    center: (-107, -100.5)\n    width: 12\n    height: 80\n    cornerRadius: 0\n    fillColor: rgba(0.8392, 0.8902, 0.9216, 1)\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinejoin: \"round\"\n  }\n}\n\nforall UserShape `line_0wvfdt7` {\n  `line_0wvfdt7`.shape = Line {\n    start: (-314, -100.5)\n    end: (-113, -100.5)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_1545zf1` {\n  `line_1545zf1`.shape = Line {\n    start: (-107, -182.5)\n    end: (100, -182.5)\n    fillColor: none()\n    strokeColor: rgba(0.4627, 0.5608, 0.6235, 1)\n    strokeWidth: 1.3\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_0j3bpug` {\n  `line_0j3bpug`.shape = Line {\n    start: (-107, -176.5)\n    end: (-107, -188.5)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_13kbqyh` {\n  `line_13kbqyh`.shape = Line {\n    start: (100, -176.5)\n    end: (100, -188.5)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `text_0mklo9e` {\n  `text_0mklo9e`.shape = Equation {\n    string: \"L\\mathrm{ + Δ}L\"\n    center: (-3.5, -162.575)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_10ertof` {\n  `text_10ertof`.shape = Equation {\n    string: \"\\mathrm{S}\"\n    center: (195.8815, -186.5977)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_1n5aqbt` {\n  `text_1n5aqbt`.shape = Equation {\n    string: \"f_{\\mathrm{0}}\"\n    center: (193, -41.25)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_0e8npqt` {\n  `text_0e8npqt`.shape = Equation {\n    string: \"\\mathrm{P}\"\n    center: (-156.4875, -39.9625)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `line_1qqo048` {\n  `line_1qqo048`.shape = Line {\n    start: (230, -100.5)\n    end: (304, -100.5)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"straight\"\n    endArrowheadSize: 0.603\n  }\n}\n\nforall UserShape `text_0rgc63l` {\n  `text_0rgc63l`.shape = Equation {\n    string: \"v\"\n    center: (265, -80.1)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `newLine1` {\n  `newLine1`.shape = Line {\n    start: (180.4317, 145.414)\n    end: (180.4317, 117.185)\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.522877\n    startArrowhead: \"\"\n    endArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `userShape1` {\n  `userShape1`.shape = Line {\n\n    start: (204.7541, 145.3244)\n    end: (204.7541, 117.0954)\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.522877\n    startArrowhead: \"\"\n    endArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowheadSize: 1\n  \n  }\n}\n\nforall UserShape `newArc1` {\n  `newArc1`.shape = Path {\n    d: pathFromPoints(\"open\", [(204.6585, 118.0148), (204.5503, 116.7437), (204.3098, 115.4908), (203.9396, 114.27), (203.4439, 113.0946), (202.828, 111.9774), (202.0987, 110.9307), (201.264, 109.966), (200.333, 109.0938), (199.3159, 108.3237), (198.224, 107.6642), (197.069, 107.1224), (195.8638, 106.7042), (194.6214, 106.4144), (193.3556, 106.256), (192.0802, 106.2308), (190.8091, 106.3391), (189.5562, 106.5796), (188.3354, 106.9497), (187.16, 107.4455), (186.0428, 108.0614), (184.9961, 108.7907), (184.0314, 109.6254), (183.1592, 110.5564), (182.3891, 111.5734), (181.7296, 112.6654), (181.1878, 113.8203), (180.7696, 115.0256), (180.4798, 116.2679), (180.3214, 117.5337), (180.2962, 118.8092)])\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.522877\n    fillColor: none()\n    startArrowhead: \"\"\n    endArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `newLine2` {\n  `newLine2`.shape = Line {\n    start: (193.007, 105.5687)\n    end: (193.2718, 83.8545)\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.522877\n    startArrowhead: \"\"\n    endArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `newRectangle1` {\n  `newRectangle1`.shape = Rectangle {\n    center: (193.8014, 75.9102)\n    width: 32.3066\n    height: 15.3589\n    cornerRadius: 0\n    fillColor: none()\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.522877\n  }\n}\n\nforall UserShape `newRectangle1` {\n  override `newRectangle1`.shape.center = (196.2367, 68.1644)\n  override `newRectangle1`.shape.width = 39.825\n  override `newRectangle1`.shape.height = 18.933\n  override `newRectangle1`.shape.cornerRadius = 0\n  override `newRectangle1`.shape.strokeWidth = 1.877301\n}\n\nforall UserShape `userShape1` {\n  override `userShape1`.shape.start = (209.7386, 153.7335)\n  override `userShape1`.shape.end = (209.7386, 118.9347)\n  override `userShape1`.shape.startArrowheadSize = 1.233\n  override `userShape1`.shape.endArrowheadSize = 1.233\n  override `userShape1`.shape.strokeWidth = 1.877301\n}\n\nforall UserShape `newLine1` {\n  override `newLine1`.shape.start = (179.7555, 153.844)\n  override `newLine1`.shape.end = (179.7555, 119.0452)\n  override `newLine1`.shape.startArrowheadSize = 1.233\n  override `newLine1`.shape.endArrowheadSize = 1.233\n  override `newLine1`.shape.strokeWidth = 1.877301\n}\n\nforall UserShape `newLine2` {\n  override `newLine2`.shape.start = (195.2575, 104.7254)\n  override `newLine2`.shape.end = (195.584, 77.9576)\n  override `newLine2`.shape.startArrowheadSize = 1.233\n  override `newLine2`.shape.endArrowheadSize = 1.233\n  override `newLine2`.shape.strokeWidth = 1.877301\n}\n\nforall UserShape `newArc1` {\n  override `newArc1`.shape.d = pathFromPoints(\"open\", [(209.6207, 120.0681), (209.4873, 118.5011), (209.1908, 116.9567), (208.7345, 115.4518), (208.1234, 114.0028), (207.3641, 112.6256), (206.4651, 111.3353), (205.4361, 110.1461), (204.2885, 109.0709), (203.0347, 108.1216), (201.6886, 107.3085), (200.2649, 106.6406), (198.7791, 106.1252), (197.2477, 105.7679), (195.6872, 105.5727), (194.1149, 105.5416), (192.548, 105.675), (191.0036, 105.9715), (189.4987, 106.4278), (188.0497, 107.039), (186.6725, 107.7982), (185.3822, 108.6972), (184.193, 109.7262), (183.1178, 110.8738), (182.1685, 112.1276), (181.3554, 113.4737), (180.6875, 114.8974), (180.1721, 116.3832), (179.8148, 117.9146), (179.6195, 119.4751), (179.5885, 121.0474)])\n  override `newArc1`.shape.startArrowheadSize = 1.233\n  override `newArc1`.shape.endArrowheadSize = 1.233\n  override `newArc1`.shape.strokeWidth = 1.877301\n}\n\nforall UserShape `userShape2` {\n  `userShape2`.shape = Rectangle {\n\n    center: (197.2633, -156.437)\n    width: 39.825\n    height: 18.933\n    cornerRadius: 0\n    fillColor: none()\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.877301\n  \n  }\n}\n\nforall UserShape `userShape3` {\n  `userShape3`.shape = Line {\n\n    start: (210.7652, -70.8679)\n    end: (210.7652, -105.6667)\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.877301\n    startArrowhead: \"\"\n    endArrowhead: \"\"\n    startArrowheadSize: 1.233\n    endArrowheadSize: 1.233\n  \n  \n  }\n}\n\nforall UserShape `userShape4` {\n  `userShape4`.shape = Line {\n\n    start: (180.7821, -70.7574)\n    end: (180.7821, -105.5562)\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.877301\n    startArrowhead: \"\"\n    endArrowhead: \"\"\n    startArrowheadSize: 1.233\n    endArrowheadSize: 1.233\n  \n  }\n}\n\nforall UserShape `userShape5` {\n  `userShape5`.shape = Line {\n\n    start: (196.2841, -119.876)\n    end: (196.6106, -146.6438)\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.877301\n    startArrowhead: \"\"\n    endArrowhead: \"\"\n    startArrowheadSize: 1.233\n    endArrowheadSize: 1.233\n  \n  }\n}\n\nforall UserShape `userShape6` {\n  `userShape6`.shape = Path {\n\n    d: pathFromPoints(\"open\", [(210.6473, -104.5334), (210.5139, -106.1003), (210.2174, -107.6447), (209.761, -109.1496), (209.1499, -110.5986), (208.3907, -111.9758), (207.4917, -113.2661), (206.4627, -114.4553), (205.315, -115.5305), (204.0613, -116.4798), (202.7152, -117.2929), (201.2915, -117.9608), (199.8057, -118.4762), (198.2742, -118.8335), (196.7138, -119.0287), (195.1415, -119.0598), (193.5746, -118.9264), (192.0302, -118.6299), (190.5252, -118.1736), (189.0762, -117.5624), (187.6991, -116.8032), (186.4088, -115.9042), (185.2195, -114.8752), (184.1444, -113.7276), (183.1951, -112.4738), (182.382, -111.1277), (181.7141, -109.704), (181.1987, -108.2182), (180.8414, -106.6868), (180.6461, -105.1263), (180.615, -103.554)])\n    strokeColor: rgba(0, 0, 0, 1)\n    strokeWidth: 1.877301\n    fillColor: none()\n    startArrowhead: \"\"\n    endArrowhead: \"\"\n    startArrowheadSize: 1.233\n    endArrowheadSize: 1.233\n  \n  }\n}\n",
+    "variation": "fibona-svg-import",
+    "editorState": {
+      "version": 1,
+      "layerOrder": [
+        "rect_03m73o9.shape",
+        "text_0bgisoq.shape",
+        "line_11v1opt.shape",
+        "line_0jpnev6.shape",
+        "rect_1n6xinj.shape",
+        "line_0g3o4hq.shape",
+        "line_05duehx.shape",
+        "line_1vartta.shape",
+        "line_0bz8wl7.shape",
+        "text_048zl0z.shape",
+        "text_0hk09h3.shape",
+        "text_017fe99.shape",
+        "text_10nku2u.shape",
+        "text_15ku4lb.shape",
+        "text_0h8gtb6.shape",
+        "line_0fz7d11.shape",
+        "line_049t3qg.shape",
+        "rect_0ryc2l7.shape",
+        "line_0wvfdt7.shape",
+        "line_1545zf1.shape",
+        "line_0j3bpug.shape",
+        "line_13kbqyh.shape",
+        "text_0mklo9e.shape",
+        "text_10ertof.shape",
+        "text_1n5aqbt.shape",
+        "text_0e8npqt.shape",
+        "line_1qqo048.shape",
+        "text_0rgc63l.shape"
+      ],
+      "groups": [
+        [
+          "newRectangle1.shape",
+          "userShape1.shape",
+          "newLine1.shape",
+          "newLine2.shape",
+          "newArc1.shape"
+        ],
+        [
+          "userShape2.shape",
+          "userShape3.shape",
+          "userShape4.shape",
+          "userShape5.shape",
+          "userShape6.shape"
+        ]
+      ],
+      "hiddenPaths": [],
+      "deletedPaths": [],
+      "originalPointCounts": {},
+      "originalPoints": {},
+      "smoothnessLevel": {},
+      "arcMetadata": {
+        "newArc1.shape": {
+          "start": {
+            "x": 209.62072610800686,
+            "y": 120.06805327570963
+          },
+          "end": {
+            "x": 179.588470515403,
+            "y": 121.04736595807712
+          },
+          "angleU": 1,
+          "flipped": false
+        },
+        "userShape6.shape": {
+          "start": {
+            "x": 210.64729916076368,
+            "y": -104.53335093293738
+          },
+          "end": {
+            "x": 180.61504356815982,
+            "y": -103.55403825056989
+          },
+          "angleU": 1,
+          "flipped": false
+        }
+      },
+      "regularPolygonMetadata": {}
+    }
+  }
+}
