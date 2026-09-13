@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "lexus-past-exam-figure-trio.v1",
+  "packageId": "dokkyo-medical-2025-general-early-physics",
+  "figureId": "q2-earth-satellite",
+  "trio": {
+    "domain": "type UserShape\n",
+    "substance": "UserShape rect_03m73o9\nUserShape circle_0eeemdw\nUserShape circle_12rsgyq\nUserShape line_0844scm\nUserShape line_03ezzip\nUserShape circle_0ya9s4d\nUserShape circle_0b57l4t\nUserShape circle_07lq5a6\nUserShape text_077k9n2\nUserShape text_0cmoet5\nUserShape text_1w1ohvn\nUserShape text_1sv3ty6\nUserShape text_0ph93j5\nUserShape line_0eaxbs9\nUserShape text_12zxt7p\nUserShape text_0ggaqat\n",
+    "style": "canvas {\n  width = 690\n  height = 463\n}\n\nforall UserShape `rect_03m73o9` {\n  `rect_03m73o9`.shape = Rectangle {\n    center: (0, 0)\n    width: 690\n    height: 463\n    cornerRadius: 0\n    fillColor: rgba(1, 1, 1, 1)\n    strokeColor: none()\n  }\n}\n\nforall UserShape `circle_0eeemdw` {\n  `circle_0eeemdw`.shape = Circle {\n    center: (-25, -1.5)\n    r: 146\n    fillColor: rgba(0.9333, 0.9529, 0.9647, 1)\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `circle_12rsgyq` {\n  `circle_12rsgyq`.shape = Circle {\n    center: (-25, -1.5)\n    r: 158\n    fillColor: none()\n    strokeColor: rgba(0.5725, 0.6471, 0.7098, 1)\n    strokeWidth: 1.3\n    strokeDasharray: \"5 5\"\n  }\n}\n\nforall UserShape `line_0844scm` {\n  `line_0844scm`.shape = Line {\n    start: (-171, -1.5)\n    end: (121, -1.5)\n    fillColor: none()\n    strokeColor: rgba(1, 1, 1, 1)\n    strokeWidth: 6\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `line_03ezzip` {\n  `line_03ezzip`.shape = Line {\n    start: (-171, -1.5)\n    end: (121, -1.5)\n    fillColor: none()\n    strokeColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeWidth: 1.8\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `circle_0ya9s4d` {\n  `circle_0ya9s4d`.shape = Circle {\n    center: (-25, -1.5)\n    r: 3.5\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeColor: rgba(1, 1, 1, 1)\n    strokeWidth: 1\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `circle_0b57l4t` {\n  `circle_0b57l4t`.shape = Circle {\n    center: (38, -1.5)\n    r: 3.5\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeColor: rgba(1, 1, 1, 1)\n    strokeWidth: 1\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `circle_07lq5a6` {\n  `circle_07lq5a6`.shape = Circle {\n    center: (86.7229, 110.2229)\n    r: 4.6\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    strokeColor: rgba(1, 1, 1, 1)\n    strokeWidth: 1\n    strokeDasharray: \"\"\n  }\n}\n\nforall UserShape `text_077k9n2` {\n  `text_077k9n2`.shape = Equation {\n    string: \"\\mathrm{O}\"\n    center: (-43.275, -22.9625)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_0cmoet5` {\n  `text_0cmoet5`.shape = Equation {\n    string: \"\\mathrm{Y}\"\n    center: (38.375, 25.0375)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_1w1ohvn` {\n  `text_1w1ohvn`.shape = Equation {\n    string: \"\\mathrm{B}\"\n    center: (-204.15, -0.9625)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_1sv3ty6` {\n  `text_1sv3ty6`.shape = Equation {\n    string: \"\\mathrm{A}\"\n    center: (146.375, -0.55)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_0ph93j5` {\n  `text_0ph93j5`.shape = Equation {\n    string: \"\\mathrm{X}\"\n    center: (113.0979, 126.7604)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `line_0eaxbs9` {\n  `line_0eaxbs9`.shape = Line {\n    start: (-25, -1.5)\n    end: (-128.2376, 101.7376)\n    fillColor: none()\n    strokeColor: rgba(0.4627, 0.5608, 0.6235, 1)\n    strokeWidth: 1.3\n    strokeDasharray: \"\"\n    strokeLinecap: \"round\"\n    startArrowhead: \"\"\n    startArrowheadSize: 1\n    endArrowhead: \"\"\n    endArrowheadSize: 1\n  }\n}\n\nforall UserShape `text_12zxt7p` {\n  `text_12zxt7p`.shape = Equation {\n    string: \"R\"\n    center: (-111.0758, 57.299)\n    fontSize: \"25px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n  }\n}\n\nforall UserShape `text_0ggaqat` {\n  `text_0ggaqat`.shape = Text {\n    string: \"地球：一様な密度 ρ\"\n    center: (-25, -187.5)\n    fontSize: \"18px\"\n    fillColor: rgba(0.0941, 0.2, 0.298, 1)\n    fontFamily: \"'Yu Gothic','Meiryo',sans-serif\"\n  }\n}\n",
+    "variation": "fibona-svg-import",
+    "editorState": {
+      "version": 1,
+      "layerOrder": [
+        "rect_03m73o9.shape",
+        "circle_0eeemdw.shape",
+        "circle_12rsgyq.shape",
+        "line_0844scm.shape",
+        "line_03ezzip.shape",
+        "circle_0ya9s4d.shape",
+        "circle_0b57l4t.shape",
+        "circle_07lq5a6.shape",
+        "text_077k9n2.shape",
+        "text_0cmoet5.shape",
+        "text_1w1ohvn.shape",
+        "text_1sv3ty6.shape",
+        "text_0ph93j5.shape",
+        "line_0eaxbs9.shape",
+        "text_12zxt7p.shape",
+        "text_0ggaqat.shape"
+      ],
+      "groups": [],
+      "hiddenPaths": [],
+      "deletedPaths": [],
+      "originalPointCounts": {},
+      "originalPoints": {},
+      "smoothnessLevel": {},
+      "arcMetadata": {},
+      "regularPolygonMetadata": {}
+    }
+  }
+}
