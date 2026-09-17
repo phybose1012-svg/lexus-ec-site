@@ -51,7 +51,6 @@ const staticPagePaths = [
   "/top/summer-plan/",
   "/top/course/medical-prep-junior/",
   "/top/course/custom-made-course/",
-  "/top/course/high-level-geneki-course/",
   "/top/results/",
   "/top/course/medical-prep/",
 ];

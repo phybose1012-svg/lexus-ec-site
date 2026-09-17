@@ -41,13 +41,28 @@ const collapsibleGroupFor = (redirect) => {
   return null;
 };
 
+// Whole legacy subtrees that no longer exist: one splat rule covers the
+// directory itself and every child, so those entries cost a single
+// `_redirects` line between them instead of one line each. They stay in the
+// JSON (and in .htaccess) so the mapping is reviewable and verifiable.
+const wildcardGroups = [
+  // The old "レクサス レギュラーコース" tree became the medical-prep course.
+  { prefix: "/top/course/lexus-regular-course/", dest: "/top/course/medical-prep/" },
+  // The High-level GENEKI course was retired (commit b4460ca); its URLs are
+  // still indexed, so they point at the course index rather than 404.
+  { prefix: "/top/course/high-level-geneki-course/", dest: "/top/course/" },
+];
+
+const wildcardGroupFor = (redirect) =>
+  wildcardGroups.find((group) => redirect.from.startsWith(group.prefix) && redirect.to === group.dest) || null;
+
 // Exact placeholder rules replace the collapsible entries in `_redirects` only.
 const placeholderRules = collapsibleGroups.map((group) => `${group.prefix}:name/ ${group.dest}:name/ 301`);
 // Entries with `edge: false` are long-tail redirects served only by the static
 // stub pages ([...slug].astro meta-refresh + canonical) so they cost no
 // `_redirects` lines — Cloudflare Pages only honours ~100 of them.
 const cloudflareExactRedirects = uniqueRedirects.filter(
-  (redirect) => redirect.edge && !collapsibleGroupFor(redirect),
+  (redirect) => redirect.edge && !collapsibleGroupFor(redirect) && !wildcardGroupFor(redirect),
 );
 
 // Exact single-path rules that only exist for Cloudflare (not in the source JSON).
@@ -58,6 +73,9 @@ const cloudflareExactExtra = [
 ];
 // Wildcard/splat rules must come last so more specific exact rules win first.
 const cloudflareWildcardRules = [
+  // Retired course subtrees (see `wildcardGroups`). These are narrower than the
+  // taxonomy splats below and never overlap a live page.
+  ...wildcardGroups.map((group) => `${group.prefix}* ${group.dest} 301`),
   // Old WP taxonomy hubs (kokuritu/siritu trees) -> the new per-type info hubs.
   "/category/university/kokuritu/* /top/information-kokuritsu/ 301",
   "/category/university/siritu/* /top/information-shiritsu/ 301",
