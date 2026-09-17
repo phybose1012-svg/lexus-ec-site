@@ -23,6 +23,13 @@ const rules = readFileSync(path.join(root, "public", "_redirects"), "utf8")
 
 const failures = [];
 const norm = (p) => (p.endsWith("/") ? p : `${p}/`);
+const safeDecode = (value) => {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+};
 
 // 1. rule budget
 if (rules.length > 100) failures.push(`_redirects has ${rules.length} rules (>100; Cloudflare ignores the rest)`);
@@ -84,7 +91,13 @@ for (const entry of redirects) {
     } else {
       const html = readFileSync(stubPath, "utf8");
       if (!html.includes(`url=${entry.to}`)) failures.push(`stub meta-refresh wrong: ${from}`);
-      if (!html.includes(`href="https://lexus-ec.com${entry.to}"`)) failures.push(`stub canonical wrong: ${from}`);
+      // The canonical is built through `new URL(...)`, which percent-encodes
+      // non-ASCII paths (basic-α -> basic-%CE%B1). Compare decoded values so an
+      // encoding difference is not reported as a wrong canonical.
+      const canonical = (html.match(/<link rel="canonical" href="([^"]*)"/) || [])[1] || "";
+      if (safeDecode(canonical) !== safeDecode(`https://lexus-ec.com${entry.to}`)) {
+        failures.push(`stub canonical wrong: ${from} (got ${canonical || "none"})`);
+      }
       if (!html.includes("noindex,follow")) failures.push(`stub robots wrong: ${from}`);
     }
   }
