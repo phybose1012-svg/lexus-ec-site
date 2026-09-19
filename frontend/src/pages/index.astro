@@ -117,7 +117,8 @@ const heroSrcset = (ext: string) =>
   heroWidths.map((w) => `/assets/optimized/hero-washi-${w}.${ext} ${w}w`).join(", ");
 const mobilePrimaryActions = headerActions.slice(0, 2);
 const mobileSecondaryActions = headerActions.slice(2);
-const headerNavGroups = navGroups;
+// 法人向け開発は一旦ヘッダーから非表示にする。フッターには残すので navGroups 自体は変更しない。
+const headerNavGroups = navGroups.filter((group) => group.links[0]?.href !== "/lexus-online/");
 ---
 
 <BaseLayout title={seo.title} description={seo.description} canonical={seo.canonical} ogImage={seo.ogImage}>

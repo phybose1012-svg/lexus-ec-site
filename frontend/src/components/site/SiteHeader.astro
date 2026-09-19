@@ -3,8 +3,10 @@ import { assets, headerActions, navGroups } from "../../data/home";
 
 const mobilePrimaryActions = headerActions.slice(0, 2);
 const mobileSecondaryActions = headerActions.slice(2);
-const mobileNavGroups = navGroups;
-const desktopNavGroups = navGroups.filter((group) => group.links[0]?.href !== "/video-content/");
+// 法人向け開発は一旦ヘッダーから非表示にする。フッターには残すので navGroups 自体は変更しない。
+const headerNavGroups = navGroups.filter((group) => group.links[0]?.href !== "/lexus-online/");
+const mobileNavGroups = headerNavGroups;
+const desktopNavGroups = headerNavGroups.filter((group) => group.links[0]?.href !== "/video-content/");
 const linkAttrs = (link: { target?: string; rel?: string }) => ({
   target: link.target,
   rel: link.rel ?? (link.target === "_blank" ? "noopener" : undefined),
