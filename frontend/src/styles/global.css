@@ -858,6 +858,7 @@ body:has(.premium-hero) :is(
 }
 
 .success-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   overflow: visible;
@@ -865,6 +866,11 @@ body:has(.premium-hero) :is(
   border-radius: var(--radius);
   background: #fff;
   box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+.success-card:hover {
+  box-shadow: 0 14px 32px rgb(57 38 12 / 20%);
 }
 
 .success-card h3 {
@@ -966,6 +972,21 @@ body:has(.premium-hero) :is(
   font-weight: 800;
   text-align: center;
   text-decoration: none;
+}
+
+/* カードのどこを押してもインタビュー動画へ飛べるようにする。実リンクは
+   .video-button のままで、透明な当たり判定をカード全体へ広げるだけなので、
+   リンクが増えたりネストしたりしない。 */
+.video-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.success-card:hover .video-button,
+.success-card:focus-within .video-button {
+  background: linear-gradient(180deg, #f9f0c9 0%, #e2c153 100%);
 }
 
 .other-voices {
