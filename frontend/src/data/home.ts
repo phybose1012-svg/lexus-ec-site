@@ -199,7 +199,7 @@ export const navGroups: NavGroup[] = [
 
 export const heroActions: ActionLink[] = [
   { label: "資料請求する", href: "/request-documents/", tone: "red" },
-  { label: "個別説明会へ", href: "/top/reservation/", tone: "blue" },
+  { label: "合格者の声へ", href: "/top/voice/", tone: "blue" },
   { label: "コース詳細へ", href: "/lexus-premier/", tone: "light" },
 ];
 
