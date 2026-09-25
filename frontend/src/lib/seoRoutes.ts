@@ -51,7 +51,6 @@ const staticPagePaths = [
   "/top/information-kokuritsu/",
   "/top/information-shiritsu/",
   "/top/line/",
-  "/top/summer-plan/",
   "/top/course/medical-prep-junior/",
   "/top/course/custom-made-course/",
   "/top/results/",

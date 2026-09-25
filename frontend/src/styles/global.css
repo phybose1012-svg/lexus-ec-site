@@ -291,11 +291,14 @@ li {
   padding-block: 0 12px;
 }
 
+/* Flex with equal-basis items rather than a fixed column count: the desktop
+   nav renders however many groups `desktopNavGroups` yields (5 today, after
+   動画コンテンツ and 法人向け開発 are filtered out), and a hard-coded
+   repeat(7) left the last two columns empty, pushing the whole bar left. */
 .mega-nav ul {
   position: relative;
   isolation: isolate;
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  display: flex;
   width: min(1120px, calc(100% - 40px));
   box-sizing: border-box;
   margin: 0 auto;
@@ -308,6 +311,8 @@ li {
 .mega-nav li {
   position: relative;
   z-index: 0;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .mega-nav li:hover,
@@ -2160,167 +2165,17 @@ body:has(.premium-hero) :is(
 }
 
 @media (max-width: 960px) {
-  .top-header {
-    grid-template-columns: minmax(260px, 1fr) max-content;
-    grid-template-areas:
-      "brand actions"
-      "copy copy";
-    gap: 12px 22px;
-    min-height: auto;
-    width: min(900px, calc(100% - 36px));
-    padding: 14px 8px 12px;
-    text-align: center;
-  }
-
-  .brand {
-    grid-area: brand;
-    justify-self: start;
-  }
-
-  .brand img {
-    width: min(340px, 44vw);
-  }
-
-  .header-copy {
-    grid-area: copy;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 20px;
-    justify-content: center;
-    font-size: 0.9rem;
-    line-height: 1.35;
-  }
-
-  .header-copy span {
-    font-size: 0.9rem;
-  }
-
-  .header-actions {
-    grid-area: actions;
-    grid-template-columns: repeat(4, minmax(54px, 64px));
-    gap: 8px;
-    align-self: center;
-    justify-content: end;
-    margin-top: 0;
-  }
-
-  .header-action {
-    min-height: 72px;
-    padding-bottom: 0;
-    font-size: 0.76rem;
-  }
-
-  .header-action img {
-    width: 56px;
-    height: 45px;
-  }
-
-  .mega-nav {
-    padding-block: 6px 10px;
-  }
-
-  .mega-nav::before {
-    margin-bottom: 5px;
-    font-size: 1rem;
-  }
-
-  .mega-nav ul {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    width: min(900px, calc(100% - 36px));
-    padding: 0 12px;
-  }
-
-  .mega-nav__label {
-    min-height: 44px;
-    padding: 9px 8px;
-    font-size: 0.86rem;
-  }
-
-  .mega-nav li:nth-child(3n) .mega-panel {
-    inset-inline: auto 0;
-  }
-
-  .achievement-stats,
-  .success-grid,
-  .parent-voice-grid,
-  .pillar-grid,
-  .growth-box ul,
-  .support-box ul,
-  .metric-grid,
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .premium-hero h2 {
-    font-size: 3rem;
-    line-height: 1.5;
-  }
-
-  .course-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .achievement-stats {
-    gap: 10px;
-    margin-bottom: 26px;
-  }
-
-  .stat-card {
-    padding: 14px 10px;
-  }
-
-  .stat-card p {
-    font-size: 0.9rem;
-  }
-
-  .stat-card strong {
-    font-size: 1.55rem;
-  }
-
-  .university-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px 14px;
-    padding: 18px 0;
-  }
-
-  .university-list li {
-    display: block;
-    padding-bottom: 4px;
-    font-size: 0.82rem;
-    line-height: 1.45;
-    text-align: center;
-  }
-
-  .university-list strong {
-    display: block;
-    margin-top: 2px;
-    margin-left: 0;
-  }
-
-  .representative__grid,
-  .teacher-strip,
-  .dorm-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 680px) {
   :root {
     --mobile-header-top-height: 128px;
     --mobile-header-actions-height: 86px;
     --mobile-header-total-height: 214px;
   }
 
-  .content {
-    width: min(100% - 28px, 1140px);
-  }
-
-  .section {
-    padding-block: 58px;
-  }
-
-  /* Mobile: the brand/tagline header scrolls away normally; only the icon bar
-     (in .mobile-fixed-nav-wrap) sticks to the top. */
+  /* Phones and tablets share one compact header: the brand/tagline block
+     scrolls away normally and only the icon + hamburger bar (in
+     .mobile-fixed-nav-wrap) sticks to the top. Above 960px the desktop
+     mega-nav takes over instead; at or below it the mega-nav had to lay 5
+     groups over 3 columns, which cost two rows of height for no benefit. */
   .site-header {
     position: static;
     border-bottom: 0;
@@ -2339,7 +2194,9 @@ body:has(.premium-hero) :is(
     z-index: 0;
     width: 100%;
     height: var(--mobile-header-top-height);
-    background: url("/assets/optimized/watermark-mobile-860.webp") top center / max(390px, 100vw) auto no-repeat;
+    /* Phones keep the 390px bleed they had; the upper bound stops the shards
+       from being blown up to ~2x on tablets, which now share this header. */
+    background: url("/assets/optimized/watermark-mobile-860.webp") top center / clamp(390px, 100vw, 560px) auto no-repeat;
     clip-path: none;
     transform: none;
   }
@@ -2543,6 +2400,79 @@ body:has(.premium-hero) :is(
 
   .mobile-menu-open {
     overflow: hidden;
+  }
+
+  .achievement-stats,
+  .success-grid,
+  .parent-voice-grid,
+  .pillar-grid,
+  .growth-box ul,
+  .support-box ul,
+  .metric-grid,
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .premium-hero h2 {
+    font-size: 3rem;
+    line-height: 1.5;
+  }
+
+  .course-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .achievement-stats {
+    gap: 10px;
+    margin-bottom: 26px;
+  }
+
+  .stat-card {
+    padding: 14px 10px;
+  }
+
+  .stat-card p {
+    font-size: 0.9rem;
+  }
+
+  .stat-card strong {
+    font-size: 1.55rem;
+  }
+
+  .university-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 14px;
+    padding: 18px 0;
+  }
+
+  .university-list li {
+    display: block;
+    padding-bottom: 4px;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    text-align: center;
+  }
+
+  .university-list strong {
+    display: block;
+    margin-top: 2px;
+    margin-left: 0;
+  }
+
+  .representative__grid,
+  .teacher-strip,
+  .dorm-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .content {
+    width: min(100% - 28px, 1140px);
+  }
+
+  .section {
+    padding-block: 58px;
   }
 
   .premium-hero {

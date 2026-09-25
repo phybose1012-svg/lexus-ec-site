@@ -47,6 +47,10 @@ const dedicatedPagePaths = new Set([
   "/information-faq/",
   "/kuriage-information/",
   "/medical-math-training/",
+  // The 夏期講習 page was retired (it still advertised the 2025 session) and now
+  // redirects to the custom-made course. It has to stay listed here: the entry
+  // is what suppresses the baseline copy, so removing it would resurrect the
+  // old page from baseline/pages instead of leaving the route to the redirect.
   "/top/summer-plan/",
   "/top/line/",
   "/todai-keio-med-special/",
