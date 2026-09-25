@@ -2194,9 +2194,10 @@ body:has(.premium-hero) :is(
     z-index: 0;
     width: 100%;
     height: var(--mobile-header-top-height);
-    /* Phones keep the 390px bleed they had; the upper bound stops the shards
-       from being blown up to ~2x on tablets, which now share this header. */
-    background: url("/assets/optimized/watermark-mobile-860.webp") top center / clamp(390px, 100vw, 560px) auto no-repeat;
+    /* Full bleed at every width: the 390px floor only keeps the artwork from
+       shrinking on narrow phones. Capping the upper end left white gutters at
+       tablet widths, which is worse than the shards reading a size larger. */
+    background: url("/assets/optimized/watermark-mobile-860.webp") top center / max(390px, 100%) auto no-repeat;
     clip-path: none;
     transform: none;
   }
