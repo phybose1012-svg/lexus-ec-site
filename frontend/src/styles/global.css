@@ -2211,63 +2211,8 @@ body:has(.premium-hero) :is(
     display: none;
   }
 
-  .top-header {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "brand"
-      "copy";
-    gap: 4px;
-    align-content: start;
-    justify-items: center;
-    width: 100%;
-    min-height: var(--mobile-header-top-height);
-    padding: 12px 58px 5px;
-  }
-
-  .brand {
-    justify-self: center;
-  }
-
-  .brand img {
-    width: min(255px, 72vw);
-  }
-
   .header-actions {
     display: none;
-  }
-
-  .header-copy {
-    display: block;
-    margin-top: 2px;
-    color: #111;
-    font-family: "Yu Mincho", "Hiragino Mincho ProN", "YuMincho", "Times New Roman", serif;
-    font-size: 0.84rem;
-    font-weight: 700;
-    line-height: 1.3;
-    text-align: center;
-    white-space: nowrap;
-  }
-
-  .header-copy span {
-    display: none;
-    padding: 0;
-    font-size: inherit;
-  }
-
-  .header-copy span:nth-child(1),
-  .header-copy span:nth-child(2) {
-    display: inline;
-  }
-
-  .header-copy span:nth-child(1)::after {
-    content: " / ";
-  }
-
-  .header-copy span::before {
-    content: none;
   }
 
   .mobile-fixed-nav {
@@ -2467,7 +2412,107 @@ body:has(.premium-hero) :is(
   }
 }
 
+/* Tablets keep the desktop brand block: logo on the left with the three
+   selling points stacked beside it. The shortcuts live in the sticky icon bar
+   below instead of the header row, so this row only needs two columns - the
+   base rule's third column would otherwise hold a 248px gap open. */
+@media (min-width: 681px) and (max-width: 960px) {
+  :root {
+    /* Taller than the phone header because the copy is three rows rather than
+       one; the watermark height reads the same variable. */
+    --mobile-header-top-height: 156px;
+  }
+
+  .top-header {
+    grid-template-columns: minmax(230px, 380px) minmax(0, 1fr);
+    gap: clamp(16px, 3vw, 32px);
+    align-items: center;
+    justify-items: stretch;
+    width: min(900px, calc(100% - 36px));
+    min-height: var(--mobile-header-top-height);
+    padding: 16px 12px 12px;
+  }
+
+  /* The phone watermark packs its shards into the outer ~13% of an 860px
+     canvas, so at tablet width they land on top of the logo. The desktop
+     artwork has the same motif spread over a much wider canvas: sized to the
+     header it keeps the decoration at the edges and the brand block clear,
+     which is how the row reads on desktop. */
+  .site-header::before {
+    background-image: url("/assets/optimized/header-background-desktop-1920.webp");
+    background-size: 100% auto;
+  }
+
+  .brand img {
+    width: min(340px, 42vw);
+  }
+
+  .header-copy {
+    gap: 7px;
+  }
+
+  .header-copy span {
+    font-size: clamp(0.9rem, 1.9vw, 1.04rem);
+  }
+}
+
+
 @media (max-width: 680px) {
+  .top-header {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "brand"
+      "copy";
+    gap: 4px;
+    align-content: start;
+    justify-items: center;
+    width: 100%;
+    min-height: var(--mobile-header-top-height);
+    padding: 12px 58px 5px;
+  }
+
+  .brand {
+    justify-self: center;
+  }
+
+  .brand img {
+    width: min(255px, 72vw);
+  }
+
+  .header-copy {
+    display: block;
+    margin-top: 2px;
+    color: #111;
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", "YuMincho", "Times New Roman", serif;
+    font-size: 0.84rem;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .header-copy span {
+    display: none;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  .header-copy span:nth-child(1),
+  .header-copy span:nth-child(2) {
+    display: inline;
+  }
+
+  .header-copy span:nth-child(1)::after {
+    content: " / ";
+  }
+
+  .header-copy span::before {
+    content: none;
+  }
+
   .content {
     width: min(100% - 28px, 1140px);
   }
