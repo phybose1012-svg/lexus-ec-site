@@ -2424,10 +2424,14 @@ body:has(.premium-hero) :is(
   }
 
   .top-header {
-    grid-template-columns: minmax(230px, 380px) minmax(0, 1fr);
-    gap: clamp(16px, 3vw, 32px);
+    /* Content-sized columns centred as a pair. Stretching them to fill the row
+       (as the desktop rule does, where a third column of shortcuts takes up
+       the slack) pinned the logo to the left edge and the copy to the right
+       with a gap between them. */
+    grid-template-columns: auto auto;
+    justify-content: center;
+    gap: clamp(20px, 4vw, 44px);
     align-items: center;
-    justify-items: stretch;
     width: min(900px, calc(100% - 36px));
     min-height: var(--mobile-header-top-height);
     padding: 16px 12px 12px;
