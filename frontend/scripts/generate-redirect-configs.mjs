@@ -68,11 +68,16 @@ const cloudflareExactRedirects = uniqueRedirects.filter(
 // Exact single-path rules that only exist for Cloudflare (not in the source JSON).
 const cloudflareExactExtra = [
   { from: "/reservation", to: "/top/reservation/" },
+  // Keep the past-exam library on staging until publication is approved.
+  { from: "/past-exam-library", to: "/", status: 302 },
+  { from: "/past-exam-library/", to: "/", status: 302 },
   // Old WP taxonomy: the 繰り上げ category maps to the kuriage data page.
   { from: "/category/university/kuriage/", to: "/kuriage-information/" },
 ];
 // Wildcard/splat rules must come last so more specific exact rules win first.
 const cloudflareWildcardRules = [
+  "/past-exam-library/* / 302",
+  "/assets/past-exams/* / 302",
   // Retired course subtrees (see `wildcardGroups`). These are narrower than the
   // taxonomy splats below and never overlap a live page.
   ...wildcardGroups.map((group) => `${group.prefix}* ${group.dest} 301`),
@@ -86,7 +91,7 @@ await mkdir(publicDir, { recursive: true });
 
 const cloudflareLines = [
   "# Generated from src/data/legacyRedirects.json",
-  ...cloudflareExactExtra.map((redirect) => `${redirect.from} ${redirect.to} 301`),
+  ...cloudflareExactExtra.map((redirect) => `${redirect.from} ${redirect.to} ${redirect.status || 301}`),
   ...cloudflareExactRedirects.map((redirect) => `${redirect.from} ${redirect.to} 301`),
   ...placeholderRules,
   ...cloudflareWildcardRules,

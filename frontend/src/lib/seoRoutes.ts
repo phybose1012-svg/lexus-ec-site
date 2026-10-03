@@ -19,7 +19,6 @@ export type SitemapEntry = {
 const staticPagePaths = [
   "/",
   "/past-post/",
-  "/past-exam-library/",
   "/request-documents/",
   "/entrance/",
   "/english-training/",

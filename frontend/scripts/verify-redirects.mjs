@@ -32,7 +32,10 @@ const safeDecode = (value) => {
 };
 
 // 1. rule budget
-if (rules.length > 100) failures.push(`_redirects has ${rules.length} rules (>100; Cloudflare ignores the rest)`);
+const dynamicRules = rules.filter(({ from }) => from.includes("*") || from.includes(":")).length;
+if (rules.length - dynamicRules > 2000 || dynamicRules > 100) {
+  failures.push(`_redirects exceeds Cloudflare Pages limits: ${rules.length - dynamicRules} static, ${dynamicRules} dynamic`);
+}
 
 // simulate Cloudflare first-match-wins for a path
 const matchRule = (pathname) => {
@@ -105,6 +108,8 @@ for (const entry of redirects) {
 
 // spot-check the hand-written wildcard rules
 const wildcardChecks = [
+  ["/past-exam-library/aichi-medical/2025/mathematics/questions/", "/"],
+  ["/assets/past-exams/aichi-medical-2025-general-mathematics/figures/example.svg", "/"],
   ["/category/university/kokuritu/kyoute/", "/top/information-kokuritsu/"],
   ["/category/university/siritu/kannsai-siritu/", "/top/information-shiritsu/"],
   ["/category/university/kuriage/", "/kuriage-information/"],
@@ -115,6 +120,18 @@ for (const [from, expected] of wildcardChecks) {
   if (!match) failures.push(`wildcard check: no rule matches ${from}`);
   else if (match.target !== expected && norm(match.target) !== norm(expected))
     failures.push(`wildcard check: ${from} -> ${match.target}, expected ${expected}`);
+}
+
+for (const path of [
+  "/past-exam-library",
+  "/past-exam-library/",
+  "/past-exam-library/aichi-medical/2025/mathematics/questions/",
+  "/assets/past-exams/aichi-medical-2025-general-mathematics/figures/example.svg",
+]) {
+  const match = matchRule(path);
+  if (match?.target !== "/" || match.rule.status !== "302") {
+    failures.push(`staging-only route is not temporarily redirected: ${path}`);
+  }
 }
 
 console.log(
