@@ -22,13 +22,13 @@ const primaryAction =
 
 const heroActions = [
   primaryAction,
-  { label: "個別相談はコチラ", href: "/reservation/", tone: "blue" },
+  { label: "個別相談はコチラ", href: "/top/reservation/", tone: "blue" },
 ];
 
 const ctaLead =
   isCustomMadeCourse
-    ? "お問い合わせや個別相談で、現在の学力、学校進度、志望校を確認し、最短で伸ばすための設計に落とし込みます。"
-    : "体験授業や個別相談で、現在の学力、学校進度、志望校を確認し、最短で伸ばすための設計に落とし込みます。";
+    ? "お問い合わせや個別相談で、現在の学力、学校進度、志望校に合う学習計画を検討します。"
+    : "体験授業や個別相談で、現在の学力、学校進度、志望校に合う学習計画を検討します。";
 
 const admissionSteps = [
   {
@@ -90,7 +90,7 @@ const admissionSteps = [
               <dd>{plan.level}</dd>
             </div>
             <div>
-              <dt>料金</dt>
+              <dt>{isCustomMadeCourse ? "月額基本料金（税別）" : "料金"}</dt>
               <dd>{plan.price}</dd>
             </div>
           </dl>

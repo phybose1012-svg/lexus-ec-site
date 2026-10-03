@@ -51,18 +51,17 @@ const canonical = "https://lexus-ec.com/article-directory/";
 ---
 
 <SiteLayout
-  title="投稿記事一覧｜LEXUS E.C."
-  description="LEXUS E.C. の投稿記事を、大学別入試情報・大学別対策・面接対策・合格者インタビューなどの新しい分類で確認できます。"
+  title="医学部受験の記事一覧｜レクサス E.C."
+  description="医学部入試情報、大学別対策、面接・志望理由、合格体験記の記事をテーマ別に掲載しています。"
   canonical={canonical}
 >
   <main class="article-directory">
     <section class="article-directory__hero">
       <div class="article-directory__container">
         <p class="article-directory__eyebrow">POST DIRECTORY</p>
-        <h1>投稿記事一覧</h1>
+        <h1>医学部受験の記事一覧</h1>
         <p>
-          既存URLを保ったまま、記事の役割が見えるように再分類しました。
-          大分類・小分類・年度・地域・試験区分から、必要な記事へ直接移動できます。
+          大分類から記事を探せます。各記事には年度・地域・試験区分を表示しています。
         </p>
         <dl class="article-directory__summary">
           <div>
@@ -150,7 +149,7 @@ const canonical = "https://lexus-ec.com/article-directory/";
                       )}
                       <div>
                         <a href={post.path}>{displayPostTitle(post)}</a>
-                        <p>{post.description || post.title}</p>
+                        {post.description && !/創立33年/.test(post.description) && <p>{post.description}</p>}
                         <ul class="article-directory__card-tags">
                           <li>{post.taxonomy.facets.year}</li>
                           <li>{post.taxonomy.facets.universityType}</li>

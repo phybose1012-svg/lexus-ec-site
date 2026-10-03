@@ -47,7 +47,7 @@ const normalizeRegion = (value = "") => {
   const normalized = value.trim();
   if (normalized === "関西") return "近畿";
   if (normalized === "九州") return "九州・沖縄";
-  if (normalized === "関東") return "関東（東京以外）";
+  if (normalized === "関東") return "";
   return regionOrder.includes(normalized) ? normalized : "";
 };
 
@@ -292,7 +292,7 @@ export function classifyArticlePost(post) {
   const mainUniversity = universities[0];
   const universityNames = universities.map((profile) => profile.name);
   const universityType = categoryUniversityType(categories) || mainUniversity?.universityType || "全医学部";
-  const region = categoryRegion(categories) || mainUniversity?.region || "全国";
+  const region = mainUniversity?.region || categoryRegion(categories) || "全国";
   const storyTags = post.template === "voice-interview" ? voiceStoryTags(text, universityType) : [];
   const primary = primaryCategory(post, classText);
   const sub = subCategory(post, classText, storyTags);
