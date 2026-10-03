@@ -90,7 +90,7 @@ const admissionSteps = [
               <dd>{plan.level}</dd>
             </div>
             <div>
-              <dt>{isCustomMadeCourse ? "月額基本料金（税別）" : "料金"}</dt>
+              <dt>{isCustomMadeCourse ? "月額基本料金（税別）" : group.id === "medical-prep" ? "月額料金" : "料金"}</dt>
               <dd>{plan.price}</dd>
             </div>
           </dl>
