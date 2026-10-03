@@ -298,8 +298,9 @@ const addMediaDefaults = (html: string) =>
         .replace(/>$/, ' preload="none">'),
     );
 
-const sanitizeSourceHtml = (content: string, options: { removeFirstH1?: boolean } = {}) => {
+const sanitizeSourceHtml = (content: string, options: { removeFirstH1?: boolean; preserveFirstH1?: boolean } = {}) => {
   let h1Removed = false;
+  let h1Preserved = false;
   const withoutDynamic = content
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
     .replace(/<style[\s\S]*?<\/style>/gi, " ")
@@ -315,6 +316,10 @@ const sanitizeSourceHtml = (content: string, options: { removeFirstH1?: boolean 
       if (options.removeFirstH1 && !h1Removed) {
         h1Removed = true;
         return " ";
+      }
+      if (options.preserveFirstH1 && !h1Preserved) {
+        h1Preserved = true;
+        return `<h1${attrs}>${inner}</h1>`;
       }
       return `<h2${attrs}>${inner}</h2>`;
     });
@@ -374,7 +379,10 @@ const extractPage = (item: PageManifestItem): ExtractedPage => {
     headings,
     paragraphs,
     images: extractImages(content),
-    contentHtml: sanitizeSourceHtml(content, { removeFirstH1: Boolean(formPageConfigs[item.path]) && item.path !== "/test-entry/" }),
+    contentHtml: sanitizeSourceHtml(content, {
+      removeFirstH1: Boolean(formPageConfigs[item.path]) && item.path !== "/test-entry/",
+      preserveFirstH1: item.fileName === "特定商取引法に基づく表記.html",
+    }),
     form: formPageConfigs[item.path],
   };
 };
