@@ -14,7 +14,7 @@ interface Props {
 const { canonical, sourcePath } = Astro.props;
 const title = "個別説明会予約 - 医学部予備校 レクサス E.C.";
 const description =
-  "レクサス教育センター - プロの講師が分かりやすくご説明します。 - レクサスのシステム説明- 進路相談 - 学習相談 - 気になることをお気軽にご相談ください。体験授業、特待生コースの選抜テストのお申込みも承ります。 - 医学部予備校 - 専用寮あり";
+  "医学部受験の無料面談をオンラインまたは渋谷校舎で受け付けています。学習や進路、レクサス教育センターの指導内容について相談できます。予約フォームから希望日時をお知らせください。";
 const configuredEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT;
 const endpoint = configuredEndpoint || "/form-submit";
 const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" };
@@ -80,8 +80,8 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
         </fieldset>
         <fieldset class="legacy-reservation-field legacy-reservation-field--radio">
           <legend>ご希望の面談方式は？</legend>
-          <label><input type="checkbox" name="style" value="オンライン" />オンライン</label>
-          <label><input type="checkbox" name="style" value="対面" />対面(渋谷の校舎で)</label>
+          <label><input type="radio" name="style" value="オンライン" />オンライン</label>
+          <label><input type="radio" name="style" value="対面" />対面(渋谷の校舎で)</label>
         </fieldset>
         <fieldset class="legacy-reservation-field legacy-reservation-field--radio">
           <legend>何名でご参加しますか？ <em>*</em></legend>
@@ -119,9 +119,9 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
         </fieldset>
         <fieldset class="legacy-reservation-field legacy-reservation-field--radio">
           <legend>寮の内見を希望しますか？※対面の方のみご回答ください。</legend>
-          <label><input type="checkbox" name="gardenVisit" value="はい" />はい</label>
-          <label><input type="checkbox" name="gardenVisit" value="いいえ" />いいえ</label>
-          <label><input type="checkbox" name="gardenVisit" value="検討中" />検討中</label>
+          <label><input type="radio" name="gardenVisit" value="はい" />はい</label>
+          <label><input type="radio" name="gardenVisit" value="いいえ" />いいえ</label>
+          <label><input type="radio" name="gardenVisit" value="検討中" />検討中</label>
         </fieldset>
         <label class="legacy-reservation-field">
           <span>備考・ご相談内容</span>
