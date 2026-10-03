@@ -1,5 +1,5 @@
 ---
-import { acceptedUniversities, achievementStats, seo } from "../../data/home";
+import { acceptedUniversities, seo } from "../../data/home";
 import SectionHeading from "../../components/SectionHeading.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import { marqueeThumb } from "../../lib/marqueeThumb";
@@ -544,13 +544,6 @@ const weeklyCellClass = (cell: WeekCell) => `premier-week-cell premier-week-cell
 
 const achievementRows = [
   {
-    start: "偏差値60以上スタート",
-    result: "全員合格",
-    detail: "医学部医学科",
-    rate: 100,
-    tone: "gold",
-  },
-  {
     start: "偏差値55〜60スタート",
     result: "83%合格",
     detail: "6名中5名",
@@ -850,15 +843,6 @@ const infoPosts = [
             ))}
           </div>
           <p class="premier-result-note">※ すべて医学部医学科の合格実績です。</p>
-        </div>
-        <h3 class="university-list__title">累計合格実績</h3>
-        <div class="achievement-stats">
-          {achievementStats.map((stat) => (
-            <article class={`stat-card stat-card--${stat.tone}`}>
-              <p>{stat.label}</p>
-              <strong>{stat.value}</strong>
-            </article>
-          ))}
         </div>
         <h3 class="university-list__title">合格した大学一覧 (医学部医学科のみ)</h3>
         <ul class="university-list" aria-label="医学部入試過去6年分の最終合格者データ">

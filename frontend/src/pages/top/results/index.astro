@@ -3,9 +3,9 @@ import SectionHeading from "../../../components/SectionHeading.astro";
 import { seo } from "../../../data/home";
 import SiteLayout from "../../../layouts/SiteLayout.astro";
 
-const title = "医学部合格 - 合格メソッド";
+const title = "医学部合格実績と学習方法｜レクサス教育センター";
 const description =
-  "医学部合格 - レクサス教育センター - OB、OGの声 - 元々、勉強習慣はありませんでしたが…気がついたら一日中勉強していました。夜間指導は他の塾とは違って、絶対に夜間残らなきゃいけないっていう強制参加制度でしたから、これはよその予備校とはちがうなと思いました。俺一人でやってるとサボっちゃうほうなので。";
+  "レクサス教育センターの医学部合格大学の一覧と、少人数指導、課題管理、夜間指導などの学習方法を紹介します。";
 
 const images = {
   oni: "/illustrations/characters/yuki-sensei-cheer.png",
@@ -44,13 +44,6 @@ const universityResults = [
   ["兵庫医科大学", "3名"],
   ["川崎医科大学", "48名"],
   ["久留米大学", "2名"],
-];
-
-const stats = [
-  { label: "一年で合格する割合", value: "68%", note: "医学部合格" },
-  { label: "偏差値60台スタート", value: "100%", note: "医学部合格" },
-  { label: "偏差値50台スタート", value: "88%", note: "医学部合格" },
-  { label: "合格者の最高年齢", value: "41歳", note: "年齢制限なし" },
 ];
 
 const quickLinks = [
@@ -208,21 +201,10 @@ const conditions = [
         <header class="results-section-head">
           <p>ACHIEVEMENTS</p>
           <h2 id="results-achievement-title">合格実績</h2>
-          <span>～ 一年で合格する割合 ～</span>
         </header>
         <p class="results-achievement__intro">
           レクサスは、厳しい鬼監理・鬼特訓を30年以上続けてきた医学部専門予備校です。少人数の環境で、勉強時間・課題管理・入試情報をまとめて支えます。
         </p>
-        <div class="results-stat-grid">
-          {stats.map((stat) => (
-            <article>
-              <p>{stat.label}</p>
-              <strong>{stat.value}</strong>
-              <span>{stat.note}</span>
-            </article>
-          ))}
-        </div>
-        <p class="results-note">※全コースでの募集定員は72名です。</p>
         <h3>合格した大学一覧 (医学部医学科のみ)</h3>
         <ul class="results-university-grid">
           {universityResults.map(([name, count]) => (
@@ -306,9 +288,8 @@ const conditions = [
       <div class="content results-message__grid">
         <img src={images.representative} alt="レクサス教育センター 代表取締役 島内義仁" width="435" height="533" loading="lazy" decoding="async" />
         <div>
-          <h2>さあ勝ちにいこう ！</h2>
-          <h2>条件は満たされた。</h2>
-          <p>レクサスでは、毎日「何を、いつ、どのように」を明確にしたプランで学習します。受験勉強の苦痛を取り除き、むしろ楽しいと思える状態を作ることで合格に大きく近づきます。</p>
+          <h2>合格を目指す学習を、毎日続けるために</h2>
+          <p>レクサスでは、毎日の学習内容と取り組む順番を具体的に決め、授業と演習の進み具合を確認しながら次の課題につなげます。</p>
           <img src={images.mascot} alt="レクサスくん(マスコットキャラクター)" width="800" height="911" loading="lazy" decoding="async" />
         </div>
       </div>

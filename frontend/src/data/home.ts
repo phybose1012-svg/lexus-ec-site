@@ -15,12 +15,6 @@ export type HeaderAction = LinkItem & {
   tone: "pink" | "green" | "orange" | "blue";
 };
 
-export type StatCard = {
-  label: string;
-  value: string;
-  tone: "orange" | "green" | "cyan";
-};
-
 export type UniversityResult = {
   name: string;
   count: string;
@@ -55,13 +49,6 @@ export type MethodPillar = {
   image: string;
   imageAlt: string;
   links: ActionLink[];
-};
-
-export type ComparisonRow = {
-  item: string;
-  lexus: string;
-  medical: string;
-  major: string;
 };
 
 export type CourseCard = {
@@ -201,12 +188,6 @@ export const heroActions: ActionLink[] = [
   { label: "資料請求する", href: "/request-documents/", tone: "red" },
   { label: "合格者の声へ", href: "/top/voice/", tone: "blue" },
   { label: "コース詳細へ", href: "/lexus-premier/", tone: "light" },
-];
-
-export const achievementStats: StatCard[] = [
-  { label: "偏差値60台スタート", value: "100%合格", tone: "orange" },
-  { label: "偏差値50台スタート", value: "88%合格", tone: "green" },
-  { label: "合格者の最高年齢", value: "41歳", tone: "cyan" },
 ];
 
 export const acceptedUniversities: UniversityResult[][] = [
@@ -506,18 +487,6 @@ export const latestPosts: LinkItem[] = [
   { label: "東北医科薬科大学｜医学部｜【2027年度の合格へ】科目別一般選抜の傾向と対策", href: "/touhokuikayakka-university-entrance-exam-measures2027/" },
   { label: "東海大学｜医学部｜【2027年度の合格へ】科目別一般選抜の傾向と対策", href: "/toukai-university-entrance-exam-measures2027/" },
   { label: "金沢医科大学｜医学部｜【2027年度の合格へ】科目別一般選抜の傾向と対策", href: "/kanazawaika-university-entrance-exam-measures2027/" },
-];
-
-export const comparisonRows: ComparisonRow[] = [
-  { item: "医学部対策カリキュラム", lexus: "◎", medical: "◎", major: "○" },
-  { item: "授業の質", lexus: "◎", medical: "◎", major: "◎" },
-  { item: "有名講師の在籍数", lexus: "△", medical: "○", major: "◎" },
-  { item: "確認テスト", lexus: "◎", medical: "◎", major: "△" },
-  { item: "弱点フォロー", lexus: "◎", medical: "○", major: "×" },
-  { item: "演習指導", lexus: "◎", medical: "○", major: "×" },
-  { item: "質問対応", lexus: "◎", medical: "△", major: "×" },
-  { item: "アナログでの学習監理", lexus: "◎", medical: "△", major: "×" },
-  { item: "AIを駆使した学習監理", lexus: "○", medical: "×", major: "△" },
 ];
 
 export const methodPillars: MethodPillar[] = [

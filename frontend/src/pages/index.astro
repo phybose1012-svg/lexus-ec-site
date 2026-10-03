@@ -6,9 +6,7 @@ import { getVoicePage, type VoiceImage } from "../lib/voiceSource";
 import { marqueeThumb } from "../lib/marqueeThumb";
 import {
   acceptedUniversities,
-  achievementStats,
   assets,
-  comparisonRows,
   courses,
   growthItems,
   headerActions,
@@ -252,27 +250,18 @@ const headerNavGroups = navGroups.filter((group) => group.links[0]?.href !== "/l
     <section class="intro-section" aria-labelledby="home-title">
       <div class="content-narrow">
         <h1 id="home-title" data-admin-editable="home.intro.title">
-          医学部受験 なら、<br />
-          実績35年の レクサス教育センター（レクサス E.C.）にお任せください。
+          医学部受験を専門とする<br />
+          1992年創立のレクサス教育センター（レクサス E.C.）
         </h1>
         <p data-admin-editable="home.intro.body">
-          偏差値50台からの合格率は88%。「緻密な“鬼特訓”メニュー」と「1日13時間の厳しい管理体制 (＝“鬼監理”)」で、医学部受験生を合格へ導きます。校舎は寮と一体型で、渋谷（東京）にあります。レクサスは日本全国の浪人生や現役生の医師への思いに応えます。
+          東京・渋谷で、少人数授業・個別指導と演習、学習管理を組み合わせて医学部受験を支援しています。校舎と専用寮を併設し、一人ひとりの課題に取り組める環境を整えています。
         </p>
       </div>
     </section>
 
     <section class="section defer-render" aria-labelledby="achievements">
       <div class="content">
-        <SectionHeading id="achievements" label="ACHIEVEMENTS" title="合格実績" subtitle="〜 一年で合格する割合 〜" />
-
-        <div class="achievement-stats">
-          {achievementStats.map((stat) => (
-            <article class={`stat-card stat-card--${stat.tone}`}>
-              <p>{stat.label}</p>
-              <strong>{stat.value}</strong>
-            </article>
-          ))}
-        </div>
+        <SectionHeading id="achievements" label="ACHIEVEMENTS" title="合格実績" />
       </div>
 
       {marqueeRow1.length > 0 && (
@@ -455,30 +444,7 @@ const headerNavGroups = navGroups.filter((group) => group.links[0]?.href !== "/l
       <div class="content">
         <img class="reason__divider" src={assets.jewelPattern} alt="" width="800" height="58" loading="lazy" decoding="async" />
         <p class="section-label">REASON</p>
-        <h2 id="reason-title">レクサスは他と何が違うのか？</h2>
-
-        <div class="comparison-table-wrapper">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>レクサス</th>
-                <th>他の医専</th>
-                <th>大手予備校</th>
-              </tr>
-            </thead>
-            <tbody>
-              {comparisonRows.map((row) => (
-                <tr>
-                  <th>{row.item}</th>
-                  <td class="target-col">{row.lexus}</td>
-                  <td>{row.medical}</td>
-                  <td>{row.major}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <h2 id="reason-title">レクサスの指導の特徴</h2>
 
         <div class="pillar-grid">
           {methodPillars.map((pillar) => (
