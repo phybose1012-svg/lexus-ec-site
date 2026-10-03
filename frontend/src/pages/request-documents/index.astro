@@ -7,8 +7,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import "../../styles/pages.css";
 
 const title = "資料請求 - 医学部予備校 レクサス E.C.";
-const description =
-  "資料請求 - レクサス教育センターに関する資料をご郵送します。パンフレット / 医学部情報本 / 出願・面接試験ガイドライン / 入学をご検討中の皆様へ";
+const description = "レクサス教育センターの資料請求フォーム。送付先と連絡先を入力してお申し込みください。";
 const configuredEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT;
 const endpoint = configuredEndpoint || "/form-submit";
 const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" };
@@ -19,7 +18,7 @@ const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" 
   <main class="minimal-form-page request-doc-page">
     <section class="request-doc-intro" aria-label="資料請求フォーム案内">
       <div class="logo-strip logo-strip--top" aria-hidden="true"></div>
-      <p data-admin-editable="request.intro">必須事項を入力して<br />「送信ボタンを」押してください。</p>
+      <p data-admin-editable="request.intro">必要事項を入力して<br />送信してください。</p>
     </section>
 
     <section class="google-form-lite" aria-label="資料請求フォーム">

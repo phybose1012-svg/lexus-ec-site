@@ -118,7 +118,7 @@ const successButtonLabels = [
       )}
       <div class="content voice-hero__inner">
         <h2>{page.mainCopy}</h2>
-        <p>レクサス教育センターでは、情熱と実力を兼ね備えた講師達があなたの学習を厳しく管理し、合格へ導きます。講師の指示通りに課題をこなせば、医学部に合格する実力が必ず身につきます。</p>
+        <p>卒業生の合格までの学習過程を、体験記とインタビューで紹介します。</p>
       </div>
     </section>
 
@@ -130,17 +130,16 @@ const successButtonLabels = [
       <div class="content voice-notice__grid">
         <article>
           <h2>
-            <span class="voice-notice__eyebrow">NOW RELEASING</span>
+            <span class="voice-notice__eyebrow">INTERVIEWS</span>
             <span class="voice-notice__line">
-              <span class="voice-notice__text">最新インタビュー動画</span>
-              <span class="voice-notice__pill">順次公開中</span>
+              <span class="voice-notice__text">合格者インタビュー</span>
+              <span class="voice-notice__pill">動画・記事</span>
             </span>
           </h2>
-          <p>最新の合格者インタビューは、公開準備ができたものから順次追加します。</p>
+          <p>動画と文章で、合格者の学習過程をたどれます。</p>
           <div class="voice-notice__actions">
-            <a class="button button--green" href="#voice-videos">▼ 合格者の声をもっと見る</a>
-            <a class="button button--blue" href="#voice-interviews">メールを見る</a>
-            <a class="button button--red" href="#voice-interviews">お手紙を見る</a>
+            <a class="button button--green" href="#voice-videos">動画を見る</a>
+            <a class="button button--blue" href="#voice-interviews">体験記を読む</a>
           </div>
         </article>
         <article>
@@ -173,7 +172,7 @@ const successButtonLabels = [
           <h2 id="voice-video-title">合格者からメッセージ</h2>
         </header>
         <div class="voice-video-grid">
-          {page.videos.map((video) => (
+          {page.videos.filter((video) => video.url).map((video) => (
             <article class={`voice-video-card${video.url ? "" : " is-pending"}`}>
               <a
                 class="voice-video-card__media"

@@ -1,6 +1,5 @@
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { seo } from "../data/home";
 import { normalizeInternalHref } from "./internalLinks";
 
 export type VoiceImage = {
@@ -157,13 +156,6 @@ const headingRows = (html: string): HeadingRow[] =>
     }))
     .filter((heading) => heading.text);
 
-const metaContent = (html: string, name: string) => {
-  const tag = html.match(new RegExp(`<meta[^>]+name=["']${name}["'][^>]*>`, "i"))?.[0] || "";
-  return cleanText(attr(tag, "content"));
-};
-
-const pageTitle = (html: string, h1: string) => cleanText(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] || "") || `${h1} | ${seo.title}`;
-
 const normalizeHref = (href: string) => normalizeInternalHref(href || "/");
 
 const imageForTitle = (images: VoiceImage[], title: string) => images.find((image) => cleanText(image.alt).replace(/\s+/g, "") === title.replace(/\s+/g, ""));
@@ -306,14 +298,13 @@ export const getVoicePage = (): VoicePage => {
     headings.find((heading) => heading.text.includes("レクサスのプロ講師") && heading.tag === "h2")?.text ||
     "レクサスのプロ講師と、レクサスの卒業生が、共同で作りました。";
 
-  void pageTitle;
   return {
     title: "医学部の合格体験記｜逆転合格した卒業生・保護者の声｜レクサスE.C.",
-    description: metaContent(html, "description") || "医学部予備校レクサス教育センターの合格体験記、合格者インタビュー、保護者様の声を紹介します。",
+    description: "医学部合格者の体験記、インタビュー動画、保護者の声を掲載。合格者が学習をどう進めたかを紹介します。",
     canonical: "https://lexus-ec.com/top/voice/",
     h1,
     mainCopy: headings.find((heading) => heading.text.includes("厳しさ") && heading.tag === "h2")?.text || "「厳しさ」が最短合格の絶対条件",
-    graduateCopy: headings.find((heading) => heading.text.includes("１０００人以上"))?.text || "レクサスを卒業した１０００人以上が、医師として活躍中！",
+    graduateCopy: "医学部合格者と保護者の声",
     logoStrip,
     successPhotos,
     videos,

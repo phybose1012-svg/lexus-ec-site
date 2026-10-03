@@ -127,7 +127,7 @@ const knownPages: AdminEditablePage[] = [
     summary: "資料請求ページの案内文とボタン文言を編集します。フォーム外の文言も自動検出します。",
     autoDiscover: true,
     fields: [
-      field("request.intro", "導入文", "必須事項を入力して\n「送信ボタンを」押してください。", "textarea", 4),
+      field("request.intro", "導入文", "必要事項を入力して\n送信してください。", "textarea", 4),
       field("request.form.title", "フォーム見出し", "資料請求フォーム", "text", 1),
       field("request.form.lead", "フォーム説明", "必須項目を入力してください。"),
       field("request.submit", "送信ボタン", "送信", "text", 1),
