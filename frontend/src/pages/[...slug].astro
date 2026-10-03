@@ -26,6 +26,12 @@ const routeProps = (Astro.props ?? {}) as { page?: ExtractedPage; post?: Migrate
 const requestedPath = Astro.url.pathname || "/";
 const legacyRedirect = routeProps.legacyRedirect ?? getLegacyRedirectByPath(requestedPath);
 const post = !legacyRedirect ? (routeProps.post ?? getMigratedPostByPath(requestedPath)) : undefined;
+const articleContentHtml = post?.path === "/voice-037/"
+  ? post.contentHtml.replace(
+      /<a rel="nofollow" href="(?:https?:\/\/lexus-ec\.com)?\/result\/success\/showa2017_01\.php">/,
+      '<a href="/voice-047/">',
+    )
+  : post?.contentHtml || "";
 const fixedPage = !legacyRedirect ? (routeProps.page ?? (!post ? getFixedPageByPath(requestedPath) : undefined)) : undefined;
 const redirectCanonical = legacyRedirect ? new URL(legacyRedirect.to, seo.canonical).href : "";
 const page =
@@ -218,11 +224,11 @@ const needsFixedSourceH1 = !page.form && !premierPlan && !genekiPlan && !isLegal
     heroMessage={post.heroMessage}
     heroMessageLines={post.heroMessageLines}
     heroVariant={post.heroVariant}
-    keyPoints={post.keyPoints}
+    keyPoints={post.template === "voice-interview" ? [] : post.keyPoints}
     toc={post.toc}
     infoItems={post.infoItems}
   >
-    <Fragment set:html={post.contentHtml} />
+    <Fragment set:html={articleContentHtml} />
   </ArticleLayout>
 ) : (
 <SiteLayout title={page.title} description={page.description} canonical={page.canonical} ogImage={seo.ogImage}>
