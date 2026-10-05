@@ -1059,7 +1059,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 207);
+  assert.equal(dataset.hotels.length, 213);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   for (const hotelId of [
     "sotetsu-fresa-inn-nagoya-sakuradoriguchi",
@@ -4686,7 +4686,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   );
 });
 
-test("正式施設136会場を保持し、新規3会場へ未確認のホテルを推測結合しない", () => {
+test("正式施設136会場それぞれに確認済みのホテル2施設だけを結合する", () => {
   const dataset = getPrivateMedicalExamVenuesHotels2027Dataset();
   const assignedVenueIds = new Set(
     dataset.assignments.flatMap((assignment) => assignment.venueLinks.map((link) => link.venueId)),
@@ -4696,20 +4696,15 @@ test("正式施設136会場を保持し、新規3会場へ未確認のホテル�
   );
 
   assert.equal(assignedVenueIds.size, 136);
-  assert.equal(dataset.summary.hotelLinkedVenueCount, 133);
-  const awaitingHotels = new Set([
-    "venue-dokkyo-medical-mibu-campus",
-    "venue-kansai-university-senriyama-first-school",
-    "venue-vision-center-tokyo-kyobashi",
-  ]);
-  assert.deepEqual(new Set([...assignedVenueIds].filter((id) => !hotelLinkedVenueIds.has(id))), awaitingHotels);
+  assert.equal(dataset.summary.hotelLinkedVenueCount, 136);
+  assert.deepEqual(new Set([...assignedVenueIds].filter((id) => !hotelLinkedVenueIds.has(id))), new Set());
   assert.ok([...hotelLinkedVenueIds].every((id) => assignedVenueIds.has(id)));
 
   for (const venueId of assignedVenueIds) {
     const hotels = dataset.hotels.filter((hotel) =>
       hotel.venueAccess.some((access) => access.venueId === venueId),
     );
-    assert.equal(hotels.length, awaitingHotels.has(venueId) ? 0 : 2, `${venueId}: ホテル確認状態が不正です`);
+    assert.equal(hotels.length, 2, `${venueId}: ホテル確認状態が不正です`);
   }
 
   for (const assignment of dataset.assignments.filter(
@@ -4720,6 +4715,45 @@ test("正式施設136会場を保持し、新規3会場へ未確認のホテル�
       `${assignment.assignmentId}: 会場リンクなしの公開状態が不正です`,
     );
   }
+});
+
+test("新規3会場のホテルは公式根拠・区間別所要・未確認条件を保持する", () => {
+  const hotelIds = [
+    "toyoko-inn-hospital-inn-dokkyo-medical", "mibu-green-hotel",
+    "minamisenri-crystal-hotel", "shin-osaka-sunny-stone-hotel",
+    "keio-presso-inn-tokyo-station-yaesu", "hotel-ginza-daiei",
+  ];
+  const expectedVenues = [
+    "venue-dokkyo-medical-mibu-campus", "venue-dokkyo-medical-mibu-campus",
+    "venue-kansai-university-senriyama-first-school", "venue-kansai-university-senriyama-first-school",
+    "venue-vision-center-tokyo-kyobashi", "venue-vision-center-tokyo-kyobashi",
+  ];
+  const dataset = getPrivateMedicalExamVenuesHotels2027Dataset();
+  hotelIds.forEach((hotelId, index) => {
+    const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
+    assert.ok(hotel, `${hotelId}: 公開されていません`);
+    assert.equal(hotel.venueAccess.length, 1);
+    const access = hotel.venueAccess[0];
+    assert.equal(access.venueId, expectedVenues[index]);
+    assert.equal(hotel.verifiedAt, "2026-10-05T00:00:00+09:00");
+    assert.equal(access.verifiedAt, hotel.verifiedAt);
+    assert.equal(access.measurementBasis, "route_only");
+    assert.ok(access.reviewState.includes("verified_with_caveat"));
+    assert.ok(access.evidenceUrls.length >= 3);
+    assert.match(hotel.note, /未成年/u);
+    assert.ok(hotel.amenities.every((amenity) => amenity.evidenceUrl.startsWith("https://")));
+  });
+  const getHotel = (id) => dataset.hotels.find((entry) => entry.hotelId === id);
+  assert.equal(getHotel(hotelIds[0]).venueAccess[0].travelTimeLabel, undefined);
+  assert.equal(getHotel(hotelIds[1]).amenities.some((item) => item.key === "coin_laundry"), false);
+  assert.match(getHotel(hotelIds[1]).note, /館内設備ではありません/u);
+  assert.match(getHotel(hotelIds[2]).note, /同意書と保護者身分証明書のコピー/u);
+  assert.equal(getHotel(hotelIds[3]).venueAccess[0].transferCount, 1);
+  assert.match(getHotel(hotelIds[3]).venueAccess[0].travelTimeLabel, /南方駅.*5分/u);
+  assert.match(getHotel(hotelIds[4]).venueAccess[0].caution, /入試指定階ではない/u);
+  assert.equal(getHotel(hotelIds[5]).amenities.some((item) => item.key === "breakfast"), false);
+  const page = readFileSync(pageSourcePath, "utf8");
+  assert.match(page, /新規3会場の宿泊候補を各2施設追加/u);
 });
 
 test("10月5日のHTML要項更新は段階・期・定員条件を混同しない", () => {

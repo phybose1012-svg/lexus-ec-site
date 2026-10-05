@@ -191,6 +191,7 @@ const KURUME_MII_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const FUKUOKA_TIME24_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const FUKUOKA_NAGOYA_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const FUKUOKA_SHIN_OSAKA_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const OCTOBER_NEW_VENUES_VERIFIED_AT = "2026-10-05T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -9792,5 +9793,358 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     reviewState: "verified",
     verifiedAt: FUKUOKA_SHIN_OSAKA_VERIFIED_AT,
     note: "JR新大阪駅正面口側の堅実枠です。客室無料Wi-Fi、用途に応じて動かせるデスク、2階の24時間コインランドリー、6:30開始の朝食を施設公式で確認しています。18歳未満だけ、または未成年者同士で宿泊する場合は、宿泊者全員分の親権者同意書を提出してください。朝は正面口から駅の公共通路を通って北口側へ移動するため、駅構内の移動時間を別に見込んでください。大阪会場は希望者数により変更される場合があるため、出願確認票・受験票で本施設が指定された場合だけ利用してください。",
+  },
+  {
+    "hotelId": "toyoko-inn-hospital-inn-dokkyo-medical",
+    "name": "東横INNホスピタルイン獨協医科大学",
+    "postalCode": "321-0207",
+    "address": "栃木県下都賀郡壬生町北小林1075-18",
+    "prefecture": "栃木県",
+    "municipality": "下都賀郡壬生町",
+    "officialUrl": "https://www.toyoko-inn.com/search/detail/08001?lcl_id=ja",
+    "nearestStation": "東武宇都宮線おもちゃのまち駅",
+    "venueAccess": [
+      {
+        "venueId": "venue-dokkyo-medical-mibu-campus",
+        "modes": [
+          "walk"
+        ],
+        "routeSummary": "大学が敷地内の宿泊施設として案内するホテルから、構内案内に従って獨協医科大学の指定二次試験室へ徒歩で移動します。病院受付を試験受付とみなさず、受験票・当日掲示で受験生入口を確認してください。",
+        "transferCount": 0,
+        "measurementBasis": "route_only",
+        "reviewState": [
+          "verified_with_caveat",
+          "venue_pdf_visual_review"
+        ],
+        "caution": "一般選抜の二次（前期は2027年2月19日・20日の指定日、後期は3月15日）向けです。一次会場の五反田TOCとは異なります。二次は7:50入室開始、8:30までに入室。ホテルから指定試験室までの徒歩時間は未確認のため表示しません。敷地内でも指定棟・入口までの移動を別に見込んでください。",
+        "evidenceUrls": [
+          "https://www.toyoko-inn.com/search/detail/08001?lcl_id=ja",
+          "https://www.dokkyomed.ac.jp/files/dusm/jyuken/01459-004.pdf",
+          "https://www.dokkyomed.ac.jp/upload/CommonFile/files/dokkyo_20260827100450.pdf"
+        ],
+        "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+      }
+    ],
+    "amenities": [
+      {
+        "key": "wifi",
+        "label": "Wi-Fi",
+        "detail": "店舗公式の設備欄でWi-Fiを確認しています。",
+        "evidenceUrl": "https://www.toyoko-inn.com/search/detail/08001?lcl_id=ja"
+      },
+      {
+        "key": "breakfast",
+        "label": "無料朝食6:30〜",
+        "detail": "無料のビュッフェ朝食は6:30〜9:00です。",
+        "evidenceUrl": "https://www.toyoko-inn.com/search/detail/08001?lcl_id=ja"
+      }
+    ],
+    "note": "敷地内から徒歩で向かえる候補です。デスク・洗濯設備はチェーン共通案内だけで当店舗の設置を断定せず、必要なら予約前に確認してください。東横INN公式の国内向け案内では、未成年者のみの場合は保護者に確認することがあり、状況により宿泊を断る場合があります。事前に店舗へ相談してください（https://www.toyoko-inn.com/support/）。朝食後も指定試験棟への移動時間を確保してください。",
+    "officialBookingUrl": "https://www.toyoko-inn.com/search/detail/08001?lcl_id=ja",
+    "operatingStatus": "official_site_active",
+    "operatingStatusEvidenceUrl": "https://www.toyoko-inn.com/search/detail/08001?lcl_id=ja",
+    "reviewState": "verified",
+    "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+  },
+  {
+    "hotelId": "mibu-green-hotel",
+    "name": "みぶグリーンホテル",
+    "postalCode": "321-0222",
+    "address": "栃木県下都賀郡壬生町駅東町2-1",
+    "prefecture": "栃木県",
+    "municipality": "下都賀郡壬生町",
+    "officialUrl": "https://mibu-greenhotel.co.jp/",
+    "officialBookingUrl": "https://mibu-greenhotel.co.jp/online-reserve/",
+    "nearestStation": "東武宇都宮線壬生駅",
+    "venueAccess": [
+      {
+        "venueId": "venue-dokkyo-medical-mibu-campus",
+        "modes": [
+          "walk",
+          "rail"
+        ],
+        "routeSummary": "ホテルから壬生駅へ徒歩で向かい、東武宇都宮線の東武宇都宮方面へ乗車。おもちゃのまち駅で下車し、大学公式の徒歩経路で獨協医科大学の指定二次試験室へ向かいます。",
+        "transferCount": 0,
+        "travelTimeLabel": "ホテル―壬生駅は県スポーツコミッション案内で徒歩5分／おもちゃのまち駅―大学は募集要項で徒歩15分（鉄道・待ち時間・構内移動は別）",
+        "measurementBasis": "route_only",
+        "reviewState": [
+          "verified_with_caveat",
+          "venue_pdf_visual_review"
+        ],
+        "caution": "一般選抜二次の前期指定日（2月19日または20日）・後期3月15日向けです。7:50入室開始、8:30までに入室。表示は別々の徒歩区間で、通し所要ではありません。2027年の試験日の列車時刻、駅出口、指定棟・室を直前に確認し、待ち時間と構内移動を見込んでください。合宿向け送迎を受験生向け送迎とみなさないでください。",
+        "evidenceUrls": [
+          "https://mibu-greenhotel.co.jp/access/",
+          "https://tochigi-pref-sports-commission.com/hotel/h-2765/",
+          "https://www.tobu.co.jp/railway/guide/route_map/",
+          "https://www.tobu.co.jp/railway/guide/station/info/4106/",
+          "https://www.dokkyomed.ac.jp/upload/CommonFile/files/dokkyo_20260827100450.pdf"
+        ],
+        "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+      }
+    ],
+    "amenities": [
+      {
+        "key": "wifi",
+        "label": "Wi-Fi（県の施設案内）",
+        "detail": "栃木県スポーツコミッションの施設案内にWi-Fiの掲載があります。客室での利用条件はホテルに確認してください。",
+        "evidenceUrl": "https://tochigi-pref-sports-commission.com/hotel/h-2765/"
+      }
+    ],
+    "note": "地域系の小規模候補です。県スポーツコミッションは25室と案内しています。公式の設備ページは準備中のため、客室の学習机、朝食の有無・開始時刻、未成年者だけの宿泊可否・同意書は予約前に問い合わせてください。ホテル公式は徒歩約1分の周辺コインランドリーを案内していますが、館内設備ではありません。料金や受験日の空室は保証していません。",
+    "operatingStatus": "official_site_active",
+    "operatingStatusEvidenceUrl": "https://mibu-greenhotel.co.jp/",
+    "reviewState": "verified",
+    "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+  },
+  {
+    "hotelId": "minamisenri-crystal-hotel",
+    "name": "南千里クリスタルホテル",
+    "postalCode": "565-0862",
+    "address": "大阪府吹田市津雲台1-2-D9",
+    "prefecture": "大阪府",
+    "municipality": "吹田市",
+    "officialUrl": "https://crystalhotel.jp/minamisenri/",
+    "nearestStation": "阪急千里線南千里駅（駅直結）",
+    "venueAccess": [
+      {
+        "venueId": "venue-kansai-university-senriyama-first-school",
+        "modes": [
+          "walk",
+          "rail"
+        ],
+        "routeSummary": "ホテル4階から南千里駅へ移動し、阪急千里線の大阪梅田・天下茶屋方面で関大前駅へ。北改札口から西門または正門を経て、千里山キャンパス第1学舎の指定号館へ徒歩で向かいます。",
+        "transferCount": 0,
+        "travelTimeLabel": "関大前駅北改札口―第1学舎は募集要項で徒歩15分（ホテル内・鉄道・待ち時間は別）",
+        "measurementBasis": "route_only",
+        "reviewState": [
+          "verified_with_caveat",
+          "venue_pdf_visual_review"
+        ],
+        "caution": "大阪医科薬科大学一般選抜一次の前期2月10日・後期3月10日向け。8:00開場、8:40着席。第1学舎2号館・5号館の個人指定を受験票で確認してください。大学一般案内の正門まで5分を試験室までの時間として使いません。車・送迎は利用しないでください。2027年の試験日のダイヤと構内移動を別に確認してください。",
+        "evidenceUrls": [
+          "https://crystalhotel.jp/minamisenri/access/",
+          "https://crystalhotel.jp/minamisenri/faq/",
+          "https://www.hankyu.co.jp/station/kyoto/index.html",
+          "https://www.hankyu.co.jp/station/minamisenri.html",
+          "https://www.ompu.ac.jp/admission/undergraduate/medical/qt931k0000005db0-att/cc9f84000000fmbf.pdf"
+        ],
+        "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+      }
+    ],
+    "amenities": [
+      {
+        "key": "wifi",
+        "label": "全館無線LAN・客室有線LAN",
+        "detail": "全室有線LANと全館無線LAN。無線は状況により接続しにくい場合があります。",
+        "evidenceUrl": "https://crystalhotel.jp/minamisenri/faq/"
+      },
+      {
+        "key": "desk",
+        "label": "シングルのビジネステーブル",
+        "detail": "シングルはビジネステーブルと椅子付きです。机を重視する場合は部屋タイプを指定してください。",
+        "evidenceUrl": "https://crystalhotel.jp/minamisenri/room/"
+      },
+      {
+        "key": "coin_laundry",
+        "label": "5階コインランドリー",
+        "detail": "5階に洗濯機・乾燥機があります。",
+        "evidenceUrl": "https://crystalhotel.jp/minamisenri/facility/"
+      }
+    ],
+    "note": "南千里駅直結で、関大前まで鉄道の乗換なしで通える候補です。全館禁煙。未成年者のみの場合は宿泊前に同意書と保護者身分証明書のコピーが必要で、保護者への確認や宿泊を断る場合があります（ホテル公式FAQ）。朝食付きプランの案内はありますが開始時刻は確認できないため、受験日の早朝提供と利用条件を予約前に問い合わせてください。",
+    "officialBookingUrl": "https://crystalhotel.jp/minamisenri/",
+    "operatingStatus": "official_site_active",
+    "operatingStatusEvidenceUrl": "https://crystalhotel.jp/minamisenri/",
+    "reviewState": "verified",
+    "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+  },
+  {
+    "hotelId": "shin-osaka-sunny-stone-hotel",
+    "name": "新大阪サニーストンホテル",
+    "postalCode": "532-0011",
+    "address": "大阪府大阪市淀川区西中島4-12-2",
+    "prefecture": "大阪府",
+    "municipality": "大阪市淀川区",
+    "officialUrl": "https://hpdsp.jp/sin-osaka_sunnystonehotel/",
+    "nearestStation": "阪急京都線南方駅／Osaka Metro西中島南方駅",
+    "venueAccess": [
+      {
+        "venueId": "venue-kansai-university-senriyama-first-school",
+        "modes": [
+          "walk",
+          "rail"
+        ],
+        "routeSummary": "ホテル公式の南方駅からの徒歩案内を逆向きにたどり、阪急南方駅へ。京都線の淡路方面の普通に乗り、淡路駅で千里線の北千里方面へ乗り換えて関大前駅で下車。北改札口から第1学舎2号館・5号館の指定会場へ向かいます。",
+        "transferCount": 1,
+        "travelTimeLabel": "ホテル―阪急南方駅はホテル公式徒歩5分／関大前駅北改札口―第1学舎は募集要項で徒歩15分（鉄道・乗換・待ち時間は別）",
+        "measurementBasis": "route_only",
+        "reviewState": [
+          "verified_with_caveat",
+          "venue_pdf_visual_review"
+        ],
+        "caution": "大阪医科薬科大学一般選抜一次の前期2月10日・後期3月10日向け。8:00開場、8:40着席。表示は通し所要ではなく、淡路での乗換と構内移動を別に見込んでください。ホテル最寄りの地下鉄と阪急は別路線です。関西大学正門までの一般案内5分では第1学舎に到着しません。指定号館・入口を受験票で確認し、車・送迎は利用しないでください。",
+        "evidenceUrls": [
+          "https://hpdsp.jp/sin-osaka_sunnystonehotel/access",
+          "https://www.hankyu.co.jp/station/kyoto/index.html",
+          "https://www.hankyu.co.jp/station/awaji.html",
+          "https://www.ompu.ac.jp/admission/undergraduate/medical/qt931k0000005db0-att/cc9f84000000fmbf.pdf"
+        ],
+        "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+      }
+    ],
+    "amenities": [
+      {
+        "key": "wifi",
+        "label": "全室無料Wi-Fi・有線LAN",
+        "detail": "全室で無料の有線LAN・無線Wi-Fiに対応しています。",
+        "evidenceUrl": "https://hpdsp.jp/sin-osaka_sunnystonehotel/facility"
+      },
+      {
+        "key": "coin_laundry",
+        "label": "館内コインランドリー",
+        "detail": "館内サービスとしてコインランドリーを案内しています。",
+        "evidenceUrl": "https://hpdsp.jp/sin-osaka_sunnystonehotel/facility"
+      },
+      {
+        "key": "humidifier",
+        "label": "加湿機能付き空気清浄機",
+        "detail": "客室備品に加湿機能付き空気清浄機があります。",
+        "evidenceUrl": "https://hpdsp.jp/sin-osaka_sunnystonehotel/room"
+      },
+      {
+        "key": "desk_lamp",
+        "label": "電気スタンド貸出",
+        "detail": "電気スタンドを貸し出しています。必要な場合は事前に在庫を確認してください。",
+        "evidenceUrl": "https://hpdsp.jp/sin-osaka_sunnystonehotel/facility"
+      },
+      {
+        "key": "breakfast",
+        "label": "朝食6:30〜",
+        "detail": "平日6:30〜9:30、日曜・祝日6:30〜10:00。プランへの朝食含有を確認してください。",
+        "evidenceUrl": "https://hpdsp.jp/sin-osaka_sunnystonehotel/food"
+      }
+    ],
+    "note": "新大阪エリアのビジネスホテル候補です。江坂のサニーストンホテル・第2サニーストンホテルとは別施設で、他店の無料朝食や宿泊条件を転用していません。客室机の仕様、未成年者だけの宿泊可否・同意書は当店舗へ問い合わせてください。6:30開始の朝食を利用する場合も鉄道の乗換を含む余裕を確保してください。",
+    "officialBookingUrl": "https://hpdsp.jp/sin-osaka_sunnystonehotel/",
+    "operatingStatus": "official_site_active",
+    "operatingStatusEvidenceUrl": "https://hpdsp.jp/sin-osaka_sunnystonehotel/",
+    "reviewState": "verified",
+    "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+  },
+  {
+    "hotelId": "keio-presso-inn-tokyo-station-yaesu",
+    "name": "京王プレッソイン東京駅八重洲",
+    "postalCode": "104-0031",
+    "address": "東京都中央区京橋1-4-1",
+    "prefecture": "東京都",
+    "municipality": "中央区",
+    "officialUrl": "https://www.presso-inn.com/yaesu/",
+    "nearestStation": "JR東京駅八重洲中央口",
+    "venueAccess": [
+      {
+        "venueId": "venue-vision-center-tokyo-kyobashi",
+        "modes": [
+          "walk"
+        ],
+        "routeSummary": "ホテル公式が案内する東京駅八重洲中央口を接続点とし、公共通路で八重洲南口側へ移動します。会場公式の八重洲地下街4番出口からの来館経路で相互館110タワーへ向かい、裏通り側のビル入口と受験票の指定受付を確認してください。",
+        "transferCount": 0,
+        "travelTimeLabel": "ホテル―東京駅八重洲中央口はホテル公式徒歩3分／八重洲南口側地下街4番出口―会場は施設公式徒歩5分（接続点間・指定室までの移動は別）",
+        "measurementBasis": "route_only",
+        "reviewState": [
+          "verified_with_caveat",
+          "venue_pdf_visual_review"
+        ],
+        "caution": "大阪医科薬科大学一般選抜一次の前期2月10日・後期3月10日向け。8:00開場、8:40着席。接続点の八重洲中央口と南口側地下街4番出口は異なり、表示区間を足した通し所要ではありません。最短徒歩経路とも断定しません。施設の一般受付4階・入居階4階と8階は入試指定階ではないため、使用階・室・受験生入口を受験票で確認してください。",
+        "evidenceUrls": [
+          "https://www.presso-inn.com/yaesu/",
+          "https://www.presso-inn.com/company/",
+          "https://www.visioncenter.jp/tokyo/kyobashi/access/",
+          "https://www.ompu.ac.jp/admission/undergraduate/medical/qt931k0000005db0-att/cc9f84000000fmbf.pdf"
+        ],
+        "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+      }
+    ],
+    "amenities": [
+      {
+        "key": "coin_laundry",
+        "label": "有料コインランドリー",
+        "detail": "公式館内設備案内に有料コインランドリーがあります。",
+        "evidenceUrl": "https://www.presso-inn.com/yaesu/facility/"
+      },
+      {
+        "key": "humidifier",
+        "label": "加湿機能付き空気清浄機",
+        "detail": "公式の客室備品に加湿機能付き空気清浄機があります。",
+        "evidenceUrl": "https://www.presso-inn.com/yaesu/facility/"
+      },
+      {
+        "key": "breakfast",
+        "label": "朝食6:30〜",
+        "detail": "朝食6:30〜9:30、最終入店9:15。朝食付きプランか別途利用かを確認してください。",
+        "evidenceUrl": "https://www.presso-inn.com/yaesu/breakfast/"
+      }
+    ],
+    "note": "東京駅八重洲側から徒歩で会場へ通える候補です。公式客室案内は机の写真を掲載していますが、広さ・仕様は確認できないため、学習に必要な机と客室インターネットの条件は部屋タイプごとに問い合わせてください。未成年者だけの宿泊条件も当店舗に確認し、系列他店の同意書不要の案内を転用しないでください。",
+    "officialBookingUrl": "https://www.presso-inn.com/yaesu/",
+    "operatingStatus": "official_site_active",
+    "operatingStatusEvidenceUrl": "https://www.presso-inn.com/yaesu/",
+    "reviewState": "verified",
+    "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+  },
+  {
+    "hotelId": "hotel-ginza-daiei",
+    "name": "ホテル銀座ダイエー",
+    "postalCode": "104-0061",
+    "address": "東京都中央区銀座3-12-2",
+    "prefecture": "東京都",
+    "municipality": "中央区",
+    "officialUrl": "https://www.ginza-daiei.co.jp/",
+    "nearestStation": "都営浅草線東銀座駅",
+    "venueAccess": [
+      {
+        "venueId": "venue-vision-center-tokyo-kyobashi",
+        "modes": [
+          "walk",
+          "rail"
+        ],
+        "routeSummary": "ホテル公式のアクセス案内を逆向きにたどって東銀座駅へ向かい、浅草線の宝町・日本橋方面で宝町駅へ1駅。A4出口から会場公式の徒歩経路でビジョンセンター東京京橋へ進みます。",
+        "transferCount": 0,
+        "travelTimeLabel": "ホテル―東銀座駅は公式徒歩2〜3分（出口別）／宝町駅A4出口―会場は施設公式徒歩2分（鉄道・改札内・指定室への移動は別）",
+        "measurementBasis": "route_only",
+        "reviewState": [
+          "verified_with_caveat",
+          "venue_pdf_visual_review"
+        ],
+        "caution": "大阪医科薬科大学一般選抜一次の前期2月10日・後期3月10日向け。8:00開場、8:40着席。東銀座はホーム・方面に対応する出口を確認し、2027年の試験日の列車と構内移動を見込んでください。通し所要やホテルから直接歩く最短経路の時間は掲載しません。相互館110タワーの裏通り側の入口を確認し、一般受付4階を入試受付と決めつけず受験票に従ってください。",
+        "evidenceUrls": [
+          "https://www.ginza-daiei.co.jp/access/",
+          "https://www.kotsu.metro.tokyo.jp/subway/stations/higashi-ginza.html",
+          "https://www.kotsu.metro.tokyo.jp/subway/stations/takaracho.html",
+          "https://www.visioncenter.jp/tokyo/kyobashi/access/",
+          "https://www.ompu.ac.jp/admission/undergraduate/medical/qt931k0000005db0-att/cc9f84000000fmbf.pdf"
+        ],
+        "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+      }
+    ],
+    "amenities": [
+      {
+        "key": "wifi",
+        "label": "有線LAN・Wi-Fi",
+        "detail": "公式客室設備で有線・Wi-Fiのインターネット接続を確認しています。",
+        "evidenceUrl": "https://www.ginza-daiei.co.jp/room/"
+      },
+      {
+        "key": "desk",
+        "label": "スタンダードシングルのデスク",
+        "detail": "スタンダードシングルはデスクワーク向けのライティングデスクを案内しています。",
+        "evidenceUrl": "https://www.ginza-daiei.co.jp/room/"
+      }
+    ],
+    "note": "独立系ホテルの候補です。学習机を重視する場合はデスクの明記があるスタンダードシングル等を指定してください。デザイナーズ客室や別館を同一仕様とみなしません。朝食の有無・開始時刻、館内洗濯設備、未成年者だけの宿泊可否・同意書は公式で確認できないため、予約前に問い合わせてください。",
+    "officialBookingUrl": "https://www.ginza-daiei.co.jp/",
+    "operatingStatus": "official_site_active",
+    "operatingStatusEvidenceUrl": "https://www.ginza-daiei.co.jp/",
+    "reviewState": "verified",
+    "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
   },
 ];
