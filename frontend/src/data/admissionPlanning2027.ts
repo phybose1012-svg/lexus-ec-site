@@ -11,7 +11,7 @@ import {
   type PrivateMedicalCanonicalRouteId2027,
 } from "./privateMedicalCanonicalRouteIds2027";
 
-export type PlanningExamStage2027 = "common_test" | "first_exam" | "second_exam";
+export type PlanningExamStage2027 = "common_test" | "first_exam" | "second_exam" | "single_exam";
 export type PlanningAttendance2027 = "exactly_one" | "all";
 export type PlanningAssignment2027 =
   | "fixed"
@@ -30,6 +30,8 @@ export type PlanningExamGroup2027 = {
   note?: string;
   sharedEventGroupId?: string;
   optionalExtraDates?: boolean;
+  dateDetails?: Record<string, string>;
+  examOptionId?: string;
 };
 
 export type PlanningCalendarEvent2027 = {
@@ -37,21 +39,27 @@ export type PlanningCalendarEvent2027 = {
   type: Exclude<FullScheduleColumnKey2027, "firstExam" | "secondExam">;
   detail: string;
   sourceUrl?: string;
+  conditional?: boolean;
+  examOptionId?: string;
 };
 
 export type AdmissionPlanningRoute2027 = {
   id: string;
-  canonicalRouteId: PrivateMedicalCanonicalRouteId2027;
+  canonicalRouteId: PrivateMedicalCanonicalRouteId2027 | `special--${string}`;
   universityId: string;
   universityName: string;
   region: string;
   prefecture: string;
   routeName: string;
-  category: AdmissionRouteCategory;
+  category: AdmissionRouteCategory | import("./privateMedicalSpecialAdmissions2027").SpecialAdmissionCategory;
   status: AdmissionRouteStatus;
   sourceUrl?: string;
   examGroups: PlanningExamGroup2027[];
   calendarEvents: PlanningCalendarEvent2027[];
+  categoryLabel?: string;
+  publicationLabel?: string;
+  requirements?: { exclusive: string; eligibility: string; grade: string; restrictions: string[]; note?: string };
+  examOptions?: Array<{ id: string; label: string }>;
 };
 
 export const admissionPlanningMetadata2027 = {
@@ -184,7 +192,7 @@ const noteFor = (value: string, assignment: PlanningAssignment2027) => {
 };
 
 const hasSharedExamWording = (value: string) =>
-  /1回のみ|同じ日を選択|一般前期と同日|一般後期と同日|同一日/.test(value);
+  /1回のみ|面接は1回|面接1回|同じ日を選択|一般前期と同日|一般後期と同日|同一日/.test(value);
 
 const calendarEventsByRoute = new Map<string, PlanningCalendarEvent2027[]>();
 

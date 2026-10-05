@@ -5055,7 +5055,7 @@ test("大学別一覧には対象外として確認した方式を表示しな�
   assert.doesNotMatch(pageSource, /entry\.excludedRoutes/);
 });
 
-test("一般・特別選抜・会場ホテルの3ページを切替ナビで行き来できる", () => {
+test("一般・特別選抜・プランニング・会場ホテルの4ページを切替ナビで行き来できる", () => {
   const generalPageSource = readFileSync(generalPageSourcePath, "utf8");
   const specialPageSource = readFileSync(pageSourcePath, "utf8");
   const switcherSource = readFileSync(scheduleSwitcherSourcePath, "utf8");
@@ -5102,8 +5102,8 @@ test("一般・特別選抜・会場ホテルの3ページを切替ナビで行�
 
   assert.ok(generalSwitcher, "一般・共テ利用ページの切替ナビがありません");
   assert.ok(specialSwitcher, "特別選抜ページの切替ナビがありません");
-  assert.equal(attributeValues(generalSwitcher, "href").length, 3);
-  assert.equal(attributeValues(specialSwitcher, "href").length, 3);
+  assert.equal(attributeValues(generalSwitcher, "href").length, 4);
+  assert.equal(attributeValues(specialSwitcher, "href").length, 4);
   assert.match(
     generalSwitcher,
     /href="\/private-medical-school-admissions-schedule-2027\/" aria-current="page"/u,

@@ -1,6 +1,6 @@
 ---
 interface Props {
-  current: "general" | "special" | "venues";
+  current: "general" | "special" | "venues" | "planner";
 }
 
 const { current } = Astro.props;
@@ -19,6 +19,13 @@ const schedulePages = [
     shortLabel: "総合型・推薦型等",
     label: "総合型・学校推薦型など",
     description: "地域枠・帰国生・IB等も掲載",
+  },
+  {
+    id: "planner",
+    href: "/private-medical-school-admission-planner-2027/",
+    shortLabel: "受験プラン",
+    label: "受験大学プランニング",
+    description: "選抜区分を横断して日程を整理",
   },
   {
     id: "venues",

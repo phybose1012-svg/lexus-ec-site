@@ -1,0 +1,51 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import AdmissionPlanner from "../../components/admissions/AdmissionPlanner.astro";
+import AdmissionsScheduleSwitcher from "../../components/admissions/AdmissionsScheduleSwitcher.astro";
+import { unifiedAdmissionPlanningMetadata2027, unifiedAdmissionPlanningRoutes2027 } from "../../data/unifiedAdmissionPlanning2027";
+import "../../styles/admissions-2027.css";
+import "../../styles/admission-planner-2027.css";
+
+const title = "【2027年度】私立医学部 受験大学プランニング｜一般・共テ・総合型・推薦型";
+const description = "私立医学部31大学の一般選抜・共通テスト利用・総合型・学校推薦型などを横断して、出願から入学手続までの受験プランを作成。試験日の重複確認、端末保存、印刷に対応します。";
+const canonical = unifiedAdmissionPlanningMetadata2027.publicUrl;
+const universityCount = new Set(unifiedAdmissionPlanningRoutes2027.map((route) => route.universityId)).size;
+---
+
+<SiteLayout title={title} description={description} canonical={canonical} mainContentId="admission-planner-main">
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org", "@type": "WebApplication", name: "2027年度 私立医学部 受験大学プランニング",
+      url: canonical, description, applicationCategory: "EducationalApplication", operatingSystem: "Web browser", inLanguage: "ja",
+      isAccessibleForFree: true,
+    })} />
+  </Fragment>
+  <main id="admission-planner-main" class="admissions-page admission-planner-page">
+    <header class="admission-planner-hero">
+      <div class="content">
+        <nav class="admissions-breadcrumb" aria-label="パンくずリスト">
+          <a href="/">ホーム</a><span aria-hidden="true">/</span><a href="/top/information-shiritsu/">私立医学部情報</a><span aria-hidden="true">/</span><span aria-current="page">受験大学プランニング</span>
+        </nav>
+        <AdmissionsScheduleSwitcher current="planner" />
+        <div class="admission-planner-hero__body">
+          <div>
+            <p class="admission-planner-hero__eyebrow">2027 / MY ADMISSIONS PLAN</p>
+            <h1>選抜の枠を越えて、<br /><strong>自分の受験プランを。</strong></h1>
+            <p>一般選抜・共通テスト利用から、総合型・学校推薦型・地域枠・帰国生・IB等まで。<br class="desktop-only" />気になる方式を一緒に並べて、あなたの一年を見通しましょう。</p>
+          </div>
+          <aside class="admission-planner-hero__guide" aria-label="プラン作成の流れ">
+            <p>{universityCount}大学の掲載方式から選択</p>
+            <ol><li>大学・方式を追加</li><li>志望度と試験日を確認</li><li>日程表を保存・印刷</li></ol>
+            <a href="#planner">プランを作り始める ↓</a>
+          </aside>
+        </div>
+      </div>
+    </header>
+    <AdmissionPlanner />
+    <footer class="content admission-planner-related">
+      <h2>全大学の日程を一覧で確認する</h2>
+      <p>このページはプラン作成専用です。募集要項の公表状況や各大学の日程は、一覧ページをご覧ください。</p>
+      <div><a href="/private-medical-school-admissions-schedule-2027/">一般選抜・共通テスト利用の日程 →</a><a href="/private-medical-school-special-admissions-schedule-2027/">総合型・学校推薦型等の日程 →</a></div>
+    </footer>
+  </main>
+</SiteLayout>

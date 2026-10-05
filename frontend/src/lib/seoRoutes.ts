@@ -30,6 +30,7 @@ const staticPagePaths = [
   "/kuriage-information/",
   "/private-medical-school-admissions-schedule-2027/",
   "/private-medical-school-special-admissions-schedule-2027/",
+  "/private-medical-school-admission-planner-2027/",
   "/private-medical-school-exam-venues-hotels-2027/",
   "/penguin-geometry/",
   "/penguin-integral/",
@@ -58,6 +59,7 @@ const staticPagePaths = [
 ];
 
 const staticPageLastmods = new Map<string, string>([
+  ["/private-medical-school-admission-planner-2027/", "2026-10-05"],
   [
     new URL(privateMedicalAdmissions2027Metadata.canonicalUrl).pathname,
     privateMedicalAdmissions2027Metadata.dateModified,

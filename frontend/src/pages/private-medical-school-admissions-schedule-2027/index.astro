@@ -17,7 +17,6 @@ import {
 } from "../../data/privateMedicalAdmissions2027Metadata";
 import AdmissionsBrandDivider from "../../components/admissions/AdmissionsBrandDivider.astro";
 import AdmissionsScheduleSwitcher from "../../components/admissions/AdmissionsScheduleSwitcher.astro";
-import AdmissionPlanner from "../../components/admissions/AdmissionPlanner.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import "../../styles/admissions-2027.css";
 
@@ -520,7 +519,7 @@ const structuredData = {
               出願から入学手続まで、受験校の組み合わせを迷わず確認できます。
             </p>
             <div class="admissions-hero__actions">
-              <a class="admissions-primary-button" href="#planner">受験プランを作る</a>
+              <a class="admissions-primary-button" href="#deadlines">出願締切を確認する</a>
               <a class="admissions-secondary-button" href="#universities">大学から探す</a>
             </div>
           </div>
@@ -580,7 +579,10 @@ const structuredData = {
       </div>
     </section>
 
-    <AdmissionPlanner />
+    <aside class="content admissions-planner-link" id="planner">
+      <span>自分の受験日程をまとめたい方へ</span>
+      <a href="/private-medical-school-admission-planner-2027/">受験大学プランニング専用ページへ →</a>
+    </aside>
 
     <nav class="admissions-jump-nav" aria-label="ページ内メニュー">
       <div class="content admissions-jump-nav__inner">
