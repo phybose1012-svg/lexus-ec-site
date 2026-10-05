@@ -12,9 +12,9 @@ export const privateMedicalSpecialAdmissions2027Metadata = {
   academicYear: 2027,
   language: "ja",
   datePublished: "2026-08-04",
-  dateModified: "2026-08-05",
-  dateModifiedLabel: "2026年8月5日",
-  version: "2026-08-05",
+  dateModified: "2026-10-05",
+  dateModifiedLabel: "2026年10月5日",
+  version: "2026-10-05",
   publisher: {
     name: "医学部予備校 レクサス E.C.",
     alternateName: "レクサス教育センター",

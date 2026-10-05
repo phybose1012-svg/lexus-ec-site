@@ -36,6 +36,10 @@ const stableHash = (value) => {
 
 const legacyRouteIdOverrides = new Map([
   [
+    "kawasaki-medical::general::一般選抜・地域枠選抜（岡山県／静岡県・長崎県は認可申請中）",
+    "kawasaki-medical--general--scuh5c",
+  ],
+  [
     "aichi-medical::common::大学入学共通テスト利用選抜（愛知県地域特別枠B方式）",
     "aichi-medical--common--1ynn7f9",
   ],
@@ -83,8 +87,13 @@ test("31大学83方式とKB準拠canonical route IDが1対1で対応する", () 
     .join("\n");
   assert.equal(
     createHash("sha256").update(snapshot).digest("hex"),
-    "977d3d0727a0d04377c92b8d53f86d884ec683834a1c9623a3c8c476ce8f9a90",
+    "72b4de53e2e2bbdea145e6157f8b9a2dd263963f6b8e2baede34af7f5b00a28d",
     "KB照合済みcanonical route ID snapshotが変わっています",
+  );
+  assert.equal(
+    getPrivateMedicalCanonicalRouteId2027("kawasaki-medical", "一般選抜・地域枠選抜（岡山県／静岡県・長崎県は認可申請中）"),
+    "kawasaki-medical--general--general-regional-quota-c5d34-491fd-bf01d",
+    "川崎の申請状況の表示名変更でcanonical IDを変えないでください",
   );
 });
 

@@ -461,7 +461,7 @@ test("東北医科薬科大学は令和9年度公式資料の総合型1方式と
 
   assert.ok(tohoku, "東北医科薬科大学のデータがありません");
   assert.equal(tohoku.scopeStatus, "available");
-  assert.equal(tohoku.publicationStatus, "outline");
+  assert.equal(tohoku.publicationStatus, "complete");
   assert.equal(tohoku.routes.length, 1);
 
   const selection = tohoku.routes[0];
@@ -470,19 +470,20 @@ test("東北医科薬科大学は令和9年度公式資料の総合型1方式と
   assert.equal(selection.currentStudentEligible, true);
   assert.match(selection.eligibility, /2027年3月卒業見込み.*2022年3月以降.*18歳/u);
   assert.equal(selection.exclusive, "専願");
-  assert.equal(selection.principalRecommendation, "未公表");
+  assert.equal(selection.principalRecommendation, "不要");
   assert.match(selection.gradeRequirement, /3\.8以上.*3年次1学期・前期/u);
   assert.match(selection.restrictions.join(" "), /宮城県以外の東北5県.*修学資金制度へ必ず応募/u);
   assert.match(selection.restrictions.join(" "), /9年程度.*すべて不採用.*5年間勤務/u);
-  assert.match(selection.restrictions.join(" "), /推薦書の提出が必要.*推薦者要件は完成版募集要項/u);
+  assert.match(selection.restrictions.join(" "), /高校教員等.*近親者以外.*推薦書が必要.*学校長に限定されない/u);
   assert.match(selection.note ?? "", /書類選考.*グループ面接.*大学入学共通テストは利用しません/u);
 
   assert.deepEqual(selection.events, [
-    { stage: "application-start", date: "2026-09-14", label: "出願開始" },
+    { stage: "application-start", date: "2026-09-14", label: "出願開始", time: "10:00" },
     {
       stage: "application-deadline",
       date: "2026-10-02",
       label: "出願登録締切",
+      time: "13:00",
       deadlineRule: "Web登録",
     },
     {
@@ -491,7 +492,7 @@ test("東北医科薬科大学は令和9年度公式資料の総合型1方式と
       label: "出願書類提出期限",
       deadlineRule: "必着",
     },
-    { stage: "first-result", date: "2026-10-16", label: "第一次選考結果発表" },
+    { stage: "first-result", date: "2026-10-16", label: "第一次選考結果発表", time: "16:00予定" },
     {
       stage: "second-exam",
       date: "2026-10-24",
@@ -506,13 +507,13 @@ test("東北医科薬科大学は令和9年度公式資料の総合型1方式と
       sequence: 2,
       choiceRule: "2日間とも受験",
     },
-    { stage: "final-result", date: "2026-11-02", label: "合格発表" },
+    { stage: "final-result", date: "2026-11-02", label: "合格発表", time: "16:00予定" },
     { stage: "procedure-deadline", date: "2026-11-16", label: "入学金等納付期限" },
     { stage: "procedure-deadline", date: "2026-11-16", label: "手続書類提出期限" },
   ]);
   assert.deepEqual(selection.sourceUrls, [
     "https://www.tohoku-mpu.ac.jp/admission/medicine-application/",
-    "https://www.tohoku-mpu.ac.jp/wp/wp-content/uploads/2026/05/963a4d3c20d5c1e17605bf8aa1e7293c-1.pdf",
+    "https://www.tohoku-mpu.ac.jp/doc/application_medicine.pdf",
     "https://www.tohoku-mpu.ac.jp/about/information/admissions_policy/",
     "https://www.tohoku-mpu.ac.jp/medicine/scholarship/",
   ]);
@@ -2415,19 +2416,19 @@ test("愛知医科大学は2027年度完成版要項の対象4方式と一段階
   assert.match(aichi.excludedRoutes?.join(" ") ?? "", /地域特別枠B.*共通テスト利用.*対象外/u);
 });
 
-test("藤田医科大学は2027年度公式概要の対象2方式・枠別資格・二段階選抜を保持", () => {
+test("藤田医科大学は2027年度完成版要項の対象2方式・枠別資格・二段階選抜と手続期限を保持", () => {
   const fujita = privateMedicalSpecialAdmissionsUniversities2027.find(
     (university) => university.id === "fujita",
   );
 
   assert.ok(fujita, "藤田医科大学のデータがありません");
   assert.equal(fujita.scopeStatus, "available");
-  assert.equal(fujita.publicationStatus, "outline");
+  assert.equal(fujita.publicationStatus, "complete");
   assert.equal(
     fujita.officialUrl,
-    "https://www.fujita-hu.ac.jp/admission/exam-med/dubv6r0000001ec6-att/j93sdv000000ub7q.pdf",
+    "https://www.fujita-hu.ac.jp/admission/vsfo8q0000007l3n-att/tedb9e000000p7j6.pdf",
   );
-  assert.match(fujita.statusNote, /2027年度入試概要.*対象2方式.*完成版学生募集要項.*8月公開予定.*入学手続日.*未公表/u);
+  assert.match(fujita.statusNote, /2027年度完成版学生募集要項.*公開済み.*12月7日23:59/u);
   assert.doesNotMatch(fujita.statusNote, /愛知県地域枠|共通テスト利用入試/u);
 
   assertSameSet(
@@ -2452,14 +2453,15 @@ test("藤田医科大学は2027年度公式概要の対象2方式・枠別資格
     [
       "ふじた未来入試（一般枠／独創一理枠）",
       "comprehensive",
-      "一般枠と独創一理枠を合わせて12名（独創一理枠は最大3名）",
+      "一般枠と独創一理枠を合わせて12名（独創一理枠の優先判定は最大3名。残りは出願枠を問わず選考）",
       true,
       "条件付き",
       "不要",
     ],
   );
   assert.match(future.eligibility, /日本国内.*2027年3月.*卒業見込み.*入学確約.*卒後研修/u);
-  assert.match(future.gradeRequirement, /数値評定基準の記載なし/u);
+  assert.match(future.gradeRequirement, /数値評定基準の指定なし/u);
+  assert.match(future.restrictions.join(" "), /推薦書（2通以内）.*12年間/u);
   assert.match(
     future.restrictions.join(" "),
     /現役のみ.*一般枠は入学確約.*国公立大学医学科.*独創一理枠.*本学（大学・短大）卒業生の2親等以内.*辞退例外の記載なし.*専門研修プログラム/u,
@@ -2492,18 +2494,18 @@ test("藤田医科大学は2027年度公式概要の対象2方式・枠別資格
     returneeIb.eligibility,
     /日本国籍.*永住許可.*2024年4月以降.*2027年3月.*IB資格.*英語資格.*年齢/u,
   );
-  assert.match(returneeIb.gradeRequirement, /数値評定・IB得点基準の記載なし.*TOEFL iBT.*IELTS Academic Module/u);
+  assert.match(returneeIb.gradeRequirement, /数値評定・IB得点・英語資格の最低点の指定なし.*出願開始日前2年以内.*TOEFL iBT.*IELTS Academic Module/u);
   assert.match(
     returneeIb.restrictions.join(" "),
-    /最終学年を含め2年以上.*日本人学校等を除く.*国内外を問わず.*TOEFL iBT.*IELTS Academic Module.*2006年4月2日.*2009年4月1日.*国公立大学医学科の国際バカロレア入試/u,
+    /最終学年を含め2年以上.*日本人学校等を除く.*国内外を問わず.*TOEFL iBT.*IELTS Academic Module.*2006年4月2日.*2009年4月1日.*国公立大学医学科の帰国生入試または国際バカロレア入試/u,
   );
   assert.match(
     returneeIb.note ?? "",
-    /一般入試一般枠の内数.*固有の出願資格.*独立日程.*大学入学共通テストは利用しません.*英語・数学の200点.*小論文.*二次判定.*最低点・有効期限.*入学手続日.*公表待ち/u,
+    /一般入試一般枠の内数.*固有の出願資格.*独立日程.*大学入学共通テストは利用しません.*英語・数学の200点.*小論文.*二次判定.*条件付合格者も12月7日/u,
   );
 
   for (const route of fujita.routes) {
-    assert.equal(route.publicationStatus, "outline");
+    assert.equal(route.publicationStatus, "complete");
     assert.deepEqual(
       route.events.map(({ stage, date }) => ({ stage, date })),
       [
@@ -2520,10 +2522,14 @@ test("藤田医科大学は2027年度公式概要の対象2方式・枠別資格
         { stage: "first-result", date: "2026-11-13" },
         { stage: "second-exam", date: "2026-11-22" },
         { stage: "final-result", date: "2026-11-30" },
+        { stage: "procedure-deadline", date: "2026-12-07" },
+        ...(route.id === "returnee-ib" ? [{ stage: "procedure-deadline", date: "2027-01-29" }] : []),
       ],
     );
     assert.equal(route.events[2]?.deadlineRule, "必着");
-    assert.equal(route.events.some((event) => event.stage === "procedure-deadline"), false);
+    assert.equal(route.events.find((event) => event.date === "2026-12-07")?.time, "23:59");
+    assert.equal(route.events.find((event) => event.stage === "first-result")?.time, "9:00頃");
+    assert.equal(route.events.find((event) => event.stage === "final-result")?.time, "9:00頃");
     assert.ok(route.sourceUrls.every((url) => url.startsWith("https://www.fujita-hu.ac.jp/")));
     assert.ok(route.sourceUrls.includes("https://www.fujita-hu.ac.jp/admission/admission_infoi.html"));
   }
@@ -2532,7 +2538,7 @@ test("藤田医科大学は2027年度公式概要の対象2方式・枠別資格
     privateMedicalSpecialAdmissionsEvents2027.filter(
       (event) => event.universityId === "fujita",
     ).length,
-    14,
+    17,
   );
   assert.match(
     fujita.excludedRoutes?.join(" ") ?? "",
@@ -2540,21 +2546,21 @@ test("藤田医科大学は2027年度公式概要の対象2方式・枠別資格
   );
 });
 
-test("大阪医科薬科大学は2027年度公式概要の対象4方式・英語資格・一段階推薦選考を保持", () => {
+test("大阪医科薬科大学は完成版の公開2方式と指定校2方式の未公表範囲を区別", () => {
   const ompu = privateMedicalSpecialAdmissionsUniversities2027.find(
     (university) => university.id === "osaka-med-pharm",
   );
 
   assert.ok(ompu, "大阪医科薬科大学のデータがありません");
   assert.equal(ompu.scopeStatus, "available");
-  assert.equal(ompu.publicationStatus, "outline");
+  assert.equal(ompu.publicationStatus, "partial");
   assert.equal(
     ompu.officialUrl,
-    "https://www.ompu.ac.jp/admission/undergraduate/qt931k000000801q-att/afif3u000000fsvj.pdf",
+    "https://www.ompu.ac.jp/admission/undergraduate/medical/qt931k0000005db0-att/cc9f84000000fmbf.pdf",
   );
   assert.match(
     ompu.statusNote,
-    /2027年度入試概要・変更予告.*対象4方式.*完成版入試要項は未公表.*学習成績・指定校・推薦者.*断定していません/u,
+    /2027年度完成版入試要項.*至誠仁術.*公募制推薦.*指定校制2方式.*対象校向け/u,
   );
   assert.doesNotMatch(
     ompu.statusNote,
@@ -2600,14 +2606,14 @@ test("大阪医科薬科大学は2027年度公式概要の対象4方式・英語
       "5名",
       true,
       "併願可",
-      "未公表",
+      "不要",
     ],
   );
-  assert.match(shisei.eligibility, /2027年3月卒業見込み.*卒業後1年以内.*指定共通テスト科目/u);
-  assert.match(shisei.gradeRequirement, /数値基準.*2027年度概要で未公表/u);
+  assert.match(shisei.eligibility, /2026年3月卒業.*2027年3月卒業.*修了見込み.*2025・2026年度.*指定共通テスト科目/u);
+  assert.match(shisei.gradeRequirement, /評定の数値基準なし.*概ね80％/u);
   assert.match(
     shisei.restrictions.join(" "),
-    /卒業後1年以内.*共通テストを第一次選考に利用.*活動報告書.*志願者評価書2通/u,
+    /卒業後1年以内.*共通テストを第一次選考に利用.*活動報告書.*2名.*志願者評価書各1通/u,
   );
   assert.match(
     shisei.note ?? "",
@@ -2621,6 +2627,8 @@ test("大阪医科薬科大学は2027年度公式概要の対象4方式・英語
     })),
     [
       { stage: "application-start", date: "2026-12-09" },
+      { stage: "application-deadline", date: "2027-01-15", deadlineRule: "Web登録" },
+      { stage: "application-deadline", date: "2027-01-15" },
       { stage: "application-deadline", date: "2027-01-15", deadlineRule: "消印有効" },
       { stage: "first-exam", date: "2027-01-16" },
       { stage: "first-exam", date: "2027-01-17" },
@@ -2645,13 +2653,20 @@ test("大阪医科薬科大学は2027年度公式概要の対象4方式・英語
     recommendationRoutes.map((route) => route.currentStudentEligible),
     [true, "unconfirmed", "unconfirmed"],
   );
-  assert.equal(publicRecommendation.eligibility.includes("既卒者は出願不可"), true);
+  assert.match(publicRecommendation.eligibility, /2027年3月卒業見込み.*学校長推薦/u);
+  assert.match(publicRecommendation.restrictions.join(" "), /既卒者は出願不可.*2024年4月1日以降.*TEAP CBT 420以上/u);
+  assert.equal(publicRecommendation.publicationStatus, "complete");
+  assert.equal(publicRecommendation.principalRecommendation, "必要");
+  assert.match(publicRecommendation.gradeRequirement, /4\.0以上/u);
+  assert.deepEqual(publicRecommendation.events.filter((event) => event.stage === "application-deadline").map(({time, deadlineRule}) => [time, deadlineRule]), [["13:00", "Web登録"], ["15:00", undefined], [undefined, "消印有効"]]);
+  assert.equal(publicRecommendation.events.find((event) => event.stage === "procedure-deadline")?.time, "15:00");
+  assert.equal(publicRecommendation.sourceUrls[0], ompu.officialUrl);
   assert.match(designated.eligibility, /本学指定の高校.*卒業見込み時期・既卒可否.*未公表/u);
   assert.match(regionalDesignated.eligibility, /医師少数県.*本学指定の高校.*対象県.*未公表/u);
   assert.doesNotMatch(designated.eligibility, /2027年3月卒業見込み|現役生/u);
   assert.doesNotMatch(regionalDesignated.eligibility, /2027年3月卒業見込み|現役生/u);
 
-  for (const route of recommendationRoutes) {
+  for (const route of [designated, regionalDesignated]) {
     assert.equal(route.publicationStatus, "outline");
     assert.equal(route.exclusive, "専願");
     assert.equal(route.principalRecommendation, "未公表");
@@ -2687,23 +2702,23 @@ test("大阪医科薬科大学は2027年度公式概要の対象4方式・英語
     );
     assert.equal(route.events.some((event) => event.stage === "first-result"), false);
     assert.equal(route.events.some((event) => event.stage === "second-exam"), false);
-    assert.equal(route.sourceUrls[0], ompu.officialUrl);
+    assert.equal(route.sourceUrls[0], "https://www.ompu.ac.jp/admission/undergraduate/qt931k000000801q-att/afif3u000000fsvj.pdf");
     assert.ok(route.sourceUrls.includes("https://www.ompu.ac.jp/admission/undergraduate/qt931k000000801q-att/hphm900000000alu.pdf"));
     assert.ok(route.sourceUrls.includes("https://www.ompu.ac.jp/admission/undergraduate/medical.html"));
     assert.ok(route.sourceUrls.includes("https://www.ompu.ac.jp/admission/undergraduate/medical/index.html"));
   }
 
-  const recommendationExamEntry = buildExamDisplayEntries(
+  const recommendationExamEntries = buildExamDisplayEntries(
     privateMedicalSpecialAdmissionsEvents2027.filter(
       (event) => event.universityId === "osaka-med-pharm",
     ),
-  ).find((entry) => entry.date === "2026-11-21");
-  assert.ok(recommendationExamEntry);
-  assert.equal(recommendationExamEntry.displayColumn, "single-exam");
+  ).filter((entry) => entry.date === "2026-11-21");
+  assert.equal(recommendationExamEntries.length, 2, "完成版と指定校向け概要の根拠を混同しないでください");
+  assert.ok(recommendationExamEntries.every((entry) => entry.displayColumn === "single-exam"));
   assertSameSet(
-    recommendationExamEntry.routeNames,
+    recommendationExamEntries.flatMap((entry) => entry.routeNames),
     recommendationRoutes.map((route) => route.officialName),
-    "同日の推薦3方式を大学単位にまとめ、一段階試験列へ表示してください",
+    "同日の推薦3方式を根拠別にまとめ、一段階試験列へ欠落なく表示してください",
   );
 
   for (const route of ompu.routes) {
@@ -2713,7 +2728,7 @@ test("大阪医科薬科大学は2027年度公式概要の対象4方式・英語
     privateMedicalSpecialAdmissionsEvents2027.filter(
       (event) => event.universityId === "osaka-med-pharm",
     ).length,
-    23,
+    27,
   );
   assert.match(
     ompu.excludedRoutes?.join(" ") ?? "",
@@ -3420,15 +3435,15 @@ test("久留米大学は2027年度公式概要の現役対象3方式と一日完
   );
 });
 
-test("産業医科大学は2027年度公式実施要項の対象2方式・共通テストの位置づけ・推薦条件を保持", () => {
+test("産業医科大学は2027年度完成版要項の対象2方式・共通テストの位置づけ・推薦条件を保持", () => {
   const uoeh = privateMedicalSpecialAdmissionsUniversities2027.find(
     (university) => university.id === "uoeh",
   );
 
   assert.ok(uoeh, "産業医科大学のデータがありません");
   assert.equal(uoeh.scopeStatus, "available");
-  assert.equal(uoeh.publicationStatus, "outline");
-  assert.match(uoeh.statusNote, /2027年度入学者選抜実施要項.*詳細募集要項は公表待ち/u);
+  assert.equal(uoeh.publicationStatus, "complete");
+  assert.match(uoeh.statusNote, /2027年度.*完成版募集要項/u);
   assert.doesNotMatch(
     uoeh.statusNote,
     /一般選抜A方式|一般選抜B方式|一般選抜C方式/u,
@@ -3444,8 +3459,8 @@ test("産業医科大学は2027年度公式実施要項の対象2方式・共通
       publicationStatus,
     ]),
     [
-      ["ramazzini", "総合型選抜（ラマツィーニ選抜）", "comprehensive", "10名以内", "outline"],
-      ["school-recommendation", "学校推薦型選抜", "recommendation", "25名以内", "outline"],
+      ["ramazzini", "総合型選抜（ラマツィーニ選抜）", "comprehensive", "10名以内", "complete"],
+      ["school-recommendation", "学校推薦型選抜", "recommendation", "25名以内", "complete"],
     ],
   );
 
@@ -3468,11 +3483,11 @@ test("産業医科大学は2027年度公式実施要項の対象2方式・共通
       { stage: "application-start", date: "2026-10-01", label: "出願開始" },
       { stage: "application-deadline", date: "2026-10-16", label: "出願締切", deadlineRule: "消印有効" },
       { stage: "first-exam", date: "2026-11-21", label: "プレゼンテーション試験" },
-      { stage: "first-result", date: "2026-11-27", label: "プレゼンテーション試験合格発表" },
+      { stage: "first-result", date: "2026-11-27", label: "プレゼンテーション試験合格発表", time: "16:00頃" },
       { stage: "second-exam", date: "2027-01-16", label: "大学入学共通テスト①", sequence: 1, choiceRule: "2日間とも受験" },
       { stage: "second-exam", date: "2027-01-17", label: "大学入学共通テスト②", sequence: 2, choiceRule: "2日間とも受験" },
-      { stage: "final-result", date: "2027-02-12", label: "最終合格発表" },
-      { stage: "procedure-deadline", date: "2027-02-26", label: "入学手続期間最終日" },
+      { stage: "final-result", date: "2027-02-12", label: "最終合格発表", time: "16:00頃" },
+      { stage: "procedure-deadline", date: "2027-02-26", label: "入学手続期間最終日（本人来学）", time: "14:30" },
     ],
   );
   assert.match(
@@ -3498,14 +3513,15 @@ test("産業医科大学は2027年度公式実施要項の対象2方式・共通
       { stage: "application-start", date: "2026-11-01", label: "出願開始" },
       { stage: "application-deadline", date: "2026-11-07", label: "出願締切", deadlineRule: "消印有効" },
       { stage: "first-exam", date: "2026-12-02", label: "総合問題・面接" },
-      { stage: "final-result", date: "2026-12-11", label: "合格発表" },
-      { stage: "procedure-deadline", date: "2026-12-17", label: "入学手続期間最終日" },
+      { stage: "final-result", date: "2026-12-11", label: "合格発表", time: "16:00頃" },
+      { stage: "procedure-deadline", date: "2026-12-17", label: "入学手続期間最終日（本人来学）", time: "14:30" },
     ],
   );
   assert.match(recommendation.note, /総合問題（120分）.*面接（1人約20分）.*12月16日・17日/u);
 
   for (const route of uoeh.routes) {
     assert.deepEqual(route.sourceUrls, [
+      `https://www.uoeh-u.ac.jp/library/nyusi/${route.id === "ramazzini" ? "R9_igaku_sogo_bosyuyoko.pdf" : "R9_igaku_suisen_bosyuyoko.pdf"}`,
       "https://www.uoeh-u.ac.jp/library/nyusi/R9_jissiyoko.pdf",
       `https://www.uoeh-u.ac.jp/Exam/${route.id === "ramazzini" ? "med03" : "med02"}.html`,
       "https://www.uoeh-u.ac.jp/Exam/_8042.html",

@@ -92,7 +92,7 @@ export const privateMedicalCanonicalRouteIds2027 = {
     "hyogo-medical--general--general-regional-quota-3470a",
   "hyogo-medical::一般選抜 B（英語資格試験活用型）":
     "hyogo-medical--general--general",
-  "kawasaki-medical::一般選抜・地域枠選抜（岡山県／静岡県・長崎県は設置協議中）":
+  "kawasaki-medical::一般選抜・地域枠選抜（岡山県／静岡県・長崎県は認可申請中）":
     "kawasaki-medical--general--general-regional-quota-c5d34-491fd-bf01d",
   "kurume::一般選抜 前期": "kurume--general--general-early",
   "kurume::一般選抜 後期": "kurume--general--general-late",

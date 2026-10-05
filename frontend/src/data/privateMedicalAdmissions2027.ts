@@ -61,24 +61,26 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
       officialRoute({
         name: "一般選抜",
         category: "general",
-        application: "2026/12/24〜2027/1/15（書類1/17必着）",
+        application: "Web登録 2026/12/24 10:00〜2027/1/15 13:00（書類1/17必着）",
         firstExam: "2/4",
         secondExam: "2/20・21の指定日",
-        result: "一次 2/12・最終 2/25",
+        result: "一次 2/12 16:00予定・最終 2/25 16:00予定",
         procedure: "納付金 3/5まで・書類提出期限 3/11",
+        procedureDateDetails: ["納付金の納入期限", "入学手続書類の提出期限"],
         sourceUrl:
-          "https://www.tohoku-mpu.ac.jp/wp/wp-content/uploads/2026/05/963a4d3c20d5c1e17605bf8aa1e7293c-1.pdf",
+          "https://www.tohoku-mpu.ac.jp/doc/application_medicine.pdf",
       }),
       officialRoute({
         name: "共通テスト利用",
         category: "common",
-        application: "2027/1/5〜1/22（書類1/24必着）",
+        application: "Web登録 2027/1/5 10:00〜1/22 13:00（書類1/24必着）",
         firstExam: "共通テスト 1/16・17",
         secondExam: "3/3",
-        result: "一次 2/12・最終 3/10",
+        result: "一次 2/12 16:00予定・最終 3/10 16:00予定",
         procedure: "納付金 3/18まで・書類提出期限 3/23",
+        procedureDateDetails: ["納付金の納入期限", "入学手続書類の提出期限"],
         sourceUrl:
-          "https://www.tohoku-mpu.ac.jp/wp/wp-content/uploads/2026/05/963a4d3c20d5c1e17605bf8aa1e7293c-1.pdf",
+          "https://www.tohoku-mpu.ac.jp/doc/application_medicine.pdf",
       }),
     ],
   },
@@ -112,22 +114,22 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
       officialRoute({
         name: "一般選抜 前期（栃木県・新潟県地域枠を含む）",
         category: "general",
-        application: "2026/12/23〜2027/2/1",
+        application: "Web登録 2026/12/23〜2027/1/31 12:00（書類2/1 17:00必着）",
         firstExam: "2/12・13（両日受験可）",
-        secondExam: "2/19・20のいずれか1日（指定方法未公表）",
+        secondExam: "2/19・20のいずれか1日（出願時に希望・受付順に決定、変更不可）",
         result: "一次 2/16 10:00・最終 2/26 17:00",
         procedure: "3/4",
-        sourceUrl: "https://www.dokkyomed.ac.jp/dusm/exam/entrance/",
+        sourceUrl: "https://www.dokkyomed.ac.jp/upload/CommonFile/files/dokkyo_20260827100450.pdf",
       }),
       officialRoute({
         name: "一般選抜 後期",
         category: "general",
-        application: "2027/2/8〜3/1",
+        application: "Web登録 2027/2/8〜2/28 12:00（書類3/1 17:00必着）",
         firstExam: "3/8",
         secondExam: "3/15",
         result: "一次 3/11 10:00・最終 3/17 17:00",
         procedure: "3/24",
-        sourceUrl: "https://www.dokkyomed.ac.jp/dusm/exam/entrance/",
+        sourceUrl: "https://www.dokkyomed.ac.jp/upload/CommonFile/files/dokkyo_20260827100450.pdf",
       }),
     ],
   },
@@ -832,22 +834,24 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application: "2026/12/7〜2027/1/22（書類1/25必着）",
         firstExam: "2/4",
-        secondExam: "2/14・15のいずれか1日（指定方法未公表・要項公開待ち）",
-        result: "一次 2/9・最終 2/18",
-        procedure: "2027年度学生募集要項で確認",
+        secondExam: "2/14・15の午前・午後から希望順位を出願時に登録（出願日時順に決定・変更不可。共テ利用との面接は1回）",
+        result: "一次 2/9 9:00頃・最終 2/18 9:00頃",
+        procedure: "1次（入学金）2/24 23:59・2次（授業料等）3/10 23:59",
+        procedureDateDetails: ["1次：入学金の納入期限23:59", "2次：入学金以外の授業料等の納入期限23:59"],
         sourceUrl:
-          "https://www.fujita-hu.ac.jp/admission/exam-med/dubv6r0000001ec6-att/j93sdv000000ub7u.pdf",
+          "https://www.fujita-hu.ac.jp/admission/vsfo8q0000007l3n-att/tedb9e000000p7j6.pdf",
       }),
       officialRoute({
         name: "共通テスト利用入試",
         category: "common",
         application: "2026/12/7〜2027/1/15（書類1/18必着）",
         firstExam: "共通テスト 1/16・17",
-        secondExam: "2/14・15のいずれか1日（指定方法未公表・要項公開待ち）",
-        result: "一次 2/9・最終 2/18",
-        procedure: "2027年度学生募集要項で確認",
+        secondExam: "2/14・15の午前・午後から希望順位を出願時に登録（出願日時順に決定・変更不可。一般との面接は1回）",
+        result: "一次 2/9 9:00頃・最終 2/18 9:00頃",
+        procedure: "1次（入学金）2/24 23:59・2次（授業料等）3/10 23:59",
+        procedureDateDetails: ["1次：入学金の納入期限23:59", "2次：入学金以外の授業料等の納入期限23:59"],
         sourceUrl:
-          "https://www.fujita-hu.ac.jp/admission/exam-med/dubv6r0000001ec6-att/j93sdv000000ub7x.pdf",
+          "https://www.fujita-hu.ac.jp/admission/vsfo8q0000007l3n-att/tedb9e000000p7j6.pdf",
       }),
     ],
   },
@@ -861,35 +865,38 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
       officialRoute({
         name: "一般選抜 前期（大阪府地域枠含む）",
         category: "general",
-        application: "2026/12/9〜2027/1/20（消印有効）",
+        application: "Web登録 2026/12/9〜2027/1/20 13:00（検定料15:00、書類同日消印有効）",
+        applicationDeadlineDateDetails: ["Web登録13:00・検定料15:00・書類同日消印有効"],
         firstExam: "2/10（小論文も実施）",
         secondExam: "2/19（面接）",
-        result: "一次 2/17・最終 2/20",
-        procedure: "2/27まで",
+        result: "一次 2/17 13:00・最終 2/20 13:00",
+        procedure: "2/27 15:00まで",
         sourceUrl:
-          "https://www.ompu.ac.jp/admission/undergraduate/qt931k000000801q-att/afif3u000000fsvj.pdf",
+          "https://www.ompu.ac.jp/admission/undergraduate/medical/qt931k0000005db0-att/cc9f84000000fmbf.pdf",
       }),
       officialRoute({
         name: "一般選抜 後期",
         category: "general",
-        application: "2026/12/9〜2027/2/26（消印有効）",
+        application: "Web登録 2026/12/9〜2027/2/22 13:00（検定料15:00、書類同日消印有効）",
+        applicationDeadlineDateDetails: ["Web登録13:00・検定料15:00・書類同日消印有効"],
         firstExam: "3/10",
         secondExam: "3/18（小論文・面接）",
-        result: "一次 3/16・最終 3/19",
-        procedure: "3/26まで",
+        result: "一次 3/16 13:00・最終 3/19 13:00",
+        procedure: "3/26 15:00まで",
         sourceUrl:
-          "https://www.ompu.ac.jp/admission/undergraduate/qt931k000000801q-att/afif3u000000fsvj.pdf",
+          "https://www.ompu.ac.jp/admission/undergraduate/medical/qt931k0000005db0-att/cc9f84000000fmbf.pdf",
       }),
       officialRoute({
         name: "大学入学共通テスト利用選抜",
         category: "common",
-        application: "2026/12/9〜2027/1/15（消印有効）",
+        application: "Web登録 2026/12/9〜2027/1/15 13:00（検定料15:00、書類同日消印有効）",
+        applicationDeadlineDateDetails: ["Web登録13:00・検定料15:00・書類同日消印有効"],
         firstExam: "共通テスト 1/16・17",
         secondExam: "2/28（小論文・面接）",
-        result: "一次 2/17・最終 3/1",
-        procedure: "3/8まで",
+        result: "一次 2/17 13:00・最終 3/1 13:00",
+        procedure: "3/8 15:00まで",
         sourceUrl:
-          "https://www.ompu.ac.jp/admission/undergraduate/qt931k000000801q-att/afif3u000000fsvj.pdf",
+          "https://www.ompu.ac.jp/admission/undergraduate/medical/qt931k0000005db0-att/cc9f84000000fmbf.pdf",
       }),
     ],
   },
@@ -1102,7 +1109,7 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
     strategyPath: "/kawasakiika-university-entrance-exam-measures2027/",
     routes: [
       officialRoute({
-        name: "一般選抜・地域枠選抜（岡山県／静岡県・長崎県は設置協議中）",
+        name: "一般選抜・地域枠選抜（岡山県／静岡県・長崎県は認可申請中）",
         category: "general",
         application:
           "Web登録・検定料 2026/12/1 9:00〜2027/1/7 15:00（検定料は登録翌日23:59まで、最終日登録分は15:00まで）・1/7 17:00書類必着（書類受付はWeb登録と同期間）",
@@ -1117,7 +1124,7 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
           "入学金・学費等振込／書類郵送（消印有効）",
           "諸会費振込／証明書郵送（消印有効）",
         ],
-        sourceUrl: "https://m.kawasaki-m.ac.jp/examination/youkou.php",
+        sourceUrl: "https://edu.career-tasu.jp/p/digital_pamph/frame.aspx?FL=0&id=7806900-2-15",
       }),
     ],
   },
@@ -1201,58 +1208,58 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         name: "一般選抜 A方式",
         category: "common",
         application:
-          "2026/12/11〜2027/1/15（郵送書類は締切日消印有効／Web終了時刻は10月上旬公開予定の学生募集要項で確認）",
+          "2026/12/11〜2027/1/15（郵送書類は締切日消印有効。Web終了時刻は出願サイトで確認）",
         applicationDeadlineDateDetails: [
-          "郵送書類1/15消印有効（Web終了時刻は学生募集要項公開待ち）",
+          "郵送書類1/15消印有効。Web登録・検定料支払も期間内に完了",
         ],
         firstExam: "大学入学共通テスト 1/16・17＋個別 2/14",
         secondExam: "3/12（小論文120分・面接1人約20分）",
-        result: "二次受験資格（小論文・面接）2/26・最終 3/19",
+        result: "二次受験資格（小論文・面接）2/26 16:00頃・最終 3/19 16:00頃",
         procedure:
-          "入学手続期間 3/24〜3/25（時刻と方法は10月上旬公開予定の学生募集要項で確認）",
+          "入学手続期間 3/24〜3/25（本人来学。受付9:00〜11:30・13:00〜14:30）",
         procedureDateDetails: [
           "入学手続開始",
-          "入学手続締切（時刻・方法は学生募集要項公開待ち）",
+          "入学手続締切14:30（本人来学。11:30〜13:00は受付休止）",
         ],
-        sourceUrl: "https://www.uoeh-u.ac.jp/library/nyusi/R9_jissiyoko.pdf",
+        sourceUrl: "https://www.uoeh-u.ac.jp/library/nyusi/R9_igaku_ippan_bosyuyoko.pdf",
       }),
       officialRoute({
         name: "一般選抜 B方式",
         category: "general",
         application:
-          "2026/12/11〜2027/1/25（郵送書類は締切日消印有効／Web終了時刻は10月上旬公開予定の学生募集要項で確認）",
+          "2026/12/11〜2027/1/25（郵送書類は締切日消印有効。Web終了時刻は出願サイトで確認）",
         applicationDeadlineDateDetails: [
-          "郵送書類1/25消印有効（Web終了時刻は学生募集要項公開待ち）",
+          "郵送書類1/25消印有効。Web登録・検定料支払も期間内に完了",
         ],
         firstExam: "2/14（個別学力検査）",
         secondExam: "3/12（小論文120分・面接1人約20分）",
-        result: "二次受験資格（小論文・面接）2/26・最終 3/19",
+        result: "二次受験資格（小論文・面接）2/26 16:00頃・最終 3/19 16:00頃",
         procedure:
-          "入学手続期間 3/24〜3/25（時刻と方法は10月上旬公開予定の学生募集要項で確認）",
+          "入学手続期間 3/24〜3/25（本人来学。受付9:00〜11:30・13:00〜14:30）",
         procedureDateDetails: [
           "入学手続開始",
-          "入学手続締切（時刻・方法は学生募集要項公開待ち）",
+          "入学手続締切14:30（本人来学。11:30〜13:00は受付休止）",
         ],
-        sourceUrl: "https://www.uoeh-u.ac.jp/library/nyusi/R9_jissiyoko.pdf",
+        sourceUrl: "https://www.uoeh-u.ac.jp/library/nyusi/R9_igaku_ippan_bosyuyoko.pdf",
       }),
       officialRoute({
         name: "一般選抜 C方式",
         category: "common",
         application:
-          "2026/12/11〜2027/2/21（郵送書類は締切日消印有効／Web終了時刻は10月上旬公開予定の学生募集要項で確認）",
+          "2026/12/11〜2027/2/21（郵送書類は締切日消印有効。Web終了時刻は出願サイトで確認）",
         applicationDeadlineDateDetails: [
-          "郵送書類2/21消印有効（Web終了時刻は学生募集要項公開待ち）",
+          "郵送書類2/21消印有効。Web登録・検定料支払も期間内に完了",
         ],
         firstExam: "大学入学共通テスト 1/16・17",
         secondExam: "3/12（小論文120分・面接1人約20分）",
-        result: "二次受験資格（小論文・面接）3/4・最終 3/19",
+        result: "二次受験資格（小論文・面接）3/4 16:00頃・最終 3/19 16:00頃",
         procedure:
-          "入学手続期間 3/24〜3/25（時刻と方法は10月上旬公開予定の学生募集要項で確認）",
+          "入学手続期間 3/24〜3/25（本人来学。受付9:00〜11:30・13:00〜14:30）",
         procedureDateDetails: [
           "入学手続開始",
-          "入学手続締切（時刻・方法は学生募集要項公開待ち）",
+          "入学手続締切14:30（本人来学。11:30〜13:00は受付休止）",
         ],
-        sourceUrl: "https://www.uoeh-u.ac.jp/library/nyusi/R9_jissiyoko.pdf",
+        sourceUrl: "https://www.uoeh-u.ac.jp/library/nyusi/R9_igaku_ippan_bosyuyoko.pdf",
       }),
     ],
   },
@@ -1314,6 +1321,8 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
 // 「official」は、一般選抜・共通テスト利用選抜の完全版要項を確認できた大学のみ。
 // 公式の概要・予告日程に基づく大学は、日付を掲載しつつ「preliminary」として区別する。
 const fullGuidelineUniversityIds2027 = new Set([
+  "tohoku-med-pharm",
+  "dokkyo-medical",
   "jichi-medical",
   "saitama-medical",
   "iuhw",
@@ -1327,9 +1336,12 @@ const fullGuidelineUniversityIds2027 = new Set([
   "marianna",
   "kanazawa-medical",
   "aichi-medical",
+  "fujita",
+  "osaka-med-pharm",
   "kansai-medical",
   "hyogo-medical",
   "kawasaki-medical",
+  "uoeh",
 ]);
 
 export const privateMedicalUniversities2027: PrivateMedicalUniversity[] =
@@ -1406,7 +1418,7 @@ const examCalendarEvents2027 = [
     date: "2/1",
     weekday: "月",
     first: [
-      "川崎医科（一般・地域枠〔静岡県・長崎県は設置協議中〕）",
+      "川崎医科（一般・地域枠〔静岡県・長崎県は認可申請中〕）",
       "日大（N全学統一方式・第1期）",
       "日本医科（一般・地域枠前期／グローバル）",
       "久留米（一般・前期）",
@@ -1494,7 +1506,7 @@ const examCalendarEvents2027 = [
     first: ["大阪医科薬科（一般・前期／大阪府地域枠）"],
     second: [
       "日本医科①（一般・地域枠前期／グローバル／①〜②から希望日を提出・東京都地域枠は①指定）",
-      "川崎医科①（一般・地域枠〔静岡県・長崎県は設置協議中〕／①〜②から大学指定）",
+      "川崎医科①（一般・地域枠〔静岡県・長崎県は認可申請中〕／①〜②から大学指定）",
     ],
   },
   {
@@ -1504,7 +1516,7 @@ const examCalendarEvents2027 = [
     second: [
       "日大（N全学統一方式・第1期）",
       "杏林①（一般／①〜②の希望をもとに大学指定）",
-      "川崎医科②（一般・地域枠〔静岡県・長崎県は設置協議中〕／①〜②から大学指定）",
+      "川崎医科②（一般・地域枠〔静岡県・長崎県は認可申請中〕／①〜②から大学指定）",
     ],
   },
   {
@@ -1547,7 +1559,7 @@ const examCalendarEvents2027 = [
       "北里②（一般・共テ前期／①〜③から出願時選択・両方式併願は同日・相模原市枠は①〜②）",
       "聖マリアンナ医科②（一般・前期／①〜②から希望日を提出・大学が指定）",
       "東海②（一般・共テ・地域枠／①〜②から出願時選択）",
-      "藤田医科①（一般・共テ／①〜②のいずれか1日・指定方法未公表）",
+      "藤田医科①（一般・共テ／午前・午後の希望順位を出願日時順に決定・変更不可・面接1回）",
       "近畿（一般・前期／地域枠・前期型）",
       "福岡（系統別・共テⅠ期／面接）",
     ],
@@ -1561,7 +1573,7 @@ const examCalendarEvents2027 = [
       "東京女子医科③（一般・地域枠／①〜③から希望日を提出・希望に添えない場合あり）",
       "北里③（一般・共テ前期／①〜③から出願時選択・両方式併願は同日・相模原市枠は選択不可）",
       "東邦①（一般入試／①〜②のいずれか1日・指定方法未公表）",
-      "藤田医科②（一般・共テ／①〜②のいずれか1日・指定方法未公表）",
+      "藤田医科②（一般・共テ／午前・午後の希望順位を出願日時順に決定・変更不可・面接1回）",
     ],
   },
   {
@@ -1600,7 +1612,7 @@ const examCalendarEvents2027 = [
     first: [],
     second: [
       "愛知医科②（一般・共テ／①〜③のうち希望する1日・両方式で二次資格なら面接1回）",
-      "獨協医科①（一般・前期／①〜②のいずれか1日・指定方法未公表）",
+      "獨協医科①（一般・前期／①〜②の希望を出願受付順に決定・変更不可）",
       "大阪医科薬科（一般・前期／大阪府地域枠）",
     ],
   },
@@ -1610,7 +1622,7 @@ const examCalendarEvents2027 = [
     first: [],
     second: [
       "東北医科薬科①（一般／①〜②から大学指定）",
-      "獨協医科②（一般・前期／①〜②のいずれか1日・指定方法未公表）",
+      "獨協医科②（一般・前期／①〜②の希望を出願受付順に決定・変更不可）",
       "国際医療福祉②（共テ／①・②の両日受験／面接／一般選抜受験者は免除あり）",
       "杏林（共テ／小論文・面接）",
       "東京慈恵会医科①（一般／①〜③のいずれか1日・指定方法未公表）",
@@ -1798,10 +1810,10 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     date: "1/7",
     dateTime: "2027-01-07",
     university: "川崎医科大学",
-    routes: "一般選抜／地域枠（岡山県・静岡県※・長崎県※、※設置協議中）",
+    routes: "一般選抜／地域枠（岡山県・静岡県※・長崎県※、※認可申請中）",
     webDeadline: "1/7 15:00",
     documentDeadline: "1/7 17:00 必着",
-    sourceUrl: "https://m.kawasaki-m.ac.jp/examination/youkou.php",
+    sourceUrl: "https://edu.career-tasu.jp/p/digital_pamph/frame.aspx?FL=0&id=7806900-2-15",
   },
   {
     date: "1/7",
@@ -1898,10 +1910,10 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     dateTime: "2027-01-15",
     university: "東北医科薬科大学",
     routes: "一般選抜",
-    webDeadline: "1/15（時刻未公表）",
+    webDeadline: "1/15 13:00",
     documentDeadline: "1/17 必着",
     sourceUrl:
-      "https://www.tohoku-mpu.ac.jp/wp/wp-content/uploads/2026/05/963a4d3c20d5c1e17605bf8aa1e7293c-1.pdf",
+      "https://www.tohoku-mpu.ac.jp/doc/application_medicine.pdf",
   },
   {
     date: "1/15",
@@ -1973,16 +1985,16 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     routes: "共通テスト利用入試",
     webDeadline: "1/15（時刻未公表）",
     documentDeadline: "1/18 必着",
-    sourceUrl: "https://www.fujita-hu.ac.jp/admission/exam-med/schedule.html",
+    sourceUrl: "https://www.fujita-hu.ac.jp/admission/vsfo8q0000007l3n-att/tedb9e000000p7j6.pdf",
   },
   {
     date: "1/15",
     dateTime: "2027-01-15",
     university: "大阪医科薬科大学",
     routes: "大学入学共通テスト利用選抜",
-    webDeadline: "登録時刻は要項公開待ち",
+    webDeadline: "1/15 13:00（検定料15:00まで）",
     documentDeadline: "1/15 消印有効",
-    sourceUrl: "https://www.ompu.ac.jp/admission/undergraduate/medical/afif3u000000fsz9-att/afif3u000000ft1c.pdf",
+    sourceUrl: "https://www.ompu.ac.jp/admission/undergraduate/medical/qt931k0000005db0-att/cc9f84000000fmbf.pdf",
   },
   {
     date: "1/15",
@@ -2007,9 +2019,9 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     dateTime: "2027-01-15",
     university: "産業医科大学",
     routes: "一般A方式",
-    webDeadline: "終了時刻は10月上旬公開予定の学生募集要項で確認",
+    webDeadline: "期間内に登録・検定料支払。終了時刻はWeb出願サイトで確認",
     documentDeadline: "1/15 消印有効",
-    sourceUrl: "https://www.uoeh-u.ac.jp/library/nyusi/R9_jissiyoko.pdf",
+    sourceUrl: "https://www.uoeh-u.ac.jp/library/nyusi/R9_igaku_ippan_bosyuyoko.pdf",
   },
   {
     date: "1/15",
@@ -2091,9 +2103,9 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     dateTime: "2027-01-20",
     university: "大阪医科薬科大学",
     routes: "一般前期（大阪府地域枠含む）",
-    webDeadline: "登録時刻は要項公開待ち",
+    webDeadline: "1/20 13:00（検定料15:00まで）",
     documentDeadline: "1/20 消印有効",
-    sourceUrl: "https://www.ompu.ac.jp/admission/undergraduate/medical/afif3u000000fsz9-att/afif3u000000ft1c.pdf",
+    sourceUrl: "https://www.ompu.ac.jp/admission/undergraduate/medical/qt931k0000005db0-att/cc9f84000000fmbf.pdf",
   },
   {
     date: "1/20",
@@ -2129,10 +2141,10 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     dateTime: "2027-01-22",
     university: "東北医科薬科大学",
     routes: "共テ利用",
-    webDeadline: "1/22（時刻未公表）",
+    webDeadline: "1/22 13:00",
     documentDeadline: "1/24 必着",
     sourceUrl:
-      "https://www.tohoku-mpu.ac.jp/wp/wp-content/uploads/2026/05/963a4d3c20d5c1e17605bf8aa1e7293c-1.pdf",
+      "https://www.tohoku-mpu.ac.jp/doc/application_medicine.pdf",
   },
   {
     date: "1/22",
@@ -2159,7 +2171,7 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     routes: "一般入試（愛知県地域枠含む）",
     webDeadline: "1/22（時刻未公表）",
     documentDeadline: "1/25 必着",
-    sourceUrl: "https://www.fujita-hu.ac.jp/admission/exam-med/schedule.html",
+    sourceUrl: "https://www.fujita-hu.ac.jp/admission/vsfo8q0000007l3n-att/tedb9e000000p7j6.pdf",
   },
   {
     date: "1/25",
@@ -2175,9 +2187,9 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     dateTime: "2027-01-25",
     university: "産業医科大学",
     routes: "一般B方式",
-    webDeadline: "終了時刻は10月上旬公開予定の学生募集要項で確認",
+    webDeadline: "期間内に登録・検定料支払。終了時刻はWeb出願サイトで確認",
     documentDeadline: "1/25 消印有効",
-    sourceUrl: "https://www.uoeh-u.ac.jp/library/nyusi/R9_jissiyoko.pdf",
+    sourceUrl: "https://www.uoeh-u.ac.jp/library/nyusi/R9_igaku_ippan_bosyuyoko.pdf",
   },
   {
     date: "1/26",
@@ -2189,13 +2201,13 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     sourceUrl: "https://www.toho-u.ac.jp/med/info_exam/ippan.html",
   },
   {
-    date: "2/1",
-    dateTime: "2027-02-01",
+    date: "1/31",
+    dateTime: "2027-01-31",
     university: "獨協医科大学",
     routes: "一般前期（栃木・新潟地域枠を含む）",
-    webDeadline: "登録方法・時刻は要項公開待ち",
-    documentDeadline: "提出方法・期限は要項公開待ち",
-    sourceUrl: "https://www.dokkyomed.ac.jp/dusm/exam/entrance/",
+    webDeadline: "1/31 12:00",
+    documentDeadline: "2/1 17:00 必着",
+    sourceUrl: "https://www.dokkyomed.ac.jp/upload/CommonFile/files/dokkyo_20260827100450.pdf",
   },
   {
     date: "2/1",
@@ -2265,9 +2277,9 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     dateTime: "2027-02-21",
     university: "産業医科大学",
     routes: "一般C方式",
-    webDeadline: "終了時刻は10月上旬公開予定の学生募集要項で確認",
+    webDeadline: "期間内に登録・検定料支払。終了時刻はWeb出願サイトで確認",
     documentDeadline: "2/21 消印有効",
-    sourceUrl: "https://www.uoeh-u.ac.jp/library/nyusi/R9_jissiyoko.pdf",
+    sourceUrl: "https://www.uoeh-u.ac.jp/library/nyusi/R9_igaku_ippan_bosyuyoko.pdf",
   },
   {
     date: "2/23",
@@ -2333,24 +2345,24 @@ export const applicationDeadlineEntries2027: ApplicationDeadlineEntry2027[] = [
     sourceUrl: "https://www.aichi-med-u.ac.jp/files/igaku/2027nenndogakuseibosyuuyoukou_0731.pdf",
   },
   {
-    date: "2/26",
-    dateTime: "2027-02-26",
+    date: "2/22",
+    dateTime: "2027-02-22",
     university: "大阪医科薬科大学",
     routes: "一般後期",
-    webDeadline: "登録時刻は要項公開待ち",
-    documentDeadline: "2/26 消印有効",
-    sourceUrl: "https://www.ompu.ac.jp/admission/undergraduate/medical/afif3u000000fsz9-att/afif3u000000ft1c.pdf",
+    webDeadline: "2/22 13:00（検定料15:00まで）",
+    documentDeadline: "2/22 消印有効",
+    sourceUrl: "https://www.ompu.ac.jp/admission/undergraduate/medical/qt931k0000005db0-att/cc9f84000000fmbf.pdf",
   },
   {
-    date: "3/1",
-    dateTime: "2027-03-01",
+    date: "2/28",
+    dateTime: "2027-02-28",
     university: "獨協医科大学",
     routes: "一般後期",
-    webDeadline: "登録方法・時刻は要項公開待ち",
-    documentDeadline: "提出方法・期限は要項公開待ち",
-    sourceUrl: "https://www.dokkyomed.ac.jp/dusm/exam/entrance/",
+    webDeadline: "2/28 12:00",
+    documentDeadline: "3/1 17:00 必着",
+    sourceUrl: "https://www.dokkyomed.ac.jp/upload/CommonFile/files/dokkyo_20260827100450.pdf",
   },
-];
+].sort((a, b) => (a.dateTime ?? "9999").localeCompare(b.dateTime ?? "9999"));
 
 const examCalendarEventByDate2027 = new Map<
   string,
@@ -2533,6 +2545,12 @@ const parseScheduleDates = (
 };
 
 const examSelectionDetail = (value: string) => {
+  if (value.includes("希望順位") && value.includes("出願日時順")) {
+    return "午前・午後の希望順位を出願日時順に決定・変更不可・併願時の面接1回";
+  }
+  if (value.includes("希望") && value.includes("受付順")) {
+    return "希望を出願受付順に決定・変更不可";
+  }
   if (value.includes("双方一次合格") || value.includes("1回のみ")) {
     return "両方式一次合格者は1回のみ";
   }
@@ -2652,6 +2670,10 @@ const procedureDateDetail = (
 
   return value;
 };
+
+// Preserve the time attached to this date, without borrowing another result's time.
+const resultTimeDetail = (value: string | undefined, date: ParsedScheduleDate) =>
+  value?.slice(date.endIndex).match(/^\s*(\d{1,2}:\d{2}(?:頃|予定)?)/)?.[1];
 
 const fullScheduleEventMap2027 = new Map<
   string,
@@ -2777,15 +2799,17 @@ privateMedicalUniversities2027.forEach((university) => {
     firstResultDates.forEach((date) => {
       addFullScheduleEvent2027(date, "firstResult", {
         ...entryBase,
-        detail: route.result?.startsWith("二次受験資格")
-          ? "二次受験資格発表"
-          : "一次合格発表",
+        detail: [
+          route.result?.startsWith("二次受験資格") ? "二次受験資格発表" : "一次合格発表",
+          resultTimeDetail(resultParts[0], date),
+        ].filter(Boolean).join("・"),
       });
     });
     finalResultDates.forEach((date) => {
       addFullScheduleEvent2027(date, "finalResult", {
         ...entryBase,
-        detail: "最終合格発表",
+        detail: ["最終合格発表", resultTimeDetail(resultParts.slice(1).join("最終"), date)]
+          .filter(Boolean).join("・"),
       });
     });
     if (firstResultDates.length === 0) pendingFields.push("firstResult");
@@ -2840,9 +2864,9 @@ addFullScheduleEvent2027(
     route: "一般選抜 前期・大阪府地域枠（繰り上げ合格候補対象者）",
     category: "general",
     detail: "繰り上げ合格候補対象者のみ",
-    status: "preliminary",
+    status: "official",
     sourceUrl:
-      "https://www.ompu.ac.jp/admission/undergraduate/qt931k000000801q-att/afif3u000000fsvj.pdf",
+      "https://www.ompu.ac.jp/admission/undergraduate/medical/qt931k0000005db0-att/cc9f84000000fmbf.pdf",
   },
 );
 

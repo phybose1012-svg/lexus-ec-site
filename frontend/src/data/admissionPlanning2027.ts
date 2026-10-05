@@ -58,7 +58,7 @@ export const admissionPlanningMetadata2027 = {
   academicYear: 2027,
   sourceFile: "frontend/src/data/privateMedicalAdmissions2027.ts",
   publicUrl: "https://lexus-ec.com/private-medical-school-admissions-schedule-2027/",
-  lastVerified: "2026-08-11",
+  lastVerified: "2026-10-05",
   routeIdPolicy: {
     id: "保存済み受験プランとの互換性を保つplanner専用ID",
     canonicalRouteId: "日程・会場など複数データ間の結合に使う共通方式ID",
@@ -121,6 +121,11 @@ const stableHash = (value: string) => {
 };
 
 const stableRouteIdOverrides = new Map<string, string>([
+  // Approval-status wording must not invalidate a previously saved Kawasaki plan.
+  [
+    "kawasaki-medical::general::一般選抜・地域枠選抜（岡山県／静岡県・長崎県は認可申請中）",
+    "kawasaki-medical--general--scuh5c",
+  ],
   // Keep saved plans compatible after the 2027 official guideline clarified this route's formal name.
   [
     "aichi-medical::common::大学入学共通テスト利用選抜（愛知県地域特別枠B方式）",
@@ -138,7 +143,7 @@ const isPendingValue = (value: string) =>
 const assignmentFor = (value: string, dates: string[]): PlanningAssignment2027 => {
   if (dates.length === 0) return "unknown";
   if (dates.length === 1) return "fixed";
-  if (/希望をもとに大学が指定|希望日を選択し大学が指定|希望調査.*大学が指定|希望に添えない/.test(value)) {
+  if (/希望をもとに大学が指定|希望日を選択し大学が指定|希望調査.*大学が指定|希望に添えない|希望順位|希望.*受付順/.test(value)) {
     return "candidate_preference";
   }
   if (/指定方法未公表|大学指定日|指定日|出願が早い順/.test(value)) {
