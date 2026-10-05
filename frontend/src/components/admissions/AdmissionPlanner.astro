@@ -45,26 +45,36 @@ const plannerPayload = JSON.stringify({
         class="admissions-print-button"
         data-print-section="planner"
         data-print-title="2027年度 私立医学部 受験大学プラン"
+        hidden
       >
         このプランを印刷
       </button>
     </header>
 
-    <div class="admissions-planner__notice" role="note">
-      <strong>使い方</strong>
-      <span>大学と方式を追加して志望度を設定します。選択できる試験日は指定し、二次試験は重なりが少ない日を確認できます。大学指定・調整中の日程は仮の候補です。</span>
-    </div>
-    <p class="admissions-planner__conditions-note">この機能は日程の整理用です。出願資格・専願条件・同一大学内の併願可否・会場間の移動時間は自動判定しません。総合型・推薦型等は、選択後に表示される出願条件も必ず確認してください。</p>
     <noscript><p>プランの作成・保存にはJavaScriptが必要です。日程一覧は上のリンクから確認できます。</p></noscript>
 
+    <nav class="admissions-planner__progress" aria-label="プラン作成のステップ" data-planner-controls>
+      <ol>
+        {[
+          "大学・方式", "志望度・受験日", "内容確認", "カレンダー",
+        ].map((label, index) => (
+          <li><button type="button" data-planner-step-link={index + 1} aria-current={index === 0 ? "step" : undefined} disabled={index > 0}>
+            <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><strong>{label}</strong>
+          </button></li>
+        ))}
+      </ol>
+    </nav>
+
     <div class="admissions-planner__workspace">
-      <div class="admissions-planner__controls" data-planner-controls>
-        <section class="admissions-planner__step" aria-labelledby="planner-step-1">
+        <section class="admissions-planner__step" aria-labelledby="planner-step-1" data-planner-panel="1" data-planner-controls>
           <div class="admissions-planner__step-heading">
-            <span>STEP 1</span>
-            <h3 id="planner-step-1">受験する大学・方式を選ぶ</h3>
+            <span>STEP 1 / 4</span>
+            <h3 id="planner-step-1" tabindex="-1">まず、受験したい大学・方式を。</h3>
+            <p>大学を切り替えながら、気になる方式を追加しましょう。異なる選抜区分も一緒に選べます。</p>
           </div>
 
+          <div class="admissions-planner__choose-layout">
+          <div>
           <label class="admissions-planner__field">
             <span>選抜区分で絞り込む</span>
             <select data-planner-category aria-label="選抜区分で絞り込む">
@@ -96,12 +106,23 @@ const plannerPayload = JSON.stringify({
 
           <div class="admissions-planner__route-options" data-planner-route-options></div>
           <p class="admissions-planner__limit">一度に12方式まで選択できます。</p>
+          </div>
+          <aside class="admissions-planner__basket" aria-label="選択中の大学・方式">
+            <div class="admissions-planner__basket-heading"><h4>あなたの選択</h4><span data-planner-count aria-live="polite">0大学・0方式</span></div>
+            <div data-planner-basket></div>
+          </aside>
+          </div>
+          <div class="admissions-planner__actions">
+            <p data-planner-selection-hint>方式を1つ以上選ぶと次へ進めます。</p>
+            <button type="button" class="admissions-planner__next" data-planner-next="2" disabled>次へ：志望度・受験日 <span aria-hidden="true">→</span></button>
+          </div>
         </section>
 
-        <section class="admissions-planner__step" aria-labelledby="planner-step-2">
+        <section class="admissions-planner__step" aria-labelledby="planner-step-2" data-planner-panel="2" data-planner-controls hidden>
           <div class="admissions-planner__step-heading">
-            <span>STEP 2</span>
-            <h3 id="planner-step-2">志望度と組み方を決める</h3>
+            <span>STEP 2 / 4</span>
+            <h3 id="planner-step-2" tabindex="-1">あなたに合った組み方に。</h3>
+            <p>各方式の志望度と、選べる試験日を設定します。二次試験は、この方針をもとに重なりの少ない候補日を探します。</p>
           </div>
 
           <fieldset class="admissions-planner__goal">
@@ -117,10 +138,32 @@ const plannerPayload = JSON.stringify({
           </fieldset>
 
           <div class="admissions-planner__selected" data-planner-selected></div>
+          <div class="admissions-planner__actions">
+            <button type="button" class="admissions-planner__back" data-planner-step-link="1">← 大学・方式に戻る</button>
+            <button type="button" class="admissions-planner__next" data-planner-next="3">次へ：内容確認 <span aria-hidden="true">→</span></button>
+          </div>
         </section>
-      </div>
 
-      <div class="admissions-planner__output" aria-live="polite">
+        <section class="admissions-planner__step" aria-labelledby="planner-step-3" data-planner-panel="3" data-planner-controls hidden>
+          <div class="admissions-planner__step-heading">
+            <span>STEP 3 / 4</span>
+            <h3 id="planner-step-3" tabindex="-1">この内容で、カレンダーを作ります。</h3>
+            <p>選んだ方式と設定を確認してください。変更したい場合は、前のステップに戻れます。</p>
+          </div>
+          <div data-planner-review></div>
+          <p class="admissions-planner__conditions-note">出願資格・専願条件・同一大学内の併願可否・会場間の移動時間は自動判定しません。STEP 2の「出願条件を確認」と、各大学の最新の募集要項を必ず確認してください。大学指定・調整中の日程は仮の候補です。</p>
+          <div class="admissions-planner__actions">
+            <button type="button" class="admissions-planner__back" data-planner-step-link="2">← 志望度・受験日に戻る</button>
+            <button type="button" class="admissions-planner__next" data-planner-generate>この内容でカレンダーを作成 <span aria-hidden="true">→</span></button>
+          </div>
+        </section>
+
+      <section class="admissions-planner__output" aria-labelledby="planner-step-4" data-planner-panel="4" hidden>
+        <div class="admissions-planner__step-heading admissions-planner__result-heading">
+          <div><span>STEP 4 / 4</span><h3 id="planner-step-4" tabindex="-1">あなたの受験プラン</h3><p>日程の重複や要確認の項目をチェックして、保存・印刷しましょう。</p></div>
+          <button type="button" class="admissions-planner__back" data-planner-step-link="1" data-planner-controls>大学・方式を変更</button>
+          <button type="button" class="admissions-planner__back" data-planner-step-link="2" data-planner-controls>志望度・受験日を変更</button>
+        </div>
         <section class="admissions-planner__summary" data-planner-summary></section>
 
         <section class="admissions-planner__calendar" data-planner-calendar-section hidden>
@@ -140,13 +183,13 @@ const plannerPayload = JSON.stringify({
           </ul>
           <div data-planner-calendar></div>
         </section>
-      </div>
+      </section>
     </div>
 
     <div class="admissions-planner__savebar" data-planner-controls>
       <div class="admissions-planner__save-copy">
-        <strong>次回もこの内容を表示</strong>
-        <p>選択した大学・方式をこの端末に保存します。ほかの端末には引き継がれません。</p>
+        <strong>途中でも保存できます</strong>
+        <p>選択内容をこの端末に保存します。ほかの端末には引き継がれません。</p>
         <span data-planner-save-status role="status">保存すると、次に開いたときも同じ内容を表示できます</span>
       </div>
       <div class="admissions-planner__save-buttons">
@@ -171,6 +214,7 @@ const plannerPayload = JSON.stringify({
     type PlannerPriority,
   } from "../../lib/admissionPlannerEngine";
   import type { AdmissionPlanningRoute2027 } from "../../data/admissionPlanning2027";
+  import { restorePlannerFlow, movePlannerFlow, invalidatePlannerFlow } from "../../lib/admissionPlannerFlow";
 
   type PlannerPayload = {
     metadata: { academicYear: number; lastVerified: string };
@@ -190,6 +234,7 @@ const plannerPayload = JSON.stringify({
     name?: string;
     goal: PlannerGoal;
     selections: StoredSelection[];
+    step?: number;
   };
 
   const STORAGE_KEY = "lexus-admission-plan-2027-v2";
@@ -289,6 +334,7 @@ const plannerPayload = JSON.stringify({
 
     let goal: PlannerGoal = "priority";
     let selections: StoredPlan["selections"] = [];
+    let flow = restorePlannerFlow(undefined, false);
 
     const selectableFirstExamGroups = (route: AdmissionPlanningRoute2027) =>
       route.examGroups.filter(
@@ -375,10 +421,11 @@ const plannerPayload = JSON.stringify({
         if (![2, 3, 4, 5].includes(stored.version)) return;
         selections = cleanSelections(stored.selections ?? []);
         goal = stored.goal === "coverage" ? "coverage" : "priority";
+        flow = restorePlannerFlow(stored.step, selections.length > 0);
         root
           .querySelectorAll<HTMLInputElement>("[data-planner-goal]")
           .forEach((input) => (input.checked = input.value === goal));
-        if (selections.length > 0) saveStatus.textContent = "前回保存した内容を表示しています";
+        if (selections.length > 0) saveStatus.textContent = "前回の選択を読み込みました。内容を確認してカレンダーを作成してください。";
       } catch {
         saveStatus.textContent = "保存データを読み込めませんでした。端末の保存設定をご確認ください。";
       }
@@ -419,7 +466,7 @@ const plannerPayload = JSON.stringify({
           const route = routeById.get(selection.routeId);
           if (!route) return "";
           return `
-            <article class="admissions-planner__selected-card">
+            <article class="admissions-planner__selected-card" data-planner-selected-route="${escapeHtml(route.id)}">
               <span class="admissions-planner__selected-number">${String(index + 1).padStart(2, "0")}</span>
               <div>
                 <strong>${escapeHtml(route.universityName)}</strong>
@@ -574,25 +621,105 @@ const plannerPayload = JSON.stringify({
           <div><dt>二次試験の重複</dt><dd>${overlapCounts.secondSecond}<span>件</span></dd></div>
           <div><dt>二次と他の試験</dt><dd>${overlapCounts.firstSecond}<span>件</span></dd></div>
         </dl>
-        ${selections.some((item) => routeById.get(item.routeId)?.requirements) ? `<p class="admissions-planner__conditions-note">総合型・推薦型等を含むプランです。選択一覧の「出願条件を確認」を開き、専願・評定・推薦・地域条件を確認してください。</p>` : ""}`;
+        ${selections.some((item) => routeById.get(item.routeId)?.requirements) ? `<p class="admissions-planner__conditions-note">総合型・推薦型等を含むプランです。「志望度・受験日を変更」からSTEP 2に戻り、「出願条件を確認」で専願・評定・推薦・地域条件を確認してください。</p>` : ""}`;
+    };
+
+    const renderBasketAndReview = () => {
+      const count = `${new Set(selections.map((item) => routeById.get(item.routeId)!.universityId)).size}大学・${selections.length}方式`;
+      const counter = root.querySelector<HTMLElement>("[data-planner-count]");
+      if (counter) counter.textContent = count;
+      const basket = root.querySelector<HTMLElement>("[data-planner-basket]");
+      if (basket) {
+        const groups = new Map<string, StoredSelection[]>();
+        selections.forEach((item) => {
+          const name = routeById.get(item.routeId)!.universityName;
+          groups.set(name, [...(groups.get(name) ?? []), item]);
+        });
+        basket.innerHTML = selections.length ? [...groups].map(([name, items]) => `<div class="admissions-planner__basket-group"><strong>${escapeHtml(name)}</strong><ul>${items.map((item) => {
+          const route = routeById.get(item.routeId)!;
+          return `<li><span>${escapeHtml(route.routeName)}</span><button type="button" data-planner-remove="${escapeHtml(route.id)}" aria-label="${escapeHtml(routeLabel(route))}を削除">削除</button></li>`;
+        }).join("")}</ul></div>`).join("") : '<p class="admissions-planner__basket-empty">選んだ大学・方式が<br />ここにまとまります。</p>';
+      }
+      const review = root.querySelector<HTMLElement>("[data-planner-review]");
+      if (review) review.innerHTML = `<div class="admissions-planner__review-heading"><strong>${count}</strong><span>${goal === "priority" ? "志望度を優先" : "受験機会を優先"}</span></div><ol class="admissions-planner__review-list">${selections.map((item) => {
+        const route = routeById.get(item.routeId)!;
+        const option = route.examOptions?.find((candidate) => candidate.id === item.examOptionId);
+        const choices = selectableFirstExamGroups(route)
+          .filter((group) => !group.examOptionId || group.examOptionId === item.examOptionId)
+          .map((group) => `${/日本留学試験/.test(group.raw) ? "日本留学試験（EJU）" : "選択した試験日"}：${(item.firstExamDates?.[group.id] ?? []).map((date) => formatDate(date, true)).join("・")}`);
+        return `<li><div><strong>${escapeHtml(route.universityName)}</strong><span>${escapeHtml(route.routeName)}</span>${option ? `<small>利用する外部試験：${escapeHtml(option.label)}</small>` : ""}${choices.map((text) => `<small>${escapeHtml(text)}</small>`).join("")}${route.requirements?.exclusive === "専願" ? "<small>※専願のみ</small>" : ""}</div><em>${priorityLabels[item.priority]}</em></li>`;
+      }).join("")}</ol>`;
+    };
+
+    const renderFlow = () => {
+      root.dataset.plannerStep = String(flow.step);
+      root.querySelectorAll<HTMLElement>("[data-planner-panel]").forEach((panel) => {
+        panel.hidden = Number(panel.dataset.plannerPanel) !== flow.step;
+      });
+      root.querySelectorAll<HTMLButtonElement>("[data-planner-step-link]").forEach((button) => {
+        const step = Number(button.dataset.plannerStepLink);
+        button.disabled = step > flow.unlocked;
+        if (step === flow.step) button.setAttribute("aria-current", "step");
+        else button.removeAttribute("aria-current");
+        button.classList.toggle("is-complete", step < flow.unlocked && step !== flow.step);
+      });
+      root.querySelectorAll<HTMLButtonElement>("[data-planner-next], [data-planner-generate]").forEach((button) => {
+        button.disabled = selections.length === 0;
+      });
+      const printButton = root.querySelector<HTMLButtonElement>("[data-print-section]");
+      if (printButton) printButton.hidden = flow.step !== 4;
+      const hint = root.querySelector<HTMLElement>("[data-planner-selection-hint]");
+      if (hint) hint.textContent = selections.length ? "追加が終わったら、次へ進みましょう。" : "方式を1つ以上選ぶと次へ進めます。";
     };
 
     const render = () => {
+      const active = document.activeElement;
+      const focusAttributes = ["data-planner-route-toggle", "data-planner-priority", "data-planner-exam-option", "data-planner-first-date"];
+      const focusAttribute = active instanceof HTMLElement ? focusAttributes.find((attribute) => active.hasAttribute(attribute)) : undefined;
+      let focusSelector: string | undefined;
+      if (focusAttribute && (active instanceof HTMLInputElement || active instanceof HTMLSelectElement)) {
+        focusSelector = `[${focusAttribute}="${CSS.escape(active.getAttribute(focusAttribute) ?? "")}"]${active instanceof HTMLInputElement ? `[value="${CSS.escape(active.value)}"]` : ""}${active.dataset.groupId ? `[data-group-id="${CSS.escape(active.dataset.groupId)}"]` : ""}`;
+      }
+      const openRequirements = [...selectedList.querySelectorAll<HTMLDetailsElement>("details[open]")].map((details) => details.closest<HTMLElement>("[data-planner-selected-route]")?.dataset.plannerSelectedRoute);
       saveButton.disabled = selections.length === 0;
       renderRouteOptions();
       renderSelected();
-      if (selections.length === 0) {
-        renderSummary();
-        calendarSection.hidden = true;
-        return;
-      }
+      selectedList.querySelectorAll<HTMLDetailsElement>("details").forEach((details) => {
+        details.open = openRequirements.includes(details.closest<HTMLElement>("[data-planner-selected-route]")?.dataset.plannerSelectedRoute);
+      });
+      renderBasketAndReview();
+      renderFlow();
+      if (focusSelector) root.querySelector<HTMLElement>(focusSelector)?.focus({ preventScroll: true });
+    };
 
+    const navigate = (step: number, generate = false) => {
+      const next = movePlannerFlow(flow, step, selections.length > 0, generate);
+      if (next === flow) return;
+      flow = next;
+      render();
+      const heading = root.querySelector<HTMLElement>(`#planner-step-${flow.step}`);
+      heading?.focus({ preventScroll: true });
+      root.querySelector(".admissions-planner__progress")?.scrollIntoView({ block: "start", behavior: "instant" });
+    };
+
+    const markChanged = () => {
+      flow = invalidatePlannerFlow(flow, selections.length > 0);
+      summary.innerHTML = "";
+      calendar.innerHTML = "";
+      calendarSection.hidden = true;
+      saveStatus.textContent = "変更内容はまだ保存されていません";
+      render();
+    };
+
+    const generateCalendar = () => {
+      if (flow.step !== 3 || selections.length === 0) return;
       const firstExamChoices = Object.fromEntries(
         selections.flatMap((selection) => Object.entries(selection.firstExamDates ?? {})),
       );
       const result = planAdmissionRoutes(payload.routes, selections, goal, firstExamChoices);
       renderSummary(result);
       renderCalendar(result);
+      navigate(4, true);
     };
 
     root.addEventListener("change", (event) => {
@@ -624,8 +751,7 @@ const plannerPayload = JSON.stringify({
         } else {
           selections = selections.filter((selection) => selection.routeId !== routeId);
         }
-        saveStatus.textContent = "変更内容はまだ保存されていません";
-        render();
+        markChanged();
         return;
       }
 
@@ -635,15 +761,13 @@ const plannerPayload = JSON.stringify({
         selections = selections.map((selection) =>
           selection.routeId === routeId ? { ...selection, priority } : selection,
         );
-        saveStatus.textContent = "変更内容はまだ保存されていません";
-        render();
+        markChanged();
         return;
       }
 
       if (target.matches("[data-planner-exam-option]")) {
         selections = selections.map((item) => item.routeId === target.dataset.plannerExamOption ? { ...item, examOptionId: target.value } : item);
-        saveStatus.textContent = "変更内容はまだ保存されていません";
-        render();
+        markChanged();
         return;
       }
 
@@ -677,15 +801,13 @@ const plannerPayload = JSON.stringify({
               }
             : item,
         );
-        saveStatus.textContent = "変更内容はまだ保存されていません";
-        render();
+        markChanged();
         return;
       }
 
       if (target.matches("[data-planner-goal]")) {
         goal = target.value === "coverage" ? "coverage" : "priority";
-        saveStatus.textContent = "変更内容はまだ保存されていません";
-        render();
+        markChanged();
         return;
       }
 
@@ -694,13 +816,22 @@ const plannerPayload = JSON.stringify({
     root.addEventListener("click", (event) => {
       const target = event.target;
       if (!(target instanceof HTMLElement)) return;
+      const navigation = target.closest<HTMLButtonElement>("[data-planner-next], [data-planner-step-link]");
+      if (navigation && !navigation.disabled) {
+        navigate(Number(navigation.dataset.plannerNext ?? navigation.dataset.plannerStepLink));
+        return;
+      }
+      if (target.closest("[data-planner-generate]")) {
+        generateCalendar();
+        return;
+      }
       const removeButton = target.closest<HTMLButtonElement>("[data-planner-remove]");
       if (removeButton?.dataset.plannerRemove) {
         selections = selections.filter(
           (selection) => selection.routeId !== removeButton.dataset.plannerRemove,
         );
-        saveStatus.textContent = "変更内容はまだ保存されていません";
-        render();
+        markChanged();
+        root.querySelector<HTMLElement>(`#planner-step-${flow.step}`)?.focus({ preventScroll: true });
         return;
       }
 
@@ -709,6 +840,7 @@ const plannerPayload = JSON.stringify({
           version: 5,
           goal,
           selections,
+          step: flow.step,
         };
         try {
           localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
@@ -722,12 +854,17 @@ const plannerPayload = JSON.stringify({
       if (target.closest("[data-planner-reset]")) {
         selections = [];
         goal = "priority";
+        flow = restorePlannerFlow(undefined, false);
+        summary.innerHTML = "";
+        calendar.innerHTML = "";
+        calendarSection.hidden = true;
         try { localStorage.removeItem(STORAGE_KEY); } catch { /* In-memory planning remains available. */ }
         root
           .querySelectorAll<HTMLInputElement>("[data-planner-goal]")
           .forEach((input) => (input.checked = input.value === goal));
         saveStatus.textContent = "選択内容と保存データを消しました";
         render();
+        root.querySelector<HTMLElement>("#planner-step-1")?.focus();
       }
     });
 
@@ -735,10 +872,11 @@ const plannerPayload = JSON.stringify({
     render();
 
     const preparePrint = () => {
+      if (flow.step !== 4) return;
       root.classList.add("is-print-target");
       document.body.classList.add("is-printing-admissions-section");
     };
-    root.querySelector("[data-print-section]")?.addEventListener("click", () => { preparePrint(); window.print(); });
+    root.querySelector("[data-print-section]")?.addEventListener("click", () => { if (flow.step === 4) { preparePrint(); window.print(); } });
     window.addEventListener("beforeprint", preparePrint);
     window.addEventListener("afterprint", () => {
       root.classList.remove("is-print-target");
