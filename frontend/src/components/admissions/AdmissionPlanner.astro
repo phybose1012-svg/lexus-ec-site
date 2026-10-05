@@ -395,19 +395,12 @@ const plannerPayload = JSON.stringify({
           const selection = selections.find((item) => item.routeId === route.id);
           const checked = Boolean(selection);
           const disabled = !checked && selections.length >= MAX_SELECTIONS;
-          const status =
-            route.status === "official"
-              ? "日程公表済み"
-              : route.status === "preliminary"
-                ? "公表資料あり"
-                : "一部未公表";
           return `<div class="admissions-planner__route-choice${checked ? " is-selected" : ""}">
               <label class="admissions-planner__route-option${checked ? " is-selected" : ""}">
                 <input type="checkbox" value="${escapeHtml(route.id)}" data-planner-route-toggle ${checked ? "checked" : ""} ${disabled ? "disabled" : ""} />
                 <span>
                   <strong>${escapeHtml(route.routeName)}</strong>
-                  <small>${escapeHtml(route.categoryLabel ?? (route.category === "common" ? "共通テスト利用" : "一般選抜"))}・${escapeHtml(route.publicationLabel ?? status)}</small>
-                  ${route.requirements ? `<small>専願・併願：${escapeHtml(route.requirements.exclusive)}</small>` : ""}
+                  ${route.requirements?.exclusive === "専願" ? "<small>※専願のみ</small>" : ""}
                 </span>
               </label>
             </div>`;

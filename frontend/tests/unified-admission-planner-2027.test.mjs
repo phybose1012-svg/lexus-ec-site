@@ -42,6 +42,23 @@ test("一般83方式のデータとIDを変えず、掲載対象の特別選抜�
   }
 });
 
+test("方式選択欄の補足は専願の方式だけに『※専願のみ』を表示する", () => {
+  const component = readFileSync(new URL("../src/components/admissions/AdmissionPlanner.astro", import.meta.url), "utf8");
+  const renderSource = component.split("const renderRouteOptions = () => {")[1].split("const renderSelected = () => {")[0];
+  const routeOptions = { innerHTML: "" };
+  // Exercise the actual option renderer with all published, conditional and pending routes.
+  const renderOptions = new Function("routesByUniversity", "universitySelect", "categorySelect", "selections", "MAX_SELECTIONS", "routeOptions", "escapeHtml", renderSource.replace(/\};\s*$/u, ""));
+  const escapeHtml = (value) => String(value ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
+  for (const route of routes) {
+    renderOptions(new Map([[route.universityId, [route]]]), { value: route.universityId }, { value: "all" }, [], 12, routeOptions, escapeHtml);
+    const expected = route.requirements?.exclusive === "専願" ? ["※専願のみ"] : [];
+    assert.deepEqual([...routeOptions.innerHTML.matchAll(/<small>(.*?)<\/small>/gu)].map((match) => match[1]), expected, route.id);
+    assert.match(routeOptions.innerHTML, /data-planner-route-toggle/u);
+    assert.ok(routeOptions.innerHTML.includes(`<strong>${escapeHtml(route.routeName)}</strong>`));
+  }
+  assert.doesNotMatch(renderSource, /publicationLabel|categoryLabel|専願・併願|公表資料あり|日程公表済み/u);
+});
+
 test("総合型・一般・共テを同じプランに保存でき、2026年秋から2027年春の予定を一括生成", () => {
   const s = special("fujita", "fujita-future");
   const g = routes.find((r) => r.universityId === "fujita" && r.category === "general");
