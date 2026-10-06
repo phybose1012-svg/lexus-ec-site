@@ -5,13 +5,15 @@ import {
   alphabeticalWaitlistSchools, waitlistAdmissionYear, waitlistCheckedAt,
   waitlistFaqs, waitlistMetricLabels, waitlistSourceLabels,
 } from "../../data/medicalWaitlist";
+import { waitlist2025AdmissionYear, waitlist2025ById, waitlist2025Schools } from "../../data/medicalWaitlist2025";
+import { historicalWaitlistById } from "../../data/medicalWaitlistHistory";
 
 const canonical = "https://lexus-ec.com/kuriage-information/";
-const datasetPath = "/data/medical-waitlist-2026.json";
-const pageTitle = "【2026年度結果】私立医学部の補欠・繰上げ合格情報｜31大学｜医学部予備校レクサス";
-const pageDescription = "私立医学部31大学の2026年度繰上げ・追加合格情報を一覧に。大学公式の人数・補欠順位と、富士学院・メルリックス学院の合格報告を区別し、対象日・出典付きで掲載。補欠の意味や連絡を待つ際の注意点も解説します。";
+const datasetPath = "/data/medical-waitlist.json";
+const pageTitle = "【2025・2026年度追加】私立医学部の補欠・繰上げ合格情報と過去一覧｜医学部予備校レクサス";
+const pageDescription = "私立医学部の補欠・繰上げ合格情報。2024年度以前の過去一覧に、2025・2026年度の31大学の情報を追加。大学公式の人数・補欠順位と、富士学院・メルリックス学院の合格報告を出典付きで区別して掲載しています。";
 const formatDate = (date: string) => date.replace(/^(\d{4})-(\d{2})-(\d{2})$/, (_, year, month, day) => `${year}年${Number(month)}月${Number(day)}日`);
-const evidenceUrls = [...new Set(alphabeticalWaitlistSchools.flatMap((school) => [
+const evidenceUrls = [...new Set([...alphabeticalWaitlistSchools, ...waitlist2025Schools].flatMap((school) => [
   ...school.records.map((row) => row.source.url), ...(school.noteSources ?? []).map((source) => source.url),
 ]))];
 const structuredData = {
@@ -20,9 +22,9 @@ const structuredData = {
     { "@type": "CollectionPage", "@id": `${canonical}#webpage`, url: canonical, name: pageTitle,
       description: pageDescription, inLanguage: "ja", dateModified: waitlistCheckedAt,
       mainEntity: { "@id": `${canonical}#dataset` }, breadcrumb: { "@id": `${canonical}#breadcrumb` } },
-    { "@type": "Dataset", "@id": `${canonical}#dataset`, name: "2026年度 私立医学部31大学の繰上げ・追加合格情報",
-      description: "大学公式の人数・順位、および予備校が報告した個別の合格例。個別の合格例は最終到達順位ではない。掲載のない方式の結果は未確認であり、0人を意味しない。",
-      url: `${canonical}#school-data`, inLanguage: "ja", temporalCoverage: "2026", dateModified: waitlistCheckedAt,
+    { "@type": "Dataset", "@id": `${canonical}#dataset`, name: "私立医学部の繰上げ・追加合格情報：2025・2026年度と過去一覧",
+      description: "2025・2026年度は出典付きの大学公式情報と予備校報告を区別。個別の合格例は最終到達順位ではない。2024年度以前は従来掲載分で、今回出典・数値を再検証していない。未確認や過去表の「-」は0人を意味しない。",
+      url: `${canonical}#school-data`, inLanguage: "ja", temporalCoverage: "2012/2026", dateModified: waitlistCheckedAt,
       creator: { "@type": "Organization", name: "レクサス教育センター", url: "https://lexus-ec.com/" },
       citation: evidenceUrls,
       distribution: { "@type": "DataDownload", contentUrl: `https://lexus-ec.com${datasetPath}`, encodingFormat: "application/json" },
@@ -41,18 +43,18 @@ const structuredData = {
 <SiteLayout title={pageTitle} description={pageDescription} canonical={canonical} ogImage={seo.ogImage} mainContentId="kuriage-main">
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, "\\u003c")} />
-    <link rel="alternate" type="application/json" href={datasetPath} title="2026年度 私立医学部繰上げ合格データ" />
+    <link rel="alternate" type="application/json" href={datasetPath} title="私立医学部繰上げ合格データ：2025・2026年度と過去一覧" />
   </Fragment>
   <main id="kuriage-main" class="kuriage-page">
     <section class="kuriage-hero" aria-labelledby="kuriage-title">
       <div class="content kuriage-hero__inner">
         <img class="kuriage-hero__logo-strip" src="/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png" alt="" loading="eager" width="1024" height="74" />
-        <p class="kuriage-hero__eyebrow">2026年度の結果 · 私立医学部31大学</p>
+        <p class="kuriage-hero__eyebrow">2025・2026年度を追加 · 過去の一覧も掲載</p>
         <h1 id="kuriage-title">医学部の補欠・<br class="mobile-break" />繰上げ合格情報</h1>
         <p class="kuriage-hero__lead">何番まで繰り上がった？ 何人が追加合格した？<br />数字の意味と出典を分けて、志望校の結果を確認できます。</p>
         <p class="checked-date">最終更新：<time datetime={waitlistCheckedAt}>{formatDate(waitlistCheckedAt)}</time></p>
         <div class="year-notice">
-          <strong>掲載しているのは2026年度の結果です。</strong>
+          <strong>2025・2026年度と、2024年度以前の結果を掲載しています。</strong>
           <p>2027年度の補欠・繰上げ合格状況は、各大学の入試後に判明します。過去の結果は、今年の合格を保証するものではありません。</p>
           <a href="/private-medical-school-admissions-schedule-2027/">2027年度の私立医学部入試日程を見る <span aria-hidden="true">→</span></a>
         </div>
@@ -69,35 +71,57 @@ const structuredData = {
 
     <section id="school-data" class="kuriage-section results-section" aria-labelledby="results-title">
       <div class="content">
-        <div class="waitlist-heading"><p class="kuriage-kicker">UNIVERSITY RESULTS</p><h2 id="results-title">2026年度 大学別の繰上げ合格情報</h2><p>一般選抜・共通テスト利用を中心に、確認できた結果を50音順で掲載しています。</p></div>
+        <div class="waitlist-heading"><p class="kuriage-kicker">UNIVERSITY RESULTS</p><h2 id="results-title">大学別の繰上げ合格情報・過去一覧</h2><p>各大学に2026年度・2025年度を追加し、その下に2024年度以前の一覧を掲載しています。</p></div>
         <div class="reading-guide">
           <div><span class="evidence-badge evidence-badge--official">大学公式</span><p>大学が公表した人数・順位・終了案内です。</p></div>
           <div><span class="evidence-badge evidence-badge--prep">予備校情報</span><p>富士学院・メルリックス学院の報告です。大学の確定結果とは区別しています。</p></div>
           <p class="reading-guide__warning"><strong>「合格例：補欠○番」は、最終到達順位ではありません。</strong><br />その番号の合格が報告されたという意味です。掲載のない方式や「未確認」は、繰上げが0人だったことを意味しません。</p>
         </div>
-        <details class="source-policy"><summary>掲載情報・出典について</summary><p>大学公式の年度結果・募集要項・お知らせを優先し、公式で確認できない情報は、医学部入試を継続的に扱う富士学院・メルリックス学院の公表情報から補っています。掲載する予備校情報はこの2校に限定し、匿名掲示板、個人ブログ・個人SNSは採用していません。日付は情報が示す時点であり、人数・順位は混ぜて比較できません。</p><p>各記録には出典を付けています。対象日が記載されていない年度結果は、2026年度資料として表示しています。</p></details>
+        <details class="source-policy"><summary>掲載情報・出典について</summary><p>2025・2026年度は、大学公式の年度結果・募集要項・お知らせを優先し、公式で確認できない情報は、医学部入試を継続的に扱う富士学院・メルリックス学院の公表情報から補っています。掲載する予備校情報はこの2校に限定し、匿名掲示板、個人ブログ・個人SNSは採用していません。日付は情報が示す時点であり、人数・順位は混ぜて比較できません。</p><p>2025・2026年度の各記録には出典を付けています。対象日が記載されていない年度結果は、その年度の資料として表示しています。2024年度以前は従来掲載していた一覧です。今回、過去の数値や出典は再検証していません。</p></details>
         <nav class="kuriage-school-index" aria-label="大学名から結果へ移動">
           {alphabeticalWaitlistSchools.map((school) => <a href={`#${school.id}`}>{school.name}</a>)}
         </nav>
         <div class="result-grid">
           {alphabeticalWaitlistSchools.map((school, index) => (
             <article id={school.id} class="result-card" aria-labelledby={`${school.id}-title`}>
-              <header class="result-card__header"><span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><h3 id={`${school.id}-title`}>{school.name}</h3><span class="result-card__year">{waitlistAdmissionYear}年度</span></header>
-              <dl class="result-list">
-                {school.records.map((row) => (
+              <header class="result-card__header"><span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><h3 id={`${school.id}-title`}>{school.name}</h3></header>
+              {[
+                { year: waitlistAdmissionYear, data: school },
+                { year: waitlist2025AdmissionYear, data: waitlist2025ById[school.id] },
+              ].map(({ year, data }) => (
+                <section class="result-year" aria-labelledby={`${school.id}-${year}-title`}>
+                  <h4 id={`${school.id}-${year}-title`} class="result-year__title">{year}年度</h4>
+                  <dl class="result-list">
+                {data.records.map((row) => (
                   <div class:list={["result-row", { "result-row--notice": row.metric === "notice" }]}>
                     <dt>{row.route}</dt>
                     <dd>
                       <div class="result-row__badges"><span class:list={["evidence-badge", `evidence-badge--${row.source.kind}`]}>{waitlistSourceLabels[row.source.kind]}</span><span class="metric-label">{waitlistMetricLabels[row.metric]}</span></div>
                       <p class="result-row__value">{row.result}</p>
-                      <p class="result-row__date">{row.asOf ? <><time datetime={row.asOf}>{formatDate(row.asOf)}</time>の情報</> : <>2026年度資料（対象日の記載なし）</>}</p>
+                      <p class="result-row__date">{row.asOf ? <><time datetime={row.asOf}>{formatDate(row.asOf)}</time>の情報</> : <>{year}年度資料（対象日の記載なし）</>}</p>
                       <a class="source-link" href={row.source.url} target="_blank" rel="noopener noreferrer">{row.source.title}<span class="sr-only">（新しいタブで開く）</span><span aria-hidden="true"> ↗</span></a>
                       {row.note && <p class="result-note">{row.note}</p>}
                     </dd>
                   </div>
                 ))}
-              </dl>
-              {school.note && <div class="result-card__note"><p>{school.note}</p>{school.noteSources?.map((source) => <a class="source-link" href={source.url} target="_blank" rel="noopener noreferrer">{source.title}<span class="sr-only">（新しいタブで開く）</span><span aria-hidden="true"> ↗</span></a>)}</div>}
+                  </dl>
+                  {data.note && <div class="result-card__note"><p>{data.note}</p>{data.noteSources?.map((source) => <a class="source-link" href={source.url} target="_blank" rel="noopener noreferrer">{source.title}<span class="sr-only">（新しいタブで開く）</span><span aria-hidden="true"> ↗</span></a>)}</div>}
+                </section>
+              ))}
+              {historicalWaitlistById[school.id] && (
+                <details class="history-details" open>
+                  <summary>2024年度以前の一覧</summary>
+                  <p class="history-warning">従来掲載分です。人数・順位などの表記は当時のまま残しています。「-」は0人を意味しません。</p>
+                  <div class="history-scroll" role="region" aria-label={`${school.name}の過去一覧（横にスクロールできます）`} tabindex="0">
+                    <table class="history-table">
+                      <caption class="sr-only">{school.name}：2024年度以前の補欠・繰上げ合格情報（従来掲載分）</caption>
+                      <thead><tr><th scope="col">年度</th>{historicalWaitlistById[school.id].columns.map((column) => <th scope="col">{column}</th>)}</tr></thead>
+                      <tbody>{historicalWaitlistById[school.id].rows.map((row) => <tr><th scope="row">{row.year}</th>{row.values.map((value) => <td>{value}</td>)}</tr>)}</tbody>
+                    </table>
+                  </div>
+                  {historicalWaitlistById[school.id].notes.length > 0 && <details class="history-notes"><summary>従来掲載時の補足（今回未検証）</summary><ul>{historicalWaitlistById[school.id].notes.map((note) => <li>{note}</li>)}</ul></details>}
+                </details>
+              )}
             </article>
           ))}
         </div>
@@ -163,7 +187,8 @@ const structuredData = {
   .result-card__header { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 12px; padding: 20px; border-bottom: 1px solid var(--line); }
   .result-card__header > span:first-child { color: var(--red); font-size: .8rem; font-weight: 700; }
   .result-card__header h3 { margin: 0; font-size: 1.3rem; line-height: 1.5; }
-  .result-card__year { margin-left: auto; font-size: .78rem; color: var(--muted); white-space: nowrap; }
+  .result-year + .result-year { border-top: 1px solid var(--line); }
+  .result-year__title { margin: 0; padding: 10px 20px; color: var(--red); background: #faf9f6; font-size: 1rem; border-bottom: 1px solid var(--line); }
   .result-list { margin: 0; }
   .result-row { display: grid; grid-template-columns: minmax(95px, .8fr) minmax(0, 2fr); gap: 16px; padding: 20px; }
   .result-row + .result-row { border-top: 1px solid var(--line); }
@@ -177,6 +202,19 @@ const structuredData = {
   .result-row--notice { background: #fffaf6; }
   .result-card__note { padding: 16px 20px; background: #f8f7f4; border-top: 1px solid var(--line); }
   .result-card__note p, .result-note { margin: 0; font-size: .83rem; color: #625c55; line-height: 1.85; }
+  .history-details { min-width: 0; padding: 20px; border-top: 1px solid var(--line); }
+  .history-details > summary { cursor: pointer; color: var(--ink); font-size: 1rem; font-weight: 700; }
+  .history-warning { margin: 12px 0; font-size: .78rem; color: var(--muted); line-height: 1.8; }
+  .history-scroll { max-width: 100%; overflow-x: auto; }
+  .history-scroll:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+  .history-table { width: 100%; border-collapse: collapse; font-size: .83rem; line-height: 1.6; }
+  .history-table th, .history-table td { border: 1px solid var(--line); padding: 9px 10px; text-align: center; }
+  .history-table thead th { min-width: 85px; background: #f8f7f4; font-size: .78rem; }
+  .history-table tbody th { white-space: nowrap; font-weight: 500; background: #faf9f6; }
+  .history-table td { white-space: nowrap; }
+  .history-notes { margin-top: 12px; font-size: .78rem; color: var(--muted); line-height: 1.8; }
+  .history-notes summary { cursor: pointer; }
+  .history-notes ul { padding-left: 20px; margin-bottom: 0; }
   .waitlist-faq-section { background: #faf9f6; }
   .waitlist-faq-list { display: grid; gap: 16px; max-width: 960px; }
   .waitlist-faq-list article { padding: 24px; border: 1px solid var(--line); background: #fff; scroll-margin-top: 130px; }
@@ -201,6 +239,8 @@ const structuredData = {
     .result-card__header { padding: 16px; }
     .result-card__header h3 { font-size: 1.2rem; }
     .result-card__note { padding: 14px 16px; }
+    .result-year__title { padding: 10px 16px; }
+    .history-details { padding: 16px; }
     .year-notice { padding: 16px; }
     .waitlist-faq-list article, .contact-list li { padding: 20px; }
     .mobile-break { display: block; }
