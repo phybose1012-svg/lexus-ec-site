@@ -30,6 +30,7 @@
     "past-exam:keio-mathematics:test": "node --test ./scripts/past-exam-keio-2025-mathematics.test.mjs",
     "past-exam:notation:test": "node --test ./scripts/past-exam-notation.test.mjs",
     "dev": "node ./scripts/astro-command.mjs dev --host 127.0.0.1",
+    "waitlist:test": "node --test ./scripts/medical-waitlist.test.mjs",
     "build": "node ./scripts/verify-build-inputs.mjs && npm run past-exam:answers && npm run past-exam:staging-answers && npm run past-exam:analyses && node ./scripts/astro-command.mjs check && node ./scripts/astro-command.mjs build",
     "preview": "node ./scripts/astro-command.mjs preview --host 127.0.0.1"
   },

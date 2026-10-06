@@ -3,6 +3,7 @@ import { migratedPosts } from "./postSource";
 import { privateMedicalAdmissions2027Metadata } from "../data/privateMedicalAdmissions2027Metadata";
 import { privateMedicalSpecialAdmissions2027Metadata } from "../data/privateMedicalSpecialAdmissions2027Metadata";
 import { privateMedicalExamVenuesHotels2027Metadata } from "../data/privateMedicalExamVenuesHotels2027Metadata";
+import { waitlistCheckedAt } from "../data/medicalWaitlist";
 
 const SITE_ORIGIN = "https://lexus-ec.com";
 
@@ -59,6 +60,7 @@ const staticPagePaths = [
 ];
 
 const staticPageLastmods = new Map<string, string>([
+  ["/kuriage-information/", waitlistCheckedAt],
   ["/private-medical-school-admission-planner-2027/", "2026-10-05"],
   [
     new URL(privateMedicalAdmissions2027Metadata.canonicalUrl).pathname,

@@ -1,719 +1,215 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import { seo } from "../../data/home";
+import {
+  alphabeticalWaitlistSchools, waitlistAdmissionYear, waitlistCheckedAt,
+  waitlistFaqs, waitlistMetricLabels, waitlistSourceLabels,
+} from "../../data/medicalWaitlist";
 
-type WaitlistRow = {
-  year: string;
-  values: string[];
+const canonical = "https://lexus-ec.com/kuriage-information/";
+const datasetPath = "/data/medical-waitlist-2026.json";
+const pageTitle = "【2026年度結果】私立医学部の補欠・繰上げ合格情報｜31大学｜医学部予備校レクサス";
+const pageDescription = "私立医学部31大学の2026年度繰上げ・追加合格情報を一覧に。大学公式の人数・補欠順位と、富士学院・メルリックス学院の合格報告を区別し、対象日・出典付きで掲載。補欠の意味や連絡を待つ際の注意点も解説します。";
+const formatDate = (date: string) => date.replace(/^(\d{4})-(\d{2})-(\d{2})$/, (_, year, month, day) => `${year}年${Number(month)}月${Number(day)}日`);
+const evidenceUrls = [...new Set(alphabeticalWaitlistSchools.flatMap((school) => [
+  ...school.records.map((row) => row.source.url), ...(school.noteSources ?? []).map((source) => source.url),
+]))];
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "CollectionPage", "@id": `${canonical}#webpage`, url: canonical, name: pageTitle,
+      description: pageDescription, inLanguage: "ja", dateModified: waitlistCheckedAt,
+      mainEntity: { "@id": `${canonical}#dataset` }, breadcrumb: { "@id": `${canonical}#breadcrumb` } },
+    { "@type": "Dataset", "@id": `${canonical}#dataset`, name: "2026年度 私立医学部31大学の繰上げ・追加合格情報",
+      description: "大学公式の人数・順位、および予備校が報告した個別の合格例。個別の合格例は最終到達順位ではない。掲載のない方式の結果は未確認であり、0人を意味しない。",
+      url: `${canonical}#school-data`, inLanguage: "ja", temporalCoverage: "2026", dateModified: waitlistCheckedAt,
+      creator: { "@type": "Organization", name: "レクサス教育センター", url: "https://lexus-ec.com/" },
+      citation: evidenceUrls,
+      distribution: { "@type": "DataDownload", contentUrl: `https://lexus-ec.com${datasetPath}`, encodingFormat: "application/json" },
+      variableMeasured: ["繰上・追加合格者数", "繰上合格連絡者数", "入学許可者数", "補欠到達順位", "個別の合格報告", "情報の対象日", "出典区分"] },
+    { "@type": "FAQPage", "@id": `${canonical}#definition`, inLanguage: "ja",
+      mainEntity: waitlistFaqs.map((faq) => ({ "@type": "Question", name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer } })) },
+    { "@type": "BreadcrumbList", "@id": `${canonical}#breadcrumb`, itemListElement: [
+      { "@type": "ListItem", position: 1, name: "レクサス教育センター", item: "https://lexus-ec.com/" },
+      { "@type": "ListItem", position: 2, name: "補欠・繰上げ合格情報", item: canonical },
+    ] },
+  ],
 };
-
-type WaitlistSchool = {
-  name: string;
-  columns: string[];
-  rows: WaitlistRow[];
-  latest: string;
-  notes: string[];
-};
-
-const waitlistSchools: WaitlistSchool[] = [
-  {
-    name: "愛知医科大学",
-    columns: ["1次補欠（一般）", "最終繰上（一般）", "最終繰上（共テ併用・前期）", "最終繰上（共テ併用・地域）"],
-    latest: "2024年度は一般106番、共テ併用前期6番、共テ併用地域5番まで。",
-    rows: [
-      { year: "2024", values: ["106", "-", "6", "5"] },
-      { year: "2023", values: ["89", "-", "26", "6"] },
-      { year: "2022", values: ["全員合格", "137", "30", "-"] },
-      { year: "2021", values: ["94", "-", "50", "-"] },
-      { year: "2020", values: ["59", "-", "-", "-"] },
-      { year: "2019", values: ["全員合格", "137", "-", "-"] },
-      { year: "2018", values: ["58", "-", "-", "-"] },
-      { year: "2017", values: ["66", "-", "-", "-"] },
-      { year: "2016", values: ["全員合格", "175", "-", "-"] },
-      { year: "2015", values: ["92", "-", "-", "-"] },
-      { year: "2014", values: ["95", "-", "-", "-"] },
-    ],
-    notes: ["表記の数値は補欠番号です。"],
-  },
-  {
-    name: "岩手医科大学",
-    columns: ["繰上合格者数"],
-    latest: "2024年度は前期43名、地域C3名、地域D5名。",
-    rows: [
-      { year: "2024（前期）", values: ["43"] },
-      { year: "2024（地域C）", values: ["3"] },
-      { year: "2024（地域D）", values: ["5"] },
-      { year: "2023", values: ["81"] },
-      { year: "2022", values: ["92"] },
-      { year: "2021", values: ["88"] },
-      { year: "2020", values: ["76"] },
-      { year: "2019", values: ["106"] },
-      { year: "2018", values: ["51"] },
-      { year: "2017", values: ["69"] },
-      { year: "2016", values: ["110"] },
-      { year: "2015", values: ["80"] },
-      { year: "2014", values: ["84"] },
-      { year: "2013", values: ["60"] },
-    ],
-    notes: ["公表されている繰上合格者には入学辞退者が含まれていません。", "補欠番号が何番まで回ったかは非公表です。"],
-  },
-  {
-    name: "大阪医科薬科大学",
-    columns: ["前期", "後期", "共テ利用"],
-    latest: "2024年度は後期12番、共テ利用21番まで。",
-    rows: [
-      { year: "2024", values: ["0", "12", "21"] },
-      { year: "2023", values: ["40", "1", "0"] },
-      { year: "2022", values: ["87", "5", "13"] },
-      { year: "2021", values: ["60", "4", "3"] },
-      { year: "2020", values: ["番号なし", "番号なし", "-"] },
-      { year: "2019", values: ["番号なし", "番号なし", "-"] },
-    ],
-    notes: ["表記の数値は補欠番号です。", "2021年度入試より補欠番号が付くようになりました。"],
-  },
-  {
-    name: "金沢医科大学",
-    columns: ["前期", "後期"],
-    latest: "2024年度は前期58番、後期3番まで。",
-    rows: [
-      { year: "2024", values: ["58", "3"] },
-      { year: "2023", values: ["108", "4"] },
-      { year: "2022", values: ["63", "5"] },
-      { year: "2021", values: ["104", "8"] },
-      { year: "2020", values: ["117", "-"] },
-      { year: "2019", values: ["86", "3"] },
-      { year: "2018", values: ["非公開", "-"] },
-      { year: "2017", values: ["非公開", "-"] },
-      { year: "2016", values: ["非公開", "-"] },
-      { year: "2015", values: ["100前後", "-"] },
-      { year: "2014", values: ["70前後", "-"] },
-      { year: "2013", values: ["60前後", "-"] },
-    ],
-    notes: ["表記の数値は補欠番号です。"],
-  },
-  {
-    name: "関西医科大学",
-    columns: ["1次補欠"],
-    latest: "2024年度は3月31日に39番まで。",
-    rows: [
-      { year: "2024", values: ["40前後"] },
-      { year: "2023", values: ["174"] },
-      { year: "2022", values: ["120前半"] },
-      { year: "2021", values: ["番号なし"] },
-      { year: "2020", values: ["番号なし"] },
-      { year: "2019", values: ["番号なし"] },
-      { year: "2018", values: ["番号なし"] },
-    ],
-    notes: ["表記の数値は補欠番号です。", "2022年度入試より補欠番号が付くようになりました。"],
-  },
-  {
-    name: "北里大学",
-    columns: ["補欠合格者数"],
-    latest: "2024年度は3月30日に190番代前半まで。",
-    rows: [
-      { year: "2024", values: ["190前半"] },
-      { year: "2023", values: ["165"] },
-      { year: "2022", values: ["180後半"] },
-      { year: "2021", values: ["275"] },
-      { year: "2020", values: ["106"] },
-      { year: "2019", values: ["161"] },
-      { year: "2018", values: ["55"] },
-      { year: "2017", values: ["51"] },
-      { year: "2016", values: ["89"] },
-      { year: "2015", values: ["174"] },
-      { year: "2014", values: ["97"] },
-      { year: "2013", values: ["102"] },
-      { year: "2012", values: ["65"] },
-    ],
-    notes: ["表記の数値は補欠番号です。", "2021年度は補欠者が全員繰上合格し、二次試験不合格者からも合格者が出ています。"],
-  },
-  {
-    name: "杏林大学",
-    columns: ["一般選抜", "一般選抜（後期）", "共通テスト利用"],
-    latest: "2024年度は一般85番前後、共通テスト利用25番前後まで。",
-    rows: [
-      { year: "2024", values: ["85前後", "-", "25前後"] },
-      { year: "2023", values: ["109", "-", "14"] },
-      { year: "2022", values: ["180前半", "-", "30前半"] },
-      { year: "2021", values: ["140後半", "-", "-"] },
-      { year: "2020", values: ["114", "-", "-"] },
-      { year: "2019", values: ["185（前期）", "8（後期）", "41（センター利用）"] },
-      { year: "2018", values: ["非公開", "-", "非公開"] },
-      { year: "2017", values: ["164", "-", "67（センター利用）"] },
-    ],
-    notes: ["表記の数値は補欠番号です。", "2019年度に後期入試を実施し、翌年廃止されました。"],
-  },
-  {
-    name: "近畿大学",
-    columns: ["一般選抜（前期）"],
-    latest: "2024年度は50番前後まで。",
-    rows: [
-      { year: "2024", values: ["50前後"] },
-      { year: "2023", values: ["10前後"] },
-      { year: "2022", values: ["25前後"] },
-      { year: "2021", values: ["60中盤"] },
-      { year: "2020", values: ["70前半"] },
-      { year: "2019", values: ["23"] },
-      { year: "2018", values: ["非公開"] },
-      { year: "2017", values: ["非公開"] },
-      { year: "2016", values: ["40"] },
-    ],
-    notes: ["表記の数値は補欠番号です。"],
-  },
-  {
-    name: "久留米大学",
-    columns: ["前期", "後期"],
-    latest: "2024年度は前期27番、後期0番。",
-    rows: [
-      { year: "2024", values: ["27", "0"] },
-      { year: "2023", values: ["34", "0"] },
-      { year: "2022", values: ["34", "0"] },
-      { year: "2021", values: ["27", "3"] },
-      { year: "2020", values: ["38", "-"] },
-      { year: "2019", values: ["33", "3"] },
-      { year: "2018", values: ["31", "-"] },
-      { year: "2017", values: ["33", "-"] },
-      { year: "2016", values: ["30", "-"] },
-      { year: "2015", values: ["9", "-"] },
-      { year: "2014", values: ["37", "-"] },
-      { year: "2013", values: ["44", "-"] },
-    ],
-    notes: ["公表されている繰上合格者には入学辞退者が含まれていません。", "補欠番号が何番まで回ったかは非公表です。"],
-  },
-  {
-    name: "慶應義塾大学",
-    columns: ["補欠番号"],
-    latest: "2024年度は30番まで。",
-    rows: [
-      { year: "2024", values: ["30"] },
-      { year: "2023", values: ["27"] },
-      { year: "2022", values: ["44"] },
-      { year: "2021", values: ["43"] },
-      { year: "2020", values: ["41"] },
-      { year: "2019", values: ["27"] },
-      { year: "2018", values: ["49"] },
-      { year: "2017", values: ["53"] },
-      { year: "2016", values: ["43"] },
-      { year: "2015", values: ["40"] },
-      { year: "2014", values: ["16"] },
-      { year: "2013", values: ["50"] },
-      { year: "2012", values: ["49"] },
-    ],
-    notes: ["表記の数値は補欠番号です。"],
-  },
-  {
-    name: "国際医療福祉大学",
-    columns: ["補欠状況"],
-    latest: "2024年度は補欠Cの途中まで。",
-    rows: [
-      { year: "2024", values: ["補欠Cの途中"] },
-      { year: "2023", values: ["補欠Cの途中"] },
-      { year: "2022", values: ["補欠Dの途中"] },
-      { year: "2021", values: ["補欠Dの途中"] },
-      { year: "2020", values: ["補欠Dの途中"] },
-      { year: "2019", values: ["補欠Dの途中"] },
-      { year: "2018", values: ["補欠Dの途中"] },
-      { year: "2017", values: ["補欠Dの途中"] },
-    ],
-    notes: ["補欠はA〜D群にランク付けされます。区切り方は年度によって変動します。"],
-  },
-  {
-    name: "埼玉医科大学",
-    columns: ["前期", "後期"],
-    latest: "2024年度は前期43番、後期2番まで。",
-    rows: [
-      { year: "2024", values: ["43", "2"] },
-      { year: "2023", values: ["80番台", "なし？"] },
-      { year: "2022", values: ["100番台", "9番"] },
-      { year: "2021", values: ["100番台", "10番台"] },
-      { year: "2020", values: ["100番台", "30番台"] },
-    ],
-    notes: ["表記の数値は補欠番号です。", "2020年度入試より補欠番号が付くようになりました。"],
-  },
-  {
-    name: "産業医科大学",
-    columns: ["補欠繰上合格"],
-    latest: "2024年度は28番まで。",
-    rows: [
-      { year: "2024", values: ["28"] },
-      { year: "2023", values: ["18"] },
-      { year: "2022", values: ["21"] },
-      { year: "2021", values: ["32"] },
-      { year: "2020", values: ["17"] },
-      { year: "2019", values: ["21"] },
-      { year: "2018", values: ["23"] },
-      { year: "2017", values: ["25"] },
-      { year: "2016", values: ["13"] },
-      { year: "2015", values: ["15"] },
-      { year: "2014", values: ["17"] },
-      { year: "2013", values: ["10"] },
-      { year: "2012", values: ["9"] },
-    ],
-    notes: ["表記の数値は補欠番号です。"],
-  },
-  {
-    name: "昭和大学",
-    columns: ["I期", "II期", "新潟枠", "静岡枠", "茨城枠"],
-    latest: "2024年度はI期134番、II期23番まで。",
-    rows: [
-      { year: "2024", values: ["134", "23", "0", "1", "0"] },
-      { year: "2023", values: ["149", "19", "1", "1", "0"] },
-      { year: "2022", values: ["154", "28", "0", "2", "0"] },
-      { year: "2021", values: ["182", "-", "-", "-", "-"] },
-      { year: "2020", values: ["157", "-", "-", "-", "-"] },
-      { year: "2019", values: ["179", "-", "-", "-", "-"] },
-      { year: "2018", values: ["23", "-", "-", "-", "-"] },
-      { year: "2017", values: ["17", "-", "-", "-", "-"] },
-      { year: "2016", values: ["12", "-", "-", "-", "-"] },
-      { year: "2015", values: ["220", "-", "-", "-", "-"] },
-      { year: "2014", values: ["210", "-", "-", "-", "-"] },
-    ],
-    notes: ["2019年度より「特待生」を「正規合格者」とし、その他の合格者を「補欠合格者」としました。"],
-  },
-  {
-    name: "聖マリアンナ医科大学",
-    columns: ["補欠繰上合格"],
-    latest: "2024年度は前期68番、後期3番まで。",
-    rows: [
-      { year: "2024", values: ["70前後"] },
-      { year: "2023", values: ["89"] },
-      { year: "2022", values: ["140後半"] },
-      { year: "2021", values: ["190番台"] },
-      { year: "2020", values: ["78"] },
-      { year: "2019", values: ["134"] },
-      { year: "2018", values: ["50番台"] },
-      { year: "2017", values: ["57"] },
-      { year: "2016", values: ["135"] },
-      { year: "2015", values: ["141"] },
-      { year: "2014", values: ["112"] },
-      { year: "2013", values: ["87"] },
-      { year: "2012", values: ["95"] },
-    ],
-    notes: ["表記の数値は補欠番号です。"],
-  },
-  {
-    name: "東海大学",
-    columns: ["一般", "共通テスト利用", "共テ利用神奈川", "共テ利用静岡"],
-    latest: "2024年度は一般52、共通テスト利用19、神奈川7、静岡2。",
-    rows: [
-      { year: "2024", values: ["52", "19", "7", "2"] },
-      { year: "2023", values: ["62", "38", "12", "13"] },
-      { year: "2022", values: ["24", "一桁後半？", "-", "-"] },
-      { year: "2021", values: ["34", "26", "-", "-"] },
-      { year: "2020", values: ["85", "-", "-", "-"] },
-      { year: "2019", values: ["62", "-", "-", "-"] },
-      { year: "2018", values: ["43", "-", "-", "-"] },
-      { year: "2017", values: ["7", "-", "-", "-"] },
-      { year: "2016", values: ["70", "-", "-", "-"] },
-      { year: "2015", values: ["74", "-", "-", "-"] },
-      { year: "2014", values: ["58", "-", "-", "-"] },
-      { year: "2013", values: ["45", "-", "-", "-"] },
-    ],
-    notes: ["上記の繰上合格者数には入学辞退者が含まれていません。"],
-  },
-  {
-    name: "東京医科大学",
-    columns: ["一般", "共テ利"],
-    latest: "2024年度は一般65番、共テ利用28番まで。",
-    rows: [
-      { year: "2024", values: ["65", "28"] },
-      { year: "2023", values: ["46", "-"] },
-      { year: "2022", values: ["126", "-"] },
-      { year: "2021", values: ["161", "-"] },
-      { year: "2020", values: ["71", "-"] },
-      { year: "2019", values: ["99", "-"] },
-      { year: "2018", values: ["96", "-"] },
-      { year: "2017", values: ["56", "-"] },
-      { year: "2016", values: ["79", "-"] },
-      { year: "2015", values: ["78", "-"] },
-      { year: "2014", values: ["91", "-"] },
-      { year: "2013", values: ["68", "-"] },
-    ],
-    notes: ["表記の数値は補欠番号です。"],
-  },
-  {
-    name: "東京慈恵会医科大学",
-    columns: ["補欠合格者数"],
-    latest: "2024年度は3月29日に67番まで。",
-    rows: [
-      { year: "2024", values: ["67"] },
-      { year: "2023", values: ["65"] },
-      { year: "2022", values: ["79"] },
-      { year: "2021", values: ["73"] },
-      { year: "2020", values: ["150"] },
-      { year: "2019", values: ["142"] },
-      { year: "2018", values: ["103"] },
-      { year: "2017", values: ["102"] },
-      { year: "2016", values: ["151"] },
-      { year: "2015", values: ["184"] },
-      { year: "2014", values: ["152"] },
-      { year: "2013", values: ["203"] },
-      { year: "2012", values: ["181"] },
-    ],
-    notes: ["表記の数値は補欠番号です。"],
-  },
-  {
-    name: "東京女子医科大学",
-    columns: ["補欠合格者数"],
-    latest: "2024年度は5番まで。",
-    rows: [
-      { year: "2024", values: ["5"] },
-      { year: "2023", values: ["20"] },
-      { year: "2022", values: ["35"] },
-      { year: "2021", values: ["99"] },
-      { year: "2020", values: ["91"] },
-      { year: "2019", values: ["94"] },
-      { year: "2018", values: ["39"] },
-      { year: "2017", values: ["55"] },
-      { year: "2016", values: ["72"] },
-      { year: "2015", values: ["67"] },
-      { year: "2014", values: ["57"] },
-      { year: "2013", values: ["35"] },
-      { year: "2012", values: ["34"] },
-    ],
-    notes: ["表記の数値は補欠番号です。"],
-  },
-  {
-    name: "東北医科薬科大学",
-    columns: ["繰上合格者数"],
-    latest: "2024年度は非公開。",
-    rows: [
-      { year: "2024", values: ["非公開"] },
-      { year: "2023", values: ["186"] },
-      { year: "2022", values: ["非公開"] },
-      { year: "2021", values: ["237"] },
-      { year: "2020", values: ["225"] },
-      { year: "2019", values: ["181"] },
-      { year: "2018", values: ["127"] },
-      { year: "2017", values: ["156"] },
-      { year: "2016", values: ["197"] },
-    ],
-    notes: ["補欠者に繰上番号は付きません。"],
-  },
-  {
-    name: "獨協医科大学",
-    columns: ["補欠合格・繰上"],
-    latest: "2024年度は非公開。",
-    rows: [
-      { year: "2024", values: ["非公開"] },
-      { year: "2023", values: ["非公開"] },
-      { year: "2022", values: ["非公開"] },
-      { year: "2021", values: ["非公開"] },
-      { year: "2020", values: ["55"] },
-      { year: "2019", values: ["55"] },
-      { year: "2018", values: ["54"] },
-      { year: "2017", values: ["28"] },
-      { year: "2016", values: ["非公開"] },
-      { year: "2015", values: ["非公開"] },
-      { year: "2014", values: ["非公開"] },
-      { year: "2013", values: ["非公開"] },
-    ],
-    notes: ["補欠番号は30番まで番号が付きます。"],
-  },
-  {
-    name: "日本医科大学",
-    columns: ["前期", "後期"],
-    latest: "2024年度は前期70番台前半、後期19番まで。",
-    rows: [
-      { year: "2024", values: ["70前半？", "19？"] },
-      { year: "2023", values: ["70前半", "20前半"] },
-      { year: "2022", values: ["120中盤", "-"] },
-      { year: "2021", values: ["120中盤", "3"] },
-      { year: "2020", values: ["159", "14"] },
-      { year: "2019", values: ["70番台", "53"] },
-      { year: "2018", values: ["172", "51"] },
-      { year: "2017", values: ["189", "13"] },
-      { year: "2016", values: ["212", "-"] },
-      { year: "2015", values: ["243", "-"] },
-      { year: "2014", values: ["242", "-"] },
-    ],
-    notes: ["表記の数値は補欠番号です。"],
-  },
-  {
-    name: "日本大学",
-    columns: ["前期", "後期"],
-    latest: "2024年度は前期88番、後期6番まで。",
-    rows: [
-      { year: "2024", values: ["88", "6"] },
-      { year: "2023", values: ["131", "2"] },
-      { year: "2022", values: ["130前半", "5"] },
-      { year: "2021", values: ["166", "-"] },
-      { year: "2020", values: ["67", "-"] },
-      { year: "2019", values: ["89", "-"] },
-      { year: "2018", values: ["非公開", "-"] },
-      { year: "2017", values: ["92", "-"] },
-      { year: "2016", values: ["119", "-"] },
-      { year: "2015", values: ["106", "-"] },
-      { year: "2014", values: ["100", "-"] },
-    ],
-    notes: ["表記の数値は補欠番号です。"],
-  },
-  {
-    name: "兵庫医科大学",
-    columns: ["補欠合格者数"],
-    latest: "2024年度は48名。",
-    rows: [
-      { year: "2024", values: ["48"] },
-      { year: "2023", values: ["41"] },
-      { year: "2022", values: ["60"] },
-      { year: "2021", values: ["61"] },
-      { year: "2020", values: ["82"] },
-      { year: "2019", values: ["88"] },
-      { year: "2018", values: ["92"] },
-      { year: "2017", values: ["86"] },
-      { year: "2016", values: ["82"] },
-      { year: "2015", values: ["75"] },
-      { year: "2014", values: ["81"] },
-      { year: "2013", values: ["76"] },
-      { year: "2012", values: ["70"] },
-    ],
-    notes: [
-      "選抜B高大接続型の繰上合格者は、2021年度3名、2022年度9名、2023年度5名、2024年度6名です。",
-      "繰上合格者には入学辞退者が含まれていません。",
-    ],
-  },
-  {
-    name: "福岡大学",
-    columns: ["一般", "共テ利用"],
-    latest: "2024年度は一般14番、共テ利用31番まで。",
-    rows: [
-      { year: "2024", values: ["14", "31"] },
-      { year: "2023", values: ["16", "5"] },
-      { year: "2022", values: ["65", "35"] },
-      { year: "2021", values: ["54", "-"] },
-      { year: "2020", values: ["86", "-"] },
-      { year: "2019", values: ["80", "-"] },
-      { year: "2018", values: ["19", "-"] },
-      { year: "2017", values: ["62", "-"] },
-      { year: "2016", values: ["29", "-"] },
-      { year: "2015", values: ["43", "-"] },
-      { year: "2014", values: ["65", "-"] },
-    ],
-    notes: ["表記の数値は補欠番号です。"],
-  },
-  {
-    name: "藤田医科大学",
-    columns: ["前期", "後期", "共テ（前期）", "共テ（後期）"],
-    latest: "2024年度は前期50、後期2、共テ前期32、共テ後期1。",
-    rows: [
-      { year: "2024", values: ["50", "2", "32", "1"] },
-      { year: "2023", values: ["15", "3", "-", "-"] },
-      { year: "2022", values: ["番号なし", "10", "-", "-"] },
-      { year: "2021", values: ["40番台", "10番台", "-", "-"] },
-      { year: "2020", values: ["16", "14", "-", "-"] },
-      { year: "2019", values: ["50", "14", "-", "-"] },
-      { year: "2018", values: ["30", "-", "-", "-"] },
-      { year: "2017", values: ["57", "-", "-", "-"] },
-      { year: "2015", values: ["88", "7", "-", "-"] },
-    ],
-    notes: [
-      "2022年度は51人以上繰上がり、番号なし受験生まで回りました。",
-      "2016〜2018年度は後期試験を実施せず、2019年より再開しました。",
-    ],
-  },
-];
-
-const pageTitle = "医学部 繰上げ合格のQ&A｜繰上げ合格情報｜医学部予備校レクサス";
-const pageDescription =
-  "医学部入試の正規合格・補欠・繰上げ合格の違い、繰上げ人数の見方、私立医学部の大学別繰上げ合格データを医学部予備校レクサスが整理して解説します。";
 ---
 
-<SiteLayout title={pageTitle} description={pageDescription} canonical="https://lexus-ec.com/kuriage-information/" ogImage={seo.ogImage}>
-  <main class="kuriage-page">
+<SiteLayout title={pageTitle} description={pageDescription} canonical={canonical} ogImage={seo.ogImage} mainContentId="kuriage-main">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, "\\u003c")} />
+    <link rel="alternate" type="application/json" href={datasetPath} title="2026年度 私立医学部繰上げ合格データ" />
+  </Fragment>
+  <main id="kuriage-main" class="kuriage-page">
     <section class="kuriage-hero" aria-labelledby="kuriage-title">
       <div class="content kuriage-hero__inner">
-        <img
-          class="kuriage-hero__logo-strip"
-          src="/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png"
-          alt=""
-          loading="eager"
-        />
-        <p class="kuriage-hero__eyebrow">WAITLIST Q&A</p>
-        <h1 id="kuriage-title">医学部 繰上げ合格のQ&A</h1>
-        <p class="kuriage-hero__lead">
-          正規合格、補欠、繰上げ合格の違いから、大学別の繰上げデータまで。医学部入試で毎年不安になりやすい数字を、見やすいHTMLの表に整理しました。
-        </p>
-        <div class="kuriage-hero__actions">
-          <a class="button button--red" href="/request-documents/">資料請求</a>
-          <a class="button button--blue" href="/reservation/">個別相談</a>
+        <img class="kuriage-hero__logo-strip" src="/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png" alt="" loading="eager" width="1024" height="74" />
+        <p class="kuriage-hero__eyebrow">2026年度の結果 · 私立医学部31大学</p>
+        <h1 id="kuriage-title">医学部の補欠・<br class="mobile-break" />繰上げ合格情報</h1>
+        <p class="kuriage-hero__lead">何番まで繰り上がった？ 何人が追加合格した？<br />数字の意味と出典を分けて、志望校の結果を確認できます。</p>
+        <p class="checked-date">最終更新：<time datetime={waitlistCheckedAt}>{formatDate(waitlistCheckedAt)}</time></p>
+        <div class="year-notice">
+          <strong>掲載しているのは2026年度の結果です。</strong>
+          <p>2027年度の補欠・繰上げ合格状況は、各大学の入試後に判明します。過去の結果は、今年の合格を保証するものではありません。</p>
+          <a href="/private-medical-school-admissions-schedule-2027/">2027年度の私立医学部入試日程を見る <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
 
-    <nav class="kuriage-nav" aria-label="繰上げ合格Q&Aの目次">
+    <nav class="kuriage-nav" aria-label="繰上げ合格情報の目次">
       <div class="content kuriage-nav__grid">
-        <a href="#definition">
-          <span>QUESTION 01</span>
-          <strong>正規・補欠・繰上げ</strong>
-        </a>
-        <a href="#count">
-          <span>QUESTION 02</span>
-          <strong>どのくらい繰り上がるか</strong>
-        </a>
-        <a href="#school-data">
-          <span>QUESTION 03</span>
-          <strong>大学別データ</strong>
-        </a>
+        <a href="#school-data"><span>01</span><strong>31大学の結果を見る</strong></a>
+        <a href="#definition"><span>02</span><strong>補欠・繰上げのQ&A</strong></a>
+        <a href="#contact"><span>03</span><strong>連絡を待つときの注意</strong></a>
       </div>
     </nav>
 
-    <section id="definition" class="kuriage-section kuriage-section--definition">
+    <section id="school-data" class="kuriage-section results-section" aria-labelledby="results-title">
       <div class="content">
-        <div class="kuriage-question">
-          <span class="kuriage-question__mark">Q</span>
-          <div>
-            <p class="kuriage-kicker">QUESTION 01</p>
-            <h2>最終？正規？繰上げ合格って何？</h2>
-          </div>
+        <div class="waitlist-heading"><p class="kuriage-kicker">UNIVERSITY RESULTS</p><h2 id="results-title">2026年度 大学別の繰上げ合格情報</h2><p>一般選抜・共通テスト利用を中心に、確認できた結果を50音順で掲載しています。</p></div>
+        <div class="reading-guide">
+          <div><span class="evidence-badge evidence-badge--official">大学公式</span><p>大学が公表した人数・順位・終了案内です。</p></div>
+          <div><span class="evidence-badge evidence-badge--prep">予備校情報</span><p>富士学院・メルリックス学院の報告です。大学の確定結果とは区別しています。</p></div>
+          <p class="reading-guide__warning"><strong>「合格例：補欠○番」は、最終到達順位ではありません。</strong><br />その番号の合格が報告されたという意味です。掲載のない方式や「未確認」は、繰上げが0人だったことを意味しません。</p>
         </div>
-        <div class="kuriage-answer">
-          <p>
-            医学部入試の合格者には、慣習として「正規合格者」と「繰上げ合格者」の2種類があります。繰上げ合格も正式な合格であり、入学後の扱いが別になるものではありません。
-          </p>
-          <p>
-            一度の合格発表で入学者全員が確定することは多くありません。辞退者による欠員が出るため、大学は補欠者や追加合格候補者を段階的に繰り上げます。
-          </p>
-        </div>
-
-        <div class="kuriage-definition-grid" aria-label="合格区分の整理">
-          <article>
-            <span>01</span>
-            <h3>正規合格者</h3>
-            <p>合格発表当日の発表時間に合格と判定された受験者。二次試験合格者と同義で使われることがあります。</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>補欠者</h3>
-            <p>欠員が生じたとき、繰上げ合格の対象になり得る受験者。大学によって番号・ランク・群の出し方が異なります。</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>繰上げ合格者</h3>
-            <p>正規合格者の辞退などにより、後から合格となった受験者。補欠合格者・追加合格者と呼ばれることもあります。</p>
-          </article>
-        </div>
-
-        <div class="kuriage-caution-grid">
-          <p>東京医科大学のように「補欠合格」「追加合格」「繰上げ合格」を明確に分ける大学もあります。</p>
-          <p>大阪医科薬科大学のように、繰上げ候補者に対して3月に別途二次試験を実施する特殊な運用もあります。</p>
+        <details class="source-policy"><summary>掲載情報・出典について</summary><p>大学公式の年度結果・募集要項・お知らせを優先し、公式で確認できない情報は、医学部入試を継続的に扱う富士学院・メルリックス学院の公表情報から補っています。掲載する予備校情報はこの2校に限定し、匿名掲示板、個人ブログ・個人SNSは採用していません。日付は情報が示す時点であり、人数・順位は混ぜて比較できません。</p><p>各記録には出典を付けています。対象日が記載されていない年度結果は、2026年度資料として表示しています。</p></details>
+        <nav class="kuriage-school-index" aria-label="大学名から結果へ移動">
+          {alphabeticalWaitlistSchools.map((school) => <a href={`#${school.id}`}>{school.name}</a>)}
+        </nav>
+        <div class="result-grid">
+          {alphabeticalWaitlistSchools.map((school, index) => (
+            <article id={school.id} class="result-card" aria-labelledby={`${school.id}-title`}>
+              <header class="result-card__header"><span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><h3 id={`${school.id}-title`}>{school.name}</h3><span class="result-card__year">{waitlistAdmissionYear}年度</span></header>
+              <dl class="result-list">
+                {school.records.map((row) => (
+                  <div class:list={["result-row", { "result-row--notice": row.metric === "notice" }]}>
+                    <dt>{row.route}</dt>
+                    <dd>
+                      <div class="result-row__badges"><span class:list={["evidence-badge", `evidence-badge--${row.source.kind}`]}>{waitlistSourceLabels[row.source.kind]}</span><span class="metric-label">{waitlistMetricLabels[row.metric]}</span></div>
+                      <p class="result-row__value">{row.result}</p>
+                      <p class="result-row__date">{row.asOf ? <><time datetime={row.asOf}>{formatDate(row.asOf)}</time>の情報</> : <>2026年度資料（対象日の記載なし）</>}</p>
+                      <a class="source-link" href={row.source.url} target="_blank" rel="noopener noreferrer">{row.source.title}<span class="sr-only">（新しいタブで開く）</span><span aria-hidden="true"> ↗</span></a>
+                      {row.note && <p class="result-note">{row.note}</p>}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              {school.note && <div class="result-card__note"><p>{school.note}</p>{school.noteSources?.map((source) => <a class="source-link" href={source.url} target="_blank" rel="noopener noreferrer">{source.title}<span class="sr-only">（新しいタブで開く）</span><span aria-hidden="true"> ↗</span></a>)}</div>}
+            </article>
+          ))}
         </div>
       </div>
     </section>
 
-    <section id="count" class="kuriage-section kuriage-section--count">
+    <section id="definition" class="kuriage-section waitlist-faq-section" aria-labelledby="faq-title">
       <div class="content">
-        <div class="kuriage-question">
-          <span class="kuriage-question__mark">Q</span>
-          <div>
-            <p class="kuriage-kicker">QUESTION 02</p>
-            <h2>何人くらいが繰り上がるの？</h2>
-          </div>
-        </div>
-        <div class="kuriage-answer">
-          <p>
-            多い大学・年度では200人前後、少ない大学・年度では5人程度です。大学ごとの募集方式、辞退状況、補欠の公表方法によって大きく変わります。
-          </p>
-          <p>
-            「繰上げ合格者数」「補欠合格者数」は、大学によって意味が揃っていません。表を見るときは、合格者数なのか補欠番号なのか、辞退者を含むのかを必ず確認しましょう。
-          </p>
-        </div>
-
-        <div class="kuriage-example" aria-label="繰上げ合格者数の見方">
-          <div>
-            <p class="kuriage-example__label">計算例</p>
-            <strong>最終合格者150人 - 正規合格者100人 = 繰上げ合格者50人</strong>
-          </div>
-          <p>
-            ただし、この50人に入学辞退者が含まれない場合があります。大学が実際に連絡した人数は、公式発表の数字より多いこともあります。
-          </p>
+        <div class="waitlist-heading"><p class="kuriage-kicker">WAITLIST Q&A</p><h2 id="faq-title">補欠・繰上げ合格のQ&A</h2></div>
+        <div class="waitlist-faq-list">
+          {waitlistFaqs.map((faq, index) => <article id={index === 1 ? "count" : undefined}><h3><span aria-hidden="true">Q.</span>{faq.question}</h3><p>{faq.answer}</p>{index === 2 && <a class="source-link" href="https://www.fujita-hu.ac.jp/admission/q-and-a.html" target="_blank" rel="noopener noreferrer">藤田医科大学の公式Q&A<span class="sr-only">（新しいタブで開く）</span><span aria-hidden="true"> ↗</span></a>}</article>)}
         </div>
       </div>
     </section>
 
-    <section id="school-data" class="kuriage-section kuriage-section--data">
+    <section id="contact" class="kuriage-section contact-section" aria-labelledby="contact-title">
       <div class="content">
-        <div class="kuriage-question">
-          <span class="kuriage-question__mark">Q</span>
-          <div>
-            <p class="kuriage-kicker">QUESTION 03</p>
-            <h2>各大学の繰上げ合格者数は？</h2>
-          </div>
-        </div>
-        <div class="kuriage-answer">
-          <p>
-            調べがつく範囲で、私立医学部の繰上げ合格データを50音順にまとめました。画像ギャラリーではなく、検索・比較しやすいHTML表として再構成しています。
-          </p>
-          <p>
-            「補欠番号」と「繰上げ合格者数」は別物です。数値の意味は大学・年度ごとに異なるため、各カードの注記も合わせて確認してください。
-          </p>
-        </div>
-
-        <div class="kuriage-school-index" aria-label="大学別データの一覧">
-          {waitlistSchools.map((school, index) => <a href={`#school-${index + 1}`}>{school.name}</a>)}
-        </div>
-
-        <div class="kuriage-school-grid">
-          {
-            waitlistSchools.map((school, index) => (
-              <article
-                id={`school-${index + 1}`}
-                class:list={[
-                  "kuriage-school-card",
-                  `kuriage-school-card--tone-${(index % 4) + 1}`,
-                  { "kuriage-school-card--wide": school.columns.length >= 4 },
-                ]}
-              >
-                <header class="kuriage-school-card__header">
-                  <p class="kuriage-school-card__eyebrow">{String(index + 1).padStart(2, "0")}</p>
-                  <h3>{school.name}</h3>
-                  <p>{school.latest}</p>
-                </header>
-                <div class="kuriage-table-wrap" tabindex="0">
-                  <table class="kuriage-data-table">
-                    <caption>{school.name}の繰上げ合格情報</caption>
-                    <thead>
-                      <tr>
-                        <th scope="col">年度</th>
-                        {school.columns.map((column) => <th scope="col">{column}</th>)}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {
-                        school.rows.map((row) => (
-                          <tr>
-                            <th scope="row">{row.year}</th>
-                            {school.columns.map((column, valueIndex) => <td data-label={column}>{row.values[valueIndex] ?? "-"}</td>)}
-                          </tr>
-                        ))
-                      }
-                    </tbody>
-                  </table>
-                </div>
-                {school.notes.length > 0 && (
-                  <ul class="kuriage-school-card__notes">
-                    {school.notes.map((note) => <li>{note}</li>)}
-                  </ul>
-                )}
-              </article>
-            ))
-          }
-        </div>
+        <div class="waitlist-heading"><p class="kuriage-kicker">BEFORE THE CALL</p><h2 id="contact-title">連絡を待つ間に、確認しておきたいこと</h2><p>連絡方法や返答期限は、大学ごとに違います。受験した年度の募集要項を手元に用意しましょう。</p></div>
+        <ol class="contact-list">
+          <li><h3>登録した電話番号とマイページを確認</h3><p>本人・保護者の連絡先が使える状態か確認してください。知らない番号からの着信も、大学からの連絡の可能性があります。発表・通知方法は大学の案内に従いましょう。</p></li>
+          <li><h3>返答・入学手続きの期限を確認</h3><p>合格の連絡を受けたら、返答と入金・書類提出の期限を確認してください。「翌日まで待てる」とは限りません。入学意思や他大学の手続きも、家族で相談しておきましょう。</p></li>
+          <li><h3>終了は大学のお知らせで確認</h3><p>3月末で終了する大学も、4月に動く可能性のある大学もあります。予備校の報告が止まったことだけで、繰上げ終了とは判断しないでください。</p></li>
+        </ol>
+        <div class="contact-evidence"><p>大学ごとの案内例</p><ul><li><a href="https://www.tohoku-mpu.ac.jp/admission/qa/" target="_blank" rel="noopener noreferrer">東北医科薬科大学：電話連絡の注意事項 ↗</a></li><li><a href="https://www.toho-u.ac.jp/info_exam/med_2026ippan.pdf" target="_blank" rel="noopener noreferrer">東邦大学：2026年度要項の返答期限（p.14） ↗</a></li><li><a href="https://www.fujita-hu.ac.jp/admission/q-and-a.html" target="_blank" rel="noopener noreferrer">藤田医科大学：4月の繰上げについて ↗</a></li></ul><p>年度が異なる要項を、そのまま2027年度のルールとして使わないでください。</p></div>
       </div>
     </section>
-
     <section class="kuriage-cta" aria-labelledby="kuriage-cta-title">
-      <div class="content-narrow">
-        <p class="kuriage-cta__eyebrow">NEXT STEP</p>
-        <h2 id="kuriage-cta-title">繰上げを待つだけでなく、次の判断を早くする。</h2>
-        <p>
-          補欠番号や繰上げ状況は、志望順位、入学手続き、次年度への準備に直結します。数字だけで迷わず、現在地と選択肢を整理しましょう。
-        </p>
-        <div class="kuriage-cta__actions">
-          <a class="button button--red" href="/request-documents/">資料請求</a>
-          <a class="button button--blue" href="/reservation/">個別相談</a>
-          <a class="button button--green" href="/top/information-shiritsu/">大学別情報</a>
-        </div>
-      </div>
+      <div class="content-narrow"><p class="kuriage-cta__eyebrow">NEXT STEP</p><h2 id="kuriage-cta-title">入試の不安は、ひとつずつ整理しましょう。</h2><p>繰上げを待つ間の判断や、これからの受験準備について、レクサス教育センターにご相談ください。</p><div class="kuriage-cta__actions"><a class="button button--red" href="/reservation/">個別相談</a><a class="button button--outline" href="/top/information-shiritsu/">私立医学部の大学別情報</a></div></div>
     </section>
   </main>
 </SiteLayout>
+
+<style>
+  .kuriage-page { --kuriage-accent: var(--red); }
+  .kuriage-hero__eyebrow, .kuriage-kicker, .kuriage-cta__eyebrow { color: var(--red); background: transparent; padding: 0; border-radius: 0; }
+  .kuriage-hero h1 { font-size: clamp(2rem, 4.3vw, 3.6rem); line-height: 1.35; }
+  .kuriage-hero__lead { font-weight: 500; }
+  .mobile-break { display: none; }
+  .checked-date { margin: 0; color: var(--muted); font-size: .85rem; }
+  .year-notice { width: min(100%, 800px); box-sizing: border-box; border: 1px solid var(--line); border-left: 4px solid var(--red); background: #fffaf6; padding: 20px 24px; text-align: left; font-size: .95rem; line-height: 1.8; }
+  .year-notice strong { color: var(--red); }
+  .year-notice p { margin: 6px 0 12px; }
+  .year-notice a { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .kuriage-nav { background: #fff; }
+  .kuriage-nav a { box-shadow: none; }
+  .waitlist-heading { margin-bottom: 26px; }
+  .waitlist-heading h2 { margin: 12px 0; font-size: clamp(1.5rem, 3vw, 2.3rem); font-family: var(--font-serif); line-height: 1.5; }
+  .waitlist-heading > p:last-child:not(.kuriage-kicker) { color: var(--muted); line-height: 1.85; }
+  .reading-guide { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid var(--line); background: #faf9f6; padding: 22px; gap: 16px 30px; }
+  .reading-guide p { margin: 8px 0 0; font-size: .95rem; line-height: 1.85; }
+  .reading-guide__warning { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 14px; }
+  .reading-guide__warning strong { color: var(--red); }
+  .evidence-badge { display: inline-block; border: 1px solid; border-radius: 3px; padding: 2px 7px; font-size: .72rem; font-weight: 700; line-height: 1.6; }
+  .evidence-badge--official { color: #8f0808; border-color: #dfb7b7; background: #fff4f4; }
+  .evidence-badge--prep { color: #535149; border-color: #cbc8bf; background: #f4f3ef; }
+  .source-policy { margin-top: 16px; line-height: 1.85; font-size: .9rem; color: var(--muted); }
+  .source-policy summary { cursor: pointer; width: fit-content; color: var(--ink); font-weight: 700; }
+  .source-policy p { max-width: 960px; }
+  .kuriage-school-index { margin: 32px 0; }
+  .kuriage-school-index a { box-shadow: none; border-radius: 4px; }
+  .result-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
+  .result-card { min-width: 0; border: 1px solid var(--line); border-top: 3px solid var(--red); background: #fff; scroll-margin-top: 135px; }
+  .result-card__header { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 12px; padding: 20px; border-bottom: 1px solid var(--line); }
+  .result-card__header > span:first-child { color: var(--red); font-size: .8rem; font-weight: 700; }
+  .result-card__header h3 { margin: 0; font-size: 1.3rem; line-height: 1.5; }
+  .result-card__year { margin-left: auto; font-size: .78rem; color: var(--muted); white-space: nowrap; }
+  .result-list { margin: 0; }
+  .result-row { display: grid; grid-template-columns: minmax(95px, .8fr) minmax(0, 2fr); gap: 16px; padding: 20px; }
+  .result-row + .result-row { border-top: 1px solid var(--line); }
+  .result-row dt { font-size: .9rem; font-weight: 700; line-height: 1.8; }
+  .result-row dd { margin: 0; min-width: 0; }
+  .result-row__badges { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .metric-label { font-size: .72rem; color: var(--muted); }
+  .result-row__value { margin: 8px 0; font-size: 1.05rem; font-weight: 700; line-height: 1.7; }
+  .result-row__date { margin: 0 0 6px; color: var(--muted); font-size: .75rem; line-height: 1.8; }
+  .source-link { display: inline; font-size: .77rem; color: #5d4e43; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; line-height: 1.9; }
+  .result-row--notice { background: #fffaf6; }
+  .result-card__note { padding: 16px 20px; background: #f8f7f4; border-top: 1px solid var(--line); }
+  .result-card__note p, .result-note { margin: 0; font-size: .83rem; color: #625c55; line-height: 1.85; }
+  .waitlist-faq-section { background: #faf9f6; }
+  .waitlist-faq-list { display: grid; gap: 16px; max-width: 960px; }
+  .waitlist-faq-list article { padding: 24px; border: 1px solid var(--line); background: #fff; scroll-margin-top: 130px; }
+  .waitlist-faq-list h3 { margin: 0 0 12px; font-size: 1.15rem; line-height: 1.7; }
+  .waitlist-faq-list h3 span { margin-right: 10px; color: var(--red); }
+  .waitlist-faq-list p { margin: 0; line-height: 1.9; font-size: .97rem; }
+  .contact-list { counter-reset: contact; list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; max-width: 960px; }
+  .contact-list li { counter-increment: contact; border: 1px solid var(--line); padding: 22px 24px; }
+  .contact-list h3 { margin: 0 0 10px; font-size: 1.15rem; line-height: 1.7; }
+  .contact-list h3::before { content: "0" counter(contact); margin-right: 14px; color: var(--red); font-size: .9rem; }
+  .contact-list p { margin: 0; line-height: 1.9; }
+  .contact-evidence { font-size: .86rem; line-height: 1.9; margin-top: 24px; color: var(--muted); }
+  .contact-evidence ul { padding-left: 20px; }
+  .contact-evidence a { text-decoration: underline; text-underline-offset: 3px; }
+  .kuriage-cta { background: #fffaf6; border-top: 1px solid var(--line); color: var(--ink); }
+  .kuriage-cta p:not(.kuriage-cta__eyebrow) { color: var(--muted); font-weight: 500; }
+  .kuriage-cta .button--outline { background: #fff; color: var(--red); border: 1px solid var(--red); }
+  .sr-only { position: absolute; left: 0; top: 0; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); clip-path: inset(50%); white-space: nowrap; }
+  @media (max-width: 760px) {
+    .reading-guide, .result-grid { grid-template-columns: minmax(0, 1fr); }
+    .result-row { grid-template-columns: minmax(88px, .7fr) minmax(0, 1.7fr); gap: 12px; padding: 18px 16px; }
+    .result-card__header { padding: 16px; }
+    .result-card__header h3 { font-size: 1.2rem; }
+    .result-card__note { padding: 14px 16px; }
+    .year-notice { padding: 16px; }
+    .waitlist-faq-list article, .contact-list li { padding: 20px; }
+    .mobile-break { display: block; }
+  }
+  @media (max-width: 380px) { .result-row { grid-template-columns: minmax(0, 1fr); gap: 8px; } }
+  @media print {
+    .kuriage-nav, .kuriage-school-index, .kuriage-cta, .source-policy { display: none; }
+    .result-grid { display: block; }
+    .result-card { break-inside: avoid; margin-bottom: 16px; }
+    .kuriage-section { padding: 24px 0; }
+  }
+</style>
