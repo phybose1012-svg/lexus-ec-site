@@ -29,6 +29,13 @@ const iwateHistoricalRows = () => [
     .map((row) => ({ year: row.year, values: [row.values[0], '—', '—'] })),
 ];
 
+test('the waitlist-count FAQ explains that counts excluding decliners can understate actual offers', () => {
+  assert.equal(waitlistFaqs[1].question, '繰り上げ合格者が50人なら、補欠50番までしか回ってないってこと？');
+  assert.match(waitlistFaqs[1].answer, /入学を辞退した人が含まれていない場合/);
+  assert.match(waitlistFaqs[1].answer, /実際に合格の連絡を受けた人は掲載人数より多く/);
+  assert.match(waitlistFaqs[1].answer, /補欠50番より先/);
+});
+
 test('all 31 private medical schools appear exactly once in both the data and index', () => {
   assert.equal(waitlistSchools.length, 31);
   assert.equal(new Set(waitlistSchools.map((entry) => entry.id)).size, 31);
@@ -366,6 +373,13 @@ test('built page, JSON and structured data describe the same visible evidence', 
   const schema = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
   const faq = schema['@graph'].find((item) => item['@type'] === 'FAQPage');
   assert.deepEqual(faq.mainEntity.map((item) => item.name), waitlistFaqs.map((item) => item.question));
+  assert.deepEqual(faq.mainEntity.map((item) => item.acceptedAnswer.text), waitlistFaqs.map((item) => item.answer));
+  assert.ok(html.includes(waitlistFaqs[1].question));
+  assert.ok(html.includes(waitlistFaqs[1].answer));
+  assert.ok(html.includes('繰上げ合格の連絡70人 − 入学辞退20人 ＝ 掲載人数50人'));
+  assert.match(html, /<h2 id="results-title"[^>]*>だいたい補欠何番まで回ってくるの？<\/h2>/);
+  assert.ok(!html.includes('各大学の繰上げ合格者数は？'));
+  assert.doesNotMatch(html, /補欠100番なら、100人が合格したということ？|最終合格者150人 − 正規合格者100人/);
   const dataset = schema['@graph'].find((item) => item['@type'] === 'Dataset');
   assert.equal(dataset.distribution.contentUrl, 'https://lexus-ec.com/data/medical-waitlist.json');
   assert.equal(dataset.temporalCoverage, '2012/2026');
