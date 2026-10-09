@@ -399,6 +399,9 @@ test('built page, JSON and structured data describe the same visible evidence', 
   assert.ok(!Object.hasOwn(dataset, 'citation'));
   assert.doesNotMatch(html, /waitlist-cell-date|waitlist-cell-route|waitlist-inline-results|<details[^>]*class="waitlist-legacy-notes"/);
   assert.ok(html.includes('2025・2026年度を、各大学の表の先頭に追加しています。'));
+  assert.ok(main.includes('「—」「-」は、番号なし・不明を表します。'));
+  assert.ok(main.includes('class="waitlist-empty" title="番号なし・不明"'));
+  assert.doesNotMatch(main, /数字の意味は、各表の下に記載しています|各表の下に、数値の意味と情報の種類を記載しています|「報告分」は最終結果とは限りません|受験生からの合格報告は最終結果とは限りません|「—」「-」は未確認で、0人ではありません|title="数値未確認。0人ではありません。"/);
   assert.ok(html.includes('2027年度の補欠・繰上げ合格状況は、各大学の入試後に判明します。'));
   assert.ok(html.includes('https://lexus-ec.com/kuriage-information/'));
   const sitemap = readFileSync(new URL('../dist/sitemap.xml', import.meta.url), 'utf8');
