@@ -11,7 +11,7 @@ export type WaitlistTableRow = { year: string; legacy: boolean; cells: WaitlistT
 // null is an annotation: do not guess a first/second period when it is unspecified.
 const columnRoutes: Record<string, Record<string, number | string | null>> = {
   "school-1": { "一般選抜": 1, "共通テスト利用": 2, "共テ利用・愛知県地域特別枠B方式": 3 },
-  "school-2": { "一般選抜": 0, "地域枠C": 0, "地域枠D": 0, "地域枠D（全国枠・診療科指定枠）": 0 },
+  "school-2": { "一般選抜": 0, "地域枠C": 1, "地域枠D": 2, "地域枠D（全国枠・診療科指定枠）": 2 },
   "school-3": { "一般前期": 0, "一般後期": 1, "共通テスト利用": 2 },
   "school-4": { "一般前期": 0, "一般後期": 1 },
   "school-5": { "一般前期": 0, "一般後期": "一般後期", "共通テスト・一般併用": "共テ・一般併用" },
@@ -44,10 +44,10 @@ const columnRoutes: Record<string, Record<string, number | string | null>> = {
 };
 
 // Neutral route headings avoid labeling counts as ranks (or vice versa).
-// Historical values and notes remain unchanged.
+// Historical source values and notes remain unchanged; Iwate is transposed below.
 const columnLabels: Record<string, string[]> = {
   "school-1": ["第1補欠（一般）", "繰上げ（一般）", "繰上げ（共テ）", "繰上げ（共テ地域枠）"],
-  "school-2": ["繰上げ結果"], "school-5": ["一般前期"],
+  "school-2": ["一般", "地域枠C", "地域枠D"], "school-5": ["一般前期"],
   "school-6": ["一般選抜"], "school-10": ["一般選抜"],
   "school-13": ["一般選抜"], "school-15": ["一般前期"],
   "school-18": ["一般選抜"], "school-19": ["一般選抜"],
@@ -66,12 +66,26 @@ function targetColumn(id: string, record: WaitlistRecord): number | string | nul
   return target;
 }
 
-function rowLabel(id: string, year: number, record: WaitlistRecord): string {
-  if (id === "school-2") {
-    const route = record.route.startsWith("地域枠C") ? "地域C" : record.route.startsWith("地域枠D") ? "地域D" : "一般";
-    return `${year}（${route}）`;
+function historicalTableRows(id: string, columns: string[], historicalRows: { year: string; values: string[] }[]): WaitlistTableRow[] {
+  if (id !== "school-2") return historicalRows.map((row) => ({
+    year: row.year, legacy: true,
+    cells: columns.map((_, columnIndex) => ({ records: [], ...(columnIndex < row.values.length ? { legacyValue: row.values[columnIndex] } : {}) })),
+  }));
+
+  // One row per year. The user identifies all pre-2024 figures as general-route counts.
+  const rows: WaitlistTableRow[] = [];
+  for (const original of historicalRows) {
+    const year = original.year.slice(0, 4);
+    const column = Number(year) <= 2023 ? 0 : original.year.includes("地域C") ? 1 : original.year.includes("地域D") ? 2 : 0;
+    let row = rows.find((entry) => entry.year === year);
+    if (!row) {
+      row = { year, legacy: true, cells: columns.map(() => ({ records: [] })) };
+      rows.push(row);
+    }
+    if (row.cells[column].legacyValue !== undefined) throw new Error(`Duplicate Iwate historical value: ${original.year}`);
+    row.cells[column].legacyValue = original.values[0];
   }
-  return String(year);
+  return rows;
 }
 
 export const waitlistTableSchools = waitlistSchools.map((school, index) => {
@@ -96,12 +110,12 @@ export const waitlistTableSchools = waitlistSchools.map((school, index) => {
     const target = targetColumn(school.id, record);
     if (target === null) {
       addAnnotation(year, record);
-      return { label: rowLabel(school.id, year, record), columnIndex: null, record };
+      return { label: String(year), columnIndex: null, record };
     }
     if (typeof target === "string" && !columns.includes(target)) columns.push(target);
     const columnIndex = typeof target === "number" ? target : columns.indexOf(target);
     if (columnIndex < 0 || columnIndex >= columns.length) throw new Error(`Invalid waitlist table column: ${school.id}`);
-    return { label: rowLabel(school.id, year, record), columnIndex, record };
+    return { label: String(year), columnIndex, record };
   }));
   const rows: WaitlistTableRow[] = [];
   for (const assignment of assignments) {
@@ -126,9 +140,6 @@ export const waitlistTableSchools = waitlistSchools.map((school, index) => {
     notes: waitlistNumericNotes(rows.filter((row) => row.year.startsWith(String(year))).flatMap((row) =>
       row.cells.flatMap((cell, columnIndex) => cell.records.map((record) => ({ record, column: columns[columnIndex] }))))),
   }));
-  rows.push(...(historical?.rows ?? []).map((row) => ({
-    year: row.year, legacy: true,
-    cells: columns.map((_, columnIndex) => ({ records: [], ...(columnIndex < row.values.length ? { legacyValue: row.values[columnIndex] } : {}) })),
-  })));
+  rows.push(...historicalTableRows(school.id, columns, historical?.rows ?? []));
   return { id: school.id, name: school.name, number: index + 1, tone: (index % 4) + 1, columns, rows, years, historical, annotations, numericNotes };
 });

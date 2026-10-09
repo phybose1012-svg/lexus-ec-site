@@ -21,6 +21,12 @@ const expectedNames = [
   '近畿大学', '兵庫医科大学', '川崎医科大学', '久留米大学', '産業医科大学', '福岡大学',
 ];
 const school = (name) => waitlistSchools.find((entry) => entry.name === name);
+const iwateHistoricalRows = () => [
+  { year: '2024', values: ['43', '3', '5'] },
+  ...historicalWaitlistSchools.find((entry) => entry.name === '岩手医科大学').rows
+    .filter((row) => Number(row.year) <= 2023)
+    .map((row) => ({ year: row.year, values: [row.values[0], '—', '—'] })),
+];
 
 test('all 31 private medical schools appear exactly once in both the data and index', () => {
   assert.equal(waitlistSchools.length, 31);
@@ -156,13 +162,17 @@ test('the complete original archive stays intact (26 schools, 281 rows, columns 
   assert.equal(createHash('sha256').update(JSON.stringify(historicalWaitlistSchools)).digest('hex'), 'f4b38ce684eff526060bf2b0fffc646db419c514c1488bd4f8986c38cf513180');
 });
 
-test('2025 and 2026 are prepended to each existing table without removing or rearranging its legacy data', () => {
+test('2025 and 2026 prepend every table; only Iwate transposes its historical route rows', () => {
   assert.equal(waitlistTableSchools.length, 31);
   assert.deepEqual(waitlistTableSchools.map(({ id, name }) => ({ id, name })), waitlistSchools.map(({ id, name }) => ({ id, name })));
   historicalWaitlistSchools.forEach((legacy, index) => {
     const table = waitlistTableSchools[index];
     assert.ok(table.columns.length >= legacy.columns.length);
-    assert.deepEqual(table.rows.filter((row) => row.legacy).map((row) => ({year:row.year, values:row.cells.slice(0, legacy.columns.length).map((cell) => cell.legacyValue)})), legacy.rows);
+    if (legacy.name === '岩手医科大学') {
+      assert.deepEqual(table.rows.filter((row) => row.legacy).map((row) => ({ year: row.year, values: row.cells.map((cell) => cell.legacyValue ?? '—') })), iwateHistoricalRows());
+    } else {
+      assert.deepEqual(table.rows.filter((row) => row.legacy).map((row) => ({year:row.year, values:row.cells.slice(0, legacy.columns.length).map((cell) => cell.legacyValue)})), legacy.rows);
+    }
     assert.equal(table.tone, (index % 4) + 1, 'original university color order');
     const newRows = table.rows.filter((row) => !row.legacy);
     assert.match(newRows[0].year, /^2026/);
@@ -183,15 +193,15 @@ test('every sourced record appears once in a cell or annotation without extra no
 
 test('minimal route columns keep counts/ranks explicit and do not guess unspecified periods', () => {
   const table = (id) => waitlistTableSchools.find((s) => s.id === id);
-  const additionalRouteColumns = new Map([['school-5', 2], ['school-8', 2], ['school-12', 1], ['school-15', 2], ['school-21', 1]]);
+  const additionalRouteColumns = new Map([['school-2', 2], ['school-5', 2], ['school-8', 2], ['school-12', 1], ['school-15', 2], ['school-21', 1]]);
   for (const [index, original] of historicalWaitlistSchools.entries()) {
     const id = `school-${index + 1}`;
     assert.equal(table(id).columns.length, original.columns.length + (additionalRouteColumns.get(id) ?? 0), id);
     assert.ok(table(id).columns.every((name) => !/お知らせ|合格例|合格報告|未確認/.test(name)), id);
   }
   const iwate = table('school-2');
-  assert.equal(iwate.rows.find((row) => row.year === '2025（地域C）').cells[0].records[0].result, '初回発表後の追加分4人');
-  assert.equal(iwate.rows.find((row) => row.year === '2026（地域C）').cells[0].records[0].result, '合格例：補欠1番');
+  assert.equal(iwate.rows.find((row) => row.year === '2025').cells[1].records[0].result, '初回発表後の追加分4人');
+  assert.equal(iwate.rows.find((row) => row.year === '2026').cells[1].records[0].result, '合格例：補欠1番');
   const fujita = table('school-26');
   assert.ok(fujita.rows[0].cells.every((cell) => cell.records.length === 0));
   assert.equal(fujita.annotations.find((entry) => entry.year === 2026).records.length, 6);
@@ -205,6 +215,21 @@ test('minimal route columns keep counts/ranks explicit and do not guess unspecif
   assert.equal(table('school-1').rows[0].cells[0].records[0].result, '第1補欠79位まで');
   assert.equal(table('school-1').rows[0].cells[1].records[0].result, '繰上合格者83人');
   assert.ok(table('school-16').annotations.find((entry) => entry.year === 2025).records.some((row) => row.route === '神奈川県地域枠'));
+});
+
+test('Iwate has three route columns and treats every pre-2024 figure as general', () => {
+  const iwate = waitlistTableSchools.find((entry) => entry.id === 'school-2');
+  assert.deepEqual(iwate.columns, ['一般', '地域枠C', '地域枠D']);
+  assert.deepEqual(iwate.rows.filter((row) => !row.legacy).map((row) => [row.year, ...row.cells.map((cell) => waitlistTableValue(cell.records[0]))]), [
+    ['2026', '82', '1', '12'], ['2025', '17', '4', '4'],
+  ]);
+  assert.deepEqual(iwate.rows.filter((row) => row.legacy).map((row) => ({ year: row.year, values: row.cells.map((cell) => cell.legacyValue ?? '—') })), iwateHistoricalRows());
+  assert.equal(new Set(iwate.rows.map((row) => row.year)).size, iwate.rows.length, 'one row per year');
+  assert.equal(iwate.rows.filter((row) => row.legacy).reduce((total, row) => total + row.cells.filter((cell) => cell.legacyValue !== undefined).length, 0), 14, 'all original figures retained');
+  for (const row of iwate.rows.filter((row) => Number(row.year) <= 2023)) {
+    assert.ok(row.cells[0].legacyValue);
+    assert.ok(row.cells.slice(1).every((cell) => cell.legacyValue === undefined && cell.records.length === 0), 'unknown regional figures stay blank, not zero');
+  }
 });
 
 test('table values are numeric, retaining approximate ranges/groups and keeping unknowns separate from zero', () => {
@@ -326,7 +351,7 @@ test('built page, JSON and structured data describe the same visible evidence', 
   assert.ok(sitemap.includes(`<loc>https://lexus-ec.com/kuriage-information/</loc>\n    <lastmod>${waitlistCheckedAt}</lastmod>`));
 });
 
-test('new years and all 281 legacy rows share the original tables, not separate annual cards', { skip: !existsSync(builtPage) }, () => {
+test('new years and all historical figures share the original tables, not separate annual cards', { skip: !existsSync(builtPage) }, () => {
   const html = readFileSync(builtPage, 'utf8');
   const decode = (value) => value.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
   const cells = (row) => [...row.matchAll(/<(?:th|td)\b[^>]*>([\s\S]*?)<\/(?:th|td)>/g)].map((match) => decode(match[1].replace(/<[^>]+>/g, '').trim()));
@@ -352,8 +377,10 @@ test('new years and all 281 legacy rows share the original tables, not separate 
     assert.ok(table, entry.name);
     const rows = [...table.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/g)].map((match) => cells(match[1]));
     assert.deepEqual(rows[0], ['年度', ...waitlistTableSchools[index].columns], `${entry.name}: column headings`);
-    const legacyRows = [...table.matchAll(/<tr\b[^>]*data-legacy="true"[^>]*>([\s\S]*?)<\/tr>/g)].map((match) => cells(match[1]).slice(0, entry.columns.length + 1));
-    assert.deepEqual(legacyRows, entry.rows.map((row) => [row.year, ...row.values]), `${entry.name}: all original values`);
+    const displayedColumnCount = entry.name === '岩手医科大学' ? 3 : entry.columns.length;
+    const legacyRows = [...table.matchAll(/<tr\b[^>]*data-legacy="true"[^>]*>([\s\S]*?)<\/tr>/g)].map((match) => cells(match[1]).slice(0, displayedColumnCount + 1));
+    const expectedRows = entry.name === '岩手医科大学' ? iwateHistoricalRows() : entry.rows;
+    assert.deepEqual(legacyRows, expectedRows.map((row) => [row.year, ...row.values]), `${entry.name}: all original values`);
     assert.match(rows[1][0], /^2026/);
     assert.ok(rows.some((row) => /^2025/.test(row[0])));
   });
