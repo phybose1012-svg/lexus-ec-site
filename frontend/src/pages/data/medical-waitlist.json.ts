@@ -6,7 +6,7 @@ import { publicWaitlistSchool } from "../../data/medicalWaitlistPublic";
 export const GET = () => new Response(JSON.stringify({
   checkedAt: waitlistCheckedAt,
   scope: "私立医学部の補欠・繰上げ合格情報。2025・2026年度と2024年度以前の従来掲載分。",
-  warning: "人数と順位は異なる指標。未確認や過去表の「-」を0人と解釈しない。「報告あり」の番号は、大学全体の最終到達順位とは限らない。",
+  warning: "displayValueは表用の簡略値。人数か補欠番号かはmetric・valueMeaningを確認。未確認や過去表の「-」を0人と解釈しない。個別の合格報告は最終到達順位とは限らない。",
   years: [
     { admissionYear: waitlistAdmissionYear, schools: waitlistSchools.map(publicWaitlistSchool) },
     { admissionYear: waitlist2025AdmissionYear, schools: waitlist2025Schools.map(publicWaitlistSchool) },

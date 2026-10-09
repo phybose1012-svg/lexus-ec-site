@@ -2,11 +2,12 @@ import { waitlistSchools, waitlistAdmissionYear } from "./medicalWaitlist.ts";
 import type { WaitlistRecord } from "./medicalWaitlist.ts";
 import { waitlist2025ById, waitlist2025AdmissionYear } from "./medicalWaitlist2025.ts";
 import { historicalWaitlistById } from "./medicalWaitlistHistory.ts";
+import { waitlistNumericNotes } from "./medicalWaitlistPresentation.ts";
 
 export type WaitlistTableCell = { legacyValue?: string; records: WaitlistRecord[] };
 export type WaitlistTableRow = { year: string; legacy: boolean; cells: WaitlistTableCell[] };
 
-// Columns describe routes, not sources/metrics/notices. Values keep explicit units.
+// Columns describe routes, not sources/metrics/notices. Meanings go below the table.
 // null is an annotation: do not guess a first/second period when it is unspecified.
 const columnRoutes: Record<string, Record<string, number | string | null>> = {
   "school-1": { "一般選抜": 1, "共通テスト利用": 2, "共テ利用・愛知県地域特別枠B方式": 3 },
@@ -54,8 +55,12 @@ const columnLabels: Record<string, string[]> = {
 };
 
 function targetColumn(id: string, record: WaitlistRecord): number | string | null {
-  if (record.metric === "notice") return null;
+  if (["notice", "report", "unknown"].includes(record.metric)) return null;
   if (id === "school-1" && record.route === "一般選抜" && record.metric === "rank") return 0;
+  // Supplemental routes belong in notes, not as unlabeled numbers in one cell.
+  if (id === "school-13" && record.route !== "一般選抜A") return null;
+  if (id === "school-22" && record.route.includes("千葉県地域枠")) return null;
+  if (id === "school-26" && record.route.includes("愛知県地域枠")) return null;
   const target = columnRoutes[id]?.[record.route];
   if (target === undefined) throw new Error(`Waitlist table column missing: ${id} / ${record.route}`);
   return target;
@@ -82,12 +87,15 @@ export const waitlistTableSchools = waitlistSchools.map((school, index) => {
     { year: waitlist2025AdmissionYear, data: waitlist2025ById[school.id] },
   ];
   const annotations: { year: number; records: WaitlistRecord[] }[] = [];
+  const addAnnotation = (year: number, record: WaitlistRecord) => {
+    let annotation = annotations.find((entry) => entry.year === year);
+    if (!annotation) { annotation = { year, records: [] }; annotations.push(annotation); }
+    annotation.records.push(record);
+  };
   const assignments = years.flatMap(({ year, data }) => data.records.map((record) => {
     const target = targetColumn(school.id, record);
     if (target === null) {
-      let annotation = annotations.find((entry) => entry.year === year);
-      if (!annotation) { annotation = { year, records: [] }; annotations.push(annotation); }
-      annotation.records.push(record);
+      addAnnotation(year, record);
       return { label: rowLabel(school.id, year, record), columnIndex: null, record };
     }
     if (typeof target === "string" && !columns.includes(target)) columns.push(target);
@@ -104,9 +112,23 @@ export const waitlistTableSchools = waitlistSchools.map((school, index) => {
     }
     if (assignment.columnIndex !== null) row.cells[assignment.columnIndex].records.push(assignment.record);
   }
+  // One comparable value per cell. Keep an alternate rank/count in the notes.
+  for (const row of rows) {
+    for (const cell of row.cells) {
+      if (cell.records.length < 2) continue;
+      const primary = cell.records.find((record) => record.metric === "count") ?? cell.records[0];
+      cell.records.filter((record) => record !== primary).forEach((record) => addAnnotation(Number(row.year.slice(0, 4)), record));
+      cell.records = [primary];
+    }
+  }
+  const numericNotes = years.map(({ year }) => ({
+    year,
+    notes: waitlistNumericNotes(rows.filter((row) => row.year.startsWith(String(year))).flatMap((row) =>
+      row.cells.flatMap((cell, columnIndex) => cell.records.map((record) => ({ record, column: columns[columnIndex] }))))),
+  }));
   rows.push(...(historical?.rows ?? []).map((row) => ({
     year: row.year, legacy: true,
     cells: columns.map((_, columnIndex) => ({ records: [], ...(columnIndex < row.values.length ? { legacyValue: row.values[columnIndex] } : {}) })),
   })));
-  return { id: school.id, name: school.name, number: index + 1, tone: (index % 4) + 1, columns, rows, years, historical, annotations };
+  return { id: school.id, name: school.name, number: index + 1, tone: (index % 4) + 1, columns, rows, years, historical, annotations, numericNotes };
 });

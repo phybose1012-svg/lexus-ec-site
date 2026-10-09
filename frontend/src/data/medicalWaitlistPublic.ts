@@ -1,8 +1,9 @@
 import type { WaitlistRecord, WaitlistSchool } from "./medicalWaitlist.ts";
+import { waitlistTableValue, waitlistValueMeaning } from "./medicalWaitlistPresentation.ts";
 
 export function publicWaitlistResult(record: WaitlistRecord) {
   if (record.metric === "rank-case" || record.metric === "group-case") {
-    return `${record.result.replace(/^合格例：/, "")}（報告あり）`;
+    return `${record.result.replace(/^合格例：/, "")}での合格報告`;
   }
   return record.result;
 }
@@ -13,6 +14,7 @@ export function publicWaitlistSchool(school: WaitlistSchool) {
     id: school.id, name: school.name,
     records: school.records.map((record) => ({
       route: record.route, metric: record.metric, result: publicWaitlistResult(record),
+      displayValue: waitlistTableValue(record), valueMeaning: waitlistValueMeaning(record),
       asOf: record.asOf, ...(record.note ? { note: record.note } : {}),
     })),
     ...(school.note ? { note: publicWaitlistNote(school.note) } : {}),

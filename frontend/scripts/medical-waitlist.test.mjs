@@ -10,6 +10,7 @@ import { waitlist2025AdmissionYear, waitlist2025Schools } from '../src/data/medi
 import { historicalWaitlistSchools } from '../src/data/medicalWaitlistHistory.ts';
 import { waitlistTableSchools } from '../src/data/medicalWaitlistTables.ts';
 import { publicWaitlistResult, publicWaitlistSchool } from '../src/data/medicalWaitlistPublic.ts';
+import { waitlistTableValue, waitlistValueMeaning } from '../src/data/medicalWaitlistPresentation.ts';
 
 const expectedNames = [
   '岩手医科大学', '東北医科薬科大学', '自治医科大学', '獨協医科大学', '埼玉医科大学',
@@ -194,32 +195,59 @@ test('minimal route columns keep counts/ranks explicit and do not guess unspecif
   const fujita = table('school-26');
   assert.ok(fujita.rows[0].cells.every((cell) => cell.records.length === 0));
   assert.equal(fujita.annotations.find((entry) => entry.year === 2026).records.length, 6);
-  assert.equal(fujita.rows[1].cells[0].records.length, 2, 'explicitly first-period routes share a cell with route labels');
-  assert.equal(fujita.annotations.find((entry) => entry.year === 2025).records[0].route, '共通テスト利用');
+  assert.equal(fujita.rows[1].cells[0].records.length, 1, 'main and regional routes must not become unlabeled numbers in one cell');
+  assert.ok(fujita.annotations.find((entry) => entry.year === 2025).records.some((record) => record.route === '共通テスト利用'));
+  assert.ok(fujita.annotations.find((entry) => entry.year === 2025).records.some((record) => record.route === '一般前期・愛知県地域枠'));
   const kurume = table('school-9');
   assert.equal(kurume.rows[1].cells[0].records[0].result, '繰上合格者19人');
-  assert.equal(kurume.rows[1].cells[0].records[1].result, '合格例：補欠43番');
+  assert.equal(kurume.rows[1].cells[0].records.length, 1);
+  assert.equal(kurume.annotations.find((entry) => entry.year === 2025).records[0].result, '合格例：補欠43番');
   assert.equal(table('school-1').rows[0].cells[0].records[0].result, '第1補欠79位まで');
   assert.equal(table('school-1').rows[0].cells[1].records[0].result, '繰上合格者83人');
   assert.ok(table('school-16').annotations.find((entry) => entry.year === 2025).records.some((row) => row.route === '神奈川県地域枠'));
 });
 
-test('public result labels put reported status after the original number or group', () => {
+test('table values are numeric, retaining approximate ranges/groups and keeping unknowns separate from zero', () => {
   for (const entry of [...waitlistSchools, ...waitlist2025Schools]) {
     for (const record of entry.records) {
       const result = publicWaitlistResult(record);
       if (['rank-case', 'group-case'].includes(record.metric)) {
-        assert.equal(result, `${record.result.replace(/^合格例：/, '')}（報告あり）`);
-        assert.equal((result.match(/（報告あり）/g) ?? []).length, 1);
+        assert.equal(result, `${record.result.replace(/^合格例：/, '')}での合格報告`);
       } else {
         assert.equal(result, record.result);
-        assert.doesNotMatch(result, /（報告あり）/);
       }
-      assert.doesNotMatch(result, /合格例/);
+      assert.doesNotMatch(result, /合格例|（報告あり）/);
+      const value = waitlistTableValue(record);
+      if (record.metric === 'count') assert.match(value, /^\d+$/);
+      else if (['rank', 'rank-case'].includes(record.metric)) assert.match(value, /^\d+(?:台(?:前半|後半)?|前後)?$/);
+      else if (record.metric === 'group-case') assert.match(value, /^[A-D](?:群|ランク)$/);
+      else assert.equal(value, '—');
+      assert.ok(waitlistValueMeaning(record));
     }
   }
-  assert.equal(publicWaitlistResult(school('岩手医科大学').records.find((row) => row.route === '一般選抜')), '補欠82番（報告あり）');
-  assert.equal(publicWaitlistResult(waitlist2025Schools.find((entry) => entry.name === '久留米大学').records.find((row) => row.metric === 'rank-case')), '補欠43番（報告あり）');
+  assert.equal(waitlistTableValue(school('愛知医科大学').records.find((row) => row.metric === 'rank')), '79', '第1補欠 must not yield 1');
+  assert.equal(waitlistTableValue(school('東海大学').records.find((row) => row.route === '共通テスト利用')), '10台前半');
+  assert.equal(waitlistTableValue(school('岩手医科大学').records[0]), '82');
+  assert.equal(waitlistTableValue(waitlist2025Schools.find((entry) => entry.name === '岩手医科大学').records[0]), '17');
+  assert.equal(waitlistTableValue(school('産業医科大学').records[1]), '0');
+});
+
+test('each displayed value has a year-scoped meaning, and no cell mixes counts with ranks', () => {
+  for (const table of waitlistTableSchools) {
+    for (const row of table.rows.filter((row) => !row.legacy)) {
+      for (const cell of row.cells) {
+        assert.ok(cell.records.length <= 1, table.name);
+        for (const record of cell.records) {
+          assert.ok(!['report', 'notice', 'unknown'].includes(record.metric));
+          assert.ok(table.numericNotes.find(({ year }) => row.year.startsWith(String(year))).notes.some((note) => note.includes(waitlistValueMeaning(record))), `${table.name}: ${row.year} / ${record.result}`);
+        }
+      }
+    }
+  }
+  assert.match(waitlistValueMeaning(school('東京慈恵会医科大学').records[0]), /連絡を受けた人数.*入学辞退者を除いた入学者数ではありません/);
+  assert.match(waitlistValueMeaning(school('慶應義塾大学').records[0]), /入学を許可された人数.*実際に入学した人数ではありません/);
+  assert.match(waitlistValueMeaning(school('久留米大学').records[0]), /辞退者を含むか.*記載がありません/);
+  assert.match(waitlistTableSchools.find((table) => table.id === 'school-2').numericNotes.find(({ year }) => year === 2025).notes[0], /合格者数−初回合格者数.*入学者数ではありません/);
 });
 
 test('public records retain facts/units/dates but never expose source names or links', () => {
@@ -229,6 +257,8 @@ test('public records retain facts/units/dates but never expose source names or l
     data.records.forEach((record, index) => {
       for (const key of ['route', 'metric', 'asOf']) assert.equal(record[key], entry.records[index][key]);
       assert.equal(record.result, publicWaitlistResult(entry.records[index]));
+      assert.equal(record.displayValue, waitlistTableValue(entry.records[index]));
+      assert.equal(record.valueMeaning, waitlistValueMeaning(entry.records[index]));
       assert.ok(!Object.hasOwn(record, 'source'));
     });
     assert.doesNotMatch(JSON.stringify(data), /合格例|富士学院|メルリックス|fujigakuin|melurix|https?:\/\//);
@@ -245,7 +275,10 @@ test('built page, JSON and structured data describe the same visible evidence', 
   assert.equal((html.match(/class="kuriage-school-card\b/g) ?? []).length, 31);
   for (const entry of [...waitlistSchools, ...waitlist2025Schools]) {
     assert.ok(html.includes(`id="${entry.id}"`), entry.id);
-    for (const row of entry.records) assert.ok(html.includes(publicWaitlistResult(row)), `${entry.name}: ${publicWaitlistResult(row)}`);
+    const table = waitlistTableSchools.find((table) => table.id === entry.id);
+    for (const row of entry.records) {
+      if (table.annotations.some(({ records }) => records.includes(row))) assert.ok(html.includes(publicWaitlistResult(row)), `${entry.name}: ${publicWaitlistResult(row)}`);
+    }
   }
   const schema = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
   const faq = schema['@graph'].find((item) => item['@type'] === 'FAQPage');
@@ -267,6 +300,7 @@ test('built page, JSON and structured data describe the same visible evidence', 
   assert.doesNotMatch(main, /<a[^>]+href="https?:/);
   assert.doesNotMatch(main, /waitlist-source|出典/);
   assert.ok(!Object.hasOwn(dataset, 'citation'));
+  assert.doesNotMatch(html, /waitlist-cell-date|waitlist-cell-route|waitlist-inline-results|<details[^>]*class="waitlist-legacy-notes"/);
   assert.ok(html.includes('2025・2026年度を、各大学の表の先頭に追加しています。'));
   assert.ok(html.includes('2027年度の補欠・繰上げ合格状況は、各大学の入試後に判明します。'));
   assert.ok(html.includes('https://lexus-ec.com/kuriage-information/'));
@@ -278,6 +312,16 @@ test('new years and all 281 legacy rows share the original tables, not separate 
   const html = readFileSync(builtPage, 'utf8');
   const decode = (value) => value.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
   const cells = (row) => [...row.matchAll(/<(?:th|td)\b[^>]*>([\s\S]*?)<\/(?:th|td)>/g)].map((match) => decode(match[1].replace(/<[^>]+>/g, '').trim()));
+  for (const school of waitlistTableSchools) {
+    const article = html.match(new RegExp(`<article id="${school.id}"[\\s\\S]*?</article>`))?.[0];
+    assert.ok(article);
+    assert.ok(article.includes(`aria-describedby="${school.id}-notes"`));
+    assert.ok(article.includes(`id="${school.id}-notes"`));
+    for (const { notes } of school.numericNotes) for (const note of notes) assert.ok(decode(article).includes(note), `${school.name}: value meaning is visible below its table`);
+    for (const note of school.historical?.notes ?? []) assert.ok(decode(article).includes(note), `${school.name}: original footnote remains visible`);
+    const renderedRows = [...article.matchAll(/<tr\b[^>]*data-legacy="false"[^>]*>([\s\S]*?)<\/tr>/g)].map((match) => cells(match[1]));
+    assert.deepEqual(renderedRows, school.rows.filter((row) => !row.legacy).map((row) => [row.year, ...row.cells.map((cell) => cell.records.length ? waitlistTableValue(cell.records[0]) : '—')]), `${school.name}: cells show only values, not explanations/dates/tags`);
+  }
   historicalWaitlistSchools.forEach((entry, index) => {
     const article = html.match(new RegExp(`<article id="school-${index + 1}"[\\s\\S]*?</article>`))?.[0];
     assert.ok(article, entry.name);

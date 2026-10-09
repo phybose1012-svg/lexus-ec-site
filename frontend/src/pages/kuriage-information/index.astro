@@ -6,6 +6,7 @@ import {
 } from "../../data/medicalWaitlist";
 import { waitlistTableSchools } from "../../data/medicalWaitlistTables";
 import { publicWaitlistNote, publicWaitlistResult } from "../../data/medicalWaitlistPublic";
+import { waitlistTableValue, waitlistEvidenceDate } from "../../data/medicalWaitlistPresentation";
 
 const canonical = "https://lexus-ec.com/kuriage-information/";
 const datasetPath = "/data/medical-waitlist.json";
@@ -19,7 +20,7 @@ const structuredData = {
       description: pageDescription, inLanguage: "ja", dateModified: waitlistCheckedAt,
       mainEntity: { "@id": `${canonical}#dataset` }, breadcrumb: { "@id": `${canonical}#breadcrumb` } },
     { "@type": "Dataset", "@id": `${canonical}#dataset`, name: "私立医学部の繰上げ・追加合格情報：2025・2026年度と過去一覧",
-      description: "人数と補欠順位を区別。「報告あり」の番号は、大学全体の最終到達順位とは限らない。2024年度以前は従来掲載分で、今回数値を再検証していない。未確認や過去表の「-」は0人を意味しない。",
+      description: "表は数値を中心に掲載し、補欠番号・合格者数・連絡者数・入学許可者数の違いは大学・年度別の注記に記載。個別の合格報告は最終到達順位とは限らない。2024年度以前は従来掲載分。未確認や過去表の「-」は0人を意味しない。",
       url: `${canonical}#school-data`, inLanguage: "ja", temporalCoverage: "2012/2026", dateModified: waitlistCheckedAt,
       creator: { "@type": "Organization", name: "レクサス教育センター", url: "https://lexus-ec.com/" },
       distribution: { "@type": "DataDownload", contentUrl: `https://lexus-ec.com${datasetPath}`, encodingFormat: "application/json" },
@@ -107,7 +108,7 @@ const structuredData = {
         </div>
         <div class="kuriage-answer">
           <p>2025・2026年度を、各大学の表の先頭に追加しています。2024年度以前の数値は従来の表記のまま掲載しています。</p>
-          <p>「人数」と「補欠順位」は別の数字です。「報告あり」は、その補欠番号での合格が報告されたことを示し、大学全体の最終到達順位とは限りません。「—」「-」「未確認」は0人を意味しません。</p>
+          <p>数字が「補欠番号」なのか「合格者の人数」なのか、辞退者を含むかどうかは、各表の下の注記をご確認ください。「—」「-」は数値未確認で、0人を意味しません。</p>
           <p>2027年度の補欠・繰上げ合格状況は、各大学の入試後に判明します。<a href="/private-medical-school-admissions-schedule-2027/">2027年度の入試日程を見る →</a></p>
         </div>
         <div class="kuriage-school-index" aria-label="大学別データの一覧">
@@ -121,53 +122,35 @@ const structuredData = {
                 <h3 id={school.id + "-title"}>{school.name}</h3>
               </header>
               <div class="kuriage-table-wrap" tabindex="0" role="region" aria-label={school.name + "の年度別繰上げ合格情報"}>
-                <table class="kuriage-data-table">
+                <table class="kuriage-data-table" aria-describedby={school.id + "-notes"}>
                   <caption>{school.name}の繰上げ合格情報</caption>
                   <thead><tr><th scope="col">年度</th>{school.columns.map((column) => <th scope="col">{column}</th>)}</tr></thead>
                   <tbody>
-                    {school.rows.map((row) => {
-                      const inlineRecords = !row.legacy && row.cells.every((cell) => cell.records.length === 0)
-                        ? school.annotations.find((entry) => String(entry.year) === row.year)?.records : undefined;
-                      return (
-                      <tr data-year={row.year} data-legacy={row.legacy ? "true" : "false"} style={"--waitlist-column-count:" + (inlineRecords ? 1 : school.columns.length)}>
+                    {school.rows.map((row) => (
+                      <tr data-year={row.year} data-legacy={row.legacy ? "true" : "false"} style={"--waitlist-column-count:" + school.columns.length}>
                         <th scope="row">{row.year}</th>
-                        {inlineRecords ? <td colspan={school.columns.length} class="waitlist-inline-results">
-                          {school.id === "school-26" && <p class="waitlist-period-note">前期・後期が未確認の情報</p>}
-                          <div class="waitlist-cell-records">
-                            {inlineRecords.map((record) => <div class="waitlist-cell-result">
-                              <small class="waitlist-cell-route">{record.route}</small><strong>{publicWaitlistResult(record)}</strong>
-                              {record.asOf && <small class="waitlist-cell-date"><time datetime={record.asOf}>{Number(record.asOf.slice(5, 7))}/{Number(record.asOf.slice(8, 10))}</time>時点</small>}
-                            </div>)}
-                          </div>
-                        </td> : row.cells.map((cell, columnIndex) => (
+                        {row.cells.map((cell, columnIndex) => (
                           <td data-label={school.columns[columnIndex]}>
-                            {cell.legacyValue !== undefined ? cell.legacyValue : cell.records.length > 0 ? (
-                              <div class="waitlist-cell-records">
-                                {cell.records.map((record) => (
-                                  <div class="waitlist-cell-result">
-                                    {(new Set(cell.records.map((entry) => entry.route)).size > 1 || record.route.includes("千葉県") || record.route.includes("愛知県地域枠") || record.route.includes("鹿児島県")) && <small class="waitlist-cell-route">{record.route}</small>}
-                                    <strong>{publicWaitlistResult(record)}</strong>
-                                    {record.asOf && <small class="waitlist-cell-date"><time datetime={record.asOf}>{Number(record.asOf.slice(5, 7))}/{Number(record.asOf.slice(8, 10))}</time>{record.note?.startsWith("15時時点") ? " 15時時点" : "時点"}</small>}
-                                  </div>
-                                ))}
-                              </div>
-                            ) : <span class="waitlist-empty" title="この項目の記録はありません。0人ではありません。">—</span>}
+                            {cell.legacyValue !== undefined ? cell.legacyValue : cell.records.length > 0 ? waitlistTableValue(cell.records[0]) : <span class="waitlist-empty" title="数値未確認。0人ではありません。">—</span>}
                           </td>
                         ))}
                       </tr>
-                    );})}
+                    ))}
                   </tbody>
                 </table>
               </div>
-              <ul class="kuriage-school-card__notes">
-                {school.annotations.filter(({ year }) => school.rows.find((row) => row.year === String(year))?.cells.some((cell) => cell.records.length > 0)).flatMap(({ year, records }) => records.map((record) => (
-                  <li><strong>{year}年度・{record.route}：</strong>{publicWaitlistResult(record)}{record.asOf && <>（<time datetime={record.asOf}>{Number(record.asOf.slice(5, 7))}/{Number(record.asOf.slice(8, 10))}</time>時点）</>}</li>
+              <ul id={school.id + "-notes"} class="kuriage-school-card__notes">
+                {school.numericNotes.flatMap(({ year, notes }) => notes.map((note) => (
+                  <li class="waitlist-value-note"><strong>{year}年度：</strong>{note}</li>
+                )))}
+                {school.annotations.flatMap(({ year, records }) => records.map((record) => (
+                  <li><strong>{year}年度・{record.route}：</strong>{publicWaitlistResult(record)}{record.asOf && <>（<time datetime={record.asOf}>{waitlistEvidenceDate(record)}</time>時点）</>}</li>
                 )))}
                 {school.years.filter(({ data }) => data.note).map(({ year, data }) => (
                   <li><strong>{year}年度：</strong>{publicWaitlistNote(data.note!)}</li>
                 ))}
                 {school.historical?.notes.length && (
-                  <li><details class="waitlist-legacy-notes"><summary>2024年度以前の注記</summary><ul>{school.historical.notes.map((note) => <li>{note}</li>)}</ul></details></li>
+                  <li class="waitlist-legacy-note"><strong>2024年度以前：</strong>{school.historical.notes.join(" ")}</li>
                 )}
               </ul>
             </article>
@@ -196,19 +179,10 @@ const structuredData = {
   .checked-date { margin: 0; color: var(--muted); font-size: .85rem; }
   .waitlist-qa-title { display: block; margin-bottom: 8px; color: var(--ink); }
   .kuriage-school-card { min-width: 0; }
-  .waitlist-cell-records { display: grid; gap: 8px; min-width: 0; }
-  .waitlist-cell-result { min-width: 0; }
-  .waitlist-cell-result strong { font: inherit; font-weight: 700; }
-  .waitlist-cell-route, .waitlist-cell-date { display: block; font-size: .75rem; font-weight: 400; color: var(--muted); line-height: 1.6; }
-  .waitlist-period-note { margin: 0 0 10px; font-size: .8rem; color: var(--muted); }
+  .kuriage-data-table tbody td { font-variant-numeric: tabular-nums; }
   .waitlist-empty { color: var(--muted); }
-  .waitlist-legacy-notes summary { cursor: pointer; }
-  .waitlist-legacy-notes ul { padding: 8px 0 0; list-style: none; }
   @media (max-width: 680px) {
-    .waitlist-cell-records { flex: 1 1 48%; }
     .kuriage-data-table tbody td { align-items: baseline; overflow-wrap: anywhere; }
     .kuriage-data-table tbody th { grid-row: 1 / span var(--waitlist-column-count); }
-    .kuriage-data-table tbody td.waitlist-inline-results { display: block; }
-    .kuriage-data-table tbody td.waitlist-inline-results::before { display: none; }
   }
 </style>
