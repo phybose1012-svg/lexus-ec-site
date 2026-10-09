@@ -18,7 +18,7 @@ export function waitlistTableValue(record: WaitlistRecord): string {
     if (!match) throw new Error(`Waitlist group has no value: ${record.result}`);
     return match[1];
   }
-  return "—";
+  return "不明";
 }
 
 export function waitlistValueMeaning(record: WaitlistRecord): string {

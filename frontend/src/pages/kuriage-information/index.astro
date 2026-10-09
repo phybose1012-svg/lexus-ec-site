@@ -6,7 +6,7 @@ import {
 } from "../../data/medicalWaitlist";
 import { waitlistTableSchools } from "../../data/medicalWaitlistTables";
 import { publicWaitlistInformation, publicWaitlistResult } from "../../data/medicalWaitlistPublic";
-import { waitlistTableValue, waitlistEvidenceDate } from "../../data/medicalWaitlistPresentation";
+import { waitlistEvidenceDate } from "../../data/medicalWaitlistPresentation";
 import { waitlistFootnotes } from "../../data/medicalWaitlistFootnotes";
 
 const canonical = "https://lexus-ec.com/kuriage-information/";
@@ -21,7 +21,7 @@ const structuredData = {
       description: pageDescription, inLanguage: "ja", dateModified: waitlistCheckedAt,
       mainEntity: { "@id": `${canonical}#dataset` }, breadcrumb: { "@id": `${canonical}#breadcrumb` } },
     { "@type": "Dataset", "@id": `${canonical}#dataset`, name: "私立医学部の繰上げ・追加合格情報：2025・2026年度と過去一覧",
-      description: "表は数値を中心に掲載し、数値の意味と情報の種類は各大学の注記に記載。同じ意味の数値は年度をまたいで説明。大学公式情報・大学発表や大学への確認に基づく間接情報・受験生の合格報告を区別し、確認できない出典は未確認と明記。個別の合格報告は最終到達順位とは限らない。「—」「-」は番号なし・不明を表す。",
+      description: "表は数値を中心に掲載し、数値の意味と情報の種類は各大学の注記に記載。同じ意味の数値は年度をまたいで説明。大学公式情報・大学発表や大学への確認に基づく間接情報・受験生の合格報告を区別し、確認できない出典は未確認と明記。個別の合格報告は最終到達順位とは限らない。番号なしと不明は各セルに明記。",
       url: `${canonical}#school-data`, inLanguage: "ja", temporalCoverage: "2012/2026", dateModified: waitlistCheckedAt,
       creator: { "@type": "Organization", name: "レクサス教育センター", url: "https://lexus-ec.com/" },
       distribution: { "@type": "DataDownload", contentUrl: `https://lexus-ec.com${datasetPath}`, encodingFormat: "application/json" },
@@ -110,7 +110,6 @@ const structuredData = {
         <div class="kuriage-answer">
           <p>掲載している一般選抜の例では、多い年で275番まで、少ない年で1番まで。繰り上げがない年もあり、大学や年度によって大きく異なります。</p>
           <p>最低でも5年分のデータを同じ大学・同じ入試方式で見比べ、自分の補欠番号まで回ってきそうか予想してみてください。</p>
-          <p>「—」「-」は、番号なし・不明を表します。</p>
           <p>2027年度の補欠・繰上げ合格状況は、各大学の入試後に判明します。<a href="/private-medical-school-admissions-schedule-2027/">2027年度の入試日程を見る →</a></p>
         </div>
         <div class="kuriage-school-index" aria-label="大学別データの一覧">
@@ -133,7 +132,7 @@ const structuredData = {
                         <th scope="row">{row.year}</th>
                         {row.cells.map((cell, columnIndex) => (
                           <td data-label={school.columns[columnIndex]}>
-                            {cell.legacyValue !== undefined ? cell.legacyValue : cell.records.length > 0 ? waitlistTableValue(cell.records[0]) : <span class="waitlist-empty" title="番号なし・不明">—</span>}
+                            <span class:list={{ "waitlist-empty": cell.displayValue === "不明" }}>{cell.displayValue}</span>
                           </td>
                         ))}
                       </tr>

@@ -2,7 +2,8 @@ import { waitlistSchools, waitlistAdmissionYear } from "./medicalWaitlist.ts";
 import type { WaitlistRecord } from "./medicalWaitlist.ts";
 import { waitlist2025ById, waitlist2025AdmissionYear } from "./medicalWaitlist2025.ts";
 import { historicalWaitlistById } from "./medicalWaitlistHistory.ts";
-import { waitlistNumericNotes } from "./medicalWaitlistPresentation.ts";
+import { waitlistNumericNotes, waitlistTableValue } from "./medicalWaitlistPresentation.ts";
+import { normalizedWaitlistCellValue } from "./medicalWaitlistMissingValues.ts";
 
 export type WaitlistTableCell = { legacyValue?: string; records: WaitlistRecord[] };
 export type WaitlistTableRow = { year: string; legacy: boolean; cells: WaitlistTableCell[] };
@@ -141,5 +142,10 @@ export const waitlistTableSchools = waitlistSchools.map((school, index) => {
       row.cells.flatMap((cell, columnIndex) => cell.records.map((record) => ({ record, column: columns[columnIndex] }))))),
   }));
   rows.push(...historicalTableRows(school.id, columns, historical?.rows ?? []));
-  return { id: school.id, name: school.name, number: index + 1, tone: (index % 4) + 1, columns, rows, years, historical, annotations, numericNotes };
+  const displayRows = rows.map((row) => ({ ...row, cells: row.cells.map((cell, column) => ({
+    ...cell,
+    displayValue: normalizedWaitlistCellValue(school.id, row.year, column,
+      cell.legacyValue ?? (cell.records.length ? waitlistTableValue(cell.records[0]) : undefined)),
+  })) }));
+  return { id: school.id, name: school.name, number: index + 1, tone: (index % 4) + 1, columns, rows: displayRows, years, historical, annotations, numericNotes };
 });

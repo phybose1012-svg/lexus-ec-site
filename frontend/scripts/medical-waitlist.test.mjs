@@ -12,6 +12,7 @@ import { waitlistTableSchools } from '../src/data/medicalWaitlistTables.ts';
 import { publicWaitlistInformation, publicWaitlistResult, publicWaitlistSchool, publicWaitlistTableNote } from '../src/data/medicalWaitlistPublic.ts';
 import { waitlistTableValue, waitlistValueMeaning } from '../src/data/medicalWaitlistPresentation.ts';
 import { waitlistFootnotes } from '../src/data/medicalWaitlistFootnotes.ts';
+import { normalizedWaitlistCellValue, unnumberedWaitlistFindings } from '../src/data/medicalWaitlistMissingValues.ts';
 
 const expectedNames = [
   '岩手医科大学', '東北医科薬科大学', '自治医科大学', '獨協医科大学', '埼玉医科大学',
@@ -28,6 +29,45 @@ const iwateHistoricalRows = () => [
     .filter((row) => Number(row.year) <= 2023)
     .map((row) => ({ year: row.year, values: [row.values[0], '—', '—'] })),
 ];
+const expectedLegacyDisplay = (schoolIndex, year, column, value) => {
+  if (schoolIndex === 2 && ['2019', '2020'].includes(year) && column === 2) return '番号なし';
+  return /^(?:—|-|非公開|なし？)$/.test(value) ? '不明' : value;
+};
+
+test('missing values distinguish a verified unnumbered route from an unknown result', () => {
+  const value = (id, year, column) => waitlistTableSchools.find((entry) => entry.id === id)
+    .rows.find((row) => row.year === year).cells[column].displayValue;
+  assert.equal(value('school-3', '2020', 2), '番号なし');
+  assert.equal(value('school-3', '2019', 2), '番号なし');
+  assert.equal(value('teikyo', '2026', 0), '番号なし');
+  assert.equal(value('teikyo', '2025', 0), '番号なし');
+  assert.equal(value('school-4', '2018', 0), '不明', 'non-public reached rank does not prove an unnumbered system');
+  assert.equal(value('school-7', '2018', 0), '不明');
+  assert.equal(value('school-20', '2024', 0), '不明', 'an unknown headcount stays unknown even when candidates have no rank');
+  assert.equal(value('school-21', '2026', 0), '不明', 'a report omitting rank cannot establish no-number policy');
+  assert.equal(value('school-2', '2023', 1), '不明', 'missing historical regional results are not zero');
+  assert.equal(value('school-12', '2023', 1), '不明', 'an uncertain なし？ is not an exact zero');
+  assert.equal(value('school-26', '2026', 0), '不明', 'a route-unspecified number must not be assigned to the early period');
+  assert.equal(value('school-16', '2025', 2), '不明', 'a regional report must not be assigned to a different common-test route');
+  assert.equal(value('school-3', '2024', 0), '0', 'verified zero remains zero');
+  assert.equal(normalizedWaitlistCellValue('teikyo', '2024', 0), '不明', 'findings are bounded to the researched year');
+  assert.equal(normalizedWaitlistCellValue('school-3', '2020', 2, '7'), '7', 'numeric values always take priority');
+  for (const finding of unnumberedWaitlistFindings) {
+    assert.ok(finding.reason && finding.urls.length && finding.years.length && finding.columns.length);
+    assert.ok(finding.urls.every((url) => new URL(url).protocol === 'https:'));
+  }
+});
+
+test('every table cell has an explicit display value without changing the raw archive', () => {
+  for (const table of waitlistTableSchools) for (const row of table.rows) for (const cell of row.cells) {
+    assert.ok(cell.displayValue, `${table.name} ${row.year}`);
+    assert.doesNotMatch(cell.displayValue, /^(?:[—−–―ー-]+|非公[開表]|なし[？?])$/);
+    if (cell.records.length) assert.equal(cell.displayValue, waitlistTableValue(cell.records[0]));
+    if (cell.legacyValue && !/^(?:[—−–―ー-]+|非公[開表]|なし[？?])$/.test(cell.legacyValue)) {
+      assert.equal(cell.displayValue, cell.legacyValue, 'every numeric/group/approximate original value stays intact');
+    }
+  }
+});
 
 test('the waitlist-count FAQ explains that counts excluding decliners can understate actual offers', () => {
   assert.equal(waitlistFaqs[1].question, '繰り上げ合格者が50人なら、補欠50番までしか回ってないってこと？');
@@ -266,7 +306,7 @@ test('table values are numeric, retaining approximate ranges/groups and keeping 
       if (record.metric === 'count') assert.match(value, /^\d+$/);
       else if (['rank', 'rank-case'].includes(record.metric)) assert.match(value, /^\d+(?:台(?:前半|後半)?|前後)?$/);
       else if (record.metric === 'group-case') assert.match(value, /^[A-D](?:群|ランク)$/);
-      else assert.equal(value, '—');
+      else assert.equal(value, '不明');
       assert.ok(waitlistValueMeaning(record));
     }
   }
@@ -401,6 +441,9 @@ test('built page, JSON and structured data describe the same visible evidence', 
   const archive = JSON.parse(readFileSync(new URL('../dist/data/medical-waitlist.json', import.meta.url), 'utf8'));
   assert.deepEqual(archive.years.map((entry) => entry.admissionYear), [2026, 2025]);
   assert.deepEqual(archive.historical.schools, historicalWaitlistSchools);
+  assert.deepEqual(archive.tables, waitlistTableSchools.map(({ id, name, columns, rows }) => ({
+    id, name, columns, rows: rows.map(({ year, cells }) => ({ year, values: cells.map(({ displayValue }) => displayValue) })),
+  })));
   assert.equal(archive.historical.verificationStatus, 'legacy-unverified');
   for (const output of [html, JSON.stringify(data), JSON.stringify(data2025), JSON.stringify(archive)]) {
     assert.doesNotMatch(output, /合格例|富士学院|メルリックス|fujigakuin|melurix/);
@@ -414,8 +457,8 @@ test('built page, JSON and structured data describe the same visible evidence', 
   assert.ok(main.includes('繰り上げがない年もあり、大学や年度によって大きく異なります。'));
   assert.ok(main.includes('最低でも5年分のデータを同じ大学・同じ入試方式で見比べ、自分の補欠番号まで回ってきそうか予想してみてください。'));
   assert.ok(!main.includes('2025・2026年度を、各大学の表の先頭に追加しています。'));
-  assert.ok(main.includes('「—」「-」は、番号なし・不明を表します。'));
-  assert.ok(main.includes('class="waitlist-empty" title="番号なし・不明"'));
+  assert.ok(!main.includes('「—」「-」は、番号なし・不明を表します。'));
+  assert.ok(!main.includes('title="番号なし・不明"'));
   assert.doesNotMatch(main, /数字の意味は、各表の下に記載しています|各表の下に、数値の意味と情報の種類を記載しています|「報告分」は最終結果とは限りません|受験生からの合格報告は最終結果とは限りません|「—」「-」は未確認で、0人ではありません|title="数値未確認。0人ではありません。"/);
   assert.ok(html.includes('2027年度の補欠・繰上げ合格状況は、各大学の入試後に判明します。'));
   assert.ok(html.includes('https://lexus-ec.com/kuriage-information/'));
@@ -441,7 +484,9 @@ test('new years and all historical figures share the original tables, not separa
     }
     assert.doesNotMatch(article, /合格者の人数ではありません|繰上合格した人数ではありません|入学者数ではありません/);
     const renderedRows = [...article.matchAll(/<tr\b[^>]*data-legacy="false"[^>]*>([\s\S]*?)<\/tr>/g)].map((match) => cells(match[1]));
-    assert.deepEqual(renderedRows, school.rows.filter((row) => !row.legacy).map((row) => [row.year, ...row.cells.map((cell) => cell.records.length ? waitlistTableValue(cell.records[0]) : '—')]), `${school.name}: cells show only values, not explanations/dates/tags`);
+    assert.deepEqual(renderedRows, school.rows.filter((row) => !row.legacy).map((row) => [row.year, ...row.cells.map((cell) => cell.displayValue)]), `${school.name}: cells show only values, not explanations/dates/tags`);
+    const allCells = [...article.matchAll(/<td\b[^>]*>([\s\S]*?)<\/td>/g)].map((match) => decode(match[1].replace(/<[^>]+>/g, '').trim()));
+    assert.ok(allCells.every((value) => value && !/^(?:[—−–―ー-]+|非公[開表]|なし[？?])$/.test(value)), `${school.name}: no placeholders/non-public labels remain in any year's table`);
   }
   historicalWaitlistSchools.forEach((entry, index) => {
     const article = html.match(new RegExp(`<article id="school-${index + 1}"[\\s\\S]*?</article>`))?.[0];
@@ -453,7 +498,7 @@ test('new years and all historical figures share the original tables, not separa
     const displayedColumnCount = entry.name === '岩手医科大学' ? 3 : entry.columns.length;
     const legacyRows = [...table.matchAll(/<tr\b[^>]*data-legacy="true"[^>]*>([\s\S]*?)<\/tr>/g)].map((match) => cells(match[1]).slice(0, displayedColumnCount + 1));
     const expectedRows = entry.name === '岩手医科大学' ? iwateHistoricalRows() : entry.rows;
-    assert.deepEqual(legacyRows, expectedRows.map((row) => [row.year, ...row.values]), `${entry.name}: all original values`);
+    assert.deepEqual(legacyRows, expectedRows.map((row) => [row.year, ...row.values.map((value, column) => expectedLegacyDisplay(index, row.year, column, value))]), `${entry.name}: numbers are preserved; missing cells explicitly classified`);
     assert.match(rows[1][0], /^2026/);
     assert.ok(rows.some((row) => /^2025/.test(row[0])));
   });

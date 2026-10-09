@@ -1,0 +1,59 @@
+{
+  "checkedAt": "2026-10-09",
+  "scope": "31大学の公開表にあるダッシュ・非公開・空欄の表示分類。掲載済み数値は変更せず、原表は監査用に保存。",
+  "rules": {
+    "番号なし": "該当年度・方式で番号なしと確認済みの欄、または原表が明記した番号なし到達例。",
+    "不明": "人数・到達順位・方式の対応を確認できない欄。非公開というだけでは番号なしと判断しない。報告に順位が書かれていないことも無付番の証拠にはしない。",
+    "notHeld": "未実施・廃止の方式も番号なしと誤分類せず、該当年の結果を不明と表示。既存の実施年度に関する注記を保持。",
+    "currentPolicy": "現行年度の制度を過去年度へ遡及して適用しない。",
+    "countColumns": "補欠番号を付けない大学でも、人数の欄に人数がない場合は不明。"
+  },
+  "findings": [
+    {
+      "university": "大阪医科薬科大学",
+      "years": [2019, 2020],
+      "decision": "前期・後期の既存の番号なしを維持し、共テ欄のダッシュも番号なし。",
+      "evidence": "2021年度入試から補欠番号を表示する旨を既存の原表注記と記名の専門予備校資料で照合。",
+      "urls": ["https://melurix.co.jp/blog/c348"]
+    },
+    {
+      "university": "帝京大学",
+      "years": [2025, 2026],
+      "decision": "一般選抜の空欄を番号なし。追加合格の報告は注記として維持。",
+      "evidence": "医学部は繰上合格候補者を発表せず、欠員時に追加合格を通知。2025年度公式要項の検索収録本文と、前回確認済みの2026年度公式要項の記録を使用。2026年度PDFの再取得は404。",
+      "urls": ["https://www.teikyo-u.ac.jp/application/files/9017/2499/0172/02_2025.pdf", "https://www.teikyo-u.ac.jp/application/files/5017/5496/5079/02_2026.pdf"]
+    },
+    {
+      "university": "杏林大学",
+      "decision": "2018年度の非公開、共テ・後期のダッシュは不明。現行FAQは到達順位照会に回答しない旨を示すが、番号を付けない証拠ではない。",
+      "urls": ["https://www.kyorin-u.ac.jp/univ/center/nyugaku/qa/", "https://www.kyorin-u.ac.jp/cn/html/kyorin/00003/201801261/index.html"]
+    },
+    {
+      "university": "金沢医科大学・近畿大学・日本大学",
+      "decision": "過去の非公開を不明。過去年度の個別通知番号の有無を確証できないため、番号なしとはしない。",
+      "urls": ["https://www.kanazawa-med.ac.jp/medicine_exam/data/result.html", "https://www.kanazawa-med.ac.jp/assets/uaa_result_202005.pdf", "https://www.med.nihon-u.ac.jp/up_pdf/20181213120636.pdf", "https://www.igakubujuken.jp/database/detail/preceding/72/2018", "https://kindai.jp/assets/pdf/exam/2026_nyushiyoko.pdf?20250930="]
+    },
+    {
+      "university": "東北医科薬科大学",
+      "decision": "補欠順位を付けないことは公式FAQと原表注記で確認。ただし元表は人数を掲載しており、人数が不明の2022・2024〜2026年度は不明。",
+      "urls": ["https://www.tohoku-mpu.ac.jp/admission/qa/", "https://www.tohoku-mpu.ac.jp/wp/wp-content/uploads/2024/08/application_medicine.pdf"]
+    },
+    {
+      "university": "獨協医科大学",
+      "decision": "前期の非公開・順位記載のない報告は不明。上位への付番と番号なしの候補者が混在するため、報告に番号がないだけで方式全体を番号なしとしない。",
+      "urls": ["https://www.dokkyomed.ac.jp/dusm/exam/faq.html", "https://www.dokkyomed.ac.jp/dusm/exam/past-result.html", "https://melurix.co.jp/blog/c345", "https://melurix.co.jp/blog/info/medical/c1494", "https://www.fujigakuin.jp/news/?id=2588"]
+    },
+    {
+      "university": "順天堂大学・昭和医科大学・川崎医科大学・自治医科大学",
+      "decision": "個別の追加合格報告や総合格者数から人数・順位を推算しない。年度・方式ごとの無付番の確証または結果が不足する欄は不明。",
+      "urls": ["https://www.juntendo.ac.jp/assets/2026_Juntendo_Med_NyugakuShikenYoukou.pdf", "https://adm.showa-u.ac.jp/admission/data/", "https://m.kawasaki-m.ac.jp/examination/data.php", "https://www.jichi.ac.jp/assets/pdf/exam/medicine/exam/exam_youkou_2026.pdf", "https://melurix.co.jp/blog/info/medical/c891", "https://melurix.co.jp/blog/info/medical/c1217", "https://melurix.co.jp/blog/info/medical/c842"]
+    },
+    {
+      "university": "愛知医科大学・岩手医科大学・関西医科大学・久留米大学・埼玉医科大学・聖マリアンナ医科大学・東海大学・東京医科大学・日本医科大学・福岡大学・藤田医科大学",
+      "decision": "既存の年別・方式別の公式結果／報告データと欠損欄を照合し、不明。関西の2018〜2021年度、藤田の2022年度に元表が明記していた番号なしは保持。前後期未特定の藤田の報告や東海の別方式の地域枠報告を空欄へ転用しない。",
+      "urls": ["https://www.fujigakuin.jp/news/?id=2152", "https://www.fujigakuin.jp/news/?id=2588", "https://melurix.co.jp/blog/info/medical/c1494", "https://melurix.co.jp/blog/c1493"],
+      "limitation": "過去の全年度について公式の最終結果が入手できたわけではない。未解決欄は不明として残す。"
+    }
+  ],
+  "publicOutput": "凡例を削除。表とJSONのtablesに明示値を出力。他塾名・根拠URLは公開ページへ追加しない。"
+}

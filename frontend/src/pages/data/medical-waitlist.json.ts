@@ -2,11 +2,16 @@ import { waitlistAdmissionYear, waitlistCheckedAt, waitlistSchools } from "../..
 import { waitlist2025AdmissionYear, waitlist2025Schools } from "../../data/medicalWaitlist2025";
 import { historicalWaitlistSchools } from "../../data/medicalWaitlistHistory";
 import { publicWaitlistSchool } from "../../data/medicalWaitlistPublic";
+import { waitlistTableSchools } from "../../data/medicalWaitlistTables";
 
 export const GET = () => new Response(JSON.stringify({
   checkedAt: waitlistCheckedAt,
   scope: "私立医学部の補欠・繰上げ合格情報。2025・2026年度と2024年度以前の従来掲載分。",
-  warning: "displayValueは表用の簡略値。人数か補欠番号かはmetric・valueMeaningを確認。未確認や過去表の「-」を0人と解釈しない。個別の合格報告は最終到達順位とは限らない。",
+  warning: "tablesがページと同じ表示値。番号なしは補欠番号なし、不明は人数・到達順位等を確認できない欄。数値の意味はmetric・valueMeaningや注記を確認。個別の合格報告は最終到達順位とは限らない。historicalは表示加工前の保存用原表。",
+  tables: waitlistTableSchools.map(({ id, name, columns, rows }) => ({
+    id, name, columns,
+    rows: rows.map(({ year, cells }) => ({ year, values: cells.map(({ displayValue }) => displayValue) })),
+  })),
   years: [
     { admissionYear: waitlistAdmissionYear, schools: waitlistSchools.map(publicWaitlistSchool) },
     { admissionYear: waitlist2025AdmissionYear, schools: waitlist2025Schools.map(publicWaitlistSchool) },
