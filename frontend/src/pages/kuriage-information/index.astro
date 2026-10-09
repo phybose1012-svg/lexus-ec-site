@@ -5,7 +5,7 @@ import {
   waitlistCheckedAt, waitlistFaqs,
 } from "../../data/medicalWaitlist";
 import { waitlistTableSchools } from "../../data/medicalWaitlistTables";
-import { publicWaitlistNote, publicWaitlistResult } from "../../data/medicalWaitlistPublic";
+import { publicWaitlistTableNote, publicWaitlistResult } from "../../data/medicalWaitlistPublic";
 import { waitlistTableValue, waitlistEvidenceDate } from "../../data/medicalWaitlistPresentation";
 
 const canonical = "https://lexus-ec.com/kuriage-information/";
@@ -108,7 +108,7 @@ const structuredData = {
         </div>
         <div class="kuriage-answer">
           <p>2025・2026年度を、各大学の表の先頭に追加しています。2024年度以前の数値は従来の表記のまま掲載しています。</p>
-          <p>数字が「補欠番号」なのか「合格者の人数」なのか、辞退者を含むかどうかは、各表の下の注記をご確認ください。「—」「-」は数値未確認で、0人を意味しません。</p>
+          <p>数字の意味は、各表の下に記載しています。「報告分」は最終結果とは限りません。「—」「-」は未確認で、0人ではありません。</p>
           <p>2027年度の補欠・繰上げ合格状況は、各大学の入試後に判明します。<a href="/private-medical-school-admissions-schedule-2027/">2027年度の入試日程を見る →</a></p>
         </div>
         <div class="kuriage-school-index" aria-label="大学別データの一覧">
@@ -146,11 +146,11 @@ const structuredData = {
                 {school.annotations.flatMap(({ year, records }) => records.map((record) => (
                   <li><strong>{year}年度・{record.route}：</strong>{publicWaitlistResult(record)}{record.asOf && <>（<time datetime={record.asOf}>{waitlistEvidenceDate(record)}</time>時点）</>}</li>
                 )))}
-                {school.years.filter(({ data }) => data.note).map(({ year, data }) => (
-                  <li><strong>{year}年度：</strong>{publicWaitlistNote(data.note!)}</li>
+                {school.years.filter(({ data }) => data.note && publicWaitlistTableNote(data.note)).map(({ year, data }) => (
+                  <li><strong>{year}年度：</strong>{publicWaitlistTableNote(data.note!)}</li>
                 ))}
                 {school.historical?.notes.length && (
-                  <li class="waitlist-legacy-note"><strong>2024年度以前：</strong>{school.historical.notes.join(" ")}</li>
+                  <li class="waitlist-legacy-note"><strong>2024年度以前：</strong>{school.historical.notes.map((note) => publicWaitlistTableNote(note)).join(" ")}</li>
                 )}
               </ul>
             </article>

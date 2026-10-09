@@ -9,7 +9,7 @@ import {
 import { waitlist2025AdmissionYear, waitlist2025Schools } from '../src/data/medicalWaitlist2025.ts';
 import { historicalWaitlistSchools } from '../src/data/medicalWaitlistHistory.ts';
 import { waitlistTableSchools } from '../src/data/medicalWaitlistTables.ts';
-import { publicWaitlistResult, publicWaitlistSchool } from '../src/data/medicalWaitlistPublic.ts';
+import { publicWaitlistResult, publicWaitlistSchool, publicWaitlistTableNote } from '../src/data/medicalWaitlistPublic.ts';
 import { waitlistTableValue, waitlistValueMeaning } from '../src/data/medicalWaitlistPresentation.ts';
 
 const expectedNames = [
@@ -244,10 +244,28 @@ test('each displayed value has a year-scoped meaning, and no cell mixes counts w
       }
     }
   }
-  assert.match(waitlistValueMeaning(school('東京慈恵会医科大学').records[0]), /連絡を受けた人数.*入学辞退者を除いた入学者数ではありません/);
-  assert.match(waitlistValueMeaning(school('慶應義塾大学').records[0]), /入学を許可された人数.*実際に入学した人数ではありません/);
-  assert.match(waitlistValueMeaning(school('久留米大学').records[0]), /辞退者を含むか.*記載がありません/);
-  assert.match(waitlistTableSchools.find((table) => table.id === 'school-2').numericNotes.find(({ year }) => year === 2025).notes[0], /合格者数−初回合格者数.*入学者数ではありません/);
+  assert.equal(waitlistValueMeaning(school('東京慈恵会医科大学').records[0]), '繰上合格の連絡を受けた人数。');
+  assert.equal(waitlistValueMeaning(school('慶應義塾大学').records[0]), '繰上合格の許可人数。');
+  assert.equal(waitlistValueMeaning(school('久留米大学').records[0]), '繰上合格者数（辞退者を含むか不明）。');
+  assert.match(waitlistTableSchools.find((table) => table.id === 'school-2').numericNotes.find(({ year }) => year === 2025).notes[0], /初回発表後の追加合格者数（辞退者を含むか不明）/);
+});
+
+test('table footnotes use compact positive labels without changing the archived evidence', () => {
+  assert.equal(publicWaitlistTableNote('表記の数値は補欠番号です。'), '繰り上がった順位。');
+  for (const note of [
+    '公表されている繰上合格者には入学辞退者が含まれていません。',
+    '上記の繰上合格者数には入学辞退者が含まれていません。',
+    '繰上合格者には入学辞退者が含まれていません。',
+  ]) assert.equal(publicWaitlistTableNote(note), '入学辞退者を含まない人数。');
+  for (const record of [...waitlistSchools, ...waitlist2025Schools].flatMap((entry) => entry.records)) {
+    const meaning = waitlistValueMeaning(record);
+    assert.ok(meaning.length <= 30, meaning);
+    assert.doesNotMatch(meaning, /ではありません|最終到達|公表資料に記載/);
+    if (record.metric === 'rank') assert.equal(meaning, '繰り上がった順位。');
+    if (record.metric === 'rank-case') assert.equal(meaning, '繰り上がった順位（報告分）。');
+  }
+  assert.equal(publicWaitlistTableNote(school('愛知医科大学').note), null, 'do not repeat the numbers/types already explained');
+  assert.equal(publicWaitlistTableNote(school('聖マリアンナ医科大学').note), '共テ15は4/8の訂正前。訂正後の順位は未確認。');
 });
 
 test('public records retain facts/units/dates but never expose source names or links', () => {
@@ -318,7 +336,12 @@ test('new years and all 281 legacy rows share the original tables, not separate 
     assert.ok(article.includes(`aria-describedby="${school.id}-notes"`));
     assert.ok(article.includes(`id="${school.id}-notes"`));
     for (const { notes } of school.numericNotes) for (const note of notes) assert.ok(decode(article).includes(note), `${school.name}: value meaning is visible below its table`);
-    for (const note of school.historical?.notes ?? []) assert.ok(decode(article).includes(note), `${school.name}: original footnote remains visible`);
+    for (const note of school.historical?.notes ?? []) assert.ok(decode(article).includes(publicWaitlistTableNote(note)), `${school.name}: original footnote meaning remains visible`);
+    for (const { data } of school.years) {
+      const note = data.note && publicWaitlistTableNote(data.note);
+      if (note) assert.ok(decode(article).includes(note), `${school.name}: essential supplementary note remains visible`);
+    }
+    assert.doesNotMatch(article, /合格者の人数ではありません|繰上合格した人数ではありません|入学者数ではありません/);
     const renderedRows = [...article.matchAll(/<tr\b[^>]*data-legacy="false"[^>]*>([\s\S]*?)<\/tr>/g)].map((match) => cells(match[1]));
     assert.deepEqual(renderedRows, school.rows.filter((row) => !row.legacy).map((row) => [row.year, ...row.cells.map((cell) => cell.records.length ? waitlistTableValue(cell.records[0]) : '—')]), `${school.name}: cells show only values, not explanations/dates/tags`);
   }

@@ -22,15 +22,14 @@ export function waitlistTableValue(record: WaitlistRecord): string {
 }
 
 export function waitlistValueMeaning(record: WaitlistRecord): string {
-  if (record.metric === "rank-case") return "合格が報告された補欠番号。最終到達順位とは限りません。";
-  if (record.metric === "group-case") return "合格が報告された補欠の群・ランク。全員の合格を示すものではありません。";
-  if (record.metric === "rank") return "補欠番号（順位）。合格者の人数ではありません。";
-  if (record.metric !== "count") return "人数・補欠順位の数値は未確認です。";
-  if (record.result.includes("連絡者")) return "繰上合格の連絡を受けた人数。入学辞退者を除いた入学者数ではありません。";
-  if (record.result.includes("入学許可")) return "補欠から入学を許可された人数。実際に入学した人数ではありません。";
-  if (record.result.includes("初回発表後")) return "初回発表後に増えた合格者数（合格者数−初回合格者数）。入学者数ではありません。辞退者を含むかは公表資料に記載がありません。";
-  if (record.result.includes("追加合格者")) return "大学公表の追加合格者数。入学者数ではありません。辞退者を含むかは公表資料に記載がありません。";
-  return "大学公表の繰上合格者数。辞退者を含むかは公表資料に記載がありません。";
+  if (record.metric === "rank-case") return "繰り上がった順位（報告分）。";
+  if (record.metric === "group-case") return "繰り上がった補欠ランク（報告分）。";
+  if (record.metric === "rank") return "繰り上がった順位。";
+  if (record.metric !== "count") return "数値未確認。";
+  if (record.result.includes("連絡者")) return "繰上合格の連絡を受けた人数。";
+  if (record.result.includes("入学許可")) return "繰上合格の許可人数。";
+  if (record.result.includes("初回発表後")) return "初回発表後の追加合格者数（辞退者を含むか不明）。";
+  return "繰上合格者数（辞退者を含むか不明）。";
 }
 
 export function waitlistEvidenceDate(record: WaitlistRecord): string | null {
@@ -54,7 +53,7 @@ export function waitlistNumericNotes(entries: { record: WaitlistRecord; column: 
     let dateNote = "";
     if (dates.length === 1 && dates[0]) dateNote = `（${dates[0]}時点）`;
     else if (dates.some(Boolean)) {
-      dateNote = `（${group.filter(({ record }) => record.asOf).map(({ record }) => `${record.route} ${waitlistEvidenceDate(record)}時点`).join("、")}）`;
+      dateNote = `（${group.filter(({ record }) => record.asOf).map(({ record }) => `${record.route.replace("一般選抜", "一般").replace(/共通テスト(?:・一般併用|利用)?/, "共テ").replace(/地域枠([CD])(?:（.*）)?/, "地域$1")} ${waitlistEvidenceDate(record)}`).join("、")}時点）`;
     }
     return `${scope}${meaning}${dateNote}`;
   });
