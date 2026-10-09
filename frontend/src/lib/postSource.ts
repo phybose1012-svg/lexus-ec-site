@@ -2,9 +2,11 @@ import admissionInfoPosts from "../data/generated/admissionInfoPosts.json";
 import interviewPrepPosts from "../data/generated/interviewPrepPosts.json";
 import universityStrategyPosts from "../data/generated/universityStrategyPosts.json";
 import voiceInterviewPosts from "../data/generated/voiceInterviewPosts.json";
+import urgentPostCorrections from "../data/generated/urgentPostCorrections.json";
 import type { ArticleTemplateId } from "../data/articleTemplates";
 import { classifyArticlePost } from "../data/articleTaxonomy.js";
 import { normalizeInternalAnchorHrefs } from "./internalLinks";
+import { transformUniversityInfoPost } from "./universityInfoSafety";
 
 export type MigratedPostImage = {
   src: string;
@@ -143,6 +145,27 @@ const postTitleOverrides: Record<string, string> = {
 
 const dedicatedFixedPostPaths = new Set(["/information-faq/"]);
 
+// Apply verified editorial corrections before deriving taxonomy and summaries.
+const correctMigratedPost = (post: MigratedPost): MigratedPost => {
+  const path = normalizeMigratedPostPath(post.path);
+  const correction = urgentPostCorrections.corrections.find((item) => item.path === path);
+  let corrected: MigratedPost = correction ? {
+    ...post,
+    ...correction.patch,
+    toc: correction.patch.toc.map((item) => ({ ...item, level: item.level as 2 | 3 })),
+  } : post;
+  if (path === "/voice-037/") {
+    corrected = {
+      ...corrected,
+      contentHtml: corrected.contentHtml.replace(
+        /(?:https?:\/\/lexus-ec\.com)?\/result\/success\/showa2017_01\.php\/?/g,
+        "/voice-047/",
+      ),
+    };
+  }
+  return transformUniversityInfoPost(corrected);
+};
+
 const uniqueStrings = (items: string[]) => [...new Set(items.filter(Boolean))];
 
 const universityTypeCategory = (value: string) => {
@@ -187,7 +210,7 @@ export const migratedPosts = [
   ...voiceInterviewPosts,
 ]
   .filter((post) => !dedicatedFixedPostPaths.has(normalizeMigratedPostPath((post as MigratedPost).path)))
-  .map((post) => prepareMigratedPost(post as MigratedPost)) as MigratedPost[];
+  .map((post) => prepareMigratedPost(correctMigratedPost(post as MigratedPost))) as MigratedPost[];
 
 export const getMigratedPostStaticPaths = () =>
   migratedPosts.map((post) => ({

@@ -67,6 +67,8 @@ const cloudflareExactRedirects = uniqueRedirects.filter(
 
 // Exact single-path rules that only exist for Cloudflare (not in the source JSON).
 const cloudflareExactExtra = [
+  // The retired Showa interview URL now points to Oshima published interview.
+  { from: "/result/success/showa2017_01.php", to: "/voice-047/" },
   { from: "/reservation", to: "/top/reservation/" },
   // Keep the past-exam library on staging until publication is approved.
   { from: "/past-exam-library", to: "/", status: 302 },
