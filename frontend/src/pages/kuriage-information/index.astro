@@ -5,8 +5,9 @@ import {
   waitlistCheckedAt, waitlistFaqs,
 } from "../../data/medicalWaitlist";
 import { waitlistTableSchools } from "../../data/medicalWaitlistTables";
-import { publicWaitlistTableNote, publicWaitlistResult } from "../../data/medicalWaitlistPublic";
+import { publicWaitlistInformation, publicWaitlistResult } from "../../data/medicalWaitlistPublic";
 import { waitlistTableValue, waitlistEvidenceDate } from "../../data/medicalWaitlistPresentation";
+import { waitlistFootnotes } from "../../data/medicalWaitlistFootnotes";
 
 const canonical = "https://lexus-ec.com/kuriage-information/";
 const datasetPath = "/data/medical-waitlist.json";
@@ -20,7 +21,7 @@ const structuredData = {
       description: pageDescription, inLanguage: "ja", dateModified: waitlistCheckedAt,
       mainEntity: { "@id": `${canonical}#dataset` }, breadcrumb: { "@id": `${canonical}#breadcrumb` } },
     { "@type": "Dataset", "@id": `${canonical}#dataset`, name: "私立医学部の繰上げ・追加合格情報：2025・2026年度と過去一覧",
-      description: "表は数値を中心に掲載し、補欠番号・合格者数・連絡者数・入学許可者数の違いは大学・年度別の注記に記載。個別の合格報告は最終到達順位とは限らない。2024年度以前は従来掲載分。未確認や過去表の「-」は0人を意味しない。",
+      description: "表は数値を中心に掲載し、数値の意味と情報の種類は各大学の注記に記載。同じ意味の数値は年度をまたいで説明。大学公式情報・大学発表や大学への確認に基づく間接情報・受験生の合格報告を区別し、確認できない出典は未確認と明記。個別の合格報告は最終到達順位とは限らず、未確認や「-」は0人を意味しない。",
       url: `${canonical}#school-data`, inLanguage: "ja", temporalCoverage: "2012/2026", dateModified: waitlistCheckedAt,
       creator: { "@type": "Organization", name: "レクサス教育センター", url: "https://lexus-ec.com/" },
       distribution: { "@type": "DataDownload", contentUrl: `https://lexus-ec.com${datasetPath}`, encodingFormat: "application/json" },
@@ -108,7 +109,7 @@ const structuredData = {
         </div>
         <div class="kuriage-answer">
           <p>2025・2026年度を、各大学の表の先頭に追加しています。2024年度以前の数値は従来の表記のまま掲載しています。</p>
-          <p>数字の意味は、各表の下に記載しています。「報告分」は最終結果とは限りません。「—」「-」は未確認で、0人ではありません。</p>
+          <p>各表の下に、数値の意味と情報の種類を記載しています。受験生からの合格報告は最終結果とは限りません。「—」「-」は未確認で、0人ではありません。</p>
           <p>2027年度の補欠・繰上げ合格状況は、各大学の入試後に判明します。<a href="/private-medical-school-admissions-schedule-2027/">2027年度の入試日程を見る →</a></p>
         </div>
         <div class="kuriage-school-index" aria-label="大学別データの一覧">
@@ -140,18 +141,12 @@ const structuredData = {
                 </table>
               </div>
               <ul id={school.id + "-notes"} class="kuriage-school-card__notes">
-                {school.numericNotes.flatMap(({ year, notes }) => notes.map((note) => (
-                  <li class="waitlist-value-note"><strong>{year}年度：</strong>{note}</li>
-                )))}
-                {school.annotations.flatMap(({ year, records }) => records.map((record) => (
-                  <li><strong>{year}年度・{record.route}：</strong>{publicWaitlistResult(record)}{record.asOf && <>（<time datetime={record.asOf}>{waitlistEvidenceDate(record)}</time>時点）</>}</li>
-                )))}
-                {school.years.filter(({ data }) => data.note && publicWaitlistTableNote(data.note)).map(({ year, data }) => (
-                  <li><strong>{year}年度：</strong>{publicWaitlistTableNote(data.note!)}</li>
+                {waitlistFootnotes(school).map((note) => (
+                  <li><strong>{note.label}：</strong>{note.text}</li>
                 ))}
-                {school.historical?.notes.length && (
-                  <li class="waitlist-legacy-note"><strong>2024年度以前：</strong>{school.historical.notes.map((note) => publicWaitlistTableNote(note)).join(" ")}</li>
-                )}
+                {school.annotations.flatMap(({ year, records }) => records.map((record) => (
+                  <li><strong>補足：</strong>{year}年度・{record.route}：{publicWaitlistResult(record)}{record.asOf && <>（<time datetime={record.asOf}>{waitlistEvidenceDate(record)}</time>時点）</>}。{publicWaitlistInformation(record)}。</li>
+                )))}
               </ul>
             </article>
           ))}

@@ -6,7 +6,9 @@ const fuji: Evidence = { title: "富士学院・2025年度合格速報", url: "h
 const mel: Evidence = { title: "メルリックス学院・2025年度繰上情報", url: "https://melurix.co.jp/blog/info/medical/c1494", kind: "prep" };
 const record = (route: string, metric: Metric, result: string, asOf: string | null, source: Evidence, note?: string): WaitlistRecord => ({ route, metric, result, asOf, source, ...(note ? { note } : {}) });
 const example = (route: string, result: string, date: string, metric: Metric = "rank-case") => record(route, metric, result, date, fuji);
-const reportedRank = (route: string, result: string, date: string) => record(route, "rank", result, date, mel);
+const reportedRank = (route: string, result: string, date: string, evidenceBasis?: WaitlistRecord["evidenceBasis"]): WaitlistRecord => {
+  return { ...record(route, "rank", result, date, mel), ...(evidenceBasis ? { evidenceBasis } : {}) };
+};
 const aichi = official("愛知医科大学・2025年度入試結果（大学案内2026・p.16）", "https://www.aichi-med-u.ac.jp/files/igaku/ikadai_guide_2026.pdf");
 const iwate = official("岩手医科大学・令和7年度入学試験実施状況", "https://www.imu-admission.jp/wp/wp-content/uploads/2025/06/results_2025.pdf");
 const kurume = official("久留米大学・2025年度入試結果（医学科）", "https://best.kurume-u.ac.jp/img/admissions/2025_results.pdf");
@@ -28,9 +30,9 @@ export const waitlist2025Schools: WaitlistSchool[] = [
     record("地域枠D", "count", "初回発表後の追加分4人", null, iwate, "公式表の合格者11人－初回合格者7人。"),
   ] },
   { id: "school-3", name: "大阪医科薬科大学", records: [
-    reportedRank("一般前期", "補欠71番までとの報告", "2025-03-31"),
-    reportedRank("一般後期", "補欠1番までとの報告", "2025-03-31"),
-    reportedRank("共通テスト利用", "補欠21番までとの報告", "2025-03-31"),
+    reportedRank("一般前期", "補欠71番までとの報告", "2025-03-31", "university-announcement"),
+    reportedRank("一般後期", "補欠1番までとの報告", "2025-03-31", "university-announcement"),
+    reportedRank("共通テスト利用", "補欠21番までとの報告", "2025-03-31", "university-announcement"),
   ] },
   { id: "school-4", name: "金沢医科大学", records: [
     reportedRank("一般前期", "補欠143番までとの報告", "2025-04-03"),
@@ -63,9 +65,9 @@ export const waitlist2025Schools: WaitlistSchool[] = [
     example("一般選抜", "合格例：補欠B群", "2025-03-26", "group-case"),
   ] },
   { id: "school-12", name: "埼玉医科大学", records: [
-    reportedRank("一般前期", "補欠62番までとの報告", "2025-03-31"),
-    reportedRank("一般後期", "補欠5番までとの報告", "2025-03-31"),
-    reportedRank("共通テスト利用", "補欠8番までとの報告", "2025-03-31"),
+    reportedRank("一般前期", "補欠62番までとの報告", "2025-03-31", "university-announcement"),
+    reportedRank("一般後期", "補欠5番までとの報告", "2025-03-31", "university-announcement"),
+    reportedRank("共通テスト利用", "補欠8番までとの報告", "2025-03-31", "university-announcement"),
   ] },
   { id: "school-13", name: "産業医科大学", records: [
     record("一般選抜A", "count", "追加合格者10人", null, uoeh),
@@ -76,9 +78,9 @@ export const waitlist2025Schools: WaitlistSchool[] = [
     example("一般Ⅰ期（当時：昭和大学）", "追加合格の報告あり（順位記載なし）", "2025-02-18", "report"),
   ] },
   { id: "school-15", name: "聖マリアンナ医科大学", records: [
-    reportedRank("一般前期", "補欠82番までとの報告", "2025-03-31"),
-    reportedRank("一般後期", "補欠3番までとの報告", "2025-03-31"),
-    reportedRank("共通テスト利用", "補欠2番までとの報告", "2025-03-31"),
+    reportedRank("一般前期", "補欠82番までとの報告", "2025-03-31", "university-confirmation"),
+    reportedRank("一般後期", "補欠3番までとの報告", "2025-03-31", "university-confirmation"),
+    reportedRank("共通テスト利用", "補欠2番までとの報告", "2025-03-31", "university-confirmation"),
   ] },
   { id: "school-16", name: "東海大学", records: [
     example("一般選抜", "合格例：補欠132番", "2025-03-31"),
@@ -93,7 +95,7 @@ export const waitlist2025Schools: WaitlistSchool[] = [
     record("一般選抜", "count", "繰上合格連絡者67人", null, official("東京慈恵会医科大学・2025年度医学科入試結果", "https://www.jikei.ac.jp/wp-content/uploads/2025/04/result2025.pdf")),
   ] },
   { id: "school-19", name: "東京女子医科大学", records: [
-    reportedRank("一般選抜", "補欠36番までとの報告", "2025-03-31"),
+    reportedRank("一般選抜", "補欠36番までとの報告", "2025-03-31", "university-announcement"),
   ] },
   { id: "school-20", name: "東北医科薬科大学", records: [
     example("一般選抜・一般枠", "繰上合格の報告あり（順位なし）", "2025-03-31", "report"),
@@ -120,7 +122,7 @@ export const waitlist2025Schools: WaitlistSchool[] = [
   { id: "school-26", name: "藤田医科大学", records: [
     reportedRank("一般前期", "補欠14番までとの報告", "2025-03-31"),
     reportedRank("一般前期・愛知県地域枠", "補欠36番までとの報告", "2025-03-25"),
-    reportedRank("共通テスト利用", "補欠36番までとの報告", "2025-03-17"),
+    reportedRank("共通テスト利用", "補欠36番までとの報告", "2025-03-17", "university-announcement"),
   ] },
   { id: "jichi", name: "自治医科大学", records: [
     example("医学部・鹿児島県", "繰上合格の報告あり（順位なし）", "2025-03-24", "report"),

@@ -9,8 +9,9 @@ import {
 import { waitlist2025AdmissionYear, waitlist2025Schools } from '../src/data/medicalWaitlist2025.ts';
 import { historicalWaitlistSchools } from '../src/data/medicalWaitlistHistory.ts';
 import { waitlistTableSchools } from '../src/data/medicalWaitlistTables.ts';
-import { publicWaitlistResult, publicWaitlistSchool, publicWaitlistTableNote } from '../src/data/medicalWaitlistPublic.ts';
+import { publicWaitlistInformation, publicWaitlistResult, publicWaitlistSchool, publicWaitlistTableNote } from '../src/data/medicalWaitlistPublic.ts';
 import { waitlistTableValue, waitlistValueMeaning } from '../src/data/medicalWaitlistPresentation.ts';
+import { waitlistFootnotes } from '../src/data/medicalWaitlistFootnotes.ts';
 
 const expectedNames = [
   '岩手医科大学', '東北医科薬科大学', '自治医科大学', '獨協医科大学', '埼玉医科大学',
@@ -302,10 +303,49 @@ test('public records retain facts/units/dates but never expose source names or l
       assert.equal(record.result, publicWaitlistResult(entry.records[index]));
       assert.equal(record.displayValue, waitlistTableValue(entry.records[index]));
       assert.equal(record.valueMeaning, waitlistValueMeaning(entry.records[index]));
+      assert.equal(record.informationType, publicWaitlistInformation(entry.records[index]));
       assert.ok(!Object.hasOwn(record, 'source'));
     });
     assert.doesNotMatch(JSON.stringify(data), /合格例|富士学院|メルリックス|fujigakuin|melurix|https?:\/\//);
     assert.ok(!Object.hasOwn(data, 'noteSources'));
+  }
+});
+
+test('identical numeric meanings are merged across years; scopes only distinguish different meanings', () => {
+  for (const id of ['school-3', 'school-4', 'school-5', 'school-6', 'school-7', 'school-8', 'school-12', 'school-15', 'school-17', 'school-19', 'school-22', 'school-23']) {
+    const table = waitlistTableSchools.find((entry) => entry.id === id);
+    assert.deepEqual(waitlistFootnotes(table).filter((note) => note.label === '数値'), [{ label: '数値', text: '繰り上がった順位。' }], table.name);
+  }
+  const iwate = waitlistFootnotes(waitlistTableSchools.find((entry) => entry.id === 'school-2'));
+  assert.deepEqual(iwate.filter((note) => note.label === '数値').map((note) => note.text), [[
+    '2026年度：繰り上がった順位。',
+    '2025年度：初回発表後の追加合格者数（辞退者を含むか不明）。',
+    '2013〜2024年度：入学辞退者を含まない人数。',
+  ].join(' ')]);
+  for (const table of waitlistTableSchools) {
+    const notes = waitlistFootnotes(table);
+    assert.ok(notes.length);
+    for (const label of ['数値', '情報', '時点']) assert.ok(notes.filter((note) => note.label === label).length <= 1, `${table.name}: do not repeat the same category for every year`);
+    assert.doesNotMatch(JSON.stringify(notes), /2024年度以前：|富士学院|メルリックス|https?:/);
+    if (table.historical) {
+      assert.ok(notes.some((note) => note.label === '情報' && note.text.includes('出典未確認。')), table.name);
+    }
+  }
+  const iuhw = waitlistFootnotes(waitlistTableSchools.find((entry) => entry.id === 'school-11'));
+  assert.deepEqual(iuhw.filter((note) => note.label === '数値'), [{ label: '数値', text: '繰り上がった補欠ランク。' }]);
+  assert.ok(iuhw.some((note) => note.label === '情報' && note.text.includes('出典未確認。')), 'archived letter ranks must not inherit the current student-report provenance');
+});
+
+test('official data, indirect university information, student reports and unknown origins stay distinct', () => {
+  assert.equal(publicWaitlistInformation(school('愛知医科大学').records[0]), '大学公式情報');
+  assert.equal(publicWaitlistInformation(school('大阪医科薬科大学').records[0]), '大学発表に基づく情報（間接確認）');
+  assert.equal(publicWaitlistInformation(school('聖マリアンナ医科大学').records[0]), '大学への確認に基づく情報（間接確認）');
+  assert.equal(publicWaitlistInformation(school('岩手医科大学').records[0]), '受験生からの合格報告');
+  assert.equal(publicWaitlistInformation(school('藤田医科大学').records[3]), '受験生からの合格報告');
+  assert.equal(publicWaitlistInformation(school('日本医科大学').records[0]), '合格報告（報告者未確認）');
+  assert.equal(publicWaitlistInformation(waitlist2025Schools.find((entry) => entry.name === '金沢医科大学').records[0]), '情報の由来は未確認（間接情報）');
+  for (const entry of [...waitlistSchools, ...waitlist2025Schools]) {
+    for (const record of entry.records) assert.ok(publicWaitlistInformation(record));
   }
 });
 
@@ -341,7 +381,7 @@ test('built page, JSON and structured data describe the same visible evidence', 
   }
   const main = html.match(/<main id="kuriage-main"[\s\S]*?<\/main>/)[0];
   assert.doesNotMatch(main, /<a[^>]+href="https?:/);
-  assert.doesNotMatch(main, /waitlist-source|出典/);
+  assert.doesNotMatch(main, /waitlist-source|2024年度以前：/);
   assert.ok(!Object.hasOwn(dataset, 'citation'));
   assert.doesNotMatch(html, /waitlist-cell-date|waitlist-cell-route|waitlist-inline-results|<details[^>]*class="waitlist-legacy-notes"/);
   assert.ok(html.includes('2025・2026年度を、各大学の表の先頭に追加しています。'));
@@ -360,7 +400,8 @@ test('new years and all historical figures share the original tables, not separa
     assert.ok(article);
     assert.ok(article.includes(`aria-describedby="${school.id}-notes"`));
     assert.ok(article.includes(`id="${school.id}-notes"`));
-    for (const { notes } of school.numericNotes) for (const note of notes) assert.ok(decode(article).includes(note), `${school.name}: value meaning is visible below its table`);
+    for (const note of waitlistFootnotes(school)) assert.ok(decode(article).includes(note.text), `${school.name}: consistent footnote remains visible`);
+    for (const { records } of school.annotations) for (const record of records) assert.ok(decode(article).includes(publicWaitlistInformation(record)), `${school.name}: annotation has its own information category`);
     for (const note of school.historical?.notes ?? []) assert.ok(decode(article).includes(publicWaitlistTableNote(note)), `${school.name}: original footnote meaning remains visible`);
     for (const { data } of school.years) {
       const note = data.note && publicWaitlistTableNote(data.note);

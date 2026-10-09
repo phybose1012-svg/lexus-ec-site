@@ -8,13 +8,24 @@ export function publicWaitlistResult(record: WaitlistRecord) {
   return record.result;
 }
 
-// Research provenance stays in the repository, not on public page/data endpoints.
+// Publish the information category, but keep provider names and URLs private.
+export function publicWaitlistInformation(record: WaitlistRecord): string {
+  if (record.source.kind === "official") return "大学公式情報";
+  if (record.evidenceBasis === "university-announcement") return "大学発表に基づく情報（間接確認）";
+  if (record.evidenceBasis === "university-confirmation") return "大学への確認に基づく情報（間接確認）";
+  if (record.evidenceBasis === "unconfirmed") return "合格報告（報告者未確認）";
+  if (record.evidenceBasis === "student-report") return "受験生からの合格報告";
+  if (["rank-case", "group-case", "report"].includes(record.metric)) return "受験生からの合格報告";
+  return "情報の由来は未確認（間接情報）";
+}
+
 export function publicWaitlistSchool(school: WaitlistSchool) {
   return {
     id: school.id, name: school.name,
     records: school.records.map((record) => ({
       route: record.route, metric: record.metric, result: publicWaitlistResult(record),
       displayValue: waitlistTableValue(record), valueMeaning: waitlistValueMeaning(record),
+      informationType: publicWaitlistInformation(record),
       asOf: record.asOf, ...(record.note ? { note: record.note } : {}),
     })),
     ...(school.note ? { note: publicWaitlistNote(school.note) } : {}),
@@ -40,7 +51,7 @@ export function publicWaitlistTableNote(note: string): string | null {
     "3月31日に入学許可を打ち切り。47人は順位ではなく、入学を許可された補欠者の人数です。": "3/31に繰上げ終了。",
     "C群全員や、大学全体の補欠者全員の合格を示す報告ではありません。": null,
     "大学の2026年度入学者選抜結果に掲載された順位です。繰上合格した人数ではありません。": null,
-    "大学公式の「追加合格者数」。医学部以外の追加合格者は含めていません。": "表の2025・2026年度は一般選抜A。",
+    "大学公式の「追加合格者数」。医学部以外の追加合格者は含めていません。": "一般選抜Aの数値。",
     "公式の合格者数には繰上・追加合格を含みます。この総数を繰上合格者数として掲載しません。旧称：昭和大学。": "繰上げだけの人数は未確認。旧称：昭和大学。",
     "共テ15番は4月8日の訂正前の報告です。訂正後の最終順位は未確認。追加の1人は年間の繰上合格者総数ではありません。": "共テ15は4/8の訂正前。訂正後の順位は未確認。",
     "大学が3月31日に発表した時点の順位です。繰上合格した人数ではありません。": null,
