@@ -1,0 +1,760 @@
+{
+  "path": "/information-yamanashi/",
+  "university": "山梨大学",
+  "admissionYear": 2027,
+  "verifiedAt": "2026-10-09T06:28:19.452Z",
+  "sources": [
+    {
+      "id": "selection-2027",
+      "title": "令和9年度 入学者選抜要項",
+      "url": "https://www.yamanashi.ac.jp/wp-content/uploads/2026/07/R09_senbatsu.pdf",
+      "retrievedAt": "2026-10-09T06:07:16.751Z",
+      "publishedAt": "2026-07-29",
+      "pages": "印刷pp.16・18・22・26・27・30・34・35・38・41（PDF内20・22・26・30・31・34・38・39・42・45ページ）",
+      "sha256": "1b3b29d0583aa9696fb0bcc6e7d91f4d363da2bfe3d52dd40da8dc933217bbac"
+    },
+    {
+      "id": "recommendation-2027",
+      "title": "令和9年度 特別選抜学生募集要項（2026年9月7日訂正版）",
+      "url": "https://www.yamanashi.ac.jp/wp-content/uploads/2016/01/R09_tokubetsu2.pdf",
+      "retrievedAt": "2026-10-09T06:25:34.505Z",
+      "publishedAt": "2026-07-30",
+      "pages": "印刷pp.13・14・20・21・30・32・35・47・56・58（PDF内17・18・24・25・34・36・39・51・60・62ページ）",
+      "sha256": "75008931f378e8dbe85be0bd3dbe7d5d5e0c8b87aa53fb3801b60cb0c17b578c"
+    },
+    {
+      "id": "guidelines-index",
+      "title": "山梨大学 募集要項一覧",
+      "url": "https://www.yamanashi.ac.jp/admission/291",
+      "retrievedAt": "2026-10-09T06:07:16.319Z",
+      "sha256": "5606e55043b95ce93243c0bcbc22e378b152d98ca6db76d83cb35c1af26dc9ec"
+    },
+    {
+      "id": "change-2027",
+      "title": "令和9年度 医学科選抜変更予告 第2報",
+      "url": "https://www.yamanashi.ac.jp/wp-content/uploads/2026/06/20260625_HP_keisaiM1-2.pdf",
+      "retrievedAt": "2026-10-09T06:07:17.050Z",
+      "publishedAt": "2026-06-25",
+      "pages": [
+        1
+      ],
+      "sha256": "6d8ee3282ed4b2e24fb5a61ce49ee34b70bb8c1b416f0f56ecbe78e83d31e327"
+    }
+  ],
+  "schemes": [
+    {
+      "id": "general-late",
+      "name": "一般選抜（後期日程）",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2027年1月25日（月）〜2月3日（水）",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web出願登録の締切",
+          "value": "締切時刻は未公表。2027年度一般選抜学生募集要項の公表後に確認してください。",
+          "sourceIds": [
+            "guidelines-index"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "入学検定料の支払締切",
+          "value": "締切時刻は未公表。出願期間内に登録・納入・書類提出のすべてを完了する必要があります。",
+          "sourceIds": [
+            "guidelines-index"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "出願書類の提出締切",
+          "value": "締切時刻・必着／消印有効の扱いは未公表。2027年度一般選抜学生募集要項の公表後に確認してください。",
+          "sourceIds": [
+            "guidelines-index"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "大学入学共通テスト",
+          "value": "2027年1月16日（土）・17日（日）",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第1段階選抜発表",
+          "value": "2027年2月15日（月）",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別学力検査等",
+          "value": "2027年3月12日（金）・13日（土）。両日とも受験が必要です。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "合格者発表",
+          "value": "2027年3月20日（土）",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続期間",
+          "value": "2027年3月21日（日）〜27日（土）",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続の締切時刻・提出方法",
+          "value": "未公表。2027年度一般選抜学生募集要項の公表後に確認してください。",
+          "sourceIds": [
+            "guidelines-index"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "90人（医学科の一般選抜は後期日程のみ）",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 国語",
+          "value": "国語：200点",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 地理歴史・公民",
+          "value": "「歴史総合，日本史探究」「歴史総合，世界史探究」「地理総合，地理探究」「公共，倫理」「公共，政治・経済」から1科目：100点",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 数学",
+          "value": "「数学Ⅰ，数学A」「数学Ⅱ，数学B，数学C」の2科目：計200点",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 理科",
+          "value": "物理・化学・生物から2科目：計200点",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 外国語",
+          "value": "英語：200点（リーディング100点＋リスニング100点に換算）",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 情報",
+          "value": "情報Ⅰ：100点",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 合計",
+          "value": "6教科8科目、1,000点。第1段階選抜・最終選抜とも同じ配点です。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別 数学",
+          "value": "600点。数学Ⅰ・A・Ⅱ・Ⅲは全範囲、数学Bは数列・統計的な推測、数学Cはベクトル・平面上の曲線と複素数平面。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別 理科",
+          "value": "物理基礎・物理、化学基礎・化学、生物基礎・生物から出願時に2科目群を選択：計1,000点。各科目群は全範囲。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別 英語",
+          "value": "600点。英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ・Ⅱ・Ⅲ。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別 面接",
+          "value": "100点。集団面接を行い、面接員が必要と判断した場合は個人面接も行います。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別 合計・総配点",
+          "value": "個別学力検査等2,300点、共通テストとの合計3,300点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "小論文",
+          "value": "課しません。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第1段階選抜",
+          "value": "志願者が募集人員の約10倍を超えた場合、共通テストの成績と調査書により実施し、合格者数を募集人員の約10倍とします。10倍を超えない場合は実施しません。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "科目別の試験時間・当日の時間割",
+          "value": "未公表。2027年度一般選抜学生募集要項の公表後に確認してください。",
+          "sourceIds": [
+            "guidelines-index"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "試験会場",
+          "value": "両日とも山梨大学甲府キャンパス（山梨県甲府市武田4-4-37）",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "集合時刻・試験室",
+          "value": "未公表。2027年度一般選抜学生募集要項と受験票等の大学案内で確認してください。",
+          "sourceIds": [
+            "guidelines-index"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "notes": [
+        {
+          "text": "一般選抜の2027年度学生募集要項は未公表です。日程・科目・配点・会場は2027年度入学者選抜要項で確認できた内容を掲載しています。出願前に正式な募集要項と変更通知をご確認ください。",
+          "sourceIds": [
+            "guidelines-index"
+          ]
+        },
+        {
+          "text": "地理歴史・公民を2科目受験した場合は第1解答科目を利用します。指定科目を第1解答科目として選択していない場合は出願無資格となります。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "共通テストは2027年度の成績のみを利用します。英語リスニング免除者はリーディングの得点をリスニングの得点とみなして利用します。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "最終選抜は共通テスト、個別学力検査、面接、調査書を総合して判定します。面接が合格判定基準を満たさなければ、総得点が合格点に達していても不合格となります。同点の場合は面接、個別筆記3教科合計、共通テスト国語の得点の順で上位を決めます。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recommendation-prefecture",
+      "name": "学校推薦型選抜Ⅱ（地域枠・県内募集枠）",
+      "scheduleRows": [
+        {
+          "label": "Web出願登録",
+          "value": "2026年12月10日（木）〜17日（木）16時30分までに完了。支払・書類提出も同期間内にすべて完了が必要です。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料の支払い",
+          "value": "17,000円。2026年12月17日（木）16時30分の出願締切までに完了。クレジットカード以外の入金確認には約2時間かかります。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願書類の提出",
+          "value": "2026年12月10日（木）〜17日（木）16時30分必着。高等学校等で取りまとめ、簡易書留速達郵便で発送します。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "大学入学共通テスト",
+          "value": "2027年1月16日（土）・17日（日）",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第1段階選抜発表",
+          "value": "2027年2月5日（金）。学校長と本人へ通知書を郵送し、本人へメールでも通知します。実施しない場合は大学サイトで案内します。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終選抜（面接）",
+          "value": "2027年2月8日（月）",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "合格者発表",
+          "value": "2027年2月10日（水）16時頃。大学サイトで合格者の受験番号を掲示します。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続",
+          "value": "2027年2月11日（木）〜17日（水）。詳細は登録メールアドレスに通知されます。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "5人以内。臨時定員増は申請予定のため、承認に伴う変更通知を確認してください。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格",
+          "value": "本校の所在地が山梨県内である高等学校（特別支援学校高等部を含む）を2024年度以後に卒業、または2026年度中に卒業見込みの方。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通の出願条件",
+          "value": "指定の共通テスト科目を受験し、調査書の学習成績概評がAであること。県の医師修学資金貸与制度第二種の利用、県内診療への従事、合格時の入学を確約すること。学校長推薦が必要で、1校の推薦人数に制限はありません。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 国語",
+          "value": "国語：200点",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 地理歴史・公民",
+          "value": "「歴史総合，日本史探究」「歴史総合，世界史探究」「地理総合，地理探究」「公共，倫理」「公共，政治・経済」から1科目：100点",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 数学",
+          "value": "「数学Ⅰ，数学A」「数学Ⅱ，数学B，数学C」の2科目：計200点",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 理科",
+          "value": "物理・化学・生物から2科目：計200点",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 外国語",
+          "value": "英語：200点（リーディング100点＋リスニング100点に換算）",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 情報",
+          "value": "情報Ⅰ：100点",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 合計",
+          "value": "6教科8科目、1,000点。第1段階選抜・最終選抜とも同じ配点です。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終選抜の検査・配点",
+          "value": "面接を実施。面接・調査書・多面的／総合的な評価のための申告書・学校長推薦書の配点、評価基準、同点者の扱いは非公表です。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第1段階選抜",
+          "value": "県内募集枠志願者が、学校推薦型選抜Ⅱ全体の募集人員（15人以内）の約1.2倍を超えた場合に実施します。共通テストと調査書・申告書・推薦書を総合判定します。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "最終選抜の試験会場",
+          "value": "山梨大学医学部キャンパス（山梨県中央市下河東1110）",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "集合時刻・集合場所",
+          "value": "最終選抜前に別途連絡されます。終了時刻は当日の受験者数によって変わります。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "県内募集枠への出願者は全国募集枠にも併願したものとして扱われます。最終選抜は県内枠を先に行い、その不合格者と全国枠志願者を対象に全国枠を選抜します。臨時定員増が認められた場合も、この選抜順序と段階選抜の扱いに基づきます。",
+          "sourceIds": [
+            "recommendation-2027"
+          ]
+        },
+        {
+          "text": "地理歴史・公民は2科目受験時に第1解答科目を利用し、指定科目を第1解答科目としていなければ出願無資格となります。共通テストは2027年度成績のみを利用し、英語リスニング免除者はリーディングの得点をリスニングの得点とみなします。",
+          "sourceIds": [
+            "recommendation-2027"
+          ]
+        },
+        {
+          "text": "地域枠の入学者は医師免許取得後15年以内に9年間、県のキャリア形成プログラムに基づき山梨県内で診療に従事することを確約します。初期臨床研修・専門研修期間を含みます。修学資金貸与制度第二種の利用と卒前支援プランへの参加が必要で、最終合格者には入学前に県の面談があります。",
+          "sourceIds": [
+            "recommendation-2027"
+          ]
+        },
+        {
+          "text": "郵送が間に合わない場合、出願最終日の2026年12月17日9時〜16時30分（12時〜13時を除く）に限り、甲府キャンパス総合研究棟2階の教学支援部入試課へ持参できます。",
+          "sourceIds": [
+            "recommendation-2027"
+          ]
+        },
+        {
+          "text": "医学部の学校推薦型選抜に提出する調査書は、2026年10月1日以降に作成したものが必要です。学校長推薦書、多面的・総合的な評価のための申告書、誓約書・意思確認書には大学所定の様式を使用してください。",
+          "sourceIds": [
+            "recommendation-2027"
+          ]
+        },
+        {
+          "text": "2027年度から全国募集枠が設けられました。臨時定員増が承認された場合は県内募集枠の人数が変わる可能性があるため、大学の正式な変更通知をご確認ください。",
+          "sourceIds": [
+            "change-2027"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recommendation-national",
+      "name": "学校推薦型選抜Ⅱ（地域枠・全国募集枠）",
+      "scheduleRows": [
+        {
+          "label": "Web出願登録",
+          "value": "2026年12月10日（木）〜17日（木）16時30分までに完了。支払・書類提出も同期間内にすべて完了が必要です。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料の支払い",
+          "value": "17,000円。2026年12月17日（木）16時30分の出願締切までに完了。クレジットカード以外の入金確認には約2時間かかります。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願書類の提出",
+          "value": "2026年12月10日（木）〜17日（木）16時30分必着。高等学校等で取りまとめ、簡易書留速達郵便で発送します。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "大学入学共通テスト",
+          "value": "2027年1月16日（土）・17日（日）",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第1段階選抜発表",
+          "value": "2027年2月5日（金）。学校長と本人へ通知書を郵送し、本人へメールでも通知します。実施しない場合は大学サイトで案内します。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終選抜（面接）",
+          "value": "2027年2月8日（月）",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "合格者発表",
+          "value": "2027年2月10日（水）16時頃。大学サイトで合格者の受験番号を掲示します。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続",
+          "value": "2027年2月11日（木）〜17日（水）。詳細は登録メールアドレスに通知されます。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "10人以内。臨時定員増は申請予定のため、承認に伴う変更通知を確認してください。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格",
+          "value": "日本国内の高等学校・中等教育学校後期課程等を2024年度以後に卒業、または2026年度中に卒業見込みの方等。認定教育施設・指定専修学校高等課程の資格を含む詳細は募集要項p.20の(2)〜(4)を確認してください。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通の出願条件",
+          "value": "指定の共通テスト科目を受験し、調査書の学習成績概評がAであること。県の医師修学資金貸与制度第二種の利用、県内診療への従事、合格時の入学を確約すること。学校長推薦が必要で、1校の推薦人数に制限はありません。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 国語",
+          "value": "国語：200点",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 地理歴史・公民",
+          "value": "「歴史総合，日本史探究」「歴史総合，世界史探究」「地理総合，地理探究」「公共，倫理」「公共，政治・経済」から1科目：100点",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 数学",
+          "value": "「数学Ⅰ，数学A」「数学Ⅱ，数学B，数学C」の2科目：計200点",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 理科",
+          "value": "物理・化学・生物から2科目：計200点",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 外国語",
+          "value": "英語：200点（リーディング100点＋リスニング100点に換算）",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 情報",
+          "value": "情報Ⅰ：100点",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト 合計",
+          "value": "6教科8科目、1,000点。第1段階選抜・最終選抜とも同じ配点です。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終選抜の検査・配点",
+          "value": "面接を実施。面接・調査書・多面的／総合的な評価のための申告書・学校長推薦書の配点、評価基準、同点者の扱いは非公表です。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第1段階選抜",
+          "value": "県内募集枠との併願者を除く全国募集枠志願者が、全国募集枠の募集人員（10人以内）の約1.5倍を超えた場合に実施します。共通テストと調査書・申告書・推薦書を総合判定します。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "最終選抜の試験会場",
+          "value": "山梨大学医学部キャンパス（山梨県中央市下河東1110）",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "集合時刻・集合場所",
+          "value": "最終選抜前に別途連絡されます。終了時刻は当日の受験者数によって変わります。",
+          "sourceIds": [
+            "recommendation-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "県内募集枠への出願者は全国募集枠にも併願したものとして扱われます。最終選抜は県内枠を先に行い、その不合格者と全国枠志願者を対象に全国枠を選抜します。臨時定員増が認められた場合も、この選抜順序と段階選抜の扱いに基づきます。",
+          "sourceIds": [
+            "recommendation-2027"
+          ]
+        },
+        {
+          "text": "地理歴史・公民は2科目受験時に第1解答科目を利用し、指定科目を第1解答科目としていなければ出願無資格となります。共通テストは2027年度成績のみを利用し、英語リスニング免除者はリーディングの得点をリスニングの得点とみなします。",
+          "sourceIds": [
+            "recommendation-2027"
+          ]
+        },
+        {
+          "text": "地域枠の入学者は医師免許取得後15年以内に9年間、県のキャリア形成プログラムに基づき山梨県内で診療に従事することを確約します。初期臨床研修・専門研修期間を含みます。修学資金貸与制度第二種の利用と卒前支援プランへの参加が必要で、最終合格者には入学前に県の面談があります。",
+          "sourceIds": [
+            "recommendation-2027"
+          ]
+        },
+        {
+          "text": "郵送が間に合わない場合、出願最終日の2026年12月17日9時〜16時30分（12時〜13時を除く）に限り、甲府キャンパス総合研究棟2階の教学支援部入試課へ持参できます。",
+          "sourceIds": [
+            "recommendation-2027"
+          ]
+        },
+        {
+          "text": "医学部の学校推薦型選抜に提出する調査書は、2026年10月1日以降に作成したものが必要です。学校長推薦書、多面的・総合的な評価のための申告書、誓約書・意思確認書には大学所定の様式を使用してください。",
+          "sourceIds": [
+            "recommendation-2027"
+          ]
+        },
+        {
+          "text": "2027年度から全国募集枠が設けられました。臨時定員増が承認された場合は県内募集枠の人数が変わる可能性があるため、大学の正式な変更通知をご確認ください。",
+          "sourceIds": [
+            "change-2027"
+          ]
+        }
+      ]
+    }
+  ],
+  "coverageNotes": [
+    "医学部医学科を対象とし、一般選抜の後期日程と学校推薦型選抜Ⅱ（地域枠）の県内募集枠・全国募集枠を掲載しています。医学科の一般前期は実施しません。",
+    "看護学科、大学院、編入学、他学部の方式はこの表の対象外です。医学科の総合型選抜・私費外国人留学生入試は2027年度選抜要項の対象方式にありません。",
+    "一般選抜の正式な2027年度学生募集要項は未公表です。出願締切時刻・書類提出条件・時間割等の未公表事項は、募集要項の公表後に確認してください。",
+    "2027年度医学科の臨時定員増は申請予定と公表されています。推薦Ⅱの人数は現在の公式要項にある県内5人以内・全国10人以内を記載し、承認後の変更を推測していません。"
+  ]
+}
