@@ -8,6 +8,7 @@ import {
 } from '../src/data/medicalWaitlist.ts';
 import { waitlist2025AdmissionYear, waitlist2025Schools } from '../src/data/medicalWaitlist2025.ts';
 import { historicalWaitlistSchools } from '../src/data/medicalWaitlistHistory.ts';
+import { waitlistTableSchools } from '../src/data/medicalWaitlistTables.ts';
 
 const expectedNames = [
   '岩手医科大学', '東北医科薬科大学', '自治医科大学', '獨協医科大学', '埼玉医科大学',
@@ -144,13 +145,56 @@ test('the complete original archive stays intact (26 schools, 281 rows, columns 
   assert.equal(createHash('sha256').update(JSON.stringify(historicalWaitlistSchools)).digest('hex'), 'f4b38ce684eff526060bf2b0fffc646db419c514c1488bd4f8986c38cf513180');
 });
 
+test('2025 and 2026 are prepended to each existing table without removing or rearranging its legacy data', () => {
+  assert.equal(waitlistTableSchools.length, 31);
+  assert.deepEqual(waitlistTableSchools.map(({ id, name }) => ({ id, name })), waitlistSchools.map(({ id, name }) => ({ id, name })));
+  historicalWaitlistSchools.forEach((legacy, index) => {
+    const table = waitlistTableSchools[index];
+    assert.deepEqual(table.columns.slice(0, legacy.columns.length), legacy.columns);
+    assert.deepEqual(table.rows.filter((row) => row.legacy).map((row) => ({year:row.year, values:row.cells.slice(0, legacy.columns.length).map((cell) => cell.legacyValue)})), legacy.rows);
+    assert.equal(table.tone, (index % 4) + 1, 'original university color order');
+    const newRows = table.rows.filter((row) => !row.legacy);
+    assert.match(newRows[0].year, /^2026/);
+    assert.match(newRows.at(-1).year, /^2025/);
+    assert.ok(table.rows.indexOf(newRows.at(-1)) < table.rows.findIndex((row) => row.legacy));
+  });
+});
+
+test('every sourced record appears once in a table cell, including late reports and official notices', () => {
+  for (const table of waitlistTableSchools) {
+    const renderedRecords = table.rows.flatMap((row) => row.cells.flatMap((cell) => cell.records));
+    const originals = [...waitlistSchools.find((s) => s.id === table.id).records, ...waitlist2025Schools.find((s) => s.id === table.id).records];
+    assert.equal(renderedRecords.length, originals.length, table.name);
+    for (const record of originals) assert.equal(renderedRecords.filter((entry) => entry === record).length, 1, `${table.name}: ${record.result}`);
+    for (const row of table.rows) assert.equal(row.cells.length, table.columns.length);
+  }
+});
+
+test('headcounts never replace a legacy rank field, and unspecified periods are not guessed', () => {
+  const table = (id) => waitlistTableSchools.find((s) => s.id === id);
+  for (const id of ['school-1', 'school-10', 'school-13', 'school-18']) {
+    const s = table(id);
+    const originalColumnCount = historicalWaitlistSchools[Number(id.split('-')[1]) - 1].columns.length;
+    assert.ok(s.rows.filter((row) => !row.legacy).every((row) => row.cells.slice(0, originalColumnCount).every((cell) => cell.records.length === 0)), id);
+  }
+  const iwate = table('school-2');
+  assert.equal(iwate.rows.find((row) => row.year === '2025（地域C）').cells[0].records[0].result, '初回発表後の追加分4人');
+  assert.equal(iwate.rows.find((row) => row.year === '2026（地域C）').cells[1].records[0].result, '合格例：補欠1番');
+  const fujita = table('school-26');
+  assert.ok(fujita.rows[0].cells[0].records.length === 0);
+  assert.ok(fujita.rows[0].cells[fujita.columns.indexOf('一般（期別未確認）')].records.length > 0);
+  const kurume = table('school-9');
+  assert.equal(kurume.rows[1].cells[0].records[0].result, '繰上合格者19人');
+  assert.equal(kurume.rows[1].cells[kurume.columns.indexOf('補欠順位（前期の合格例）')].records[0].result, '合格例：補欠43番');
+});
+
 const builtPage = new URL('../dist/kuriage-information/index.html', import.meta.url);
 test('built page, JSON and structured data describe the same visible evidence', { skip: !existsSync(builtPage) }, () => {
   const html = readFileSync(builtPage, 'utf8');
   const data = JSON.parse(readFileSync(new URL('../dist/data/medical-waitlist-2026.json', import.meta.url), 'utf8'));
   assert.equal(data.admissionYear, 2026);
   assert.deepEqual(data.schools, JSON.parse(JSON.stringify(waitlistSchools)));
-  assert.equal((html.match(/class="result-card"/g) ?? []).length, 31);
+  assert.equal((html.match(/class="kuriage-school-card\b/g) ?? []).length, 31);
   for (const entry of [...waitlistSchools, ...waitlist2025Schools]) {
     assert.ok(html.includes(`id="${entry.id}"`), entry.id);
     for (const row of entry.records) assert.ok(html.includes(row.result), `${entry.name}: ${row.result}`);
@@ -168,27 +212,33 @@ test('built page, JSON and structured data describe the same visible evidence', 
   assert.deepEqual(archive.years.map((entry) => entry.admissionYear), [2026, 2025]);
   assert.deepEqual(archive.historical.schools, historicalWaitlistSchools);
   assert.equal(archive.historical.verificationStatus, 'legacy-unverified');
-  assert.ok(html.includes('2024年度以前の一覧'));
+  assert.ok(html.includes('2025・2026年度を、各大学の表の先頭に追加しています。'));
   assert.ok(html.includes('2027年度の補欠・繰上げ合格状況は、各大学の入試後に判明します。'));
   assert.ok(html.includes('https://lexus-ec.com/kuriage-information/'));
   const sitemap = readFileSync(new URL('../dist/sitemap.xml', import.meta.url), 'utf8');
   assert.ok(sitemap.includes(`<loc>https://lexus-ec.com/kuriage-information/</loc>\n    <lastmod>${waitlistCheckedAt}</lastmod>`));
 });
 
-test('every original table row is rendered, and historical tables are open by default', { skip: !existsSync(builtPage) }, () => {
+test('new years and all 281 legacy rows share the original tables, not separate annual cards', { skip: !existsSync(builtPage) }, () => {
   const html = readFileSync(builtPage, 'utf8');
   const decode = (value) => value.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
   const cells = (row) => [...row.matchAll(/<(?:th|td)\b[^>]*>([\s\S]*?)<\/(?:th|td)>/g)].map((match) => decode(match[1].replace(/<[^>]+>/g, '').trim()));
   historicalWaitlistSchools.forEach((entry, index) => {
     const article = html.match(new RegExp(`<article id="school-${index + 1}"[\\s\\S]*?</article>`))?.[0];
     assert.ok(article, entry.name);
-    assert.match(article, /<details\b[^>]*class="history-details"[^>]*\bopen\b/);
-    const table = article.match(/<table\b[^>]*class="history-table"[\s\S]*?<\/table>/)?.[0];
+    const table = article.match(/<table\b[^>]*class="kuriage-data-table"[\s\S]*?<\/table>/)?.[0];
     assert.ok(table, entry.name);
     const rows = [...table.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/g)].map((match) => cells(match[1]));
-    assert.deepEqual(rows[0], ['年度', ...entry.columns], `${entry.name}: column headings`);
-    assert.deepEqual(rows.slice(1), entry.rows.map((row) => [row.year, ...row.values]), `${entry.name}: all original values`);
-    assert.ok(article.includes(`id="school-${index + 1}-2025-title"`));
-    assert.ok(article.includes(`id="school-${index + 1}-2026-title"`));
+    assert.deepEqual(rows[0], ['年度', ...waitlistTableSchools[index].columns], `${entry.name}: column headings`);
+    assert.deepEqual(rows[0].slice(0, entry.columns.length + 1), ['年度', ...entry.columns]);
+    const legacyRows = [...table.matchAll(/<tr\b[^>]*data-legacy="true"[^>]*>([\s\S]*?)<\/tr>/g)].map((match) => cells(match[1]).slice(0, entry.columns.length + 1));
+    assert.deepEqual(legacyRows, entry.rows.map((row) => [row.year, ...row.values]), `${entry.name}: all original values`);
+    assert.match(rows[1][0], /^2026/);
+    assert.ok(rows.some((row) => /^2025/.test(row[0])));
   });
+  assert.equal((html.match(/class="kuriage-data-table"/g) ?? []).length, 31);
+  assert.doesNotMatch(html, /class="(?:result-year|history-table|history-details|result-card)"/);
+  assert.ok(html.includes('class="kuriage-school-grid"'));
+  assert.ok(html.includes('class="kuriage-section kuriage-section--definition"'));
+  assert.ok(html.includes('class="kuriage-section kuriage-section--count"'));
 });
