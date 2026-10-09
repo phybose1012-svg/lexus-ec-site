@@ -5,6 +5,7 @@ import voiceInterviewPosts from "../data/generated/voiceInterviewPosts.json";
 import type { ArticleTemplateId } from "../data/articleTemplates";
 import { classifyArticlePost } from "../data/articleTaxonomy.js";
 import { normalizeInternalAnchorHrefs } from "./internalLinks";
+import { applyVerifiedUniversityAdmissions } from "./universityAdmissions";
 
 export type MigratedPostImage = {
   src: string;
@@ -187,7 +188,7 @@ export const migratedPosts = [
   ...voiceInterviewPosts,
 ]
   .filter((post) => !dedicatedFixedPostPaths.has(normalizeMigratedPostPath((post as MigratedPost).path)))
-  .map((post) => prepareMigratedPost(post as MigratedPost)) as MigratedPost[];
+  .map((post) => prepareMigratedPost(applyVerifiedUniversityAdmissions(post as MigratedPost))) as MigratedPost[];
 
 export const getMigratedPostStaticPaths = () =>
   migratedPosts.map((post) => ({
