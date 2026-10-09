@@ -80,6 +80,8 @@ const signedPixelStyleKeys = new Set(["letterSpacing", "marginTop", "marginRight
 const fontWeightValues = new Set(["400", "500", "600", "700", "800", "900"]);
 
 export const onRequest = async ({ request, env, next }: FunctionContext) => {
+  const proofreadingPath = new URL(request.url).pathname;
+  if (proofreadingPath === "/kosei" || proofreadingPath.startsWith("/kosei/")) return next();
   const response = await next();
   if (request.method !== "GET") return response;
 
