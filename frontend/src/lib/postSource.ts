@@ -7,6 +7,7 @@ import type { ArticleTemplateId } from "../data/articleTemplates";
 import { classifyArticlePost } from "../data/articleTaxonomy.js";
 import { normalizeInternalAnchorHrefs } from "./internalLinks";
 import { transformUniversityInfoPost } from "./universityInfoSafety";
+import { applyVerifiedUniversityAdmissions } from "./universityAdmissions";
 
 export type MigratedPostImage = {
   src: string;
@@ -163,7 +164,7 @@ const correctMigratedPost = (post: MigratedPost): MigratedPost => {
       ),
     };
   }
-  return transformUniversityInfoPost(corrected);
+  return applyVerifiedUniversityAdmissions(transformUniversityInfoPost(corrected));
 };
 
 const uniqueStrings = (items: string[]) => [...new Set(items.filter(Boolean))];
