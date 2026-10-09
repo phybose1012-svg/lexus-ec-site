@@ -1,5 +1,5 @@
 // Source dates describe the evidence, not the day this page was checked.
-export const waitlistCheckedAt = "2026-10-06";
+export const waitlistCheckedAt = "2026-10-09";
 export const waitlistAdmissionYear = 2026;
 export type EvidenceKind = "official" | "prep";
 export type Metric = "count" | "rank" | "rank-case" | "group-case" | "report" | "notice" | "unknown";
@@ -18,6 +18,7 @@ const record = (route: string, metric: Metric, result: string, asOf: string | nu
 const example = (route: string, result: string, date: string, metric: Metric = "rank-case") => record(route, metric, result, date, fuji);
 const reportedRank = (route: string, result: string, date: string) => record(route, "rank", result, date, mel);
 const aichi = official("愛知医科大学・2026年度入試結果", "https://www.aichi-med-u.ac.jp/su11/su1107/su110706/index.html");
+const aichiMarch = official("愛知医科大学・2026年3月31日15時の繰上合格状況", "https://www.aichi-med-u.ac.jp/su11/su1101/su110101/1236862_1888.html");
 const saitama = official("埼玉医科大学・2026年度入学者選抜結果", "https://adm.saitama-med.ac.jp/admission/examdata/");
 const tokyo = official("東京医科大学・2026年3月31日の繰上順位", "https://admissions-tokyo-med.jp/news/detail/医学部医学科-一般選抜・共通テスト利用選抜-繰り/");
 const kurume = official("久留米大学・2026年度入試結果（医学科）", "https://best.kurume-u.ac.jp/img/admissions/2026_results.pdf");
@@ -30,7 +31,10 @@ export const waitlistSchools: WaitlistSchool[] = [
     record("一般選抜", "count", "繰上合格者83人", null, aichi),
     record("共通テスト利用", "count", "繰上合格者39人", null, aichi),
     record("共テ利用・愛知県地域特別枠B方式", "count", "繰上合格者5人", null, aichi),
-  ], note: "人数は公式表の「繰上合格者数」。補欠順位ではありません。" },
+    record("一般選抜", "rank", "第1補欠79位まで", "2026-03-31", aichiMarch, "15時時点。年度全体の繰上合格者数ではありません。"),
+    record("共通テスト利用", "rank", "第1補欠38位まで", "2026-03-31", aichiMarch, "15時時点。年度全体の繰上合格者数ではありません。"),
+    record("共テ利用・愛知県地域特別枠B方式", "rank", "補欠5位まで", "2026-03-31", aichiMarch, "15時時点。"),
+  ], note: "3月31日15時の順位と、年度全体の繰上合格者数を掲載しています。一般79位／83人、共テ38位／39人と異なるため、順位と人数は区別してください。" },
   { id: "school-2", name: "岩手医科大学", records: [
     example("一般選抜", "合格例：補欠82番", "2026-03-31"),
     record("地域枠C", "rank-case", "合格例：補欠1番", "2026-02-13", mel),
@@ -170,5 +174,5 @@ export const waitlistFaqs = [
   { question: "補欠と繰上げ合格は何が違う？", answer: "補欠は、欠員が出た場合に合格の対象になり得る状態です。まだ入学できると決まったわけではありません。繰上げ合格・追加合格の連絡を受け、指定された手続きを終えて入学が決まります。名称や運用は大学によって異なります。" },
   { question: "補欠100番なら、100人が合格したということ？", answer: "いいえ。補欠順位は候補者の順番で、実際に合格の連絡をした人数とは別です。途中で辞退する候補者がいれば、到達順位と合格者数は一致しません。さらに、合格者数・連絡者数・入学許可者数・入学者数も別なので、公表値の見出しを確認しましょう。" },
   { question: "繰上げ合格の連絡は、いつまで来る？", answer: "大学・年度によって異なります。藤田医科大学の公式Q&Aでは、辞退状況により4月に繰り上がる場合もあると案内しています。一律の終了日は設けず、受験した年度の募集要項、マイページ、大学の終了案内を確認してください。" },
-  { question: "昨年の補欠順位から、今年の合格を予測できる？", answer: "過去の順位は参考にはなりますが、募集枠や辞退状況が変わるため、合格の保証にはなりません。予備校の合格例も大学全体の最終順位ではありません。2026年度の結果を、2027年度の進行状況と取り違えないようにしてください。" },
+  { question: "昨年の補欠順位から、今年の合格を予測できる？", answer: "過去の順位は参考にはなりますが、募集枠や辞退状況が変わるため、合格の保証にはなりません。個別の合格例も大学全体の最終順位ではありません。2026年度の結果を、2027年度の進行状況と取り違えないようにしてください。" },
 ];

@@ -130,7 +130,7 @@ export const waitlist2025Schools: WaitlistSchool[] = [
     example("一般B方式", "繰上合格の報告あり（順位なし）", "2025-03-19", "report"),
   ] },
   { id: "teikyo", name: "帝京大学", records: [
-    example("一般選抜", "合格報告あり（出典の表記：繰上合格）", "2025-02-22", "report"),
+    example("一般選抜", "繰上合格の報告あり", "2025-02-22", "report"),
   ] },
   { id: "toho", name: "東邦大学", records: [
     example("一般選抜", "合格例：補欠B群", "2025-03-27", "group-case"),
