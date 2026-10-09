@@ -1,0 +1,103 @@
+{
+  "path": "/information-saga/",
+  "university": "佐賀大学",
+  "admissionYear": 2027,
+  "verifiedAt": "2026-10-09",
+  "sources": [
+    {
+      "id": "selection-guide-2027",
+      "url": "https://www.sao.saga-u.ac.jp/PDF/R9/2027senbatuyoko.pdf",
+      "title": "2027年度（令和9年度）佐賀大学入学者選抜要項",
+      "retrievedAt": "2026-10-09",
+      "sha256": "1266a54dba7f434fda566fb1eac54fbf8dff9c9f28680c9bc39b273e7bbab64e",
+      "pages": "本文pp.2–3、25–27、30–36（PDF pp.4–5、27–29、32–38）"
+    },
+    {
+      "id": "mathematics-change-2027",
+      "url": "https://www.sao.saga-u.ac.jp/PDF/R8/2025_igakusyusei_henko.pdf",
+      "title": "2027年度入学者選抜方法等の変更予告・数学の出題範囲（2025年6月30日追記）",
+      "publishedAt": "2025-06-30",
+      "retrievedAt": "2026-10-09",
+      "sha256": "e66bfebee22714171c00376293789591cfb6fdb9eccc1e004b5093515441afee",
+      "pages": [1]
+    },
+    {
+      "id": "general-guideline-status-2027",
+      "url": "https://www.sao.saga-u.ac.jp/gakubu/gakubu_ippan.html",
+      "title": "一般選抜・2027年度学生募集要項の公開予定",
+      "retrievedAt": "2026-10-09",
+      "sha256": "9cef0c6d7c03c2f6fd34ec71d8899e9ae41f716543889d24365855f555e09cfe"
+    },
+    {
+      "id": "downloads-2027",
+      "url": "https://www.sao.saga-u.ac.jp/gakubugakububosyuuyoukou.html",
+      "title": "募集要項等ダウンロード・2027年度の掲載状況",
+      "retrievedAt": "2026-10-09",
+      "sha256": "b65b05434f19f1468f547261301bbaaf3d9bf4e2693412ebd76a215eba394757"
+    },
+    {
+      "id": "toefl-update",
+      "url": "https://www.sao.saga-u.ac.jp/PDF/R8/2025_TOEFL.pdf",
+      "title": "一般選抜の英語外部検定試験利用に関するTOEFL iBTアップデートへの対応",
+      "publishedAt": "2025-12-10",
+      "retrievedAt": "2026-10-09",
+      "sha256": "77eeb9281872947d1da6e79ae5bf8e8e4e11c4a049ccc5ea07be9d805eb93405",
+      "pages": [1]
+    }
+  ],
+  "schemes": [
+    {
+      "id": "general-early",
+      "name": "医学科 一般選抜（前期日程）",
+      "scheduleRows": [
+        {"label": "Web出願登録開始", "value": "2027年1月18日（月）", "sourceIds": ["selection-guide-2027"], "status": "confirmed"},
+        {"label": "Web出願登録の締切", "value": "締切日時は未公表。出願書類提出期間に間に合うように登録する。", "sourceIds": ["selection-guide-2027", "general-guideline-status-2027"], "status": "unpublished"},
+        {"label": "入学検定料の支払締切", "value": "締切日時は未公表。出願書類提出期間に間に合うように支払う。", "sourceIds": ["selection-guide-2027", "general-guideline-status-2027"], "status": "unpublished"},
+        {"label": "出願書類提出期間", "value": "2027年1月25日（月）〜2月3日（水）", "sourceIds": ["selection-guide-2027"], "status": "confirmed"},
+        {"label": "出願書類の締切条件", "value": "締切時刻・必着／消印有効の条件は未公表。12月上旬公表予定の一般選抜学生募集要項で確認する。", "sourceIds": ["general-guideline-status-2027", "downloads-2027"], "status": "unpublished"},
+        {"label": "個別試験日", "value": "2027年2月25日（木）・26日（金）。科目別の実施日・時刻は未公表。", "sourceIds": ["selection-guide-2027", "general-guideline-status-2027"], "status": "unpublished"},
+        {"label": "二段階選抜の結果通知", "value": "実施の有無・結果通知日・通知方法の詳細は未公表。", "sourceIds": ["selection-guide-2027", "general-guideline-status-2027"], "status": "unpublished"},
+        {"label": "合格者発表", "value": "2027年3月6日（土）。発表時刻は未公表。", "sourceIds": ["selection-guide-2027", "general-guideline-status-2027"], "status": "unpublished"},
+        {"label": "入学手続期間", "value": "2027年3月7日（日）〜15日（月）", "sourceIds": ["selection-guide-2027"], "status": "confirmed"},
+        {"label": "入学手続の登録・支払・書類締切", "value": "各手続の締切時刻・書類の到着条件は未公表。", "sourceIds": ["selection-guide-2027", "general-guideline-status-2027"], "status": "unpublished"}
+      ],
+      "examRows": [
+        {"label": "募集人員", "value": "51人。特別選抜の欠員を前期日程で補充する場合がある。", "sourceIds": ["selection-guide-2027"], "status": "confirmed"},
+        {"label": "出願資格", "value": "高等学校卒業者・2027年3月卒業見込みの者、12年の学校教育修了者・同月修了見込みの者、またはこれらと同等以上の学力があると認められる者等で、指定された2027年度大学入学共通テストの教科・科目を受験した者。詳しい資格条件は選抜要項本文p.26を確認する。", "sourceIds": ["selection-guide-2027"], "status": "confirmed"},
+        {"label": "共通テストの教科・科目数と合計", "value": "6教科8科目・640点。2027年度の成績を利用し、過年度成績は利用しない。", "sourceIds": ["selection-guide-2027"], "status": "confirmed"},
+        {"label": "共通テスト 英語", "value": "英語・140点（リーディング105点、リスニング35点）。リスニング必須。大学入試センターによる免除者はリーディングを140点満点に換算する。", "sourceIds": ["selection-guide-2027"], "status": "confirmed"},
+        {"label": "共通テスト 国語", "value": "国語・140点", "sourceIds": ["selection-guide-2027"], "status": "confirmed"},
+        {"label": "共通テスト 数学", "value": "「数学Ⅰ，数学A」「数学Ⅱ，数学B，数学C」の2科目・合計140点", "sourceIds": ["selection-guide-2027"], "status": "confirmed"},
+        {"label": "共通テスト 理科", "value": "「物理」「化学」「生物」から2科目・合計140点", "sourceIds": ["selection-guide-2027"], "status": "confirmed"},
+        {"label": "共通テスト 地理歴史・公民", "value": "「地理総合，地理探究」「歴史総合，日本史探究」「歴史総合，世界史探究」「公共，倫理」「公共，政治・経済」「地理総合／歴史総合／公共」から1科目・70点。2科目受験時は第1解答科目を採用。「地理総合／歴史総合／公共」は2つの出題範囲を選択し、合わせて1科目とする。", "sourceIds": ["selection-guide-2027"], "status": "confirmed"},
+        {"label": "共通テスト 情報", "value": "「情報Ⅰ」必須・10点", "sourceIds": ["selection-guide-2027"], "status": "confirmed"},
+        {"label": "個別試験 英語", "value": "英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ・Ⅱ・Ⅲ・80点", "sourceIds": ["selection-guide-2027"], "status": "confirmed"},
+        {"label": "個別試験 数学", "value": "80点。数学Ⅰ・Ⅱ・Ⅲは全範囲。数学Aは図形の性質、場合の数と確率、数学と人間の活動（整数の性質に関する部分）。数学Bは数列。数学Cはベクトル、平面上の曲線と複素数平面。", "sourceIds": ["selection-guide-2027", "mathematics-change-2027"], "status": "confirmed"},
+        {"label": "個別試験 理科", "value": "「物理基礎・物理」「化学基礎・化学」の2科目必須・合計80点", "sourceIds": ["selection-guide-2027"], "status": "confirmed"},
+        {"label": "面接", "value": "60点。評価が低い場合は不合格となることがある。個人／集団等の実施方式の詳細は未公表。", "sourceIds": ["selection-guide-2027", "general-guideline-status-2027"], "status": "unpublished"},
+        {"label": "小論文", "value": "一般選抜前期の個別試験に小論文の指定はない。", "sourceIds": ["selection-guide-2027"], "status": "confirmed"},
+        {"label": "個別試験合計・総合配点", "value": "個別試験は300点。共通テスト640点＋個別試験300点＝総合940点（掲載配点の合算）。", "sourceIds": ["selection-guide-2027"], "status": "confirmed"},
+        {"label": "二段階選抜", "value": "志願者数が募集人員を上回り、試験を適切に実施することが困難と予想される場合、募集人員の約5倍に二段階選抜を実施する。具体的な選考基準の詳細は未公表。", "sourceIds": ["selection-guide-2027", "general-guideline-status-2027"], "status": "unpublished"},
+        {"label": "試験時間", "value": "科目ごとの試験時間・面接時間は未公表。", "sourceIds": ["general-guideline-status-2027"], "status": "unpublished"},
+        {"label": "英語外部検定の利用条件", "value": "英検2級以上、TEAP（4技能）、GTEC（4技能・Advanced／Basic／CBTのオフィシャルスコア）、TOEFL iBTの成績を共通テスト英語に換算できる。2025年4月1日以降の受験成績1件を出願時に登録し、証明書を出願期間内に提出する。", "sourceIds": ["selection-guide-2027"], "status": "confirmed"},
+        {"label": "英語外部検定の換算基準", "value": "90％：英検2250以上／TEAP270以上／GTEC1100以上／TOEFL61以上。\n80％：英検2150〜2249／TEAP235〜269／GTEC1000〜1099／TOEFL52〜60。\n70％：英検2050〜2149／TEAP220〜234／GTEC900〜999／TOEFL45〜51。\nこれらを下回る成績は対象外。TOEFLは2026年1月21日以降の受験でも0〜120のスコアを使う。", "sourceIds": ["selection-guide-2027", "toefl-update"], "status": "confirmed"}
+      ],
+      "venueRows": [
+        {"label": "個別試験・面接会場", "value": "2027年度一般選抜の試験会場・集合場所は未公表。12月上旬公表予定の学生募集要項と、その後の会場案内で確認する。", "sourceIds": ["general-guideline-status-2027", "downloads-2027"], "status": "unpublished"},
+        {"label": "会場指定・選択と受験票", "value": "大学指定／希望選択の条件、受験票による会場確認方法は未公表。", "sourceIds": ["general-guideline-status-2027"], "status": "unpublished"}
+      ],
+      "notes": [
+        {"text": "共通テストの指定教科・科目を1つでも受験しなかった者は無資格。個別試験等の指定教科・科目等を1つでも受験しなかった者は失格となる。", "sourceIds": ["selection-guide-2027"]},
+        {"text": "英語外部検定の換算点は、共通テスト英語の得点より高い場合に採用する。共通テスト英語のリーディング＋リスニングが100点／200点未満（リスニング免除者はリーディングが50点／100点未満）の場合、換算しない。", "sourceIds": ["selection-guide-2027"]},
+        {"text": "2027年度から個別数学Aに「数学と人間の活動（整数の性質に関する部分）」が加わる。", "sourceIds": ["selection-guide-2027", "mathematics-change-2027"]},
+        {"text": "医学科の一般選抜後期日程は募集なし。2027年度募集人員表・実施科目表に医学科の後期枠はない。", "sourceIds": ["selection-guide-2027"]},
+        {"text": "選抜要項は日程・科目・配点の概要資料。採点・評価・合否判定の具体的な基準は一般選抜学生募集要項に掲載される。", "sourceIds": ["selection-guide-2027", "general-guideline-status-2027"]}
+      ]
+    }
+  ],
+  "coverageNotes": [
+    "医学部医学科の一般選抜を掲載しています。前期日程が対象で、後期日程は募集なしです。",
+    "学校推薦型選抜Ⅱ（一般枠・佐賀県枠）、佐賀県推薦入学、帰国生徒選抜、私費外国人留学生入試は、この一般選抜表の対象に含めていません。",
+    "2027年度一般選抜学生募集要項は2026年12月上旬公表予定です。締切時刻・提出条件・試験時間・会場等の未公表項目は、公開後の要項と変更通知を確認してください。"
+  ]
+}
