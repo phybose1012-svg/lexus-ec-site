@@ -135,3 +135,48 @@ test('an allowed university-operated external admissions domain is accepted only
   iwate.path='/information-yamanashi/';iwate.university='山梨大学';
   assert.throws(()=>validateUniversityAdmissions(iwate),/not official/);
 });
+
+const withCommonTestSource=()=>{
+  const data=fixture();
+  data.sources.push({id:'dnc',url:'https://www.dnc.ac.jp/kyotsu/shiken_jouhou/r9/',title:'大学入試センター 令和9年度共通テスト',retrievedAt:'2026-10-09T14:00:00+09:00'});
+  data.schemes[0].scheduleRows.push({label:'大学入学共通テスト（本試験）',value:'2027年1月16日（土）・17日（日）。',sourceIds:['dnc'],status:'confirmed'});
+  return data;
+};
+
+test('DNC nationwide dates coexist with university evidence; adopted subjects still cite the university',()=>{
+  const data=withCommonTestSource(),before=JSON.stringify(data);
+  const validated=validateUniversityAdmissions(data);
+  assert.equal(validated.sources.at(-1).url,'https://www.dnc.ac.jp/kyotsu/shiken_jouhou/r9/');
+  assert.deepEqual(validated.schemes[0].scheduleRows.at(-1).sourceIds,['dnc']);
+  data.schemes[0].scheduleRows.at(-1).value+='本学では指定6教科8科目を受験。';
+  data.schemes[0].scheduleRows.at(-1).sourceIds.push('guideline');
+  assert.deepEqual(validateUniversityAdmissions(data).schemes[0].scheduleRows.at(-1).sourceIds,['dnc','guideline']);
+  assert.equal(JSON.stringify(validated),before,'validation preserves every original claim and source');
+});
+
+test('DNC look-alike hosts, unrelated universities and prep-school sources are rejected',()=>{
+  for(const url of ['https://dnc.ac.jp.evil/guide.pdf','https://www.dnc.ac.jp.attacker.example/guide.pdf','https://not-dnc.ac.jp/guide.pdf','https://www.tokushima-u.ac.jp/guide.pdf','https://prep-school.example/guide.pdf']){
+    const data=withCommonTestSource();data.sources.at(-1).url=url;
+    assert.throws(()=>validateUniversityAdmissions(data),/not official/,url);
+  }
+});
+
+test('DNC cannot replace university sources or supply university-specific claims under a Common Test label',()=>{
+  const onlyDnc=fixture();onlyDnc.sources[0].url='https://www.dnc.ac.jp/kyotsu/shiken_jouhou/r9/';
+  assert.throws(()=>validateUniversityAdmissions(onlyDnc),/at least one official source/);
+  const wrongScope=withCommonTestSource();wrongScope.schemes[0].scheduleRows[0].sourceIds=['guideline','dnc'];
+  assert.throws(()=>validateUniversityAdmissions(wrongScope),/explicitly named Common Test/);
+  const universityScore=withCommonTestSource();universityScore.schemes[0].examRows[0]={label:'共通テスト・情報Ⅰの配点',value:'100点に換算。',sourceIds:['dnc'],status:'confirmed'};
+  assert.throws(()=>validateUniversityAdmissions(universityScore),/university-specific conditions/);
+  const hiddenRequirement=withCommonTestSource();hiddenRequirement.schemes[0].scheduleRows.at(-1).value+='指定6教科8科目を受験。';
+  assert.throws(()=>validateUniversityAdmissions(hiddenRequirement),/university-specific conditions/);
+  const falseDate=withCommonTestSource();falseDate.schemes[0].scheduleRows.at(-1).value='100点';
+  assert.throws(()=>validateUniversityAdmissions(falseDate),/university-specific conditions/);
+});
+
+test('partly confirmed rows may name the remaining unpublished detail without inventing a value',()=>{
+  const data=fixture();data.schemes[0].scheduleRows[0]={label:'出願期間',value:'テスト用の確認済み期間。締切時刻は未公表。',sourceIds:['guideline'],status:'needs-confirmation'};
+  assert.equal(validateUniversityAdmissions(data).schemes[0].scheduleRows[0].value,data.schemes[0].scheduleRows[0].value);
+  data.schemes[0].scheduleRows[0].value='確認済み期間と締切時刻。';
+  assert.throws(()=>validateUniversityAdmissions(data),/needs-confirmation status/);
+});

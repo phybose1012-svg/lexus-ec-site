@@ -563,6 +563,52 @@
   font-weight: 900;
 }
 
+/* university-admissions-layout:start */
+/* Nested admissions sections must shrink inside the article's grid. */
+.article-content [data-university-admissions-year],
+.article-content [data-admission-scheme] {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.article-content [data-university-admissions-year] [data-admission-table] {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  max-width: 100%;
+  white-space: normal;
+}
+
+.article-content [data-admission-table] :is(th, td) {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.article-content [data-admission-table] thead th:first-child {
+  width: 28%;
+}
+
+.article-content [data-admission-table] thead th:last-child {
+  width: 20%;
+}
+
+.article-content [data-admission-table] caption {
+  padding-block: 10px;
+  text-align: left;
+  font-weight: 800;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 720px) {
+  .article-content [data-admission-table] :is(th, td) {
+    padding: 10px 8px;
+  }
+}
+/* university-admissions-layout:end */
+
 .article-toc,
 .article-cta,
 .article-tags {

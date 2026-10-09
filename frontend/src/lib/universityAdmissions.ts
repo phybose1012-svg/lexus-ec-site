@@ -129,6 +129,14 @@ const additionalOfficialDomains: Record<string, string[]> = {
   "/information-jyoshiika/": ["twmu-u.jp"],
 };
 const sourceDomain = (url: string) => new URL(url).hostname.split(".").slice(-3).join(".");
+const hostBelongsTo = (hostname: string, domain: string) => hostname === domain || hostname.endsWith(`.${domain}`);
+// DNC publishes the nationwide Common Test. It does not set a university's
+// admission requirements, adopted subjects, score conversions or own venues.
+const commonTestOfficialDomain = "dnc.ac.jp";
+const commonTestReference = /(?:大学入学)?共通テスト/;
+const commonTestDateLabel = /^(?:大学入学)?共通テスト(?:[（(](?:本試験|追[・･]?再試験|追試験|再試験)[）)]|[・\s]*(?:本試験|追[・･]?再試験|追試験|再試験))?(?:[・\s]*(?:実施期日|実施日|試験日|日程))?$/;
+const commonTestDateValue = /^(?:令和|西暦)?[0-9０-９年月日月火水木金土・･、。，,.\/／～〜\-－（()）\s]+$/;
+const universitySpecificCondition = /募集|合否|選抜|前期|後期|地域枠|採用|利用|指定|必須|換算|満点|配点|学部|医学科|医学部/;
 const failure = (message: string): never => { throw new Error(`University admissions data: ${message}`); };
 const record = (value: unknown, label: string): Record<string, unknown> =>
   value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : failure(`${label} must be an object`);
@@ -165,6 +173,8 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
     if (slug !== path.replace(/^\/information-|\/$/g,"")) failure(`${filename}: filename does not match ${path}`);
   }
   const allowed = [sourceDomain(profile.officialUrl), ...(additionalOfficialDomains[path] ?? [])];
+  const universitySourceIds = new Set<string>();
+  const commonTestSourceIds = new Set<string>();
   const sources = array(data.sources, `${path}.sources`, 1).map((entry,index) => {
     const source = record(entry, `${path}.sources[${index}]`);
     const id = identifier(source.id, "source.id");
@@ -172,7 +182,11 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
     let parsed: URL;
     try { parsed = new URL(url); } catch { return failure(`${id}: source URL is invalid`); }
     if (parsed.protocol !== "https:" || parsed.username || parsed.password || (parsed.port && parsed.port !== "443")) failure(`${id}: source URL must be public HTTPS without credentials`);
-    if (!allowed.some(domain => parsed.hostname === domain || parsed.hostname.endsWith(`.${domain}`))) failure(`${id}: source host ${parsed.hostname} is not official for ${profile.university}`);
+    const universityOwned = allowed.some(domain => hostBelongsTo(parsed.hostname,domain));
+    const commonTestOwned = hostBelongsTo(parsed.hostname,commonTestOfficialDomain);
+    if (!universityOwned && !commonTestOwned) failure(`${id}: source host ${parsed.hostname} is not official for ${profile.university} or the Common Test publisher`);
+    if (universityOwned) universitySourceIds.add(id);
+    else commonTestSourceIds.add(id);
     const title = nonempty(source.title, `${id}.title`);
     const retrievedAt = date(source.retrievedAt, `${id}.retrievedAt`);
     if (Date.parse(retrievedAt) > Date.parse(verifiedAt)) failure(`${id}: retrieval cannot be later than verifiedAt`);
@@ -182,6 +196,7 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
     return {id,url,title,retrievedAt,...(source.publishedAt !== undefined ? {publishedAt:source.publishedAt as string}:{}),...(source.sha256 !== undefined?{sha256:source.sha256 as string}:{}),...(source.pages !== undefined?{pages:source.pages as string|number[]}: {})};
   });
   unique(sources.map(source=>source.id), "source ids");
+  if (!universitySourceIds.size) failure(`${path}: at least one official source from ${profile.university} is required; DNC cannot replace university admission evidence`);
   const knownSourceIds = new Set(sources.map(source=>source.id));
   const sourceIds = (value: unknown, label: string) => {
     const ids = array(value,label,1).map(id=>identifier(id,label));
@@ -189,21 +204,31 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
     for (const id of ids) if (!knownSourceIds.has(id)) failure(`${label}: unknown source id ${id}`);
     return ids;
   };
-  const rows = (value: unknown, label: string): UniversityAdmissionRow[] => array(value,label,1).map((entry,index)=>{
+  const scopedSourceIds = (value: unknown,label: string,claimLabel: string,claimValue: string,kind: "schedule"|"exam"|"venue"|"note") => {
+    const ids=sourceIds(value,label);
+    if (!ids.some(id=>commonTestSourceIds.has(id))) return ids;
+    if (!commonTestReference.test(claimLabel)) failure(`${label}: DNC citations are limited to explicitly named Common Test rows or notes`);
+    const hasUniversity=ids.some(id=>universitySourceIds.has(id));
+    const nationalDateOnly=kind === "schedule" && commonTestDateLabel.test(claimLabel.trim()) && commonTestDateValue.test(claimValue.trim()) && /(?:\d{4}|令和\s*\d+)年\s*\d{1,2}月\s*\d{1,2}日|\d{4}[\/.-]\d{1,2}[\/.-]\d{1,2}/.test(claimValue) && !universitySpecificCondition.test(claimValue) && !claimValue.includes(profile.university);
+    if (!hasUniversity && !nationalDateOnly) failure(`${label}: university-specific conditions require this university's official source; DNC alone supports only a nationwide Common Test date row`);
+    return ids;
+  };
+  const rows = (value: unknown, label: string,kind: "schedule"|"exam"|"venue"): UniversityAdmissionRow[] => array(value,label,1).map((entry,index)=>{
     const row = record(entry,`${label}[${index}]`);
     const rowLabel = nonempty(row.label,`${label}[${index}].label`);
     const rowValue = nonempty(row.value,`${label}[${index}].value`);
     if (row.status !== undefined && !["confirmed","unpublished","needs-confirmation"].includes(String(row.status))) failure(`${label}[${index}]: invalid status`);
     if (row.status === "unpublished" && !/未公表|未公開|公表されてい|公表してい|確認できない/.test(rowValue)) failure(`${label}[${index}]: unpublished status must be stated in the visible value`);
-    if (row.status === "needs-confirmation" && !/要確認|確認が必要|確認中/.test(rowValue)) failure(`${label}[${index}]: needs-confirmation status must be stated in the visible value`);
-    return {label:rowLabel,value:rowValue,sourceIds:sourceIds(row.sourceIds,`${label}[${index}].sourceIds`),...(row.status !== undefined?{status:row.status as AdmissionRowStatus}: {})};
+    if (row.status === "needs-confirmation" && !/要確認|確認が必要|確認中|未公表|未公開|公表されてい|公表してい|確認できない/.test(rowValue)) failure(`${label}[${index}]: needs-confirmation status must be stated in the visible value`);
+    return {label:rowLabel,value:rowValue,sourceIds:scopedSourceIds(row.sourceIds,`${label}[${index}].sourceIds`,rowLabel,rowValue,kind),...(row.status !== undefined?{status:row.status as AdmissionRowStatus}: {})};
   });
   const schemes = array(data.schemes,`${path}.schemes`,1).map((entry,index)=>{
     const scheme = record(entry,`${path}.schemes[${index}]`);
     const id = identifier(scheme.id,"scheme.id");
-    return {id,name:nonempty(scheme.name,`${id}.name`),scheduleRows:rows(scheme.scheduleRows,`${id}.scheduleRows`),examRows:rows(scheme.examRows,`${id}.examRows`),venueRows:rows(scheme.venueRows,`${id}.venueRows`),notes:array(scheme.notes,`${id}.notes`).map((entry,index)=>{
+    return {id,name:nonempty(scheme.name,`${id}.name`),scheduleRows:rows(scheme.scheduleRows,`${id}.scheduleRows`,"schedule"),examRows:rows(scheme.examRows,`${id}.examRows`,"exam"),venueRows:rows(scheme.venueRows,`${id}.venueRows`,"venue"),notes:array(scheme.notes,`${id}.notes`).map((entry,index)=>{
       const note=record(entry,`${id}.notes[${index}]`);
-      return {text:nonempty(note.text,`${id}.notes[${index}].text`),sourceIds:sourceIds(note.sourceIds,`${id}.notes[${index}].sourceIds`)};
+      const noteText=nonempty(note.text,`${id}.notes[${index}].text`);
+      return {text:noteText,sourceIds:scopedSourceIds(note.sourceIds,`${id}.notes[${index}].sourceIds`,noteText,noteText,"note")};
     })};
   });
   unique(schemes.map(scheme=>scheme.id),"scheme ids");
