@@ -36,6 +36,18 @@ test('the waitlist-count FAQ explains that counts excluding decliners can unders
   assert.match(waitlistFaqs[1].answer, /補欠50番より先/);
 });
 
+test('the general-admission rank examples use ranks, not headcounts or common-test routes', () => {
+  const kitasato = waitlistTableSchools.find((entry) => entry.id === 'school-6');
+  assert.deepEqual(kitasato.columns, ['一般選抜']);
+  assert.equal(kitasato.rows.find((row) => row.year === '2021').cells[0].legacyValue, '275');
+  assert.ok(kitasato.historical.notes.includes('表記の数値は補欠番号です。'));
+  const osaka = waitlistTableSchools.find((entry) => entry.id === 'school-3');
+  const minimumExample = osaka.rows.find((row) => row.year === '2025').cells[1].records[0];
+  assert.equal(minimumExample.route, '一般後期');
+  assert.equal(minimumExample.metric, 'rank');
+  assert.equal(waitlistTableValue(minimumExample), '1');
+});
+
 test('all 31 private medical schools appear exactly once in both the data and index', () => {
   assert.equal(waitlistSchools.length, 31);
   assert.equal(new Set(waitlistSchools.map((entry) => entry.id)).size, 31);
@@ -398,7 +410,10 @@ test('built page, JSON and structured data describe the same visible evidence', 
   assert.doesNotMatch(main, /waitlist-source|2024年度以前：/);
   assert.ok(!Object.hasOwn(dataset, 'citation'));
   assert.doesNotMatch(html, /waitlist-cell-date|waitlist-cell-route|waitlist-inline-results|<details[^>]*class="waitlist-legacy-notes"/);
-  assert.ok(html.includes('2025・2026年度を、各大学の表の先頭に追加しています。'));
+  assert.ok(main.includes('掲載している一般選抜の例では、多い年で275番まで、少ない年で1番まで。'));
+  assert.ok(main.includes('繰り上げがない年もあり、大学や年度によって大きく異なります。'));
+  assert.ok(main.includes('最低でも5年分のデータを同じ大学・同じ入試方式で見比べ、自分の補欠番号まで回ってきそうか予想してみてください。'));
+  assert.ok(!main.includes('2025・2026年度を、各大学の表の先頭に追加しています。'));
   assert.ok(main.includes('「—」「-」は、番号なし・不明を表します。'));
   assert.ok(main.includes('class="waitlist-empty" title="番号なし・不明"'));
   assert.doesNotMatch(main, /数字の意味は、各表の下に記載しています|各表の下に、数値の意味と情報の種類を記載しています|「報告分」は最終結果とは限りません|受験生からの合格報告は最終結果とは限りません|「—」「-」は未確認で、0人ではありません|title="数値未確認。0人ではありません。"/);
