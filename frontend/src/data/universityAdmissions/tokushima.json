@@ -1,0 +1,90 @@
+{
+  "path": "/information-tokushima/",
+  "university": "徳島大学",
+  "admissionYear": 2027,
+  "verifiedAt": "2026-10-09",
+  "sources": [
+    {
+      "id": "overview",
+      "url": "https://www.tokushima-u.ac.jp/fs/5/1/0/6/8/4/_/R9senbatsuyoukou2.pdf",
+      "title": "令和9年度入学者選抜要項",
+      "retrievedAt": "2026-10-09",
+      "sha256": "58a359a1a73446c842d6385b41fb375c3c5dbeabf86e91404455bff979cf7049",
+      "pages": "PDF pp.2,5,11–13,15,28（冊子の日程表、pp.1,7–9,11,24）"
+    },
+    {
+      "id": "application-guide",
+      "url": "https://www.tokushima-u.ac.jp/fs/5/1/2/7/2/0/_/R9bosyu_sougougata2.pdf",
+      "title": "令和9年度総合型選抜学生募集要項内・共通インターネット出願ガイド（一般選抜欄）",
+      "retrievedAt": "2026-10-09",
+      "sha256": "d7f4c5131718dca136944261a5e5e9ea368e5bc5f600eb1f549d21c7f2cae898",
+      "pages": "PDF pp.16,21（冊子pp.12,17）"
+    },
+    {
+      "id": "publication-index",
+      "url": "https://www.tokushima-u.ac.jp/admission/admission/senbatsuyoko.html",
+      "title": "入学者選抜要項・学生募集要項（公表状況）",
+      "retrievedAt": "2026-10-09",
+      "sha256": "f4e57da249ee4b4563afc0673a4f7dfc0fcb1db9fcc8296b0d3dfab5e7bbfd03"
+    },
+    {
+      "id": "information-change",
+      "url": "https://www.tokushima-u.ac.jp/fs/4/9/5/2/2/5/_/R9henkou_jouhou_2.pdf",
+      "title": "令和9年度入学者選抜における変更について（情報の点数化）",
+      "retrievedAt": "2026-10-09",
+      "sha256": "3830a887a31b67786a713c0acf6d4e38b41dd129b1791b8df9e74f96701aa762",
+      "pages": [1]
+    }
+  ],
+  "schemes": [
+    {
+      "id": "general-early",
+      "name": "一般選抜（前期日程・医学科）",
+      "scheduleRows": [
+        {"label":"出願受付期間","value":"2027年1月25日（月）〜2月3日（水）","sourceIds":["overview"],"status":"confirmed"},
+        {"label":"Web出願登録","value":"2027年1月25日（月）〜2月3日（水）15時（共通出願ガイドの一般選抜欄）","sourceIds":["application-guide"],"status":"confirmed"},
+        {"label":"検定料支払い期限","value":"2027年2月3日（水）15時（共通出願ガイドの一般選抜欄）","sourceIds":["application-guide"],"status":"confirmed"},
+        {"label":"出願書類の到着期限","value":"2027年2月3日（水）17時必着。Web登録と支払いだけでは出願は完了しない。","sourceIds":["application-guide"],"status":"confirmed"},
+        {"label":"書類の消印に関する例外","value":"2027年2月1日（月）以前に発送したことが分かる消印がある場合に限り、到着期限後でも受領する。","sourceIds":["application-guide"],"status":"confirmed"},
+        {"label":"第1段階選抜","value":"2027年2月10日（水）。実施の有無を大学ホームページで発表し、実施時の結果は同日付けで発送予定。","sourceIds":["overview"],"status":"confirmed"},
+        {"label":"個別試験・数学","value":"2027年2月25日（木）9時30分〜11時30分（予定）","sourceIds":["overview"],"status":"confirmed"},
+        {"label":"個別試験・英語","value":"2027年2月25日（木）13時〜14時10分（予定）","sourceIds":["overview"],"status":"confirmed"},
+        {"label":"集団面接","value":"2027年2月26日（金）9時30分〜（予定）","sourceIds":["overview"],"status":"confirmed"},
+        {"label":"合格発表日","value":"2027年3月8日（月）","sourceIds":["overview"],"status":"confirmed"},
+        {"label":"入学手続期間","value":"2027年3月9日（火）〜3月15日（月）","sourceIds":["overview"],"status":"confirmed"},
+        {"label":"発表時刻・入学手続の詳細","value":"未公表。一般選抜学生募集要項で、合格発表時刻と手続書類の提出期限・到着条件を確認する。","sourceIds":["publication-index","overview"],"status":"unpublished"},
+        {"label":"一般選抜学生募集要項","value":"未公表（2026年10月9日確認）。2026年11月下旬公表予定。","sourceIds":["publication-index"],"status":"unpublished"}
+      ],
+      "examRows": [
+        {"label":"募集人員","value":"50人（入学者選抜要項の掲載人数）。医学科の募集人員は調整中のため、確定人数は要確認。","sourceIds":["overview"],"status":"needs-confirmation"},
+        {"label":"共通テスト・国語","value":"国語：150点","sourceIds":["overview"],"status":"confirmed"},
+        {"label":"共通テスト・地理歴史／公民","value":"50点。「地理総合，地理探究」「歴史総合，日本史探究」「歴史総合，世界史探究」「公共，倫理」「公共，政治・経済」「地理総合／歴史総合／公共」から1科目。最後の科目を選ぶ場合は2つの出題範囲を解答する。","sourceIds":["overview"],"status":"confirmed"},
+        {"label":"共通テスト・数学","value":"数学Ⅰ，数学A／数学Ⅱ，数学B，数学Cの2科目：各100点、計200点","sourceIds":["overview"],"status":"confirmed"},
+        {"label":"共通テスト・理科","value":"物理・化学・生物から2科目：各150点、計300点。基礎科目と地学は利用しない。","sourceIds":["overview"],"status":"confirmed"},
+        {"label":"共通テスト・外国語","value":"英語（リスニングを含む）・ドイツ語・フランス語・中国語・韓国語から1科目：200点","sourceIds":["overview"],"status":"confirmed"},
+        {"label":"共通テスト・情報","value":"情報Ⅰ：50点。2027年度から点数化。","sourceIds":["overview","information-change"],"status":"confirmed"},
+        {"label":"共通テスト合計","value":"950点（大学の傾斜配点後）","sourceIds":["overview","information-change"],"status":"confirmed"},
+        {"label":"個別試験・数学","value":"200点。数学Ⅰ・Ⅱ・Ⅲは全範囲。数学Aは「図形の性質」「場合の数と確率」、数学Bは「数列」、数学Cは「ベクトル」「平面上の曲線と複素数平面」。","sourceIds":["overview"],"status":"confirmed"},
+        {"label":"個別試験・英語","value":"200点。英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ・Ⅱ。「読むこと」「書くこと」に関する出題。","sourceIds":["overview"],"status":"confirmed"},
+        {"label":"個別試験・面接","value":"複数の面接担当者による集団面接。点数化せず総合判定に用いる。評価により共通テスト・個別試験の成績にかかわらず不合格になる場合がある。","sourceIds":["overview"],"status":"confirmed"},
+        {"label":"個別試験合計・総合計","value":"個別試験400点（数学200点＋英語200点）。共通テストとの合計1350点。点数化しない集団面接も含めて総合判定。","sourceIds":["overview"],"status":"confirmed"},
+        {"label":"2段階選抜の条件","value":"共通テストの指定科目合計が傾斜後950点中630点未満の場合に実施。630点以上でも志願者が募集人員の5倍を超えた場合は実施することがある。","sourceIds":["overview","information-change"],"status":"confirmed"}
+      ],
+      "venueRows": [
+        {"label":"個別試験・集団面接会場","value":"医学部（蔵本キャンパス）・徳島市蔵本町3丁目18番地の15（予定）","sourceIds":["overview"],"status":"confirmed"},
+        {"label":"試験室・集合場所","value":"未公表。一般選抜学生募集要項と大学が公表する試験会場案内で確認する。","sourceIds":["publication-index","overview"],"status":"unpublished"}
+      ],
+      "notes": [
+        {"text":"試験日時・場所と第1段階選抜結果の発送日は、選抜要項では予定として掲載されている。一般選抜学生募集要項の公表後に再確認する。","sourceIds":["overview","publication-index"]},
+        {"text":"登録・支払・書類の時刻と消印例外は、2027年度総合型選抜募集要項内に載る共通インターネット出願ガイドの一般選抜欄による。一般選抜専用募集要項の公表後に確認する。","sourceIds":["application-guide","publication-index"]},
+        {"text":"共通テスト英語は、リーディング100点を200点、リスニング100点を50点に換算した合計250点を200点へ換算する（R160点・L40点に相当）。リスニング免除者はリーディングの得点のみを利用する。","sourceIds":["overview"]},
+        {"text":"地理歴史・公民を2科目受験した場合は第1解答科目の成績を利用する。指定科目を第1解答科目で受験せず第2解答科目で受験した場合、成績は0点となる。","sourceIds":["overview"]},
+        {"text":"2027年度共通テストの指定された全教科・科目の受験が必要。指定科目を受験しない場合は出願無資格となる。過年度の共通テスト成績は利用しない。","sourceIds":["overview"]}
+      ]
+    }
+  ],
+  "coverageNotes": [
+    "医学部医学科の一般選抜前期を掲載しています。医学科の一般選抜後期は実施されません。総合型選抜、学校推薦型選抜Ⅱ（一般枠・地域枠）、私費外国人留学生選抜は今回の表の対象外です。",
+    "2027年度一般選抜学生募集要項は2026年11月下旬公表予定です。現時点の入学者選抜要項と共通出願ガイドで確認した内容を掲載しています。募集人員の確定、試験室・集合場所、合格発表時刻、入学手続の詳細は公表後に確認してください。"
+  ]
+}
