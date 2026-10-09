@@ -5,12 +5,12 @@ import {
   waitlistCheckedAt, waitlistFaqs,
 } from "../../data/medicalWaitlist";
 import { waitlistTableSchools } from "../../data/medicalWaitlistTables";
-import { publicWaitlistNote } from "../../data/medicalWaitlistPublic";
+import { publicWaitlistNote, publicWaitlistResult } from "../../data/medicalWaitlistPublic";
 
 const canonical = "https://lexus-ec.com/kuriage-information/";
 const datasetPath = "/data/medical-waitlist.json";
 const pageTitle = "【2025・2026年度追加】私立医学部の補欠・繰上げ合格情報と過去一覧｜医学部予備校レクサス";
-const pageDescription = "私立医学部の補欠・繰上げ合格情報。2024年度以前の過去一覧に、2025・2026年度の31大学の情報を追加。人数・補欠順位・個別の合格例を区別し、大学別・年度別の表で掲載しています。";
+const pageDescription = "私立医学部の補欠・繰上げ合格情報。2024年度以前の過去一覧に、2025・2026年度の31大学の情報を追加。人数・補欠順位を大学別・年度別の表で掲載しています。";
 const formatDate = (date: string) => date.replace(/^(\d{4})-(\d{2})-(\d{2})$/, (_, year, month, day) => `${year}年${Number(month)}月${Number(day)}日`);
 const structuredData = {
   "@context": "https://schema.org",
@@ -19,7 +19,7 @@ const structuredData = {
       description: pageDescription, inLanguage: "ja", dateModified: waitlistCheckedAt,
       mainEntity: { "@id": `${canonical}#dataset` }, breadcrumb: { "@id": `${canonical}#breadcrumb` } },
     { "@type": "Dataset", "@id": `${canonical}#dataset`, name: "私立医学部の繰上げ・追加合格情報：2025・2026年度と過去一覧",
-      description: "人数・補欠順位・個別の合格例を区別。個別の合格例は最終到達順位ではない。2024年度以前は従来掲載分で、今回数値を再検証していない。未確認や過去表の「-」は0人を意味しない。",
+      description: "人数と補欠順位を区別。「報告あり」の番号は、大学全体の最終到達順位とは限らない。2024年度以前は従来掲載分で、今回数値を再検証していない。未確認や過去表の「-」は0人を意味しない。",
       url: `${canonical}#school-data`, inLanguage: "ja", temporalCoverage: "2012/2026", dateModified: waitlistCheckedAt,
       creator: { "@type": "Organization", name: "レクサス教育センター", url: "https://lexus-ec.com/" },
       distribution: { "@type": "DataDownload", contentUrl: `https://lexus-ec.com${datasetPath}`, encodingFormat: "application/json" },
@@ -107,7 +107,7 @@ const structuredData = {
         </div>
         <div class="kuriage-answer">
           <p>2025・2026年度を、各大学の表の先頭に追加しています。2024年度以前の数値は従来の表記のまま掲載しています。</p>
-          <p>「人数」と「補欠順位」は別の数字です。「合格例」はその番号での合格が報告されたという意味で、最終到達順位ではありません。「—」「-」「未確認」は0人を意味しません。</p>
+          <p>「人数」と「補欠順位」は別の数字です。「報告あり」は、その補欠番号での合格が報告されたことを示し、大学全体の最終到達順位とは限りません。「—」「-」「未確認」は0人を意味しません。</p>
           <p>2027年度の補欠・繰上げ合格状況は、各大学の入試後に判明します。<a href="/private-medical-school-admissions-schedule-2027/">2027年度の入試日程を見る →</a></p>
         </div>
         <div class="kuriage-school-index" aria-label="大学別データの一覧">
@@ -135,7 +135,7 @@ const structuredData = {
                           {school.id === "school-26" && <p class="waitlist-period-note">前期・後期が未確認の情報</p>}
                           <div class="waitlist-cell-records">
                             {inlineRecords.map((record) => <div class="waitlist-cell-result">
-                              <small class="waitlist-cell-route">{record.route}</small><strong>{record.result}</strong>
+                              <small class="waitlist-cell-route">{record.route}</small><strong>{publicWaitlistResult(record)}</strong>
                               {record.asOf && <small class="waitlist-cell-date"><time datetime={record.asOf}>{Number(record.asOf.slice(5, 7))}/{Number(record.asOf.slice(8, 10))}</time>時点</small>}
                             </div>)}
                           </div>
@@ -146,7 +146,7 @@ const structuredData = {
                                 {cell.records.map((record) => (
                                   <div class="waitlist-cell-result">
                                     {(new Set(cell.records.map((entry) => entry.route)).size > 1 || record.route.includes("千葉県") || record.route.includes("愛知県地域枠") || record.route.includes("鹿児島県")) && <small class="waitlist-cell-route">{record.route}</small>}
-                                    <strong>{record.result}</strong>
+                                    <strong>{publicWaitlistResult(record)}</strong>
                                     {record.asOf && <small class="waitlist-cell-date"><time datetime={record.asOf}>{Number(record.asOf.slice(5, 7))}/{Number(record.asOf.slice(8, 10))}</time>{record.note?.startsWith("15時時点") ? " 15時時点" : "時点"}</small>}
                                   </div>
                                 ))}
@@ -161,7 +161,7 @@ const structuredData = {
               </div>
               <ul class="kuriage-school-card__notes">
                 {school.annotations.filter(({ year }) => school.rows.find((row) => row.year === String(year))?.cells.some((cell) => cell.records.length > 0)).flatMap(({ year, records }) => records.map((record) => (
-                  <li><strong>{year}年度・{record.route}：</strong>{record.result}{record.asOf && <>（<time datetime={record.asOf}>{Number(record.asOf.slice(5, 7))}/{Number(record.asOf.slice(8, 10))}</time>時点）</>}</li>
+                  <li><strong>{year}年度・{record.route}：</strong>{publicWaitlistResult(record)}{record.asOf && <>（<time datetime={record.asOf}>{Number(record.asOf.slice(5, 7))}/{Number(record.asOf.slice(8, 10))}</time>時点）</>}</li>
                 )))}
                 {school.years.filter(({ data }) => data.note).map(({ year, data }) => (
                   <li><strong>{year}年度：</strong>{publicWaitlistNote(data.note!)}</li>

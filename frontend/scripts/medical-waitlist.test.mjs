@@ -9,7 +9,7 @@ import {
 import { waitlist2025AdmissionYear, waitlist2025Schools } from '../src/data/medicalWaitlist2025.ts';
 import { historicalWaitlistSchools } from '../src/data/medicalWaitlistHistory.ts';
 import { waitlistTableSchools } from '../src/data/medicalWaitlistTables.ts';
-import { publicWaitlistSchool } from '../src/data/medicalWaitlistPublic.ts';
+import { publicWaitlistResult, publicWaitlistSchool } from '../src/data/medicalWaitlistPublic.ts';
 
 const expectedNames = [
   '岩手医科大学', '東北医科薬科大学', '自治医科大学', '獨協医科大学', '埼玉医科大学',
@@ -204,15 +204,34 @@ test('minimal route columns keep counts/ranks explicit and do not guess unspecif
   assert.ok(table('school-16').annotations.find((entry) => entry.year === 2025).records.some((row) => row.route === '神奈川県地域枠'));
 });
 
+test('public result labels put reported status after the original number or group', () => {
+  for (const entry of [...waitlistSchools, ...waitlist2025Schools]) {
+    for (const record of entry.records) {
+      const result = publicWaitlistResult(record);
+      if (['rank-case', 'group-case'].includes(record.metric)) {
+        assert.equal(result, `${record.result.replace(/^合格例：/, '')}（報告あり）`);
+        assert.equal((result.match(/（報告あり）/g) ?? []).length, 1);
+      } else {
+        assert.equal(result, record.result);
+        assert.doesNotMatch(result, /（報告あり）/);
+      }
+      assert.doesNotMatch(result, /合格例/);
+    }
+  }
+  assert.equal(publicWaitlistResult(school('岩手医科大学').records.find((row) => row.route === '一般選抜')), '補欠82番（報告あり）');
+  assert.equal(publicWaitlistResult(waitlist2025Schools.find((entry) => entry.name === '久留米大学').records.find((row) => row.metric === 'rank-case')), '補欠43番（報告あり）');
+});
+
 test('public records retain facts/units/dates but never expose source names or links', () => {
   for (const entry of [...waitlistSchools, ...waitlist2025Schools]) {
     const data = publicWaitlistSchool(entry);
     assert.equal(data.records.length, entry.records.length);
     data.records.forEach((record, index) => {
-      for (const key of ['route', 'metric', 'result', 'asOf']) assert.equal(record[key], entry.records[index][key]);
+      for (const key of ['route', 'metric', 'asOf']) assert.equal(record[key], entry.records[index][key]);
+      assert.equal(record.result, publicWaitlistResult(entry.records[index]));
       assert.ok(!Object.hasOwn(record, 'source'));
     });
-    assert.doesNotMatch(JSON.stringify(data), /富士学院|メルリックス|fujigakuin|melurix|https?:\/\//);
+    assert.doesNotMatch(JSON.stringify(data), /合格例|富士学院|メルリックス|fujigakuin|melurix|https?:\/\//);
     assert.ok(!Object.hasOwn(data, 'noteSources'));
   }
 });
@@ -226,7 +245,7 @@ test('built page, JSON and structured data describe the same visible evidence', 
   assert.equal((html.match(/class="kuriage-school-card\b/g) ?? []).length, 31);
   for (const entry of [...waitlistSchools, ...waitlist2025Schools]) {
     assert.ok(html.includes(`id="${entry.id}"`), entry.id);
-    for (const row of entry.records) assert.ok(html.includes(row.result), `${entry.name}: ${row.result}`);
+    for (const row of entry.records) assert.ok(html.includes(publicWaitlistResult(row)), `${entry.name}: ${publicWaitlistResult(row)}`);
   }
   const schema = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
   const faq = schema['@graph'].find((item) => item['@type'] === 'FAQPage');
@@ -242,7 +261,7 @@ test('built page, JSON and structured data describe the same visible evidence', 
   assert.deepEqual(archive.historical.schools, historicalWaitlistSchools);
   assert.equal(archive.historical.verificationStatus, 'legacy-unverified');
   for (const output of [html, JSON.stringify(data), JSON.stringify(data2025), JSON.stringify(archive)]) {
-    assert.doesNotMatch(output, /富士学院|メルリックス|fujigakuin|melurix/);
+    assert.doesNotMatch(output, /合格例|富士学院|メルリックス|fujigakuin|melurix/);
   }
   const main = html.match(/<main id="kuriage-main"[\s\S]*?<\/main>/)[0];
   assert.doesNotMatch(main, /<a[^>]+href="https?:/);

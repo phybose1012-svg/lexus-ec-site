@@ -166,7 +166,7 @@ export const waitlistSchools: WaitlistSchool[] = [
 const alphabeticalIds = ["school-1", "school-2", "school-3", "school-4", "school-5", "kawasaki", "school-6", "school-7", "school-8", "school-9", "school-10", "school-11", "school-12", "school-13", "jichi", "juntendo", "school-14", "school-15", "teikyo", "school-16", "school-17", "school-18", "school-19", "toho", "school-20", "school-21", "school-23", "school-22", "school-24", "school-25", "school-26"];
 export const alphabeticalWaitlistSchools = alphabeticalIds.map((id) => waitlistSchools.find((school) => school.id === id)!);
 export const waitlistMetricLabels: Record<Metric, string> = {
-  count: "人数", rank: "到達順位", "rank-case": "個別の合格例", "group-case": "個別の合格例",
+  count: "人数", rank: "到達順位", "rank-case": "個別の合格報告", "group-case": "個別の合格報告",
   report: "合格報告", notice: "公式のお知らせ", unknown: "数値未確認",
 };
 export const waitlistSourceLabels: Record<EvidenceKind, string> = { official: "大学公式", prep: "予備校情報" };
@@ -174,5 +174,5 @@ export const waitlistFaqs = [
   { question: "補欠と繰上げ合格は何が違う？", answer: "補欠は、欠員が出た場合に合格の対象になり得る状態です。まだ入学できると決まったわけではありません。繰上げ合格・追加合格の連絡を受け、指定された手続きを終えて入学が決まります。名称や運用は大学によって異なります。" },
   { question: "補欠100番なら、100人が合格したということ？", answer: "いいえ。補欠順位は候補者の順番で、実際に合格の連絡をした人数とは別です。途中で辞退する候補者がいれば、到達順位と合格者数は一致しません。さらに、合格者数・連絡者数・入学許可者数・入学者数も別なので、公表値の見出しを確認しましょう。" },
   { question: "繰上げ合格の連絡は、いつまで来る？", answer: "大学・年度によって異なります。藤田医科大学の公式Q&Aでは、辞退状況により4月に繰り上がる場合もあると案内しています。一律の終了日は設けず、受験した年度の募集要項、マイページ、大学の終了案内を確認してください。" },
-  { question: "昨年の補欠順位から、今年の合格を予測できる？", answer: "過去の順位は参考にはなりますが、募集枠や辞退状況が変わるため、合格の保証にはなりません。個別の合格例も大学全体の最終順位ではありません。2026年度の結果を、2027年度の進行状況と取り違えないようにしてください。" },
+  { question: "昨年の補欠順位から、今年の合格を予測できる？", answer: "過去の順位は参考にはなりますが、募集枠や辞退状況が変わるため、合格の保証にはなりません。合格が報告された補欠番号も、大学全体の最終順位とは限りません。2026年度の結果を、2027年度の進行状況と取り違えないようにしてください。" },
 ];
