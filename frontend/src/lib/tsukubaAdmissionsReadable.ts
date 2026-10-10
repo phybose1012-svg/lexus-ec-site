@@ -1,10 +1,11 @@
 import type { UniversityAdmissions, UniversityAdmissionRow, UniversityAdmissionScheme } from './universityAdmissions';
+import readerCopy from '../data/tsukubaReaderCopy.json' with { type: 'json' };
 
 const escape = (value: string) => value.replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]!);
 const sentences = (value: string) => value.match(/[^。]+。?|。/gu) ?? [value];
 const firstSentence = (value: string) => sentences(value)[0].replace(/。$/, '');
-// Keep the pending status, while moving the provenance itself to the source footer.
-const displayText = (value: string) => value.replaceAll('（医学群の2027年度予定概要）', '（予定）');
+// Canonical audit wording stays in the data; the page speaks to applicants.
+const displayText = (value: string) => readerCopy.sentenceReplacements.reduce((text, [from, to]) => text.replaceAll(from, to), value);
 
 function rowPresentation(scheme: UniversityAdmissionScheme, kind: string, row: UniversityAdmissionRow) {
   let label = row.label, value = row.value;
@@ -28,16 +29,14 @@ function rowPresentation(scheme: UniversityAdmissionScheme, kind: string, row: U
 function notePresentation(scheme: UniversityAdmissionScheme, index: number, value: string) {
   if (scheme.id.startsWith('general-region-')) return ''; // Shared quota is explicit in the overview.
   if (scheme.id === 'overseas' && index === 1) return ''; // Source-page weekday discrepancy is an audit note.
-  return value;
+  return displayText(value);
 }
 
 function coveragePresentation(value: string, index: number) {
-  if (index === 0) return sentences(value).slice(2).join(''); // Listed schemes and no late admission are already stated.
-  if (index === 1) return ''; // Pending quotas and approval conditions are in the overview and scheme details.
-  if (index === 2) return '総合選抜は1年次に総合学域群へ所属し、医学類の2年次受入人数は入学者数等により変わる。';
-  if (index === 3) return sentences(value)[0];
-  if (index === 4) return sentences(value).at(-1)!;
-  return value;
+  if ([0, 1, 4].includes(index)) return ''; // Editorial scope and repeated conditions are not applicant guidance.
+  if (index === 2) return '総合選抜の入学者は1年次に総合学域群へ所属します。医学類の2年次受入人数は入学者数等により変わります。';
+  if (index === 3) return '一般選抜の2027年度募集要項は2026年10月下旬に公開予定です。詳細が公表され次第、このページを更新します。';
+  return displayText(value);
 }
 
 /** Formatting keeps every source value, including AND/OR conditions and exceptions. */
@@ -163,5 +162,5 @@ export function renderTsukubaAdmissionsReadable(data: UniversityAdmissions): str
     return value ? `<li><div data-admission-coverage-note="${index}">${readableAdmissionValue(value)}</div></li>` : '';
   }).join('');
   const sourceFooter = `<details class="admission-source-footer"><summary>情報ソースはこちら</summary><div id="admission-sources"><p>筑波大学・関連機関の公式資料</p><ul data-admission-source-list class="admission-source-list">${data.sources.map(source => `<li data-admission-source-id="${source.id}"><a href="${escape(source.url)}">${escape(source.title)}</a>${source.pages ? `<small>参照：${escape(Array.isArray(source.pages) ? `PDF p.${source.pages.join('、')}` : source.pages)}</small>` : ''}<small>確認日：<time datetime="${escape(source.retrievedAt)}">${source.retrievedAt.slice(0, 10)}</time></small></li>`).join('')}</ul></div></details>`;
-  return `<h2 id="最新の入試情報">2027年度の入試情報</h2><section class="admission-readable" data-university-admissions-year="2027" data-admissions-presentation="readable-v1" aria-labelledby="最新の入試情報"><p class="admission-verified">公式資料確認日：<time data-university-admissions-verified-at datetime="${escape(data.verifiedAt)}">${escape(data.verifiedAt.slice(0, 10))}</time></p>${overviewHtml}${schemes}<h3 id="admission-coverage">掲載範囲・未公表事項</h3><ul class="admission-coverage">${coverageHtml}</ul>${sourceFooter}</section>`;
+  return `<h2 id="最新の入試情報">2027年度の入試情報</h2><section class="admission-readable" data-university-admissions-year="2027" data-admissions-presentation="readable-v1" aria-labelledby="最新の入試情報"><p class="admission-verified">公式資料確認日：<time data-university-admissions-verified-at datetime="${escape(data.verifiedAt)}">${escape(data.verifiedAt.slice(0, 10))}</time></p>${overviewHtml}${schemes}<h3 id="admission-coverage">募集要項の公開予定・補足</h3><ul class="admission-coverage">${coverageHtml}</ul>${sourceFooter}</section>`;
 }

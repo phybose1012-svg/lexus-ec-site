@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { parse } from 'parse5';
 
 const data = JSON.parse(fs.readFileSync(new URL('../src/data/universityAdmissions/tsukuba.json', import.meta.url), 'utf8'));
+const readerCopy = JSON.parse(fs.readFileSync(new URL('../src/data/tsukubaReaderCopy.json', import.meta.url), 'utf8'));
 export const attr = (node, key) => node.attrs?.find(a => a.name === key)?.value;
 export const all = (node, predicate, result = []) => { if (predicate(node)) result.push(node); for (const child of node.childNodes ?? []) all(child, predicate, result); return result; };
 export const text = node => node.nodeName === '#text' ? node.value : (node.childNodes ?? []).map(text).join('');
@@ -15,7 +16,9 @@ export function verifyReadableHtml(html, candidate = data) {
   assert.equal(wrappers.length, 1);
   const wrapper = wrappers[0];
   const sentences = value => value.match(/[^。]+。?|。/gu) ?? [value];
-  const displayText = value => value.replaceAll('（医学群の2027年度予定概要）', '（予定）');
+  const displayText = value => readerCopy.sentenceReplacements.reduce((text, [from, to]) => text.replaceAll(from, to), value);
+  const canonicalText = JSON.stringify(candidate);
+  for (const [from] of readerCopy.sentenceReplacements) assert.ok(canonicalText.includes(from), `Review stale reader copy: ${from}`);
   const scoreTable = all(wrapper, n => attr(n, 'data-readable-scores') !== undefined)[0];
   assert.ok(scoreTable);
   const scoreRows = all(scoreTable, n => n.tagName === 'tr');
@@ -37,6 +40,8 @@ export function verifyReadableHtml(html, candidate = data) {
   // All external sources live in the quiet footer, never in a table or fact row.
   const footer = all(wrapper, n => attr(n, 'class') === 'admission-source-footer');
   assert.equal(footer.length, 1);
+  const applicantText = (wrapper.childNodes ?? []).filter(n => n !== footer[0]).map(text).join('');
+  assert.doesNotMatch(applicantText, /転用しない|流用しない|取り違えない|保留欄|推測していません|重複計上していない|加算していない|本表は|要項の図|図の小論文|要項\d+頁|要項\d+～\d+頁|要項に示されていない|と記載し|当該/u, 'Editorial instructions and source reports must not reach applicants');
   for (const anchor of all(wrapper, n => n.tagName === 'a' && /^https?:/u.test(attr(n, 'href') ?? ''))) {
     let parent = anchor;
     while (parent && parent !== footer[0]) parent = parent.parentNode;
@@ -63,7 +68,7 @@ export function verifyReadableHtml(html, candidate = data) {
           assert.equal(extras.length, extraValue ? 1 : 0);
           if (extraValue) {
             const value = all(extras[0], n => attr(n, 'data-admission-value') !== undefined)[0];
-            assert.equal(clean(text(value)), clean(extraValue));
+            assert.equal(clean(text(value)), clean(displayText(extraValue)));
           }
         } else if (entry === scoreTable) {
           assert.equal(expected.label, '共通テスト配点');
@@ -90,7 +95,7 @@ export function verifyReadableHtml(html, candidate = data) {
       }
       assert.equal(entries.length, 1);
       const values = all(entries[0], n => attr(n, 'data-admission-note-text') !== undefined);
-      assert.equal(clean(text(values[0])), clean(expected.text));
+      assert.equal(clean(text(values[0])), clean(displayText(expected.text)));
       assert.deepEqual(JSON.parse(attr(entries[0], 'data-admission-source-ids')), expected.sourceIds);
       notes++;
     }
@@ -98,11 +103,10 @@ export function verifyReadableHtml(html, candidate = data) {
   assert.equal(all(wrapper, n => attr(n, 'data-admission-origin') !== undefined).length, rows, 'No unverified canonical rows');
   for (const [index, expected] of candidate.coverageNotes.entries()) {
     const entries = all(wrapper, n => attr(n, 'data-admission-coverage-note') === String(index));
-    if (index === 1) { assert.equal(entries.length, 0); continue; }
+    if ([0, 1, 4].includes(index)) { assert.equal(entries.length, 0); continue; }
     assert.equal(entries.length, 1);
-    const value = index === 0 ? sentences(expected).slice(2).join('')
-      : index === 2 ? '総合選抜は1年次に総合学域群へ所属し、医学類の2年次受入人数は入学者数等により変わる。'
-      : index === 3 ? sentences(expected)[0] : index === 4 ? sentences(expected).at(-1) : expected;
+    const value = index === 2 ? '総合選抜の入学者は1年次に総合学域群へ所属します。医学類の2年次受入人数は入学者数等により変わります。'
+      : index === 3 ? '一般選抜の2027年度募集要項は2026年10月下旬に公開予定です。詳細が公表され次第、このページを更新します。' : displayText(expected);
     assert.equal(clean(text(entries[0])), clean(value));
   }
   const overview = all(wrapper, n => attr(n, 'data-readable-overview') !== undefined);
