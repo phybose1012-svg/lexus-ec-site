@@ -1,0 +1,949 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "id": "quota-general",
+      "where": "overview",
+      "label": "前期・一般枠",
+      "body": "53人",
+      "origins": [
+        "general/schedule/0"
+      ]
+    },
+    {
+      "id": "quota-general-tottori",
+      "where": "overview",
+      "label": "前期・地域枠（鳥取県）",
+      "body": "11人（申請後の予定）",
+      "origins": [
+        "general-tottori/schedule/0"
+      ]
+    },
+    {
+      "id": "quota-general-shimane",
+      "where": "overview",
+      "label": "前期・地域枠（島根県）",
+      "body": "5人（申請後の予定）",
+      "origins": [
+        "general-shimane/schedule/0"
+      ]
+    },
+    {
+      "id": "quota-general-training",
+      "where": "overview",
+      "label": "前期・とっとり医療人養成枠",
+      "body": "7人",
+      "origins": [
+        "general-training/schedule/0"
+      ]
+    },
+    {
+      "id": "quota-recommendation-general",
+      "where": "overview",
+      "label": "推薦Ⅱ・一般枠",
+      "body": "15人",
+      "origins": [
+        "recommendation-general/schedule/0"
+      ]
+    },
+    {
+      "id": "quota-recommendation-region",
+      "where": "overview",
+      "label": "推薦Ⅱ・地域枠",
+      "body": "5人",
+      "origins": [
+        "recommendation-region/schedule/0"
+      ]
+    },
+    {
+      "id": "quota-recommendation-special",
+      "where": "overview",
+      "label": "推薦Ⅱ・特別養成枠",
+      "body": "6人（申請後の予定）",
+      "origins": [
+        "recommendation-special/schedule/0"
+      ]
+    },
+    {
+      "id": "quota-private-foreign",
+      "where": "overview",
+      "label": "私費外国人留学生選抜",
+      "body": "若干人（全学部・全学科）",
+      "origins": [
+        "private-foreign/schedule/0"
+      ]
+    },
+    {
+      "id": "capacity-condition",
+      "where": "overview-note",
+      "label": "地域枠・特別養成枠の定員増",
+      "body": "臨時定員増の認可前で、申請後の入学定員は102人の予定です。地域枠の8月通知は鳥取県・島根県の計16人ですが、選抜要項本文には兵庫県2人を含む旧計18人の記載が残っています。確定した募集区分・人数は、大学の認可告知と新しい募集要項で確認してください。",
+      "origins": [
+        "general/note/2",
+        "general-tottori/note/2",
+        "general-shimane/note/2",
+        "general-training/note/2",
+        "coverage/3"
+      ]
+    },
+    {
+      "id": "training-transfer",
+      "where": "general-notes",
+      "label": "とっとり医療人養成枠の人数",
+      "body": "臨時定員増とは別の枠です。募集人数の一部又は全部が一般枠へ振り替わる場合があります。",
+      "origins": [
+        "general/note/3",
+        "general-tottori/note/3",
+        "general-shimane/note/3",
+        "general-training/note/3"
+      ]
+    },
+    {
+      "id": "general-web",
+      "where": "general-dates",
+      "label": "Web出願登録",
+      "body": "締切：2027年2月3日（水）16:00\n開始日は未公表",
+      "origins": [
+        "general/schedule/2",
+        "general-tottori/schedule/3",
+        "general-shimane/schedule/3",
+        "general-training/schedule/3"
+      ]
+    },
+    {
+      "id": "general-fee",
+      "where": "general-dates",
+      "label": "検定料支払",
+      "body": "締切：2027年2月3日（水）16:00\n検定料額は未公表",
+      "origins": []
+    },
+    {
+      "id": "general-post",
+      "where": "general-dates",
+      "label": "出願書類の郵送",
+      "body": "2027年1月25日（月）〜2月3日（水）17:00必着\n簡易書留・速達。期限後の到着は、2月2日（火）以前の発信局消印があるものに限り受理します。",
+      "origins": [
+        "general/schedule/3",
+        "general-tottori/schedule/4",
+        "general-shimane/schedule/4",
+        "general-training/schedule/4"
+      ]
+    },
+    {
+      "id": "general-hand",
+      "where": "general-dates",
+      "label": "出願書類の持参",
+      "body": "受付期間中の平日9:00〜17:00（土日を除く）",
+      "origins": [
+        "general/schedule/4",
+        "general-tottori/schedule/5",
+        "general-shimane/schedule/5",
+        "general-training/schedule/5"
+      ]
+    },
+    {
+      "id": "general-stage-date",
+      "where": "general-dates",
+      "label": "第1段階選抜の発表",
+      "body": "発表日・時刻は未公表",
+      "origins": [
+        "general/schedule/6",
+        "general-tottori/schedule/7",
+        "general-shimane/schedule/7",
+        "general-training/schedule/7"
+      ]
+    },
+    {
+      "id": "general-exam-date",
+      "where": "general-dates",
+      "label": "個別試験",
+      "body": "2027年2月25日（木）・26日（金）\n26日は医学科のみ。科目別の時間割・集合時刻は未公表です。",
+      "origins": [
+        "general/schedule/7",
+        "general-tottori/schedule/8",
+        "general-shimane/schedule/8",
+        "general-training/schedule/8"
+      ]
+    },
+    {
+      "id": "general-result",
+      "where": "general-dates",
+      "label": "合格発表",
+      "body": "2027年3月8日（月）\n発表時刻・方法の詳細は未公表",
+      "origins": [
+        "general/schedule/8",
+        "general-tottori/schedule/9",
+        "general-shimane/schedule/9",
+        "general-training/schedule/9"
+      ]
+    },
+    {
+      "id": "general-enrol",
+      "where": "general-dates",
+      "label": "入学手続期限",
+      "body": "2027年3月15日（月）\n締切時刻・提出方法の詳細は未公表",
+      "origins": [
+        "general/schedule/9",
+        "general-tottori/schedule/10",
+        "general-shimane/schedule/10",
+        "general-training/schedule/10"
+      ]
+    },
+    {
+      "id": "ct-date",
+      "where": "common-test",
+      "label": "共通テストの日程",
+      "body": "2027年1月16日（土）・17日（日）",
+      "origins": [
+        "general/schedule/5",
+        "general-tottori/schedule/6",
+        "general-shimane/schedule/6",
+        "general-training/schedule/6",
+        "recommendation-general/schedule/11",
+        "recommendation-region/schedule/12"
+      ]
+    },
+    {
+      "id": "general-eligibility",
+      "where": "general-qualification",
+      "label": "全枠共通の出願資格",
+      "body": "次の学歴・資格のいずれかを満たし、2027年度共通テストの指定科目を受験することが必要です。\n・高等学校等の卒業者、又は2027年3月卒業見込みの者\n・通常の12年課程の修了者、又は2027年3月修了見込みの者\n・法令に定める同等の資格を有する者（2027年3月31日までの取得見込みを含む）",
+      "origins": [
+        "general/schedule/1",
+        "general-tottori/schedule/1",
+        "general-shimane/schedule/1",
+        "general-training/schedule/1"
+      ]
+    },
+    {
+      "id": "qualification-general-frame",
+      "where": "general-frame",
+      "label": "地域枠・とっとり医療人養成枠",
+      "body": "鳥取県・島根県の地域枠、とっとり医療人養成枠の個別の出願資格・確約内容・修学資金・卒後勤務条件は要確認です。2027年度一般選抜の正式募集要項の公開後に更新します。",
+      "origins": [
+        "general-tottori/schedule/2",
+        "general-shimane/schedule/2",
+        "general-training/schedule/2"
+      ]
+    },
+    {
+      "id": "general-stage",
+      "where": "general-selection",
+      "label": "第1段階選抜",
+      "body": "共通テストの合計920点満点で650点以上の者を合格者とし、個別試験を実施します。",
+      "origins": [
+        "general/exam/9",
+        "general-tottori/exam/9",
+        "general-shimane/exam/9",
+        "general-training/exam/9"
+      ]
+    },
+    {
+      "id": "general-rank",
+      "where": "general-selection",
+      "label": "合否判定・同点時",
+      "body": "各枠で共通テストと個別試験の総合点が高い順に判定します。同点時は、面接→個別試験の合計→共通テストの数学・理科合計の順で高い者を上位とし、なお同点なら調査書により総合判定します。",
+      "origins": [
+        "general/exam/15",
+        "general-tottori/exam/15",
+        "general-shimane/exam/15",
+        "general-training/exam/15"
+      ]
+    },
+    {
+      "id": "general-threshold",
+      "where": "general-selection",
+      "label": "総合得点の条件",
+      "body": "共通テストと個別試験の合計が75％に満たない場合、合格者とならないことがあります。",
+      "origins": [
+        "general/exam/16",
+        "general-tottori/exam/16",
+        "general-shimane/exam/16",
+        "general-training/exam/16"
+      ]
+    },
+    {
+      "id": "general-venue",
+      "where": "general-venue",
+      "label": "試験場・試験室・集合場所",
+      "body": "2027年度一般選抜の試験場、試験室・集合場所と指定方法は未公表です。募集要項と受験案内の公開後に更新します。",
+      "origins": [
+        "general/venue/0",
+        "general-tottori/venue/0",
+        "general-shimane/venue/0",
+        "general-training/venue/0"
+      ]
+    },
+    {
+      "id": "general-combination",
+      "where": "general-notes",
+      "label": "枠の併願と選抜順",
+      "body": "一般枠との併願は、地域枠又はとっとり医療人養成枠を先に選抜し、不合格の場合に一般枠の対象となります。\n鳥取県の地域枠と養成枠の併願は、地域枠を優先します。3区分併願では鳥取県の地域枠→養成枠→一般枠の順です。\n養成枠と島根県の地域枠は併願できません。",
+      "origins": [
+        "general/note/1",
+        "general-tottori/note/1",
+        "general-shimane/note/1",
+        "general-training/note/1"
+      ]
+    },
+    {
+      "id": "no-late",
+      "where": "general-notes",
+      "label": "後期日程",
+      "body": "医学科では後期日程の募集を行いません。",
+      "origins": [
+        "coverage/1"
+      ]
+    },
+    {
+      "id": "general-publication",
+      "where": "publication",
+      "label": "一般選抜の募集要項",
+      "body": "2027年度の正式募集要項は2026年11月上旬頃の公開予定です。Web登録開始日、検定料額、時間割・会場、各枠の個別資格などの詳細は、公開後に更新します。",
+      "origins": [
+        "coverage/2"
+      ]
+    },
+    {
+      "id": "ct-subjects",
+      "where": "common-test",
+      "label": "共通テストの科目数",
+      "body": "2027年度の指定6教科8科目。一般前期4枠と推薦Ⅱの一般枠・地域枠に共通です。",
+      "origins": [
+        "general/exam/0",
+        "general-tottori/exam/0",
+        "general-shimane/exam/0",
+        "general-training/exam/0",
+        "recommendation-general/exam/0",
+        "recommendation-region/exam/0"
+      ]
+    },
+    {
+      "id": "ct-geography",
+      "where": "common-subjects",
+      "label": "地歴・公民の選択",
+      "body": "次のいずれか1科目。2科目受験時は第1解答科目を利用します。\n・地理総合・地理探究\n・歴史総合・日本史探究\n・歴史総合・世界史探究\n・地理総合／歴史総合／公共\n・公共・倫理\n・公共・政治・経済\n「地理総合／歴史総合／公共」は、3分野から2分野を選択解答します。",
+      "origins": [
+        "general/exam/2",
+        "general-tottori/exam/2",
+        "general-shimane/exam/2",
+        "general-training/exam/2",
+        "recommendation-general/exam/2",
+        "recommendation-region/exam/2",
+        "general/note/0",
+        "general-tottori/note/0",
+        "general-shimane/note/0",
+        "general-training/note/0",
+        "recommendation-general/note/3",
+        "recommendation-region/note/3"
+      ]
+    },
+    {
+      "id": "ct-maths",
+      "where": "common-subjects",
+      "label": "数学の必須科目",
+      "body": "「数学Ⅰ・数学A」「数学Ⅱ・数学B・数学C」の両方が必要です。",
+      "origins": [
+        "general/exam/3",
+        "general-tottori/exam/3",
+        "general-shimane/exam/3",
+        "general-training/exam/3",
+        "recommendation-general/exam/3",
+        "recommendation-region/exam/3"
+      ]
+    },
+    {
+      "id": "ct-sciences",
+      "where": "common-subjects",
+      "label": "理科の選択",
+      "body": "物理・化学・生物から2科目",
+      "origins": [
+        "general/exam/4",
+        "general-tottori/exam/4",
+        "general-shimane/exam/4",
+        "general-training/exam/4",
+        "recommendation-general/exam/4",
+        "recommendation-region/exam/4"
+      ]
+    },
+    {
+      "id": "ct-language",
+      "where": "common-subjects",
+      "label": "外国語の選択",
+      "body": "英語・ドイツ語・フランス語から1科目",
+      "origins": [
+        "general/exam/5",
+        "general-tottori/exam/5",
+        "general-shimane/exam/5",
+        "general-training/exam/5",
+        "recommendation-general/exam/5",
+        "recommendation-region/exam/5"
+      ]
+    },
+    {
+      "id": "ct-english",
+      "where": "common-subjects",
+      "label": "英語の換算・免除",
+      "body": "リーディング100点を160点、リスニング100点を40点に換算します。リスニング免除者は、リーディングを200点に換算します。",
+      "origins": [
+        "general/exam/7",
+        "general-tottori/exam/7",
+        "general-shimane/exam/7",
+        "general-training/exam/7",
+        "recommendation-general/exam/7",
+        "recommendation-region/exam/7"
+      ]
+    },
+    {
+      "id": "ct-unanswered",
+      "where": "common-subjects",
+      "label": "一般選抜のリスニング未受験",
+      "body": "リスニングを受験しなかった場合は、リスニング0点で換算します。",
+      "origins": []
+    },
+    {
+      "id": "scores",
+      "where": "score-table",
+      "label": "配点",
+      "body": "",
+      "origins": [
+        "general/exam/1",
+        "general-tottori/exam/1",
+        "general-shimane/exam/1",
+        "general-training/exam/1",
+        "recommendation-general/exam/1",
+        "recommendation-region/exam/1",
+        "general/exam/6",
+        "general-tottori/exam/6",
+        "general-shimane/exam/6",
+        "general-training/exam/6",
+        "recommendation-general/exam/6",
+        "recommendation-region/exam/6",
+        "general/exam/8",
+        "general-tottori/exam/8",
+        "general-shimane/exam/8",
+        "general-training/exam/8",
+        "recommendation-general/exam/8",
+        "recommendation-region/exam/8",
+        "general/exam/14",
+        "general-tottori/exam/14",
+        "general-shimane/exam/14",
+        "general-training/exam/14",
+        "recommendation-general/exam/10",
+        "recommendation-region/exam/10"
+      ]
+    },
+    {
+      "id": "individual-maths",
+      "where": "individual-range",
+      "label": "数学の出題範囲",
+      "body": "数学Ⅰ・Ⅱ・Ⅲ・A・B：全範囲\n数学C：ベクトル、平面上の曲線と複素数平面",
+      "origins": [
+        "general/exam/10",
+        "general-tottori/exam/10",
+        "general-shimane/exam/10",
+        "general-training/exam/10",
+        "private-foreign/exam/2"
+      ]
+    },
+    {
+      "id": "individual-sciences",
+      "where": "individual-range",
+      "label": "理科の選択・出題範囲",
+      "body": "「物理基礎・物理」「化学基礎・化学」「生物基礎・生物」から2科目。各科目とも全範囲です。",
+      "origins": [
+        "general/exam/11",
+        "general-tottori/exam/11",
+        "general-shimane/exam/11",
+        "general-training/exam/11",
+        "private-foreign/exam/3"
+      ]
+    },
+    {
+      "id": "individual-english",
+      "where": "individual-range",
+      "label": "英語の出題範囲",
+      "body": "英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ・Ⅱ・Ⅲ",
+      "origins": [
+        "general/exam/12",
+        "general-tottori/exam/12",
+        "general-shimane/exam/12",
+        "general-training/exam/12",
+        "private-foreign/exam/4"
+      ]
+    },
+    {
+      "id": "general-interview",
+      "where": "general-selection",
+      "label": "面接の判定",
+      "body": "医療人としての適性を評価し、不適格と判定した場合は不合格となることがあります。",
+      "origins": [
+        "general/exam/13",
+        "general-tottori/exam/13",
+        "general-shimane/exam/13",
+        "general-training/exam/13"
+      ]
+    },
+    {
+      "id": "recommendation-web",
+      "where": "recommendation-dates",
+      "label": "Web出願登録",
+      "body": "2026年11月1日（日）10:00〜11月9日（月）16:00",
+      "origins": [
+        "recommendation-general/schedule/3",
+        "recommendation-region/schedule/4"
+      ]
+    },
+    {
+      "id": "recommendation-fee",
+      "where": "recommendation-dates",
+      "label": "検定料支払",
+      "body": "17,000円\n登録日を含む4日以内の23:59まで。ただし、2026年11月9日（月）16:00を過ぎると支払えません。",
+      "origins": [
+        "recommendation-general/schedule/4",
+        "recommendation-region/schedule/5"
+      ]
+    },
+    {
+      "id": "recommendation-post",
+      "where": "recommendation-dates",
+      "label": "出願書類の郵送",
+      "body": "2026年11月2日（月）〜11月9日（月）に到着\n簡易書留・速達。期間後の到着は、11月9日（月）以前の発信局消印があるものに限り受理します。",
+      "origins": [
+        "recommendation-general/schedule/5",
+        "recommendation-region/schedule/6"
+      ]
+    },
+    {
+      "id": "recommendation-hand",
+      "where": "recommendation-dates",
+      "label": "出願書類の持参",
+      "body": "2026年11月2日（月）〜11月9日（月）の平日9:00〜17:00\n米子地区事務部学務課（総合教育棟1階）",
+      "origins": [
+        "recommendation-general/schedule/6",
+        "recommendation-region/schedule/7"
+      ]
+    },
+    {
+      "id": "recommendation-resend",
+      "where": "recommendation-dates",
+      "label": "共通テスト成績請求の再送信",
+      "body": "2026年12月7日（月）〜12月14日（月）\n個別試験後に、大学出願サイトのマイページからWeb方式で再送信します。詳細は12月上旬に大学サイトと登録メールで案内予定です。",
+      "origins": [
+        "recommendation-general/schedule/8",
+        "recommendation-region/schedule/9"
+      ]
+    },
+    {
+      "id": "recommendation-exam-date",
+      "where": "recommendation-dates",
+      "label": "面接日・集合",
+      "body": "2026年12月5日（土）9:30〜\n開始30分前の9:00までに大学指定の場所へ集合",
+      "origins": [
+        "recommendation-general/schedule/10",
+        "recommendation-region/schedule/11"
+      ]
+    },
+    {
+      "id": "recommendation-result",
+      "where": "recommendation-dates",
+      "label": "合格発表",
+      "body": "2027年2月10日（水）10:00頃\n大学サイトに受験番号を掲載。本人への合格通知を郵送し、推薦学校にも文書で通知します。",
+      "origins": [
+        "recommendation-general/schedule/12",
+        "recommendation-region/schedule/13"
+      ]
+    },
+    {
+      "id": "recommendation-enrol",
+      "where": "recommendation-dates",
+      "label": "入学手続",
+      "body": "2027年2月17日（水）17:00必着\n簡易書留・速達、又は持参（平日9:00〜17:00）。米子市西町86番地、学務課（総合教育棟1階）へ提出。",
+      "origins": [
+        "recommendation-general/schedule/13",
+        "recommendation-region/schedule/14"
+      ]
+    },
+    {
+      "id": "recommendation-eligibility",
+      "where": "recommendation-qualification",
+      "label": "両枠に必要な条件",
+      "body": "次のすべてが必要です。\n・学校長等が責任をもって推薦できること\n・2027年度共通テストの指定科目を受験すること\n・合格した場合に入学することを確約できること",
+      "origins": [
+        "recommendation-general/schedule/1",
+        "recommendation-region/schedule/1"
+      ]
+    },
+    {
+      "id": "recommendation-general-qualification",
+      "where": "recommendation-general-qualification",
+      "label": "一般枠の学歴・成績",
+      "body": "次のいずれかの学歴・資格と、医学への関心、人物の優秀さ、学習成績概評Aが必要です。\n・高等学校等を2027年3月卒業見込みの者（2026年4月以降の学年途中の卒業を含む）\n・大学の個別入学資格審査で上記と同等と認められ、2027年3月31日までに18歳となる者",
+      "origins": [
+        "recommendation-general/schedule/2"
+      ]
+    },
+    {
+      "id": "recommendation-region-qualification",
+      "where": "recommendation-region-qualification",
+      "label": "地域枠の学歴・成績",
+      "body": "次のすべてが必要です。\n・鳥取県内の高等学校等を2025年3月又は2026年3月に卒業した者（2024年4月〜2026年3月の学年途中の卒業を含む）、又は2027年3月卒業見込みの者（2026年4月以降の学年途中の卒業を含む）\n・医学への関心を有し、人物・学業ともに優秀であること\n・下記の奨学金受給・卒後勤務条件をすべて確約できること",
+      "origins": [
+        "recommendation-region/schedule/2"
+      ]
+    },
+    {
+      "id": "regional-career",
+      "where": "regional-career",
+      "label": "奨学金受給・卒後勤務の確約",
+      "body": "次のすべてを確約する必要があります。\n・入学後、鳥取県医師養成確保奨学金を必ず受給すること\n・卒業後、鳥取県の地域医療に貢献すること\n・医師免許取得後、直ちに鳥取県内の病院が管理する臨床研修プログラムを受けること\n・臨床研修修了後、原則9年以内に知事が指定する県内病院等で通算4年間勤務すること",
+      "origins": [
+        "recommendation-region/schedule/3"
+      ]
+    },
+    {
+      "id": "regional-waiver",
+      "where": "regional-career",
+      "label": "奨学金の返還免除条件",
+      "body": "出願時の確約に加え、返還免除には次の両方が必要です。\n・卒業年度の翌年度の4月1日から起算して2年以内に医師免許を取得すること\n・県のキャリア形成プログラムに沿って、臨床研修を含む11年以内に知事指定の県内医療機関で通算6年間勤務すること\n指定医療機関・診療科ごとの算入条件を含め、奨学金の詳細を出願前に確認してください。",
+      "origins": [
+        "recommendation-region/note/5"
+      ]
+    },
+    {
+      "id": "recommendation-documents",
+      "where": "recommendation-qualification",
+      "label": "医学科の推薦関係書類",
+      "body": "学校長等が作成して厳封した調査書・推薦書が必要です。地域枠は医学科用の確約書も提出します。自己評価シートは医学科では不要です。その他の共通書類も募集要項に沿って提出してください。",
+      "origins": [
+        "recommendation-general/schedule/7",
+        "recommendation-region/schedule/8"
+      ]
+    },
+    {
+      "id": "recommendation-interview",
+      "where": "recommendation-selection",
+      "label": "個人面接の評価",
+      "body": "社会常識、問題意識、医学を志す動機などから、医師としての資質、思考の柔軟性、発言の論理性を総合評価します。調査書・推薦書は面接の参考資料です。",
+      "origins": [
+        "recommendation-general/exam/9",
+        "recommendation-region/exam/9"
+      ]
+    },
+    {
+      "id": "recommendation-rank",
+      "where": "recommendation-selection",
+      "label": "合否判定・同点時",
+      "body": "各枠で共通テストと面接の総合点が高い順に判定します。同点時は面接の高い者を上位とし、なお同点なら共通テストの数学・理科合計が高い者を上位とします。\n面接で医療人として不適格と判定した場合は、不合格となることがあります。",
+      "origins": [
+        "recommendation-general/exam/11",
+        "recommendation-region/exam/11"
+      ]
+    },
+    {
+      "id": "recommendation-ticket",
+      "where": "recommendation-venue",
+      "label": "受験票",
+      "body": "2026年11月16日（月）からダウンロード可能となる予定です。A4用紙に自分で印刷してください。大学からの郵送はありません。",
+      "origins": [
+        "recommendation-general/schedule/9",
+        "recommendation-region/schedule/10"
+      ]
+    },
+    {
+      "id": "recommendation-venue",
+      "where": "recommendation-venue",
+      "label": "面接会場",
+      "body": "鳥取大学医学部（米子市西町86番地）",
+      "origins": [
+        "recommendation-general/venue/0",
+        "recommendation-region/venue/0"
+      ]
+    },
+    {
+      "id": "recommendation-room",
+      "where": "recommendation-venue",
+      "label": "試験室・受験案内",
+      "body": "試験室の位置等は、試験前日の15:00から試験場入口に掲示されます。建物内の下見は禁止です。試験約1週間前に掲載される大学の受験案内も確認してください。",
+      "origins": [
+        "recommendation-general/venue/1",
+        "recommendation-region/venue/1"
+      ]
+    },
+    {
+      "id": "recommendation-combination",
+      "where": "recommendation-notes",
+      "label": "出願区分・併願",
+      "body": "当年度の卒業見込み者は一般枠・地域枠・両枠から選択できます。過年度卒業者は地域枠のみです。\n両枠へ出願した場合は地域枠を先に選抜し、不合格なら一般枠の対象となります。出願後の区分変更はできません。",
+      "origins": [
+        "recommendation-general/note/0",
+        "recommendation-region/note/0"
+      ]
+    },
+    {
+      "id": "recommendation-limit",
+      "where": "recommendation-notes",
+      "label": "学校ごとの推薦人数",
+      "body": "当年度の卒業見込み者は、一般枠と地域枠を合わせて1校8人以内です。地域枠の過年度卒業者には推薦人数の制限がありません。",
+      "origins": [
+        "recommendation-general/note/1",
+        "recommendation-region/note/1"
+      ]
+    },
+    {
+      "id": "recommendation-vacancy",
+      "where": "recommendation-notes",
+      "label": "欠員の補充",
+      "body": "地域枠の欠員は推薦Ⅱ一般枠へ振り替え、さらに欠員がある場合は一般選抜で充足します。",
+      "origins": [
+        "recommendation-general/note/2",
+        "recommendation-region/note/2"
+      ]
+    },
+    {
+      "id": "recommendation-decline",
+      "where": "recommendation-notes",
+      "label": "入学辞退と他大学の受験",
+      "body": "入学辞退は原則認められません。特別な事情で辞退する場合は、2027年2月17日（水）までに学校長等を通じて所定の辞退願を提出し、大学の許可を受ける必要があります。\n合格者が他の国公立大学を受験しても合格者となることはありません。ただし、独自日程で入試を行う公立大学・学部は例外です。大学が入学辞退を許可した場合は、この制限の対象外となります。",
+      "origins": [
+        "recommendation-general/note/4",
+        "recommendation-region/note/4"
+      ]
+    },
+    {
+      "id": "special-publication",
+      "where": "special",
+      "label": "特別養成枠の募集要項",
+      "body": "2027年度の特別養成枠は、臨時定員増の認可後に募集要項を公開予定です（2026年10月中の予定）。前期のとっとり医療人養成枠とは別の枠です。",
+      "origins": [
+        "recommendation-special/note/0",
+        "coverage/4"
+      ]
+    },
+    {
+      "id": "special-dates",
+      "where": "special",
+      "label": "資格・日程・手続",
+      "body": "出願資格、出願締切、選考日、入学手続期限は未公表です。特別養成枠の正式募集要項の公開後に更新します。",
+      "origins": [
+        "recommendation-special/schedule/1"
+      ]
+    },
+    {
+      "id": "special-exam",
+      "where": "special",
+      "label": "試験科目・配点・合否判定",
+      "body": "未公表です。特別養成枠の正式募集要項の公開後に更新します。",
+      "origins": [
+        "recommendation-special/exam/0"
+      ]
+    },
+    {
+      "id": "special-venue",
+      "where": "special",
+      "label": "試験場・集合場所",
+      "body": "未公表です。特別養成枠の正式募集要項と受験案内の公開後に更新します。",
+      "origins": [
+        "recommendation-special/venue/0"
+      ]
+    },
+    {
+      "id": "foreign-prior",
+      "where": "foreign-dates",
+      "label": "出願資格確認書類",
+      "body": "2026年11月30日（月）までに到着\n全志願者が書類提出前に大学入試課へメールで連絡し、申請書類を提出します。メールだけでは申請が完了しません。\n期限後の到着は、国内郵送なら11月29日（日）以前、海外郵送なら11月27日（金）以前の発信局消印があるものに限り受理します。",
+      "origins": [
+        "private-foreign/schedule/2"
+      ]
+    },
+    {
+      "id": "foreign-prior-result",
+      "where": "foreign-dates",
+      "label": "出願資格確認の結果",
+      "body": "2026年12月21日（月）予定\n本人のメールアドレスへ通知",
+      "origins": [
+        "private-foreign/schedule/3"
+      ]
+    },
+    {
+      "id": "foreign-web",
+      "where": "foreign-dates",
+      "label": "Web出願登録",
+      "body": "2027年1月19日（火）〜2月3日（水）16:00",
+      "origins": [
+        "private-foreign/schedule/4"
+      ]
+    },
+    {
+      "id": "foreign-fee",
+      "where": "foreign-dates",
+      "label": "検定料支払",
+      "body": "17,000円\n登録日を含む4日以内の23:59まで。ただし、2027年2月3日（水）16:00を過ぎると支払えません。",
+      "origins": [
+        "private-foreign/schedule/5"
+      ]
+    },
+    {
+      "id": "foreign-post",
+      "where": "foreign-dates",
+      "label": "出願書類の郵送",
+      "body": "2027年1月25日（月）〜2月3日（水）に到着\n国内は簡易書留・速達、海外は配達状況を確認できるEMS等。\n期限後の到着は、国内郵送なら2月2日（火）以前、海外郵送なら1月31日（日）以前の発信局消印があるものに限り受理します。",
+      "origins": [
+        "private-foreign/schedule/6"
+      ]
+    },
+    {
+      "id": "foreign-hand",
+      "where": "foreign-dates",
+      "label": "出願書類の持参",
+      "body": "出願期間中の平日9:00〜17:00\n米子地区事務部学務課（総合教育棟1階）",
+      "origins": [
+        "private-foreign/schedule/7"
+      ]
+    },
+    {
+      "id": "foreign-exam-date",
+      "where": "foreign-dates",
+      "label": "個別試験日・集合",
+      "body": "2027年2月25日（木）\n9:00までに大学指定の場所へ集合",
+      "origins": [
+        "private-foreign/schedule/9"
+      ]
+    },
+    {
+      "id": "foreign-result",
+      "where": "foreign-dates",
+      "label": "合格発表",
+      "body": "2027年3月8日（月）10:00頃\n大学サイトに受験番号を掲載。合格通知は日本国内の住所に限り郵送します。",
+      "origins": [
+        "private-foreign/schedule/10"
+      ]
+    },
+    {
+      "id": "foreign-enrol",
+      "where": "foreign-dates",
+      "label": "入学手続",
+      "body": "2027年3月15日（月）17:00必着\n簡易書留・速達、又は持参（平日9:00〜17:00）。米子市西町86番地、学務課（総合教育棟1階）へ提出。",
+      "origins": [
+        "private-foreign/schedule/11"
+      ]
+    },
+    {
+      "id": "foreign-qualification",
+      "where": "foreign-qualification",
+      "label": "出願資格",
+      "body": "日本国籍を有さず、次の学歴・資格のいずれかに該当し、医学科が指定する2026年度日本留学試験を受験していることが必要です。\n・外国の学校教育における12年課程の修了者、又は2027年3月31日までに修了見込みの者（これに準ずる者で文部科学大臣の指定を受けた者を含む）\n・国際バカロレア資格を有する者\n・ドイツ各州で大学入学資格と認められるアビトゥア資格を有する者\n・フランスで大学入学資格と認められるバカロレア資格を有する者\n・英国で大学入学資格と認められるGCE Aレベル又は国際Aレベル資格を有する者\n・EU加盟国で大学入学資格と認められるヨーロピアン・バカロレア資格を有する者\n・国際的な評価団体（WASC、CIS、ACSI、NEASC、Cognia、COBIS）の認定を受けた外国の教育施設の12年課程の修了者、又は2027年3月31日までに修了見込みの者\n日本の高等学校・中等教育学校（在外教育施設を含む）の卒業・卒業見込み者、日本の永住許可を得た者は出願できません。入学に支障のない在留資格を有するか、取得見込みであることも必要です。",
+      "origins": [
+        "private-foreign/schedule/1"
+      ]
+    },
+    {
+      "id": "foreign-no-ct",
+      "where": "foreign-selection",
+      "label": "選抜に用いる試験",
+      "body": "大学入学共通テストは課しません。日本留学試験と個別試験の成績で判定します。",
+      "origins": [
+        "private-foreign/exam/0"
+      ]
+    },
+    {
+      "id": "foreign-eju",
+      "where": "foreign-selection",
+      "label": "日本留学試験の指定",
+      "body": "2026年度11月実施分のみを利用します。日本語、数学コース2、理科（物理・化学・生物から2科目）が必要です。出題言語は日本語です。",
+      "origins": [
+        "private-foreign/exam/1",
+        "private-foreign/note/0"
+      ]
+    },
+    {
+      "id": "foreign-science-choice",
+      "where": "foreign-selection",
+      "label": "理科の出願登録",
+      "body": "個別試験の理科は出願時に2科目を選び、出願後は変更できません。",
+      "origins": []
+    },
+    {
+      "id": "foreign-interview",
+      "where": "foreign-selection",
+      "label": "面接の言語",
+      "body": "日本語で行います。",
+      "origins": [
+        "private-foreign/exam/5"
+      ]
+    },
+    {
+      "id": "foreign-scores",
+      "where": "foreign-selection",
+      "label": "科目別配点",
+      "body": "日本留学試験・個別試験の医学科の科目別配点は未公表です。大学の追加案内が公開され次第、更新します。",
+      "origins": [
+        "private-foreign/exam/6"
+      ]
+    },
+    {
+      "id": "foreign-rank",
+      "where": "foreign-selection",
+      "label": "合否判定・同点時",
+      "body": "日本留学試験と個別試験の総合点が高い順に順位付けし、合否を判定します。同点の場合は同順位です。",
+      "origins": [
+        "private-foreign/exam/7"
+      ]
+    },
+    {
+      "id": "foreign-ticket",
+      "where": "foreign-venue",
+      "label": "受験票の印刷・持参",
+      "body": "大学の受験票は2027年2月15日（月）からダウンロード可能となる予定です。A4用紙に自分で印刷してください。大学からの郵送はありません。\n試験当日は、大学の受験票と日本留学試験の受験票の2種類を必ず持参してください。約1週間前に掲載予定の大学の受験案内も確認してください。",
+      "origins": [
+        "private-foreign/schedule/8",
+        "private-foreign/note/1"
+      ]
+    },
+    {
+      "id": "foreign-venue",
+      "where": "foreign-venue",
+      "label": "試験会場",
+      "body": "鳥取大学医学部（米子市西町86番地）",
+      "origins": [
+        "private-foreign/venue/0"
+      ]
+    },
+    {
+      "id": "foreign-room",
+      "where": "foreign-venue",
+      "label": "試験室の確認",
+      "body": "試験室の位置等は、試験前日の15:00から試験場入口に掲示されます。建物内の下見は禁止です。",
+      "origins": [
+        "private-foreign/venue/1"
+      ]
+    },
+    {
+      "id": "coverage",
+      "where": "publication",
+      "label": "掲載範囲",
+      "body": "医学科の1年次入学を対象に、一般前期4枠、推薦Ⅱの一般枠・地域枠、特別養成枠の公開予定、私費外国人留学生選抜を掲載しています。生命科学科・保健学科、編入学は対象に含みません。",
+      "origins": [
+        "coverage/0"
+      ]
+    }
+  ],
+  "foreignTimetable": [
+    [
+      "英語",
+      "9:30〜11:00"
+    ],
+    [
+      "数学",
+      "12:00〜14:00"
+    ],
+    [
+      "理科",
+      "14:50〜17:50"
+    ],
+    [
+      "面接",
+      "18:20〜（予定）"
+    ]
+  ]
+}

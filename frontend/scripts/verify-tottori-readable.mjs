@@ -1,0 +1,27 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {parse} from 'parse5';
+import {pathToFileURL} from 'node:url';
+const read=n=>JSON.parse(fs.readFileSync(new URL(`../src/data/${n}`,import.meta.url),'utf8'));
+const data=read('universityAdmissions/tottori.json'),copy=read('tottoriReaderCopy.json'),overview=read('tottoriUniversityOverview.json');
+export const attr=(n,k)=>n.attrs?.find(a=>a.name===k)?.value;
+export const all=(n,fn,out=[])=>{if(fn(n))out.push(n);for(const c of n.childNodes??[])all(c,fn,out);return out;};
+export const text=n=>n?.nodeName==='#text'?n.value:(n?.childNodes??[]).map(text).join('');
+const clean=s=>s.replace(/\s/gu,'');
+export function verifyTottoriHtml(html){
+ const tree=parse(html),wrappers=all(tree,n=>attr(n,'data-admissions-presentation')==='tottori-readable-v1');assert.equal(wrappers.length,1);const w=wrappers[0];
+ const expected=[];for(const s of data.schemes){for(const [kind,rows]of [['schedule',s.scheduleRows],['exam',s.examRows],['venue',s.venueRows]])for(const [i,row]of rows.entries())expected.push({origin:`${s.id}/${kind}/${i}`,sourceIds:row.sourceIds,status:row.status});for(const [i,note]of s.notes.entries())expected.push({origin:`${s.id}/note/${i}`,sourceIds:note.sourceIds});}data.coverageNotes.forEach((_,i)=>expected.push({origin:`coverage/${i}`}));
+ const observed=all(w,n=>attr(n,'data-admission-provenance')).flatMap(n=>JSON.parse(attr(n,'data-admission-provenance')));assert.equal(observed.length,233);assert.equal(new Set(observed.map(r=>r.origin)).size,233);for(const entry of expected)assert.deepEqual(observed.find(r=>r.origin===entry.origin),entry,entry.origin);
+ for(const item of copy.items){const nodes=all(w,n=>attr(n,'data-tottori-fact')===item.id);assert.equal(nodes.length,1,item.id);for(const line of item.body.split('\n').filter(Boolean))assert.ok(clean(text(nodes[0])).includes(clean(line.replace(/^・/u,''))),`${item.id}: ${line}`);}
+ const tables=all(tree,n=>attr(n,'data-tottori-table'));assert.equal(tables.length,7);for(const t of tables)assert.equal(all(t,n=>n.tagName==='a'&&/^https?:/u.test(attr(n,'href')??'')).length,0);
+ const score=all(w,n=>attr(n,'data-tottori-table')==='scores')[0];let common=0,general=0,recommendation=0;const rows=all(score,n=>n.tagName==='tr').slice(1,9);for(const row of rows){const points=all(row,n=>n.tagName==='td').map(n=>/^\d+点$/u.test(text(n))?Number(text(n).slice(0,-1)):0);common+=points[0];general+=points[1];recommendation+=points[2];}assert.deepEqual([common,general,recommendation],[920,700,100]);assert.ok(clean(text(score)).includes('1,620点1,020点'));
+ const overviewRows=all(all(w,n=>attr(n,'data-tottori-table')==='overview')[0],n=>n.tagName==='tbody')[0];assert.equal(all(overviewRows,n=>n.tagName==='tr').length,8);assert.equal(all(overviewRows,n=>n.tagName==='a').length,8);
+ const conditionStrings=['53人','11人（申請後の予定）','5人（申請後の予定）','7人','15人','6人（申請後の予定）','若干人（全学部・全学科）','入学定員は102人の予定','計16人','兵庫県2人を含む旧計18人','650点以上','75％に満たない','数学Ⅰ・Ⅱ・Ⅲ・A・B：全範囲','平面上の曲線と複素数平面','第1解答科目','3分野から2分野','免除者は、リーディングを200点','リスニング0点','全範囲','2027年2月3日（水）16:00','2027年1月25日（月）〜2月3日（水）17:00必着','2月2日（火）以前の発信局消印','2026年11月1日（日）10:00','登録日を含む4日以内の23:59','11月9日（月）以前の発信局消印','2026年12月7日（月）〜12月14日（月）','2027年2月17日（水）17:00必着','2024年4月〜2026年3月','個別入学資格審査','学習成績概評A','原則9年以内','通算4年間勤務','2年以内に医師免許','臨床研修を含む11年以内','通算6年間勤務','必ず受給','直ちに','1校8人以内','推薦人数の制限がありません','地域枠→養成枠→一般枠','出願後の区分変更はできません','独自日程で入試を行う公立大学・学部','大学が入学辞退を許可した場合','2026年10月中','2026年11月上旬頃','メールだけでは申請が完了しません','11月29日（日）以前','11月27日（金）以前','1月31日（日）以前','2026年度11月実施分のみ','数学コース2','2027年3月31日までに修了見込み','国際バカロレア','アビトゥア','バカロレア','GCE Aレベル又は国際Aレベル','ヨーロピアン・バカロレア','WASC、CIS、ACSI、NEASC、Cognia、COBIS','永住許可を得た者は出願できません','科目別配点は未公表','同点の場合は同順位','日本国内の住所に限り郵送','2種類を必ず持参','試験前日の15:00','建物内の下見は禁止','後期日程の募集を行いません'];for(const s of conditionStrings)assert.ok(clean(text(w)).includes(clean(s)),s);
+ assert.deepEqual(all(all(w,n=>attr(n,'data-tottori-table')==='foreign-timetable')[0],n=>n.tagName==='td').map(text),copy.foreignTimetable.map(r=>r[1]));
+ assert.equal(all(w,n=>n.tagName==='details').length,1);assert.equal(all(w,n=>attr(n,'data-admission-source-id')).length,6);
+ const ids=all(tree,n=>attr(n,'id')!==undefined).map(n=>attr(n,'id'));assert.equal(new Set(ids).size,ids.length);for(const a of all(w,n=>n.tagName==='a'&&(attr(n,'href')??'').startsWith('#')))assert.ok(ids.includes(attr(a,'href').slice(1)),attr(a,'href'));
+ const basics=all(tree,n=>attr(n,'data-tottori-university-overview')!==undefined)[0];assert.ok(basics);for(const s of ['2026年度医学部医学科入学者・105人','2026年5月1日時点。国費留学生を含む。','男性60人57.1％','女性45人42.9％','〒683-8503鳥取県米子市西町86番地','JR米子駅から徒歩約15分'])assert.ok(clean(text(basics)).includes(s),s);assert.equal(overview.entrants.total,105);
+ const visible=text(w);for(const s of ['転用しない','推測していない','確認完了','本表の掲載対象','正式募集要項7ページ','募集要項28ページ','原典の記載を確認した'])assert.ok(!visible.includes(s),s);for(const n of all(w,n=>['td','dd'].includes(n.tagName)))assert.equal(all(n,a=>a.tagName==='a'&&/^https?:/u.test(attr(a,'href')??'')).length,0);
+ return{passed:true,canonicalOrigins:233,readerItems:copy.items.length,tables:7,commonScore:common,generalScore:general,recommendationScore:recommendation,entrants:105,toc:all(tree,n=>/^h[23]$/u.test(n.tagName??'')).length};
+}
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)console.log(JSON.stringify(verifyTottoriHtml(fs.readFileSync(process.argv[2]??'dist/information-tottori/index.html','utf8')),null,2));
