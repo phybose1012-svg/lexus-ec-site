@@ -46,7 +46,9 @@
     "aceKitasato2026Comparison": "https://igakubuyobiko.com/kuriage/",
     "iuhw2026GeneralResultsNotice": "https://narita.iuhw.ac.jp/topics/2026/02/19471.html",
     "aceIuhw2026Comparison": "https://igakubuyobiko.com/bible/?p=7606",
-    "melIuhw2025Analysis": "https://melurix.co.jp/blog/info/medical/kokusaiiryou_ippan2026"
+    "melIuhw2025Analysis": "https://melurix.co.jp/blog/info/medical/kokusaiiryou_ippan2026",
+    "fujita2025OfficialData": "https://www.fujita-hu.ac.jp/admission/dubv6r0000003tb3-att/vsfo8q0000002qla.pdf",
+    "melFujita2025Analysis": "https://melurix.co.jp/blog/info/medical/fujitaika2026"
   },
   "resolved": [
     {
@@ -184,8 +186,23 @@
       "userDecision": "一般選抜ってことで『二次不合格者にも追加合格の連絡あり』で公開する", "decisionDate": "2026-10-10",
       "decision": "ユーザーが方式の不明点を踏まえて一般選抜としての掲載を承認。2026年度一般選抜のセルを指定文言へ変更し、元のC群表示とC群についての補足を置き換える。人数・順位を推定しない。根拠は承認済みの代官山4/2記事とし、4/2は記事時点、個別の連絡日は未確認。大学公式の確定情報とは扱わずevidenceBasisはunconfirmedを維持。2025年度B群と保存用原表・過年度数値は変更しない。"
     },
-    { "id": "iuhw-2025-general", "status": "needs-further-review", "existing": "B群（3/26）", "candidate": "最終C群", "checks": "富士学院はB群。メルリックス2026年1月の一般選抜対策記事にも2025年度はBの途中までとあり、国際医療福祉大学の入試担当者からの情報であると明記されている。一方、代官山記事は最終C群。大学担当者確認を記した間接情報と新記事のC群を比較し、年度・方式の混同の有無を確認する。現時点ではB群を維持し、次の個別確認で判断する。" },
-    { "id": "fujita-2025-early", "status": "needs-further-review", "existing": "14（3/31）", "candidate": "42", "checks": "富士学院3/31の個別報告も14。メルリックスの一般前期も14。地域枠・他方式の値と混同していないか追加確認する。" },
+    {
+      "id": "iuhw-2025-general", "status": "resolved-by-user", "university": "国際医療福祉大学", "year": 2025, "route": "一般選抜",
+      "existing": "B群（3/26）", "candidate": "最終C群",
+      "checks": "富士学院2025速報は3/26の一般選抜B群の個別合格報告。メルリックス2026年1月の一般選抜対策記事は、2025年度はB群の途中までと記し、大学の入試担当者からの情報であると明示。エースアカデミーの2025速報にも3/26〜3/31のB群の個別合格報告があり、同ページのC群の報告は2024年度の見出し以下にあることを確認した。代官山の最終C群には個別の連絡日・方式・元資料が示されず、大学担当者を根拠に記したB群の途中までより優先できる裏付けは取得できない。人数78をB群またはC群の到達証拠へ換算しない。",
+      "question": "2025年度一般選抜は、根拠の具体的なB群を優先し、現在の表記B群を維持してよいか。",
+      "userDecision": "OK", "decisionDate": "2026-10-10",
+      "decision": "ユーザー承認によりB群を維持。公開値・3/26の個別報告日・根拠資料・過年度原表は変更しない。入試担当者を根拠とする記事は間接情報であり、大学公式の公開資料として扱わない。2026年度の二次不合格者への追加合格情報とは分けて記録する。"
+    },
+    {
+      "id": "fujita-2025-early", "status": "awaiting-user-decision", "university": "藤田医科大学", "year": 2025, "route": "一般前期",
+      "existing": "14（3/31）", "candidate": "42",
+      "officialSource": "https://www.fujita-hu.ac.jp/admission/dubv6r0000003tb3-att/vsfo8q0000002qla.pdf",
+      "officialSourceSha256": "32d87b58b2bf6652e33e4656329dfaa45d116751b2a367f83de92a78283cba2d",
+      "checks": "富士学院2025速報は3/31の一般前期・補欠14番の個別合格報告。メルリックス2025速報でも一般前期は3/26に7番、3/27に10番、3/31に14番、愛知県地域枠は3/25に36番、共テ利用は3/17に36番と方式別に記載。代官山は2025年度前期42番と記すが、個別の連絡日・報告者・元資料を示さない。追加検索では2025年度一般前期42番の別の具体的報告は取得できない。大学公式の2025年度結果PDFの全1ページを原本画像で確認。一般前期全体（地域枠を含む）の正規合格251人・最終合格265人、地域枠のみの正規5人・最終41人、共テ利用の正規80人・最終116人を確認したが、到達順位の記載はない。265−251＝14という人数の差分は14番の順位証拠にしない。メルリックス2025年6月の分析記事が記した繰上合格者14名も人数であり、順位42を直接否定する証拠とは扱わない。人数・地域枠・他学部の42という検索結果を一般前期42番の裏付けへ転用しない。",
+      "recommendation": "方式と日付が特定された補欠14番の個別合格報告を優先し、現在の14を維持。最終到達順位と断定せず、42を採用する場合はユーザー判断後に行う。",
+      "question": "藤田医科大学2025年度一般前期は、具体的な合格報告を確認できる14番を維持してよいか。"
+    },
     { "id": "hyogo-2025-a", "status": "needs-further-review", "existing": "80（3/31）", "candidate": "143", "checks": "富士学院は80。143の年度・方式・単位を追加確認する。" },
     { "id": "dokkyo-2024-early", "status": "needs-further-review", "existing": "不明", "candidate": "99", "checks": "メルリックス2024の回数・14人という報告は最終到達99を裏付けない。番号を持たない候補者の存在とも区別する。" },
     { "id": "saitama-2024-ct", "status": "needs-further-review", "existing": "不明", "candidate": "53", "checks": "過去一般前後期43・2と混同せず、2024共テの公式順位を別途確認する。" },
