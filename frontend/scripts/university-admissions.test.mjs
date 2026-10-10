@@ -79,7 +79,9 @@ test('malformed, previous-year, wrong university, unofficial source and broken c
 });
 
 test('rows and notes are escaped, semantic tables keep each scheme/value/source and unknown status explicit',()=>{
-  const data=validateUniversityAdmissions(fixture());
+  const generic=fixture();
+  generic.path='/information-toyama/';generic.university='富山大学';generic.sources[0].url='https://www.u-toyama.ac.jp/test-only-2027-guideline.pdf';
+  const data=validateUniversityAdmissions(generic);
   const html=renderUniversityAdmissions(data);
   assert.ok(!html.includes('<script>'));
   assert.ok(html.includes('&lt;script&gt;'));
@@ -102,14 +104,16 @@ test('rows and notes are escaped, semantic tables keep each scheme/value/source 
 });
 
 test('staging old blocks and main safety blocks are replaced; metadata, TOC, overview and repeat application stay consistent',()=>{
-  const raw=admissionPosts.find(p=>p.path==='/information-yamanashi/');
-  const index=load(fixture());
+  const raw=admissionPosts.find(p=>p.path==='/information-toyama/');
+  const generic=fixture();
+  generic.path=raw.path;generic.university='富山大学';generic.sources[0].url='https://www.u-toyama.ac.jp/test-only-2027-guideline.pdf';
+  const index=createUniversityAdmissionsIndex({'../data/universityAdmissions/toyama.json':generic});
   for(const before of [raw,transformUniversityInfoPost(raw)]){
     const original=JSON.stringify(before);
     const after=applyUniversityAdmissionsFromIndex(before,index);
     assert.equal(JSON.stringify(before),original,'input must not be mutated');
     assert.ok(after.contentHtml.includes('大学基本情報'));
-    assert.ok(after.contentHtml.includes('男性87名'));
+    assert.ok(after.contentHtml.includes(raw.contentHtml.split(/<h2\b[^>]*id="一般選抜情報"/u)[0]));
     assert.ok(!after.contentHtml.includes('data-university-info-safety'));
     assert.equal(find(tree(after.contentHtml),n=>attr(n,'data-university-admissions-overview')!==undefined).length,1);
     assert.ok(!after.contentHtml.includes('2025/3/12'));
