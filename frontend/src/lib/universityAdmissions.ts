@@ -10,6 +10,7 @@ import { renderSagaAdmissionsReadable, renderSagaUniversityOverview, sagaAdmissi
 import { renderAsahikawaikaAdmissionsReadable, renderAsahikawaikaUniversityOverview, asahikawaikaMetadata } from './asahikawaikaAdmissionsReadable.ts';
 import { renderYamaguchiAdmissionsReadable, renderYamaguchiUniversityOverview, yamaguchiAdmissionsMetadata } from './yamaguchiAdmissionsReadable.ts';
 import { renderTottoriAdmissionsReadable, renderTottoriUniversityOverview, tottoriAdmissionsMetadata } from './tottoriAdmissionsReadable.ts';
+import { renderAkitaAdmissionsReadable, renderAkitaUniversityOverview, akitaMetadata } from './akitaAdmissionsReadable.ts';
 
 /** Official, university-specific admission data; independent of legacy safety layers. */
 export type AdmissionRowStatus = "confirmed" | "unpublished" | "needs-confirmation";
@@ -265,6 +266,7 @@ const htmlText = (value: string) => escapeUniversityAdmissionHtml(value).replace
 const plainText = (value: string) => value.replace(/<[^>]*>/g,"").replace(/&nbsp;/g," ").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#39;|&#039;/g,"'").replace(/&amp;/g,"&").replace(/\s+/g," ").trim();
 
 export function universityAdmissionsMetadata(data: UniversityAdmissions) {
+  if (data.path === '/information-akita/') return {...akitaMetadata,modified:new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(data.verifiedAt))};
   if (data.path === '/information-tottori/') return tottoriAdmissionsMetadata(data);
   if (data.path === '/information-yamaguchi/') return yamaguchiAdmissionsMetadata(data);
   if (data.path === '/information-asahikawaika/') return {...asahikawaikaMetadata, modified:data.verifiedAt.slice(0,10)};
@@ -295,6 +297,7 @@ export function universityAdmissionsMetadata(data: UniversityAdmissions) {
 /** Render only canonical validated data; values remain text, never raw HTML. */
 export function renderUniversityAdmissions(input: UniversityAdmissions): string {
   const data = validateUniversityAdmissions(input);
+  if (data.path === '/information-akita/') return renderAkitaAdmissionsReadable(data);
   if (data.path === '/information-tottori/') return renderTottoriAdmissionsReadable(data);
   if (data.path === '/information-yamaguchi/') return renderYamaguchiAdmissionsReadable(data);
   if (data.path === '/information-asahikawaika/') return renderAsahikawaikaAdmissionsReadable(data);
@@ -351,6 +354,12 @@ export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post
     return {...post,...sagaAdmissionsMetadata(data),contentHtml,infoItems,toc};
   }
   const admissionHtml=renderUniversityAdmissions(data);
+  if (data.path === '/information-akita/') {
+    const contentHtml=admissionHtml+renderAkitaUniversityOverview();
+    const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
+    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'入試情報'}:item.label==='地域'?{...item,value:'東北'}:item);
+    return {...post,...universityAdmissionsMetadata(data),contentHtml,toc,infoItems};
+  }
   if (data.path === '/information-asahikawaika/') {
     const contentHtml=admissionHtml+renderAsahikawaikaUniversityOverview();
     const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
