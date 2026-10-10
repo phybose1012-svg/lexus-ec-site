@@ -14,6 +14,20 @@ test('each special selection retains its distinct point scale and timing',()=>{
  const modified=structuredClone(data);modified.schemes[2].examRows[6].value=modified.schemes[2].examRows[6].value.replace('200点','300点');assert.throws(()=>renderUniversityAdmissions(modified),/total differs/u);
  const html=renderUniversityAdmissions(data);for(const term of ['13:20','9:45～11:45','9:00まで','17:00まで','学長が了承'])assert.throws(()=>verifyAsahikawaikaReadable(html.replaceAll(term,'')));
 });
+test('shared quotas and the foreign total map to one condition or total cell without losing exclusions',()=>{
+ const html=renderUniversityAdmissions(data),proof=verifyAsahikawaikaReadable(html);
+ for(const id of ['general-first/exam/0','international-private/exam/0'])assert.equal(proof.mappings.find(m=>m.id===id).action,'merge-shared-quota-condition');
+ assert.equal(proof.mappings.find(m=>m.id==='international-private/exam/6').action,'split-score-condition-and-total-table');
+ assert.doesNotMatch(html,/個別試験等の合計は350点。/u);
+ for(const term of ['48名に含まれます','特別選抜の欠員は前期日程に加算されます','基礎学力の試問を含む','科目別成績が一般選抜受験者の平均を下回る場合','面接評価が著しく低い場合'])assert.throws(()=>verifyAsahikawaikaReadable(html.replaceAll(term,'')));
+ assert.throws(()=>verifyAsahikawaikaReadable(html.replace('data-admission-derived-total data-admission-value>350点','data-admission-derived-total data-admission-value>300点')));
+ const modified=structuredClone(data);modified.schemes[3].examRows[4].value=modified.schemes[3].examRows[4].value.replace('150点','200点');assert.throws(()=>renderUniversityAdmissions(modified),/international total differs/u);
+});
+test('venue guidance addresses readers while preserving publication and ticket conditions',()=>{
+ const html=renderUniversityAdmissions(data);verifyAsahikawaikaReadable(html);
+ assert.doesNotMatch(html,/確認する。|入場する。|持参する。/u);
+ for(const term of ['詳細は募集要項の公開後に更新します','受験票の指定をご確認ください','受験票をご確認ください','徒歩順路で入場してください','A4用紙に片面印刷して持参してください'])assert.ok(html.includes(term));
+});
 test('Asahikawa replaces old body and metadata and is idempotent for production input',()=>{
  const index=new Map([[data.path,data]]),original=raw.find(p=>p.path===data.path),after=applyUniversityAdmissionsFromIndex(original,index);
  const production={...original,categories:['大学別入試情報','国公立医学部','不明'],infoItems:original.infoItems.map(e=>e.label==='地域'?{...e,value:'要確認'}:e.label==='種別'?{...e,value:'大学概要・公式入試情報'}:e)};

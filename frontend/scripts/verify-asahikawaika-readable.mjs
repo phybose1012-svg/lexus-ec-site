@@ -25,7 +25,19 @@ export function verifyAsahikawaikaReadable(html,candidate=data){
    mappings.push({id,value:expected,displayTarget:mergedPublication?'admission-publication / coverage2':'admission-overview / coverage1',action:'merge-duplicate-explanation'});continue;
   }
   assert.ok(nodes.length>=1,`Missing ${id}`);
-  if(nodes.some(n=>attr(n,'data-admission-score-prefix')!==undefined||attr(n,'data-admission-quota-prefix')!==undefined)){
+  if(nodes.some(n=>attr(n,'data-admission-quota-prefix')!==undefined)){
+   const prefix=nodes.find(n=>attr(n,'data-admission-quota-prefix')!==undefined),remainder=nodes.find(n=>attr(n,'data-admission-merged-quota')!==undefined);
+   assert.equal(nodes.length,2);assert.ok(remainder);assert.equal(clean(text(all(prefix,n=>attr(n,'data-admission-value')!==undefined)[0])),clean(expected.split('。')[0]));
+   assert.deepEqual(JSON.parse(attr(remainder,'data-admission-origins')),['general-first/exam/0','international-private/exam/0']);
+   assert.equal(text(all(remainder,n=>attr(n,'data-admission-value')!==undefined)[0]),'私費外国人留学生選抜の募集人員は、一般選抜（前期日程）の48名に含まれます。特別選抜の欠員は前期日程に加算されます。');
+   assert.equal(expected,id==='general-first/exam/0'?'48名。特別選抜の欠員は前期日程に加算。私費外国人留学生選抜の募集人員は前期日程に含む。':'若干名。募集人員は一般前期日程の48名に含む。');
+  }else if(id==='international-private/exam/6'){
+   const prefix=nodes.find(n=>attr(n,'data-admission-score-prefix')!==undefined),remainder=nodes.find(n=>attr(n,'data-admission-score-remainder')!==undefined),total=nodes.find(n=>attr(n,'data-admission-derived-total')!==undefined);
+   assert.equal(nodes.length,3);assert.ok(prefix&&remainder&&total);
+   assert.equal(text(total),'350点');assert.equal(total.parentNode.parentNode.attrs.some(a=>a.name==='class'&&a.value==='admission-score-total'),true);
+   const joined=text(prefix)+'。'+text(all(remainder,n=>attr(n,'data-admission-value')!==undefined)[0]);
+   assert.equal(clean(joined),clean(expected.replace('個別試験等の合計は350点。','')));assert.ok(expected.includes('個別試験等の合計は350点。'));
+  }else if(nodes.some(n=>attr(n,'data-admission-score-prefix')!==undefined)){
    const quota=nodes.some(n=>attr(n,'data-admission-quota-prefix')!==undefined);
    const prefix=nodes.find(n=>attr(n,quota?'data-admission-quota-prefix':'data-admission-score-prefix')!==undefined),remainder=nodes.find(n=>attr(n,quota?'data-admission-quota-remainder':'data-admission-score-remainder')!==undefined);
    assert.equal(nodes.length,remainder?2:1);
@@ -33,7 +45,7 @@ export function verifyAsahikawaikaReadable(html,candidate=data){
    assert.equal(clean(joined),clean(expected),`Score or condition differs ${id}`);
   }else{assert.equal(nodes.length,1,`Repeated ${id}`);assert.equal(clean(text(all(nodes[0],n=>attr(n,'data-admission-value')!==undefined)[0])),clean(expected),`Value differs ${id}`);}
   for(const node of nodes){const ids=JSON.parse(attr(node,'data-admission-source-ids'));for(const sourceId of row.sourceIds)assert.ok(ids.includes(sourceId),`Lost source ${id}/${sourceId}`);if(row.status)assert.equal(attr(node,'data-admission-status'),row.status);}
-  mappings.push({id,value:expected,displayTarget:nodes.map(n=>n.tagName),action:nodes.length===2?'split-score-and-condition':JSON.parse(attr(nodes[0],'data-admission-origins')).length>1?'merge-identical-routes':'retain'});
+  mappings.push({id,value:expected,displayTarget:nodes.map(n=>n.tagName),action:nodes.some(n=>attr(n,'data-admission-merged-quota')!==undefined)?'merge-shared-quota-condition':id==='international-private/exam/6'?'split-score-condition-and-total-table':nodes.length===2?'split-score-and-condition':JSON.parse(attr(nodes[0],'data-admission-origins')).length>1?'merge-identical-routes':'retain'});
  }
  assert.equal(mappings.length,102);
  for(const table of all(tree,n=>n.tagName==='table'))assert.equal(all(table,n=>n.tagName==='a'&&/^https?:/u.test(attr(n,'href')??'')).length,0);
@@ -41,6 +53,9 @@ export function verifyAsahikawaikaReadable(html,candidate=data){
  assert.doesNotMatch(visible,/前年から補完|混ぜていません|本表|転用|照合済み|原典の記載|表の日程は入学年度/u);
  for(const term of ['すべて満たす','両方を満たす','いずれか','2026年11月1日時点で継続3年以上','上川中部','北空知・中空知','13:20','9:45～11:45','9:00まで','120分','試験当日に選択','中央値以上','5月','学長が了承','17:00必着','免除・徴収猶予','最下位同点者は全員合格','1週間前','試験5日前','2025年度の成績','各得点率が80％以上'])assert.ok(visible.includes(term),`Lost critical condition: ${term}`);
  assert.equal([...visible.matchAll(/共通テストの数学Ⅱ・B・Cでは/gu)].length,2,'General and shared special rules each occur once');
+ assert.equal(all(wrapper,n=>attr(n,'data-admission-merged-quota')!==undefined).length,1);
+ assert.equal([...visible.matchAll(/特別選抜の欠員は前期日程に加算/gu)].length,1);
+ assert.doesNotMatch(visible,/個別試験等の合計は350点|正式募集要項と受験票の指定を確認する|正式募集要項と受験票を確認する|持参する。|入場する。/u);
  for(const [i,value]of candidate.coverageNotes.entries()){
   const matches=all(wrapper,n=>attr(n,'data-admission-coverage-note')===String(i));assert.equal(matches.length,1);
   if(i!==0)assert.equal(clean(text(matches[0])),clean(value));else for(const s of candidate.schemes)assert.ok(text(matches[0]).includes(s.id==='general-first'?'一般選抜':s.id==='comprehensive-hokkaido'?'総合型':s.id==='recommendation-north-east'?'学校推薦型':'私費外国人留学生'));
