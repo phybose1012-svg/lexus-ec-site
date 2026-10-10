@@ -10,6 +10,11 @@ test('distinct common and individual scores cannot be silently changed',()=>{
  for(const [route,row] of [[0,4],[1,6],[2,5],[3,11],[5,12]]){const modified=structuredClone(data);modified.schemes[route].examRows[row].value=modified.schemes[route].examRows[row].value.replace(/^\d+点/u,'999点');assert.throws(()=>renderUniversityAdmissions(modified));}
  const html=renderUniversityAdmissions(data);assert.throws(()=>verifyAkitaReadable(html.replaceAll('各75点','各50点')));
 });
+test('every varying condition identifies its route in visible text while shared recommendation conditions appear once',()=>{
+ const html=renderUniversityAdmissions(data);verifyAkitaReadable(html);
+ for(const label of ['後期（一般枠）：数学の換算','前期・後期（秋田県地域枠）・推薦3枠：数学の換算','前期・後期（一般枠）：理科の換算','後期（秋田県地域枠）・推薦3枠：理科の換算','前期：第1段階選抜','後期（一般枠・秋田県地域枠）：第1段階選抜','面接の詳細（一般選抜：前期・後期）','小論文の評価（推薦3枠共通）','同意書（東北・秋田県地域枠）'])assert.throws(()=>verifyAkitaReadable(html.replace(label,'対象方式なし')));
+ for(const term of ['確定後に更新します。','確定後の大学の公表を受けて更新します。','地域医療への貢献意欲等も勘案する。'])assert.throws(()=>verifyAkitaReadable(html.replaceAll(term,'')));
+});
 test('all original main metadata is replaced from actual canonical scope',()=>{
  const original=raw.find(p=>p.path===data.path),index=new Map([[data.path,data]]),after=applyUniversityAdmissionsFromIndex(original,index);
  const stale={...original,title:'旧情報',displayTitle:'旧情報',categories:['不明'],infoItems:original.infoItems.map(e=>['地域','種別','年度'].includes(e.label)?{...e,value:'要確認'}:e),contentHtml:'<h2>旧情報</h2>'};assert.deepEqual(applyUniversityAdmissionsFromIndex(stale,index),after);assert.deepEqual(applyUniversityAdmissionsFromIndex(after,index),after);

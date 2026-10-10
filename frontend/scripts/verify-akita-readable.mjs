@@ -8,13 +8,14 @@ const text=n=>n.nodeName==='#text'?n.value:(n.childNodes??[]).map(text).join('')
 const clean=s=>s.replace(/\s/gu,'');
 const v=n=>text(all(n,c=>attr(c,'data-admission-value')!==undefined)[0]??n);
 export function verifyAkitaReadable(html,candidate=data){
- const tree=parse(html),wrappers=all(tree,n=>attr(n,'data-admissions-presentation')==='akita-readable-v1');assert.equal(wrappers.length,1);
+ const tree=parse(html),wrappers=all(tree,n=>attr(n,'data-admissions-presentation')==='akita-readable-v2');assert.equal(wrappers.length,1);
  const wrapper=wrappers[0],rendered=all(wrapper,n=>attr(n,'data-admission-origins')!==undefined),mappings=[];
  const knownIds=new Set(candidate.schemes.flatMap(s=>[['schedule',s.scheduleRows],['exam',s.examRows],['venue',s.venueRows],['note',s.notes??[]]].flatMap(([kind,rows])=>rows.map((_,i)=>`${s.id}/${kind}/${i}`))));
  for(const node of rendered)for(const id of JSON.parse(attr(node,'data-admission-origins')))assert.ok(knownIds.has(id),`Unknown origin ${id}`);
  for(const scheme of candidate.schemes)for(const [kind,key]of [['schedule','scheduleRows'],['exam','examRows'],['venue','venueRows'],['note','notes']])for(const [index,row]of (scheme[key]??[]).entries()){
   const id=`${scheme.id}/${kind}/${index}`,rawExpected=row.value??row.text;
-  const expected=kind==='exam'&&row.label==='総点・合否判定'?rawExpected.replace('共通テスト500点＋小論文100点＋面接150点＝750点。','750点。'):rawExpected;
+  let expected=kind==='exam'&&row.label==='総点・合否判定'?rawExpected.replace('共通テスト500点＋小論文100点＋面接150点＝750点。','750点。'):rawExpected;
+  if(['general-late/exam/12','general-late-akita/exam/12'].includes(id))expected=expected.replace('未確定・要確認。','未確定です。確定後に更新します。');
   const nodes=rendered.filter(n=>JSON.parse(attr(n,'data-admission-origins')).includes(id));assert.ok(nodes.length>=1,`Missing ${id}`);
   if(id==='international-private/exam/3'){
    assert.equal(nodes.length,1);assert.ok(attr(nodes[0],'data-admission-eju-thresholds')!==undefined);
@@ -25,18 +26,25 @@ export function verifyAkitaReadable(html,candidate=data){
    const p=nodes.find(n=>attr(n,'data-admission-quota-prefix')!==undefined),r=nodes.find(n=>attr(n,'data-admission-merged-quota')!==undefined||attr(n,'data-admission-quota-remainder')!==undefined);
    assert.equal(nodes.length,2);assert.ok(r);assert.equal(clean(v(p)),clean(expected.split('。')[0]));
    if(attr(r,'data-admission-merged-quota')!==undefined){assert.equal(v(r),'私費外国人留学生入試の若干名は、前期45名に含まれます。');assert.deepEqual(JSON.parse(attr(r,'data-admission-origins')),['general-early/exam/0','international-private/exam/0']);assert.equal(expected,id==='general-early/exam/0'?'45名。私費外国人留学生入試の若干名を含む。':'若干名。医学科の前期日程45名に含む。');}
-   else assert.equal(clean(v(p)+'。'+v(r)),clean(expected));
+   else {assert.equal(expected.split('。').slice(1).join('。'),'募集人員は未確定・要確認（確定後に大学が公表）。');assert.equal(attr(r,'data-admission-coverage-note'),'1');assert.equal(v(r),candidate.coverageNotes[1]);assert.equal(v(r),'秋田県地域枠の募集人数と医学科の入学定員124人は申請予定で、未確定です。確定後の大学の公表を受けて更新します。');}
   }else if(nodes.some(n=>attr(n,'data-admission-score-prefix')!==undefined)){
-   const p=nodes.find(n=>attr(n,'data-admission-score-prefix')!==undefined),r=nodes.find(n=>attr(n,'data-admission-score-remainder')!==undefined);
-   assert.equal(nodes.length,r?2:1,`Repeated score ${id}`);assert.equal(clean(v(p)+'。'+(r?v(r):'')),clean(expected),`Score or condition differs ${id}`);
+   const p=nodes.find(n=>attr(n,'data-admission-score-prefix')!==undefined),r=nodes.find(n=>attr(n,'data-admission-score-remainder')!==undefined),parts=nodes.filter(n=>attr(n,'data-admission-score-condition-part')!==undefined).sort((a,b)=>Number(attr(a,'data-admission-score-condition-part'))-Number(attr(b,'data-admission-score-condition-part')));
+   assert.ok(!r||!parts.length);assert.equal(nodes.length,1+(r?1:parts.length),`Repeated score ${id}`);assert.equal(new Set(parts.map(n=>attr(n,'data-admission-score-condition-part'))).size,parts.length);assert.equal(clean(v(p)+'。'+(r?v(r):parts.map(v).join(''))),clean(expected),`Score or condition differs ${id}`);
+  }else if(nodes.some(n=>attr(n,'data-admission-value-part')!==undefined)){
+   const parts=nodes.toSorted((a,b)=>Number(attr(a,'data-admission-value-part'))-Number(attr(b,'data-admission-value-part')));assert.equal(new Set(parts.map(n=>attr(n,'data-admission-value-part'))).size,parts.length);assert.equal(clean(parts.map(v).join('')),clean(expected),`Shared condition differs ${id}`);
   }else{assert.equal(nodes.length,1,`Repeated ${id}`);assert.equal(clean(v(nodes[0])),clean(expected),`Value differs ${id}`);}
   for(const node of nodes){const ids=JSON.parse(attr(node,'data-admission-source-ids'));for(const sourceId of row.sourceIds)assert.ok(ids.includes(sourceId),`Lost source ${id}/${sourceId}`);if(row.status)assert.equal(attr(node,'data-admission-status'),row.status);}
-  mappings.push({id,value:rawExpected,displayTarget:nodes.map(n=>n.tagName),action:nodes.some(n=>attr(n,'data-admission-merged-quota')!==undefined)?'merge-shared-quota':nodes.length===2?'split-numeric-value-and-condition':JSON.parse(attr(nodes[0],'data-admission-origins')).length>1?'merge-identical-facts':'retain'});
+  mappings.push({id,value:rawExpected,displayTarget:nodes.map(n=>n.tagName),visibleLabels:nodes.flatMap(n=>all(n,c=>c.tagName==='dt').map(text)),action:nodes.some(n=>attr(n,'data-admission-merged-quota')!==undefined)?'merge-shared-quota':nodes.length>1?'split-common-condition-and-route-delta':JSON.parse(attr(nodes[0],'data-admission-origins')).length>1?'merge-identical-facts':'retain'});
  }
  assert.equal(mappings.length,189);
  for(const table of all(tree,n=>n.tagName==='table')){assert.equal(all(table,n=>n.tagName==='a'&&/^https?:/u.test(attr(n,'href')??'')).length,0);assert.doesNotMatch(text(table),/資料\d|PDF\s*pp|原典/u);}
  const details=all(wrapper,n=>n.tagName==='details'),visible=text(wrapper).replace(text(details[0]),'');
- assert.doesNotMatch(visible,/転用して|推測して|確定値として扱|補完して|原典の記載|記載なし|照合済|本表の掲載対象/u);
+ assert.doesNotMatch(visible,/要確認|転用して|推測して|確定値として扱|補完して|原典の記載|記載なし|照合済|本表の掲載対象/u);
+ const definition=label=>{const nodes=all(wrapper,n=>n.tagName==='dt'&&text(n)===label);assert.equal(nodes.length,1,`Missing visible route scope: ${label}`);return nodes[0].parentNode;};
+ for(const [label,value]of [['後期（一般枠）：数学の換算','各75点。'],['前期・後期（秋田県地域枠）・推薦3枠：数学の換算','各50点。'],['前期・後期（一般枠）：理科の換算','各100点。'],['後期（秋田県地域枠）・推薦3枠：理科の換算','各50点。']])assert.equal(v(definition(label)),value);
+ const earlyStage=definition('前期：第1段階選抜'),lateStage=definition('後期（一般枠・秋田県地域枠）：第1段階選抜');assert.match(v(earlyStage),/45名の5倍を超えた.*6教科8科目の素点計.*行うことがある/u);assert.match(v(lateStage),/それぞれの募集人員の10倍を超えた.*6教科8科目の素点計.*行うことがある.*未確定/u);
+ for(const label of ['理科（前期の個別試験）','小論文の詳細（後期：一般枠・秋田県地域枠）','面接の詳細（一般選抜：前期・後期）','小論文の評価（推薦3枠共通）','提出書類（推薦3枠共通）','同意書（東北・秋田県地域枠）','面接による不合格条件（推薦3枠共通）','地域医療への貢献意欲（東北・秋田県地域枠）'])definition(label);
+ assert.equal([...visible.matchAll(/入学志願票・調査書・推薦書・志願理由書等。/gu)].length,1);assert.equal([...visible.matchAll(/面接評価が「不可」の場合は総合点にかかわらず不合格。/gu)].length,1);
  for(const term of ['13:00','17:00必着','12月14日（月）以前の発信局消印','12月16日（水）17:00到着','速達簡易書留','第1解答科目','各75点','リーディング100点満点の素点を200点満点','5倍を超えた','10倍を超えた','素点計','面接評価が「不可」','2026年3月以降','青森・岩手・宮城・山形・福島','4.3以上','自筆記名','いずれか','すべてが必要','両方の基準','数学コース2','90％以上','80％以上','記述得点','1年6か月','猶予期間','医学部長','知事が同意','同意を得ず','6年間','9年間','4年間（臨床研修期間を除く）','少なくとも5年間','入学手続最終日','学長が許可','国立大学入学確認票','11月下旬公表予定','未公表','2028年度','2026年度以前'])assert.ok(visible.includes(term),`Lost critical condition: ${term}`);
  assert.equal([...visible.matchAll(/リーディング100点満点の素点を200点満点/gu)].length,1);
  assert.equal(all(wrapper,n=>attr(n,'data-admission-merged-quota')!==undefined).length,1);
