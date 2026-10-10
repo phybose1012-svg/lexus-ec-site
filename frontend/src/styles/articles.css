@@ -563,6 +563,25 @@
   font-weight: 900;
 }
 
+/* Current Tsukuba campus information and medical-program entrant statistics. */
+.article-content .tsukuba-university-overview { min-width: 0; display: grid; gap: 14px; }
+.article-content .tsukuba-university-overview h3 { margin-top: 12px; scroll-margin-top: 120px; }
+.article-content .tsukuba-university-overview small { display: block; color: #756e64; font-size: 12px; }
+.article-content .tsukuba-overview-statistics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 10px; }
+.article-content .tsukuba-overview-statistics section { min-width: 0; }
+.article-content .tsukuba-overview-statistics table { display: table; table-layout: fixed; max-width: 100%; white-space: normal; }
+.article-content .tsukuba-overview-statistics caption { padding-block: 12px; text-align: left; color: #756e64; font-size: 12px; }
+.article-content .tsukuba-overview-statistics :is(th, td) { min-width: 0; padding: 10px 12px; }
+.article-content .tsukuba-overview-statistics :is(th, td):first-child { text-align: left; }
+.article-content .tsukuba-overview-statistics :is(th, td):nth-child(n+2) { text-align: right; font-variant-numeric: tabular-nums; }
+.article-content .tsukuba-overview-sources { margin-top: 10px; border-top: 1px solid #e8e1d7; padding-top: 12px; color: #756e64; font-size: 12px; }
+.article-content .tsukuba-overview-sources summary { cursor: pointer; }
+.article-content .tsukuba-overview-sources ul { margin-top: 12px; }
+.article-content .tsukuba-overview-sources a { color: #756e64; font-weight: 400; }
+@media (max-width: 720px) {
+  .article-content .tsukuba-overview-statistics { grid-template-columns: 1fr; gap: 20px; }
+}
+
 /* university-admissions-layout:start */
 /* Nested admissions sections must shrink inside the article's grid. */
 .article-content [data-university-admissions-year],

@@ -46,6 +46,22 @@ test('admissions precede the university overview, key points summarize the entra
     '一般枠の配点は共通テスト950点＋個別試験1,400点＝計2,350点。個別試験には筆記の適性試験と面接を含みます。',
     '推薦入試（一般）は44人募集、試験日は2026年11月26日・27日。共通テストは課しません。',
   ]);
+  const overview = all(parse(first.contentHtml), n => attr(n, 'data-tsukuba-university-overview') !== undefined);
+  assert.equal(overview.length, 1);
+  const tables = all(overview[0], n => n.tagName === 'table');
+  assert.deepEqual(tables.map(t => all(t, n => n.tagName === 'caption').map(text)), [
+    ['2026年度 医学類入学者（129人）'], ['2026年度 医学類入学者（129人）'],
+  ]);
+  assert.deepEqual(tables.map(t => all(t, n => n.tagName === 'tr' && n.parentNode?.tagName === 'tbody').map(r => r.childNodes.filter(n => n.tagName).map(text))), [
+    [['男性', '77人', '59.7%'], ['女性', '52人', '40.3%']],
+    [['現役', '105人', '81.4%'], ['既卒', '24人', '18.6%']],
+  ]);
+  assert.equal(all(overview[0], n => n.tagName === 'a').length, 3);
+  for (const t of tables) assert.equal(all(t, n => n.tagName === 'a').length, 0);
+  assert.ok(text(overview[0]).includes('305-8575') && text(overview[0]).includes('筑波大学病院東'));
+  assert.ok(!first.contentHtml.includes('2024年度総合格者'));
+  assert.ok(!first.contentHtml.includes('data-university-admissions-overview'));
+  assert.equal(first.modified, '2026-10-10');
   assert.deepEqual(second, first);
 });
 
