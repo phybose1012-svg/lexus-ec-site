@@ -330,6 +330,7 @@ test('table values are numeric, retaining approximate ranges/groups and keeping 
       if (record.metric === 'count') assert.match(value, /^\d+$/);
       else if (['rank', 'rank-case'].includes(record.metric)) assert.match(value, /^\d+(?:台(?:前半|後半)?|前後)?$/);
       else if (record.metric === 'group-case') assert.match(value, /^[A-D](?:群|ランク)$/);
+      else if (record.metric === 'additional-offer') assert.equal(value, record.result);
       else assert.equal(value, '不明');
       assert.ok(waitlistValueMeaning(record));
     }
@@ -339,6 +340,31 @@ test('table values are numeric, retaining approximate ranges/groups and keeping 
   assert.equal(waitlistTableValue(school('岩手医科大学').records[0]), '82');
   assert.equal(waitlistTableValue(waitlist2025Schools.find((entry) => entry.name === '岩手医科大学').records[0]), '17');
   assert.equal(waitlistTableValue(school('産業医科大学').records[1]), '0');
+});
+
+test('IUHW 2026 general publishes the user-approved additional-offer status without inventing a rank or count', () => {
+  const iuhw = school('国際医療福祉大学');
+  const record = iuhw.records.find((entry) => entry.route === '一般選抜');
+  const approvedText = '二次不合格者にも追加合格の連絡あり';
+  assert.equal(record.metric, 'additional-offer');
+  assert.equal(record.result, approvedText);
+  assert.equal(record.asOf, '2026-04-02', 'the article snapshot is not the former C-group contact date');
+  assert.equal(record.evidenceBasis, 'unconfirmed', 'editorial approval does not turn a secondary report into official confirmation');
+  assert.equal(new URL(record.source.url).hostname, 'daikanyamamedical.com');
+  assert.equal(waitlistTableValue(record), approvedText);
+  assert.equal(waitlistValueMeaning(record), '追加合格の連絡状況。');
+  const published = publicWaitlistSchool(iuhw).records[0];
+  assert.equal(published.route, '一般選抜');
+  assert.equal(published.result, approvedText);
+  assert.equal(published.displayValue, approvedText);
+  assert.equal(published.informationType, '合格報告（報告者未確認）');
+  const table = waitlistTableSchools.find((entry) => entry.id === 'school-11');
+  assert.deepEqual(table.columns, ['一般選抜']);
+  assert.equal(table.rows.find((row) => row.year === '2026').cells[0].displayValue, approvedText);
+  assert.equal(table.rows.find((row) => row.year === '2025').cells[0].displayValue, 'B群');
+  assert.ok(table.rows.filter((row) => row.legacy).every((row) => !row.cells.some((cell) => cell.displayValue === approvedText)));
+  assert.ok(!table.annotations.some(({ records }) => records.includes(record)), 'the status belongs in the general-admission cell, not a duplicate note');
+  assert.doesNotMatch(iuhw.note, /C群|全員|方式未確認/);
 });
 
 test('Kansai 2026 general early preserves the user-approved approximate rank', () => {

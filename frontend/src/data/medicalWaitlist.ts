@@ -2,7 +2,7 @@
 export const waitlistCheckedAt = "2026-10-10";
 export const waitlistAdmissionYear = 2026;
 export type EvidenceKind = "official" | "prep";
-export type Metric = "count" | "rank" | "rank-case" | "group-case" | "report" | "notice" | "unknown";
+export type Metric = "count" | "rank" | "rank-case" | "group-case" | "additional-offer" | "report" | "notice" | "unknown";
 export type Evidence = { title: string; url: string; kind: EvidenceKind };
 export type WaitlistRecord = {
   route: string; metric: Metric; result: string; asOf: string | null;
@@ -82,8 +82,8 @@ export const waitlistSchools: WaitlistSchool[] = [
     record("一般選抜・医学部", "count", "補欠から入学許可47人", "2026-03-31", official("慶應義塾大学・2026年度一般選抜統計総括", "https://www.keio.ac.jp/files/32d7248026715b4d0ee6aa84b49c136bd32cd6fe3e25c6cc126df449e852b3a1")),
   ], note: "3月31日に入学許可を打ち切り。47人は順位ではなく、入学を許可された補欠者の人数です。" },
   { id: "school-11", name: "国際医療福祉大学", records: [
-    example("一般選抜", "合格例：補欠C群", "2026-03-27", "group-case"),
-  ], note: "C群全員や、大学全体の補欠者全員の合格を示す報告ではありません。" },
+    { ...record("一般選抜", "additional-offer", "二次不合格者にも追加合格の連絡あり", "2026-04-02", daikanyama, "4月2日時点の記事に掲載された報告です。"), evidenceBasis: "unconfirmed" },
+  ], note: "追加合格の人数・個別の連絡日は未確認です。" },
   { id: "school-12", name: "埼玉医科大学", records: [
     record("一般前期", "rank", "繰上順位104位", null, saitama),
     record("一般後期", "rank", "繰上順位8位", null, saitama),
@@ -174,7 +174,7 @@ const alphabeticalIds = ["school-1", "school-2", "school-3", "school-4", "school
 export const alphabeticalWaitlistSchools = alphabeticalIds.map((id) => waitlistSchools.find((school) => school.id === id)!);
 export const waitlistMetricLabels: Record<Metric, string> = {
   count: "人数", rank: "到達順位", "rank-case": "個別の合格報告", "group-case": "個別の合格報告",
-  report: "合格報告", notice: "公式のお知らせ", unknown: "数値未確認",
+  "additional-offer": "追加合格の連絡", report: "合格報告", notice: "公式のお知らせ", unknown: "数値未確認",
 };
 export const waitlistSourceLabels: Record<EvidenceKind, string> = { official: "大学公式", prep: "予備校情報" };
 export const waitlistFaqs = [

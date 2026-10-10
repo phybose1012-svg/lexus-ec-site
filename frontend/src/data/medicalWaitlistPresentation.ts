@@ -3,6 +3,8 @@ import type { WaitlistRecord } from "./medicalWaitlist.ts";
 // Table cells follow the historical table: values only, with meanings below it.
 // Keep ranges/groups; an approximate rank must never become an exact number.
 export function waitlistTableValue(record: WaitlistRecord): string {
+  // Additional-offer status is text, not a made-up rank or headcount.
+  if (record.metric === "additional-offer") return record.result;
   if (record.metric === "count") {
     const match = record.result.match(/(\d+)人/);
     if (!match) throw new Error(`Waitlist count has no numeric value: ${record.result}`);
@@ -22,6 +24,7 @@ export function waitlistTableValue(record: WaitlistRecord): string {
 }
 
 export function waitlistValueMeaning(record: WaitlistRecord): string {
+  if (record.metric === "additional-offer") return "追加合格の連絡状況。";
   if (record.metric === "rank-case") return "繰り上がった順位（報告分）。";
   if (record.metric === "group-case") return "繰り上がった補欠ランク（報告分）。";
   if (record.metric === "rank") return "繰り上がった順位。";

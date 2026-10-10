@@ -50,6 +50,7 @@ const columnLabels: Record<string, string[]> = {
   "school-1": ["第1補欠（一般）", "繰上げ（一般）", "繰上げ（共テ）", "繰上げ（共テ地域枠）"],
   "school-2": ["一般", "地域枠C", "地域枠D"], "school-5": ["一般前期"],
   "school-6": ["一般選抜"], "school-10": ["一般選抜"],
+  "school-11": ["一般選抜"],
   "school-13": ["一般選抜"], "school-15": ["一般前期"],
   "school-18": ["一般選抜"], "school-19": ["一般選抜"],
   "school-20": ["一般選抜"], "school-21": ["一般前期"], "school-24": ["一般A"],

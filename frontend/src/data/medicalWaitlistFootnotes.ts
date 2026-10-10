@@ -60,7 +60,8 @@ export function waitlistFootnotes(school: SchoolTable): WaitlistFootnote[] {
     }
     return [];
   }));
-  const notes: WaitlistFootnote[] = [{ label: "数値", text: scopedNotes(entries, school.columns).join(" ") || "未確認。" }];
+  const numericEntries = entries.filter((entry) => entry.record?.metric !== "additional-offer");
+  const notes: WaitlistFootnote[] = [{ label: "数値", text: scopedNotes(numericEntries, school.columns).join(" ") || "未確認。" }];
 
   const current = entries.filter((entry) => entry.record);
   const information = current.map((entry) => ({ ...entry, meaning: publicWaitlistInformation(entry.record!) + "。" }));
