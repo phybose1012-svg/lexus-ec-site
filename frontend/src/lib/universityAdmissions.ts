@@ -1,6 +1,7 @@
 import { renderTsukubaAdmissionsReadable } from './tsukubaAdmissionsReadable.ts';
 import { renderTokushimaAdmissionsReadable, renderTokushimaUniversityOverview, tokushimaMetadata } from './tokushimaAdmissionsReadable.ts';
 import { renderShimaneAdmissionsReadable, renderShimaneUniversityOverview, shimaneMetadata } from './shimaneAdmissionsReadable.ts';
+import { renderYamagataAdmissionsReadable, renderYamagataUniversityOverview, yamagataMetadata } from './yamagataAdmissionsReadable.ts';
 import { renderTsukubaUniversityOverview, tsukubaOverviewVerifiedAt } from './tsukubaUniversityOverview.ts';
 import { renderTsukubaComprehensiveSelection, tsukubaComprehensiveTitle } from './tsukubaComprehensiveSelection.ts';
 import { hirosakiAdmissionsMetadata, renderHirosakiAdmissionsReadable, renderHirosakiRegionalConditions, renderHirosakiUniversityOverview } from './hirosakiAdmissionsReadable.ts';
@@ -266,6 +267,7 @@ export function universityAdmissionsMetadata(data: UniversityAdmissions) {
   if (data.path === '/information-yamaguchi/') return yamaguchiAdmissionsMetadata(data);
   if (data.path === '/information-asahikawaika/') return {...asahikawaikaMetadata, modified:data.verifiedAt.slice(0,10)};
   if (data.path === '/information-shimane/') return shimaneMetadata;
+  if (data.path === '/information-yamagata/') return yamagataMetadata;
   if (data.path === '/information-tokushima/') return tokushimaMetadata;
   if (data.path === '/information-hirosaki/') return hirosakiAdmissionsMetadata();
   if (data.path === '/information-yamanashi/') return {...yamanashiMetadata, modified:data.verifiedAt.slice(0,10)};
@@ -297,6 +299,7 @@ export function renderUniversityAdmissions(input: UniversityAdmissions): string 
   if (data.path === '/information-tsukuba/') return renderTsukubaAdmissionsReadable(data);
   if (data.path === '/information-tokushima/') return renderTokushimaAdmissionsReadable(data);
   if (data.path === '/information-shimane/') return renderShimaneAdmissionsReadable(data);
+  if (data.path === '/information-yamagata/') return renderYamagataAdmissionsReadable(data);
   if (data.path === '/information-hirosaki/') return renderHirosakiAdmissionsReadable(data);
   if (data.path === '/information-yamanashi/') return renderYamanashiAdmissionsReadable(data);
   const sources = new Map(data.sources.map((source,index)=>[source.id,{source,index}]));
@@ -350,6 +353,12 @@ export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post
     const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
     const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'医学部入試情報'}:item.label==='地域'?{...item,value:'中国'}:item);
     return {...post,...shimaneMetadata,contentHtml,infoItems,toc};
+  }
+  if (data.path === '/information-yamagata/') {
+    const contentHtml=admissionHtml+renderYamagataUniversityOverview();
+    const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
+    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'医学部入試情報'}:item.label==='地域'?{...item,value:'東北'}:item);
+    return {...post,...yamagataMetadata,contentHtml,infoItems,toc};
   }
   if (data.path === '/information-tokushima/') {
     const contentHtml=admissionHtml+renderTokushimaUniversityOverview();
