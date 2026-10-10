@@ -1,0 +1,909 @@
+{
+  "path": "/information-hokkaido/",
+  "university": "北海道大学",
+  "admissionYear": 2027,
+  "verifiedAt": "2026-10-09T23:57:46.993Z",
+  "sources": [
+    {
+      "id": "selection-2027",
+      "url": "https://www.hokudai.ac.jp/admission/R09_admission.pdf",
+      "title": "令和9（2027）年度 北海道大学入学者選抜要項",
+      "retrievedAt": "2026-10-09T23:45:31.340Z",
+      "sha256": "195ff043fed7b3389ffdb261ee0c31755be90502f09d12ef5654363d366db987",
+      "pages": [
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        17,
+        22,
+        23,
+        24,
+        91
+      ]
+    },
+    {
+      "id": "frontier-2027",
+      "url": "https://www.hokudai.ac.jp/admission/AO_admissionR09.pdf",
+      "title": "令和9（2027）年度 北海道大学フロンティア入試（総合型選抜）学生募集要項",
+      "retrievedAt": "2026-10-09T23:45:31.358Z",
+      "sha256": "90ad399aadd116388d99360371d52d3302d9a3518dc6344ebfba3b3d34d0a118",
+      "pages": [
+        6,
+        10,
+        11,
+        12,
+        49,
+        50,
+        57,
+        58,
+        59,
+        60
+      ]
+    },
+    {
+      "id": "returnee-2027",
+      "url": "https://www.hokudai.ac.jp/admission/kikoku_admissionR09.pdf",
+      "title": "令和9（2027）年度 北海道大学帰国生徒選抜学生募集要項",
+      "retrievedAt": "2026-10-09T23:45:31.122Z",
+      "sha256": "8ea894e06a417673a857391be0e83e6d1bd6b018f7b1bc4660125ec4f6512999",
+      "pages": [
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        18,
+        20,
+        21,
+        22
+      ]
+    },
+    {
+      "id": "foreign-2027",
+      "url": "https://www.hokudai.ac.jp/admission/shihi_admissionR09.pdf",
+      "title": "令和9（2027）年度 北海道大学私費外国人留学生（学部）入試学生募集要項",
+      "retrievedAt": "2026-10-09T23:45:31.329Z",
+      "sha256": "86ae723124da5cb3bf1ff1bb34b7a8bbd31fc819f02b957b88a11c3a2bfc4179",
+      "pages": [
+        4,
+        7,
+        8,
+        9,
+        10,
+        18,
+        21,
+        22,
+        23,
+        24
+      ]
+    },
+    {
+      "id": "general-application-index",
+      "url": "https://www.hokudai.ac.jp/admission/faculty/general/application/index.html",
+      "title": "北海道大学 学生募集要項・インターネット出願登録",
+      "retrievedAt": "2026-10-09T23:45:31.087Z",
+      "sha256": "d7e16489e901b2b8b4bed477b38185f57fc917a465b7ceafc382016dc58cd30d",
+      "pages": "掲載年度"
+    },
+    {
+      "id": "general-changes-2027",
+      "url": "https://www.hokudai.ac.jp/admission/R9_ippan_henkou.pdf",
+      "title": "令和9（2027）年度 入学者選抜（一般選抜）における実施教科・科目の変更について",
+      "retrievedAt": "2026-10-09T23:46:43.808Z",
+      "sha256": "81e6e70bd73b416af42b702a427eb1a442c2ecc4c0def4f1345ab8115479cf1c",
+      "pages": [
+        1
+      ]
+    },
+    {
+      "id": "medical-index",
+      "url": "https://www.med.hokudai.ac.jp/sch-med/admissions/index.html",
+      "title": "北海道大学医学部医学科 入学案内・学士編入学",
+      "retrievedAt": "2026-10-09T23:45:31.146Z",
+      "sha256": "47fa83f3c696ceb85f26a79de9cf60767857d7fa9483a20130e327ed028e29b6",
+      "pages": "学士編入案内"
+    },
+    {
+      "id": "international-2027",
+      "url": "https://www.hokudai.ac.jp/admission/kokusai_admissionR09.pdf",
+      "title": "令和9（2027）年度 北海道大学国際総合入試学生募集要項",
+      "retrievedAt": "2026-10-09T23:45:31.225Z",
+      "sha256": "c80c4c0c307f847253b1c54290d145ecf00381457fab85790f194a434ab4f2ce",
+      "pages": [
+        5
+      ]
+    },
+    {
+      "id": "foreign-changes-2027",
+      "url": "https://www.hokudai.ac.jp/admission/R9shihi_henkou.pdf",
+      "title": "令和9（2027）年度 私費外国人留学生（学部）入試の変更について",
+      "retrievedAt": "2026-10-09T23:46:43.803Z",
+      "sha256": "d428d774d67e50ba6c2a49704a8ca843c02bcccf45b921081c27ce3abeeb78c5",
+      "pages": [
+        2
+      ]
+    }
+  ],
+  "schemes": [
+    {
+      "id": "general-early",
+      "name": "一般選抜（前期日程・学部別入試）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "85人。フロンティア入試医学科の欠員が生じた場合は前期日程へ加える。帰国生徒・私費外国人の若干名はこの85人の内数。",
+          "sourceIds": [
+            "selection-2027",
+            "frontier-2027",
+            "returnee-2027",
+            "foreign-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格",
+          "value": "2027年度共通テストの指定教科・科目をすべて受験し、高校等卒業・2027年3月卒業見込み又は所定の同等資格を有する者。外国の12年課程修了等は2027年3月31日までの見込みを含む。資格の詳細は選抜要項5頁を確認。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別入学資格審査",
+          "value": "個別審査で出願資格を得る必要がある者は、2026年11月6日までに大学入試課へ連絡。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "正式募集要項の公表",
+          "value": "2026年10月23日予定。確認時の一般選抜ページには2026年度正式要項が掲載されており、2027年度の未公表細目は正式要項公表後に確認。",
+          "sourceIds": [
+            "selection-2027",
+            "general-application-index"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "Web出願登録・検定料",
+          "value": "Web登録は2027年1月22日から。登録開始時刻、登録・検定料支払いの最終期限は未公表。2027年度正式募集要項で確認。",
+          "sourceIds": [
+            "selection-2027",
+            "general-application-index"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願書類の提出",
+          "value": "2027年1月25日～2月3日17:00、期間内必着。出願受付・書類提出方法等の詳細は2027年度正式募集要項で確認。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "大学入学共通テスト",
+          "value": "2027年1月16日・17日。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第1段階選抜結果",
+          "value": "2027年2月9日16:00予定。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験：2月25日",
+          "value": "2027年2月25日：諸注意8:40～9:00、数学9:00～11:00（120分）、外国語12:30～14:00（90分）、理科15:00～17:30（150分）。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験：2月26日",
+          "value": "2027年2月26日：諸注意8:40～9:00、医学科面接9:00から。面接終了時刻は選抜要項に記載なし。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "合格発表",
+          "value": "2027年3月8日16:00予定。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続",
+          "value": "2027年3月8日～15日。最終日の締切時刻・手続方法の詳細は未公表。2027年度正式募集要項で確認。",
+          "sourceIds": [
+            "selection-2027",
+            "general-application-index"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "追加合格通知",
+          "value": "2027年3月28日～31日。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "共通テスト指定科目",
+          "value": "6教科8科目。国語、「地理総合・地理探究」「歴史総合・日本史探究」「歴史総合・世界史探究」「公共・倫理」「公共・政治・経済」から1科目、「数学Ⅰ・数学A」「数学Ⅱ・数学B・数学C」、物理・化学・生物から2科目、英語（リスニングを含む）・ドイツ語・フランス語・中国語・韓国語から1科目、情報Ⅰ。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テストの科目選択",
+          "value": "地理歴史・公民を2科目受験した場合は第1解答科目を利用。第1解答が指定外で第2解答が指定科目の場合、第1解答の得点は0点として扱う。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト配点・第1段階",
+          "value": "国語80点、地理歴史・公民40点、数学60点、理科60点、外国語60点、情報Ⅰ15点、計315点。素点に対する傾斜率は順に0.4、0.4、0.3、0.3、0.3、0.15。数学・理科は2科目合計200点の素点を換算する。 第1段階選抜と最終合格判定で同じ315点を使用する。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験の科目・配点",
+          "value": "数学150点、理科150点（75点×2科目）、英語150点、面接75点、計525点。共通テスト315点との総計840点。小論文は課さない。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験の理科",
+          "value": "物理基礎・物理は必須。化学基礎・化学又は生物基礎・生物から1科目を選び、計2科目を受験。共通テストの理科選択とは異なる。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験の数学範囲",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A・B・C。数学Aは図形の性質、場合の数と確率、数学Bは数列、統計的な推測、数学Cはベクトル、平面上の曲線と複素数平面。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験の外国語",
+          "value": "英語のみ。英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ・Ⅱ・Ⅲが出題範囲。2027年度から個別試験の外国語を英語に統一。",
+          "sourceIds": [
+            "selection-2027",
+            "general-changes-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "面接と書類",
+          "value": "面接を実施し、高等学校等の調査書又は成績証明書等を資料として参考にする。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第1段階選抜",
+          "value": "募集人員に対し原則3.5倍。志願者多数の場合、共通テスト成績による第1段階選抜を実施する。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト英語",
+          "value": "リスニング成績を含む。リスニング免除者はリーディング100点満点を200点満点に換算して利用する。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "試験地・試験室",
+          "value": "要確認。札幌市内の北海道大学構内を予定。試験場・試験室等は2027年度正式募集要項公表後の案内・受験票等で確認。",
+          "sourceIds": [
+            "selection-2027",
+            "general-application-index"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "受験票・集合時刻の詳細",
+          "value": "受験票の発行日と会場ごとの集合案内は未公表。2027年度正式募集要項・受験票等で確認。",
+          "sourceIds": [
+            "selection-2027",
+            "general-application-index"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "notes": [
+        {
+          "text": "医学科の後期日程は実施しません。学部別入試の85人と総合入試からの移行人数10人を合算して、直接募集95人とは扱わないでください。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "指定教科・科目を未受験の場合は個別学力検査等を受験できません。個別試験の選択科目は、出願後に変更できません。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "frontier-type1",
+      "name": "フロンティア入試TypeⅠ（総合型選抜）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "5人。欠員が生じた場合は医学科の一般選抜前期日程・学部別入試へ加える。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格",
+          "value": "指定共通テスト全科目の受験が必要。高校・中等教育学校を2027年3月卒業見込み、又は学校教育法施行規則第93条第3項に基づき2026年4月～2027年3月に卒業・卒業見込みの者。文部科学大臣認定の在外教育施設の該当課程を同期間に修了・修了見込みの者も対象。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "履修・成績・専願の要件",
+          "value": "物理基礎・物理と、化学基礎・化学又は生物基礎・生物を履修。理数科は理数物理を含む2科目。学校設定科目での代替も認める。学習成績概評Aで、合格した場合の入学を確約できること。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web登録・検定料",
+          "value": "2026年9月1日10:00～9月14日17:00。Web登録・検定料等支払い後に書類郵送が必要。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願書類提出",
+          "value": "2026年9月9日～15日17:00、期間内必着。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "コンピテンシー評価書",
+          "value": "高校等の教諭が専用Webシステムを作成・入力し、出力した評価書を厳封して本人へ渡す。Web利用申請は2026年7月1日～9月14日、ID等の発行は確認後7日以内。本人が他の書類とともに9月15日17:00必着で提出する。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第1次結果・受験票",
+          "value": "第1次結果は2026年10月27日16:00予定。合格者の受験票は発表後、10月30日17:00までに掲載予定。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第2次選考日時",
+          "value": "2026年11月15日。諸注意8:45～9:00、課題論文9:00～10:00（60分）、面接10:15から。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第2次結果・共通テスト成績請求",
+          "value": "第2次結果は2026年12月8日16:00予定。成績請求情報提供手続は12月8日～14日、方法は第2次結果発表時に別途指示。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "大学入学共通テスト",
+          "value": "2027年1月16日・17日。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年2月9日16:00予定。12月8日の第2次結果発表と最終合格を区別。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続",
+          "value": "2027年2月9日～15日17:00。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "第1次選考",
+          "value": "調査書20点、コンピテンシー評価書80点、計100点。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第2次選考",
+          "value": "課題論文40点、面接・コンピテンシー評価書60点、計100点。自己推薦書・諸活動の記録等も参考にする。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "課題論文・面接",
+          "value": "課題論文で論理性・読解力・思考力・判断力等を評価。面接は個人面接（MMI方式を含む）で意欲・目的意識・実行力・適性等を評価する。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト指定科目",
+          "value": "5教科7科目。国語、「地理総合・地理探究」「歴史総合・日本史探究」「歴史総合・世界史探究」「公共・倫理」「公共・政治・経済」から1科目、「数学Ⅰ・数学A」「数学Ⅱ・数学B・数学C」、物理必須＋化学又は生物1科目、英語（リスニングを含む）・ドイツ語・フランス語・中国語・韓国語から1科目。情報Ⅰはこの方式の指定科目に含まれない。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テストの利用・配点",
+          "value": "国語200点、地理歴史・公民100点、数学200点、理科200点、外国語200点、計900点。合計720点以上を最終合格の対象とする判定にのみ使用する。書類・第2次100点へ900点を加算する方式ではない。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テストの科目選択",
+          "value": "地理歴史・公民を2科目受験した場合は第1解答科目を利用。第1解答が指定外で第2解答が指定科目の場合、第1解答の得点は0点として扱う。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語・得点調整",
+          "value": "英語の配点はリスニングを含む。免除者はリーディング100点満点を200点満点へ換算。大学が得点調整を行う場合は調整後の得点を使用する。調整実施の有無は2027年2月4日16:00予定で発表。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "第2次選考会場",
+          "value": "要確認。北海道大学札幌キャンパス。集合時刻・建物・試験室等の詳細は、第1次選考結果発表後の受験票で通知。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "持参するもの・終了時間",
+          "value": "A4サイズに印刷した受験票と身分証（学生証など）を持参。面接終了時刻はあらかじめ案内されないため、帰路に余裕を持つ。",
+          "sourceIds": [
+            "frontier-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "フロンティア入試・国際総合入試・帰国生徒選抜・私費外国人留学生（学部）入試は試験日が同じため併願できません。",
+          "sourceIds": [
+            "frontier-2027"
+          ]
+        },
+        {
+          "text": "入学後の1年次は総合教育部で学び、2年次進級時に医学部医学科へ所属します。",
+          "sourceIds": [
+            "frontier-2027"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "returnee",
+      "name": "帰国生徒選抜",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "若干名。一般選抜の学部別入試前期日程85人の内数。",
+          "sourceIds": [
+            "returnee-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格・海外在学要件",
+          "value": "日本国籍又は日本の永住許可を有し、海外で教育を受けた者。外国の12年課程修了等又は外国で取得したIB・アビトゥア・バカロレア・GCEAレベル・国際Aレベル・ヨーロピアンバカロレア等、要項所定資格を有すること。外国の高校で最終学年を含み2年以上継続在学し、資格取得は2025年4月1日～2027年3月31日（取得見込みを含む）。在外教育施設や日本の高校に学籍を残す留学期間等の扱いは要項4～5頁を確認。",
+          "sourceIds": [
+            "returnee-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "事前の資格照会",
+          "value": "外国の課程修了等の出願資格①②③に該当する者は、2026年9月4日までに大学入試課へ学校教育歴等を照会。回答には2～3週間かかる場合がある。",
+          "sourceIds": [
+            "returnee-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語資格基準",
+          "value": "TOEFL-iBTの0～120スコア61点以上又はTOEIC L&R 550点以上。TOEFL Home Edition可、Test Dateスコアのみを使用しMyBestは使用しない。",
+          "sourceIds": [
+            "returnee-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web登録・検定料",
+          "value": "2026年9月7日10:00～17日17:00。登録・支払い後に書類郵送が必要。",
+          "sourceIds": [
+            "returnee-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願書類提出",
+          "value": "2026年9月14日～18日17:00、期間内必着。締切後の書類追加・差し替えは不可。",
+          "sourceIds": [
+            "returnee-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第1次結果・受験票",
+          "value": "第1次結果は2026年10月27日16:00予定。合格者の受験票は発表後、10月30日17:00までに掲載予定。",
+          "sourceIds": [
+            "returnee-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第2次選考日時",
+          "value": "2026年11月15日。諸注意8:45～9:00、課題論文9:00～10:00（60分）、面接10:15から。",
+          "sourceIds": [
+            "returnee-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "合格発表",
+          "value": "2026年12月8日16:00予定。",
+          "sourceIds": [
+            "returnee-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続",
+          "value": "2026年12月8日～14日17:00。",
+          "sourceIds": [
+            "returnee-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "選抜方法",
+          "value": "第1次は資格・成績証明書等、推薦書、自己推薦書、諸活動の記録による書類選考。第2次は課題論文・面接を行い、これらの結果を総合して合格者を決定する。",
+          "sourceIds": [
+            "returnee-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第1次配点",
+          "value": "資格・成績証明書等50点、推薦書・自己推薦書・諸活動の記録50点、計100点。",
+          "sourceIds": [
+            "returnee-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第2次配点",
+          "value": "課題論文50点、面接50点、計100点。",
+          "sourceIds": [
+            "returnee-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "課題論文・面接の評価",
+          "value": "課題論文は日本語能力・論理性・読解力・思考力・判断力等。面接は物理・化学・生物3科目の高い理解力を主に問い、意欲・目的意識・実行力・適性等も評価する。",
+          "sourceIds": [
+            "returnee-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "提出する外部試験成績",
+          "value": "医学科はTOEFL-iBT又はTOEIC L&Rの成績証明書が必須。TOEFLは出願期間までに本学へ届くようETSから送付（Institution Code 0362）。TOEIC L&Rは2023年4月以降受験分のデジタル公式認定証を印刷して提出。各国の大学入学等の統一試験を受験済みの場合は、その成績証明書等も提出。",
+          "sourceIds": [
+            "returnee-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "推薦書の提出対象",
+          "value": "出願資格①②③（外国の課程修了等）では学校長又は教員の推薦書を提出。IB・アビトゥア・バカロレア・GCEAレベル・国際Aレベル・ヨーロピアンバカロレア資格の出願者は推薦書を要しない。",
+          "sourceIds": [
+            "returnee-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "第2次選考会場",
+          "value": "要確認。北海道大学札幌キャンパス。集合時刻や会場の詳細は第1次結果発表後の受験票に記載して通知。",
+          "sourceIds": [
+            "returnee-2027"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "受験票・身分証・終了時間",
+          "value": "受験票を出願サイトからダウンロード・印刷し、身分証（学生証など）とともに持参。面接終了時刻は事前案内されない。",
+          "sourceIds": [
+            "returnee-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "フロンティア入試・国際総合入試・帰国生徒選抜・私費外国人留学生（学部）入試は試験日が同じため併願できません。",
+          "sourceIds": [
+            "returnee-2027"
+          ]
+        },
+        {
+          "text": "一般選抜やフロンティアの共通テスト配点・合格基準は、この帰国生徒選抜には使用しません。医学科の書類・課題論文・面接の選考方法と各配点を確認してください。",
+          "sourceIds": [
+            "returnee-2027"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "private-foreign",
+      "name": "私費外国人留学生（学部）入試",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "若干名。医学科一般選抜前期日程85人の内数。",
+          "sourceIds": [
+            "foreign-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格・海外在学要件",
+          "value": "日本国籍を有せず、日本の永住許可も得ていない者。外国の12年課程修了等又はIB等、要項所定資格①～⑪を有すること。資格①②③では外国の学校で最終学年を含む2年以上の継続在学が必要。資格の詳細・年齢等の条件は要項4～5頁を確認。",
+          "sourceIds": [
+            "foreign-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語資格基準",
+          "value": "TOEFL-iBTの0～120スコア79点以上又はTOEIC L&R 750点以上。TOEFL Home Edition可、Test Dateスコアに限る。",
+          "sourceIds": [
+            "foreign-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web登録・検定料",
+          "value": "2026年9月7日10:00～17日17:00。登録・支払い後に書類郵送が必要。",
+          "sourceIds": [
+            "foreign-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願書類提出",
+          "value": "2026年9月14日～18日17:00、期間内必着。出願書類は書留又はEMS・DHL・FedEx等で郵送する。",
+          "sourceIds": [
+            "foreign-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第1次結果・受験票",
+          "value": "第1次結果は2026年10月27日16:00予定。合格者の受験票は発表後、10月30日17:00までに掲載予定。",
+          "sourceIds": [
+            "foreign-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第2次選考日時",
+          "value": "要確認。2026年11月15日。試験時間は第1次結果発表後、受験票に記載して通知。",
+          "sourceIds": [
+            "foreign-2027"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "合格発表",
+          "value": "2026年12月8日16:00予定。",
+          "sourceIds": [
+            "foreign-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続",
+          "value": "2026年12月8日～14日17:00。辞退する場合も12月14日17:00までに入学辞退届を提出。",
+          "sourceIds": [
+            "foreign-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "日本留学試験の指定科目",
+          "value": "日本語、理科（物理・化学）、数学コース2。総合科目は指定しない。",
+          "sourceIds": [
+            "foreign-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "日本留学試験の基準点",
+          "value": "日本語（記述を含む）385点以上、基礎科目（理科＋数学）340点以上。",
+          "sourceIds": [
+            "foreign-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "有効な日本留学試験",
+          "value": "2024年11月、2025年6月・11月、2026年6月の受験スコアのみ有効。複数回のスコアの組み合わせは不可。成績確認書又は受験票の写しを提出。",
+          "sourceIds": [
+            "foreign-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第1次・第2次選考",
+          "value": "第1次は出願書類に基づく選考。第2次は課題論文・面接を行い、日本留学試験・最終修了学校の成績証明書等と総合して選考する。",
+          "sourceIds": [
+            "foreign-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "課題論文・面接の評価",
+          "value": "課題論文は日本語能力・論理性・読解力・思考力・判断力等。面接は日本の高校の理科、特に生物の高い理解力を主に問い、意欲・目的意識・実行力・適性等も評価する。",
+          "sourceIds": [
+            "foreign-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "外部英語成績の提出",
+          "value": "TOEFL-iBT又はTOEIC L&Rの成績通知書等（原本）を提出。TOEFLは出願期間までに本学へ届くようETSから送付（Institution Code 0362）。TOEIC L&Rは2023年4月以降受験分のデジタル公式認定証を印刷して提出。",
+          "sourceIds": [
+            "foreign-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "数値配点・課題論文の時間",
+          "value": "未公表。2027年度要項の医学科欄には書類・課題論文・面接等の数値配点や総点を示していない。試験時間は受験票で通知。帰国生徒選抜の50点ずつや60分を転用しない。",
+          "sourceIds": [
+            "foreign-2027"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "第2次選考会場",
+          "value": "北海道大学総合教育棟。札幌市北区北17条西8丁目。",
+          "sourceIds": [
+            "foreign-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "集合・試験時間",
+          "value": "要確認。第1次結果発表後の受験票で確認。面接終了時刻は事前案内されない。",
+          "sourceIds": [
+            "foreign-2027"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "受験票・身分証",
+          "value": "出願サイトから受験票をダウンロードし、A4サイズに印刷して身分証（学生証など）とともに持参。",
+          "sourceIds": [
+            "foreign-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "フロンティア入試・国際総合入試・帰国生徒選抜・私費外国人留学生（学部）入試は試験日が同じため併願できません。",
+          "sourceIds": [
+            "foreign-2027"
+          ]
+        },
+        {
+          "text": "この方式は医学科でも募集があります。保健学科の日本留学試験基準点340点・300点や、帰国生徒選抜の英語61点・550点を医学科のこの方式へ使用しないでください。",
+          "sourceIds": [
+            "foreign-2027"
+          ]
+        }
+      ]
+    }
+  ],
+  "coverageNotes": [
+    "2027年度医学部医学科の初年次入学に関する直接募集として、一般選抜前期日程（学部別）、フロンティアTypeⅠ、帰国生徒、私費外国人留学生の4方式を掲載。医学科の後期日程・フロンティアTypeⅡの直接募集はありません。保健学科と第2年次学士編入は対象外です。",
+    "医学科定員100人は学部別85人、フロンティア5人、総合入試からの移行10人。帰国生徒・私費外国人の若干名は85人の内数で、別枠として足しません。",
+    "総合入試（国際総合入試を含む）の入学者は第1年次終了時に学部・学科等を決定します。理系は選抜群を問わず医学部等への移行が可能で、医学科の移行人数は10人です。国際総合入試の理系10人は医学科の直接募集10人ではなく、入学時に医学科への移行が保証される枠ではありません。",
+    "一般選抜の2027年度正式募集要項は2026年10月23日公表予定です。Web出願・検定料の締切、受験票、試験会場など、未公表または確認が必要な詳細は正式募集要項の公表後に確認してください。特別選抜の出願・大学での試験は2026年秋に行われ、入学年度は2027年度です。フロンティア入試TypeⅠでは、2027年1月16日・17日の大学入学共通テストも必要です。",
+    "2027年度一般選抜の個別試験では外国語を英語に統一し、数学Bに統計的な推測を含む。2028年度の変更予告、他学科の募集人数・日本留学試験基準点は2027年度医学科の条件へ適用していません。"
+  ]
+}
