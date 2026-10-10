@@ -1,5 +1,5 @@
 // Source dates describe the evidence, not the day this page was checked.
-export const waitlistCheckedAt = "2026-10-09";
+export const waitlistCheckedAt = "2026-10-10";
 export const waitlistAdmissionYear = 2026;
 export type EvidenceKind = "official" | "prep";
 export type Metric = "count" | "rank" | "rank-case" | "group-case" | "report" | "notice" | "unknown";
@@ -75,6 +75,7 @@ export const waitlistSchools: WaitlistSchool[] = [
   { id: "school-9", name: "久留米大学", records: [
     record("一般前期", "count", "繰上合格者41人", null, kurume),
     record("一般後期", "count", "繰上合格者2人", null, kurume),
+    example("一般前期", "合格例：補欠72番", "2026-03-30"),
   ], note: "医学科の数値です。全学合計や補欠順位とは区別しています。" },
   { id: "school-10", name: "慶應義塾大学", records: [
     record("一般選抜・医学部", "count", "補欠から入学許可47人", "2026-03-31", official("慶應義塾大学・2026年度一般選抜統計総括", "https://www.keio.ac.jp/files/32d7248026715b4d0ee6aa84b49c136bd32cd6fe3e25c6cc126df449e852b3a1")),

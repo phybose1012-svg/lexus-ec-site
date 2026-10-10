@@ -113,7 +113,7 @@ test('each record carries explicit provenance, a metric and a valid evidence dat
       assert.equal(url.protocol, 'https:');
       assert.ok(['official', 'prep'].includes(row.source.kind));
       if (row.source.kind === 'prep') {
-        assert.ok(['www.fujigakuin.jp', 'melurix.co.jp'].includes(url.hostname));
+        assert.ok(['www.fujigakuin.jp', 'melurix.co.jp', 'daikanyamamedical.com'].includes(url.hostname));
         assert.ok(row.asOf, `${entry.name}: secondary evidence needs its own date`);
         assert.notEqual(row.metric, 'count', 'individual student reports must not become university-wide counts');
       }
@@ -180,7 +180,7 @@ test('all 2025 records are dated for the correct year and linked to the same 31 
       assert.equal(url.protocol, 'https:');
       assert.ok(['official', 'prep'].includes(row.source.kind));
       if (row.source.kind === 'prep') {
-        assert.ok(['www.fujigakuin.jp', 'melurix.co.jp'].includes(url.hostname));
+        assert.ok(['www.fujigakuin.jp', 'melurix.co.jp', 'daikanyamamedical.com'].includes(url.hostname));
         assert.ok(row.asOf);
         assert.notEqual(row.metric, 'count');
       }
@@ -269,6 +269,12 @@ test('minimal route columns keep counts/ranks explicit and do not guess unspecif
   assert.ok(fujita.annotations.find((entry) => entry.year === 2025).records.some((record) => record.route === '共通テスト利用'));
   assert.ok(fujita.annotations.find((entry) => entry.year === 2025).records.some((record) => record.route === '一般前期・愛知県地域枠'));
   const kurume = table('school-9');
+  assert.equal(kurume.rows[0].cells[0].displayValue, '41', 'a reported rank must not overwrite the official count');
+  const kurume2026Rank = kurume.annotations.find((entry) => entry.year === 2026).records[0];
+  assert.equal(kurume2026Rank.result, '合格例：補欠72番');
+  assert.equal(kurume2026Rank.asOf, '2026-03-30');
+  assert.equal(kurume2026Rank.metric, 'rank-case');
+  assert.equal(publicWaitlistInformation(kurume2026Rank), '受験生からの合格報告');
   assert.equal(kurume.rows[1].cells[0].records[0].result, '繰上合格者19人');
   assert.equal(kurume.rows[1].cells[0].records.length, 1);
   assert.equal(kurume.annotations.find((entry) => entry.year === 2025).records[0].result, '合格例：補欠43番');
@@ -365,7 +371,7 @@ test('public records retain facts/units/dates but never expose source names or l
       assert.equal(record.informationType, publicWaitlistInformation(entry.records[index]));
       assert.ok(!Object.hasOwn(record, 'source'));
     });
-    assert.doesNotMatch(JSON.stringify(data), /合格例|富士学院|メルリックス|fujigakuin|melurix|https?:\/\//);
+    assert.doesNotMatch(JSON.stringify(data), /合格例|富士学院|メルリックス|代官山|fujigakuin|melurix|daikanyamamedical|https?:\/\//);
     assert.ok(!Object.hasOwn(data, 'noteSources'));
   }
 });
@@ -385,7 +391,7 @@ test('identical numeric meanings are merged across years; scopes only distinguis
     const notes = waitlistFootnotes(table);
     assert.ok(notes.length);
     for (const label of ['数値', '情報', '時点']) assert.ok(notes.filter((note) => note.label === label).length <= 1, `${table.name}: do not repeat the same category for every year`);
-    assert.doesNotMatch(JSON.stringify(notes), /2024年度以前：|富士学院|メルリックス|https?:/);
+    assert.doesNotMatch(JSON.stringify(notes), /2024年度以前：|富士学院|メルリックス|代官山|https?:/);
     if (table.historical) {
       assert.ok(notes.some((note) => note.label === '情報' && note.text.includes('出典未確認。')), table.name);
     }
@@ -446,7 +452,7 @@ test('built page, JSON and structured data describe the same visible evidence', 
   })));
   assert.equal(archive.historical.verificationStatus, 'legacy-unverified');
   for (const output of [html, JSON.stringify(data), JSON.stringify(data2025), JSON.stringify(archive)]) {
-    assert.doesNotMatch(output, /合格例|富士学院|メルリックス|fujigakuin|melurix/);
+    assert.doesNotMatch(output, /合格例|富士学院|メルリックス|代官山|fujigakuin|melurix|daikanyamamedical/);
   }
   const main = html.match(/<main id="kuriage-main"[\s\S]*?<\/main>/)[0];
   assert.doesNotMatch(main, /<a[^>]+href="https?:/);
