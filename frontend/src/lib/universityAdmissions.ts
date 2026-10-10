@@ -1,3 +1,5 @@
+import { renderTsukubaAdmissionsReadable } from './tsukubaAdmissionsReadable.ts';
+
 /** Official, university-specific admission data; independent of legacy safety layers. */
 export type AdmissionRowStatus = "confirmed" | "unpublished" | "needs-confirmation";
 export type UniversityAdmissionSource = {
@@ -267,6 +269,7 @@ export function universityAdmissionsMetadata(data: UniversityAdmissions) {
 /** Render only canonical validated data; values remain text, never raw HTML. */
 export function renderUniversityAdmissions(input: UniversityAdmissions): string {
   const data = validateUniversityAdmissions(input);
+  if (data.path === '/information-tsukuba/') return renderTsukubaAdmissionsReadable(data);
   const sources = new Map(data.sources.map((source,index)=>[source.id,{source,index}]));
   const refs = (ids: string[]) => ids.map(id=>{
     const item=sources.get(id) ?? failure(`unknown render source ${id}`);
@@ -301,9 +304,14 @@ export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post
     return block;
   });
   if (!replaced) contentHtml+=admissionHtml;
+  if (data.path === '/information-tsukuba/') {
+    // Lead with the current admission information; keep the university overview below it.
+    contentHtml=admissionHtml+contentHtml.replace(admissionHtml,'');
+  }
   contentHtml=contentHtml.replace(/<p\b[^>]*(?:data-university-info-safety=["']overview["']|data-university-admissions-overview)[^>]*>[\s\S]*?<\/p>/gi,"");
   contentHtml=contentHtml.replace(/<h3\b([^>]*)>([\s\S]*?)<\/h3>/gi,(tag,attrs,inner)=>plainText(inner)==="学納金"?`<h3${attrs}>学納金（掲載時点の参考情報）</h3>`:tag);
-  contentHtml='<p data-university-admissions-overview>入試表は2027年度の情報です。大学概要の統計・学納金は過年度の参考情報です。教育内容・費用は大学の最新案内をご確認ください。</p>'+contentHtml;
+  const overviewNotice='<p data-university-admissions-overview>入試表は2027年度の情報です。大学概要の統計・学納金は過年度の参考情報です。教育内容・費用は大学の最新案内をご確認ください。</p>';
+  contentHtml=data.path === '/information-tsukuba/' ? contentHtml.replace(admissionHtml,admissionHtml+overviewNotice) : overviewNotice+contentHtml;
   const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
   const infoItems=post.infoItems.map(item=>item.label === "年度" ? {...item,value:"2027年度（入試情報）"} : item.label === "種別" ? {...item,value:"大学概要・2027年度入試情報"} : item);
   return {...post,...universityAdmissionsMetadata(data),contentHtml,infoItems,toc};
