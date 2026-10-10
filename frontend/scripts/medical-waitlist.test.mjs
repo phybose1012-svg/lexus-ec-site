@@ -153,6 +153,24 @@ test('Aichi March 31 15:00 ranks are not equated with annual headcounts', () => 
   assert.ok(ranks.every((row) => row.source.url === 'https://www.aichi-med-u.ac.jp/su11/su1101/su110101/1236862_1888.html'));
 });
 
+test('TWMU 2026 uses the official reached rank, not the admitted headcount or an older report', () => {
+  const record = school('東京女子医科大学').records[0];
+  assert.equal(record.metric, 'rank');
+  assert.equal(record.result, '補欠順位61位まで');
+  assert.equal(record.source.kind, 'official');
+  assert.equal(record.source.url, 'https://www.twmu-u.jp/medical-ent-results/');
+  assert.equal(record.asOf, null, 'the annual results do not establish an individual contact date');
+  assert.match(record.note, /36人はそのうち入学した人数/);
+  assert.equal(waitlistTableValue(record), '61');
+  assert.equal(waitlistValueMeaning(record), '繰り上がった順位。');
+  assert.equal(publicWaitlistInformation(record), '大学公式情報');
+  assert.equal(publicWaitlistSchool(school('東京女子医科大学')).records[0].displayValue, '61');
+  const table = waitlistTableSchools.find((entry) => entry.id === 'school-19');
+  assert.deepEqual(table.rows.find((row) => row.year === '2026').cells.map((cell) => cell.displayValue), ['61']);
+  assert.deepEqual(table.rows.find((row) => row.year === '2025').cells.map((cell) => cell.displayValue), ['36']);
+  assert.doesNotMatch(JSON.stringify(waitlistFootnotes(table)), /2026年度[^。]*3\/26/);
+});
+
 test('official year-end Saitama result supersedes the March snapshot', () => {
   assert.deepEqual(school('埼玉医科大学').records.map((row) => row.result), ['繰上順位104位', '繰上順位8位', '繰上順位17位']);
   assert.deepEqual(school('東京医科大学').records.map((row) => row.result), ['補欠順位151位まで', '補欠順位70位まで']);
@@ -181,7 +199,7 @@ test('all 2025 records are dated for the correct year and linked to the same 31 
       assert.ok(['official', 'prep'].includes(row.source.kind));
       if (row.source.kind === 'prep') {
         assert.ok(['www.fujigakuin.jp', 'melurix.co.jp', 'daikanyamamedical.com'].includes(url.hostname));
-        assert.ok(row.asOf);
+        assert.ok(row.asOf || (row.metric === 'rank' && row.evidenceBasis === 'unconfirmed' && row.note?.includes('連絡日は未確認')), 'an undated annual rank report must explicitly disclose its unknown contact date');
         assert.notEqual(row.metric, 'count');
       }
       if (row.asOf) {
@@ -369,7 +387,28 @@ test('Nihon 2026 N first phase preserves the user-approved approximate rank', ()
   assert.match(publicWaitlistSchool(nihon).records[0].result, /170番前後/);
   const table = waitlistTableSchools.find((entry) => entry.id === 'school-23');
   assert.deepEqual(table.rows.find((row) => row.year === '2026').cells.map((cell) => cell.displayValue), ['170前後', '不明']);
-  assert.equal(table.rows.find((row) => row.year === '2025').cells[0].displayValue, '54', 'the pending 2025 discrepancy is not changed by this decision');
+});
+
+test('Nihon 2025 N first phase preserves the user-approved rank without inventing a contact date', () => {
+  const nihon = waitlist2025Schools.find((entry) => entry.id === 'school-23');
+  assert.equal(nihon.records.length, 1);
+  const record = nihon.records[0];
+  assert.equal(record.route, 'N全学統一方式・第1期');
+  assert.equal(record.result, '補欠120番までとの報告');
+  assert.equal(record.metric, 'rank', 'an annual reported rank is neither a headcount nor an individual case');
+  assert.equal(record.asOf, null, 'the old 2/27 snapshot and the 2026 article date are not the contact date for 120');
+  assert.equal(record.evidenceBasis, 'unconfirmed');
+  assert.equal(record.source.url, 'https://melurix.co.jp/blog/info/medical/nichidai_ippanzenki2026');
+  assert.match(record.note, /連絡日は未確認/);
+  assert.equal(waitlistTableValue(record), '120', 'the approved rank is not an approximate range');
+  const published = publicWaitlistSchool(nihon).records[0];
+  assert.equal(published.result, '補欠120番までとの報告');
+  assert.equal(published.asOf, null);
+  assert.equal(published.informationType, '合格報告（報告者未確認）');
+  const table = waitlistTableSchools.find((entry) => entry.id === 'school-23');
+  assert.deepEqual(table.rows.find((row) => row.year === '2025').cells.map((cell) => cell.displayValue), ['120', '不明']);
+  assert.equal(table.rows.find((row) => row.year === '2026').cells[0].displayValue, '170前後');
+  assert.doesNotMatch(waitlistFootnotes(table).map((note) => note.text).join(' '), /2025年度 2\/27/);
 });
 
 test('each displayed value has a year-scoped meaning, and no cell mixes counts with ranks', () => {

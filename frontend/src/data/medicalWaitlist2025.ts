@@ -4,6 +4,7 @@ export const waitlist2025AdmissionYear = 2025;
 const official = (title: string, url: string): Evidence => ({ title, url, kind: "official" });
 const fuji: Evidence = { title: "富士学院・2025年度合格速報", url: "https://www.fujigakuin.jp/news/?id=2152", kind: "prep" };
 const mel: Evidence = { title: "メルリックス学院・2025年度繰上情報", url: "https://melurix.co.jp/blog/info/medical/c1494", kind: "prep" };
+const melNihon2025Analysis: Evidence = { title: "メルリックス学院・日本大学2025年度入試結果の分析", url: "https://melurix.co.jp/blog/info/medical/nichidai_ippanzenki2026", kind: "prep" };
 const record = (route: string, metric: Metric, result: string, asOf: string | null, source: Evidence, note?: string): WaitlistRecord => ({ route, metric, result, asOf, source, ...(note ? { note } : {}) });
 const example = (route: string, result: string, date: string, metric: Metric = "rank-case") => record(route, metric, result, date, fuji);
 const reportedRank = (route: string, result: string, date: string, evidenceBasis?: WaitlistRecord["evidenceBasis"]): WaitlistRecord => {
@@ -110,7 +111,7 @@ export const waitlist2025Schools: WaitlistSchool[] = [
     example("グローバル特別選抜", "繰上合格の報告あり（順位なし）", "2025-03-17", "report"),
   ], note: "予備校の指導生全員が繰り上がったという報告を、大学の補欠者全員の合格とは扱いません。" },
   { id: "school-23", name: "日本大学", records: [
-    record("N全学統一方式・第1期", "rank-case", "合格例：補欠54番", "2025-02-27", mel),
+    { ...record("N全学統一方式・第1期", "rank", "補欠120番までとの報告", null, melNihon2025Analysis, "2025年度の到達順位として報告された値です。大学公式の最終順位ではなく、連絡日は未確認です。"), evidenceBasis: "unconfirmed" },
   ] },
   { id: "school-24", name: "兵庫医科大学", records: [
     example("一般A", "合格例：補欠80番", "2025-03-31"),

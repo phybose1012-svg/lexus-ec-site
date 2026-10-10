@@ -116,7 +116,7 @@ export const waitlistSchools: WaitlistSchool[] = [
     record("一般選抜", "count", "繰上合格連絡者118人", null, official("東京慈恵会医科大学・2026年度医学科入試結果", "https://www.jikei.ac.jp/wp-content/uploads/2026/04/result2026-nyushi-igakuka.pdf")),
   ], note: "大学が公表した、繰上合格の連絡をした人数です。入学者数ではありません。" },
   { id: "school-19", name: "東京女子医科大学", records: [
-    example("一般選抜", "合格例：補欠56番", "2026-03-26"),
+    record("一般選抜", "rank", "補欠順位61位まで", null, official("東京女子医科大学・令和8年度入試結果", "https://www.twmu-u.jp/medical-ent-results/"), "大学公式の入試結果に掲載された到達順位です。36人はそのうち入学した人数です。"),
   ] },
   { id: "school-20", name: "東北医科薬科大学", records: [
     example("一般選抜", "繰上合格の報告あり（順位なし）", "2026-03-26", "report"),

@@ -1,6 +1,6 @@
 {
   "checkedAt": "2026-10-10",
-  "status": "in-progress-awaiting-one-user-decision",
+  "status": "in-progress",
   "source": {
     "url": "https://daikanyamamedical.com/blog/2026/04/02/kuriage2026/",
     "provider": "代官山MEDICAL",
@@ -40,7 +40,10 @@
     "nihon2026Results": "https://www.med.nihon-u.ac.jp/examinee/pdf/2026_result.pdf",
     "nihon2025Results": "https://www.med.nihon-u.ac.jp/examinee/pdf/2025_result.pdf",
     "melNihon2025Analysis": "https://melurix.co.jp/blog/info/medical/nichidai_ippanzenki2026",
-    "medicalLabNihon2025Results": "https://www.igakubujuken.jp/database/detail/preceding/72"
+    "medicalLabNihon2025Results": "https://www.igakubujuken.jp/database/detail/preceding/72",
+    "twmu2026Results": "https://www.twmu-u.jp/medical-ent-results/",
+    "twmu2026ResultsTable": "https://www.twmu-u.jp/wp-content/uploads/2026/06/table1_20260605.png",
+    "aceKitasato2026Comparison": "https://igakubuyobiko.com/kuriage/"
   },
   "resolved": [
     {
@@ -142,16 +145,28 @@
       "followup": "公式の追加合格者126人は順位とは別の情報。人数を追加する場合は数値の意味と主表示・注記の区分を明確にする。"
     },
     {
-      "id": "nihon-2025-n1", "status": "awaiting-user", "university": "日本大学", "year": 2025, "route": "N全学統一方式・第1期",
+      "id": "nihon-2025-n1", "status": "resolved-by-user", "university": "日本大学", "year": 2025, "route": "N全学統一方式・第1期",
       "existing": "54（2/27の途中経過）", "candidate": "約120番",
       "checks": "メルリックス2025速報は2/27のN方式第1期54番・マイページ確認。富士学院2025速報には日本大学の順位報告が見つからない。代官山記事は約120番。別のメルリックス2026年度対策記事（2025年度結果を分析）は120人と120番までをともに記載し、120番という順位情報を明示するが、個別の連絡日・報告者・順位の原資料は示さない。大学公式2025年度結果PDFの全2ページを画像で確認。第1期の追加合格者総数120人、正規合格80人、二次試験合格200人、追加合格候補242人、追加合格8回を確認。公式資料には到達順位・各回の日付・辞退者の扱いの明記はない。医学部受験ラボも120人を掲載し、総合格者200人は繰上合格の辞退者を含まないと注記。人数120と最終順位120の一致だけでは、順位を公式確認したとは断定しない。個人ブログ・SNS・無名の予備校は根拠に採用しない。",
       "officialSource": "https://www.med.nihon-u.ac.jp/examinee/pdf/2025_result.pdf",
       "officialSourceSha256": "6082d1b9345bdd6a0542f3372e0fce4407a00bbbb3f1c061215523c13fcb99b5",
       "recommendation": "54は2/27時点で、年度の到達範囲を示すには古い。順位120を明記する既知の予備校記事と約120の集計は整合するが、公式の最終順位とは扱わない。掲載を更新する場合は概数120番前後が候補。ユーザー回答まで公開値54を維持し、2026-04-02を2025年度の連絡日に流用しない。",
-      "question": "日大医学部の2025年度N方式第1期は、2/27時点の54番から、報告に基づく概数120番前後へ変更してよいか。"
+      "question": "日大医学部の2025年度N方式第1期は、2/27時点の54番から、報告に基づく概数120番前後へ変更してよいか。",
+      "userDecision": "120番",
+      "decisionDate": "2026-10-10",
+      "decision": "ユーザー指定により120番を採用し、表には120と表示。120番までと明記するメルリックス分析記事を順位の根拠として記録し、大学公式の120人を順位の根拠に転用しない。個別の120番合格例や公式最終順位としては扱わず、間接的な到達順位の報告とする。120番の連絡日は未確認のためasOfをnullとし、旧54番の2025-02-27や分析記事の2026年の日付を流用しない。2026年度の170番前後および他方式・過年度原表は維持。"
     },
-    { "id": "twmu-2026-general", "status": "needs-further-review", "existing": "56（3/26）", "candidate": "59", "checks": "富士学院は56。59の独立した裏付けは未取得。" },
-    { "id": "kitasato-2026-general", "status": "needs-further-review", "existing": "29（3/30）", "candidate": "30番台", "checks": "大学公式3/31終了PDFは順位を記載していない。終了確認は順位の裏付けではない。" },
+    {
+      "id": "twmu-2026-general", "status": "resolved-with-official-source", "university": "東京女子医科大学", "year": 2026, "route": "一般選抜",
+      "existing": "56（3/26）", "candidate": "59（4/2記事）", "verified": "61",
+      "officialSource": "https://www.twmu-u.jp/medical-ent-results/",
+      "officialTable": "https://www.twmu-u.jp/wp-content/uploads/2026/06/table1_20260605.png",
+      "officialTableSha256": "ce59d75b3a351fff300ca43903901494c4f33617f581cf6ef51ec1c53719f6b4",
+      "checks": "従来の大学公式結果ページが新しい公式受験生サイトへリンクしていることを確認。新公式サイトの令和8年度入試結果表を画像で確認し、一般選抜の補欠合格者欄に補欠順位61位まで（うち36名入学）と明記されている。補欠者123人、一般入学者66人も別の欄。56と59は年度末の途中の報告で、公式の年度結果61を優先する。",
+      "decisionDate": "2026-10-10",
+      "decision": "表の2026年度一般選抜を61へ変更し、順位と大学公式情報であることを明示。36人を到達順位に置き換えず、注記では入学した人数と区別。61番の個別連絡日は書かれていないためasOfはnullとし、旧56番の3/26や画像ファイル名の日付を流用しない。2025年度36と原表の過年度は維持。"
+    },
+    { "id": "kitasato-2026-general", "status": "awaiting-user-decision", "existing": "29（3/30）", "candidate": "30番台", "checks": "富士学院3/30に補欠28番・29番の個別合格報告。代官山4/2記事は30番台。追加比較資料のエースアカデミー4/2更新記事にも3/26〜3/31の北里1名・補欠30番台の合格報告があるが、具体的な番号・方式・個別連絡日が書かれていない。大学公式3/31終了PDFは順位を記載していないため、最終到達順位とは断定できない。追加の予備校資料は比較記録に留め、公開データには未採用。30番台を採用するかはユーザーに一問一答で確認する。" },
     { "id": "iuhw-2026-general", "status": "needs-further-review", "existing": "C群", "candidate": "二次不合格者にも追加合格", "checks": "既存のC群個別報告と、新記事の追加対象拡大は両立し得るが、後者の別資料による裏付けは未取得。" },
     { "id": "iuhw-2025-general", "status": "needs-further-review", "existing": "B群（3/26）", "candidate": "最終C群", "checks": "富士学院はB群。新記事の最終C群は独立した確認が必要。" },
     { "id": "fujita-2025-early", "status": "needs-further-review", "existing": "14（3/31）", "candidate": "42", "checks": "富士学院3/31の個別報告も14。メルリックスの一般前期も14。地域枠・他方式の値と混同していないか追加確認する。" },
@@ -164,5 +179,5 @@
     { "id": "kawasaki-2025-general", "status": "needs-further-review", "existing": "不明", "candidate": "23番", "checks": "補欠候補者の通知方法と、順位・人数のどちらの23かを公式資料で確認する必要がある。" }
   ],
   "limits": "追加資料との一次照合と上記の個別比較まで。すべての相違点が解決したとは報告しない。履歴の数値・原表・年度別の列は維持。判断待ちは順番に追加調査・一問一答を行う。",
-  "publicChanges": ["久留米大学2026年度一般前期の補欠72番（3/30）の合格報告を補足", "関西医科大学2026年度一般前期をユーザー判断の概数110前後へ変更", "日本医科大学2026年度一般後期をユーザー判断の概数40台前半へ変更", "日本大学2026年度N方式第1期をユーザー判断の概数170前後へ変更", "情報確認日を2026-10-10へ更新"]
+  "publicChanges": ["久留米大学2026年度一般前期の補欠72番（3/30）の合格報告を補足", "関西医科大学2026年度一般前期をユーザー判断の概数110前後へ変更", "日本医科大学2026年度一般後期をユーザー判断の概数40台前半へ変更", "日本大学2026年度N方式第1期をユーザー判断の概数170前後へ変更", "日本大学2025年度N方式第1期をユーザー判断の120へ変更", "東京女子医科大学2026年度一般選抜を大学公式の到達順位61へ変更", "情報確認日を2026-10-10へ更新"]
 }
