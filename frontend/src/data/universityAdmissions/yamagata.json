@@ -1,0 +1,309 @@
+{
+  "path": "/information-yamagata/",
+  "university": "山形大学",
+  "admissionYear": 2027,
+  "verifiedAt": "2026-10-10T04:00:03.567Z",
+  "sources": [
+    {
+      "id": "selection-2027",
+      "url": "https://www.yamagata-u.ac.jp/jp/files/8817/8581/7976/r9_senallr.pdf",
+      "title": "令和9年度 入学者選抜要項（2026年8月6日修正版）",
+      "retrievedAt": "2026-10-10T03:53:34.582Z",
+      "sha256": "d71ddc2365c8b2e37dd9e65aadc3748941d1a203b32f3d153c3e28f77ecc82c1",
+      "pages": "PDF pp.2–3、23–26、32、68、70（冊子 pp.19–22、28、64、66ほか）"
+    },
+    {
+      "id": "guidelines-index",
+      "url": "https://www.yamagata-u.ac.jp/jp/entrance/faculty/guidelines/",
+      "title": "入学者選抜要項・学生募集要項 掲載一覧",
+      "retrievedAt": "2026-10-10T03:53:34.961Z",
+      "sha256": "1b07414312ad1c1ad17cf8f5496c54503de7eb58c025cff82adc374a4d0fafcf"
+    },
+    {
+      "id": "dnc-dates",
+      "url": "https://www.dnc.ac.jp/kyotsu/shiken_jouhou/r9/",
+      "title": "大学入試センター 令和9年度試験 実施期日",
+      "retrievedAt": "2026-10-10T03:56:22.452Z",
+      "sha256": "8bd3cc92b75f2eb9ff9b09459af73cf53aba23d38a67c0883f2fe710226d147e"
+    }
+  ],
+  "schemes": [
+    {
+      "id": "general-early",
+      "name": "一般選抜（前期日程・医学科）",
+      "scheduleRows": [
+        {
+          "label": "インターネット出願登録",
+          "value": "未公表（2027年度一般選抜の登録期間・締切時刻）。一般選抜学生募集要項は2026年11月公表予定です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-index"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "検定料の支払い",
+          "value": "未公表（2027年度一般選抜の支払期間・締切時刻）。出願登録と書類提出の期限を区別して、学生募集要項で確認してください。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-index"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "出願書類の受付期間・必着期限",
+          "value": "2027年1月25日（月）9時～2月3日（水）16時30分【必着】。郵送は書留速達、または持参。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "郵送書類の消印による例外",
+          "value": "原則は期間内必着。ただし、2027年2月1日（月）までの消印がある書留速達に限り、2月4日（木）以降の到着も受け付けます。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願書類を持参する場合",
+          "value": "出願期間中の平日（土・日曜日を除く）、9時～16時30分に受け付けます。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "大学入学共通テスト（本試験）",
+          "value": "2027年1月16日（土）・17日（日）。",
+          "sourceIds": [
+            "dnc-dates"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別テスト等の試験日",
+          "value": "2027年2月25日（木）・26日（金）。科目別の日割り、開始・終了時刻、集合時刻は未公表（一般選抜学生募集要項の公表待ち）。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-index"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "二段階選抜の判定・発表日",
+          "value": "未公表（第一段階の判定方法、合格者発表日・時刻）。実施する場合の条件は下の試験科目・配点表を確認してください。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-index"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "合格発表",
+          "value": "2027年3月7日（日）11時。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続",
+          "value": "未公表（2027年度一般選抜の手続期間、書類の必着期限・締切時刻）。学生募集要項と合格者向け案内で確認してください。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-index"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "65人（現在の選抜要項掲載値）。医学科の臨時定員増は申請を検討中のため、申請結果と募集人員の変更は要確認（決定後に大学が公表）。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "共通テストの指定・総配点",
+          "value": "2027年度の6教科8科目、950点。2026年度以前の共通テスト成績は利用しません。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト：国語",
+          "value": "「国語」200点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト：地理歴史・公民",
+          "value": "「地理総合，地理探究」「歴史総合，日本史探究」「歴史総合，世界史探究」「公共，倫理」「公共，政治・経済」から1科目、100点。2科目受験した場合は第1解答科目を利用します。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト：数学",
+          "value": "「数学Ⅰ，数学A」と「数学Ⅱ，数学B，数学C」の2科目、計200点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト：理科",
+          "value": "「物理」「化学」「生物」から2科目、計200点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト：外国語",
+          "value": "「英語」（リスニングを含む）「ドイツ語」「フランス語」から1科目、200点。英語のリーディング・リスニング別の換算配点は未公表（選抜要項に内訳の記載なし）。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-index"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "共通テスト：情報",
+          "value": "「情報Ⅰ」50点。共通テストの100点満点を50点満点に換算します。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別テスト：数学",
+          "value": "200点。「数学Ⅰ・Ⅱ・Ⅲ・A・B・C」。数学Bは数列、数学Cはベクトルおよび平面上の曲線と複素数平面が出題範囲です。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別テスト：理科",
+          "value": "200点。「物理基礎・物理」「化学基礎・化学」「生物基礎・生物」から2科目。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別テスト：英語",
+          "value": "200点。「英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ」。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別テスト等：面接",
+          "value": "100点。調査書等の評価を含みます。面接結果により、総合点にかかわらず不合格となる場合があります。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別テスト等の総配点",
+          "value": "700点（数学200点・理科200点・英語200点・面接100点）。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二段階選抜の実施条件",
+          "value": "医学科の志願者が募集人員の5倍を超え、個別テスト等を適切に実施できない場合、二段階選抜を行うことがあります。5倍超で必ず実施するという条件ではありません。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "面接の実施方法・試験時間",
+          "value": "未公表（個人・集団の別、面接時間、科目別の試験時間）。一般選抜学生募集要項の公表後に確認してください。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-index"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "個別テスト等の試験場",
+          "value": "医学部試験場：山形市飯田西二丁目2-2。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験室・集合場所・会場案内",
+          "value": "未公表（2027年度一般選抜の試験室、集合場所、入場・集合時刻）。学生募集要項と大学からの受験案内で確認してください。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-index"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "notes": [
+        {
+          "text": "高等学校等の卒業者・2027年3月卒業見込みの者、12年の学校教育修了者等、大学が定める出願資格のいずれかを満たし、指定された2027年度共通テストを受験する必要があります。個別の入学資格審査が必要な場合は大学入試課に事前に確認してください。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "地理歴史・公民を2科目受験する場合、第1解答科目が医学科の指定科目でなければ出願資格がありません。指定された共通テスト・個別テスト等はすべて受験する必要があり、欠くと失格となります。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "共通テストの受験上の配慮として英語リスニング免除が認められた場合は、リーディングだけを外国語の指定配点へ換算して利用します。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "学校推薦型選抜の合格者が募集人員に満たない場合、その欠員は一般選抜の前期日程に加えられます。募集人数は出願前に最新の大学告知で確認してください。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "独自日程の公立大学・学部を除き、国公立大学の前期日程から1つ、後期日程から1つの合計2つまで出願できます。前期同士・後期同士の併願は認められません。山形大学医学科の一般選抜は前期のみです。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "この選抜要項は概要です。一般選抜学生募集要項が公表されたら、Web登録・検定料・提出書類・試験時間・入学手続と変更通知を必ず確認してください。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-index"
+          ]
+        }
+      ]
+    }
+  ],
+  "coverageNotes": [
+    "医学部医学科の一般選抜（前期日程）を掲載しています。医学科に一般選抜の後期日程はありません。学校推薦型選抜Ⅱの一般枠・地域枠および私費外国人留学生入試は掲載対象外です。総合型選抜Ⅲは看護学科の方式であり、この医学科の表には含めません。",
+    "2027年度の入学者選抜要項（2026年8月6日修正版）に基づく概要です。一般選抜学生募集要項は2026年11月公表予定です。臨時定員増の申請結果、募集人数の変更、未公表の詳細は公表後に確認してください。"
+  ]
+}
