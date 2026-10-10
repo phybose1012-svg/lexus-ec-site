@@ -21,7 +21,8 @@ const read=f=>JSON.parse(fs.readFileSync(new URL(f,import.meta.url),'utf8'));
 const data=read('../src/data/universityAdmissions/hirosaki.json');
 const copy=read('../src/data/hirosakiReaderCopy.json');
 const overview=read('../src/data/hirosakiUniversityOverview.json');
-const mapping=JSON.parse(fs.readFileSync('C:/---hp-seo/reports/university-admissions/hirosaki/editorial/fact-display-map-v1.json','utf8')).mapping;
+const mappingDocument=JSON.parse(fs.readFileSync('C:/---hp-seo/reports/university-admissions/hirosaki/editorial/fact-display-map-v2.json','utf8'));
+const mapping=mappingDocument.mapping;
 const clean=s=>s.replace(/\s+/gu,'').trim();
 const attr=(n,k)=>n.attrs?.find(a=>a.name===k)?.value;
 const all=(n,p,result=[])=>{if(p(n))result.push(n);for(const c of n.childNodes??[])all(c,p,result);return result;};
@@ -39,6 +40,12 @@ try{
  for(const s of data.schemes){for(const [k,f] of [['schedule','scheduleRows'],['exam','examRows'],['venue','venueRows'],['note','notes']])s[f].forEach((r,i)=>expectedIds.push(`${s.id}/${k}/${i}`));}data.coverageNotes.forEach((n,i)=>expectedIds.push('coverage/'+i));
  assert.deepEqual(new Set(ids),new Set(expectedIds),'Every original fact, note and coverage item needs a display mapping');
  for(const m of mapping)for(const id of m.locations)assert.equal(all(dom,n=>attr(n,'data-hirosaki-fact')===id).length,1,`${m.origin}: missing ${id}`);
+ assert.equal(mappingDocument.additionalFacts.length,4);
+ for(const addition of mappingDocument.additionalFacts){
+  const nodes=all(dom,n=>attr(n,'data-hirosaki-fact')===addition.id);assert.equal(nodes.length,1,addition.id);
+  const value=all(nodes[0],n=>attr(n,'data-hirosaki-value')!==undefined);assert.equal(clean(text(value[0])),clean(addition.text));
+  for(let parent=nodes[0].parentNode;parent;parent=parent.parentNode)assert.notEqual(parent.tagName,'details','Mandatory conditions must remain visible');
+ }
  let checked=0;
  for(const g of copy.groups)for(const r of [...g.dates,...g.eligibility,...g.facts,...g.venues,...g.notes]){
   const nodes=all(dom,n=>attr(n,'data-hirosaki-fact')===r.id);assert.equal(nodes.length,1);
@@ -77,11 +84,14 @@ try{
    const bounds=await table.boundingBox(),top=bounds.y+await page.evaluate(()=>scrollY);
    for(let y=0;y<bounds.height;y+=view.height-160){await page.evaluate(v=>scrollTo(0,v),top+y-110);const slice=path.join(out,`${view.name}-${id}-view-${Math.floor(y/(view.height-160))}.png`);await page.screenshot({path:slice});evidence.screenshots.push(slice);}
   }
-  for(const [label,selector] of [['top','.article-keypoints'],['source','#hirosaki-admission-sources'],['university-overview','[data-hirosaki-overview]'],['region','#hirosaki-regional-obligations']]){await page.locator(selector).first().scrollIntoViewIfNeeded();const file=path.join(out,`${view.name}-${label}.png`);await page.screenshot({path:file});evidence.screenshots.push(file);}
+  for(const [label,selector] of [['top','.article-keypoints'],['source','#hirosaki-admission-sources'],['university-overview','section.hirosaki-readable[data-hirosaki-overview] #所在地'],['overview-source','section.hirosaki-readable[data-hirosaki-overview] details'],['region','#hirosaki-regional-obligations']]){await page.locator(selector).first().scrollIntoViewIfNeeded();const file=path.join(out,`${view.name}-${label}.png`);await page.screenshot({path:file});evidence.screenshots.push(file);}
+  for(const fact of mappingDocument.additionalFacts){const file=path.join(out,`${view.name}-${fact.id}.png`);await page.locator(`[data-hirosaki-fact="${fact.id}"]`).screenshot({path:file,style:'header,.mobile-fixed-nav-wrap { visibility: hidden !important; }'});evidence.screenshots.push(file);}
+  const tocLink=page.locator('.article-toc a[href="#所在地"]');await tocLink.click();assert.equal(await page.evaluate(()=>location.hash),'#'+encodeURIComponent('所在地'));
+  await page.locator('a[href="#admission-scheme-general-aomori"]').click();const anchor=await page.locator('#admission-scheme-general-aomori').boundingBox();assert.ok(anchor.y>=80&&anchor.y<view.height);
   // Every TOC and frame link must resolve to a visible document target.
   const targets=await page.locator('.article-toc a,.hirosaki-readable a[href^="#"]').evaluateAll(links=>links.map(a=>a.getAttribute('href')));
   for(const target of targets.filter(t=>t?.startsWith('#')&&t.length>1))assert.equal(await page.locator(`[id="${decodeURIComponent(target.slice(1))}"]`).count(),1,target);
-  evidence.views.push({...view,...dimensions,tableCount:await tables.count(),sourceUI:true,checkedDisplayRecords:checked,mappedFacts:mapping.length});
+  evidence.views.push({...view,...dimensions,tableCount:await tables.count(),sourceUI:true,tocClicked:true,frameTargetY:anchor.y,checkedDisplayRecords:checked,mappedFacts:mapping.length,newFactsChecked:mappingDocument.additionalFacts.length});
  }
  assert.deepEqual(errors,[]);evidence.passed=true;
 }finally{await browser?.close();await new Promise(resolve=>server?server.close(resolve):resolve());evidence.screenshots=evidence.screenshots.map(file=>({file,sha256:crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')}));fs.writeFileSync(path.join(out,'verification.json'),JSON.stringify(evidence,null,2)+'\n');}
