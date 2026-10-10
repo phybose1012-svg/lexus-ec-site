@@ -8,6 +8,7 @@ const raw=JSON.parse(fs.readFileSync(new URL('../src/data/generated/admissionInf
 test('all four Asahikawa routes preserve 102 facts and shared source mappings',()=>{
  const html=renderUniversityAdmissions(data);assert.equal(verifyAsahikawaikaReadable(html).facts,102);
  for(const [before,after]of [['17:00必着','17:00'],['両方を満たす','いずれかを満たす'],['免除・徴収猶予',''],['当該学校推薦型選抜受験者の中央値以上','全国受験者の中央値以上'],['2025年度の成績','2024年度の成績']])assert.throws(()=>verifyAsahikawaikaReadable(html.replaceAll(before,after)));
+ assert.throws(()=>verifyAsahikawaikaReadable(html.replace('2026年度から廃止','廃止')));
 });
 test('each special selection retains its distinct point scale and timing',()=>{
  const modified=structuredClone(data);modified.schemes[2].examRows[6].value=modified.schemes[2].examRows[6].value.replace('200点','300点');assert.throws(()=>renderUniversityAdmissions(modified),/total differs/u);

@@ -21,7 +21,7 @@ export function verifyAsahikawaikaReadable(html,candidate=data){
    assert.equal(nodes.length,0);
    const target=all(wrapper,n=>attr(n,'data-admission-coverage-note')===(mergedPublication?'2':'1'))[0];assert.ok(target);
    if(mergedPublication)for(const term of ['一般選抜','私費外国人留学生選抜','2026年11月上旬','未公表','募集要項の公開後に更新'])assert.ok(text(target).includes(term));
-   else for(const term of ['前期日程のみ','看護学科','第2年次編入学'])assert.ok(text(target).includes(term));
+   else for(const term of ['2026年度から廃止','2027年度','前期日程のみ','看護学科','第2年次編入学'])assert.ok(text(target).includes(term));
    mappings.push({id,value:expected,displayTarget:mergedPublication?'admission-publication / coverage2':'admission-overview / coverage1',action:'merge-duplicate-explanation'});continue;
   }
   assert.ok(nodes.length>=1,`Missing ${id}`);
