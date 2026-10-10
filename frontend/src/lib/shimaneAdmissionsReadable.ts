@@ -1,0 +1,51 @@
+import type { UniversityAdmissions } from './universityAdmissions';
+import copy from '../data/shimaneReaderCopy.json' with { type: 'json' };
+import overview from '../data/shimaneUniversityOverview.json' with { type: 'json' };
+import canonical from '../data/universityAdmissions/shimane.json' with { type: 'json' };
+
+const escape=(value:string)=>value.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
+const text=(value:string)=>escape(value).replaceAll('\n','<br>');
+const origins=(values:string[])=>{
+  const rows=values.flatMap(value=>{
+    const [schemeId,kind,index]=value.split('/');
+    if(schemeId==='coverage')return [];
+    const s=canonical.schemes.find(s=>s.id===schemeId);
+    if(!s)throw new Error('Unknown Shimane scheme '+schemeId);
+    const group=kind==='schedule'?s.scheduleRows:kind==='exam'?s.examRows:kind==='venue'?s.venueRows:kind==='note'?s.notes:null;
+    if(!group||!group[Number(index)])throw new Error('Unknown Shimane origin '+value);
+    return [group[Number(index)]];
+  });
+  const ids=[...new Set(rows.flatMap(row=>row.sourceIds))],statuses=[...new Set(rows.flatMap(row=>'status' in row?[row.status]:[]))];
+  return `data-shimane-origins="${escape(JSON.stringify(values))}" data-admission-source-ids="${escape(JSON.stringify(ids))}" data-admission-statuses="${escape(JSON.stringify(statuses))}"`;
+};
+const heading=(title:string)=>`<h4 class="admission-group-title">${escape(title)}</h4>`;
+const facts=(rows:{origins:string[],label:string,text:string}[])=>`<dl class="admission-facts">${rows.map(r=>`<div class="admission-fact" ${origins(r.origins)}><dt>${escape(r.label)}</dt><dd>${text(r.text)}</dd></div>`).join('')}</dl>`;
+const sources=(items:{id:string,title:string,url:string,retrievedAt:string,pages?:string|number[]}[],id:string)=>`<details class="admission-source-footer" id="${id}"><summary>情報ソースはこちら</summary><ul id="${id}-list" style="scroll-margin-top:120px" class="admission-source-list" data-admission-source-list>${items.map(s=>`<li data-admission-source-id="${escape(s.id)}"><a href="${escape(s.url)}">${escape(s.title)}</a>${s.pages?`<small>参照：${text(Array.isArray(s.pages)?`PDF p.${s.pages.join('、')}`:s.pages)}</small>`:''}<small>確認日：${escape(s.retrievedAt.slice(0,10))}</small></li>`).join('')}</ul></details>`;
+
+export const shimaneMetadata={
+  title:'島根大学医学部｜2027年度入試情報',
+  displayTitle:'島根大学 医学部2027年度入試情報',
+  displayTitleLines:['島根大学 医学部','2027年度入試情報'],
+  description:'島根大学医学部医学科の2027年度一般選抜前期（一般枠・県内定着枠）の募集人数、出願・試験日程、科目、配点、出題範囲と県内定着枠の資格・勤務条件を掲載。所在地・アクセスと2026年度医学科入学者の男女比・現浪比も紹介します。',
+  lead:'島根大学医学部医学科の2027年度一般選抜前期について、一般枠・県内定着枠の募集人数、出願・試験日程、科目、配点、出題範囲と出願条件をまとめています。会場・時間割などの詳細は未公表です。出願前には大学公式の学生募集要項と変更通知をご確認ください。',
+  modified:copy.verifiedAt,keyPoints:copy.keyPoints,
+};
+
+export function renderShimaneAdmissionsReadable(data:UniversityAdmissions):string {
+  if(data.path!=='/information-shimane/'||data.schemes.map(s=>s.id).join(',')!=='general-early,general-early-retention')throw new Error('Unexpected Shimane admission scope');
+  if(JSON.stringify(data.schemes)!==JSON.stringify(canonical.schemes)||JSON.stringify(data.coverageNotes)!==JSON.stringify(canonical.coverageNotes))throw new Error('Shimane canonical facts changed; review the reader copy before rendering');
+  const common=copy.scores.reduce((n,r)=>n+(typeof r.common==='number'?r.common:0),0),individual=copy.scores.reduce((n,r)=>n+(typeof r.individual==='number'?r.individual:0),0);
+  if(common!==930||individual!==720)throw new Error('Shimane score totals changed');
+  const point=(value:number|null)=>value===null?'課さない':value.toLocaleString('ja-JP')+'点';
+  const summaryCell=(label:string,value:string)=>`<td><span class="admission-mobile-label" aria-hidden="true">${label}</span>${text(value)}</td>`;
+  const scoreTable=`<table class="admission-score-table" data-shimane-table="scores"><caption>両枠共通の教科別配点（大学の傾斜配点後）</caption><thead><tr><th scope="col">教科・試験</th><th scope="col">共通テスト</th><th scope="col">個別試験</th></tr></thead><tbody>${copy.scores.map(r=>`<tr ${origins(r.origins)}><th scope="row">${escape(r.label)}</th><td>${point(r.common)}</td><td>${point(r.individual)}</td></tr>`).join('')}<tr class="admission-score-total" ${origins(['general-early/exam/1','general-early/exam/11','general-early-retention/exam/1','general-early-retention/exam/11'])}><th scope="row">合計</th><td>${point(common)}</td><td>${point(individual)}</td></tr><tr class="admission-score-total"><th scope="row">総合計</th><td colspan="2">${point(common+individual)}</td></tr></tbody></table>`;
+  const dates=`<table class="admission-dates-table" data-shimane-table="dates"><caption class="admission-sr-only">一般枠・県内定着枠共通の日程</caption><thead><tr><th scope="col">項目</th><th scope="col">日程・条件</th></tr></thead><tbody>${copy.dates.map(r=>`<tr ${origins(r.origins)}><th scope="row">${escape(r.label)}</th><td>${text(r.text)}</td></tr>`).join('')}</tbody></table>`;
+  return `<h2 id="最新の入試情報">2027年度の入試情報</h2><section class="admission-readable" data-university-admissions-year="2027" data-admissions-presentation="shimane-readable-v1" aria-labelledby="最新の入試情報"><h3 id="admission-overview">入試方式・募集人数・主要日程</h3><table class="admission-overview-table" data-shimane-table="overview"><caption class="admission-sr-only">島根大学医学科 一般選抜前期の一覧</caption><thead><tr><th scope="col">入試方式</th><th scope="col">募集人数</th><th scope="col">出願</th><th scope="col">試験日</th></tr></thead><tbody>${copy.overview.map(r=>`<tr><th scope="row"><a href="#admission-scheme-${r.scheme}">${escape(r.name)}</a></th><td ${origins(r.origins)}><span class="admission-mobile-label" aria-hidden="true">募集人数</span>${text(r.quota)}</td>${summaryCell('出願',r.application)}${summaryCell('試験日',r.exam)}</tr>`).join('')}</tbody></table><p data-shimane-quota-notes>${copy.quotaNotes.map(r=>`<span ${origins(r.origins)}>${text(r.text)}</span>`).join(' ')}</p><p class="admission-overview-sources"><a class="admission-source-hint" href="#admission-sources-list">情報ソースはこちら</a></p><section class="admission-readable-scheme" data-admission-scheme="general-early"><h3 id="admission-scheme-general-early">一般選抜（前期日程）の日程・試験内容</h3><p>日程・試験科目・配点は一般枠と県内定着枠で共通です。</p>${heading('出願・試験・手続の日程')}${dates}${heading('一般枠の出願資格')}${facts(copy.qualification)}${heading('出願前の審査・事前相談')}${facts(copy.preApplication)}${heading('試験科目・配点')}${scoreTable}${heading('科目選択・出題範囲・得点換算')}${facts(copy.facts)}${heading('第1段階選抜')}${facts([copy.selection])}${heading('試験会場')}${facts(copy.venue)}${heading('併願・欠員補充')}${facts(copy.notes)}</section><section class="admission-readable-scheme" data-admission-scheme="general-early-retention"><h3 id="admission-scheme-general-early-retention">県内定着枠の出願資格・研修・勤務条件</h3><p data-shimane-retention-and>2027年度共通テストの指定科目を受験したうえで、次の6つの要件をすべて満たす必要があります。</p>${facts(copy.retention)}${heading('入学後の学び')}${facts(copy.retentionCourse)}<p ${origins(copy.retentionNotice.origins)}>${text(copy.retentionNotice.text)}</p></section><h3 id="admission-publication">募集要項の公開予定</h3><ul class="admission-coverage">${copy.publication.map(r=>`<li ${origins(r.origins)}>${text(r.text)}</li>`).join('')}</ul>${sources(data.sources,'admission-sources')}<time class="admission-sr-only" data-university-admissions-verified-at datetime="${data.verifiedAt}">${data.verifiedAt}</time></section>`;
+}
+
+export function renderShimaneUniversityOverview():string {
+  const e=overview.entrants;
+  if(e.male+e.female!==e.total||e.currentGraduate+e.previousGraduate+e.other!==e.total)throw new Error('Shimane entrant totals changed');
+  const table=(id:string,title:string,rows:[string,number][])=>`<h3 id="${id}">${title}</h3><table class="admission-score-table" data-shimane-table="${id}"><caption>${e.year}年度／医学科入学者／${e.total}人</caption><thead><tr><th scope="col">区分</th><th scope="col">人数</th><th scope="col">割合</th></tr></thead><tbody>${rows.map(([label,count])=>`<tr><th scope="row">${label}</th><td>${count}人</td><td>${(count/e.total*100).toFixed(1)}%</td></tr>`).join('')}</tbody></table>`;
+  return `<h2 id="大学基本情報">大学基本情報</h2><section class="admission-readable" data-shimane-university-overview><h3 id="所在地">所在地</h3><p>〒${overview.address.postalCode} ${escape(overview.address.street)}<br>島根大学医学部・出雲キャンパス<br>電話：${overview.address.phone}（${overview.address.contact}）</p><h3 id="アクセス">アクセス</h3><ul>${overview.access.map(v=>`<li>${text(v)}</li>`).join('')}</ul>${table('男女比','男女比',[['男性',e.male],['女性',e.female]])}${table('現浪比','現浪比',[['現役',e.currentGraduate],['既卒',e.previousGraduate],[e.otherLabel,e.other]])}${sources(overview.sources,'shimane-overview-sources')}</section>`;
+}
