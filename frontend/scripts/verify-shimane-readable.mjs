@@ -17,9 +17,15 @@ export function verifyShimaneHtml(html){
  const kp=all(tree,n=>(attr(n,'class')??'').split(' ').includes('article-keypoints'));
  if(kp.length){const items=all(kp[0],n=>n.tagName==='li');assert.equal(items.length,3);for(const [i,v] of copy.keyPoints.entries())assert.equal(clean(text(items[i])),clean(v));}
  const rendered=all(wrapper,n=>attr(n,'data-shimane-origins')!==undefined);
- for(const group of ['quotaNotes','dates','qualification','facts','venue','notes','preApplication','retention','retentionCourse','publication'])for(const r of copy[group]){
-  const found=rendered.filter(n=>attr(n,'data-shimane-origins')===JSON.stringify(r.origins)&&clean(text(n)).includes(clean(r.text)));assert.equal(found.length,1,group+' '+r.label);
+ for(const group of ['quotaNotes','dates','qualification','facts','venue','notes','preApplication','consultation','retention','retentionCourse','publication'])for(const r of copy[group]){
+  const expected=[r.label??'',r.intro??'',...(r.items??[]),r.text??''].join('');
+  const found=rendered.filter(n=>attr(n,'data-shimane-origins')===JSON.stringify(r.origins)&&clean(text(n)).includes(clean(expected)));assert.equal(found.length,1,group+' '+r.label);
+  if(r.items)assert.deepEqual(all(found[0],n=>n.tagName==='li').map(text),r.items);
  }
+ for(const title of ['一般枠の出願資格','第1段階選抜'])assert.equal(all(wrapper,n=>['h4','dt'].includes(n.tagName)&&text(n)===title).length,1,'Duplicated heading '+title);
+ const sameQualification=all(wrapper,n=>n.tagName==='dt'&&text(n)==='高校卒業と同等の資格')[0]?.parentNode;assert.ok(sameQualification);assert.equal(all(sameQualification,n=>n.tagName==='li').length,8,'All 8 equivalent qualification routes');
+ const independentConditions=['次のいずれかです','文部科学大臣が指定したものを含みます','在外教育施設','専修学校高等課程','廃止前の大学入学資格検定','高等学校卒業程度認定審査','大学教育を受けるのにふさわしい学力','個別入学資格審査','期限は2027年3月31日','2027年3月31日までに18歳','修業年限3年以上','文部科学大臣が定める日以降','次の両方を提出','障害者手帳の写し、または医師の診断書の写しのいずれか','次の両方の記載が必要','希望する配慮すべての必要理由','決定済み：配慮の決定通知書の写しも必須','申請中：決定通知書を受領した後、その写しを別送','原則として出身学校を経由','大学が必要と認めた場合','本人または学校関係者等との面談','その他の健康上の理由','FAX：0853-20-2079'];
+ for(const value of independentConditions)assert.ok(clean(text(wrapper)).includes(clean(value)),value);
  for(const r of [copy.selection,copy.retentionNotice])assert.equal(rendered.filter(n=>attr(n,'data-shimane-origins')===JSON.stringify(r.origins)&&clean(text(n)).includes(clean(r.text))).length,1);
  const mapping=[];
  for(const s of admission.schemes)for(const [kind,rows] of [['schedule',s.scheduleRows],['exam',s.examRows],['venue',s.venueRows],['note',s.notes]])for(const [i,r] of rows.entries()){
