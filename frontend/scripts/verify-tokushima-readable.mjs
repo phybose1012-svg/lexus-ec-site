@@ -19,12 +19,19 @@ export function verifyTokushimaHtml(html){
  const keypoints=all(tree,n=>(attr(n,'class')??'').split(' ').includes('article-keypoints'));
  if(keypoints.length){const list=all(keypoints[0],n=>n.tagName==='li');assert.equal(list.length,3);for(const [i,value] of copy.keyPoints.entries())assert.equal(clean(text(list[i])),clean(value));}
  const rendered=all(wrapper[0],n=>attr(n,'data-tokushima-origins')!==undefined);
- const groups=['dates','timetable','facts','notes','venue','publication'];
+ const groups=['dates','timetable','facts','notes','venue','publication','quotaNotes'];
  for(const group of groups)for(const expected of copy[group]){
   const matches=rendered.filter(n=>attr(n,'data-tokushima-origins')===JSON.stringify(expected.origins)&&clean(text(n)).includes(clean(expected.text)));
   assert.equal(matches.length,1,`${group}: ${expected.origins}`);
  }
  assert.equal(rendered.filter(n=>clean(text(n)).includes(clean(copy.selection.text))).length,1);
+ const quota=all(wrapper[0],n=>attr(n,'data-tokushima-quota-notes')!==undefined);
+ assert.equal(quota.length,1);assert.equal(quota[0].tagName,'p');
+ assert.equal(quota[0].parentNode,wrapper[0],'Quota conditions must remain outside tables and disclosures');
+ const overviewTable=all(wrapper[0],n=>attr(n,'data-tokushima-table')==='overview')[0];
+ assert.ok(wrapper[0].childNodes.indexOf(quota[0])>wrapper[0].childNodes.indexOf(overviewTable));
+ const quotaText=clean(text(quota[0]));
+ for(const value of ['私費外国人留学生選抜の若干名','原則として一般選抜前期の募集人数に含まれます','総合型・学校推薦型選抜で合格者が募集人数に満たない場合','一般選抜で補充します'])assert.ok(quotaText.includes(clean(value)),value);
  const score=all(wrapper[0],n=>attr(n,'data-tokushima-table')==='scores')[0];
  const scoreRows=all(score,n=>n.tagName==='tr');
  const point=v=>v===null?'課さない':typeof v==='number'?v.toLocaleString('ja-JP')+'点':v;
