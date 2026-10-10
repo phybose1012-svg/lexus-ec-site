@@ -320,7 +320,7 @@ export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post
   if (data.path === '/information-saga/') {
     const contentHtml=renderUniversityAdmissions(data)+renderSagaUniversityOverview();
     const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
-    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item);
+    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'入試情報'}:item);
     return {...post,...sagaAdmissionsMetadata(data),contentHtml,infoItems,toc};
   }
   const admissionHtml=renderUniversityAdmissions(data);
