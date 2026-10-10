@@ -9,6 +9,12 @@ test('every Yamanashi fact survives the score split and the shared recommendatio
  assert.throws(()=>verifyYamanashiReadable(html.replaceAll('16時30分必着','16時30分')));
  assert.throws(()=>verifyYamanashiReadable(html.replace('約1.2倍','約1.5倍')));
 });
+test('source-qualified ticket recipients and fee exemptions remain visible once',()=>{
+ const html=renderUniversityAdmissions(data);verifyYamanashiReadable(html);
+ assert.throws(()=>verifyYamanashiReadable(html.replace('第1段階選抜の合格者には','志願者には')));
+ assert.throws(()=>verifyYamanashiReadable(html.replace('（免除対象者を除く）','')));
+ assert.throws(()=>verifyYamanashiReadable(html.replace('一般選抜（後期）','一般選抜（前期）')));
+});
 test('the Yamanashi page is escaped, stable, and changes only its own route',()=>{
  const raw=JSON.parse(fs.readFileSync(new URL('../src/data/generated/admissionInfoPosts.json',import.meta.url),'utf8'));
  const index=new Map([[data.path,data]]),before=raw.find(p=>p.path===data.path),after=applyUniversityAdmissionsFromIndex(before,index);

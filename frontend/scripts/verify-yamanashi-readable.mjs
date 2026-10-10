@@ -10,7 +10,7 @@ const all=(n,p,r=[])=>{if(p(n))r.push(n);for(const c of n.childNodes??[])all(c,p
 const text=n=>n.nodeName==='#text'?n.value:(n.childNodes??[]).map(text).join('');
 const clean=s=>s.replace(/\s/gu,'');
 export function verifyYamanashiReadable(html,candidate=data){
- const tree=parse(html),wrappers=all(tree,n=>attr(n,'data-admissions-presentation')==='yamanashi-readable-v1');assert.equal(wrappers.length,1);
+ const tree=parse(html),wrappers=all(tree,n=>attr(n,'data-admissions-presentation')==='yamanashi-readable-v2');assert.equal(wrappers.length,1);
  const wrapper=wrappers[0],rendered=all(wrapper,n=>attr(n,'data-admission-origins')!==undefined),mappings=[];
  for(const scheme of candidate.schemes)for(const [kind,key] of [['schedule','scheduleRows'],['exam','examRows'],['venue','venueRows'],['note','notes']])for(const [index,row] of scheme[key].entries()){
   const id=`${scheme.id}/${kind}/${index}`,value=row.value??row.text;
@@ -34,13 +34,23 @@ export function verifyYamanashiReadable(html,candidate=data){
  }
  for(const table of all(tree,n=>n.tagName==='table'))assert.equal(all(table,n=>n.tagName==='a'&&/^https?:/u.test(attr(n,'href')??'')).length,0);
  const publishedText=text(wrapper).replace(text(all(wrapper,n=>n.tagName==='details')[0]),'');
+ const coverageMappings=[];
+ for(const [index,value]of candidate.coverageNotes.entries()){
+  const nodes=all(wrapper,n=>attr(n,'data-admission-coverage-note')===String(index));assert.equal(nodes.length,1);
+  if(index===0){assert.equal(nodes[0].tagName,'table');assert.ok(text(nodes[0]).includes('一般選抜（後期）'));assert.doesNotMatch(text(nodes[0]),/一般選抜（前期）/u);assert.ok(!publishedText.includes(value));}
+  else assert.equal(clean(text(nodes[0])),clean(value));
+  coverageMappings.push({index,value,displayTarget:index===0?'admission-overview table / general-late route':`data-admission-coverage-note=${index}`,action:index===0?'merge-duplicate-into-overview':'retain'});
+ }
+ for(const term of ['第1段階選抜の合格者には、受験票の印刷案内がメールで届きます。','志願者全員に印刷案内','2027年2月6日（土）9時〜12時','検定料支払い（免除対象者を除く）','必要な検定料手続き'])assert.ok(publishedText.includes(term),`Lost source-qualified condition: ${term}`);
+ assert.equal([...publishedText.matchAll(/第1段階選抜の合格者には/gu)].length,1);
+ assert.equal([...publishedText.matchAll(/免除対象者を除く/gu)].length,1);
  assert.doesNotMatch(publishedText,/推測していません|転用|本表|募集要項p\.|要項\d+頁|原典の記載|照合済み/u);
  for(const term of ['16時30分必着','12時〜13時を除く','15年以内に9年間','約1.2倍','約1.5倍','2026年10月1日','全範囲','出願無資格','リスニング免除','県内枠を先','1つの大学・学部','いずれか','すべて'])assert.ok(publishedText.includes(term),`Lost critical condition: ${term}`);
  const schemeIds=all(wrapper,n=>attr(n,'data-admission-scheme')!==undefined).map(n=>attr(n,'data-admission-scheme'));assert.deepEqual(schemeIds,candidate.schemes.map(s=>s.id));
  const ids=all(tree,n=>attr(n,'id')!==undefined).map(n=>attr(n,'id'));assert.equal(new Set(ids).size,ids.length,'Duplicate anchors');
  assert.equal(overview.entrants.male+overview.entrants.female,125);
  if(html.includes('data-yamanashi-overview')){for(const term of ['2026年度 医学科入学者（125人）','89人','36人','71.2%','28.8%','409-3898','3番乗り場'])assert.ok(text(tree).includes(term));}
- return {passed:true,checkedAt:new Date().toISOString(),facts:mappings.length,tables:all(tree,n=>n.tagName==='table').length,mappings};
+ return {passed:true,checkedAt:new Date().toISOString(),facts:mappings.length,tables:all(tree,n=>n.tagName==='table').length,mappings,coverageMappings};
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
  const [target,output]=process.argv.slice(2);
