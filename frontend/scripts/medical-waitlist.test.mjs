@@ -323,6 +323,21 @@ test('table values are numeric, retaining approximate ranges/groups and keeping 
   assert.equal(waitlistTableValue(school('産業医科大学').records[1]), '0');
 });
 
+test('Kansai 2026 general early preserves the user-approved approximate rank', () => {
+  const record = school('関西医科大学').records.find((entry) => entry.route === '一般前期');
+  assert.equal(record.result, '合格例：補欠110番前後');
+  assert.equal(record.metric, 'rank-case', 'an editorial approximation is not an official final rank');
+  assert.equal(record.asOf, '2026-04-02');
+  assert.equal(record.evidenceBasis, 'unconfirmed');
+  assert.equal(new URL(record.source.url).hostname, 'daikanyamamedical.com');
+  assert.equal(waitlistTableValue(record), '110前後');
+  assert.equal(waitlistTableValue({ ...record, result: '合格例：補欠110前後' }), '110前後', 'both approximate forms retain the qualifier');
+  assert.match(publicWaitlistSchool(school('関西医科大学')).records[0].result, /110番前後/);
+  const table = waitlistTableSchools.find((entry) => entry.id === 'school-5');
+  assert.deepEqual(table.rows.find((row) => row.year === '2026').cells.map((cell) => cell.displayValue), ['110前後', '3', '40']);
+  assert.equal(table.rows.find((row) => row.year === '2025').cells[0].displayValue, '168');
+});
+
 test('each displayed value has a year-scoped meaning, and no cell mixes counts with ranks', () => {
   for (const table of waitlistTableSchools) {
     for (const row of table.rows.filter((row) => !row.legacy)) {

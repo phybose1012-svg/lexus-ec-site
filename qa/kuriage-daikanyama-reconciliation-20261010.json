@@ -33,7 +33,10 @@
     "kurume2025": "https://best.kurume-u.ac.jp/img/admissions/2025_results.pdf",
     "uoeh2026": "https://www.uoeh-u.ac.jp/var/rev0/0087/7212/12682491622.pdf",
     "fukuoka2026": "https://nyushi.fukuoka-u.ac.jp/cms/wp-content/uploads/2026/05/jyokyo2026.pdf",
-    "kansaiOfficial": "https://www.kmu.ac.jp/faculty/medical/about/data/index.html"
+    "kansaiOfficial": "https://www.kmu.ac.jp/faculty/medical/about/data/index.html",
+    "kanazawa2024Rank": "https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_240402.pdf",
+    "fuji2026Mobile": "https://www.fujigakuin.jp/sp/news/?g=info&id=2588",
+    "nms2026LateCandidates": "https://www.nms.ac.jp/var/rev0/0064/3476/1.pdf"
   },
   "resolved": [
     {
@@ -95,14 +98,29 @@
   ],
   "decisionQueue": [
     {
-      "id": "kansai-2026-early", "status": "awaiting-user", "university": "関西医科大学", "year": 2026, "route": "一般前期",
+      "id": "kansai-2026-early", "status": "resolved-by-user", "university": "関西医科大学", "year": 2026, "route": "一般前期",
       "existing": "107（富士学院の3/30個別合格報告）", "candidate": "111（新記事の4/2時点の集計）",
       "checks": "メルリックス2026記事と大学公式の学生・入試データを比較。111という正確な到達順位の独立した確認はできない。検索に出た別塾の110番台という情報は、正確な111の確証にならず採用していない。",
       "recommendation": "個別報告107を維持。111を確定した最終順位として掲載しない。",
-      "question": "2026年度・関西医科大学一般前期を、新記事に基づく報告値111へ更新するか、個別報告で確認できる107のままにするか。"
+      "question": "2026年度・関西医科大学一般前期を、新記事に基づく報告値111へ更新するか、個別報告で確認できる107のままにするか。",
+      "userDecision": "110番前後",
+      "decisionDate": "2026-10-10",
+      "decision": "107番の個別報告と111番の集計を踏まえ、ユーザー指定の概数110番前後を掲載。表では数字中心の表記に合わせ110前後とし、公開JSONにも前後を保持。最終順位や正確な110番の合格確認とは扱わない。根拠の時点は新記事の2026-04-02。"
     },
-    { "id": "kanazawa-2024-early", "status": "needs-further-review", "existing": "58", "candidate": "100番台", "checks": "メルリックス2024は大学HPに基づく4/2の58番を記載。新記事の100番台を独立確認できず、過年度原表は変更しない。" },
-    { "id": "nms-2026-late", "status": "needs-further-review", "existing": "40（3/30）", "candidate": "43（4/2時点）", "checks": "富士学院は40。大学の合格者数・補欠者数は到達順位を示さない。正確な43の追加裏付けは未取得。" },
+    {
+      "id": "kanazawa-2024-early", "status": "resolved-with-official-source", "existing": "58", "candidate": "100番台",
+      "checks": "大学公式の2024年4月2日付PDFを取得し、1ページ全体を画像化して確認。一般前期は補欠順位58位まで合格通知済み、一般後期は3位までと明記。メルリックス2024の4/2記載とも一致。100番台の独立した裏付けは見つからない。",
+      "officialSource": "https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_240402.pdf",
+      "officialSourceSha256": "ee87bdaa6e393eda4fb4c5c00cffb6331529820c77ad4f74a291f97be738a573",
+      "decision": "大学公式の時点別順位58を維持。100番台へ変更せず、公式4/2以降の最終順位が確認できたとは断定しない。過年度原表は変更しない。"
+    },
+    {
+      "id": "nms-2026-late", "status": "awaiting-user", "university": "日本医科大学", "year": 2026, "route": "一般後期",
+      "existing": "40（3/30）", "candidate": "43（4/2時点）",
+      "checks": "富士学院の2026年度速報（検索本文およびスマートフォン版）に3/30の一般後期・補欠40番の個別合格報告を確認。代官山記事は4/2時点の43番だが、個別の連絡日・報告者が不明。追加検索でも正確な43の別の裏付けは見つからない。大学の2026年3/13後期2次補欠者64名の順位表は候補者一覧であり、繰上到達順位の裏付けには使用しない。個人SNS・匿名掲示板・個人ブログは根拠として採用しない。",
+      "recommendation": "確認できる個別報告40を維持。43に変更する場合は未確認の集計報告値として扱う。概数40番台前半への変更もユーザー判断後に行う。",
+      "question": "日本医科大学2026年度一般後期は、個別報告40番を維持するか、新記事の43番を採用するか、40番台前半と表記するか。"
+    },
     { "id": "nihon-2026-n1", "status": "needs-further-review", "existing": "169（3/31）", "candidate": "174番台", "checks": "174番台という原文自体の意味が曖昧。174と勝手に修正せず、別資料・ユーザー判断が必要。" },
     { "id": "nihon-2025-n1", "status": "needs-further-review", "existing": "54（2/27）", "candidate": "約120", "checks": "メルリックス2025は54。新記事の約120は後の到達範囲かもしれないが、元の個別報告日は不明。" },
     { "id": "twmu-2026-general", "status": "needs-further-review", "existing": "56（3/26）", "candidate": "59", "checks": "富士学院は56。59の独立した裏付けは未取得。" },
@@ -119,5 +137,5 @@
     { "id": "kawasaki-2025-general", "status": "needs-further-review", "existing": "不明", "candidate": "23番", "checks": "補欠候補者の通知方法と、順位・人数のどちらの23かを公式資料で確認する必要がある。" }
   ],
   "limits": "追加資料との一次照合と上記の個別比較まで。すべての相違点が解決したとは報告しない。履歴の数値・原表・年度別の列は維持。判断待ちは順番に追加調査・一問一答を行う。",
-  "publicChanges": ["久留米大学2026年度一般前期の補欠72番（3/30）の合格報告を補足", "情報確認日を2026-10-10へ更新"]
+  "publicChanges": ["久留米大学2026年度一般前期の補欠72番（3/30）の合格報告を補足", "関西医科大学2026年度一般前期をユーザー判断の概数110前後へ変更", "情報確認日を2026-10-10へ更新"]
 }

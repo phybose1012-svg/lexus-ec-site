@@ -9,9 +9,9 @@ export function waitlistTableValue(record: WaitlistRecord): string {
     return match[1];
   }
   if (record.metric === "rank" || record.metric === "rank-case") {
-    const match = record.result.match(/(?:補欠(?:順位)?|繰上順位)(\d+)(番台(?:前半|後半)?|前後)?/);
+    const match = record.result.match(/(?:補欠(?:順位)?|繰上順位)(\d+)(番台(?:前半|後半)?|番?前後)?/);
     if (!match) throw new Error(`Waitlist rank has no numeric value: ${record.result}`);
-    return `${match[1]}${match[2]?.replace("番台", "台") ?? ""}`;
+    return `${match[1]}${match[2]?.replace("番", "") ?? ""}`;
   }
   if (record.metric === "group-case") {
     const match = record.result.match(/補欠([A-D](?:群|ランク))/);

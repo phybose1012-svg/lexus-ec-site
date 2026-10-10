@@ -15,6 +15,7 @@ export type WaitlistSchool = {
 const official = (title: string, url: string): Evidence => ({ title, url, kind: "official" });
 const fuji: Evidence = { title: "富士学院・2026年度合格速報", url: "https://www.fujigakuin.jp/news/?id=2588", kind: "prep" };
 const mel: Evidence = { title: "メルリックス学院・2026年度繰上情報", url: "https://melurix.co.jp/blog/c1493", kind: "prep" };
+const daikanyama: Evidence = { title: "代官山MEDICAL・2026年度繰り上げ状況（4/2時点）", url: "https://daikanyamamedical.com/blog/2026/04/02/kuriage2026/", kind: "prep" };
 const record = (route: string, metric: Metric, result: string, asOf: string | null, source: Evidence, note?: string): WaitlistRecord => ({ route, metric, result, asOf, source, ...(note ? { note } : {}) });
 const example = (route: string, result: string, date: string, metric: Metric = "rank-case") => record(route, metric, result, date, fuji);
 // These reports explicitly cite a university announcement or a university inquiry.
@@ -55,7 +56,7 @@ export const waitlistSchools: WaitlistSchool[] = [
     reportedRank("一般後期", "補欠3番までとの報告", "2026-03-31"),
   ] },
   { id: "school-5", name: "関西医科大学", records: [
-    example("一般前期", "合格例：補欠107番", "2026-03-30"),
+    { ...record("一般前期", "rank-case", "合格例：補欠110番前後", "2026-04-02", daikanyama, "複数の報告をもとにした概数。正確な最終順位ではありません。"), evidenceBasis: "unconfirmed" },
     example("一般後期", "合格例：補欠3番", "2026-03-31"),
     example("共通テスト・一般併用", "合格例：補欠40番", "2026-03-24"),
   ] },
