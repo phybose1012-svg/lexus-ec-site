@@ -356,6 +356,30 @@ test('Kansai 2026 general early preserves the user-approved approximate rank', (
   assert.equal(table.rows.find((row) => row.year === '2025').cells[0].displayValue, '168');
 });
 
+test('Kitasato 2026 general preserves the user-approved thirties range and official closure', () => {
+  const kitasato = school('北里大学');
+  const record = kitasato.records.find((entry) => entry.route === '一般選抜');
+  assert.equal(record.result, '合格例：補欠30番台');
+  assert.equal(record.metric, 'rank-case', 'a reported range is not an official final rank or a headcount');
+  assert.equal(record.asOf, '2026-04-02', 'the source snapshot must not reuse the old 29th-place contact date');
+  assert.equal(record.evidenceBasis, 'unconfirmed');
+  assert.equal(new URL(record.source.url).hostname, 'daikanyamamedical.com');
+  assert.match(record.note, /個別の連絡日・正確な最終順位は未確認/);
+  assert.equal(waitlistTableValue(record), '30台', 'do not convert a range into an exact 30');
+  const published = publicWaitlistSchool(kitasato).records.find((entry) => entry.route === '一般選抜');
+  assert.equal(published.displayValue, '30台');
+  assert.match(published.result, /30番台/);
+  assert.equal(published.informationType, '合格報告（報告者未確認）');
+  const closure = kitasato.records.find((entry) => entry.metric === 'notice');
+  assert.equal(closure.source.kind, 'official');
+  assert.equal(closure.asOf, '2026-03-31');
+  assert.equal(closure.result, '2026年度の繰上合格は終了');
+  const table = waitlistTableSchools.find((entry) => entry.id === 'school-6');
+  assert.deepEqual(table.columns, ['一般選抜']);
+  assert.deepEqual(table.rows.find((row) => row.year === '2026').cells.map((cell) => cell.displayValue), ['30台']);
+  assert.equal(table.rows.find((row) => row.year === '2025').cells[0].displayValue, '90');
+});
+
 test('NMS 2026 general late preserves the user-approved early-forties range', () => {
   const nms = school('日本医科大学');
   const record = nms.records.find((entry) => entry.route === '一般後期');

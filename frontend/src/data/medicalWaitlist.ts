@@ -61,7 +61,7 @@ export const waitlistSchools: WaitlistSchool[] = [
     example("共通テスト・一般併用", "合格例：補欠40番", "2026-03-24"),
   ] },
   { id: "school-6", name: "北里大学", records: [
-    example("一般選抜", "合格例：補欠29番", "2026-03-30"),
+    { ...record("一般選抜", "rank-case", "合格例：補欠30番台", "2026-04-02", daikanyama, "4月2日時点の記事に掲載された順位の報告です。個別の連絡日・正確な最終順位は未確認です。"), evidenceBasis: "unconfirmed" },
     record("終了案内", "notice", "2026年度の繰上合格は終了", "2026-03-31", official("北里大学・繰上合格終了の公式案内", "https://www.kitasato-u.ac.jp/med/albums/abm.php?f=abm00048511.pdf&n=2026年度北里大学医学部選抜試験繰上合格終了について.pdf")),
   ] },
   { id: "school-7", name: "杏林大学", records: [
