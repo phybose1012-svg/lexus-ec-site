@@ -3,6 +3,7 @@ import { renderTokushimaAdmissionsReadable, renderTokushimaUniversityOverview, t
 import { renderTsukubaUniversityOverview, tsukubaOverviewVerifiedAt } from './tsukubaUniversityOverview.ts';
 import { renderTsukubaComprehensiveSelection, tsukubaComprehensiveTitle } from './tsukubaComprehensiveSelection.ts';
 import { hirosakiAdmissionsMetadata, renderHirosakiAdmissionsReadable, renderHirosakiRegionalConditions, renderHirosakiUniversityOverview } from './hirosakiAdmissionsReadable.ts';
+import { renderYamanashiAdmissionsReadable, renderYamanashiUniversityOverview, yamanashiMetadata } from './yamanashiAdmissionsReadable.ts';
 
 /** Official, university-specific admission data; independent of legacy safety layers. */
 export type AdmissionRowStatus = "confirmed" | "unpublished" | "needs-confirmation";
@@ -260,6 +261,7 @@ const plainText = (value: string) => value.replace(/<[^>]*>/g,"").replace(/&nbsp
 export function universityAdmissionsMetadata(data: UniversityAdmissions) {
   if (data.path === '/information-hirosaki/') return hirosakiAdmissionsMetadata();
   if (data.path === '/information-tokushima/') return tokushimaMetadata;
+  if (data.path === '/information-yamanashi/') return {...yamanashiMetadata, modified:data.verifiedAt.slice(0,10)};
   const university = data.university;
   const isTsukuba = data.path === '/information-tsukuba/';
   const admissionTitle = isTsukuba ? '2027年度入試情報' : '2027年度入試情報・大学概要';
@@ -284,6 +286,7 @@ export function renderUniversityAdmissions(input: UniversityAdmissions): string 
   if (data.path === '/information-tsukuba/') return renderTsukubaAdmissionsReadable(data);
   if (data.path === '/information-hirosaki/') return renderHirosakiAdmissionsReadable(data);
   if (data.path === '/information-tokushima/') return renderTokushimaAdmissionsReadable(data);
+  if (data.path === '/information-yamanashi/') return renderYamanashiAdmissionsReadable(data);
   const sources = new Map(data.sources.map((source,index)=>[source.id,{source,index}]));
   const refs = (ids: string[]) => ids.map(id=>{
     const item=sources.get(id) ?? failure(`unknown render source ${id}`);
@@ -317,6 +320,12 @@ export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post
     const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
     const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'医学部入試情報'}:item);
     return {...post,...tokushimaMetadata,contentHtml,infoItems,toc};
+  }
+  if (data.path === '/information-yamanashi/') {
+    const contentHtml=admissionHtml+renderYamanashiUniversityOverview();
+    const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
+    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'入試情報'}:item.label==='地域'?{...item,value:'山梨県'}:item);
+    return {...post,...universityAdmissionsMetadata(data),contentHtml,toc,infoItems};
   }
   let replaced=false;
   let overviewReplaced=false;
