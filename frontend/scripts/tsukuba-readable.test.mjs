@@ -8,8 +8,8 @@ import { readableAdmissionValue } from '../src/lib/tsukubaAdmissionsReadable.ts'
 import { verifyReadableHtml, attr, all, text, clean } from './verify-tsukuba-readable.mjs';
 const data = JSON.parse(fs.readFileSync(new URL('../src/data/universityAdmissions/tsukuba.json', import.meta.url), 'utf8'));
 
-test('all 130 canonical rows, 11 notes, 5 coverage items and every source survive restructuring', () => {
-  assert.deepEqual(verifyReadableHtml(renderUniversityAdmissions(data)), { rows: 130, notes: 11, coverage: 5, sources: 11, schemes: 9 });
+test('all 130 canonical rows are represented without redundant notes or inline sources', () => {
+  assert.deepEqual(verifyReadableHtml(renderUniversityAdmissions(data)), { rows: 130, notes: 8, coverage: 4, sources: 11, schemes: 9 });
 });
 test('dates, mandatory conditions and unknown values are not hidden in disclosure controls', () => {
   const html = renderUniversityAdmissions(data);
