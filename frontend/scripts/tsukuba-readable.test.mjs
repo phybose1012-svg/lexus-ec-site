@@ -36,11 +36,16 @@ test('formatting escapes HTML and keeps nested comma-separated alternatives inta
   assert.equal(clean(text(parse(readableAdmissionValue(value, true)))), clean(value));
   assert.ok(!readableAdmissionValue(value).includes('<script>'));
 });
-test('admissions precede the university overview and repeated transformation remains stable', () => {
+test('admissions precede the university overview, key points summarize the entrance exams and repeated transformation remains stable', () => {
   const posts = JSON.parse(fs.readFileSync(new URL('../src/data/generated/admissionInfoPosts.json', import.meta.url), 'utf8'));
   const raw = posts.find(p => p.path === data.path), index = new Map([[data.path, data]]);
   const first = applyUniversityAdmissionsFromIndex(raw, index), second = applyUniversityAdmissionsFromIndex(first, index);
   assert.ok(first.contentHtml.indexOf('id="最新の入試情報"') < first.contentHtml.indexOf('大学基本情報'));
+  assert.deepEqual(first.keyPoints, [
+    '一般選抜（一般枠）は前期44人。個別試験は2027年2月25日・26日で、後期日程はありません。',
+    '一般枠の配点は共通テスト950点＋個別試験1,400点＝計2,350点。個別試験には筆記の適性試験と面接を含みます。',
+    '推薦入試（一般）は44人募集、試験日は2026年11月26日・27日。共通テストは課しません。',
+  ]);
   assert.deepEqual(second, first);
 });
 
