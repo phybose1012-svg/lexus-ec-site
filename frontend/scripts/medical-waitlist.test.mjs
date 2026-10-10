@@ -338,6 +338,23 @@ test('Kansai 2026 general early preserves the user-approved approximate rank', (
   assert.equal(table.rows.find((row) => row.year === '2025').cells[0].displayValue, '168');
 });
 
+test('NMS 2026 general late preserves the user-approved early-forties range', () => {
+  const nms = school('日本医科大学');
+  const record = nms.records.find((entry) => entry.route === '一般後期');
+  assert.equal(record.result, '合格例：補欠40番台前半');
+  assert.equal(record.metric, 'rank-case', 'an editorial range is not an official final rank');
+  assert.equal(record.asOf, '2026-04-02');
+  assert.equal(record.evidenceBasis, 'unconfirmed');
+  assert.equal(new URL(record.source.url).hostname, 'daikanyamamedical.com');
+  assert.equal(waitlistTableValue(record), '40台前半');
+  assert.match(publicWaitlistSchool(nms).records.find((entry) => entry.route === '一般後期').result, /40番台前半/);
+  const table = waitlistTableSchools.find((entry) => entry.id === 'school-22');
+  assert.deepEqual(table.rows.find((row) => row.year === '2026').cells.map((cell) => cell.displayValue), ['90台前半', '40台前半']);
+  const regional = nms.records.find((entry) => entry.route === '一般前期・千葉県地域枠');
+  assert.equal(waitlistTableValue(regional), '5');
+  assert.equal(regional.asOf, '2026-03-17');
+});
+
 test('each displayed value has a year-scoped meaning, and no cell mixes counts with ranks', () => {
   for (const table of waitlistTableSchools) {
     for (const row of table.rows.filter((row) => !row.legacy)) {

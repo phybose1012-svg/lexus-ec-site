@@ -127,7 +127,7 @@ export const waitlistSchools: WaitlistSchool[] = [
   ] },
   { id: "school-22", name: "日本医科大学", records: [
     { ...record("一般前期", "rank-case", "合格例：補欠90番台前半", "2026-03-23", mel), evidenceBasis: "unconfirmed" },
-    example("一般後期", "合格例：補欠40番", "2026-03-30"),
+    { ...record("一般後期", "rank-case", "合格例：補欠40番台前半", "2026-04-02", daikanyama, "複数の報告をもとにした概数。正確な最終順位ではありません。"), evidenceBasis: "unconfirmed" },
     example("一般前期・千葉県地域枠", "合格例：補欠5番", "2026-03-17"),
   ] },
   { id: "school-23", name: "日本大学", records: [
