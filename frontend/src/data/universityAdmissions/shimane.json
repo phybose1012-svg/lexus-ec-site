@@ -1,0 +1,513 @@
+{
+  "path": "/information-shimane/",
+  "university": "島根大学",
+  "admissionYear": 2027,
+  "verifiedAt": "2026-10-09T10:38:54.145Z",
+  "sources": [
+    {
+      "id": "selection-2027",
+      "url": "https://www.shimane-u.ac.jp/_files/00432498/2026071001.pdf",
+      "title": "令和9年度 島根大学 入学者選抜要項",
+      "retrievedAt": "2026-10-09T10:32:09.6519507Z",
+      "sha256": "34ad3e6c1a06592d55bb9eb0302173f5927f6b6115be5971fc0bc204b8756aa1",
+      "publishedAt": "2026-07-10",
+      "pages": "PDF pp.2,18–21,30–31（冊子pp.15–18,27–28、巻頭日程表）"
+    },
+    {
+      "id": "application-index-2027",
+      "url": "https://www.shimane-u.ac.jp/nyushi/information/application/2027/2027gakubu.html",
+      "title": "令和9（2027）年度募集要項（学部）・公表予定",
+      "retrievedAt": "2026-10-09T10:32:09.7832215Z",
+      "sha256": "1098b582bcff3c69b4f48a94d6251fa100dc2789ea550876c604395be5c0c4bf"
+    },
+    {
+      "id": "medicine-schedule-2027",
+      "url": "https://www.med.shimane-u.ac.jp/medicine/nyushi/",
+      "title": "島根大学医学部医学科 入試情報・令和9年度入試日程",
+      "retrievedAt": "2026-10-09T10:33:04.1292450Z",
+      "sha256": "eb187cc468022a54aec332dba46bae7a975e82ebc08215ac56dc73bdadfc44cf"
+    }
+  ],
+  "schemes": [
+    {
+      "id": "general-early",
+      "name": "一般選抜 前期日程（一般枠）",
+      "scheduleRows": [
+        {
+          "label": "大学入学共通テスト（本試験）",
+          "value": "2027年1月16日（土）・17日（日）。2027年度の成績のみ利用する。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願期間",
+          "value": "2027年1月25日（月）～2月3日（水）。",
+          "sourceIds": [
+            "medicine-schedule-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web出願登録の締切",
+          "value": "未公表（登録の開始日時・最終時刻は、11月下旬公表予定の2027年度一般選抜学生募集要項で確認）。",
+          "sourceIds": [
+            "application-index-2027"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "入学検定料の支払締切",
+          "value": "未公表（支払期限・時刻は、2027年度一般選抜学生募集要項の公表待ち）。",
+          "sourceIds": [
+            "application-index-2027"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "出願書類の提出条件",
+          "value": "未公表（書類提出の締切時刻、必着／消印有効の扱い、提出方法の詳細は、2027年度一般選抜学生募集要項の公表待ち）。",
+          "sourceIds": [
+            "application-index-2027"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "第1段階選抜の結果発表",
+          "value": "2027年2月10日（水）。発表時刻・発表方法の詳細は未公表。",
+          "sourceIds": [
+            "selection-2027",
+            "application-index-2027"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "個別試験日",
+          "value": "2027年2月25日（木）・26日（金）。科目別の実施日・試験時間・集合時刻は未公表。",
+          "sourceIds": [
+            "medicine-schedule-2027",
+            "application-index-2027"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "合格発表",
+          "value": "2027年3月6日（土）。発表時刻・発表方法の詳細は未公表。",
+          "sourceIds": [
+            "medicine-schedule-2027",
+            "application-index-2027"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "入学手続期間",
+          "value": "2027年3月8日（月）～3月15日（月）。締切時刻・納付・書類提出の条件は未公表。",
+          "sourceIds": [
+            "selection-2027",
+            "application-index-2027"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "前期日程全体58名（県内定着枠3名を含む）。県内定着枠は文部科学省との協議により変更される場合があり、一般枠の確定内訳は要確認。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "共通テスト・指定教科と合計",
+          "value": "6教科8科目、合計930点。指定教科・科目を受験していない場合は無資格として扱う。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・国語",
+          "value": "「国語」250点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・地理歴史／公民",
+          "value": "「地理総合，地理探究」「歴史総合，日本史探究」「歴史総合，世界史探究」「公共，倫理」「公共，政治・経済」から1科目、100点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・数学",
+          "value": "「数学Ⅰ，数学Ａ」と「数学Ⅱ，数学Ｂ，数学Ｃ」の2科目、合計100点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・理科",
+          "value": "「物理」「化学」「生物」から2科目、合計350点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・英語",
+          "value": "「英語（リスニングを含む）」100点。リーディング100点満点を200点、リスニング100点満点を50点へ換算し、合計250点を100点満点に圧縮する。重度難聴等でリスニング免除の場合は、リーディング100点満点の得点をそのまま利用する。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・情報",
+          "value": "「情報Ⅰ」30点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験・数学",
+          "value": "300点。数学Ⅰ・Ⅱ・Ⅲ・Ａは全範囲、数学Ｂは数列、数学Ｃはベクトル及び平面上の曲線と複素数平面。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験・英語",
+          "value": "300点。英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ・Ⅱ・Ⅲ。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験・面接",
+          "value": "120点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験・合計",
+          "value": "数学300点、英語300点、面接120点、合計720点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "2段階選抜",
+          "value": "志願者数が募集人員の約8倍を超えた場合、主として大学入学共通テストの成績により第1段階の選抜を行い、その合格者に必要な試験等を行う。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "面接の評価・不合格判定の詳細",
+          "value": "未公表（面接の実施形式・評価基準・得点にかかわらない不合格判定条件などは、2027年度一般選抜学生募集要項の公表待ち）。",
+          "sourceIds": [
+            "application-index-2027"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "個別試験会場・集合場所",
+          "value": "未公表（2027年度一般選抜の試験会場・試験室・集合場所・集合時刻は、11月下旬公表予定の学生募集要項等で確認）。",
+          "sourceIds": [
+            "application-index-2027"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "notes": [
+        {
+          "text": "地理歴史・公民で利用科目が1科目の場合、2科目受験者は第1解答科目を採用する。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "総合型選抜・学校推薦型選抜の合格者が募集人員に満たないときは、不足した人数を一般選抜前期日程の募集人員に加える。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "不測の事態により入試日程・入試方法等が変更される場合がある。変更は大学ホームページで公表されるため、出願前に最新の募集要項・変更通知を確認する。",
+          "sourceIds": [
+            "medicine-schedule-2027"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "general-early-retention",
+      "name": "一般選抜 前期日程（県内定着枠）",
+      "scheduleRows": [
+        {
+          "label": "大学入学共通テスト（本試験）",
+          "value": "2027年1月16日（土）・17日（日）。2027年度の成績のみ利用する。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願期間",
+          "value": "2027年1月25日（月）～2月3日（水）。",
+          "sourceIds": [
+            "medicine-schedule-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web出願登録の締切",
+          "value": "未公表（登録の開始日時・最終時刻は、11月下旬公表予定の2027年度一般選抜学生募集要項で確認）。",
+          "sourceIds": [
+            "application-index-2027"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "入学検定料の支払締切",
+          "value": "未公表（支払期限・時刻は、2027年度一般選抜学生募集要項の公表待ち）。",
+          "sourceIds": [
+            "application-index-2027"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "出願書類の提出条件",
+          "value": "未公表（書類提出の締切時刻、必着／消印有効の扱い、提出方法の詳細は、2027年度一般選抜学生募集要項の公表待ち）。",
+          "sourceIds": [
+            "application-index-2027"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "第1段階選抜の結果発表",
+          "value": "2027年2月10日（水）。発表時刻・発表方法の詳細は未公表。",
+          "sourceIds": [
+            "selection-2027",
+            "application-index-2027"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "個別試験日",
+          "value": "2027年2月25日（木）・26日（金）。科目別の実施日・試験時間・集合時刻は未公表。",
+          "sourceIds": [
+            "medicine-schedule-2027",
+            "application-index-2027"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "合格発表",
+          "value": "2027年3月6日（土）。発表時刻・発表方法の詳細は未公表。",
+          "sourceIds": [
+            "medicine-schedule-2027",
+            "application-index-2027"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "入学手続期間",
+          "value": "2027年3月8日（月）～3月15日（月）。締切時刻・納付・書類提出の条件は未公表。",
+          "sourceIds": [
+            "selection-2027",
+            "application-index-2027"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "県内定着枠3名（前期日程全体58名に含む）。文部科学省との協議により変更される場合があり、確定値は要確認。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "共通テスト・指定教科と合計",
+          "value": "6教科8科目、合計930点。指定教科・科目を受験していない場合は無資格として扱う。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・国語",
+          "value": "「国語」250点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・地理歴史／公民",
+          "value": "「地理総合，地理探究」「歴史総合，日本史探究」「歴史総合，世界史探究」「公共，倫理」「公共，政治・経済」から1科目、100点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・数学",
+          "value": "「数学Ⅰ，数学Ａ」と「数学Ⅱ，数学Ｂ，数学Ｃ」の2科目、合計100点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・理科",
+          "value": "「物理」「化学」「生物」から2科目、合計350点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・英語",
+          "value": "「英語（リスニングを含む）」100点。リーディング100点満点を200点、リスニング100点満点を50点へ換算し、合計250点を100点満点に圧縮する。重度難聴等でリスニング免除の場合は、リーディング100点満点の得点をそのまま利用する。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・情報",
+          "value": "「情報Ⅰ」30点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験・数学",
+          "value": "300点。数学Ⅰ・Ⅱ・Ⅲ・Ａは全範囲、数学Ｂは数列、数学Ｃはベクトル及び平面上の曲線と複素数平面。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験・英語",
+          "value": "300点。英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ・Ⅱ・Ⅲ。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験・面接",
+          "value": "120点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験・合計",
+          "value": "数学300点、英語300点、面接120点、合計720点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "2段階選抜",
+          "value": "志願者数が募集人員の約8倍を超えた場合、主として大学入学共通テストの成績により第1段階の選抜を行い、その合格者に必要な試験等を行う。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "面接の評価・不合格判定の詳細",
+          "value": "未公表（面接の実施形式・評価基準・得点にかかわらない不合格判定条件などは、2027年度一般選抜学生募集要項の公表待ち）。",
+          "sourceIds": [
+            "application-index-2027"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "個別試験会場・集合場所",
+          "value": "未公表（2027年度一般選抜の試験会場・試験室・集合場所・集合時刻は、11月下旬公表予定の学生募集要項等で確認）。",
+          "sourceIds": [
+            "application-index-2027"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "notes": [
+        {
+          "text": "地理歴史・公民で利用科目が1科目の場合、2科目受験者は第1解答科目を採用する。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "総合型選抜・学校推薦型選抜の合格者が募集人員に満たないときは、不足した人数を一般選抜前期日程の募集人員に加える。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "県内定着枠は、高校又は中等教育学校を2024年3月以降に卒業した者、又は2027年3月卒業見込みの者で、合格時の入学を確約し、島根県の奨学金を受給することが必要。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "県内定着枠は、卒業後に島根県の地域医療へ貢献し、島根大学医学部附属病院を含む県内病院の臨床研修プログラムで初期研修及び専門研修を受けることの確約が必要。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "県内定着枠は、医師国家試験合格月の翌月初日から12年を経過する日までに、初期・専門研修の期間を含めて9年間、キャリア形成プログラムの指定医療機関（うち4年以上は特定地域医療機関）で医師として勤務することの確約が必要。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "県内定着枠の出願資格は変更される場合があるため、11月下旬公表予定の学生募集要項を必ず確認する。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "不測の事態により入試日程・入試方法等が変更される場合がある。変更は大学ホームページで公表されるため、出願前に最新の募集要項・変更通知を確認する。",
+          "sourceIds": [
+            "medicine-schedule-2027"
+          ]
+        }
+      ]
+    }
+  ],
+  "coverageNotes": [
+    "旧ページに掲載されていた医学科の一般選抜前期日程を復元し、一般枠と県内定着枠を分けて掲載。医学科の後期日程は設定されていない。学校推薦型選抜Ⅱ・地域枠学校推薦型選抜・緊急医師確保対策枠学校推薦型選抜及び学士編入は今回の表の対象外。",
+    "2026年10月9日現在の公式選抜要項・医学科日程に基づく。一般選抜学生募集要項は11月下旬公表予定で、登録・支払・書類提出の締切時刻と条件、発表時刻、科目別の試験時間、面接判定の詳細、手続条件、試験会場等は公表待ち。県内定着枠の募集人員・出願資格は変更される場合がある。"
+  ]
+}
