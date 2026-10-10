@@ -255,14 +255,16 @@ const plainText = (value: string) => value.replace(/<[^>]*>/g,"").replace(/&nbsp
 
 export function universityAdmissionsMetadata(data: UniversityAdmissions) {
   const university = data.university;
+  const isTsukuba = data.path === '/information-tsukuba/';
+  const admissionTitle = isTsukuba ? '2027年度入試情報' : '2027年度入試情報・大学概要';
   return {
-    title: `${university}医学部｜2027年度入試情報・大学概要`,
-    displayTitle: `${university} 医学部 2027年度入試情報・大学概要`,
-    displayTitleLines: [`${university} 医学部`, "2027年度入試情報・大学概要"],
+    title: `${university}医学部｜${admissionTitle}`,
+    displayTitle: isTsukuba ? `${university} 医学部${admissionTitle}` : `${university} 医学部 ${admissionTitle}`,
+    displayTitleLines: [`${university} 医学部`, admissionTitle],
     description: `${university}医学部の2027年度入試情報。大学公式資料で確認した選抜方式別の日程、試験科目・配点、試験会場を掲載しています。未公表・要確認の項目と掲載範囲を明記。大学概要の統計・学納金は過年度の参考情報です。`,
-    lead: `${university}医学部の2027年度入試情報を、大学公式資料に基づき選抜方式別にまとめています。出願前には、該当年度の学生募集要項と大学の変更通知をご確認ください。`,
+    lead: `${university}医学部の2027年度入試情報${isTsukuba ? '（試験日程、会場、科目、時間、配点、出題範囲 等）' : ''}を、大学公式資料に基づき選抜方式別にまとめています。出願前には、該当年度の学生募集要項と大学の変更通知をご確認ください。`,
     modified: data.verifiedAt.slice(0,10),
-    keyPoints: data.path === '/information-tsukuba/' ? [
+    keyPoints: isTsukuba ? [
       "一般選抜（一般枠）は前期44人。個別試験は2027年2月25日・26日で、後期日程はありません。",
       "一般枠の配点は共通テスト950点＋個別試験1,400点＝計2,350点。個別試験には筆記の適性試験と面接を含みます。",
       "推薦入試（一般）は44人募集、試験日は2026年11月26日・27日。共通テストは課しません。",
