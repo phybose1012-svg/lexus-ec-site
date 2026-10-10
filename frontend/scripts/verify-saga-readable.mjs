@@ -9,12 +9,20 @@ export const all=(n,fn,out=[])=>{if(fn(n))out.push(n);for(const c of n.childNode
 export const text=n=>n?.nodeName==='#text'?n.value:(n?.childNodes??[]).map(text).join('');
 const clean=s=>s.replace(/\s/gu,'');
 export function verifySagaHtml(html) {
- const t=parse(html),wrapper=all(t,n=>attr(n,'data-admissions-presentation')==='saga-readable-v1');
+ const t=parse(html),wrapper=all(t,n=>attr(n,'data-admissions-presentation')==='saga-readable-v2');
  assert.equal(wrapper.length,1);const w=wrapper[0],scheme=data.schemes[0];
  for(const [kind,rows]of [['schedule',scheme.scheduleRows],['exam',scheme.examRows],['venue',scheme.venueRows]])for(const [i,row]of rows.entries()){
   const nodes=all(w,n=>attr(n,'data-admission-origin')===`general-early/${kind}/${i}`);assert.equal(nodes.length,1,`${kind}/${i} must have one destination`);
   assert.deepEqual(JSON.parse(attr(nodes[0],'data-admission-source-ids')),row.sourceIds);
   assert.equal(attr(nodes[0],'data-admission-status'),row.status);
+  if(kind==='exam'&&i===0){
+   assert.equal(nodes[0].tagName,'tr');assert.ok(clean(text(nodes[0])).includes('51人'));
+   const supplement=all(w,n=>attr(n,'data-admission-supplement-for')==='general-early/exam/0');assert.equal(supplement.length,1);
+   assert.equal(clean(text(supplement[0])),clean('特別選抜の欠員を前期日程で補充する場合があります。'));
+   assert.equal((clean(text(w)).match(/51人/gu)??[]).length,1,'Quota is stated once in the admission details');
+   continue;
+  }
+  if(kind==='exam'&&i===4){assert.equal(nodes[0].tagName,'tr');assert.equal(text(all(nodes[0],n=>n.tagName==='th')[0]),'国語');assert.deepEqual(all(nodes[0],n=>n.tagName==='td').map(text),['140点','課さない']);continue;}
   if(kind==='exam'&&i===14){assert.ok(clean(text(nodes[0])).includes('合計640点300点総合計940点'));continue;}
   assert.ok(clean(text(nodes[0])).includes(clean(copy[kind][i][0])));
   for(const line of copy[kind][i][1].split('\n'))assert.ok(clean(text(nodes[0])).includes(clean(line)),`${kind}/${i}: ${line}`);
@@ -31,6 +39,8 @@ export function verifySagaHtml(html) {
   const row=all(scores,n=>n.tagName==='tr').find(n=>text(all(n,c=>c.tagName==='th')[0])===label);assert.deepEqual(all(row,n=>n.tagName==='td').map(text),[common,individual]);
  }
  const plain=clean(text(t));
+ assert.equal(all(w,n=>n.tagName==='dt'&&clean(text(n))==='共通テスト国語').length,0,'No redundant national-language item');
+ assert.equal(all(w,n=>n.tagName==='dt'&&clean(text(n))==='募集人数').length,0,'No redundant quota item');
  for(const fact of ['51人','100点／200点未満','50点／100点未満','第1解答科目','両方必要','2025年4月1日以降','0〜120','DIコード8267','英検2250以上','TEAP235〜269','GTEC900〜999','TOEFL45〜51','2026年度医学部医学科入学者・104人','男性54人51.9％','女性50人48.1％','18歳47人45.2％','19歳53人51.0％','20歳4人3.8％','鍋島5丁目1番1号'])assert.ok(plain.includes(fact),fact);
  assert.ok(!plain.includes('本庄町'));assert.ok(!plain.includes('2024年度入学者'));assert.ok(!plain.includes('確認完了'));assert.ok(!plain.includes('2025/3/12'));
  assert.equal(all(w,n=>n.tagName==='details').length,1);
