@@ -33,8 +33,7 @@ function notePresentation(scheme: UniversityAdmissionScheme, index: number, valu
 }
 
 function coveragePresentation(value: string, index: number) {
-  if ([0, 1, 4].includes(index)) return ''; // Editorial scope and repeated conditions are not applicant guidance.
-  if (index === 2) return '総合選抜の入学者は1年次に総合学域群へ所属します。医学類の2年次受入人数は入学者数等により変わります。';
+  if ([0, 1, 2, 4].includes(index)) return ''; // Comprehensive selection has its own article section; omit editorial scope and repetition.
   if (index === 3) return '一般選抜の2027年度募集要項は2026年10月下旬に公開予定です。詳細が公表され次第、このページを更新します。';
   return displayText(value);
 }

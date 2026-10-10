@@ -103,10 +103,9 @@ export function verifyReadableHtml(html, candidate = data) {
   assert.equal(all(wrapper, n => attr(n, 'data-admission-origin') !== undefined).length, rows, 'No unverified canonical rows');
   for (const [index, expected] of candidate.coverageNotes.entries()) {
     const entries = all(wrapper, n => attr(n, 'data-admission-coverage-note') === String(index));
-    if ([0, 1, 4].includes(index)) { assert.equal(entries.length, 0); continue; }
+    if ([0, 1, 2, 4].includes(index)) { assert.equal(entries.length, 0); continue; }
     assert.equal(entries.length, 1);
-    const value = index === 2 ? '総合選抜の入学者は1年次に総合学域群へ所属します。医学類の2年次受入人数は入学者数等により変わります。'
-      : index === 3 ? '一般選抜の2027年度募集要項は2026年10月下旬に公開予定です。詳細が公表され次第、このページを更新します。' : displayText(expected);
+    const value = index === 3 ? '一般選抜の2027年度募集要項は2026年10月下旬に公開予定です。詳細が公表され次第、このページを更新します。' : displayText(expected);
     assert.equal(clean(text(entries[0])), clean(value));
   }
   const overview = all(wrapper, n => attr(n, 'data-readable-overview') !== undefined);

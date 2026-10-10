@@ -582,6 +582,12 @@
   .article-content .tsukuba-overview-statistics { grid-template-columns: 1fr; gap: 20px; }
 }
 
+.article-content .tsukuba-comprehensive-section { min-width: 0; display: grid; gap: 18px; }
+.article-content .tsukuba-comprehensive-section h3 { scroll-margin-top: 120px; }
+.article-content .tsukuba-comprehensive-steps { gap: 14px; }
+.article-content .tsukuba-comprehensive-steps p { margin-top: 4px; color: #62594e; font-size: 14px; line-height: 1.8; }
+.article-content .tsukuba-comprehensive-important { border-left: 4px solid #b68940; background: #fff9eb; padding: 14px 18px; font-size: 14px; line-height: 1.8; }
+
 /* university-admissions-layout:start */
 /* Nested admissions sections must shrink inside the article's grid. */
 .article-content [data-university-admissions-year],

@@ -9,7 +9,7 @@ import { verifyReadableHtml, attr, all, text, clean } from './verify-tsukuba-rea
 const data = JSON.parse(fs.readFileSync(new URL('../src/data/universityAdmissions/tsukuba.json', import.meta.url), 'utf8'));
 
 test('all 130 canonical rows are represented without editorial instructions, redundant notes or inline sources', () => {
-  assert.deepEqual(verifyReadableHtml(renderUniversityAdmissions(data)), { rows: 130, notes: 8, coverage: 2, sources: 11, schemes: 9 });
+  assert.deepEqual(verifyReadableHtml(renderUniversityAdmissions(data)), { rows: 130, notes: 8, coverage: 1, sources: 11, schemes: 9 });
 });
 test('dates, mandatory conditions and unknown values are not hidden in disclosure controls', () => {
   const html = renderUniversityAdmissions(data);
@@ -62,6 +62,18 @@ test('admissions precede the university overview, key points summarize the entra
   assert.ok(!first.contentHtml.includes('2024年度総合格者'));
   assert.ok(!first.contentHtml.includes('data-university-admissions-overview'));
   assert.equal(first.modified, '2026-10-10');
+  const comprehensive = all(parse(first.contentHtml), n => attr(n, 'data-tsukuba-comprehensive-selection') !== undefined);
+  assert.equal(comprehensive.length, 1);
+  assert.ok(first.contentHtml.indexOf('id="admission-comprehensive"') < first.contentHtml.indexOf('id="大学基本情報"'));
+  assert.ok(text(comprehensive[0]).includes('5人') && text(comprehensive[0]).includes('医学類への移行は保証されません'));
+  assert.equal(all(comprehensive[0], n => n.tagName === 'ol')[0].childNodes.filter(n => n.tagName === 'li').length, 3);
+  for (const anchor of all(comprehensive[0], n => n.tagName === 'a')) {
+    let parent = anchor;
+    while (parent && parent.tagName !== 'details') parent = parent.parentNode;
+    assert.ok(parent, 'Comprehensive selection sources belong in the section footer');
+  }
+  assert.equal(first.toc.filter(item => item.id === 'admission-comprehensive').length, 1);
+  assert.ok(!first.contentHtml.includes('医学類の2年次受入人数は入学者数等により変わります。'));
   assert.deepEqual(second, first);
 });
 

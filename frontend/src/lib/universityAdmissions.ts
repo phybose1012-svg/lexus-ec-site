@@ -1,5 +1,6 @@
 import { renderTsukubaAdmissionsReadable } from './tsukubaAdmissionsReadable.ts';
 import { renderTsukubaUniversityOverview, tsukubaOverviewVerifiedAt } from './tsukubaUniversityOverview.ts';
+import { renderTsukubaComprehensiveSelection, tsukubaComprehensiveTitle } from './tsukubaComprehensiveSelection.ts';
 
 /** Official, university-specific admission data; independent of legacy safety layers. */
 export type AdmissionRowStatus = "confirmed" | "unpublished" | "needs-confirmation";
@@ -303,6 +304,7 @@ export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post
   let overviewReplaced=false;
   let contentHtml=post.contentHtml.replace(/<h2\b[^>]*>[\s\S]*?<\/h2>[\s\S]*?(?=<h2\b|$)/gi,block=>{
     const heading=plainText(block.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i)?.[1] ?? "");
+    if (data.path === '/information-tsukuba/' && heading === tsukubaComprehensiveTitle) return '';
     if (data.path === '/information-tsukuba/' && heading === '大学基本情報') {
       if (overviewReplaced) return '';
       overviewReplaced=true;
@@ -320,7 +322,7 @@ export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post
   if (data.path === '/information-tsukuba/') {
     if (!overviewReplaced) contentHtml+=renderTsukubaUniversityOverview();
     // Lead with the current admission information; keep the university overview below it.
-    contentHtml=admissionHtml+contentHtml.replace(admissionHtml,'');
+    contentHtml=admissionHtml+renderTsukubaComprehensiveSelection()+contentHtml.replace(admissionHtml,'');
   }
   contentHtml=contentHtml.replace(/<p\b[^>]*(?:data-university-info-safety=["']overview["']|data-university-admissions-overview)[^>]*>[\s\S]*?<\/p>/gi,"");
   contentHtml=contentHtml.replace(/<h3\b([^>]*)>([\s\S]*?)<\/h3>/gi,(tag,attrs,inner)=>plainText(inner)==="学納金"?`<h3${attrs}>学納金（掲載時点の参考情報）</h3>`:tag);
