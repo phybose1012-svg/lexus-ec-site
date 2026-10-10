@@ -19,8 +19,22 @@ test('the Yamanashi page is escaped, stable, and changes only its own route',()=
  const raw=JSON.parse(fs.readFileSync(new URL('../src/data/generated/admissionInfoPosts.json',import.meta.url),'utf8'));
  const index=new Map([[data.path,data]]),before=raw.find(p=>p.path===data.path),after=applyUniversityAdmissionsFromIndex(before,index);
  assert.equal(after.infoItems.find(item=>item.label==='地域').value,'山梨県');
+ assert.equal(after.infoItems.find(item=>item.label==='種別').value,'入試情報');
+ assert.deepEqual(after.categories,['大学別入試情報','大学別基本情報','国公立医学部','中部']);
  assert.deepEqual(applyUniversityAdmissionsFromIndex(after,index),after);
  for(const post of raw.filter(p=>p.path!==data.path))assert.equal(applyUniversityAdmissionsFromIndex(post,index),post);
  const altered=structuredClone(data);altered.schemes[0].notes[0].text='<script>alert("x")</script>';
  const html=renderUniversityAdmissions(altered);assert.ok(html.includes('&lt;script&gt;'));assert.ok(!html.includes('<script>'));
+});
+test('production metadata resolves to the same Yamanashi display as staging',()=>{
+ const raw=JSON.parse(fs.readFileSync(new URL('../src/data/generated/admissionInfoPosts.json',import.meta.url),'utf8'));
+ const index=new Map([[data.path,data]]),original=raw.find(post=>post.path===data.path);
+ const productionInput={...original,categories:['大学別入試情報','大学別基本情報','国公立医学部','関東（東京以外）'],infoItems:original.infoItems.map(item=>item.label==='種別'?{...item,value:'大学概要・公式入試情報'}:item)};
+ const staging=applyUniversityAdmissionsFromIndex(original,index),production=applyUniversityAdmissionsFromIndex(productionInput,index);
+ assert.deepEqual(production.categories,staging.categories);
+ assert.deepEqual(production.infoItems,staging.infoItems);
+ assert.equal(production.contentHtml,staging.contentHtml);
+ assert.deepEqual(production.toc,staging.toc);
+ assert.equal(production.displayTitle,staging.displayTitle);
+ assert.deepEqual(applyUniversityAdmissionsFromIndex(production,index),production);
 });
