@@ -1,4 +1,4 @@
-export const tsukubaComprehensiveTitle = '総合選抜から医学類へ進むには';
+export const tsukubaComprehensiveTitle = '総合選抜から医学類へ進むことも可能';
 
 /** Applicant guidance checked against the medical admissions and SCS websites on 2026-10-10. */
 export function renderTsukubaComprehensiveSelection(): string {
