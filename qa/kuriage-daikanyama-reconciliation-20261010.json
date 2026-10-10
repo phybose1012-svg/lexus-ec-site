@@ -1,6 +1,6 @@
 {
   "checkedAt": "2026-10-10",
-  "status": "in-progress",
+  "status": "in-progress-awaiting-one-user-decision",
   "source": {
     "url": "https://daikanyamamedical.com/blog/2026/04/02/kuriage2026/",
     "provider": "代官山MEDICAL",
@@ -36,7 +36,8 @@
     "kansaiOfficial": "https://www.kmu.ac.jp/faculty/medical/about/data/index.html",
     "kanazawa2024Rank": "https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_240402.pdf",
     "fuji2026Mobile": "https://www.fujigakuin.jp/sp/news/?g=info&id=2588",
-    "nms2026LateCandidates": "https://www.nms.ac.jp/var/rev0/0064/3476/1.pdf"
+    "nms2026LateCandidates": "https://www.nms.ac.jp/var/rev0/0064/3476/1.pdf",
+    "nihon2026Results": "https://www.med.nihon-u.ac.jp/examinee/pdf/2026_result.pdf"
   },
   "resolved": [
     {
@@ -124,7 +125,16 @@
       "decisionDate": "2026-10-10",
       "decision": "40番の個別報告と43番の集計を踏まえ、ユーザー指定の概数40番台前半を掲載。表では数字中心の表記に合わせ40台前半とし、公開JSONにも番台前半を保持。正確な43番の合格確認や最終順位とは扱わない。根拠の時点は新記事の2026-04-02。"
     },
-    { "id": "nihon-2026-n1", "status": "needs-further-review", "existing": "169（3/31）", "candidate": "174番台", "checks": "174番台という原文自体の意味が曖昧。174と勝手に修正せず、別資料・ユーザー判断が必要。" },
+    {
+      "id": "nihon-2026-n1", "status": "awaiting-user", "university": "日本大学", "year": 2026, "route": "N全学統一方式・第1期",
+      "existing": "169（3/31の個別報告）", "candidate": "174番台（4/2時点の集計）",
+      "checks": "富士学院2026年度速報の3/31・10:40頃の補欠169番個別合格報告と、新記事の174番台を比較。174番台は原文のままで、174番または170番台前半と勝手に訂正しない。追加検索では、正確な174番の独立した裏付けとなる大学公式・既知の予備校の個別報告は取得できない。個人ブログ・匿名掲示板に出た数字は不採用。大学公式2026年度結果PDFの1・2ページを原本画像で確認。第1期の追加合格者総数126人、正規80人、二次試験合格者254人、追加合格候補者175人を確認したが、到達順位の明記はない。254−80＝174という一致は人数の差分であり、補欠174番まで回ったことの独立した証明にはしない。PDFは126人に入学辞退者が含まれるか明記しておらず、推測で分類しない。",
+      "officialSource": "https://www.med.nihon-u.ac.jp/examinee/pdf/2026_result.pdf",
+      "officialSourceSha256": "bcc66275cea75ab2067985250e016a643c3df76e1135938d7890368abbfbc5f8",
+      "recommendation": "裏付けのある169番を維持。概数170番前後を掲載する場合はユーザー判断後に行う。公式の人数126と補欠順位は混同しない。",
+      "question": "日大医学部の2026年度N方式第1期は、個別報告169番を維持するか、概数170番前後と表記するか。",
+      "followup": "公式の追加合格者126人は順位とは別の情報。人数を追加する場合は数値の意味と主表示・注記の区分を明確にする。"
+    },
     { "id": "nihon-2025-n1", "status": "needs-further-review", "existing": "54（2/27）", "candidate": "約120", "checks": "メルリックス2025は54。新記事の約120は後の到達範囲かもしれないが、元の個別報告日は不明。" },
     { "id": "twmu-2026-general", "status": "needs-further-review", "existing": "56（3/26）", "candidate": "59", "checks": "富士学院は56。59の独立した裏付けは未取得。" },
     { "id": "kitasato-2026-general", "status": "needs-further-review", "existing": "29（3/30）", "candidate": "30番台", "checks": "大学公式3/31終了PDFは順位を記載していない。終了確認は順位の裏付けではない。" },
