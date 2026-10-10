@@ -1,3 +1,7 @@
+import { renderTsukubaAdmissionsReadable } from './tsukubaAdmissionsReadable.ts';
+import { renderTsukubaUniversityOverview, tsukubaOverviewVerifiedAt } from './tsukubaUniversityOverview.ts';
+import { renderTsukubaComprehensiveSelection, tsukubaComprehensiveTitle } from './tsukubaComprehensiveSelection.ts';
+
 /** Official, university-specific admission data; independent of legacy safety layers. */
 export type AdmissionRowStatus = "confirmed" | "unpublished" | "needs-confirmation";
 export type UniversityAdmissionSource = {
@@ -253,20 +257,27 @@ const plainText = (value: string) => value.replace(/<[^>]*>/g,"").replace(/&nbsp
 
 export function universityAdmissionsMetadata(data: UniversityAdmissions) {
   const university = data.university;
+  const isTsukuba = data.path === '/information-tsukuba/';
+  const admissionTitle = isTsukuba ? '2027年度入試情報' : '2027年度入試情報・大学概要';
   return {
-    title: `${university}医学部｜2027年度入試情報・大学概要`,
-    displayTitle: `${university} 医学部 2027年度入試情報・大学概要`,
-    displayTitleLines: [`${university} 医学部`, "2027年度入試情報・大学概要"],
-    description: `${university}医学部の2027年度入試情報。大学公式資料で確認した選抜方式別の日程、試験科目・配点、試験会場を掲載しています。未公表・要確認の項目と掲載範囲を明記。大学概要の統計・学納金は過年度の参考情報です。`,
-    lead: `${university}医学部の2027年度入試情報を、大学公式資料に基づき選抜方式別にまとめています。出願前には、該当年度の学生募集要項と大学の変更通知をご確認ください。`,
-    modified: data.verifiedAt.slice(0,10),
-    keyPoints: ["掲載した選抜方式の日程、試験科目・配点、試験会場を2027年度の公式資料で確認しています。",`公式資料の確認日：${data.verifiedAt.slice(0,10)}。`,"未公表・要確認の項目と掲載範囲を確認し、出願前に大学の変更通知と受験票をご確認ください。"],
+    title: `${university}医学部｜${admissionTitle}`,
+    displayTitle: isTsukuba ? `${university} 医学部${admissionTitle}` : `${university} 医学部 ${admissionTitle}`,
+    displayTitleLines: [`${university} 医学部`, admissionTitle],
+    description: isTsukuba ? `${university}医学部の2027年度入試情報。試験日程、会場、科目、時間、配点、出題範囲を選抜方式別に掲載。所在地・アクセスと2026年度医学類入学者の男女比・現浪比も紹介しています。` : `${university}医学部の2027年度入試情報。大学公式資料で確認した選抜方式別の日程、試験科目・配点、試験会場を掲載しています。未公表・要確認の項目と掲載範囲を明記。大学概要の統計・学納金は過年度の参考情報です。`,
+    lead: `${university}医学部の2027年度入試情報${isTsukuba ? '（試験日程、会場、科目、時間、配点、出題範囲 等）' : ''}を、大学公式資料に基づき選抜方式別にまとめています。出願前には、該当年度の学生募集要項と大学の変更通知をご確認ください。`,
+    modified: isTsukuba && tsukubaOverviewVerifiedAt > data.verifiedAt.slice(0,10) ? tsukubaOverviewVerifiedAt : data.verifiedAt.slice(0,10),
+    keyPoints: isTsukuba ? [
+      "一般選抜（一般枠）は前期44人。個別試験は2027年2月25日・26日で、後期日程はありません。",
+      "一般枠の配点は共通テスト950点＋個別試験1,400点＝計2,350点。個別試験には筆記の適性試験と面接を含みます。",
+      "推薦入試（一般）は44人募集、試験日は2026年11月26日・27日。共通テストは課しません。",
+    ] : ["掲載した選抜方式の日程、試験科目・配点、試験会場を2027年度の公式資料で確認しています。",`公式資料の確認日：${data.verifiedAt.slice(0,10)}。`,"未公表・要確認の項目と掲載範囲を確認し、出願前に大学の変更通知と受験票をご確認ください。"],
   };
 }
 
 /** Render only canonical validated data; values remain text, never raw HTML. */
 export function renderUniversityAdmissions(input: UniversityAdmissions): string {
   const data = validateUniversityAdmissions(input);
+  if (data.path === '/information-tsukuba/') return renderTsukubaAdmissionsReadable(data);
   const sources = new Map(data.sources.map((source,index)=>[source.id,{source,index}]));
   const refs = (ids: string[]) => ids.map(id=>{
     const item=sources.get(id) ?? failure(`unknown render source ${id}`);
@@ -290,8 +301,15 @@ export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post
   if (!data || post.template !== "admission-info") return post;
   const admissionHtml=renderUniversityAdmissions(data);
   let replaced=false;
+  let overviewReplaced=false;
   let contentHtml=post.contentHtml.replace(/<h2\b[^>]*>[\s\S]*?<\/h2>[\s\S]*?(?=<h2\b|$)/gi,block=>{
     const heading=plainText(block.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i)?.[1] ?? "");
+    if (data.path === '/information-tsukuba/' && heading === tsukubaComprehensiveTitle) return '';
+    if (data.path === '/information-tsukuba/' && heading === '大学基本情報') {
+      if (overviewReplaced) return '';
+      overviewReplaced=true;
+      return renderTsukubaUniversityOverview();
+    }
     if (["一般選抜情報","一次選抜情報","最新の入試情報を確認する"].includes(heading) || /^\d{4}年度の入試情報$/.test(heading)) {
       if (replaced) return "";
       replaced=true;
@@ -301,9 +319,15 @@ export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post
     return block;
   });
   if (!replaced) contentHtml+=admissionHtml;
+  if (data.path === '/information-tsukuba/') {
+    if (!overviewReplaced) contentHtml+=renderTsukubaUniversityOverview();
+    // Lead with the current admission information; keep the university overview below it.
+    contentHtml=admissionHtml+renderTsukubaComprehensiveSelection()+contentHtml.replace(admissionHtml,'');
+  }
   contentHtml=contentHtml.replace(/<p\b[^>]*(?:data-university-info-safety=["']overview["']|data-university-admissions-overview)[^>]*>[\s\S]*?<\/p>/gi,"");
   contentHtml=contentHtml.replace(/<h3\b([^>]*)>([\s\S]*?)<\/h3>/gi,(tag,attrs,inner)=>plainText(inner)==="学納金"?`<h3${attrs}>学納金（掲載時点の参考情報）</h3>`:tag);
-  contentHtml='<p data-university-admissions-overview>入試表は2027年度の情報です。大学概要の統計・学納金は過年度の参考情報です。教育内容・費用は大学の最新案内をご確認ください。</p>'+contentHtml;
+  const overviewNotice='<p data-university-admissions-overview>入試表は2027年度の情報です。大学概要の統計・学納金は過年度の参考情報です。教育内容・費用は大学の最新案内をご確認ください。</p>';
+  if (data.path !== '/information-tsukuba/') contentHtml=overviewNotice+contentHtml;
   const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
   const infoItems=post.infoItems.map(item=>item.label === "年度" ? {...item,value:"2027年度（入試情報）"} : item.label === "種別" ? {...item,value:"大学概要・2027年度入試情報"} : item);
   return {...post,...universityAdmissionsMetadata(data),contentHtml,infoItems,toc};

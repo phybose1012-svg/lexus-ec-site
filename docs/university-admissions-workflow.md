@@ -1,5 +1,7 @@
 # 大学別入試表の状態CLIと公開手順
 
+復元した情報を受験生向けに校閲・整形する際は、[大学別入試記事の共通編集フロー](university-admissions-editorial-flow.md)と[大学別確認票](templates/university-admissions-editorial-review.md)を使います。復元の状態・証拠を保持し、表示変更についても条件保持と実公開画面を確認します。
+
 81大学を4担当で調査し、1担当につき1大学を進めます。大学別の公開順序は、調査・候補作成 → staging公開 → **公開された全セルと注記を公式資料へ再照合** → 合格した同一候補だけmainへ反映 → 本番公開確認 → 60秒待機です。ユーザーはこの条件を満たした本番反映を承認しています。
 
 調査範囲は [4セッションの実行契約](university-admissions-orchestration.md)、候補JSONは [データ契約](university-admissions-data-contract.md)、公開HTMLと公式資料の確認は [検証手順](university-admissions-verification.md) に従います。このCLIは状態と証拠の整合を検証します。Git操作、デプロイ、公式資料の取得、画像の目視は実行しません。

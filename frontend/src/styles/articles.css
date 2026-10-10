@@ -563,6 +563,31 @@
   font-weight: 900;
 }
 
+/* Current Tsukuba campus information and medical-program entrant statistics. */
+.article-content .tsukuba-university-overview { min-width: 0; display: grid; gap: 14px; }
+.article-content .tsukuba-university-overview h3 { margin-top: 12px; scroll-margin-top: 120px; }
+.article-content .tsukuba-university-overview small { display: block; color: #756e64; font-size: 12px; }
+.article-content .tsukuba-overview-statistics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 10px; }
+.article-content .tsukuba-overview-statistics section { min-width: 0; }
+.article-content .tsukuba-overview-statistics table { display: table; table-layout: fixed; max-width: 100%; white-space: normal; }
+.article-content .tsukuba-overview-statistics caption { padding-block: 12px; text-align: left; color: #756e64; font-size: 12px; }
+.article-content .tsukuba-overview-statistics :is(th, td) { min-width: 0; padding: 10px 12px; }
+.article-content .tsukuba-overview-statistics :is(th, td):first-child { text-align: left; }
+.article-content .tsukuba-overview-statistics :is(th, td):nth-child(n+2) { text-align: right; font-variant-numeric: tabular-nums; }
+.article-content .tsukuba-overview-sources { margin-top: 10px; border-top: 1px solid #e8e1d7; padding-top: 12px; color: #756e64; font-size: 12px; }
+.article-content .tsukuba-overview-sources summary { cursor: pointer; }
+.article-content .tsukuba-overview-sources ul { margin-top: 12px; }
+.article-content .tsukuba-overview-sources a { color: #756e64; font-weight: 400; }
+@media (max-width: 720px) {
+  .article-content .tsukuba-overview-statistics { grid-template-columns: 1fr; gap: 20px; }
+}
+
+.article-content .tsukuba-comprehensive-section { min-width: 0; display: grid; gap: 18px; }
+.article-content .tsukuba-comprehensive-section h3 { scroll-margin-top: 120px; }
+.article-content .tsukuba-comprehensive-steps { gap: 14px; }
+.article-content .tsukuba-comprehensive-steps p { margin-top: 4px; color: #62594e; font-size: 14px; line-height: 1.8; }
+.article-content .tsukuba-comprehensive-important { border-left: 4px solid #b68940; background: #fff9eb; padding: 14px 18px; font-size: 14px; line-height: 1.8; }
+
 /* university-admissions-layout:start */
 /* Nested admissions sections must shrink inside the article's grid. */
 .article-content [data-university-admissions-year],
@@ -608,6 +633,105 @@
   }
 }
 /* university-admissions-layout:end */
+
+/* Tsukuba editorial preview: scoped so restored universities keep their layout. */
+.article-content .admission-readable {
+  --admission-accent: #235d7c;
+  font-size: 15px;
+  line-height: 1.8;
+}
+.article-content .admission-readable :is(table, dl, dd, p, ul, li) { min-width: 0; max-width: 100%; }
+.article-content .admission-readable table {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  white-space: normal;
+}
+.article-content .admission-readable :is(th, td) { overflow-wrap: anywhere; white-space: normal; }
+.article-content .admission-readable :is(p, ul) { margin-block: 0; }
+.article-content .admission-readable h3 { scroll-margin-top: 120px; }
+.article-content .admission-readable .admission-verified { color: #665e54; font-size: 13px; margin-bottom: 24px; }
+.article-content .admission-readable .admission-overview-intro { margin-bottom: 16px; }
+.article-content .admission-overview-table { font-size: 13px; line-height: 1.65; }
+.article-content .admission-overview-table :is(th, td) { padding: 12px 10px; }
+.article-content .admission-overview-table thead th { background: #edf3f5; color: #234c62; }
+.article-content .admission-overview-table th:first-child { width: 27%; }
+.article-content .admission-overview-table th:nth-child(2) { width: 17%; }
+.article-content .admission-overview-table th:nth-child(3) { width: 35%; }
+.article-content .admission-overview-table th:nth-child(4) { width: 21%; }
+.article-content .admission-overview-table tbody th { background: #faf8f3; font-weight: 700; text-align: left; }
+.article-content .admission-readable small { display: block; font-size: 12px; color: #686055; font-weight: 400; }
+.article-content .admission-overview-date { display: block; margin-bottom: 5px; }
+.article-content .admission-overview-date b { display: block; color: #5b5348; font-size: 11px; }
+.article-content .admission-mobile-label { display: none; }
+.article-content .admission-readable .admission-overview-sources { margin-top: 8px; text-align: right; }
+.article-content .admission-readable .admission-source-hint { color: #756e64; font-size: 11px; font-weight: 400; }
+.article-content .admission-readable .admission-important {
+  border-left: 3px solid #c78b36;
+  background: #fbf5e9;
+  padding: 14px 18px;
+  margin-block: 18px 28px;
+  font-size: 13px;
+}
+.article-content .admission-important strong { display: block; margin-bottom: 5px; }
+.article-content .admission-readable-scheme { margin-top: 44px; scroll-margin-top: 110px; }
+.article-content .admission-readable-scheme h3 { display: flex; align-items: baseline; gap: 12px; border-bottom: 2px solid var(--admission-accent); padding-bottom: 12px; margin-bottom: 22px; line-height: 1.5; }
+.article-content .admission-readable .admission-group-title { margin: 24px 0 10px; padding: 0; border: 0; font-size: 16px; font-weight: 800; color: #234c62; }
+.article-content .admission-facts { margin: 0; }
+.article-content .admission-fact { display: grid; grid-template-columns: minmax(0, 24%) minmax(0, 1fr); gap: 18px; padding: 14px 0; border-bottom: 1px solid #e8e1d7; }
+.article-content .admission-fact dt { font-size: 13px; font-weight: 750; color: #4c453c; }
+.article-content .admission-fact dd { margin: 0; }
+.article-content .admission-readable .admission-value-main { font-weight: 650; }
+.article-content .admission-readable .admission-value-detail { margin-top: 5px; font-size: 13px; color: #62594e; }
+.article-content .admission-readable .admission-choice { display: block; margin-block: 3px; }
+.article-content .admission-readable .admission-conditions { margin-top: 8px; padding-left: 20px; }
+.article-content .admission-conditions li { margin-bottom: 8px; font-size: 14px; }
+.article-content .admission-dates-table { margin: 0; font-size: 14px; }
+.article-content .admission-dates-table thead th:first-child { width: 27%; }
+.article-content .admission-dates-table thead th { color: #234c62; background: #edf3f5; }
+.article-content .admission-dates-table tbody th { font-size: 13px; font-weight: 700; text-align: left; background: #faf8f3; }
+.article-content .admission-dates-table :is(th, td) { padding: 13px 12px; }
+.article-content .admission-score-table caption { text-align: left; padding: 10px 0; font-weight: 700; }
+.article-content .admission-score-table th:first-child { width: 40%; }
+.article-content .admission-score-table :is(th, td) { padding: 10px 12px; }
+.article-content .admission-score-table tbody th { background: #faf8f3; text-align: left; font-size: 14px; font-weight: 600; }
+.article-content .admission-score-table td { text-align: right; font-variant-numeric: tabular-nums; }
+.article-content .admission-score-table .admission-score-total :is(th, td) { background: #edf3f5; color: #234c62; font-weight: 800; }
+.article-content .admission-readable .admission-scheme-notes { margin-top: 22px; }
+.article-content .admission-scheme-notes h4 { font-size: 14px; margin: 0 0 8px; }
+.article-content .admission-scheme-notes [data-admission-note] + [data-admission-note] { margin-top: 12px; }
+.article-content .admission-readable .admission-section-links { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-top: 18px; font-size: 12px; }
+.article-content .admission-coverage { padding-left: 20px; }
+.article-content .admission-coverage > li { margin-block: 16px; }
+.article-content .admission-readable .admission-source-footer { margin-top: 28px; padding-top: 12px; border-top: 1px solid #e8e1d7; font-size: 12px; color: #756e64; }
+.article-content .admission-source-footer summary { cursor: pointer; }
+.article-content .admission-source-footer #admission-sources { padding-top: 12px; scroll-margin-top: 120px; }
+.article-content .admission-readable .admission-source-list { list-style: none; padding: 0; margin-top: 12px; }
+.article-content .admission-source-list li { margin-bottom: 12px; font-size: 12px; }
+.article-content .admission-source-list a { color: #756e64; font-weight: 400; }
+.article-content .admission-readable [data-admission-status] .admission-value-main { color: #74521d; }
+.article-content .admission-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+@media (max-width: 720px) {
+  .article-content .admission-readable { font-size: 14px; }
+  .article-content .admission-overview-table { display: block; border: 0; }
+  .article-content .admission-overview-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .article-content .admission-overview-table tbody { display: grid; gap: 12px; }
+  .article-content .admission-overview-table tr { display: block; border: 1px solid #e1d9cd; border-radius: 8px; overflow: hidden; background: #fff; }
+  .article-content .admission-overview-table tbody th:first-child { display: block; width: auto; border: 0; padding: 12px 14px; background: #edf3f5; font-size: 14px; }
+  .article-content .admission-overview-table td { display: block; padding: 9px 14px; border: 0; border-top: 1px solid #eee8de; }
+  .article-content .admission-mobile-label { display: block; font-size: 11px; font-weight: 750; color: #6b6255; margin-bottom: 3px; }
+  .article-content .admission-overview-date b { display: inline; padding-right: 8px; }
+  .article-content .admission-fact { display: block; padding: 15px 0; }
+  .article-content .admission-fact dt { margin-bottom: 6px; color: #235d7c; }
+  .article-content .admission-dates-table :is(th, td) { padding: 11px 8px; }
+  .article-content .admission-dates-table thead th:first-child { width: 30%; }
+  .article-content .admission-dates-table tbody th { font-size: 12px; }
+  .article-content .admission-readable .admission-value-detail { font-size: 12px; }
+  .article-content .admission-readable .admission-important { padding: 12px 14px; }
+  .article-content .admission-score-table :is(th, td) { padding: 9px 7px; font-size: 12px; }
+  .article-content .admission-score-table tbody th { font-size: 12px; }
+  .article-content .admission-readable-scheme h3 { gap: 8px; font-size: 18px; }
+}
 
 .article-toc,
 .article-cta,
