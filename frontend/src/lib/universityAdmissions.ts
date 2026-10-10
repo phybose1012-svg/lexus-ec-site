@@ -2,6 +2,7 @@ import { renderTsukubaAdmissionsReadable } from './tsukubaAdmissionsReadable.ts'
 import { renderTokushimaAdmissionsReadable, renderTokushimaUniversityOverview, tokushimaMetadata } from './tokushimaAdmissionsReadable.ts';
 import { renderTsukubaUniversityOverview, tsukubaOverviewVerifiedAt } from './tsukubaUniversityOverview.ts';
 import { renderTsukubaComprehensiveSelection, tsukubaComprehensiveTitle } from './tsukubaComprehensiveSelection.ts';
+import { renderSagaAdmissionsReadable, renderSagaUniversityOverview, sagaAdmissionsMetadata } from './sagaAdmissionsReadable.ts';
 import { hirosakiAdmissionsMetadata, renderHirosakiAdmissionsReadable, renderHirosakiRegionalConditions, renderHirosakiUniversityOverview } from './hirosakiAdmissionsReadable.ts';
 import { renderYamanashiAdmissionsReadable, renderYamanashiUniversityOverview, yamanashiMetadata } from './yamanashiAdmissionsReadable.ts';
 
@@ -259,6 +260,7 @@ const htmlText = (value: string) => escapeUniversityAdmissionHtml(value).replace
 const plainText = (value: string) => value.replace(/<[^>]*>/g,"").replace(/&nbsp;/g," ").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#39;|&#039;/g,"'").replace(/&amp;/g,"&").replace(/\s+/g," ").trim();
 
 export function universityAdmissionsMetadata(data: UniversityAdmissions) {
+  if (data.path === '/information-saga/') return sagaAdmissionsMetadata(data);
   if (data.path === '/information-hirosaki/') return hirosakiAdmissionsMetadata();
   if (data.path === '/information-tokushima/') return tokushimaMetadata;
   if (data.path === '/information-yamanashi/') return {...yamanashiMetadata, modified:data.verifiedAt.slice(0,10)};
@@ -283,6 +285,7 @@ export function universityAdmissionsMetadata(data: UniversityAdmissions) {
 /** Render only canonical validated data; values remain text, never raw HTML. */
 export function renderUniversityAdmissions(input: UniversityAdmissions): string {
   const data = validateUniversityAdmissions(input);
+  if (data.path === '/information-saga/') return renderSagaAdmissionsReadable(data);
   if (data.path === '/information-tsukuba/') return renderTsukubaAdmissionsReadable(data);
   if (data.path === '/information-hirosaki/') return renderHirosakiAdmissionsReadable(data);
   if (data.path === '/information-tokushima/') return renderTokushimaAdmissionsReadable(data);
@@ -308,6 +311,12 @@ type AdmissionPost = {
 export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post: T,index: ReadonlyMap<string,UniversityAdmissions>): T {
   const data=index.get(post.path);
   if (!data || post.template !== "admission-info") return post;
+  if (data.path === '/information-saga/') {
+    const contentHtml=renderUniversityAdmissions(data)+renderSagaUniversityOverview();
+    const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
+    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'入試情報'}:item);
+    return {...post,...sagaAdmissionsMetadata(data),contentHtml,infoItems,toc};
+  }
   if (data.path === '/information-hirosaki/') {
     const contentHtml=renderHirosakiAdmissionsReadable(data)+renderHirosakiRegionalConditions()+renderHirosakiUniversityOverview();
     const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
