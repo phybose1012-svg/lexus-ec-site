@@ -26,3 +26,11 @@ test('the current entrant cohort and campus remain distinct from quotas and mail
  for(const [before,after]of [['77人','78人'],['88人','89人'],['71.0%','70.0%'],['約10～20分','約35分'],['010-8543','010-8502']])assert.throws(()=>verifyAkitaReadable(post.contentHtml.replaceAll(before,after)));
  assert.doesNotMatch(post.contentHtml,/前年から推測|転用していません|補完していません|確定値として扱/u);
 });
+
+test('officially published general web and payment dates are retained for all routes, separately from the unpublished fee amount',()=>{
+ const html=renderUniversityAdmissions(data);verifyAkitaReadable(html);
+ for(const term of ['2027年1月22日（金）10:00','2月3日（水）13:00','検定料の金額（一般選抜：前期・後期）'])assert.throws(()=>verifyAkitaReadable(html.replaceAll(term,'')));
+ const stale=structuredClone(data);stale.schemes[2].scheduleRows[0].status='unpublished';assert.throws(()=>verifyAkitaReadable(html,stale));
+ const wrong=structuredClone(data);wrong.schemes[1].scheduleRows[1].sourceIds=['guide-index'];assert.throws(()=>verifyAkitaReadable(html,wrong));
+ assert.doesNotMatch(html,/登録開始日・締切時刻は未公表|Web登録・支払期間.*公開後に更新/u);
+});

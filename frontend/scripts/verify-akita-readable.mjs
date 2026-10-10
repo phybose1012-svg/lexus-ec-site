@@ -8,7 +8,7 @@ const text=n=>n.nodeName==='#text'?n.value:(n.childNodes??[]).map(text).join('')
 const clean=s=>s.replace(/\s/gu,'');
 const v=n=>text(all(n,c=>attr(c,'data-admission-value')!==undefined)[0]??n);
 export function verifyAkitaReadable(html,candidate=data){
- const tree=parse(html),wrappers=all(tree,n=>attr(n,'data-admissions-presentation')==='akita-readable-v2');assert.equal(wrappers.length,1);
+ const tree=parse(html),wrappers=all(tree,n=>attr(n,'data-admissions-presentation')==='akita-readable-v4');assert.equal(wrappers.length,1);
  const wrapper=wrappers[0],rendered=all(wrapper,n=>attr(n,'data-admission-origins')!==undefined),mappings=[];
  const knownIds=new Set(candidate.schemes.flatMap(s=>[['schedule',s.scheduleRows],['exam',s.examRows],['venue',s.venueRows],['note',s.notes??[]]].flatMap(([kind,rows])=>rows.map((_,i)=>`${s.id}/${kind}/${i}`))));
  for(const node of rendered)for(const id of JSON.parse(attr(node,'data-admission-origins')))assert.ok(knownIds.has(id),`Unknown origin ${id}`);
@@ -47,6 +47,9 @@ export function verifyAkitaReadable(html,candidate=data){
  assert.equal([...visible.matchAll(/入学志願票・調査書・推薦書・志願理由書等。/gu)].length,1);assert.equal([...visible.matchAll(/面接評価が「不可」の場合は総合点にかかわらず不合格。/gu)].length,1);
  for(const term of ['13:00','17:00必着','12月14日（月）以前の発信局消印','12月16日（水）17:00到着','速達簡易書留','第1解答科目','各75点','リーディング100点満点の素点を200点満点','5倍を超えた','10倍を超えた','素点計','面接評価が「不可」','2026年3月以降','青森・岩手・宮城・山形・福島','4.3以上','自筆記名','いずれか','すべてが必要','両方の基準','数学コース2','90％以上','80％以上','記述得点','1年6か月','猶予期間','医学部長','知事が同意','同意を得ず','6年間','9年間','4年間（臨床研修期間を除く）','少なくとも5年間','入学手続最終日','学長が許可','国立大学入学確認票','11月下旬公表予定','未公表','2028年度','2026年度以前'])assert.ok(visible.includes(term),`Lost critical condition: ${term}`);
  assert.equal([...visible.matchAll(/リーディング100点満点の素点を200点満点/gu)].length,1);
+ const generalRows=candidate.schemes.slice(0,3);for(const scheme of generalRows){assert.equal(scheme.scheduleRows[0].value,'インターネット出願方式。2027年1月22日（金）10:00～2月3日（水）13:00。');assert.equal(scheme.scheduleRows[0].status,'confirmed');assert.deepEqual(scheme.scheduleRows[0].sourceIds,['schedule-2027']);assert.equal(scheme.scheduleRows[1].value,'2027年1月22日（金）10:00～2月3日（水）13:00。検定料の金額は未公表。');assert.deepEqual(scheme.scheduleRows[1].sourceIds,['schedule-2027','guide-index']);}
+ assert.equal(v(definition('検定料の金額（一般選抜：前期・後期）')),'検定料の金額は未公表。');assert.doesNotMatch(visible,/登録開始日・締切時刻は未公表|検定料・支払期間・締切時刻は未公表|Web登録・支払期間.*公開後に更新/u);
+
  assert.equal(all(wrapper,n=>attr(n,'data-admission-merged-quota')!==undefined).length,1);
  for(const [i,e]of candidate.coverageNotes.entries()){const nodes=all(wrapper,n=>attr(n,'data-admission-coverage-note')===String(i));assert.equal(nodes.length,1);if(i!==0)assert.equal(clean(text(nodes[0])),clean(e));else assert.equal(all(nodes[0],n=>n.tagName==='tbody')[0].childNodes.filter(n=>n.tagName==='tr').length,7);}
  assert.deepEqual(all(wrapper,n=>attr(n,'data-admission-scheme')!==undefined).map(n=>attr(n,'data-admission-scheme')),candidate.schemes.map(s=>s.id));
