@@ -355,6 +355,23 @@ test('NMS 2026 general late preserves the user-approved early-forties range', ()
   assert.equal(regional.asOf, '2026-03-17');
 });
 
+test('Nihon 2026 N first phase preserves the user-approved approximate rank', () => {
+  const nihon = school('日本大学');
+  assert.equal(nihon.records.length, 1);
+  const record = nihon.records[0];
+  assert.equal(record.route, 'N全学統一方式・第1期');
+  assert.equal(record.result, '合格例：補欠170番前後');
+  assert.equal(record.metric, 'rank-case', 'an editorial approximation is not an official final rank or count');
+  assert.equal(record.asOf, '2026-04-02');
+  assert.equal(record.evidenceBasis, 'unconfirmed');
+  assert.equal(new URL(record.source.url).hostname, 'daikanyamamedical.com');
+  assert.equal(waitlistTableValue(record), '170前後');
+  assert.match(publicWaitlistSchool(nihon).records[0].result, /170番前後/);
+  const table = waitlistTableSchools.find((entry) => entry.id === 'school-23');
+  assert.deepEqual(table.rows.find((row) => row.year === '2026').cells.map((cell) => cell.displayValue), ['170前後', '不明']);
+  assert.equal(table.rows.find((row) => row.year === '2025').cells[0].displayValue, '54', 'the pending 2025 discrepancy is not changed by this decision');
+});
+
 test('each displayed value has a year-scoped meaning, and no cell mixes counts with ranks', () => {
   for (const table of waitlistTableSchools) {
     for (const row of table.rows.filter((row) => !row.legacy)) {

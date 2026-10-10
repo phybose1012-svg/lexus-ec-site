@@ -131,7 +131,7 @@ export const waitlistSchools: WaitlistSchool[] = [
     example("一般前期・千葉県地域枠", "合格例：補欠5番", "2026-03-17"),
   ] },
   { id: "school-23", name: "日本大学", records: [
-    example("N全学統一方式・第1期", "合格例：補欠169番", "2026-03-31"),
+    { ...record("N全学統一方式・第1期", "rank-case", "合格例：補欠170番前後", "2026-04-02", daikanyama, "複数の報告をもとにした概数。正確な最終順位ではありません。"), evidenceBasis: "unconfirmed" },
   ], note: "第2期など、ここに掲載のない方式の人数・最終順位は未確認です。" },
   { id: "school-24", name: "兵庫医科大学", records: [
     example("一般A・四科目型（一般枠）", "合格例：補欠91番", "2026-03-31"),
