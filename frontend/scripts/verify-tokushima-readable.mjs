@@ -56,6 +56,15 @@ export function verifyTokushimaHtml(html){
   }
  }
  const admissionText=clean(text(wrapper[0]));
+ assert.equal((admissionText.match(/検定料免除/gu)??[]).length,1,'Fee exemption guidance must appear once outside the table');
+ assert.ok(admissionText.includes(clean('Web登録・必要な検定料手続き・書類郵送のすべてが必要')));
+ assert.ok(admissionText.includes(clean('大規模自然災害等による検定料免除の対象者は、大学の免除案内をご確認ください')));
+ assert.doesNotMatch(admissionText,/Web登録・検定料支払い・書類郵送|登録と支払いだけ/u);
+ const completion=rendered.filter(n=>JSON.parse(attr(n,'data-tokushima-origins')).includes('note/7'));
+ assert.equal(completion.length,1);assert.equal(completion[0].tagName,'div');
+ assert.ok((attr(completion[0],'class')??'').split(' ').includes('admission-fact'));
+ assert.ok(copy.keyPoints[2].includes('通常の検定料支払い'));
+ assert.doesNotMatch(copy.keyPoints[2],/検定料手続きは|免除.*15時/u,'No inferred exemption deadline');
  for(const value of ['2月3日（水）15時','2月3日（水）17時必着','2月1日（月）以前','場合に限り','950点中630点未満','630点以上でも','5倍を超えた','すべてが必要','成績にかかわらず不合格','リスニング免除者','R160点・L40点','第2解答科目で受験した場合は0点','全教科・科目','過年度','未公表','11月下旬','（予定）'])assert.ok(admissionText.includes(clean(value)),value);
  const basicText=clean(text(basic[0]));
  for(const value of [...overview.access,overview.entrants.excluded,overview.address.street,overview.address.phone,'2026年度／医学科入学者／111人','男性51人45.9%','女性60人54.1%','現役68人61.3%','既卒者43人38.7%','その他0人0.0%'])assert.ok(basicText.includes(clean(value)),value);
