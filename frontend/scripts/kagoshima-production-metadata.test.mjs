@@ -41,8 +41,14 @@ test('Kagoshima consolidates repeated facts while retaining all origins and uniq
  assert.ok(visible.includes('2027年2月予定の公式案内'));
  assert.ok(visible.includes('2026年度時点のもの'));
  assert.ok(!visible.includes('確認日：'));
- assert.equal((html.match(/確認日：/gu)||[]).length,14);
+ assert.equal((html.match(/確認日：/gu)||[]).length,16);
  assert.ok(!html.includes('id="admission-publication"'));
  assert.ok(!visible.includes('合格発表の条件'));
  assert.ok(!visible.includes('入学手続の条件'));
+ for(const text of ['情報Ⅰ25点。','（計200点）','試験会場・試験室','2027年度一般選抜の受験案内は掲載時期未定','前期・後期の入学手続の締切時刻、提出方法・必要書類は未公表です。','検定料等の返還は、未出願・書類未提出・出願不受理','振込手数料は本人負担で、サービス利用料は返還されません。'])assert.equal(visible.split(text).length-1,text==='情報Ⅰ25点。'||text==='（計200点）'?0:1,text);
+ for(const text of ['R150点・L50点','リスニング免除者はRのみ200点に換算','面接形態・所要時間','後期の試験時間・面接形態','入学手続の書類提出','出願書類の提出方法・完了条件','2027年2月28日','2026年12月31日','消印又はメール受信が有効','一般書留・速達','EMS・FedEx・DHL','持参不可'])assert.ok(visible.includes(text),text);
+ assert.ok(!visible.includes('書類提出方法・必要書類'));
+ for(const text of ['高校卒業・2027年3月までの卒業見込み','医学科の具体的な検査場・案内図は2026年12月4日公表予定','2026年12月4日15時以降'])assert.equal(visible.split(text).length-1,1,text);
+
+
 });
