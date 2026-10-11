@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "slug": "hiroshima",
+  "verifiedAt": "2026-10-11T07:37:34.446Z",
+  "sources": [
+    {
+      "id": "medical-index",
+      "url": "https://www.hiroshima-u.ac.jp/med/admission",
+      "title": "医学部 入学試験情報・所在地",
+      "retrievedAt": "2026-10-11T07:11:36.418Z",
+      "sha256": "5065c6b7b04cc997c984d1e3f6338d28125300bf57bca1a04ff5f4d764f12c5c"
+    },
+    {
+      "id": "medical-results",
+      "url": "https://www.hiroshima-u.ac.jp/med/admission/results/medicine",
+      "title": "医学科 入学者選抜実施状況（令和8年度）",
+      "retrievedAt": "2026-10-11T07:11:36.593Z",
+      "sha256": "648cad793b6c5b9b2dde8009115f8db3d2a38772869dbed654161db78b5cfa0b"
+    },
+    {
+      "id": "medical-students",
+      "url": "https://www.hiroshima-u.ac.jp/med/about/students",
+      "title": "医学部 学生数（2026年5月1日現在）",
+      "retrievedAt": "2026-10-11T07:11:36.749Z",
+      "sha256": "5dd82044f1c93861ed74309a76187ef7bbe8384e73c639a4856926a5a43b29b9"
+    },
+    {
+      "id": "kasumi-access",
+      "url": "https://www.hiroshima-u.ac.jp/access/kasumi",
+      "title": "霞キャンパスへの交通アクセス",
+      "retrievedAt": "2026-10-11T07:16:21.878Z",
+      "sha256": "4ad5cc0af2cb885fa823255ba54c6cbfb6b53ca9cf09ce94bc9ad0466ce64f92"
+    },
+    {
+      "id": "medical-policy-body",
+      "url": "https://www.hiroshima-u.ac.jp/nyugaku/policy/ap/10",
+      "title": "医学部医学科 入学者受入れの方針",
+      "retrievedAt": "2026-10-11T07:22:14.596Z",
+      "sha256": "7d8dffd111ef465d887e56f80fd2ea1e3d7a755e3be015324590545e7ed9833c"
+    }
+  ],
+  "rows": [
+    {
+      "label": "所在地",
+      "value": "霞キャンパス／〒734-8553 広島市南区霞一丁目2番3号。医学部入試の問い合わせ：082-257-5049。",
+      "sourceIds": [
+        "medical-index"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "label": "広島駅からのアクセス",
+      "value": "JR広島駅から路線バス（まちのわループ右回り等）で「大学病院前」へ約15分。「大学病院入口」下車の場合は徒歩約3分。運行経路・時刻は交通事業者の最新案内を確認する。",
+      "sourceIds": [
+        "kasumi-access"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "label": "2026年度 医学科入学者",
+      "value": "合計120人。一般選抜前期96人、総合型Ⅱ型0人、IB型6人、ふるさと枠18人、外国人留学生型0人。2026年度実績であり、2027年度募集人数とは異なる。",
+      "sourceIds": [
+        "medical-results"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "label": "2026年5月1日 医学科在籍学生",
+      "value": "747人（うち女性238人）。これは全学年の在籍学生の統計で、2026年度入学者の男女比ではない。",
+      "sourceIds": [
+        "medical-students"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "label": "医学科が求める学生像",
+      "value": "人の痛みに共感し、地域・社会へ貢献する意欲と協働・コミュニケーション能力を持つ人。生命科学への関心と、特に理科・数学・英語の高い学力を重視する。",
+      "sourceIds": [
+        "medical-policy-body"
+      ],
+      "status": "confirmed"
+    }
+  ],
+  "coverageSourceIds": [
+    [
+      "selection-2027",
+      "foreign-2027",
+      "medical-policy-body"
+    ],
+    [
+      "current-index"
+    ],
+    [
+      "selection-2027"
+    ],
+    [
+      "medical-results",
+      "medical-students",
+      "regional-2027"
+    ]
+  ],
+  "coverageStatuses": [
+    "confirmed",
+    "unpublished",
+    "confirmed",
+    "confirmed"
+  ]
+}
