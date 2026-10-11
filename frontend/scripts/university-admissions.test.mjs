@@ -80,7 +80,7 @@ test('malformed, previous-year, wrong university, unofficial source and broken c
 
 test('rows and notes are escaped, semantic tables keep each scheme/value/source and unknown status explicit',()=>{
   const generic=fixture();
-  generic.path='/information-toyama/';generic.university='富山大学';generic.sources[0].url='https://www.u-toyama.ac.jp/test-only-2027-guideline.pdf';
+  generic.path='/information-kagawa/';generic.university='香川大学';generic.sources[0].url='https://www.kagawa-u.ac.jp/test-only-2027-guideline.pdf';
   const data=validateUniversityAdmissions(generic);
   const html=renderUniversityAdmissions(data);
   assert.ok(!html.includes('<script>'));
@@ -104,10 +104,10 @@ test('rows and notes are escaped, semantic tables keep each scheme/value/source 
 });
 
 test('staging old blocks and main safety blocks are replaced; metadata, TOC, overview and repeat application stay consistent',()=>{
-  const raw=admissionPosts.find(p=>p.path==='/information-toyama/');
+  const raw=admissionPosts.find(p=>p.path==='/information-kagawa/');
   const generic=fixture();
-  generic.path=raw.path;generic.university='富山大学';generic.sources[0].url='https://www.u-toyama.ac.jp/test-only-2027-guideline.pdf';
-  const index=createUniversityAdmissionsIndex({'../data/universityAdmissions/toyama.json':generic});
+  generic.path=raw.path;generic.university='香川大学';generic.sources[0].url='https://www.kagawa-u.ac.jp/test-only-2027-guideline.pdf';
+  const index=createUniversityAdmissionsIndex({'../data/universityAdmissions/kagawa.json':generic});
   for(const before of [raw,transformUniversityInfoPost(raw)]){
     const original=JSON.stringify(before);
     const after=applyUniversityAdmissionsFromIndex(before,index);
