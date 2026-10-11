@@ -17,8 +17,15 @@ test('Oita replaces production safety metadata and legacy body even when prior c
  assert.match(main.contentHtml,/従事・離脱要件同意書/);
  assert.match(main.contentHtml,/1か月以内/);
  assert.equal((main.contentHtml.match(/1か月以内/g)||[]).length,1,'Regional repayment must appear once under its own condition heading');
- assert.match(main.contentHtml,/第1次選考（一般枠）/);
- assert.match(main.contentHtml,/第1次選考（地域枠）/);
+ assert.equal((main.contentHtml.match(/<strong>第1次選考<\/strong>/g)||[]).length,1);
+ assert.match(main.contentHtml,/一般枠は約55人、地域枠は約30人/);
+ assert.match(main.contentHtml,/data-admission-origins="comprehensive-general\/exam\/4 comprehensive-regional\/exam\/4"/);
+ assert.equal((main.contentHtml.match(/再受講不要/g)||[]).length,1);
+ assert.match(main.contentHtml,/申込・活動は終了しています/);
+ assert.match(main.contentHtml,/data-admission-origins="comprehensive-regional\/schedule\/3 coverage\/3"/);
+ assert.equal((main.contentHtml.match(/2026年12月上旬公表予定/g)||[]).length,1);
+ assert.doesNotMatch(main.contentHtml,/地域枠は承認・非承認のいずれの場合も13人/);
+ assert.doesNotMatch(main.contentHtml,/と区別/);
  assert.equal((main.contentHtml.match(/<h2 id="大学基本情報"/g)||[]).length,1);
  assert.deepEqual(applyUniversityAdmissionsFromIndex(main,index),main);
 });
