@@ -1190,3 +1190,22 @@
 .article-content .kagoshima-readable .admission-sources a { color:#756e64; font-weight:400; overflow-wrap:anywhere; }
 .article-content .kagoshima-readable .admission-score-table th:first-child { width:50%; }
 .article-content .kagoshima-readable .admission-source-footer p { font-size:11px; margin-top:8px; }
+
+/* Hiroshima: two-column factual tables, kept readable without horizontal scrolling. */
+.article-content .hiroshima-readable .hiroshima-fact-table {table-layout:fixed;display:table;width:100%;margin:22px 0;font-size:14px;}
+.article-content .hiroshima-readable .hiroshima-fact-table caption {text-align:left;font-weight:700;line-height:1.7;padding:10px 0;}
+.article-content .hiroshima-readable .hiroshima-fact-table thead th:first-child {width:28%;}
+.article-content .hiroshima-readable .hiroshima-fact-table thead th:last-child {width:72%;}
+.article-content .hiroshima-readable .hiroshima-fact-table th {text-align:left;background:#f6f5f0;font-size:13px;}
+.article-content .hiroshima-readable .hiroshima-fact-table thead th {background:#edf3f5;color:#234c62;}
+.article-content .hiroshima-readable .hiroshima-fact-table :is(th,td) {padding:12px;min-width:0;overflow-wrap:anywhere;white-space:normal;line-height:1.8;}
+.article-content .hiroshima-readable [data-admission-status="unpublished"] td {background:#fffaf0;}
+.article-content .hiroshima-readable .hiroshima-scheme-links {display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 26px;}
+.article-content .hiroshima-readable .hiroshima-scheme-links a {border:1px solid #d5e3e9;border-radius:6px;padding:8px 10px;font-size:13px;}
+.article-content .hiroshima-readable .admission-sources {scroll-margin-top:110px;}
+@media(max-width:720px){
+ .article-content .hiroshima-readable .hiroshima-fact-table {font-size:13px;}
+ .article-content .hiroshima-readable .hiroshima-fact-table :is(th,td) {padding:10px 8px;}
+ .article-content .hiroshima-readable .hiroshima-fact-table th {font-size:12px;}
+ .article-content .hiroshima-readable .admission-readable-scheme h3 {display:block;font-size:18px;}
+}
