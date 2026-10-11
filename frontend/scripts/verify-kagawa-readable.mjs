@@ -78,10 +78,17 @@ export function verifyKagawaHtml(html) {
   assert.deepEqual(byCaption.find(t=>t.caption.includes('IB選抜の配点')).rows,[['数学','200'],['理科2科目','200'],['英語','200'],['面接（日本語）','100'],['合計','700']]);
   assert.deepEqual(byCaption.find(t=>t.caption.includes('医学科入学者／106人')).rows,[['男性','52人','49.1%'],['女性','54人','50.9%'],['合計','106人','100%']]);
   assert.equal(Math.round(52/106*1000)/10,49.1);assert.equal(Math.round(54/106*1000)/10,50.9);
-  const ids=new Set(nodes.map(n=>attr(n,'id')).filter(Boolean));for(const a of nodes.filter(n=>n.tagName==='a'&&attr(n,'href')?.startsWith('#')))assert.ok(ids.has(attr(a,'href').slice(1)),'Broken scheme link');
+  const allIds=nodes.map(n=>attr(n,'id')).filter(Boolean),ids=new Set(allIds);assert.equal(ids.size,allIds.length,'Duplicate DOM id');for(const a of nodes.filter(n=>n.tagName==='a'&&attr(n,'href')?.startsWith('#')))assert.ok(ids.has(attr(a,'href').slice(1)),'Broken scheme link');
+  assert.ok(!ids.has('kagawa-publication'),'Repeated publication section');
+  const publication=mapped.filter(n=>attr(n,'data-admission-origins').split(/\s/u).includes('coverage/3'));assert.equal(publication.length,1);assert.ok(publication[0].tagName==='li'&&attr(publication[0],'data-admission-origins').includes('general-early/schedule/3'));assert.equal(visible.split(compact('2026年11月上旬')).length-1,1,'Publication timing repeated');
+  const regionalQuota=mapped.filter(n=>attr(n,'data-admission-origins').split(/\s/u).includes('general-regional/schedule/0'));assert.equal(regionalQuota.length,1);assert.equal(regionalQuota[0].tagName,'td');assert.ok(text(regionalQuota[0]).includes('未公表'));
+  const quota=mapped.filter(n=>attr(n,'data-admission-origins').split(/\s/u).includes('general-early/schedule/0'));assert.equal(quota.filter(n=>n.tagName==='td').length,1);const quotaNote=quota.find(n=>n.tagName==='li');assert.ok(text(quotaNote).includes('内数'));assert.ok(!/70人|調整予定|確定人数/u.test(text(quotaNote)),'Quota explanation repeated below the table');
+  const translation=mapped.find(n=>attr(n,'data-admission-origins').split(/\s/u).includes('international-private/note/1'));assert.ok(text(translation).includes('日本語訳'));assert.ok(!text(translation).includes('出願先'),'Foreign address repeated in translation condition');
+  const overview=tables.find(n=>attr(n,'data-admission-table')==='overview');assert.equal(walk(overview).filter(n=>attr(n,'class')==='admission-mobile-label').length,18,'Missing mobile overview labels');
   const sources=new Set(nodes.filter(n=>n.tagName==='a').map(n=>attr(n,'data-admission-source-id')).filter(Boolean));assert.deepEqual([...sources].sort(),canonical.sources.map(s=>s.id).sort());
+  for(const id of ['general-index','recommendation-outline']){const link=nodes.find(n=>attr(n,'data-admission-source-id')===id);assert.ok(text(link).includes('参照箇所：'));assert.ok(!text(link).includes('PDF内p.'));}assert.ok(text(nodes.find(n=>attr(n,'data-admission-source-id')==='selection-2027')).includes('PDF内p.2・5・6'));
   for(const t of tables)assert.equal(walk(t).filter(n=>n.tagName==='a'&&/^http/iu.test(attr(n,'href')??'')).length,0);
   assert.ok(!/(?:転用しない|推測しない|補完しない|記録した|監査済み|照合済み)/u.test(visible));
-  return{passed:true,mappedFacts:observed.size,tables:tables.length,criticalAssertions:criticalFragments.length,officialSources:sources.size};
+  return{passed:true,mappedFacts:observed.size,tables:tables.length,criticalAssertions:criticalFragments.length,officialSources:sources.size,domIdsUnique:true,domIdCount:ids.size};
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const html=await fs.readFile(process.argv[2],'utf8');console.log(JSON.stringify(verifyKagawaHtml(html)));}

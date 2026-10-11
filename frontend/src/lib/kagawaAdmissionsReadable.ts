@@ -29,7 +29,7 @@ function merged(id:string,kind:string,i:number,label?:string,value?:string) {
 const attrs=(r:AdmissionReaderRow)=>admissionFactAttributes(r);
 const title=(id:string,text:string)=>`<h3 id="${id}">${esc(text)}</h3>`;
 const paragraph=(r:AdmissionReaderRow)=>`<p ${attrs(r)}>${esc(r.value)}</p>`;
-const sources=(ids:string[])=>sourceList(canonical.sources.filter(s=>ids.includes(s.id)).map(s=>({id:s.id,url:s.url,title:`${s.title}${s.pages?`（PDF内p.${Array.isArray(s.pages)?s.pages.join('・'):s.pages}）`:''}／確認日 ${s.retrievedAt.slice(0,10)}`})));
+const sources=(ids:string[])=>sourceList(canonical.sources.filter(s=>ids.includes(s.id)).map(s=>({id:s.id,url:s.url,title:`${s.title}${s.pages?`（${Array.isArray(s.pages)?`PDF内p.${s.pages.join('・')}`:`参照箇所：${s.pages}`}）`:''}／確認日 ${s.retrievedAt.slice(0,10)}`})));
 const section=(id:string,text:string,body:string)=>`<section class="admission-readable-scheme" data-admission-scheme="${id}"><h2 id="kagawa-${id}">${esc(text)}</h2>${body}</section>`;
 const pointConditions=(r:AdmissionReaderRow)=>({...r,value:r.value.replace(/^\d+点。/u,'').replace(/^2科目合計\d+点。/u,'')});
 const cells=(r:AdmissionReaderRow,values:string[])=>`<tr ${attrs(r)}>${values.map((v,i)=>`<${i?'td':'th scope="row"'}>${esc(v)}</${i?'td':'th'}>`).join('')}</tr>`;
@@ -52,14 +52,14 @@ export const kagawaMetadata={
 
 function overview() {
   const entries=[
-    ['general-early','一般前期','70人（調整予定）','2027年1月25日～2月3日','2027年2月25日・26日',2,5],
-    ['general-regional','一般前期・地域枠','調整中・要確認','2027年1月25日～2月3日','2027年2月25日・26日',2,5],
+    ['general-early','一般前期','70人（調整予定・要確認）','2027年1月25日～2月3日','2027年2月25日・26日',2,5],
+    ['general-regional','一般前期・地域枠','調整中・要確認（2027年度人数は未公表）','2027年1月25日～2月3日','2027年2月25日・26日',2,5],
     ['recommendation-ii','学校推薦型Ⅱ','調整予定・要確認','2026年11月2日～9日','2026年11月21日',3,7],
     ['recommendation-regional','推薦Ⅱ・地域枠','調整予定・要確認','2026年11月2日～9日','2026年11月21日',4,8],
     ['international-baccalaureate','国際バカロレア（IB）','若干人（一般の内数）','2027年1月25日～2月3日','2027年2月25日・26日',3,6],
     ['international-private','私費外国人留学生','若干人（一般の内数）','2027年1月5日～8日','2027年2月25日・26日',2,5]
   ] as const;
-  return `<h2 id="kagawa-overview">入試方式・募集人数・主要日程</h2>${paragraph(row(['coverage/0','general-early/note/0']))}<table class="admission-overview-table" data-admission-table="overview"><caption>2027年度医学科・6方式の主な日程</caption><thead><tr><th scope="col">入試方式</th><th scope="col">募集人数</th><th scope="col">出願</th><th scope="col">個別試験</th></tr></thead><tbody>${entries.map(([id,label,quota,dates,exams,di,ei])=>`<tr ${attrs(row([origin(id,'schedule',0),origin(id,'schedule',di),origin(id,'schedule',ei),...(['international-baccalaureate','international-private'].includes(id)?['coverage/2']:[])]))}><th scope="row"><a href="#kagawa-${id}">${esc(label)}</a></th><td>${esc(quota)}</td><td>${esc(dates)}</td><td>${esc(exams)}</td></tr>`).join('')}</tbody></table>${conditions([row(['coverage/1','recommendation-ii/schedule/0','recommendation-regional/schedule/0'],'推薦の募集人数'),row(['general-early/schedule/0'],'一般の募集人数'),row(['general-regional/schedule/0'],'一般地域枠の募集人数'),row(['coverage/4'],'2027年度の変更')])}${sources(['selection-2027','recommendation-2027','recommendation-outline','quota-notice-2027','recommendation-change','information-use-2027','selection-index'])}`;
+  return `<h2 id="kagawa-overview">入試方式・募集人数・主要日程</h2>${paragraph(row(['coverage/0','general-early/note/0']))}<table class="admission-overview-table" data-admission-table="overview"><caption>2027年度医学科・6方式の主な日程</caption><thead><tr><th scope="col">入試方式</th><th scope="col">募集人数</th><th scope="col">出願</th><th scope="col">個別試験</th></tr></thead><tbody>${entries.map(([id,label,quota,dates,exams,di,ei])=>`<tr ${attrs(row([origin(id,'schedule',di),origin(id,'schedule',ei)]))}><th scope="row"><a href="#kagawa-${id}">${esc(label)}</a></th><td ${attrs(row([origin(id,'schedule',0),...(['international-baccalaureate','international-private'].includes(id)?['coverage/2']:[])]))}>${esc(quota)}</td><td>${esc(dates)}</td><td>${esc(exams)}</td></tr>`).join('')}</tbody></table>${conditions([row(['coverage/1','recommendation-ii/schedule/0','recommendation-regional/schedule/0'],'推薦の募集人数'),row(['general-early/schedule/0'],'一般前期の内数','IB・私費外国人留学生選抜の若干人は一般前期の募集人数の内数です。'),row(['coverage/4'],'2027年度の変更')])}${sources(['selection-2027','recommendation-2027','recommendation-outline','quota-notice-2027','recommendation-change','information-use-2027','selection-index'])}`;
 }
 function general() {
   const id='general-early';
@@ -77,7 +77,7 @@ function general() {
   return section(id,'一般選抜（前期・通常枠／地域枠）',
     title('kagawa-general-dates','一般前期の出願・試験・手続日程')+
     table('一般前期の日程（地域枠も共通）',[2,4,5,7,8].map(i=>merged(id,'schedule',i)))+
-    conditions([merged(id,'schedule',3),merged(id,'schedule',6)])+
+    conditions([row([id+'/schedule/3','general-regional/schedule/3','coverage/3'],'Web登録・検定料・書類締切の詳細','未公表。Web登録・検定料支払い・郵送書類の締切時刻と必着／消印条件は、2026年11月上旬に公開予定の一般選抜募集要項の公開後に更新します。'),merged(id,'schedule',6)])+
     title('kagawa-general-eligibility','一般前期の出願資格・事前審査')+
     conditions([fact(id,'schedule',1),fact(id,'schedule',9)])+
     title('kagawa-general-scores','一般前期の科目・配点・選抜条件')+scores+
@@ -145,8 +145,8 @@ function international() {
     title('kagawa-international-documents','私費外国人の受験票・翻訳・併願')+conditions([0,1,2].map(i=>fact(id,'note',i)))+sources(['international-2027','selection-2027']));
 }
 export function renderKagawaAdmissionsReadable(_input:UniversityAdmissions) {
-  const html=`<section class="admission-readable kagawa-readable" data-university-admissions-year="2027">${scopedTableStyles}${overview()}${general()}${recommendation()}${ib()}${international()}<h2 id="kagawa-publication">一般選抜募集要項の公開予定</h2>${paragraph(row(['coverage/3']))}${sources(['selection-2027','general-index','international-2027'])}<h2 id="kagawa-regional-obligations">推薦地域枠の勤務義務・離脱条件</h2>${conditions([fact('recommendation-regional','note',1),fact('recommendation-regional','note',2)])}${sources(['recommendation-consent'])}<h2 id="kagawa-fee-exemption">被災者の検定料免除</h2>${conditions([5,6,7].map(i=>row(['coverage/'+i],i===5?'対象条件':i===6?'出願前の申請':'不許可・納付後の返還')))}${sources(['examination-fee-exemption'])}</section>`;
-  return html.replace(/(<table class="admission-overview-table"[\s\S]*?<\/table>)/u,table=>table.replace(/<td>([^<]*)<\/td><td>([^<]*)<\/td><td>([^<]*)<\/td>/gu,'<td data-label="募集人数"><span class="admission-mobile-label">募集人数</span>$1</td><td data-label="出願"><span class="admission-mobile-label">出願</span>$2</td><td data-label="個別試験"><span class="admission-mobile-label">個別試験</span>$3</td>'));
+  const html=`<section class="admission-readable kagawa-readable" data-university-admissions-year="2027">${scopedTableStyles}${overview()}${general()}${recommendation()}${ib()}${international()}<h2 id="kagawa-regional-obligations">推薦地域枠の勤務義務・離脱条件</h2>${conditions([fact('recommendation-regional','note',1),fact('recommendation-regional','note',2)])}${sources(['recommendation-consent'])}<h2 id="kagawa-fee-exemption">被災者の検定料免除</h2>${conditions([5,6,7].map(i=>row(['coverage/'+i],i===5?'対象条件':i===6?'出願前の申請':'不許可・納付後の返還')))}${sources(['examination-fee-exemption'])}</section>`;
+  return html.replace(/(<table class="admission-overview-table"[\s\S]*?<\/table>)/u,table=>table.replace(/<td([^>]*)>([^<]*)<\/td><td>([^<]*)<\/td><td>([^<]*)<\/td>/gu,'<td$1 data-label="募集人数"><span class="admission-mobile-label">募集人数</span>$2</td><td data-label="出願"><span class="admission-mobile-label">出願</span>$3</td><td data-label="個別試験"><span class="admission-mobile-label">個別試験</span>$4</td>'));
 }
 export function renderKagawaUniversityOverview() {
   const basic=(i:number)=>row(['basic/'+i]);
