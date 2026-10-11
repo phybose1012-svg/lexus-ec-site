@@ -16,6 +16,9 @@ test('Oita replaces production safety metadata and legacy body even when prior c
  assert.match(main.contentHtml,/2026年11月25日/);
  assert.match(main.contentHtml,/従事・離脱要件同意書/);
  assert.match(main.contentHtml,/1か月以内/);
+ assert.equal((main.contentHtml.match(/1か月以内/g)||[]).length,1,'Regional repayment must appear once under its own condition heading');
+ assert.match(main.contentHtml,/第1次選考（一般枠）/);
+ assert.match(main.contentHtml,/第1次選考（地域枠）/);
  assert.equal((main.contentHtml.match(/<h2 id="大学基本情報"/g)||[]).length,1);
  assert.deepEqual(applyUniversityAdmissionsFromIndex(main,index),main);
 });

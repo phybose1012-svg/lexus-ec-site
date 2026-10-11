@@ -40,7 +40,8 @@ export function renderOitaAdmissionsReadable(data:UniversityAdmissions):string {
   const qualification=subset(allSchedule,['出願資格']);
   if(isGeneral)qualification.forEach((r,i)=>r.label=i===0?'一般枠の出願資格':'地元出身者枠の追加条件');
   const exams=merge(allExam.filter(r=>!['共通テスト配点','個別試験配点','共通テスト・面接配点'].includes(r.label)));
-  const notes=merge(allNotes.filter(r=>!r.value.startsWith('地域枠増員が')&&!r.origins.some(o=>o==='comprehensive-regional/note/2'||o==='comprehensive-regional/note/3'||o==='comprehensive-regional/note/4')));
+  if(!isGeneral)for(const r of exams)if(r.label==='第1次選考')r.label+='（'+(r.origins.some(o=>o.startsWith('comprehensive-general/'))?'一般枠':'地域枠')+'）';
+  const notes=merge(allNotes.filter(r=>!r.value.startsWith('地域枠増員が')&&!r.origins.some(o=>o.startsWith('comprehensive-regional/note/')&&Number(o.split('/')[2])>=2)));
   let body=`<section class="admission-readable-scheme">${anchor(schemes.map(s=>s.id))}<h3 id="oita-${isGeneral?'general':'comprehensive'}">${isGeneral?'一般選抜（前期日程）':'総合型選抜Ⅱ'}</h3><h4>出願・試験・手続の日程（両枠共通）</h4>${table(isGeneral?'一般選抜前期の日程':'総合型選抜Ⅱの日程',schedule)}<h4>出願資格・枠ごとの条件</h4>${conditions(qualification)}${!isGeneral?conditions(subset(allSchedule,['地域枠の追加資格'])):''}<h4>試験科目・配点</h4>${scores(isGeneral,allExam)}${conditions(exams)}${!isGeneral?conditions(subset(allSchedule,['指定科目の受験'])):''}<h4>試験会場・受験票</h4>${table(isGeneral?'一般選抜前期の会場':'総合型選抜Ⅱの会場・集合',merge(allVenue.filter(r=>r.label!=='事前体験活動の病院')),'venue')}<h4>併願・出願時の注意</h4>${conditions(notes.map(r=>withLabel(r,r.value.startsWith('総合型の一般枠')?'併願・入学辞退':r.value.startsWith('総合型の入学')?'募集人員に満たない場合':'一般枠・地元出身者枠の選抜')))}${!isGeneral?`<h4>検定料・入学料の免除と猶予</h4>${conditions(subset(allSchedule,['検定料の免除・返還','入学料の徴収猶予']))}`:''}${sectionSources(data,[...allSchedule,...allExam,...allVenue,...allNotes])}${back}</section>`;
   return body;
  }).join('');
