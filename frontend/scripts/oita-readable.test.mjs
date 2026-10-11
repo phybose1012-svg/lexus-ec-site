@@ -1,0 +1,21 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {applyUniversityAdmissionsFromIndex,validateUniversityAdmissions} from '../src/lib/universityAdmissions.ts';
+import {transformUniversityInfoPost} from '../src/lib/universityInfoSafety.ts';
+const posts=JSON.parse(fs.readFileSync(new URL('../src/data/generated/admissionInfoPosts.json',import.meta.url)));
+const candidate=JSON.parse(fs.readFileSync(new URL('../src/data/universityAdmissions/oita.json',import.meta.url)));
+const original=posts.find(p=>p.path===candidate.path),index=new Map([[candidate.path,validateUniversityAdmissions(candidate)]]);
+test('Oita replaces production safety metadata and legacy body even when prior category and kind are stale',()=>{
+ const stage=applyUniversityAdmissionsFromIndex(original,index);
+ const stale={...original,categories:['北海道・東北'],title:'古い大学概要',lead:'古い導入',infoItems:original.infoItems.map(i=>i.label==='種別'?{...i,value:'旧大学概要'}:i.label==='地域'?{...i,value:'旧地域'}:i)};
+ const main=applyUniversityAdmissionsFromIndex(transformUniversityInfoPost(stale),index);
+ for(const key of ['contentHtml','title','displayTitle','displayTitleLines','lead','description','keyPoints','categories','infoItems','toc'])assert.deepEqual(main[key],stage[key],key);
+ assert.deepEqual(main.categories,['九州・沖縄','国公立医学部']);
+ assert.equal(main.infoItems.find(i=>i.label==='地域').value,'九州・沖縄');
+ assert.match(main.contentHtml,/2026年11月25日/);
+ assert.match(main.contentHtml,/従事・離脱要件同意書/);
+ assert.match(main.contentHtml,/1か月以内/);
+ assert.equal((main.contentHtml.match(/<h2 id="大学基本情報"/g)||[]).length,1);
+ assert.deepEqual(applyUniversityAdmissionsFromIndex(main,index),main);
+});
