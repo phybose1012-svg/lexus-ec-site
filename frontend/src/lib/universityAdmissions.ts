@@ -1,3 +1,4 @@
+import { kagoshimaAdmissionsMetadata, renderKagoshimaAdmissionsReadable } from './kagoshimaAdmissionsReadable.ts';
 import { renderOitaAdmissionsReadable, oitaAdmissionsMetadata } from './oitaAdmissionsReadable.ts';
 import { renderYamagataAdmissionsReadable, renderYamagataUniversityOverview, yamagataMetadata } from './yamagataAdmissionsReadable.ts';
 import { renderShimaneAdmissionsReadable, renderShimaneUniversityOverview, shimaneMetadata } from './shimaneAdmissionsReadable.ts';
@@ -268,6 +269,7 @@ const htmlText = (value: string) => escapeUniversityAdmissionHtml(value).replace
 const plainText = (value: string) => value.replace(/<[^>]*>/g,"").replace(/&nbsp;/g," ").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#39;|&#039;/g,"'").replace(/&amp;/g,"&").replace(/\s+/g," ").trim();
 
 export function universityAdmissionsMetadata(data: UniversityAdmissions) {
+  if (data.path === '/information-kagoshima/') return kagoshimaAdmissionsMetadata(data);
   if (data.path === '/information-oita/') return oitaAdmissionsMetadata(data);
   if (data.path === '/information-toyama/') return {...toyamaMetadata,modified:new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(data.verifiedAt))};
   if (data.path === '/information-akita/') return {...akitaMetadata,modified:new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(data.verifiedAt))};
@@ -301,6 +303,7 @@ export function universityAdmissionsMetadata(data: UniversityAdmissions) {
 /** Render only canonical validated data; values remain text, never raw HTML. */
 export function renderUniversityAdmissions(input: UniversityAdmissions): string {
   const data = validateUniversityAdmissions(input);
+  if (data.path === '/information-kagoshima/') return renderKagoshimaAdmissionsReadable(data);
   if (data.path === '/information-oita/') return renderOitaAdmissionsReadable(data);
   if (data.path === '/information-toyama/') return renderToyamaAdmissionsReadable(data);
   if (data.path === '/information-akita/') return renderAkitaAdmissionsReadable(data);
@@ -335,6 +338,12 @@ type AdmissionPost = {
 export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post: T,index: ReadonlyMap<string,UniversityAdmissions>): T {
   const data=index.get(post.path);
   if (!data || post.template !== "admission-info") return post;
+  if (data.path === '/information-kagoshima/') {
+    const contentHtml=renderKagoshimaAdmissionsReadable(data);
+    const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
+    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'入試情報'}:item.label==='地域'?{...item,value:'九州・沖縄'}:item);
+    return {...post,...kagoshimaAdmissionsMetadata(data),contentHtml,infoItems,toc};
+  }
   if (data.path === '/information-tottori/') {
     const contentHtml=renderTottoriAdmissionsReadable(data)+renderTottoriUniversityOverview();
     const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
