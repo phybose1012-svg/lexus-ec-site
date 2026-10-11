@@ -1,3 +1,4 @@
+import { kagoshimaAdmissionsMetadata, renderKagoshimaAdmissionsReadable } from './kagoshimaAdmissionsReadable.ts';
 import { renderRyukyuAdmissionsReadable, renderRyukyuUniversityOverview, ryukyuMetadata } from './ryukyuAdmissionsReadable.ts';
 import { renderKagawaAdmissionsReadable, renderKagawaUniversityOverview, kagawaMetadata } from './kagawaAdmissionsReadable.ts';
 import { renderOitaAdmissionsReadable, oitaAdmissionsMetadata } from './oitaAdmissionsReadable.ts';
@@ -270,6 +271,7 @@ const htmlText = (value: string) => escapeUniversityAdmissionHtml(value).replace
 const plainText = (value: string) => value.replace(/<[^>]*>/g,"").replace(/&nbsp;/g," ").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#39;|&#039;/g,"'").replace(/&amp;/g,"&").replace(/\s+/g," ").trim();
 
 export function universityAdmissionsMetadata(data: UniversityAdmissions) {
+  if (data.path === '/information-kagoshima/') return kagoshimaAdmissionsMetadata(data);
   if (data.path === '/information-ryukyu/') return {...ryukyuMetadata, modified:data.verifiedAt.slice(0,10)};
   if (data.path === '/information-kagawa/') return kagawaMetadata;
   if (data.path === '/information-oita/') return oitaAdmissionsMetadata(data);
@@ -305,6 +307,7 @@ export function universityAdmissionsMetadata(data: UniversityAdmissions) {
 /** Render only canonical validated data; values remain text, never raw HTML. */
 export function renderUniversityAdmissions(input: UniversityAdmissions): string {
   const data = validateUniversityAdmissions(input);
+  if (data.path === '/information-kagoshima/') return renderKagoshimaAdmissionsReadable(data);
   if (data.path === '/information-ryukyu/') return renderRyukyuAdmissionsReadable(data);
   if (data.path === '/information-kagawa/') return renderKagawaAdmissionsReadable(data);
   if (data.path === '/information-oita/') return renderOitaAdmissionsReadable(data);
@@ -352,6 +355,12 @@ export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post
     const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
     const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'医学部入試情報'}:item.label==='地域'?{...item,value:'四国'}:item);
     return {...post,...kagawaMetadata,contentHtml,infoItems,toc};
+  }
+  if (data.path === '/information-kagoshima/') {
+    const contentHtml=renderKagoshimaAdmissionsReadable(data);
+    const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
+    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'入試情報'}:item.label==='地域'?{...item,value:'九州・沖縄'}:item);
+    return {...post,...kagoshimaAdmissionsMetadata(data),contentHtml,infoItems,toc};
   }
   if (data.path === '/information-tottori/') {
     const contentHtml=renderTottoriAdmissionsReadable(data)+renderTottoriUniversityOverview();
