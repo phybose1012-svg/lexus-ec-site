@@ -1182,3 +1182,11 @@
  .article-content .oita-readable [data-admission-table="venue"] th:first-child { width: 29%; }
  .article-content .oita-readable [data-admission-table="quota"] th:first-child { width: 34%; }
 }
+
+/* Kagoshima uses the shared reader primitives; conditions stay visible. */
+.article-content .kagoshima-readable .admission-sources summary { cursor:pointer; font-size:12px; }
+.article-content .kagoshima-readable .admission-sources ul { list-style:none; padding:12px 0 0; }
+.article-content .kagoshima-readable .admission-sources li { font-size:12px; margin-bottom:10px; }
+.article-content .kagoshima-readable .admission-sources a { color:#756e64; font-weight:400; overflow-wrap:anywhere; }
+.article-content .kagoshima-readable .admission-score-table th:first-child { width:50%; }
+.article-content .kagoshima-readable .admission-source-footer p { font-size:11px; margin-top:8px; }
