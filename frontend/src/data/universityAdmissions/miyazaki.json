@@ -2,13 +2,13 @@
   "path": "/information-miyazaki/",
   "university": "宮崎大学",
   "admissionYear": 2027,
-  "verifiedAt": "2026-10-10T03:08:18.597Z",
+  "verifiedAt": "2026-10-11T09:11:18.100Z",
   "sources": [
     {
       "id": "selection-2027",
       "url": "https://www.miyazaki-u.ac.jp/exam/R9_senbatsuyoukou2027.pdf",
       "title": "令和9年度 宮崎大学 入学者選抜要項",
-      "retrievedAt": "2026-10-10T02:54:57.641Z",
+      "retrievedAt": "2026-10-11T09:09:07.847Z",
       "sha256": "54148777676fecd31cae22de168b1d128280ca99cd1c0c73632b0420478eec1f",
       "pages": "PDF内3・18・22・25・29・30・37ページ（冊子はPDF内ページ数から2を引いた番号）"
     },
@@ -16,21 +16,21 @@
       "id": "general-page",
       "url": "https://www.miyazaki-u.ac.jp/exam/department-exam/ippan.html",
       "title": "宮崎大学 一般選抜学生募集要項掲載ページ（掲載は令和8年度）",
-      "retrievedAt": "2026-10-10T03:00:47.376Z",
+      "retrievedAt": "2026-10-11T09:09:07.433Z",
       "sha256": "61b4cb44956e42a261fc38f64774d6560eccdd701a43aae3ba9b7cf80f129107"
     },
     {
       "id": "web-application",
       "url": "https://www.miyazaki-u.ac.jp/exam/department-exam/Internet-apply.html",
       "title": "宮崎大学 WEB出願（学部入試）",
-      "retrievedAt": "2026-10-10T02:54:57.293Z",
+      "retrievedAt": "2026-10-11T09:09:07.433Z",
       "sha256": "bc0dcc2bcc638393089e1ed81b02bc1d6eb4ed40157c822f4203f6fd9802fa75"
     },
     {
       "id": "regional-2027",
       "url": "https://www.miyazaki-u.ac.jp/exam/R9regional_youkou_med.pdf",
       "title": "令和9年度 宮崎大学医学部医学科 学生募集要項（地域枠A・B・C学校推薦型選抜）",
-      "retrievedAt": "2026-10-10T02:54:57.442Z",
+      "retrievedAt": "2026-10-11T09:09:07.570Z",
       "sha256": "8c33977c251972f6daddbf87c14aab161a0f98c412f9aadd2b018de7c4550ce8",
       "pages": "PDF内3・4・6・7・15・16・17・18・19・20・21・23・27・28ページ（冊子はPDF内ページ数から2を引いた番号）"
     },
@@ -38,14 +38,14 @@
       "id": "changes-page",
       "url": "https://www.miyazaki-u.ac.jp/exam/department-exam/nyushi.henkou.html",
       "title": "宮崎大学 入試の変更点（予告）",
-      "retrievedAt": "2026-10-10T02:54:57.304Z",
+      "retrievedAt": "2026-10-11T09:09:07.433Z",
       "sha256": "82bf6de028ff89d688d627aa6b59181645ea1b0c61a98c71155eabb5daad2d15"
     },
     {
       "id": "regional-page",
       "url": "https://www.miyazaki-u.ac.jp/exam/department-exam/recommen/chiikiwaku.html",
       "title": "令和9年度 医学部医学科 地域枠A・B・C学校推薦型選抜学生募集要項掲載ページ",
-      "retrievedAt": "2026-10-10T02:54:57.271Z",
+      "retrievedAt": "2026-10-11T09:09:07.434Z",
       "sha256": "84aea4d949dab038bfe98c115f41efcb38679cdb7dea5932ad67444ef6ff172e"
     }
   ],
@@ -88,14 +88,30 @@
           "status": "unpublished"
         },
         {
-          "label": "検定料支払い・出願完了条件",
-          "value": "Web登録後に検定料を支払い、出願期間内に提出書類を全て郵送又は持参する。2027年度一般選抜の検定料額・支払期限は未公表。",
+          "label": "出願完了の手順",
+          "value": "Web出願登録だけでは完了しません。登録後に検定料を支払い、出願期間内に提出書類を全て郵送又は持参することで完了します。",
           "sourceIds": [
-            "web-application",
+            "web-application"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "検定料額（2027年度一般選抜）",
+          "value": "未公表。2027年度一般選抜学生募集要項は2026年11月下旬公表予定。",
+          "sourceIds": [
             "selection-2027",
             "general-page"
           ],
-          "status": "needs-confirmation"
+          "status": "unpublished"
+        },
+        {
+          "label": "検定料の独立した支払期限（2027年度一般選抜）",
+          "value": "未公表。2027年度一般選抜学生募集要項は2026年11月下旬公表予定。",
+          "sourceIds": [
+            "selection-2027",
+            "general-page"
+          ],
+          "status": "unpublished"
         },
         {
           "label": "書類提出の締切時刻・郵送条件",
@@ -124,22 +140,38 @@
           "status": "confirmed"
         },
         {
-          "label": "合格発表",
-          "value": "2027年3月7日（日）。発表時刻・方法は未公表。",
+          "label": "合格発表日",
+          "value": "2027年3月7日（日）。",
           "sourceIds": [
-            "selection-2027",
-            "general-page"
+            "selection-2027"
           ],
-          "status": "needs-confirmation"
+          "status": "confirmed"
         },
         {
-          "label": "入学手続締切",
-          "value": "2027年3月15日（月）。締切時刻・手続方法は未公表。",
+          "label": "合格発表の時刻・方法",
+          "value": "未公表。2027年度一般選抜学生募集要項は2026年11月下旬公表予定。",
           "sourceIds": [
             "selection-2027",
             "general-page"
           ],
-          "status": "needs-confirmation"
+          "status": "unpublished"
+        },
+        {
+          "label": "入学手続締切日",
+          "value": "2027年3月15日（月）。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続の締切時刻・方法",
+          "value": "未公表。2027年度一般選抜学生募集要項は2026年11月下旬公表予定。",
+          "sourceIds": [
+            "selection-2027",
+            "general-page"
+          ],
+          "status": "unpublished"
         }
       ],
       "examRows": [
@@ -348,14 +380,30 @@
           "status": "unpublished"
         },
         {
-          "label": "検定料支払い・出願完了条件",
-          "value": "Web登録後に検定料を支払い、出願期間内に提出書類を全て郵送又は持参する。2027年度一般選抜の検定料額・支払期限は未公表。",
+          "label": "出願完了の手順",
+          "value": "Web出願登録だけでは完了しません。登録後に検定料を支払い、出願期間内に提出書類を全て郵送又は持参することで完了します。",
           "sourceIds": [
-            "web-application",
+            "web-application"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "検定料額（2027年度一般選抜）",
+          "value": "未公表。2027年度一般選抜学生募集要項は2026年11月下旬公表予定。",
+          "sourceIds": [
             "selection-2027",
             "general-page"
           ],
-          "status": "needs-confirmation"
+          "status": "unpublished"
+        },
+        {
+          "label": "検定料の独立した支払期限（2027年度一般選抜）",
+          "value": "未公表。2027年度一般選抜学生募集要項は2026年11月下旬公表予定。",
+          "sourceIds": [
+            "selection-2027",
+            "general-page"
+          ],
+          "status": "unpublished"
         },
         {
           "label": "書類提出の締切時刻・郵送条件",
@@ -384,22 +432,38 @@
           "status": "confirmed"
         },
         {
-          "label": "合格発表",
-          "value": "2027年3月20日（土）。発表時刻・方法は未公表。",
+          "label": "合格発表日",
+          "value": "2027年3月20日（土）。",
           "sourceIds": [
-            "selection-2027",
-            "general-page"
+            "selection-2027"
           ],
-          "status": "needs-confirmation"
+          "status": "confirmed"
         },
         {
-          "label": "入学手続締切",
-          "value": "2027年3月27日（土）。締切時刻・手続方法は未公表。",
+          "label": "合格発表の時刻・方法",
+          "value": "未公表。2027年度一般選抜学生募集要項は2026年11月下旬公表予定。",
           "sourceIds": [
             "selection-2027",
             "general-page"
           ],
-          "status": "needs-confirmation"
+          "status": "unpublished"
+        },
+        {
+          "label": "入学手続締切日",
+          "value": "2027年3月27日（土）。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続の締切時刻・方法",
+          "value": "未公表。2027年度一般選抜学生募集要項は2026年11月下旬公表予定。",
+          "sourceIds": [
+            "selection-2027",
+            "general-page"
+          ],
+          "status": "unpublished"
         }
       ],
       "examRows": [
@@ -570,11 +634,19 @@
         },
         {
           "label": "第1次選考日",
-          "value": "2026年11月16日（月）。実施時間等は願書受付後に連絡されるため要確認。",
+          "value": "2026年11月16日（月）。",
           "sourceIds": [
             "regional-2027"
           ],
-          "status": "needs-confirmation"
+          "status": "confirmed"
+        },
+        {
+          "label": "第1次選考の実施時間等の確認",
+          "value": "実施時間等は願書受付後に連絡されます。受験者はその連絡を確認してください。",
+          "sourceIds": [
+            "regional-2027"
+          ],
+          "status": "confirmed"
         },
         {
           "label": "第1次選考合格発表",
@@ -593,12 +665,20 @@
           "status": "confirmed"
         },
         {
-          "label": "第2次選考・検定料支払い",
-          "value": "17,000円（別途システム利用料）。Web登録後に支払い、志願票を印刷して書類受付期限内に提出する。独立した支払期限の指定はWeb出願システムで要確認。",
+          "label": "第2次選考・検定料額",
+          "value": "17,000円。別途、支払方法に応じたシステム利用料が必要です。",
           "sourceIds": [
             "regional-2027"
           ],
-          "status": "needs-confirmation"
+          "status": "confirmed"
+        },
+        {
+          "label": "第2次選考・支払いと出願完了の手順",
+          "value": "Web出願登録後に検定料を支払い、志願票と宛名ラベルを印刷して、提出書類を全て書類受付期間内に郵送又は持参します。Web登録だけでは出願完了になりません。書類受付は2026年12月2日（水）～12月4日（金）。郵送は一般書留・速達で期間内17:00必着、持参は平日9:00～17:00です。",
+          "sourceIds": [
+            "regional-2027"
+          ],
+          "status": "confirmed"
         },
         {
           "label": "第2次選考・大学への書類提出",
@@ -781,12 +861,28 @@
           "status": "confirmed"
         },
         {
-          "label": "第2次の試験室・集合場所／時刻",
-          "value": "要確認。受験票ダウンロード時に併せて掲載される受験案内で確認。受付終了時刻に遅れると受験不可。",
+          "label": "第2次選考・試験室の確認方法",
+          "value": "試験室等は試験前日の午後から、医学部清武キャンパスの講義実習棟玄関前の掲示で確認できます。建物に立ち入ることはできません。",
           "sourceIds": [
             "regional-2027"
           ],
-          "status": "needs-confirmation"
+          "status": "confirmed"
+        },
+        {
+          "label": "第2次選考・集合時間と場所の確認方法",
+          "value": "集合時間・場所は、受験票ダウンロード時に学生募集要項ホームページに併せて掲載される「受験案内」で必ず確認してください。指定時間までに指定された集合場所で待機します。",
+          "sourceIds": [
+            "regional-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第2次選考・遅刻の扱い",
+          "value": "受付終了時刻に遅刻した場合は受験できません。",
+          "sourceIds": [
+            "regional-2027"
+          ],
+          "status": "confirmed"
         }
       ],
       "notes": [
@@ -838,6 +934,12 @@
           "sourceIds": [
             "regional-2027"
           ]
+        },
+        {
+          "text": "検定料のシステム利用料はクレジットカード決済340円、コンビニ・Pay-easy決済250円です。個人成績開示を希望する場合は開示手数料800円を検定料と併せて支払い、クレジットカード決済では別途システム利用料16円が加算されます。システム利用料が改定された場合は改定後の額となります。大学が指定する激甚災害により被災した志願者で検定料免除の特例を希望する場合は、出願前に必ず宮崎大学の入試課（0985-58-7138）へ連絡してください。",
+          "sourceIds": [
+            "regional-2027"
+          ]
         }
       ]
     },
@@ -863,11 +965,19 @@
         },
         {
           "label": "第1次選考日",
-          "value": "2026年11月16日（月）。実施時間等は願書受付後に連絡されるため要確認。",
+          "value": "2026年11月16日（月）。",
           "sourceIds": [
             "regional-2027"
           ],
-          "status": "needs-confirmation"
+          "status": "confirmed"
+        },
+        {
+          "label": "第1次選考の実施時間等の確認",
+          "value": "実施時間等は願書受付後に連絡されます。受験者はその連絡を確認してください。",
+          "sourceIds": [
+            "regional-2027"
+          ],
+          "status": "confirmed"
         },
         {
           "label": "第1次選考合格発表",
@@ -886,12 +996,20 @@
           "status": "confirmed"
         },
         {
-          "label": "第2次選考・検定料支払い",
-          "value": "17,000円（別途システム利用料）。Web登録後に支払い、志願票を印刷して書類受付期限内に提出する。独立した支払期限の指定はWeb出願システムで要確認。",
+          "label": "第2次選考・検定料額",
+          "value": "17,000円。別途、支払方法に応じたシステム利用料が必要です。",
           "sourceIds": [
             "regional-2027"
           ],
-          "status": "needs-confirmation"
+          "status": "confirmed"
+        },
+        {
+          "label": "第2次選考・支払いと出願完了の手順",
+          "value": "Web出願登録後に検定料を支払い、志願票と宛名ラベルを印刷して、提出書類を全て書類受付期間内に郵送又は持参します。Web登録だけでは出願完了になりません。書類受付は2026年12月2日（水）～12月4日（金）。郵送は一般書留・速達で期間内17:00必着、持参は平日9:00～17:00です。",
+          "sourceIds": [
+            "regional-2027"
+          ],
+          "status": "confirmed"
         },
         {
           "label": "第2次選考・大学への書類提出",
@@ -1074,12 +1192,28 @@
           "status": "confirmed"
         },
         {
-          "label": "第2次の試験室・集合場所／時刻",
-          "value": "要確認。受験票ダウンロード時に併せて掲載される受験案内で確認。受付終了時刻に遅れると受験不可。",
+          "label": "第2次選考・試験室の確認方法",
+          "value": "試験室等は試験前日の午後から、医学部清武キャンパスの講義実習棟玄関前の掲示で確認できます。建物に立ち入ることはできません。",
           "sourceIds": [
             "regional-2027"
           ],
-          "status": "needs-confirmation"
+          "status": "confirmed"
+        },
+        {
+          "label": "第2次選考・集合時間と場所の確認方法",
+          "value": "集合時間・場所は、受験票ダウンロード時に学生募集要項ホームページに併せて掲載される「受験案内」で必ず確認してください。指定時間までに指定された集合場所で待機します。",
+          "sourceIds": [
+            "regional-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第2次選考・遅刻の扱い",
+          "value": "受付終了時刻に遅刻した場合は受験できません。",
+          "sourceIds": [
+            "regional-2027"
+          ],
+          "status": "confirmed"
         }
       ],
       "notes": [
@@ -1131,6 +1265,12 @@
           "sourceIds": [
             "regional-2027"
           ]
+        },
+        {
+          "text": "検定料のシステム利用料はクレジットカード決済340円、コンビニ・Pay-easy決済250円です。個人成績開示を希望する場合は開示手数料800円を検定料と併せて支払い、クレジットカード決済では別途システム利用料16円が加算されます。システム利用料が改定された場合は改定後の額となります。大学が指定する激甚災害により被災した志願者で検定料免除の特例を希望する場合は、出願前に必ず宮崎大学の入試課（0985-58-7138）へ連絡してください。",
+          "sourceIds": [
+            "regional-2027"
+          ]
         }
       ]
     },
@@ -1156,11 +1296,19 @@
         },
         {
           "label": "第1次選考日",
-          "value": "2026年11月16日（月）。実施時間等は願書受付後に連絡されるため要確認。",
+          "value": "2026年11月16日（月）。",
           "sourceIds": [
             "regional-2027"
           ],
-          "status": "needs-confirmation"
+          "status": "confirmed"
+        },
+        {
+          "label": "第1次選考の実施時間等の確認",
+          "value": "実施時間等は願書受付後に連絡されます。受験者はその連絡を確認してください。",
+          "sourceIds": [
+            "regional-2027"
+          ],
+          "status": "confirmed"
         },
         {
           "label": "第1次選考合格発表",
@@ -1179,12 +1327,20 @@
           "status": "confirmed"
         },
         {
-          "label": "第2次選考・検定料支払い",
-          "value": "17,000円（別途システム利用料）。Web登録後に支払い、志願票を印刷して書類受付期限内に提出する。独立した支払期限の指定はWeb出願システムで要確認。",
+          "label": "第2次選考・検定料額",
+          "value": "17,000円。別途、支払方法に応じたシステム利用料が必要です。",
           "sourceIds": [
             "regional-2027"
           ],
-          "status": "needs-confirmation"
+          "status": "confirmed"
+        },
+        {
+          "label": "第2次選考・支払いと出願完了の手順",
+          "value": "Web出願登録後に検定料を支払い、志願票と宛名ラベルを印刷して、提出書類を全て書類受付期間内に郵送又は持参します。Web登録だけでは出願完了になりません。書類受付は2026年12月2日（水）～12月4日（金）。郵送は一般書留・速達で期間内17:00必着、持参は平日9:00～17:00です。",
+          "sourceIds": [
+            "regional-2027"
+          ],
+          "status": "confirmed"
         },
         {
           "label": "第2次選考・大学への書類提出",
@@ -1367,12 +1523,28 @@
           "status": "confirmed"
         },
         {
-          "label": "第2次の試験室・集合場所／時刻",
-          "value": "要確認。受験票ダウンロード時に併せて掲載される受験案内で確認。受付終了時刻に遅れると受験不可。",
+          "label": "第2次選考・試験室の確認方法",
+          "value": "試験室等は試験前日の午後から、医学部清武キャンパスの講義実習棟玄関前の掲示で確認できます。建物に立ち入ることはできません。",
           "sourceIds": [
             "regional-2027"
           ],
-          "status": "needs-confirmation"
+          "status": "confirmed"
+        },
+        {
+          "label": "第2次選考・集合時間と場所の確認方法",
+          "value": "集合時間・場所は、受験票ダウンロード時に学生募集要項ホームページに併せて掲載される「受験案内」で必ず確認してください。指定時間までに指定された集合場所で待機します。",
+          "sourceIds": [
+            "regional-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第2次選考・遅刻の扱い",
+          "value": "受付終了時刻に遅刻した場合は受験できません。",
+          "sourceIds": [
+            "regional-2027"
+          ],
+          "status": "confirmed"
         }
       ],
       "notes": [
@@ -1421,6 +1593,12 @@
         },
         {
           "text": "各地域枠で入学者が不足した場合は、定員を満たした別の推薦枠へ不足人数を加え、それでも不足する場合は一般選抜前期へ加えます。",
+          "sourceIds": [
+            "regional-2027"
+          ]
+        },
+        {
+          "text": "検定料のシステム利用料はクレジットカード決済340円、コンビニ・Pay-easy決済250円です。個人成績開示を希望する場合は開示手数料800円を検定料と併せて支払い、クレジットカード決済では別途システム利用料16円が加算されます。システム利用料が改定された場合は改定後の額となります。大学が指定する激甚災害により被災した志願者で検定料免除の特例を希望する場合は、出願前に必ず宮崎大学の入試課（0985-58-7138）へ連絡してください。",
           "sourceIds": [
             "regional-2027"
           ]
