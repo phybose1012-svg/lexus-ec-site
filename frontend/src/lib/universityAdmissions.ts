@@ -1,3 +1,4 @@
+import {renderKochiArticle,kochiMetadata} from './kochiAdmissionsReadable.ts';
 import {renderSapporoikaAdmissionsReadable,renderSapporoikaUniversityOverview,sapporoikaMetadata} from './sapporoikaAdmissionsReadable.ts';
 import {renderChibaAdmissionsReadable,renderChibaUniversityOverview,chibaAdmissionsMetadata} from './chibaAdmissionsReadable.ts';
 import {renderHiroshimaAdmissionsReadable,renderHiroshimaUniversityOverview,hiroshimaAdmissionsMetadata} from './hiroshimaAdmissionsReadable.ts';
@@ -431,6 +432,13 @@ export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post
     const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'医学科・2027年度入試情報'}:item);
     return {...post,...chibaAdmissionsMetadata(data),contentHtml,infoItems,toc};
   }
+  if (data.path === '/information-kochi/') {
+    const contentHtml=renderKochiArticle(data);
+    const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
+    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'医学部入試情報'}:item);
+    return {...post,...kochiMetadata,modified:data.verifiedAt.slice(0,10),contentHtml,toc,infoItems};
+  }
+
   const admissionHtml=renderUniversityAdmissions(data);
   if (data.path === '/information-oita/') {
     const contentHtml=admissionHtml;
