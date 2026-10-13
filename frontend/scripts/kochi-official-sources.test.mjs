@@ -1,0 +1,14 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';
+import {validateUniversityAdmissions} from '../src/lib/universityAdmissions.ts';
+const sources=[
+ ['selection-2027','91970-4a8c2b3ed7408e36b8ffd0d31c6a39dc','7023ed29b46ed886134de179f4b2d637ac20cd45d42abd192889a2b369c5667b'],
+ ['recommendation-2027','93352-a95d0423130210bdc24afb8c5218536a','0f59914ba97e2c457008cc662879191eb8515721181d3ca0c7e1c27357793e55'],
+ ['comprehensive-2027','91182-b6c5358bc42cf6001b1536f5a2d34cf1','4936295cc813d89242efff9473a3dc0a1528ba6b06e208358b53bcebd5fed5d8'],
+ ['ib-2027','89601-0d9d0523bbeadd1841bfe817625ede66','4ce23dabae12a808b21dbca9384c8cb9d3ac265c2f5bc00f0885eea1f0c47699'],
+ ['foreign-2027','86442-15502ac337e1f5e288e94831fe9f4bd8','18c3d8e4376f06f0693d149003bd314bb0936b8347b8829aa8a452412db2ea6d'],
+ ['medicine-entrants-2026','83015-7d692cbb8d7a729364e07aac4121aebf','6986d9c3da81af613d9a07244576e3624a94c275419be066496dc3f0685fd6ed'],
+].map(([id,path,sha256])=>({id,url:'https://p1.ssl-dl.jp/dl/'+path,sha256,title:id,retrievedAt:'2026-10-13T15:00:00Z'}));
+const fixture=source=>({path:'/information-kochi/',university:'高知大学',admissionYear:2027,verifiedAt:'2026-10-13T15:01:00Z',sources:[{id:'official',url:'https://nyusi.kochi-u.ac.jp/nyushi/admissions',title:'Official admissions',retrievedAt:'2026-10-13T15:00:00Z'},source],schemes:[{id:'general',name:'Test',scheduleRows:[{label:'出願',value:'要確認（公式要項を確認）',sourceIds:['official'],status:'needs-confirmation'}],examRows:[{label:'試験',value:'要確認（公式要項を確認）',sourceIds:['official'],status:'needs-confirmation'}],venueRows:[{label:'会場',value:'要確認（公式要項を確認）',sourceIds:['official'],status:'needs-confirmation'}],notes:[{text:source.id==='medicine-entrants-2026'?'2026年度医学科入学者統計（過去実績）':'公式募集要項を確認',sourceIds:[source.id]}]}],coverageNotes:['Source ownership regression; no approval of admission values.']});
+test('Kochi exact university-linked six source IDs, URLs and PDF hashes accepted',()=>{for(const s of sources)assert.equal(validateUniversityAdmissions(fixture(s)).sources[1].url,s.url);});
+test('Kochi ownership does not extend to another university, vendor URL, query, credential or changed bytes',()=>{for(const s of sources){for(const bad of [{...s,id:'unlisted'},{...s,url:s.url+'?x=1'},{...s,url:s.url.replace('p1.ssl-dl.jp','p1.ssl-dl.jp.example.com')},{...s,url:s.url.replace('https://','https://x:y@')},{...s,sha256:'0'.repeat(64)},{...s,sha256:undefined}])assert.throws(()=>validateUniversityAdmissions(fixture(bad)));const other=fixture(s);other.path='/information-tokushima/';other.university='徳島大学';other.sources[0].url='https://www.tokushima-u.ac.jp/';assert.throws(()=>validateUniversityAdmissions(other));}});
+test('2026 historical entrants cannot support an unqualified 2027 admissions claim',()=>{const f=fixture(sources.at(-1));f.schemes[0].notes[0].text='2027年度募集人数';assert.throws(()=>validateUniversityAdmissions(f),/2026 entrant statistics/);});
