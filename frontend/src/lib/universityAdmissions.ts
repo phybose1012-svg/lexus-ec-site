@@ -1,3 +1,4 @@
+import {renderSapporoikaAdmissionsReadable,renderSapporoikaUniversityOverview,sapporoikaMetadata} from './sapporoikaAdmissionsReadable.ts';
 import {renderHiroshimaAdmissionsReadable,renderHiroshimaUniversityOverview,hiroshimaAdmissionsMetadata} from './hiroshimaAdmissionsReadable.ts';
 import { renderKagawaAdmissionsReadable, renderKagawaUniversityOverview, kagawaMetadata } from './kagawaAdmissionsReadable.ts';
 import { kagoshimaAdmissionsMetadata, renderKagoshimaAdmissionsReadable } from './kagoshimaAdmissionsReadable.ts';
@@ -272,6 +273,7 @@ const htmlText = (value: string) => escapeUniversityAdmissionHtml(value).replace
 const plainText = (value: string) => value.replace(/<[^>]*>/g,"").replace(/&nbsp;/g," ").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#39;|&#039;/g,"'").replace(/&amp;/g,"&").replace(/\s+/g," ").trim();
 
 export function universityAdmissionsMetadata(data: UniversityAdmissions) {
+  if (data.path === '/information-sapporoika/') return {...sapporoikaMetadata,modified:data.verifiedAt.slice(0,10)};
   if (data.path === '/information-hiroshima/') return hiroshimaAdmissionsMetadata(data);
   if (data.path === '/information-kagawa/') return kagawaMetadata;
   if (data.path === '/information-kagoshima/') return kagoshimaAdmissionsMetadata(data);
@@ -309,6 +311,7 @@ export function universityAdmissionsMetadata(data: UniversityAdmissions) {
 /** Render only canonical validated data; values remain text, never raw HTML. */
 export function renderUniversityAdmissions(input: UniversityAdmissions): string {
   const data = validateUniversityAdmissions(input);
+  if (data.path === '/information-sapporoika/') return renderSapporoikaAdmissionsReadable(data);
   if (data.path === '/information-hiroshima/') return renderHiroshimaAdmissionsReadable(data);
   if (data.path === '/information-kagawa/') return renderKagawaAdmissionsReadable(data);
   if (data.path === '/information-kagoshima/') return renderKagoshimaAdmissionsReadable(data);
@@ -347,6 +350,12 @@ type AdmissionPost = {
 export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post: T,index: ReadonlyMap<string,UniversityAdmissions>): T {
   const data=index.get(post.path);
   if (!data || post.template !== "admission-info") return post;
+  if (data.path === '/information-sapporoika/') {
+    const contentHtml=renderSapporoikaAdmissionsReadable(validateUniversityAdmissions(data))+renderSapporoikaUniversityOverview();
+    const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
+    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'入試情報'}:item.label==='地域'?{...item,value:'北海道'}:item);
+    return {...post,...universityAdmissionsMetadata(data),contentHtml,infoItems,toc};
+  }
   if (data.path === '/information-kagawa/') {
     const contentHtml=renderKagawaAdmissionsReadable(data)+renderKagawaUniversityOverview();
     const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
