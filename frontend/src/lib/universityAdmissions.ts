@@ -149,6 +149,20 @@ const additionalOfficialDomains: Record<string, string[]> = {
   "/information-tokyoika/": ["admissions-tokyo-med.jp"],
   "/information-jyoshiika/": ["twmu-u.jp"],
 };
+// Five 2027 admissions PDFs are direct links in Kochi University's saved
+// admissions page (SHA-256 886b1c91d20af236a56325afc307af1f13854db7935c1915b9b0283befe9bf70).
+// The 2026 entrant-statistics PDF is a historical statistics source linked
+// once in the separate statistics page (SHA-256 59d75cdd73916fba3fe202ebe0b53aa8d40898c2d9c8574bd3214a01ab7829e7).
+// This source ownership exception does not promote 2026 statistics to 2027 admission rules.
+// A vendor hostname alone never establishes university-source ownership.
+const kochiOfficialLinkedPdfs: Record<string, {url: string; sha256: string}> = {
+  "selection-2027": {url:"https://p1.ssl-dl.jp/dl/91970-4a8c2b3ed7408e36b8ffd0d31c6a39dc",sha256:"7023ed29b46ed886134de179f4b2d637ac20cd45d42abd192889a2b369c5667b"},
+  "recommendation-2027": {url:"https://p1.ssl-dl.jp/dl/93352-a95d0423130210bdc24afb8c5218536a",sha256:"0f59914ba97e2c457008cc662879191eb8515721181d3ca0c7e1c27357793e55"},
+  "comprehensive-2027": {url:"https://p1.ssl-dl.jp/dl/91182-b6c5358bc42cf6001b1536f5a2d34cf1",sha256:"4936295cc813d89242efff9473a3dc0a1528ba6b06e208358b53bcebd5fed5d8"},
+  "ib-2027": {url:"https://p1.ssl-dl.jp/dl/89601-0d9d0523bbeadd1841bfe817625ede66",sha256:"4ce23dabae12a808b21dbca9384c8cb9d3ac265c2f5bc00f0885eea1f0c47699"},
+  "foreign-2027": {url:"https://p1.ssl-dl.jp/dl/86442-15502ac337e1f5e288e94831fe9f4bd8",sha256:"18c3d8e4376f06f0693d149003bd314bb0936b8347b8829aa8a452412db2ea6d"},
+  "medicine-entrants-2026": {url:"https://p1.ssl-dl.jp/dl/83015-7d692cbb8d7a729364e07aac4121aebf",sha256:"6986d9c3da81af613d9a07244576e3624a94c275419be066496dc3f0685fd6ed"},
+};
 const sourceDomain = (url: string) => new URL(url).hostname.split(".").slice(-3).join(".");
 const hostBelongsTo = (hostname: string, domain: string) => hostname === domain || hostname.endsWith(`.${domain}`);
 // DNC publishes the nationwide Common Test. It does not set a university's
@@ -196,6 +210,7 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
   const allowed = [sourceDomain(profile.officialUrl), ...(additionalOfficialDomains[path] ?? [])];
   const universitySourceIds = new Set<string>();
   const commonTestSourceIds = new Set<string>();
+  const historicalKochiStatisticsId = "medicine-entrants-2026";
   const sources = array(data.sources, `${path}.sources`, 1).map((entry,index) => {
     const source = record(entry, `${path}.sources[${index}]`);
     const id = identifier(source.id, "source.id");
@@ -203,7 +218,9 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
     let parsed: URL;
     try { parsed = new URL(url); } catch { return failure(`${id}: source URL is invalid`); }
     if (parsed.protocol !== "https:" || parsed.username || parsed.password || (parsed.port && parsed.port !== "443")) failure(`${id}: source URL must be public HTTPS without credentials`);
-    const universityOwned = allowed.some(domain => hostBelongsTo(parsed.hostname,domain));
+    const linked = path === "/information-kochi/" ? kochiOfficialLinkedPdfs[id] : undefined;
+    const exactKochiPdf = !!linked && url === linked.url && parsed.href === linked.url && typeof source.sha256 === "string" && source.sha256.toLowerCase() === linked.sha256;
+    const universityOwned = allowed.some(domain => hostBelongsTo(parsed.hostname,domain)) || exactKochiPdf;
     const commonTestOwned = hostBelongsTo(parsed.hostname,commonTestOfficialDomain);
     if (!universityOwned && !commonTestOwned) failure(`${id}: source host ${parsed.hostname} is not official for ${profile.university} or the Common Test publisher`);
     if (universityOwned) universitySourceIds.add(id);
@@ -227,6 +244,7 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
   };
   const scopedSourceIds = (value: unknown,label: string,claimLabel: string,claimValue: string,kind: "schedule"|"exam"|"venue"|"note") => {
     const ids=sourceIds(value,label);
+    if (path === "/information-kochi/" && ids.includes(historicalKochiStatisticsId) && (!/2026年度/.test(`${claimLabel} ${claimValue}`) || !/入学者数|入学者統計|入学実績/.test(`${claimLabel} ${claimValue}`))) failure(`${label}: 2026 entrant statistics cannot substantiate an unqualified 2027 claim`);
     if (!ids.some(id=>commonTestSourceIds.has(id))) return ids;
     if (!commonTestReference.test(claimLabel)) failure(`${label}: DNC citations are limited to explicitly named Common Test rows or notes`);
     const hasUniversity=ids.some(id=>universitySourceIds.has(id));
