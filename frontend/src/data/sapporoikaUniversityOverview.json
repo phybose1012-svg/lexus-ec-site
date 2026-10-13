@@ -1,0 +1,128 @@
+{
+  "verifiedAt": "2026-10-11T07:08:38.629856+00:00",
+  "facts": [
+    {
+      "id": "address",
+      "label": "所在地",
+      "value": "〒060-8556 札幌市中央区南1条西17丁目。",
+      "sourceIds": [
+        "current-access"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "access-subway",
+      "label": "地下鉄",
+      "value": "東西線「西18丁目」駅6番出口より徒歩約3分。札幌駅からは南北線「さっぽろ」→「大通」で東西線「宮の沢」行へ乗り換えます。",
+      "sourceIds": [
+        "current-access"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "access-streetcar",
+      "label": "市電・バス",
+      "value": "市電「西15丁目」駅から徒歩5分。バスは「医大病院前」下車。札幌駅周辺工事による乗り場変更はバス会社・札幌市の最新案内を確認してください。",
+      "sourceIds": [
+        "current-access"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "students",
+      "label": "医学部在籍者",
+      "value": "2026年5月1日現在、医学部学生は665人。入学者数ではありません。",
+      "sourceIds": [
+        "current-numbers"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "entrant-scope",
+      "label": "入学者統計の対象",
+      "value": "2026年度医学科入学者110人。一般・総合型・推薦を合計した入学者欄を使用。追加合格者を含み、別表の私費外国人入学者は0人です。出願者・合格者数とは異なります。",
+      "sourceIds": [
+        "results-2026"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "entrant-male",
+      "label": "男性",
+      "value": "69人（62.7%）。",
+      "sourceIds": [
+        "results-2026"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "entrant-female",
+      "label": "女性",
+      "value": "41人（37.3%）。",
+      "sourceIds": [
+        "results-2026"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "entrant-current",
+      "label": "新卒",
+      "value": "62人（56.4%）。",
+      "sourceIds": [
+        "results-2026"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "entrant-previous",
+      "label": "既卒",
+      "value": "48人（43.6%）。",
+      "sourceIds": [
+        "results-2026"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "statistics-correction",
+      "label": "統計の訂正",
+      "value": "入試実施結果は2026年5月7日に2026年度の平均点・最低点を訂正した版です。男女・新卒既卒の割合は110人を分母に計算し、小数第1位に丸めています。",
+      "sourceIds": [
+        "results-index"
+      ],
+      "status": "confirmed"
+    }
+  ],
+  "sources": [
+    {
+      "id": "current-access",
+      "url": "https://web.sapmed.ac.jp/jp/info/access.html",
+      "retrievedAt": "2026-10-11T06:49:39.124965+00:00",
+      "sha256": "64a38bbc95499d7d4bfc547be4d8f24148260af470325efc8885e1e31927338c",
+      "title": "住所・交通アクセス"
+    },
+    {
+      "id": "current-numbers",
+      "url": "https://web.sapmed.ac.jp/jp/number/",
+      "retrievedAt": "2026-10-11T06:49:37.872515+00:00",
+      "sha256": "db9809e44ac5094fa9777d9f15c69f73897e03cc1204c86ef3148283a3618d93",
+      "title": "数字で見る札幌医科大学：2026年5月1日現在"
+    },
+    {
+      "id": "results-2026",
+      "url": "https://web.sapmed.ac.jp/jp/public/exam/cbv73600000000wj-att/cbv73600000000zr.pdf",
+      "retrievedAt": "2026-10-11T06:49:38.702572+00:00",
+      "sha256": "543aa78bb96040e004413549b38b4785babefa2daa51e05c803bca7c86fae239",
+      "title": "2026〜2024年度 医学科入学試験実施結果（2026年5月訂正版）",
+      "pages": [
+        1
+      ]
+    },
+    {
+      "id": "results-index",
+      "url": "https://web.sapmed.ac.jp/jp/public/exam/cbv73600000000wj.html",
+      "retrievedAt": "2026-10-11T06:49:38.576909+00:00",
+      "sha256": "e76e0ebded29bf78d8f4fc56847cb2610f198b6bb92d80f6c39576398d0b3114",
+      "title": "医学科入試統計の掲載・訂正案内"
+    }
+  ]
+}
