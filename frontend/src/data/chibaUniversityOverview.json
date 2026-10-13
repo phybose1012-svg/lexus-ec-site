@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "university": "千葉大学",
+  "referenceYear": 2026,
+  "verifiedAt": "2026-10-13T03:11:21.649Z",
+  "sources": [
+    {
+      "id": "recommend-guide",
+      "url": "https://www.m.chiba-u.ac.jp/application/files/8917/8548/2614/R9_Application_Guidelines.pdf",
+      "title": "令和9年度（2027年度）千葉大学医学部医学科（千葉県地域枠入試）学校推薦型選抜 学生募集要項",
+      "retrievedAt": "2026-10-13T03:00:53.228Z",
+      "sha256": "39280961d0db98c17c15cf2825e6694c71863349c1b8432aae7dae55c499194e",
+      "pages": "PDF pp.2–13（印刷pp.1–11）"
+    },
+    {
+      "id": "medicine-access",
+      "url": "https://www.m.chiba-u.ac.jp/about/access/",
+      "title": "千葉大学大学院医学研究院・医学部 交通アクセス",
+      "retrievedAt": "2026-10-13T03:00:53.367Z",
+      "sha256": "67bc2391a6b074e0e9cde06a05a113246133ec89ab3d6dc197c972138a67c234"
+    },
+    {
+      "id": "medicine-statistics",
+      "url": "https://www.m.chiba-u.ac.jp/about/enrollment/",
+      "title": "千葉大学医学部 入学者数及び進路（2026年度）",
+      "retrievedAt": "2026-10-13T03:00:53.432Z",
+      "sha256": "66e3894e46f3bb0218957b127e228c40546c885cafb002056c92e535d041e434"
+    },
+    {
+      "id": "university-data",
+      "url": "https://www.chiba-u.ac.jp/about/files/pdf/gaiyou_data.pdf",
+      "title": "千葉大学概要2026 データ編・学部別入学者内訳（令和8年度）",
+      "retrievedAt": "2026-10-13T03:00:53.491Z",
+      "sha256": "aaf279ed5a74135dcba291c5ed04f830917f918f5493b581e6338b6d04cebd83",
+      "pages": "PDF p.19（冊子 p.17）、医学部の二重円グラフと凡例"
+    }
+  ],
+  "coverageSourceIds": [
+    [
+      "selection-guide"
+    ],
+    [
+      "general-index",
+      "selection-guide"
+    ],
+    [
+      "international-index",
+      "selection-guide"
+    ],
+    [
+      "recommend-index"
+    ],
+    [
+      "selection-guide",
+      "recommend-guide",
+      "recommend-index",
+      "official-high-school-submission-label"
+    ],
+    [
+      "university-data",
+      "medicine-statistics"
+    ]
+  ],
+  "coverageStatuses": [
+    "confirmed",
+    "unpublished",
+    "unpublished",
+    "unpublished",
+    "confirmed",
+    "confirmed"
+  ],
+  "rows": [
+    {
+      "label": "所在地",
+      "value": "千葉大学亥鼻キャンパス。〒260-8670 千葉県千葉市中央区亥鼻1-8-1（医学部の所在地）。",
+      "sourceIds": [
+        "medicine-access"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "label": "アクセス",
+      "value": "JR千葉駅又は京成千葉駅の7番バス乗り場から京成バスで約15分。「千葉大医学部・薬学部入口」下車、徒歩1分。",
+      "sourceIds": [
+        "medicine-access"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "label": "男女比（2026年度入学者）",
+      "value": "117人のうち、男性80人（68.4％）、女性37人（31.6％）。",
+      "sourceIds": [
+        "university-data"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "label": "新卒・既卒比（2026年度入学者）",
+      "value": "新卒81人（69.2％）、既卒36人（30.8％）。大学資料の「新卒」「既卒」の区分です。",
+      "sourceIds": [
+        "university-data"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "label": "入学者の方式別内訳（2026年度）",
+      "value": "学校推薦型4人、前期96人（一般枠80人・地域枠16人）、後期17人、私費外国人留学生0人。合計117人。",
+      "sourceIds": [
+        "medicine-statistics"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "label": "在籍学生数（2026年5月1日）",
+      "value": "医学部全6学年の現員716人。私費外国人留学生は内数0人です。入学者数117人とは異なる集計です。",
+      "sourceIds": [
+        "medicine-statistics"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "label": "学納金（2027年度推薦募集要項）",
+      "value": "入学料282,000円。授業料年額642,960円（前期・後期各321,480円）。入学料・授業料が改定された場合は新額が適用されます。",
+      "sourceIds": [
+        "recommend-guide"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "label": "推薦の保険料・免除等",
+      "value": "学生教育研究災害傷害保険料は6年分7,800円。2027年3月31日（水）までにオンライン納入。入学料・授業料の全額・一部免除又は納入猶予の制度があり、詳細は大学案内を確認してください。",
+      "sourceIds": [
+        "recommend-guide"
+      ],
+      "status": "confirmed"
+    }
+  ]
+}

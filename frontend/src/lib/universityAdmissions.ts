@@ -1,3 +1,4 @@
+import {renderChibaAdmissionsReadable,renderChibaUniversityOverview,chibaAdmissionsMetadata} from './chibaAdmissionsReadable.ts';
 import {renderHiroshimaAdmissionsReadable,renderHiroshimaUniversityOverview,hiroshimaAdmissionsMetadata} from './hiroshimaAdmissionsReadable.ts';
 import { kagoshimaAdmissionsMetadata, renderKagoshimaAdmissionsReadable } from './kagoshimaAdmissionsReadable.ts';
 import { renderRyukyuAdmissionsReadable, renderRyukyuUniversityOverview, ryukyuMetadata } from './ryukyuAdmissionsReadable.ts';
@@ -272,6 +273,7 @@ const htmlText = (value: string) => escapeUniversityAdmissionHtml(value).replace
 const plainText = (value: string) => value.replace(/<[^>]*>/g,"").replace(/&nbsp;/g," ").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#39;|&#039;/g,"'").replace(/&amp;/g,"&").replace(/\s+/g," ").trim();
 
 export function universityAdmissionsMetadata(data: UniversityAdmissions) {
+  if(data.path==='/information-chiba/') return chibaAdmissionsMetadata(data);
   if (data.path === '/information-kagoshima/') return kagoshimaAdmissionsMetadata(data);
   if (data.path === '/information-ryukyu/') return {...ryukyuMetadata, modified:data.verifiedAt.slice(0,10)};
   if (data.path === '/information-kagawa/') return kagawaMetadata;
@@ -309,6 +311,7 @@ export function universityAdmissionsMetadata(data: UniversityAdmissions) {
 /** Render only canonical validated data; values remain text, never raw HTML. */
 export function renderUniversityAdmissions(input: UniversityAdmissions): string {
   const data = validateUniversityAdmissions(input);
+  if(data.path==='/information-chiba/') return renderChibaAdmissionsReadable(data);
   if (data.path === '/information-kagoshima/') return renderKagoshimaAdmissionsReadable(data);
   if (data.path === '/information-ryukyu/') return renderRyukyuAdmissionsReadable(data);
   if (data.path === '/information-kagawa/') return renderKagawaAdmissionsReadable(data);
@@ -394,6 +397,12 @@ export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post
     const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
     const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item);
     return {...post,...hiroshimaAdmissionsMetadata(data),contentHtml,infoItems,toc};
+  }
+  if (data.path === '/information-chiba/') {
+    const contentHtml=renderChibaAdmissionsReadable(data)+renderChibaUniversityOverview();
+    const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
+    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'医学科・2027年度入試情報'}:item);
+    return {...post,...chibaAdmissionsMetadata(data),contentHtml,infoItems,toc};
   }
   const admissionHtml=renderUniversityAdmissions(data);
   if (data.path === '/information-oita/') {
