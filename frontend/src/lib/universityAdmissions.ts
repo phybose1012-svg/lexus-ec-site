@@ -28,6 +28,7 @@ export type UniversityAdmissionSource = {
   publishedAt?: string;
   retrievedAt: string;
   sha256?: string;
+  officialOwnership?: {rootUrl: string; rootSha256: string; indexUrl: string; indexSha256: string; rootVerificationSha256: string};
   pages?: string | number[];
 };
 export type UniversityAdmissionRow = {
@@ -163,6 +164,35 @@ const kochiOfficialLinkedPdfs: Record<string, {url: string; sha256: string}> = {
   "foreign-2027": {url:"https://p1.ssl-dl.jp/dl/86442-15502ac337e1f5e288e94831fe9f4bd8",sha256:"18c3d8e4376f06f0693d149003bd314bb0936b8347b8829aa8a452412db2ea6d"},
   "medicine-entrants-2026": {url:"https://p1.ssl-dl.jp/dl/83015-7d692cbb8d7a729364e07aac4121aebf",sha256:"6986d9c3da81af613d9a07244576e3624a94c275419be066496dc3f0685fd6ed"},
 };
+// Osaka Metropolitan University's temporary site is linked by its actual
+// e.omu.ac.jp HTML and reached from its original ac.jp medical URL. Exact
+// raw-source ownership was independently fetched by ROOT (the evidence hash
+// below); this exception does not approve admission values or general .moe URLs.
+const omuTemporaryOwnership = {
+  "rootUrl": "https://e.omu.ac.jp/",
+  "rootSha256": "78a23492202d9c0d8c757ff600f6ae5c6832d2f79dd049b03f4098bb3a184b57",
+  "indexUrl": "https://www.omu.moe/news/2026-10-07-b4ebd48d.html",
+  "indexSha256": "ddf2c587cf80440cfae8ecdc028a292c5326e7ccdce0824c8b5d1e70ed84741d",
+  "rootVerificationSha256": "59b6e4d927f39b18e1a519bb139469344b72ab00a7784d220c06594e16ace49b"
+};
+const omuOfficialLinkedSources: Record<string, {url: string; sha256: string}> = {
+  "2027senbatsuyoukou": {
+    "url": "https://www.omu.moe/news-files/2026-10-07-b4ebd48d/2027senbatsuyoukou.pdf",
+    "sha256": "0ef915861a44712e0dc04f4d67d7f5f99462845b4c846855b2f064f82706ff62"
+  },
+  "2027rec-ao-med": {
+    "url": "https://www.omu.moe/news-files/2026-10-07-b4ebd48d/2027rec_ao_med.pdf",
+    "sha256": "edd7953d3f9f987bca884165240f8a61ca0afd46f6f73fef459f034e0a8cdefd"
+  },
+  "2027recd-med": {
+    "url": "https://www.omu.moe/news-files/2026-10-07-b4ebd48d/2027recd_med.pdf",
+    "sha256": "2089a9b8de61657653263cafe5dd13bce4e989cd6a847bbc504aa0ced456eb28"
+  },
+  "temporary-guides": {
+    "url": "https://www.omu.moe/news/2026-10-07-b4ebd48d.html",
+    "sha256": "ddf2c587cf80440cfae8ecdc028a292c5326e7ccdce0824c8b5d1e70ed84741d"
+  }
+};
 const sourceDomain = (url: string) => new URL(url).hostname.split(".").slice(-3).join(".");
 const hostBelongsTo = (hostname: string, domain: string) => hostname === domain || hostname.endsWith(`.${domain}`);
 // DNC publishes the nationwide Common Test. It does not set a university's
@@ -220,7 +250,14 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
     if (parsed.protocol !== "https:" || parsed.username || parsed.password || (parsed.port && parsed.port !== "443")) failure(`${id}: source URL must be public HTTPS without credentials`);
     const linked = path === "/information-kochi/" ? kochiOfficialLinkedPdfs[id] : undefined;
     const exactKochiPdf = !!linked && url === linked.url && parsed.href === linked.url && typeof source.sha256 === "string" && source.sha256.toLowerCase() === linked.sha256;
-    const universityOwned = allowed.some(domain => hostBelongsTo(parsed.hostname,domain)) || exactKochiPdf;
+    const omuLinked = path === "/information-osakakouritsu/" ? omuOfficialLinkedSources[id] : undefined;
+    const omuProof = source.officialOwnership;
+    const omuOwned = Boolean(omuLinked && url === omuLinked.url && parsed.href === omuLinked.url
+      && typeof source.sha256 === "string" && source.sha256.toLowerCase() === omuLinked.sha256
+      && omuProof && typeof omuProof === "object" && !Array.isArray(omuProof)
+      && Object.keys(omuProof).length === Object.keys(omuTemporaryOwnership).length
+      && Object.entries(omuTemporaryOwnership).every(([key, value]) => (omuProof as Record<string, unknown>)[key] === value));
+    const universityOwned = allowed.some(domain => hostBelongsTo(parsed.hostname,domain)) || exactKochiPdf || omuOwned;
     const commonTestOwned = hostBelongsTo(parsed.hostname,commonTestOfficialDomain);
     if (!universityOwned && !commonTestOwned) failure(`${id}: source host ${parsed.hostname} is not official for ${profile.university} or the Common Test publisher`);
     if (universityOwned) universitySourceIds.add(id);
@@ -231,7 +268,7 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
     if (source.publishedAt !== undefined) date(source.publishedAt, `${id}.publishedAt`);
     if (source.sha256 !== undefined && (typeof source.sha256 !== "string" || !/^[a-f0-9]{64}$/i.test(source.sha256))) failure(`${id}: sha256 must have 64 hexadecimal characters`);
     if (source.pages !== undefined && !(typeof source.pages === "string" && source.pages.trim()) && !(Array.isArray(source.pages) && source.pages.length && source.pages.every(p=>Number.isInteger(p) && p>0))) failure(`${id}: pages must be a nonempty page label or positive page numbers`);
-    return {id,url,title,retrievedAt,...(source.publishedAt !== undefined ? {publishedAt:source.publishedAt as string}:{}),...(source.sha256 !== undefined?{sha256:source.sha256 as string}:{}),...(source.pages !== undefined?{pages:source.pages as string|number[]}: {})};
+    return {id,url,title,retrievedAt,...(source.publishedAt !== undefined ? {publishedAt:source.publishedAt as string}:{}),...(source.sha256 !== undefined?{sha256:source.sha256 as string}:{}),...(source.pages !== undefined?{pages:source.pages as string|number[]}: {}),...(omuOwned?{officialOwnership:omuProof as UniversityAdmissionSource["officialOwnership"]}: {})};
   });
   unique(sources.map(source=>source.id), "source ids");
   if (!universitySourceIds.size) failure(`${path}: at least one official source from ${profile.university} is required; DNC cannot replace university admission evidence`);
