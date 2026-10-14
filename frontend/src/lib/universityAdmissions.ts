@@ -1,3 +1,4 @@
+import { wrapShinshuAdmissions } from './shinshuAdmissionsLayout.ts';
 import {renderSapporoikaAdmissionsReadable,renderSapporoikaUniversityOverview,sapporoikaMetadata} from './sapporoikaAdmissionsReadable.ts';
 import {renderHiroshimaAdmissionsReadable,renderHiroshimaUniversityOverview,hiroshimaAdmissionsMetadata} from './hiroshimaAdmissionsReadable.ts';
 import { renderKagawaAdmissionsReadable, renderKagawaUniversityOverview, kagawaMetadata } from './kagawaAdmissionsReadable.ts';
@@ -460,6 +461,12 @@ export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post
     return {...post,...hiroshimaAdmissionsMetadata(data),contentHtml,infoItems,toc};
   }
   const admissionHtml=renderUniversityAdmissions(data);
+  if(data.path==='/information-shinsyu/') {
+    const contentHtml=wrapShinshuAdmissions(admissionHtml,data);
+    const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
+    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'大学概要・2027年度入試情報'}:item);
+    return {...post,...universityAdmissionsMetadata(data),contentHtml,toc,infoItems,keyPoints:[]};
+  }
   if (data.path === '/information-oita/') {
     const contentHtml=admissionHtml;
     const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
