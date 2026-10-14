@@ -1,0 +1,900 @@
+{
+  "path": "/information-shinsyu/",
+  "university": "信州大学",
+  "admissionYear": 2027,
+  "verifiedAt": "2026-10-14T03:20:12.876Z",
+  "sources": [
+    {
+      "id": "r09senbatsuyoukou",
+      "url": "https://www.shinshu-u.ac.jp/ad_portal/selection/uploads/R09senbatsuyoukou.pdf",
+      "title": "令和9年度入学者選抜要項（令和8年7月公表）",
+      "retrievedAt": "2026-10-14T02:49:43.881Z",
+      "sha256": "9d7b05ee7b31ac8d60b8fc208d02ed01ee4c365d3b6714e69df7e4b3f62e811f"
+    },
+    {
+      "id": "r09senbatsuyoukou-henkouten",
+      "url": "https://www.shinshu-u.ac.jp/ad_portal/selection/uploads/R09senbatsuyoukou_henkouten.pdf",
+      "title": "主な変更点",
+      "retrievedAt": "2026-10-14T02:49:43.844Z",
+      "sha256": "fef7cd673f6ae2ae25eb403f9ee0c214cea75407d923e6e1b79ef977e323054f"
+    },
+    {
+      "id": "r09kyoute-web-housiki",
+      "url": "https://www.shinshu-u.ac.jp/ad_portal/selection/uploads/R09kyoute_web_housiki.pdf",
+      "title": "共通テスト成績請求情報の提供について",
+      "retrievedAt": "2026-10-14T02:49:43.849Z",
+      "sha256": "27cd9e7b9323e3c41a2a0fa72d80b761fa499c6ac83f538908fcc39fcd85a463"
+    },
+    {
+      "id": "selection",
+      "url": "https://www.shinshu-u.ac.jp/ad_portal/selection/",
+      "title": "信州大学 入試要項・募集要項の公表予定",
+      "retrievedAt": "2026-10-14T02:48:51.072Z",
+      "sha256": "dd145d84639f775352b2b41150d856505793f0e19d5e0db5dc028190bd8a2ae9"
+    },
+    {
+      "id": "medical",
+      "url": "https://www.shinshu-u.ac.jp/faculty/medicine/medic/admission/medical-info.html",
+      "title": "令和9（2027）年度 医学科の入試情報",
+      "retrievedAt": "2026-10-14T02:48:51.072Z",
+      "sha256": "2cba97018277bf54bb0de475560e332276dce1d60e26aceb953db97af1b98e2f"
+    },
+    {
+      "id": "tuition",
+      "url": "https://www.shinshu-u.ac.jp/campus_life/studentsupport/scholarship/tuition.html",
+      "title": "信州大学 入学料・授業料（掲載時点の参考額）",
+      "retrievedAt": "2026-10-14T02:57:17.526Z",
+      "sha256": "5930055ec68283cbc205cba83e46d875982f63a345b4583a7df25c08e4e1ebcb"
+    },
+    {
+      "id": "result2026",
+      "url": "https://www.shinshu-u.ac.jp/ad_portal/past-selection/R08toukei1.pdf",
+      "title": "令和8（2026）年度信州大学入学者選抜の状況（各年度4月1日現在）",
+      "retrievedAt": "2026-10-14T02:58:42.339Z",
+      "sha256": "b674c9e3e38dbc4170d12e3ba21d1b32c82c8a0562b4a71589a5134e07ebfbc4"
+    },
+    {
+      "id": "scores2026",
+      "url": "https://www.shinshu-u.ac.jp/ad_portal/past-selection/R08high.low.average.pdf",
+      "title": "令和8（2026）年度 合格者最高点・最低点・平均点一覧表",
+      "retrievedAt": "2026-10-14T02:58:42.355Z",
+      "sha256": "c10d31341425938451b3f79e48ce7e9e69635eeb71ff819a1f2679b46281dbb9"
+    }
+  ],
+  "schemes": [
+    {
+      "id": "general-early",
+      "name": "一般選抜（前期日程）",
+      "scheduleRows": [
+        {
+          "label": "出願期間・書類締切",
+          "value": "2027年1月25日～2月3日17時必着。締切後に到着した書類は、締切日の前日までの消印がある場合に受理されます。",
+          "sourceIds": [
+            "medical"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願手順",
+          "value": "インターネット出願登録と入学検定料の支払いを行い、出願書類を郵送します。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験日",
+          "value": "2027年2月25日・26日。医学科の後期日程は実施しません。",
+          "sourceIds": [
+            "medical"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "2月25日の時間割",
+          "value": "理科9:00～11:30、数学13:00～15:00、外国語16:00～17:30。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "2月26日の時間割",
+          "value": "面接9:00開始。各受験者の集合時刻・試験室の詳細は未公表です。",
+          "sourceIds": [
+            "r09senbatsuyoukou",
+            "medical"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "合格発表",
+          "value": "2027年3月8日。発表時刻・方法の詳細は未公表で、11月上旬公表予定の一般選抜学生募集要項で確認します。",
+          "sourceIds": [
+            "r09senbatsuyoukou",
+            "medical"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "入学手続・第1段階選抜結果発表",
+          "value": "2027年度一般選抜の手続期間・第1段階選抜結果の発表日時等の詳細は未公表です。募集要項は2026年11月上旬公表予定です。",
+          "sourceIds": [
+            "medical",
+            "selection"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "85人。推薦等で欠員が生じた場合は、一般選抜の募集人員へ加えます。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格",
+          "value": "高校卒業・2027年3月卒業見込み、12年の学校教育修了・修了見込み、学校教育法施行規則第150条第1～5号の2に該当、または同条第7号による個別審査で同等以上と認定され2027年3月31日までに18歳となる者。指定された2027年度共通テストの教科・科目の受験が必要です。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別の入学資格審査",
+          "value": "該当者の申請期限は、共通テスト出願前の審査が2026年7月24日必着、共通テスト受験後の審査が2027年1月21日必着です。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第1段階選抜",
+          "value": "志願者数が募集人員の4倍を超えた場合、共通テストの成績で実施し、合格者のみ個別試験を受験できます。適切に試験を実施できると判断した場合、倍率を緩和することがあります。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・国語",
+          "value": "国語100点。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・地理歴史／公民",
+          "value": "地理総合・地理探究、歴史総合・日本史探究、歴史総合・世界史探究、地理総合／歴史総合／公共、公共・倫理、公共・政治経済から1科目、50点。2科目受験時は第1解答科目を利用し、指定外の科目では出願資格がありません。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・数学",
+          "value": "数学Ⅰ・A50点、数学Ⅱ・B・C50点、計100点。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・理科",
+          "value": "物理・化学・生物から2科目選択、計100点。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・英語",
+          "value": "100点。リーディングとリスニングを課し、得点比4:1で換算します。リスニング免除者はリーディングを換算して利用します。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・情報／小計",
+          "value": "情報Ⅰ50点。共通テスト小計500点（6教科8科目）。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験・数学",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A・B・C、150点。Aは図形の性質・場合の数と確率、Bは数列・統計的な推測、Cはベクトル・平面上の曲線と複素数平面。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験・理科",
+          "value": "物理基礎・物理、化学基礎・化学、生物基礎・生物から2科目選択、計150点。科目間の不公平を避けるため得点調整を行う場合があります。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験・英語",
+          "value": "英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ・Ⅱ・Ⅲ、150点。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験・面接等",
+          "value": "その他150点。面接を行い、調査書およびその他の出願書類を面接の参考資料として活用します。志願調書の内容も総合判定に加えます。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験小計・総点",
+          "value": "個別試験等600点、共通テストと合わせて1100点。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "試験地",
+          "value": "松本キャンパス。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験室・集合場所",
+          "value": "詳細は未公表です。2026年11月上旬公表予定の募集要項と受験案内を確認してください。",
+          "sourceIds": [
+            "medical"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "notes": [
+        {
+          "text": "面接の評価が著しく低い場合は、合計点が合格点に達していても不合格とすることがあります。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ]
+        },
+        {
+          "text": "指定された個別試験の教科・科目を一つでも受験しない場合は欠席者となり、合格者となることはありません。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ]
+        },
+        {
+          "text": "前期日程同士、後期日程同士の併願はできません。医学科は前期日程のみ実施します。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recommendation-local",
+      "name": "学校推薦型選抜Ⅱ（長野県地元出身者枠）",
+      "scheduleRows": [
+        {
+          "label": "出願期間・書類締切",
+          "value": "2026年11月13日～11月19日17時必着。締切後に到着した書類は、締切日の前日までの消印がある場合に受理されます。",
+          "sourceIds": [
+            "medical",
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "面接日",
+          "value": "2026年12月4日。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "合格発表",
+          "value": "2027年2月10日14時。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続期間",
+          "value": "合格者発表日時から2027年2月17日まで。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学生募集要項・出願詳細",
+          "value": "医学科の2027年度学校推薦型選抜学生募集要項は未公表で、2026年11月頃公表予定です。掲載中の前年版を2027年度の確定情報には使っていません。",
+          "sourceIds": [
+            "medical",
+            "selection"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "13人。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "対象高校・推薦上限",
+          "value": "長野県内の高等学校。高校ごとの推薦上限は両枠を合わせて10人です。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "卒業時期・共通テスト・入学確約",
+          "value": "2025年4月1日～2027年3月31日に高校を卒業した者または卒業見込みの者。学校長が責任を持って推薦でき、2027年度共通テストを受験し、合格した場合に入学を確約できること。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学習成績・人物・地域医療への意思",
+          "value": "学習成績概評A段階で人物が優秀であり、長野県内の病院で研修を積んで長野県の医療を支える医師となる強い意思を持つこと。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・国語",
+          "value": "国語200点。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・地理歴史／公民",
+          "value": "地理総合・地理探究、歴史総合・日本史探究、歴史総合・世界史探究、地理総合／歴史総合／公共、公共・倫理、公共・政治経済から1科目、100点。2科目受験時は第1解答科目を利用します。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・数学",
+          "value": "数学Ⅰ・A100点、数学Ⅱ・B・C100点、計200点。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・理科",
+          "value": "物理・化学・生物から2科目選択、計200点。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・英語",
+          "value": "200点。リーディングとリスニングを課し、得点比4:1で換算します。リスニング免除者はリーディングを換算して利用します。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・情報／合計",
+          "value": "情報Ⅰ100点。共通テスト合計1000点（6教科8科目）。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "面接・書類",
+          "value": "面接は段階評価。調査書およびその他の出願書類を面接の参考資料として活用します。数値配点を共通テストの総点へ加算する方式ではありません。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "合否基準",
+          "value": "共通テスト1000点満点の80％以上の者から、面接・書類の結果を総合して合格者を決定します。本試験平均点の中間集計の合計点を考慮して、基準を引き下げる場合があります。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "試験地",
+          "value": "松本キャンパス。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験室・集合時刻",
+          "value": "詳細は未公表です。2026年11月頃公表予定の医学科募集要項で確認してください。",
+          "sourceIds": [
+            "medical"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "notes": [
+        {
+          "text": "両枠の併願が可能です。出願時に第1・第2希望を指定し、出願後の変更はできません。併願しない場合は第1希望だけで出願します。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ]
+        },
+        {
+          "text": "判定結果が上位の者から、第1希望の枠を優先して合格判定します。第1希望が定員に達した場合は第2希望で判定し、併願しない者は第1希望が満員の場合に不合格となります。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ]
+        },
+        {
+          "text": "面接の評価が著しく低い場合、合計点が合格点に達していても不合格とすることがあります。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ]
+        },
+        {
+          "text": "国公立大学の学校推薦型選抜への出願は、共通テストを課すものと課さないものを含め一つの大学・学部に限ります。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ]
+        },
+        {
+          "text": "共通テスト成績請求情報の提供はWeb方式です。信州大学の出願登録サイトで共通テストのユーザーID・パスワード・申込番号等を登録し、連携を確認します。成績請求チケットの印刷は不要です。",
+          "sourceIds": [
+            "r09kyoute-web-housiki"
+          ]
+        },
+        {
+          "text": "共通テストの成績提供を取り消す場合は、必ず先に大学へ連絡して可否を確認します。共通テスト側だけの取消しでは大学への出願取下げになりません。",
+          "sourceIds": [
+            "r09kyoute-web-housiki"
+          ]
+        },
+        {
+          "text": "入学手続では共通テスト出願サイトから該当区分の「国公立大学入学確認票」をPDFで取得し、信州大学の入学手続登録でアップロードします。印刷は不要です。",
+          "sourceIds": [
+            "r09kyoute-web-housiki"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recommendation-national",
+      "name": "学校推薦型選抜Ⅱ（全国募集地域枠・長野県医学生修学資金制度あり）",
+      "scheduleRows": [
+        {
+          "label": "出願期間・書類締切",
+          "value": "2026年11月13日～11月19日17時必着。締切後に到着した書類は、締切日の前日までの消印がある場合に受理されます。",
+          "sourceIds": [
+            "medical",
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "面接日",
+          "value": "2026年12月4日。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "合格発表",
+          "value": "2027年2月10日14時。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続期間",
+          "value": "合格者発表日時から2027年2月17日まで。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学生募集要項・出願詳細",
+          "value": "医学科の2027年度学校推薦型選抜学生募集要項は未公表で、2026年11月頃公表予定です。掲載中の前年版を2027年度の確定情報には使っていません。",
+          "sourceIds": [
+            "medical",
+            "selection"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "2026年7月公表の選抜要項では7人。2027年度の臨時増員15人が認可された場合は22人になる予定です。出願前に募集要項・変更通知で確定後の募集人員を確認してください。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "対象高校・推薦上限",
+          "value": "全国の高等学校。高校ごとの推薦上限は長野県内10人、県外1人です（両枠を合わせた上限）。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "卒業時期・共通テスト・入学確約",
+          "value": "2025年4月1日～2027年3月31日に高校を卒業した者または卒業見込みの者。学校長が責任を持って推薦でき、2027年度共通テストを受験し、合格した場合に入学を確約できること。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学習成績・人物・地域医療への意思",
+          "value": "学習成績概評A段階で人物が優秀であり、長野県内の病院で研修を積んで長野県の医療を支える医師となる強い意思を持つこと。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "修学資金・卒業後の義務",
+          "value": "長野県医学生修学資金の貸与を受け、医師免許取得後に長野県指定の医療機関で従事することを確約します。「説明事項確認書」「確約書」を提出します。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・国語",
+          "value": "国語200点。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・地理歴史／公民",
+          "value": "地理総合・地理探究、歴史総合・日本史探究、歴史総合・世界史探究、地理総合／歴史総合／公共、公共・倫理、公共・政治経済から1科目、100点。2科目受験時は第1解答科目を利用します。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・数学",
+          "value": "数学Ⅰ・A100点、数学Ⅱ・B・C100点、計200点。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・理科",
+          "value": "物理・化学・生物から2科目選択、計200点。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・英語",
+          "value": "200点。リーディングとリスニングを課し、得点比4:1で換算します。リスニング免除者はリーディングを換算して利用します。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・情報／合計",
+          "value": "情報Ⅰ100点。共通テスト合計1000点（6教科8科目）。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "面接・書類",
+          "value": "面接は段階評価。調査書およびその他の出願書類を面接の参考資料として活用します。数値配点を共通テストの総点へ加算する方式ではありません。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "合否基準",
+          "value": "共通テスト1000点満点の80％以上の者から、面接・書類の結果を総合して合格者を決定します。本試験平均点の中間集計の合計点を考慮して、基準を引き下げる場合があります。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "試験地",
+          "value": "松本キャンパス。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験室・集合時刻",
+          "value": "詳細は未公表です。2026年11月頃公表予定の医学科募集要項で確認してください。",
+          "sourceIds": [
+            "medical"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "notes": [
+        {
+          "text": "両枠の併願が可能です。出願時に第1・第2希望を指定し、出願後の変更はできません。併願しない場合は第1希望だけで出願します。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ]
+        },
+        {
+          "text": "判定結果が上位の者から、第1希望の枠を優先して合格判定します。第1希望が定員に達した場合は第2希望で判定し、併願しない者は第1希望が満員の場合に不合格となります。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ]
+        },
+        {
+          "text": "面接の評価が著しく低い場合、合計点が合格点に達していても不合格とすることがあります。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ]
+        },
+        {
+          "text": "国公立大学の学校推薦型選抜への出願は、共通テストを課すものと課さないものを含め一つの大学・学部に限ります。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ]
+        },
+        {
+          "text": "共通テスト成績請求情報の提供はWeb方式です。信州大学の出願登録サイトで共通テストのユーザーID・パスワード・申込番号等を登録し、連携を確認します。成績請求チケットの印刷は不要です。",
+          "sourceIds": [
+            "r09kyoute-web-housiki"
+          ]
+        },
+        {
+          "text": "共通テストの成績提供を取り消す場合は、必ず先に大学へ連絡して可否を確認します。共通テスト側だけの取消しでは大学への出願取下げになりません。",
+          "sourceIds": [
+            "r09kyoute-web-housiki"
+          ]
+        },
+        {
+          "text": "入学手続では共通テスト出願サイトから該当区分の「国公立大学入学確認票」をPDFで取得し、信州大学の入学手続登録でアップロードします。印刷は不要です。",
+          "sourceIds": [
+            "r09kyoute-web-housiki"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "private-foreign",
+      "name": "私費外国人留学生選抜",
+      "scheduleRows": [
+        {
+          "label": "出願期間・書類締切",
+          "value": "2027年1月4日～1月8日17時必着。",
+          "sourceIds": [
+            "medical"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験日",
+          "value": "2027年2月25日・26日。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "合格発表",
+          "value": "2027年3月8日14時。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続期間",
+          "value": "合格者発表日時から2027年3月15日まで。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学生募集要項・出願詳細",
+          "value": "2027年度私費外国人留学生選抜学生募集要項は未公表で、2026年11月上旬公表予定です。詳細な出願書類・個別試験時間割等は公表後に確認してください。",
+          "sourceIds": [
+            "medical",
+            "selection"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "若干人。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "国籍・在留資格",
+          "value": "日本国籍を持たず、大学入学に支障のない在留資格を持つ、または取得可能であること。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学歴資格",
+          "value": "外国の12年の学校教育修了（2027年3月31日までの修了見込みを含む）、文部科学大臣指定の同等資格、IB・アビトゥア・バカロレア・GCE Aレベル／国際Aレベル・欧州バカロレア資格、または指定国際評価団体認定施設の12年課程修了等のいずれかが必要です。このうち外国の12年課程、指定準備教育課程、指定11年以上の高校相当課程、指定評価団体認定施設の12年課程による資格では、外国の正規の教育制度による高校相当の学校で最終学年を含む2学年以上の継続した学校教育が必要です。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "日本の高校卒業者・学校教育期間",
+          "value": "日本の高校（中等教育学校・特別支援学校高等部を含む）卒業・卒業見込みの者は出願できません。外国でその国の学校教育制度に基づかない学校の在学期間は、外国で学校教育を受けた期間に算入しません。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "EJUの出願条件",
+          "value": "2026年11月実施の日本留学試験で指定教科・科目を受験し、合計680点以上が必要です。出題言語は日本語、科目は日本語・数学コース2・理科（物理、化学、生物から2科目）です。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語資格の出願条件",
+          "value": "2025～2026年に受験したTOEIC L&R700点以上、またはTOEFL iBT72点以上（0～120点スコア）もしくは4点以上（1～6バンドスコア）が必要です。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験・数学",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A・B・C、150点。Aは図形の性質・場合の数と確率、Bは数列・統計的な推測、Cはベクトル・平面上の曲線と複素数平面。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験・理科",
+          "value": "物理基礎・物理、化学基礎・化学、生物基礎・生物から2科目選択、計150点。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験・英語",
+          "value": "英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ・Ⅱ・Ⅲ、150点。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "面接・EJU・英語資格の評価",
+          "value": "その他150点。面接を行い、2026年11月のEJUと2025～2026年のTOEIC L&R／TOEFL iBTの成績を面接の参考資料とします。これらの試験成績を独立した配点として加算しません。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "選考総点",
+          "value": "合計600点。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "文部科学大臣指定資格の補足",
+          "value": "外国の12年課程修了相当の認定試験合格者は2027年3月31日までに18歳となることが必要です。高校相当課程修了後の指定準備教育課程、または指定された11年以上の高校相当課程の場合は、2027年3月31日までの修了見込みも対象です。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "指定国際評価団体",
+          "value": "指定団体はWASC、ACSI、NEASC、CIS、Cognia、COBISです。団体の認定を受けた教育施設の12年課程の修了または2027年3月31日までの修了見込みが対象です。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "試験地",
+          "value": "松本キャンパスの予定。学生募集要項で確認してください。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験室・集合時刻",
+          "value": "詳細は未公表です。2026年11月上旬公表予定の私費外国人留学生選抜募集要項で確認してください。",
+          "sourceIds": [
+            "medical"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "notes": [
+        {
+          "text": "日本留学試験の680点と英語資格の最低基準は出願条件です。これらの試験成績は面接の参考資料として扱い、選考総点600点に直接加算しません。",
+          "sourceIds": [
+            "r09senbatsuyoukou"
+          ]
+        }
+      ]
+    }
+  ],
+  "coverageNotes": [
+    "2027年度医学部医学科の一般前期、学校推薦型選抜Ⅱの長野県地元出身者枠・全国募集地域枠、私費外国人留学生選抜を掲載しています。医学科の一般後期・総合型・帰国生徒選抜は募集表に設定されていません。",
+    "2026年7月公表の選抜要項では医学科の入学定員105人・推薦Ⅱ計20人を記載し、臨時増員15人が認可されれば定員120人・推薦Ⅱ計35人（全国募集地域枠22人）になる予定です。増員の確定状況は要確認で、計画を認可済みとは扱っていません。増員計画が認められない場合、募集人員が変更されることがあります。",
+    "2027年度の一般・私費外国人学生募集要項は2026年11月上旬、医学科推薦募集要項は11月頃公表予定です。選抜要項と医学科の現行日程で確認できる内容を掲載し、募集要項の詳細は未公表としています。",
+    "2026年度統計と掲載時点の学費は参考情報です。統計の人数・得点を2027年度の募集人員や合格基準へ流用せず、2026年度口座振替日を2027年度の納付期限へ読み替えていません。"
+  ]
+}
