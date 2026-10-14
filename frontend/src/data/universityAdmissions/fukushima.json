@@ -1,0 +1,1002 @@
+{
+  "path": "/information-fukushima/",
+  "university": "福島県立医科大学",
+  "admissionYear": 2027,
+  "verifiedAt": "2026-10-14T01:16:00.000Z",
+  "sources": [
+    {
+      "id": "selection-2027",
+      "url": "https://www.fmu.ac.jp/admission/file/guidelines/R9youkou.pdf",
+      "title": "令和9年度入学者選抜に関する要項",
+      "retrievedAt": "2026-10-14T01:10:08.004Z",
+      "sha256": "e833ab1c1d90ba91295cd3c19a840df1ba7f85e08172e5c71bc68d6c32a3d702",
+      "pages": "PDF pp.9–24（医学部医学科）"
+    },
+    {
+      "id": "comprehensive-2027",
+      "url": "https://www.fmu.ac.jp/admission/medicine/file/guidelines/R9igakusougougatayoukou.pdf",
+      "title": "令和9年度医学部総合型選抜学生募集要項",
+      "retrievedAt": "2026-10-14T01:10:08.100Z",
+      "sha256": "6d05c8fc6e24a1d2a00cdcdbbaa9c885bea7dff9e74cd8768cacec3310ef7b8e",
+      "pages": "PDF pp.7–17"
+    },
+    {
+      "id": "overseas-2027",
+      "url": "https://www.fmu.ac.jp/admission/medicine/file/guidelines/R9kaigaiyoukou.pdf",
+      "title": "令和9年度医学部海外教育プログラム選抜学生募集要項",
+      "retrievedAt": "2026-10-14T01:10:08.176Z",
+      "sha256": "fc6a39370790ff5cd9d1ba9ab6a0dcd380c7cee57b5cb80119dd983681be2bb0",
+      "pages": "PDF pp.7–18"
+    },
+    {
+      "id": "guidelines-page",
+      "url": "https://www.fmu.ac.jp/admission/medicine/guidelines.html",
+      "title": "医学部 募集要項・各種出願書類（公表状況）",
+      "retrievedAt": "2026-10-14T01:13:09.020Z",
+      "sha256": "b8f0a4b98f68d44838ebaa9c2efb32e1510d58d195e7bc991e528715b24f2646",
+      "pages": "医学部方式別の募集要項一覧"
+    },
+    {
+      "id": "exam-page",
+      "url": "https://www.fmu.ac.jp/admission/medicine/exam.html",
+      "title": "医学部 入学試験日程・選抜概要",
+      "retrievedAt": "2026-10-14T01:13:09.064Z",
+      "sha256": "496affbe1145dc7e467cc5e75e19d8e0d3ebe4e4490734756219da1439fa4e8a",
+      "pages": "令和9年度医学科の方式別一覧"
+    }
+  ],
+  "schemes": [
+    {
+      "id": "general-early-regular",
+      "name": "一般選抜（前期日程・一般枠）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "45名程度。海外教育プログラム選抜と私費外国人留学生選抜の若干名を内数として含むため、両方式の入学者数により減る場合があります。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願期間",
+          "value": "2027年1月25日（月）～2月3日（水）。書類提出方法・締切時刻・必着／消印条件は2027年度一般選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "個別学力検査・面接",
+          "value": "2027年2月25日（木）に個別学力検査、2月26日（金）に面接。試験時間は2027年度一般選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "合格発表",
+          "value": "2027年3月8日（月）。発表時刻・方法は2027年度一般選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "入学手続",
+          "value": "2027年3月8日（月）～3月15日（月）（土曜・日曜を除く）。受付時刻・郵送条件は2027年度一般選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "第1段階選抜",
+          "value": "志願者が募集人員の4倍を超えた場合、共通テスト成績で募集人員の約4倍まで選抜。第1段階用の換算配点は国語200、地歴・公民100、数学200、理科200、英語200、情報Ⅰ100の合計1,000点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テストの指定科目",
+          "value": "国語、地歴・公民は「地理総合・地理探究」「歴史総合・日本史探究」「歴史総合・世界史探究」「公共・倫理」「公共・政治・経済」から1科目、数学Ⅰ・Aと数学Ⅱ・B・C、物理・化学・生物から2科目、英語（リスニングを含む）、情報Ⅰ。地歴・公民を2科目受けた場合は第1解答科目を採用。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第2段階・共通テスト配点",
+          "value": "国語150、地歴・公民50、数学150、理科150、英語150、情報Ⅰ50の合計700点。英語はリーディング90点・リスニング60点に換算。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第2段階・個別試験科目",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A・B・C、理科は物理基礎・物理／化学基礎・化学／生物基礎・生物から2科目、英語。個別英語のリスニングは実施しない。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第2段階・個別試験配点",
+          "value": "数学200、理科200、英語200、面接60。共通テスト700点と合わせ合計1,360点。出願書類も総合判定に用い、総得点が合格者最低点を超えても不合格となる場合がある。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "個別学力検査・面接会場",
+          "value": "未公表。2027年度一般選抜募集要項および受験票の試験場指定を確認してください。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "notes": [
+        {
+          "text": "一般枠と地域枠は相互に第2志望として併願可能です。第1志望枠で合格しなかった場合に第2志望枠で選抜されます。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "2027年度の地域枠25名程度は臨時増員申請予定で、確定定員ではありません。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "英語リスニング免除者は、第1段階ではリーディング得点を2倍、第2段階では1.5倍して換算します。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "共通テストの数学Aは「図形の性質」「場合の数と確率」をともに解答。数学Ⅱ・B・CはBの2項目とCの2項目の計4項目から3項目を選択解答します。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "学校推薦型選抜・総合型選抜の入学者数によって前期日程の募集人員が増える場合があります。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "general-early-regional",
+      "name": "一般選抜（前期日程・地域枠）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "25名程度を臨時増員として申請予定。確定定員は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "出願期間",
+          "value": "2027年1月25日（月）～2月3日（水）。書類提出方法・締切時刻・必着／消印条件は2027年度一般選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "個別学力検査・面接",
+          "value": "2027年2月25日（木）に個別学力検査、2月26日（金）に面接。試験時間は2027年度一般選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "合格発表",
+          "value": "2027年3月8日（月）。発表時刻・方法は2027年度一般選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "入学手続",
+          "value": "2027年3月8日（月）～3月15日（月）（土曜・日曜を除く）。受付時刻・郵送条件は2027年度一般選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "第1段階選抜",
+          "value": "志願者が募集人員の4倍を超えた場合、共通テスト成績で募集人員の約4倍まで選抜。第1段階用の換算配点は国語200、地歴・公民100、数学200、理科200、英語200、情報Ⅰ100の合計1,000点。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テストの指定科目",
+          "value": "国語、地歴・公民は「地理総合・地理探究」「歴史総合・日本史探究」「歴史総合・世界史探究」「公共・倫理」「公共・政治・経済」から1科目、数学Ⅰ・Aと数学Ⅱ・B・C、物理・化学・生物から2科目、英語（リスニングを含む）、情報Ⅰ。地歴・公民を2科目受けた場合は第1解答科目を採用。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第2段階・共通テスト配点",
+          "value": "国語150、地歴・公民50、数学150、理科150、英語150、情報Ⅰ50の合計700点。英語はリーディング90点・リスニング60点に換算。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第2段階・個別試験科目",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A・B・C、理科は物理基礎・物理／化学基礎・化学／生物基礎・生物から2科目、英語。個別英語のリスニングは実施しない。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第2段階・個別試験配点",
+          "value": "数学200、理科200、英語200、面接60。共通テスト700点と合わせ合計1,360点。出願書類も総合判定に用い、総得点が合格者最低点を超えても不合格となる場合がある。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "個別学力検査・面接会場",
+          "value": "未公表。2027年度一般選抜募集要項および受験票の試験場指定を確認してください。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "notes": [
+        {
+          "text": "一般枠と地域枠は相互に第2志望として併願可能です。第1志望枠で合格しなかった場合に第2志望枠で選抜されます。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "2027年度の地域枠25名程度は臨時増員申請予定で、確定定員ではありません。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "英語リスニング免除者は、第1段階ではリーディング得点を2倍、第2段階では1.5倍して換算します。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "共通テストの数学Aは「図形の性質」「場合の数と確率」をともに解答。数学Ⅱ・B・CはBの2項目とCの2項目の計4項目から3項目を選択解答します。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "地域枠は福島県緊急医師確保修学資金の貸与を受け、卒業後の県内公的医療機関等での勤務を誓約する方式です。6年間貸与を受ける場合、従事要件は県内9年間。途中返還は認められません。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recommendation-a-current",
+      "name": "学校推薦型選抜（A枠・県内現役）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "福島県内の高校の2027年3月卒業見込み者から25名程度。1校11名以内。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願期間",
+          "value": "2026年12月11日（金）～17日（木）。書類提出方法・締切時刻・必着／消印条件は2027年度学校推薦型選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "総合問題・面接",
+          "value": "2027年1月30日（土）。集合・試験時間は2027年度学校推薦型選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "合格発表",
+          "value": "2027年2月10日（水）。発表時刻・方法は2027年度学校推薦型選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "入学手続",
+          "value": "2027年2月10日（水）～17日（水）（土曜・日曜・祝日を除く）。受付時刻・郵送条件は2027年度学校推薦型選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "共通テストの指定科目",
+          "value": "国語、地歴・公民は「地理総合・地理探究」「歴史総合・日本史探究」「歴史総合・世界史探究」「公共・倫理」「公共・政治・経済」から1科目、数学Ⅰ・Aと数学Ⅱ・B・C、物理・化学・生物から2科目、英語（リスニングを含む）、情報Ⅰ。指定科目を受験しない場合は選抜対象外。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト配点・基準",
+          "value": "国語100、地歴・公民50、数学100、理科100、英語100、情報Ⅰ50の合計500点。概ね80％以上の成績を選抜対象とする。英語はリーディング60点・リスニング40点に換算。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "総合問題・面接配点",
+          "value": "総合問題300点、面接60点。共通テスト500点と合わせ合計860点。推薦書・調査書・志願理由書を面接の参考とし、出願書類を総合評価するため得点だけで合否は決まらない。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "総合問題・面接会場",
+          "value": "未公表。2027年度学校推薦型選抜募集要項と受験票の試験場指定を確認してください。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "notes": [
+        {
+          "text": "他の国公立大学・学部の推薦型・総合型との併願は不可。ただし本学医学部総合型との併願は可能で、その場合は総合型の選抜を優先します。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "推薦者は高校長による推薦を受け、合格した場合の入学を確約する必要があります。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "共通テストの数学Aは「図形の性質」「場合の数と確率」をともに解答。数学Ⅱ・B・CはBの2項目とCの2項目の計4項目から3項目を選択解答します。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "英語リスニング免除者は、共通テストのリーディング得点をそのまま英語100点満点の得点とします。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "卒業後、本学附属病院または大学指定の福島県内医療機関等で、初期臨床研修2年間を含む連続3年以上の医学・医療従事を誓約します。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recommendation-a-graduate",
+      "name": "学校推薦型選抜（A枠・県内既卒）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "福島県内の高校を2026年3月に卒業した者から10名程度。1校5名以内。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願期間",
+          "value": "2026年12月11日（金）～17日（木）。書類提出方法・締切時刻・必着／消印条件は2027年度学校推薦型選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "総合問題・面接",
+          "value": "2027年1月30日（土）。集合・試験時間は2027年度学校推薦型選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "合格発表",
+          "value": "2027年2月10日（水）。発表時刻・方法は2027年度学校推薦型選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "入学手続",
+          "value": "2027年2月10日（水）～17日（水）（土曜・日曜・祝日を除く）。受付時刻・郵送条件は2027年度学校推薦型選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "共通テストの指定科目",
+          "value": "国語、地歴・公民は「地理総合・地理探究」「歴史総合・日本史探究」「歴史総合・世界史探究」「公共・倫理」「公共・政治・経済」から1科目、数学Ⅰ・Aと数学Ⅱ・B・C、物理・化学・生物から2科目、英語（リスニングを含む）、情報Ⅰ。指定科目を受験しない場合は選抜対象外。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト配点・基準",
+          "value": "国語100、地歴・公民50、数学100、理科100、英語100、情報Ⅰ50の合計500点。概ね80％以上の成績を選抜対象とする。英語はリーディング60点・リスニング40点に換算。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "総合問題・面接配点",
+          "value": "総合問題300点、面接60点。共通テスト500点と合わせ合計860点。推薦書・調査書・志願理由書を面接の参考とし、出願書類を総合評価するため得点だけで合否は決まらない。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "総合問題・面接会場",
+          "value": "未公表。2027年度学校推薦型選抜募集要項と受験票の試験場指定を確認してください。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "notes": [
+        {
+          "text": "他の国公立大学・学部の推薦型・総合型との併願は不可。ただし本学医学部総合型との併願は可能で、その場合は総合型の選抜を優先します。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "推薦者は高校長による推薦を受け、合格した場合の入学を確約する必要があります。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "共通テストの数学Aは「図形の性質」「場合の数と確率」をともに解答。数学Ⅱ・B・CはBの2項目とCの2項目の計4項目から3項目を選択解答します。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "英語リスニング免除者は、共通テストのリーディング得点をそのまま英語100点満点の得点とします。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "卒業後、本学附属病院または大学指定の福島県内医療機関等で、初期臨床研修2年間を含む連続3年以上の医学・医療従事を誓約します。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recommendation-b",
+      "name": "学校推薦型選抜（B枠・県外）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "福島県外の高校の2027年3月卒業見込み者または2026年3月卒業者から20名以内を臨時増員として申請予定。確定定員は未公表です。1校3名以内。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "出願期間",
+          "value": "2026年12月11日（金）～17日（木）。書類提出方法・締切時刻・必着／消印条件は2027年度学校推薦型選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "総合問題・面接",
+          "value": "2027年1月30日（土）。集合・試験時間は2027年度学校推薦型選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "合格発表",
+          "value": "2027年2月10日（水）。発表時刻・方法は2027年度学校推薦型選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "入学手続",
+          "value": "2027年2月10日（水）～17日（水）（土曜・日曜・祝日を除く）。受付時刻・郵送条件は2027年度学校推薦型選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "共通テストの指定科目",
+          "value": "国語、地歴・公民は「地理総合・地理探究」「歴史総合・日本史探究」「歴史総合・世界史探究」「公共・倫理」「公共・政治・経済」から1科目、数学Ⅰ・Aと数学Ⅱ・B・C、物理・化学・生物から2科目、英語（リスニングを含む）、情報Ⅰ。指定科目を受験しない場合は選抜対象外。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト配点・基準",
+          "value": "国語100、地歴・公民50、数学100、理科100、英語100、情報Ⅰ50の合計500点。概ね80％以上の成績を選抜対象とする。英語はリーディング60点・リスニング40点に換算。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "総合問題・面接配点",
+          "value": "総合問題300点、面接60点。共通テスト500点と合わせ合計860点。推薦書・調査書・志願理由書を面接の参考とし、出願書類を総合評価するため得点だけで合否は決まらない。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "総合問題・面接会場",
+          "value": "未公表。2027年度学校推薦型選抜募集要項と受験票の試験場指定を確認してください。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "notes": [
+        {
+          "text": "他の国公立大学・学部の推薦型・総合型との併願は不可。ただし本学医学部総合型との併願は可能で、その場合は総合型の選抜を優先します。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "推薦者は高校長による推薦を受け、合格した場合の入学を確約する必要があります。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "共通テストの数学Aは「図形の性質」「場合の数と確率」をともに解答。数学Ⅱ・B・CはBの2項目とCの2項目の計4項目から3項目を選択解答します。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "英語リスニング免除者は、共通テストのリーディング得点をそのまま英語100点満点の得点とします。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        },
+        {
+          "text": "福島県緊急医師確保修学資金の貸与を6年間受け、従事要件に従い卒業後県内9年間勤務することを誓約します。途中返還は認められません。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comprehensive",
+      "name": "総合型選抜",
+      "scheduleRows": [
+        {
+          "label": "募集人員・対象",
+          "value": "5名以内。2027年3月高校卒業見込みで、調査書の学習成績概評A段階に属し、合格した場合に入学を確約できる者。",
+          "sourceIds": [
+            "selection-2027",
+            "comprehensive-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "インターネット出願登録",
+          "value": "2026年9月9日（水）10:00～9月18日（金）17:00。",
+          "sourceIds": [
+            "comprehensive-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料の支払",
+          "value": "出願登録翌日23:59まで。ただし9月17日・18日に登録した場合は9月18日17:00まで。",
+          "sourceIds": [
+            "comprehensive-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願書類提出",
+          "value": "2026年9月11日（金）～18日（金）必着。書留速達郵便または持参。持参は期間内の平日9:00～17:00。",
+          "sourceIds": [
+            "comprehensive-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第1次選考・発表",
+          "value": "総合問題は2026年10月17日（土）。合格発表は10月30日（金）10:00頃。",
+          "sourceIds": [
+            "selection-2027",
+            "comprehensive-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第2次選考・最終発表",
+          "value": "面接は2026年11月14日（土）。詳細は第1次合格者に通知。最終発表は11月19日（木）10:00頃。",
+          "sourceIds": [
+            "selection-2027",
+            "comprehensive-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続",
+          "value": "2026年11月19日（木）～26日（木）（土曜・日曜・祝日を除く）9:00～17:00。郵送の場合は11月26日必着。",
+          "sourceIds": [
+            "comprehensive-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "第1次選考",
+          "value": "総合問題Ⅰ400点、総合問題Ⅱ200点、計600点。得点順に募集人員の3倍程度を選抜。大学入学共通テストは課さない。",
+          "sourceIds": [
+            "selection-2027",
+            "comprehensive-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第1次の試験時間",
+          "value": "2026年10月17日、総合問題Ⅰ9:30～12:00、総合問題Ⅱ13:00～15:30。受付8:00、着席9:10。",
+          "sourceIds": [
+            "comprehensive-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第2次選考",
+          "value": "第1次の総合問題600点、MMI面接300点、出願書類150点の合計1,050点。調査書は書類と面接の参考資料。",
+          "sourceIds": [
+            "selection-2027",
+            "comprehensive-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "MMI面接",
+          "value": "6つの面接室で各10分程度。科学的探究心の面接室では出願時に提出するポスターを用いたプレゼンテーションを実施。",
+          "sourceIds": [
+            "comprehensive-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "第1次選考会場",
+          "value": "福島県立医科大学 光が丘キャンパス6号館（福島市光が丘1番地）。",
+          "sourceIds": [
+            "comprehensive-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "第2次選考会場",
+          "value": "第1次選考合格者にのみ、受付時間・試験場等の詳細を別途通知。",
+          "sourceIds": [
+            "comprehensive-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "他の国公立大学・学部の総合型・推薦型とは併願不可。ただし本学医学部学校推薦型との併願は可能で、総合型の選抜が優先されます。",
+          "sourceIds": [
+            "selection-2027",
+            "comprehensive-2027"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overseas-program",
+      "name": "海外教育プログラム選抜（帰国生徒・私費外国人留学生）",
+      "scheduleRows": [
+        {
+          "label": "募集人員・対象",
+          "value": "若干名。一般選抜一般枠45名の内数。外国での教育歴や国際バカロレア等の資格に関する出願資格があり、詳細は募集要項を確認してください。",
+          "sourceIds": [
+            "selection-2027",
+            "overseas-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "インターネット出願登録",
+          "value": "2026年9月9日（水）10:00～9月18日（金）17:00。",
+          "sourceIds": [
+            "overseas-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料の支払",
+          "value": "出願登録翌日23:59まで。ただし9月17日・18日に登録した場合は9月18日17:00まで。",
+          "sourceIds": [
+            "overseas-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願書類提出",
+          "value": "2026年9月11日（金）～18日（金）必着。書留速達郵便または持参。国外居住者は国際郵便または国際宅急便で必着。",
+          "sourceIds": [
+            "overseas-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験・合格発表",
+          "value": "試験は2026年10月17日（土）。合格発表は10月30日（金）10:00頃。",
+          "sourceIds": [
+            "selection-2027",
+            "overseas-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続",
+          "value": "2026年10月30日（金）～11月6日（金）（土曜・日曜・祝日を除く）9:00～17:00。郵送・持参、国外居住者は国際郵便・国際宅急便で必着。",
+          "sourceIds": [
+            "overseas-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "試験科目・配点",
+          "value": "総合問題Ⅰ400点、総合問題Ⅱ200点、面接60点の合計660点。大学入学共通テストは課さない。出願書類は総合判定に用いるが点数化しない。",
+          "sourceIds": [
+            "selection-2027",
+            "overseas-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験時間",
+          "value": "2026年10月17日、総合問題Ⅰ9:30～12:00、Ⅱ13:00～15:30、面接16:30～19:00頃。受付8:00、着席9:10。",
+          "sourceIds": [
+            "overseas-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "試験会場",
+          "value": "福島県立医科大学 光が丘キャンパス6号館（福島市光が丘1番地）。",
+          "sourceIds": [
+            "overseas-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "出願資格を示す書類は出願期間内に大学で受領される必要があります。書類や試験成績が期間後に届く場合は出願できません。",
+          "sourceIds": [
+            "selection-2027",
+            "overseas-2027"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "private-international",
+      "name": "私費外国人留学生選抜",
+      "scheduleRows": [
+        {
+          "label": "募集人員・対象",
+          "value": "若干名。一般選抜一般枠45名の内数。日本国籍を持たない志願者で、2026年度日本留学試験第2回（11月）を日本語で受験する等の資格条件があります。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願期間",
+          "value": "2027年1月25日（月）～2月3日（水）。書類提出方法・締切時刻・必着／消印条件は2027年度私費外国人留学生選抜募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "個別学力検査・面接",
+          "value": "2027年2月25日（木）に個別学力検査、2月26日（金）に面接。試験時間は募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "合格発表",
+          "value": "2027年3月8日（月）。発表時刻・方法は募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "入学手続",
+          "value": "2027年3月8日（月）～15日（月）（土曜・日曜を除く）。受付時刻・郵送条件は募集要項で要確認。 2027年度の該当細目は未公表です。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "日本留学試験",
+          "value": "2026年度第2回を日本語で受験。日本語、理科（物理・化学・生物から2科目）、数学（コース2）を指定。成績は総合判定に用いる。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験科目",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A・B・C、理科は物理基礎・物理／化学基礎・化学／生物基礎・生物から2科目、英語（リスニングなし）、面接。大学入学共通テストは課さない。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別試験配点",
+          "value": "数学200、理科200、英語200、面接60の合計660点。出願書類と日本留学試験の結果も総合判定に用いる。",
+          "sourceIds": [
+            "selection-2027"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "個別学力検査・面接会場",
+          "value": "未公表。2027年度私費外国人留学生選抜募集要項と受験票の試験場指定を確認してください。",
+          "sourceIds": [
+            "selection-2027",
+            "guidelines-page"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "notes": [
+        {
+          "text": "日本留学試験の点数は個別学力検査等の660点に単純加算せず、総合評価に用います。",
+          "sourceIds": [
+            "selection-2027"
+          ]
+        }
+      ]
+    }
+  ],
+  "coverageNotes": [
+    "医学部医学科の一般選抜前期（一般枠・地域枠）、学校推薦型選抜（A枠の県内現役・県内既卒、B枠の県外）、総合型、海外教育プログラム、私費外国人留学生選抜を掲載しています。",
+    "2027年度の総合型・海外教育プログラムは正式募集要項まで確認しました。一般・学校推薦型・私費外国人留学生は大学公式ページに2027年度の正式募集要項が掲載されていないため、選抜要項にある基本日程・配点のみ確定情報として記載しました。",
+    "地域枠25名程度と推薦B枠20名以内は臨時増員申請予定であり、確定定員は未公表です。一般枠45名には海外教育プログラムと私費外国人留学生の若干名を含みます。",
+    "各方式の最新募集要項、変更通知、受験票指定を出願前に大学公式サイトで再確認してください。"
+  ]
+}
