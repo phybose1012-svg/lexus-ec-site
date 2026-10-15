@@ -1191,6 +1191,24 @@
 .article-content .kagoshima-readable .admission-score-table th:first-child { width:50%; }
 .article-content .kagoshima-readable .admission-source-footer p { font-size:11px; margin-top:8px; }
 
+/* Miyazaki: all source disclosures stay outside factual tables. */
+.article-content .miyazaki-readable [data-admission-table]:not(.admission-overview-table) {display:table;table-layout:fixed;width:100%;font-size:14px;}
+.article-content .miyazaki-readable [data-admission-table]:not(.admission-overview-table) :is(th,td) {white-space:normal;overflow-wrap:anywhere;padding:12px;line-height:1.8;min-width:0;}
+.article-content .miyazaki-readable [data-admission-table] caption {text-align:left;font-weight:700;line-height:1.7;}
+.article-content .miyazaki-readable [data-admission-table]:not(.admission-overview-table) thead th:first-child {width:29%;}
+.article-content .miyazaki-readable [data-admission-table]:not(.admission-overview-table) thead th:last-child {width:auto;}
+.article-content .miyazaki-readable .admission-conditions strong {display:block;color:#235d7c;}
+.article-content .miyazaki-readable .admission-conditions li {margin-block:14px;}
+.article-content .miyazaki-readable .admission-sources {font-size:12px;margin-block:16px 28px;}
+.article-content .miyazaki-readable .admission-sources summary {cursor:pointer;color:#526873;}
+.article-content .miyazaki-readable .admission-sources li {overflow-wrap:anywhere;}
+.article-content .miyazaki-readable .miyazaki-frame-anchor {display:block;scroll-margin-top:120px;}
+.article-content .miyazaki-readable [id] {scroll-margin-top:120px;}
+@media(max-width:720px){
+ .article-content .miyazaki-readable [data-admission-table]:not(.admission-overview-table) {font-size:13px;}
+ .article-content .miyazaki-readable [data-admission-table]:not(.admission-overview-table) :is(th,td) {padding:10px 8px;}
+}
+
 /* Hiroshima: two-column factual tables, kept readable without horizontal scrolling. */
 .article-content .hiroshima-readable .hiroshima-fact-table {table-layout:fixed;display:table;width:100%;margin:22px 0;font-size:14px;}
 .article-content .hiroshima-readable .hiroshima-fact-table caption {text-align:left;font-weight:700;line-height:1.7;padding:10px 0;}
