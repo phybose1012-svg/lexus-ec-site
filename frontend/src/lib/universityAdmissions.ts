@@ -1,3 +1,4 @@
+import {naraAdmissionsMetadata, renderNaraAdmissionsReadable} from './naraAdmissionsReadable.ts';
 import {renderSapporoikaAdmissionsReadable,renderSapporoikaUniversityOverview,sapporoikaMetadata} from './sapporoikaAdmissionsReadable.ts';
 import {renderHiroshimaAdmissionsReadable,renderHiroshimaUniversityOverview,hiroshimaAdmissionsMetadata} from './hiroshimaAdmissionsReadable.ts';
 import { renderKagawaAdmissionsReadable, renderKagawaUniversityOverview, kagawaMetadata } from './kagawaAdmissionsReadable.ts';
@@ -194,6 +195,14 @@ const omuOfficialLinkedSources: Record<string, {url: string; sha256: string}> = 
   }
 };
 const sourceDomain = (url: string) => new URL(url).hostname.split(".").slice(-3).join(".");
+// Nara's prefectural scholarship references are supplementary sources only.
+// Exact reviewed bytes do not authorize the prefecture to set university exam rules.
+const naraSupplementarySources: Record<string,{url:string;sha256:string}> = {
+  'county-emergency-current': {url:'https://www.pref.nara.lg.jp/naradr/highschool/emergency.html',sha256:'3a9949e9ca3ea795bba3dce53ea9d0ba691b47113a09d57816d71c42f92d5f2c'},
+  'county-ordinance-current': {url:'https://www.pref.nara.lg.jp/documents/17345/k-zyourei.pdf',sha256:'424cd9f0334671bf52f3f584f35a983c4044825adb4d2481c918eadf80db46a4'},
+  'county-rules-current': {url:'https://www.pref.nara.lg.jp/documents/17345/k-kisoku.pdf',sha256:'0b4ab81186170894d0df764c2df5573c36b7a0bc8e831ba42e58131892ec8076'},
+  'county-work-guidelines-current': {url:'https://www.pref.nara.lg.jp/documents/17345/20260330132303.pdf',sha256:'1129562821316b0c27323acfdc80412b1d25806a23079aff0615eded27eaf785'},
+};
 const hostBelongsTo = (hostname: string, domain: string) => hostname === domain || hostname.endsWith(`.${domain}`);
 // DNC publishes the nationwide Common Test. It does not set a university's
 // admission requirements, adopted subjects, score conversions or own venues.
@@ -240,6 +249,7 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
   const allowed = [sourceDomain(profile.officialUrl), ...(additionalOfficialDomains[path] ?? [])];
   const universitySourceIds = new Set<string>();
   const commonTestSourceIds = new Set<string>();
+  const supplementarySourceIds = new Set<string>();
   const historicalKochiStatisticsId = "medicine-entrants-2026";
   const sources = array(data.sources, `${path}.sources`, 1).map((entry,index) => {
     const source = record(entry, `${path}.sources[${index}]`);
@@ -259,9 +269,12 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
       && Object.entries(omuTemporaryOwnership).every(([key, value]) => (omuProof as Record<string, unknown>)[key] === value));
     const universityOwned = allowed.some(domain => hostBelongsTo(parsed.hostname,domain)) || exactKochiPdf || omuOwned;
     const commonTestOwned = hostBelongsTo(parsed.hostname,commonTestOfficialDomain);
-    if (!universityOwned && !commonTestOwned) failure(`${id}: source host ${parsed.hostname} is not official for ${profile.university} or the Common Test publisher`);
+    const supplementary = path === '/information-nara/' ? naraSupplementarySources[id] : undefined;
+    const exactSupplementary = Boolean(supplementary && parsed.href===supplementary.url && url===supplementary.url && source.sha256===supplementary.sha256);
+    if (!universityOwned && !commonTestOwned && !exactSupplementary) failure(`${id}: source host ${parsed.hostname} is not official for ${profile.university} or the Common Test publisher`);
     if (universityOwned) universitySourceIds.add(id);
-    else commonTestSourceIds.add(id);
+    else if (commonTestOwned) commonTestSourceIds.add(id);
+    else supplementarySourceIds.add(id);
     const title = nonempty(source.title, `${id}.title`);
     const retrievedAt = date(source.retrievedAt, `${id}.retrievedAt`);
     if (Date.parse(retrievedAt) > Date.parse(verifiedAt)) failure(`${id}: retrieval cannot be later than verifiedAt`);
@@ -281,6 +294,7 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
   };
   const scopedSourceIds = (value: unknown,label: string,claimLabel: string,claimValue: string,kind: "schedule"|"exam"|"venue"|"note") => {
     const ids=sourceIds(value,label);
+    if(ids.some(id=>supplementarySourceIds.has(id))) failure(`${label}: supplementary prefectural sources cannot substantiate university admission rows`);
     if (path === "/information-kochi/" && ids.includes(historicalKochiStatisticsId) && (!/2026年度/.test(`${claimLabel} ${claimValue}`) || !/入学者数|入学者統計|入学実績/.test(`${claimLabel} ${claimValue}`))) failure(`${label}: 2026 entrant statistics cannot substantiate an unqualified 2027 claim`);
     if (!ids.some(id=>commonTestSourceIds.has(id))) return ids;
     if (!commonTestReference.test(claimLabel)) failure(`${label}: DNC citations are limited to explicitly named Common Test rows or notes`);
@@ -328,6 +342,7 @@ const htmlText = (value: string) => escapeUniversityAdmissionHtml(value).replace
 const plainText = (value: string) => value.replace(/<[^>]*>/g,"").replace(/&nbsp;/g," ").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#39;|&#039;/g,"'").replace(/&amp;/g,"&").replace(/\s+/g," ").trim();
 
 export function universityAdmissionsMetadata(data: UniversityAdmissions) {
+  if (data.path === '/information-nara/') return naraAdmissionsMetadata(data);
   if (data.path === '/information-sapporoika/') return {...sapporoikaMetadata,modified:data.verifiedAt.slice(0,10)};
   if (data.path === '/information-hiroshima/') return hiroshimaAdmissionsMetadata(data);
   if (data.path === '/information-kagawa/') return kagawaMetadata;
@@ -366,6 +381,7 @@ export function universityAdmissionsMetadata(data: UniversityAdmissions) {
 /** Render only canonical validated data; values remain text, never raw HTML. */
 export function renderUniversityAdmissions(input: UniversityAdmissions): string {
   const data = validateUniversityAdmissions(input);
+  if (data.path === '/information-nara/') return renderNaraAdmissionsReadable(data);
   if (data.path === '/information-sapporoika/') return renderSapporoikaAdmissionsReadable(data);
   if (data.path === '/information-hiroshima/') return renderHiroshimaAdmissionsReadable(data);
   if (data.path === '/information-kagawa/') return renderKagawaAdmissionsReadable(data);
@@ -405,6 +421,12 @@ type AdmissionPost = {
 export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post: T,index: ReadonlyMap<string,UniversityAdmissions>): T {
   const data=index.get(post.path);
   if (!data || post.template !== "admission-info") return post;
+  if (data.path === '/information-nara/') {
+    const contentHtml=renderNaraAdmissionsReadable(data);
+    const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
+    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'入試情報'}:item.label==='地域'?{...item,value:'近畿'}:item);
+    return {...post,...naraAdmissionsMetadata(data),contentHtml,infoItems,toc};
+  }
   if (data.path === '/information-sapporoika/') {
     const contentHtml=renderSapporoikaAdmissionsReadable(validateUniversityAdmissions(data))+renderSapporoikaUniversityOverview();
     const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
