@@ -1,3 +1,4 @@
+import {prefectureRecommendationBindings, type PrefectureRecommendationBinding, type PrefectureRecommendationOwnership} from './prefectureRecommendationSourceContract.ts';
 import { wrapEhimeAdmissions } from './ehimeAdmissionsLayout.ts';
 import { wrapShinshuAdmissions } from './shinshuAdmissionsLayout.ts';
 import {renderKochiArticle,kochiMetadata} from './kochiAdmissionsReadable.ts';
@@ -34,6 +35,7 @@ export type UniversityAdmissionSource = {
   publishedAt?: string;
   retrievedAt: string;
   sha256?: string;
+  prefectureOwnership?: PrefectureRecommendationOwnership;
   officialOwnership?: {rootUrl: string; rootSha256: string; indexUrl: string; indexSha256: string; rootVerificationSha256: string};
   pages?: string | number[];
 };
@@ -256,6 +258,7 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
   const universitySourceIds = new Set<string>();
   const commonTestSourceIds = new Set<string>();
   const supplementarySourceIds = new Set<string>();
+  const prefectureSourceIds = new Map<string, PrefectureRecommendationBinding>();
   const historicalKochiStatisticsId = "medicine-entrants-2026";
   const sources = array(data.sources, `${path}.sources`, 1).map((entry,index) => {
     const source = record(entry, `${path}.sources[${index}]`);
@@ -273,21 +276,34 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
       && omuProof && typeof omuProof === "object" && !Array.isArray(omuProof)
       && Object.keys(omuProof).length === Object.keys(omuTemporaryOwnership).length
       && Object.entries(omuTemporaryOwnership).every(([key, value]) => (omuProof as Record<string, unknown>)[key] === value));
+    const prefectureLinked = prefectureRecommendationBindings.find(binding => binding.path === path && binding.sourceId === id);
+    const prefectureProof = source.prefectureOwnership;
+    const prefectureOwned = Boolean(prefectureLinked && data.admissionYear === prefectureLinked.ownership.admissionYear
+      && profile.university === prefectureLinked.ownership.university
+      && url === prefectureLinked.document.url && parsed.href === prefectureLinked.document.url
+      && typeof source.sha256 === 'string' && source.sha256.toLowerCase() === prefectureLinked.document.sha256
+      && source.title === prefectureLinked.document.title
+      && JSON.stringify(source.pages) === JSON.stringify(prefectureLinked.document.pages)
+      && prefectureProof && typeof prefectureProof === 'object' && !Array.isArray(prefectureProof)
+      && Object.keys(prefectureProof).length === Object.keys(prefectureLinked.ownership).length
+      && Object.entries(prefectureLinked.ownership).every(([key,value]) => (prefectureProof as Record<string,unknown>)[key] === value));
+    if (prefectureProof !== undefined && !prefectureOwned) failure(`${id}: prefecture source binding is not exact`);
     const universityOwned = allowed.some(domain => hostBelongsTo(parsed.hostname,domain)) || exactKochiPdf || omuOwned;
     const commonTestOwned = hostBelongsTo(parsed.hostname,commonTestOfficialDomain);
     const supplementary = path === '/information-nara/' ? naraSupplementarySources[id] : undefined;
     const exactSupplementary = Boolean(supplementary && parsed.href===supplementary.url && url===supplementary.url && source.sha256===supplementary.sha256);
-    if (!universityOwned && !commonTestOwned && !exactSupplementary) failure(`${id}: source host ${parsed.hostname} is not official for ${profile.university} or the Common Test publisher`);
+    if (!universityOwned && !commonTestOwned && !exactSupplementary && !prefectureOwned) failure(`${id}: source host ${parsed.hostname} is not official for ${profile.university} or the Common Test publisher`);
     if (universityOwned) universitySourceIds.add(id);
     else if (commonTestOwned) commonTestSourceIds.add(id);
-    else supplementarySourceIds.add(id);
+    else if (prefectureOwned && prefectureLinked) prefectureSourceIds.set(id,prefectureLinked);
+    else if (exactSupplementary) supplementarySourceIds.add(id);
     const title = nonempty(source.title, `${id}.title`);
     const retrievedAt = date(source.retrievedAt, `${id}.retrievedAt`);
     if (Date.parse(retrievedAt) > Date.parse(verifiedAt)) failure(`${id}: retrieval cannot be later than verifiedAt`);
     if (source.publishedAt !== undefined) date(source.publishedAt, `${id}.publishedAt`);
     if (source.sha256 !== undefined && (typeof source.sha256 !== "string" || !/^[a-f0-9]{64}$/i.test(source.sha256))) failure(`${id}: sha256 must have 64 hexadecimal characters`);
     if (source.pages !== undefined && !(typeof source.pages === "string" && source.pages.trim()) && !(Array.isArray(source.pages) && source.pages.length && source.pages.every(p=>Number.isInteger(p) && p>0))) failure(`${id}: pages must be a nonempty page label or positive page numbers`);
-    return {id,url,title,retrievedAt,...(source.publishedAt !== undefined ? {publishedAt:source.publishedAt as string}:{}),...(source.sha256 !== undefined?{sha256:source.sha256 as string}:{}),...(source.pages !== undefined?{pages:source.pages as string|number[]}: {}),...(omuOwned?{officialOwnership:omuProof as UniversityAdmissionSource["officialOwnership"]}: {})};
+    return {id,url,title,retrievedAt,...(source.publishedAt !== undefined ? {publishedAt:source.publishedAt as string}:{}),...(source.sha256 !== undefined?{sha256:source.sha256 as string}:{}),...(source.pages !== undefined?{pages:source.pages as string|number[]}: {}),...(omuOwned?{officialOwnership:omuProof as UniversityAdmissionSource["officialOwnership"]}: {}),...(prefectureOwned?{prefectureOwnership:prefectureProof as PrefectureRecommendationOwnership}: {})};
   });
   unique(sources.map(source=>source.id), "source ids");
   if (!universitySourceIds.size) failure(`${path}: at least one official source from ${profile.university} is required; DNC cannot replace university admission evidence`);
@@ -298,10 +314,19 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
     for (const id of ids) if (!knownSourceIds.has(id)) failure(`${label}: unknown source id ${id}`);
     return ids;
   };
-  const scopedSourceIds = (value: unknown,label: string,claimLabel: string,claimValue: string,kind: "schedule"|"exam"|"venue"|"note") => {
+  const scopedSourceIds = (value: unknown,label: string,claimLabel: string,claimValue: string,kind: "schedule"|"exam"|"venue"|"note",schemeId: string) => {
     const ids=sourceIds(value,label);
     if(ids.some(id=>supplementarySourceIds.has(id))) failure(`${label}: supplementary prefectural sources cannot substantiate university admission rows`);
     if (path === "/information-kochi/" && ids.includes(historicalKochiStatisticsId) && (!/2026年度/.test(`${claimLabel} ${claimValue}`) || !/入学者数|入学者統計|入学実績/.test(`${claimLabel} ${claimValue}`))) failure(`${label}: 2026 entrant statistics cannot substantiate an unqualified 2027 claim`);
+    for (const id of ids) {
+      const binding=prefectureSourceIds.get(id);
+      if (!binding) continue;
+      if (schemeId !== binding.ownership.schemeId || !binding.claims.some(claim => claim.kind === kind && claim.label === claimLabel && claim.value === claimValue)) failure(`${label}: prefecture evidence is limited to its exact scheme and preselection claim`);
+      const universitySource=sources.find(source => source.id === binding.universitySource.id);
+      if (!ids.includes(binding.universitySource.id) || !universitySourceIds.has(binding.universitySource.id)
+        || universitySource?.url !== binding.universitySource.url || universitySource.sha256 !== binding.universitySource.sha256
+        || !Array.isArray(universitySource.pages) || !universitySource.pages.includes(binding.universitySource.page)) failure(`${label}: prefecture claims require the pinned university recommendation guide and referral page`);
+    }
     if (!ids.some(id=>commonTestSourceIds.has(id))) return ids;
     if (!commonTestReference.test(claimLabel)) failure(`${label}: DNC citations are limited to explicitly named Common Test rows or notes`);
     const hasUniversity=ids.some(id=>universitySourceIds.has(id));
@@ -309,22 +334,22 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
     if (!hasUniversity && !nationalDateOnly) failure(`${label}: university-specific conditions require this university's official source; DNC alone supports only a nationwide Common Test date row`);
     return ids;
   };
-  const rows = (value: unknown, label: string,kind: "schedule"|"exam"|"venue"): UniversityAdmissionRow[] => array(value,label,1).map((entry,index)=>{
+  const rows = (value: unknown, label: string,kind: "schedule"|"exam"|"venue",schemeId: string): UniversityAdmissionRow[] => array(value,label,1).map((entry,index)=>{
     const row = record(entry,`${label}[${index}]`);
     const rowLabel = nonempty(row.label,`${label}[${index}].label`);
     const rowValue = nonempty(row.value,`${label}[${index}].value`);
     if (row.status !== undefined && !["confirmed","unpublished","needs-confirmation"].includes(String(row.status))) failure(`${label}[${index}]: invalid status`);
     if (row.status === "unpublished" && !/未公表|未公開|公表されてい|公表してい|確認できない/.test(rowValue)) failure(`${label}[${index}]: unpublished status must be stated in the visible value`);
     if (row.status === "needs-confirmation" && !/要確認|確認が必要|確認中|未公表|未公開|公表されてい|公表してい|確認できない/.test(rowValue)) failure(`${label}[${index}]: needs-confirmation status must be stated in the visible value`);
-    return {label:rowLabel,value:rowValue,sourceIds:scopedSourceIds(row.sourceIds,`${label}[${index}].sourceIds`,rowLabel,rowValue,kind),...(row.status !== undefined?{status:row.status as AdmissionRowStatus}: {})};
+    return {label:rowLabel,value:rowValue,sourceIds:scopedSourceIds(row.sourceIds,`${label}[${index}].sourceIds`,rowLabel,rowValue,kind,schemeId),...(row.status !== undefined?{status:row.status as AdmissionRowStatus}: {})};
   });
   const schemes = array(data.schemes,`${path}.schemes`,1).map((entry,index)=>{
     const scheme = record(entry,`${path}.schemes[${index}]`);
     const id = identifier(scheme.id,"scheme.id");
-    return {id,name:nonempty(scheme.name,`${id}.name`),scheduleRows:rows(scheme.scheduleRows,`${id}.scheduleRows`,"schedule"),examRows:rows(scheme.examRows,`${id}.examRows`,"exam"),venueRows:rows(scheme.venueRows,`${id}.venueRows`,"venue"),notes:array(scheme.notes,`${id}.notes`).map((entry,index)=>{
+    return {id,name:nonempty(scheme.name,`${id}.name`),scheduleRows:rows(scheme.scheduleRows,`${id}.scheduleRows`,"schedule",id),examRows:rows(scheme.examRows,`${id}.examRows`,"exam",id),venueRows:rows(scheme.venueRows,`${id}.venueRows`,"venue",id),notes:array(scheme.notes,`${id}.notes`).map((entry,index)=>{
       const note=record(entry,`${id}.notes[${index}]`);
       const noteText=nonempty(note.text,`${id}.notes[${index}].text`);
-      return {text:noteText,sourceIds:scopedSourceIds(note.sourceIds,`${id}.notes[${index}].sourceIds`,noteText,noteText,"note")};
+      return {text:noteText,sourceIds:scopedSourceIds(note.sourceIds,`${id}.notes[${index}].sourceIds`,noteText,noteText,"note",id)};
     })};
   });
   unique(schemes.map(scheme=>scheme.id),"scheme ids");
