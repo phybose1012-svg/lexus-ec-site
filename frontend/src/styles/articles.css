@@ -1244,3 +1244,25 @@
  .article-content .nara-readable .nara-fact-table th:first-child { width:30%; }
  .article-content .nara-readable .nara-fact-table :is(th,td):nth-child(2) { width:70%; }
 }
+
+/* Fukui: reference scoring is scoped separately from confirmed route facts. */
+.article-content .fukui-readable [data-admission-table]:not(.admission-overview-table){display:table;table-layout:fixed;width:100%;font-size:14px;}
+.article-content .fukui-readable [data-admission-table]:not(.admission-overview-table) :is(th,td){white-space:normal;overflow-wrap:anywhere;padding:12px;line-height:1.8;min-width:0;}
+.article-content .fukui-readable [data-admission-table] caption{text-align:left;font-weight:700;line-height:1.7;}
+.article-content .fukui-readable [data-admission-table]:not(.admission-overview-table) thead th:first-child{width:30%;}
+.article-content .fukui-readable [data-admission-table]:not(.admission-overview-table) thead th:last-child{width:auto;}
+.article-content .fukui-readable [data-admission-table="general-subjects"]:not(.admission-overview-table) thead th:first-child{width:18%;}
+.article-content .fukui-readable [data-admission-table="general-subjects"]:not(.admission-overview-table) thead th:nth-child(2){width:42%;}
+.article-content .fukui-readable [data-admission-table="general-subjects"]:not(.admission-overview-table) thead th:nth-child(n+3){width:20%;}
+.article-content .fukui-readable [data-admission-table="general-subjects"]:not(.admission-overview-table) :is(th,td):nth-child(n+3){padding-inline:4px;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums;}
+.article-content .fukui-readable .admission-conditions strong{display:block;color:#235d7c;}
+.article-content .fukui-readable .admission-conditions li{margin-block:14px;}
+.article-content .fukui-readable .admission-sources{font-size:12px;margin-block:16px 28px;}
+.article-content .fukui-readable .admission-sources summary{cursor:pointer;color:#526873;}
+.article-content .fukui-readable .admission-sources li{overflow-wrap:anywhere;}
+.article-content .fukui-readable [id]{scroll-margin-top:120px;}
+.article-content .fukui-readable .fukui-route-anchor{display:block;scroll-margin-top:120px;}
+@media(max-width:720px){
+ .article-content .fukui-readable [data-admission-table]:not(.admission-overview-table){font-size:13px;}
+ .article-content .fukui-readable [data-admission-table]:not(.admission-overview-table) :is(th,td){padding:10px 8px;}
+}
