@@ -23,3 +23,25 @@ test('Kyoto statistics identify the selection population and total',()=>{
 test('Kyoto refuses accidental reassignment of route identities',()=>{
  const d=structuredClone(candidate);d.schemes.reverse();assert.throws(()=>renderUniversityAdmissions(d),/two reviewed medicine routes/);
 });
+test('Kyoto retains application limits and both deadline contact exceptions',()=>{
+ const s=candidate.schemes.find(s=>s.id==='special-recommendation'),h=renderUniversityAdmissions(candidate);
+ const enrollment=h.slice(h.indexOf('id="admission-special-enrollment"'),h.indexOf('id="admission-fees"'));
+ for(const t of [s.notes[1].text,enrollment]){
+  assert.match(t,/共通テストを課す場合・課さない場合を含め/);
+  assert.match(t,/1大学・学部に限/);
+  assert.match(t,/独自日程で入学者選抜を行う公立大学・学部/);
+  assert.match(t,/前期1大学・学部、後期1大学・学部の計2つ/);
+  assert.match(t,/入学辞退許可|辞退が許可/);
+ }
+ for(const t of [s.scheduleRows[8].value,h]){
+  assert.match(t,/特別な事情により期限までに提出できない場合は、医学科教務担当へ連絡/);
+  assert.match(t,/未提出の場合は受験者としての権利を失/);
+  assert.match(t,/資格2・4はIBスコア、資格3は飛び級/);
+  assert.match(t,/提出日は受験上の諸注意で指定され、具体的な日付は未公表/);
+ }
+ for(const t of [s.scheduleRows[9].value,enrollment]){
+  assert.match(t,/2027年2月17日（水）17時必着/);
+  assert.match(t,/簡易書留速達/);
+  assert.match(t,/同じ締切日時までに医学科教務担当へ連絡し、指示に従/);
+ }
+});

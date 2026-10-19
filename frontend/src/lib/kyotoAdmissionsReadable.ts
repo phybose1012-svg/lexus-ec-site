@@ -89,11 +89,13 @@ export function renderKyotoAdmissionsReadable(data:UniversityAdmissions):string 
  c('一条校のIB認定校','学校教育法第1条の学校に当たるIB認定校の卒業見込み者は資格1で出願します。調査書に加え、IB成績証明書の写し、又は学校長発行の予想成績の写しを参考資料として提出します。'),
  c('TOEFL iBT','Home Editionは利用できません。ETSから京都大学へ公式スコアを直接送付する手続（登録コード9501）を行い、出願時には直送手続済みの旨を付記した受験者用控えのコピーも提出します（この控えはオンライン出力可）。代替としてETSから郵送された受験者用スコアレポートの原本も利用できます。代替の原本提出にオンライン出力した控えは使えません。医学科欄に最低スコアの数値は示されていません。'),
  c('本人作成の書類','学びの設計書等は志願者本人が考え、自筆で作成します。生成AIを含む本人以外が作成した文章等は利用できません。学校側も全提出書類を事実確認してください。'),
- c('共通テスト成績請求チケット','該当者は「国公立推薦型選抜用」を指定台紙に貼り、指定の宛名票を付けて医学科教務掛へ提出します。提出日は受験上の諸注意で指定されます。未提出では受験者としての権利を失うため、資格別の例外も含め案内を確認してください。')
+ c('共通テスト成績請求チケット',row(`${S}/schedule/8`).value)
  ])}`);
  const enrollment=group([...r(S,'schedule',9),...r(S,'note',1,7)],`
- <h4 id="admission-special-enrollment">特色入試の入学手続・併願</h4>${para('入学手続書類','2027年2月17日（水）17:00必着。所定の書類と宛名票を使い、医学科教務担当へ簡易書留速達で郵送してください。')}
- ${para('併願','特色入試の学部・学科等を複数併願できません。一般選抜との併願は可能です。')}
+ <h4 id="admission-special-enrollment">特色入試の入学手続・併願</h4>${para('入学手続書類',row(`${S}/schedule/9`).value)}
+ ${para('特色入試内の併願','京都大学特色入試の学部・学科等は複数併願できません。')}
+ ${para('国公立大学の学校推薦型選抜への出願','共通テストを課す場合・課さない場合を含め、1大学・学部に限ります。独自日程で入学者選抜を行う公立大学・学部は除きます。')}
+ ${para('一般選抜への出願','特色入試に出願しても、一般選抜は前期1大学・学部、後期1大学・学部の計2つに出願できます。')}
  ${para('やむを得ない入学辞退',row(`${S}/note/7`).value)}`);
  const special=`<section data-admission-scheme="${S}"><h3 id="admission-special">特色入試の資格・日程・選考</h3>${qualification}${specialDates}${specialSelection}${specialDocuments}${enrollment}${noted(S,6,'MD-PhD進学者の奨学金')}${noted(S,10,'受験上の合理的配慮')}${panel(['special-2027','special-faq-2027','special-procedure-2027','special-changes-index'])}</section>`;
  const fees=group([...r(G,'note',5),...r(S,'exam',14),...r(S,'note',4,5,8,9)],`
