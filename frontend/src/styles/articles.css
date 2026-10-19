@@ -1289,3 +1289,28 @@
  .article-content .fukui-readable [data-admission-table]:not(.admission-overview-table){font-size:13px;}
  .article-content .fukui-readable [data-admission-table]:not(.admission-overview-table) :is(th,td){padding:10px 8px;}
 }
+
+/* Fukuoka: four routes, source disclosures and compact score tables. */
+.article-content .fukuoka-readable [data-admission-table]:not(.admission-overview-table){display:table;table-layout:fixed;width:100%;font-size:14px;}
+.article-content .fukuoka-readable [data-admission-table]:not(.admission-overview-table) :is(th,td){white-space:normal;overflow-wrap:anywhere;padding:12px;line-height:1.8;min-width:0;}
+.article-content .fukuoka-readable [data-admission-table] caption{text-align:left;font-weight:700;line-height:1.7;}
+.article-content .fukuoka-readable [data-admission-table]:not(.admission-overview-table) thead th:first-child{width:29%;}
+.article-content .fukuoka-readable [data-admission-table]:not(.admission-overview-table) thead th:last-child{width:auto;}
+.article-content .fukuoka-readable [data-admission-table="ct-subjects"]:not(.admission-overview-table) thead th:first-child{width:19%;}
+.article-content .fukuoka-readable [data-admission-table="ct-subjects"]:not(.admission-overview-table) thead th:nth-child(2){width:61%;}
+.article-content .fukuoka-readable [data-admission-table="ct-subjects"]:not(.admission-overview-table) thead th:nth-child(3){width:20%;}
+.article-content .fukuoka-readable [data-admission-table="ct-subjects"] :is(th,td):nth-child(3){padding-inline:4px;white-space:nowrap;text-align:right;}
+.article-content .fukuoka-readable [data-admission-table="english-certificates"]:not(.admission-overview-table) thead th:first-child{width:46%;}
+.article-content .fukuoka-readable [data-admission-table="english-certificates"]:not(.admission-overview-table) thead th:nth-child(n+2){width:27%;}
+.article-content .fukuoka-readable [data-admission-table="statistics"] :is(td,th):nth-child(n+2){white-space:nowrap;text-align:right;}
+.article-content .fukuoka-readable .admission-conditions strong{display:block;color:#235d7c;}
+.article-content .fukuoka-readable .admission-conditions li{margin-block:14px;}
+.article-content .fukuoka-readable .admission-sources{font-size:12px;margin-block:16px 28px;}
+.article-content .fukuoka-readable .admission-sources summary{cursor:pointer;color:#526873;}
+.article-content .fukuoka-readable .admission-sources li{overflow-wrap:anywhere;}
+.article-content .fukuoka-readable [id]{scroll-margin-top:120px;}
+@media(max-width:720px){
+ .article-content .fukuoka-readable [data-admission-table]:not(.admission-overview-table){font-size:13px;}
+ .article-content .fukuoka-readable [data-admission-table]:not(.admission-overview-table) :is(th,td){padding:10px 8px;}
+ .article-content .fukuoka-readable .admission-overview-table caption{display:block;width:100%;}
+}
