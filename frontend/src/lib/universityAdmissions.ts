@@ -1,3 +1,4 @@
+import {kurumeMetadata,renderKurumeAdmissionsReadable} from './kurumeAdmissionsReadable.ts';
 import {fukuokaAdmissionsMetadata,renderFukuokaAdmissionsReadable} from './fukuokaAdmissionsReadable.ts';
 import {fukuiAdmissionsMetadata,renderFukuiAdmissionsReadable} from './fukuiAdmissionsReadable.ts';
 import {renderTokyokagakuAdmissionsReadable,tokyokagakuMetadata} from './tokyokagakuAdmissionsReadable.ts';
@@ -354,6 +355,7 @@ const htmlText = (value: string) => escapeUniversityAdmissionHtml(value).replace
 const plainText = (value: string) => value.replace(/<[^>]*>/g,"").replace(/&nbsp;/g," ").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#39;|&#039;/g,"'").replace(/&amp;/g,"&").replace(/\s+/g," ").trim();
 
 export function universityAdmissionsMetadata(data: UniversityAdmissions) {
+  if (data.path === '/information-kurume/') return {...kurumeMetadata,modified:new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(data.verifiedAt))};
   if (data.path === '/information-kyoto/') return kyotoAdmissionsMetadata(data);
   if (data.path === '/information-sangyoika/') return sangyoikaAdmissionsMetadata(data);
   if (data.path === '/information-tokyokagaku/') return {...tokyokagakuMetadata,modified:data.verifiedAt.slice(0,10)};
@@ -399,6 +401,7 @@ export function universityAdmissionsMetadata(data: UniversityAdmissions) {
 
 /** Render only canonical validated data; values remain text, never raw HTML. */
 export function renderUniversityAdmissions(input: UniversityAdmissions): string {
+  if (input.path === '/information-kurume/') return renderKurumeAdmissionsReadable(validateUniversityAdmissions(input));
   const data = validateUniversityAdmissions(input);
   if (data.path === '/information-kyoto/') return renderKyotoAdmissionsReadable(data);
   if (data.path === '/information-sangyoika/') return renderSangyoikaAdmissionsReadable(data);
@@ -452,6 +455,12 @@ export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post
     const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
     const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'入試情報'}:item.label==='地域'?{...item,value:'九州'}:item);
     return {...post,...sangyoikaAdmissionsMetadata(data),contentHtml,infoItems,toc};
+  }
+  if (data.path === '/information-kurume/') {
+    const contentHtml=renderKurumeAdmissionsReadable(validateUniversityAdmissions(data));
+    const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
+    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'入試情報'}:item.label==='地域'?{...item,value:'九州'}:item);
+    return {...post,...universityAdmissionsMetadata(data),contentHtml,infoItems,toc};
   }
   if (data.path === '/information-kyoto/') {
     const contentHtml=renderKyotoAdmissionsReadable(data);
