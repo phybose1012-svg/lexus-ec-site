@@ -1,3 +1,4 @@
+import {fukuokaAdmissionsMetadata,renderFukuokaAdmissionsReadable} from './fukuokaAdmissionsReadable.ts';
 import {fukuiAdmissionsMetadata,renderFukuiAdmissionsReadable} from './fukuiAdmissionsReadable.ts';
 import { renderMiyazakiAdmissionsReadable, miyazakiAdmissionsMetadata } from './miyazakiAdmissionsReadable.ts';
 import {naraAdmissionsMetadata, renderNaraAdmissionsReadable} from './naraAdmissionsReadable.ts';
@@ -346,6 +347,7 @@ const htmlText = (value: string) => escapeUniversityAdmissionHtml(value).replace
 const plainText = (value: string) => value.replace(/<[^>]*>/g,"").replace(/&nbsp;/g," ").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#39;|&#039;/g,"'").replace(/&amp;/g,"&").replace(/\s+/g," ").trim();
 
 export function universityAdmissionsMetadata(data: UniversityAdmissions) {
+  if (data.path === '/information-fukuoka/') return fukuokaAdmissionsMetadata(data);
   if (data.path === '/information-fukui/') return fukuiAdmissionsMetadata(data);
   if (data.path === '/information-miyazaki/') return miyazakiAdmissionsMetadata(data);
   if (data.path === '/information-nara/') return naraAdmissionsMetadata(data);
@@ -387,6 +389,7 @@ export function universityAdmissionsMetadata(data: UniversityAdmissions) {
 /** Render only canonical validated data; values remain text, never raw HTML. */
 export function renderUniversityAdmissions(input: UniversityAdmissions): string {
   const data = validateUniversityAdmissions(input);
+  if (data.path === '/information-fukuoka/') return renderFukuokaAdmissionsReadable(data);
   if (data.path === '/information-fukui/') return renderFukuiAdmissionsReadable(data);
   if (data.path === '/information-miyazaki/') return renderMiyazakiAdmissionsReadable(data);
   if (data.path === '/information-nara/') return renderNaraAdmissionsReadable(data);
@@ -429,6 +432,12 @@ type AdmissionPost = {
 export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post: T,index: ReadonlyMap<string,UniversityAdmissions>): T {
   const data=index.get(post.path);
   if (!data || post.template !== "admission-info") return post;
+  if (data.path === '/information-fukuoka/') {
+    const contentHtml=renderFukuokaAdmissionsReadable(data);
+    const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
+    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'医学科・2027年度入試情報'}:item.label==='地域'?{...item,value:'九州'}:item);
+    return {...post,...fukuokaAdmissionsMetadata(data),contentHtml,infoItems,toc};
+  }
   if (data.path === '/information-fukui/') {
     const contentHtml=renderFukuiAdmissionsReadable(data);
     const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
