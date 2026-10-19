@@ -1229,6 +1229,31 @@
 }
 
 /* Kyoto: compact numeric tables and wrapping factual tables. */
+.article-content .sangyoika-readable table {display:table;table-layout:fixed;width:100%;font-size:14px;}
+.article-content .sangyoika-readable table :is(th,td) {white-space:normal;overflow-wrap:anywhere;min-width:0;padding:12px;line-height:1.8;}
+.article-content .sangyoika-readable table caption {text-align:left;font-weight:700;padding:10px 0;line-height:1.7;}
+.article-content .sangyoika-readable .sangyoika-fact-table th:first-child {width:27%;}
+.article-content .sangyoika-readable .sangyoika-fact-table :is(th,td):nth-child(2) {width:73%;}
+.article-content .sangyoika-readable .sangyoika-matrix {font-variant-numeric:tabular-nums;}
+.article-content .sangyoika-readable .cols-2 :is(th,td) {width:50%;}
+.article-content .sangyoika-readable .cols-3 :is(th,td) {width:33.333%;}
+.article-content .sangyoika-readable .cols-4 :is(th,td) {width:25%;}
+.article-content .sangyoika-readable [data-admission-table="overview"] :is(th,td):nth-child(1) {width:18%;}
+.article-content .sangyoika-readable [data-admission-table="overview"] :is(th,td):nth-child(2) {width:17%;}
+.article-content .sangyoika-readable [data-admission-table="overview"] :is(th,td):nth-child(3) {width:30%;}
+.article-content .sangyoika-readable [data-admission-table="overview"] :is(th,td):nth-child(4) {width:35%;}
+.article-content .sangyoika-readable .admission-conditions strong {display:block;color:#235d7c;}
+.article-content .sangyoika-readable .admission-conditions li {margin-block:14px;}
+.article-content .sangyoika-readable [id] {scroll-margin-top:120px;}
+.article-content .sangyoika-readable .admission-sources {font-size:12px;margin-block:16px 28px;}
+.article-content .sangyoika-readable .admission-sources summary {cursor:pointer;color:#526873;}
+.article-content .sangyoika-readable .admission-sources li {overflow-wrap:anywhere;}
+@media(max-width:600px) {
+ .article-content .sangyoika-readable table {font-size:13px;}
+ .article-content .sangyoika-readable table :is(th,td) {padding:10px 6px;}
+ .article-content .sangyoika-readable .sangyoika-fact-table th:first-child {width:28%;}
+ .article-content .sangyoika-readable .sangyoika-fact-table :is(th,td):nth-child(2) {width:72%;}
+}
 .article-content .kyoto-readable table {display:table;table-layout:fixed;width:100%;font-size:14px;}
 .article-content .kyoto-readable table :is(th,td) {white-space:normal;overflow-wrap:anywhere;min-width:0;padding:12px;line-height:1.8;}
 .article-content .kyoto-readable table caption {text-align:left;font-weight:700;padding:10px 0;line-height:1.7;}
