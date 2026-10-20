@@ -34,3 +34,15 @@ test('Sangyoika replaces old metadata after a safety article and leaves other ro
  assert.deepEqual(applyUniversityAdmissionsFromIndex(a,index),a);
  const other={...p,path:'/information-kyoto/'};assert.equal(applyUniversityAdmissionsFromIndex(other,index),other);
 });
+test('Sangyoika contact cites the direct email source and stored ticket text stays clean',()=>{
+ const contact=candidate.basicInfoRows[2],h=renderUniversityAdmissions(candidate);
+ assert.ok(contact.sourceIds.includes('disaster-notice'));
+ assert.ok(contact.sourceLocations.some(r=>r.sourceId==='disaster-notice'&&r.location.includes('連絡先')));
+ const campus=h.slice(h.indexOf('id="admission-campus"'),h.indexOf('id="admission-entrants"'));
+ assert.match(campus,/data-admission-origins="basic\/2"[^>]*data-admission-source-ids="[^"]*disaster-notice/);
+ assert.match(campus,/data-admission-source-id="disaster-notice"/);
+ for(const id of ['general-a','general-b','general-c']){
+  const v=candidate.schemes.find(s=>s.id===id).scheduleRows[4].value;
+  assert.match(v,/A4で印刷/);assert.doesNotMatch(v,/A4でA4で/);
+ }
+});
