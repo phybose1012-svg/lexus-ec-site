@@ -1,3 +1,4 @@
+import {sangyoikaAdmissionsMetadata, renderSangyoikaAdmissionsReadable} from './sangyoikaAdmissionsReadable.ts';
 import {kyotoAdmissionsMetadata, renderKyotoAdmissionsReadable} from './kyotoAdmissionsReadable.ts';
 import {fukuiAdmissionsMetadata,renderFukuiAdmissionsReadable} from './fukuiAdmissionsReadable.ts';
 import {renderTokyokagakuAdmissionsReadable,tokyokagakuMetadata} from './tokyokagakuAdmissionsReadable.ts';
@@ -348,6 +349,7 @@ const htmlText = (value: string) => escapeUniversityAdmissionHtml(value).replace
 const plainText = (value: string) => value.replace(/<[^>]*>/g,"").replace(/&nbsp;/g," ").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#39;|&#039;/g,"'").replace(/&amp;/g,"&").replace(/\s+/g," ").trim();
 
 export function universityAdmissionsMetadata(data: UniversityAdmissions) {
+  if (data.path === '/information-sangyoika/') return sangyoikaAdmissionsMetadata(data);
   if (data.path === '/information-kyoto/') return kyotoAdmissionsMetadata(data);
   if (data.path === '/information-tokyokagaku/') return {...tokyokagakuMetadata,modified:data.verifiedAt.slice(0,10)};
   if (data.path === '/information-fukui/') return fukuiAdmissionsMetadata(data);
@@ -391,6 +393,7 @@ export function universityAdmissionsMetadata(data: UniversityAdmissions) {
 /** Render only canonical validated data; values remain text, never raw HTML. */
 export function renderUniversityAdmissions(input: UniversityAdmissions): string {
   const data = validateUniversityAdmissions(input);
+  if (data.path === '/information-sangyoika/') return renderSangyoikaAdmissionsReadable(data);
   if (data.path === '/information-kyoto/') return renderKyotoAdmissionsReadable(data);
   if (data.path === '/information-tokyokagaku/') return renderTokyokagakuAdmissionsReadable(data);
   if (data.path === '/information-fukui/') return renderFukuiAdmissionsReadable(data);
@@ -435,6 +438,12 @@ type AdmissionPost = {
 export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post: T,index: ReadonlyMap<string,UniversityAdmissions>): T {
   const data=index.get(post.path);
   if (!data || post.template !== "admission-info") return post;
+  if (data.path === '/information-sangyoika/') {
+    const contentHtml=renderSangyoikaAdmissionsReadable(data);
+    const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
+    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'入試情報'}:item.label==='地域'?{...item,value:'九州'}:item);
+    return {...post,...sangyoikaAdmissionsMetadata(data),contentHtml,infoItems,toc};
+  }
   if (data.path === '/information-kyoto/') {
     const contentHtml=renderKyotoAdmissionsReadable(data);
     const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
