@@ -112,7 +112,7 @@ export function renderKansaiAdmissionsReadable(data:UniversityAdmissions):string
  {label:'貸与期間',cells:['6年間・必須','6年間・必須'],fact:take(['regional-osaka/exam/11','regional-shizuoka/exam/11'])},
  {label:'貸与利息',cells:['年率10%','年率10%'],fact:take(['regional-osaka/exam/11','regional-shizuoka/exam/11'])}
  ],'regional-loans')+'<p>留年した年度は貸与されません。返還免除には、それぞれの所定条件をすべて満たす必要があります。</p>';
- html+=h('admission-scheme-regional-osaka','地域枠：大阪府（認可申請中）')+list([take('regional-osaka/note/1','申請人数の変更','9月16日に大阪府の申請人数は旧予定3名から2名へ変更されています。'),take('regional-osaka/exam/12','返還免除の全必須条件'),take('regional-osaka/note/2','勤務先の指定・離脱と免許取得条件')])+src(['regional-index','osaka-loan','regional-details-2027','guidelines-2027'],{'guidelines-2027':'冊子22ページ'})+back;
+ html+=h('admission-scheme-regional-osaka','地域枠：大阪府（認可申請中）')+list([take('regional-osaka/note/1','申請人数の変更','9月16日に大阪府の申請人数は旧予定3名から2名へ変更されています。'),take('regional-osaka/exam/12','返還免除の全5必須条件'),take('regional-osaka/note/5','⑤ア：周産期医療'),take('regional-osaka/note/6','⑤イ：小児医療と3年間の勤務先'),take('regional-osaka/note/7','⑤ウ：救急医療'),take('regional-osaka/note/8','⑤エ：総合診療'),take('regional-osaka/note/9','⑤オ：総合診療・内科と感染症診療'),take('regional-osaka/note/10','指定診療業務・医療機関の変更'),take('regional-osaka/note/2','勤務先の指定・離脱と免許取得条件')])+src(['regional-index','osaka-loan','regional-details-2027','guidelines-2027'],{'guidelines-2027':'冊子22ページ'})+back;
  html+=h('admission-scheme-regional-shizuoka','地域枠：静岡県（認可申請中）')+list([take('regional-shizuoka/exam/12','返還免除の必須条件')])+src(['shizuoka-loan','regional-index'])+back;
 
  html+=h('kansai-venues','試験会場・受験票の指定')+list([
