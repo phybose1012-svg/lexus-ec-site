@@ -402,8 +402,11 @@ function buildPost(record, restPost) {
 }
 
 const inventory = JSON.parse(await readFile(inventoryPath, "utf8"));
+// Removal requests take precedence over the legacy inventory.
+const retiredVoicePaths = JSON.parse(await readFile(path.join(root, "src", "data", "retiredVoicePaths.json"), "utf8"));
 const records = (inventory.records || [])
   .filter((record) => record.recommendedTemplate === "voice-interview")
+  .filter((record) => !retiredVoicePaths.includes(record.path))
   .sort((a, b) => (b.date || "").localeCompare(a.date || ""));
 
 const posts = [];

@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
+import retiredVoicePaths from "../data/retiredVoicePaths.json";
 import { normalizeInternalHref } from "./internalLinks";
 
 export type VoiceImage = {
@@ -292,7 +293,8 @@ export const getVoicePage = (): VoicePage => {
     .map((image, index) => ({ ...image, ...successDetails[index] }));
   void legacySuccessPhotos;
   const videos = extractVideos(html, images);
-  const interviews = extractInterviews(html, images, garden?.pos || 0);
+  const interviews = extractInterviews(html, images, garden?.pos || 0)
+    .filter((interview) => !retiredVoicePaths.includes(interview.href));
   const guideTitle = headings.find((heading) => heading.text === "資料請求した方へプレゼント")?.text || "資料請求した方へプレゼント";
   const guideLead =
     headings.find((heading) => heading.text.includes("レクサスのプロ講師") && heading.tag === "h2")?.text ||
