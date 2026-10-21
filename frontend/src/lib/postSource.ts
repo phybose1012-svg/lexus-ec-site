@@ -2,6 +2,7 @@ import admissionInfoPosts from "../data/generated/admissionInfoPosts.json";
 import interviewPrepPosts from "../data/generated/interviewPrepPosts.json";
 import universityStrategyPosts from "../data/generated/universityStrategyPosts.json";
 import voiceInterviewPosts from "../data/generated/voiceInterviewPosts.json";
+import retiredVoicePaths from "../data/retiredVoicePaths.json";
 import urgentPostCorrections from "../data/generated/urgentPostCorrections.json";
 import type { ArticleTemplateId } from "../data/articleTemplates";
 import { classifyArticlePost } from "../data/articleTaxonomy.js";
@@ -210,6 +211,8 @@ export const migratedPosts = [
   ...interviewPrepPosts,
   ...voiceInterviewPosts,
 ]
+  // Honor removal requests even if an older generated source is restored.
+  .filter((post) => !retiredVoicePaths.includes(normalizeMigratedPostPath(post.path)))
   .filter((post) => !dedicatedFixedPostPaths.has(normalizeMigratedPostPath((post as MigratedPost).path)))
   .map((post) => prepareMigratedPost(correctMigratedPost(post as MigratedPost))) as MigratedPost[];
 
