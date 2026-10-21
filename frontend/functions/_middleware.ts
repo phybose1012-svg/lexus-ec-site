@@ -79,7 +79,26 @@ const cssPropertyByStyleKey: Record<(typeof styleKeys)[number], string> = {
 const signedPixelStyleKeys = new Set(["letterSpacing", "marginTop", "marginRight", "marginBottom", "marginLeft"]);
 const fontWeightValues = new Set(["400", "500", "600", "700", "800", "900"]);
 
+// Withdrawal requests bypass static asset caches, including legacy photo URLs.
+const retiredPaths = new Set([
+  "/voice-069",
+  "/voice-069/",
+  "/voice-069/index.html",
+  "/assets/legacy/wp-content/uploads/2024/09/tanaka.jpg",
+  "/wp-content/uploads/2024/09/tanaka.jpg",
+]);
+
 export const onRequest = async ({ request, env, next }: FunctionContext) => {
+  if (retiredPaths.has(new URL(request.url).pathname)) {
+    return new Response(request.method === "HEAD" ? null : "このページは削除されました。", {
+      status: 410,
+      headers: {
+        "Content-Type": "text/plain; charset=utf-8",
+        "Cache-Control": "no-store, max-age=0",
+        "X-Robots-Tag": "noindex, noarchive",
+      },
+    });
+  }
   const response = await next();
   if (request.method !== "GET") return response;
 
