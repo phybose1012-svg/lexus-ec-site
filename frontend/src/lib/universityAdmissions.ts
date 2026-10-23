@@ -1,3 +1,4 @@
+import {keioAdmissionsMetadata,renderKeioAdmissionsReadable} from './keioAdmissionsReadable.ts';
 import {kansaiAdmissionsMetadata,renderKansaiAdmissionsReadable} from './kansaiAdmissionsReadable.ts';
 import {kurumeMetadata,renderKurumeAdmissionsReadable} from './kurumeAdmissionsReadable.ts';
 import {fukuokaAdmissionsMetadata,renderFukuokaAdmissionsReadable} from './fukuokaAdmissionsReadable.ts';
@@ -209,6 +210,13 @@ const omuOfficialLinkedSources: Record<string, {url: string; sha256: string}> = 
   }
 };
 const sourceDomain = (url: string) => new URL(url).hostname.split(".").slice(-3).join(".");
+// Exact county evidence for Keio's Tochigi route only.
+const keioRegionalSources: Record<string,{url:string;sha256:string}> = {
+  'prefecture-region': {url:'https://www.pref.tochigi.lg.jp/e02/welfare/iryou/ishikakuho/keiou.html',sha256:'bc8db646beb082b4c60fb728379b18023fef6f0bbad373438fc16303cc4100cb'},
+  'region-guide-2027': {url:'https://www.pref.tochigi.lg.jp/e02/welfare/iryou/ishikakuho/documents/r9keioutebiki.pdf',sha256:'74decabb2400d0d8018adf533ed5ae0db1117ee93d64d2cd2fdce4b50a52eeb6'},
+  'region-career': {url:'https://www.pref.tochigi.lg.jp/e02/ishikakuho/careerprogram.html',sha256:'45e2a16f606e261009cb6e1a0e148d48e49c8ac94afd0d9273260de7ac12650c'},
+  'region-career-text': {url:'https://www.pref.tochigi.lg.jp/e02/ishikakuho/documents/20260515082811.pdf',sha256:'31a003d9061677edfb723d72eb128e58bc510ad0b992bd7bc59f99bfeae6e8cd'}
+};
 // Nara's prefectural scholarship references are supplementary sources only.
 // Exact reviewed bytes do not authorize the prefecture to set university exam rules.
 const naraSupplementarySources: Record<string,{url:string;sha256:string}> = {
@@ -264,6 +272,7 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
   const universitySourceIds = new Set<string>();
   const commonTestSourceIds = new Set<string>();
   const supplementarySourceIds = new Set<string>();
+  const keioRegionalSourceIds = new Set<string>();
   const historicalKochiStatisticsId = "medicine-entrants-2026";
   const sources = array(data.sources, `${path}.sources`, 1).map((entry,index) => {
     const source = record(entry, `${path}.sources[${index}]`);
@@ -285,9 +294,12 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
     const commonTestOwned = hostBelongsTo(parsed.hostname,commonTestOfficialDomain);
     const supplementary = path === '/information-nara/' ? naraSupplementarySources[id] : undefined;
     const exactSupplementary = Boolean(supplementary && parsed.href===supplementary.url && url===supplementary.url && source.sha256===supplementary.sha256);
-    if (!universityOwned && !commonTestOwned && !exactSupplementary) failure(`${id}: source host ${parsed.hostname} is not official for ${profile.university} or the Common Test publisher`);
+    const keioRegional = path === '/information-keio/' ? keioRegionalSources[id] : undefined;
+    const exactKeioRegional = Boolean(keioRegional && parsed.href===keioRegional.url && url===keioRegional.url && source.sha256===keioRegional.sha256);
+    if (!universityOwned && !commonTestOwned && !exactSupplementary && !exactKeioRegional) failure(`${id}: source host ${parsed.hostname} is not official for ${profile.university} or the Common Test publisher`);
     if (universityOwned) universitySourceIds.add(id);
     else if (commonTestOwned) commonTestSourceIds.add(id);
+    else if (exactKeioRegional) keioRegionalSourceIds.add(id);
     else supplementarySourceIds.add(id);
     const title = nonempty(source.title, `${id}.title`);
     const retrievedAt = date(source.retrievedAt, `${id}.retrievedAt`);
@@ -308,6 +320,7 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
   };
   const scopedSourceIds = (value: unknown,label: string,claimLabel: string,claimValue: string,kind: "schedule"|"exam"|"venue"|"note") => {
     const ids=sourceIds(value,label);
+    if(ids.some(id=>keioRegionalSourceIds.has(id)) && !label.startsWith('tochigi.')) failure(`${label}: Keio's county evidence is limited to the Tochigi route`);
     if(ids.some(id=>supplementarySourceIds.has(id))) failure(`${label}: supplementary prefectural sources cannot substantiate university admission rows`);
     if (path === "/information-kochi/" && ids.includes(historicalKochiStatisticsId) && (!/2026年度/.test(`${claimLabel} ${claimValue}`) || !/入学者数|入学者統計|入学実績/.test(`${claimLabel} ${claimValue}`))) failure(`${label}: 2026 entrant statistics cannot substantiate an unqualified 2027 claim`);
     if (!ids.some(id=>commonTestSourceIds.has(id))) return ids;
@@ -405,6 +418,7 @@ export function universityAdmissionsMetadata(data: UniversityAdmissions) {
 export function renderUniversityAdmissions(input: UniversityAdmissions): string {
   if (input.path === '/information-kurume/') return renderKurumeAdmissionsReadable(validateUniversityAdmissions(input));
   const data = validateUniversityAdmissions(input);
+  if (data.path === '/information-keio/') return renderKeioAdmissionsReadable(data);
   if (data.path === '/information-kansai/') return renderKansaiAdmissionsReadable(data);
   if (data.path === '/information-kyoto/') return renderKyotoAdmissionsReadable(data);
   if (data.path === '/information-sangyoika/') return renderSangyoikaAdmissionsReadable(data);
@@ -453,6 +467,12 @@ type AdmissionPost = {
 export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post: T,index: ReadonlyMap<string,UniversityAdmissions>): T {
   const data=index.get(post.path);
   if (!data || post.template !== "admission-info") return post;
+  if (data.path === '/information-keio/') {
+    const contentHtml=renderKeioAdmissionsReadable(data);
+    const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
+    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'医学科・2027年度入試情報'}:item.label==='地域'?{...item,value:'関東（東京）'}:item);
+    return {...post,...keioAdmissionsMetadata(data),contentHtml,infoItems,toc};
+  }
   if (data.path === '/information-kansai/') {
     const contentHtml=renderKansaiAdmissionsReadable(data);
     const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
