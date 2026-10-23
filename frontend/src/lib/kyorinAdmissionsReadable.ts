@@ -3,6 +3,16 @@ import type {UniversityAdmissions} from './universityAdmissions.ts';
 import {admissionFactAttributes as attrs,escapeAdmissionText as esc,renderAdmissionReaderTable as table,renderAdmissionReaderSources as sources} from './admissionsReaderPrimitives.ts';
 import type {AdmissionReaderRow as Row} from './admissionsReaderPrimitives.ts';
 
+export const kyorinSupplementarySources:Record<string,{url:string;sha256:string}>={
+  "gunma-pref-guide": {
+    "url": "https://www.pref.gunma.jp/uploaded/attachment/708802.pdf",
+    "sha256": "047dd3f1d3a0828c8cc27395d3f6a11e14814e59982d15176fd459830b98bca4"
+  },
+  "gunma-pref-rule": {
+    "url": "https://ops-jg.d1-law.com/opensearch/SrJbF01/init?houcd=H421902100033&jbnJiten=5080611&jctcd=8A7FE9A39A&no=2&totalCount=2",
+    "sha256": "40e06d22c43a1fa9061cf3ac08c4da63d31c8a6ccbb8580bfac5482c176673d2"
+  }
+};
 export function kyorinAdmissionsMetadata(data:UniversityAdmissions){return {
  title:'杏林大学医学部｜2027年度入試情報',displayTitle:'杏林大学 医学部2027年度入試情報',displayTitleLines:['杏林大学 医学部','2027年度入試情報'],
  description:'杏林大学医学部医学科2027年度の一般・共通テスト利用・外国人留学生・地域枠。日程、科目・配点、資格、会場、学費と修学資金の条件、三鷹キャンパスの基本情報を掲載。',
@@ -10,7 +20,7 @@ export function kyorinAdmissionsMetadata(data:UniversityAdmissions){return {
  modified:new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(data.verifiedAt)),
  keyPoints:[
   '一般選抜は地域枠を含め79人、一次試験は2027年2月2日。英語・数学・理科2科目で350点です。',
-  '共通テスト利用は25人・600点。数学2科目と理科2科目、英語または国語を使い、大学の二次試験も受験します。二次の試験表記には資料差があります。',
+  '共通テスト利用は25人・600点。数学2科目と理科2科目、英語または国語を使い、大学の二次試験も受験します。大学の二次は小論文60分・面接です。',
   '地域枠は東京都8人・新潟県4人・群馬県1人の認可申請予定。一般選抜と同時出願し、合格時の入学確約と修学資金・指定勤務の条件があります。'
  ]
 };}
@@ -18,8 +28,8 @@ const h2=(id:string,title:string)=>`<h2 id="kyorin-${id}">${esc(title)}</h2>`,su
 export function renderKyorinAdmissionsReadable(data:UniversityAdmissions){
  const all:Row[]=[];
  for(const s of data.schemes)for(const[k,key]of [['schedule','scheduleRows'],['exam','examRows'],['venue','venueRows'],['note','notes']] as const)s[key].forEach((r,i)=>all.push({label:'label'in r?r.label:'条件・注意',value:'value'in r?r.value:r.text,sourceIds:r.sourceIds,status:'status'in r?r.status:undefined,origins:[`${s.id}/${k}/${i}`]}));
- const coverageLabels=['募集方式','地域枠の募集人数','二次試験の資料差','留学生の書類提出','群馬県の貸与条件','学納金以外の費用','出願の完了条件','地域枠の入学確約と辞退','東京都の受給条件','県別の指定勤務','留学生の日本語試験','成績開示','外国籍者の居住・在留資格','遅刻・感染症','合否照会と通知','入学手続書類の持参','地域枠の貸与継続','東京都の返還猶予'];
- const covSources=[['guide'],['guide','index'],['guide','index'],['foreign-guide'],['gunma-guide','gunma-4'],['guide'],['guide'],['guide','tokyo-forms','niigata-forms','gunma-forms'],['tokyo-4','tokyo-7-seiyaku'],['niigata-3','gunma-4'],['foreign-guide'],['guide'],['guide','foreign-guide'],['guide'],['guide'],['guide'],['tokyo-guide','niigata-guide','gunma-guide','niigata-5-kitei'],['tokyo-4']];
+ const coverageLabels=['募集方式','地域枠の募集人数','大学二次の案内','留学生の書類提出','群馬県の貸与条件','学納金以外の費用','出願の完了条件','地域枠の入学確約と辞退','東京都の受給条件','県別の指定勤務','留学生の日本語試験','成績開示','外国籍者の居住・在留資格','遅刻・感染症','合否照会と通知','入学手続書類の持参','地域枠の貸与継続','東京都の返還猶予'];
+ const covSources=[['guide'],['guide','index'],['guide','index'],['foreign-guide'],['gunma-guide','gunma-4','gunma-pref-guide','gunma-pref-rule'],['guide'],['guide'],['guide','tokyo-forms','niigata-forms','gunma-forms'],['tokyo-4','tokyo-7-seiyaku'],['niigata-3','gunma-4'],['foreign-guide'],['guide'],['guide','foreign-guide'],['guide'],['guide'],['guide'],['tokyo-guide','niigata-guide','gunma-guide','niigata-5-kitei'],['tokyo-4']];
  data.coverageNotes.forEach((value,i)=>all.push({label:coverageLabels[i],value,sourceIds:covSources[i],origins:[`coverage/${i}`]}));raw.basicInfoRows.forEach((r,i)=>all.push({...r,origins:[`basic/${i}`]}));
  const used=new Set<string>(),get=(id:string)=>{const r=all.find(r=>r.origins[0]===id);if(!r)throw Error('Unknown Kyorin fact '+id);return r;},ids=(s:string,k:string,ns:number[])=>ns.map(n=>`${s}/${k}/${n}`);
  const mark=(originIds:string[],label?:string,value?:string):Row=>{const rs=originIds.map(get);originIds.forEach(id=>used.add(id));return{label:label??rs[0].label,value:value??rs[0].value,origins:originIds,sourceIds:[...new Set(rs.flatMap(r=>r.sourceIds))],...(rs.some(r=>r.status==='needs-confirmation')?{status:'needs-confirmation'}:{})};};
@@ -41,7 +51,7 @@ export function renderKyorinAdmissionsReadable(data:UniversityAdmissions){
  html+=h2('common-test','大学入学共通テスト利用選抜')+table('共通テスト利用の出願・試験・入学手続日程',take('common-test','schedule',[0,4,5,6,7,8]))+sub('共通テスト利用の出願資格')+wrap(['common-test/venue/3'],'<p><a href="#kyorin-general">一般選抜と同じ大学入学資格</a>が必要です。加えて、2027年度大学入学共通テストの指定教科・科目を受験してください。</p>');
  html+=num('共通テスト600点の指定科目',['教科','配点','指定科目'],[['数学','各100点','数学Ⅰ・A、数学Ⅱ・B・Cの両方'],['理科','各100点','物理・化学・生物から2科目'],['英語または国語','200点','英語はR100点＋L100点。国語は近代以降の文章のみ']],[ids('common-test','exam',[1,2]),ids('common-test','exam',[1,2]),ids('common-test','exam',[1,3])]);
  html+=wrap(ids('common-test','exam',[3]),'<p>国語は110点満点を200点へ換算します。英語と国語を両方受験した場合は、高得点の科目を採用します。</p>');
- html+=cond([mark(['common-test/exam/4','common-test/exam/5','common-test/note/0','coverage/2'],'二次試験の資料差','募集要項は、面接資料作成8:20～8:45、小論文9:00～10:00（60分）、面接10:30～17:00の指定時刻と案内しています。大学Web一覧は「教科・科目に係る個別テスト」と表記しているため、追加の学科試験の有無は出願前に大学へ確認してください。'),...take('common-test','exam',[6])]);
+ html+=cond([mark(['common-test/exam/4','common-test/exam/5','common-test/note/0','coverage/2'],'大学の二次試験','二次は小論文（60分）と面接です。入室8:00～8:20、面接資料作成8:20～8:45、諸注意8:45～9:00、小論文9:00～10:00、面接10:30～17:00の指定時刻。面接の開始は受験番号等により異なり、終了が遅くなる場合があります。Web一覧の表記は「教科・科目に係る個別テスト」です。受験前に最新の募集要項・変更通知と大学の指定をご確認ください。'),...take('common-test','exam',[6])]);
  html+=table('共通テスト利用の会場と成績請求',take('common-test','venue',[0,5]),'venue')+src(['guide','index']);
  html+=h2('foreign','外国人留学生選抜')+table('外国人留学生の出願・試験・入学手続日程',take('foreign','schedule',[0,3,4,5,6,7]));
  html+=sub('外国人留学生の出願資格・書類')+cond([...take('foreign','exam',[1]),mark(['coverage/10'],'日本語試験の扱い'),...take('foreign','venue',[2,3,4]),mark(['foreign/schedule/2','foreign/note/1','coverage/3'],'出願書類の提出先・持参可否')]);
