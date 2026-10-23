@@ -1,3 +1,4 @@
+import {kyorinAdmissionsMetadata,renderKyorinAdmissionsReadable} from './kyorinAdmissionsReadable.ts';
 import {keioAdmissionsMetadata,renderKeioAdmissionsReadable} from './keioAdmissionsReadable.ts';
 import {kokusaiAdmissionsMetadata,renderKokusaiAdmissionsReadable} from './kokusaiAdmissionsReadable.ts';
 import {kansaiAdmissionsMetadata,renderKansaiAdmissionsReadable} from './kansaiAdmissionsReadable.ts';
@@ -376,6 +377,7 @@ const htmlText = (value: string) => escapeUniversityAdmissionHtml(value).replace
 const plainText = (value: string) => value.replace(/<[^>]*>/g,"").replace(/&nbsp;/g," ").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#39;|&#039;/g,"'").replace(/&amp;/g,"&").replace(/\s+/g," ").trim();
 
 export function universityAdmissionsMetadata(data: UniversityAdmissions) {
+  if (data.path === '/information-kyorin/') return kyorinAdmissionsMetadata(data);
   if (data.path === '/information-kokusai/') return kokusaiAdmissionsMetadata(data);
   if (data.path === '/information-kansai/') return kansaiAdmissionsMetadata(data);
   if (data.path === '/information-kurume/') return {...kurumeMetadata,modified:new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(data.verifiedAt))};
@@ -422,6 +424,7 @@ export function universityAdmissionsMetadata(data: UniversityAdmissions) {
 
 /** Render only canonical validated data; values remain text, never raw HTML. */
 export function renderUniversityAdmissions(input: UniversityAdmissions): string {
+  if (input.path === '/information-kyorin/') return renderKyorinAdmissionsReadable(validateUniversityAdmissions(input));
   if (input.path === '/information-kokusai/') return renderKokusaiAdmissionsReadable(validateUniversityAdmissions(input));
   if (input.path === '/information-kurume/') return renderKurumeAdmissionsReadable(validateUniversityAdmissions(input));
   const data = validateUniversityAdmissions(input);
@@ -472,6 +475,12 @@ type AdmissionPost = {
 export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post: T,index: ReadonlyMap<string,UniversityAdmissions>): T {
   const data=index.get(post.path);
   if (!data || post.template !== "admission-info") return post;
+  if (data.path === '/information-kyorin/') {
+    const contentHtml=renderKyorinAdmissionsReadable(validateUniversityAdmissions(data));
+    const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
+    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'医学科・2027年度入試情報'}:item.label==='地域'?{...item,value:'関東（東京）'}:item);
+    return {...post,...kyorinAdmissionsMetadata(data),contentHtml,infoItems,toc};
+  }
   if (data.path === '/information-kokusai/') {
     const contentHtml=renderKokusaiAdmissionsReadable(validateUniversityAdmissions(data));
     const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
