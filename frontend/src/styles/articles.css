@@ -1315,6 +1315,25 @@
  .article-content .fukui-readable [data-admission-table]:not(.admission-overview-table) :is(th,td){padding:10px 8px;}
 }
 /* Kansai: shared dates, route-specific scoring and source disclosures. */
+/* Keio: compact dates, full eligibility conditions and separate sources. */
+.article-content .keio-readable [data-admission-table]:not(.admission-overview-table){display:table;table-layout:fixed;width:100%;font-size:14px;}
+.article-content .keio-readable [data-admission-table]:not(.admission-overview-table) :is(th,td){white-space:normal;overflow-wrap:anywhere;min-width:0;padding:12px;line-height:1.8;}
+.article-content .keio-readable [data-admission-table] caption{text-align:left;font-weight:700;line-height:1.7;}
+.article-content .keio-readable [data-admission-table]:not(.admission-overview-table) thead th:first-child{width:28%;}
+.article-content .keio-readable [data-admission-table]:not(.admission-overview-table) thead th:last-child{width:auto;}
+.article-content .keio-readable [data-admission-table="gender"] thead th:first-child{width:34%;}
+.article-content .keio-readable [data-admission-table="gender"] td{text-align:right;white-space:nowrap;}
+.article-content .keio-readable .admission-conditions strong{display:block;color:#235d7c;}
+.article-content .keio-readable .admission-conditions li{margin-block:14px;line-height:1.9;}
+.article-content .keio-readable .admission-sources{font-size:12px;margin-block:16px 28px;}
+.article-content .keio-readable .admission-sources summary{cursor:pointer;color:#526873;}
+.article-content .keio-readable .admission-sources li{overflow-wrap:anywhere;}
+.article-content .keio-readable [id]{scroll-margin-top:120px;}
+@media(max-width:720px){
+ .article-content .keio-readable [data-admission-table]:not(.admission-overview-table){font-size:13px;}
+ .article-content .keio-readable [data-admission-table]:not(.admission-overview-table) :is(th,td){padding:10px 8px;}
+ .article-content .keio-readable .admission-overview-table caption{display:block;width:100%;}
+}
 .article-content .kansai-readable [data-admission-table]:not(.admission-overview-table){display:table;table-layout:fixed;width:100%;font-size:14px;}
 .article-content .kansai-readable [data-admission-table]:not(.admission-overview-table) :is(th,td){white-space:normal;overflow-wrap:anywhere;min-width:0;padding:12px;line-height:1.8;}
 .article-content .kansai-readable [data-admission-table] caption{text-align:left;font-weight:700;line-height:1.7;}
