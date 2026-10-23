@@ -1,3 +1,4 @@
+import {kokusaiAdmissionsMetadata,renderKokusaiAdmissionsReadable} from './kokusaiAdmissionsReadable.ts';
 import {keioAdmissionsMetadata,renderKeioAdmissionsReadable} from './keioAdmissionsReadable.ts';
 import {kansaiAdmissionsMetadata,renderKansaiAdmissionsReadable} from './kansaiAdmissionsReadable.ts';
 import {kurumeMetadata,renderKurumeAdmissionsReadable} from './kurumeAdmissionsReadable.ts';
@@ -236,6 +237,13 @@ const universitySpecificCondition = /募集|合否|選抜|前期|後期|地域�
 const failure = (message: string): never => { throw new Error(`University admissions data: ${message}`); };
 const record = (value: unknown, label: string): Record<string, unknown> =>
   value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : failure(`${label} must be an object`);
+// IUHW explicitly refers to the latest EJU syllabus for special-selection scopes.
+// This exact JASSO index only supplements the university's own scope instruction.
+const kokusaiEjuSource = {
+  id:'eju-syllabus-index',
+  url:'https://www.jasso.go.jp/ryugaku/eju/examinee/syllabus/index.html',
+  sha256:'93dff9858a070d63100d8f92267a0d3ed1797b517b923b29920784fa92f11e6d'
+};
 const nonempty = (value: unknown, label: string): string =>
   typeof value === "string" && value.trim() ? value : failure(`${label} must be a nonempty string`);
 const array = (value: unknown, label: string, minimum = 0): unknown[] =>
@@ -292,7 +300,8 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
       && Object.entries(omuTemporaryOwnership).every(([key, value]) => (omuProof as Record<string, unknown>)[key] === value));
     const universityOwned = allowed.some(domain => hostBelongsTo(parsed.hostname,domain)) || exactKochiPdf || omuOwned;
     const commonTestOwned = hostBelongsTo(parsed.hostname,commonTestOfficialDomain);
-    const supplementary = path === '/information-nara/' ? naraSupplementarySources[id] : undefined;
+    const supplementary = path === '/information-nara/' ? naraSupplementarySources[id]
+      : path === '/information-kokusai/' && id === kokusaiEjuSource.id ? kokusaiEjuSource : undefined;
     const exactSupplementary = Boolean(supplementary && parsed.href===supplementary.url && url===supplementary.url && source.sha256===supplementary.sha256);
     const keioRegional = path === '/information-keio/' ? keioRegionalSources[id] : undefined;
     const exactKeioRegional = Boolean(keioRegional && parsed.href===keioRegional.url && url===keioRegional.url && source.sha256===keioRegional.sha256);
@@ -321,7 +330,10 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
   const scopedSourceIds = (value: unknown,label: string,claimLabel: string,claimValue: string,kind: "schedule"|"exam"|"venue"|"note") => {
     const ids=sourceIds(value,label);
     if(ids.some(id=>keioRegionalSourceIds.has(id)) && !label.startsWith('tochigi.')) failure(`${label}: Keio's county evidence is limited to the Tochigi route`);
-    if(ids.some(id=>supplementarySourceIds.has(id))) failure(`${label}: supplementary prefectural sources cannot substantiate university admission rows`);
+    const kokusaiScope = path === '/information-kokusai/' && kind === 'exam'
+      && claimLabel === 'EJUの詳細範囲' && ids.includes('guide')
+      && ids.every(id=>id==='guide'||id===kokusaiEjuSource.id);
+    if(ids.some(id=>supplementarySourceIds.has(id)) && !kokusaiScope) failure(`${label}: supplementary sources cannot replace university admission evidence`);
     if (path === "/information-kochi/" && ids.includes(historicalKochiStatisticsId) && (!/2026年度/.test(`${claimLabel} ${claimValue}`) || !/入学者数|入学者統計|入学実績/.test(`${claimLabel} ${claimValue}`))) failure(`${label}: 2026 entrant statistics cannot substantiate an unqualified 2027 claim`);
     if (!ids.some(id=>commonTestSourceIds.has(id))) return ids;
     if (!commonTestReference.test(claimLabel)) failure(`${label}: DNC citations are limited to explicitly named Common Test rows or notes`);
@@ -369,6 +381,7 @@ const htmlText = (value: string) => escapeUniversityAdmissionHtml(value).replace
 const plainText = (value: string) => value.replace(/<[^>]*>/g,"").replace(/&nbsp;/g," ").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#39;|&#039;/g,"'").replace(/&amp;/g,"&").replace(/\s+/g," ").trim();
 
 export function universityAdmissionsMetadata(data: UniversityAdmissions) {
+  if (data.path === '/information-kokusai/') return kokusaiAdmissionsMetadata(data);
   if (data.path === '/information-kansai/') return kansaiAdmissionsMetadata(data);
   if (data.path === '/information-kurume/') return {...kurumeMetadata,modified:new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(data.verifiedAt))};
   if (data.path === '/information-kyoto/') return kyotoAdmissionsMetadata(data);
@@ -416,6 +429,7 @@ export function universityAdmissionsMetadata(data: UniversityAdmissions) {
 
 /** Render only canonical validated data; values remain text, never raw HTML. */
 export function renderUniversityAdmissions(input: UniversityAdmissions): string {
+  if (input.path === '/information-kokusai/') return renderKokusaiAdmissionsReadable(validateUniversityAdmissions(input));
   if (input.path === '/information-kurume/') return renderKurumeAdmissionsReadable(validateUniversityAdmissions(input));
   const data = validateUniversityAdmissions(input);
   if (data.path === '/information-keio/') return renderKeioAdmissionsReadable(data);
@@ -467,6 +481,12 @@ type AdmissionPost = {
 export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post: T,index: ReadonlyMap<string,UniversityAdmissions>): T {
   const data=index.get(post.path);
   if (!data || post.template !== "admission-info") return post;
+  if (data.path === '/information-kokusai/') {
+    const contentHtml=renderKokusaiAdmissionsReadable(validateUniversityAdmissions(data));
+    const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
+    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'医学科・2027年度入試情報'}:item.label==='地域'?{...item,value:'関東（千葉）'}:item);
+    return {...post,...kokusaiAdmissionsMetadata(data),contentHtml,infoItems,toc};
+  }
   if (data.path === '/information-keio/') {
     const contentHtml=renderKeioAdmissionsReadable(data);
     const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
