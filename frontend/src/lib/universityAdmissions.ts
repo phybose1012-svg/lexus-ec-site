@@ -1,3 +1,4 @@
+import {osakaikaAdmissionsMetadata,renderOsakaikaAdmissionsReadable,osakaikaRegionalSources} from './osakaikaAdmissionsReadable.ts';
 import {kyorinAdmissionsMetadata,renderKyorinAdmissionsReadable,kyorinSupplementarySources} from './kyorinAdmissionsReadable.ts';
 import {keioAdmissionsMetadata,renderKeioAdmissionsReadable} from './keioAdmissionsReadable.ts';
 import {kokusaiAdmissionsMetadata,renderKokusaiAdmissionsReadable} from './kokusaiAdmissionsReadable.ts';
@@ -296,9 +297,10 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
       && Object.entries(omuTemporaryOwnership).every(([key, value]) => (omuProof as Record<string, unknown>)[key] === value));
     const universityOwned = allowed.some(domain => hostBelongsTo(parsed.hostname,domain)) || exactKochiPdf || omuOwned;
     const commonTestOwned = hostBelongsTo(parsed.hostname,commonTestOfficialDomain);
-    const supplementary = path === '/information-kyorin/' ? kyorinSupplementarySources[id] : path === '/information-nara/' ? naraSupplementarySources[id]
+    const supplementary = path === '/information-osakaika/' ? osakaikaRegionalSources[id] : path === '/information-kyorin/' ? kyorinSupplementarySources[id] : path === '/information-nara/' ? naraSupplementarySources[id]
       : path === '/information-kokusai/' && id === kokusaiEjuSource.id ? kokusaiEjuSource : undefined;
     const exactSupplementary = Boolean(supplementary && parsed.href===supplementary.url && url===supplementary.url && source.sha256===supplementary.sha256);
+    if(path === '/information-osakaika/' && id === 'dnc-r9-subjects' && !exactSupplementary) failure(`${id}: Osakaika Common Test context must match the reviewed URL and hash`);
     const keioRegional = path === '/information-keio/' ? keioRegionalSources[id] : undefined;
     const exactKeioRegional = Boolean(keioRegional && parsed.href===keioRegional.url && url===keioRegional.url && source.sha256===keioRegional.sha256);
     if (!universityOwned && !commonTestOwned && !exactSupplementary && !exactKeioRegional) failure(`${id}: source host ${parsed.hostname} is not official for ${profile.university} or the Common Test publisher`);
@@ -332,7 +334,8 @@ export function validateUniversityAdmissions(input: unknown, filename?: string):
     const kyorinFundingScope = path === '/information-kyorin/' && (
       (kind === 'exam' && label === 'gunma-region.examRows[12].sourceIds' && claimLabel === '保証人・振込の資料差異' && ids.includes('gunma-guide') && ids.includes('gunma-4'))
       || (kind === 'note' && label === 'gunma-region.notes[1].sourceIds' && ids.includes('gunma-6-kisoku')));
-    if(ids.some(id=>supplementarySourceIds.has(id)) && !kokusaiScope && !kyorinFundingScope) failure(`${label}: supplementary sources cannot replace university admission evidence`);
+    const osakaikaFundingScope = path === '/information-osakaika/' && kind === 'exam' && label === 'regional-osaka.examRows[3].sourceIds' && claimLabel === '返還免除の主な条件' && ids.includes('guidelines-2027') && ids.includes('osaka-youkou') && ids.every(id=>id==='guidelines-2027'||id==='osaka-youkou');
+    if(ids.some(id=>supplementarySourceIds.has(id)) && !kokusaiScope && !osakaikaFundingScope && !kyorinFundingScope) failure(`${label}: supplementary sources cannot replace university admission evidence`);
     if (path === "/information-kochi/" && ids.includes(historicalKochiStatisticsId) && (!/2026年度/.test(`${claimLabel} ${claimValue}`) || !/入学者数|入学者統計|入学実績/.test(`${claimLabel} ${claimValue}`))) failure(`${label}: 2026 entrant statistics cannot substantiate an unqualified 2027 claim`);
     if (!ids.some(id=>commonTestSourceIds.has(id))) return ids;
     if (!commonTestReference.test(claimLabel)) failure(`${label}: DNC citations are limited to explicitly named Common Test rows or notes`);
@@ -380,6 +383,7 @@ const htmlText = (value: string) => escapeUniversityAdmissionHtml(value).replace
 const plainText = (value: string) => value.replace(/<[^>]*>/g,"").replace(/&nbsp;/g," ").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#39;|&#039;/g,"'").replace(/&amp;/g,"&").replace(/\s+/g," ").trim();
 
 export function universityAdmissionsMetadata(data: UniversityAdmissions) {
+  if (data.path === '/information-osakaika/') return osakaikaAdmissionsMetadata(data);
   if (data.path === '/information-kyorin/') return kyorinAdmissionsMetadata(data);
   if (data.path === '/information-kokusai/') return kokusaiAdmissionsMetadata(data);
   if (data.path === '/information-kansai/') return kansaiAdmissionsMetadata(data);
@@ -427,6 +431,7 @@ export function universityAdmissionsMetadata(data: UniversityAdmissions) {
 
 /** Render only canonical validated data; values remain text, never raw HTML. */
 export function renderUniversityAdmissions(input: UniversityAdmissions): string {
+  if (input.path === '/information-osakaika/') return renderOsakaikaAdmissionsReadable(validateUniversityAdmissions(input));
   if (input.path === '/information-kyorin/') return renderKyorinAdmissionsReadable(validateUniversityAdmissions(input));
   if (input.path === '/information-kokusai/') return renderKokusaiAdmissionsReadable(validateUniversityAdmissions(input));
   if (input.path === '/information-kurume/') return renderKurumeAdmissionsReadable(validateUniversityAdmissions(input));
@@ -478,6 +483,12 @@ type AdmissionPost = {
 export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post: T,index: ReadonlyMap<string,UniversityAdmissions>): T {
   const data=index.get(post.path);
   if (!data || post.template !== "admission-info") return post;
+  if (data.path === '/information-osakaika/') {
+    const contentHtml=renderOsakaikaAdmissionsReadable(validateUniversityAdmissions(data));
+    const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
+    const infoItems=post.infoItems.map(item=>item.label==='年度'?{...item,value:'2027年度（入試情報）'}:item.label==='種別'?{...item,value:'医学科・2027年度入試情報'}:item.label==='地域'?{...item,value:'関西'}:item);
+    return {...post,...osakaikaAdmissionsMetadata(data),contentHtml,infoItems,toc};
+  }
   if (data.path === '/information-kyorin/') {
     const contentHtml=renderKyorinAdmissionsReadable(validateUniversityAdmissions(data));
     const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
