@@ -122,6 +122,12 @@ const formatRelationDate = (date: string) => {
 
 const updateHistory = [
   {
+    date: "2026年11月4日",
+    dateTime: "2026-11-04",
+    title: "新しい募集要項で37会場と周辺ホテルを追加・更新",
+    text: "岩手医科・東海・近畿・日本大学などの正式会場37施設を追加し、各会場に宿泊候補2施設を掲載しました。新規ホテルは21施設です。近畿大学の前期・後期・地域枠、日本大学のN第1期・第2期、久留米大学の御井・旭町を区別し、東邦・慈恵・北里の指定条件と集合時刻も更新しました。昭和医科大学Ⅱ期の定員超過条件は要項内で記載範囲が異なるため要確認としています。受験票の確定会場を優先し、未確認の所要時間・設備・空室は断定していません。",
+  },
+  {
     date: "2026年10月5日",
     dateTime: "2026-10-05",
     title: "新規3会場の宿泊候補を各2施設追加",
@@ -1020,6 +1026,13 @@ const structuredData = {
                               {access?.caution && <div><dt>注意</dt><dd>{access.caution}</dd></div>}
                             </dl>
                             {hotel.amenities.length > 0 && <ul class="venue-guide-hotel__amenities">{hotel.amenities.map((amenity) => <li title={amenity.detail} aria-label={`${amenity.label}：${amenity.detail}`}>{amenity.label}</li>)}</ul>}
+                            {(hotel.note || hotel.amenities.length > 0) && (
+                              <details class="venue-guide-hotel__notes">
+                                <summary>設備・予約前の確認事項</summary>
+                                {hotel.amenities.length > 0 && <ul>{hotel.amenities.map((amenity) => <li><span>{amenity.label}</span>：{amenity.detail}</li>)}</ul>}
+                                {hotel.note && <p>{hotel.note}</p>}
+                              </details>
+                            )}
                             <div class="venue-guide-hotel__links">
                               <a href={hotel.officialUrl} target="_blank" rel="noopener noreferrer">ホテル公式 ↗</a>
                               {hotel.operatingStatusEvidenceUrl && hotel.operatingStatusEvidenceUrl !== hotel.officialUrl && <a href={hotel.operatingStatusEvidenceUrl} target="_blank" rel="noopener noreferrer">営業情報 ↗</a>}

@@ -4,6 +4,7 @@ import {
   type AdmissionRouteStatus,
 } from "./privateMedicalAdmissions2027.ts";
 import { privateMedicalCanonicalRouteIds2027 } from "./privateMedicalCanonicalRouteIds2027.ts";
+import { novemberVenues2027, novemberAssignmentUpdates2027, novemberCampusPolicies2027, novemberVenueVerifiedAt2027 } from "./privateMedicalVenueNovember2027.ts";
 
 export type VenuePublicationState =
   | "confirmed"
@@ -1453,6 +1454,7 @@ for (const seed of jichiVenueRelationSeeds2027) {
 export const privateMedicalJichiExamVenues2027 = [...jichiVenueEntityById.values()];
 
 export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
+  ...novemberVenues2027,
   {
     venueId: "venue-dokkyo-medical-mibu-campus",
     academicYear: 2027,
@@ -2392,7 +2394,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     nearestStations: ["ゆりかもめ テレコムセンター駅"],
     officialUrl: "https://www.bigsight.jp/organizer/buildings/time/access/",
     officialUrlLabel: "タイム24ビル 公式交通アクセス",
-    accessNote: "福岡大学医学部医学科の2027年度一般選抜・系統別日程一次選考は2月2日（火）に実施され、東京試験場はタイム24ビルです。希望会場の収容人数を超えた場合は別会場になるため、出願確認票・受験票で最終会場を確認してください。一般選抜の入試要項は9月下旬公開予定で、現時点では開場・入室・集合・試験開始時刻、使用階・研修室・会議室、受付位置、受験生入口は未公表です。施設公式はゆりかもめテレコムセンター駅から徒歩約2分と案内していますが、これは一般来館地点までの案内で指定試験室までの時間ではありません。施設の通常利用時間や一般入口を入試の開場時刻・入口に転用せず、入試要項、受験票、当日案内を確認してください。",
+    accessNote: "福岡大学医学部医学科の2027年度一般選抜・系統別日程一次選考は2月2日（火）に実施され、東京試験場はタイム24ビルです。希望会場の収容人数を超えた場合は別会場になるため、出願確認票・受験票で最終会場を確認してください。一般選抜の入試要項は11月上旬公開予定で、現時点では開場・入室・集合・試験開始時刻、使用階・研修室・会議室、受付位置、受験生入口は未公表です。施設公式はゆりかもめテレコムセンター駅から徒歩約2分と案内していますが、これは一般来館地点までの案内で指定試験室までの時間ではありません。施設の通常利用時間や一般入口を入試の開場時刻・入口に転用せず、入試要項、受験票、当日案内を確認してください。",
     reviewState: "verified",
     verifiedAt: "2026-08-19T00:00:00+09:00",
   },
@@ -2408,7 +2410,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     nearestStations: ["JR・名鉄・近鉄・地下鉄 名古屋駅"],
     officialUrl: "https://www.kashikaigishitsu.net/facilitys/gc-nagoya-shinkansenguchi/",
     officialUrlLabel: "TKPガーデンシティPREMIUM名古屋新幹線口 公式アクセス",
-    accessNote: "福岡大学医学部の2027年度系統別日程一次（2月2日（火））と、藤田医科大学医学部の一般入試一次（2月4日（木））の名古屋会場です。施設は井門名古屋ビル2～9階にあり、JR名古屋駅太閤通口から徒歩3分と公式案内されています。両入試とも使用階・会議室、受付位置、受験生入口は未公表です。福岡大学は希望会場の収容人数を超えた場合に別会場となる可能性があり、入試要項は9月下旬公開予定です。藤田医科大学は出願時に会場選択、出願後の変更不可、名古屋定員840名の満員時のみ本学大学2号館で受け付けます。入室8:00〜8:40です。それぞれ受験票と当日案内を確認してください。",
+    accessNote: "福岡大学医学部の2027年度系統別日程一次（2月2日（火））と、藤田医科大学医学部の一般入試一次（2月4日（木））の名古屋会場です。施設は井門名古屋ビル2～9階にあり、JR名古屋駅太閤通口から徒歩3分と公式案内されています。両入試とも使用階・会議室、受付位置、受験生入口は未公表です。福岡大学は希望会場の収容人数を超えた場合に別会場となる可能性があり、入試要項は11月上旬公開予定です。藤田医科大学は出願時に会場選択、出願後の変更不可、名古屋定員840名の満員時のみ本学大学2号館で受け付けます。入室8:00〜8:40です。それぞれ受験票と当日案内を確認してください。",
     reviewState: "verified",
     verifiedAt: "2026-08-19T00:00:00+09:00",
   },
@@ -2427,7 +2429,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     ],
     officialUrl: "https://www.kashikaigishitsu.net/facilitys/cc-shinosaka/",
     officialUrlLabel: "TKP新大阪カンファレンスセンター 公式アクセス",
-    accessNote: "福岡大学医学部医学科の2027年度一般選抜・系統別日程一次選考は2月2日（火）に実施され、大阪試験場はTKP新大阪カンファレンスセンターです。希望会場の収容人数を超えた場合は別会場になるため、出願確認票・受験票で最終会場を確認してください。一般選抜の入試要項は9月下旬公開予定で、現時点では開場・入室・集合・試験開始時刻、4～5階の使用会議室、受付位置、受験生入口は未公表です。施設公式はJR新大阪駅北口から徒歩6分、Osaka Metro御堂筋線新大阪駅4番出口から徒歩5分と案内しています。2026年6月30日に入居ビル名が「新大阪NKビル」から「J.NODE新大阪」へ変更され、福岡大学の2027年度入試ガイドには旧ビル名で掲載されています。施設の通常利用時間や一般受付を入試の開場時刻・入口に転用せず、入試要項、受験票、当日案内で確認してください。",
+    accessNote: "福岡大学医学部医学科の2027年度一般選抜・系統別日程一次選考は2月2日（火）に実施され、大阪試験場はTKP新大阪カンファレンスセンターです。希望会場の収容人数を超えた場合は別会場になるため、出願確認票・受験票で最終会場を確認してください。一般選抜の入試要項は11月上旬公開予定で、現時点では開場・入室・集合・試験開始時刻、4～5階の使用会議室、受付位置、受験生入口は未公表です。施設公式はJR新大阪駅北口から徒歩6分、Osaka Metro御堂筋線新大阪駅4番出口から徒歩5分と案内しています。2026年6月30日に入居ビル名が「新大阪NKビル」から「J.NODE新大阪」へ変更され、福岡大学の2027年度入試ガイドには旧ビル名で掲載されています。施設の通常利用時間や一般受付を入試の開場時刻・入口に転用せず、入試要項、受験票、当日案内で確認してください。",
     reviewState: "verified",
     verifiedAt: "2026-08-19T00:00:00+09:00",
   },
@@ -4108,6 +4110,28 @@ for (const [universityId, pages] of [
       verifiedAt: HTML_GUIDELINE_VERIFIED_AT,
     });
   }
+}
+
+for (const [venueId, policy] of Object.entries(novemberCampusPolicies2027)) {
+  const venue = privateMedicalExamVenues2027.find((entry) => entry.venueId === venueId);
+  if (!venue) throw new Error(`Unknown November campus: ${venueId}`);
+  venue.accessNote = policy.note;
+  venue.verifiedAt = novemberVenueVerifiedAt2027;
+}
+
+for (const update of novemberAssignmentUpdates2027) {
+  const linkedVenues = update.values.venueLinks?.map(({ venueId }) => {
+    const venue = privateMedicalExamVenues2027.find((entry) => entry.venueId === venueId);
+    if (!venue) throw new Error(`Unknown November venue: ${venueId}`);
+    return venue;
+  });
+  refineAssignmentPlan(update.routeIds, update.stage, {
+    ...update.values,
+    ...(linkedVenues ? {
+      announcedVenueText: linkedVenues.map((venue) => venue.name).join("・"),
+      announcedPrefectures: [...new Set(linkedVenues.map((venue) => venue.prefecture))],
+    } : {}),
+  });
 }
 
 const allRouteRecords = privateMedicalUniversities2027.flatMap((university) =>

@@ -413,7 +413,7 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         category: "general",
         application: "2027/1/4〜1/25（締切日消印有効／Web締切時刻未公表）",
         firstExam: "2/11",
-        secondExam: "2/20〜22のいずれか1日（指定方法未公表）",
+        secondExam: "2/20〜22の大学指定日（都合のつかない日を1日申請可・希望に添えない場合あり）",
         result: "一次 2/17 13:00・最終 3/1 10:00",
         procedure: "3/4 第1段階・入学金　3/10 15:00 第2段階・授業料、誓約書等は同日消印有効",
         sourceUrl: "https://www.jikei.ac.jp/university/medicine/admission/summary/",
@@ -452,7 +452,7 @@ const privateMedicalUniversitiesSource2027: PrivateMedicalUniversity[] = [
         application:
           "郵送 2026/12/14〜2027/1/26必着（Webは12/14 10:00開始・締切日時は要項待ち／窓口1/25・26 9:00〜17:00）",
         firstExam: "2/7（学科・基礎学力）",
-        secondExam: "2/15・16のいずれか1日（指定方法未公表）",
+        secondExam: "2/15・16（出願時に希望日を選択し大学が指定・希望に添えない場合あり）",
         result: "一次 2/10 12:00・最終 2/18 12:00",
         procedure: "2/25（締切時刻・完了条件は要項公開待ち）",
         sourceUrl: "https://www.toho-u.ac.jp/med/info_exam/ippan.html",

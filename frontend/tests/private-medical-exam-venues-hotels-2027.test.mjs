@@ -629,7 +629,7 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
   ]);
   assert.equal(
     kitasatoSecond?.evidenceLocator,
-    "PDF 25ページ（冊子33ページ） 医学部一般選抜二次試験欄",
+    "PDF20〜22・52ページ",
   );
   for (const routeId of [
     "kitasato--common--common-test-early",
@@ -638,11 +638,11 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
     const commonSecond = assignmentFor(routeId, "second");
     assert.equal(
       commonSecond?.officialAdmissionUrl,
-      "https://www.kitasato-u.ac.jp/jp/goukaku/albums/abm.php?f=abm00048838.pdf&n=%E5%85%A5%E8%A9%A6%E3%82%AC%E3%82%A4%E3%83%89_%E8%A9%A6%E9%A8%93%E6%A6%82%E8%A6%81.pdf",
+      "https://www.kitasato-u.ac.jp/jp/goukaku/albums/abm.php?f=abm00050193.pdf&n=2027%E5%B9%B4%E5%BA%A6%E4%B8%80%E8%88%AC%E9%81%B8%E6%8A%9C%E5%8B%9F%E9%9B%86%E8%A6%81%E9%A0%85_%E5%85%A8%E9%A0%81.pdf",
     );
     assert.equal(
       commonSecond?.evidenceLocator,
-      "PDF 26ページ（冊子34ページ） 医学部共通テスト利用選抜二次試験欄",
+      "PDF20〜22・52ページ",
     );
   }
 
@@ -677,20 +677,22 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
   assert.match(tohokuCommonSecond?.note ?? "", /3月3日.*小松島キャンパス/u);
 
   const iwateGeneralFirst = assignmentFor("iwate-medical--general--general", "first");
-  assert.equal(iwateGeneralFirst?.publicationState, "city_or_campus_only");
-  assert.equal(iwateGeneralFirst?.reviewState, "monitoring");
-  assert.deepEqual(iwateGeneralFirst?.conditions, ["applicant_preference", "admission_ticket"]);
-  assert.match(iwateGeneralFirst?.note ?? "", /東京・大阪・札幌・名古屋・福岡は都市まで/u);
+  assert.equal(iwateGeneralFirst?.publicationState, "confirmed");
+  assert.equal(iwateGeneralFirst?.reviewState, "verified");
+  assert.deepEqual(iwateGeneralFirst?.conditions, ["applicant_preference", "university_assigned", "capacity_overflow", "admission_ticket"]);
+  assert.equal(iwateGeneralFirst?.venueLinks.length, 7);
+  assert.match(iwateGeneralFirst?.note ?? "", /東京.*大学が指定/u);
 
   const iwateGeneralSecond = assignmentFor("iwate-medical--general--general", "second");
-  assert.equal(iwateGeneralSecond?.publicationState, "city_or_campus_only");
-  assert.equal(iwateGeneralSecond?.reviewState, "monitoring");
+  assert.equal(iwateGeneralSecond?.publicationState, "confirmed");
+  assert.equal(iwateGeneralSecond?.reviewState, "verified");
   assert.deepEqual(iwateGeneralSecond?.conditions, [
     "applicant_preference",
     "university_assigned",
+    "capacity_overflow",
     "admission_ticket",
   ]);
-  assert.match(iwateGeneralSecond?.note ?? "", /面接時刻は大学が指定/u);
+  assert.match(iwateGeneralSecond?.note ?? "", /個人時刻は大学指定/u);
 
   const iuhwGeneralFirst = assignmentFor("iuhw--general--general", "first");
   assert.deepEqual(iuhwGeneralFirst?.venueLinks, [
@@ -758,14 +760,15 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
     /PDF 10・13・15ページ/u,
   );
 
-  assert.deepEqual(assignmentFor("nihon--general--unified-phase-2", "first")?.conditions, []);
+  assert.deepEqual(assignmentFor("nihon--general--unified-phase-2", "first")?.conditions, ["applicant_preference", "university_assigned", "capacity_overflow", "admission_ticket"]);
   for (const routeId of [
     "kindai--general--general-early",
     "kindai--general--general-regional-quota-c5d34-385a3-3f44f-early",
     "kindai--general--general-late",
     "kindai--general--general-regional-quota-c5d34-late",
   ]) {
-    assert.deepEqual(assignmentFor(routeId, "first")?.conditions, [], routeId);
+    assert.ok(assignmentFor(routeId, "first")?.conditions.includes("applicant_preference"), routeId);
+    assert.ok(assignmentFor(routeId, "first")?.conditions.includes("admission_ticket"), routeId);
   }
   const fujitaGeneralFirst = assignmentFor(
     "fujita--general--general-regional-quota-17148",
@@ -779,7 +782,7 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
     { venueId: "venue-congress-square-grand-green-osaka", role: "choice" },
     { venueId: "venue-fujita-health-toyoake-campus", role: "overflow" },
   ]);
-  assert.match(fujitaGeneralFirst?.evidenceLocator ?? "", /PDF 20・37ページ（冊子19・36ページ）/u);
+  assert.match(fujitaGeneralFirst?.evidenceLocator ?? "", /現行50ページ版 PDF20・38〜39ページ/u);
 
   assert.deepEqual(assignmentFor("fukuoka--general--general", "first")?.conditions, [
     "applicant_preference",
@@ -814,7 +817,7 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
   const jikeiNishishimbashi = privateMedicalExamVenues2027.find(
     (venue) => venue.venueId === "venue-jikei-nishishimbashi-campus",
   );
-  assert.match(jikeiNishishimbashi?.accessNote ?? "", /御成門駅A5出口から徒歩約3分/u);
+  assert.match(jikeiNishishimbashi?.accessNote ?? "", /御成門駅A5出口から大学公式徒歩約3分/u);
   assert.match(jikeiNishishimbashi?.accessNote ?? "", /使用棟・階・試験室/u);
   const twmuYayoi = privateMedicalExamVenues2027.find(
     (venue) => venue.venueId === "venue-twmu-yayoi-memorial-education-building",
@@ -825,8 +828,8 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
     (venue) => venue.venueId === "venue-toho-omori-campus",
   );
   assert.equal(tohoOmori?.officialUrl, "https://www.toho-u.ac.jp/accessmap/omori_campus.html");
-  assert.match(tohoOmori?.accessNote ?? "", /梅屋敷駅から徒歩約8分/u);
-  assert.match(tohoOmori?.accessNote ?? "", /使用棟・階・試験室/u);
+  assert.match(tohoOmori?.accessNote ?? "", /梅屋敷駅から大学公式徒歩約8分/u);
+  assert.match(tohoOmori?.accessNote ?? "", /指定棟・試験室/u);
   const nihonMedical = privateMedicalExamVenues2027.find(
     (venue) => venue.venueId === "venue-nihon-medical-school-building",
   );
@@ -850,10 +853,10 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
     assignmentFor("tokyo-medical--general--general", "second")?.evidenceLocator ?? "",
     /PDF 10・13・15ページ/u,
   );
-  assert.deepEqual(assignmentFor("jikei--general--general", "second")?.conditions, ["fixed"]);
+  assert.deepEqual(assignmentFor("jikei--general--general", "second")?.conditions, ["fixed", "applicant_preference", "university_assigned", "admission_ticket"]);
   assert.match(
     assignmentFor("jikei--general--general", "second")?.note ?? "",
-    /2027年度学生募集要項/u,
+    /西新橋キャンパス大学1号館/u,
   );
   assert.match(
     assignmentFor("tokyo-womens-medical--general--general-regional-quota", "first")
@@ -865,22 +868,22 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
       ?.evidenceLocator ?? "",
     /PDF 24・35〜36ページ（冊子21・32〜33ページ）/u,
   );
-  assert.deepEqual(assignmentFor("toho--general--general", "second")?.conditions, ["fixed"]);
+  assert.deepEqual(assignmentFor("toho--general--general", "second")?.conditions, ["fixed", "applicant_preference", "university_assigned", "admission_ticket"]);
   assert.match(
     assignmentFor("toho--general--general", "second")?.note ?? "",
-    /学生募集要項は作成中/u,
+    /出願時に希望日を選択.*大学が指定/u,
   );
   assert.match(
     assignmentFor("toho--general--unified", "second")?.note ?? "",
-    /2027年3月3日/u,
+    /3月3日/u,
   );
   assert.match(
     assignmentFor("nihon--general--unified-phase-1", "second")?.note ?? "",
-    /2027年2月11日/u,
+    /第1期2月11日/u,
   );
   assert.match(
     assignmentFor("nihon--general--unified-phase-2", "second")?.note ?? "",
-    /2027年3月17日/u,
+    /第2期3月17日/u,
   );
   assert.deepEqual(
     assignmentFor("fujita--general--general-regional-quota-17148", "second")?.conditions,
@@ -894,7 +897,7 @@ test("公式更新と未公表条件を前年情報で補完しない", () => {
   ]);
   assert.match(
     assignmentFor("fujita--common--common-test", "second")?.evidenceLocator ?? "",
-    /PDF 26・36ページ（冊子25・35ページ）/u,
+    /現行50ページ版 PDF28・38〜39ページ/u,
   );
   assert.deepEqual(
     assignmentFor("tokyo-womens-medical--general--general-regional-quota", "second")
@@ -1059,7 +1062,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 213);
+  assert.equal(dataset.hotels.length, 234);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   for (const hotelId of [
     "sotetsu-fresa-inn-nagoya-sakuradoriguchi",
@@ -1681,8 +1684,8 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   );
   assert.ok(kurumeMii, "久留米大学 御井キャンパスが公開Datasetにありません");
   assert.equal(kurumeMii.officialUrl, "https://www.kurume-u.ac.jp/access/");
-  assert.match(kurumeMii.accessNote ?? "", /10月中旬公開予定/u);
-  assert.match(kurumeMii.accessNote ?? "", /使用棟・階・試験室/u);
+  assert.doesNotMatch(kurumeMii.accessNote ?? "", /公開予定/u);
+  assert.match(kurumeMii.accessNote ?? "", /受験票の指定棟・室/u);
   for (const hotelId of ["the-celecton-kurume", "kurume-station-hotel"]) {
     const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
     assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
@@ -1693,10 +1696,10 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.equal(access.transferCount, 0);
     assert.equal(access.measurementBasis, "route_only");
     assert.ok(access.reviewState.includes("verified_with_caveat"));
-    assert.match(access.caution ?? "", /2月1日（月）/u);
-    assert.match(access.caution ?? "", /2月13日（土）/u);
-    assert.match(access.caution ?? "", /3月8日（月）/u);
-    assert.match(access.caution ?? "", /使用棟・階・試験室/u);
+    assert.match(access.caution ?? "", /2月1日/u);
+    assert.match(access.caution ?? "", /二次2月13日/u);
+    assert.match(access.caution ?? "", /3月8日/u);
+    assert.match(access.caution ?? "", /指定棟・室/u);
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
     if (hotelId === "the-celecton-kurume") {
       assert.deepEqual(access.modes, ["walk", "bus"]);
@@ -1714,9 +1717,9 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   );
   assert.ok(kurumeAsahimachi, "久留米大学 旭町キャンパスが公開Datasetにありません");
   assert.equal(kurumeAsahimachi.officialUrl, "https://www.kurume-u.ac.jp/access/");
-  assert.match(kurumeAsahimachi.accessNote ?? "", /3月16日（火）/u);
-  assert.match(kurumeAsahimachi.accessNote ?? "", /10月中旬公開予定/u);
-  assert.match(kurumeAsahimachi.accessNote ?? "", /使用棟・階・試験室/u);
+  assert.match(kurumeAsahimachi.accessNote ?? "", /3月16日/u);
+  assert.doesNotMatch(kurumeAsahimachi.accessNote ?? "", /公開予定/u);
+  assert.match(kurumeAsahimachi.accessNote ?? "", /医学科試験指定棟・室/u);
   for (const hotelId of ["the-celecton-kurume", "kurume-station-hotel"]) {
     const hotel = dataset.hotels.find((entry) => entry.hotelId === hotelId);
     assert.ok(hotel, `${hotelId} が公開Datasetにありません`);
@@ -1728,9 +1731,9 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.equal(access.transferCount, 0);
     assert.equal(access.measurementBasis, "route_only");
     assert.ok(access.reviewState.includes("verified_with_caveat"));
-    assert.match(access.caution ?? "", /3月16日（火）/u);
-    assert.match(access.caution ?? "", /使用棟・階・試験室/u);
-    assert.match(access.caution ?? "", /試験入口とみなさない/u);
+    assert.match(access.caution ?? "", /3月16日/u);
+    assert.match(access.caution ?? "", /医学科試験指定棟・室/u);
+    assert.match(access.caution ?? "", /受験生入口とみなさない/u);
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
     if (hotelId === "the-celecton-kurume") {
       assert.match(access.travelTimeLabel ?? "", /大学公式約15分/u);
@@ -1742,7 +1745,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.ok(time24, "タイム24ビルが公開Datasetにありません");
   assert.equal(time24.postalCode, "135-0064");
   assert.match(time24.accessNote ?? "", /2月2日（火）/u);
-  assert.match(time24.accessNote ?? "", /9月下旬公開予定/u);
+  assert.match(time24.accessNote ?? "", /11月上旬公開予定/u);
   assert.match(time24.accessNote ?? "", /使用階・研修室・会議室/u);
   for (const hotelId of [
     "tokyo-bay-ariake-washington-hotel",
@@ -1779,7 +1782,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     "https://www.kashikaigishitsu.net/facilitys/gc-nagoya-shinkansenguchi/",
   );
   assert.match(fukuokaNagoya.accessNote ?? "", /2月2日（火）/u);
-  assert.match(fukuokaNagoya.accessNote ?? "", /9月下旬公開予定/u);
+  assert.match(fukuokaNagoya.accessNote ?? "", /11月上旬公開予定/u);
   assert.match(fukuokaNagoya.accessNote ?? "", /使用階・会議室/u);
   for (const hotelId of [
     "comfort-hotel-nagoya-shinkansenguchi",
@@ -1814,7 +1817,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     "Osaka Metro御堂筋線 新大阪駅4番出口",
   ]);
   assert.match(fukuokaShinOsaka.accessNote ?? "", /2月2日（火）/u);
-  assert.match(fukuokaShinOsaka.accessNote ?? "", /9月下旬公開予定/u);
+  assert.match(fukuokaShinOsaka.accessNote ?? "", /11月上旬公開予定/u);
   assert.match(fukuokaShinOsaka.accessNote ?? "", /新大阪NKビル/u);
   assert.match(fukuokaShinOsaka.accessNote ?? "", /使用会議室、受付位置、受験生入口は未公表/u);
   for (const hotelId of [
@@ -4686,7 +4689,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   );
 });
 
-test("正式施設136会場それぞれに確認済みのホテル2施設だけを結合する", () => {
+test("正式施設173会場それぞれに確認済みのホテル2施設だけを結合する", () => {
   const dataset = getPrivateMedicalExamVenuesHotels2027Dataset();
   const assignedVenueIds = new Set(
     dataset.assignments.flatMap((assignment) => assignment.venueLinks.map((link) => link.venueId)),
@@ -4695,8 +4698,8 @@ test("正式施設136会場それぞれに確認済みのホテル2施設だけ�
     dataset.hotels.flatMap((hotel) => hotel.venueAccess.map((access) => access.venueId)),
   );
 
-  assert.equal(assignedVenueIds.size, 136);
-  assert.equal(dataset.summary.hotelLinkedVenueCount, 136);
+  assert.equal(assignedVenueIds.size, 173);
+  assert.equal(dataset.summary.hotelLinkedVenueCount, 173);
   assert.deepEqual(new Set([...assignedVenueIds].filter((id) => !hotelLinkedVenueIds.has(id))), new Set());
   assert.ok([...hotelLinkedVenueIds].every((id) => assignedVenueIds.has(id)));
 
@@ -4802,8 +4805,8 @@ test("10月5日のHTML要項更新は段階・期・定員条件を混同しな�
 test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを参照する", () => {
   const canonical = new URL(privateMedicalExamVenuesHotels2027Metadata.canonicalUrl);
   const datasetUrl = new URL(privateMedicalExamVenuesHotels2027Metadata.datasetUrl);
-  assert.equal(privateMedicalExamVenuesHotels2027Metadata.dateModified, "2026-10-05");
-  assert.equal(privateMedicalExamVenuesHotels2027Metadata.version, "2026-10-05");
+  assert.equal(privateMedicalExamVenuesHotels2027Metadata.dateModified, "2026-11-04");
+  assert.equal(privateMedicalExamVenuesHotels2027Metadata.version, "2026-11-04");
   assert.equal(canonical.pathname, expectedPagePath);
   assert.equal(datasetUrl.pathname, expectedDatasetPath);
   assert.equal(canonical.origin, datasetUrl.origin);
