@@ -185,6 +185,7 @@ const resolvedCtaVariant = ctaVariant ?? templateDefinition.ctaVariant;
               loading="eager"
               decoding="async"
             />
+            {isOsakaikaTabs && <figcaption><a href={resolvedHeroImage.src} target="_blank" rel="noopener noreferrer" aria-label="大学病院の外観写真を大きく表示">大学病院の外観</a></figcaption>}
           </figure>
         )}
       </div>

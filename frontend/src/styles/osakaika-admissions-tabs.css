@@ -3,13 +3,17 @@
 .article-page--osakaika-tabs .article-main{max-width:none;min-width:0}
 .article-page--osakaika-tabs .article-content{padding:0}
 .article-page--osakaika-tabs .article-hero{padding:30px 0 25px;background:#ffffff;min-height:0;height:auto}
-.article-page--osakaika-tabs .article-hero__inner{max-width:1080px;display:block;padding-top:0;padding-bottom:0;min-height:0;height:auto}
+.article-page--osakaika-tabs .article-hero__inner{max-width:1080px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:32px;align-items:center;padding-top:0;padding-bottom:0;min-height:0;height:auto}
+.article-page--osakaika-tabs .article-hero__image{display:block;width:100%;margin:0;justify-self:end}
+.article-page--osakaika-tabs .article-hero__image img{width:100%;height:auto;aspect-ratio:2/1;object-fit:contain;border-radius:5px;box-shadow:none;border:1px solid var(--oat-line)}
+.article-page--osakaika-tabs .article-hero__image figcaption{margin-top:5px;font-size:11px;line-height:1.6;color:var(--oat-muted);text-align:right}
+.article-page--osakaika-tabs .article-hero__image figcaption a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .article-page--osakaika-tabs .article-hero__copy{max-width:none;display:block}
 .article-page--osakaika-tabs .article-hero h1{color:var(--oat-accent);font-size:clamp(26px,3.4vw,40px);line-height:1.4;margin:10px 0}
 .article-page--osakaika-tabs .article-hero__title-line{display:inline}
 .article-page--osakaika-tabs .article-hero__title-line+.article-hero__title-line{display:block;font-size:.5em;letter-spacing:.05em;margin-top:8px;color:#52645a}
 .article-page--osakaika-tabs .article-hero__template{color:var(--oat-accent)}
-.article-page--osakaika-tabs .article-hero__categories,.article-page--osakaika-tabs .article-hero__image{display:none}
+.article-page--osakaika-tabs .article-hero__categories{display:none}
 .article-page--osakaika-tabs .article-hero__lead{display:none}
 .article-page--osakaika-tabs .article-hero__meta{font-size:11px;margin-top:14px;justify-content:flex-start}
 .article-page--osakaika-tabs .article-body-grid{padding-top:32px;padding-bottom:48px}
@@ -121,8 +125,11 @@ body:has(.oat-dialog[open]){overflow:hidden}
 .article-content .oat-root .admission-sources :is(li,a){font-size:11px;line-height:1.8}
 .oat-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media(max-width:700px){
+ .article-page--osakaika-tabs .article-hero__inner{grid-template-columns:minmax(0,1fr) 112px;gap:14px}
+ .article-page--osakaika-tabs .article-hero__title-line+.article-hero__title-line{font-size:13px;line-height:1.55}
+ .article-page--osakaika-tabs .article-hero__image figcaption{font-size:10px}
  .article-page--osakaika-tabs .article-hero{padding:26px 0 23px}
- .article-page--osakaika-tabs .article-hero h1{font-size:27px}
+ .article-page--osakaika-tabs .article-hero h1{font-size:clamp(21px,6vw,27px)}
  .article-page--osakaika-tabs .article-hero__lead{font-size:13px;line-height:1.85}
  .article-page--osakaika-tabs .article-body-grid{padding-top:24px}
  .oat-intro{gap:15px;align-items:flex-start;margin-bottom:16px}
