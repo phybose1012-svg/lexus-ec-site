@@ -1,0 +1,7 @@
+---
+import '../../styles/osakaika-admissions-tabs.css';
+---
+<script>
+ import {initOsakaikaTabs} from '../../scripts/osakaikaAdmissionsTabs.client';
+ document.querySelectorAll<HTMLElement>('[data-osakaika-tabs]').forEach(initOsakaikaTabs);
+</script>
