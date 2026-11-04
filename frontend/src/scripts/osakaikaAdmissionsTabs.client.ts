@@ -5,9 +5,11 @@ export function initOsakaikaTabs(root:HTMLElement) {
  const remembered:Record<string,string>={general:'general-early',common:'common-test',shisei:'shisei',recommendation:'recommendation',regional:'regional-osaka'};
  let active='general-early';
  function updateHeaderOffset(){
-  const header=document.querySelector<HTMLElement>('.site-header');
-  const fixed=header&&['sticky','fixed'].includes(getComputedStyle(header).position);
-  root.style.setProperty('--oat-header-offset',`${fixed?Math.max(0,header.getBoundingClientRect().height):0}px`);
+  const fixed=[...document.querySelectorAll<HTMLElement>('.site-header,.mega-nav,.mobile-fixed-nav-wrap')].filter(el=>{
+   const style=getComputedStyle(el);return style.display!=='none'&&['sticky','fixed'].includes(style.position);
+  });
+  const height=Math.max(0,...fixed.map(el=>el.getBoundingClientRect().height));
+  root.style.setProperty('--oat-header-offset',`${height}px`);
  }
  function select(id:string,scroll=false,historyMode='push') {
   const group=routeGroup[id];if(!group)return;
