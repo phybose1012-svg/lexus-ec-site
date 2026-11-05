@@ -1,3 +1,5 @@
+import {getPrivateAdmissionsLayout} from './privateAdmissionsLayoutProfiles';
+import {renderPrivateAdmissionsTabs} from './privateAdmissionsTabs';
 import {osakaikaAdmissionsMetadata,renderOsakaikaAdmissionsReadable,osakaikaRegionalSources} from './osakaikaAdmissionsReadable.ts';
 import {kyorinAdmissionsMetadata,renderKyorinAdmissionsReadable,kyorinSupplementarySources} from './kyorinAdmissionsReadable.ts';
 import {kokusaiAdmissionsMetadata,renderKokusaiAdmissionsReadable} from './kokusaiAdmissionsReadable.ts';
@@ -168,6 +170,8 @@ const additionalOfficialDomains: Record<string, string[]> = {
   "/information-iwate/": ["imu-admission.jp"],
   "/information-tokyoika/": ["admissions-tokyo-med.jp"],
   "/information-jyoshiika/": ["twmu-u.jp"],
+  // University homepage links to kindai.jp as its admissions site (checked 2026-11-05).
+  "/information-kinki/": ["kindai.jp"],
 };
 // Five 2027 admissions PDFs are direct links in Kochi University's saved
 // admissions page (SHA-256 886b1c91d20af236a56325afc307af1f13854db7935c1915b9b0283befe9bf70).
@@ -489,7 +493,7 @@ type AdmissionPost = {
 };
 
 /** Pure transformer supports the original staging article and main's safety article. */
-export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post: T,index: ReadonlyMap<string,UniversityAdmissions>): T {
+function applyUniversityAdmissionsBase<T extends AdmissionPost>(post: T,index: ReadonlyMap<string,UniversityAdmissions>): T {
   const data=index.get(post.path);
   if (!data || post.template !== "admission-info") return post;
   if (data.path === '/information-osakaika/') {
@@ -730,6 +734,15 @@ export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post
   const toc=[...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)].map(match=>({id:match[2],text:plainText(match[3]),level:Number(match[1]) as 2|3}));
   const infoItems=post.infoItems.map(item=>item.label === "年度" ? {...item,value:"2027年度（入試情報）"} : item.label === "種別" ? {...item,value:"大学概要・2027年度入試情報"} : item);
   return {...post,...universityAdmissionsMetadata(data),contentHtml,infoItems,toc};
+}
+
+/** Keep the approved reader intact, then reorganize only an explicitly opted-in page. */
+export function applyUniversityAdmissionsFromIndex<T extends AdmissionPost>(post:T,index:ReadonlyMap<string,UniversityAdmissions>):T {
+ const result=applyUniversityAdmissionsBase(post,index);
+ const layout=getPrivateAdmissionsLayout(post.path),data=index.get(post.path);
+ if(!layout||layout.variant==="osakaika"||!data||post.template!=="admission-info")return result;
+ const contentHtml=renderPrivateAdmissionsTabs(data,layout,result.contentHtml);
+ return {...result,contentHtml,toc:[]};
 }
 
 // Vite supplies env.SSR and expands the literal eager glob for Astro builds.

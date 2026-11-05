@@ -1,4 +1,6 @@
 ---
+import PrivateAdmissionsTabs from "../components/articles/PrivateAdmissionsTabs.astro";
+import {getPrivateAdmissionsLayout} from "../lib/privateAdmissionsLayoutProfiles";
 import OsakaikaAdmissionsTabs from "../components/articles/OsakaikaAdmissionsTabs.astro";
 import ArticleCta from "../components/articles/ArticleCta.astro";
 import ArticleInfoGrid from "../components/articles/ArticleInfoGrid.astro";
@@ -73,7 +75,10 @@ const {
   ctaVariant,
 } = Astro.props;
 
-const isOsakaikaTabs = new URL(canonical, "https://lexus-ec.com").pathname === "/information-osakaika/";
+const admissionsLayout = getPrivateAdmissionsLayout(new URL(canonical, "https://lexus-ec.com").pathname);
+const isOsakaikaTabs = admissionsLayout?.variant === "osakaika";
+const isPrivateTabs = !!admissionsLayout && !isOsakaikaTabs;
+const hasAdmissionsTabs = isOsakaikaTabs || isPrivateTabs;
 const templateDefinition = getArticleTemplateDefinition(template);
 const allCategories = category ? [category, ...categories.filter((item) => item !== category)] : categories;
 const defaultHeroVariant =
@@ -124,7 +129,7 @@ const resolvedCtaVariant = ctaVariant ?? templateDefinition.ctaVariant;
 ---
 
 <SiteLayout title={title} description={description} canonical={canonical} ogImage={ogImage ?? resolvedHeroImage?.src}>
-  <main class={`article-page article-page--${template} article-page--tone-${templateDefinition.visualTone}${isOsakaikaTabs ? " article-page--osakaika-tabs" : ""}`} >
+  <main class={`article-page article-page--${template} article-page--tone-${templateDefinition.visualTone}${isOsakaikaTabs ? " article-page--osakaika-tabs" : ""}${isPrivateTabs ? " article-page--private-admissions-tabs" : ""}`} >
     <header class={`article-hero article-hero--${resolvedHeroVariant}${isCharacterHeroImage ? " article-hero--character" : ""}`}>
       <div class="article-container article-hero__inner">
         <div class="article-hero__copy">
@@ -159,7 +164,7 @@ const resolvedCtaVariant = ctaVariant ?? templateDefinition.ctaVariant;
               />
             </figure>
           )}
-          {lead && <p class="article-hero__lead">{isOsakaikaTabs ? "入試方式を選んで、日程・試験科目・出願条件を確認できます。" : lead}</p>}
+          {lead && <p class="article-hero__lead">{hasAdmissionsTabs ? "入試方式を選んで、日程・試験科目・出願条件を確認できます。" : lead}</p>}
           <dl class="article-hero__meta">
             {publishedLabel && (
               <div>
@@ -185,6 +190,7 @@ const resolvedCtaVariant = ctaVariant ?? templateDefinition.ctaVariant;
               loading="eager"
               decoding="async"
             />
+            {isPrivateTabs && <figcaption><a href={resolvedHeroImage.src} target="_blank" rel="noopener noreferrer" aria-label="大学の写真を大きく表示">大学の写真</a></figcaption>}
             {isOsakaikaTabs && <figcaption><a href={resolvedHeroImage.src} target="_blank" rel="noopener noreferrer" aria-label="大学病院の外観写真を大きく表示">大学病院の外観</a></figcaption>}
           </figure>
         )}
@@ -193,7 +199,7 @@ const resolvedCtaVariant = ctaVariant ?? templateDefinition.ctaVariant;
 
     <div class="article-container article-body-grid">
       <article class="article-main">
-        {!isOsakaikaTabs && keyPoints.length > 0 && (
+        {!hasAdmissionsTabs && keyPoints.length > 0 && (
           <section class="article-keypoints" aria-label="この記事の要点">
             <h2>この記事の要点</h2>
             <ul>
@@ -202,14 +208,14 @@ const resolvedCtaVariant = ctaVariant ?? templateDefinition.ctaVariant;
           </section>
         )}
 
-        {!isOsakaikaTabs && <ArticleInfoGrid items={infoItems} />}
+        {!hasAdmissionsTabs && <ArticleInfoGrid items={infoItems} />}
 
         <div class="article-content">
           <slot />
         </div>
       </article>
 
-      {!isOsakaikaTabs && <aside class="article-sidebar">
+      {!hasAdmissionsTabs && <aside class="article-sidebar">
         <ArticleToc items={toc} />
         <ArticleCta variant={resolvedCtaVariant} />
         {tags.length > 0 && (
@@ -224,5 +230,6 @@ const resolvedCtaVariant = ctaVariant ?? templateDefinition.ctaVariant;
       </aside>}
     </div>
     {isOsakaikaTabs && <OsakaikaAdmissionsTabs />}
+    {isPrivateTabs && <PrivateAdmissionsTabs />}
   </main>
 </SiteLayout>
