@@ -1,0 +1,4167 @@
+{
+  "path": "/information-jyunten/",
+  "university": "順天堂大学",
+  "admissionYear": 2027,
+  "verifiedAt": "2026-10-23T09:14:15.468+09:00",
+  "sources": [
+    {
+      "id": "download",
+      "url": "https://www.juntendo.ac.jp/admission/exam/nyushi/med/exam_info/boshu_youkou.html",
+      "title": "2027学生募集要項・出願書類",
+      "retrievedAt": "2026-10-23T08:56:11.138+09:00",
+      "sha256": "416024794a5e50532f50b7c8e98386c9dad56c2cfc90ee60acbd7f7c297456bd"
+    },
+    {
+      "id": "medicine",
+      "url": "https://www.juntendo.ac.jp/admission/exam/nyushi/med/exam_info/",
+      "title": "医学部 入学試験情報",
+      "retrievedAt": "2026-10-23T08:56:11.271+09:00",
+      "sha256": "612f7109440091afbbcf8443330861948013e365a935d4664d6370f50e13824d"
+    },
+    {
+      "id": "web",
+      "url": "https://www.juntendo.ac.jp/admission/exam/web_entry/med/index.html",
+      "title": "2027医学部インターネット出願",
+      "retrievedAt": "2026-10-23T08:56:11.466+09:00",
+      "sha256": "958a8509828641a3f7fb106c48b0bdeda058369426f7cddc8f874f325b3096f8"
+    },
+    {
+      "id": "academic",
+      "url": "https://www.juntendo.ac.jp/assets/2027_Juntendo_Med_NyugakuShikenYoukou.pdf",
+      "title": "2027入学試験要項 一般選抜等（9月4日更新）",
+      "retrievedAt": "2026-10-23T08:56:35.851+09:00",
+      "sha256": "51125315825dddc5000967f9511f87467fd470f8887b51c85bacfa6988b151cc",
+      "pages": "PDF物理p.7、8、9、10、11、13、14、15、16、17、18、19、20、21、22、23、24、25、26、27、28、29、30、31、32、33、34、35、36、37、38、39、40、41、42、44、45、48、49、50、51、52、54、55、56、57、58、59、60、61、62"
+    },
+    {
+      "id": "international",
+      "url": "https://www.juntendo.ac.jp/assets/2027_Juntendo_Med_GakuseiBoshuYoukou_Kokusai.pdf",
+      "title": "2027学生募集要項 国際臨床医・研究医選抜",
+      "retrievedAt": "2026-10-23T08:56:37.152+09:00",
+      "sha256": "2faafa5f4cce9917e76070b9396e8c45c1437281e18a328d484f15719941aadd",
+      "pages": "PDF物理p.8、9、10、11、12、13、14、15、16、17、18、19、21、24、25、26、27、28、29、30、31、32、33、34、36、37、38"
+    },
+    {
+      "id": "research-rules",
+      "url": "https://www.juntendo.ac.jp/assets/med_kisoigaku_youryou.pdf",
+      "title": "基礎医学研究者養成奨学金貸与要領",
+      "retrievedAt": "2026-10-23T08:56:37.928+09:00",
+      "sha256": "35a0d10276b07f7d8a2478ed52c853f96cfe8c8106cfab8ec14d46e736a36871",
+      "pages": "PDF物理p.1、2、3、4"
+    },
+    {
+      "id": "research-pledge",
+      "url": "https://www.juntendo.ac.jp/assets/med_kisoigaku_shinseisho.pdf",
+      "title": "基礎医学研究者養成奨学金 申請書・誓約書",
+      "retrievedAt": "2026-10-23T08:56:38.070+09:00",
+      "sha256": "62aeda1ee06fc81511d8c0963e27ab2755bb7fdf0df13a9ec7749f5ab7447b11",
+      "pages": "PDF物理p.1、2"
+    }
+  ],
+  "schemes": [
+    {
+      "id": "general",
+      "name": "一般選抜A方式",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2026年12月14日～2027年1月15日。書類必着。期間内にWeb登録・検定料支払い・書類到着が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年2月3日 学力試験。同日の小論文は二次評価に用いる。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2027年2月10日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年2月14～16日のうち指定1日。面接日時は一次合格発表時に通知。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年2月20日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続期間",
+          "value": "2027年2月20日12:00～2月26日17:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "64名。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格",
+          "value": "高校卒業・2027年3月卒業見込、12年課程修了等、または施行規則150条該当。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "英語200点、数学100点、物理・化学・生物から2科目各100点。理科は基礎科目を含む。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "数学の範囲",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A・B（数列、統計的な推測）・C（ベクトル、平面上の曲線と複素数平面）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験時間・解答方式",
+          "value": "2月3日 理科10:00～12:00、英語13:30～14:50、数学15:40～16:50。マーク式と記述式。理科は両形式で同じ2科目を解答。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次評価",
+          "value": "2月3日に受験する小論文と約20分の面接、一次結果で選考。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "60,000円＋支払手数料2,000円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願方法・提出書類",
+          "value": "UCARO会員登録後、別のインターネット出願サイトで登録・支払い。志願票、調査書等、送付ラベル。共通テスト利用時は私立大学用成績請求チケットを印刷・貼付。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "調査書・写真",
+          "value": "調査書は2026年10月1日以降発行の厳封。写真は同日以降撮影のカラー縦4×横3cm、裏面氏名。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類送付",
+          "value": "国内は簡易書留速達、海外はEMS等の記録付き。指定ラベルを角形2号等に貼付。持参不可。同時併願は各1通、後から追加出願する場合は必要書類をすべて再提出。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "支払い期限",
+          "value": "出願登録完了後2日以内に支払う。出願締切自体が延びるものではない。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web最終時刻",
+          "value": "確認できない。出願期間・書類必着は確認済みだが、最終日のWeb登録・支払いの時刻は非公開画面等で要確認。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "学費・その他費用",
+          "value": "初年度学費290万円（入学金200万円・授業料70万円・施設設備費20万円）。分納は手続時245万円と9月30日迄45万円。2年次以降年358万円。初年度の寮費・諸会費・教材費469,800～499,800円は別途。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学後の寮生活",
+          "value": "1年生は全員、さくらキャンパスの啓心寮で約1年間生活する。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退・納付金還付",
+          "value": "2027年3月31日16:00までに入試係へ電話し、所定の辞退届・還付願を提出した場合に入学金以外を返還。入学確約や貸与金の扱いは別途確認が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学費減免特待生",
+          "value": "A方式二次合格者の成績上位10名。初年度入学金200万円のみ、2～6年次各100万円、6年間学費700万円。学業成績で変更の場合あり。寮費等は対象外。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "2月3日の会場",
+          "value": "幕張メッセ 国際展示場1～3ホール。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験会場",
+          "value": "順天堂大学 本郷・お茶の水キャンパス センチュリータワー（東京都文京区本郷2-1-1）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票・問い合わせ",
+          "value": "UCAROから白色A4に印刷。郵送・発行通知なし。1月27日を過ぎても取得できない場合は医学部入試係03-5802-1521へ。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "事前相談",
+          "value": "受験上の配慮は2026年11月13日までに医学部入試係へ相談。急な事故等は速やかに連絡。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "2月3日の小論文（17:30～18:40、70分）は二次評価に用いるが、未受験の場合は一次選考対象外。",
+          "sourceIds": [
+            "academic"
+          ]
+        },
+        {
+          "text": "検定料は原則不返還。ただし要項には書類未提出・不受理等の例外があり、申請は2027年3月9日必着。Web説明の一律不返還の表現との適用関係は公開前に要確認。",
+          "sourceIds": [
+            "academic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "common-first",
+      "name": "前期共通テスト利用選抜",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2026年12月14日～2027年1月15日。書類必着。期間内にWeb登録・検定料支払い・書類到着が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験・小論文",
+          "value": "一次の共通テストは2027年1月16・17日。二次評価用の小論文も2月3日17:30～18:40に受験必須。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2027年2月10日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年2月14～16日のうち指定1日。面接日時は一次合格発表時に通知。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年2月20日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続期間",
+          "value": "2027年2月20日12:00～2月26日17:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "10名。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "共通テスト5教科7科目と2月3日の小論文、二次の面接。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト国語",
+          "value": "近代以降の文章・古文・漢文、200点。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト地歴・公民",
+          "value": "地理総合・地理探究／歴史総合・日本史探究／歴史総合・世界史探究／公共・倫理／公共・政治経済から1科目100点。2科目受験時は第1解答科目。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト数学",
+          "value": "数学Ⅰ・Aと数学Ⅱ・B・Cの2科目、各100点。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト理科",
+          "value": "物理・化学・生物から2科目、各100点。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト英語",
+          "value": "リーディング160点＋リスニング40点に換算。所定のリスニング免除者はR素点を2倍。事前相談が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "小論文・面接",
+          "value": "小論文は2月3日17:30～18:40、面接は約20分。小論文未受験は一次選考対象外。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "40,000円＋支払手数料2,000円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願方法・提出書類",
+          "value": "UCARO会員登録後、別のインターネット出願サイトで登録・支払い。志願票、調査書等、送付ラベル。共通テスト利用時は私立大学用成績請求チケットを印刷・貼付。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "調査書・写真",
+          "value": "調査書は2026年10月1日以降発行の厳封。写真は同日以降撮影のカラー縦4×横3cm、裏面氏名。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類送付",
+          "value": "国内は簡易書留速達、海外はEMS等の記録付き。指定ラベルを角形2号等に貼付。持参不可。同時併願は各1通、後から追加出願する場合は必要書類をすべて再提出。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "支払い期限",
+          "value": "出願登録完了後2日以内に支払う。出願締切自体が延びるものではない。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web最終時刻",
+          "value": "確認できない。出願期間・書類必着は確認済みだが、最終日のWeb登録・支払いの時刻は非公開画面等で要確認。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "2月3日の会場",
+          "value": "幕張メッセ 国際展示場1～3ホール。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験会場",
+          "value": "順天堂大学 本郷・お茶の水キャンパス センチュリータワー（東京都文京区本郷2-1-1）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票・問い合わせ",
+          "value": "UCAROから白色A4に印刷。郵送・発行通知なし。1月27日を過ぎても取得できない場合は医学部入試係03-5802-1521へ。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "事前相談",
+          "value": "受験上の配慮は2026年11月13日までに医学部入試係へ相談。急な事故等は速やかに連絡。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "2月3日の小論文（17:30～18:40、70分）は二次評価に用いるが、未受験の場合は一次選考対象外。",
+          "sourceIds": [
+            "academic"
+          ]
+        },
+        {
+          "text": "検定料は原則不返還。ただし要項には書類未提出・不受理等の例外があり、申請は2027年3月9日必着。Web説明の一律不返還の表現との適用関係は公開前に要確認。",
+          "sourceIds": [
+            "academic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "general-b",
+      "name": "一般選抜B方式",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2026年12月14日～2027年1月15日。書類必着。期間内にWeb登録・検定料支払い・書類到着が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年2月3日 学力試験。B方式では共通テストを利用しない。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2027年2月20日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年3月2日 小論文・英作文、3月3日 面接。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年3月6日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続期間",
+          "value": "2027年3月6日12:00～3月12日17:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "5名。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格・外部英語必須",
+          "value": "大学入学資格に加え、TOEFL新3以上／旧42以上、IELTS4以上、英検1980以上、TEAP225以上、GTEC CBT930以上、Cambridge140以上のいずれかが必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "英語200点、数学100点、物理・化学・生物から2科目各100点。理科は基礎科目を含む。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "数学の範囲",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A・B（数列、統計的な推測）・C（ベクトル、平面上の曲線と複素数平面）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験時間・解答方式",
+          "value": "2月3日 理科10:00～12:00、英語13:30～14:50、数学15:40～16:50。マーク式と記述式。理科は両形式で同じ2科目を解答。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語証明書の有効性",
+          "value": "受付開始日から遡り2年以内で各試験の有効期限内。TOEFL MyBest・Home Edition不可。IELTS Academicのみ、Online・Indicator不可。GTECはCBTのみ。TEAP CBTは期限終了で利用不可。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語加点25点",
+          "value": "TOEFL新5／旧95以上、IELTS7以上、英検2600以上、TEAP375以上、GTEC CBT1350以上、Cambridge180以上。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語加点20点",
+          "value": "TOEFL新4.5／旧84～94、IELTS6～6.5、英検2450～2599、TEAP342～374、GTEC CBT1265～1349、Cambridge170～179。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語加点15点",
+          "value": "TOEFL新4／旧72～83、IELTS5.5、英検2300～2449、TEAP309～341、GTEC CBT1180～1264、Cambridge160～169。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語加点10点",
+          "value": "TOEFL新3.5／旧57～71、IELTS5、英検2125～2299、TEAP267～308、GTEC CBT1055～1179、Cambridge150～159。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語加点5点",
+          "value": "TOEFL新3／旧42～56、IELTS4～4.5、英検1980～2124、TEAP225～266、GTEC CBT930～1054、Cambridge140～149。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験内容",
+          "value": "3月2日10:00～12:00、120分で小論文と英作文の両方に解答。3月3日は面接約20分。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "60,000円＋支払手数料2,000円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願方法・提出書類",
+          "value": "UCARO会員登録後、別のインターネット出願サイトで登録・支払い。志願票、調査書等、送付ラベル。共通テスト利用時は私立大学用成績請求チケットを印刷・貼付。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "調査書・写真",
+          "value": "調査書は2026年10月1日以降発行の厳封。写真は同日以降撮影のカラー縦4×横3cm、裏面氏名。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類送付",
+          "value": "国内は簡易書留速達、海外はEMS等の記録付き。指定ラベルを角形2号等に貼付。持参不可。同時併願は各1通、後から追加出願する場合は必要書類をすべて再提出。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "支払い期限",
+          "value": "出願登録完了後2日以内に支払う。出願締切自体が延びるものではない。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web最終時刻",
+          "value": "確認できない。出願期間・書類必着は確認済みだが、最終日のWeb登録・支払いの時刻は非公開画面等で要確認。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "2月3日の会場",
+          "value": "幕張メッセ 国際展示場1～3ホール。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験会場",
+          "value": "順天堂大学 本郷・お茶の水キャンパス センチュリータワー（東京都文京区本郷2-1-1）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票・問い合わせ",
+          "value": "UCAROから白色A4に印刷。郵送・発行通知なし。1月27日を過ぎても取得できない場合は医学部入試係03-5802-1521へ。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "事前相談",
+          "value": "受験上の配慮は2026年11月13日までに医学部入試係へ相談。急な事故等は速やかに連絡。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "B方式・共通テスト一般併用・後期共通テスト利用を併願し複数の一次合格となっても、3月2・3日の二次試験は1回。",
+          "sourceIds": [
+            "academic"
+          ]
+        },
+        {
+          "text": "検定料は原則不返還。ただし要項には書類未提出・不受理等の例外があり、申請は2027年3月9日必着。Web説明の一律不返還の表現との適用関係は公開前に要確認。",
+          "sourceIds": [
+            "academic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "combined",
+      "name": "共通テスト・一般併用選抜",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2026年12月14日～2027年1月15日。書類必着。期間内にWeb登録・検定料支払い・書類到着が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年2月3日（大学独自学力試験を利用する方式）。共通テスト実施日は1月16・17日。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2027年2月20日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年3月2日 小論文・英作文、3月3日 面接。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年3月6日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続期間",
+          "value": "2027年3月6日12:00～3月12日17:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "12名。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "共通テスト5教科7科目に加え、詳細表では独自試験は英語と理科2科目受験（高得点の1科目を採用）。冒頭図は独自試験を3教科4科目とするため科目数は大学への確認が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "共通テスト国語",
+          "value": "近代以降の文章・古文・漢文、200点。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト地歴・公民",
+          "value": "地理総合・地理探究／歴史総合・日本史探究／歴史総合・世界史探究／公共・倫理／公共・政治経済から1科目100点。2科目受験時は第1解答科目。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト数学",
+          "value": "数学Ⅰ・Aと数学Ⅱ・B・Cの2科目、各100点。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト理科",
+          "value": "物理・化学・生物から2科目、各100点。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト英語",
+          "value": "リーディング160点＋リスニング40点に換算。所定のリスニング免除者はR素点を2倍。事前相談が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "独自試験の詳細表",
+          "value": "2月3日 理科10:00～12:00（物理・化学・生物から2科目を受け高得点1科目100点）、英語13:30～14:50（200点）。理科はマーク・記述で同じ2科目。詳細表に数学の記載はない。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験内容",
+          "value": "3月2日10:00～12:00に小論文・英作文（両方を120分で解答）。3月3日面接約20分。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "60,000円＋支払手数料2,000円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願方法・提出書類",
+          "value": "UCARO会員登録後、別のインターネット出願サイトで登録・支払い。志願票、調査書等、送付ラベル。共通テスト利用時は私立大学用成績請求チケットを印刷・貼付。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "調査書・写真",
+          "value": "調査書は2026年10月1日以降発行の厳封。写真は同日以降撮影のカラー縦4×横3cm、裏面氏名。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類送付",
+          "value": "国内は簡易書留速達、海外はEMS等の記録付き。指定ラベルを角形2号等に貼付。持参不可。同時併願は各1通、後から追加出願する場合は必要書類をすべて再提出。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "支払い期限",
+          "value": "出願登録完了後2日以内に支払う。出願締切自体が延びるものではない。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web最終時刻",
+          "value": "確認できない。出願期間・書類必着は確認済みだが、最終日のWeb登録・支払いの時刻は非公開画面等で要確認。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "2月3日の会場",
+          "value": "幕張メッセ 国際展示場1～3ホール。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験会場",
+          "value": "順天堂大学 本郷・お茶の水キャンパス センチュリータワー（東京都文京区本郷2-1-1）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票・問い合わせ",
+          "value": "UCAROから白色A4に印刷。郵送・発行通知なし。1月27日を過ぎても取得できない場合は医学部入試係03-5802-1521へ。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "事前相談",
+          "value": "受験上の配慮は2026年11月13日までに医学部入試係へ相談。急な事故等は速やかに連絡。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "B方式・共通テスト一般併用・後期共通テスト利用を併願し複数の一次合格となっても、3月2・3日の二次試験は1回。",
+          "sourceIds": [
+            "academic"
+          ]
+        },
+        {
+          "text": "検定料は原則不返還。ただし要項には書類未提出・不受理等の例外があり、申請は2027年3月9日必着。Web説明の一律不返還の表現との適用関係は公開前に要確認。",
+          "sourceIds": [
+            "academic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "common-late",
+      "name": "後期共通テスト利用選抜",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2026年12月14日～2027年1月15日。書類必着。期間内にWeb登録・検定料支払い・書類到着が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "利用する試験",
+          "value": "大学入学共通テスト2027年1月16・17日。後期共通テスト利用選抜だけなら2月3日の小論文・学力試験は課さない。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2027年2月20日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年3月2日 小論文・英作文、3月3日 面接。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年3月6日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続期間",
+          "value": "2027年3月6日12:00～3月12日17:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "5名。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "共通テスト5教科7科目、二次は小論文・英作文・面接。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト国語",
+          "value": "近代以降の文章・古文・漢文、200点。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト地歴・公民",
+          "value": "地理総合・地理探究／歴史総合・日本史探究／歴史総合・世界史探究／公共・倫理／公共・政治経済から1科目100点。2科目受験時は第1解答科目。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト数学",
+          "value": "数学Ⅰ・Aと数学Ⅱ・B・Cの2科目、各100点。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト理科",
+          "value": "物理・化学・生物から2科目、各100点。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト英語",
+          "value": "リーディング160点＋リスニング40点に換算。所定のリスニング免除者はR素点を2倍。事前相談が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験内容",
+          "value": "3月2日10:00～12:00に小論文・英作文（120分）、3月3日面接約20分。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "40,000円＋支払手数料2,000円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願方法・提出書類",
+          "value": "UCARO会員登録後、別のインターネット出願サイトで登録・支払い。志願票、調査書等、送付ラベル。共通テスト利用時は私立大学用成績請求チケットを印刷・貼付。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "調査書・写真",
+          "value": "調査書は2026年10月1日以降発行の厳封。写真は同日以降撮影のカラー縦4×横3cm、裏面氏名。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類送付",
+          "value": "国内は簡易書留速達、海外はEMS等の記録付き。指定ラベルを角形2号等に貼付。持参不可。同時併願は各1通、後から追加出願する場合は必要書類をすべて再提出。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "支払い期限",
+          "value": "出願登録完了後2日以内に支払う。出願締切自体が延びるものではない。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web最終時刻",
+          "value": "確認できない。出願期間・書類必着は確認済みだが、最終日のWeb登録・支払いの時刻は非公開画面等で要確認。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "二次試験会場",
+          "value": "順天堂大学 本郷・お茶の水キャンパス センチュリータワー（東京都文京区本郷2-1-1）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票・問い合わせ",
+          "value": "UCAROから白色A4に印刷。郵送・発行通知なし。1月27日を過ぎても取得できない場合は医学部入試係03-5802-1521へ。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "事前相談",
+          "value": "受験上の配慮は2026年11月13日までに医学部入試係へ相談。急な事故等は速やかに連絡。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "名称は後期だが出願は12月14日～1月15日。共通テスト後や3月の出願ではない。",
+          "sourceIds": [
+            "academic"
+          ]
+        },
+        {
+          "text": "B方式・共通テスト一般併用・後期共通テスト利用を併願し複数の一次合格となっても、3月2・3日の二次試験は1回。",
+          "sourceIds": [
+            "academic"
+          ]
+        },
+        {
+          "text": "検定料は原則不返還。ただし要項には書類未提出・不受理等の例外があり、申請は2027年3月9日必着。Web説明の一律不返還の表現との適用関係は公開前に要確認。",
+          "sourceIds": [
+            "academic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "research",
+      "name": "研究医特別選抜（総合型選抜）",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2026年12月14日～2027年1月15日。書類必着。期間内にWeb登録・検定料支払い・書類到着が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・小論文の日程",
+          "value": "共通テスト2027年1月16・17日。小論文は2月3日17:30～18:40で二次評価に用いる。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2027年2月10日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年2月16日 面接・プレゼンテーション。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年2月20日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続期間",
+          "value": "2027年2月20日12:00～2月26日17:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員・実施内容",
+          "value": "要確認。2名。入学定員増員認可申請予定で、人数・内容とも予定。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願資格",
+          "value": "大学入学資格、合格時の入学確約、入学後の基礎研究医特別コース進学と奨学金貸与が必須。地域枠選抜との併願不可。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "共通テスト5教科7科目＋任意の英語資格加点、小論文、面接、プレゼンテーション。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト国語",
+          "value": "近代以降の文章・古文・漢文、200点。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト地歴・公民",
+          "value": "地理総合・地理探究／歴史総合・日本史探究／歴史総合・世界史探究／公共・倫理／公共・政治経済から1科目100点。2科目受験時は第1解答科目。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト数学",
+          "value": "数学Ⅰ・Aと数学Ⅱ・B・Cの2科目、各100点。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト理科",
+          "value": "物理・化学・生物から2科目、各100点。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト英語",
+          "value": "リーディング160点＋リスニング40点に換算。所定のリスニング免除者はR素点を2倍。事前相談が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語加点25点",
+          "value": "TOEFL新5／旧95以上、IELTS7以上、英検2600以上、TEAP375以上、GTEC CBT1350以上、Cambridge180以上。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語加点20点",
+          "value": "TOEFL新4.5／旧84～94、IELTS6～6.5、英検2450～2599、TEAP342～374、GTEC CBT1265～1349、Cambridge170～179。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語加点15点",
+          "value": "TOEFL新4／旧72～83、IELTS5.5、英検2300～2449、TEAP309～341、GTEC CBT1180～1264、Cambridge160～169。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語加点10点",
+          "value": "TOEFL新3.5／旧57～71、IELTS5、英検2125～2299、TEAP267～308、GTEC CBT1055～1179、Cambridge150～159。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語加点5点",
+          "value": "TOEFL新3／旧42～56、IELTS4～4.5、英検1980～2124、TEAP225～266、GTEC CBT930～1054、Cambridge140～149。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語資格の扱い",
+          "value": "提出は任意。利用する場合は英語に最大25点加点。出願の必須資格ではない。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語証明書の有効性",
+          "value": "受付開始日から遡り2年以内で各試験の有効期限内。TOEFL MyBest・Home Edition不可。IELTS Academicのみ、Online・Indicator不可。GTECはCBTのみ。TEAP CBTは期限終了で利用不可。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験内容",
+          "value": "2月16日 面接約20分＋プレゼン約20分（発表約10分・質疑約10分）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "プレゼン資料",
+          "value": "A4、コピー可能、1ページ目に題名・受験番号・氏名、枚数制限なしだが発表時間内。折らずホチキス留めせずケース等で二次試験日に持参。出願時郵送不要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "提出書類（追加）",
+          "value": "基礎医学研究者養成奨学金貸与申請書と誓約書。連帯保証人2名の記載・押印欄あり。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "奨学金の貸与",
+          "value": "月額10万円。医学部1年次から大学院修了まで通算10年以内。大学院と初期臨床研修の並行期間、RA・学振DC採用期間は停止。",
+          "sourceIds": [
+            "research-rules",
+            "research-pledge"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "継続・保証人",
+          "value": "連帯保証人2名（1名は保護者、職業を持ち独立生計）。研究時間・先取り単位などの継続条件、停止・中止条件がある。",
+          "sourceIds": [
+            "research-rules"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "返還・免除",
+          "value": "原則は返還事由発生から1か月以内に元金と年10%の利息を償還。免除は卒業直後等の基礎系大学院進学・修了、貸与年数以上の免除職従事、委員会審議等の条件付き。",
+          "sourceIds": [
+            "research-rules"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "免除職と誓約書の整合",
+          "value": "現行掲載要領は他研究機関の橋渡し研究専任・専従、認定された医療行政従事も規定。一方、掲載誓約書と入試要項は本学での研究継続を記載。2027入学者への適用と契約文言は要確認。",
+          "sourceIds": [
+            "research-rules",
+            "research-pledge",
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "入学検定料",
+          "value": "60,000円＋支払手数料2,000円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願方法・提出書類",
+          "value": "UCARO会員登録後、別のインターネット出願サイトで登録・支払い。志願票、調査書等、送付ラベル。共通テスト利用時は私立大学用成績請求チケットを印刷・貼付。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "調査書・写真",
+          "value": "調査書は2026年10月1日以降発行の厳封。写真は同日以降撮影のカラー縦4×横3cm、裏面氏名。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類送付",
+          "value": "国内は簡易書留速達、海外はEMS等の記録付き。指定ラベルを角形2号等に貼付。持参不可。同時併願は各1通、後から追加出願する場合は必要書類をすべて再提出。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "支払い期限",
+          "value": "出願登録完了後2日以内に支払う。出願締切自体が延びるものではない。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web最終時刻",
+          "value": "確認できない。出願期間・書類必着は確認済みだが、最終日のWeb登録・支払いの時刻は非公開画面等で要確認。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "2月3日の会場",
+          "value": "幕張メッセ 国際展示場1～3ホール。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験会場",
+          "value": "順天堂大学 本郷・お茶の水キャンパス センチュリータワー（東京都文京区本郷2-1-1）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票・問い合わせ",
+          "value": "UCAROから白色A4に印刷。郵送・発行通知なし。1月27日を過ぎても取得できない場合は医学部入試係03-5802-1521へ。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "事前相談",
+          "value": "受験上の配慮は2026年11月13日までに医学部入試係へ相談。急な事故等は速やかに連絡。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "小論文未受験は一次選考対象外。A・前期共通テストとの併願で一次合格した場合は研究医の受験番号を用い2月16日に1回受験。研究医の最終合格時は他方式にも合格していても研究医で入学する。",
+          "sourceIds": [
+            "academic"
+          ]
+        },
+        {
+          "text": "検定料は原則不返還。ただし要項には書類未提出・不受理等の例外があり、申請は2027年3月9日必着。Web説明の一律不返還の表現との適用関係は公開前に要確認。",
+          "sourceIds": [
+            "academic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regional-tokyo",
+      "name": "東京都地域枠選抜",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2026年12月14日～2027年1月15日。書類必着。期間内にWeb登録・検定料支払い・書類到着が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年2月3日 学力試験。同日の小論文は二次評価に用いる。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2027年2月10日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年2月15日 面接①約20分＋面接②約10分（都職員等同席、結果を判定参考に利用）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年2月20日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続期間",
+          "value": "2027年2月20日12:00～2月26日17:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員・実施内容",
+          "value": "要確認。8名。入学定員増員認可申請予定。人数・内容は予定。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願資格・入学確約",
+          "value": "大学入学資格に加え、合格時の入学確約、当該自治体奨学金の貸与・指定プログラムへの従事が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "地域資格",
+          "value": "出願時に居住実態のある東京都内住所を有する、または東京都内高校等の卒業・卒業見込。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "英語200点、数学100点、物理・化学・生物から2科目各100点。理科は基礎科目を含む。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "数学の範囲",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A・B（数列、統計的な推測）・C（ベクトル、平面上の曲線と複素数平面）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験時間・解答方式",
+          "value": "2月3日 理科10:00～12:00、英語13:30～14:50、数学15:40～16:50。マーク式と記述式。理科は両形式で同じ2科目を解答。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "小論文・面接",
+          "value": "小論文は2月3日17:30～18:40（70分）。二次評価に使うが未受験は一次選考対象外。面接は本郷。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "奨学金貸与額（大学要項の概要）",
+          "value": "学費総額2,080万円と生活費月10万円×6年間、計2,800万円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "返還免除条件の概要",
+          "value": "免許を卒業後2年以内に取得し、9年間（初期研修2年含む）従事。うち4年6か月以上は指定医療機関で小児・周産期・救急・へき地医療等。その他も都内病院で所定領域に従事。 自動免除ではなく全要件の充足が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "返還・正式契約",
+          "value": "大学要項には条件離脱時の元金・利息返還を記載。2027年度自治体契約・県独自の申込期限・最終プログラム全文は要確認。掲載ダウンロードの県様式は2026年度参考。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "地域枠の追加書類",
+          "value": "貸与申込書・誓約書、同一世帯全員・続柄付き住民票。都内住所がなければ卒業（見込）証明書。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "40,000円＋支払手数料2,000円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願方法・提出書類",
+          "value": "UCARO会員登録後、別のインターネット出願サイトで登録・支払い。志願票、調査書等、送付ラベル。共通テスト利用時は私立大学用成績請求チケットを印刷・貼付。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "調査書・写真",
+          "value": "調査書は2026年10月1日以降発行の厳封。写真は同日以降撮影のカラー縦4×横3cm、裏面氏名。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類送付",
+          "value": "国内は簡易書留速達、海外はEMS等の記録付き。指定ラベルを角形2号等に貼付。持参不可。同時併願は各1通、後から追加出願する場合は必要書類をすべて再提出。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "支払い期限",
+          "value": "出願登録完了後2日以内に支払う。出願締切自体が延びるものではない。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web最終時刻",
+          "value": "確認できない。出願期間・書類必着は確認済みだが、最終日のWeb登録・支払いの時刻は非公開画面等で要確認。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "2月3日の会場",
+          "value": "幕張メッセ 国際展示場1～3ホール。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験会場",
+          "value": "順天堂大学 本郷・お茶の水キャンパス センチュリータワー（東京都文京区本郷2-1-1）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票・問い合わせ",
+          "value": "UCAROから白色A4に印刷。郵送・発行通知なし。1月27日を過ぎても取得できない場合は医学部入試係03-5802-1521へ。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "事前相談",
+          "value": "受験上の配慮は2026年11月13日までに医学部入試係へ相談。急な事故等は速やかに連絡。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "地域枠は1都県のみ。研究医特別選抜とは併願不可。A・前期共通テストとの併願で一次合格となった場合も地域枠の受験番号で二次面接を1回受験し、地域枠最終合格時は地域枠で入学。",
+          "sourceIds": [
+            "academic"
+          ]
+        },
+        {
+          "text": "自治体の正式な2027年度様式・契約全文は別途確認。大学掲載の2026年度参考書類を確定資料へ繰り越さない。",
+          "sourceIds": [
+            "download"
+          ]
+        },
+        {
+          "text": "検定料は原則不返還。ただし要項には書類未提出・不受理等の例外があり、申請は2027年3月9日必着。Web説明の一律不返還の表現との適用関係は公開前に要確認。",
+          "sourceIds": [
+            "academic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regional-niigata",
+      "name": "新潟県地域枠選抜",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2026年12月14日～2027年1月15日。書類必着。期間内にWeb登録・検定料支払い・書類到着が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年2月3日 学力試験。同日の小論文は二次評価に用いる。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2027年2月10日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年2月14～16日の指定1日。面接約20分。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年2月20日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続期間",
+          "value": "2027年2月20日12:00～2月26日17:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員・実施内容",
+          "value": "要確認。1名。入学定員増員認可申請予定。人数・内容は予定。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願資格・入学確約",
+          "value": "大学入学資格に加え、合格時の入学確約、当該自治体奨学金の貸与・指定プログラムへの従事が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "地域資格",
+          "value": "出身地・出身校所在地の制限なし。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "英語200点、数学100点、物理・化学・生物から2科目各100点。理科は基礎科目を含む。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "数学の範囲",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A・B（数列、統計的な推測）・C（ベクトル、平面上の曲線と複素数平面）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験時間・解答方式",
+          "value": "2月3日 理科10:00～12:00、英語13:30～14:50、数学15:40～16:50。マーク式と記述式。理科は両形式で同じ2科目を解答。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "小論文・面接",
+          "value": "小論文は2月3日17:30～18:40（70分）。二次評価に使うが未受験は一次選考対象外。面接は本郷。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "奨学金貸与額（大学要項の概要）",
+          "value": "月30万円、6年間2,160万円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "返還免除条件の概要",
+          "value": "卒業後2年以内に免許取得、県指定病院で9年間（初期研修2年含む）。1～5年次の夏季に2～3日間の県内実習参加も必要。 自動免除ではなく全要件の充足が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "返還・正式契約",
+          "value": "大学要項には条件離脱時の元金・利息返還を記載。2027年度自治体契約・県独自の申込期限・最終プログラム全文は要確認。掲載ダウンロードの県様式は2026年度参考。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "地域枠の追加書類",
+          "value": "貸与申請書・所信書、保証人2名押印の誓約書、同意書。口座用紙は入学手続時。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "40,000円＋支払手数料2,000円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願方法・提出書類",
+          "value": "UCARO会員登録後、別のインターネット出願サイトで登録・支払い。志願票、調査書等、送付ラベル。共通テスト利用時は私立大学用成績請求チケットを印刷・貼付。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "調査書・写真",
+          "value": "調査書は2026年10月1日以降発行の厳封。写真は同日以降撮影のカラー縦4×横3cm、裏面氏名。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類送付",
+          "value": "国内は簡易書留速達、海外はEMS等の記録付き。指定ラベルを角形2号等に貼付。持参不可。同時併願は各1通、後から追加出願する場合は必要書類をすべて再提出。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "支払い期限",
+          "value": "出願登録完了後2日以内に支払う。出願締切自体が延びるものではない。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web最終時刻",
+          "value": "確認できない。出願期間・書類必着は確認済みだが、最終日のWeb登録・支払いの時刻は非公開画面等で要確認。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "2月3日の会場",
+          "value": "幕張メッセ 国際展示場1～3ホール。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験会場",
+          "value": "順天堂大学 本郷・お茶の水キャンパス センチュリータワー（東京都文京区本郷2-1-1）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票・問い合わせ",
+          "value": "UCAROから白色A4に印刷。郵送・発行通知なし。1月27日を過ぎても取得できない場合は医学部入試係03-5802-1521へ。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "事前相談",
+          "value": "受験上の配慮は2026年11月13日までに医学部入試係へ相談。急な事故等は速やかに連絡。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "地域枠は1都県のみ。研究医特別選抜とは併願不可。A・前期共通テストとの併願で一次合格となった場合も地域枠の受験番号で二次面接を1回受験し、地域枠最終合格時は地域枠で入学。",
+          "sourceIds": [
+            "academic"
+          ]
+        },
+        {
+          "text": "自治体の正式な2027年度様式・契約全文は別途確認。大学掲載の2026年度参考書類を確定資料へ繰り越さない。",
+          "sourceIds": [
+            "download"
+          ]
+        },
+        {
+          "text": "検定料は原則不返還。ただし要項には書類未提出・不受理等の例外があり、申請は2027年3月9日必着。Web説明の一律不返還の表現との適用関係は公開前に要確認。",
+          "sourceIds": [
+            "academic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regional-chiba",
+      "name": "千葉県地域枠選抜",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2026年12月14日～2027年1月15日。書類必着。期間内にWeb登録・検定料支払い・書類到着が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年2月3日 学力試験。同日の小論文は二次評価に用いる。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2027年2月10日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年2月14～16日の指定1日。面接約20分。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年2月20日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続期間",
+          "value": "2027年2月20日12:00～2月26日17:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員・実施内容",
+          "value": "要確認。5名。入学定員増員認可申請予定。人数・内容は予定。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願資格・入学確約",
+          "value": "大学入学資格に加え、合格時の入学確約、当該自治体奨学金の貸与・指定プログラムへの従事が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "地域資格",
+          "value": "出身地・出身校所在地の制限なし。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "英語200点、数学100点、物理・化学・生物から2科目各100点。理科は基礎科目を含む。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "数学の範囲",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A・B（数列、統計的な推測）・C（ベクトル、平面上の曲線と複素数平面）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験時間・解答方式",
+          "value": "2月3日 理科10:00～12:00、英語13:30～14:50、数学15:40～16:50。マーク式と記述式。理科は両形式で同じ2科目を解答。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "小論文・面接",
+          "value": "小論文は2月3日17:30～18:40（70分）。二次評価に使うが未受験は一次選考対象外。面接は本郷。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "奨学金貸与額（大学要項の概要）",
+          "value": "月20万円、6年間1,440万円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "返還免除条件の概要",
+          "value": "卒業の翌月から起算して1年3か月以内の免許取得、貸与期間の1.5倍の期間、県のキャリア形成プログラムに従い指定医療機関で従事。 自動免除ではなく全要件の充足が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "返還・正式契約",
+          "value": "大学要項には条件離脱時の元金・利息返還を記載。2027年度自治体契約・県独自の申込期限・最終プログラム全文は要確認。掲載ダウンロードの県様式は2026年度参考。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "地域枠の追加書類",
+          "value": "貸与申請書・誓約書（保証人2名の実印）、同意書。入学手続時には印鑑証明・本籍入り住民票等も必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "40,000円＋支払手数料2,000円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願方法・提出書類",
+          "value": "UCARO会員登録後、別のインターネット出願サイトで登録・支払い。志願票、調査書等、送付ラベル。共通テスト利用時は私立大学用成績請求チケットを印刷・貼付。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "調査書・写真",
+          "value": "調査書は2026年10月1日以降発行の厳封。写真は同日以降撮影のカラー縦4×横3cm、裏面氏名。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類送付",
+          "value": "国内は簡易書留速達、海外はEMS等の記録付き。指定ラベルを角形2号等に貼付。持参不可。同時併願は各1通、後から追加出願する場合は必要書類をすべて再提出。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "支払い期限",
+          "value": "出願登録完了後2日以内に支払う。出願締切自体が延びるものではない。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web最終時刻",
+          "value": "確認できない。出願期間・書類必着は確認済みだが、最終日のWeb登録・支払いの時刻は非公開画面等で要確認。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "2月3日の会場",
+          "value": "幕張メッセ 国際展示場1～3ホール。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験会場",
+          "value": "順天堂大学 本郷・お茶の水キャンパス センチュリータワー（東京都文京区本郷2-1-1）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票・問い合わせ",
+          "value": "UCAROから白色A4に印刷。郵送・発行通知なし。1月27日を過ぎても取得できない場合は医学部入試係03-5802-1521へ。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "事前相談",
+          "value": "受験上の配慮は2026年11月13日までに医学部入試係へ相談。急な事故等は速やかに連絡。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "地域枠は1都県のみ。研究医特別選抜とは併願不可。A・前期共通テストとの併願で一次合格となった場合も地域枠の受験番号で二次面接を1回受験し、地域枠最終合格時は地域枠で入学。",
+          "sourceIds": [
+            "academic"
+          ]
+        },
+        {
+          "text": "自治体の正式な2027年度様式・契約全文は別途確認。大学掲載の2026年度参考書類を確定資料へ繰り越さない。",
+          "sourceIds": [
+            "download"
+          ]
+        },
+        {
+          "text": "検定料は原則不返還。ただし要項には書類未提出・不受理等の例外があり、申請は2027年3月9日必着。Web説明の一律不返還の表現との適用関係は公開前に要確認。",
+          "sourceIds": [
+            "academic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regional-saitama",
+      "name": "埼玉県地域枠選抜",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2026年12月14日～2027年1月15日。書類必着。期間内にWeb登録・検定料支払い・書類到着が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年2月3日 学力試験。同日の小論文は二次評価に用いる。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2027年2月10日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年2月14～16日の指定1日。面接約20分。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年2月20日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続期間",
+          "value": "2027年2月20日12:00～2月26日17:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員・実施内容",
+          "value": "要確認。10名。入学定員増員認可申請予定。人数・内容は予定。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願資格・入学確約",
+          "value": "大学入学資格に加え、合格時の入学確約、当該自治体奨学金の貸与・指定プログラムへの従事が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "地域資格",
+          "value": "出身地・出身校所在地の制限なし。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "英語200点、数学100点、物理・化学・生物から2科目各100点。理科は基礎科目を含む。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "数学の範囲",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A・B（数列、統計的な推測）・C（ベクトル、平面上の曲線と複素数平面）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験時間・解答方式",
+          "value": "2月3日 理科10:00～12:00、英語13:30～14:50、数学15:40～16:50。マーク式と記述式。理科は両形式で同じ2科目を解答。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "小論文・面接",
+          "value": "小論文は2月3日17:30～18:40（70分）。二次評価に使うが未受験は一次選考対象外。面接は本郷。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "奨学金貸与額（大学要項の概要）",
+          "value": "月20万円、6年間1,440万円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "返還免除条件の概要",
+          "value": "県内9年間に加え、特定診療科で7年間、準特定診療科の指定医療機関で2年間、または特定病院で4年間等の所定要件。各期間から初期研修等を除外する条件がある。 自動免除ではなく全要件の充足が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "返還・正式契約",
+          "value": "大学要項には条件離脱時の元金・利息返還を記載。2027年度自治体契約・県独自の申込期限・最終プログラム全文は要確認。掲載ダウンロードの県様式は2026年度参考。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "地域枠の追加書類",
+          "value": "医師育成奨学金応募申請書・誓約書。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "40,000円＋支払手数料2,000円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願方法・提出書類",
+          "value": "UCARO会員登録後、別のインターネット出願サイトで登録・支払い。志願票、調査書等、送付ラベル。共通テスト利用時は私立大学用成績請求チケットを印刷・貼付。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "調査書・写真",
+          "value": "調査書は2026年10月1日以降発行の厳封。写真は同日以降撮影のカラー縦4×横3cm、裏面氏名。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類送付",
+          "value": "国内は簡易書留速達、海外はEMS等の記録付き。指定ラベルを角形2号等に貼付。持参不可。同時併願は各1通、後から追加出願する場合は必要書類をすべて再提出。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "支払い期限",
+          "value": "出願登録完了後2日以内に支払う。出願締切自体が延びるものではない。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web最終時刻",
+          "value": "確認できない。出願期間・書類必着は確認済みだが、最終日のWeb登録・支払いの時刻は非公開画面等で要確認。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "2月3日の会場",
+          "value": "幕張メッセ 国際展示場1～3ホール。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験会場",
+          "value": "順天堂大学 本郷・お茶の水キャンパス センチュリータワー（東京都文京区本郷2-1-1）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票・問い合わせ",
+          "value": "UCAROから白色A4に印刷。郵送・発行通知なし。1月27日を過ぎても取得できない場合は医学部入試係03-5802-1521へ。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "事前相談",
+          "value": "受験上の配慮は2026年11月13日までに医学部入試係へ相談。急な事故等は速やかに連絡。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "地域枠は1都県のみ。研究医特別選抜とは併願不可。A・前期共通テストとの併願で一次合格となった場合も地域枠の受験番号で二次面接を1回受験し、地域枠最終合格時は地域枠で入学。",
+          "sourceIds": [
+            "academic"
+          ]
+        },
+        {
+          "text": "自治体の正式な2027年度様式・契約全文は別途確認。大学掲載の2026年度参考書類を確定資料へ繰り越さない。",
+          "sourceIds": [
+            "download"
+          ]
+        },
+        {
+          "text": "検定料は原則不返還。ただし要項には書類未提出・不受理等の例外があり、申請は2027年3月9日必着。Web説明の一律不返還の表現との適用関係は公開前に要確認。",
+          "sourceIds": [
+            "academic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regional-shizuoka",
+      "name": "静岡県地域枠選抜",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2026年12月14日～2027年1月15日。書類必着。期間内にWeb登録・検定料支払い・書類到着が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年2月3日 学力試験。同日の小論文は二次評価に用いる。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2027年2月10日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年2月14～16日の指定1日。面接約20分。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年2月20日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続期間",
+          "value": "2027年2月20日12:00～2月26日17:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員・実施内容",
+          "value": "要確認。5名。入学定員増員認可申請予定。人数・内容は予定。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願資格・入学確約",
+          "value": "大学入学資格に加え、合格時の入学確約、当該自治体奨学金の貸与・指定プログラムへの従事が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "地域資格",
+          "value": "出身地・出身校所在地の制限なし。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "英語200点、数学100点、物理・化学・生物から2科目各100点。理科は基礎科目を含む。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "数学の範囲",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A・B（数列、統計的な推測）・C（ベクトル、平面上の曲線と複素数平面）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験時間・解答方式",
+          "value": "2月3日 理科10:00～12:00、英語13:30～14:50、数学15:40～16:50。マーク式と記述式。理科は両形式で同じ2科目を解答。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "小論文・面接",
+          "value": "小論文は2月3日17:30～18:40（70分）。二次評価に使うが未受験は一次選考対象外。面接は本郷。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "奨学金貸与額（大学要項の概要）",
+          "value": "月20万円、6年間1,440万円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "返還免除条件の概要",
+          "value": "卒業後2年以内の免許取得、県内公的医療機関等で9年間（初期研修含む）。卒前支援プラン・卒後キャリア形成プログラムを適用。 自動免除ではなく全要件の充足が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "返還・正式契約",
+          "value": "大学要項には条件離脱時の元金・利息返還を記載。2027年度自治体契約・県独自の申込期限・最終プログラム全文は要確認。掲載ダウンロードの県様式は2026年度参考。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "地域枠の追加書類",
+          "value": "同意書。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "40,000円＋支払手数料2,000円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願方法・提出書類",
+          "value": "UCARO会員登録後、別のインターネット出願サイトで登録・支払い。志願票、調査書等、送付ラベル。共通テスト利用時は私立大学用成績請求チケットを印刷・貼付。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "調査書・写真",
+          "value": "調査書は2026年10月1日以降発行の厳封。写真は同日以降撮影のカラー縦4×横3cm、裏面氏名。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類送付",
+          "value": "国内は簡易書留速達、海外はEMS等の記録付き。指定ラベルを角形2号等に貼付。持参不可。同時併願は各1通、後から追加出願する場合は必要書類をすべて再提出。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "支払い期限",
+          "value": "出願登録完了後2日以内に支払う。出願締切自体が延びるものではない。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web最終時刻",
+          "value": "確認できない。出願期間・書類必着は確認済みだが、最終日のWeb登録・支払いの時刻は非公開画面等で要確認。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "2月3日の会場",
+          "value": "幕張メッセ 国際展示場1～3ホール。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験会場",
+          "value": "順天堂大学 本郷・お茶の水キャンパス センチュリータワー（東京都文京区本郷2-1-1）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票・問い合わせ",
+          "value": "UCAROから白色A4に印刷。郵送・発行通知なし。1月27日を過ぎても取得できない場合は医学部入試係03-5802-1521へ。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "事前相談",
+          "value": "受験上の配慮は2026年11月13日までに医学部入試係へ相談。急な事故等は速やかに連絡。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "地域枠は1都県のみ。研究医特別選抜とは併願不可。A・前期共通テストとの併願で一次合格となった場合も地域枠の受験番号で二次面接を1回受験し、地域枠最終合格時は地域枠で入学。",
+          "sourceIds": [
+            "academic"
+          ]
+        },
+        {
+          "text": "自治体の正式な2027年度様式・契約全文は別途確認。大学掲載の2026年度参考書類を確定資料へ繰り越さない。",
+          "sourceIds": [
+            "download"
+          ]
+        },
+        {
+          "text": "検定料は原則不返還。ただし要項には書類未提出・不受理等の例外があり、申請は2027年3月9日必着。Web説明の一律不返還の表現との適用関係は公開前に要確認。",
+          "sourceIds": [
+            "academic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regional-ibaraki",
+      "name": "茨城県地域枠選抜",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2026年12月14日～2027年1月15日。書類必着。期間内にWeb登録・検定料支払い・書類到着が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年2月3日 学力試験。同日の小論文は二次評価に用いる。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2027年2月10日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年2月14～16日の指定1日。面接約20分。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年2月20日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続期間",
+          "value": "2027年2月20日12:00～2月26日17:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員・実施内容",
+          "value": "要確認。2名。入学定員増員認可申請予定。人数・内容は予定。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願資格・入学確約",
+          "value": "大学入学資格に加え、合格時の入学確約、当該自治体奨学金の貸与・指定プログラムへの従事が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "地域資格",
+          "value": "出身地・出身校所在地の制限なし。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "英語200点、数学100点、物理・化学・生物から2科目各100点。理科は基礎科目を含む。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "数学の範囲",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A・B（数列、統計的な推測）・C（ベクトル、平面上の曲線と複素数平面）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験時間・解答方式",
+          "value": "2月3日 理科10:00～12:00、英語13:30～14:50、数学15:40～16:50。マーク式と記述式。理科は両形式で同じ2科目を解答。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "小論文・面接",
+          "value": "小論文は2月3日17:30～18:40（70分）。二次評価に使うが未受験は一次選考対象外。面接は本郷。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "奨学金貸与額（大学要項の概要）",
+          "value": "月25万円、6年間1,800万円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "返還免除条件の概要",
+          "value": "卒業後1年6か月以内の免許取得、県内9年間（初期研修2年含む）。その後の7年間のうち4年6か月以上は、初期研修開始時点の医師不足地域等で従事。 自動免除ではなく全要件の充足が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "返還・正式契約",
+          "value": "大学要項には条件離脱時の元金・利息返還を記載。2027年度自治体契約・県独自の申込期限・最終プログラム全文は要確認。掲載ダウンロードの県様式は2026年度参考。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "地域枠の追加書類",
+          "value": "県への奨学金応募書類を大学出願と別に提出し、県eラーニング受講・回答が必要。県書類を大学は受理しない。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "40,000円＋支払手数料2,000円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願方法・提出書類",
+          "value": "UCARO会員登録後、別のインターネット出願サイトで登録・支払い。志願票、調査書等、送付ラベル。共通テスト利用時は私立大学用成績請求チケットを印刷・貼付。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "調査書・写真",
+          "value": "調査書は2026年10月1日以降発行の厳封。写真は同日以降撮影のカラー縦4×横3cm、裏面氏名。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類送付",
+          "value": "国内は簡易書留速達、海外はEMS等の記録付き。指定ラベルを角形2号等に貼付。持参不可。同時併願は各1通、後から追加出願する場合は必要書類をすべて再提出。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "支払い期限",
+          "value": "出願登録完了後2日以内に支払う。出願締切自体が延びるものではない。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web最終時刻",
+          "value": "確認できない。出願期間・書類必着は確認済みだが、最終日のWeb登録・支払いの時刻は非公開画面等で要確認。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "2月3日の会場",
+          "value": "幕張メッセ 国際展示場1～3ホール。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験会場",
+          "value": "順天堂大学 本郷・お茶の水キャンパス センチュリータワー（東京都文京区本郷2-1-1）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票・問い合わせ",
+          "value": "UCAROから白色A4に印刷。郵送・発行通知なし。1月27日を過ぎても取得できない場合は医学部入試係03-5802-1521へ。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "事前相談",
+          "value": "受験上の配慮は2026年11月13日までに医学部入試係へ相談。急な事故等は速やかに連絡。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "地域枠は1都県のみ。研究医特別選抜とは併願不可。A・前期共通テストとの併願で一次合格となった場合も地域枠の受験番号で二次面接を1回受験し、地域枠最終合格時は地域枠で入学。",
+          "sourceIds": [
+            "academic"
+          ]
+        },
+        {
+          "text": "自治体の正式な2027年度様式・契約全文は別途確認。大学掲載の2026年度参考書類を確定資料へ繰り越さない。",
+          "sourceIds": [
+            "download"
+          ]
+        },
+        {
+          "text": "検定料は原則不返還。ただし要項には書類未提出・不受理等の例外があり、申請は2027年3月9日必着。Web説明の一律不返還の表現との適用関係は公開前に要確認。",
+          "sourceIds": [
+            "academic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regional-gunma",
+      "name": "群馬県地域枠選抜",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2026年12月14日～2027年1月15日。書類必着。期間内にWeb登録・検定料支払い・書類到着が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年2月3日 学力試験。同日の小論文は二次評価に用いる。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2027年2月10日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年2月14～16日の指定1日。面接約20分。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年2月20日12:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続期間",
+          "value": "2027年2月20日12:00～2月26日17:00",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員・実施内容",
+          "value": "要確認。1名。入学定員増員認可申請予定。人数・内容は予定。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願資格・入学確約",
+          "value": "大学入学資格に加え、合格時の入学確約、当該自治体奨学金の貸与・指定プログラムへの従事が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "地域資格",
+          "value": "出身地・出身校所在地の制限なし。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "英語200点、数学100点、物理・化学・生物から2科目各100点。理科は基礎科目を含む。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "数学の範囲",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A・B（数列、統計的な推測）・C（ベクトル、平面上の曲線と複素数平面）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験時間・解答方式",
+          "value": "2月3日 理科10:00～12:00、英語13:30～14:50、数学15:40～16:50。マーク式と記述式。理科は両形式で同じ2科目を解答。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "小論文・面接",
+          "value": "小論文は2月3日17:30～18:40（70分）。二次評価に使うが未受験は一次選考対象外。面接は本郷。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "奨学金貸与額（大学要項の概要）",
+          "value": "月25万円、6年間1,800万円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "返還免除条件の概要",
+          "value": "10年間（貸与期間の5/3、初期研修2年含む）。初期研修後8年間のうち4年以上を医師不足病院等、または条件付きで3年以上をへき地病院等。キャリア形成プログラムに従う。 自動免除ではなく全要件の充足が必要。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "返還・正式契約",
+          "value": "大学要項には条件離脱時の元金・利息返還を記載。2027年度自治体契約・県独自の申込期限・最終プログラム全文は要確認。掲載ダウンロードの県様式は2026年度参考。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "地域枠の追加書類",
+          "value": "同意書。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "40,000円＋支払手数料2,000円。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願方法・提出書類",
+          "value": "UCARO会員登録後、別のインターネット出願サイトで登録・支払い。志願票、調査書等、送付ラベル。共通テスト利用時は私立大学用成績請求チケットを印刷・貼付。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "調査書・写真",
+          "value": "調査書は2026年10月1日以降発行の厳封。写真は同日以降撮影のカラー縦4×横3cm、裏面氏名。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類送付",
+          "value": "国内は簡易書留速達、海外はEMS等の記録付き。指定ラベルを角形2号等に貼付。持参不可。同時併願は各1通、後から追加出願する場合は必要書類をすべて再提出。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "支払い期限",
+          "value": "出願登録完了後2日以内に支払う。出願締切自体が延びるものではない。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web最終時刻",
+          "value": "確認できない。出願期間・書類必着は確認済みだが、最終日のWeb登録・支払いの時刻は非公開画面等で要確認。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "2月3日の会場",
+          "value": "幕張メッセ 国際展示場1～3ホール。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験会場",
+          "value": "順天堂大学 本郷・お茶の水キャンパス センチュリータワー（東京都文京区本郷2-1-1）。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票・問い合わせ",
+          "value": "UCAROから白色A4に印刷。郵送・発行通知なし。1月27日を過ぎても取得できない場合は医学部入試係03-5802-1521へ。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "事前相談",
+          "value": "受験上の配慮は2026年11月13日までに医学部入試係へ相談。急な事故等は速やかに連絡。",
+          "sourceIds": [
+            "academic"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "地域枠は1都県のみ。研究医特別選抜とは併願不可。A・前期共通テストとの併願で一次合格となった場合も地域枠の受験番号で二次面接を1回受験し、地域枠最終合格時は地域枠で入学。",
+          "sourceIds": [
+            "academic"
+          ]
+        },
+        {
+          "text": "自治体の正式な2027年度様式・契約全文は別途確認。大学掲載の2026年度参考書類を確定資料へ繰り越さない。",
+          "sourceIds": [
+            "download"
+          ]
+        },
+        {
+          "text": "検定料は原則不返還。ただし要項には書類未提出・不受理等の例外があり、申請は2027年3月9日必着。Web説明の一律不返還の表現との適用関係は公開前に要確認。",
+          "sourceIds": [
+            "academic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "foreign",
+      "name": "外国人選抜（国際臨床医・研究医選抜）",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2026年9月1～17日、書類必着。期間内にWeb登録・検定料支払い・書類到着が必要。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "面接時間発表",
+          "value": "2026年10月2日12:00。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2026年10月13日 小論文・英作文14:30～16:30（120分）、10月14日 日本語による面接約20分。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2026年11月1日12:00。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "EJU2026年6月21日または11月8日の1回を出願時に選択。出願後変更不可。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次合格発表",
+          "value": "2027年1月20日12:00。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "通常の入学手続",
+          "value": "2027年1月20日12:00～2月2日17:00。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次免除者の入学手続",
+          "value": "2026年11月1日12:00～11月13日17:00。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "免除見込から要件充足した者の手続",
+          "value": "2027年1月25日12:00～2月5日17:00。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "5名。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格",
+          "value": "外国籍で、国外所在学校の12年課程修了・2027年3月31日迄見込、国外での所定国際資格、または認定教育施設12年課程等。日本の大学入学資格も確認する。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "日本語資格",
+          "value": "JLPT N1、またはN2かつ総合得点112点以上。成績証明書の原本が必要。合否通知・認定書での代用不可。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語資格（出願必須）",
+          "value": "TOEFL新4以上／旧72以上、IELTS5.5以上、英検2304以上、TEAP309以上、GTEC CBT1180以上、Cambridge160以上のいずれか。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語資格の制限",
+          "value": "受付開始日から遡り2年以内で有効期限内。TOEFL MyBest・Home不可。IELTS Academicのみ、Online・Indicator不可。英検従来型・S-CBT可。GTEC CBTのみ。TEAP CBT不可。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "一次は書類・小論文・英作文・日本語面接。二次EJUは日本語（読解聴解等400＋記述50）、数学コース2（200）、理科の物理・化学・生物から2科目（200）。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "パスポート",
+          "value": "氏名・写真・国籍・番号・発行年月日の確認できる各ページの写し。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次免除申請",
+          "value": "資格を満たすだけで自動免除ではない。出願時に申請登録・証明提出。一次合格者から募集人数を上限に選考し、超過時は一次成績上位順。予測点の免除見込者は最終要件の証明が必要。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "免除条件A：IB",
+          "value": "最終40点以上、物理・化学・生物の2科目（うち1科目以上HL）と数学をSLまたはHLで履修。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "免除条件B：Aレベル",
+          "value": "物理・化学・生物から2科目と数学の計3科目。1科目A*、残り2科目A以上。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "免除条件C：SAT等",
+          "value": "SAT1450以上に加え、AP理科2科目を片方4以上・他方5、またはEJU2025年11月／2026年6月の理科2科目各90以上。後者は日本教育制度の高校等卒業・見込者を対象外とする。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "免除条件D：ACT",
+          "value": "単一回のスコアのみ。2025年以降Enhanced ACTは数学・英語・Reading・Scienceの4科目平均（小数第1位四捨五入）33以上。旧ACTはComposite33以上。SuperScore不可。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願登録・支払い",
+          "value": "UCAROに無料登録後、別の出願サイトで登録・支払い。登録後2日以内に支払うが、出願締切の延長ではない。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "提出書類",
+          "value": "志願票、学歴に応じた成績・卒業等証明、送付ラベル、学業計画書、英語資格証明。免除申請・二次利用試験等に応じ追加証明が必要。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "調査書・写真",
+          "value": "調査書は2026年7月1日以降発行・厳封。写真も7月1日以降撮影のカラー縦4×横3cm、裏面氏名。一般系の10月1日条件とは異なる。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学業計画書",
+          "value": "所定用紙の白色A4、文章・図表等で1ページ以内に記入。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類送付",
+          "value": "国内は簡易書留速達、海外はEMS等。指定ラベルを角形2号等の封筒に貼る。大学への持参不可。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "EJU・共通テストの追加書類",
+          "value": "11月EJU利用者は受験票写しを2026年11月13日までに提出。共通テスト利用者は私立大学用成績請求チケットを12月23日までに簡易書留速達で提出。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "IB取得見込者の追加書類",
+          "value": "一次合格者は学校作成のIB最終試験6科目成績証明を2027年1月14日までに簡易書留速達またはEMS等で発送。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "40,000円＋支払手数料2,000円。原則不返還だが、未提出・不受理等の例外申請期限は2026年12月11日必着。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学費・諸費用",
+          "value": "初年度学費290万円、分納は手続時245万円と9月30日迄45万円。2年次以降年358万円。初年度寮費等469,800～499,800円は別途。1年生は全員啓心寮で約1年生活。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web最終時刻",
+          "value": "確認できない。9月17日書類必着は確認済み。登録・支払いの最終時刻は要確認。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次試験会場",
+          "value": "本郷・お茶の水キャンパス センチュリータワー（文京区本郷2-1-1）。EJUは指定会場、共通テストはセンター指定会場。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票・問い合わせ",
+          "value": "UCAROから白色A4に印刷。郵送・発行通知なし。9月30日を過ぎても取得できない場合は03-5802-1521へ。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "配慮相談",
+          "value": "2026年7月31日までに医学部入試係へ相談。申請用紙の実物・個別判断は未確認。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続・辞退",
+          "value": "手続は期間内の書類提出で完了。辞退還付は2027年3月31日16:00までの電話申出と所定用紙提出で入学金以外を返還。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "国際系3区分から出願できるのは1区分。一般A・B、各共通テスト系、地域枠、研究医との併願は可能だが、地域枠と研究医を同時に併願できない。",
+          "sourceIds": [
+            "international"
+          ]
+        },
+        {
+          "text": "小論文と英作文を120分以内に両方解答。小論文は日本語。二次免除の選考は別途申請・要件確認が必要。",
+          "sourceIds": [
+            "international"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "return",
+      "name": "帰国生選抜（国際臨床医・研究医選抜）",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2026年9月1～17日、書類必着。期間内にWeb登録・検定料支払い・書類到着が必要。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "面接時間発表",
+          "value": "2026年10月2日12:00。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2026年10月13日 小論文・英作文14:30～16:30（120分）、10月14日 日本語による面接約20分。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2026年11月1日12:00。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "EJU2026年6月21日／11月8日または共通テスト2027年1月16・17日のいずれかを出願時に選択。IB／Cambridgeの利用試験は教育制度による制限がある。出願後変更不可。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次合格発表",
+          "value": "2027年2月10日12:00。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "通常の入学手続",
+          "value": "2027年2月10日12:00～2月18日17:00。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次免除者の入学手続",
+          "value": "2026年11月1日12:00～11月6日17:00。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "免除見込から要件充足した者の手続",
+          "value": "2027年1月25日12:00～1月29日17:00。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "2名。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格",
+          "value": "日本国籍または日本の永住許可を有し、国外所在学校の12年課程等の指定資格を満たす。最終学年を含め継続して在学し、その最終学校を修了・修了見込であること。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語資格（出願必須）",
+          "value": "TOEFL新4以上／旧72以上、IELTS5.5以上、英検2304以上、TEAP309以上、GTEC CBT1180以上、Cambridge160以上のいずれか。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語資格の制限",
+          "value": "受付開始日から遡り2年以内で有効期限内。TOEFL MyBest・Home不可。IELTS Academicのみ、Online・Indicator不可。英検従来型・S-CBT可。GTEC CBTのみ。TEAP CBT不可。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "一次は書類・小論文・英作文・日本語面接。二次はEJU数学コース2（200）＋理科2科目（200）、または共通テスト数学ⅠA・ⅡBC（各100）＋物理・化学・生物から2科目（各100）。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "パスポート",
+          "value": "氏名・写真・国籍・番号・発行年月日の確認できる各ページの写し。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次免除申請",
+          "value": "資格を満たすだけで自動免除ではない。出願時に申請登録・証明提出。一次合格者から募集人数を上限に選考し、超過時は一次成績上位順。予測点の免除見込者は最終要件の証明が必要。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "免除条件A：IB",
+          "value": "最終40点以上、物理・化学・生物の2科目（うち1科目以上HL）と数学をSLまたはHLで履修。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "免除条件B：Aレベル",
+          "value": "物理・化学・生物から2科目と数学の計3科目。1科目A*、残り2科目A以上。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "免除条件C：SAT等",
+          "value": "SAT1450以上に加え、AP理科2科目を片方4以上・他方5、またはEJU2025年11月／2026年6月の理科2科目各90以上。後者は日本教育制度の高校等卒業・見込者を対象外とする。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "免除条件D：ACT",
+          "value": "単一回のスコアのみ。2025年以降Enhanced ACTは数学・英語・Reading・Scienceの4科目平均（小数第1位四捨五入）33以上。旧ACTはComposite33以上。SuperScore不可。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願登録・支払い",
+          "value": "UCAROに無料登録後、別の出願サイトで登録・支払い。登録後2日以内に支払うが、出願締切の延長ではない。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "提出書類",
+          "value": "志願票、学歴に応じた成績・卒業等証明、送付ラベル、学業計画書、英語資格証明。免除申請・二次利用試験等に応じ追加証明が必要。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "調査書・写真",
+          "value": "調査書は2026年7月1日以降発行・厳封。写真も7月1日以降撮影のカラー縦4×横3cm、裏面氏名。一般系の10月1日条件とは異なる。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学業計画書",
+          "value": "所定用紙の白色A4、文章・図表等で1ページ以内に記入。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類送付",
+          "value": "国内は簡易書留速達、海外はEMS等。指定ラベルを角形2号等の封筒に貼る。大学への持参不可。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "EJU・共通テストの追加書類",
+          "value": "11月EJU利用者は受験票写しを2026年11月13日までに提出。共通テスト利用者は私立大学用成績請求チケットを12月23日までに簡易書留速達で提出。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "IB取得見込者の追加書類",
+          "value": "一次合格者は学校作成のIB最終試験6科目成績証明を2027年1月14日までに簡易書留速達またはEMS等で発送。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "40,000円＋支払手数料2,000円。原則不返還だが、未提出・不受理等の例外申請期限は2026年12月11日必着。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学費・諸費用",
+          "value": "初年度学費290万円、分納は手続時245万円と9月30日迄45万円。2年次以降年358万円。初年度寮費等469,800～499,800円は別途。1年生は全員啓心寮で約1年生活。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web最終時刻",
+          "value": "確認できない。9月17日書類必着は確認済み。登録・支払いの最終時刻は要確認。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次試験会場",
+          "value": "本郷・お茶の水キャンパス センチュリータワー（文京区本郷2-1-1）。EJUは指定会場、共通テストはセンター指定会場。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票・問い合わせ",
+          "value": "UCAROから白色A4に印刷。郵送・発行通知なし。9月30日を過ぎても取得できない場合は03-5802-1521へ。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "配慮相談",
+          "value": "2026年7月31日までに医学部入試係へ相談。申請用紙の実物・個別判断は未確認。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続・辞退",
+          "value": "手続は期間内の書類提出で完了。辞退還付は2027年3月31日16:00までの電話申出と所定用紙提出で入学金以外を返還。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "国際系3区分から出願できるのは1区分。一般A・B、各共通テスト系、地域枠、研究医との併願は可能だが、地域枠と研究医を同時に併願できない。",
+          "sourceIds": [
+            "international"
+          ]
+        },
+        {
+          "text": "小論文と英作文を120分以内に両方解答。小論文は日本語。二次免除の選考は別途申請・要件確認が必要。",
+          "sourceIds": [
+            "international"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ib-cambridge",
+      "name": "国際バカロレア／ケンブリッジ・インターナショナル選抜（総合型選抜）",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2026年9月1～17日、書類必着。期間内にWeb登録・検定料支払い・書類到着が必要。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "面接時間発表",
+          "value": "2026年10月2日12:00。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2026年10月13日 小論文・英作文14:30～16:30（120分）、10月14日 日本語による面接約20分。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2026年11月1日12:00。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "EJU2026年6月21日／11月8日または共通テスト2027年1月16・17日のいずれかを出願時に選択。IB／Cambridgeの利用試験は教育制度による制限がある。出願後変更不可。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次合格発表",
+          "value": "2027年2月10日12:00。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "通常の入学手続",
+          "value": "2027年2月10日12:00～2月18日17:00。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次免除者の入学手続",
+          "value": "2026年11月1日12:00～11月6日17:00。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "免除見込から要件充足した者の手続",
+          "value": "2027年1月25日12:00～1月29日17:00。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "IB／Cambridge選抜として計2名。各資格ごとに2名ではない。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "IB出願資格",
+          "value": "IB Diploma取得・2027年3月31日迄取得見込。6科目中、物理・化学・生物から少なくとも1科目と数学（AA／AI等）を履修。SL・HLいずれも可。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Aレベル出願資格",
+          "value": "国際AレベルまたはGCE Aレベル修了・2027年3月31日迄見込。3科目中、物理・化学・生物から少なくとも1科目と数学を履修。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語資格（出願必須）",
+          "value": "TOEFL新4以上／旧72以上、IELTS5.5以上、英検2304以上、TEAP309以上、GTEC CBT1180以上、Cambridge160以上のいずれか。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語資格の制限",
+          "value": "受付開始日から遡り2年以内で有効期限内。TOEFL MyBest・Home不可。IELTS Academicのみ、Online・Indicator不可。英検従来型・S-CBT可。GTEC CBTのみ。TEAP CBT不可。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "一次は書類・小論文・英作文・日本語面接。二次は理科2科目と数学をEJUまたは共通テストで判定。日本教育制度による高校等卒業・見込者は共通テストを利用。外国教育制度はどちらかを選択可能。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次配点",
+          "value": "EJUは数学コース2が200、物理・化学・生物から2科目が計200。共通テストは数学ⅠA・ⅡBCが各100、理科2科目が各100。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次免除申請",
+          "value": "資格を満たすだけで自動免除ではない。出願時に申請登録・証明提出。一次合格者から募集人数を上限に選考し、超過時は一次成績上位順。予測点の免除見込者は最終要件の証明が必要。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "免除条件A：IB",
+          "value": "最終40点以上、物理・化学・生物の2科目（うち1科目以上HL）と数学をSLまたはHLで履修。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "免除条件B：Aレベル",
+          "value": "物理・化学・生物から2科目と数学の計3科目。1科目A*、残り2科目A以上。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "免除条件C：SAT等",
+          "value": "SAT1450以上に加え、AP理科2科目を片方4以上・他方5、またはEJU2025年11月／2026年6月の理科2科目各90以上。後者は日本教育制度の高校等卒業・見込者を対象外とする。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "免除条件D：ACT",
+          "value": "単一回のスコアのみ。2025年以降Enhanced ACTは数学・英語・Reading・Scienceの4科目平均（小数第1位四捨五入）33以上。旧ACTはComposite33以上。SuperScore不可。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願登録・支払い",
+          "value": "UCAROに無料登録後、別の出願サイトで登録・支払い。登録後2日以内に支払うが、出願締切の延長ではない。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "提出書類",
+          "value": "志願票、学歴に応じた成績・卒業等証明、送付ラベル、学業計画書、英語資格証明。免除申請・二次利用試験等に応じ追加証明が必要。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "調査書・写真",
+          "value": "調査書は2026年7月1日以降発行・厳封。写真も7月1日以降撮影のカラー縦4×横3cm、裏面氏名。一般系の10月1日条件とは異なる。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学業計画書",
+          "value": "所定用紙の白色A4、文章・図表等で1ページ以内に記入。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類送付",
+          "value": "国内は簡易書留速達、海外はEMS等。指定ラベルを角形2号等の封筒に貼る。大学への持参不可。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "EJU・共通テストの追加書類",
+          "value": "11月EJU利用者は受験票写しを2026年11月13日までに提出。共通テスト利用者は私立大学用成績請求チケットを12月23日までに簡易書留速達で提出。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "IB取得見込者の追加書類",
+          "value": "一次合格者は学校作成のIB最終試験6科目成績証明を2027年1月14日までに簡易書留速達またはEMS等で発送。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "40,000円＋支払手数料2,000円。原則不返還だが、未提出・不受理等の例外申請期限は2026年12月11日必着。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学費・諸費用",
+          "value": "初年度学費290万円、分納は手続時245万円と9月30日迄45万円。2年次以降年358万円。初年度寮費等469,800～499,800円は別途。1年生は全員啓心寮で約1年生活。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web最終時刻",
+          "value": "確認できない。9月17日書類必着は確認済み。登録・支払いの最終時刻は要確認。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次試験会場",
+          "value": "本郷・お茶の水キャンパス センチュリータワー（文京区本郷2-1-1）。EJUは指定会場、共通テストはセンター指定会場。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票・問い合わせ",
+          "value": "UCAROから白色A4に印刷。郵送・発行通知なし。9月30日を過ぎても取得できない場合は03-5802-1521へ。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "配慮相談",
+          "value": "2026年7月31日までに医学部入試係へ相談。申請用紙の実物・個別判断は未確認。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続・辞退",
+          "value": "手続は期間内の書類提出で完了。辞退還付は2027年3月31日16:00までの電話申出と所定用紙提出で入学金以外を返還。",
+          "sourceIds": [
+            "international"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "国際系3区分から出願できるのは1区分。一般A・B、各共通テスト系、地域枠、研究医との併願は可能だが、地域枠と研究医を同時に併願できない。",
+          "sourceIds": [
+            "international"
+          ]
+        },
+        {
+          "text": "小論文と英作文を120分以内に両方解答。小論文は日本語。二次免除の選考は別途申請・要件確認が必要。",
+          "sourceIds": [
+            "international"
+          ]
+        }
+      ]
+    }
+  ],
+  "coverageNotes": [
+    "一般系要項と国際系要項を分けて、16区分の人数、日程、科目、手続、会場・必要書類を照合。",
+    "A・前期共通テスト・地域枠・研究医は2月3日の小論文を二次評価に使用し、未受験者を一次選考対象外とする。",
+    "併用選抜は冒頭図と詳細表で独自試験の科目数が異なる。詳細表の英語と理科2受験・1採用を記録し、大学確認事項とする。",
+    "2027年地域枠・研究医の人数と実施内容は認可申請予定。東京都8名は9月4日更新版。自治体様式は掲載時点で2026年度参考。",
+    "共通テスト利用は成績請求チケット方式。一般系は出願時に志願票貼付、国際系は別途12月23日までに提出。",
+    "外国人・帰国生・IB／Cambridgeはいずれも外部英語資格必須。二次免除の申請・資格・選考・免除見込を出願資格と混同しない。",
+    "研究医貸与要領は2026年4月1日施行の掲載版。返還・免除職・研究継続条件を確認し、誓約書の本学研究継続文言との適用関係を未確定事項とした。",
+    "検定料返還は要項の例外規定を記録。Webの一律不返還という説明との適用関係を要確認とする。",
+    "入学手続は期間内の書類提出で完了。一般系・国際系とも非公開の入学手続要項にある支払い時刻等の詳細は未確認。",
+    "A方式上位10名の学費減免と、義務・返還条件のある研究医・地域枠の貸与金を区別。",
+    "成績開示はA・B・併用・地域枠の一次不合格者本人で申請した者。申請2027年4月5日12:00～16日17:00、UCARO閲覧5月17日12:00～28日17:00。共通テスト得点は開示対象に含まない。"
+  ]
+}
