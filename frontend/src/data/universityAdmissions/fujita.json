@@ -1,0 +1,1772 @@
+{
+  "path": "/information-fujita/",
+  "university": "藤田医科大学",
+  "admissionYear": 2027,
+  "verifiedAt": "2026-10-22T22:02:08.791+09:00",
+  "sources": [
+    {
+      "id": "admissions-home",
+      "url": "https://www.fujita-hu.ac.jp/admission/",
+      "title": "藤田医科大学 受験生サイト",
+      "retrievedAt": "2026-10-22T21:46:58.090+09:00",
+      "sha256": "5db5d5086ceda1ea40f23475048ee72cf2793e7d38a506efe7f81e8b005df43e"
+    },
+    {
+      "id": "requirement",
+      "url": "https://www.fujita-hu.ac.jp/admission/exam-med/requirement.html",
+      "title": "医学部医学科 入試制度・2027年度変更点",
+      "retrievedAt": "2026-10-22T21:47:47.240+09:00",
+      "sha256": "5e315f99223fd7643fadce6e429150b7aa102e96832513fd75f1973cac40fe2d"
+    },
+    {
+      "id": "guideline",
+      "url": "https://www.fujita-hu.ac.jp/admission/dubv6r0000003f6y-att/tedb9e000000jqiy.pdf",
+      "title": "2027年度 医学部医学科 学生募集要項",
+      "retrievedAt": "2026-10-22T21:47:48.271+09:00",
+      "sha256": "f7b57dfa84f5597a0cb37bdfe5b9971c377e6a0e1e272b136d7e0674a1ce23fa",
+      "pages": "PDF物理p.2、8、9、10、11、12、13、14、15、16、17、18、19、20、21、22、23、24、26、27、28、29、30、31、32、33、34、36、38、39、40、41、42、47、48"
+    },
+    {
+      "id": "future-summary",
+      "url": "https://www.fujita-hu.ac.jp/admission/exam-med/dubv6r0000001ec6-att/j93sdv000000ub7q.pdf",
+      "title": "2027年度 ふじた未来・帰国生IB入試概要",
+      "retrievedAt": "2026-10-22T21:48:45.948+09:00",
+      "sha256": "06fe75b894fe5c6315548f1c23fce9b4c3a4373d1ca2549d8e66d345db79296d",
+      "pages": "PDF物理p.1"
+    },
+    {
+      "id": "general-summary",
+      "url": "https://www.fujita-hu.ac.jp/admission/exam-med/dubv6r0000001ec6-att/j93sdv000000ub7u.pdf",
+      "title": "2027年度 一般入試・地域枠概要",
+      "retrievedAt": "2026-10-22T21:48:46.187+09:00",
+      "sha256": "4b47513f61bcecc40b9f12844397f543e3b8d15d465f933bfd561381584da791",
+      "pages": "PDF物理p.1"
+    },
+    {
+      "id": "common-summary",
+      "url": "https://www.fujita-hu.ac.jp/admission/exam-med/dubv6r0000001ec6-att/j93sdv000000ub7x.pdf",
+      "title": "2027年度 共通テスト利用入試概要",
+      "retrievedAt": "2026-10-22T21:48:46.444+09:00",
+      "sha256": "7875cd31525ecdd95e2fe88b6756c4b6fa4c64e15f0330ebcfdeed9002af003d",
+      "pages": "PDF物理p.1"
+    },
+    {
+      "id": "web-guidance",
+      "url": "https://exam.fujita-hu.ac.jp/we27/top.html",
+      "title": "2027年度 インターネット出願ガイダンス",
+      "retrievedAt": "2026-10-22T21:55:04.907+09:00",
+      "sha256": "9d07ff0c7b7f6365177702b093961bb2a0bfa318d7a01f1e6de190f99702a1b5"
+    },
+    {
+      "id": "web-procedure",
+      "url": "https://exam.fujita-hu.ac.jp/we27/g02_procedure.html",
+      "title": "2027年度 Web出願方法",
+      "retrievedAt": "2026-10-22T21:55:47.754+09:00",
+      "sha256": "d788b8fbab1628d8d6d344c8de20462966ffeca96a897f812e8da16e2624a1bb"
+    }
+  ],
+  "schemes": [
+    {
+      "id": "future-general",
+      "name": "ふじた未来入学試験【一般枠】",
+      "scheduleRows": [
+        {
+          "label": "Web出願期間",
+          "value": "2026年10月1日〜10月30日。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類提出期限",
+          "value": "2026年11月2日必着。書留速達または持参。持参は平日9:00〜17:00（土日祝・開学記念日10月10日を除く）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web受付・検定料の終了時刻",
+          "value": "要確認。検定料は支払期間（出願期間）内に納入する。取得した要項・公開ガイダンスでは受付終了・支払終了の時刻を確認できない。書類の必着日と混同しない。",
+          "sourceIds": [
+            "web-procedure"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次試験",
+          "value": "2026年11月8日。8:00〜8:40に入室。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次結果発表",
+          "value": "2026年11月13日9時頃。マイページで確認。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2026年11月22日。9:00〜9:40に入室。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2026年11月30日9時頃。合格通知・手続要領をマイページに掲載（郵送なし）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学費等の納入期限",
+          "value": "2026年12月7日23:59。前期分の学費と委託徴収金を一括納入。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票の出力開始",
+          "value": "一次：2026年11月5日11:00／二次：11月13日9:00。マイページから印刷し持参。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "成績開示",
+          "value": "2026年11月30日9時頃〜12月7日。一次の科目別得点・順位・英語数学のマーク基準点、二次の小論文・講義課題・面接の得点・順位。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "疑義申し立て",
+          "value": "2026年11月30日〜12月7日必着。受験生本人が理由を付した書面を郵送（所定の返信用封筒を同封）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "例外的な入学辞退",
+          "value": "国公立大学医学科の総合型選抜・学校推薦型選抜・一般選抜前期日程の合格を理由とする場合のみ例外。返還申出と辞退届は2027年3月10日17:00必着。入学金を除く学費・委託徴収金を返還。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "一般枠と独創一理枠を合わせて12名。各枠12名ではない。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学歴・卒業時期",
+          "value": "日本国内の高等学校（3年）または中等教育学校（6年）を2027年3月に卒業見込みの者（現役のみ）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "卒業後の従事要件",
+          "value": "本学の教育・研究・臨床への貢献と、本学講座が基幹となる専門研修プログラムへの参加を確約する。プログラム所定の採用基準を満たす必要がある。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・英語",
+          "value": "英語コミュニケーションⅠ・Ⅱ、論理・表現Ⅰ・Ⅱ。90分・100点。9:00〜10:30。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・数学",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A、数学B（数列、統計的な推測）、数学C（ベクトル、平面上の曲線と複素数平面）。90分・100点。11:00〜12:30。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・小論文",
+          "value": "50分・40点。13:20〜14:10。一次選抜は英語・数学の合計200点で行い、小論文は最終判定に利用。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語・数学の基準点",
+          "value": "マークシート方式と筆記式で出題。マーク部分は各教科および合計に基準点を設け、未達の場合に不合格となることがある。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・講義課題",
+          "value": "10:00〜12時頃、60点。20〜30分程度の講義を聴いたうえで論述する。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・面接",
+          "value": "13:00〜16:30頃、150点。個人面接（MMI・過去の具体的行動事例）と5〜6名のグループディスカッション。英語の聞き取り・会話およびビジョン12に関する質問を含む。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終判定",
+          "value": "英語・数学に、小論文40点＋講義課題60点＋面接150点の合計250点を200点に換算した点を加える。面接で求める基準に合致しないと判断された場合は、学科点にかかわらず不合格。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "枠をまたぐ合格者の決定",
+          "value": "独創一理枠の出願者から補欠合格ライン以上の者を最大3名選抜（該当者がなければ0名）。残り9〜12名は出願枠を問わず総合得点順に選抜する。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "提出書類",
+          "value": "出願確認票、2026年4月以降発行の調査書、本人と本学をよく理解する大人による推薦書2通以内、課題レポート「ビジョン12」（入学後12年を見据えたA4判1枚）、承諾書。調査書は高校3年1学期までの成績を含む。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "60,000円。納入した検定料・提出書類は理由を問わず返還しない。別途払込手数料あり。",
+          "sourceIds": [
+            "guideline",
+            "web-procedure"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学確約",
+          "value": "合格した場合、本人と保護者が入学を確約する。国公立大学医学科の所定の合格による辞退のみ例外。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次・二次の会場",
+          "value": "本学・大学2号館（愛知県豊明市沓掛町田楽ケ窪1-98）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次の服装",
+          "value": "高校の制服は着用しない。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "初期臨床研修先はキャリアアドバイザーとの相談により決定する。研究医等の進路に応じた柔軟なプログラムがあり、単純な「卒業後5年間の勤務約束」とは整理しない。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "従事要件のある入試に該当する。出願時の承諾書、入学手続時の誓約書などを要し、本学の同意のない離脱は日本専門医機構への報告対象となる。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "総合点同点時は面接、英語＋数学、数学、入試委員会の総合判定の順。補欠繰上げは登録電話への連絡で、連絡が取れないと下位候補を優先する場合がある。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "合格後に入学手続を完了した者は、本学の一般入試・愛知県地域枠など別の入試を受験できない。",
+          "sourceIds": [
+            "guideline"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "future-souri",
+      "name": "ふじた未来入学試験【独創一理枠】",
+      "scheduleRows": [
+        {
+          "label": "Web出願期間",
+          "value": "2026年10月1日〜10月30日。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類提出期限",
+          "value": "2026年11月2日必着。書留速達または持参。持参は平日9:00〜17:00（土日祝・開学記念日10月10日を除く）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web受付・検定料の終了時刻",
+          "value": "要確認。検定料は支払期間（出願期間）内に納入する。取得した要項・公開ガイダンスでは受付終了・支払終了の時刻を確認できない。書類の必着日と混同しない。",
+          "sourceIds": [
+            "web-procedure"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次試験",
+          "value": "2026年11月8日。8:00〜8:40に入室。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次結果発表",
+          "value": "2026年11月13日9時頃。マイページで確認。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2026年11月22日。9:00〜9:40に入室。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2026年11月30日9時頃。合格通知・手続要領をマイページに掲載（郵送なし）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学費等の納入期限",
+          "value": "2026年12月7日23:59。前期分の学費と委託徴収金を一括納入。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票の出力開始",
+          "value": "一次：2026年11月5日11:00／二次：11月13日9:00。マイページから印刷し持参。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "成績開示",
+          "value": "2026年11月30日9時頃〜12月7日。一次の科目別得点・順位・英語数学のマーク基準点、二次の小論文・講義課題・面接の得点・順位。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "疑義申し立て",
+          "value": "2026年11月30日〜12月7日必着。受験生本人が理由を付した書面を郵送（所定の返信用封筒を同封）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "一般枠と独創一理枠を合わせて12名。各枠12名ではない。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学歴・卒業時期",
+          "value": "日本国内の高等学校（3年）または中等教育学校（6年）を2027年3月に卒業見込みの者（現役のみ）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "卒業後の従事要件",
+          "value": "本学の教育・研究・臨床への貢献と、本学講座が基幹となる専門研修プログラムへの参加を確約する。プログラム所定の採用基準を満たす必要がある。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・英語",
+          "value": "英語コミュニケーションⅠ・Ⅱ、論理・表現Ⅰ・Ⅱ。90分・100点。9:00〜10:30。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・数学",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A、数学B（数列、統計的な推測）、数学C（ベクトル、平面上の曲線と複素数平面）。90分・100点。11:00〜12:30。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・小論文",
+          "value": "50分・40点。13:20〜14:10。一次選抜は英語・数学の合計200点で行い、小論文は最終判定に利用。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語・数学の基準点",
+          "value": "マークシート方式と筆記式で出題。マーク部分は各教科および合計に基準点を設け、未達の場合に不合格となることがある。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・講義課題",
+          "value": "10:00〜12時頃、60点。20〜30分程度の講義を聴いたうえで論述する。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・面接",
+          "value": "13:00〜16:30頃、150点。個人面接（MMI・過去の具体的行動事例）と5〜6名のグループディスカッション。英語の聞き取り・会話およびビジョン12に関する質問を含む。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終判定",
+          "value": "英語・数学に、小論文40点＋講義課題60点＋面接150点の合計250点を200点に換算した点を加える。面接で求める基準に合致しないと判断された場合は、学科点にかかわらず不合格。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "枠をまたぐ合格者の決定",
+          "value": "独創一理枠の出願者から補欠合格ライン以上の者を最大3名選抜（該当者がなければ0名）。残り9〜12名は出願枠を問わず総合得点順に選抜する。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "提出書類",
+          "value": "出願確認票、2026年4月以降発行の調査書、本人と本学をよく理解する大人による推薦書2通以内、課題レポート「ビジョン12」（入学後12年を見据えたA4判1枚）、承諾書。調査書は高校3年1学期までの成績を含む。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "60,000円。納入した検定料・提出書類は理由を問わず返還しない。別途払込手数料あり。",
+          "sourceIds": [
+            "guideline",
+            "web-procedure"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "独創一理枠の追加資格",
+          "value": "本学（大学・短大、卒業学部を問わない）の卒業生の2親等以内の親族。合格時は本人と保護者が入学を確約する。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "親族関係の提出書類",
+          "value": "2親等以内の親族の本学卒業証明書と、本人との2親等以内の関係を証明する公的書類を追加提出する。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次・二次の会場",
+          "value": "本学・大学2号館（愛知県豊明市沓掛町田楽ケ窪1-98）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次の服装",
+          "value": "高校の制服は着用しない。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "初期臨床研修先はキャリアアドバイザーとの相談により決定する。研究医等の進路に応じた柔軟なプログラムがあり、単純な「卒業後5年間の勤務約束」とは整理しない。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "従事要件のある入試に該当する。出願時の承諾書、入学手続時の誓約書などを要し、本学の同意のない離脱は日本専門医機構への報告対象となる。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "総合点同点時は面接、英語＋数学、数学、入試委員会の総合判定の順。補欠繰上げは登録電話への連絡で、連絡が取れないと下位候補を優先する場合がある。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "合格後に入学手続を完了した者は、本学の一般入試・愛知県地域枠など別の入試を受験できない。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "国公立大学医学科の合格を理由とする一般枠の辞退例外を、独創一理枠へ適用しない。",
+          "sourceIds": [
+            "guideline"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "returnee-ib",
+      "name": "帰国生・国際バカロレア入学試験",
+      "scheduleRows": [
+        {
+          "label": "Web出願期間",
+          "value": "2026年10月1日〜10月23日。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類提出期限",
+          "value": "2026年10月26日必着。書留速達または持参（平日9:00〜17:00、土日祝・開学記念日10月10日を除く）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web受付・検定料の終了時刻",
+          "value": "要確認。検定料は支払期間（出願期間）内に納入する。取得した要項・公開ガイダンスでは受付終了・支払終了の時刻を確認できない。書類の必着日と混同しない。",
+          "sourceIds": [
+            "web-procedure"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次試験",
+          "value": "2026年11月8日。8:00〜8:40に入室。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次結果発表",
+          "value": "2026年11月13日9時頃。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2026年11月22日。9:00〜9:40に入室。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2026年11月30日9時頃。通知・手続要領をマイページに掲載（郵送なし）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "納入期限",
+          "value": "2026年12月7日23:59。前期分の学費と委託徴収金を一括納入。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票の出力開始",
+          "value": "一次：2026年11月5日11:00／二次：11月13日9:00。マイページから印刷し持参。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "IB取得見込みの条件付き合格",
+          "value": "2027年1月29日までに国際バカロレア資格証明の写しと最終試験成績証明書を提出することが条件。必要書類の期限内提出ができない場合は条件付き合格を取り消す。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "成績開示",
+          "value": "2026年11月30日9時頃〜12月7日。一次の科目別得点・順位・英語数学のマーク基準点、二次の小論文・講義課題・面接の得点・順位。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "疑義申し立て",
+          "value": "2026年11月30日〜12月7日必着。受験生本人が理由を付した書面を郵送（所定の返信用封筒を同封）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "例外的な入学辞退・返還",
+          "value": "国公立大学医学科の帰国生入試または国際バカロレア入試に合格した場合のみ辞退の例外。返還申出と辞退届は合格通知後3日以内。入学金を除く学費・委託徴収金を返還。IB条件付き合格の取消時は納入金すべてを返還する。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "若干名。一般入試の一般枠90名に含む。別枠で加算しない。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "国籍・生年月日",
+          "value": "日本国籍、日本の永住許可またはこれに準ずる者。2006年4月2日〜2009年4月1日生まれ（二浪相当まで）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "帰国生の学歴要件（A）",
+          "value": "国内外を問わず通常の学校教育課程12年以上を修了し、外国の一般的な高校（日本人学校等を除く）の最終学年を含む2年以上に継続在籍。2024年4月以降に卒業、または2027年3月までに卒業見込み。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "IBの学歴要件（B）",
+          "value": "国際バカロレア資格を2024年4月以降に取得、または2027年3月までに取得見込み。AまたはBのいずれかを満たす。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "外部英語試験・入学確約",
+          "value": "TOEFL iBTまたはIELTS Academic Moduleを受験し結果を提出できること。合格時は本人・保護者が入学を確約する（国公立医学科の帰国生・IB入試合格の場合は例外）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・英語",
+          "value": "英語コミュニケーションⅠ・Ⅱ、論理・表現Ⅰ・Ⅱ。9:00〜10:30、90分・100点。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語得点の最低保証",
+          "value": "TOEFL iBT総合スコア5以上（0〜120点スケールで95点相当）またはIELTS Academic Module 7.0以上は英語80点を最低保証し、実得点が高ければ実得点を採用。試験免除ではない。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・数学",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A、数学B（数列、統計的な推測）、数学C（ベクトル、平面上の曲線と複素数平面）。90分・100点。11:00〜12:30。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・小論文と選抜",
+          "value": "13:20〜14:10、50分・40点。一次選抜は英語・数学の200点で実施。英語・数学のマーク各教科および合計の基準点未達では不合格となる場合がある。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・講義課題",
+          "value": "10:00〜12時頃、60点。20〜30分程度の講義を聴いたうえで論述する。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・面接",
+          "value": "13:00〜16:30頃、150点。個人面接（MMI・過去の具体的行動事例）と5〜6名のグループディスカッション。英語の聞き取り・会話の質問を含む。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終判定",
+          "value": "小論文40点＋講義課題60点＋面接150点の250点を200点に換算し、英語・数学に加えて総合判定する。面接で求める基準に合致しないと判断された場合は学科点にかかわらず不合格。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "提出書類",
+          "value": "出願確認票、国籍証明、Aは2026年4月以降発行の高校成績・卒業（見込）証明、BはIB資格証明の写しと最終成績原本、TOEFL iBTまたはIELTS成績原本、志望理由書（A4判1枚）。外部英語の試験日は出願開始日より2年以内。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "IB取得見込み時の提出",
+          "value": "学校長または進路指導担当者等による取得見込証明書と予測点（Predicted／Anticipated）で出願可能。最終的な資格・成績の提出条件を満たす必要がある。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "60,000円。納入した検定料・提出書類は理由を問わず返還しない。別途払込手数料あり。",
+          "sourceIds": [
+            "guideline",
+            "web-procedure"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次・二次の会場",
+          "value": "本学・大学2号館（愛知県豊明市沓掛町田楽ケ窪1-98）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次の服装",
+          "value": "高校の制服は着用しない。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "同点時は面接、英語＋数学、数学、入試委員会の総合判定の順。繰上合格は登録電話へ連絡し、連絡が取れないと下位候補を優先する場合がある。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "概要PDFの辞退例外は国公立大学医学科のIB入試のみだが、正式募集要項は帰国生入試またはIB入試とする。正式募集要項を優先し、相違を校閲へ引き継ぐ。",
+          "sourceIds": [
+            "guideline",
+            "future-summary"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "general",
+      "name": "一般入学試験【一般枠】",
+      "scheduleRows": [
+        {
+          "label": "Web出願期間",
+          "value": "2026年12月7日〜2027年1月22日。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類提出期限",
+          "value": "2027年1月25日必着。書留速達または持参。持参は平日9:00〜17:00（土日祝・12月29日〜1月3日を除く）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web受付・検定料の終了時刻",
+          "value": "要確認。検定料は支払期間（出願期間）内に納入する。取得した要項・公開ガイダンスでは受付終了・支払終了の時刻を確認できない。書類の必着日と混同しない。",
+          "sourceIds": [
+            "web-procedure"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年2月4日。8:00〜8:40に入室。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次結果発表",
+          "value": "2027年2月9日9時頃。マイページで確認。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年2月14日または15日の午前・午後の計4区分。午前は8:30〜9:10、午後は12:00〜12:40に入室。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次日時の割当",
+          "value": "出願時に第1〜第4希望を入力。一次結果発表時に出願日時の早い順で上限人数まで決定し、二次受験票で通知。決定後の変更不可。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年2月18日9時頃。合格通知・手続要領をマイページに掲載（郵送なし）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "納入期限・一次",
+          "value": "2027年2月24日23:59。入学金を納入。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "納入期限・二次",
+          "value": "2027年3月10日23:59。入学金以外の学費等を納入。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票の出力開始",
+          "value": "一次：2027年1月28日11:00／二次：2月9日9:00。マイページから印刷し持参。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "成績開示",
+          "value": "2027年2月18日9時頃〜2月24日。一次科目別得点・順位・英語数学のマーク基準点、二次面接の得点・順位。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "疑義申し立て",
+          "value": "2027年2月18日〜2月24日必着。受験生本人が理由を付した書面を郵送（所定の返信用封筒を同封）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退時の返還申出",
+          "value": "2027年3月31日17:00必着で入学辞退届と返還申出を提出した場合、入学金を除く学費・委託徴収金を返還。それ以外は委託徴収金のみ。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "90名。帰国生・国際バカロレア入試の若干名を含む。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "基本出願資格",
+          "value": "高校・中等教育学校卒業（2027年3月見込みを含む）等の8種類の入学資格のいずれか。12年の学校教育、外国の12年課程、認定在外教育施設、指定専修学校高等課程、文科大臣指定、高卒認定、個別資格審査等を含む。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "高卒認定・個別審査の年齢",
+          "value": "2027年3月31日までに18歳に達する者。高卒認定は同日までの合格見込みを含む。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別入学資格審査",
+          "value": "一般入試の申込期限は2026年12月11日。教育歴等を記載したA4申請、成績証明書等、修了（見込）証明書、書留料金分の切手付き返信用封筒を持参または書留速達で提出。事前に入試係へ確認する。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・英語",
+          "value": "英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ・Ⅱ・Ⅲ。9:00〜10:30、90分・200点。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・数学",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A、数学B（数列、統計的な推測）、数学C（ベクトル、平面上の曲線と複素数平面）。11:10〜12:50、100分・200点。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・理科",
+          "value": "物理基礎・物理、化学基礎・化学、生物基礎・生物の3科目から2科目。13:50〜15:50、2科目で120分・200点。教科書の参考・発展・コラムを含む全範囲。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語・数学の基準点",
+          "value": "マークシート方式と筆記式で出題。マーク部分は各教科および合計に基準点を設け、未達の場合は不合格。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・面接",
+          "value": "入室後順次実施。40点（5段階評価）。MMIや過去の具体的行動事例により評価し、提出書類も面接評価に含む。必要に応じ追加面接あり。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "選抜方法",
+          "value": "一次の学科成績で二次受験者を選抜し、学科試験・面接の総合得点順で合格。面接で求める基準に合致しないと判断された場合は学科点にかかわらず不合格。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "提出書類",
+          "value": "出願確認票と2026年4月以降発行の調査書。調査書が発行されない場合等の代替書類は資格別の指定に従う。他の入試区分を併願する場合は区分ごとに用意する。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "60,000円。納入した検定料・提出書類は理由を問わず返還しない。別途払込手数料あり。",
+          "sourceIds": [
+            "guideline",
+            "web-procedure"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次・名古屋",
+          "value": "TKPガーデンシティPREMIUM名古屋新幹線口（名古屋市中村区椿町1-16 井門名古屋ビル）。定員840名。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・東京",
+          "value": "有明TOCビル（東京都江東区有明3-5-7）。定員1,000名。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・大阪",
+          "value": "コングレスクエアグラングリーン大阪（大阪市北区大深町5-54 グラングリーン大阪 南館4階）。定員470名。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "会場選択と定員",
+          "value": "出願時に希望会場を選択し、変更不可。東京・大阪は満員時にWeb登録を停止。名古屋が満員の場合に限り本学・大学2号館での受験を受け付ける。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次会場",
+          "value": "本学・大学2号館（愛知県豊明市沓掛町田楽ケ窪1-98）。高校の制服は着用しない。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "総合点同点時は面接、英語＋数学、数学、入試委員会の総合判定の順。理科選択科目間は平均点を考慮した得点調整等の配慮を行う。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "一般枠と愛知県地域枠は併願でき、同一試験で判定する。併願者は地域枠で判定し、不合格の場合に一般枠でも判定する。地域枠出願の辞退は二次試験受験日までに所定の書類を提出する。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "一般入試と共通テスト利用入試の併願者は同じ二次希望順位を選択し、1回の面接で両方を判定する。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "補欠者にはマイページで補欠通知を掲載し、繰上合格は電話で連絡する。補欠者を全員繰り上げても欠員がある場合、二次試験不合格者から追加合格を出すことがある。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "理科は問題配付後に2科目を選択する。",
+          "sourceIds": [
+            "general-summary"
+          ]
+        },
+        {
+          "text": "医学科のWeb出願から医工共創学科の医学科併願枠を同時選択でき、同学科の検定料は免除（医学科の60,000円のみ）。後から追加の併願手続はできず、出願書類は別に必要。医工共創学科自体の選抜全体は本草稿の対象外。",
+          "sourceIds": [
+            "guideline"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "general-aichi",
+      "name": "一般入学試験【愛知県地域枠】",
+      "scheduleRows": [
+        {
+          "label": "Web出願期間",
+          "value": "2026年12月7日〜2027年1月22日。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類提出期限",
+          "value": "2027年1月25日必着。書留速達または持参。持参は平日9:00〜17:00（土日祝・12月29日〜1月3日を除く）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web受付・検定料の終了時刻",
+          "value": "要確認。検定料は支払期間（出願期間）内に納入する。取得した要項・公開ガイダンスでは受付終了・支払終了の時刻を確認できない。書類の必着日と混同しない。",
+          "sourceIds": [
+            "web-procedure"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年2月4日。8:00〜8:40に入室。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次結果発表",
+          "value": "2027年2月9日9時頃。マイページで確認。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年2月14日または15日の午前・午後の計4区分。午前は8:30〜9:10、午後は12:00〜12:40に入室。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次日時の割当",
+          "value": "出願時に第1〜第4希望を入力。一次結果発表時に出願日時の早い順で上限人数まで決定し、二次受験票で通知。決定後の変更不可。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年2月18日9時頃。合格通知・手続要領をマイページに掲載（郵送なし）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "納入期限・一次",
+          "value": "2027年2月24日23:59。入学金を納入。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "納入期限・二次",
+          "value": "2027年3月10日23:59。入学金以外の学費等を納入。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票の出力開始",
+          "value": "一次：2027年1月28日11:00／二次：2月9日9:00。マイページから印刷し持参。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "成績開示",
+          "value": "2027年2月18日9時頃〜2月24日。一次科目別得点・順位・英語数学のマーク基準点、二次面接の得点・順位。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "疑義申し立て",
+          "value": "2027年2月18日〜2月24日必着。受験生本人が理由を付した書面を郵送（所定の返信用封筒を同封）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退時の返還申出",
+          "value": "2027年3月31日17:00必着で入学辞退届と返還申出を提出した場合、入学金を除く学費・委託徴収金を返還。それ以外は委託徴収金のみ。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "8名。正式募集要項に承認済みと記載。概要PDFの「10名以内」から変更されている。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "基本出願資格",
+          "value": "高校・中等教育学校卒業（2027年3月見込みを含む）等の8種類の入学資格のいずれか。12年の学校教育、外国の12年課程、認定在外教育施設、指定専修学校高等課程、文科大臣指定、高卒認定、個別資格審査等を含む。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "高卒認定・個別審査の年齢",
+          "value": "2027年3月31日までに18歳に達する者。高卒認定は同日までの合格見込みを含む。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別入学資格審査",
+          "value": "一般入試の申込期限は2026年12月11日。教育歴等を記載したA4申請、成績証明書等、修了（見込）証明書、書留料金分の切手付き返信用封筒を持参または書留速達で提出。事前に入試係へ確認する。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・英語",
+          "value": "英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ・Ⅱ・Ⅲ。9:00〜10:30、90分・200点。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・数学",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ・A、数学B（数列、統計的な推測）、数学C（ベクトル、平面上の曲線と複素数平面）。11:10〜12:50、100分・200点。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・理科",
+          "value": "物理基礎・物理、化学基礎・化学、生物基礎・生物の3科目から2科目。13:50〜15:50、2科目で120分・200点。教科書の参考・発展・コラムを含む全範囲。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語・数学の基準点",
+          "value": "マークシート方式と筆記式で出題。マーク部分は各教科および合計に基準点を設け、未達の場合は不合格。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・面接",
+          "value": "入室後順次実施。40点（5段階評価）。MMIや過去の具体的行動事例により評価し、提出書類も面接評価に含む。必要に応じ追加面接あり。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "選抜方法",
+          "value": "一次の学科成績で二次受験者を選抜し、学科試験・面接の総合得点順で合格。面接で求める基準に合致しないと判断された場合は学科点にかかわらず不合格。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "提出書類",
+          "value": "出願確認票と2026年4月以降発行の調査書。調査書が発行されない場合等の代替書類は資格別の指定に従う。他の入試区分を併願する場合は区分ごとに用意する。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "60,000円。納入した検定料・提出書類は理由を問わず返還しない。別途払込手数料あり。",
+          "sourceIds": [
+            "guideline",
+            "web-procedure"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "地域の追加資格",
+          "value": "愛知県内の高校・中等教育学校の出身者、または出願時に本人もしくは保護者が愛知県内に居住する者。将来の地域医療に貢献する熱意と能力を有すること。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学校課程・卒業年の追加資格",
+          "value": "日本国内の高校・中等教育学校の全日制普通科等（理数科・英数科・総合学科等で普通科の教育課程を網羅する学科を含む）の全課程を2025年3月または2026年3月に卒業、または2027年3月に卒業見込み（二浪まで）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "従事要件",
+          "value": "愛知県の修学資金を受給し、医師免許取得後、県内の臨床研修病院で2年間研修した後、指定医療機関で7年間診療業務に従事することを確約する。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "修学資金",
+          "value": "初年度は月額175,000円、2年次以降5年間は月額150,000円、貸与総額1,110万円。返還免除には所定の指定医療機関で貸与期間の1.5倍（9年間）の勤務などの条件がある。県のキャリア形成プログラムと条例への同意を出願前に確認する。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "追加の提出書類",
+          "value": "愛知県・本人・保護者または法定代理人による従事・離脱要件への書面同意（大学所定）。県内の高校出身者以外は1か月以内発行の本人または保護者の県内住民票、保護者の住民票の場合は本人との関係を証明する公的書類を添付。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次・名古屋",
+          "value": "TKPガーデンシティPREMIUM名古屋新幹線口（名古屋市中村区椿町1-16 井門名古屋ビル）。定員840名。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・東京",
+          "value": "有明TOCビル（東京都江東区有明3-5-7）。定員1,000名。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・大阪",
+          "value": "コングレスクエアグラングリーン大阪（大阪市北区大深町5-54 グラングリーン大阪 南館4階）。定員470名。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "会場選択と定員",
+          "value": "出願時に希望会場を選択し、変更不可。東京・大阪は満員時にWeb登録を停止。名古屋が満員の場合に限り本学・大学2号館での受験を受け付ける。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次会場",
+          "value": "本学・大学2号館（愛知県豊明市沓掛町田楽ケ窪1-98）。高校の制服は着用しない。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "総合点同点時は面接、英語＋数学、数学、入試委員会の総合判定の順。理科選択科目間は平均点を考慮した得点調整等の配慮を行う。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "一般枠と愛知県地域枠は併願でき、同一試験で判定する。併願者は地域枠で判定し、不合格の場合に一般枠でも判定する。地域枠出願の辞退は二次試験受験日までに所定の書類を提出する。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "一般入試と共通テスト利用入試の併願者は同じ二次希望順位を選択し、1回の面接で両方を判定する。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "補欠者にはマイページで補欠通知を掲載し、繰上合格は電話で連絡する。補欠者を全員繰り上げても欠員がある場合、二次試験不合格者から追加合格を出すことがある。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "地域枠で合格した場合は地域枠で入学手続を行う。一般枠へ切り替えての入学ではない。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "一般枠合格・地域枠補欠の場合、一般枠の入学資格を辞退しても地域枠補欠の権利は失わない。ただし地域枠の繰上合格を保証するものではない。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "愛知県地域枠とFUJITA学援ローンの同時利用はできない。県条例・個別契約・2027年度の派遣先等の全文確認は別途必要。",
+          "sourceIds": [
+            "guideline"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "common-test",
+      "name": "共通テスト利用入学試験",
+      "scheduleRows": [
+        {
+          "label": "Web出願期間",
+          "value": "2026年12月7日〜2027年1月15日。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類提出期限",
+          "value": "2027年1月18日必着。書留速達または持参。持参は平日9:00〜17:00（土日祝・12月29日〜1月3日を除く）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web受付・検定料の終了時刻",
+          "value": "要確認。検定料は支払期間（出願期間）内に納入する。取得した要項・公開ガイダンスでは受付終了・支払終了の時刻を確認できない。書類の必着日と混同しない。",
+          "sourceIds": [
+            "web-procedure"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "大学入学共通テスト実施日",
+          "value": "2027年1月16日・17日。",
+          "sourceIds": [
+            "common-summary"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次結果発表",
+          "value": "2027年2月9日9時頃。マイページで確認。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年2月14日または15日の午前・午後の計4区分。午前は8:30〜9:10、午後は12:00〜12:40に入室。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次日時の割当",
+          "value": "出願時に第1〜第4希望を入力。一次結果発表時に出願日時の早い順で上限人数まで決定し、二次受験票で通知。決定後の変更不可。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年2月18日9時頃。通知・手続要領をマイページに掲載（郵送なし）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "納入期限・一次",
+          "value": "2027年2月24日23:59。入学金を納入。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "納入期限・二次",
+          "value": "2027年3月10日23:59。入学金以外の学費等を納入。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票の出力開始",
+          "value": "大学の一次受験票：2027年1月21日11:00／二次：2月9日9:00。共通テスト本試験の受験票とは別の手続。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "成績開示",
+          "value": "2027年4月1日9時頃〜4月8日。一次の合計得点・順位と二次面接の得点・順位。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "疑義申し立て",
+          "value": "2027年4月1日〜4月8日必着。受験生本人が理由を付した書面を郵送（所定の返信用封筒を同封）。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退時の返還申出",
+          "value": "2027年3月31日17:00必着で入学辞退届と返還申出を提出した場合、入学金を除く学費・委託徴収金を返還。それ以外は委託徴収金のみ。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "10名。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格",
+          "value": "高校卒業・卒業見込み等の8種類の入学資格のいずれかを満たし、2027年度大学入学共通テストの指定教科・科目を受験すること。高卒認定・個別審査は2027年3月31日までに18歳に達する者。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "個別入学資格審査",
+          "value": "要確認。共通テスト利用入試は「すみやかにご連絡ください」と記載され、日付の指定を確認できない。一般入試の2026年12月11日を転用せず、入試係へ事前確認する。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "共通テスト・国語配点",
+          "value": "国語（古文・漢文を除く）を必須とし、110点を100点満点に換算。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・英語配点",
+          "value": "リーディング100点を150点、リスニング100点を50点に換算。計200点。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・数学配点",
+          "value": "数学Ⅰ・数学Aと数学Ⅱ・数学B・数学Cの2科目必須。各100点、計200点。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・理科配点",
+          "value": "物理・化学・生物から2科目を必須選択。各100点、計200点。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト・情報配点",
+          "value": "情報Ⅰ必須。100点を50点満点に換算。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テストの換算合計",
+          "value": "国語100＋英語200＋数学200＋理科200＋情報50＝750点満点。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・面接",
+          "value": "入室後順次実施。40点（5段階評価）。MMIや過去の具体的行動事例により評価し、提出書類も面接評価に含む。必要に応じ追加面接あり。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "選抜方法",
+          "value": "共通テスト成績で二次受験者を選抜し、共通テスト・面接の総合得点順で合格。面接で求める基準に合致しないと判断された場合は共通テスト点にかかわらず不合格。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "提出書類",
+          "value": "出願確認票と2026年4月以降発行の調査書等。共通テスト成績請求情報はWeb方式で提出。他の入試区分を併願する場合は調査書等を区分ごとに用意する。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "25,000円。納入した検定料・提出書類は理由を問わず返還しない。別途払込手数料あり。",
+          "sourceIds": [
+            "guideline",
+            "web-procedure"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "二次会場",
+          "value": "本学・大学2号館（愛知県豊明市沓掛町田楽ケ窪1-98）。高校の制服は着用しない。",
+          "sourceIds": [
+            "guideline"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "一般入試の併願者は同じ二次希望順位を選び、1回の面接で両方を判定する。同点時は二次試験、英語＋数学、数学、入試委員会の総合判定の順。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "補欠繰上げは登録電話へ連絡する。補欠者を全員繰り上げても欠員がある場合、二次試験不合格者から追加合格を出すことがある。",
+          "sourceIds": [
+            "guideline"
+          ]
+        },
+        {
+          "text": "大学の一次受験票出力日が共通テスト本試験の後になっているのは要項の記載どおり。共通テスト本試験用の受験票・会場指定を代替するものではない。",
+          "sourceIds": [
+            "guideline"
+          ]
+        }
+      ]
+    }
+  ],
+  "coverageNotes": [
+    "対象は2027年度医学部医学科の6区分（未来一般・未来独創一理、帰国生IB、一般一般・一般愛知県地域枠、共通テスト利用）。入学定員は120名。医工共創学科の全選抜は含めない。",
+    "正式募集要項で愛知県地域枠8名の承認を確認した。一般概要PDFの10名以内や、県の旧更新ページの10名を2027年度募集数として採用しない。",
+    "2027年度変更の数学Ⅲ・統計的な推測を反映した未来・帰国生IBの出題範囲と、一般入試の範囲を分けた。",
+    "日付はWeb登録、書類必着、受験票、試験、発表、納入、開示、疑義・辞退を区別。Web受付終了時刻は取得資料で確認できず、要確認として残す。",
+    "受験・修学上の配慮は、電話で申し込んだ後、出願締切の1か月前までに事前申請書類を提出。急な病気・けがは速やかに相談する。",
+    "配慮申請は医学部用様式、診断書写し、該当する場合は共通テスト配慮審査結果通知・障害者手帳写しを提出。大学からの配慮事項決定通知の写しは出願書類に同封する。",
+    "Web登録・検定料支払い・書類提出をすべて行って出願完了。顔写真は3か月以内、JPEG・3MB以内、高校の制服は着用しない。受験票は自分で印刷し、大学からの郵送はない。",
+    "合格後もマイページで納入・提出期日一覧と手続要領を確認し、身上書入力と必要書類の書留郵送を行う。募集要項の画面例の日付を実際の締切として使わない。",
+    "2027年度の初年度学費・委託徴収金合計は5,196,000円、うち入学時前期分は3,486,000円。6年間合計は22,126,000円。返還例外は入試区分ごとに異なり、進級時に学費が変わる場合がある。",
+    "出典の優先順位は、大学の当年度正式募集要項、変更点・公開Web出願案内、概要PDFの順とした。大学公式ニュース・受験生トップも取得したが、未確認の訂正が一切ないことを保証するものではない。",
+    "未来入試の従事要件・地域枠の修学資金は募集要項記載の範囲を確認。県条例・キャリア形成プログラム全文、2027年度派遣先、個別契約・返還利息等は別途の校閲対象。"
+  ]
+}
