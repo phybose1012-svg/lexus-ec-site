@@ -1,0 +1,2086 @@
+{
+  "path": "/information-toho/",
+  "university": "東邦大学",
+  "admissionYear": 2027,
+  "verifiedAt": "2026-10-23T08:07:29.357+09:00",
+  "sources": [
+    {
+      "id": "admissions",
+      "url": "https://www.toho-u.ac.jp/med/info_exam/sum.html",
+      "title": "2027年度 医学部医学科入試情報",
+      "retrievedAt": "2026-10-23T07:59:57.204+09:00",
+      "sha256": "d3215da934d8347eacaa1f8946e9ef7d2ab81f15b6bf8e584c7eb111398efcd5"
+    },
+    {
+      "id": "requirements",
+      "url": "https://www.toho-u.ac.jp/info_exam/web_apply.html",
+      "title": "募集要項・Web出願について",
+      "retrievedAt": "2026-10-23T07:59:57.345+09:00",
+      "sha256": "88c6c604ab60340e3f6e2e38e44d4fe4e03c3bf15a383a14c971c5931694918c"
+    },
+    {
+      "id": "changes",
+      "url": "https://www.toho-u.ac.jp/info_exam/toho_nyushi2027_web_apply.html",
+      "title": "2027年度入試からの変更点",
+      "retrievedAt": "2026-10-23T07:59:57.461+09:00",
+      "sha256": "01be945c194bc074d29b34b180af7d11fa2428a2afc61e5b791678dc445cbeb3"
+    },
+    {
+      "id": "juken-med",
+      "url": "https://juken.toho-u.ac.jp/exam-info/med.html",
+      "title": "受験生サイト医学部",
+      "retrievedAt": "2026-10-23T07:59:57.841+09:00",
+      "sha256": "48d1e607d83c020df7134f82459ad442fca88d75afaaa1e874d96ff02c2d7a33"
+    },
+    {
+      "id": "guidelines",
+      "url": "https://www.toho-u.ac.jp/info_exam/med_2027nyushi.pdf",
+      "title": "2027学生募集要項 総合・同窓生子女・付属校",
+      "retrievedAt": "2026-10-23T08:00:31.706+09:00",
+      "sha256": "6717dad8cf66b404e26aef7e7f7049e83ea9d1029d97c7a402bd90dbf2505798",
+      "pages": "PDF物理p.2、10、11、12、13、14、15、16、18、23、26"
+    },
+    {
+      "id": "sogo-forms",
+      "url": "https://www.toho-u.ac.jp/info_exam/med_2027sogo_syorui.pdf",
+      "title": "2027総合入試出願書類",
+      "retrievedAt": "2026-10-23T08:00:33.826+09:00",
+      "sha256": "2e32ac64ee951132a122a1b74b93b0d4454e1bc941475fd17c22ad0a898c8557",
+      "pages": "PDF物理p.1、2、3"
+    },
+    {
+      "id": "alumni-forms",
+      "url": "https://www.toho-u.ac.jp/info_exam/med_2027do_syorui.pdf",
+      "title": "2027同窓生子女出願書類",
+      "retrievedAt": "2026-10-23T08:00:34.086+09:00",
+      "sha256": "560cd5f00baafd1b8d9bc5b08d5a651fa070d43343bdbc477fdd539de00067f8",
+      "pages": "PDF物理p.1、2、3、4"
+    },
+    {
+      "id": "regional-update",
+      "url": "https://www.toho-u.ac.jp/med/information/2026/info_20261014.html",
+      "title": "地域枠募集要項掲載について2026年10月14日",
+      "retrievedAt": "2026-10-23T08:00:34.416+09:00",
+      "sha256": "f72dbcbf2b2e75f3e13c81a117635a0b46e4317997051a8fca744cc49fd2078a"
+    },
+    {
+      "id": "individual",
+      "url": "https://www.toho-u.ac.jp/info_exam/j5mt8h000000lypc-att/j5mt8h0000017oy5.pdf",
+      "title": "2027医学部入学資格個別審査要領",
+      "retrievedAt": "2026-10-23T08:00:34.735+09:00",
+      "sha256": "546d4ff87fa21030975c1a1462bc00f4487d03059671df2a9a3e0da9684289bf",
+      "pages": "PDF物理p.1"
+    },
+    {
+      "id": "fee-notice",
+      "url": "https://www.toho-u.ac.jp/info_exam/01-1_2027infonyushi.pdf",
+      "title": "2027入学金返還通知",
+      "retrievedAt": "2026-10-23T08:01:22.565+09:00",
+      "sha256": "3eed0833be3e6c3450af50727e48a9e677f95afc8e228e4d2eac7f762254955e",
+      "pages": "PDF物理p.1、2"
+    },
+    {
+      "id": "accommodation-guide",
+      "url": "https://www.toho-u.ac.jp/info_exam/hairyo/b4lok50000004flj-att/b4lok50000004fs8.pdf",
+      "title": "受験上修学上の配慮申請案内",
+      "retrievedAt": "2026-10-23T08:02:20.150+09:00",
+      "sha256": "b17113bb3a1baab7762163c4ef8fcba9fe5b9514a0c6884906736dfb2aa02561",
+      "pages": "PDF物理p.1、2、3"
+    }
+  ],
+  "schemes": [
+    {
+      "id": "comprehensive",
+      "name": "総合入試",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "約10名",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web登録",
+          "value": "2026年11月2日～11月11日13:00。出願開始日の受付開始は10:00",
+          "sourceIds": [
+            "guidelines",
+            "requirements"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "検定料支払期限",
+          "value": "2026年11月11日15:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類郵送",
+          "value": "2026年11月2日～11月11日 必着",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "窓口受付",
+          "value": "2026年11月11日9:00～17:00。事前のWeb登録と検定料支払いが必要",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "60,000円。受理した書類・検定料は返還しない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2026年11月20日",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次発表",
+          "value": "2026年11月27日12:00。インターネット案内は12月5日17:00まで。二次集合時刻も通知",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2026年12月5日。一次合格者のみ",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次発表",
+          "value": "2026年12月9日12:00。インターネット案内は12月11日17:00まで。合格者には文書でも通知",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続",
+          "value": "2026年12月15日15:00まで。所定書類・学納金・委託徴収金を納付",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "初年度納付金",
+          "value": "学納金480万円（入学金150万円、授業料250万円、医学教育充実費50万円、施設設備費30万円）。別に委託徴収金497,800円",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web期限の資料差異",
+          "value": "要確認。個別出願欄は登録13:00・支払15:00。一方、共通ガイド末尾に登録23時との記載がある。遅い時刻へ読み替えず個別欄を示す。大学照会未実施",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "辞退時の返還",
+          "value": "未公表。この年内方式は入学確約。確認した要項に一般的な学納金返還期限の明示はなく、一般選抜の負担軽減制度を適用しない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "出願資格",
+          "value": "高校・中等教育学校等を2026年3月卒業、又は2027年3月卒業見込み。全体評定3.8以上かつ数学・理科それぞれ4.0以上。見込み者は高校3年1学期まで。合格時に入学を確約できる者",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・出願書類",
+          "value": "調査書・自己アピールシート・志望理由書等。40点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・基礎学力",
+          "value": "9:45～10:55、70分・60点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・適性試験",
+          "value": "11:40～12:40、60分・30点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・面接",
+          "value": "一人約30分・50点。時刻は一次合格発表時に通知",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "段階別の判定",
+          "value": "一次は130点。最終は一次総得点に面接50点を加えて180点。基礎学力・適性試験・面接が著しく低い場合は得点に関わらず不合格。未受験科目がある場合も不合格",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次・二次会場",
+          "value": "東邦大学 大森キャンパス（東京都大田区大森西5-21-16）",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "集合・入室",
+          "value": "試験開始30分前までに入室。開始後20分以上の遅刻は受験不可",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "提出書類",
+          "value": "Web志願票、厳封調査書（2026年10月1日以降発行）、自己アピールシート・志望理由書・誓約書。外国人は該当する在留関係証明1通",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "写真",
+          "value": "出願から3か月以内の上半身正面・無帽・無背景カラー。高校制服不可。JPEG/BMP/PNG、2MBまで",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "様式の記入",
+          "value": "所定のA4様式を印刷しボールペン又は万年筆で自筆。誓約書は本人・保護者の自署・押印欄を確認",
+          "sourceIds": [
+            "guidelines",
+            "sogo-forms"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "公開様式の確認",
+          "value": "自己アピールシート・志望理由書・誓約書の2027年度様式を確認",
+          "sourceIds": [
+            "sogo-forms"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "郵送方法・宛先",
+          "value": "角形2号封筒に出力宛名シートを貼り、簡易書留。〒143-8540 東京都大田区大森西5-21-16 東邦大学医学部入試係。締切日必着",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "受理後のメール案内に従いマイページから取得。A4片面印刷して試験当日持参。郵送はしない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験・修学上の配慮",
+          "value": "総合型・学校推薦型選抜は出願開始1か月前までに申請。事前相談・必要な面談等を経て承諾後に出願。期限後の相談・事故等は医学部入試係に連絡",
+          "sourceIds": [
+            "accommodation-guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "同窓生子女・付属校推薦との併願不可。地域枠推薦の公開案内でも総合入試との併願不可。",
+          "sourceIds": [
+            "guidelines",
+            "juken-med"
+          ]
+        },
+        {
+          "text": "今年度の変更通知と要項で基礎学力70分・60点、書類40点、適性30点、面接50点を確認。旧年度の試験時間を引き継がない。",
+          "sourceIds": [
+            "changes"
+          ]
+        },
+        {
+          "text": "登録だけで出願は完了しない。検定料支払いと期限内の書類提出まで必要。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alumni",
+      "name": "同窓生子女入試",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "約5名",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web登録",
+          "value": "2026年11月2日～11月11日13:00。出願開始日の受付開始は10:00",
+          "sourceIds": [
+            "guidelines",
+            "requirements"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "検定料支払期限",
+          "value": "2026年11月11日15:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類郵送",
+          "value": "2026年11月2日～11月11日 必着",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "窓口受付",
+          "value": "2026年11月11日9:00～17:00。事前のWeb登録と検定料支払いが必要",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "60,000円。受理した書類・検定料は返還しない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2026年11月20日",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次発表",
+          "value": "2026年11月27日12:00。インターネット案内は12月5日17:00まで。二次集合時刻も通知",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2026年12月5日。一次合格者のみ",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次発表",
+          "value": "2026年12月9日12:00。インターネット案内は12月11日17:00まで。合格者には文書でも通知",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続",
+          "value": "2026年12月15日15:00まで。所定書類・学納金・委託徴収金を納付",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "初年度納付金",
+          "value": "学納金480万円（入学金150万円、授業料250万円、医学教育充実費50万円、施設設備費30万円）。別に委託徴収金497,800円",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web期限の資料差異",
+          "value": "要確認。個別出願欄は登録13:00・支払15:00。一方、共通ガイド末尾に登録23時との記載がある。遅い時刻へ読み替えず個別欄を示す。大学照会未実施",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "辞退時の返還",
+          "value": "未公表。この年内方式は入学確約。確認した要項に一般的な学納金返還期限の明示はなく、一般選抜の負担軽減制度を適用しない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "出願資格",
+          "value": "高校・中等教育学校等を2022年3月以降卒業、又は2027年3月卒業見込み。本学医学部卒業生の血族2親等までで、建学の精神に則り社会に貢献できる医師となる資質があり、合格時に入学を確約できる者",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "法定血族の条件",
+          "value": "2024年4月1日より以前に養子縁組していること",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・出願書類",
+          "value": "調査書・自己アピールシート・志望理由書等。40点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・基礎学力",
+          "value": "9:45～10:55、70分・60点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・適性試験",
+          "value": "11:40～12:40、60分・30点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・面接",
+          "value": "一人約30分・50点。時刻は一次合格発表時に通知",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "段階別の判定",
+          "value": "一次は130点。最終は一次総得点に面接50点を加えて180点。基礎学力・適性試験・面接が著しく低い場合は得点に関わらず不合格。未受験科目がある場合も不合格",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次・二次会場",
+          "value": "東邦大学 大森キャンパス（東京都大田区大森西5-21-16）",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "集合・入室",
+          "value": "試験開始30分前までに入室。開始後20分以上の遅刻は受験不可",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "提出書類",
+          "value": "Web志願票、厳封調査書（2026年10月1日以降発行）、自己アピールシート・志望理由書・同窓生申請書・誓約書。本人と同窓生の続柄を証する公的書類（戸籍謄本等）も必要。外国人は該当する在留関係証明1通",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "写真",
+          "value": "出願から3か月以内の上半身正面・無帽・無背景カラー。高校制服不可。JPEG/BMP/PNG、2MBまで",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "様式の記入",
+          "value": "所定のA4様式を印刷しボールペン又は万年筆で自筆。誓約書は本人・保護者の自署・押印欄を確認",
+          "sourceIds": [
+            "guidelines",
+            "alumni-forms"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "公開様式の確認",
+          "value": "自己アピールシート・志望理由書・同窓生申請書・誓約書の2027年度様式を確認",
+          "sourceIds": [
+            "alumni-forms"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "郵送方法・宛先",
+          "value": "角形2号封筒に出力宛名シートを貼り、簡易書留。〒143-8540 東京都大田区大森西5-21-16 東邦大学医学部入試係。締切日必着",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "受理後のメール案内に従いマイページから取得。A4片面印刷して試験当日持参。郵送はしない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験・修学上の配慮",
+          "value": "総合型・学校推薦型選抜は出願開始1か月前までに申請。事前相談・必要な面談等を経て承諾後に出願。期限後の相談・事故等は医学部入試係に連絡",
+          "sourceIds": [
+            "accommodation-guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "総合・付属校推薦との併願不可。総合入試の評定要件をこの方式へ転記しない。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        },
+        {
+          "text": "2027年度から卒業時期の条件は2022年3月以降となる。受験者本人と卒業生の関係を公的書類で証明する。",
+          "sourceIds": [
+            "changes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "affiliated",
+      "name": "推薦入試（付属校制）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "約20名",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願経路",
+          "value": "学校長を経由して出願。受験生サイトは2026年11月2日～11月11日必着と案内。窓口受付なし",
+          "sourceIds": [
+            "juken-med",
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2026年11月20日",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2026年12月5日。一次合格者のみ",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "発表",
+          "value": "学校長を経由して発表。公開要項の概要欄では個別発表日時を示していない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "手続期限",
+          "value": "2026年12月15日15:00まで。所定の手続・納付が必要",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web・支払期限と検定料",
+          "value": "未公表。方式別の詳細はパスワード付き別紙。公開範囲だけで総合・同窓生子女の期限・金額を流用しない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "対象・入学確約",
+          "value": "本学付属高等学校を対象。合格時に入学を確約できる者",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "資格詳細・選抜配点",
+          "value": "未公表。各付属校の進路指導教員へ問い合わせる別紙は未閲覧。評定・卒業年度・教科別配点や時間を推定しない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次・二次会場",
+          "value": "東邦大学 大森キャンパス",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願書類",
+          "value": "提出について高等学校に確認。窓口受付は行わない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "専用書式",
+          "value": "未公表。付属校推薦の別紙・出願関係用紙はパスワード付きで未確認",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "受験・修学上の配慮",
+          "value": "学校推薦型は出願開始1か月前までに申請。期限後相談は医学部入試係へ",
+          "sourceIds": [
+            "accommodation-guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "公開共通冊子15ページは別紙参照と明記。保護された別紙や様式を解除・取得していない。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "general",
+      "name": "一般入試",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "約70名",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "正式要項の公開状況",
+          "value": "要確認。一般選抜（地域枠を含む）は11月4日頃を目途に公開予定。以下は2027公式概要・受験生サイトの掲載内容で、公開後の要項再照合が必要",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "書類郵送",
+          "value": "2026年12月14日～2027年1月26日 必着",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "窓口受付",
+          "value": "2027年1月25日・26日9:00～17:00",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web受付開始",
+          "value": "出願開始日の初日に限り10:00から開始",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web・支払の最終時刻",
+          "value": "未公表。当該方式の正式要項は後日公開。年内入試の13時・15時や共通ガイドの23時を転記しない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "検定料",
+          "value": "受験生サイトの医学部検定料は60,000円",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年2月7日",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次発表",
+          "value": "2027年2月10日12:00",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年2月15日・16日のいずれか1日。一次合格者のみ",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次発表",
+          "value": "2027年2月18日12:00",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "手続期限",
+          "value": "要確認。2027年2月25日。金額・納付方法・最終時刻は正式要項で再確認",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一般的な辞退・学費返還",
+          "value": "未公表。当該方式の正式要項・入学手続要項は未確認。年内要項や旧年度から返還期限を補わない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "条件付き入学金全額返還",
+          "value": "児童養護施設等の在籍証明、高校生等奨学給付金の支給決定通知、又は指定の修学支援新制度（第I～III区分・同多子世帯）の採用候補者決定通知に該当する入学辞退者が対象。2027年3月10日までに辞退届を提出し、返還申請は3月10日消印有効・郵送のみ。全入学辞退者へ一律に返還する制度ではない",
+          "sourceIds": [
+            "fee-notice"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "大学入学資格の詳細",
+          "value": "未公表。一般入試の正式要項は後日公開。通常の出願資格一覧・証明条件は公開後に確認する",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "一次・数学",
+          "value": "数学I・II・III・A・B（数列）・C（ベクトル、平面上の曲線と複素数平面）。100点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・理科",
+          "value": "物理基礎・物理／化学基礎・化学／生物基礎・生物から2科目。各100点、計200点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・外国語",
+          "value": "英語コミュニケーションI・II・III、論理・表現I・II・III。150点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "基礎学力",
+          "value": "論理的思考力・数理解析能力等。一次日に受験するが最終選抜で利用。記述も含む・50点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次と二次の判定",
+          "value": "一次は数学100・理科200・外国語150の450点。最終は一次得点に基礎学力50・面接50を加えて550点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "教科基準・形式",
+          "value": "数学・物理・化学・生物・外国語に基準点があり、1科目でも未達なら不合格となる場合がある。未受験科目がある場合は欠席扱い。数学・理科・外国語はマークシート",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験時間・面接時間",
+          "value": "教科ごとの時間割・所要時間と面接の個別所要時間は、当該正式要項が未公開のため確認できない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次会場",
+          "value": "五反田TOCビル",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次会場",
+          "value": "東邦大学 大森キャンパス",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願書類・受験票",
+          "value": "未公表。方式別の正式要項・書式は後日公開。年内入試の調査書発行日や追加書式を自動適用しない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "個別入学資格審査",
+          "value": "学校教育法施行規則第150条第7号に係る、修業年限12年の外国人学校卒業・見込み者等を対象。2027年3月31日までに18歳、高校相当3年の学習歴等。一般・統一入試が対象で、2026年12月7日必着。所定申請書、卒業・成績・教育内容証明等を書留郵送し、返信用レターパックプラスも同封",
+          "sourceIds": [
+            "individual"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験・修学上の配慮",
+          "value": "一般選抜の申請期限は2026年12月7日厳守。出願を検討する段階で事前相談。期限後の事故等・相談は医学部入試係に連絡",
+          "sourceIds": [
+            "accommodation-guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学金返還の提出書類",
+          "value": "返還申請書と該当の証明書・通知書写し等を医学部入試係へ郵送。全納して入学手続完了の場合は、返還申請とは別に入学辞退手続も必要",
+          "sourceIds": [
+            "fee-notice"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "年内3方式の入学予定者が募集人員に満たない場合は一般入試へ充当。地域枠13名を一般約70名へ二重加算しない。",
+          "sourceIds": [
+            "admissions"
+          ]
+        },
+        {
+          "text": "正式要項公開後に、資格・Web/支払時刻・書類・科目時間・手続金額・返還規定を再照合する。",
+          "sourceIds": [
+            "requirements"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regional-recommend-chiba",
+      "name": "推薦入試（公募制－千葉県地域枠・認可申請中）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "要確認。3名。未充足時は同県の一般地域枠へ充当。認可申請中の予定",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "郵送受付",
+          "value": "2026年11月2日～11月11日 必着。正式要項公開後の再確認が必要",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "窓口受付",
+          "value": "要確認。2026年11月11日9:00～17:00",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "Web・支払期限と検定料",
+          "value": "未公表。2027正式要項は認可後公開。総合入試の13時/15時・60,000円を無条件に転記しない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "一次試験・発表",
+          "value": "要確認。2026年11月20日、発表11月27日12:00",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "二次試験・発表",
+          "value": "要確認。2026年12月5日、発表12月9日12:00",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "入学手続期限",
+          "value": "要確認。2026年12月15日。金額・最終時刻は正式要項で確認",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "正式要項・辞退と返還",
+          "value": "要確認。10月14日通知でも認可申請中。認可後に要項・書式を公開予定。入学確約方式であり辞退・返還の適用を一般と同じと推定しない",
+          "sourceIds": [
+            "regional-update"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "出願資格",
+          "value": "要確認。高校・中等教育学校等を2022年3月以降卒業又は2027年3月卒業見込み。学校長推薦と合格時の入学確約、千葉県医師修学資金の貸与と県キャリア形成プログラムに則った指定医療機関で貸与期間の1.5倍の勤務を誓約が必要。出身地域は問わない。保証人2名が必要",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "選抜の公開予定",
+          "value": "要確認。書類40点・基礎学力60点・適性30点・面接50点と2027受験生サイトに掲載。正式要項での確認前の情報",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "試験時間・細部",
+          "value": "地域推薦の当年度正式要項は未公開。総合・同窓生子女の時間割を転記しない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "県の修学資金・勤務",
+          "value": "要確認。上記は大学の公開概要。金額、免許取得期限、指定機関、猶予、返還・利息等の当年度県契約全文は未照合",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次・二次会場",
+          "value": "要確認。東邦大学 大森キャンパス。正式要項で再確認",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "提出予定書類",
+          "value": "要確認。調査書（2026年10月1日以降発行）、推薦書、自己アピールシート、志望理由書、本学用誓約書、県用貸付申請書・誓約書・同意書。10月14日通知の予定で変更の可能性あり",
+          "sourceIds": [
+            "regional-update"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "使用書式",
+          "value": "要確認。本学・県それぞれ指定様式を認可後に要項と併せて公開予定。昨年度参考書式を2027の確定版として利用しない",
+          "sourceIds": [
+            "regional-update"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "受験・修学上の配慮",
+          "value": "学校推薦型は出願開始1か月前までに申請。期限後相談は医学部入試係へ",
+          "sourceIds": [
+            "accommodation-guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "総合・同窓生子女・付属校推薦・他県地域推薦との併願不可。地域医療学科目は必修。",
+          "sourceIds": [
+            "juken-med"
+          ]
+        },
+        {
+          "text": "概要表の11月2日に曜日「日」の記載があるが、2026年11月2日は月曜日。草稿は日付を示し曜日を省略。正式要項未公開・大学への照会未実施。",
+          "sourceIds": [
+            "admissions"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regional-general-chiba",
+      "name": "一般入試（千葉県地域枠・認可申請中）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "要確認。2名（認可申請中）",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "正式要項の公開状況",
+          "value": "要確認。一般選抜（地域枠を含む）は11月4日頃を目途に公開予定。以下は2027公式概要・受験生サイトの掲載内容で、公開後の要項再照合が必要",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "書類郵送",
+          "value": "要確認。2026年12月14日～2027年1月26日 必着",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "窓口受付",
+          "value": "要確認。2027年1月25日・26日9:00～17:00",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "Web受付開始",
+          "value": "出願開始日の初日に限り10:00から開始",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web・支払の最終時刻",
+          "value": "未公表。当該方式の正式要項は後日公開。年内入試の13時・15時や共通ガイドの23時を転記しない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "検定料",
+          "value": "要確認。受験生サイトの医学部検定料は60,000円。一般との同時出願に割引案内があるが、組合せごとの金額は正式要項で確認",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次試験",
+          "value": "要確認。2027年2月7日",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次発表",
+          "value": "要確認。2027年2月10日12:00",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "二次試験",
+          "value": "要確認。2027年2月15日・16日のいずれか1日。一次合格者のみ",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "二次発表",
+          "value": "要確認。2027年2月18日12:00",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "手続期限",
+          "value": "要確認。2027年2月25日。金額・納付方法・最終時刻は正式要項で再確認",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一般的な辞退・学費返還",
+          "value": "未公表。当該方式の正式要項・入学手続要項は未確認。年内要項や旧年度から返還期限を補わない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "大学入学資格の詳細",
+          "value": "未公表。一般入試の正式要項は後日公開。通常の出願資格一覧・証明条件は公開後に確認する",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "地域枠の追加資格",
+          "value": "要確認。合格時に入学確約。千葉県医師修学資金の貸与を受け、県キャリア形成プログラムに則り指定医療機関で貸与期間の1.5倍勤務する誓約が必要。本学修学資金の貸与に保証人2名が必要。最終契約条件は未照合",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次・数学",
+          "value": "数学I・II・III・A・B（数列）・C（ベクトル、平面上の曲線と複素数平面）。100点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・理科",
+          "value": "物理基礎・物理／化学基礎・化学／生物基礎・生物から2科目。各100点、計200点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・外国語",
+          "value": "英語コミュニケーションI・II・III、論理・表現I・II・III。150点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "基礎学力",
+          "value": "論理的思考力・数理解析能力等。一次日に受験するが最終選抜で利用。記述も含む・50点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次と二次の判定",
+          "value": "一次は数学100・理科200・外国語150の450点。最終は一次得点に基礎学力50・面接50を加えて550点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "教科基準・形式",
+          "value": "数学・物理・化学・生物・外国語に基準点があり、1科目でも未達なら不合格となる場合がある。未受験科目がある場合は欠席扱い。数学・理科・外国語はマークシート",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験時間・面接時間",
+          "value": "教科ごとの時間割・所要時間と面接の個別所要時間は、当該正式要項が未公開のため確認できない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次会場",
+          "value": "要確認。五反田TOCビル",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "二次会場",
+          "value": "要確認。東邦大学 大森キャンパス",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願書類・受験票",
+          "value": "未公表。方式別の正式要項・書式は後日公開。年内入試の調査書発行日や追加書式を自動適用しない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "個別入学資格審査",
+          "value": "学校教育法施行規則第150条第7号に係る、修業年限12年の外国人学校卒業・見込み者等を対象。2027年3月31日までに18歳、高校相当3年の学習歴等。一般・統一入試が対象で、2026年12月7日必着。所定申請書、卒業・成績・教育内容証明等を書留郵送し、返信用レターパックプラスも同封",
+          "sourceIds": [
+            "individual"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験・修学上の配慮",
+          "value": "一般選抜の申請期限は2026年12月7日厳守。出願を検討する段階で事前相談。期限後の事故等・相談は医学部入試係に連絡",
+          "sourceIds": [
+            "accommodation-guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "一般入試との併願は可能。他県の一般地域枠とは併願不可。この地域枠に合格した場合、一般入試の選抜対象外となる。地域医療学科目は必修。",
+          "sourceIds": [
+            "juken-med"
+          ]
+        },
+        {
+          "text": "同県地域推薦の未充足分を充当する場合がある。設置認可後の募集人数・要項・契約を再確認する。",
+          "sourceIds": [
+            "juken-med"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regional-recommend-niigata",
+      "name": "推薦入試（公募制－新潟県地域枠・認可申請中）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "要確認。5名。未充足時は同県の一般地域枠へ充当。認可申請中の予定",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "郵送受付",
+          "value": "2026年11月2日～11月11日 必着。正式要項公開後の再確認が必要",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "窓口受付",
+          "value": "要確認。2026年11月11日9:00～17:00",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "Web・支払期限と検定料",
+          "value": "未公表。2027正式要項は認可後公開。総合入試の13時/15時・60,000円を無条件に転記しない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "一次試験・発表",
+          "value": "要確認。2026年11月20日、発表11月27日12:00",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "二次試験・発表",
+          "value": "要確認。2026年12月5日、発表12月9日12:00",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "入学手続期限",
+          "value": "要確認。2026年12月15日。金額・最終時刻は正式要項で確認",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "正式要項・辞退と返還",
+          "value": "要確認。10月14日通知でも認可申請中。認可後に要項・書式を公開予定。入学確約方式であり辞退・返還の適用を一般と同じと推定しない",
+          "sourceIds": [
+            "regional-update"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "出願資格",
+          "value": "要確認。高校・中等教育学校等を2022年3月以降卒業又は2027年3月卒業見込み。学校長推薦と合格時の入学確約、新潟県医師養成修学資金の貸与と県指定医療機関等で9年間の勤務を誓約が必要。出身地域は問わない。保証人2名が必要",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "選抜の公開予定",
+          "value": "要確認。書類40点・基礎学力60点・適性30点・面接50点と2027受験生サイトに掲載。正式要項での確認前の情報",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "試験時間・細部",
+          "value": "地域推薦の当年度正式要項は未公開。総合・同窓生子女の時間割を転記しない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "県の修学資金・勤務",
+          "value": "要確認。上記は大学の公開概要。金額、免許取得期限、指定機関、猶予、返還・利息等の当年度県契約全文は未照合",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次・二次会場",
+          "value": "要確認。東邦大学 大森キャンパス。正式要項で再確認",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "提出予定書類",
+          "value": "要確認。調査書（2026年10月1日以降発行）、推薦書、自己アピールシート、志望理由書、本学用誓約書、県用貸付申請書・誓約書・同意書。10月14日通知の予定で変更の可能性あり",
+          "sourceIds": [
+            "regional-update"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "使用書式",
+          "value": "要確認。本学・県それぞれ指定様式を認可後に要項と併せて公開予定。昨年度参考書式を2027の確定版として利用しない",
+          "sourceIds": [
+            "regional-update"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "受験・修学上の配慮",
+          "value": "学校推薦型は出願開始1か月前までに申請。期限後相談は医学部入試係へ",
+          "sourceIds": [
+            "accommodation-guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "総合・同窓生子女・付属校推薦・他県地域推薦との併願不可。地域医療学科目は必修。",
+          "sourceIds": [
+            "juken-med"
+          ]
+        },
+        {
+          "text": "概要表の11月2日に曜日「日」の記載があるが、2026年11月2日は月曜日。草稿は日付を示し曜日を省略。正式要項未公開・大学への照会未実施。",
+          "sourceIds": [
+            "admissions"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regional-general-niigata",
+      "name": "一般入試（新潟県地域枠・認可申請中）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "要確認。3名（認可申請中）",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "正式要項の公開状況",
+          "value": "要確認。一般選抜（地域枠を含む）は11月4日頃を目途に公開予定。以下は2027公式概要・受験生サイトの掲載内容で、公開後の要項再照合が必要",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "書類郵送",
+          "value": "要確認。2026年12月14日～2027年1月26日 必着",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "窓口受付",
+          "value": "要確認。2027年1月25日・26日9:00～17:00",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "Web受付開始",
+          "value": "出願開始日の初日に限り10:00から開始",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web・支払の最終時刻",
+          "value": "未公表。当該方式の正式要項は後日公開。年内入試の13時・15時や共通ガイドの23時を転記しない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "検定料",
+          "value": "要確認。受験生サイトの医学部検定料は60,000円。一般との同時出願に割引案内があるが、組合せごとの金額は正式要項で確認",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次試験",
+          "value": "要確認。2027年2月7日",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次発表",
+          "value": "要確認。2027年2月10日12:00",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "二次試験",
+          "value": "要確認。2027年2月15日・16日のいずれか1日。一次合格者のみ",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "二次発表",
+          "value": "要確認。2027年2月18日12:00",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "手続期限",
+          "value": "要確認。2027年2月25日。金額・納付方法・最終時刻は正式要項で再確認",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一般的な辞退・学費返還",
+          "value": "未公表。当該方式の正式要項・入学手続要項は未確認。年内要項や旧年度から返還期限を補わない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "大学入学資格の詳細",
+          "value": "未公表。一般入試の正式要項は後日公開。通常の出願資格一覧・証明条件は公開後に確認する",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "地域枠の追加資格",
+          "value": "要確認。合格時に入学確約。新潟県医師養成修学資金の貸与を受け、指定医療機関等で9年間勤務する誓約が必要。本学修学資金の貸与に保証人2名が必要。最終契約条件は未照合",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次・数学",
+          "value": "数学I・II・III・A・B（数列）・C（ベクトル、平面上の曲線と複素数平面）。100点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・理科",
+          "value": "物理基礎・物理／化学基礎・化学／生物基礎・生物から2科目。各100点、計200点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・外国語",
+          "value": "英語コミュニケーションI・II・III、論理・表現I・II・III。150点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "基礎学力",
+          "value": "論理的思考力・数理解析能力等。一次日に受験するが最終選抜で利用。記述も含む・50点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次と二次の判定",
+          "value": "一次は数学100・理科200・外国語150の450点。最終は一次得点に基礎学力50・面接50を加えて550点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "教科基準・形式",
+          "value": "数学・物理・化学・生物・外国語に基準点があり、1科目でも未達なら不合格となる場合がある。未受験科目がある場合は欠席扱い。数学・理科・外国語はマークシート",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験時間・面接時間",
+          "value": "教科ごとの時間割・所要時間と面接の個別所要時間は、当該正式要項が未公開のため確認できない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次会場",
+          "value": "要確認。五反田TOCビル",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "二次会場",
+          "value": "要確認。東邦大学 大森キャンパス",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願書類・受験票",
+          "value": "未公表。方式別の正式要項・書式は後日公開。年内入試の調査書発行日や追加書式を自動適用しない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "個別入学資格審査",
+          "value": "学校教育法施行規則第150条第7号に係る、修業年限12年の外国人学校卒業・見込み者等を対象。2027年3月31日までに18歳、高校相当3年の学習歴等。一般・統一入試が対象で、2026年12月7日必着。所定申請書、卒業・成績・教育内容証明等を書留郵送し、返信用レターパックプラスも同封",
+          "sourceIds": [
+            "individual"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験・修学上の配慮",
+          "value": "一般選抜の申請期限は2026年12月7日厳守。出願を検討する段階で事前相談。期限後の事故等・相談は医学部入試係に連絡",
+          "sourceIds": [
+            "accommodation-guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "一般入試との併願は可能。他県の一般地域枠とは併願不可。この地域枠に合格した場合、一般入試の選抜対象外となる。地域医療学科目は必修。",
+          "sourceIds": [
+            "juken-med"
+          ]
+        },
+        {
+          "text": "同県地域推薦の未充足分を充当する場合がある。設置認可後の募集人数・要項・契約を再確認する。",
+          "sourceIds": [
+            "juken-med"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unified",
+      "name": "統一入試",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "約5名",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "正式要項の公開状況",
+          "value": "要確認。一般選抜（地域枠を含む）は11月4日頃を目途に公開予定。以下は2027公式概要・受験生サイトの掲載内容で、公開後の要項再照合が必要",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "書類郵送",
+          "value": "2026年12月14日～2027年2月15日 必着",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web受付開始",
+          "value": "出願開始日の初日に限り10:00から開始",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "Web・支払の最終時刻",
+          "value": "未公表。当該方式の正式要項は後日公開。年内入試の13時・15時や共通ガイドの23時を転記しない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "検定料",
+          "value": "受験生サイトの医学部検定料は60,000円",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年2月23日",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次発表",
+          "value": "2027年2月26日12:00",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年3月3日。一次合格者のみ",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次発表",
+          "value": "2027年3月4日12:00",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "手続期限",
+          "value": "要確認。2027年3月10日。金額・納付方法・最終時刻は正式要項で再確認",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一般的な辞退・学費返還",
+          "value": "未公表。当該方式の正式要項・入学手続要項は未確認。年内要項や旧年度から返還期限を補わない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "条件付き入学金全額返還",
+          "value": "児童養護施設等の在籍証明、高校生等奨学給付金の支給決定通知、又は指定の修学支援新制度（第I～III区分・同多子世帯）の採用候補者決定通知に該当する入学辞退者が対象。2027年3月10日までに辞退届を提出し、返還申請は3月10日消印有効・郵送のみ。全入学辞退者へ一律に返還する制度ではない",
+          "sourceIds": [
+            "fee-notice"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "大学入学資格の詳細",
+          "value": "未公表。一般入試の正式要項は後日公開。通常の出願資格一覧・証明条件は公開後に確認する",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "一次・数学",
+          "value": "数学I・II・III・A・B（数列）・C（ベクトル、平面上の曲線と複素数平面）。100点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・理科",
+          "value": "物理基礎・物理／化学基礎・化学／生物基礎・生物から2科目。各100点、計200点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・外国語",
+          "value": "英語コミュニケーションI・II、論理・表現I。100点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "基礎学力",
+          "value": "論理的思考力・数理解析能力等。一次日に受験するが最終選抜で利用。記述形式・25点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次と二次の判定",
+          "value": "一次は数学100・理科200・外国語100と英語資格加点最大25の425点。最終は一次得点に基礎学力25・面接50を加えて500点",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "教科基準・形式",
+          "value": "数学・物理・化学・生物・外国語に基準点があり、1科目でも未達なら不合格となる場合がある。未受験科目がある場合は欠席扱い。数学・理科・外国語はマークシート",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "試験時間・面接時間",
+          "value": "教科ごとの時間割・所要時間と面接の個別所要時間は、当該正式要項が未公開のため確認できない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "外部英語・出願要件",
+          "value": "いずれか1つ：TOEFL iBT旧42又は新3以上、IELTS Academic4.0以上、英検2級以上の受験結果CSE1980以上、TEAP225以上、GTEC CBT又は検定版930以上、ケンブリッジ140以上",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "外部英語・有効期間",
+          "value": "出願受付開始日からさかのぼって2年以内の受験結果で、検定自体の有効期限内。TOEFL MyBest・Home Edition、IELTS Onlineは不可。英検は従来型又はS-CBT、2級以上の受験級で合否を問わずCSEを利用",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語資格加点・25点",
+          "value": "TOEFL旧95以上／新5以上、IELTS7.0以上、英検2600以上、TEAP375以上、GTEC1350以上、ケンブリッジ180以上",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語資格加点・20点",
+          "value": "TOEFL旧84～94／新4.5、IELTS6.0～6.5、英検2450～2599、TEAP342～374、GTEC1265～1349、ケンブリッジ170～179",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語資格加点・15点",
+          "value": "TOEFL旧72～83／新4、IELTS5.5、英検2300～2449、TEAP309～341、GTEC1180～1264、ケンブリッジ160～169",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語資格加点・10点",
+          "value": "TOEFL旧57～71／新3.5、IELTS5.0、英検2125～2299、TEAP267～308、GTEC1055～1179、ケンブリッジ150～159",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語資格加点・5点",
+          "value": "TOEFL旧42～56／新3、IELTS4.0～4.5、英検1980～2124、TEAP225～266、GTEC930～1054、ケンブリッジ140～149",
+          "sourceIds": [
+            "juken-med"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次会場",
+          "value": "五反田TOCビル",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次会場",
+          "value": "東邦大学 大森キャンパス",
+          "sourceIds": [
+            "admissions"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願書類・受験票",
+          "value": "未公表。方式別の正式要項・書式は後日公開。年内入試の調査書発行日や追加書式を自動適用しない",
+          "sourceIds": [
+            "requirements"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "個別入学資格審査",
+          "value": "学校教育法施行規則第150条第7号に係る、修業年限12年の外国人学校卒業・見込み者等を対象。2027年3月31日までに18歳、高校相当3年の学習歴等。一般・統一入試が対象で、2026年12月7日必着。所定申請書、卒業・成績・教育内容証明等を書留郵送し、返信用レターパックプラスも同封",
+          "sourceIds": [
+            "individual"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験・修学上の配慮",
+          "value": "一般選抜の申請期限は2026年12月7日厳守。出願を検討する段階で事前相談。期限後の事故等・相談は医学部入試係に連絡",
+          "sourceIds": [
+            "accommodation-guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学金返還の提出書類",
+          "value": "返還申請書と該当の証明書・通知書写し等を医学部入試係へ郵送。全納して入学手続完了の場合は、返還申請とは別に入学辞退手続も必要",
+          "sourceIds": [
+            "fee-notice"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "医学部は外部英語資格が出願要件。薬学部・理学部等の任意提出や換算表と混同しない。医学部の加点表を確認。",
+          "sourceIds": [
+            "juken-med"
+          ]
+        },
+        {
+          "text": "一次日に受ける基礎学力は最終選抜に利用。一般入試の550点・外国語150点を統一入試へ転記しない。",
+          "sourceIds": [
+            "juken-med"
+          ]
+        }
+      ]
+    }
+  ],
+  "coverageNotes": [
+    "2027年度医学部医学科の9区分を対象。総合・同窓生子女・付属校推薦、千葉県/新潟県の地域推薦、一般・同2県地域枠、統一入試を区別する。",
+    "募集総数123名の概要には千葉5・新潟8の地域枠を含む。地域枠は認可申請中で、推薦と一般の内訳は3+2、5+3。約人数を確定定員と扱わず、重複加算しない。",
+    "総合・同窓生子女は2027要項を直接確認。付属校推薦の保護された別紙は未閲覧。地域推薦は旧年度参考要項を当年度確定版として転用していない。",
+    "一般・統一入試は11月4日頃の要項公開予定。現時点の2027公式概要・科目案内を記録し、未公開の登録締切時刻・書式・返還期限等を推測で補っていない。",
+    "総合・同窓生子女の個別欄は登録13時・支払15時、共通ガイドには登録23時が併存。個別欄を示し、適用の照会は未実施。",
+    "受験配慮HTMLの12月7日表示を全方式へ適用しない。2027案内PDFは総合型・学校推薦型が出願開始1か月前、一般が12月7日と区別している。",
+    "入学金全額返還は所定の経済的支援等の条件と3月10日の期限・辞退手続を満たす者向け。全員返還・3月31日まで返還と置き換えない。",
+    "統一入試は外部英語資格を出願要件とし最大25点加点。一般450/550点と統一425/500点、基礎学力の評価段階を区別する。",
+    "自治体との当年度契約・最終認可・指定機関・返還条件、非公開出願/合格後画面、大学回答、独立校閲は未確認。"
+  ]
+}
