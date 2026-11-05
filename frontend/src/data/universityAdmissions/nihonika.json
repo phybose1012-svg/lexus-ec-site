@@ -1,0 +1,2248 @@
+{
+  "path": "/information-nihonika/",
+  "university": "日本医科大学",
+  "admissionYear": 2027,
+  "verifiedAt": "2026-10-23T07:53:53.127+09:00",
+  "sources": [
+    {
+      "id": "admissions",
+      "url": "https://www.nms.ac.jp/college/nyushi/admission/",
+      "title": "令和9年度入学者選抜実施要項・地域枠提出書類",
+      "retrievedAt": "2026-10-23T07:42:41.138+09:00",
+      "sha256": "81a6fe0c72721a7c50a5e73bba46aad3a9127fd4bcdf4f46883a28607010cbac"
+    },
+    {
+      "id": "online",
+      "url": "https://www.nms.ac.jp/college/nyushi/admission/online/",
+      "title": "令和9年度ネット出願",
+      "retrievedAt": "2026-10-23T07:42:41.520+09:00",
+      "sha256": "0182b0984a65a92d769013e6d9c9550984cce3efbf902e1b22093169aa3bce38"
+    },
+    {
+      "id": "faq",
+      "url": "https://www.nms.ac.jp/college/nyushi/admission/faq/",
+      "title": "入試Q&A",
+      "retrievedAt": "2026-10-23T07:42:41.949+09:00",
+      "sha256": "f88f3ae69a5b1fc7247d507b84ebd7575ebcb72ddb7b6ba085b05b9841475844"
+    },
+    {
+      "id": "guide-correct",
+      "url": "https://www.nms.ac.jp/college/assets/files/pdf/nyushi/admission/application_guide_2027.pdf",
+      "title": "令和9年度（2027年度）インターネット出願ガイド",
+      "retrievedAt": "2026-10-23T07:43:24.443+09:00",
+      "sha256": "d56a793d93074b48346da183ff1df410d177d5f9562178016fe0dc0d999b384f",
+      "pages": "PDF物理p.5、6、8、9、10、11"
+    },
+    {
+      "id": "guidelines",
+      "url": "https://www.nms.ac.jp/college/nyushi-book/guidelines_2027/book.pdf",
+      "title": "令和9年度（2027年度）医学部入学者選抜実施要項",
+      "retrievedAt": "2026-10-23T07:45:14.523+09:00",
+      "sha256": "d00adaa645db3d90b40bfe5719137a227987c8b499fc224d27ecbb089c5935c6",
+      "pages": "PDF物理p.4、5、6、7、8、9、10、11、12、13、14、15、16、17、18、19、20、21、22、23、25、26、27、28、30、31、32、34、35、36、37、38、39、40、42、45、48、50"
+    }
+  ],
+  "schemes": [
+    {
+      "id": "general-early",
+      "name": "一般選抜（前期）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "61名。別の地域枠14名を含めた概要計は75名",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "志願者情報登録",
+          "value": "2026年12月21日～2027年1月21日",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類郵送締切",
+          "value": "2027年1月21日 当日消印有効",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験料",
+          "value": "60,000円。同日程の地域枠を併願しても60,000円。別途手数料",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験料支払期限",
+          "value": "志願者情報登録完了日の翌日23:59まで。ただし出願最終日に登録した場合は当日23:59まで。郵送書類の消印期限も満たす必要がある",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年2月1日",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次発表",
+          "value": "2027年2月8日18:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年2月10日又は2月12日。出願時に希望日を選択するが希望に沿えない場合があり、出願後の変更不可",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終発表",
+          "value": "2027年2月16日12:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学金納入",
+          "value": "2027年2月19日までに1,500,000円",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学時学費納入",
+          "value": "2027年2月24日まで。通常3,000,000円、特待生500,000円",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学金返還",
+          "value": "後期一次試験日の前日までに辞退申請書を提出した場合、入学金の半額を返還。グローバル・地域枠の条件とは異なる",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学費返還",
+          "value": "入学時学費納入後、2027年3月31日12:00までに辞退を申し出て所定手続きを行えば、入学金を除く入学時学費を返還。それを過ぎた辞退は返還不可",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "出願資格",
+          "value": "高校等の卒業・2027年3月卒業見込み、12年教育修了、外国の課程・認定施設・文科大臣指定、高卒認定等、又は大学による個別資格審査で認定された18歳以上の者など。該当する区分の条件・証明を満たすこと",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・英語",
+          "value": "英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ・Ⅱ・Ⅲ。9:00～10:30、90分・300点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・数学",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ、A（図形の性質、場合の数と確率）、B（数列）、C（ベクトル、平面上の曲線と複素数平面）。11:25～12:55、90分・300点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・理科",
+          "value": "物理基礎・物理／化学基礎・化学／生物基礎・生物から2科目。14:10～16:10、120分・400点（各200点）",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次の形式・科目変更",
+          "value": "各科目で記述式問題も出題。理科の選択は出願時に登録し、後から変更できない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・小論文",
+          "value": "9:00～10:00、60分",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・面接",
+          "value": "小論文終了後おおむね1時間後から受験番号順に開始予定。動機・熱意・協調性などを評価し、調査書・願書の活動から主体性等も評価",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次の配点・個別時間",
+          "value": "小論文・面接の数値配点と個々の面接所要時間は、確認した表には公表されていない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "着席時刻",
+          "value": "一次は8:30まで、二次は8:40までに着席。いずれも8:00入室可能",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "特待生",
+          "value": "一般前期成績上位35名。1年次授業料250万円免除",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次会場",
+          "value": "武蔵境校舎（武蔵野市）又はベルサール渋谷ファースト（渋谷区）。収容超過時は千駄木校舎も併用。受験票記載の会場を確認する",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次会場",
+          "value": "日本医科大学 千駄木校舎（東京都文京区千駄木1-1-5）",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願書類",
+          "value": "Web出願後の入学願書と調査書（2026年10月1日以降発行）。発行不可の場合の代替証明、高卒認定の合格・成績証明、氏名変更の証明等は該当区分に応じて提出",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類の印刷・郵送先",
+          "value": "Post@netの宛名シートを使用し、〒180-0023 東京都武蔵野市境南町1-7-1 日本医科大学 武蔵境校舎事務室 入試係へ、角形2号封筒で簡易書留・速達。書類は方式ごとの最終日消印有効",
+          "sourceIds": [
+            "guide-correct"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "受験料入金・書類受理後に受験票作成完了メール。Post@netからPDFを取得し、拡大・縮小せずA4カラーで印刷して当日持参",
+          "sourceIds": [
+            "guide-correct"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験上の配慮",
+          "value": "出願前にアドミッションセンターへ相談する。外国の課程等で事前相談が必要な場合は、遅くとも出願開始日の1か月前まで",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "入学願書はA4片面カラーで印刷し、志望理由と将来の希望を本人が自筆で記入する。登録内容と提出書類の記載を確認する。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        },
+        {
+          "text": "一次の学力試験で一次合格者を決め、小論文・面接・調査書等を総合して最終合格者を決める。繰上げは成績順で通知し、手続期限は個別指定。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        },
+        {
+          "text": "一般前期とグローバル前期は併願可（受験料計90,000円）。その組合せに地域枠は追加できない。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        },
+        {
+          "text": "受験料のほか振込手数料2,400円。支払い完了後の内容変更・追加出願はできないため、併願する選抜・地域を登録時に確認する。",
+          "sourceIds": [
+            "guide-correct"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "global",
+      "name": "グローバル特別選抜（前期）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "10名",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "志願者情報登録",
+          "value": "2026年12月21日～2027年1月21日",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類郵送締切",
+          "value": "2027年1月21日 当日消印有効",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験料",
+          "value": "60,000円。一般前期との併願は計90,000円。地域枠とは併願不可",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験料支払期限",
+          "value": "志願者情報登録完了日の翌日23:59まで。ただし出願最終日に登録した場合は当日23:59まで。郵送書類の消印期限も満たす必要がある",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト国語",
+          "value": "2027年1月16日。令和9年度の国語受験が必要",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験・発表",
+          "value": "試験2027年2月1日、発表2月8日18:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年2月10日又は2月12日。出願時に希望日を選択するが希望に沿えない場合があり、後から変更不可",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終発表",
+          "value": "2027年2月16日12:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学金・学費",
+          "value": "入学金は2027年2月19日、学費は2月24日まで。入学金150万円、通常学費300万円、特待生は学費50万円",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退・返還",
+          "value": "入学金は理由を問わず返還不可。学費は2027年3月31日12:00までの申出と所定手続きで入学金を除き返還",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "大学入学資格",
+          "value": "高校等の卒業・2027年3月卒業見込み、12年教育修了、外国の課程・認定施設・文科大臣指定、高卒認定等、又は大学による個別資格審査で認定された18歳以上の者など。該当する区分の条件・証明を満たすこと",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "外部英語資格",
+          "value": "次のいずれか：英検準1級、ケンブリッジ150（リンガスキル可）、GTEC 1100（CBTのみ）、IELTS 5.0（Academicのみ）、TEAP 280、TOEFL iBT旧60又は新3.5",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語証明書の条件",
+          "value": "有効期限内。期限なしの場合は志願者情報登録開始日を基準とし2年以内の認定。自宅受験型とTOEFL MyBestは対象外。英検は受験級の合格が確認できる証明が必要",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト国語の範囲・配点",
+          "value": "国語200点必須。近代以降の文章に加え古文・漢文を含む",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・英語",
+          "value": "英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ・Ⅱ・Ⅲ。9:00～10:30、90分・300点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・数学",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ、A（図形の性質、場合の数と確率）、B（数列）、C（ベクトル、平面上の曲線と複素数平面）。11:25～12:55、90分・300点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・理科",
+          "value": "物理基礎・物理／化学基礎・化学／生物基礎・生物から2科目。14:10～16:10、120分・400点（各200点）",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次の形式・科目変更",
+          "value": "各科目で記述式問題も出題。理科の選択は出願時に登録し、後から変更できない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・小論文",
+          "value": "9:00～10:00、60分",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・面接",
+          "value": "小論文終了後おおむね1時間後から受験番号順に開始予定。動機・熱意・協調性などを評価し、調査書・願書の活動から主体性等も評価",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次の配点・個別時間",
+          "value": "小論文・面接の数値配点と個々の面接所要時間は、確認した表には公表されていない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "着席時刻",
+          "value": "一次は8:30まで、二次は8:40までに着席。いずれも8:00入室可能",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "特待生",
+          "value": "成績上位10名は1・2年次の授業料計500万円免除",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次会場",
+          "value": "武蔵境校舎（武蔵野市）又はベルサール渋谷ファースト（渋谷区）。収容超過時は千駄木校舎も併用。受験票記載の会場を確認する",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次会場",
+          "value": "日本医科大学 千駄木校舎（東京都文京区千駄木1-1-5）",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願書類",
+          "value": "Web出願後の入学願書と調査書（2026年10月1日以降発行）。発行不可の場合の代替証明、高卒認定の合格・成績証明、氏名変更の証明等は該当区分に応じて提出。さらに外部英語の成績証明書を提出する",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "共通テスト成績請求",
+          "value": "大学はWeb方式を採用。申込番号等の情報を確認して手続きする。本人の認証情報は出願サイトで管理する",
+          "sourceIds": [
+            "faq"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英検の紙証明",
+          "value": "FAQでは英検のデジタル証明書は利用不可。紙の合格証明書又はCSEスコア証明書を提出（コピー可）",
+          "sourceIds": [
+            "faq"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類の印刷・郵送先",
+          "value": "Post@netの宛名シートを使用し、〒180-0023 東京都武蔵野市境南町1-7-1 日本医科大学 武蔵境校舎事務室 入試係へ、角形2号封筒で簡易書留・速達。書類は方式ごとの最終日消印有効",
+          "sourceIds": [
+            "guide-correct"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "受験料入金・書類受理後に受験票作成完了メール。Post@netからPDFを取得し、拡大・縮小せずA4カラーで印刷して当日持参",
+          "sourceIds": [
+            "guide-correct"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験上の配慮",
+          "value": "出願前にアドミッションセンターへ相談。必要な外国資格等の事前相談は遅くとも出願開始日の1か月前まで",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "外部英語資格は出願の基準であり、大学独自の一次英語90分・300点を免除する制度とは記載されていない。共通テスト国語も別途必要。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        },
+        {
+          "text": "一般前期の入学金半額返還の条件を適用しない。グローバルの手続欄では入学金返還不可と明記。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "general-late",
+      "name": "一般選抜（後期）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "25名。別の地域枠6名を含めた概要計は31名",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "志願者情報登録",
+          "value": "2027年2月1日～2月19日",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類郵送締切",
+          "value": "2027年2月19日 当日消印有効",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験料",
+          "value": "60,000円。同日程の地域枠を併願しても60,000円。別途手数料",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験料支払期限",
+          "value": "志願者情報登録完了日の翌日23:59まで。ただし出願最終日に登録した場合は当日23:59まで。郵送書類の消印期限も満たす必要がある",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年2月28日",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次発表",
+          "value": "2027年3月6日18:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年3月9日",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終発表",
+          "value": "2027年3月15日12:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学金納入",
+          "value": "2027年3月18日までに入学金と学費を一括納入",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学時学費納入",
+          "value": "2027年3月18日まで。入学金と一括",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学金返還",
+          "value": "入学金は理由を問わず返還不可",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学費返還",
+          "value": "入学時学費納入後、2027年3月31日12:00までに辞退を申し出て所定手続きを行えば、入学金を除く入学時学費を返還。それを過ぎた辞退は返還不可",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "出願資格",
+          "value": "高校等の卒業・2027年3月卒業見込み、12年教育修了、外国の課程・認定施設・文科大臣指定、高卒認定等、又は大学による個別資格審査で認定された18歳以上の者など。該当する区分の条件・証明を満たすこと",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・英語",
+          "value": "英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ・Ⅱ・Ⅲ。9:00～10:30、90分・300点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・数学",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ、A（図形の性質、場合の数と確率）、B（数列）、C（ベクトル、平面上の曲線と複素数平面）。11:25～12:55、90分・300点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・理科",
+          "value": "物理基礎・物理／化学基礎・化学／生物基礎・生物から2科目。14:10～16:10、120分・400点（各200点）",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次の形式・科目変更",
+          "value": "各科目で記述式問題も出題。理科の選択は出願時に登録し、後から変更できない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・小論文",
+          "value": "9:00～10:30、90分。前期より試験時間が長い",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・面接",
+          "value": "小論文終了後おおむね1時間後から受験番号順に開始予定。動機・熱意・協調性などを評価し、調査書・願書の活動から主体性等も評価",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次の配点・個別時間",
+          "value": "小論文・面接の数値配点と個々の面接所要時間は、確認した表には公表されていない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "着席時刻",
+          "value": "一次は8:30まで、二次は8:40までに着席。いずれも8:00入室可能",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "特待生",
+          "value": "一般後期成績上位3名。1年次授業料250万円免除",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次会場",
+          "value": "武蔵境校舎（武蔵野市）。収容超過時は千駄木校舎も併用。受験票記載の会場を確認する",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次会場",
+          "value": "日本医科大学 千駄木校舎（東京都文京区千駄木1-1-5）",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願書類",
+          "value": "Web出願後の入学願書と調査書（2026年10月1日以降発行）。発行不可の場合の代替証明、高卒認定の合格・成績証明、氏名変更の証明等は該当区分に応じて提出",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "書類の印刷・郵送先",
+          "value": "Post@netの宛名シートを使用し、〒180-0023 東京都武蔵野市境南町1-7-1 日本医科大学 武蔵境校舎事務室 入試係へ、角形2号封筒で簡易書留・速達。書類は方式ごとの最終日消印有効",
+          "sourceIds": [
+            "guide-correct"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "受験料入金・書類受理後に受験票作成完了メール。Post@netからPDFを取得し、拡大・縮小せずA4カラーで印刷して当日持参",
+          "sourceIds": [
+            "guide-correct"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験上の配慮",
+          "value": "出願前にアドミッションセンターへ相談する。外国の課程等で事前相談が必要な場合は、遅くとも出願開始日の1か月前まで",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "入学願書はA4片面カラーで印刷し、志望理由と将来の希望を本人が自筆で記入する。登録内容と提出書類の記載を確認する。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        },
+        {
+          "text": "一次の学力試験で一次合格者を決め、小論文・面接・調査書等を総合して最終合格者を決める。繰上げは成績順で通知し、手続期限は個別指定。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        },
+        {
+          "text": "受験料のほか振込手数料2,400円。支払い完了後の内容変更・追加出願はできないため、併願する選抜・地域を登録時に確認する。",
+          "sourceIds": [
+            "guide-correct"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "region-tokyo",
+      "name": "一般選抜（東京都地域枠・前期）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "要確認。認可申請予定の地域枠。前期5名、後期募集なし。一般枠に含めて二重計上しない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "前期の登録・郵送",
+          "value": "登録2026年12月21日～2027年1月21日。郵送は1月21日当日消印有効",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験料",
+          "value": "各日程60,000円。同日程の一般選抜を併願しても60,000円。別途手数料",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験料支払期限",
+          "value": "志願者情報登録完了日の翌日23:59まで。ただし出願最終日に登録した場合は当日23:59まで。郵送書類の消印期限も満たす必要がある",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期一次試験・発表",
+          "value": "試験2027年2月1日、発表2月8日18:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期二次試験",
+          "value": "2027年2月10日。希望日にかかわらずこの日に大学・東京都の面接を実施",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期最終発表",
+          "value": "2027年2月16日12:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期手続",
+          "value": "入学金2027年2月19日、学費2月24日まで。東京都地域枠は東京都が入学金・学費を全額納入するため本人の納入不要との記載",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退・返還の記載の適用関係",
+          "value": "要確認。資格欄は地域枠合格者の辞退不可とする一方、手続欄には3月31日正午までの辞退時学費返還の記載もある。大学への照会未実施。辞退可能とは断定しない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "大学入学資格・入学確約",
+          "value": "高校等の卒業・2027年3月卒業見込み、12年教育修了、外国の課程・認定施設・文科大臣指定、高卒認定等、又は大学による個別資格審査で認定された18歳以上の者など。該当する区分の条件・証明を満たすこと。さらに合格時に入学を確約すること。地域枠合格者は理由を問わず入学辞退不可との条件",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "地域条件",
+          "value": "要確認。都内住所又は都内高校卒業・見込みに関する要件あり。住民票・高校証明による判定の詳細は当年度の東京都案内で確認する",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次・英語",
+          "value": "英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ・Ⅱ・Ⅲ。9:00～10:30、90分・300点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・数学",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ、A（図形の性質、場合の数と確率）、B（数列）、C（ベクトル、平面上の曲線と複素数平面）。11:25～12:55、90分・300点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・理科",
+          "value": "物理基礎・物理／化学基礎・化学／生物基礎・生物から2科目。14:10～16:10、120分・400点（各200点）",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次の形式・科目変更",
+          "value": "各科目で記述式問題も出題。理科の選択は出願時に登録し、後から変更できない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・小論文",
+          "value": "前期9:00～10:00、60分",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・面接",
+          "value": "小論文終了後おおむね1時間後から受験番号順に開始予定。動機・熱意・協調性などを評価し、調査書・願書の活動から主体性等も評価",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次の配点・個別時間",
+          "value": "小論文・面接の数値配点と個々の面接所要時間は、確認した表には公表されていない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "着席時刻",
+          "value": "一次は8:30まで、二次は8:40までに着席。いずれも8:00入室可能",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "東京都による追加面接",
+          "value": "大学の面接に加え、小児・周産期・救急・へき地医療への意志を確認する東京都の面接を実施",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "修学資金の大学掲載概要",
+          "value": "入学金・授業料・施設設備費の全額と、生活費月10万円を貸与",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "卒業後の従事・免除条件",
+          "value": "卒業から2年以内に国試合格し速やかに免許取得。都内の日医付属病院で初期研修後、貸与期間の1.5倍（9年）のうち半分以上を指定する小児・周産期・救急・へき地の医療機関で従事。残余期間にも都内での診療領域の条件がある。詳細契約・猶予・返還等は自治体の当年度原典で要確認",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次会場",
+          "value": "武蔵境校舎（武蔵野市）又はベルサール渋谷ファースト（渋谷区）。収容超過時は千駄木校舎も併用。受験票記載の会場を確認する",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次会場",
+          "value": "日本医科大学 千駄木校舎（東京都文京区千駄木1-1-5）",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "大学の共通書類",
+          "value": "Web出願後の入学願書と調査書（2026年10月1日以降発行）。発行不可の場合の代替証明、高卒認定の合格・成績証明、氏名変更の証明等は該当区分に応じて提出。さらにPost@netから出力する地域枠志望理由書、各自治体が求める書類も必要",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "自治体の追加書類",
+          "value": "特別貸与奨学金貸与申込書、世帯全員・続柄入り住民票（3か月以内、マイナンバーなし、コピー不可）、誓約書。都内住所がない場合は該当する高校の卒業（見込）証明も必要。使用年度の様式は原典で要確認",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "印刷・郵送",
+          "value": "Post@netの宛名シートを使用し、〒180-0023 東京都武蔵野市境南町1-7-1 日本医科大学 武蔵境校舎事務室 入試係へ、角形2号封筒で簡易書留・速達。書類は方式ごとの最終日消印有効",
+          "sourceIds": [
+            "guide-correct"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "受験料入金・書類受理後に受験票作成完了メール。Post@netからPDFを取得し、拡大・縮小せずA4カラーで印刷して当日持参",
+          "sourceIds": [
+            "guide-correct"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験上の配慮",
+          "value": "出願前にアドミッションセンターへ相談する",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "前期は5都県、後期は4県の地域枠を併願可能。地域枠同士で合格した場合は希望順位が最も高い一つを合格として発表する。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        },
+        {
+          "text": "グローバル特別選抜との併願は不可。同じ県名でも他大学の修学資金条件を流用しない。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        },
+        {
+          "text": "地域枠提出書類ページは各都県の資料を「昨年度参考」と表示。当年度の選抜条件は2027実施要項で確認し、参考資料だけで2027契約条件を確定しない。",
+          "sourceIds": [
+            "admissions"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "region-chiba",
+      "name": "一般選抜（千葉県地域枠・前期／後期）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "要確認。認可申請予定の地域枠。前期4名、後期3名。一般枠に含めて二重計上しない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "前期の登録・郵送",
+          "value": "登録2026年12月21日～2027年1月21日。郵送は1月21日当日消印有効",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "後期の登録・郵送",
+          "value": "登録2027年2月1日～2月19日。郵送は2月19日当日消印有効",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験料",
+          "value": "各日程60,000円。同日程の一般選抜を併願しても60,000円。別途手数料",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験料支払期限",
+          "value": "志願者情報登録完了日の翌日23:59まで。ただし出願最終日に登録した場合は当日23:59まで。郵送書類の消印期限も満たす必要がある",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期一次試験・発表",
+          "value": "試験2027年2月1日、発表2月8日18:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期二次試験",
+          "value": "2027年2月10日又は2月12日。希望日は出願時に選択するが希望に沿えない場合があり、出願後変更不可",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期最終発表",
+          "value": "2027年2月16日12:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期手続",
+          "value": "入学金2027年2月19日、学費2月24日まで",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "後期試験・発表",
+          "value": "一次2027年2月28日、一次発表3月6日18:00。二次3月9日、最終発表3月15日12:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "後期手続",
+          "value": "2027年3月18日までに入学金・学費を一括納入",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退・返還の記載の適用関係",
+          "value": "要確認。資格欄は地域枠合格者の辞退不可とする一方、手続欄には3月31日正午までの辞退時学費返還の記載もある。大学への照会未実施。辞退可能とは断定しない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "大学入学資格・入学確約",
+          "value": "高校等の卒業・2027年3月卒業見込み、12年教育修了、外国の課程・認定施設・文科大臣指定、高卒認定等、又は大学による個別資格審査で認定された18歳以上の者など。該当する区分の条件・証明を満たすこと。さらに合格時に入学を確約すること。地域枠合格者は理由を問わず入学辞退不可との条件",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "地域条件",
+          "value": "出身地・出身高校を問わず出願できる。県独自の資格・貸与要件も満たす必要がある",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・英語",
+          "value": "英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ・Ⅱ・Ⅲ。9:00～10:30、90分・300点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・数学",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ、A（図形の性質、場合の数と確率）、B（数列）、C（ベクトル、平面上の曲線と複素数平面）。11:25～12:55、90分・300点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・理科",
+          "value": "物理基礎・物理／化学基礎・化学／生物基礎・生物から2科目。14:10～16:10、120分・400点（各200点）",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次の形式・科目変更",
+          "value": "各科目で記述式問題も出題。理科の選択は出願時に登録し、後から変更できない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・小論文",
+          "value": "前期9:00～10:00、60分。後期9:00～10:30、90分",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・面接",
+          "value": "小論文終了後おおむね1時間後から受験番号順に開始予定。動機・熱意・協調性などを評価し、調査書・願書の活動から主体性等も評価",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次の配点・個別時間",
+          "value": "小論文・面接の数値配点と個々の面接所要時間は、確認した表には公表されていない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "着席時刻",
+          "value": "一次は8:30まで、二次は8:40までに着席。いずれも8:00入室可能",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "修学資金の大学掲載概要",
+          "value": "月20万円、6年間合計1,440万円",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "卒業後の従事・免除条件",
+          "value": "卒業日の属する翌月初日から1年3か月以内に免許取得。キャリア形成プログラムの期間内に、貸付期間の1.5倍の期間、所定医療機関で勤務等が必要。詳細契約・猶予・返還等は自治体の当年度原典で要確認",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次会場",
+          "value": "前期：武蔵境校舎（武蔵野市）又はベルサール渋谷ファースト（渋谷区）。収容超過時は千駄木校舎も併用。受験票記載の会場を確認する。後期：武蔵境校舎（武蔵野市）。収容超過時は千駄木校舎も併用。受験票記載の会場を確認する",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次会場",
+          "value": "日本医科大学 千駄木校舎（東京都文京区千駄木1-1-5）",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "大学の共通書類",
+          "value": "Web出願後の入学願書と調査書（2026年10月1日以降発行）。発行不可の場合の代替証明、高卒認定の合格・成績証明、氏名変更の証明等は該当区分に応じて提出。さらにPost@netから出力する地域枠志望理由書、各自治体が求める書類も必要",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "自治体の追加書類",
+          "value": "修学資金貸付申請書、誓約書、同意書。使用年度の様式は原典で要確認",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "印刷・郵送",
+          "value": "Post@netの宛名シートを使用し、〒180-0023 東京都武蔵野市境南町1-7-1 日本医科大学 武蔵境校舎事務室 入試係へ、角形2号封筒で簡易書留・速達。書類は方式ごとの最終日消印有効",
+          "sourceIds": [
+            "guide-correct"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "受験料入金・書類受理後に受験票作成完了メール。Post@netからPDFを取得し、拡大・縮小せずA4カラーで印刷して当日持参",
+          "sourceIds": [
+            "guide-correct"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験上の配慮",
+          "value": "出願前にアドミッションセンターへ相談する",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "前期は5都県、後期は4県の地域枠を併願可能。地域枠同士で合格した場合は希望順位が最も高い一つを合格として発表する。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        },
+        {
+          "text": "グローバル特別選抜との併願は不可。同じ県名でも他大学の修学資金条件を流用しない。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        },
+        {
+          "text": "地域枠提出書類ページは各都県の資料を「昨年度参考」と表示。当年度の選抜条件は2027実施要項で確認し、参考資料だけで2027契約条件を確定しない。",
+          "sourceIds": [
+            "admissions"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "region-saitama",
+      "name": "一般選抜（埼玉県地域枠・前期／後期）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "要確認。認可申請予定の地域枠。前期1名、後期1名。一般枠に含めて二重計上しない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "前期の登録・郵送",
+          "value": "登録2026年12月21日～2027年1月21日。郵送は1月21日当日消印有効",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "後期の登録・郵送",
+          "value": "登録2027年2月1日～2月19日。郵送は2月19日当日消印有効",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験料",
+          "value": "各日程60,000円。同日程の一般選抜を併願しても60,000円。別途手数料",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験料支払期限",
+          "value": "志願者情報登録完了日の翌日23:59まで。ただし出願最終日に登録した場合は当日23:59まで。郵送書類の消印期限も満たす必要がある",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期一次試験・発表",
+          "value": "試験2027年2月1日、発表2月8日18:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期二次試験",
+          "value": "2027年2月10日又は2月12日。希望日は出願時に選択するが希望に沿えない場合があり、出願後変更不可",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期最終発表",
+          "value": "2027年2月16日12:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期手続",
+          "value": "入学金2027年2月19日、学費2月24日まで",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "後期試験・発表",
+          "value": "一次2027年2月28日、一次発表3月6日18:00。二次3月9日、最終発表3月15日12:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "後期手続",
+          "value": "2027年3月18日までに入学金・学費を一括納入",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退・返還の記載の適用関係",
+          "value": "要確認。資格欄は地域枠合格者の辞退不可とする一方、手続欄には3月31日正午までの辞退時学費返還の記載もある。大学への照会未実施。辞退可能とは断定しない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "大学入学資格・入学確約",
+          "value": "高校等の卒業・2027年3月卒業見込み、12年教育修了、外国の課程・認定施設・文科大臣指定、高卒認定等、又は大学による個別資格審査で認定された18歳以上の者など。該当する区分の条件・証明を満たすこと。さらに合格時に入学を確約すること。地域枠合格者は理由を問わず入学辞退不可との条件",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "地域条件",
+          "value": "出身地・出身高校を問わず出願できる。県独自の資格・貸与要件も満たす必要がある",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・英語",
+          "value": "英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ・Ⅱ・Ⅲ。9:00～10:30、90分・300点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・数学",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ、A（図形の性質、場合の数と確率）、B（数列）、C（ベクトル、平面上の曲線と複素数平面）。11:25～12:55、90分・300点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・理科",
+          "value": "物理基礎・物理／化学基礎・化学／生物基礎・生物から2科目。14:10～16:10、120分・400点（各200点）",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次の形式・科目変更",
+          "value": "各科目で記述式問題も出題。理科の選択は出願時に登録し、後から変更できない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・小論文",
+          "value": "前期9:00～10:00、60分。後期9:00～10:30、90分",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・面接",
+          "value": "小論文終了後おおむね1時間後から受験番号順に開始予定。動機・熱意・協調性などを評価し、調査書・願書の活動から主体性等も評価",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次の配点・個別時間",
+          "value": "小論文・面接の数値配点と個々の面接所要時間は、確認した表には公表されていない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "着席時刻",
+          "value": "一次は8:30まで、二次は8:40までに着席。いずれも8:00入室可能",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "修学資金の大学掲載概要",
+          "value": "月20万円、6年間合計1,440万円",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "卒業後の従事・免除条件",
+          "value": "県内病院等で9年勤務し、さらに特定診療科7年／特定医療機関の準特定診療科2年／特定医療機関4年のいずれか等を満たす。臨床・専門研修の算入除外条件にも注意。詳細契約・猶予・返還等は自治体の当年度原典で要確認",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次会場",
+          "value": "前期：武蔵境校舎（武蔵野市）又はベルサール渋谷ファースト（渋谷区）。収容超過時は千駄木校舎も併用。受験票記載の会場を確認する。後期：武蔵境校舎（武蔵野市）。収容超過時は千駄木校舎も併用。受験票記載の会場を確認する",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次会場",
+          "value": "日本医科大学 千駄木校舎（東京都文京区千駄木1-1-5）",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "大学の共通書類",
+          "value": "Web出願後の入学願書と調査書（2026年10月1日以降発行）。発行不可の場合の代替証明、高卒認定の合格・成績証明、氏名変更の証明等は該当区分に応じて提出。さらにPost@netから出力する地域枠志望理由書、各自治体が求める書類も必要",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "自治体の追加書類",
+          "value": "応募申請書（応募様式1）、誓約書（様式第2号）。使用年度の様式は原典で要確認",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "印刷・郵送",
+          "value": "Post@netの宛名シートを使用し、〒180-0023 東京都武蔵野市境南町1-7-1 日本医科大学 武蔵境校舎事務室 入試係へ、角形2号封筒で簡易書留・速達。書類は方式ごとの最終日消印有効",
+          "sourceIds": [
+            "guide-correct"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "受験料入金・書類受理後に受験票作成完了メール。Post@netからPDFを取得し、拡大・縮小せずA4カラーで印刷して当日持参",
+          "sourceIds": [
+            "guide-correct"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験上の配慮",
+          "value": "出願前にアドミッションセンターへ相談する",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "前期は5都県、後期は4県の地域枠を併願可能。地域枠同士で合格した場合は希望順位が最も高い一つを合格として発表する。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        },
+        {
+          "text": "グローバル特別選抜との併願は不可。同じ県名でも他大学の修学資金条件を流用しない。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        },
+        {
+          "text": "地域枠提出書類ページは各都県の資料を「昨年度参考」と表示。当年度の選抜条件は2027実施要項で確認し、参考資料だけで2027契約条件を確定しない。",
+          "sourceIds": [
+            "admissions"
+          ]
+        },
+        {
+          "text": "県の免除条件は9年勤務に加え指定科・指定機関条件が必要。大学掲載概要には貸与額の10％の利息の記載もあり、返還・利息の適用は県規程で確認する。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "region-shizuoka",
+      "name": "一般選抜（静岡県地域枠・前期／後期）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "要確認。認可申請予定の地域枠。前期3名、後期1名。一般枠に含めて二重計上しない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "前期の登録・郵送",
+          "value": "登録2026年12月21日～2027年1月21日。郵送は1月21日当日消印有効",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "後期の登録・郵送",
+          "value": "登録2027年2月1日～2月19日。郵送は2月19日当日消印有効",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験料",
+          "value": "各日程60,000円。同日程の一般選抜を併願しても60,000円。別途手数料",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験料支払期限",
+          "value": "志願者情報登録完了日の翌日23:59まで。ただし出願最終日に登録した場合は当日23:59まで。郵送書類の消印期限も満たす必要がある",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期一次試験・発表",
+          "value": "試験2027年2月1日、発表2月8日18:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期二次試験",
+          "value": "2027年2月10日又は2月12日。希望日は出願時に選択するが希望に沿えない場合があり、出願後変更不可",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期最終発表",
+          "value": "2027年2月16日12:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期手続",
+          "value": "入学金2027年2月19日、学費2月24日まで",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "後期試験・発表",
+          "value": "一次2027年2月28日、一次発表3月6日18:00。二次3月9日、最終発表3月15日12:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "後期手続",
+          "value": "2027年3月18日までに入学金・学費を一括納入",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退・返還の記載の適用関係",
+          "value": "要確認。資格欄は地域枠合格者の辞退不可とする一方、手続欄には3月31日正午までの辞退時学費返還の記載もある。大学への照会未実施。辞退可能とは断定しない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "大学入学資格・入学確約",
+          "value": "高校等の卒業・2027年3月卒業見込み、12年教育修了、外国の課程・認定施設・文科大臣指定、高卒認定等、又は大学による個別資格審査で認定された18歳以上の者など。該当する区分の条件・証明を満たすこと。さらに合格時に入学を確約すること。地域枠合格者は理由を問わず入学辞退不可との条件",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "地域条件",
+          "value": "出身地・出身高校を問わず出願できる。県独自の資格・貸与要件も満たす必要がある",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・英語",
+          "value": "英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ・Ⅱ・Ⅲ。9:00～10:30、90分・300点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・数学",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ、A（図形の性質、場合の数と確率）、B（数列）、C（ベクトル、平面上の曲線と複素数平面）。11:25～12:55、90分・300点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・理科",
+          "value": "物理基礎・物理／化学基礎・化学／生物基礎・生物から2科目。14:10～16:10、120分・400点（各200点）",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次の形式・科目変更",
+          "value": "各科目で記述式問題も出題。理科の選択は出願時に登録し、後から変更できない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・小論文",
+          "value": "前期9:00～10:00、60分。後期9:00～10:30、90分",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・面接",
+          "value": "小論文終了後おおむね1時間後から受験番号順に開始予定。動機・熱意・協調性などを評価し、調査書・願書の活動から主体性等も評価",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次の配点・個別時間",
+          "value": "小論文・面接の数値配点と個々の面接所要時間は、確認した表には公表されていない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "着席時刻",
+          "value": "一次は8:30まで、二次は8:40までに着席。いずれも8:00入室可能",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "修学資金の大学掲載概要",
+          "value": "月20万円、6年間合計1,440万円",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "卒業後の従事・免除条件",
+          "value": "卒業後2年以内の医師免許登録と、県キャリア形成プログラムに従い、県内指定の公的医療機関等で9年勤務（臨床研修2年を含む）等が必要。詳細契約・猶予・返還等は自治体の当年度原典で要確認",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次会場",
+          "value": "前期：武蔵境校舎（武蔵野市）又はベルサール渋谷ファースト（渋谷区）。収容超過時は千駄木校舎も併用。受験票記載の会場を確認する。後期：武蔵境校舎（武蔵野市）。収容超過時は千駄木校舎も併用。受験票記載の会場を確認する",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次会場",
+          "value": "日本医科大学 千駄木校舎（東京都文京区千駄木1-1-5）",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "大学の共通書類",
+          "value": "Web出願後の入学願書と調査書（2026年10月1日以降発行）。発行不可の場合の代替証明、高卒認定の合格・成績証明、氏名変更の証明等は該当区分に応じて提出。さらにPost@netから出力する地域枠志望理由書、各自治体が求める書類も必要",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "自治体の追加書類",
+          "value": "同意書。使用年度の様式は原典で要確認",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "印刷・郵送",
+          "value": "Post@netの宛名シートを使用し、〒180-0023 東京都武蔵野市境南町1-7-1 日本医科大学 武蔵境校舎事務室 入試係へ、角形2号封筒で簡易書留・速達。書類は方式ごとの最終日消印有効",
+          "sourceIds": [
+            "guide-correct"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "受験料入金・書類受理後に受験票作成完了メール。Post@netからPDFを取得し、拡大・縮小せずA4カラーで印刷して当日持参",
+          "sourceIds": [
+            "guide-correct"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験上の配慮",
+          "value": "出願前にアドミッションセンターへ相談する",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "前期は5都県、後期は4県の地域枠を併願可能。地域枠同士で合格した場合は希望順位が最も高い一つを合格として発表する。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        },
+        {
+          "text": "グローバル特別選抜との併願は不可。同じ県名でも他大学の修学資金条件を流用しない。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        },
+        {
+          "text": "地域枠提出書類ページは各都県の資料を「昨年度参考」と表示。当年度の選抜条件は2027実施要項で確認し、参考資料だけで2027契約条件を確定しない。",
+          "sourceIds": [
+            "admissions"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "region-niigata",
+      "name": "一般選抜（新潟県地域枠・前期／後期）",
+      "scheduleRows": [
+        {
+          "label": "募集人員",
+          "value": "要確認。認可申請予定の地域枠。前期1名、後期1名。一般枠に含めて二重計上しない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "前期の登録・郵送",
+          "value": "登録2026年12月21日～2027年1月21日。郵送は1月21日当日消印有効",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "後期の登録・郵送",
+          "value": "登録2027年2月1日～2月19日。郵送は2月19日当日消印有効",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験料",
+          "value": "各日程60,000円。同日程の一般選抜を併願しても60,000円。別途手数料",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験料支払期限",
+          "value": "志願者情報登録完了日の翌日23:59まで。ただし出願最終日に登録した場合は当日23:59まで。郵送書類の消印期限も満たす必要がある",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期一次試験・発表",
+          "value": "試験2027年2月1日、発表2月8日18:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期二次試験",
+          "value": "2027年2月10日又は2月12日。希望日は出願時に選択するが希望に沿えない場合があり、出願後変更不可",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期最終発表",
+          "value": "2027年2月16日12:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "前期手続",
+          "value": "入学金2027年2月19日、学費2月24日まで",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "後期試験・発表",
+          "value": "一次2027年2月28日、一次発表3月6日18:00。二次3月9日、最終発表3月15日12:00",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "後期手続",
+          "value": "2027年3月18日までに入学金・学費を一括納入",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退・返還の記載の適用関係",
+          "value": "要確認。資格欄は地域枠合格者の辞退不可とする一方、手続欄には3月31日正午までの辞退時学費返還の記載もある。大学への照会未実施。辞退可能とは断定しない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "大学入学資格・入学確約",
+          "value": "高校等の卒業・2027年3月卒業見込み、12年教育修了、外国の課程・認定施設・文科大臣指定、高卒認定等、又は大学による個別資格審査で認定された18歳以上の者など。該当する区分の条件・証明を満たすこと。さらに合格時に入学を確約すること。地域枠合格者は理由を問わず入学辞退不可との条件",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "地域条件",
+          "value": "出身地・出身高校を問わず出願できる。県独自の資格・貸与要件も満たす必要がある",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・英語",
+          "value": "英語コミュニケーションⅠ・Ⅱ・Ⅲ、論理・表現Ⅰ・Ⅱ・Ⅲ。9:00～10:30、90分・300点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・数学",
+          "value": "数学Ⅰ・Ⅱ・Ⅲ、A（図形の性質、場合の数と確率）、B（数列）、C（ベクトル、平面上の曲線と複素数平面）。11:25～12:55、90分・300点",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次・理科",
+          "value": "物理基礎・物理／化学基礎・化学／生物基礎・生物から2科目。14:10～16:10、120分・400点（各200点）",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次の形式・科目変更",
+          "value": "各科目で記述式問題も出題。理科の選択は出願時に登録し、後から変更できない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・小論文",
+          "value": "前期9:00～10:00、60分。後期9:00～10:30、90分",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次・面接",
+          "value": "小論文終了後おおむね1時間後から受験番号順に開始予定。動機・熱意・協調性などを評価し、調査書・願書の活動から主体性等も評価",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次の配点・個別時間",
+          "value": "小論文・面接の数値配点と個々の面接所要時間は、確認した表には公表されていない",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "unpublished"
+        },
+        {
+          "label": "着席時刻",
+          "value": "一次は8:30まで、二次は8:40までに着席。いずれも8:00入室可能",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "修学資金の大学掲載概要",
+          "value": "月30万円、6年間合計2,160万円",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "卒業後の従事・免除条件",
+          "value": "卒業後2年以内に免許取得し、直ちに県指定医療機関等で9年勤務（臨床研修2年を含む）。1～5年次に毎年2～3日程度の県内地域医療実習への参加も必要。詳細契約・猶予・返還等は自治体の当年度原典で要確認",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次会場",
+          "value": "前期：武蔵境校舎（武蔵野市）又はベルサール渋谷ファースト（渋谷区）。収容超過時は千駄木校舎も併用。受験票記載の会場を確認する。後期：武蔵境校舎（武蔵野市）。収容超過時は千駄木校舎も併用。受験票記載の会場を確認する",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次会場",
+          "value": "日本医科大学 千駄木校舎（東京都文京区千駄木1-1-5）",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "大学の共通書類",
+          "value": "Web出願後の入学願書と調査書（2026年10月1日以降発行）。発行不可の場合の代替証明、高卒認定の合格・成績証明、氏名変更の証明等は該当区分に応じて提出。さらにPost@netから出力する地域枠志望理由書、各自治体が求める書類も必要",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "自治体の追加書類",
+          "value": "修学資金貸与申請書、誓約書、同意書。使用年度の様式は原典で要確認",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "印刷・郵送",
+          "value": "Post@netの宛名シートを使用し、〒180-0023 東京都武蔵野市境南町1-7-1 日本医科大学 武蔵境校舎事務室 入試係へ、角形2号封筒で簡易書留・速達。書類は方式ごとの最終日消印有効",
+          "sourceIds": [
+            "guide-correct"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "受験料入金・書類受理後に受験票作成完了メール。Post@netからPDFを取得し、拡大・縮小せずA4カラーで印刷して当日持参",
+          "sourceIds": [
+            "guide-correct"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験上の配慮",
+          "value": "出願前にアドミッションセンターへ相談する",
+          "sourceIds": [
+            "guidelines"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "前期は5都県、後期は4県の地域枠を併願可能。地域枠同士で合格した場合は希望順位が最も高い一つを合格として発表する。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        },
+        {
+          "text": "グローバル特別選抜との併願は不可。同じ県名でも他大学の修学資金条件を流用しない。",
+          "sourceIds": [
+            "guidelines"
+          ]
+        },
+        {
+          "text": "地域枠提出書類ページは各都県の資料を「昨年度参考」と表示。当年度の選抜条件は2027実施要項で確認し、参考資料だけで2027契約条件を確定しない。",
+          "sourceIds": [
+            "admissions"
+          ]
+        }
+      ]
+    }
+  ],
+  "coverageNotes": [
+    "2027年度医学部医学科の一般前期・一般後期・グローバル前期と、5都県の一般地域枠を対象。地域枠は県別の中で前期・後期を明示する。",
+    "一般前期61名・後期25名、グローバル10名と、認可申請予定の地域枠20名を区別。概要表の75名・31名に地域枠を再加算しない。",
+    "取得した2027実施要項の選抜一覧に学校推薦型は掲載されていない。前年の推薦・共通テスト利用等の条件を当年度方式として継承しない。",
+    "前期の入学金半額返還は一般前期の手続欄にある。グローバル、後期、地域枠の入学金返還不可という各欄と分けて掲載する。",
+    "地域枠資格欄の辞退不可と手続欄の学費返還案内が併存。適用関係は照会しておらず要確認。",
+    "グローバルでは共通テスト国語200点（古文・漢文含む）と外部英語資格が必要。独自一次の英語・数学・理科は別に受ける。",
+    "英検デジタル証明書はFAQで利用不可。紙の合格証明書又はCSE証明書（コピー可）を使う。",
+    "大学の地域枠追加書類ページは昨年度参考表示。県との契約・指定医療機関・猶予・返還の最新全文照合は未実施。",
+    "出願はWeb登録・支払い・郵送すべてで完了。個別Post@netの画面操作・出願実行はしていない。"
+  ]
+}
