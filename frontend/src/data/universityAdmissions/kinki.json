@@ -1,0 +1,2807 @@
+{
+  "path": "/information-kinki/",
+  "university": "近畿大学",
+  "admissionYear": 2027,
+  "verifiedAt": "2026-10-23T10:12:33.103+09:00",
+  "sources": [
+    {
+      "id": "med",
+      "url": "https://www.kindai.ac.jp/medicine/admissions/",
+      "title": "医学部入試案内",
+      "retrievedAt": "2026-10-23T10:00:14.242+09:00",
+      "sha256": "d458d80a4d5dc237a89ad4283cabbdca050560deaeab20c543487344f14cace4"
+    },
+    {
+      "id": "region",
+      "url": "https://www.kindai.ac.jp/medicine/admissions/exam/region/",
+      "title": "2027地域枠告知",
+      "retrievedAt": "2026-10-23T10:00:14.419+09:00",
+      "sha256": "fa01dc8d3428f750d87122a83fe0f6fc815bf4bf92b24a026f3ee635854d076a"
+    },
+    {
+      "id": "system",
+      "url": "https://kindai.jp/exam/system/",
+      "title": "2027入試制度日程",
+      "retrievedAt": "2026-10-23T10:00:14.738+09:00",
+      "sha256": "4f977b208d0c4f10e5315ab70262bbcf50f4e913112489a60c14ce355addc47c"
+    },
+    {
+      "id": "early",
+      "url": "https://kindai.jp/exam/simulation/detail/medicine/40/general1_a/",
+      "title": "2027医学部一般前期A",
+      "retrievedAt": "2026-10-23T10:00:15.014+09:00",
+      "sha256": "474b7dbd29c7794a5bef1e3149d633ee11cffd772a44a4425e159f1a873c4ff9"
+    },
+    {
+      "id": "late",
+      "url": "https://kindai.jp/exam/simulation/detail/medicine/40/general2/",
+      "title": "2027医学部一般後期",
+      "retrievedAt": "2026-10-23T10:00:15.254+09:00",
+      "sha256": "c65c07e21e9e87acccac7f63e1c25d2134f10adce078d894fda2477955b8ee77"
+    },
+    {
+      "id": "center",
+      "url": "https://kindai.jp/exam/simulation/detail/medicine/40/center/",
+      "title": "2027医学部共通テスト利用",
+      "retrievedAt": "2026-10-23T10:00:15.515+09:00",
+      "sha256": "a576dfe9997b36fab9d3ee2abf3f2c73ba7b50db9ce3ada983233f77255c79b8"
+    },
+    {
+      "id": "admissions",
+      "url": "https://kindai.jp/exam/admissions/",
+      "title": "2027要項掲載と目次",
+      "retrievedAt": "2026-10-23T10:00:37.382+09:00",
+      "sha256": "9471c7bd16b8447f8bb5c982cec9e748419cce1cbbbf7469ace1839047fff51d"
+    },
+    {
+      "id": "recommend",
+      "url": "https://kindai.jp/exam/simulation/detail/medicine/40/recommend/",
+      "title": "医学部推薦一般公募",
+      "retrievedAt": "2026-10-23T10:00:37.660+09:00",
+      "sha256": "251a0278d11bcabf900f7ddd2cb841754705b2172d4c5a83532d9859c2453911"
+    },
+    {
+      "id": "map",
+      "url": "https://kindai.jp/exam/system/map/",
+      "title": "試験地",
+      "retrievedAt": "2026-10-23T10:00:37.958+09:00",
+      "sha256": "cbe9caa130b494f3a4d1c9dd44c23bb95e844b6175f0c063ef510b2ad69f5be3"
+    },
+    {
+      "id": "fees",
+      "url": "https://kindai.jp/exam/expenses/list/",
+      "title": "学費",
+      "retrievedAt": "2026-10-23T10:00:38.240+09:00",
+      "sha256": "8abd048b0278eb608f93c9750cfcf2d244b8c6d0de730449d2dddb4a0e2f5432"
+    },
+    {
+      "id": "guide",
+      "url": "https://kindai.jp/assets/pdf/exam/admissions/2027_nyushiyoko_a4.pdf?20260825=",
+      "title": "2027入学試験要項単ページ",
+      "retrievedAt": "2026-10-23T10:00:52.770+09:00",
+      "sha256": "97e0996d02984dfa13c8d089ac490bcb1d0694ddb5ece7897b7eda219e6e069d",
+      "pages": "PDF物理p.8、10、11、16、17、22、23、25、29、30、32、34、35、36、37、70、71、79、80、81、82、84、85、86、87、89、90、95、96、97、99、100、101、103、104、109、110、114、137、140、141、143、144、145"
+    }
+  ],
+  "schemes": [
+    {
+      "id": "general",
+      "name": "一般入試・前期（A日程）",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2026年12月18日〜2027年1月14日、消印有効。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年1月31日",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2027年2月10日。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年2月14日。小論文・面接。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年2月23日。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続締切",
+          "value": "2027年3月5日。医学部は一括納付とWeb手続。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票発行",
+          "value": "2027年1月19日16:00。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員の資料差異",
+          "value": "正式要項の一覧は50名、医学部一般前期のWeb詳細は55名。資料間で不一致のため大学への確認が必要。",
+          "sourceIds": [
+            "guide",
+            "early"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願資格",
+          "value": "高校等卒業・2027年3月見込、高認・外国12年課程等。個別資格審査は出願開始1カ月前までに入学センターへ相談。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "一次は理科2科目200点・数学100点・英語100点、400点満点。二次は小論文40分と個人面接約10分、いずれも段階評価。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "理科",
+          "value": "物理基礎・物理／化学基礎・化学／生物基礎・生物から2科目。10:00〜12:00（120分）、記述式。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "数学・英語",
+          "value": "数学Ⅰ・Ⅱ・A、B（数列）、C（ベクトル）。数学Ⅲや統計的な推測を独自に加えない。数学13:20〜14:20、英語15:00〜16:00、各60分。英語コミュニケーションⅠ〜Ⅲ・論理表現Ⅰ〜Ⅲ。数学はマーク式、英語はマーク式。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "判定",
+          "value": "一次は学力のみ。一次合格者に二次を行い、一次・二次成績と調査書等を総合判定。小論文は10:30〜11:10。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願手続",
+          "value": "UCARO会員登録後、Web出願登録・検定料納入・必要書類郵送の3つで完了。Webは24時間、納入は出願締切日23:59:00まで。郵送は締切日消印有効。簡易書留・速達、ポスト投函不可。宛先〒539-8691 日本郵便新大阪郵便局留 近畿大学出願受付係。海外はEMS等の指定に従う。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "57,000円。別途払込手数料（5万円未満1000円、5万〜10万円未満1400円等）。原則返還なし。学校感染症により欠席の場合は集合時刻までに電話連絡し診断書等を出す所定例外がある。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格証明",
+          "value": "調査書等は出願3カ月以内作成・学校長の厳封。卒業後5年以上で発行不可は卒業・単位修得（成績）証明、さらに発行不可は保存期間経過証明。外国の証明は日本語・英語以外に指定翻訳等。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "写真",
+          "value": "出願3カ月以内の本人カラー、上半身正面・無帽・無背景・枠なし、加工不可。JPEG10MB以内。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学時・初年度学費",
+          "value": "2027入学生：入学金100万円、授業料年609万円、学生健保共済会費年4500円。入学時404万9500円、初年度709万4500円、2〜6年次各609万4500円。後期授業料の納期は10月。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学費の範囲",
+          "value": "表の6年合計は3756万7000円（7094500＋6094500×5の計算値）。表外の交友会等・学外研修等の諸経費、教材・住居費などを含む総費用ではない。ノートPC必携。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退・返還",
+          "value": "手続完了後の辞退は2027年3月31日までにUCARO所定手続。入学金を除く学費等を返還。3月1日までの受付は3月末、それ以外は4月末に送金予定。申請後撤回不可。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "非公開手続",
+          "value": "要確認。合格者用入学手続マニュアル全文・入力画面・納付取引、個別資格・配慮判断、当日の実施は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次試験場",
+          "value": "大阪（東大阪キャンパス）／東京（TKP新橋汐留カンファレンスセンター）／名古屋（TKP名古屋駅前カンファレンスセンター）／広島（広島県JAビル）／福岡（北九州予備校博多駅校）。医学部前期Aのみ5試験地。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験場",
+          "value": "大阪堺：近畿大学おおさかメディカルキャンパス。〒590-0197 堺市南区三原台1-14-1。旧大阪狭山の会場を使わない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "会場と集合",
+          "value": "最終会場は受験票を確認。一般・地域一次9:30集合10:00開始、推薦一次8:50集合9:20開始。二次は全日程10:00集合10:30開始。原則開始30分、二次20分が遅刻限度。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "配慮申請",
+          "value": "要確認。出願開始1カ月前までにWebフォーム申請（診断書必須等）。共通章は配慮会場を東大阪に限定と記載するため、医学部二次の堺会場への適用・個別対応は大学確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "問い合わせ",
+          "value": "入学センター06-6730-1124。医学部学生センター入試係072-288-7222。試験会場への直接問い合わせは控える。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "UCAROからA4縦・原寸大の白紙に印刷、郵送なし。画面提示だけでは受験不可。受験票・写真付き公的身分証を携行。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "医学部はB日程・共通テスト併用方式の募集をしていない。一般前期の受験日は1月31日の1日のみ。",
+          "sourceIds": [
+            "guide"
+          ]
+        },
+        {
+          "text": "医学部の補欠内定は二次発表日に通知発送。推薦を除く。欠員時の候補には本人の登録携帯番号等へ電話で意思確認する。",
+          "sourceIds": [
+            "guide"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "late",
+      "name": "一般入試・後期",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2027年2月1〜15日、消印有効。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年2月28日",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2027年3月7日。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年3月11日。小論文・面接。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年3月19日。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続締切",
+          "value": "2027年3月25日。医学部は一括納付とWeb手続。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票発行",
+          "value": "2027年2月20日16:00。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "5名。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格",
+          "value": "高校等卒業・2027年3月見込、高認・外国12年課程等。個別資格審査は出願開始1カ月前までに入学センターへ相談。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "一次は理科2科目200点・数学100点・英語100点、400点満点。二次は小論文40分と個人面接約10分、いずれも段階評価。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "理科",
+          "value": "物理基礎・物理／化学基礎・化学／生物基礎・生物から2科目。10:00〜12:00（120分）、記述式。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "数学・英語",
+          "value": "数学Ⅰ・Ⅱ・A、B（数列）、C（ベクトル）。数学Ⅲや統計的な推測を独自に加えない。数学13:20〜14:20、英語15:00〜16:00、各60分。英語コミュニケーションⅠ〜Ⅲ・論理表現Ⅰ〜Ⅲ。数学は記述式、英語はマーク式。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "判定",
+          "value": "一次は学力のみ。一次合格者に二次を行い、一次・二次成績と調査書等を総合判定。小論文は10:30〜11:10。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願手続",
+          "value": "UCARO会員登録後、Web出願登録・検定料納入・必要書類郵送の3つで完了。Webは24時間、納入は出願締切日23:59:00まで。郵送は締切日消印有効。簡易書留・速達、ポスト投函不可。宛先〒539-8691 日本郵便新大阪郵便局留 近畿大学出願受付係。海外はEMS等の指定に従う。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "57,000円。別途払込手数料（5万円未満1000円、5万〜10万円未満1400円等）。原則返還なし。学校感染症により欠席の場合は集合時刻までに電話連絡し診断書等を出す所定例外がある。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格証明",
+          "value": "調査書等は出願3カ月以内作成・学校長の厳封。卒業後5年以上で発行不可は卒業・単位修得（成績）証明、さらに発行不可は保存期間経過証明。外国の証明は日本語・英語以外に指定翻訳等。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "写真",
+          "value": "出願3カ月以内の本人カラー、上半身正面・無帽・無背景・枠なし、加工不可。JPEG10MB以内。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学時・初年度学費",
+          "value": "2027入学生：入学金100万円、授業料年609万円、学生健保共済会費年4500円。入学時404万9500円、初年度709万4500円、2〜6年次各609万4500円。後期授業料の納期は10月。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学費の範囲",
+          "value": "表の6年合計は3756万7000円（7094500＋6094500×5の計算値）。表外の交友会等・学外研修等の諸経費、教材・住居費などを含む総費用ではない。ノートPC必携。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退・返還",
+          "value": "手続完了後の辞退は2027年3月31日までにUCARO所定手続。入学金を除く学費等を返還。3月1日までの受付は3月末、それ以外は4月末に送金予定。申請後撤回不可。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "非公開手続",
+          "value": "要確認。合格者用入学手続マニュアル全文・入力画面・納付取引、個別資格・配慮判断、当日の実施は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次試験場",
+          "value": "大阪（東大阪キャンパス：東大阪市小若江3-4-1）／東京（代々木ゼミナール本部校代ゼミタワー：渋谷区代々木2-25-7）。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験場",
+          "value": "大阪堺：近畿大学おおさかメディカルキャンパス。〒590-0197 堺市南区三原台1-14-1。旧大阪狭山の会場を使わない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "会場と集合",
+          "value": "最終会場は受験票を確認。一般・地域一次9:30集合10:00開始、推薦一次8:50集合9:20開始。二次は全日程10:00集合10:30開始。原則開始30分、二次20分が遅刻限度。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "配慮申請",
+          "value": "要確認。出願開始1カ月前までにWebフォーム申請（診断書必須等）。共通章は配慮会場を東大阪に限定と記載するため、医学部二次の堺会場への適用・個別対応は大学確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "問い合わせ",
+          "value": "入学センター06-6730-1124。医学部学生センター入試係072-288-7222。試験会場への直接問い合わせは控える。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "UCAROからA4縦・原寸大の白紙に印刷、郵送なし。画面提示だけでは受験不可。受験票・写真付き公的身分証を携行。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "医学部はB日程・共通テスト併用方式の募集をしていない。一般前期の受験日は1月31日の1日のみ。",
+          "sourceIds": [
+            "guide"
+          ]
+        },
+        {
+          "text": "医学部の補欠内定は二次発表日に通知発送。推薦を除く。欠員時の候補には本人の登録携帯番号等へ電話で意思確認する。",
+          "sourceIds": [
+            "guide"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recommend",
+      "name": "推薦入試（一般公募）",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2026年11月1〜13日、消印有効。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2026年11月22日",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2026年12月2日。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2026年12月6日。小論文・面接。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2026年12月16日。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続締切",
+          "value": "2026年12月24日。一括納付・Web手続。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票発行",
+          "value": "2026年11月17日16:00。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "30名。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格",
+          "value": "2026年3月以降卒業または2027年3月卒業見込の高校等・認定校の者で学校長推薦。学業・人物に優れること。公募併願制。評定の数値下限を独自に補わない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "一次は理科1科目・英語・数学、各100点・各60分で300点満点。二次は小論文40分と個人面接約10分、段階評価。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次時間・範囲",
+          "value": "理科9:20〜10:20、英語11:00〜12:00、数学13:20〜14:20。理科は基礎を含む物理・化学・生物から1科目。英語コミュニケーションⅠ〜Ⅲ。数学Ⅰ・Ⅱ・A、B（数列）、C（ベクトル）。数学Ⅲや統計的な推測を独自に加えない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出題形式・判定",
+          "value": "理科は記述、数学・英語はマーク。一次学力で選抜し、二次10:30〜11:10の小論文・面接と調査書等を総合判定。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "推薦書・事前課題",
+          "value": "学校長作成・厳封の所定推薦書をA4片面で提出。医学部はWebの事前課題小論文200〜500字の対象外で、二次に小論文を受験。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願手続",
+          "value": "UCARO会員登録後、Web出願登録・検定料納入・必要書類郵送の3つで完了。Webは24時間、納入は出願締切日23:59:00まで。郵送は締切日消印有効。簡易書留・速達、ポスト投函不可。宛先〒539-8691 日本郵便新大阪郵便局留 近畿大学出願受付係。海外はEMS等の指定に従う。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "57,000円。別途払込手数料（5万円未満1000円、5万〜10万円未満1400円等）。原則返還なし。学校感染症により欠席の場合は集合時刻までに電話連絡し診断書等を出す所定例外がある。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格証明",
+          "value": "調査書等は出願3カ月以内作成・学校長の厳封。卒業後5年以上で発行不可は卒業・単位修得（成績）証明、さらに発行不可は保存期間経過証明。外国の証明は日本語・英語以外に指定翻訳等。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "写真",
+          "value": "出願3カ月以内の本人カラー、上半身正面・無帽・無背景・枠なし、加工不可。JPEG10MB以内。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学時・初年度学費",
+          "value": "2027入学生：入学金100万円、授業料年609万円、学生健保共済会費年4500円。入学時404万9500円、初年度709万4500円、2〜6年次各609万4500円。後期授業料の納期は10月。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学費の範囲",
+          "value": "表の6年合計は3756万7000円（7094500＋6094500×5の計算値）。表外の交友会等・学外研修等の諸経費、教材・住居費などを含む総費用ではない。ノートPC必携。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退・返還",
+          "value": "手続完了後の辞退は2027年3月31日までにUCARO所定手続。入学金を除く学費等を返還。3月1日までの受付は3月末、それ以外は4月末に送金予定。申請後撤回不可。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "非公開手続",
+          "value": "要確認。合格者用入学手続マニュアル全文・入力画面・納付取引、個別資格・配慮判断、当日の実施は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次試験場",
+          "value": "大阪（東大阪キャンパス）／東京（ビジョンセンター東京京橋：中央区京橋3-7-1 相互館110タワー4F）。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験場",
+          "value": "大阪堺：近畿大学おおさかメディカルキャンパス。〒590-0197 堺市南区三原台1-14-1。旧大阪狭山の会場を使わない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "会場と集合",
+          "value": "最終会場は受験票を確認。一般・地域一次9:30集合10:00開始、推薦一次8:50集合9:20開始。二次は全日程10:00集合10:30開始。原則開始30分、二次20分が遅刻限度。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "配慮申請",
+          "value": "要確認。出願開始1カ月前までにWebフォーム申請（診断書必須等）。共通章は配慮会場を東大阪に限定と記載するため、医学部二次の堺会場への適用・個別対応は大学確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "問い合わせ",
+          "value": "入学センター06-6730-1124。医学部学生センター入試係072-288-7222。試験会場への直接問い合わせは控える。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "UCAROからA4縦・原寸大の白紙に印刷、郵送なし。画面提示だけでは受験不可。受験票・写真付き公的身分証を携行。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "公募推薦は専願ではなく他大学との併願可。医学部の募集日程・締切は一般の推薦日程と異なる。",
+          "sourceIds": [
+            "guide"
+          ]
+        },
+        {
+          "text": "一般向け英語外部試験みなし得点制度は医学部対象外。",
+          "sourceIds": [
+            "guide"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ct-early",
+      "name": "共通テスト利用・前期",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2027年1月3日〜1月15日、消印有効。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年1月16・17日の共通テスト。大学独自一次なし。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2027年2月17日。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年2月21日。小論文・面接。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年3月2日。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続締切",
+          "value": "2027年3月11日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験番号の確認開始",
+          "value": "2027年1月22日16:00。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "5名。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格",
+          "value": "高校等の大学入学資格に加え2027共通テストの大学指定科目を受験。個別資格認定は出願開始1カ月前までに相談。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "英語100点＋数学ⅠA・ⅡBC各100点＋理科2科目各100点、500点満点。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語換算・国語",
+          "value": "英語はリスニング必須（免除者除く）。リーディング160・リスニング40の200点に換算後、医学部は100点に換算（実質80対20）。この前期方式では国語は採用しない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "理科・数学",
+          "value": "理科は物理・化学・生物から2科目、数学はⅠAとⅡBCの両方。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次と判定",
+          "value": "二次は小論文40分と個人面接約10分、段階評価。10:00集合・小論文10:30開始。一次・二次成績と調査書等を総合判定。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "成績請求情報",
+          "value": "共通テスト出願サイトの氏名・ユーザーID・パスワード・申込番号を大学のWeb方式で連携。従来の紙の成績請求票を必要書類と誤記しない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願手続",
+          "value": "UCARO会員登録後、Web出願登録・検定料納入・必要書類郵送の3つで完了。Webは24時間、納入は出願締切日23:59:00まで。郵送は締切日消印有効。簡易書留・速達、ポスト投函不可。宛先〒539-8691 日本郵便新大阪郵便局留 近畿大学出願受付係。海外はEMS等の指定に従う。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "医学部を含む同一日程2志願まで30,000円、以降1志願7,000円。別途払込手数料（5万円未満1000円、5万〜10万円未満1400円等）。原則返還なし。学校感染症により欠席の場合は集合時刻までに電話連絡し診断書等を出す所定例外がある。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格証明",
+          "value": "調査書等は出願3カ月以内作成・学校長の厳封。卒業後5年以上で発行不可は卒業・単位修得（成績）証明、さらに発行不可は保存期間経過証明。外国の証明は日本語・英語以外に指定翻訳等。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "写真",
+          "value": "出願3カ月以内の本人カラー、上半身正面・無帽・無背景・枠なし、加工不可。JPEG10MB以内。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学時・初年度学費",
+          "value": "2027入学生：入学金100万円、授業料年609万円、学生健保共済会費年4500円。入学時404万9500円、初年度709万4500円、2〜6年次各609万4500円。後期授業料の納期は10月。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学費の範囲",
+          "value": "表の6年合計は3756万7000円（7094500＋6094500×5の計算値）。表外の交友会等・学外研修等の諸経費、教材・住居費などを含む総費用ではない。ノートPC必携。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退・返還",
+          "value": "手続完了後の辞退は2027年3月31日までにUCARO所定手続。入学金を除く学費等を返還。3月1日までの受付は3月末、それ以外は4月末に送金予定。申請後撤回不可。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "非公開手続",
+          "value": "要確認。合格者用入学手続マニュアル全文・入力画面・納付取引、個別資格・配慮判断、当日の実施は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次試験場",
+          "value": "一次は共通テストの指定会場。大学独自会場への来場は二次のみ。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験場",
+          "value": "大阪堺：近畿大学おおさかメディカルキャンパス。〒590-0197 堺市南区三原台1-14-1。旧大阪狭山の会場を使わない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "会場と集合",
+          "value": "最終会場は受験票を確認。一般・地域一次9:30集合10:00開始、推薦一次8:50集合9:20開始。二次は全日程10:00集合10:30開始。原則開始30分、二次20分が遅刻限度。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "配慮申請",
+          "value": "要確認。出願開始1カ月前までにWebフォーム申請（診断書必須等）。共通章は配慮会場を東大阪に限定と記載するため、医学部二次の堺会場への適用・個別対応は大学確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "問い合わせ",
+          "value": "入学センター06-6730-1124。医学部学生センター入試係072-288-7222。試験会場への直接問い合わせは控える。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "要確認。共通テスト利用は一次の受験番号をUCAROで確認。共通章は受験票発行なしと記すが医学部二次用の案内・持参物は合格通知で確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "notes": [
+        {
+          "text": "医学部は共通テスト利用でも二次あり。独自試験なしという全学共通の説明を医学部全体へ適用しない。",
+          "sourceIds": [
+            "guide"
+          ]
+        },
+        {
+          "text": "前期締切は共通テスト実施前、中期・後期の医学部締切は他学部より早い。",
+          "sourceIds": [
+            "guide"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ct-middle",
+      "name": "共通テスト利用・中期",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2027年1月3日〜2月1日、消印有効。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年1月16・17日の共通テスト。大学独自一次なし。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2027年2月17日。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年2月21日。小論文・面接。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年3月2日。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続締切",
+          "value": "2027年3月11日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験番号の確認開始",
+          "value": "2027年2月6日16:00。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "3名。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格",
+          "value": "高校等の大学入学資格に加え2027共通テストの大学指定科目を受験。個別資格認定は出願開始1カ月前までに相談。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "英語100点＋国語（近代以降の文章）・数学ⅠAの高得点1科目100点＋理科2科目200点、400点満点。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語換算・国語",
+          "value": "英語はリスニング必須（免除者除く）。リーディング160・リスニング40の200点に換算後、医学部は100点に換算（実質80対20）。国語は近代以降の文章110点を100点換算。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "理科・数学",
+          "value": "理科は物理・化学・生物から2科目。数学の採用はⅠA（国語との高得点1科目）。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次と判定",
+          "value": "二次は小論文40分と個人面接約10分、段階評価。10:00集合・小論文10:30開始。一次・二次成績と調査書等を総合判定。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "成績請求情報",
+          "value": "共通テスト出願サイトの氏名・ユーザーID・パスワード・申込番号を大学のWeb方式で連携。従来の紙の成績請求票を必要書類と誤記しない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願手続",
+          "value": "UCARO会員登録後、Web出願登録・検定料納入・必要書類郵送の3つで完了。Webは24時間、納入は出願締切日23:59:00まで。郵送は締切日消印有効。簡易書留・速達、ポスト投函不可。宛先〒539-8691 日本郵便新大阪郵便局留 近畿大学出願受付係。海外はEMS等の指定に従う。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "医学部を含む同一日程2志願まで30,000円、以降1志願7,000円。別途払込手数料（5万円未満1000円、5万〜10万円未満1400円等）。原則返還なし。学校感染症により欠席の場合は集合時刻までに電話連絡し診断書等を出す所定例外がある。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格証明",
+          "value": "調査書等は出願3カ月以内作成・学校長の厳封。卒業後5年以上で発行不可は卒業・単位修得（成績）証明、さらに発行不可は保存期間経過証明。外国の証明は日本語・英語以外に指定翻訳等。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "写真",
+          "value": "出願3カ月以内の本人カラー、上半身正面・無帽・無背景・枠なし、加工不可。JPEG10MB以内。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学時・初年度学費",
+          "value": "2027入学生：入学金100万円、授業料年609万円、学生健保共済会費年4500円。入学時404万9500円、初年度709万4500円、2〜6年次各609万4500円。後期授業料の納期は10月。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学費の範囲",
+          "value": "表の6年合計は3756万7000円（7094500＋6094500×5の計算値）。表外の交友会等・学外研修等の諸経費、教材・住居費などを含む総費用ではない。ノートPC必携。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退・返還",
+          "value": "手続完了後の辞退は2027年3月31日までにUCARO所定手続。入学金を除く学費等を返還。3月1日までの受付は3月末、それ以外は4月末に送金予定。申請後撤回不可。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "非公開手続",
+          "value": "要確認。合格者用入学手続マニュアル全文・入力画面・納付取引、個別資格・配慮判断、当日の実施は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次試験場",
+          "value": "一次は共通テストの指定会場。大学独自会場への来場は二次のみ。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験場",
+          "value": "大阪堺：近畿大学おおさかメディカルキャンパス。〒590-0197 堺市南区三原台1-14-1。旧大阪狭山の会場を使わない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "会場と集合",
+          "value": "最終会場は受験票を確認。一般・地域一次9:30集合10:00開始、推薦一次8:50集合9:20開始。二次は全日程10:00集合10:30開始。原則開始30分、二次20分が遅刻限度。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "配慮申請",
+          "value": "要確認。出願開始1カ月前までにWebフォーム申請（診断書必須等）。共通章は配慮会場を東大阪に限定と記載するため、医学部二次の堺会場への適用・個別対応は大学確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "問い合わせ",
+          "value": "入学センター06-6730-1124。医学部学生センター入試係072-288-7222。試験会場への直接問い合わせは控える。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "要確認。共通テスト利用は一次の受験番号をUCAROで確認。共通章は受験票発行なしと記すが医学部二次用の案内・持参物は合格通知で確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "notes": [
+        {
+          "text": "医学部は共通テスト利用でも二次あり。独自試験なしという全学共通の説明を医学部全体へ適用しない。",
+          "sourceIds": [
+            "guide"
+          ]
+        },
+        {
+          "text": "前期締切は共通テスト実施前、中期・後期の医学部締切は他学部より早い。",
+          "sourceIds": [
+            "guide"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ct-late",
+      "name": "共通テスト利用・後期",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "2027年2月3日〜2月25日、消印有効。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次試験",
+          "value": "2027年1月16・17日の共通テスト。大学独自一次なし。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "2027年3月7日。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験",
+          "value": "2027年3月11日。小論文・面接。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "2027年3月19日。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学手続締切",
+          "value": "2027年3月25日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験番号の確認開始",
+          "value": "2027年3月1日16:00。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "2名。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格",
+          "value": "高校等の大学入学資格に加え2027共通テストの大学指定科目を受験。個別資格認定は出願開始1カ月前までに相談。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験科目",
+          "value": "英語100点＋国語・数学・理科の中の高得点2科目各100点、300点満点。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "英語換算・国語",
+          "value": "英語はリスニング必須（免除者除く）。リーディング160・リスニング40の200点に換算後、医学部は100点に換算（実質80対20）。国語は近代以降の文章110点を100点換算。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "理科・数学",
+          "value": "物理・化学・生物、数学ⅠA、国語（近代以降の文章）から高得点2科目。数学ⅡBCや情報は採用科目にない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次と判定",
+          "value": "二次は小論文40分と個人面接約10分、段階評価。10:00集合・小論文10:30開始。一次・二次成績と調査書等を総合判定。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "成績請求情報",
+          "value": "共通テスト出願サイトの氏名・ユーザーID・パスワード・申込番号を大学のWeb方式で連携。従来の紙の成績請求票を必要書類と誤記しない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願手続",
+          "value": "UCARO会員登録後、Web出願登録・検定料納入・必要書類郵送の3つで完了。Webは24時間、納入は出願締切日23:59:00まで。郵送は締切日消印有効。簡易書留・速達、ポスト投函不可。宛先〒539-8691 日本郵便新大阪郵便局留 近畿大学出願受付係。海外はEMS等の指定に従う。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "医学部を含む同一日程2志願まで30,000円、以降1志願7,000円。別途払込手数料（5万円未満1000円、5万〜10万円未満1400円等）。原則返還なし。学校感染症により欠席の場合は集合時刻までに電話連絡し診断書等を出す所定例外がある。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格証明",
+          "value": "調査書等は出願3カ月以内作成・学校長の厳封。卒業後5年以上で発行不可は卒業・単位修得（成績）証明、さらに発行不可は保存期間経過証明。外国の証明は日本語・英語以外に指定翻訳等。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "写真",
+          "value": "出願3カ月以内の本人カラー、上半身正面・無帽・無背景・枠なし、加工不可。JPEG10MB以内。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学時・初年度学費",
+          "value": "2027入学生：入学金100万円、授業料年609万円、学生健保共済会費年4500円。入学時404万9500円、初年度709万4500円、2〜6年次各609万4500円。後期授業料の納期は10月。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学費の範囲",
+          "value": "表の6年合計は3756万7000円（7094500＋6094500×5の計算値）。表外の交友会等・学外研修等の諸経費、教材・住居費などを含む総費用ではない。ノートPC必携。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退・返還",
+          "value": "手続完了後の辞退は2027年3月31日までにUCARO所定手続。入学金を除く学費等を返還。3月1日までの受付は3月末、それ以外は4月末に送金予定。申請後撤回不可。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "非公開手続",
+          "value": "要確認。合格者用入学手続マニュアル全文・入力画面・納付取引、個別資格・配慮判断、当日の実施は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次試験場",
+          "value": "一次は共通テストの指定会場。大学独自会場への来場は二次のみ。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験場",
+          "value": "大阪堺：近畿大学おおさかメディカルキャンパス。〒590-0197 堺市南区三原台1-14-1。旧大阪狭山の会場を使わない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "会場と集合",
+          "value": "最終会場は受験票を確認。一般・地域一次9:30集合10:00開始、推薦一次8:50集合9:20開始。二次は全日程10:00集合10:30開始。原則開始30分、二次20分が遅刻限度。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "配慮申請",
+          "value": "要確認。出願開始1カ月前までにWebフォーム申請（診断書必須等）。共通章は配慮会場を東大阪に限定と記載するため、医学部二次の堺会場への適用・個別対応は大学確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "問い合わせ",
+          "value": "入学センター06-6730-1124。医学部学生センター入試係072-288-7222。試験会場への直接問い合わせは控える。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "要確認。共通テスト利用は一次の受験番号をUCAROで確認。共通章は受験票発行なしと記すが医学部二次用の案内・持参物は合格通知で確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "notes": [
+        {
+          "text": "医学部は共通テスト利用でも二次あり。独自試験なしという全学共通の説明を医学部全体へ適用しない。",
+          "sourceIds": [
+            "guide"
+          ]
+        },
+        {
+          "text": "前期締切は共通テスト実施前、中期・後期の医学部締切は他学部より早い。",
+          "sourceIds": [
+            "guide"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wakayama",
+      "name": "地域枠・和歌山県（一般前期型・認可申請予定）",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "要確認。認可申請予定の計画。2026年12月18日〜2027年1月14日、消印有効。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次試験",
+          "value": "要確認。認可申請予定の計画。2027年1月31日（計画）",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "要確認。認可申請予定の計画。2027年2月10日（計画）。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "二次試験",
+          "value": "要確認。認可申請予定の計画。2027年2月14日（計画）。小論文・面接。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "要確認。認可申請予定の計画。2027年2月23日（計画）。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "入学手続締切",
+          "value": "要確認。2027年3月5日予定。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "要確認。1名の計画。文部科学省へ認可申請予定で変更の可能性。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願資格",
+          "value": "要確認。一般の出願資格、地域医療への意思、合格時必ず入学、県所定条件を満たすこと。県の2027居住・高校・年齢・貸与等の詳細は公表待ちで未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "受験科目",
+          "value": "要確認。一次は理科2科目200・数学100・英語100の400点、二次小論文40分・個人面接約10分の段階評価。認可計画のため最新詳細で再確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "科目と形式",
+          "value": "要確認。一般前期と同じ科目・範囲。理科記述、数学マーク、英語マーク。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "県への事前手続",
+          "value": "要確認。大学要項に県の条件遵守とあり。2027県の正式要項・同意書・契約は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "追加書類",
+          "value": "A4片面の地域枠志望理由書（800字程度、県名記載、横書き・黒青ボールペン本人自筆）と入学誓約書（本人・保証人各自筆・押印）、必要県は同意書。前期から後期へ再出願時は追加3書類を再提出。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "併願・判定",
+          "value": "要確認。複数県への地域枠出願不可。同日程の一般併願可・追加検定料なし。地域枠合格時は一般判定対象外。前期型は出願時に県選択。地域二次不合格時、一次基準を満たす場合は一般の選抜対象。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "貸与・勤務",
+          "value": "要確認。県奨学金の貸与・所定勤務による返還免除を予定。理由書は通常9年の従事と記すが、県別金額・期間・利率・猶予・免除・離脱時返還は正式契約未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願手続",
+          "value": "UCARO会員登録後、Web出願登録・検定料納入・必要書類郵送の3つで完了。Webは24時間、納入は出願締切日23:59:00まで。郵送は締切日消印有効。簡易書留・速達、ポスト投函不可。宛先〒539-8691 日本郵便新大阪郵便局留 近畿大学出願受付係。海外はEMS等の指定に従う。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "57,000円。対応する一般との併願追加検定料なし。別途払込手数料（5万円未満1000円、5万〜10万円未満1400円等）。原則返還なし。学校感染症により欠席の場合は集合時刻までに電話連絡し診断書等を出す所定例外がある。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格証明",
+          "value": "調査書等は出願3カ月以内作成・学校長の厳封。卒業後5年以上で発行不可は卒業・単位修得（成績）証明、さらに発行不可は保存期間経過証明。外国の証明は日本語・英語以外に指定翻訳等。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "写真",
+          "value": "出願3カ月以内の本人カラー、上半身正面・無帽・無背景・枠なし、加工不可。JPEG10MB以内。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学時・初年度学費",
+          "value": "2027入学生：入学金100万円、授業料年609万円、学生健保共済会費年4500円。入学時404万9500円、初年度709万4500円、2〜6年次各609万4500円。後期授業料の納期は10月。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学費の範囲",
+          "value": "表の6年合計は3756万7000円（7094500＋6094500×5の計算値）。表外の交友会等・学外研修等の諸経費、教材・住居費などを含む総費用ではない。ノートPC必携。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退・返還",
+          "value": "要確認。地域枠合格者は辞退不可、手続後の納付金返還なしと要項に明記。県貸与の契約全文・違約返還・免除の2027確定条件は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "非公開手続",
+          "value": "要確認。合格者用入学手続マニュアル全文・入力画面・納付取引、個別資格・配慮判断、当日の実施は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次試験場",
+          "value": "地域枠一次は大阪（東大阪キャンパス）／東京のみ。一般前期の名古屋・広島・福岡は地域枠の選択肢ではない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験場",
+          "value": "大阪堺：近畿大学おおさかメディカルキャンパス。〒590-0197 堺市南区三原台1-14-1。旧大阪狭山の会場を使わない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "会場と集合",
+          "value": "最終会場は受験票を確認。一般・地域一次9:30集合10:00開始、推薦一次8:50集合9:20開始。二次は全日程10:00集合10:30開始。原則開始30分、二次20分が遅刻限度。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "配慮申請",
+          "value": "要確認。出願開始1カ月前までにWebフォーム申請（診断書必須等）。共通章は配慮会場を東大阪に限定と記載するため、医学部二次の堺会場への適用・個別対応は大学確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "問い合わせ",
+          "value": "入学センター06-6730-1124。医学部学生センター入試係072-288-7222。試験会場への直接問い合わせは控える。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "UCAROからA4縦・原寸大の白紙に印刷、郵送なし。画面提示だけでは受験不可。受験票・写真付き公的身分証を携行。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "地域枠公式ページは申請予定・詳細後日告知。要項中の計画を承認済みと扱わない。",
+          "sourceIds": [
+            "region"
+          ]
+        },
+        {
+          "text": "地域枠合格後は辞退不可。前期地域枠の合格者は一般後期・後期地域枠・共通テスト利用で別に合格しても手続できない。",
+          "sourceIds": [
+            "guide"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shizuoka-early",
+      "name": "地域枠・静岡県（一般前期型・認可申請予定）",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "要確認。認可申請予定の計画。2026年12月18日〜2027年1月14日、消印有効。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次試験",
+          "value": "要確認。認可申請予定の計画。2027年1月31日（計画）",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "要確認。認可申請予定の計画。2027年2月10日（計画）。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "二次試験",
+          "value": "要確認。認可申請予定の計画。2027年2月14日（計画）。小論文・面接。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "要確認。認可申請予定の計画。2027年2月23日（計画）。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "入学手続締切",
+          "value": "要確認。2027年3月5日予定。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "要確認。6名の計画。文部科学省へ認可申請予定で変更の可能性。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願資格",
+          "value": "要確認。一般の出願資格、地域医療への意思、合格時必ず入学、県所定条件を満たすこと。県の2027居住・高校・年齢・貸与等の詳細は公表待ちで未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "受験科目",
+          "value": "要確認。一次は理科2科目200・数学100・英語100の400点、二次小論文40分・個人面接約10分の段階評価。認可計画のため最新詳細で再確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "科目と形式",
+          "value": "要確認。一般前期と同じ科目・範囲。理科記述、数学マーク、英語マーク。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "県への事前手続",
+          "value": "要確認。大学要項に県の条件遵守とあり。2027県の正式要項・同意書・契約は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "追加書類",
+          "value": "A4片面の地域枠志望理由書（800字程度、県名記載、横書き・黒青ボールペン本人自筆）と入学誓約書（本人・保証人各自筆・押印）、必要県は同意書。前期から後期へ再出願時は追加3書類を再提出。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "併願・判定",
+          "value": "要確認。複数県への地域枠出願不可。同日程の一般併願可・追加検定料なし。地域枠合格時は一般判定対象外。前期型は出願時に県選択。地域二次不合格時、一次基準を満たす場合は一般の選抜対象。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "貸与・勤務",
+          "value": "要確認。県奨学金の貸与・所定勤務による返還免除を予定。理由書は通常9年の従事と記すが、県別金額・期間・利率・猶予・免除・離脱時返還は正式契約未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願手続",
+          "value": "UCARO会員登録後、Web出願登録・検定料納入・必要書類郵送の3つで完了。Webは24時間、納入は出願締切日23:59:00まで。郵送は締切日消印有効。簡易書留・速達、ポスト投函不可。宛先〒539-8691 日本郵便新大阪郵便局留 近畿大学出願受付係。海外はEMS等の指定に従う。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "57,000円。対応する一般との併願追加検定料なし。別途払込手数料（5万円未満1000円、5万〜10万円未満1400円等）。原則返還なし。学校感染症により欠席の場合は集合時刻までに電話連絡し診断書等を出す所定例外がある。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格証明",
+          "value": "調査書等は出願3カ月以内作成・学校長の厳封。卒業後5年以上で発行不可は卒業・単位修得（成績）証明、さらに発行不可は保存期間経過証明。外国の証明は日本語・英語以外に指定翻訳等。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "写真",
+          "value": "出願3カ月以内の本人カラー、上半身正面・無帽・無背景・枠なし、加工不可。JPEG10MB以内。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学時・初年度学費",
+          "value": "2027入学生：入学金100万円、授業料年609万円、学生健保共済会費年4500円。入学時404万9500円、初年度709万4500円、2〜6年次各609万4500円。後期授業料の納期は10月。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学費の範囲",
+          "value": "表の6年合計は3756万7000円（7094500＋6094500×5の計算値）。表外の交友会等・学外研修等の諸経費、教材・住居費などを含む総費用ではない。ノートPC必携。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退・返還",
+          "value": "要確認。地域枠合格者は辞退不可、手続後の納付金返還なしと要項に明記。県貸与の契約全文・違約返還・免除の2027確定条件は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "非公開手続",
+          "value": "要確認。合格者用入学手続マニュアル全文・入力画面・納付取引、個別資格・配慮判断、当日の実施は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次試験場",
+          "value": "地域枠一次は大阪（東大阪キャンパス）／東京のみ。一般前期の名古屋・広島・福岡は地域枠の選択肢ではない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験場",
+          "value": "大阪堺：近畿大学おおさかメディカルキャンパス。〒590-0197 堺市南区三原台1-14-1。旧大阪狭山の会場を使わない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "会場と集合",
+          "value": "最終会場は受験票を確認。一般・地域一次9:30集合10:00開始、推薦一次8:50集合9:20開始。二次は全日程10:00集合10:30開始。原則開始30分、二次20分が遅刻限度。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "配慮申請",
+          "value": "要確認。出願開始1カ月前までにWebフォーム申請（診断書必須等）。共通章は配慮会場を東大阪に限定と記載するため、医学部二次の堺会場への適用・個別対応は大学確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "問い合わせ",
+          "value": "入学センター06-6730-1124。医学部学生センター入試係072-288-7222。試験会場への直接問い合わせは控える。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "UCAROからA4縦・原寸大の白紙に印刷、郵送なし。画面提示だけでは受験不可。受験票・写真付き公的身分証を携行。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "地域枠公式ページは申請予定・詳細後日告知。要項中の計画を承認済みと扱わない。",
+          "sourceIds": [
+            "region"
+          ]
+        },
+        {
+          "text": "地域枠合格後は辞退不可。前期地域枠の合格者は一般後期・後期地域枠・共通テスト利用で別に合格しても手続できない。",
+          "sourceIds": [
+            "guide"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ibaraki",
+      "name": "地域枠・茨城県（一般前期型・認可申請予定）",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "要確認。認可申請予定の計画。2026年12月18日〜2027年1月14日、消印有効。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次試験",
+          "value": "要確認。認可申請予定の計画。2027年1月31日（計画）",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "要確認。認可申請予定の計画。2027年2月10日（計画）。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "二次試験",
+          "value": "要確認。認可申請予定の計画。2027年2月14日（計画）。小論文・面接。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "要確認。認可申請予定の計画。2027年2月23日（計画）。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "入学手続締切",
+          "value": "要確認。2027年3月5日予定。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "要確認。2名の計画。文部科学省へ認可申請予定で変更の可能性。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願資格",
+          "value": "要確認。一般の出願資格、地域医療への意思、合格時必ず入学、県所定条件を満たすこと。県の2027居住・高校・年齢・貸与等の詳細は公表待ちで未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "受験科目",
+          "value": "要確認。一次は理科2科目200・数学100・英語100の400点、二次小論文40分・個人面接約10分の段階評価。認可計画のため最新詳細で再確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "科目と形式",
+          "value": "要確認。一般前期と同じ科目・範囲。理科記述、数学マーク、英語マーク。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "県への事前手続",
+          "value": "要確認。大学出願前に県へ応募書類提出、県のeラーニング受講が必要。2027県詳細・締切は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "追加書類",
+          "value": "A4片面の地域枠志望理由書（800字程度、県名記載、横書き・黒青ボールペン本人自筆）と入学誓約書（本人・保証人各自筆・押印）、必要県は同意書。前期から後期へ再出願時は追加3書類を再提出。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "併願・判定",
+          "value": "要確認。複数県への地域枠出願不可。同日程の一般併願可・追加検定料なし。地域枠合格時は一般判定対象外。前期型は出願時に県選択。地域二次不合格時、一次基準を満たす場合は一般の選抜対象。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "貸与・勤務",
+          "value": "要確認。県奨学金の貸与・所定勤務による返還免除を予定。理由書は通常9年の従事と記すが、県別金額・期間・利率・猶予・免除・離脱時返還は正式契約未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願手続",
+          "value": "UCARO会員登録後、Web出願登録・検定料納入・必要書類郵送の3つで完了。Webは24時間、納入は出願締切日23:59:00まで。郵送は締切日消印有効。簡易書留・速達、ポスト投函不可。宛先〒539-8691 日本郵便新大阪郵便局留 近畿大学出願受付係。海外はEMS等の指定に従う。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "57,000円。対応する一般との併願追加検定料なし。別途払込手数料（5万円未満1000円、5万〜10万円未満1400円等）。原則返還なし。学校感染症により欠席の場合は集合時刻までに電話連絡し診断書等を出す所定例外がある。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格証明",
+          "value": "調査書等は出願3カ月以内作成・学校長の厳封。卒業後5年以上で発行不可は卒業・単位修得（成績）証明、さらに発行不可は保存期間経過証明。外国の証明は日本語・英語以外に指定翻訳等。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "写真",
+          "value": "出願3カ月以内の本人カラー、上半身正面・無帽・無背景・枠なし、加工不可。JPEG10MB以内。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学時・初年度学費",
+          "value": "2027入学生：入学金100万円、授業料年609万円、学生健保共済会費年4500円。入学時404万9500円、初年度709万4500円、2〜6年次各609万4500円。後期授業料の納期は10月。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学費の範囲",
+          "value": "表の6年合計は3756万7000円（7094500＋6094500×5の計算値）。表外の交友会等・学外研修等の諸経費、教材・住居費などを含む総費用ではない。ノートPC必携。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退・返還",
+          "value": "要確認。地域枠合格者は辞退不可、手続後の納付金返還なしと要項に明記。県貸与の契約全文・違約返還・免除の2027確定条件は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "非公開手続",
+          "value": "要確認。合格者用入学手続マニュアル全文・入力画面・納付取引、個別資格・配慮判断、当日の実施は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次試験場",
+          "value": "地域枠一次は大阪（東大阪キャンパス）／東京のみ。一般前期の名古屋・広島・福岡は地域枠の選択肢ではない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験場",
+          "value": "大阪堺：近畿大学おおさかメディカルキャンパス。〒590-0197 堺市南区三原台1-14-1。旧大阪狭山の会場を使わない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "会場と集合",
+          "value": "最終会場は受験票を確認。一般・地域一次9:30集合10:00開始、推薦一次8:50集合9:20開始。二次は全日程10:00集合10:30開始。原則開始30分、二次20分が遅刻限度。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "配慮申請",
+          "value": "要確認。出願開始1カ月前までにWebフォーム申請（診断書必須等）。共通章は配慮会場を東大阪に限定と記載するため、医学部二次の堺会場への適用・個別対応は大学確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "問い合わせ",
+          "value": "入学センター06-6730-1124。医学部学生センター入試係072-288-7222。試験会場への直接問い合わせは控える。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "UCAROからA4縦・原寸大の白紙に印刷、郵送なし。画面提示だけでは受験不可。受験票・写真付き公的身分証を携行。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "地域枠公式ページは申請予定・詳細後日告知。要項中の計画を承認済みと扱わない。",
+          "sourceIds": [
+            "region"
+          ]
+        },
+        {
+          "text": "地域枠合格後は辞退不可。前期地域枠の合格者は一般後期・後期地域枠・共通テスト利用で別に合格しても手続できない。",
+          "sourceIds": [
+            "guide"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nagano",
+      "name": "地域枠・長野県（一般前期型・認可申請予定）",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "要確認。認可申請予定の計画。2026年12月18日〜2027年1月14日、消印有効。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次試験",
+          "value": "要確認。認可申請予定の計画。2027年1月31日（計画）",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "要確認。認可申請予定の計画。2027年2月10日（計画）。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "二次試験",
+          "value": "要確認。認可申請予定の計画。2027年2月14日（計画）。小論文・面接。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "要確認。認可申請予定の計画。2027年2月23日（計画）。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "入学手続締切",
+          "value": "要確認。2027年3月5日予定。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "要確認。2名の計画。文部科学省へ認可申請予定で変更の可能性。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願資格",
+          "value": "要確認。一般の出願資格、地域医療への意思、合格時必ず入学、県所定条件を満たすこと。県の2027居住・高校・年齢・貸与等の詳細は公表待ちで未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "受験科目",
+          "value": "要確認。一次は理科2科目200・数学100・英語100の400点、二次小論文40分・個人面接約10分の段階評価。認可計画のため最新詳細で再確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "科目と形式",
+          "value": "要確認。一般前期と同じ科目・範囲。理科記述、数学マーク、英語マーク。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "県への事前手続",
+          "value": "要確認。大学出願前に県電子申請サービスで申込み、誓約書提出が必要。2027県詳細・締切は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "追加書類",
+          "value": "A4片面の地域枠志望理由書（800字程度、県名記載、横書き・黒青ボールペン本人自筆）と入学誓約書（本人・保証人各自筆・押印）、必要県は同意書。前期から後期へ再出願時は追加3書類を再提出。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "併願・判定",
+          "value": "要確認。複数県への地域枠出願不可。同日程の一般併願可・追加検定料なし。地域枠合格時は一般判定対象外。前期型は出願時に県選択。地域二次不合格時、一次基準を満たす場合は一般の選抜対象。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "貸与・勤務",
+          "value": "要確認。県奨学金の貸与・所定勤務による返還免除を予定。理由書は通常9年の従事と記すが、県別金額・期間・利率・猶予・免除・離脱時返還は正式契約未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願手続",
+          "value": "UCARO会員登録後、Web出願登録・検定料納入・必要書類郵送の3つで完了。Webは24時間、納入は出願締切日23:59:00まで。郵送は締切日消印有効。簡易書留・速達、ポスト投函不可。宛先〒539-8691 日本郵便新大阪郵便局留 近畿大学出願受付係。海外はEMS等の指定に従う。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "57,000円。対応する一般との併願追加検定料なし。別途払込手数料（5万円未満1000円、5万〜10万円未満1400円等）。原則返還なし。学校感染症により欠席の場合は集合時刻までに電話連絡し診断書等を出す所定例外がある。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格証明",
+          "value": "調査書等は出願3カ月以内作成・学校長の厳封。卒業後5年以上で発行不可は卒業・単位修得（成績）証明、さらに発行不可は保存期間経過証明。外国の証明は日本語・英語以外に指定翻訳等。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "写真",
+          "value": "出願3カ月以内の本人カラー、上半身正面・無帽・無背景・枠なし、加工不可。JPEG10MB以内。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学時・初年度学費",
+          "value": "2027入学生：入学金100万円、授業料年609万円、学生健保共済会費年4500円。入学時404万9500円、初年度709万4500円、2〜6年次各609万4500円。後期授業料の納期は10月。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学費の範囲",
+          "value": "表の6年合計は3756万7000円（7094500＋6094500×5の計算値）。表外の交友会等・学外研修等の諸経費、教材・住居費などを含む総費用ではない。ノートPC必携。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退・返還",
+          "value": "要確認。地域枠合格者は辞退不可、手続後の納付金返還なしと要項に明記。県貸与の契約全文・違約返還・免除の2027確定条件は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "非公開手続",
+          "value": "要確認。合格者用入学手続マニュアル全文・入力画面・納付取引、個別資格・配慮判断、当日の実施は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次試験場",
+          "value": "地域枠一次は大阪（東大阪キャンパス）／東京のみ。一般前期の名古屋・広島・福岡は地域枠の選択肢ではない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験場",
+          "value": "大阪堺：近畿大学おおさかメディカルキャンパス。〒590-0197 堺市南区三原台1-14-1。旧大阪狭山の会場を使わない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "会場と集合",
+          "value": "最終会場は受験票を確認。一般・地域一次9:30集合10:00開始、推薦一次8:50集合9:20開始。二次は全日程10:00集合10:30開始。原則開始30分、二次20分が遅刻限度。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "配慮申請",
+          "value": "要確認。出願開始1カ月前までにWebフォーム申請（診断書必須等）。共通章は配慮会場を東大阪に限定と記載するため、医学部二次の堺会場への適用・個別対応は大学確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "問い合わせ",
+          "value": "入学センター06-6730-1124。医学部学生センター入試係072-288-7222。試験会場への直接問い合わせは控える。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "UCAROからA4縦・原寸大の白紙に印刷、郵送なし。画面提示だけでは受験不可。受験票・写真付き公的身分証を携行。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "地域枠公式ページは申請予定・詳細後日告知。要項中の計画を承認済みと扱わない。",
+          "sourceIds": [
+            "region"
+          ]
+        },
+        {
+          "text": "地域枠合格後は辞退不可。前期地域枠の合格者は一般後期・後期地域枠・共通テスト利用で別に合格しても手続できない。",
+          "sourceIds": [
+            "guide"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shizuoka-late",
+      "name": "地域枠・静岡県（一般後期型・認可申請予定）",
+      "scheduleRows": [
+        {
+          "label": "出願期間",
+          "value": "要確認。認可申請予定の計画。2027年2月1〜15日、消印有効。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次試験",
+          "value": "要確認。認可申請予定の計画。2027年2月28日（計画）",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "一次合格発表",
+          "value": "要確認。認可申請予定の計画。2027年3月7日（計画）。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "二次試験",
+          "value": "要確認。認可申請予定の計画。2027年3月11日（計画）。小論文・面接。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "最終合格発表",
+          "value": "要確認。認可申請予定の計画。2027年3月19日（計画）。合格発表日の前日21:00からUCAROで照会（各表の日付と分離）。照会終了2027年5月31日。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "入学手続締切",
+          "value": "要確認。2027年3月25日予定。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "examRows": [
+        {
+          "label": "募集人員",
+          "value": "要確認。4名の計画。文部科学省へ認可申請予定で変更の可能性。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願資格",
+          "value": "要確認。一般の出願資格、地域医療への意思、合格時必ず入学、県所定条件を満たすこと。県の2027居住・高校・年齢・貸与等の詳細は公表待ちで未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "受験科目",
+          "value": "要確認。一次は理科2科目200・数学100・英語100の400点、二次小論文40分・個人面接約10分の段階評価。認可計画のため最新詳細で再確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "科目と形式",
+          "value": "要確認。一般後期と同じ科目・範囲。理科記述、数学記述、英語マーク。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "県への事前手続",
+          "value": "要確認。大学要項に県の条件遵守とあり。2027県の正式要項・同意書・契約は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "追加書類",
+          "value": "A4片面の地域枠志望理由書（800字程度、県名記載、横書き・黒青ボールペン本人自筆）と入学誓約書（本人・保証人各自筆・押印）、必要県は同意書。前期から後期へ再出願時は追加3書類を再提出。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "併願・判定",
+          "value": "要確認。複数県への地域枠出願不可。同日程の一般併願可・追加検定料なし。地域枠合格時は一般判定対象外。前期型は出願時に県選択。地域二次不合格時、一次基準を満たす場合は一般の選抜対象。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "貸与・勤務",
+          "value": "要確認。県奨学金の貸与・所定勤務による返還免除を予定。理由書は通常9年の従事と記すが、県別金額・期間・利率・猶予・免除・離脱時返還は正式契約未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "出願手続",
+          "value": "UCARO会員登録後、Web出願登録・検定料納入・必要書類郵送の3つで完了。Webは24時間、納入は出願締切日23:59:00まで。郵送は締切日消印有効。簡易書留・速達、ポスト投函不可。宛先〒539-8691 日本郵便新大阪郵便局留 近畿大学出願受付係。海外はEMS等の指定に従う。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学検定料",
+          "value": "57,000円。対応する一般との併願追加検定料なし。別途払込手数料（5万円未満1000円、5万〜10万円未満1400円等）。原則返還なし。学校感染症により欠席の場合は集合時刻までに電話連絡し診断書等を出す所定例外がある。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "出願資格証明",
+          "value": "調査書等は出願3カ月以内作成・学校長の厳封。卒業後5年以上で発行不可は卒業・単位修得（成績）証明、さらに発行不可は保存期間経過証明。外国の証明は日本語・英語以外に指定翻訳等。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "写真",
+          "value": "出願3カ月以内の本人カラー、上半身正面・無帽・無背景・枠なし、加工不可。JPEG10MB以内。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "入学時・初年度学費",
+          "value": "2027入学生：入学金100万円、授業料年609万円、学生健保共済会費年4500円。入学時404万9500円、初年度709万4500円、2〜6年次各609万4500円。後期授業料の納期は10月。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "学費の範囲",
+          "value": "表の6年合計は3756万7000円（7094500＋6094500×5の計算値）。表外の交友会等・学外研修等の諸経費、教材・住居費などを含む総費用ではない。ノートPC必携。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "辞退・返還",
+          "value": "要確認。地域枠合格者は辞退不可、手続後の納付金返還なしと要項に明記。県貸与の契約全文・違約返還・免除の2027確定条件は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "非公開手続",
+          "value": "要確認。合格者用入学手続マニュアル全文・入力画面・納付取引、個別資格・配慮判断、当日の実施は未確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        }
+      ],
+      "venueRows": [
+        {
+          "label": "一次試験場",
+          "value": "地域枠一次は大阪（東大阪キャンパス）／東京のみ。一般前期の名古屋・広島・福岡は地域枠の選択肢ではない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "二次試験場",
+          "value": "大阪堺：近畿大学おおさかメディカルキャンパス。〒590-0197 堺市南区三原台1-14-1。旧大阪狭山の会場を使わない。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "会場と集合",
+          "value": "最終会場は受験票を確認。一般・地域一次9:30集合10:00開始、推薦一次8:50集合9:20開始。二次は全日程10:00集合10:30開始。原則開始30分、二次20分が遅刻限度。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "配慮申請",
+          "value": "要確認。出願開始1カ月前までにWebフォーム申請（診断書必須等）。共通章は配慮会場を東大阪に限定と記載するため、医学部二次の堺会場への適用・個別対応は大学確認。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "needs-confirmation"
+        },
+        {
+          "label": "問い合わせ",
+          "value": "入学センター06-6730-1124。医学部学生センター入試係072-288-7222。試験会場への直接問い合わせは控える。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        },
+        {
+          "label": "受験票",
+          "value": "UCAROからA4縦・原寸大の白紙に印刷、郵送なし。画面提示だけでは受験不可。受験票・写真付き公的身分証を携行。",
+          "sourceIds": [
+            "guide"
+          ],
+          "status": "confirmed"
+        }
+      ],
+      "notes": [
+        {
+          "text": "地域枠公式ページは申請予定・詳細後日告知。要項中の計画を承認済みと扱わない。",
+          "sourceIds": [
+            "region"
+          ]
+        },
+        {
+          "text": "地域枠合格後は辞退不可。前期地域枠の合格者は一般後期・後期地域枠・共通テスト利用で別に合格しても手続できない。",
+          "sourceIds": [
+            "guide"
+          ]
+        }
+      ]
+    }
+  ],
+  "coverageNotes": [
+    "医学部の現行入試案内を起点に調査。",
+    "2027正式要項は公式掲載ページから単ページ版を保存。誤った旧形式URLは取得失敗し採用していない。",
+    "全学日程ではなく医学部日程を確認。",
+    "一般前期Web55名と正式要項50名は未解決の差異。",
+    "一般後期は5名、一次2月28日。",
+    "推薦公募は30名、事前課題小論文は医学部対象外。",
+    "共通テスト利用3期の科目・日程を医学部欄で確認。",
+    "地域枠は認可申請予定、詳細後日。",
+    "試験地共通案内と医学部専用会場表を区別。",
+    "学費Webと2027要項の医学部金額が一致。",
+    "PDF医学部出題形式・採点方法を画像で照合。",
+    "地域枠15名計画（和歌山1、静岡10、茨城2、長野2）。一般前期50名を含む計110名の表。"
+  ]
+}
