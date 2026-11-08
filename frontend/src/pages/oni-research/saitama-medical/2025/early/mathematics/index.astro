@@ -1,0 +1,131 @@
+---
+import SiteLayout from "../../../../../../layouts/SiteLayout.astro";
+import ArticleToc from "../../../../../../components/articles/ArticleToc.astro";
+import ArticleCta from "../../../../../../components/articles/ArticleCta.astro";
+import ResearchQuestion, { type ResearchQuestionData } from "../../../../../../components/oni-research/ResearchQuestion.astro";
+import article from "../../../../../../data/oniResearch/saitama-medical-2025-early-mathematics.json";
+import "../../../../../../styles/articles.css";
+import "../../../../../../styles/oni-research.css";
+
+const questions = article.questions as ResearchQuestionData[];
+const groups = [
+  { id: "major-1", title: "第1問｜微分と複素数の回転", questions: questions.slice(0, 2) },
+  { id: "major-2", title: "第2問｜動点の距離と、移動量の最大化", questions: questions.slice(2, 5) },
+  { id: "major-3", title: "第3問｜円周角から相似・三角比へ", questions: questions.slice(5, 8) },
+  { id: "major-4", title: "第4問｜仕切り法で分配を数える", questions: questions.slice(8) },
+];
+const toc = [
+  { id: "strategy", text: "解くべき問題・見送る問題" },
+  ...groups.map(({ id, title }) => ({ id, text: title.split("｜")[0] + "の全問解説" })),
+  { id: "time-plan", text: "50分の使い方" },
+  { id: "answer-key", text: "マーク欄1〜39の正答" },
+  { id: "review", text: "この年の復習の優先順位" },
+  { id: "sources", text: "出典・分析条件" },
+];
+const slots = questions.flatMap((q) => q.slots);
+---
+<SiteLayout title={`${article.title}｜レクサス`} description={article.description} canonical={`https://lexus-ec.com${article.path}`} noindex={true} mainContentId="oni-research-content">
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/assets/vendor/katex/katex.min.css" />
+    <script is:inline defer src="/assets/vendor/katex/katex.min.js"></script>
+    <script is:inline defer src="/assets/past-exam/math-render.js"></script>
+  </Fragment>
+  <main id="oni-research-content" tabindex="-1" class="article-page oni-research">
+    <header class="article-hero article-hero--oni article-hero--character research-hero">
+      <div class="article-container research-breadcrumbs"><nav aria-label="パンくず"><a href="/">ホーム</a><span>›</span><a href="/oni-research/">医学部過去問鬼研究</a><span>›</span><span>埼玉医科大 2025 前期数学</span></nav></div>
+      <div class="article-container article-hero__inner">
+        <div class="article-hero__copy">
+          <p class="article-hero__badge">医学部過去問鬼研究</p>
+          <ul class="article-hero__categories" aria-label="記事の対象"><li>埼玉医科大学</li><li>2025年度・前期</li><li>数学</li></ul>
+          <h1><span class="article-hero__title-line">埼玉医科大学 2025年度 前期</span><span class="article-hero__title-line">数学 全問解答解説</span></h1>
+          <p class="article-hero__message"><span>50分で、何を取り、何を見送るか。</span></p>
+          <figure class="article-hero__image article-hero__image--character"><img src="/assets/optimized/yuki-sensei-default-480.webp" alt="問題集に向かうレクサスのゆうき先生" width="480" height="444" decoding="async" fetchpriority="high" /></figure>
+          <p class="article-hero__lead">解答を知るだけで終わらせない。全4大問・10小問の解き方から、数学が得意・苦手な受験生それぞれの取捨選択、復習のポイントまで掘り下げます。</p>
+          <p class="research-edition">2026年11月8日 更新 <span>ステージング確認版</span></p>
+        </div>
+      </div>
+    </header>
+    <div class="article-container article-body-grid">
+      <article class="article-main">
+        <section class="article-keypoints"><h2>この年の結論</h2><ul>
+          <li>まずは基本手順で進める6小問。大問番号の順より、短く解ける入口を優先する。</li>
+          <li>第2問・問3は前半と後半を分ける。一般化の式まで確保し、微分へ進むか判断する。</li>
+          <li>第3問は問1を拾う。問2を解けた受験生は、問3も続けて確認する。</li>
+        </ul></section>
+        <dl class="article-info-grid"><div><dt>入試年度・方式</dt><dd>2025年度 一般選抜・前期</dd></div><div><dt>試験時間</dt><dd>数学50分</dd></div><div><dt>構成</dt><dd>4大問・10小問</dd></div><div><dt>解答形式</dt><dd>1桁ずつのマーク式・39欄</dd></div></dl>
+        <div class="article-content research-content">
+          <section id="strategy" class="research-section">
+            <h2>解くべき問題と、見送るべき問題</h2>
+            <p>この年は、指数関数の微分、複素数の回転、動点の距離、円と直線、重複組合せが並びます。解法の入口が素直な小問と、複数の処理をつなぐ小問を分けて読むことが大切です。</p>
+            <p><strong>一周目の優先候補は、第1問・問1、第2問・問1・問2、第3問・問1、第4問・問1・問2の6小問。</strong>特に第4問は、図形の大問の後ろにあるというだけで飛ばしたくない内容です。</p>
+            <div class="research-profile" role="group" aria-label="一覧に表示する受験生像"><button type="button" aria-pressed="true" data-research-profile="weak">数学が苦手な受験生</button><button type="button" aria-pressed="false" data-research-profile="strong">数学が得意な受験生</button></div>
+            <div class="research-table-scroll" tabindex="0" aria-label="全10小問の優先順位。スマートフォンでは横にスクロールできます">
+              <table class="research-overview"><caption>全10小問の見取り図</caption><thead><tr><th scope="col">問題</th><th scope="col">主な内容</th><th scope="col">本番での判断</th><th scope="col">時間の目安</th></tr></thead>
+                <tbody>{questions.map((q) => <tr><th scope="row"><a href={`#${q.id}`}>{q.label}</a></th><td>{q.theme}<small>{q.difficulty}</small></td><td><span class:list={["research-priority",q.weakAction === "先に解く" && "research-priority--first"]} data-research-choice="weak">{q.weakAction}</span><span class:list={["research-priority",q.strongAction === "先に解く" && "research-priority--first"]} data-research-choice="strong" hidden>{q.strongAction}</span></td><td>{q.minutes}</td></tr>)}</tbody>
+              </table>
+            </div>
+            <p class="research-caption">表は横にスクロールできます。時間と難度は編集上の目安で、正答率や公式配点に基づく評価ではありません。第3問・問3の時間は、問2の結果がある場合の追加時間です。</p>
+            <blockquote><strong>「捨てる」は、この50分の中での判断。</strong><br />数学が苦手な受験生では、第3問・問2・問3と第2問・問3の後半が、いったん見送る候補です。これは復習しなくてよいという意味ではありません。得意な受験生は、短問を確保したうえで残り時間に応じて戻ります。</blockquote>
+          </section>
+          <div class="research-reading-tools" aria-label="解説の表示"><span>全10小問の解説</span><button type="button" data-research-open="all">すべて開く</button><button type="button" data-research-open="none">道筋を折りたたむ</button></div>
+          <p class="research-caption">以下の「問題の内容」は原文の要約です。数学的な条件・求めるものを保ち、記事用に整理しています。</p>
+          {groups.map((group) => <section class="research-major" id={group.id}><h2>{group.title}</h2>
+            {group.id === "major-2" && <p>共通の設定は、Pが(10,0)、Qが(0,20)から同時に動き始め、それぞれ座標軸の負の向きへ進むこと。原点で止まる条件はありません。</p>}
+            {group.id === "major-3" && <figure class="research-geometry"><img src="/assets/past-exams/saitama-medical-2025-general-early-mathematics/figures/q3-geometry.svg" alt="単位円の円弧AB上のPと、CP・BPが座標軸やx=1の直線と交わるQ・S・R・Tの配置図。BCは直径、QとSはx軸上にある。" width="800" height="740" loading="lazy" decoding="async" /><figcaption>条件から作図した既存の配置例です。Pの位置は例示であり、問2・問3の数値に合わせた縮尺図ではありません。角度・長さは式で確かめます。</figcaption></figure>}
+            {group.questions.map((question) => <ResearchQuestion question={question} />)}
+          </section>)}
+          <section id="time-plan" class="research-section">
+            <h2>50分を、どの順序で使うか</h2><p>以下は一つの時間配分案です。小問の時間を機械的に足すのではなく、共通本文を読む時間、マークする時間、見直しの余裕も残します。</p>
+            <h3>数学が苦手な受験生</h3><ol class="research-timeline">
+              <li><b>0〜3分｜全体を確認</b><span>第4問まで見て、短い問題の位置を確認する。</span></li>
+              <li><b>3〜23分｜優先6小問を確保</b><span>第1問・問1 → 第2問・問1・問2 → 第3問・問1 → 第4問・問1・問2。</span></li>
+              <li><b>23〜32分｜解ける追加部分へ</b><span>第1問・問2や第2問・問3の前半へ。方針が立たない問題で時間を使い切らない。</span></li>
+              <li><b>32〜40分｜取りこぼしを回収</b><span>途中まで進んだ問題、式の修正で終わる問題へ戻る。</span></li>
+              <li><b>40〜50分｜マークと条件を見直す</b><span>符号、根号、距離の2乗、欄番号との対応を確認する。</span></li>
+            </ol>
+            <h3>数学が得意な受験生</h3><ol class="research-timeline">
+              <li><b>0〜3分｜全体を確認</b><span>図形の後半と一般化の問題に、後から使う時間を見込む。</span></li>
+              <li><b>3〜22分｜優先6小問を処理</b><span>短問を先に確保し、焦って前半を落とさない。</span></li>
+              <li><b>22〜28分｜回転と一般化の前半</b><span>第1問・問2、第2問・問3のdの式を整える。</span></li>
+              <li><b>28〜43分｜残る発展部分を選ぶ</b><span>分数関数の微分、図形の面積比へ。第3問・問2が解けたら問3を続ける。</span></li>
+              <li><b>43〜50分｜見直し</b><span>計算が未完でも、解答欄のずれを防ぐ時間を残す。</span></li>
+            </ol>
+            <p>後半15分で必ず残りを解き切る、という計画ではありません。途中撤退の目安に達したら、すでに進んだ問題と見直しを優先します。</p>
+          </section>
+          <section id="answer-key" class="research-section">
+            <h2>マーク欄1〜39の正答一覧</h2><p>上段が解答欄番号、下段がその欄にマークする符号・数字です。1つの欄に入れるのは1文字です。</p>
+            <div class="research-mark-grid" role="list" aria-label="39欄の正答">{slots.map((slot) => <div role="listitem" aria-label={`${slot.number}番は${slot.value}`} data-answer-slot={slot.number}><small>{slot.number}</small><b>{slot.value}</b></div>)}</div>
+            <p class="research-note"><strong>20番に注意：</strong>原本では、分子のマイナスが枠の外に印刷されています。20番の答えは「1」であり、「−」ではありません。式としての答えは、上の第2問・問3のとおりです。</p>
+          </section>
+          <section id="review" class="research-section"><h2>この年を解いた後に、何を復習するか</h2><ol>
+            <li><strong>最初に、優先6小問を自力で再現する。</strong>微分・平方完成・円周角・仕切り法を、解答を見ずに説明する。</li>
+            <li><strong>次に、短い式を正確に整える。</strong>複素数の回転と因数のくくり直し、人数を固定した場合の組合せ式を練習する。</li>
+            <li><strong>一般化では、動かす変数を言葉にする。</strong>第2問・問3で、dを動かす段階とkを動かす段階を分ける。</li>
+            <li><strong>図形は、相似と座標を両方用意する。</strong>図を見て止まる時間を短くし、方針を切り替えられるようにする。</li>
+          </ol><p>正誤だけでなく、「方針が立つまで」「計算を終えるまで」にかかった時間も別々に残すと、次の年度での解く順序を修正しやすくなります。</p></section>
+          <section id="sources" class="research-section research-sources"><h2>出典と分析条件</h2>
+            <p>対象は埼玉医科大学2025年度・一般選抜前期・数学。問題原本の掲載頁19〜21、解答解説の掲載頁75〜82、既存HTML化データと出題分析を参照し、記事の解説文・判断理由を独自に構成しました。原本のスキャン画像は転載していません。</p>
+            <p>難度・所要時間・優先順位・途中撤退の目安は編集上の判断です。小問別の公式配点は確認できていないため、マーク欄数から配点を推定したり、合格点を断定したりしていません。</p>
+            <p>図は条件から独立に作図された既存SVGを利用しています。記事はステージングでの確認版です。</p>
+            <nav class="research-related" aria-label="関連ページ"><a href="/oni-research/">医学部過去問鬼研究の一覧へ</a><a href="/past-exam-library/saitama-medical/">埼玉医科大学の過去問一覧へ</a></nav>
+          </section>
+        </div>
+      </article>
+      <aside class="article-sidebar"><ArticleToc items={toc} /><ArticleCta variant="exam" /><div class="research-sidebar-note"><strong>一問を、深く。</strong><p>正解だけでなく、限られた時間の使い方まで研究する。</p></div></aside>
+    </div>
+  </main>
+  <script>
+    document.querySelectorAll<HTMLButtonElement>("[data-research-profile]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const profile = button.dataset.researchProfile;
+        document.querySelectorAll("[data-research-profile]").forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+        document.querySelectorAll<HTMLElement>("[data-research-choice]").forEach((item) => { item.hidden = item.dataset.researchChoice !== profile; });
+      });
+    });
+    document.querySelectorAll<HTMLButtonElement>("[data-research-open]").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll<HTMLDetailsElement>("[data-research-solution]").forEach((item) => { item.open = button.dataset.researchOpen === "all"; });
+      });
+    });
+  </script>
+</SiteLayout>

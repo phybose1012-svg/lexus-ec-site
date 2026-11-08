@@ -1,0 +1,30 @@
+---
+import { inline } from "../../lib/pastExamInline.mjs";
+export interface ResearchBlock {
+  type: string; text?: string; latex?: string; items?: string[];
+  headers?: string[]; rows?: string[][]; caption?: string;
+}
+interface Props { blocks: ResearchBlock[]; }
+const { blocks } = Astro.props;
+---
+{blocks.map((block) => (
+  block.type === "formula" ? (
+    <div class="research-equation" tabindex="0" aria-label="数式。横に長い場合はスクロールできます">
+      <div data-katex={block.latex} data-display-mode="true">{block.latex}</div>
+    </div>
+  ) : block.type === "list" ? (
+    <ul>{block.items?.map((item) => <li set:html={inline(item)} />)}</ul>
+  ) : block.type === "table" ? (
+    <div class="research-table-scroll" tabindex="0" aria-label={block.caption}>
+      <table>
+        {block.caption && <caption>{block.caption}</caption>}
+        <thead><tr>{block.headers?.map((item) => <th scope="col" set:html={inline(item)} />)}</tr></thead>
+        <tbody>{block.rows?.map((row) => <tr>{row.map((item, index) => index === 0 ? <th scope="row" set:html={inline(item)} /> : <td set:html={inline(item)} />)}</tr>)}</tbody>
+      </table>
+    </div>
+  ) : block.type === "note" ? (
+    <aside class="research-note" set:html={inline(block.text || "")} />
+  ) : (
+    <p set:html={inline(block.text || "")} />
+  )
+))}

@@ -1,0 +1,8 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import article from "../../data/oniResearch/saitama-medical-2025-early-mathematics.json";
+import "../../styles/oni-research.css";
+---
+<SiteLayout title="医学部過去問鬼研究｜レクサス" description="医学部の過去問を大学・年度・科目別に研究。全問の解答解説と、本番で解く順序・見送る判断・復習の優先順位を整理します。" canonical="https://lexus-ec.com/oni-research/" noindex={true}>
+  <main class="content research-index"><p>LEXUS / 医学部過去問鬼研究</p><h1>一問を、深く。<br />解き方と、本番の判断まで。</h1><p>大学・年度・科目ごとに、問題の内容、解答解説、解くべき問題と見送るべき問題を整理します。一年ずつ積み重ねた研究を、複数年の対策につなげていきます。</p><article class="research-index-card"><p>2025年度・一般選抜前期・数学</p><h2>埼玉医科大学 数学 全問解答解説</h2><p>全4大問・10小問。50分で何を取り、何を見送るか。得意・苦手で変える解く順序と、各小問の復習ポイントまで解説します。</p><a class="button button--red" href={article.path}>研究記事を読む</a></article><p><a href="/past-exam-library/">過去問ライブラリーへ</a></p></main>
+</SiteLayout>

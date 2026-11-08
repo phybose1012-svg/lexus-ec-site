@@ -1,0 +1,37 @@
+---
+import ResearchBlocks, { type ResearchBlock } from "./ResearchBlocks.astro";
+import { inline } from "../../lib/pastExamInline.mjs";
+export interface ResearchQuestionData {
+  id: string; label: string; title: string; theme: string; difficulty: string; minutes: string;
+  weakAction: string; strongAction: string; problem: ResearchBlock[]; answer: string[];
+  steps: { title: string; blocks: ResearchBlock[] }[];
+  alternative?: { title: string; blocks: ResearchBlock[] };
+  judgment: { weak: string; strong: string; retreat: string; dependencies: string; };
+  mistake: string; review: string; slots: { number: number; value: string; }[];
+}
+interface Props { question: ResearchQuestionData; }
+const { question: q } = Astro.props;
+---
+<section class="research-question" id={q.id} aria-labelledby={`${q.id}-title`} data-question-id={q.id}>
+  <div class="research-question__heading">
+    <p class="research-kicker">{q.label}</p><h3 id={`${q.id}-title`}>{q.title}</h3>
+    <p class="research-question__metadata">{q.difficulty} / 目安 {q.minutes}</p>
+  </div>
+  <div class="research-question__problem"><h4>問題の内容</h4><ResearchBlocks blocks={q.problem} /></div>
+  <div class="research-answer"><h4>解答</h4>{q.answer.map((latex) => <ResearchBlocks blocks={[{ type: "formula", latex }]} />)}</div>
+  <details class="research-solution" open data-research-solution>
+    <summary>解答までの道筋</summary><div class="research-solution__body">
+      {q.steps.map((step, index) => <div class="research-step"><h4><span>{String(index + 1).padStart(2, "0")}</span>{step.title}</h4><ResearchBlocks blocks={step.blocks} /></div>)}
+      {q.alternative && <details class="research-alternative"><summary>{q.alternative.title}</summary><div><ResearchBlocks blocks={q.alternative.blocks} /></div></details>}
+    </div>
+  </details>
+  <aside class="research-judgment" aria-label={`${q.label}の本番での判断`}>
+    <h4>本番では、どう判断するか</h4><dl>
+      <div><dt>数学が苦手な受験生</dt><dd><strong>{q.weakAction}</strong><span set:html={inline(q.judgment.weak)} /></dd></div>
+      <div><dt>数学が得意な受験生</dt><dd><strong>{q.strongAction}</strong><span set:html={inline(q.judgment.strong)} /></dd></div>
+      <div><dt>いったん離れる目安</dt><dd set:html={inline(q.judgment.retreat)} /></div>
+      <div><dt>前問とのつながり</dt><dd set:html={inline(q.judgment.dependencies)} /></div>
+    </dl>
+  </aside>
+  <div class="research-recovery"><p><strong>間違えやすいところ</strong><span set:html={inline(q.mistake)} /></p><p><strong>復習で残すこと</strong><span set:html={inline(q.review)} /></p></div>
+</section>
