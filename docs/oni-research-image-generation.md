@@ -1,6 +1,21 @@
 # 鬼研究：過去問を読み比べる鬼
 
-## 現在の採用画像（v2、2026-11-09）
+## 現在の採用画像（v3、2026-11-09）
+
+机上の2枚の問題用紙について、印刷内容を紙面内で180度回し、鬼の席から正しく読める向きへ修正。閲覧者からは文字・数式が上下逆に見える。手持ちの用紙、鬼、机、周囲の資料と構図を維持した。内蔵image_genでv2 PNGを編集し、背景透過を保持。図中の問題・集計値は装飾用の架空データ。
+
+- 採用：`frontend/public/assets/oni-research/yuki-sensei-exam-research-v3-720.webp`（720×720、alpha最小0・最大255）
+- 生成PNG原稿：`C:/---hp/materials/oni-research/images/yuki-sensei-data-analysis-v3.png`（1254×1254）
+- ツール保存元：`C:/Users/phybo/.codex/generated_images/01a1baae-3a9c-7b63-8746-361947677af3/exec-f2d4c7da-0b15-4f5c-9947-60e1f1adc748.png`
+- PNGから表示用WebPへの縮小・符号化のみsharpで実施。v1・v2は修正履歴のため保持。
+
+### v3最終プロンプト（内蔵image_gen、transparent_background=true）
+
+```text
+Precise minimal edit of the supplied illustration. ONLY fix the print orientation on the TWO LOOSE EXAM SHEETS LYING FLAT ON THE DESK in the bottom foreground. The red oni sits behind the desk and reads them: all printed content on these two flat sheets must face the ONI, not the viewer. Rotate each flat sheet's complete printed page layout 180 degrees IN ITS OWN PAPER PLANE, retaining its existing perspective. Thus the question numbers, integral, equations, Japanese text and answer boxes on BOTH flat sheets appear UPSIDE DOWN to us, the viewer. Their page headers are at the edge closest to the viewer, and their page footers are at the edge closest to the oni. This is a physical orientation correction, NOT mirrored text: letters and numbers remain ordinary printing when viewed from the oni's seat. Keep the paper outlines, positions and perspective on the desk unchanged. The right hand continues pointing naturally onto the rotated print. The UPRIGHT PAPER HELD IN THE ONI'S OTHER HAND stays EXACTLY as it is, including its current print orientation. Preserve everything else: same red oni face, expression, body, horns, hair, hands, pose, desk, books, year labels, rear data sheets, flames, colors, proportions, linework and shading. No magnifier. Preserve true transparent background and square composition. Do not redraw or redesign unrelated elements. Critical acceptance criterion: the writing on the two flat desktop papers is upside down to the viewer and upright to the seated oni.
+```
+
+## v2履歴（2026-11-09）
 
 利用者の指摘を受け、虫眼鏡を完全に外し、手元を数式・図形・解答欄のある入試問題に変更。複数年度の問題冊子と背面の集計資料で、過去問研究というテーマを伝える。内蔵image_genでv1を編集し、背景透過・キャラクター・画風を維持した。装飾イラスト内の問題・集計値は架空で、記事の分析結果を表すものではない。
 
