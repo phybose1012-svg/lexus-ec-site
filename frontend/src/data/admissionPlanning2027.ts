@@ -66,7 +66,7 @@ export const admissionPlanningMetadata2027 = {
   academicYear: 2027,
   sourceFile: "frontend/src/data/privateMedicalAdmissions2027.ts",
   publicUrl: "https://lexus-ec.com/private-medical-school-admissions-schedule-2027/",
-  lastVerified: "2026-10-05",
+  lastVerified: "2026-11-12",
   routeIdPolicy: {
     id: "保存済み受験プランとの互換性を保つplanner専用ID",
     canonicalRouteId: "日程・会場など複数データ間の結合に使う共通方式ID",
@@ -84,8 +84,8 @@ const parseDateKeys = (value: string | undefined, expandSameMonthRanges = false)
     /(?:(20\d{2})\/)?(\d{1,2})\/(\d{1,2})(?:\s*(・|〜|または)\s*(\d{1,2})(?![\d:/]))?/g;
 
   for (const match of value.matchAll(pattern)) {
-    const year = Number(match[1] ?? 2027);
     const month = Number(match[2]);
+    const year = Number(match[1] ?? (month >= 7 ? 2026 : 2027));
     const day = Number(match[3]);
     const base = new Date(Date.UTC(year, month - 1, day));
 
@@ -129,10 +129,22 @@ const stableHash = (value: string) => {
 };
 
 const stableRouteIdOverrides = new Map<string, string>([
-  // Approval-status wording must not invalidate a previously saved Kawasaki plan.
+  // Regional-quota approvals change the labels, not saved route IDs.
   [
-    "kawasaki-medical::general::一般選抜・地域枠選抜（岡山県／静岡県・長崎県は認可申請中）",
+    "kawasaki-medical::general::一般選抜・地域枠選抜（岡山県・静岡県・長崎県）",
     "kawasaki-medical--general--scuh5c",
+  ],
+  [
+    "kansai-medical::general::地域枠一般選抜（大阪府2名・静岡県2名）",
+    "kansai-medical--general--2vvnib",
+  ],
+  [
+    "kindai::general::地域枠入試 一般前期型（和歌山県・静岡県・茨城県・長野県）",
+    "kindai--general--z245sy",
+  ],
+  [
+    "kindai::general::地域枠入試 一般後期型（静岡県）",
+    "kindai--general--ybue7j",
   ],
   // Keep saved plans compatible after the 2027 official guideline clarified this route's formal name.
   [
@@ -215,6 +227,7 @@ fullScheduleCalendar2027.forEach((day) => {
           type,
           detail: entry.detail ?? routeName,
           sourceUrl: entry.sourceUrl,
+          ...(entry.conditional ? { conditional: true } : {}),
         });
         calendarEventsByRoute.set(key, events);
       });
@@ -274,7 +287,9 @@ const planningRoutes = privateMedicalUniversities2027.flatMap((university) =>
       assignment: secondAssignment,
       raw: route.secondExam,
       note: noteFor(route.secondExam, secondAssignment),
-      sharedEventGroupId: hasSharedExamWording(route.secondExam)
+        // Tokai permits the same day but does not make interviews a shared exam.
+        sharedEventGroupId: (university.id === "juntendo" ||
+          (university.id !== "tokai" && hasSharedExamWording(route.secondExam)))
         ? `${university.id}--second--${secondDates.join("-")}`
         : undefined,
     });

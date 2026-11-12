@@ -49,6 +49,9 @@ const toPublicAdmissionRoute = (
   ...(route.procedureDateDetails
     ? { procedureDateDetails: [...route.procedureDateDetails] }
     : {}),
+  ...(route.supplementalScheduleEvents
+    ? { supplementalScheduleEvents: route.supplementalScheduleEvents.map((event) => ({ ...event })) }
+    : {}),
   status: route.status,
   ...(route.sourceUrl ? { sourceUrl: route.sourceUrl } : {}),
 });
@@ -92,6 +95,7 @@ const toPublicPlanningRoute = (route: AdmissionPlanningRoute2027) => ({
     date: event.date,
     type: event.type,
     detail: event.detail,
+    ...(event.conditional ? { conditional: true } : {}),
     ...(event.sourceUrl ? { sourceUrl: event.sourceUrl } : {}),
   })),
 });

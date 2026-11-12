@@ -10,9 +10,9 @@ export const privateMedicalAdmissions2027Metadata = {
   academicYear: 2027,
   language: "ja",
   datePublished: "2026-07-27",
-  dateModified: "2026-10-05",
-  dateModifiedLabel: "2026年10月5日",
-  version: "2026-10-05",
+  dateModified: "2026-11-12",
+  dateModifiedLabel: "2026年11月12日",
+  version: "2026-11-12",
   publisher: {
     name: "医学部予備校 レクサス E.C.",
     alternateName: "レクサス教育センター",
@@ -68,10 +68,15 @@ export const privateMedicalAdmissions2027FieldDefinitions = [
     label: "入学手続き締切",
     description: "入学金納入や必要書類提出など、入学手続きの締切日",
   },
+  {
+    key: "conditional",
+    label: "対象者のみの予定",
+    description: "延納・分納・補欠合格など、記載の条件に該当する受験者だけが対象となる予定",
+  },
 ] as const;
 
 export const privateMedicalAdmissions2027StatusDefinitions = {
   official: "2027年度の確定版学生募集要項で確認済み",
-  preliminary: "大学公式の予告・概要・入試ガイドなどで確認済み。確定版募集要項は公表待ち",
+  preliminary: "大学公式の予告・概要などで確認済み。最新の募集要項で詳細を確認してください",
   pending: "2027年度の公式日程が未公表",
 } as const;

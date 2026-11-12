@@ -72,7 +72,7 @@ export const privateMedicalCanonicalRouteIds2027 = {
   "osaka-med-pharm::大学入学共通テスト利用選抜":
     "osaka-med-pharm--common--common-test",
   "kansai-medical::一般選抜 前期": "kansai-medical--general--general-early",
-  "kansai-medical::地域枠一般選抜（大阪府3名予定・静岡県2名予定／臨時定員増設置構想中）":
+  "kansai-medical::地域枠一般選抜（大阪府2名・静岡県2名）":
     "kansai-medical--general--general-regional-quota-c5d34-385a3",
   "kansai-medical::一般選抜 後期": "kansai-medical--general--general-late",
   "kansai-medical::共通テスト利用 前期": "kansai-medical--common--common-test-early",
@@ -80,10 +80,10 @@ export const privateMedicalCanonicalRouteIds2027 = {
     "kansai-medical--common--common-general-combined",
   "kansai-medical::共通テスト利用 後期": "kansai-medical--common--common-test-late",
   "kindai::一般選抜 前期": "kindai--general--general-early",
-  "kindai::地域枠入試 一般前期型（大阪府・和歌山県・静岡県／認可申請予定）":
+  "kindai::地域枠入試 一般前期型（和歌山県・静岡県・茨城県・長野県）":
     "kindai--general--general-regional-quota-c5d34-385a3-3f44f-early",
   "kindai::一般選抜 後期": "kindai--general--general-late",
-  "kindai::地域枠入試 一般後期型（静岡県／認可申請予定）":
+  "kindai::地域枠入試 一般後期型（静岡県）":
     "kindai--general--general-regional-quota-c5d34-late",
   "kindai::共通テスト利用 前期": "kindai--common--common-test-early",
   "kindai::共通テスト利用 中期": "kindai--common--common-test-middle",
@@ -92,7 +92,7 @@ export const privateMedicalCanonicalRouteIds2027 = {
     "hyogo-medical--general--general-regional-quota-3470a",
   "hyogo-medical::一般選抜 B（英語資格試験活用型）":
     "hyogo-medical--general--general",
-  "kawasaki-medical::一般選抜・地域枠選抜（岡山県／静岡県・長崎県は認可申請中）":
+  "kawasaki-medical::一般選抜・地域枠選抜（岡山県・静岡県・長崎県）":
     "kawasaki-medical--general--general-regional-quota-c5d34-491fd-bf01d",
   "kurume::一般選抜 前期": "kurume--general--general-early",
   "kurume::一般選抜 後期": "kurume--general--general-late",

@@ -53,18 +53,18 @@ test("大阪医科薬科の後期締切は2月22日、登録13時・検定料15�
   assert.equal(calendarEntries("2027-02-26", "applicationDeadline", "大阪医科薬科大学").length, 0);
 });
 
-test("川崎の9月30日改訂版の地域枠申請状況を各一覧へ反映", () => {
+test("川崎の11月2日告知に合わせ確定した地域枠を各一覧へ反映", () => {
   const current = university("kawasaki-medical");
-  assert.match(current.routes[0].name, /静岡県・長崎県は認可申請中/u);
+  assert.match(current.routes[0].name, /岡山県・静岡県・長崎県/u);
   assert.match(current.routes[0].sourceUrl, /7806900-2-15/);
   const deadline = applicationDeadlineEntries2027.find((entry) => entry.university === current.name);
-  assert.match(deadline.routes, /認可申請中/u);
+  assert.match(deadline.routes, /岡山県・静岡県・長崎県/u);
   assert.equal(deadline.sourceUrl, current.routes[0].sourceUrl);
   for (const date of ["2/1", "2/10", "2/11"]) {
     const day = examCalendar2027.find((entry) => entry.date === date);
     const labels = [...day.first, ...day.second].filter((entry) => entry.includes("川崎医科"));
     assert.ok(labels.length > 0);
-    assert.ok(labels.every((entry) => entry.includes("認可申請中") && !entry.includes("設置協議中")));
+    assert.ok(labels.every((entry) => entry.includes("岡山・静岡・長崎") && !/認可申請中|設置協議中/u.test(entry)));
   }
 });
 
@@ -76,7 +76,10 @@ test("藤田の二段階手続期限と、産業医科の来学受付終了時�
   }
   const uoeh = calendarEntries("2027-03-25", "procedureDeadline", "産業医科大学");
   assert.equal(uoeh.flatMap((entry) => entry.routes).length, 3);
-  assert.ok(uoeh.every((entry) => /14:30.*本人来学.*11:30〜13:00/.test(entry.detail)));
+  assert.ok(uoeh.every((entry) => /14:30.*本人来学.*保護者可/u.test(entry.detail)));
+  assert.equal(calendarEntries("2027-03-24", "procedureDeadline", "産業医科大学").length, 0);
+  assert.ok(calendarEntries("2027-03-04", "firstResult", "産業医科大学")
+    .every((entry) => !entry.detail.includes("16:00")));
 });
 
 test("合格発表の時刻・頃・予定を全日程カレンダーでも省略しない", () => {
@@ -103,7 +106,7 @@ test("更新した面接希望条件を試験日順・全日程・公開planner�
     assert.ok(calendarEntries(date, "secondExam", name).every((entry) => pattern.test(entry.detail)));
   }
   const built = JSON.parse(readFileSync(new URL("../dist/data/private-medical-admissions-2027.json", import.meta.url), "utf8"));
-  assert.equal(built.metadata.dateModified, "2026-10-05", "最新ソースでビルドしてから検証してください");
+  assert.equal(built.metadata.dateModified, "2026-11-12", "最新ソースでビルドしてから検証してください");
   assert.deepEqual(built.applicationDeadlines, applicationDeadlineEntries2027);
   assert.deepEqual(built.fullScheduleCalendar, JSON.parse(JSON.stringify(fullScheduleCalendar2027)));
   for (const route of built.admissionPlanning.routes.filter((route) => route.universityId === "fujita" || (route.universityId === "dokkyo-medical" && route.routeName.includes("前期")))) {
@@ -111,4 +114,38 @@ test("更新した面接希望条件を試験日順・全日程・公開planner�
     assert.equal(second.assignment, "candidate_preference");
     assert.equal(second.attendance, "exactly_one");
   }
+});
+
+test("11月の確定差分を締切一覧・全日程・公開JSONへ同じ意味で反映する", () => {
+  const built = JSON.parse(readFileSync(new URL("../dist/data/private-medical-admissions-2027.json", import.meta.url), "utf8"));
+  const routes = built.admissionPlanning.routes;
+  const calendar = (id, date, type) => routes.filter((route) => route.universityId === id)
+    .flatMap((route) => route.calendarEvents.filter((event) => event.date === date && event.type === type));
+  for (const [id, date, type, expected] of [
+    ["toho", "2027-01-26", "applicationDeadline", /登録13:00.*検定料15:00.*必着/u],
+    ["jikei", "2026-12-21", "applicationStart", /Web出願開始/u],
+    ["kitasato", "2026-12-17", "applicationStart", /Web出願開始.*10:00/u],
+    ["tokai", "2027-02-18", "finalResult", /9:30/u],
+    ["fukuoka", "2027-03-23", "procedureDeadline", /証明書等必着.*延納者/u],
+    ["jichi-medical", "2027-01-26", "firstResult", /一次面接対象者.*9:00/u],
+  ]) {
+    const events = calendar(id, date, type);
+    assert.ok(events.length > 0, `${id}/${date}/${type}`);
+    assert.ok(events.every((event) => expected.test(event.detail)));
+  }
+  assert.equal(calendar("tokai", "2027-02-18", "procedureDeadline").length, 0);
+  for (const [id, date] of [["keio", "2027-03-24"], ["teikyo", "2027-02-26"], ["tokai", "2027-03-09"], ["showa-medical", "2027-03-03"]]) {
+    const events = calendar(id, date, "procedureDeadline");
+    assert.ok(events.length > 0);
+    assert.ok(events.every((event) => event.conditional === true));
+  }
+  assert.ok(calendar("fukuoka", "2027-03-23", "procedureDeadline").every((event) => !event.conditional));
+  assert.equal(built.universities.length, 31);
+  assert.equal(routes.length, 83);
+  const secondGroups = (id) => routes.filter((route) => route.universityId === id)
+    .flatMap((route) => route.examGroups.filter((group) => group.stage === "second_exam"));
+  assert.equal(new Set(secondGroups("juntendo").map((group) => group.sharedEventGroupId)).size, 2);
+  assert.ok(secondGroups("juntendo").every((group) => Boolean(group.sharedEventGroupId)));
+  assert.ok(secondGroups("tokai").every((group) => !group.sharedEventGroupId));
+  assert.ok(secondGroups("fukuoka").every((group) => Boolean(group.sharedEventGroupId)));
 });
