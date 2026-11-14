@@ -36,6 +36,13 @@ const stableHash = (value) => {
 
 const legacyRouteIdOverrides = new Map([
   [
+    "kawasaki-medical::general::一般選抜・地域枠選抜（岡山県・静岡県・長崎県）",
+    "kawasaki-medical--general--scuh5c",
+  ],
+  ["kansai-medical::general::地域枠一般選抜（大阪府2名・静岡県2名）", "kansai-medical--general--2vvnib"],
+  ["kindai::general::地域枠入試 一般前期型（和歌山県・静岡県・茨城県・長野県）", "kindai--general--z245sy"],
+  ["kindai::general::地域枠入試 一般後期型（静岡県）", "kindai--general--ybue7j"],
+  [
     "aichi-medical::common::大学入学共通テスト利用選抜（愛知県地域特別枠B方式）",
     "aichi-medical--common--1ynn7f9",
   ],
@@ -83,8 +90,13 @@ test("31大学83方式とKB準拠canonical route IDが1対1で対応する", () 
     .join("\n");
   assert.equal(
     createHash("sha256").update(snapshot).digest("hex"),
-    "977d3d0727a0d04377c92b8d53f86d884ec683834a1c9623a3c8c476ce8f9a90",
+    "4a93b175ec7dee9b8e38a57c539365ac54aa93034825aceca9b8c017e428a66f",
     "KB照合済みcanonical route ID snapshotが変わっています",
+  );
+  assert.equal(
+    getPrivateMedicalCanonicalRouteId2027("kawasaki-medical", "一般選抜・地域枠選抜（岡山県・静岡県・長崎県）"),
+    "kawasaki-medical--general--general-regional-quota-c5d34-491fd-bf01d",
+    "川崎の申請状況の表示名変更でcanonical IDを変えないでください",
   );
 });
 
@@ -119,6 +131,7 @@ test("build後の一般日程JSONはcanonical IDを公開しlegacy planner IDを
     "result",
     "procedure",
     "procedureDateDetails",
+    "supplementalScheduleEvents",
     "status",
     "sourceUrl",
   ]);

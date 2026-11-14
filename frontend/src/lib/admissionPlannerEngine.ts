@@ -11,6 +11,7 @@ export type PlannerPriority = 1 | 2 | 3 | 4;
 export type PlannerSelection = {
   routeId: string;
   priority: PlannerPriority;
+  examOptionId?: string;
 };
 
 export type PlannerForcedChoices = Record<string, string | string[]>;
@@ -32,6 +33,7 @@ export type PlannerAssignment = {
   attendance: PlanningExamGroup2027["attendance"];
   note?: string;
   raw: string;
+  dateDetails?: Record<string, string>;
   routes: PlannerRouteReference[];
 };
 
@@ -63,6 +65,7 @@ export type PlannerCalendarEvent = {
     | "firstExam"
     | "firstResult"
     | "secondExam"
+    | "singleExam"
     | "finalResult"
     | "procedureDeadline";
   universityName: string;
@@ -162,8 +165,8 @@ const conflictKind = (
   left: PlanningExamStage2027,
   right: PlanningExamStage2027,
 ): PlannerConflictKind | undefined => {
-  if (left === "common_test" || right === "common_test") return undefined;
-  if (left === "first_exam" && right === "first_exam") return "first_first";
+  if (left === "common_test" && right === "common_test") return undefined;
+  if (left !== "second_exam" && right !== "second_exam") return "first_first";
   if (left === "second_exam" && right === "second_exam") return "second_second";
   return "first_second";
 };
@@ -277,6 +280,7 @@ const toAssignments = (groups: MergedGroup[], choices: string[][]): PlannerAssig
     attendance: merged.group.attendance,
     note: merged.group.note,
     raw: merged.group.raw,
+    dateDetails: merged.group.dateDetails,
     routes: uniqueRouteRefs(merged.occurrences),
   }));
 
@@ -356,6 +360,7 @@ const calendarTypeForStage: Record<PlanningExamStage2027, PlannerCalendarEvent["
   common_test: "commonTest",
   first_exam: "firstExam",
   second_exam: "secondExam",
+  single_exam: "singleExam",
 };
 
 const examDateSequenceLabels = [
@@ -387,6 +392,8 @@ const buildCalendar = (
   routes.forEach((route) => {
     if (!priorityByRoute.has(route.id)) return;
     route.calendarEvents.forEach((event, index) => {
+      const examOptionId = selections.find((selection) => selection.routeId === route.id)?.examOptionId ?? route.examOptions?.[0]?.id;
+      if (event.examOptionId && event.examOptionId !== examOptionId) return;
       events.push({
         id: `${route.id}--${event.type}--${event.date}--${index}`,
         date: event.date,
@@ -394,7 +401,7 @@ const buildCalendar = (
         universityName: route.universityName,
         routeNames: [route.routeName],
         detail: event.detail,
-        state: route.status === "pending" ? "pending" : "confirmed",
+        state: route.status === "pending" ? "pending" : event.conditional ? "conditional" : "confirmed",
         sourceUrl: event.sourceUrl ?? route.sourceUrl,
       });
     });
@@ -402,7 +409,8 @@ const buildCalendar = (
 
   assignments.forEach((assignment) => {
     const calendarDates =
-      assignment.stage === "second_exam" ? assignment.availableDates : assignment.dates;
+      assignment.stage === "second_exam" || uncertainAssignments.has(assignment.assignment)
+        ? assignment.availableDates : assignment.dates;
     calendarDates.forEach((date) => {
       const isSelectedDate = assignment.dates.includes(date);
       const conflict = conflicts.some(
@@ -428,7 +436,7 @@ const buildCalendar = (
             ? "大学入学共通テスト"
             : `${firstRoute?.universityName ?? ""}${sequence}`,
         routeNames: assignment.routes.map((route) => route.routeName),
-        detail: assignment.note ?? assignment.raw,
+        detail: [assignment.dateDetails?.[date] ?? assignment.raw, assignment.note].filter(Boolean).join(" ／ "),
         state: !isSelectedDate
           ? "alternative"
           : conflict
@@ -444,17 +452,14 @@ const buildCalendar = (
     });
   });
 
-  return events
-    .filter(
-      (event, index, allEvents) =>
-        allEvents.findIndex(
-          (candidate) =>
-            candidate.date === event.date &&
-            candidate.type === event.type &&
-            candidate.universityName === event.universityName &&
-            candidate.detail === event.detail,
-        ) === index,
-    )
+  const aggregated = new Map<string, PlannerCalendarEvent>();
+  for (const event of events) {
+    const key = JSON.stringify([event.date, event.type, event.universityName, event.detail, event.state, event.sourceUrl]);
+    const existing = aggregated.get(key);
+    if (existing) existing.routeNames = [...new Set([...existing.routeNames, ...event.routeNames])];
+    else aggregated.set(key, { ...event, routeNames: [...event.routeNames] });
+  }
+  return [...aggregated.values()]
     .sort((left, right) => left.date.localeCompare(right.date) || left.type.localeCompare(right.type));
 };
 
@@ -467,7 +472,8 @@ export const planAdmissionRoutes = (
   const selectionByRoute = new Map(selections.map((selection) => [selection.routeId, selection]));
   const selectedRoutes = routes.filter((route) => selectionByRoute.has(route.id));
   const occurrences = selectedRoutes.flatMap((route) =>
-    route.examGroups.map((group) => ({
+    route.examGroups.filter((group) => !group.examOptionId || group.examOptionId ===
+      (selectionByRoute.get(route.id)?.examOptionId ?? route.examOptions?.[0]?.id)).map((group) => ({
       group,
       route,
       priority: selectionByRoute.get(route.id)?.priority ?? 4,
@@ -477,7 +483,7 @@ export const planAdmissionRoutes = (
   const { choices, explored } = chooseBestAssignments(mergedGroups, goal, forcedChoices);
   const assignments = toAssignments(mergedGroups, choices);
   const conflicts = buildConflicts(assignments);
-  const hasUnknown = assignments.some(
+  const hasUnknown = selectedRoutes.some((route) => route.status === "pending" || !route.examGroups.length) || assignments.some(
     (assignment) => assignment.assignment === "unknown" || assignment.availableDates.length === 0,
   );
   const status: AdmissionPlanResult["status"] = conflicts.some(

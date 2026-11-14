@@ -11,7 +11,7 @@ import {
   type PrivateMedicalCanonicalRouteId2027,
 } from "./privateMedicalCanonicalRouteIds2027";
 
-export type PlanningExamStage2027 = "common_test" | "first_exam" | "second_exam";
+export type PlanningExamStage2027 = "common_test" | "first_exam" | "second_exam" | "single_exam";
 export type PlanningAttendance2027 = "exactly_one" | "all";
 export type PlanningAssignment2027 =
   | "fixed"
@@ -30,6 +30,8 @@ export type PlanningExamGroup2027 = {
   note?: string;
   sharedEventGroupId?: string;
   optionalExtraDates?: boolean;
+  dateDetails?: Record<string, string>;
+  examOptionId?: string;
 };
 
 export type PlanningCalendarEvent2027 = {
@@ -37,28 +39,34 @@ export type PlanningCalendarEvent2027 = {
   type: Exclude<FullScheduleColumnKey2027, "firstExam" | "secondExam">;
   detail: string;
   sourceUrl?: string;
+  conditional?: boolean;
+  examOptionId?: string;
 };
 
 export type AdmissionPlanningRoute2027 = {
   id: string;
-  canonicalRouteId: PrivateMedicalCanonicalRouteId2027;
+  canonicalRouteId: PrivateMedicalCanonicalRouteId2027 | `special--${string}`;
   universityId: string;
   universityName: string;
   region: string;
   prefecture: string;
   routeName: string;
-  category: AdmissionRouteCategory;
+  category: AdmissionRouteCategory | import("./privateMedicalSpecialAdmissions2027").SpecialAdmissionCategory;
   status: AdmissionRouteStatus;
   sourceUrl?: string;
   examGroups: PlanningExamGroup2027[];
   calendarEvents: PlanningCalendarEvent2027[];
+  categoryLabel?: string;
+  publicationLabel?: string;
+  requirements?: { exclusive: string; eligibility: string; grade: string; restrictions: string[]; note?: string };
+  examOptions?: Array<{ id: string; label: string }>;
 };
 
 export const admissionPlanningMetadata2027 = {
   academicYear: 2027,
   sourceFile: "frontend/src/data/privateMedicalAdmissions2027.ts",
   publicUrl: "https://lexus-ec.com/private-medical-school-admissions-schedule-2027/",
-  lastVerified: "2026-08-11",
+  lastVerified: "2026-11-12",
   routeIdPolicy: {
     id: "保存済み受験プランとの互換性を保つplanner専用ID",
     canonicalRouteId: "日程・会場など複数データ間の結合に使う共通方式ID",
@@ -76,8 +84,8 @@ const parseDateKeys = (value: string | undefined, expandSameMonthRanges = false)
     /(?:(20\d{2})\/)?(\d{1,2})\/(\d{1,2})(?:\s*(・|〜|または)\s*(\d{1,2})(?![\d:/]))?/g;
 
   for (const match of value.matchAll(pattern)) {
-    const year = Number(match[1] ?? 2027);
     const month = Number(match[2]);
+    const year = Number(match[1] ?? (month >= 7 ? 2026 : 2027));
     const day = Number(match[3]);
     const base = new Date(Date.UTC(year, month - 1, day));
 
@@ -121,6 +129,23 @@ const stableHash = (value: string) => {
 };
 
 const stableRouteIdOverrides = new Map<string, string>([
+  // Regional-quota approvals change the labels, not saved route IDs.
+  [
+    "kawasaki-medical::general::一般選抜・地域枠選抜（岡山県・静岡県・長崎県）",
+    "kawasaki-medical--general--scuh5c",
+  ],
+  [
+    "kansai-medical::general::地域枠一般選抜（大阪府2名・静岡県2名）",
+    "kansai-medical--general--2vvnib",
+  ],
+  [
+    "kindai::general::地域枠入試 一般前期型（和歌山県・静岡県・茨城県・長野県）",
+    "kindai--general--z245sy",
+  ],
+  [
+    "kindai::general::地域枠入試 一般後期型（静岡県）",
+    "kindai--general--ybue7j",
+  ],
   // Keep saved plans compatible after the 2027 official guideline clarified this route's formal name.
   [
     "aichi-medical::common::大学入学共通テスト利用選抜（愛知県地域特別枠B方式）",
@@ -138,7 +163,7 @@ const isPendingValue = (value: string) =>
 const assignmentFor = (value: string, dates: string[]): PlanningAssignment2027 => {
   if (dates.length === 0) return "unknown";
   if (dates.length === 1) return "fixed";
-  if (/希望をもとに大学が指定|希望日を選択し大学が指定|希望調査.*大学が指定|希望に添えない/.test(value)) {
+  if (/希望をもとに大学が指定|希望日を選択し大学が指定|希望調査.*大学が指定|希望に添えない|希望順位|希望.*受付順/.test(value)) {
     return "candidate_preference";
   }
   if (/指定方法未公表|大学指定日|指定日|出願が早い順/.test(value)) {
@@ -179,7 +204,7 @@ const noteFor = (value: string, assignment: PlanningAssignment2027) => {
 };
 
 const hasSharedExamWording = (value: string) =>
-  /1回のみ|同じ日を選択|一般前期と同日|一般後期と同日|同一日/.test(value);
+  /1回のみ|面接は1回|面接1回|同じ日を選択|一般前期と同日|一般後期と同日|同一日/.test(value);
 
 const calendarEventsByRoute = new Map<string, PlanningCalendarEvent2027[]>();
 
@@ -202,6 +227,7 @@ fullScheduleCalendar2027.forEach((day) => {
           type,
           detail: entry.detail ?? routeName,
           sourceUrl: entry.sourceUrl,
+          ...(entry.conditional ? { conditional: true } : {}),
         });
         calendarEventsByRoute.set(key, events);
       });
@@ -261,7 +287,9 @@ const planningRoutes = privateMedicalUniversities2027.flatMap((university) =>
       assignment: secondAssignment,
       raw: route.secondExam,
       note: noteFor(route.secondExam, secondAssignment),
-      sharedEventGroupId: hasSharedExamWording(route.secondExam)
+        // Tokai permits the same day but does not make interviews a shared exam.
+        sharedEventGroupId: (university.id === "juntendo" ||
+          (university.id !== "tokai" && hasSharedExamWording(route.secondExam)))
         ? `${university.id}--second--${secondDates.join("-")}`
         : undefined,
     });

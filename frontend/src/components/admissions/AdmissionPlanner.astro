@@ -187,6 +187,7 @@ const plannerPayload = JSON.stringify({
     firstExam: "一次試験",
     firstResult: "一次合格発表",
     secondExam: "二次試験",
+    singleExam: "試験",
     finalResult: "合格発表",
     procedureDeadline: "入学手続締切",
   } as const;
@@ -197,6 +198,7 @@ const plannerPayload = JSON.stringify({
     firstExam: "first-exam",
     firstResult: "first-result",
     secondExam: "second-exam",
+    singleExam: "first-exam",
     finalResult: "final-result",
     procedureDeadline: "procedure-deadline",
   };
@@ -204,6 +206,7 @@ const plannerPayload = JSON.stringify({
     common_test: "共通テスト",
     first_exam: "一次試験",
     second_exam: "二次試験",
+    single_exam: "試験",
   } as const;
 
   const escapeHtml = (value: unknown) =>
