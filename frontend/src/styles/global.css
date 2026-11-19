@@ -2294,24 +2294,25 @@ body:has(.premium-hero) :is(
     display: none;
   }
 
-  .mobile-menu-panel {
+  #mobile-menu-panel {
     position: absolute;
-    inset: auto;
-    top: 100%;
-    left: 0;
-    right: 0;
+    inset: 100% 0 auto;
     z-index: 110;
-    display: block;
-    max-height: calc(100vh - var(--mobile-header-actions-height));
+    max-height: var(--mobile-menu-available-height, calc(100vh - var(--mobile-header-top-height) - var(--mobile-header-actions-height)));
     overflow-y: auto;
+    overscroll-behavior-y: contain;
     background: rgb(25 22 19 / 54%);
+  }
+
+  .mobile-menu-panel:not([hidden]) {
+    display: block;
   }
 
   .mobile-menu-panel__inner {
     display: grid;
     gap: 0;
     width: 100%;
-    padding: 10px 16px 22px;
+    padding: 10px 16px calc(22px + env(safe-area-inset-bottom, 0px));
     background: #fff;
     box-shadow: 0 12px 20px rgb(35 25 18 / 14%);
   }

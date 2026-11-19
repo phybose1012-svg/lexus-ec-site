@@ -1,4 +1,5 @@
 ---
+import MobileMenuScript from "../components/site/MobileMenuScript.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import SuccessCard from "../components/SuccessCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -201,27 +202,7 @@ const headerNavGroups = navGroups.filter((group) => group.links[0]?.href !== "/l
     </ul>
   </nav>
 
-  <script is:inline>
-    (() => {
-      const toggle = document.querySelector("[data-mobile-menu-toggle]");
-      const panel = document.getElementById("mobile-menu-panel");
-      if (!toggle || !panel) return;
-
-      const setOpen = (open) => {
-        panel.hidden = !open;
-        toggle.setAttribute("aria-expanded", String(open));
-        document.documentElement.classList.toggle("mobile-menu-open", open);
-      };
-
-      toggle.addEventListener("click", () => setOpen(panel.hidden));
-      panel.addEventListener("click", (event) => {
-        if (event.target instanceof HTMLAnchorElement) setOpen(false);
-      });
-      window.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") setOpen(false);
-      });
-    })();
-  </script>
+  <MobileMenuScript />
 
   <main>
     <section class="premium-hero" aria-labelledby="premium-hero-title">

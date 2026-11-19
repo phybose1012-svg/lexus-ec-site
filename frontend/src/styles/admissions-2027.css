@@ -2770,12 +2770,12 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   }
 
   .admissions-stat-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .admissions-stat-grid article {
     min-height: 168px;
-    padding: 18px;
+    padding: 18px clamp(12px, 4vw, 18px);
   }
 
   .admissions-stat-grid strong {
@@ -2783,8 +2783,9 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   }
 
   .admissions-stat-grid__date-card strong {
-    gap: 4px;
-    font-size: 2.25rem;
+    flex-wrap: wrap;
+    gap: 3px 5px;
+    font-size: clamp(1.55rem, 7vw, 2.25rem);
   }
 
   .admissions-stat-grid__date-card strong small {
@@ -2971,8 +2972,19 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   }
 
   .admissions-filter {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     padding: 14px;
+  }
+
+  .admissions-filter :is(input, select) {
+    min-width: 0;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 420px) {
+    .admissions-filter {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 
   .admissions-search {
@@ -3009,30 +3021,29 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   }
 
   .admissions-route dl {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .admissions-route dl > div {
-    min-height: 86px;
+    min-height: 58px;
     border-bottom: 1px solid var(--admissions-line);
   }
 
-  .admissions-route dl > div:nth-child(even) {
+  .admissions-route dl > div:is(:first-child, :nth-child(n + 4)) {
+    grid-column: 1 / -1;
+  }
+
+  .admissions-route dl > div:not(:nth-child(2)) {
     border-right: 0;
-  }
-
-  .admissions-route dl > div:nth-last-child(-n + 2) {
-    border-bottom: 1px solid var(--admissions-line);
   }
 
   .admissions-route dl > div:last-child {
-    grid-column: 1 / -1;
-    border-right: 0;
     border-bottom: 0;
   }
 
   .admissions-route dd {
-    font-size: 0.68rem;
+    font-size: 0.82rem;
+    overflow-wrap: anywhere;
   }
 
   .admissions-university__footer {

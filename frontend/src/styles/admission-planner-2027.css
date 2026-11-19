@@ -116,6 +116,8 @@
   .admission-planner-page .admissions-planner__goal { grid-template-columns: 1fr; }
   .admission-planner-page .admissions-planner__selected-card { grid-template-columns: 22px minmax(0, 1fr) auto; padding: 15px; }
   .admission-planner-page .admissions-planner__priority { grid-row: 2; grid-column: 2 / -1; }
+  .admission-planner-page .admissions-planner__selected-card select { font-size: 1rem; }
+  .admission-planner-page [data-planner-remove] { min-width: 44px; min-height: 44px; }
   .admissions-planner__review-list li { flex-direction: column; gap: 8px; }
   .admissions-planner__review-heading { flex-wrap: wrap; }
 }
