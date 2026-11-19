@@ -5083,7 +5083,7 @@ test("一般・特別選抜・プランニング・会場ホテルの4ページ�
     /href:\s*"\/private-medical-school-exam-venues-hotels-2027\/"/u,
   );
   assert.match(switcherSource, /aria-current=\{isCurrent \? "page" : undefined\}/u);
-  assert.match(switcherSource, /isCurrent \? "表示中" : "切替 →"/u);
+  assert.match(switcherSource, /isCurrent \? "✓" : "→"/u);
   assert.match(
     generalPageSource,
     /class="admissions-related-schedule admissions-related-schedule--special"[\s\S]*?href="\/private-medical-school-special-admissions-schedule-2027\/"/u,
@@ -5143,6 +5143,6 @@ test("特別選抜ページはティール系の独自配色で一般・共テ�
   );
   assert.match(
     sharedStyle,
-    /@media\s*\(max-width:\s*620px\)[\s\S]*?\.admissions-page-switcher__options\s*\{[^}]*grid-template-columns\s*:\s*1fr[^}]*\}[\s\S]*?\.admissions-page-switcher__option\s*\{[^}]*min-height\s*:\s*74px/u,
+    /@media\s*\(max-width:\s*620px\)[\s\S]*?\.admissions-page-switcher__options\s*\{[^}]*grid-template-columns\s*:\s*1fr[^}]*\}[\s\S]*?\.admissions-page-switcher__option\s*\{[^}]*min-height\s*:\s*54px/u,
   );
 });

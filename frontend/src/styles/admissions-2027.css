@@ -113,23 +113,10 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 }
 
 .admissions-page-switcher__label {
-  display: flex;
-  gap: 9px;
-  align-items: center;
   margin-bottom: 9px;
   color: #5f554d;
   font-size: 0.69rem;
   font-weight: 900;
-  letter-spacing: 0.08em;
-}
-
-.admissions-page-switcher__label span {
-  border-radius: 999px;
-  padding: 3px 8px;
-  color: #fff;
-  background: #413b36;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.62rem;
   letter-spacing: 0.08em;
 }
 
@@ -141,127 +128,98 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 
 .admissions-page-switcher__option {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: 12px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
   align-items: center;
-  min-height: 74px;
+  min-height: 60px;
   border: 1px solid #d9d1c7;
-  border-radius: 7px;
-  padding: 12px 15px;
+  border-radius: 8px;
+  padding: 10px 14px;
   color: #342e29;
-  background: rgb(255 255 255 / 88%);
-  box-shadow: 0 8px 24px rgb(38 26 19 / 5%);
+  background: #fff;
+  box-shadow: 0 3px 10px rgb(38 26 19 / 5%);
+  font-size: 0.93rem;
+  line-height: 1.45;
   text-decoration: none;
-  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+  transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
 }
 
-.admissions-page-switcher__option:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgb(38 26 19 / 10%);
+.admissions-page-switcher__option--general {
+  --switcher-accent: #8b0000;
+  --switcher-tint: #fff1ed;
+}
+
+.admissions-page-switcher__option--special {
+  --switcher-accent: #0a5c57;
+  --switcher-tint: #e9f5f2;
+}
+
+.admissions-page-switcher__option--planner {
+  --switcher-accent: #344d90;
+  --switcher-tint: #eef2ff;
+}
+
+.admissions-page-switcher__option--venues {
+  --switcher-accent: #79520b;
+  --switcher-tint: #fff5dc;
+}
+
+.admissions-page-switcher__option:not(.is-current):is(:hover, :focus-visible) {
+  border-color: var(--switcher-accent);
+  background-color: var(--switcher-tint);
+  box-shadow: 0 5px 14px rgb(38 26 19 / 10%);
 }
 
 .admissions-page-switcher__option:focus-visible {
-  outline: 3px solid rgb(15 107 101 / 32%);
+  outline: 2px solid var(--switcher-accent);
   outline-offset: 3px;
 }
 
-.admissions-page-switcher__option--general:focus-visible {
-  outline-color: rgb(139 0 0 / 28%);
-}
-
-.admissions-page-switcher__option--venues:focus-visible {
-  outline-color: rgb(142 99 14 / 30%);
-}
-
-.admissions-page-switcher__short-label {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 28px;
-  border: 1px solid currentColor;
-  border-radius: 999px;
-  padding: 4px 9px;
-  font-size: 0.64rem;
-  font-weight: 900;
-  line-height: 1.2;
-  white-space: nowrap;
-}
-
-.admissions-page-switcher__option--general .admissions-page-switcher__short-label {
-  color: #8b0000;
-  background: #fff7f3;
-}
-
-.admissions-page-switcher__option--special .admissions-page-switcher__short-label {
-  color: #0a5c57;
-  background: #e9f5f2;
-}
-
-.admissions-page-switcher__option--venues .admissions-page-switcher__short-label {
-  color: #79520b;
-  background: #fff7df;
-}
-
-.admissions-page-switcher__copy {
+.admissions-page-switcher__indicator {
   display: grid;
-  gap: 3px;
-  min-width: 0;
-}
-
-.admissions-page-switcher__copy strong,
-.admissions-page-switcher__copy small {
-  display: block;
-}
-
-.admissions-page-switcher__copy strong {
-  font-size: 0.87rem;
-  line-height: 1.4;
-}
-
-.admissions-page-switcher__copy small {
-  color: #756b62;
-  font-size: 0.67rem;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  color: var(--switcher-accent);
+  background: var(--switcher-tint);
+  font-size: 1rem;
   font-weight: 700;
-  line-height: 1.4;
+  line-height: 1;
 }
 
-.admissions-page-switcher__status {
-  color: #746b64;
-  font-size: 0.62rem;
-  font-weight: 900;
-  white-space: nowrap;
+.admissions-page-switcher__option:not(.is-current):is(:hover, :focus-visible) .admissions-page-switcher__indicator {
+  color: #fff;
+  background: var(--switcher-accent);
+}
+
+.admissions-page-switcher__option.is-current {
+  color: #fff;
 }
 
 .admissions-page-switcher__option--general.is-current {
   border-color: #8b0000;
-  color: #fff;
   background: linear-gradient(135deg, #8b0000, #680000);
-  box-shadow: 0 12px 28px rgb(139 0 0 / 18%);
 }
 
 .admissions-page-switcher__option--special.is-current {
   border-color: #073d3a;
-  color: #fff;
   background: linear-gradient(135deg, #0f6b65, #073d3a);
-  box-shadow: 0 12px 28px rgb(7 61 58 / 18%);
-}
-
-.admissions-page-switcher__option--venues.is-current {
-  border-color: #674300;
-  color: #fff;
-  background: linear-gradient(135deg, #9a6a0b, #674300);
-  box-shadow: 0 12px 28px rgb(103 67 0 / 20%);
-}
-
-.admissions-page-switcher__option--planner .admissions-page-switcher__short-label {
-  color: #344d90;
-  background: #eef2ff;
 }
 
 .admissions-page-switcher__option--planner.is-current {
   border-color: #344d90;
-  color: #fff;
   background: linear-gradient(135deg, #344d90, #233565);
+}
+
+.admissions-page-switcher__option--venues.is-current {
+  border-color: #674300;
+  background: linear-gradient(135deg, #8b5e0a, #674300);
+}
+
+.admissions-page-switcher__option.is-current .admissions-page-switcher__indicator {
+  color: #fff;
+  background: rgb(255 255 255 / 19%);
 }
 
 .admissions-planner-link {
@@ -274,16 +232,6 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 }
 
 .admissions-planner-link a { color: #344d90; font-weight: 700; }
-
-.admissions-page-switcher__option.is-current :where(.admissions-page-switcher__short-label, .admissions-page-switcher__status) {
-  border-color: rgb(255 255 255 / 58%);
-  color: #fff;
-  background: rgb(255 255 255 / 10%);
-}
-
-.admissions-page-switcher__option.is-current .admissions-page-switcher__copy small {
-  color: rgb(255 255 255 / 78%);
-}
 
 .admissions-hero__grid {
   display: grid;
@@ -2660,39 +2608,8 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   }
 
   .admissions-page-switcher__option {
-    grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-rows: auto 1fr;
-    gap: 7px 5px;
-    align-items: end;
-    min-height: 74px;
-    border-radius: 6px;
-    padding: 11px 10px;
-  }
-
-  .admissions-page-switcher__short-label {
-    grid-column: 1 / -1;
-    justify-self: start;
-    min-height: 24px;
-    padding: 3px 7px;
-    font-size: 0.58rem;
-  }
-
-  .admissions-page-switcher__copy {
-    align-self: center;
-  }
-
-  .admissions-page-switcher__copy strong {
-    font-size: 0.72rem;
-    line-height: 1.45;
-  }
-
-  .admissions-page-switcher__copy small {
-    display: none;
-  }
-
-  .admissions-page-switcher__status {
-    align-self: center;
-    font-size: 0.56rem;
+    min-height: 54px;
+    padding-inline: 12px;
   }
 
   .admissions-kicker {
