@@ -1,6 +1,6 @@
 ---
 interface Props {
-  current: "general" | "special" | "venues";
+  current: "general" | "special" | "venues" | "planner";
 }
 
 const { current } = Astro.props;
@@ -9,31 +9,29 @@ const schedulePages = [
   {
     id: "general",
     href: "/private-medical-school-admissions-schedule-2027/",
-    shortLabel: "一般・共テ",
-    label: "一般選抜・共通テスト利用",
-    description: "一般選抜と共テ利用の日程",
+    label: "一般・共通テスト利用の日程",
   },
   {
     id: "special",
     href: "/private-medical-school-special-admissions-schedule-2027/",
-    shortLabel: "総合型・推薦型等",
-    label: "総合型・学校推薦型など",
-    description: "地域枠・帰国生・IB等も掲載",
+    label: "総合型・学校推薦などの日程",
+  },
+  {
+    id: "planner",
+    href: "/private-medical-school-admission-planner-2027/",
+    label: "受験校・日程を組む",
   },
   {
     id: "venues",
     href: "/private-medical-school-exam-venues-hotels-2027/",
-    shortLabel: "会場・ホテル",
-    label: "入試会場・周辺ホテル",
-    description: "一般・共テの会場と宿泊計画",
+    label: "試験会場・周辺ホテル",
   },
 ] as const;
 ---
 
 <nav class="admissions-page-switcher" aria-label="2027年度 私立医学部の入試情報を切り替える">
   <p class="admissions-page-switcher__label">
-    <span aria-hidden="true">2027</span>
-    入試情報を切り替える
+    2027年度 入試情報
   </p>
   <div class="admissions-page-switcher__options">
     {
@@ -49,13 +47,9 @@ const schedulePages = [
             href={page.href}
             aria-current={isCurrent ? "page" : undefined}
           >
-            <span class="admissions-page-switcher__short-label">{page.shortLabel}</span>
-            <span class="admissions-page-switcher__copy">
-              <strong>{page.label}</strong>
-              <small>{page.description}</small>
-            </span>
-            <span class="admissions-page-switcher__status" aria-hidden="true">
-              {isCurrent ? "表示中" : "切替 →"}
+            <strong>{page.label}</strong>
+            <span class="admissions-page-switcher__indicator" aria-hidden="true">
+              {isCurrent ? "✓" : "→"}
             </span>
           </a>
         );

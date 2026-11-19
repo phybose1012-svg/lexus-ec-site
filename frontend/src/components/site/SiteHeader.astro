@@ -1,4 +1,5 @@
 ---
+import MobileMenuScript from "./MobileMenuScript.astro";
 import { assets, headerActions, navGroups } from "../../data/home";
 
 const mobilePrimaryActions = headerActions.slice(0, 2);
@@ -90,24 +91,4 @@ const linkAttrs = (link: { target?: string; rel?: string }) => ({
   </ul>
 </nav>
 
-<script is:inline>
-  (() => {
-    const toggle = document.querySelector("[data-mobile-menu-toggle]");
-    const panel = document.getElementById("mobile-menu-panel");
-    if (!toggle || !panel) return;
-
-    const setOpen = (open) => {
-      panel.hidden = !open;
-      toggle.setAttribute("aria-expanded", String(open));
-      document.documentElement.classList.toggle("mobile-menu-open", open);
-    };
-
-    toggle.addEventListener("click", () => setOpen(panel.hidden));
-    panel.addEventListener("click", (event) => {
-      if (event.target instanceof HTMLAnchorElement) setOpen(false);
-    });
-    window.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") setOpen(false);
-    });
-  })();
-</script>
+<MobileMenuScript />

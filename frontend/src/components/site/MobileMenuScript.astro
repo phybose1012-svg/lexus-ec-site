@@ -1,0 +1,42 @@
+<script is:inline>
+  (() => {
+    const toggle = document.querySelector("[data-mobile-menu-toggle]");
+    const panel = document.getElementById("mobile-menu-panel");
+    if (!toggle || !panel) return;
+
+    const viewport = window.visualViewport;
+    const setOpen = (open) => {
+      panel.hidden = !open;
+      toggle.setAttribute("aria-expanded", String(open));
+      document.documentElement.classList.toggle("mobile-menu-open", open);
+      if (open) updateHeight();
+    };
+
+    // The toolbar can sit below branding, stick to the top, or scroll with the page.
+    function updateHeight() {
+      if (panel.hidden) return;
+      if (!toggle.getClientRects().length) {
+        setOpen(false);
+        return;
+      }
+      const viewportBottom = viewport ? viewport.offsetTop + viewport.height : window.innerHeight;
+      const availableHeight = Math.max(0, viewportBottom - panel.getBoundingClientRect().top);
+      panel.style.setProperty("--mobile-menu-available-height", `${availableHeight}px`);
+    }
+
+    toggle.addEventListener("click", () => setOpen(panel.hidden));
+    panel.addEventListener("click", (event) => {
+      if (event.target instanceof HTMLAnchorElement) setOpen(false);
+    });
+    window.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape" || panel.hidden) return;
+      const focusWasInMenu = panel.contains(document.activeElement);
+      setOpen(false);
+      if (focusWasInMenu) toggle.focus({ preventScroll: true });
+    });
+    window.addEventListener("resize", updateHeight);
+    window.addEventListener("scroll", updateHeight, { passive: true });
+    viewport?.addEventListener("resize", updateHeight);
+    viewport?.addEventListener("scroll", updateHeight);
+  })();
+</script>

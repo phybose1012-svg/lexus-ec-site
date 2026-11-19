@@ -654,6 +654,30 @@
   white-space: nowrap;
 }
 
+.venue-guide-hotel__notes {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--ad-line, #ddd4ca);
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.venue-guide-hotel__notes summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.venue-guide-hotel__notes ul {
+  margin: 10px 0 0;
+  padding-left: 1.4em;
+}
+
+.venue-guide-hotel__notes p {
+  margin: 10px 0 0;
+}
+
 .venue-guide-venue__body {
   border-top: 1px solid var(--venue-line);
 }

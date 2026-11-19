@@ -1,3 +1,5 @@
+import { applyNovemberHotelUpdates2027 } from "./privateMedicalVenueNovemberHotels2027.ts";
+
 export type HotelOperatingStatus2027 = "official_site_active" | "opening_planned" | "needs_review";
 export type HotelReviewState2027 = "verified" | "needs_review" | "monitoring";
 export type HotelTravelMode2027 = "walk" | "rail" | "bus" | "taxi";
@@ -72,6 +74,7 @@ export const hotelVenueAccessReviewStateLabels2027: Record<
 
 // 会場台帳と分離して管理し、正式会場名・住所を確認できた venueId にだけ結合します。
 // 宿泊料金は変動情報のため正本データへ固定値として保持しません。
+const KEIO_GUIDELINE_VERIFIED_AT = "2026-11-19T00:00:00+09:00";
 const VERIFIED_AT = "2026-08-15T00:00:00+09:00";
 const SHIODOME_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const MARIANNA_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
@@ -191,6 +194,7 @@ const KURUME_MII_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const FUKUOKA_TIME24_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const FUKUOKA_NAGOYA_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
 const FUKUOKA_SHIN_OSAKA_VERIFIED_AT = "2026-08-19T00:00:00+09:00";
+const OCTOBER_NEW_VENUES_VERIFIED_AT = "2026-10-05T00:00:00+09:00";
 const amenity = (
   key: HotelAmenity2027["key"],
   label: string,
@@ -1227,7 +1231,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat", "needs_route_review", "venue_pdf_visual_review"],
         verifiedAt: SHIODOME_VERIFIED_AT,
-        caution: "汐留駅までのホテル公式案内は出口を特定しておらず、直接徒歩の総所要時間は未計測です。試験当日の使用階・入口を受験票で確認し、別施設のベルサール東京汐留と取り違えないでください。",
+        caution: "汐留駅までのホテル公式案内は出口を特定しておらず、直接徒歩の総所要時間は未計測です。試験当日の使用階・入口を受験票で確認し、別施設のベルサール東京汐留と取り違えないでください。産業医科大学A・Bの数学入室は9:30〜9:50、開始10:20です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://www.ginkoku.co.jp/access/",
           "https://www.kotsu.metro.tokyo.jp/subway/stations/shiodome.html",
@@ -1246,7 +1250,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: SHIODOME_VERIFIED_AT,
-    note: "朝食の提供状況は利用前にホテルへ確認してください。",
+    note: "朝食の提供状況は利用前にホテルへ確認してください。産業医科大学A・Bの数学入室は9:30〜9:50、開始10:20です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
   },
   {
     hotelId: "hotel-check-in-shimbashi",
@@ -1267,7 +1271,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat", "needs_route_review", "venue_pdf_visual_review"],
         verifiedAt: SHIODOME_VERIFIED_AT,
-        caution: "烏森口と汐留口の間には駅横断があります。横断・信号待ちを含む総所要時間は未計測です。試験当日の使用階・入口を受験票で確認し、別施設のベルサール東京汐留と取り違えないでください。",
+        caution: "烏森口と汐留口の間には駅横断があります。横断・信号待ちを含む総所要時間は未計測です。試験当日の使用階・入口を受験票で確認し、別施設のベルサール東京汐留と取り違えないでください。産業医科大学A・Bの数学入室は9:30〜9:50、開始10:20です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://checkin.co.jp/shinbashi/access/",
           "https://www.jreast.co.jp/estation/station/info.aspx?StationCd=877",
@@ -1402,7 +1406,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: UOEH_VERIFIED_AT,
-        caution: "主経路は乗換0回、JR黒崎駅から折尾駅を経由する代替経路は鉄道からバスへの乗換1回です。区間別の公式所要時間を組み合わせた目安で、バスセンター・駅構内の移動、待ち時間、学内徒歩は含みません。2027年3月12日の便時刻、集合時刻、試験受付建物・入口は未公表です。試験直前に最新ダイヤを確認し、道路遅延を見込んで1便以上の余裕を確保してください。「産業医科大学病院入口」は試験会場入口ではないため、受験票と2026年10月上旬公表予定の一般選抜募集要項で受付入口を確認してください。",
+        caution: "主経路は乗換0回、JR黒崎駅から折尾駅を経由する代替経路は鉄道からバスへの乗換1回です。区間別の公式所要時間を組み合わせた目安で、バスセンター・駅構内の移動、待ち時間、学内徒歩は含みません。2027年3月12日の便時刻と試験受付建物・入口は未公表です。試験直前に最新ダイヤを確認し、道路遅延を見込んで1便以上の余裕を確保してください。産業医科大学3月12日の小論文は8:10〜8:40入室・9:00開始、面接入室は当日指示です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://www.choice-hotels.jp/hotel/kurosaki/access/",
           "https://www.uoeh-u.ac.jp/University/College/access.html",
@@ -1424,7 +1428,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: UOEH_VERIFIED_AT,
-    note: "18歳未満の方だけで宿泊する場合は、ホテル所定の親権者同意書が必要です。",
+    note: "18歳未満の方だけで宿泊する場合は、ホテル所定の親権者同意書が必要です。産業医科大学3月12日の小論文は8:10〜8:40入室・9:00開始、面接入室は当日指示です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
   },
   {
     hotelId: "delight-stay-kurosaki-ekimae",
@@ -1446,7 +1450,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: UOEH_VERIFIED_AT,
-        caution: "主経路は乗換0回、JR黒崎駅から折尾駅を経由する代替経路は鉄道からバスへの乗換1回です。区間別の公式所要時間を組み合わせた目安で、黒崎駅からバスセンターまでの移動、待ち時間、学内徒歩は含みません。2027年3月12日の便時刻、集合時刻、試験受付建物・入口は未公表です。試験直前に最新ダイヤを確認し、道路遅延を見込んで1便以上の余裕を確保してください。「産業医科大学病院入口」は試験会場入口ではないため、受験票と2026年10月上旬公表予定の一般選抜募集要項で受付入口を確認してください。",
+        caution: "主経路は乗換0回、JR黒崎駅から折尾駅を経由する代替経路は鉄道からバスへの乗換1回です。区間別の公式所要時間を組み合わせた目安で、黒崎駅からバスセンターまでの移動、待ち時間、学内徒歩は含みません。2027年3月12日の便時刻と試験受付建物・入口は未公表です。試験直前に最新ダイヤを確認し、道路遅延を見込んで1便以上の余裕を確保してください。産業医科大学3月12日の小論文は8:10〜8:40入室・9:00開始、面接入室は当日指示です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://delight-stay.com/",
           "https://www.uoeh-u.ac.jp/University/College/access.html",
@@ -1467,7 +1471,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatusEvidenceUrl: "https://clasol.co.jp/company.php",
     reviewState: "verified",
     verifiedAt: UOEH_VERIFIED_AT,
-    note: "ホテル客室は6室の小規模な宿泊施設です。朝食提供と未成年者だけで宿泊する場合の条件は公式サイトで確認できないため、予約前にホテルへ直接確認してください。",
+    note: "ホテル客室は6室の小規模な宿泊施設です。朝食提供と未成年者だけで宿泊する場合の条件は公式サイトで確認できないため、予約前にホテルへ直接確認してください。産業医科大学3月12日の小論文は8:10〜8:40入室・9:00開始、面接入室は当日指示です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
   },
   {
     hotelId: "osaka-riverside-hotel",
@@ -1638,13 +1642,13 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
       {
         venueId: "venue-bellesalle-shinjuku-grand",
         modes: ["walk"],
-        routeSummary: "ホテルローズガーデン新宿からホテル公式案内を逆向きにたどって西新宿駅1番出口側へ進み、同じ出口を接続点に、会場公式の徒歩経路で住友不動産新宿グランドタワー1階のベルサール新宿グランド イベントホールへ向かいます。到着後は受験票と当日案内に従って指定された受付へ進みます。",
+        routeSummary: "ホテルローズガーデン新宿からホテル公式案内を逆向きにたどって西新宿駅1番出口側へ進み、同じ出口を接続点に、会場公式の徒歩経路で住友不動産新宿グランドタワーのベルサール新宿グランドへ向かいます。到着後は受験票と当日案内に従って指定された受付へ進みます。",
         transferCount: 0,
         travelTimeLabel: "ホテル―西新宿駅1番出口はホテル公式『駅前』／同出口―会場は会場公式徒歩約4分（客室階・信号待ち・試験室までを除く区間表示）",
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: BELLESALLE_SHINJUKU_GRAND_VERIFIED_AT,
-        caution: "ホテル公式の『西新宿駅1番出口を出て左側』という案内と、会場公式の同出口から徒歩約4分を接続した経路で、ホテルから試験室までの通し所要ではありません。東京医科大学の2027年度一般選抜一次は2月6日、8:30開門・9:10集合で、受験番号により本学またはベルサール新宿グランドが指定されます。ベルサールは1階イベントホールまで公表されていますが、使用区画・受付位置・受験生入口は未公表です。受験票で会場を確認し、同施設5階の会議室や近隣のベルサール新宿セントラルパークなどと取り違えないでください。",
+        caution: "ホテル公式の『西新宿駅1番出口を出て左側』という案内と、会場公式の同出口から徒歩約4分を接続した経路で、ホテルから試験室までの通し所要ではありません。東京医科大学の2027年度一般選抜一次は2月6日、8:30開門・9:10集合で、受験番号により本学またはベルサール新宿グランドが指定されます。ベルサールの使用階・試験室・受付入口は最新要項では指定されていません。受験票で会場を確認し、指定された階・室へ進み、近隣のベルサール新宿セントラルパークなどと取り違えないでください。",
         evidenceUrls: [
           "https://hotel-rosegarden.jp/access/",
           "https://www.bellesalle.co.jp/shisetsu/shinjuku/bs_shinjukugrand/",
@@ -2377,7 +2381,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: TOHOKU_MED_PHARM_KOMATSUSHIMA_VERIFIED_AT,
-        caution: "各公式区間を接続した経路案で、ホテルから試験室までの通し所要時間ではありません。2027年の開場・集合・試験開始、使用棟・階・受験生入口は現時点で未公表です。小松島キャンパスを使う医学部入試は、総合型選抜第2次（2026年10月24日・25日の両日）、一般選抜第1次の仙台試験場選択者（2027年2月4日）、一般選抜第2次（2月20日・21日のうち大学指定の1日）、共通テスト利用選抜第2次（3月3日）です。過年度に運行された台原駅―キャンパス間の無料臨時バスは2027年の運行が未公表のため、徒歩15分を基本とし、積雪・凍結を見込んで余裕を取ってください。",
+        caution: "各公式区間を接続した経路案で、ホテルから試験室までの通し所要時間ではありません。使用棟・階・受験生入口は受験票と当日案内で確認してください。小松島キャンパスを使う医学部入試は、総合型選抜第2次（2026年10月24日・25日の両日）、一般選抜第1次の仙台試験場選択者（2027年2月4日）、一般選抜第2次（2月20日・21日のうち大学指定の1日）、共通テスト利用選抜第2次（3月3日）です。過年度に運行された台原駅―キャンパス間の無料臨時バスは2027年の運行が未公表のため、徒歩15分を基本とし、積雪・凍結を見込んで余裕を取ってください。最新要項では一般一次・二次は8:20開場・8:50集合、共通テスト利用二次は8:30開場・9:00集合です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://www.choice-hotels.jp/hotel/sendai-w/access/",
           "https://www.kotsu.city.sendai.jp/subway/station/list/sendai/",
@@ -2399,7 +2403,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: TOHOKU_MED_PHARM_KOMATSUSHIMA_VERIFIED_AT,
-    note: "仙台駅西口・地下鉄仙台駅から徒歩約3分で、地下鉄南北線とJR仙山線、市営バスの代替経路を持てる堅実な候補です。18歳未満の方1名または未成年者同士で宿泊する場合は、親権者同意書が必要です。一般選抜第1次は仙台試験場を選択した受験生向けで、一般選抜第2次の受験日は大学指定です。2027年度募集要項と受験票で集合時刻・入口を確認してください。",
+    note: "仙台駅西口・地下鉄仙台駅から徒歩約3分で、地下鉄南北線とJR仙山線、市営バスの代替経路を持てる堅実な候補です。18歳未満の方1名または未成年者同士で宿泊する場合は、親権者同意書が必要です。一般選抜第1次は仙台試験場を選択した受験生向けで、一般選抜第2次の受験日は大学指定です。2027年度募集要項と受験票で集合時刻・入口を確認してください。最新要項では一般一次・二次は8:20開場・8:50集合、共通テスト利用二次は8:30開場・9:00集合です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
   },
   {
     hotelId: "hotel-green-city-sendai",
@@ -2421,7 +2425,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: TOHOKU_MED_PHARM_KOMATSUSHIMA_VERIFIED_AT,
-        caution: "各公式区間を接続した経路案で、通し所要時間ではありません。北仙台駅ではJR仙山線側と地下鉄南北線側を取り違えず、地下鉄の泉中央方面行を利用してください。2027年の開場・集合・試験開始、使用棟・階・受験生入口は現時点で未公表です。対象は総合型選抜第2次（2026年10月24日・25日の両日）、一般選抜第1次の仙台試験場選択者（2027年2月4日）、一般選抜第2次（2月20日・21日のうち大学指定の1日）、共通テスト利用選抜第2次（3月3日）です。2027年の台原駅からの無料臨時バスは未公表なので徒歩15分を基本とし、積雪・凍結時は余裕を増やしてください。",
+        caution: "各公式区間を接続した経路案で、通し所要時間ではありません。北仙台駅ではJR仙山線側と地下鉄南北線側を取り違えず、地下鉄の泉中央方面行を利用してください。使用棟・階・受験生入口は受験票と当日案内で確認してください。対象は総合型選抜第2次（2026年10月24日・25日の両日）、一般選抜第1次の仙台試験場選択者（2027年2月4日）、一般選抜第2次（2月20日・21日のうち大学指定の1日）、共通テスト利用選抜第2次（3月3日）です。2027年の台原駅からの無料臨時バスは未公表なので徒歩15分を基本とし、積雪・凍結時は余裕を増やしてください。最新要項では一般一次・二次は8:20開場・8:50集合、共通テスト利用二次は8:30開場・9:00集合です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://www.bh-green.co.jp/city/",
           "https://www.kotsu.city.sendai.jp/subway/station/list/kita-sendai/",
@@ -2442,7 +2446,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: TOHOKU_MED_PHARM_KOMATSUSHIMA_VERIFIED_AT,
-    note: "仙台の地場企業が運営する地域型ビジネスホテルです。18歳未満の方1名または未成年者同士で宿泊する場合は、親権者同意書をチェックイン前日までに提出する必要があります。客室写真には作業面が見えますが、固定机の仕様は公式本文で確認できないため、学習机が必要な場合は予約前にホテルへ確認してください。北仙台駅までと台原駅からの冬季歩行に余裕を持ってください。",
+    note: "仙台の地場企業が運営する地域型ビジネスホテルです。18歳未満の方1名または未成年者同士で宿泊する場合は、親権者同意書をチェックイン前日までに提出する必要があります。客室写真には作業面が見えますが、固定机の仕様は公式本文で確認できないため、学習机が必要な場合は予約前にホテルへ確認してください。北仙台駅までと台原駅からの冬季歩行に余裕を持ってください。最新要項では一般一次・二次は8:20開場・8:50集合、共通テスト利用二次は8:30開場・9:00集合です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
   },
   {
     hotelId: "hotel-route-inn-yahaba",
@@ -2549,7 +2553,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: KITAKYUSHU_MESSE_VERIFIED_AT,
-        caution: "ホテル公式の徒歩約3分はJR小倉駅新幹線口からホテルまでの案内を逆方向に用いたもので、北九州メッセ公式の徒歩約5分とは別区間です。駅から会場側は雨に濡れにくい公式動線ですが、ホテルから駅までを含む全行程の屋根付きは保証されません。2027年2月14日の医学部一般選抜A・B個別学力検査で、入場開始・集合時刻、使用ホール・階・受験生入口は未公表です。公式アクセスPDFの共通入口は一般来場者向けで試験入口の確定根拠ではありません。AIM、北九州国際会議場、隣接する別の展示場建物と取り違えず、東京会場希望から北九州へ変更される場合もあるため受験票で会場を確認してください。3月12日の小論文・面接は北九州メッセではなく産業医科大学本学です。",
+        caution: "ホテル公式の徒歩約3分はJR小倉駅新幹線口からホテルまでの案内を逆方向に用いたもので、北九州メッセ公式の徒歩約5分とは別区間です。駅から会場側は雨に濡れにくい公式動線ですが、ホテルから駅までを含む全行程の屋根付きは保証されません。公式アクセスPDFの共通入口は一般来場者向けで試験入口の確定根拠ではありません。AIM、北九州国際会議場、隣接する別の展示場建物と取り違えず、東京会場希望から北九州へ変更される場合もあるため受験票で会場を確認してください。3月12日の小論文・面接は北九州メッセではなく産業医科大学本学です。産業医科大学A・Bの数学入室は9:30〜9:50、開始10:20です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://www.choice-hotels.jp/hotel/kokura/access/",
           "https://hello-kitakyushu.or.jp/access/",
@@ -2568,7 +2572,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: KITAKYUSHU_MESSE_VERIFIED_AT,
-    note: "小倉駅新幹線口側にあり、客室デスク、Wi-Fi、24時間コインランドリー、6:30開始の無料朝食を公式に確認できる堅実な候補です。18歳未満の方1名または未成年者同士で宿泊する場合は、宿泊者全員分の保護者同意書が必要です。2027年の入場・集合時刻と試験入口は未公表のため、朝食利用可否と北九州メッセ指定を募集要項・受験票で再確認してください。",
+    note: "小倉駅新幹線口側にあり、客室デスク、Wi-Fi、24時間コインランドリー、6:30開始の無料朝食を公式に確認できる堅実な候補です。18歳未満の方1名または未成年者同士で宿泊する場合は、宿泊者全員分の保護者同意書が必要です。産業医科大学A・Bの数学入室は9:30〜9:50、開始10:20です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
   },
   {
     hotelId: "asano-hotel-kokura",
@@ -2591,7 +2595,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: KITAKYUSHU_MESSE_VERIFIED_AT,
-        caution: "ホテル公式の徒歩3分・280mはJR小倉駅北口からホテルまでの案内を逆方向に用いたもので、北九州メッセ公式の徒歩約5分とは別区間です。駅から会場側は雨に濡れにくい公式動線ですが、ホテルから駅までを含む全行程の屋根付きは保証されません。2027年2月14日の医学部一般選抜A・B個別学力検査で、入場開始・集合時刻、使用ホール・階・受験生入口は未公表です。公式アクセスPDFの共通入口は一般来場者向けで試験入口の確定根拠ではありません。AIM、北九州国際会議場、隣接する別の展示場建物と取り違えず、東京会場希望から北九州へ変更される場合もあるため受験票で会場を確認してください。3月12日の小論文・面接は北九州メッセではなく産業医科大学本学です。",
+        caution: "ホテル公式の徒歩3分・280mはJR小倉駅北口からホテルまでの案内を逆方向に用いたもので、北九州メッセ公式の徒歩約5分とは別区間です。駅から会場側は雨に濡れにくい公式動線ですが、ホテルから駅までを含む全行程の屋根付きは保証されません。公式アクセスPDFの共通入口は一般来場者向けで試験入口の確定根拠ではありません。AIM、北九州国際会議場、隣接する別の展示場建物と取り違えず、東京会場希望から北九州へ変更される場合もあるため受験票で会場を確認してください。3月12日の小論文・面接は北九州メッセではなく産業医科大学本学です。産業医科大学A・Bの数学入室は9:30〜9:50、開始10:20です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://www.asanohotel.jp/map/map1.html",
           "https://www.asanohotel.jp/",
@@ -2610,7 +2614,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: KITAKYUSHU_MESSE_VERIFIED_AT,
-    note: "全52室の地域型ビジネスホテルで、公式直販、客室Wi-Fi・有線LAN、ランドリー、6:30開始の無料朝食を確認しています。未成年者だけで宿泊する場合は保護者の同意が必要で、未成年者1名につき宿泊承諾書1枚をチェックイン時に提出します。客室内の学習机は公式本文で確認できないため、必要な場合は予約前にホテルへ確認してください。2027年の入場・集合時刻と試験入口は未公表です。",
+    note: "全52室の地域型ビジネスホテルで、公式直販、客室Wi-Fi・有線LAN、ランドリー、6:30開始の無料朝食を確認しています。未成年者だけで宿泊する場合は保護者の同意が必要で、未成年者1名につき宿泊承諾書1枚をチェックイン時に提出します。客室内の学習机は公式本文で確認できないため、必要な場合は予約前にホテルへ確認してください。産業医科大学A・Bの数学入室は9:30〜9:50、開始10:20です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
   },
   {
     hotelId: "hotel-ncb",
@@ -2631,7 +2635,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "official",
         reviewState: ["official_direct"],
         verifiedAt: GRAND_CUBE_OSAKA_VERIFIED_AT,
-        caution: "ホテル公式の徒歩約3分はホテルから大阪府立国際会議場という施設までの案内で、試験室までの通し所要時間ではありません。東北医科薬科大学の2027年一般選抜第1次は2月4日（木）に同会場で実施予定ですが、開場・集合・開始時刻、使用階・室名、受付、受験生入口は未公表です。1階一般エントランスや特定のホールを試験入口・試験室とみなさず、令和9年度学生募集要項、受験票、当日案内を確認してください。",
+        caution: "ホテル公式の徒歩約3分はホテルから大阪府立国際会議場という施設までの案内で、試験室までの通し所要時間ではありません。1階一般エントランスや特定のホールを試験入口・試験室とみなさず、令和9年度学生募集要項、受験票、当日案内を確認してください。東北医科薬科大学の一般一次は8:20開場・8:50集合です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://www.hotel-ncb.co.jp/access/",
           "https://www.hotel-ncb.co.jp/",
@@ -2650,7 +2654,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: GRAND_CUBE_OSAKA_VERIFIED_AT,
-    note: "中之島の地域型ビジネスホテルで、ホテル公式が大阪府立国際会議場まで徒歩約3分と案内しています。18歳未満の方1名または未成年者同士で宿泊する場合は、宿泊者ごとの親権者同意書をチェックイン時に提出してください。2027年の使用階・試験室・入口・集合時刻は未公表です。",
+    note: "中之島の地域型ビジネスホテルで、ホテル公式が大阪府立国際会議場まで徒歩約3分と案内しています。18歳未満の方1名または未成年者同士で宿泊する場合は、宿泊者ごとの親権者同意書をチェックイン時に提出してください。東北医科薬科大学の一般一次は8:20開場・8:50集合です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
   },
   {
     hotelId: "smile-hotel-osaka-nakanoshima",
@@ -2671,7 +2675,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat"],
         verifiedAt: GRAND_CUBE_OSAKA_VERIFIED_AT,
-        caution: "ホテル公式の徒歩4分は渡辺橋駅からホテルまでの案内を逆方向に用いたものです。各公式区間を接続した経路であり、ホテルから試験室までの通し所要時間ではありません。2027年2月4日（木）の列車時刻・運転間隔は未確認のため、乗車時間、待ち時間、駅構内移動を別に見込んでください。中之島駅2番出口「すぐ」は施設到着までで、試験入口ではありません。開場・集合・開始時刻、使用階・室名、受付、受験生入口は未公表のため、令和9年度学生募集要項、受験票、当日案内を確認してください。",
+        caution: "ホテル公式の徒歩4分は渡辺橋駅からホテルまでの案内を逆方向に用いたものです。各公式区間を接続した経路であり、ホテルから試験室までの通し所要時間ではありません。2027年2月4日（木）の列車時刻・運転間隔は未確認のため、乗車時間、待ち時間、駅構内移動を別に見込んでください。中之島駅2番出口「すぐ」は施設到着までで、試験入口ではありません。東北医科薬科大学の一般一次は8:20開場・8:50集合です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://smile-hotels.com/hotels/show/osakanakanoshima",
           "https://www.keihan.co.jp/traffic/station/",
@@ -2691,7 +2695,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: GRAND_CUBE_OSAKA_VERIFIED_AT,
-    note: "全124室の中之島のビジネスホテルです。18歳未満の方だけで宿泊する場合はチェーン公式の親権者同意書がありますが、大阪中之島店での適用書式と提出方法を予約時に確認してください。客室の学習用机は公式本文で確認できないため、必要な場合は予約前にホテルへ確認してください。2027年の列車時刻、試験入口、使用階・試験室、集合時刻は未公表です。",
+    note: "全124室の中之島のビジネスホテルです。18歳未満の方だけで宿泊する場合はチェーン公式の親権者同意書がありますが、大阪中之島店での適用書式と提出方法を予約時に確認してください。客室の学習用机は公式本文で確認できないため、必要な場合は予約前にホテルへ確認してください。2027年の列車時刻、試験入口、使用階・試験室は未公表です。東北医科薬科大学の一般一次は8:20開場・8:50集合です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
   },
   {
     hotelId: "hotel-gracery-sapporo",
@@ -2713,7 +2717,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: ACU_A_SAPPORO_VERIFIED_AT,
-        caution: "ホテル公式の徒歩約1分はJR札幌駅西改札・南口からホテルまでの案内を逆方向に用い、ACU公式の徒歩5分は南口から一般来館地点までの別区間です。単純加算したホテルから試験室までの所要時間ではありません。ホテルは地下街APIA直結と案内していますが、現行地下動線には階段があり、通行可能時間も「6:00頃〜23:00頃」という一般案内です。APIAからアスティ45、指定試験階・入口までを含む全行程が完全屋内で2027年2月4日朝に通行できるとは断定しません。札幌会場の選択・指定方法、開場・集合・試験開始、使用階・試験室・受験生入口は未公表です。ACU施設は12階・16階にありますが、16階を試験階とみなさず、受験票・学生募集要項・当日掲示を確認してください。ACUの通常営業時間も試験日の開場時刻には転用できません。積雪・凍結と札幌駅工事による動線変更を見込み、直前に公式案内を再確認してください。",
+        caution: "ホテル公式の徒歩約1分はJR札幌駅西改札・南口からホテルまでの案内を逆方向に用い、ACU公式の徒歩5分は南口から一般来館地点までの別区間です。単純加算したホテルから試験室までの所要時間ではありません。ホテルは地下街APIA直結と案内していますが、現行地下動線には階段があり、通行可能時間も「6:00頃〜23:00頃」という一般案内です。APIAからアスティ45、指定試験階・入口までを含む全行程が完全屋内で2027年2月4日朝に通行できるとは断定しません。札幌会場は出願時に選択します。使用階・試験室・受験生入口は受験票と当日案内で確認してください。ACU施設は12階・16階にありますが、16階を試験階とみなさず、受験票・学生募集要項・当日掲示を確認してください。ACUの通常営業時間も試験日の開場時刻には転用できません。積雪・凍結と札幌駅工事による動線変更を見込み、直前に公式案内を再確認してください。東北医科薬科大学の一般一次は8:20開場・8:50集合です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://gracery.com/sapporo/access/",
           "https://gracery.com/sapporo/page/route_underground/",
@@ -2732,7 +2736,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: ACU_A_SAPPORO_VERIFIED_AT,
-    note: "札幌駅地下街APIAに直結し、積雪時の地上歩行を抑えやすい候補です。18歳未満の方だけで宿泊する場合は、宿泊者全員分の親権者同意書をチェックイン時に提出してください。客室の学習用机は公式本文で確認できないため、必要な場合は予約前にホテルへ確認してください。地下街から試験入口までの完全屋内動線と早朝通行は保証されず、2027年の使用階・試験室・入口・集合時刻も未公表です。",
+    note: "札幌駅地下街APIAに直結し、積雪時の地上歩行を抑えやすい候補です。18歳未満の方だけで宿泊する場合は、宿泊者全員分の親権者同意書をチェックイン時に提出してください。客室の学習用机は公式本文で確認できないため、必要な場合は予約前にホテルへ確認してください。東北医科薬科大学の一般一次は8:20開場・8:50集合です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
   },
   {
     hotelId: "hotel-sapporo-garden-palace",
@@ -2795,7 +2799,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: ACU_A_SAPPORO_VERIFIED_AT,
-        caution: "ホテル公式の徒歩約5分はJR札幌駅南口からホテルまでの案内を逆方向に用い、ACU公式の徒歩5分は同南口から一般来館地点までの別区間です。両区間を単純加算したホテルから試験室までの所要時間ではなく、ホテルから会場への直接徒歩時間も推定しません。ホテル公式は札幌駅前通地下歩行空間3番出口から徒歩2分の別案も掲載していますが、ACUへの公式接続区間ではないため主経路には使いません。札幌会場の選択・指定方法、開場・集合・試験開始、使用階・試験室・受験生入口は未公表です。ACU施設は12階・16階にありますが、16階を試験階と断定できません。受験票・学生募集要項・当日掲示を確認し、ACUの通常営業時間を試験日の開場時刻に転用しないでください。積雪・凍結、信号待ち、札幌駅工事による動線変更を見込み、直前に公式案内を再確認してください。",
+        caution: "ホテル公式の徒歩約5分はJR札幌駅南口からホテルまでの案内を逆方向に用い、ACU公式の徒歩5分は同南口から一般来館地点までの別区間です。両区間を単純加算したホテルから試験室までの所要時間ではなく、ホテルから会場への直接徒歩時間も推定しません。ホテル公式は札幌駅前通地下歩行空間3番出口から徒歩2分の別案も掲載していますが、ACUへの公式接続区間ではないため主経路には使いません。札幌会場は出願時に選択します。使用階・試験室・受験生入口は受験票と当日案内で確認してください。ACU施設は12階・16階にありますが、16階を試験階と断定できません。受験票・学生募集要項・当日掲示を確認し、ACUの通常営業時間を試験日の開場時刻に転用しないでください。積雪・凍結、信号待ち、札幌駅工事による動線変更を見込み、直前に公式案内を再確認してください。東北医科薬科大学の一般一次は8:20開場・8:50集合です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://www.hokke.co.jp/sapporo/access",
           "https://www.hokke.co.jp/sapporo/faq.html",
@@ -3147,7 +3151,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: FUJITA_EXTERNAL_VENUES_VERIFIED_AT,
-        caution: "ホテル公式の徒歩約3分はJR大阪駅3階連絡橋口まで、会場の直結案内はうめきた地下口から南館4階までで、駅内の接続移動を含む公式通し時間ではありません。藤田医科大学医学部一般入試一次の大阪会場は2027年2月4日のコングレスクエア グラングリーン大阪と確認済みですが、出願時選択・収容条件は10月頃公開予定の同要項該当章待ちです。受験票で最終会場を確認してください。南館4階までは確定していますが、使用ルーム・試験受付・受験生入口・入室時刻は未公表です。",
+        caution: "ホテル公式の徒歩約3分はJR大阪駅3階連絡橋口まで、会場の直結案内はうめきた地下口から南館4階までで、駅内の接続移動を含む公式通し時間ではありません。受験票で最終会場を確認してください。藤田医科大学の一次は出願時に選択し、出願後の変更不可。大阪は定員470名で満員時に登録終了、入室8:00〜8:40です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://www.hankyu-hotel.com/hotel/respire/osaka/access",
           "https://osaka.congres-square.jp/grandgreen/access/",
@@ -3163,7 +3167,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: CONGRES_CONVENTION_CENTER_VERIFIED_AT,
-    note: "グランフロント大阪方向へ鉄道を使わず移動できる動線優先の候補です。15〜17歳の方だけで宿泊する場合は、宿泊者1名につき親権者同意書1枚を前日までに提出します。15歳未満は原則として親権者の同行が必要です。客室の学習机は公式本文で確認できないため、必要な場合は予約前にホテルへ確認してください。朝食は7:00開始のため、8:10受付に間に合う余裕を個別に判断してください。",
+    note: "グランフロント大阪方向へ鉄道を使わず移動できる動線優先の候補です。15〜17歳の方だけで宿泊する場合は、宿泊者1名につき親権者同意書1枚を前日までに提出します。15歳未満は原則として親権者の同行が必要です。客室の学習机は公式本文で確認できないため、必要な場合は予約前にホテルへ確認してください。朝食は7:00開始のため、8:40までの着席に間に合う余裕を個別に判断してください。藤田医科大学の一次は出願時に選択し、出願後の変更不可。大阪は定員470名で満員時に登録終了、入室8:00〜8:40です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
   },
   {
     hotelId: "hotel-binario-umeda",
@@ -3203,7 +3207,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: FUJITA_EXTERNAL_VENUES_VERIFIED_AT,
-        caution: "ホテル公式5分と大学要項12分は起終点の異なる別区間で、信号、商業施設内の分岐、南館4階、指定試験室までを含む通し所要ではありません。藤田医科大学医学部一般入試一次の大阪会場は2027年2月4日のコングレスクエア グラングリーン大阪と確認済みですが、出願時選択・収容条件は10月頃公開予定の同要項該当章待ちです。受験票で最終会場を確認してください。南館4階までは確定していますが、使用ルーム・試験受付・受験生入口・入室時刻は未公表です。",
+        caution: "ホテル公式5分と大学要項12分は起終点の異なる別区間で、信号、商業施設内の分岐、南館4階、指定試験室までを含む通し所要ではありません。受験票で最終会場を確認してください。藤田医科大学の一次は出願時に選択し、出願後の変更不可。大阪は定員470名で満員時に登録終了、入室8:00〜8:40です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://hotel-binario.jp/umeda/access/",
           "https://osaka.congres-square.jp/grandgreen/access/",
@@ -3685,7 +3689,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: FUJITA_TOYOAKE_VERIFIED_AT,
-        caution: "ホテル公式の徒歩約1分、名鉄名古屋本線、大学公式の前後駅1番のりばからのバス案内を接続した経路で、ホテルから試験室までの通し所要ではありません。2027年2月14日または15日の列車・バス時刻と受験者ごとの試験日・集合時刻は未公表です。前後駅では『勅使台』行きや『赤池駅（祐福寺経由）』行きを利用しないでください。学生・職員専用スクールバスは学生証が必要なため受験生の経路には使いません。会場は豊明キャンパスで確定していますが、使用棟・階・試験室・受付位置・受験生入口は未公表です。『藤田医科大学病院』停留所や病院入口を試験入口とみなさず、10月頃公開予定の学生募集要項、受験票、当日案内を確認してください。",
+        caution: "ホテル公式の徒歩約1分、名鉄名古屋本線、大学公式の前後駅1番のりばからのバス案内を接続した経路で、ホテルから試験室までの通し所要ではありません。前後駅では『勅使台』行きや『赤池駅（祐福寺経由）』行きを利用しないでください。学生・職員専用スクールバスは学生証が必要なため受験生の経路には使いません。会場は豊明キャンパスで確定していますが、使用棟・階・試験室・受付位置・受験生入口は未公表です。藤田医科大学の一般・共通テスト利用二次は2月14日・15日の午前8:30〜9:10、午後12:00〜12:40に入室します。希望日時は出願順に上限まで割り当て、二次受験票で通知されます。一般一次では名古屋が満員の場合に限り大学2号館で受け付け、8:00〜8:40に入室します。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://www.choice-hotels.jp/hotel/nagoyakanayama/access/",
           "https://www.meitetsu.co.jp/train/station_info/line01/index.html",
@@ -3705,7 +3709,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: FUJITA_TOYOAKE_VERIFIED_AT,
-    note: "金山駅東口に近く、前後駅まで名鉄名古屋本線で乗換なしの堅実枠です。客室Wi-Fi、レイアウト変更できるデスク、24時間コインランドリー、6:30開始の無料朝食を公式確認しています。18歳未満の方1名または未成年者同士で宿泊する場合は、宿泊者全員分の保護者同意書を提出してください。二次試験の受験日・集合時刻とキャンパス内の入口は完成版要項・受験票で確認してください。",
+    note: "金山駅東口に近く、前後駅まで名鉄名古屋本線で乗換なしの堅実枠です。客室Wi-Fi、レイアウト変更できるデスク、24時間コインランドリー、6:30開始の無料朝食を公式確認しています。18歳未満の方1名または未成年者同士で宿泊する場合は、宿泊者全員分の保護者同意書を提出してください。二次試験の個別日時・入口は受験票で確認してください。藤田医科大学の一般・共通テスト利用二次は2月14日・15日の午前8:30〜9:10、午後12:00〜12:40に入室します。希望日時は出願順に上限まで割り当て、二次受験票で通知されます。一般一次では名古屋が満員の場合に限り大学2号館で受け付け、8:00〜8:40に入室します。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
   },
   {
     hotelId: "hotel-izumi-toyoake",
@@ -3727,7 +3731,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: FUJITA_TOYOAKE_VERIFIED_AT,
-        caution: "ホテル公式サイト内で前後駅までの徒歩表示が詳細ページ15分、トップページ20分と一致しないため、短い方を通し所要の計算には使わず、余裕を大きく見込んでください。2027年2月14日または15日のバス時刻と受験者ごとの試験日・集合時刻は未公表です。前後駅では『勅使台』行きや『赤池駅（祐福寺経由）』行きを利用しないでください。学生・職員専用スクールバスは受験生向けではありません。ホテル公式は藤田医科大学までタクシー約8分とも案内しますが、予約・配車を保証できないため主経路には採りません。使用棟・階・試験室・受付位置・受験生入口は未公表で、病院停留所・病院入口を試験入口とみなさないでください。",
+        caution: "ホテル公式サイト内で前後駅までの徒歩表示が詳細ページ15分、トップページ20分と一致しないため、短い方を通し所要の計算には使わず、余裕を大きく見込んでください。前後駅では『勅使台』行きや『赤池駅（祐福寺経由）』行きを利用しないでください。学生・職員専用スクールバスは受験生向けではありません。ホテル公式は藤田医科大学までタクシー約8分とも案内しますが、予約・配車を保証できないため主経路には採りません。使用棟・階・試験室・受付位置・受験生入口は未公表で、病院停留所・病院入口を試験入口とみなさないでください。藤田医科大学の一般・共通テスト利用二次は2月14日・15日の午前8:30〜9:10、午後12:00〜12:40に入室します。希望日時は出願順に上限まで割り当て、二次受験票で通知されます。一般一次では名古屋が満員の場合に限り大学2号館で受け付け、8:00〜8:40に入室します。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://hotel-izumi.com/access/",
           "https://www.fujita-hu.ac.jp/access.html",
@@ -3746,7 +3750,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: FUJITA_TOYOAKE_VERIFIED_AT,
-    note: "豊明市内の独立系ビジネスホテルで、公式サイトはシングルを受験生にも推奨しています。無料Wi-Fi・有線LAN、コインランドリー、7:00開始の朝食、テーブル灯を確認しています。客室の机と未成年者だけの宿泊条件は公式本文で確認できないため、18歳未満の方は予約前に受入可否・必要書類と、椅子で使える机のあるシングルを電話で確認してください。二次試験の受験日・集合時刻とキャンパス内の入口は完成版要項・受験票で確認してください。",
+    note: "豊明市内の独立系ビジネスホテルで、公式サイトはシングルを受験生にも推奨しています。無料Wi-Fi・有線LAN、コインランドリー、7:00開始の朝食、テーブル灯を確認しています。客室の机と未成年者だけの宿泊条件は公式本文で確認できないため、18歳未満の方は予約前に受入可否・必要書類と、椅子で使える机のあるシングルを電話で確認してください。二次試験の個別日時・入口は受験票で確認してください。藤田医科大学の一般・共通テスト利用二次は2月14日・15日の午前8:30〜9:10、午後12:00〜12:40に入室します。希望日時は出願順に上限まで割り当て、二次受験票で通知されます。一般一次では名古屋が満員の場合に限り大学2号館で受け付け、8:00〜8:40に入室します。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
   },
   {
     hotelId: "comfort-inn-fukuoka-tenjin",
@@ -3768,8 +3772,9 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: FUKUOKA_UNIVERSITY_NANAKUMA_VERIFIED_AT,
-        caution: "ホテル公式の天神南駅5番出口までの徒歩約1分、福岡市地下鉄公式の七隈線、大学公式の福大前駅1番出口案内を接続した経路で、ホテルから試験室までの通し所要ではありません。2027年2月2日の列車時刻は未公表のため、橋本方面の時刻と運行情報を直前に確認してください。一般選抜一次の福岡会場は出願時に希望できますが、収容人数を超えた場合は別会場になるため、出願確認票・受験票で福岡大学指定を確認してください。2027年度入試ガイドは大学名と住所までを公表し、使用棟・試験室・受付位置・受験生入口・集合時刻は未公表です。福大前駅1番出口や正門を試験入口とみなさず、完成版の入学試験要項、受験票、当日案内を確認してください。",
+        caution: "ホテル公式の天神南駅5番出口までの徒歩約1分、福岡市地下鉄公式の七隈線、大学公式の福大前駅1番出口案内を接続した経路で、ホテルから試験室までの通し所要ではありません。系統別一次は2月2日（火）、9:45までに着席。系統別・共テⅠ期の二次は2月14日（日）に同キャンパスで、個人の集合時間と場所は二次選考受験票で通知されます。福大前駅からの構内移動も見込み、指定教室を受験票と掲示で確認してください。",
         evidenceUrls: [
+          "https://nyushi.fukuoka-u.ac.jp/cms/wp-content/uploads/2026/11/ippan.pdf",
           "https://www.choice-hotels.jp/inn/fukuokatenjin/access/",
           "https://subway.city.fukuoka.lg.jp/eki/stations/tenjinminami.php",
           "https://subway.city.fukuoka.lg.jp/eki/stations/fukudai.php",
@@ -3810,8 +3815,9 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: FUKUOKA_UNIVERSITY_NANAKUMA_VERIFIED_AT,
-        caution: "ホテル公式の薬院駅までの徒歩約2分、福岡市地下鉄公式の七隈線、大学公式の福大前駅1番出口案内を接続した経路で、ホテルから試験室までの通し所要ではありません。2027年2月2日の列車時刻は未公表のため、橋本方面の時刻と運行情報を直前に確認してください。一般選抜一次の福岡会場は出願時に希望できますが、収容人数を超えた場合は別会場になるため、出願確認票・受験票で福岡大学指定を確認してください。2027年度入試ガイドは大学名と住所までを公表し、使用棟・試験室・受付位置・受験生入口・集合時刻は未公表です。福大前駅1番出口や正門を試験入口とみなさず、完成版の入学試験要項、受験票、当日案内を確認してください。",
+        caution: "ホテル公式の薬院駅までの徒歩約2分、福岡市地下鉄公式の七隈線、大学公式の福大前駅1番出口案内を接続した経路で、ホテルから試験室までの通し所要ではありません。系統別一次は2月2日（火）、9:45までに着席。系統別・共テⅠ期の二次は2月14日（日）に同キャンパスで、個人の集合時間と場所は二次選考受験票で通知されます。福大前駅からの構内移動も見込み、指定教室を受験票と掲示で確認してください。",
         evidenceUrls: [
+          "https://nyushi.fukuoka-u.ac.jp/cms/wp-content/uploads/2026/11/ippan.pdf",
           "https://www.hotelnewgaea.com/yakuin/",
           "https://subway.city.fukuoka.lg.jp/eki/stations/yakuin.php",
           "https://subway.city.fukuoka.lg.jp/eki/stations/fukudai.php",
@@ -3927,12 +3933,12 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
       {
         venueId: "venue-bellesalle-shinjuku-grand",
         modes: ["walk"],
-        routeSummary: "ダイワロイネットホテル西新宿 PREMIERから、ホテルと会場の公式住所を地図上で照合した地上の公道を徒歩で進み、住友不動産新宿グランドタワー1階のベルサール新宿グランド イベントホールへ向かいます。到着後は受験票と当日案内に従って指定された受付へ進みます。",
+        routeSummary: "ダイワロイネットホテル西新宿 PREMIERから、ホテルと会場の公式住所を地図上で照合した地上の公道を徒歩で進み、住友不動産新宿グランドタワーのベルサール新宿グランドへ向かいます。到着後は受験票と当日案内に従って指定された受付へ進みます。",
         transferCount: 0,
         measurementBasis: "map_route_checked",
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: BELLESALLE_SHINJUKU_GRAND_VERIFIED_AT,
-        caution: "ホテル公式は西新宿駅2番出口から徒歩約5分、会場公式は同駅1番出口から徒歩約4分と案内していますが、別出口を基準にした区間のため合算しません。両施設の公式住所を地図上で照合し、駅の有料区域を通らない直接徒歩経路が成立することを確認しましたが、ホテルから試験室までの公式通し所要はありません。東京医科大学の2027年度一般選抜一次は2月6日、8:30開門・9:10集合で、受験番号により本学またはベルサール新宿グランドが指定されます。ベルサールは1階イベントホールまで公表されていますが、使用区画・受付位置・受験生入口は未公表です。受験票で会場を確認し、近隣の別ベルサールや同施設5階の会議室と取り違えないでください。",
+        caution: "ホテル公式は西新宿駅2番出口から徒歩約5分、会場公式は同駅1番出口から徒歩約4分と案内していますが、別出口を基準にした区間のため合算しません。両施設の公式住所を地図上で照合し、駅の有料区域を通らない直接徒歩経路が成立することを確認しましたが、ホテルから試験室までの公式通し所要はありません。東京医科大学の2027年度一般選抜一次は2月6日、8:30開門・9:10集合で、受験番号により本学またはベルサール新宿グランドが指定されます。ベルサールの使用階・試験室・受付入口は最新要項では指定されていません。受験票で会場を確認し、施設通常のフロア案内を試験会場の階指定とみなさず、近隣の別ベルサールと取り違えないでください。",
         evidenceUrls: [
           "https://www.daiwaroynet.jp/nishi-shinjuku/access/",
           "https://www.bellesalle.co.jp/shisetsu/shinjuku/bs_shinjukugrand/",
@@ -4323,13 +4329,13 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat"],
         verifiedAt: TKP_PREMIUM_NAGOYA_EKIMAE_VERIFIED_AT,
-        caution: "ホテル公式の徒歩約5分は太閤通口まで、会場公式の徒歩3分は地下鉄10番出入口から施設までで、起終点が一致しません。名古屋駅の東西横断、信号待ち、客室階・施設3階の移動を含む通し所要ではありません。金沢医科大学の2027年度ガイドと『昨年度からの変更点』は名古屋試験場を本施設へ変更すると明記していますが、一般選抜（前期）の公式ページには旧会場のTKPガーデンシティPREMIUM名古屋ルーセントタワー表記が残っています。必ず受験票で施設名・住所を確認し、駅周辺の別TKP施設と取り違えないでください。一次は2027年2月3日・4日の自由選択制で、英語は9:30開始ですが、開場・入場時刻、使用室、受付位置、受験生入口は未公表です。",
+        caution: "ホテル公式の徒歩約5分は太閤通口まで、会場公式の徒歩3分は地下鉄10番出入口から施設までで、起終点が一致しません。名古屋駅の東西横断、信号待ち、客室階・施設3階の移動を含む通し所要ではありません。金沢医科大学の一般選抜（前期）の公式案内で、本施設を名古屋試験場として確認しました。必ず受験票で施設名・住所を確認し、駅周辺の別TKP施設と取り違えないでください。一次は2027年2月3日・4日の自由選択制で、英語は9:30開始ですが、開場・入場時刻、使用室、受付位置、受験生入口は未公表です。",
         evidenceUrls: [
+          "https://www.kanazawa-med.ac.jp/medicine_exam/guidelines/general-1.html",
           "https://www.choice-hotels.jp/hotel/nagoyashinkansenguchi/access/",
           "https://www.kashikaigishitsu.net/facilitys/gcp-nagoya-ekimae/",
           "https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_admissionguide.pdf.pdf",
           "https://www.kanazawa-med.ac.jp/medicine_exam/summary/post-4.html",
-          "https://www.kanazawa-med.ac.jp/medicine_exam/guidelines/general-1.html",
         ],
       },
       {
@@ -4341,8 +4347,9 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat"],
         verifiedAt: FUKUOKA_NAGOYA_VERIFIED_AT,
-        caution: "ホテル公式の徒歩約5分と施設公式の徒歩3分は太閤通口を接続点とする別区間で、ホテルから指定試験室までの通し所要ではありません。客室階からの移動、横断・信号待ち、井門名古屋ビル内の移動を別に見込んでください。福岡大学医学部医学科の系統別日程一次は2027年2月2日（火）です。名古屋会場を希望しても収容人数により別会場になる場合があるため、出願確認票・受験票で本施設の指定を確認してください。2027年度入試要項は9月下旬公開予定で、開場・入室・集合・試験開始時刻、使用階・会議室、受付位置、受験生入口は未公表です。施設の通常利用時間や一般受付を試験の開場時刻・入口とみなさず、入試要項、受験票、当日案内を確認してください。",
+        caution: "ホテル公式の徒歩約5分と施設公式の徒歩3分は太閤通口を接続点とする別区間で、ホテルから指定試験室までの通し所要ではありません。客室階からの移動、横断・信号待ち、井門名古屋ビル内の移動を別に見込んでください。福岡大学医学部医学科の系統別日程一次は2027年2月2日（火）です。名古屋会場を希望しても収容人数により別会場になる場合があるため、出願確認票・受験票で本施設の指定を確認してください。当日8:30までに受験室案内を掲示し、その後に入室できます。9:45着席、10:00開始。使用階・会議室、受付位置、受験生入口は受験票・当日掲示で確認してください。施設の通常利用時間や一般受付を試験の開場時刻・入口とみなさず、入試要項、受験票、当日案内を確認してください。",
         evidenceUrls: [
+          "https://nyushi.fukuoka-u.ac.jp/cms/wp-content/uploads/2026/11/ippan.pdf",
           "https://www.choice-hotels.jp/hotel/nagoyashinkansenguchi/access/",
           "https://www.kashikaigishitsu.net/facilitys/gc-nagoya-shinkansenguchi/access/",
           "https://www.kashikaigishitsu.net/facilitys/gc-nagoya-shinkansenguchi/",
@@ -4381,8 +4388,9 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat"],
         verifiedAt: FUKUOKA_NAGOYA_VERIFIED_AT,
-        caution: "ホテル公式の徒歩約3分と施設公式の徒歩3分は太閤通口を接続点とする別区間で、ホテルから指定試験室までの通し所要ではありません。客室階からの移動、横断・信号待ち、井門名古屋ビル内の移動を別に見込んでください。福岡大学医学部医学科の系統別日程一次は2027年2月2日（火）です。名古屋会場を希望しても収容人数により別会場になる場合があるため、出願確認票・受験票で本施設の指定を確認してください。2027年度入試要項は9月下旬公開予定で、開場・入室・集合・試験開始時刻、使用階・会議室、受付位置、受験生入口は未公表です。施設の通常利用時間や一般受付を試験の開場時刻・入口とみなさず、入試要項、受験票、当日案内を確認してください。",
+        caution: "ホテル公式の徒歩約3分と施設公式の徒歩3分は太閤通口を接続点とする別区間で、ホテルから指定試験室までの通し所要ではありません。客室階からの移動、横断・信号待ち、井門名古屋ビル内の移動を別に見込んでください。福岡大学医学部医学科の系統別日程一次は2027年2月2日（火）です。名古屋会場を希望しても収容人数により別会場になる場合があるため、出願確認票・受験票で本施設の指定を確認してください。当日8:30までに受験室案内を掲示し、その後に入室できます。9:45着席、10:00開始。使用階・会議室、受付位置、受験生入口は受験票・当日掲示で確認してください。施設の通常利用時間や一般受付を試験の開場時刻・入口とみなさず、入試要項、受験票、当日案内を確認してください。",
         evidenceUrls: [
+          "https://nyushi.fukuoka-u.ac.jp/cms/wp-content/uploads/2026/11/ippan.pdf",
           "https://www.daiwaroynet.jp/nagoya-shinkansenguchi/access/",
           "https://www.kashikaigishitsu.net/facilitys/gc-nagoya-shinkansenguchi/access/",
           "https://www.kashikaigishitsu.net/facilitys/gc-nagoya-shinkansenguchi/",
@@ -4422,13 +4430,13 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat"],
         verifiedAt: TKP_PREMIUM_NAGOYA_EKIMAE_VERIFIED_AT,
-        caution: "ホテル公式の徒歩約4分はJR名古屋駅桜通口まで、会場公式の徒歩3分は地下鉄10番出入口から施設までで、起終点が一致しません。出口間移動、信号待ち、客室階・施設3階の移動を含む通し所要ではありません。金沢医科大学の2027年度ガイドと『昨年度からの変更点』は名古屋試験場を本施設へ変更すると明記していますが、一般選抜（前期）の公式ページには旧会場のTKPガーデンシティPREMIUM名古屋ルーセントタワー表記が残っています。必ず受験票で施設名・住所を確認し、駅周辺の別TKP施設と取り違えないでください。一次は2027年2月3日・4日の自由選択制で、英語は9:30開始ですが、開場・入場時刻、使用室、受付位置、受験生入口は未公表です。",
+        caution: "ホテル公式の徒歩約4分はJR名古屋駅桜通口まで、会場公式の徒歩3分は地下鉄10番出入口から施設までで、起終点が一致しません。出口間移動、信号待ち、客室階・施設3階の移動を含む通し所要ではありません。金沢医科大学の一般選抜（前期）の公式案内で、本施設を名古屋試験場として確認しました。必ず受験票で施設名・住所を確認し、駅周辺の別TKP施設と取り違えないでください。一次は2027年2月3日・4日の自由選択制で、英語は9:30開始ですが、開場・入場時刻、使用室、受付位置、受験生入口は未公表です。",
         evidenceUrls: [
+          "https://www.kanazawa-med.ac.jp/medicine_exam/guidelines/general-1.html",
           "https://www.m-inn.com/sakuradori/access_guide/",
           "https://www.kashikaigishitsu.net/facilitys/gcp-nagoya-ekimae/",
           "https://www.kanazawa-med.ac.jp/medicine_exam/assets/m_admissionguide.pdf.pdf",
           "https://www.kanazawa-med.ac.jp/medicine_exam/summary/post-4.html",
-          "https://www.kanazawa-med.ac.jp/medicine_exam/guidelines/general-1.html",
         ],
       },
     ],
@@ -4504,7 +4512,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat"],
         verifiedAt: OMPU_TAKATSUKI_VERIFIED_AT,
-        caution: "ホテル公式の徒歩約2分は阪急高槻市駅まで、大学公式の『出口1よりすぐ』は駅出口からキャンパスまでの一般アクセスで、ホテルから試験室までの通し所要ではありません。出口1を試験当日の受験生入口とみなさず、信号待ち、客室階、指定試験棟・試験室までの移動を別に見込んでください。2027年度医学部一般選抜（前期・大阪府地域枠）の二次は2月19日、一般選抜（後期）の二次は3月16日、共通テスト利用選抜の二次は2月28日に本部キャンパスで実施予定です。一般前期の繰上合格候補対象者の二次は3月3日です。現時点では開場・集合・開始時刻、使用棟・階・試験室、受付位置、受験生入口が未公表のため、完成版募集要項、受験票、一次試験合格者向け案内を確認してください。大学病院の入口を試験入口と取り違えないでください。",
+        caution: "ホテル公式の徒歩約2分は阪急高槻市駅まで、大学公式の『出口1よりすぐ』は駅出口からキャンパスまでの一般アクセスで、ホテルから試験室までの通し所要ではありません。出口1を試験当日の受験生入口とみなさず、信号待ち、客室階、指定試験棟・試験室までの移動を別に見込んでください。2027年度医学部一般選抜（前期・大阪府地域枠）の二次は2月19日、一般選抜（後期）の二次は3月18日、共通テスト利用選抜の二次は2月28日に本部キャンパスで実施予定です。一般前期の繰上合格候補対象者の二次は3月3日です。大学病院の入口を試験入口と取り違えないでください。大阪医科薬科大学の後期二次は3月18日です。二次集合場所・時間は一次合格発表時、繰上候補者はマイページで通知。集合から10分以上の遅刻は入室不可です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://hotel-trend.jp/takatsuki/",
           "https://www.ompu.ac.jp/access.html",
@@ -4524,7 +4532,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: OMPU_TAKATSUKI_VERIFIED_AT,
-    note: "阪急高槻市駅側から鉄道を使わず本部キャンパスへ向かえるビジネスホテルです。客室ビジネスデスク、無料Wi-Fi・有線LAN、2階コインランドリー、7:00開始の朝食、電気スタンドを施設公式で確認しています。18歳未満だけ、または親権者以外の方と宿泊する場合は親権者承諾書をチェックイン時に提出してください。18歳以上でも高校生は承諾書が必要です。2027年度の開場・集合時刻は未公表のため、7:00開始の朝食を利用できるかは完成版募集要項と一次試験合格者向け案内の公表後に再判定してください。",
+    note: "阪急高槻市駅側から鉄道を使わず本部キャンパスへ向かえるビジネスホテルです。客室ビジネスデスク、無料Wi-Fi・有線LAN、2階コインランドリー、7:00開始の朝食、電気スタンドを施設公式で確認しています。18歳未満だけ、または親権者以外の方と宿泊する場合は親権者承諾書をチェックイン時に提出してください。18歳以上でも高校生は承諾書が必要です。大阪医科薬科大学の後期二次は3月18日です。二次集合場所・時間は一次合格発表時、繰上候補者はマイページで通知。集合から10分以上の遅刻は入室不可です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
   },
   {
     hotelId: "work-hotel-annex-takatsuki",
@@ -4546,7 +4554,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat"],
         verifiedAt: OMPU_TAKATSUKI_VERIFIED_AT,
-        caution: "ホテル公式はJR高槻駅・阪急高槻市駅から徒歩3分と案内しますが、ホテルから本部キャンパスまでの公式通し所要ではありません。大学公式の『出口1よりすぐ』もキャンパス一般アクセスで、試験当日の受験生入口・試験室までの時間を示しません。信号待ち、客室階、指定試験棟・試験室までの移動を別に見込んでください。2027年度医学部一般選抜（前期・大阪府地域枠）の二次は2月19日、一般選抜（後期）の二次は3月16日、共通テスト利用選抜の二次は2月28日に本部キャンパスで実施予定です。一般前期の繰上合格候補対象者の二次は3月3日です。開場・集合・開始時刻、使用棟・階・試験室、受付位置、受験生入口は未公表のため、完成版募集要項、受験票、一次試験合格者向け案内を確認してください。大学病院の入口を試験入口と取り違えないでください。",
+        caution: "ホテル公式はJR高槻駅・阪急高槻市駅から徒歩3分と案内しますが、ホテルから本部キャンパスまでの公式通し所要ではありません。大学公式の『出口1よりすぐ』もキャンパス一般アクセスで、試験当日の受験生入口・試験室までの時間を示しません。信号待ち、客室階、指定試験棟・試験室までの移動を別に見込んでください。2027年度医学部一般選抜（前期・大阪府地域枠）の二次は2月19日、一般選抜（後期）の二次は3月18日、共通テスト利用選抜の二次は2月28日に本部キャンパスで実施予定です。一般前期の繰上合格候補対象者の二次は3月3日です。大学病院の入口を試験入口と取り違えないでください。大阪医科薬科大学の後期二次は3月18日です。二次集合場所・時間は一次合格発表時、繰上候補者はマイページで通知。集合から10分以上の遅刻は入室不可です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://www.workhotel.jp/access/",
           "https://www.ompu.ac.jp/access.html",
@@ -4564,7 +4572,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatus: "official_site_active",
     reviewState: "verified",
     verifiedAt: OMPU_TAKATSUKI_VERIFIED_AT,
-    note: "46室の地域系ホテルで、JR高槻駅・阪急高槻市駅の双方から徒歩圏です。全室Wi-Fi・有線LAN、館内コインランドリー、7:00開始の朝食を施設公式で確認しています。15歳以上18歳未満だけで宿泊する場合は、宿泊者全員分の親権者同意書をチェックイン時に提出してください。15歳未満の単独宿泊条件と、椅子で使える客室机は公式本文で確認できないため、予約前にホテルへ確認してください。公式予約は6か月先までの販売が基本のため、2027年2月・3月の販売開始後に在庫とキャンセル条件を再確認してください。",
+    note: "46室の地域系ホテルで、JR高槻駅・阪急高槻市駅の双方から徒歩圏です。全室Wi-Fi・有線LAN、館内コインランドリー、7:00開始の朝食を施設公式で確認しています。15歳以上18歳未満だけで宿泊する場合は、宿泊者全員分の親権者同意書をチェックイン時に提出してください。15歳未満の単独宿泊条件と、椅子で使える客室机は公式本文で確認できないため、予約前にホテルへ確認してください。公式予約は6か月先までの販売が基本のため、2027年2月・3月の販売開始後に在庫とキャンセル条件を再確認してください。大阪医科薬科大学の後期二次は3月18日です。二次集合場所・時間は一次合格発表時、繰上候補者はマイページで通知。集合から10分以上の遅刻は入室不可です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
   },
   {
     hotelId: "daiwa-roynet-hotel-shimbashi",
@@ -4624,7 +4632,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "map_route_checked",
         reviewState: ["verified_with_caveat"],
         verifiedAt: KAWASAKI_GENERAL_GYM_VERIFIED_AT,
-        caution: "ホテル公式住所（倉敷市松島1177-7）と大学公式住所（同市松島577）を地図上で照合し、駅を経由しない徒歩経路が成立することを確認したものです。ホテルから試験施設・受験室までの公式推奨経路や公式徒歩分数ではないため、通し所要は掲載しません。川崎医科大学の2027年度一般選抜・地域枠選抜の第一次試験は2月1日ですが、大学公式の会場表記は『総合体育館等』で、使用施設、受付位置、受験生入口、受験室は未公表です。大学は試験会場と周辺への自家用車・タクシー・バス等の乗り入れ、無断駐車、送迎を禁止しています。附属病院入口を試験入口とみなさず、前日は公道の道順だけを確認し、当日は受験票と大学案内を優先してください。",
+        caution: "ホテル公式住所（倉敷市松島1177-7）と大学公式住所（同市松島577）を地図上で照合し、駅を経由しない徒歩経路が成立することを確認したものです。ホテルから試験施設・受験室までの公式推奨経路や公式徒歩分数ではないため、通し所要は掲載しません。川崎医科大学の2027年度一般選抜・地域枠選抜の第一次試験は2月1日ですが、大学公式の会場表記は『総合体育館等』で、使用施設、受付位置、受験生入口、受験室は未公表です。大学は試験会場と周辺への自家用車・タクシー・バス等の乗り入れ、無断駐車、送迎を禁止しています。附属病院入口を試験入口とみなさず、前日は公道の道順だけを確認し、当日は受験票と大学案内を優先してください。川崎医科大学一般一次は8:00開場予定、8:00〜9:15に入室・着席です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://www.vessel-hotel.jp/hotel/kurashiki/",
           "https://www.google.com/maps/dir/?api=1&origin=%E5%B2%A1%E5%B1%B1%E7%9C%8C%E5%80%89%E6%95%B7%E5%B8%82%E6%9D%BE%E5%B3%B61177-7&destination=%E5%B2%A1%E5%B1%B1%E7%9C%8C%E5%80%89%E6%95%B7%E5%B8%82%E6%9D%BE%E5%B3%B6577&travelmode=walking",
@@ -4681,7 +4689,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat"],
         verifiedAt: KAWASAKI_GENERAL_GYM_VERIFIED_AT,
-        caution: "ホテル公式の徒歩4分と大学公式の徒歩10分は起終点の異なる別区間で、JRの乗車・待ち時間、駅構内移動、信号、指定された試験施設・受験室までを含む通し所要ではありません。2027年2月1日のJRダイヤは未公表のため、岡山方面行きで中庄駅に停車する列車の時刻と運行情報を直前にJR西日本公式で確認してください。大学公式の会場表記は『総合体育館等』で、使用施設、受付位置、受験生入口、受験室は未公表です。試験会場と周辺への自家用車・タクシー・バス等の乗り入れ、無断駐車、送迎は禁止されています。附属病院入口を試験入口とみなさず、受験票と大学案内を確認してください。",
+        caution: "ホテル公式の徒歩4分と大学公式の徒歩10分は起終点の異なる別区間で、JRの乗車・待ち時間、駅構内移動、信号、指定された試験施設・受験室までを含む通し所要ではありません。2027年2月1日のJRダイヤは未公表のため、岡山方面行きで中庄駅に停車する列車の時刻と運行情報を直前にJR西日本公式で確認してください。大学公式の会場表記は『総合体育館等』で、使用施設、受付位置、受験生入口、受験室は未公表です。試験会場と周辺への自家用車・タクシー・バス等の乗り入れ、無断駐車、送迎は禁止されています。附属病院入口を試験入口とみなさず、受験票と大学案内を確認してください。川崎医科大学一般一次は8:00開場予定、8:00〜9:15に入室・着席です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://greenrichhotels.jp/kurashiki/",
           "https://eki.jr-odekake.net/top?id=0650612",
@@ -9609,8 +9617,9 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat"],
         verifiedAt: FUKUOKA_TIME24_VERIFIED_AT,
-        caution: "ホテル公式の徒歩3分と施設公式の徒歩約2分は起終点の異なる別区間で、ゆりかもめの乗車・待ち時間、駅構内移動、指定試験室までを含む通し所要ではありません。福岡大学医学部医学科の系統別日程一次は2027年2月2日（火）です。東京会場を希望しても収容人数により別会場になる場合があるため、出願確認票・受験票でタイム24ビルの指定を確認してください。2027年のゆりかもめ時刻、開場・入室・集合・試験開始時刻、使用階・研修室・会議室、受付位置、受験生入口は未公表です。9月下旬公開予定の入試要項、受験票、当日案内を確認し、施設の一般入口や通常利用時間を試験入口・開場時刻とみなさないでください。",
+        caution: "ホテル公式の徒歩3分と施設公式の徒歩約2分は起終点の異なる別区間で、ゆりかもめの乗車・待ち時間、駅構内移動、指定試験室までを含む通し所要ではありません。福岡大学医学部医学科の系統別日程一次は2027年2月2日（火）です。東京会場を希望しても収容人数により別会場になる場合があるため、出願確認票・受験票でタイム24ビルの指定を確認してください。当日8:30までに受験室案内を掲示し、その後に入室できます。9:45着席、10:00開始。使用階・研修室・会議室、受付位置、受験生入口は受験票・当日掲示を確認し、施設の一般入口や通常利用時間を試験入口・開場時刻とみなさないでください。",
         evidenceUrls: [
+          "https://nyushi.fukuoka-u.ac.jp/cms/wp-content/uploads/2026/11/ippan.pdf",
           "https://washington-hotels.jp/ariake/access/",
           "https://www.yurikamome.co.jp/",
           "https://www.yurikamome.co.jp/station-timetable/u-11.html",
@@ -9628,7 +9637,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "map_route_checked",
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: FUJITA_EXTERNAL_VENUES_VERIFIED_AT,
-        caution: "ホテルから有明TOCビルへの公式直通案内・徒歩分数はなく、両施設の公式住所と大学要項の会場図で地上徒歩経路を確認したものです。通し所要は掲載しません。藤田医科大学医学部一般入試一次の東京会場は2027年2月4日の有明TOCビルと確認済みですが、出願時選択・収容条件は10月頃公開予定の同要項該当章待ちです。受験票で最終会場を確認してください。使用階・試験室・受付・受験生入口・入室時刻は未公表です。大学要項と施設公式で駅徒歩分数に差があるため、前日に地上経路を確認してください。",
+        caution: "ホテルから有明TOCビルへの公式直通案内・徒歩分数はなく、両施設の公式住所と大学要項の会場図で地上徒歩経路を確認したものです。通し所要は掲載しません。受験票で最終会場を確認してください。大学要項と施設公式で駅徒歩分数に差があるため、前日に地上経路を確認してください。藤田医科大学の一次は出願時に選択し、出願後の変更不可。東京は定員1000名で満員時に登録終了、入室8:00〜8:40です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://washington-hotels.jp/ariake/access/",
           "https://www.saiji2.toc.co.jp/ariake/access/",
@@ -9648,7 +9657,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatusEvidenceUrl: "https://washington-hotels.jp/ariake/",
     reviewState: "verified",
     verifiedAt: FUKUOKA_TIME24_VERIFIED_AT,
-    note: "ゆりかもめ東京ビッグサイト駅からテレコムセンター駅まで乗換なし2駅で移動できる堅実枠です。全客室無料Wi-Fi・有線LAN、4階コインランドリー、6:30開始の朝食、客室加湿器、貸出電気スタンドを施設公式で確認しています。18歳未満だけで宿泊する場合は公式の親権者同意書を事前に記入し、宿泊当日に持参してください。客室ページの写真には作業面がありますが、椅子で使える学習机を公式本文で確認できないため、予約前に机のある部屋をホテルへ確認してください。",
+    note: "ゆりかもめ東京ビッグサイト駅からテレコムセンター駅まで乗換なし2駅で移動できる堅実枠です。全客室無料Wi-Fi・有線LAN、4階コインランドリー、6:30開始の朝食、客室加湿器、貸出電気スタンドを施設公式で確認しています。18歳未満だけで宿泊する場合は公式の親権者同意書を事前に記入し、宿泊当日に持参してください。客室ページの写真には作業面がありますが、椅子で使える学習机を公式本文で確認できないため、予約前に机のある部屋をホテルへ確認してください。藤田医科大学の一次は出願時に選択し、出願後の変更不可。東京は定員1000名で満員時に登録終了、入室8:00〜8:40です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
   },
   {
     hotelId: "hotel-trusty-tokyo-bayside",
@@ -9670,8 +9679,9 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat"],
         verifiedAt: FUKUOKA_TIME24_VERIFIED_AT,
-        caution: "ホテル公式の徒歩約5分と施設公式の徒歩約2分は起終点の異なる別区間で、ゆりかもめの乗車・待ち時間、駅構内移動、指定試験室までを含む通し所要ではありません。福岡大学医学部医学科の系統別日程一次は2027年2月2日（火）です。東京会場を希望しても収容人数により別会場になる場合があるため、出願確認票・受験票でタイム24ビルの指定を確認してください。2027年のゆりかもめ時刻、開場・入室・集合・試験開始時刻、使用階・研修室・会議室、受付位置、受験生入口は未公表です。9月下旬公開予定の入試要項、受験票、当日案内を確認し、施設の一般入口や通常利用時間を試験入口・開場時刻とみなさないでください。",
+        caution: "ホテル公式の徒歩約5分と施設公式の徒歩約2分は起終点の異なる別区間で、ゆりかもめの乗車・待ち時間、駅構内移動、指定試験室までを含む通し所要ではありません。福岡大学医学部医学科の系統別日程一次は2027年2月2日（火）です。東京会場を希望しても収容人数により別会場になる場合があるため、出願確認票・受験票でタイム24ビルの指定を確認してください。当日8:30までに受験室案内を掲示し、その後に入室できます。9:45着席、10:00開始。使用階・研修室・会議室、受付位置、受験生入口は受験票・当日掲示を確認し、施設の一般入口や通常利用時間を試験入口・開場時刻とみなさないでください。",
         evidenceUrls: [
+          "https://nyushi.fukuoka-u.ac.jp/cms/wp-content/uploads/2026/11/ippan.pdf",
           "https://www.rtg.jp/hotels/trusty/tokyo_bs/",
           "https://www.yurikamome.co.jp/",
           "https://www.yurikamome.co.jp/station-timetable/u-11.html",
@@ -9689,7 +9699,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "map_route_checked",
         reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
         verifiedAt: FUJITA_EXTERNAL_VENUES_VERIFIED_AT,
-        caution: "ホテルから有明TOCビルへの公式直通案内・徒歩分数はなく、両施設の公式住所と大学要項の会場図で地上徒歩経路を確認したものです。通し所要は掲載しません。藤田医科大学医学部一般入試一次の東京会場は2027年2月4日の有明TOCビルと確認済みですが、出願時選択・収容条件は10月頃公開予定の同要項該当章待ちです。受験票で最終会場を確認してください。使用階・試験室・受付・受験生入口・入室時刻は未公表です。大学要項と施設公式で駅徒歩分数に差があるため、前日に地上経路を確認してください。",
+        caution: "ホテルから有明TOCビルへの公式直通案内・徒歩分数はなく、両施設の公式住所と大学要項の会場図で地上徒歩経路を確認したものです。通し所要は掲載しません。受験票で最終会場を確認してください。大学要項と施設公式で駅徒歩分数に差があるため、前日に地上経路を確認してください。藤田医科大学の一次は出願時に選択し、出願後の変更不可。東京は定員1000名で満員時に登録終了、入室8:00〜8:40です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
         evidenceUrls: [
           "https://www.rtg.jp/hotels/trusty/tokyo_bs/",
           "https://www.saiji2.toc.co.jp/ariake/access/",
@@ -9708,7 +9718,7 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     operatingStatusEvidenceUrl: "https://www.rtg.jp/hotels/trusty/tokyo_bs/info/",
     reviewState: "verified",
     verifiedAt: FUKUOKA_TIME24_VERIFIED_AT,
-    note: "東京ビッグサイト駅へ徒歩約5分、テレコムセンター駅まで乗換なし2駅の200室規模ホテルです。スタンダードダブルを指定すればライティングデスク、無料の有線・無線インターネットを施設公式で確認できます。朝食は7:00開始、電気スタンドは貸出品です。18歳未満だけで宿泊する場合は親権者同意書を宿泊7日前までに郵送・FAXするか、チェックイン時に持参してください。館内コインランドリーは施設公式で確認できないため、洗濯設備を必須とする場合は東京ベイ有明ワシントンホテルを優先してください。",
+    note: "東京ビッグサイト駅へ徒歩約5分、テレコムセンター駅まで乗換なし2駅の200室規模ホテルです。スタンダードダブルを指定すればライティングデスク、無料の有線・無線インターネットを施設公式で確認できます。朝食は7:00開始、電気スタンドは貸出品です。18歳未満だけで宿泊する場合は親権者同意書を宿泊7日前までに郵送・FAXするか、チェックイン時に持参してください。館内コインランドリーは施設公式で確認できないため、洗濯設備を必須とする場合は東京ベイ有明ワシントンホテルを優先してください。藤田医科大学の一次は出願時に選択し、出願後の変更不可。東京は定員1000名で満員時に登録終了、入室8:00〜8:40です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
   },
   {
     hotelId: "karaksa-hotel-grande-shin-osaka-tower",
@@ -9730,8 +9740,9 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat"],
         verifiedAt: FUKUOKA_SHIN_OSAKA_VERIFIED_AT,
-        caution: "ホテル公式の徒歩約5分と施設公式の徒歩5分は新大阪駅4番出口を接続点とする別区間で、ホテルから指定試験室までの通し所要ではありません。信号待ち、客室階、施設内のエレベーター待ちを別に見込んでください。福岡大学医学部医学科の系統別日程一次は2027年2月2日（火）です。大阪会場を希望しても収容人数により別会場になる場合があるため、出願確認票・受験票で本施設の指定を確認してください。会場の入居ビルは2026年6月30日に「新大阪NKビル」から「J.NODE新大阪」へ改称されました。施設は4～5階まで公表されていますが、2027年度入試要項は9月下旬公開予定で、開場・入室・集合・試験開始時刻、使用会議室、受付位置、受験生入口は未公表です。施設の通常利用時間や一般受付を試験の開場時刻・入口とみなさず、入試要項、受験票、当日案内を確認してください。",
+        caution: "ホテル公式の徒歩約5分と施設公式の徒歩5分は新大阪駅4番出口を接続点とする別区間で、ホテルから指定試験室までの通し所要ではありません。信号待ち、客室階、施設内のエレベーター待ちを別に見込んでください。福岡大学医学部医学科の系統別日程一次は2027年2月2日（火）です。大阪会場を希望しても収容人数により別会場になる場合があるため、出願確認票・受験票で本施設の指定を確認してください。会場の入居ビルは2026年6月30日に「新大阪NKビル」から「J.NODE新大阪」へ改称されました。施設は4～5階です。受験室案内は当日8:30までに掲示され、その後に入室できます。9:45着席、10:00開始。使用会議室、受付位置、受験生入口は受験票・当日掲示を確認してください。施設の通常利用時間や一般受付を試験の開場時刻・入口とみなさず、入試要項、受験票、当日案内を確認してください。",
         evidenceUrls: [
+          "https://nyushi.fukuoka-u.ac.jp/cms/wp-content/uploads/2026/11/ippan.pdf",
           "https://karaksahotels.com/shin_osaka/access/",
           "https://www.kashikaigishitsu.net/facilitys/cc-shinosaka/access/",
           "https://www.kashikaigishitsu.net/facilitys/cc-shinosaka/",
@@ -9771,8 +9782,9 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
         measurementBasis: "route_only",
         reviewState: ["verified_with_caveat"],
         verifiedAt: FUKUOKA_SHIN_OSAKA_VERIFIED_AT,
-        caution: "ホテル公式の徒歩約5分はJR新大阪駅正面口まで、施設公式の徒歩6分はJR新大阪駅北口から会場までで、起終点が一致しません。正面口から北口への駅構内移動、横断・信号待ち、客室階、施設内のエレベーター待ちを含む通し所要ではありません。福岡大学医学部医学科の系統別日程一次は2027年2月2日（火）です。大阪会場を希望しても収容人数により別会場になる場合があるため、出願確認票・受験票で本施設の指定を確認してください。会場の入居ビルは2026年6月30日に「新大阪NKビル」から「J.NODE新大阪」へ改称されました。施設は4～5階まで公表されていますが、2027年度入試要項は9月下旬公開予定で、開場・入室・集合・試験開始時刻、使用会議室、受付位置、受験生入口は未公表です。施設の通常利用時間や一般受付を試験の開場時刻・入口とみなさず、入試要項、受験票、当日案内を確認してください。",
+        caution: "ホテル公式の徒歩約5分はJR新大阪駅正面口まで、施設公式の徒歩6分はJR新大阪駅北口から会場までで、起終点が一致しません。正面口から北口への駅構内移動、横断・信号待ち、客室階、施設内のエレベーター待ちを含む通し所要ではありません。福岡大学医学部医学科の系統別日程一次は2027年2月2日（火）です。大阪会場を希望しても収容人数により別会場になる場合があるため、出願確認票・受験票で本施設の指定を確認してください。会場の入居ビルは2026年6月30日に「新大阪NKビル」から「J.NODE新大阪」へ改称されました。施設は4～5階です。受験室案内は当日8:30までに掲示され、その後に入室できます。9:45着席、10:00開始。使用会議室、受付位置、受験生入口は受験票・当日掲示を確認してください。施設の通常利用時間や一般受付を試験の開場時刻・入口とみなさず、入試要項、受験票、当日案内を確認してください。",
         evidenceUrls: [
+          "https://nyushi.fukuoka-u.ac.jp/cms/wp-content/uploads/2026/11/ippan.pdf",
           "https://www.choice-hotels.jp/hotel/shin-osaka/access/",
           "https://www.jr-odekake.net/eki/top?id=0610155",
           "https://www.kashikaigishitsu.net/facilitys/cc-shinosaka/access/",
@@ -9793,4 +9805,503 @@ export const privateMedicalVenueHotels2027: PrivateMedicalVenueHotel2027[] = [
     verifiedAt: FUKUOKA_SHIN_OSAKA_VERIFIED_AT,
     note: "JR新大阪駅正面口側の堅実枠です。客室無料Wi-Fi、用途に応じて動かせるデスク、2階の24時間コインランドリー、6:30開始の朝食を施設公式で確認しています。18歳未満だけ、または未成年者同士で宿泊する場合は、宿泊者全員分の親権者同意書を提出してください。朝は正面口から駅の公共通路を通って北口側へ移動するため、駅構内の移動時間を別に見込んでください。大阪会場は希望者数により変更される場合があるため、出願確認票・受験票で本施設が指定された場合だけ利用してください。",
   },
+  {
+    "hotelId": "toyoko-inn-hospital-inn-dokkyo-medical",
+    "name": "東横INNホスピタルイン獨協医科大学",
+    "postalCode": "321-0207",
+    "address": "栃木県下都賀郡壬生町北小林1075-18",
+    "prefecture": "栃木県",
+    "municipality": "下都賀郡壬生町",
+    "officialUrl": "https://www.toyoko-inn.com/search/detail/08001?lcl_id=ja",
+    "nearestStation": "東武宇都宮線おもちゃのまち駅",
+    "venueAccess": [
+      {
+        "venueId": "venue-dokkyo-medical-mibu-campus",
+        "modes": [
+          "walk"
+        ],
+        "routeSummary": "大学が敷地内の宿泊施設として案内するホテルから、構内案内に従って獨協医科大学の指定二次試験室へ徒歩で移動します。病院受付を試験受付とみなさず、受験票・当日掲示で受験生入口を確認してください。",
+        "transferCount": 0,
+        "measurementBasis": "route_only",
+        "reviewState": [
+          "verified_with_caveat",
+          "venue_pdf_visual_review"
+        ],
+        "caution": "一般選抜の二次（前期は2027年2月19日・20日の指定日、後期は3月15日）向けです。一次会場の五反田TOCとは異なります。二次は7:50入室開始、8:30までに入室。ホテルから指定試験室までの徒歩時間は未確認のため表示しません。敷地内でも指定棟・入口までの移動を別に見込んでください。",
+        "evidenceUrls": [
+          "https://www.toyoko-inn.com/search/detail/08001?lcl_id=ja",
+          "https://www.dokkyomed.ac.jp/files/dusm/jyuken/01459-004.pdf",
+          "https://www.dokkyomed.ac.jp/upload/CommonFile/files/dokkyo_20260827100450.pdf"
+        ],
+        "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+      }
+    ],
+    "amenities": [
+      {
+        "key": "wifi",
+        "label": "Wi-Fi",
+        "detail": "店舗公式の設備欄でWi-Fiを確認しています。",
+        "evidenceUrl": "https://www.toyoko-inn.com/search/detail/08001?lcl_id=ja"
+      },
+      {
+        "key": "breakfast",
+        "label": "無料朝食6:30〜",
+        "detail": "無料のビュッフェ朝食は6:30〜9:00です。",
+        "evidenceUrl": "https://www.toyoko-inn.com/search/detail/08001?lcl_id=ja"
+      }
+    ],
+    "note": "敷地内から徒歩で向かえる候補です。デスク・洗濯設備はチェーン共通案内だけで当店舗の設置を断定せず、必要なら予約前に確認してください。東横INN公式の国内向け案内では、未成年者のみの場合は保護者に確認することがあり、状況により宿泊を断る場合があります。事前に店舗へ相談してください（https://www.toyoko-inn.com/support/）。朝食後も指定試験棟への移動時間を確保してください。",
+    "officialBookingUrl": "https://www.toyoko-inn.com/search/detail/08001?lcl_id=ja",
+    "operatingStatus": "official_site_active",
+    "operatingStatusEvidenceUrl": "https://www.toyoko-inn.com/search/detail/08001?lcl_id=ja",
+    "reviewState": "verified",
+    "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+  },
+  {
+    "hotelId": "mibu-green-hotel",
+    "name": "みぶグリーンホテル",
+    "postalCode": "321-0222",
+    "address": "栃木県下都賀郡壬生町駅東町2-1",
+    "prefecture": "栃木県",
+    "municipality": "下都賀郡壬生町",
+    "officialUrl": "https://mibu-greenhotel.co.jp/",
+    "officialBookingUrl": "https://mibu-greenhotel.co.jp/online-reserve/",
+    "nearestStation": "東武宇都宮線壬生駅",
+    "venueAccess": [
+      {
+        "venueId": "venue-dokkyo-medical-mibu-campus",
+        "modes": [
+          "walk",
+          "rail"
+        ],
+        "routeSummary": "ホテルから壬生駅へ徒歩で向かい、東武宇都宮線の東武宇都宮方面へ乗車。おもちゃのまち駅で下車し、大学公式の徒歩経路で獨協医科大学の指定二次試験室へ向かいます。",
+        "transferCount": 0,
+        "travelTimeLabel": "ホテル―壬生駅は県スポーツコミッション案内で徒歩5分／おもちゃのまち駅―大学は募集要項で徒歩15分（鉄道・待ち時間・構内移動は別）",
+        "measurementBasis": "route_only",
+        "reviewState": [
+          "verified_with_caveat",
+          "venue_pdf_visual_review"
+        ],
+        "caution": "一般選抜二次の前期指定日（2月19日または20日）・後期3月15日向けです。7:50入室開始、8:30までに入室。表示は別々の徒歩区間で、通し所要ではありません。2027年の試験日の列車時刻、駅出口、指定棟・室を直前に確認し、待ち時間と構内移動を見込んでください。合宿向け送迎を受験生向け送迎とみなさないでください。",
+        "evidenceUrls": [
+          "https://mibu-greenhotel.co.jp/access/",
+          "https://tochigi-pref-sports-commission.com/hotel/h-2765/",
+          "https://www.tobu.co.jp/railway/guide/route_map/",
+          "https://www.tobu.co.jp/railway/guide/station/info/4106/",
+          "https://www.dokkyomed.ac.jp/upload/CommonFile/files/dokkyo_20260827100450.pdf"
+        ],
+        "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+      }
+    ],
+    "amenities": [
+      {
+        "key": "wifi",
+        "label": "Wi-Fi（県の施設案内）",
+        "detail": "栃木県スポーツコミッションの施設案内にWi-Fiの掲載があります。客室での利用条件はホテルに確認してください。",
+        "evidenceUrl": "https://tochigi-pref-sports-commission.com/hotel/h-2765/"
+      }
+    ],
+    "note": "地域系の小規模候補です。県スポーツコミッションは25室と案内しています。公式の設備ページは準備中のため、客室の学習机、朝食の有無・開始時刻、未成年者だけの宿泊可否・同意書は予約前に問い合わせてください。ホテル公式は徒歩約1分の周辺コインランドリーを案内していますが、館内設備ではありません。料金や受験日の空室は保証していません。",
+    "operatingStatus": "official_site_active",
+    "operatingStatusEvidenceUrl": "https://mibu-greenhotel.co.jp/",
+    "reviewState": "verified",
+    "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+  },
+  {
+    "hotelId": "minamisenri-crystal-hotel",
+    "name": "南千里クリスタルホテル",
+    "postalCode": "565-0862",
+    "address": "大阪府吹田市津雲台1-2-D9",
+    "prefecture": "大阪府",
+    "municipality": "吹田市",
+    "officialUrl": "https://crystalhotel.jp/minamisenri/",
+    "nearestStation": "阪急千里線南千里駅（駅直結）",
+    "venueAccess": [
+      {
+        "venueId": "venue-kansai-university-senriyama-first-school",
+        "modes": [
+          "walk",
+          "rail"
+        ],
+        "routeSummary": "ホテル4階から南千里駅へ移動し、阪急千里線の大阪梅田・天下茶屋方面で関大前駅へ。北改札口から西門または正門を経て、千里山キャンパス第1学舎の指定号館へ徒歩で向かいます。",
+        "transferCount": 0,
+        "travelTimeLabel": "関大前駅北改札口―第1学舎は募集要項で徒歩15分（ホテル内・鉄道・待ち時間は別）",
+        "measurementBasis": "route_only",
+        "reviewState": [
+          "verified_with_caveat",
+          "venue_pdf_visual_review"
+        ],
+        "caution": "大阪医科薬科大学一般選抜一次の前期2月10日・後期3月10日向け。8:00開場、8:40着席。第1学舎2号館・5号館の個人指定を受験票で確認してください。大学一般案内の正門まで5分を試験室までの時間として使いません。車・送迎は利用しないでください。2027年の試験日のダイヤと構内移動を別に確認してください。",
+        "evidenceUrls": [
+          "https://crystalhotel.jp/minamisenri/access/",
+          "https://crystalhotel.jp/minamisenri/faq/",
+          "https://www.hankyu.co.jp/station/kyoto/index.html",
+          "https://www.hankyu.co.jp/station/minamisenri.html",
+          "https://www.ompu.ac.jp/admission/undergraduate/medical/qt931k0000005db0-att/cc9f84000000fmbf.pdf"
+        ],
+        "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+      }
+    ],
+    "amenities": [
+      {
+        "key": "wifi",
+        "label": "全館無線LAN・客室有線LAN",
+        "detail": "全室有線LANと全館無線LAN。無線は状況により接続しにくい場合があります。",
+        "evidenceUrl": "https://crystalhotel.jp/minamisenri/faq/"
+      },
+      {
+        "key": "desk",
+        "label": "シングルのビジネステーブル",
+        "detail": "シングルはビジネステーブルと椅子付きです。机を重視する場合は部屋タイプを指定してください。",
+        "evidenceUrl": "https://crystalhotel.jp/minamisenri/room/"
+      },
+      {
+        "key": "coin_laundry",
+        "label": "5階コインランドリー",
+        "detail": "5階に洗濯機・乾燥機があります。",
+        "evidenceUrl": "https://crystalhotel.jp/minamisenri/facility/"
+      }
+    ],
+    "note": "南千里駅直結で、関大前まで鉄道の乗換なしで通える候補です。全館禁煙。未成年者のみの場合は宿泊前に同意書と保護者身分証明書のコピーが必要で、保護者への確認や宿泊を断る場合があります（ホテル公式FAQ）。朝食付きプランの案内はありますが開始時刻は確認できないため、受験日の早朝提供と利用条件を予約前に問い合わせてください。",
+    "officialBookingUrl": "https://crystalhotel.jp/minamisenri/",
+    "operatingStatus": "official_site_active",
+    "operatingStatusEvidenceUrl": "https://crystalhotel.jp/minamisenri/",
+    "reviewState": "verified",
+    "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+  },
+  {
+    "hotelId": "shin-osaka-sunny-stone-hotel",
+    "name": "新大阪サニーストンホテル",
+    "postalCode": "532-0011",
+    "address": "大阪府大阪市淀川区西中島4-12-2",
+    "prefecture": "大阪府",
+    "municipality": "大阪市淀川区",
+    "officialUrl": "https://hpdsp.jp/sin-osaka_sunnystonehotel/",
+    "nearestStation": "阪急京都線南方駅／Osaka Metro西中島南方駅",
+    "venueAccess": [
+      {
+        "venueId": "venue-kansai-university-senriyama-first-school",
+        "modes": [
+          "walk",
+          "rail"
+        ],
+        "routeSummary": "ホテル公式の南方駅からの徒歩案内を逆向きにたどり、阪急南方駅へ。京都線の淡路方面の普通に乗り、淡路駅で千里線の北千里方面へ乗り換えて関大前駅で下車。北改札口から第1学舎2号館・5号館の指定会場へ向かいます。",
+        "transferCount": 1,
+        "travelTimeLabel": "ホテル―阪急南方駅はホテル公式徒歩5分／関大前駅北改札口―第1学舎は募集要項で徒歩15分（鉄道・乗換・待ち時間は別）",
+        "measurementBasis": "route_only",
+        "reviewState": [
+          "verified_with_caveat",
+          "venue_pdf_visual_review"
+        ],
+        "caution": "大阪医科薬科大学一般選抜一次の前期2月10日・後期3月10日向け。8:00開場、8:40着席。表示は通し所要ではなく、淡路での乗換と構内移動を別に見込んでください。ホテル最寄りの地下鉄と阪急は別路線です。関西大学正門までの一般案内5分では第1学舎に到着しません。指定号館・入口を受験票で確認し、車・送迎は利用しないでください。",
+        "evidenceUrls": [
+          "https://hpdsp.jp/sin-osaka_sunnystonehotel/access",
+          "https://www.hankyu.co.jp/station/kyoto/index.html",
+          "https://www.hankyu.co.jp/station/awaji.html",
+          "https://www.ompu.ac.jp/admission/undergraduate/medical/qt931k0000005db0-att/cc9f84000000fmbf.pdf"
+        ],
+        "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+      }
+    ],
+    "amenities": [
+      {
+        "key": "wifi",
+        "label": "全室無料Wi-Fi・有線LAN",
+        "detail": "全室で無料の有線LAN・無線Wi-Fiに対応しています。",
+        "evidenceUrl": "https://hpdsp.jp/sin-osaka_sunnystonehotel/facility"
+      },
+      {
+        "key": "coin_laundry",
+        "label": "館内コインランドリー",
+        "detail": "館内サービスとしてコインランドリーを案内しています。",
+        "evidenceUrl": "https://hpdsp.jp/sin-osaka_sunnystonehotel/facility"
+      },
+      {
+        "key": "humidifier",
+        "label": "加湿機能付き空気清浄機",
+        "detail": "客室備品に加湿機能付き空気清浄機があります。",
+        "evidenceUrl": "https://hpdsp.jp/sin-osaka_sunnystonehotel/room"
+      },
+      {
+        "key": "desk_lamp",
+        "label": "電気スタンド貸出",
+        "detail": "電気スタンドを貸し出しています。必要な場合は事前に在庫を確認してください。",
+        "evidenceUrl": "https://hpdsp.jp/sin-osaka_sunnystonehotel/facility"
+      },
+      {
+        "key": "breakfast",
+        "label": "朝食6:30〜",
+        "detail": "平日6:30〜9:30、日曜・祝日6:30〜10:00。プランへの朝食含有を確認してください。",
+        "evidenceUrl": "https://hpdsp.jp/sin-osaka_sunnystonehotel/food"
+      }
+    ],
+    "note": "新大阪エリアのビジネスホテル候補です。江坂のサニーストンホテル・第2サニーストンホテルとは別施設で、他店の無料朝食や宿泊条件を転用していません。客室机の仕様、未成年者だけの宿泊可否・同意書は当店舗へ問い合わせてください。6:30開始の朝食を利用する場合も鉄道の乗換を含む余裕を確保してください。",
+    "officialBookingUrl": "https://hpdsp.jp/sin-osaka_sunnystonehotel/",
+    "operatingStatus": "official_site_active",
+    "operatingStatusEvidenceUrl": "https://hpdsp.jp/sin-osaka_sunnystonehotel/",
+    "reviewState": "verified",
+    "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+  },
+  {
+    "hotelId": "keio-presso-inn-tokyo-station-yaesu",
+    "name": "京王プレッソイン東京駅八重洲",
+    "postalCode": "104-0031",
+    "address": "東京都中央区京橋1-4-1",
+    "prefecture": "東京都",
+    "municipality": "中央区",
+    "officialUrl": "https://www.presso-inn.com/yaesu/",
+    "nearestStation": "JR東京駅八重洲中央口",
+    "venueAccess": [
+      {
+        "venueId": "venue-vision-center-tokyo-kyobashi",
+        "modes": [
+          "walk"
+        ],
+        "routeSummary": "ホテル公式が案内する東京駅八重洲中央口を接続点とし、公共通路で八重洲南口側へ移動します。会場公式の八重洲地下街4番出口からの来館経路で相互館110タワーへ向かい、裏通り側のビル入口と受験票の指定受付を確認してください。",
+        "transferCount": 0,
+        "travelTimeLabel": "ホテル―東京駅八重洲中央口はホテル公式徒歩3分／八重洲南口側地下街4番出口―会場は施設公式徒歩5分（接続点間・指定室までの移動は別）",
+        "measurementBasis": "route_only",
+        "reviewState": [
+          "verified_with_caveat",
+          "venue_pdf_visual_review"
+        ],
+        "caution": "大阪医科薬科大学一般選抜一次の前期2月10日・後期3月10日向け。8:00開場、8:40着席。接続点の八重洲中央口と南口側地下街4番出口は異なり、表示区間を足した通し所要ではありません。最短徒歩経路とも断定しません。施設の一般受付4階・入居階4階と8階は入試指定階ではないため、使用階・室・受験生入口を受験票で確認してください。",
+        "evidenceUrls": [
+          "https://www.presso-inn.com/yaesu/",
+          "https://www.presso-inn.com/company/",
+          "https://www.visioncenter.jp/tokyo/kyobashi/access/",
+          "https://www.ompu.ac.jp/admission/undergraduate/medical/qt931k0000005db0-att/cc9f84000000fmbf.pdf"
+        ],
+        "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+      }
+    ],
+    "amenities": [
+      {
+        "key": "coin_laundry",
+        "label": "有料コインランドリー",
+        "detail": "公式館内設備案内に有料コインランドリーがあります。",
+        "evidenceUrl": "https://www.presso-inn.com/yaesu/facility/"
+      },
+      {
+        "key": "humidifier",
+        "label": "加湿機能付き空気清浄機",
+        "detail": "公式の客室備品に加湿機能付き空気清浄機があります。",
+        "evidenceUrl": "https://www.presso-inn.com/yaesu/facility/"
+      },
+      {
+        "key": "breakfast",
+        "label": "朝食6:30〜",
+        "detail": "朝食6:30〜9:30、最終入店9:15。朝食付きプランか別途利用かを確認してください。",
+        "evidenceUrl": "https://www.presso-inn.com/yaesu/breakfast/"
+      }
+    ],
+    "note": "東京駅八重洲側から徒歩で会場へ通える候補です。公式客室案内は机の写真を掲載していますが、広さ・仕様は確認できないため、学習に必要な机と客室インターネットの条件は部屋タイプごとに問い合わせてください。未成年者だけの宿泊条件も当店舗に確認し、系列他店の同意書不要の案内を転用しないでください。",
+    "officialBookingUrl": "https://www.presso-inn.com/yaesu/",
+    "operatingStatus": "official_site_active",
+    "operatingStatusEvidenceUrl": "https://www.presso-inn.com/yaesu/",
+    "reviewState": "verified",
+    "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+  },
+  {
+    "hotelId": "hotel-ginza-daiei",
+    "name": "ホテル銀座ダイエー",
+    "postalCode": "104-0061",
+    "address": "東京都中央区銀座3-12-2",
+    "prefecture": "東京都",
+    "municipality": "中央区",
+    "officialUrl": "https://www.ginza-daiei.co.jp/",
+    "nearestStation": "都営浅草線東銀座駅",
+    "venueAccess": [
+      {
+        "venueId": "venue-vision-center-tokyo-kyobashi",
+        "modes": [
+          "walk",
+          "rail"
+        ],
+        "routeSummary": "ホテル公式のアクセス案内を逆向きにたどって東銀座駅へ向かい、浅草線の宝町・日本橋方面で宝町駅へ1駅。A4出口から会場公式の徒歩経路でビジョンセンター東京京橋へ進みます。",
+        "transferCount": 0,
+        "travelTimeLabel": "ホテル―東銀座駅は公式徒歩2〜3分（出口別）／宝町駅A4出口―会場は施設公式徒歩2分（鉄道・改札内・指定室への移動は別）",
+        "measurementBasis": "route_only",
+        "reviewState": [
+          "verified_with_caveat",
+          "venue_pdf_visual_review"
+        ],
+        "caution": "大阪医科薬科大学一般選抜一次の前期2月10日・後期3月10日向け。8:00開場、8:40着席。東銀座はホーム・方面に対応する出口を確認し、2027年の試験日の列車と構内移動を見込んでください。通し所要やホテルから直接歩く最短経路の時間は掲載しません。相互館110タワーの裏通り側の入口を確認し、一般受付4階を入試受付と決めつけず受験票に従ってください。",
+        "evidenceUrls": [
+          "https://www.ginza-daiei.co.jp/access/",
+          "https://www.kotsu.metro.tokyo.jp/subway/stations/higashi-ginza.html",
+          "https://www.kotsu.metro.tokyo.jp/subway/stations/takaracho.html",
+          "https://www.visioncenter.jp/tokyo/kyobashi/access/",
+          "https://www.ompu.ac.jp/admission/undergraduate/medical/qt931k0000005db0-att/cc9f84000000fmbf.pdf"
+        ],
+        "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+      }
+    ],
+    "amenities": [
+      {
+        "key": "wifi",
+        "label": "有線LAN・Wi-Fi",
+        "detail": "公式客室設備で有線・Wi-Fiのインターネット接続を確認しています。",
+        "evidenceUrl": "https://www.ginza-daiei.co.jp/room/"
+      },
+      {
+        "key": "desk",
+        "label": "スタンダードシングルのデスク",
+        "detail": "スタンダードシングルはデスクワーク向けのライティングデスクを案内しています。",
+        "evidenceUrl": "https://www.ginza-daiei.co.jp/room/"
+      }
+    ],
+    "note": "独立系ホテルの候補です。学習机を重視する場合はデスクの明記があるスタンダードシングル等を指定してください。デザイナーズ客室や別館を同一仕様とみなしません。朝食の有無・開始時刻、館内洗濯設備、未成年者だけの宿泊可否・同意書は公式で確認できないため、予約前に問い合わせてください。",
+    "officialBookingUrl": "https://www.ginza-daiei.co.jp/",
+    "operatingStatus": "official_site_active",
+    "operatingStatusEvidenceUrl": "https://www.ginza-daiei.co.jp/",
+    "reviewState": "verified",
+    "verifiedAt": OCTOBER_NEW_VENUES_VERIFIED_AT
+  },
+  {
+    hotelId: "hotel-gracery-tamachi",
+    name: "ホテルグレイスリー田町",
+    address: "東京都港区芝浦3-8-1",
+    prefecture: "東京都",
+    municipality: "港区",
+    officialUrl: "https://gracery.com/tamachi/",
+    officialBookingUrl: "https://gracery.com/tamachi/",
+    nearestStation: "JR 田町駅東口",
+    venueAccess: [
+      {
+        venueId: "venue-keio-mita-campus",
+        modes: ["walk"],
+        routeSummary: "田町駅芝浦口側のホテルから駅の東西自由通路で三田口側へ出て、大学案内図に沿って三田キャンパスへ徒歩で向かいます。",
+        transferCount: 0,
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: KEIO_GUIDELINE_VERIFIED_AT,
+        caution: "一次は2月9日（火）9:30集合です。駅の東西移動と構内移動を見込み、受験票の指定教室まで余裕を持って向かってください。",
+        evidenceUrls: [
+          "https://gracery.com/tamachi/access/",
+          "https://www.keio.ac.jp/ja/about/campus/mita/",
+          "https://www.keio.ac.jp/fixed-files/2027_ippan_youkou.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "客室の無料Wi-Fi", "客室で無料Wi-Fiを利用できます。", "https://gracery.com/tamachi/faq/"),
+      amenity("breakfast", "朝食7:00〜", "朝食は7:00から提供します。", "https://gracery.com/tamachi/faq/"),
+    ],
+    operatingStatus: "official_site_active",
+    operatingStatusEvidenceUrl: "https://gracery.com/tamachi/",
+    reviewState: "verified",
+    verifiedAt: KEIO_GUIDELINE_VERIFIED_AT,
+    note: "予約前に、空室、宿泊プランの朝食条件、未成年者のみでの宿泊条件を施設公式でご確認ください。",
+  },
+  {
+    hotelId: "sotetsu-fresa-inn-tokyo-tamachi",
+    name: "相鉄フレッサイン 東京田町",
+    address: "東京都港区芝浦3-14-21",
+    prefecture: "東京都",
+    municipality: "港区",
+    officialUrl: "https://www.sotetsu-hotels.com/fresa-inn/tamachi/",
+    officialBookingUrl: "https://www.sotetsu-hotels.com/fresa-inn/tamachi/",
+    nearestStation: "JR 田町駅東口",
+    venueAccess: [
+      {
+        venueId: "venue-keio-mita-campus",
+        modes: ["walk"],
+        routeSummary: "田町駅芝浦口側のホテルから駅の東西自由通路で三田口側へ出て、大学案内図に沿って三田キャンパスへ徒歩で向かいます。",
+        transferCount: 0,
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: KEIO_GUIDELINE_VERIFIED_AT,
+        caution: "一次は2月9日（火）9:30集合です。駅の東西移動と構内移動を見込み、受験票の指定教室まで余裕を持って向かってください。",
+        evidenceUrls: [
+          "https://www.sotetsu-hotels.com/fresa-inn/tamachi/access/",
+          "https://www.keio.ac.jp/ja/about/campus/mita/",
+          "https://www.keio.ac.jp/fixed-files/2027_ippan_youkou.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("wifi", "客室の無料Wi-Fi", "全館・全室に無料Wi-Fiがあります。", "https://www.sotetsu-hotels.com/fresa-inn/tamachi/facilities/"),
+      amenity("coin_laundry", "コインランドリー", "館内にコインランドリーがあります。", "https://www.sotetsu-hotels.com/fresa-inn/tamachi/facilities/"),
+      amenity("breakfast", "朝食6:30〜", "朝食は6:30から提供します。", "https://www.sotetsu-hotels.com/fresa-inn/tamachi/faq/"),
+    ],
+    operatingStatus: "official_site_active",
+    operatingStatusEvidenceUrl: "https://www.sotetsu-hotels.com/fresa-inn/tamachi/",
+    reviewState: "verified",
+    verifiedAt: KEIO_GUIDELINE_VERIFIED_AT,
+    note: "予約前に、空室、宿泊プランの朝食条件、未成年者のみでの宿泊条件を施設公式でご確認ください。",
+  },
+  {
+    hotelId: "shin-yokohama-grace-hotel",
+    name: "新横浜グレイスホテル",
+    address: "神奈川県横浜市港北区新横浜3-6-15",
+    prefecture: "神奈川県",
+    municipality: "横浜市港北区",
+    officialUrl: "https://gracehotel.jp/",
+    officialBookingUrl: "https://gracehotel.jp/",
+    nearestStation: "東急新横浜線 新横浜駅",
+    venueAccess: [
+      {
+        venueId: "venue-keio-hiyoshi-campus",
+        modes: ["walk", "rail"],
+        routeSummary: "新横浜駅から東急新横浜線の日吉停車列車に乗り、日吉駅から大学案内に沿って日吉キャンパスへ徒歩で向かいます。",
+        transferCount: 0,
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: KEIO_GUIDELINE_VERIFIED_AT,
+        caution: "二次は3月1日（月）8:45集合です。乗車待ちと構内移動を見込み、当日のダイヤと受験票の指定教室を確認してください。",
+        evidenceUrls: [
+          "https://gracehotel.jp/information/hotel_information.html",
+          "https://www.keio.ac.jp/ja/about/campus/hiyoshi/",
+          "https://www.keio.ac.jp/fixed-files/2027_ippan_youkou.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("breakfast", "予約制の朝食7:00〜", "和朝食は7:00から。前日17:00までにフロントで予約してください。", "https://www.gracehotel.jp/stay/breakfast/"),
+    ],
+    operatingStatus: "official_site_active",
+    operatingStatusEvidenceUrl: "https://gracehotel.jp/",
+    reviewState: "verified",
+    verifiedAt: KEIO_GUIDELINE_VERIFIED_AT,
+    note: "予約前に、空室、宿泊プランの朝食条件、未成年者のみでの宿泊条件を施設公式でご確認ください。",
+  },
+  {
+    hotelId: "daiwa-roynet-hotel-shin-yokohama",
+    name: "ダイワロイネットホテル新横浜",
+    address: "神奈川県横浜市港北区新横浜3-17-1",
+    prefecture: "神奈川県",
+    municipality: "横浜市港北区",
+    officialUrl: "https://www.daiwaroynet.jp/shin-yokohama/",
+    officialBookingUrl: "https://www.daiwaroynet.jp/shin-yokohama/",
+    nearestStation: "東急新横浜線 新横浜駅7番出口",
+    venueAccess: [
+      {
+        venueId: "venue-keio-hiyoshi-campus",
+        modes: ["walk", "rail"],
+        routeSummary: "新横浜駅から東急新横浜線の日吉停車列車に乗り、日吉駅から大学案内に沿って日吉キャンパスへ徒歩で向かいます。",
+        transferCount: 0,
+        measurementBasis: "route_only",
+        reviewState: ["verified_with_caveat", "venue_pdf_visual_review"],
+        verifiedAt: KEIO_GUIDELINE_VERIFIED_AT,
+        caution: "二次は3月1日（月）8:45集合です。乗車待ちと構内移動を見込み、当日のダイヤと受験票の指定教室を確認してください。",
+        evidenceUrls: [
+          "https://www.daiwaroynet.jp/shin-yokohama/access/",
+          "https://www.keio.ac.jp/ja/about/campus/hiyoshi/",
+          "https://www.keio.ac.jp/fixed-files/2027_ippan_youkou.pdf",
+        ],
+      },
+    ],
+    amenities: [
+      amenity("coin_laundry", "24時間コインランドリー", "3・7階に24時間利用できるランドリーがあります。", "https://www.daiwaroynet.jp/shin-yokohama/facilities/"),
+      amenity("breakfast", "朝食6:30〜", "朝食は6:30から提供します。", "https://www.daiwaroynet.jp/shin-yokohama/facilities/"),
+    ],
+    operatingStatus: "official_site_active",
+    operatingStatusEvidenceUrl: "https://www.daiwaroynet.jp/shin-yokohama/",
+    reviewState: "verified",
+    verifiedAt: KEIO_GUIDELINE_VERIFIED_AT,
+    note: "予約前に、空室、宿泊プランの朝食条件、未成年者のみでの宿泊条件を施設公式でご確認ください。",
+  },
 ];
+
+applyNovemberHotelUpdates2027(privateMedicalVenueHotels2027);

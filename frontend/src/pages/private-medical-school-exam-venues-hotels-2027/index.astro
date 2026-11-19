@@ -122,6 +122,30 @@ const formatRelationDate = (date: string) => {
 
 const updateHistory = [
   {
+    date: metadata.dateModifiedLabel,
+    dateTime: metadata.dateModified,
+    title: "慶應・福岡の正式会場と宿泊案内を更新",
+    text: "慶應義塾大学は一次が三田、二次が日吉です。各会場に宿泊候補を2施設追加しました。福岡大学は一次の4会場と着席時刻を正式要項で確認し、系統別・共テⅠ期の二次会場を七隈キャンパスに更新しました。金沢医科大学の名古屋会場と、日本大学地域枠の会場予定も見直しました。",
+  },
+  {
+    date: "2026年11月4日",
+    dateTime: "2026-11-04",
+    title: "新しい募集要項で37会場と周辺ホテルを追加・更新",
+    text: "岩手医科・東海・近畿・日本大学などの正式会場37施設を追加し、各会場に宿泊候補2施設を掲載しました。新規ホテルは21施設です。近畿大学の前期・後期・地域枠、日本大学のN第1期・第2期、久留米大学の御井・旭町を区別し、東邦・慈恵・北里の指定条件と集合時刻も更新しました。昭和医科大学Ⅱ期の定員超過条件は要項内で記載範囲が異なるため要確認としています。受験票の確定会場を優先し、未確認の所要時間・設備・空室は断定していません。",
+  },
+  {
+    date: "2026年10月5日",
+    dateTime: "2026-10-05",
+    title: "新規3会場の宿泊候補を各2施設追加",
+    text: "獨協医科大学壬生キャンパス、関西大学千里山キャンパス第1学舎、ビジョンセンター東京京橋の宿泊候補を計6施設追加しました。公式ホテル情報と公共交通の経路を照合し、朝食時間・学習環境・未成年者の手続きは確認範囲を明記しています。未確認項目は要問い合わせとし、徒歩区間を足した通し所要時間や施設一般受付を試験の指定情報とみなしていません。",
+  },
+  {
+    date: "2026年10月5日",
+    dateTime: "2026-10-05",
+    title: "HTML化された最新募集要項で入試会場を更新",
+    text: "東北医科薬科大学の東京一次会場をベルサール新宿グランドとして確定。獨協医科大学の一次（五反田TOC）・二次（本学）と、大阪医科薬科大学の一次3会場を追加しました。藤田医科大学の名古屋満員時の本学会場、出願時の会場選択・面接日時の指定条件、産業医科大学・川崎医科大学の入室時刻も更新しました。新規会場で未確認のホテルは掲載していません。募集要項と受験票で最終案内を確認してください。",
+  },
+  {
     date: "2026年8月19日",
     dateTime: "2026-08-19",
     title: "TOCビル（五反田）の宿泊候補2施設を再監査",
@@ -1008,6 +1032,13 @@ const structuredData = {
                               {access?.caution && <div><dt>注意</dt><dd>{access.caution}</dd></div>}
                             </dl>
                             {hotel.amenities.length > 0 && <ul class="venue-guide-hotel__amenities">{hotel.amenities.map((amenity) => <li title={amenity.detail} aria-label={`${amenity.label}：${amenity.detail}`}>{amenity.label}</li>)}</ul>}
+                            {(hotel.note || hotel.amenities.length > 0) && (
+                              <details class="venue-guide-hotel__notes">
+                                <summary>設備・予約前の確認事項</summary>
+                                {hotel.amenities.length > 0 && <ul>{hotel.amenities.map((amenity) => <li><span>{amenity.label}</span>：{amenity.detail}</li>)}</ul>}
+                                {hotel.note && <p>{hotel.note}</p>}
+                              </details>
+                            )}
                             <div class="venue-guide-hotel__links">
                               <a href={hotel.officialUrl} target="_blank" rel="noopener noreferrer">ホテル公式 ↗</a>
                               {hotel.operatingStatusEvidenceUrl && hotel.operatingStatusEvidenceUrl !== hotel.officialUrl && <a href={hotel.operatingStatusEvidenceUrl} target="_blank" rel="noopener noreferrer">営業情報 ↗</a>}

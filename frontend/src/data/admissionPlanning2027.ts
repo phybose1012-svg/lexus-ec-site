@@ -146,6 +146,7 @@ const stableRouteIdOverrides = new Map<string, string>([
     "kindai::general::地域枠入試 一般後期型（静岡県）",
     "kindai--general--ybue7j",
   ],
+  ["nihon::general::地域枠選抜（認可申請中・日程は予定）", "nihon--general--164wvue"],
   // Keep saved plans compatible after the 2027 official guideline clarified this route's formal name.
   [
     "aichi-medical::common::大学入学共通テスト利用選抜（愛知県地域特別枠B方式）",

@@ -4,6 +4,7 @@ import {
   type AdmissionRouteStatus,
 } from "./privateMedicalAdmissions2027.ts";
 import { privateMedicalCanonicalRouteIds2027 } from "./privateMedicalCanonicalRouteIds2027.ts";
+import { novemberVenues2027, novemberAssignmentUpdates2027, novemberCampusPolicies2027, novemberVenueVerifiedAt2027 } from "./privateMedicalVenueNovember2027.ts";
 
 export type VenuePublicationState =
   | "confirmed"
@@ -103,7 +104,9 @@ export const venueAssignmentConditionLabels: Record<VenueAssignmentCondition, st
   capacity_overflow: "定員状況による制限・変更あり",
 };
 
+const GUIDELINE_REFRESH_VERIFIED_AT = "2026-11-19T00:00:00+09:00";
 const VERIFIED_AT = "2026-08-12T00:00:00+09:00";
+const HTML_GUIDELINE_VERIFIED_AT = "2026-10-05T00:00:00+09:00";
 const JICHI_VERIFIED_AT = "2026-08-15T00:00:00+09:00";
 const MARIANNA_VERIFIED_AT = "2026-08-18T00:00:00+09:00";
 const JICHI_2027_GUIDELINE_URL =
@@ -1452,6 +1455,80 @@ for (const seed of jichiVenueRelationSeeds2027) {
 export const privateMedicalJichiExamVenues2027 = [...jichiVenueEntityById.values()];
 
 export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
+  ...novemberVenues2027,
+  {
+    venueId: "venue-keio-mita-campus",
+    academicYear: 2027,
+    name: "慶應義塾大学 三田キャンパス",
+    shortName: "慶應 三田キャンパス",
+    address: "東京都港区三田2-15-45",
+    prefecture: "東京都",
+    municipality: "港区",
+    nearestStations: ["JR 田町駅", "都営地下鉄 三田駅", "都営地下鉄 赤羽橋駅"],
+    officialUrl: "https://www.keio.ac.jp/ja/about/campus/mita/",
+    accessNote: "一次は2月9日（火）、9:30集合、10:00から理科です。一般選抜の栃木県地域枠もこの試験を受けます。受験票と大学案内図で指定教室を確認してください。",
+    reviewState: "verified",
+    verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
+  },
+  {
+    venueId: "venue-keio-hiyoshi-campus",
+    academicYear: 2027,
+    name: "慶應義塾大学 日吉キャンパス",
+    shortName: "慶應 日吉キャンパス",
+    address: "神奈川県横浜市港北区日吉4-1-1",
+    prefecture: "神奈川県",
+    municipality: "横浜市港北区",
+    nearestStations: ["東急・横浜市営地下鉄 日吉駅"],
+    officialUrl: "https://www.keio.ac.jp/ja/about/campus/hiyoshi/",
+    accessNote: "二次は3月1日（月）、8:45集合、9:00から小論文です。面接の最終組は17:00終了予定ですが、延びる場合があります。昼休みに外出できないため昼食と飲み物を持参し、受験票で指定教室を確認してください。",
+    reviewState: "verified",
+    verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
+  },
+  {
+    venueId: "venue-dokkyo-medical-mibu-campus",
+    academicYear: 2027,
+    name: "獨協医科大学 壬生キャンパス",
+    shortName: "獨協医科大学",
+    postalCode: "321-0293",
+    address: "栃木県下都賀郡壬生町北小林880",
+    prefecture: "栃木県",
+    municipality: "下都賀郡壬生町",
+    nearestStations: ["東武宇都宮線 おもちゃのまち駅"],
+    officialUrl: "https://www.dokkyomed.ac.jp/dmu/academy/overview/access.html",
+    accessNote: "一般選抜の二次試験会場です。おもちゃのまち駅から徒歩15分。入室開始7:50、8:30までに試験室へ入室してください。一次会場は五反田TOCビルで、本学ではありません。使用棟・室・受付入口は受験票と当日案内で確認してください。二次会場では学生食堂を付添者控室として開放します。",
+    reviewState: "verified",
+    verifiedAt: HTML_GUIDELINE_VERIFIED_AT,
+  },
+  {
+    venueId: "venue-kansai-university-senriyama-first-school",
+    academicYear: 2027,
+    name: "関西大学 千里山キャンパス 第1学舎（2号館・5号館）",
+    shortName: "関西大学 千里山 第1学舎",
+    address: "大阪府吹田市山手町3-3-35",
+    prefecture: "大阪府",
+    municipality: "吹田市",
+    nearestStations: ["阪急千里線 関大前駅 北改札口"],
+    officialUrl: "https://www.ompu.ac.jp/admission/undergraduate/medical/qt931k0000005db0-att/cc9f84000000fmbf.pdf",
+    officialUrlLabel: "大阪医科薬科大学 2027年度募集要項（PDF 24ページ）",
+    accessNote: "大阪医科薬科大学一般選抜の前期・後期一次の大阪会場です。要項は関大前駅北改札口から第1学舎まで徒歩15分と案内し、西門・正門からの経路を掲載しています。8:00開場、8:40までに指定席へ着席。大学の本部キャンパスや別学舎と取り違えず、試験室への構内移動時間を見込んでください。車の乗り入れ・周辺での送迎は控えてください。",
+    reviewState: "verified",
+    verifiedAt: HTML_GUIDELINE_VERIFIED_AT,
+  },
+  {
+    venueId: "venue-vision-center-tokyo-kyobashi",
+    academicYear: 2027,
+    name: "ビジョンセンター東京京橋",
+    shortName: "ビジョンセンター東京京橋",
+    address: "東京都中央区京橋3-7-1",
+    prefecture: "東京都",
+    municipality: "中央区",
+    nearestStations: ["東京メトロ銀座線 京橋駅2番出口", "都営浅草線 宝町駅A4出口", "JR 東京駅八重洲南口"],
+    officialUrl: "https://www.ompu.ac.jp/admission/undergraduate/medical/qt931k0000005db0-att/cc9f84000000fmbf.pdf",
+    officialUrlLabel: "大阪医科薬科大学 2027年度募集要項（PDF 25ページ）",
+    accessNote: "大阪医科薬科大学一般選抜の前期・後期一次の東京会場です。要項は京橋駅2番出口直結、宝町駅A4出口から徒歩2分、東京駅八重洲南口（地下街4番出口）から徒歩5分と案内しています。8:00開場、8:40までに指定席へ着席。使用階・試験室・受付位置は受験票と当日案内で確認し、他のビジョンセンターと取り違えないでください。",
+    reviewState: "verified",
+    verifiedAt: HTML_GUIDELINE_VERIFIED_AT,
+  },
   ...privateMedicalJichiExamVenues2027,
   {
     venueId: "venue-jichi-medical-yakushiji-campus",
@@ -1874,15 +1951,15 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
   {
     venueId: "venue-bellesalle-shinjuku-grand",
     academicYear: 2027,
-    name: "ベルサール新宿グランド イベントホール",
+    name: "ベルサール新宿グランド",
     shortName: "ベルサール新宿グランド",
     postalCode: "160-0023",
-    address: "東京都新宿区西新宿8-17-3 住友不動産新宿グランドタワー1階",
+    address: "東京都新宿区西新宿8-17-3 住友不動産新宿グランドタワー",
     prefecture: "東京都",
     municipality: "新宿区",
     nearestStations: ["東京メトロ丸ノ内線 西新宿駅", "都営大江戸線 都庁前駅"],
     officialUrl: "https://www.bellesalle.co.jp/shisetsu/shinjuku/bs_shinjukugrand/",
-    accessNote: "東京メトロ丸ノ内線の西新宿駅1番出口から徒歩約4分です。東京医科大学の2027年度一般選抜一次では、受験番号によって本学またはベルサール新宿グランドが指定されます。施設は住友不動産新宿グランドタワー1階のイベントホールですが、使用区画・受付位置・受験生入口は未公表です。受験票と当日案内を確認し、同施設の5階会議室や近隣の別ベルサールと取り違えないでください。",
+    accessNote: "東京メトロ丸ノ内線の西新宿駅1番出口から徒歩約4分です。東京医科大学の2027年度一般選抜一次では、受験番号によって本学またはベルサール新宿グランドが指定されます。東京医科大学と東北医科薬科大学の最新要項は、使用階・試験室・受付入口を指定していません。受験票と当日案内を確認し、施設通常のフロア案内を試験会場の階指定とみなさず、近隣の別ベルサールと取り違えないでください。",
     reviewState: "verified",
     verifiedAt: "2026-08-19T00:00:00+09:00",
   },
@@ -2055,9 +2132,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     municipality: "名古屋市西区",
     nearestStations: ["名古屋市営地下鉄 名古屋駅10番出入口", "JR・名鉄・近鉄 名古屋駅"],
     officialUrl: "https://www.kashikaigishitsu.net/facilitys/gcp-nagoya-ekimae/",
-    accessNote: "施設公式は名古屋市営地下鉄 名古屋駅10番出入口から徒歩3分、名鉄名古屋駅・近鉄名古屋駅・JR線／新幹線連絡改札口から徒歩5分と案内しています。会場は名駅ダイヤメイテツビル3階ですが、2027年度の使用室・受付位置・受験生入口・開場時刻は未公表です。大学の2027年度ガイドと『昨年度からの変更点』は本施設への変更を明記する一方、一般選抜（前期）ページには旧会場の名古屋ルーセントタワー表記が残るため、受験票で最終会場を必ず確認してください。名古屋駅周辺の別TKP施設と取り違えないでください。",
-    reviewState: "monitoring",
-    verifiedAt: "2026-08-19T00:00:00+09:00",
+    accessNote: "施設公式は名古屋市営地下鉄 名古屋駅10番出入口から徒歩3分、名鉄名古屋駅・近鉄名古屋駅・JR線／新幹線連絡改札口から徒歩5分と案内しています。会場は名駅ダイヤメイテツビル3階ですが、2027年度の使用室・受付位置・受験生入口・開場時刻は未公表です。金沢医科大学の一般選抜（前期）公式案内は本施設を名古屋試験場として掲載しています。施設・指定室は受験票で最終確認してください。大阪医科薬科大学一般前期一次も本施設を使用し、8:00開場、8:40までに着席します。名古屋駅周辺の別TKP施設と取り違えないでください。",
+    reviewState: "verified",
+    verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
   },
   {
     venueId: "venue-fukuoka-garden-palace",
@@ -2170,7 +2247,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     municipality: "豊明市",
     nearestStations: ["名鉄名古屋本線 前後駅から路線バス", "名古屋市営地下鉄桜通線 徳重駅から路線バス"],
     officialUrl: "https://www.fujita-hu.ac.jp/access.html",
-    accessNote: "2027年度の一般入試・共通テスト利用入試の二次は大学2号館で実施されます。前後駅1番のりばから大学病院方面の対象便を利用し、学生・職員専用スクールバスは使いません。使用階・試験室・受付・受験生入口は未公表です。",
+    accessNote: "2027年度の一般入試・共通テスト利用入試の二次は大学2号館で実施されます。前後駅1番のりばから大学病院方面の対象便を利用し、学生・職員専用スクールバスは使いません。使用階・試験室・受付・受験生入口は未公表です。藤田医科大学の一般・共通テスト利用二次は2月14日・15日の午前8:30〜9:10、午後12:00〜12:40に入室します。希望日時は出願順に上限まで割り当て、二次受験票で通知されます。一般一次では名古屋が満員の場合に限り大学2号館で受け付け、8:00〜8:40に入室します。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
     reviewState: "verified",
     verifiedAt: "2026-08-19T00:00:00+09:00",
   },
@@ -2186,7 +2263,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     nearestStations: ["りんかい線 国際展示場駅", "ゆりかもめ 東京ビッグサイト駅・有明駅"],
     officialUrl: "https://www.saiji2.toc.co.jp/ariake/access/",
     officialUrlLabel: "TOC有明Convention Hall 公式アクセス",
-    accessNote: "藤田医科大学医学部の2027年度一般入試一次は2027年2月4日に実施され、東京会場は有明TOCビルです。大学要項は国際展示場駅から徒歩3分、東京ビッグサイト駅・有明駅から徒歩4分と案内する一方、施設公式はそれぞれ徒歩5分・6分とするため、移動計画では施設公式の保守的な分数を優先してください。使用階・試験室・受付・受験生入口・入室時刻は未公表です。一般入試の選択・収容条件は10月頃公開予定の同要項該当章と受験票で確認してください。",
+    accessNote: "藤田医科大学医学部の2027年度一般入試一次は2027年2月4日に実施され、東京会場は有明TOCビルです。大学要項は国際展示場駅から徒歩3分、東京ビッグサイト駅・有明駅から徒歩4分と案内する一方、施設公式はそれぞれ徒歩5分・6分とするため、移動計画では施設公式の保守的な分数を優先してください。藤田医科大学の一次は出願時に選択し、出願後の変更不可。東京は定員1000名で満員時に登録終了、入室8:00〜8:40です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
     reviewState: "verified",
     verifiedAt: "2026-08-19T00:00:00+09:00",
   },
@@ -2202,7 +2279,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     nearestStations: ["JR大阪駅 うめきた地下口", "Osaka Metro梅田駅", "阪急・阪神 大阪梅田駅"],
     officialUrl: "https://osaka.congres-square.jp/grandgreen/access/",
     officialUrlLabel: "コングレスクエア グラングリーン大阪 公式アクセス",
-    accessNote: "藤田医科大学医学部の2027年度一般入試一次は2027年2月4日に実施され、大阪会場はグラングリーン大阪南館4階のコングレスクエアです。南館4階までは確定していますが、使用ルーム・試験受付・受験生入口・入室時刻は未公表です。施設通常の営業時間を試験日の開場時刻に転用せず、一般入試の選択・収容条件は10月頃公開予定の同要項該当章と受験票で確認してください。",
+    accessNote: "藤田医科大学医学部の2027年度一般入試一次は2027年2月4日に実施され、大阪会場はグラングリーン大阪南館4階のコングレスクエアです。藤田医科大学の一次は出願時に選択し、出願後の変更不可。大阪は定員470名で満員時に登録終了、入室8:00〜8:40です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
     reviewState: "verified",
     verifiedAt: "2026-08-19T00:00:00+09:00",
   },
@@ -2217,7 +2294,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     municipality: "高槻市",
     nearestStations: ["阪急京都線 高槻市駅", "JR京都線 高槻駅"],
     officialUrl: "https://www.ompu.ac.jp/access.html",
-    accessNote: "2027年度医学部一般選抜（前期・大阪府地域枠）の二次は2月19日、一般選抜（後期）の二次は3月16日、共通テスト利用選抜の二次は2月28日に本部キャンパスで実施予定です。一般前期の繰上合格候補対象者の二次は3月3日です。阪急高槻市駅出口1からは大学公式で『すぐ』、JR高槻駅南口からは徒歩8分ですが、出口1は試験当日の受験生入口ではありません。2027年度の開場・集合・開始時刻、使用棟・階・試験室、受付位置、受験生入口は未公表です。完成版募集要項、受験票、一次試験合格者向け案内、当日掲示を確認し、大学病院の入口と取り違えないでください。",
+    accessNote: "2027年度医学部一般選抜（前期・大阪府地域枠）の二次は2月19日、一般選抜（後期）の二次は3月18日、共通テスト利用選抜の二次は2月28日に本部キャンパスで実施予定です。一般前期の繰上合格候補対象者の二次は3月3日です。阪急高槻市駅出口1からは大学公式で『すぐ』、JR高槻駅南口からは徒歩8分ですが、出口1は試験当日の受験生入口ではありません。大阪医科薬科大学の後期二次は3月18日です。二次集合場所・時間は一次合格発表時、繰上候補者はマイページで通知。集合から10分以上の遅刻は入室不可です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
     reviewState: "verified",
     verifiedAt: "2026-08-19T00:00:00+09:00",
   },
@@ -2261,7 +2338,7 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     municipality: "倉敷市",
     nearestStations: ["JR山陽本線 中庄駅"],
     officialUrl: "https://m.kawasaki-m.ac.jp/outline/access.php",
-    accessNote: "川崎医科大学の2027年度一般選抜・地域枠選抜の第一次試験は2月1日に実施され、公式会場表記は『総合体育館等』です。使用施設、受付位置、受験生入口、受験室は未公表のため、受験票と大学の受験生向け案内・当日掲示で確認してください。大学公式はJR山陽本線・伯備線の中庄駅から徒歩10分と案内していますが、これは大学までの一般アクセスで、指定受験室までの時間ではありません。試験会場と周辺への自家用車・タクシー・バス等の乗り入れ、無断駐車、送迎は禁止されています。",
+    accessNote: "川崎医科大学の2027年度一般選抜・地域枠選抜の第一次試験は2月1日に実施され、公式会場表記は『総合体育館等』です。使用施設、受付位置、受験生入口、受験室は未公表のため、受験票と大学の受験生向け案内・当日掲示で確認してください。大学公式はJR山陽本線・伯備線の中庄駅から徒歩10分と案内していますが、これは大学までの一般アクセスで、指定受験室までの時間ではありません。試験会場と周辺への自家用車・タクシー・バス等の乗り入れ、無断駐車、送迎は禁止されています。川崎医科大学一般一次は8:00開場予定、8:00〜9:15に入室・着席です。使用階・試験室・受付入口は受験票と当日案内で確認してください。",
     reviewState: "verified",
     verifiedAt: "2026-08-19T00:00:00+09:00",
   },
@@ -2330,9 +2407,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     municipality: "福岡市城南区",
     nearestStations: ["福岡市地下鉄七隈線 福大前駅"],
     officialUrl: "https://www.fukuoka-u.ac.jp/help/map/",
-    accessNote: "福大前駅1番出口は入学センター・入試事務室方面の大学公式案内です。2027年度系統別日程の本学試験場は福岡大学まで確定していますが、使用棟・試験室・受付・受験生入口・集合時刻は未公表です。",
+    accessNote: "福大前駅1番出口は入学センター・入試事務室方面の大学公式案内です。系統別一次（2月2日）は9:45までに着席、10:00開始です。系統別・共テⅠ期の二次（2月14日）も七隈キャンパスで、個人の集合時間・場所は受験票で通知されます。受験室案内の掲示場所は8号館1階前広場です。",
     reviewState: "verified",
-    verifiedAt: "2026-08-18T00:00:00+09:00",
+    verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
   },
   {
     venueId: "venue-time24-building",
@@ -2346,9 +2423,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     nearestStations: ["ゆりかもめ テレコムセンター駅"],
     officialUrl: "https://www.bigsight.jp/organizer/buildings/time/access/",
     officialUrlLabel: "タイム24ビル 公式交通アクセス",
-    accessNote: "福岡大学医学部医学科の2027年度一般選抜・系統別日程一次選考は2月2日（火）に実施され、東京試験場はタイム24ビルです。希望会場の収容人数を超えた場合は別会場になるため、出願確認票・受験票で最終会場を確認してください。一般選抜の入試要項は9月下旬公開予定で、現時点では開場・入室・集合・試験開始時刻、使用階・研修室・会議室、受付位置、受験生入口は未公表です。施設公式はゆりかもめテレコムセンター駅から徒歩約2分と案内していますが、これは一般来館地点までの案内で指定試験室までの時間ではありません。施設の通常利用時間や一般入口を入試の開場時刻・入口に転用せず、入試要項、受験票、当日案内を確認してください。",
+    accessNote: "福岡大学医学部医学科の2027年度一般選抜・系統別日程一次選考は2月2日（火）に実施され、東京試験場はタイム24ビルです。希望会場の収容人数を超えた場合は別会場になるため、出願確認票・受験票で最終会場を確認してください。正式要項では当日8:30までに受験室案内を掲示し、その後に入室できます。9:45までに着席、10:00開始です。使用階・研修室・会議室、受付位置、受験生入口は未公表です。施設公式はゆりかもめテレコムセンター駅から徒歩約2分と案内していますが、これは一般来館地点までの案内で指定試験室までの時間ではありません。施設の通常利用時間や一般入口を入試の開場時刻・入口に転用せず、入試要項、受験票、当日案内を確認してください。",
     reviewState: "verified",
-    verifiedAt: "2026-08-19T00:00:00+09:00",
+    verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
   },
   {
     venueId: "venue-tkp-premium-nagoya-shinkansenguchi",
@@ -2362,9 +2439,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     nearestStations: ["JR・名鉄・近鉄・地下鉄 名古屋駅"],
     officialUrl: "https://www.kashikaigishitsu.net/facilitys/gc-nagoya-shinkansenguchi/",
     officialUrlLabel: "TKPガーデンシティPREMIUM名古屋新幹線口 公式アクセス",
-    accessNote: "福岡大学医学部の2027年度系統別日程一次（2月2日（火））と、藤田医科大学医学部の一般入試一次（2月4日（木））の名古屋会場です。施設は井門名古屋ビル2～9階にあり、JR名古屋駅太閤通口から徒歩3分と公式案内されています。両入試とも使用階・会議室、受付位置、受験生入口は未公表です。福岡大学は希望会場の収容人数を超えた場合に別会場となる可能性があり、入試要項は9月下旬公開予定です。藤田医科大学は一般入試の選択・収容条件を10月頃公開予定の要項該当章で案内するため、それぞれ出願確認票・受験票・当日案内を確認してください。",
+    accessNote: "福岡大学医学部の2027年度系統別日程一次（2月2日（火））と、藤田医科大学医学部の一般入試一次（2月4日（木））の名古屋会場です。施設は井門名古屋ビル2～9階にあり、JR名古屋駅太閤通口から徒歩3分と公式案内されています。両入試とも使用階・会議室、受付位置、受験生入口は未公表です。福岡大学は希望会場の収容人数を超えた場合に別会場となる可能性があり、当日8:30までに受験室案内を掲示し、9:45までに着席、10:00開始です。藤田医科大学は出願時に会場選択、出願後の変更不可、名古屋定員840名の満員時のみ本学大学2号館で受け付けます。入室8:00〜8:40です。それぞれ受験票と当日案内を確認してください。",
     reviewState: "verified",
-    verifiedAt: "2026-08-19T00:00:00+09:00",
+    verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
   },
   {
     venueId: "venue-tkp-shinosaka-conference-center",
@@ -2381,9 +2458,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     ],
     officialUrl: "https://www.kashikaigishitsu.net/facilitys/cc-shinosaka/",
     officialUrlLabel: "TKP新大阪カンファレンスセンター 公式アクセス",
-    accessNote: "福岡大学医学部医学科の2027年度一般選抜・系統別日程一次選考は2月2日（火）に実施され、大阪試験場はTKP新大阪カンファレンスセンターです。希望会場の収容人数を超えた場合は別会場になるため、出願確認票・受験票で最終会場を確認してください。一般選抜の入試要項は9月下旬公開予定で、現時点では開場・入室・集合・試験開始時刻、4～5階の使用会議室、受付位置、受験生入口は未公表です。施設公式はJR新大阪駅北口から徒歩6分、Osaka Metro御堂筋線新大阪駅4番出口から徒歩5分と案内しています。2026年6月30日に入居ビル名が「新大阪NKビル」から「J.NODE新大阪」へ変更され、福岡大学の2027年度入試ガイドには旧ビル名で掲載されています。施設の通常利用時間や一般受付を入試の開場時刻・入口に転用せず、入試要項、受験票、当日案内で確認してください。",
+    accessNote: "福岡大学医学部医学科の2027年度一般選抜・系統別日程一次選考は2月2日（火）に実施され、大阪試験場はTKP新大阪カンファレンスセンターです。希望会場の収容人数を超えた場合は別会場になるため、出願確認票・受験票で最終会場を確認してください。正式要項では当日8:30までに受験室案内を掲示し、その後に入室できます。9:45までに着席、10:00開始です。4～5階の使用会議室、受付位置、受験生入口は未公表です。施設公式はJR新大阪駅北口から徒歩6分、Osaka Metro御堂筋線新大阪駅4番出口から徒歩5分と案内しています。2026年6月30日に入居ビル名が「新大阪NKビル」から「J.NODE新大阪」へ変更され、正式要項には新ビル名で掲載されています。施設の通常利用時間や一般受付を入試の開場時刻・入口に転用せず、入試要項、受験票、当日案内で確認してください。",
     reviewState: "verified",
-    verifiedAt: "2026-08-19T00:00:00+09:00",
+    verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
   },
 ];
 
@@ -2404,6 +2481,7 @@ type AssignmentPlan = Partial<
     | "evidenceLocator"
     | "knowledgeBaseIds"
     | "reviewState"
+    | "verifiedAt"
     | "note"
   >
 >;
@@ -2911,22 +2989,24 @@ officialVenuePlan(["iwate-medical--general--general"], "second", {
   note: "矢巾キャンパスは正式会場として公表済みです。二次試験日は2月12日・13日から受験者が1日を選び、面接時刻は大学が指定します。東京・大阪の正式施設と試験地の最終指定は、9月末までに公開予定の学生募集要項および受験票で確認してください。",
 });
 
-const tohokuVenueUrl = "https://www.tohoku-mpu.ac.jp/admission/medicine-application/";
+const tohokuVenueUrl = "https://www.tohoku-mpu.ac.jp/doc/application_medicine.pdf";
 officialVenuePlan(["tohoku-med-pharm--general--general"], "first", {
   venueLinks: [
-    link("venue-tohoku-med-pharm-komatsushima-campus", "announced"),
-    link("venue-grand-cube-osaka", "announced"),
-    link("venue-acu-a-asty45", "announced"),
+    link("venue-tohoku-med-pharm-komatsushima-campus", "choice"),
+    link("venue-bellesalle-shinjuku-grand", "choice"),
+    link("venue-grand-cube-osaka", "choice"),
+    link("venue-acu-a-asty45", "choice"),
   ],
   announcedPrefectures: ["宮城県", "東京都", "大阪府", "北海道"],
-  announcedVenueText: "仙台：東北医科薬科大学（小松島キャンパス）／東京：正式施設は現在調整中／大阪：グランキューブ大阪（大阪府立国際会議場）／札幌：ACU-A（アスティ45）",
-  publicationState: "city_or_campus_only",
-  conditions: ["admission_ticket"],
+  announcedVenueText: "仙台：小松島キャンパス／東京：ベルサール新宿グランド／大阪：グランキューブ大阪／札幌：ACU-A（アスティ45）",
+  publicationState: "confirmed",
+  conditions: ["applicant_preference", "admission_ticket"],
   officialAdmissionUrl: tohokuVenueUrl,
-  evidenceLabel: "大学公式2027年度 医学部募集概要",
-  evidenceLocator: "一般選抜「一次試験期日」「実施都市」",
-  reviewState: "monitoring",
-  note: "2027年度入学者選抜ガイドでは一般選抜一次の試験地を宮城・東京・大阪・北海道と公表しています。募集概要で正式施設を確認できるのは小松島キャンパス、グランキューブ大阪、ACU-Aで、東京は現在調整中です。試験地の選択・指定方法と東京の正式施設は、9月頃公開予定の学生募集要項および受験票で確認してください。年次表示のない会場一覧に残るベルサール渋谷ガーデン・TOCビルは2027会場として結合していません。",
+  evidenceLabel: "令和9年度学生募集要項 医学部一般選抜",
+  evidenceLocator: "PDF 3・13ページ（冊子1・医-6ページ）",
+  reviewState: "verified",
+  verifiedAt: HTML_GUIDELINE_VERIFIED_AT,
+  note: "出願時に選択した試験場で受験します。検定料納入後の受験地変更はできません。2月4日は8:20開場、8:50までに集合、英語9:30開始です。東京会場はベルサール新宿グランドで、渋谷ガーデンや五反田TOCではありません。要項は東京会場の使用階・室・受付入口までは指定していないため、受験票と当日案内を確認してください。",
 });
 officialVenuePlan(["tohoku-med-pharm--general--general"], "second", {
   venueLinks: [link("venue-tohoku-med-pharm-komatsushima-campus")],
@@ -2968,13 +3048,34 @@ officialVenuePlan(["jichi-medical--general--general"], "first", {
   note: "出願した都道府県ごとの学力試験場・面接試験場は公式一覧で確定しています。試験室まで公表されている会場と、施設名のみ公表されている会場があります。会場変更や当日の受付・入口は大学・都道府県の案内、受験票、当日掲示を優先してください。",
 });
 
-const dokkyoVenueUrl = "https://www.dokkyomed.ac.jp/dusm/exam/";
 const dokkyoRoutes = [
   "dokkyo-medical--general--general-regional-quota-3ffd7-71665-early",
   "dokkyo-medical--general--general-late",
 ];
-unpublishedVenuePlan(dokkyoRoutes, "first", dokkyoVenueUrl);
-unpublishedVenuePlan(dokkyoRoutes, "second", dokkyoVenueUrl);
+officialVenuePlan(dokkyoRoutes, "first", {
+  venueLinks: [link("venue-toc-gotanda")],
+  announcedVenueText: "五反田TOCビル",
+  publicationState: "confirmed",
+  conditions: ["fixed", "admission_ticket"],
+  officialAdmissionUrl: "https://www.dokkyomed.ac.jp/upload/CommonFile/files/dokkyo_20260827100450.pdf",
+  evidenceLabel: "令和9年度医学部一般選抜学生募集要項",
+  evidenceLocator: "PDF 11・20・28ページ（冊子9・18・26ページ）",
+  reviewState: "verified",
+  verifiedAt: HTML_GUIDELINE_VERIFIED_AT,
+  note: "前期（2月12日・13日）・後期（3月8日）とも五反田TOCビルです。8:00入室開始、8:40までに試験室へ入室、9:20以後の入室は認められません。前期は1日または両日を選択できます。使用階・試験室・受付入口は受験票と当日案内で確認してください。一次会場に付添者控室はありません。",
+});
+officialVenuePlan(dokkyoRoutes, "second", {
+  venueLinks: [link("venue-dokkyo-medical-mibu-campus")],
+  announcedVenueText: "獨協医科大学（栃木県壬生町北小林880）",
+  publicationState: "confirmed",
+  conditions: ["fixed", "admission_ticket"],
+  officialAdmissionUrl: "https://www.dokkyomed.ac.jp/upload/CommonFile/files/dokkyo_20260827100450.pdf",
+  evidenceLabel: "令和9年度医学部一般選抜学生募集要項",
+  evidenceLocator: "PDF 12・21・28ページ（冊子10・19・26ページ）",
+  reviewState: "verified",
+  verifiedAt: HTML_GUIDELINE_VERIFIED_AT,
+  note: "本学で実施します。7:50入室開始、8:30までに試験室へ入室、9:20以後の入室は認められません。使用棟・試験室・受付入口は受験票と当日案内で確認してください。二次会場では学生食堂を付添者控室として開放します。",
+});
 
 const iuhwVenueUrl = "https://narita.iuhw.ac.jp/gakubu/igakubu/admission/doc/guideline_app.pdf?ver=3";
 officialVenuePlan(["iuhw--general--general"], "first", {
@@ -3021,9 +3122,33 @@ officialVenuePlan(["iuhw--common--common-test"], "second", {
   note: "2/16の学力・小論文と2/20の面接はいずれも東京赤坂キャンパスです。",
 });
 
-const keioVenueUrl = "https://www.keio.ac.jp/ja/admissions/faculty/examinations/general-admissions/";
-unpublishedVenuePlan(["keio--general--general"], "first", keioVenueUrl);
-unpublishedVenuePlan(["keio--general--general"], "second", keioVenueUrl);
+const keioVenueUrl = "https://www.keio.ac.jp/fixed-files/2027_ippan_youkou.pdf";
+officialVenuePlan(["keio--general--general"], "first", {
+  venueLinks: [link("venue-keio-mita-campus")],
+  announcedPrefectures: ["東京都"],
+  announcedVenueText: "慶應義塾大学 三田キャンパス",
+  publicationState: "confirmed",
+  conditions: ["fixed", "admission_ticket"],
+  officialAdmissionUrl: keioVenueUrl,
+  evidenceLabel: "2027年度慶應義塾大学 一般選抜要項",
+  evidenceLocator: "冊子8・44ページ",
+  reviewState: "verified",
+  verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
+  note: "一次は2月9日（火）、9:30集合、10:00から理科です。一般選抜の栃木県地域枠もこの試験を受けます。受験票と大学案内図で指定教室を確認してください。",
+});
+officialVenuePlan(["keio--general--general"], "second", {
+  venueLinks: [link("venue-keio-hiyoshi-campus")],
+  announcedPrefectures: ["神奈川県"],
+  announcedVenueText: "慶應義塾大学 日吉キャンパス",
+  publicationState: "confirmed",
+  conditions: ["fixed", "admission_ticket"],
+  officialAdmissionUrl: keioVenueUrl,
+  evidenceLabel: "2027年度慶應義塾大学 一般選抜要項",
+  evidenceLocator: "冊子8・43ページ",
+  reviewState: "verified",
+  verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
+  note: "二次は3月1日（月）、8:45集合、9:00から小論文です。面接の最終組は17:00終了予定ですが、延びる場合があります。昼休みに外出できないため昼食と飲み物を持参し、受験票で指定教室を確認してください。",
+});
 
 const showaVenueUrl = "https://adm.showa-u.ac.jp/albums/abm.php?d=2405&f=abm00072419.pdf";
 const showaRoutes = ["showa-medical--general--general-phase-1", "showa-medical--general--general-phase-1-phase-2"];
@@ -3078,7 +3203,7 @@ officialVenuePlan(["tokyo-medical--general--general"], "first", {
   evidenceLabel: "2027年度一般選抜・共通テスト利用選抜 学生募集要項",
   evidenceLocator: "PDF 10・15ページ（冊子9・14ページ）「試験会場」「試験日程」",
   reviewState: "verified",
-  note: "一次は2027年2月6日で、8:30開門、9:10集合です。大学が受験番号で本学またはベルサール新宿グランドを指定するため、受験票に記載された会場を確認してください。ベルサールは1階イベントホールまで公表されていますが、使用区画・受付位置・受験生入口は未公表です。",
+  note: "一次は2027年2月6日で、8:30開門、9:10集合です。大学が受験番号で本学またはベルサール新宿グランドを指定するため、受験票に記載された会場を確認してください。ベルサールの使用階・試験室・受付入口は最新要項では指定されていません。",
 });
 officialVenuePlan(["tokyo-medical--common--common-test"], "first", {
   venueLinks: [link("venue-tokyo-medical-shinjuku-campus")],
@@ -3259,15 +3384,22 @@ officialVenuePlan(["nihon--general--unified-phase-2"], "second", {
 unpublishedVenuePlan(
   ["nihon--general--general-route-regional-quota"],
   "first",
-  nihonVenueUrl,
-  "2027年度の地域枠選抜は方式・日程・会場とも未公表です。",
+  "https://www.med.nihon-u.ac.jp/examinee/guidance.php",
+  "大学の入試案内では、3月4日にN方式実施試験場の中から希望する受験地を選ぶ予定です。正式な試験場は認可後の募集要項を確認してください。",
 );
-unpublishedVenuePlan(
-  ["nihon--general--general-route-regional-quota"],
-  "second",
-  nihonVenueUrl,
-  "2027年度の地域枠選抜は方式・日程・会場とも未公表です。",
-);
+officialVenuePlan(["nihon--general--general-route-regional-quota"], "second", {
+  announcedVenueText: "日本大学医学部校舎（予定）",
+  announcedPrefectures: ["東京都"],
+  publicationState: "city_or_campus_only",
+  conditions: ["admission_ticket"],
+  officialAdmissionUrl: "https://www.med.nihon-u.ac.jp/examinee/guidance.php",
+  evidenceLabel: "2027年度日本大学医学部 入学試験案内（予定）",
+  evidenceLocator: "地域枠選抜「選考期日・試験場」",
+  reviewState: "monitoring",
+  verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
+  note: "二次は3月17日に医学部校舎で実施予定です。正式要項と受験票で会場を確認してから宿泊先を選んでください。",
+});
+
 
 const nmsVenueUrl = "https://www.nms.ac.jp/college/nyushi-book/pdf_2027/guidelines_2027.pdf";
 const nmsEarlyRoutes = [
@@ -3394,14 +3526,15 @@ officialVenuePlan(["kanazawa-medical--general--general-early"], "first", {
     link("venue-tkp-premium-nagoya-ekimae", "choice"),
     link("venue-fukuoka-garden-palace", "choice"),
   ],
-  announcedVenueText: "金沢医科大学・TOCビル本館・大阪アカデミア・TKP名古屋駅前・福岡ガーデンパレス（名古屋は一般選抜ページに旧会場表記が残るため受験票確認）",
+  announcedVenueText: "金沢医科大学・TOCビル本館・大阪アカデミア・TKP名古屋駅前・福岡ガーデンパレス",
   publicationState: "confirmed",
   conditions: ["applicant_preference", "admission_ticket"],
-  officialAdmissionUrl: kanazawaVenueUrl,
-  evidenceLabel: "金沢医科大学 医学部guide2027",
-  evidenceLocator: "PDF 3ページ「一般選抜 前期 試験場」",
-  reviewState: "monitoring",
-  note: "2027年度医学部ガイドと大学公式『昨年度からの変更点』は、名古屋試験場をTKPガーデンシティPREMIUM名古屋駅前へ変更すると明記しています。一方、一般選抜（前期）の大学公式ページには旧会場のTKPガーデンシティPREMIUM名古屋ルーセントタワー表記が残っています。名古屋会場は出願時と受験票で施設名・住所を再確認し、駅前会場が指定された場合だけ本ページの宿泊候補を利用してください。2027年度の開場・入場時刻、使用室・受付位置・受験生入口は未公表です。",
+  officialAdmissionUrl: "https://www.kanazawa-med.ac.jp/medicine_exam/guidelines/general-1.html",
+  evidenceLabel: "金沢医科大学2027年度 一般選抜（前期）公式案内",
+  evidenceLocator: "試験場一覧「名古屋」",
+  reviewState: "verified",
+  verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
+  note: "一般前期一次の名古屋試験場はTKPガーデンシティPREMIUM名古屋駅前（西区名駅1-1-17）です。中村区椿町1-16のTKP名古屋新幹線口とは別会場です。受験票で施設と指定室を確認してください。",
 });
 officialVenuePlan(["kanazawa-medical--general--general-late"], "first", {
   venueLinks: [
@@ -3472,19 +3605,21 @@ officialVenuePlan(["aichi-medical--common--common-test-regional-quota"], "second
 const fujitaVenueUrl = "https://www.fujita-hu.ac.jp/admission/vsfo8q0000007l3n-att/tedb9e000000p7j6.pdf";
 officialVenuePlan(["fujita--general--general-regional-quota-17148"], "first", {
   venueLinks: [
-    link("venue-tkp-premium-nagoya-shinkansenguchi", "announced"),
-    link("venue-ariake-toc-building", "announced"),
-    link("venue-congress-square-grand-green-osaka", "announced"),
+    link("venue-tkp-premium-nagoya-shinkansenguchi", "choice"),
+    link("venue-ariake-toc-building", "choice"),
+    link("venue-congress-square-grand-green-osaka", "choice"),
+    link("venue-fujita-health-toyoake-campus", "overflow"),
   ],
   announcedPrefectures: ["愛知県", "東京都", "大阪府"],
-  announcedVenueText: "TKPガーデンシティPREMIUM名古屋新幹線口・有明TOCビル・コングレスクエア グラングリーン大阪",
+  announcedVenueText: "TKP名古屋新幹線口・有明TOCビル・コングレスクエア グラングリーン大阪（名古屋満員時のみ本学大学2号館）",
   publicationState: "confirmed",
-  conditions: ["admission_ticket"],
+  conditions: ["applicant_preference", "capacity_overflow", "admission_ticket"],
   officialAdmissionUrl: fujitaVenueUrl,
   evidenceLabel: "2027年度医学部医学科学生募集要項",
-  evidenceLocator: "PDF 30ページ（冊子36ページ）",
+  evidenceLocator: "10月1日改訂版 PDF 20・37ページ（冊子19・36ページ）",
   reviewState: "verified",
-  note: "3施設の正式名・住所は大学公式要項で確認済みです。一般入試の出願時選択・収容上限・入室時刻は10月頃公開予定の同要項該当章ではじめて確定するため、現時点では選択制と断定せず、受験票で最終会場を確認してください。",
+  verifiedAt: HTML_GUIDELINE_VERIFIED_AT,
+  note: "出願時に希望会場を選択し、出願後は変更できません。東京（定員1000名）・大阪（470名）は満員でWeb登録できなくなります。名古屋（840名）が満員の場合に限り本学大学2号館での受験を受け付けます。2月4日は8:00〜8:40に入室してください。使用試験室・受付入口は受験票と当日案内で確認してください。",
 });
 officialVenuePlan(["fujita--general--general-regional-quota-17148"], "second", {
   venueLinks: [link("venue-fujita-health-toyoake-campus")],
@@ -3509,27 +3644,31 @@ officialVenuePlan(["fujita--common--common-test"], "second", {
   note: "会場は大学2号館で固定です。2月14日午前・午後、15日午前・午後の第1〜第4希望を出願時に登録し、一次結果発表時に希望順と上限人数に基づいて面接日時が決まります。決定後は変更できません。使用階・試験室・受付・受験生入口は未公表です。",
 });
 
-const ompuVenueUrl = "https://www.ompu.ac.jp/admission/undergraduate/qt931k000000801q-att/afif3u000000fsvj.pdf";
-areaVenuePlan(
-  ["osaka-med-pharm--general--general-regional-quota-385a3-early"],
-  "first",
-  "大阪・愛知・東京",
-  ["大阪府", "愛知県", "東京都"],
-  [],
-  ompuVenueUrl,
-  "2027年度医学部入試概要「試験地」",
-  "都市までの公表です。正式施設名と選択・指定条件は、完成版要項等の公表後に確認してください。",
-);
-areaVenuePlan(
-  ["osaka-med-pharm--general--general-late"],
-  "first",
-  "大阪・東京",
-  ["大阪府", "東京都"],
-  [],
-  ompuVenueUrl,
-  "2027年度医学部入試概要「試験地」",
-  "都市までの公表です。正式施設名と選択・指定条件は、完成版要項等の公表後に確認してください。",
-);
+const ompuVenueUrl = "https://www.ompu.ac.jp/admission/undergraduate/medical/qt931k0000005db0-att/cc9f84000000fmbf.pdf";
+for (const [routeId, isEarly] of [
+  ["osaka-med-pharm--general--general-regional-quota-385a3-early", true],
+  ["osaka-med-pharm--general--general-late", false],
+] as const) {
+  officialVenuePlan([routeId], "first", {
+    venueLinks: [
+      link("venue-kansai-university-senriyama-first-school", "choice"),
+      ...(isEarly ? [link("venue-tkp-premium-nagoya-ekimae", "choice")] : []),
+      link("venue-vision-center-tokyo-kyobashi", "choice"),
+    ],
+    announcedPrefectures: isEarly ? ["大阪府", "愛知県", "東京都"] : ["大阪府", "東京都"],
+    announcedVenueText: isEarly
+      ? "関西大学 千里山キャンパス第1学舎・TKPガーデンシティPREMIUM名古屋駅前・ビジョンセンター東京京橋"
+      : "関西大学 千里山キャンパス第1学舎・ビジョンセンター東京京橋（名古屋は前期のみ）",
+    publicationState: "confirmed",
+    conditions: ["applicant_preference", "admission_ticket"],
+    officialAdmissionUrl: ompuVenueUrl,
+    evidenceLabel: "令和9年度医学部医学科入学試験要項",
+    evidenceLocator: `PDF ${isEarly ? "14" : "18"}・24〜27ページ（冊子${isEarly ? "12" : "16"}・22〜25ページ）`,
+    reviewState: "verified",
+    verifiedAt: HTML_GUIDELINE_VERIFIED_AT,
+    note: "出願時に試験場を選択し、出願後は変更できません。8:00開場、8:40までに指定席へ着席してください。大阪会場は本部キャンパスではなく、関西大学千里山キャンパス第1学舎（2号館・5号館）です。試験室までの構内移動を見込み、受験票・当日案内を確認してください。車の乗り入れ・周辺での送迎は控えてください。",
+  });
+}
 officialVenuePlan(
   [
     "osaka-med-pharm--general--general-regional-quota-385a3-early",
@@ -3543,10 +3682,11 @@ officialVenuePlan(
     publicationState: "confirmed",
     conditions: ["fixed"],
     officialAdmissionUrl: ompuVenueUrl,
-    evidenceLabel: "2027年度医学部入試概要",
-    evidenceLocator: "各方式 二次試験会場欄",
+    evidenceLabel: "令和9年度医学部医学科入学試験要項",
+    evidenceLocator: "PDF 14〜15・18・21・26ページ（冊子12〜13・16・19・24ページ）",
     reviewState: "verified",
-    note: "一般選抜（前期・大阪府地域枠）の二次は2027年2月19日、一般選抜（後期）の二次は3月16日、共通テスト利用選抜の二次は2月28日で、会場は本部キャンパスに固定されています。一般前期の繰上合格候補対象者の二次は3月3日です。開場・集合・開始時刻、使用棟・階・試験室、受付位置、受験生入口は現行の入試概要では未公表のため、完成版募集要項、受験票、一次試験合格者向け案内、当日掲示を確認してください。",
+    verifiedAt: HTML_GUIDELINE_VERIFIED_AT,
+    note: "一般選抜前期の二次は2月19日、後期は3月18日、共通テスト利用は2月28日で、会場は本部キャンパスに固定されています。前期の繰上合格候補対象者の面接は3月3日です。二次の集合場所・時間は一次合格発表時に案内され、繰上候補者にはマイページで通知されます。集合時刻から10分以上の遅刻は入室できません。使用棟・室・受付入口は大学の個別案内・受験票・当日掲示で確認してください。",
   },
 );
 
@@ -3751,7 +3891,7 @@ officialVenuePlan(
   },
 );
 
-const fukuokaVenueUrl = "https://www.fukuoka-u.ac.jp/pdf/entrance-examinations/guidebook-entrance-examinations2027.pdf";
+const fukuokaVenueUrl = "https://nyushi.fukuoka-u.ac.jp/cms/wp-content/uploads/2026/11/ippan.pdf";
 officialVenuePlan(["fukuoka--general--general"], "first", {
   venueLinks: [
     link("venue-fukuoka-university-nanakuma-campus", "choice"),
@@ -3763,21 +3903,25 @@ officialVenuePlan(["fukuoka--general--general"], "first", {
   publicationState: "confirmed",
   conditions: ["applicant_preference", "admission_ticket", "capacity_overflow"],
   officialAdmissionUrl: fukuokaVenueUrl,
-  evidenceLabel: "2027年度入試ガイド",
-  evidenceLocator: "系統別日程 試験地・会場案内",
+  evidenceLabel: "2027年度福岡大学 入学試験要項",
+  evidenceLocator: "冊子7・17・54〜55・75ページ「系統別日程」「試験場」",
   reviewState: "verified",
-  note: "希望会場の収容人数を超えた場合は別会場になります。2027年度入試ガイドは本学試験場を福岡大学まで公表していますが、使用棟・試験室・受付・受験生入口・集合時刻は未公表です。完成版の入学試験要項、出願確認票、受験票、当日案内で最終会場と入室案内を確認してください。",
+  verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
+  note: "2月2日（火）は9:45までに着席、10:00開始。医学科は福岡本学・東京・名古屋・大阪の4会場です。希望会場が収容人数を超える場合は変更があります。名古屋は要項の会場案内図・住所が椿町1-16のTKP名古屋新幹線口を示しています。出願確認票と受験票で指定教室を確認してください。",
 });
-areaVenuePlan(
-  ["fukuoka--general--general", "fukuoka--common--common-test-phase-1"],
-  "second",
-  "福岡",
-  ["福岡県"],
-  ["fixed", "admission_ticket"],
-  fukuokaVenueUrl,
-  "医学部二次試験「試験地：福岡」",
-  "試験地は福岡まで公表済みですが、二次試験の正式施設名・住所は公表されていません。福岡大学本学とは推測せず、受験票で最終会場を確認してください。",
-);
+officialVenuePlan(["fukuoka--general--general", "fukuoka--common--common-test-phase-1"], "second", {
+  venueLinks: [link("venue-fukuoka-university-nanakuma-campus")],
+  announcedPrefectures: ["福岡県"],
+  announcedVenueText: "福岡大学 七隈キャンパス",
+  publicationState: "confirmed",
+  conditions: ["fixed", "admission_ticket"],
+  officialAdmissionUrl: fukuokaVenueUrl,
+  evidenceLabel: "2027年度福岡大学 入学試験要項",
+  evidenceLocator: "冊子7・60・73ページ「医学部医学科二次選考」",
+  reviewState: "verified",
+  verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
+  note: "系統別日程・共通テスト利用型Ⅰ期とも2月14日（日）は福岡大学七隈キャンパス。個人の集合時間と指定場所は二次選考受験票で通知されます。受験室案内は2月13日15:00までに8号館1階前広場に掲示されます。試験当日の受験室がある建物は原則8:30開館です。",
+});
 
 // 会場そのものの固定／選択と、受験日だけの希望・大学指定を方式ごとに分ける。
 const refineAssignmentPlan = (
@@ -3945,6 +4089,116 @@ refineAssignmentPlan(["kansai-medical--common--common-test-late"], "second", {
   evidenceLocator: "PDF 23ページ（冊子17ページ）「大学入学共通テスト利用選抜試験（後期）／第2次試験」",
 });
 
+// 10月5日照合：HTML化した当該年度・当該方式の募集要項だけを根拠に更新する。
+refineAssignmentPlan([showaRoutes[0]], "first", {
+  officialAdmissionUrl: "https://adm.showa-u.ac.jp/admission/info/web-apply.html",
+  evidenceLabel: "2027年度入学試験要項 現行76ページ版",
+  evidenceLocator: "現行76ページ版 PDF 51ページ（冊子47ページ）出願に関する注意事項",
+  verifiedAt: HTML_GUIDELINE_VERIFIED_AT,
+  note: "現行要項の出願注意事項で、医学部Ⅰ期一次は五反田TOCビルの定員超過時に旗の台キャンパスとなる可能性があると確認しました。この定員超過条件をⅡ期へ流用しません。最終会場は受験票で確認してください。",
+});
+refineAssignmentPlan([showaRoutes[1]], "first", {
+  venueLinks: [link("venue-toc-gotanda")],
+  announcedVenueText: "五反田TOCビル",
+  conditions: ["fixed", "admission_ticket"],
+  reviewState: "needs_review",
+  note: "Ⅱ期一次の五反田TOCビルは既存の2027年度資料による情報です。現行76ページ版の方式別会場ページはHTML化待ちのため再照合待ちです。現行要項PDF51ページの定員超過時の旗の台キャンパスへの変更条件はⅠ期のみを対象とするため、Ⅱ期には結合していません。受験票で最終会場を確認してください。",
+});
+refineAssignmentPlan([dokkyoRoutes[0]], "first", {
+  conditions: ["fixed", "applicant_preference", "admission_ticket"],
+});
+refineAssignmentPlan([dokkyoRoutes[0]], "second", {
+  conditions: ["fixed", "applicant_preference", "university_assigned", "admission_ticket"],
+  note: "会場は獨協医科大学で固定です。2月19日・20日の希望日を出願時に選択し、出願受付順に希望を優先して大学が決定、一次合格発表と同時に通知します。決定後の日程変更や指定日以外の受験はできません。7:50入室開始、8:30までに試験室へ入室してください。使用棟・室・受付入口は受験票と当日案内で確認してください。",
+});
+refineAssignmentPlan(["tohoku-med-pharm--general--general"], "second", {
+  evidenceLabel: "令和9年度学生募集要項 医学部一般選抜",
+  evidenceLocator: "PDF 13ページ（冊子医-6ページ）",
+  verifiedAt: HTML_GUIDELINE_VERIFIED_AT,
+  note: "二次は小松島キャンパスで固定です。2月20日・21日のいずれか1日を大学が指定し、一次合格発表時に通知します。両日とも8:20開場、8:50集合です。やむを得ない日程変更は2月15日10:00までに申請できますが、希望が認められない場合もあります。使用棟・室・受付入口は受験票と当日案内で確認してください。",
+});
+refineAssignmentPlan(["tohoku-med-pharm--common--common-test"], "second", {
+  evidenceLabel: "令和9年度学生募集要項 医学部共通テスト利用選抜",
+  evidenceLocator: "PDF 21ページ（冊子医-14ページ）",
+  verifiedAt: HTML_GUIDELINE_VERIFIED_AT,
+  note: "3月3日は小松島キャンパスで8:30開場、9:00集合、9:30面接開始です。面接終了まで外出できません。使用棟・室・受付入口は受験票と当日案内で確認してください。",
+});
+for (const routeId of ["fujita--general--general-regional-quota-17148", "fujita--common--common-test"]) {
+  refineAssignmentPlan([routeId], "second", {
+    conditions: ["fixed", "applicant_preference", "university_assigned", "admission_ticket"],
+    evidenceLabel: "2027年度医学部学生募集要項（10月1日改訂版）",
+    evidenceLocator: routeId.includes("--general--")
+      ? "PDF 21・36ページ（冊子20・35ページ）"
+      : "PDF 26・36ページ（冊子25・35ページ）",
+    verifiedAt: HTML_GUIDELINE_VERIFIED_AT,
+    note: "大学2号館で固定です。2月14日・15日の午前・午後について第1〜第4希望を出願時に登録します。一次結果発表時に出願日時の早い順に上限人数まで希望日時を決定し、二次受験票で通知します。決定後の変更はできません。午前は8:30〜9:10、午後は12:00〜12:40に入室してください。一般・共通テスト利用を併願する場合は同じ希望順位で、1回の面接により両方式を判定します。使用階・室・受付入口は受験票と当日案内で確認してください。",
+  });
+}
+const uoehGuidelineUrl = "https://www.uoeh-u.ac.jp/library/nyusi/R9_igaku_ippan_bosyuyoko.pdf";
+refineAssignmentPlan(["uoeh--common--general-method-a", "uoeh--general--general-method-b"], "first", {
+  officialAdmissionUrl: uoehGuidelineUrl,
+  evidenceLabel: "令和9年度医学部一般選抜学生募集要項",
+  evidenceLocator: "PDF 13・24〜25ページ（冊子10・21〜22ページ）",
+  verifiedAt: HTML_GUIDELINE_VERIFIED_AT,
+  note: "出願時に会場を選択します。東京会場が定員超過の場合、一部受験者は北九州会場へ変更され、受験票ダウンロードメール送付時に通知されます。2月14日の数学入室は9:30〜9:50、検査開始10:20です。北九州メッセは個別学力検査の会場で、本学キャンパスではありません。下見は前日13:00〜17:00の屋外のみ。使用室・受付入口は受験票と当日案内で確認してください。",
+});
+refineAssignmentPlan(["uoeh--common--general-method-a", "uoeh--general--general-method-b", "uoeh--common--general-method-c"], "second", {
+  officialAdmissionUrl: uoehGuidelineUrl,
+  evidenceLabel: "令和9年度医学部一般選抜学生募集要項",
+  evidenceLocator: "PDF 14・26ページ（冊子11・23ページ）",
+  verifiedAt: HTML_GUIDELINE_VERIFIED_AT,
+  note: "3月12日の小論文・面接は本学です。小論文は8:10〜8:40入室、9:00開始。面接は12:20〜17:00頃で、入室時間は当日指示されます。下見は前日13:00〜17:00の屋外のみ。使用棟・室・受付入口は受験票と当日案内で確認してください。",
+});
+refineAssignmentPlan(["kawasaki-medical--general--general-regional-quota-c5d34-491fd-bf01d"], "first", {
+  evidenceLocator: "9月30日改訂版 PDF 28〜29・37ページ（冊子27〜28・36ページ）",
+  verifiedAt: HTML_GUIDELINE_VERIFIED_AT,
+  note: "一次会場は総合体育館等です。8:00開場予定、8:00〜9:15に試験室へ入室・着席してください。使用施設・室・受付入口は受験票と当日案内で確認してください。事前の下見はできず、試験会場と周辺への車・タクシー・バス等の乗り入れ、無断駐車、送迎は禁止です。",
+});
+refineAssignmentPlan(["kawasaki-medical--general--general-regional-quota-c5d34-491fd-bf01d"], "second", {
+  evidenceLocator: "9月30日改訂版 PDF 28・30・37ページ（冊子27・29・36ページ）",
+  verifiedAt: HTML_GUIDELINE_VERIFIED_AT,
+});
+// 会場・条件に変更がない大学も、方式固有のページで再照合した記録を残す。
+for (const [universityId, pages] of [
+  ["jichi-medical", "PDF 15・29〜30ページ（冊子11・25〜26ページ）"],
+  ["hyogo-medical", "PDF 23〜26・32〜34ページ"],
+  ["kyorin", "PDF 46〜47・72〜73ページ"],
+  ["juntendo", "10月1日改訂版 PDF 31・33・36・38・41・44〜45ページ"],
+  ["tokyo-medical", "一般・共通テスト利用要項 PDF 10・13・15ページ"],
+  ["tokyo-womens-medical", "PDF 24・35〜36ページ（冊子21・32〜33ページ）"],
+] as const) {
+  for (const [key, plan] of assignmentPlans) {
+    if (!key.startsWith(`${universityId}--`)) continue;
+    assignmentPlans.set(key, {
+      ...plan,
+      evidenceLocator: pages,
+      verifiedAt: HTML_GUIDELINE_VERIFIED_AT,
+    });
+  }
+}
+
+for (const [venueId, policy] of Object.entries(novemberCampusPolicies2027)) {
+  const venue = privateMedicalExamVenues2027.find((entry) => entry.venueId === venueId);
+  if (!venue) throw new Error(`Unknown November campus: ${venueId}`);
+  venue.accessNote = policy.note;
+  venue.verifiedAt = novemberVenueVerifiedAt2027;
+}
+
+for (const update of novemberAssignmentUpdates2027) {
+  const linkedVenues = update.values.venueLinks?.map(({ venueId }) => {
+    const venue = privateMedicalExamVenues2027.find((entry) => entry.venueId === venueId);
+    if (!venue) throw new Error(`Unknown November venue: ${venueId}`);
+    return venue;
+  });
+  refineAssignmentPlan(update.routeIds, update.stage, {
+    ...update.values,
+    ...(linkedVenues ? {
+      announcedVenueText: linkedVenues.map((venue) => venue.name).join("・"),
+      announcedPrefectures: [...new Set(linkedVenues.map((venue) => venue.prefecture))],
+    } : {}),
+  });
+}
+
 const allRouteRecords = privateMedicalUniversities2027.flatMap((university) =>
   university.routes.map((route) => {
     const routeKey = `${university.id}::${route.name}` as keyof typeof privateMedicalExamRouteIds2027;
@@ -3991,7 +4245,7 @@ const createAssignment = (
     evidenceLocator: plan.evidenceLocator,
     knowledgeBaseIds: plan.knowledgeBaseIds ?? [`route:${routeId}`],
     reviewState: plan.reviewState ?? "monitoring",
-    verifiedAt: VERIFIED_AT,
+    verifiedAt: plan.verifiedAt ?? VERIFIED_AT,
     note:
       plan.note ??
       (isPending

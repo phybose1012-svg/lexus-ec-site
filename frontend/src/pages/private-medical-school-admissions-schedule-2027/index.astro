@@ -17,7 +17,6 @@ import {
 } from "../../data/privateMedicalAdmissions2027Metadata";
 import AdmissionsBrandDivider from "../../components/admissions/AdmissionsBrandDivider.astro";
 import AdmissionsScheduleSwitcher from "../../components/admissions/AdmissionsScheduleSwitcher.astro";
-import AdmissionPlanner from "../../components/admissions/AdmissionPlanner.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import "../../styles/admissions-2027.css";
 
@@ -106,24 +105,62 @@ const createUniversityUpdate = (detail: string, date: string, dateTime: string) 
   };
 };
 const universityUpdateHistory = [
-  { date: lastUpdated, dateTime: lastUpdatedIso, university: "東海大学", summary: "一般・共テ利用・地域枠の合格発表日と入学手続締切を掲載しました。" },
-  { date: lastUpdated, dateTime: lastUpdatedIso, university: "福岡大学", summary: "正式要項に合わせ、検定料・郵送書類・合格発表・入学手続の期限を掲載しました。" },
-  { date: lastUpdated, dateTime: lastUpdatedIso, university: "東邦大学", summary: "Web登録は13時、検定料は15時まで。一般入試の千葉県・新潟県地域枠も掲載しました。" },
-  { date: lastUpdated, dateTime: lastUpdatedIso, university: "東京慈恵会医科大学", summary: "Web登録は12月21日から、書類受付は1月4日からです。" },
-  { date: lastUpdated, dateTime: lastUpdatedIso, university: "北里大学", summary: "Web登録は12月17日10時から。一般・共テ利用の登録締切時刻を掲載しました。" },
-  { date: lastUpdated, dateTime: lastUpdatedIso, university: "日本大学", summary: "N全学統一方式第1期・第2期のWeb登録締切は各締切日の16時です。" },
-  { date: lastUpdated, dateTime: lastUpdatedIso, university: "慶應義塾大学", summary: "正式要項に合わせ、合格発表時刻と延納の期限を追加しました。" },
-  { date: lastUpdated, dateTime: lastUpdatedIso, university: "岩手医科大学", summary: "正式要項に合わせ、Web出願開始・合格発表の時刻と入学手続を掲載しました。" },
-  { date: lastUpdated, dateTime: lastUpdatedIso, university: "近畿大学", summary: "認可された地域枠と、検定料・入学手続の期限を掲載しました。" },
-  { date: lastUpdated, dateTime: lastUpdatedIso, university: "川崎医科大学", summary: "静岡県・長崎県の地域枠の募集が確定しました。" },
-  { date: lastUpdated, dateTime: lastUpdatedIso, university: "関西医科大学", summary: "地域枠の募集が大阪府2名・静岡県2名に確定しました。" },
-  { date: lastUpdated, dateTime: lastUpdatedIso, university: "大阪医科薬科大学", summary: "一般前期の大阪府地域枠2名の募集が確定しました。" },
-  { date: lastUpdated, dateTime: lastUpdatedIso, university: "東京女子医科大学", summary: "一般選抜と同じ日程で受験する千葉県地域枠を明記しました。" },
-  { date: lastUpdated, dateTime: lastUpdatedIso, university: "順天堂大学", summary: "併願で複数の一次選考に合格した場合の二次試験の受け方を掲載しました。" },
-  { date: lastUpdated, dateTime: lastUpdatedIso, university: "帝京大学", summary: "合格発表時刻と、奨学特待生の利用意思確認期限を追加しました。" },
-  { date: lastUpdated, dateTime: lastUpdatedIso, university: "昭和医科大学", summary: "一般Ⅰ期の分納期限と、対象者向けの入学金負担軽減の申請期限を掲載しました。" },
-  { date: lastUpdated, dateTime: lastUpdatedIso, university: "兵庫医科大学", summary: "兵庫県推薦入学制度枠の県選考日を追加しました。" },
-  { date: lastUpdated, dateTime: lastUpdatedIso, university: "産業医科大学", summary: "入学手続の保護者対応を明記し、C方式の二次受験資格発表時刻を確認中としました。" },
+  { date: lastUpdated, dateTime: lastUpdatedIso, university: "久留米大学", summary: "正式要項に合わせて、一般前期・共テAと一般後期・共テBのWeb登録、書類必着、合格発表、入学手続の締切を更新しました。" },
+  { date: lastUpdated, dateTime: lastUpdatedIso, university: "日本大学", summary: "医学部が公表した地域枠選抜の予定日程を掲載しました。認可と正式要項を確認してください。" },
+  { date: "2026年11月12日", dateTime: "2026-11-12", university: "東海大学", summary: "一般・共テ利用・地域枠の合格発表日と入学手続締切を掲載しました。" },
+  { date: "2026年11月12日", dateTime: "2026-11-12", university: "福岡大学", summary: "正式要項に合わせ、検定料・郵送書類・合格発表・入学手続の期限を掲載しました。" },
+  { date: "2026年11月12日", dateTime: "2026-11-12", university: "東邦大学", summary: "Web登録は13時、検定料は15時まで。一般入試の千葉県・新潟県地域枠も掲載しました。" },
+  { date: "2026年11月12日", dateTime: "2026-11-12", university: "東京慈恵会医科大学", summary: "Web登録は12月21日から、書類受付は1月4日からです。" },
+  { date: "2026年11月12日", dateTime: "2026-11-12", university: "北里大学", summary: "Web登録は12月17日10時から。一般・共テ利用の登録締切時刻を掲載しました。" },
+  { date: "2026年11月12日", dateTime: "2026-11-12", university: "日本大学", summary: "N全学統一方式第1期・第2期のWeb登録締切は各締切日の16時です。" },
+  { date: "2026年11月12日", dateTime: "2026-11-12", university: "慶應義塾大学", summary: "正式要項に合わせ、合格発表時刻と延納の期限を追加しました。" },
+  { date: "2026年11月12日", dateTime: "2026-11-12", university: "岩手医科大学", summary: "正式要項に合わせ、Web出願開始・合格発表の時刻と入学手続を掲載しました。" },
+  { date: "2026年11月12日", dateTime: "2026-11-12", university: "近畿大学", summary: "認可された地域枠と、検定料・入学手続の期限を掲載しました。" },
+  { date: "2026年11月12日", dateTime: "2026-11-12", university: "川崎医科大学", summary: "静岡県・長崎県の地域枠の募集が確定しました。" },
+  { date: "2026年11月12日", dateTime: "2026-11-12", university: "関西医科大学", summary: "地域枠の募集が大阪府2名・静岡県2名に確定しました。" },
+  { date: "2026年11月12日", dateTime: "2026-11-12", university: "大阪医科薬科大学", summary: "一般前期の大阪府地域枠2名の募集が確定しました。" },
+  { date: "2026年11月12日", dateTime: "2026-11-12", university: "東京女子医科大学", summary: "一般選抜と同じ日程で受験する千葉県地域枠を明記しました。" },
+  { date: "2026年11月12日", dateTime: "2026-11-12", university: "順天堂大学", summary: "併願で複数の一次選考に合格した場合の二次試験の受け方を掲載しました。" },
+  { date: "2026年11月12日", dateTime: "2026-11-12", university: "帝京大学", summary: "合格発表時刻と、奨学特待生の利用意思確認期限を追加しました。" },
+  { date: "2026年11月12日", dateTime: "2026-11-12", university: "昭和医科大学", summary: "一般Ⅰ期の分納期限と、対象者向けの入学金負担軽減の申請期限を掲載しました。" },
+  { date: "2026年11月12日", dateTime: "2026-11-12", university: "兵庫医科大学", summary: "兵庫県推薦入学制度枠の県選考日を追加しました。" },
+  { date: "2026年11月12日", dateTime: "2026-11-12", university: "産業医科大学", summary: "入学手続の保護者対応を明記し、C方式の二次受験資格発表時刻を確認中としました。" },
+  {
+    date: "2026年10月5日",
+    dateTime: "2026-10-05",
+    university: "川崎医科大学",
+    summary: "9月30日改訂版募集要項に合わせ、静岡県・長崎県地域枠の注記を「設置協議中」から「認可申請中」へ更新しました。入試日程に変更はありません。",
+  },
+  {
+    date: "2026年10月5日",
+    dateTime: "2026-10-05",
+    university: "大阪医科薬科大学",
+    summary: "完成版要項に基づき、一般後期の出願締切を2月22日に修正しました。全方式のWeb登録13時・検定料15時・書類消印の区別、合格発表と入学手続の時刻も追記しました。",
+  },
+  {
+    date: "2026年10月5日",
+    dateTime: "2026-10-05",
+    university: "獨協医科大学",
+    summary: "Web登録締切を前期1月31日12時・後期2月28日12時、書類締切を翌日17時必着と分けて掲載し、前期二次試験日の希望・受付順による決定方法を追記しました。",
+  },
+  {
+    date: "2026年10月5日",
+    dateTime: "2026-10-05",
+    university: "藤田医科大学",
+    summary: "完成版要項に基づき、入学金2月24日・授業料等3月10日の各23時59分までという二段階の手続期限、合格発表時刻、面接の希望日時の決定方法を追記しました。",
+  },
+  {
+    date: "2026年10月5日",
+    dateTime: "2026-10-05",
+    university: "東北医科薬科大学",
+    summary: "完成版募集要項に基づき、Web出願の開始10時・締切13時、合格発表16時予定を追記しました。郵送書類の必着日はWeb締切と別に確認できます。",
+  },
+  {
+    date: "2026年10月5日",
+    dateTime: "2026-10-05",
+    university: "産業医科大学",
+    summary: "完成版募集要項に基づき、合格発表等の16時頃、入学手続の本人来学と受付時間を追記しました。手続最終日は3月25日14時30分です。",
+  },
   {
     date: "2026年8月11日",
     dateTime: "2026-08-11",
@@ -502,7 +539,7 @@ const structuredData = {
               出願から入学手続まで、受験校の組み合わせを迷わず確認できます。
             </p>
             <div class="admissions-hero__actions">
-              <a class="admissions-primary-button" href="#planner">受験プランを作る</a>
+              <a class="admissions-primary-button" href="#deadlines">出願締切を確認する</a>
               <a class="admissions-secondary-button" href="#universities">大学から探す</a>
             </div>
           </div>
@@ -562,7 +599,10 @@ const structuredData = {
       </div>
     </section>
 
-    <AdmissionPlanner />
+    <aside class="content admissions-planner-link" id="planner">
+      <span>自分の受験日程をまとめたい方へ</span>
+      <a href="/private-medical-school-admission-planner-2027/">受験大学プランニング専用ページへ →</a>
+    </aside>
 
     <nav class="admissions-jump-nav" aria-label="ページ内メニュー">
       <div class="content admissions-jump-nav__inner">
