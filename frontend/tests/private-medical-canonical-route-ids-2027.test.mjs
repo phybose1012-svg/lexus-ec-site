@@ -35,6 +35,7 @@ const stableHash = (value) => {
 };
 
 const legacyRouteIdOverrides = new Map([
+  ["nihon::general::地域枠選抜（認可申請中・日程は予定）", "nihon--general--164wvue"],
   [
     "kawasaki-medical::general::一般選抜・地域枠選抜（岡山県・静岡県・長崎県）",
     "kawasaki-medical--general--scuh5c",
@@ -90,7 +91,7 @@ test("31大学83方式とKB準拠canonical route IDが1対1で対応する", () 
     .join("\n");
   assert.equal(
     createHash("sha256").update(snapshot).digest("hex"),
-    "4a93b175ec7dee9b8e38a57c539365ac54aa93034825aceca9b8c017e428a66f",
+    "b9093a0df5eb0204c95dd14605cb1bdaf5546d208a0132da9c7ed17116948b3a",
     "KB照合済みcanonical route ID snapshotが変わっています",
   );
   assert.equal(

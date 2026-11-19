@@ -1062,7 +1062,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.equal(dataset.scope.universityCount, 31);
   assert.equal(dataset.scope.routeCount, 83);
   assert.equal(dataset.summary.hotelCount, dataset.hotels.length);
-  assert.equal(dataset.hotels.length, 234);
+  assert.equal(dataset.hotels.length, 238);
   assert.ok(dataset.hotels.every((hotel) => hotel.operatingStatus === "official_site_active"));
   for (const hotelId of [
     "sotetsu-fresa-inn-nagoya-sakuradoriguchi",
@@ -1745,7 +1745,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   assert.ok(time24, "タイム24ビルが公開Datasetにありません");
   assert.equal(time24.postalCode, "135-0064");
   assert.match(time24.accessNote ?? "", /2月2日（火）/u);
-  assert.match(time24.accessNote ?? "", /11月上旬公開予定/u);
+  assert.match(time24.accessNote ?? "", /9:45.*10:00/u);
   assert.match(time24.accessNote ?? "", /使用階・研修室・会議室/u);
   for (const hotelId of [
     "tokyo-bay-ariake-washington-hotel",
@@ -1782,7 +1782,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     "https://www.kashikaigishitsu.net/facilitys/gc-nagoya-shinkansenguchi/",
   );
   assert.match(fukuokaNagoya.accessNote ?? "", /2月2日（火）/u);
-  assert.match(fukuokaNagoya.accessNote ?? "", /11月上旬公開予定/u);
+  assert.match(fukuokaNagoya.accessNote ?? "", /9:45.*10:00/u);
   assert.match(fukuokaNagoya.accessNote ?? "", /使用階・会議室/u);
   for (const hotelId of [
     "comfort-hotel-nagoya-shinkansenguchi",
@@ -1817,9 +1817,9 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     "Osaka Metro御堂筋線 新大阪駅4番出口",
   ]);
   assert.match(fukuokaShinOsaka.accessNote ?? "", /2月2日（火）/u);
-  assert.match(fukuokaShinOsaka.accessNote ?? "", /11月上旬公開予定/u);
+  assert.match(fukuokaShinOsaka.accessNote ?? "", /9:45.*10:00/u);
   assert.match(fukuokaShinOsaka.accessNote ?? "", /新大阪NKビル/u);
-  assert.match(fukuokaShinOsaka.accessNote ?? "", /使用会議室、受付位置、受験生入口は未公表/u);
+  assert.match(fukuokaShinOsaka.accessNote ?? "", /使用会議室、受付位置、受験生入口は(?:未公表|受験票)/u);
   for (const hotelId of [
     "karaksa-hotel-grande-shin-osaka-tower",
     "comfort-hotel-shin-osaka",
@@ -1837,7 +1837,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.match(access.travelTimeLabel ?? "", /別区間表示/u);
     assert.match(access.caution ?? "", /収容人数により別会場/u);
     assert.match(access.caution ?? "", /J\.NODE新大阪/u);
-    assert.match(access.caution ?? "", /使用会議室、受付位置、受験生入口は未公表/u);
+    assert.match(access.caution ?? "", /使用会議室、受付位置、受験生入口は(?:未公表|受験票)/u);
     assert.match(hotel.officialBookingUrl, /^https:\/\//u);
     assert.ok(hotel.amenities.some((amenity) => amenity.key === "desk"));
     assert.ok(hotel.amenities.some((amenity) => amenity.key === "coin_laundry"));
@@ -2872,16 +2872,16 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   const tkpNagoyaVenue = dataset.venues.find(
     (venue) => venue.venueId === "venue-tkp-premium-nagoya-ekimae",
   );
-  assert.equal(tkpNagoyaVenue?.reviewState, "monitoring");
-  assert.match(tkpNagoyaVenue?.accessNote ?? "", /ルーセントタワー/u);
+  assert.equal(tkpNagoyaVenue?.reviewState, "verified");
+  assert.match(tkpNagoyaVenue?.accessNote ?? "", /公式案内/u);
   const kanazawaEarlyFirst = dataset.assignments.find(
     (assignment) =>
       assignment.assignmentId === "kanazawa-medical--general--general-early--first-venue",
   );
   assert.equal(kanazawaEarlyFirst?.publicationState, "confirmed");
-  assert.equal(kanazawaEarlyFirst?.reviewState, "monitoring");
+  assert.equal(kanazawaEarlyFirst?.reviewState, "verified");
   assert.ok(kanazawaEarlyFirst?.conditions.includes("admission_ticket"));
-  assert.match(kanazawaEarlyFirst?.note ?? "", /名古屋ルーセントタワー/u);
+  assert.match(kanazawaEarlyFirst?.note ?? "", /名古屋駅前/u);
   const tkpNagoyaHotels = dataset.hotels.filter((hotel) =>
     hotel.venueAccess.some(
       (access) => access.venueId === "venue-tkp-premium-nagoya-ekimae",
@@ -2899,7 +2899,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
     assert.equal(access?.transferCount, 0);
     assert.equal(access?.measurementBasis, "route_only");
     assert.ok(access?.reviewState.includes("verified_with_caveat"));
-    assert.match(access?.caution ?? "", /ルーセントタワー/u);
+    assert.match(access?.caution ?? "", /公式案内/u);
     assert.ok(hotel.amenities.some((item) => item.key === "wifi"));
     assert.ok(hotel.amenities.some((item) => item.key === "coin_laundry"));
     assert.ok(hotel.amenities.some((item) => item.key === "breakfast"));
@@ -4689,7 +4689,7 @@ test("公開Datasetはallowlist投影で内部項目・価格・評価を含め�
   );
 });
 
-test("正式施設173会場それぞれに確認済みのホテル2施設だけを結合する", () => {
+test("正式施設175会場それぞれに確認済みのホテル2施設だけを結合する", () => {
   const dataset = getPrivateMedicalExamVenuesHotels2027Dataset();
   const assignedVenueIds = new Set(
     dataset.assignments.flatMap((assignment) => assignment.venueLinks.map((link) => link.venueId)),
@@ -4698,8 +4698,8 @@ test("正式施設173会場それぞれに確認済みのホテル2施設だけ�
     dataset.hotels.flatMap((hotel) => hotel.venueAccess.map((access) => access.venueId)),
   );
 
-  assert.equal(assignedVenueIds.size, 173);
-  assert.equal(dataset.summary.hotelLinkedVenueCount, 173);
+  assert.equal(assignedVenueIds.size, 175);
+  assert.equal(dataset.summary.hotelLinkedVenueCount, 175);
   assert.deepEqual(new Set([...assignedVenueIds].filter((id) => !hotelLinkedVenueIds.has(id))), new Set());
   assert.ok([...hotelLinkedVenueIds].every((id) => assignedVenueIds.has(id)));
 
@@ -4805,8 +4805,8 @@ test("10月5日のHTML要項更新は段階・期・定員条件を混同しな�
 test("canonical・JSON endpoint・sitemap・llms・配信headerが同じURLを参照する", () => {
   const canonical = new URL(privateMedicalExamVenuesHotels2027Metadata.canonicalUrl);
   const datasetUrl = new URL(privateMedicalExamVenuesHotels2027Metadata.datasetUrl);
-  assert.equal(privateMedicalExamVenuesHotels2027Metadata.dateModified, "2026-11-04");
-  assert.equal(privateMedicalExamVenuesHotels2027Metadata.version, "2026-11-04");
+  assert.equal(privateMedicalExamVenuesHotels2027Metadata.dateModified, "2026-11-19");
+  assert.equal(privateMedicalExamVenuesHotels2027Metadata.version, "2026-11-19");
   assert.equal(canonical.pathname, expectedPagePath);
   assert.equal(datasetUrl.pathname, expectedDatasetPath);
   assert.equal(canonical.origin, datasetUrl.origin);
@@ -5028,4 +5028,20 @@ test("build成果物のJSONと構造化データはparseでき、IDが重複し�
     }
   }
   assert.doesNotMatch(html, /C:\\|C:\/|internal_only|project_internal/u);
+});
+
+test("慶應と福岡は正式要項の段階別会場と集合案内を公開する", () => {
+  const dataset = getPrivateMedicalExamVenuesHotels2027Dataset();
+  for (const [routeId, stage, venueId, text] of [
+    ["keio--general--general", "first", "venue-keio-mita-campus", /9:30.*10:00/u],
+    ["keio--general--general", "second", "venue-keio-hiyoshi-campus", /8:45.*9:00/u],
+    ["fukuoka--general--general", "second", "venue-fukuoka-university-nanakuma-campus", /2月13日15:00.*8号館/u],
+    ["fukuoka--common--common-test-phase-1", "second", "venue-fukuoka-university-nanakuma-campus", /受験票/u],
+  ]) {
+    const assignment = dataset.assignments.find((entry) => entry.routeId === routeId && entry.examStage === stage);
+    assert.equal(assignment?.publicationState, "confirmed");
+    assert.deepEqual(assignment.venueLinks.map((link) => link.venueId), [venueId]);
+    assert.match(assignment.note, text);
+    assert.equal(dataset.hotels.filter((hotel) => hotel.venueAccess.some((access) => access.venueId === venueId)).length, 2);
+  }
 });

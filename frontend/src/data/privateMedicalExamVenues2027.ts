@@ -104,6 +104,7 @@ export const venueAssignmentConditionLabels: Record<VenueAssignmentCondition, st
   capacity_overflow: "定員状況による制限・変更あり",
 };
 
+const GUIDELINE_REFRESH_VERIFIED_AT = "2026-11-19T00:00:00+09:00";
 const VERIFIED_AT = "2026-08-12T00:00:00+09:00";
 const HTML_GUIDELINE_VERIFIED_AT = "2026-10-05T00:00:00+09:00";
 const JICHI_VERIFIED_AT = "2026-08-15T00:00:00+09:00";
@@ -1456,6 +1457,34 @@ export const privateMedicalJichiExamVenues2027 = [...jichiVenueEntityById.values
 export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
   ...novemberVenues2027,
   {
+    venueId: "venue-keio-mita-campus",
+    academicYear: 2027,
+    name: "慶應義塾大学 三田キャンパス",
+    shortName: "慶應 三田キャンパス",
+    address: "東京都港区三田2-15-45",
+    prefecture: "東京都",
+    municipality: "港区",
+    nearestStations: ["JR 田町駅", "都営地下鉄 三田駅", "都営地下鉄 赤羽橋駅"],
+    officialUrl: "https://www.keio.ac.jp/ja/about/campus/mita/",
+    accessNote: "一次は2月9日（火）、9:30集合、10:00から理科です。一般選抜の栃木県地域枠もこの試験を受けます。受験票と大学案内図で指定教室を確認してください。",
+    reviewState: "verified",
+    verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
+  },
+  {
+    venueId: "venue-keio-hiyoshi-campus",
+    academicYear: 2027,
+    name: "慶應義塾大学 日吉キャンパス",
+    shortName: "慶應 日吉キャンパス",
+    address: "神奈川県横浜市港北区日吉4-1-1",
+    prefecture: "神奈川県",
+    municipality: "横浜市港北区",
+    nearestStations: ["東急・横浜市営地下鉄 日吉駅"],
+    officialUrl: "https://www.keio.ac.jp/ja/about/campus/hiyoshi/",
+    accessNote: "二次は3月1日（月）、8:45集合、9:00から小論文です。面接の最終組は17:00終了予定ですが、延びる場合があります。昼休みに外出できないため昼食と飲み物を持参し、受験票で指定教室を確認してください。",
+    reviewState: "verified",
+    verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
+  },
+  {
     venueId: "venue-dokkyo-medical-mibu-campus",
     academicYear: 2027,
     name: "獨協医科大学 壬生キャンパス",
@@ -2103,9 +2132,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     municipality: "名古屋市西区",
     nearestStations: ["名古屋市営地下鉄 名古屋駅10番出入口", "JR・名鉄・近鉄 名古屋駅"],
     officialUrl: "https://www.kashikaigishitsu.net/facilitys/gcp-nagoya-ekimae/",
-    accessNote: "施設公式は名古屋市営地下鉄 名古屋駅10番出入口から徒歩3分、名鉄名古屋駅・近鉄名古屋駅・JR線／新幹線連絡改札口から徒歩5分と案内しています。会場は名駅ダイヤメイテツビル3階ですが、2027年度の使用室・受付位置・受験生入口・開場時刻は未公表です。大学の2027年度ガイドと『昨年度からの変更点』は本施設への変更を明記する一方、一般選抜（前期）ページには旧会場の名古屋ルーセントタワー表記が残るため、受験票で最終会場を必ず確認してください。大阪医科薬科大学一般前期一次も本施設を使用し、8:00開場、8:40までに着席します。名古屋駅周辺の別TKP施設と取り違えないでください。",
-    reviewState: "monitoring",
-    verifiedAt: "2026-08-19T00:00:00+09:00",
+    accessNote: "施設公式は名古屋市営地下鉄 名古屋駅10番出入口から徒歩3分、名鉄名古屋駅・近鉄名古屋駅・JR線／新幹線連絡改札口から徒歩5分と案内しています。会場は名駅ダイヤメイテツビル3階ですが、2027年度の使用室・受付位置・受験生入口・開場時刻は未公表です。金沢医科大学の一般選抜（前期）公式案内は本施設を名古屋試験場として掲載しています。施設・指定室は受験票で最終確認してください。大阪医科薬科大学一般前期一次も本施設を使用し、8:00開場、8:40までに着席します。名古屋駅周辺の別TKP施設と取り違えないでください。",
+    reviewState: "verified",
+    verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
   },
   {
     venueId: "venue-fukuoka-garden-palace",
@@ -2378,9 +2407,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     municipality: "福岡市城南区",
     nearestStations: ["福岡市地下鉄七隈線 福大前駅"],
     officialUrl: "https://www.fukuoka-u.ac.jp/help/map/",
-    accessNote: "福大前駅1番出口は入学センター・入試事務室方面の大学公式案内です。2027年度系統別日程の本学試験場は福岡大学まで確定していますが、使用棟・試験室・受付・受験生入口・集合時刻は未公表です。",
+    accessNote: "福大前駅1番出口は入学センター・入試事務室方面の大学公式案内です。系統別一次（2月2日）は9:45までに着席、10:00開始です。系統別・共テⅠ期の二次（2月14日）も七隈キャンパスで、個人の集合時間・場所は受験票で通知されます。受験室案内の掲示場所は8号館1階前広場です。",
     reviewState: "verified",
-    verifiedAt: "2026-08-18T00:00:00+09:00",
+    verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
   },
   {
     venueId: "venue-time24-building",
@@ -2394,9 +2423,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     nearestStations: ["ゆりかもめ テレコムセンター駅"],
     officialUrl: "https://www.bigsight.jp/organizer/buildings/time/access/",
     officialUrlLabel: "タイム24ビル 公式交通アクセス",
-    accessNote: "福岡大学医学部医学科の2027年度一般選抜・系統別日程一次選考は2月2日（火）に実施され、東京試験場はタイム24ビルです。希望会場の収容人数を超えた場合は別会場になるため、出願確認票・受験票で最終会場を確認してください。一般選抜の入試要項は11月上旬公開予定で、現時点では開場・入室・集合・試験開始時刻、使用階・研修室・会議室、受付位置、受験生入口は未公表です。施設公式はゆりかもめテレコムセンター駅から徒歩約2分と案内していますが、これは一般来館地点までの案内で指定試験室までの時間ではありません。施設の通常利用時間や一般入口を入試の開場時刻・入口に転用せず、入試要項、受験票、当日案内を確認してください。",
+    accessNote: "福岡大学医学部医学科の2027年度一般選抜・系統別日程一次選考は2月2日（火）に実施され、東京試験場はタイム24ビルです。希望会場の収容人数を超えた場合は別会場になるため、出願確認票・受験票で最終会場を確認してください。正式要項では当日8:30までに受験室案内を掲示し、その後に入室できます。9:45までに着席、10:00開始です。使用階・研修室・会議室、受付位置、受験生入口は未公表です。施設公式はゆりかもめテレコムセンター駅から徒歩約2分と案内していますが、これは一般来館地点までの案内で指定試験室までの時間ではありません。施設の通常利用時間や一般入口を入試の開場時刻・入口に転用せず、入試要項、受験票、当日案内を確認してください。",
     reviewState: "verified",
-    verifiedAt: "2026-08-19T00:00:00+09:00",
+    verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
   },
   {
     venueId: "venue-tkp-premium-nagoya-shinkansenguchi",
@@ -2410,9 +2439,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     nearestStations: ["JR・名鉄・近鉄・地下鉄 名古屋駅"],
     officialUrl: "https://www.kashikaigishitsu.net/facilitys/gc-nagoya-shinkansenguchi/",
     officialUrlLabel: "TKPガーデンシティPREMIUM名古屋新幹線口 公式アクセス",
-    accessNote: "福岡大学医学部の2027年度系統別日程一次（2月2日（火））と、藤田医科大学医学部の一般入試一次（2月4日（木））の名古屋会場です。施設は井門名古屋ビル2～9階にあり、JR名古屋駅太閤通口から徒歩3分と公式案内されています。両入試とも使用階・会議室、受付位置、受験生入口は未公表です。福岡大学は希望会場の収容人数を超えた場合に別会場となる可能性があり、入試要項は11月上旬公開予定です。藤田医科大学は出願時に会場選択、出願後の変更不可、名古屋定員840名の満員時のみ本学大学2号館で受け付けます。入室8:00〜8:40です。それぞれ受験票と当日案内を確認してください。",
+    accessNote: "福岡大学医学部の2027年度系統別日程一次（2月2日（火））と、藤田医科大学医学部の一般入試一次（2月4日（木））の名古屋会場です。施設は井門名古屋ビル2～9階にあり、JR名古屋駅太閤通口から徒歩3分と公式案内されています。両入試とも使用階・会議室、受付位置、受験生入口は未公表です。福岡大学は希望会場の収容人数を超えた場合に別会場となる可能性があり、当日8:30までに受験室案内を掲示し、9:45までに着席、10:00開始です。藤田医科大学は出願時に会場選択、出願後の変更不可、名古屋定員840名の満員時のみ本学大学2号館で受け付けます。入室8:00〜8:40です。それぞれ受験票と当日案内を確認してください。",
     reviewState: "verified",
-    verifiedAt: "2026-08-19T00:00:00+09:00",
+    verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
   },
   {
     venueId: "venue-tkp-shinosaka-conference-center",
@@ -2429,9 +2458,9 @@ export const privateMedicalExamVenues2027: PrivateMedicalExamVenue2027[] = [
     ],
     officialUrl: "https://www.kashikaigishitsu.net/facilitys/cc-shinosaka/",
     officialUrlLabel: "TKP新大阪カンファレンスセンター 公式アクセス",
-    accessNote: "福岡大学医学部医学科の2027年度一般選抜・系統別日程一次選考は2月2日（火）に実施され、大阪試験場はTKP新大阪カンファレンスセンターです。希望会場の収容人数を超えた場合は別会場になるため、出願確認票・受験票で最終会場を確認してください。一般選抜の入試要項は11月上旬公開予定で、現時点では開場・入室・集合・試験開始時刻、4～5階の使用会議室、受付位置、受験生入口は未公表です。施設公式はJR新大阪駅北口から徒歩6分、Osaka Metro御堂筋線新大阪駅4番出口から徒歩5分と案内しています。2026年6月30日に入居ビル名が「新大阪NKビル」から「J.NODE新大阪」へ変更され、福岡大学の2027年度入試ガイドには旧ビル名で掲載されています。施設の通常利用時間や一般受付を入試の開場時刻・入口に転用せず、入試要項、受験票、当日案内で確認してください。",
+    accessNote: "福岡大学医学部医学科の2027年度一般選抜・系統別日程一次選考は2月2日（火）に実施され、大阪試験場はTKP新大阪カンファレンスセンターです。希望会場の収容人数を超えた場合は別会場になるため、出願確認票・受験票で最終会場を確認してください。正式要項では当日8:30までに受験室案内を掲示し、その後に入室できます。9:45までに着席、10:00開始です。4～5階の使用会議室、受付位置、受験生入口は未公表です。施設公式はJR新大阪駅北口から徒歩6分、Osaka Metro御堂筋線新大阪駅4番出口から徒歩5分と案内しています。2026年6月30日に入居ビル名が「新大阪NKビル」から「J.NODE新大阪」へ変更され、正式要項には新ビル名で掲載されています。施設の通常利用時間や一般受付を入試の開場時刻・入口に転用せず、入試要項、受験票、当日案内で確認してください。",
     reviewState: "verified",
-    verifiedAt: "2026-08-19T00:00:00+09:00",
+    verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
   },
 ];
 
@@ -3093,9 +3122,33 @@ officialVenuePlan(["iuhw--common--common-test"], "second", {
   note: "2/16の学力・小論文と2/20の面接はいずれも東京赤坂キャンパスです。",
 });
 
-const keioVenueUrl = "https://www.keio.ac.jp/ja/admissions/faculty/examinations/general-admissions/";
-unpublishedVenuePlan(["keio--general--general"], "first", keioVenueUrl);
-unpublishedVenuePlan(["keio--general--general"], "second", keioVenueUrl);
+const keioVenueUrl = "https://www.keio.ac.jp/fixed-files/2027_ippan_youkou.pdf";
+officialVenuePlan(["keio--general--general"], "first", {
+  venueLinks: [link("venue-keio-mita-campus")],
+  announcedPrefectures: ["東京都"],
+  announcedVenueText: "慶應義塾大学 三田キャンパス",
+  publicationState: "confirmed",
+  conditions: ["fixed", "admission_ticket"],
+  officialAdmissionUrl: keioVenueUrl,
+  evidenceLabel: "2027年度慶應義塾大学 一般選抜要項",
+  evidenceLocator: "冊子8・44ページ",
+  reviewState: "verified",
+  verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
+  note: "一次は2月9日（火）、9:30集合、10:00から理科です。一般選抜の栃木県地域枠もこの試験を受けます。受験票と大学案内図で指定教室を確認してください。",
+});
+officialVenuePlan(["keio--general--general"], "second", {
+  venueLinks: [link("venue-keio-hiyoshi-campus")],
+  announcedPrefectures: ["神奈川県"],
+  announcedVenueText: "慶應義塾大学 日吉キャンパス",
+  publicationState: "confirmed",
+  conditions: ["fixed", "admission_ticket"],
+  officialAdmissionUrl: keioVenueUrl,
+  evidenceLabel: "2027年度慶應義塾大学 一般選抜要項",
+  evidenceLocator: "冊子8・43ページ",
+  reviewState: "verified",
+  verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
+  note: "二次は3月1日（月）、8:45集合、9:00から小論文です。面接の最終組は17:00終了予定ですが、延びる場合があります。昼休みに外出できないため昼食と飲み物を持参し、受験票で指定教室を確認してください。",
+});
 
 const showaVenueUrl = "https://adm.showa-u.ac.jp/albums/abm.php?d=2405&f=abm00072419.pdf";
 const showaRoutes = ["showa-medical--general--general-phase-1", "showa-medical--general--general-phase-1-phase-2"];
@@ -3331,15 +3384,22 @@ officialVenuePlan(["nihon--general--unified-phase-2"], "second", {
 unpublishedVenuePlan(
   ["nihon--general--general-route-regional-quota"],
   "first",
-  nihonVenueUrl,
-  "2027年度の地域枠選抜は方式・日程・会場とも未公表です。",
+  "https://www.med.nihon-u.ac.jp/examinee/guidance.php",
+  "大学の入試案内では、3月4日にN方式実施試験場の中から希望する受験地を選ぶ予定です。正式な試験場は認可後の募集要項を確認してください。",
 );
-unpublishedVenuePlan(
-  ["nihon--general--general-route-regional-quota"],
-  "second",
-  nihonVenueUrl,
-  "2027年度の地域枠選抜は方式・日程・会場とも未公表です。",
-);
+officialVenuePlan(["nihon--general--general-route-regional-quota"], "second", {
+  announcedVenueText: "日本大学医学部校舎（予定）",
+  announcedPrefectures: ["東京都"],
+  publicationState: "city_or_campus_only",
+  conditions: ["admission_ticket"],
+  officialAdmissionUrl: "https://www.med.nihon-u.ac.jp/examinee/guidance.php",
+  evidenceLabel: "2027年度日本大学医学部 入学試験案内（予定）",
+  evidenceLocator: "地域枠選抜「選考期日・試験場」",
+  reviewState: "monitoring",
+  verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
+  note: "二次は3月17日に医学部校舎で実施予定です。正式要項と受験票で会場を確認してから宿泊先を選んでください。",
+});
+
 
 const nmsVenueUrl = "https://www.nms.ac.jp/college/nyushi-book/pdf_2027/guidelines_2027.pdf";
 const nmsEarlyRoutes = [
@@ -3466,14 +3526,15 @@ officialVenuePlan(["kanazawa-medical--general--general-early"], "first", {
     link("venue-tkp-premium-nagoya-ekimae", "choice"),
     link("venue-fukuoka-garden-palace", "choice"),
   ],
-  announcedVenueText: "金沢医科大学・TOCビル本館・大阪アカデミア・TKP名古屋駅前・福岡ガーデンパレス（名古屋は一般選抜ページに旧会場表記が残るため受験票確認）",
+  announcedVenueText: "金沢医科大学・TOCビル本館・大阪アカデミア・TKP名古屋駅前・福岡ガーデンパレス",
   publicationState: "confirmed",
   conditions: ["applicant_preference", "admission_ticket"],
-  officialAdmissionUrl: kanazawaVenueUrl,
-  evidenceLabel: "金沢医科大学 医学部guide2027",
-  evidenceLocator: "PDF 3ページ「一般選抜 前期 試験場」",
-  reviewState: "monitoring",
-  note: "2027年度医学部ガイドと大学公式『昨年度からの変更点』は、名古屋試験場をTKPガーデンシティPREMIUM名古屋駅前へ変更すると明記しています。一方、一般選抜（前期）の大学公式ページには旧会場のTKPガーデンシティPREMIUM名古屋ルーセントタワー表記が残っています。名古屋会場は出願時と受験票で施設名・住所を再確認し、駅前会場が指定された場合だけ本ページの宿泊候補を利用してください。2027年度の開場・入場時刻、使用室・受付位置・受験生入口は未公表です。",
+  officialAdmissionUrl: "https://www.kanazawa-med.ac.jp/medicine_exam/guidelines/general-1.html",
+  evidenceLabel: "金沢医科大学2027年度 一般選抜（前期）公式案内",
+  evidenceLocator: "試験場一覧「名古屋」",
+  reviewState: "verified",
+  verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
+  note: "一般前期一次の名古屋試験場はTKPガーデンシティPREMIUM名古屋駅前（西区名駅1-1-17）です。中村区椿町1-16のTKP名古屋新幹線口とは別会場です。受験票で施設と指定室を確認してください。",
 });
 officialVenuePlan(["kanazawa-medical--general--general-late"], "first", {
   venueLinks: [
@@ -3830,7 +3891,7 @@ officialVenuePlan(
   },
 );
 
-const fukuokaVenueUrl = "https://www.fukuoka-u.ac.jp/pdf/entrance-examinations/guidebook-entrance-examinations2027.pdf";
+const fukuokaVenueUrl = "https://nyushi.fukuoka-u.ac.jp/cms/wp-content/uploads/2026/11/ippan.pdf";
 officialVenuePlan(["fukuoka--general--general"], "first", {
   venueLinks: [
     link("venue-fukuoka-university-nanakuma-campus", "choice"),
@@ -3842,21 +3903,25 @@ officialVenuePlan(["fukuoka--general--general"], "first", {
   publicationState: "confirmed",
   conditions: ["applicant_preference", "admission_ticket", "capacity_overflow"],
   officialAdmissionUrl: fukuokaVenueUrl,
-  evidenceLabel: "2027年度入試ガイド",
-  evidenceLocator: "系統別日程 試験地・会場案内",
+  evidenceLabel: "2027年度福岡大学 入学試験要項",
+  evidenceLocator: "冊子7・17・54〜55・75ページ「系統別日程」「試験場」",
   reviewState: "verified",
-  note: "希望会場の収容人数を超えた場合は別会場になります。2027年度入試ガイドは本学試験場を福岡大学まで公表していますが、使用棟・試験室・受付・受験生入口・集合時刻は未公表です。完成版の入学試験要項、出願確認票、受験票、当日案内で最終会場と入室案内を確認してください。",
+  verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
+  note: "2月2日（火）は9:45までに着席、10:00開始。医学科は福岡本学・東京・名古屋・大阪の4会場です。希望会場が収容人数を超える場合は変更があります。名古屋は要項の会場案内図・住所が椿町1-16のTKP名古屋新幹線口を示しています。出願確認票と受験票で指定教室を確認してください。",
 });
-areaVenuePlan(
-  ["fukuoka--general--general", "fukuoka--common--common-test-phase-1"],
-  "second",
-  "福岡",
-  ["福岡県"],
-  ["fixed", "admission_ticket"],
-  fukuokaVenueUrl,
-  "医学部二次試験「試験地：福岡」",
-  "試験地は福岡まで公表済みですが、二次試験の正式施設名・住所は公表されていません。福岡大学本学とは推測せず、受験票で最終会場を確認してください。",
-);
+officialVenuePlan(["fukuoka--general--general", "fukuoka--common--common-test-phase-1"], "second", {
+  venueLinks: [link("venue-fukuoka-university-nanakuma-campus")],
+  announcedPrefectures: ["福岡県"],
+  announcedVenueText: "福岡大学 七隈キャンパス",
+  publicationState: "confirmed",
+  conditions: ["fixed", "admission_ticket"],
+  officialAdmissionUrl: fukuokaVenueUrl,
+  evidenceLabel: "2027年度福岡大学 入学試験要項",
+  evidenceLocator: "冊子7・60・73ページ「医学部医学科二次選考」",
+  reviewState: "verified",
+  verifiedAt: GUIDELINE_REFRESH_VERIFIED_AT,
+  note: "系統別日程・共通テスト利用型Ⅰ期とも2月14日（日）は福岡大学七隈キャンパス。個人の集合時間と指定場所は二次選考受験票で通知されます。受験室案内は2月13日15:00までに8号館1階前広場に掲示されます。試験当日の受験室がある建物は原則8:30開館です。",
+});
 
 // 会場そのものの固定／選択と、受験日だけの希望・大学指定を方式ごとに分ける。
 const refineAssignmentPlan = (

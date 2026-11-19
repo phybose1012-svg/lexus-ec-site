@@ -106,7 +106,7 @@ test("更新した面接希望条件を試験日順・全日程・公開planner�
     assert.ok(calendarEntries(date, "secondExam", name).every((entry) => pattern.test(entry.detail)));
   }
   const built = JSON.parse(readFileSync(new URL("../dist/data/private-medical-admissions-2027.json", import.meta.url), "utf8"));
-  assert.equal(built.metadata.dateModified, "2026-11-12", "最新ソースでビルドしてから検証してください");
+  assert.equal(built.metadata.dateModified, "2026-11-19", "最新ソースでビルドしてから検証してください");
   assert.deepEqual(built.applicationDeadlines, applicationDeadlineEntries2027);
   assert.deepEqual(built.fullScheduleCalendar, JSON.parse(JSON.stringify(fullScheduleCalendar2027)));
   for (const route of built.admissionPlanning.routes.filter((route) => route.universityId === "fujita" || (route.universityId === "dokkyo-medical" && route.routeName.includes("前期")))) {
@@ -148,4 +148,20 @@ test("11月の確定差分を締切一覧・全日程・公開JSONへ同じ意�
   assert.ok(secondGroups("juntendo").every((group) => Boolean(group.sharedEventGroupId)));
   assert.ok(secondGroups("tokai").every((group) => !group.sharedEventGroupId));
   assert.ok(secondGroups("fukuoka").every((group) => Boolean(group.sharedEventGroupId)));
+});
+
+test("久留米の医学科4方式は、Web登録・検定料と書類必着を別日に表示する", () => {
+  const routes = university("kurume").routes;
+  assert.equal(routes.length, 4);
+  assert.ok(routes.every((route) => route.status === "official" && route.sourceUrl.endsWith(".pdf")));
+  for (const [date, expected] of [
+    ["2027-01-07", /Web登録・検定料納付23:59/u],
+    ["2027-01-08", /出願書類.*必着/u],
+    ["2027-02-25", /Web登録・検定料納付23:59/u],
+    ["2027-02-26", /出願書類.*必着/u],
+  ]) {
+    const entries = calendarEntries(date, "applicationDeadline", "久留米大学");
+    assert.equal(entries.flatMap((entry) => entry.routes).length, 2);
+    assert.ok(entries.every((entry) => expected.test(entry.detail)));
+  }
 });

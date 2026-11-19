@@ -33,7 +33,7 @@ export const privateMedicalCanonicalRouteIds2027 = {
   "toho::統一入試": "toho--general--unified",
   "nihon::一般選抜 N全学統一方式 第1期": "nihon--general--unified-phase-1",
   "nihon::一般選抜 N全学統一方式 第2期": "nihon--general--unified-phase-2",
-  "nihon::地域枠選抜（2027年度の方式・日程は未公表）":
+  "nihon::地域枠選抜（認可申請中・日程は予定）":
     "nihon--general--general-route-regional-quota",
   "nippon-medical::一般選抜 前期": "nippon-medical--general--general-early",
   "nippon-medical::一般選抜（地域枠）前期":

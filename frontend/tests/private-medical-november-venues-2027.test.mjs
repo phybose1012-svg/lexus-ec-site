@@ -21,7 +21,7 @@ test("11月更新の37正式会場は各2ホテルに結合し、未計測の合
   assert.equal(novemberVenues2027.length, 37);
   assert.equal(new Set(novemberVenues2027.map((v) => v.venueId)).size, 37);
   assert.equal(hotels.filter((hotel) => hotel.verifiedAt === novemberVenueVerifiedAt2027).length, 21);
-  assert.equal(dataset.hotels.length, 234);
+  assert.equal(dataset.hotels.length, 238);
   for (const venue of novemberVenues2027) {
     assert.equal(venue.reviewState, "verified");
     assert.ok(venue.address.startsWith(venue.prefecture));
