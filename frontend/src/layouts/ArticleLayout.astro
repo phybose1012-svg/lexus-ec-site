@@ -129,6 +129,7 @@ const resolvedCtaVariant = ctaVariant ?? templateDefinition.ctaVariant;
 ---
 
 <SiteLayout title={title} description={description} canonical={canonical} ogImage={ogImage ?? resolvedHeroImage?.src}>
+  <Fragment slot="head"><slot name="head" /></Fragment>
   <main class={`article-page article-page--${template} article-page--tone-${templateDefinition.visualTone}${isOsakaikaTabs ? " article-page--osakaika-tabs" : ""}${isPrivateTabs ? " article-page--private-admissions-tabs" : ""}`} >
     <header class={`article-hero article-hero--${resolvedHeroVariant}${isCharacterHeroImage ? " article-hero--character" : ""}`}>
       <div class="article-container article-hero__inner">

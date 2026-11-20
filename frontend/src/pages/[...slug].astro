@@ -26,6 +26,7 @@ const routeProps = (Astro.props ?? {}) as { page?: ExtractedPage; post?: Migrate
 const requestedPath = Astro.url.pathname || "/";
 const legacyRedirect = routeProps.legacyRedirect ?? getLegacyRedirectByPath(requestedPath);
 const post = !legacyRedirect ? (routeProps.post ?? getMigratedPostByPath(requestedPath)) : undefined;
+const isIwateStrategy = post?.slug === "iwateika-university-entrance-exam-measures2027";
 const articleContentHtml = post?.path === "/voice-037/"
   ? post.contentHtml.replace(
       /<a rel="nofollow" href="(?:https?:\/\/lexus-ec\.com)?\/result\/success\/showa2017_01\.php">/,
@@ -228,7 +229,36 @@ const needsFixedSourceH1 = !page.form && !premierPlan && !genekiPlan && !isLegal
     toc={post.toc}
     infoItems={post.infoItems}
   >
-    <Fragment set:html={articleContentHtml} />
+    <Fragment slot="head">
+      {isIwateStrategy && <>
+        <link rel="stylesheet" href="/assets/vendor/katex/katex.min.css" />
+        <script is:inline defer src="/assets/vendor/katex/katex.min.js"></script>
+        <script is:inline defer src="/assets/past-exam/math-render.js"></script>
+        <style is:inline>
+          .iwate-strategy {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: inherit;
+            min-inline-size: 0;
+            overflow-wrap: anywhere;
+          }
+          .iwate-strategy [data-katex] { display: inline-block; white-space: nowrap; }
+          @media (max-width: 720px) {
+            .article-content .iwate-strategy table { display: table; table-layout: fixed; white-space: normal; }
+            .article-content .iwate-strategy :is(th, td) {
+              min-width: 0;
+              padding: 8px;
+            }
+            .article-content .iwate-strategy th[scope="row"] { width: 32%; }
+          }
+        </style>
+      </>}
+    </Fragment>
+    {isIwateStrategy ? (
+      <div class="iwate-strategy" set:html={articleContentHtml} />
+    ) : (
+      <Fragment set:html={articleContentHtml} />
+    )}
   </ArticleLayout>
 ) : (
 <SiteLayout title={page.title} description={page.description} canonical={page.canonical} ogImage={seo.ogImage}>
