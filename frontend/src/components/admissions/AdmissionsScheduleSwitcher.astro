@@ -9,22 +9,22 @@ const schedulePages = [
   {
     id: "general",
     href: "/private-medical-school-admissions-schedule-2027/",
-    label: "一般・共通テスト利用の日程",
+    label: ["一般・共通テスト", "利用の日程"],
   },
   {
     id: "special",
     href: "/private-medical-school-special-admissions-schedule-2027/",
-    label: "総合型・学校推薦などの日程",
+    label: ["総合型・学校推薦", "などの日程"],
   },
   {
     id: "planner",
     href: "/private-medical-school-admission-planner-2027/",
-    label: "受験校・日程を組む",
+    label: ["受験校・", "日程を組む"],
   },
   {
     id: "venues",
     href: "/private-medical-school-exam-venues-hotels-2027/",
-    label: "試験会場・周辺ホテル",
+    label: ["試験会場・", "周辺ホテル"],
   },
 ] as const;
 ---
@@ -47,7 +47,7 @@ const schedulePages = [
             href={page.href}
             aria-current={isCurrent ? "page" : undefined}
           >
-            <strong>{page.label}</strong>
+            <strong>{page.label.map((part) => <span>{part}</span>)}</strong>
             <span class="admissions-page-switcher__indicator" aria-hidden="true">
               {isCurrent ? "✓" : "→"}
             </span>
