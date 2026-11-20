@@ -4553,3 +4553,169 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
     line-height: 1.4;
   }
 }
+
+
+@media screen and (max-width: 620px) {
+  .admissions-page--general :where(section[id]) {
+    scroll-margin-top: 56px;
+  }
+
+  .admissions-page--general .admissions-hero__inner {
+    padding-block: 10px 18px;
+  }
+
+  .admissions-page--general .admissions-page-switcher {
+    margin-bottom: 14px;
+  }
+
+  .admissions-page--general .admissions-page-switcher__options,
+  .admissions-page--general .admissions-hero__actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .admissions-page--general .admissions-page-switcher__option {
+    min-height: 48px;
+    gap: 4px;
+    padding: 6px 7px;
+    font-size: .75rem;
+  }
+
+  .admissions-page--general .admissions-page-switcher__indicator {
+    width: 1.25rem;
+    height: 1.25rem;
+    font-size: .82rem;
+  }
+
+  .admissions-page--general .admissions-hero__grid {
+    gap: 14px;
+  }
+
+  .admissions-page--general .admissions-kicker {
+    margin-bottom: 8px;
+  }
+
+  .admissions-page--general .admissions-hero h1 {
+    margin-bottom: 8px;
+    font-size: clamp(1.48rem, 6vw, 2rem);
+    line-height: 1.25;
+  }
+
+  .admissions-page--general .admissions-hero__lead {
+    margin-bottom: 10px;
+    line-height: 1.65;
+  }
+
+  .admissions-page--general .admissions-hero__actions a {
+    min-width: 0;
+    min-height: 44px;
+    padding: 6px 8px;
+    font-size: .86rem;
+  }
+
+  .admissions-page--general .admissions-common-card {
+    padding: 12px 14px;
+    box-shadow: none;
+  }
+
+  .admissions-page--general .admissions-common-card__label {
+    margin-bottom: 4px;
+  }
+
+  .admissions-page--general .admissions-common-card__date span {
+    font-size: 2rem;
+  }
+
+  .admissions-page--general .admissions-common-card__year {
+    margin: 5px 0 8px;
+    padding-bottom: 6px;
+  }
+
+  .admissions-page--general .admissions-common-card dl {
+    gap: 2px;
+    margin-bottom: 7px;
+  }
+
+  .admissions-page--general .admissions-update-row {
+    margin-top: 10px;
+  }
+
+  .admissions-page--general :is(.admissions-planner-link, .admissions-brand-divider, .admissions-jump-nav__index) {
+    display: none;
+  }
+
+  .admissions-page--general .admissions-jump-nav a {
+    min-height: 44px;
+    font-size: .75rem;
+  }
+
+  .admissions-page--general :is(
+    .admissions-overview,
+    .admissions-deadlines,
+    .admissions-calendar-section,
+    .admissions-common-test,
+    .admissions-universities,
+    .admissions-full-schedule,
+    .admissions-guide,
+    .admissions-faq
+  ) {
+    padding-block: 28px;
+  }
+
+  .admissions-page--general .admissions-section-heading {
+    margin-bottom: 15px;
+  }
+
+  .admissions-page--general .admissions-stat-grid article {
+    min-height: 0;
+    padding-block: 12px;
+  }
+
+  .admissions-page--general .admissions-stat-grid article > span,
+  .admissions-page--general .admissions-stat-grid p {
+    margin-block: 5px;
+  }
+
+  .admissions-page--general .admissions-notice {
+    margin-top: 14px;
+    padding: 12px;
+  }
+
+  .admissions-page--general .admissions-update-history__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+    padding-block: 20px;
+  }
+
+  .admissions-page--general .admissions-update-history__header h2 {
+    margin-bottom: 4px;
+  }
+
+  .admissions-page--general .admissions-update-history__scroll {
+    max-height: min(240px, 45vh);
+  }
+
+  .admissions-page--general .admissions-update-item {
+    grid-template-columns: max-content minmax(0, 1fr);
+    align-items: start;
+    gap: 3px 9px;
+    padding: 8px 9px;
+  }
+
+  .admissions-page--general .admissions-update-item__meta {
+    column-gap: 5px;
+  }
+
+  .admissions-page--general .admissions-update-item__body {
+    display: contents;
+  }
+
+  .admissions-page--general .admissions-update-item__body h3 {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .admissions-page--general .admissions-update-item__body p {
+    grid-column: 1 / -1;
+  }
+}

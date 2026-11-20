@@ -481,7 +481,7 @@ const structuredData = {
     <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </Fragment>
 
-  <main class="admissions-page">
+  <main class="admissions-page admissions-page--general">
     <header class="admissions-print-branding" aria-label="医学部予備校レクサスE.C.">
       <img
         class="admissions-print-branding__character"
@@ -535,11 +535,10 @@ const structuredData = {
               <strong>一般選抜・共テ利用 入試日程</strong>
             </h1>
             <p class="admissions-hero__lead">
-              一般選抜と共通テスト利用選抜を、<b>日付・大学・締切</b>の3方向から。
-              出願から入学手続まで、受験校の組み合わせを迷わず確認できます。
+              出願締切・試験日・入学手続を、日付順と大学別で確認できます。
             </p>
             <div class="admissions-hero__actions">
-              <a class="admissions-primary-button" href="#deadlines">出願締切を確認する</a>
+              <a class="admissions-primary-button" href="#deadlines">出願締切を見る</a>
               <a class="admissions-secondary-button" href="#universities">大学から探す</a>
             </div>
           </div>
@@ -566,35 +565,6 @@ const structuredData = {
           <span class="admissions-live-dot" aria-hidden="true"></span>
           <span>最終更新：{lastUpdated}</span>
           <a href="#updates">更新内容を見る<span aria-hidden="true">↓</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="admissions-update-history" id="updates" aria-labelledby="updates-title">
-      <div class="content admissions-update-history__inner">
-        <header class="admissions-update-history__header">
-          <p>UPDATE HISTORY</p>
-          <h2 id="updates-title">更新履歴</h2>
-          <p>大学ごとの主な更新内容を、新しい順に確認できます。</p>
-        </header>
-
-        <div class="admissions-update-history__scroll" tabindex="0" aria-label="大学別の更新履歴">
-          <ol class="admissions-update-history__list">
-            {
-              universityUpdateHistory.map((update, index) => (
-                <li class:list={["admissions-update-item", { "admissions-update-item--latest": index === 0 }]}>
-                  <div class="admissions-update-item__meta">
-                    {index === 0 && <span>NEW</span>}
-                    <time datetime={update.dateTime}>{update.date}</time>
-                  </div>
-                  <div class="admissions-update-item__body">
-                    <h3>{update.university}</h3>
-                    <p>{update.summary}</p>
-                  </div>
-                </li>
-              ))
-            }
-          </ol>
         </div>
       </div>
     </section>
@@ -1200,6 +1170,35 @@ const structuredData = {
             </div>
           </details>
         )}
+      </div>
+    </section>
+
+    <section class="admissions-update-history" id="updates" aria-labelledby="updates-title">
+      <div class="content admissions-update-history__inner">
+        <header class="admissions-update-history__header">
+          <p>UPDATE HISTORY</p>
+          <h2 id="updates-title">更新履歴</h2>
+          <p>大学ごとの主な更新内容を、新しい順に確認できます。</p>
+        </header>
+
+        <div class="admissions-update-history__scroll" tabindex="0" aria-label="大学別の更新履歴">
+          <ol class="admissions-update-history__list">
+            {
+              universityUpdateHistory.map((update, index) => (
+                <li class:list={["admissions-update-item", { "admissions-update-item--latest": index === 0 }]}>
+                  <div class="admissions-update-item__meta">
+                    {index === 0 && <span>NEW</span>}
+                    <time datetime={update.dateTime}>{update.date}</time>
+                  </div>
+                  <div class="admissions-update-item__body">
+                    <h3>{update.university}</h3>
+                    <p>{update.summary}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
       </div>
     </section>
 
