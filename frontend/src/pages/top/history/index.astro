@@ -162,7 +162,7 @@ const timeline = [
       "レクサスには毎年日本中から生徒が集まるようになっていた。",
       "レクサス生しか踏み入らないマンションがあれば、地方から来た生徒やその保護者も安心だろう。",
       "レクサス生専用マンション寮「LEXUS GARDEN」の建設に着手した。",
-      "竣工は201５年。2016年に利用を開始した。",
+      "竣工は2015年。2016年に利用を開始した。",
     ],
   },
   {
@@ -214,8 +214,8 @@ const timeline = [
     <section class="history-hero">
       <div class="content history-hero__inner">
         <img class="page-head__strip" src={images.logoStrip} alt="" width="800" height="58" decoding="async" />
-        <p class="history-hero__label page-head__label">HISTORY</p>
-        <h1 class="page-head__title">医学部予備校として躍進し続けた軌跡</h1>
+        <h1 class="page-head__title">理念と沿革</h1>
+        <p class="history-hero__subtitle">医学部予備校として躍進し続けた軌跡</p>
         <span class="page-head__rule" aria-hidden="true"></span>
         <p class="history-hero__anniversary">おかげさまで、レクサスは<strong>35周年</strong>を迎えます。</p>
         <nav class="history-button-row" aria-label="レクサスについて">
@@ -227,17 +227,15 @@ const timeline = [
     <section class="history-message" aria-labelledby="history-message-title">
       <div class="history-message__band">
         <h2 id="history-message-title">代表よりメッセージ</h2>
-        <p class="history-message__byline">代表 <strong>島内義仁</strong></p>
       </div>
       <div class="content history-message__grid">
         <figure class="history-message__portrait">
           <img src={images.representative} alt="レクサス教育センター 代表取締役 島内義仁" width="435" height="533" loading="lazy" decoding="async" />
+          <figcaption class="history-message__byline">代表 <strong>島内義仁</strong></figcaption>
         </figure>
         <div class="history-message__body">
-          <div class="history-message__intro">
-            <p class="history-message__lead">医学部合格に自信あり！</p>
-            <p>レクサス教育センターを設立して33年。「受験生を合格へと引っ張り上げる予備校」として、以下の3点を磨き上げてきました。</p>
-          </div>
+          <p class="history-message__lead">医学部合格に自信あり！</p>
+          <p>レクサス教育センターを設立して33年。「受験生を合格へと引っ張り上げる予備校」として、以下の3点を磨き上げてきました。</p>
           <div class="history-quality-list">
             {qualities.map((quality) => (
               <article class="history-quality">
@@ -272,7 +270,15 @@ const timeline = [
                   </div>
                   {item.image && (
                     <figure>
-                      <img src={item.image} alt={item.imageAlt} width={item.imageWidth} height={item.imageHeight} loading="lazy" decoding="async" />
+                      <img
+                        class:list={{ "history-timeline-item__chart": item.image === images.passChart }}
+                        src={item.image}
+                        alt={item.imageAlt}
+                        width={item.imageWidth}
+                        height={item.imageHeight}
+                        loading="lazy"
+                        decoding="async"
+                      />
                       <figcaption>{item.imageAlt}</figcaption>
                     </figure>
                   )}
