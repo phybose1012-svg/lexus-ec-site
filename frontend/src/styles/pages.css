@@ -7193,6 +7193,11 @@
     padding: 10px 14px 12px;
   }
 
+  .google-question--compact :is(input:not([type="checkbox"]), select, textarea) {
+    min-height: 44px;
+    font-size: 1rem;
+  }
+
   .legacy-form-footer__box {
     width: calc(100% - 16px);
     margin-bottom: 120px;
@@ -7291,8 +7296,9 @@
   .legacy-reservation-field input[type="tel"],
   .legacy-reservation-field input[type="date"],
   .legacy-reservation-field textarea {
-    min-height: 38px;
+    min-height: 44px;
     padding: 7px 9px;
+    font-size: 1rem;
   }
 
   .legacy-reservation-field textarea {
@@ -13663,8 +13669,14 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
   }
 
   .premier-plan-modal__bar {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     align-items: start;
+  }
+
+  .premier-plan-modal__zoom button,
+  .premier-plan-modal__close {
+    min-width: 44px;
+    min-height: 44px;
   }
 
   .premier-week-table__head {
@@ -17382,7 +17394,7 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
 
   .history-button-row .button {
     width: 122px;
-    min-height: 38px;
+    min-height: 44px;
     padding: 8px 14px;
     font-size: 0.98rem;
   }
@@ -17729,7 +17741,7 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
 
   .faq-hero__actions .button {
     width: 122px;
-    min-height: 37px;
+    min-height: 44px;
     padding: 6px 12px;
     font-size: 0.92rem;
   }
@@ -17807,6 +17819,7 @@ html.premier-enhanced .premier-ideal.is-active .premier-ideal-card:nth-child(3) 
 
 .access-hero__inner {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   justify-items: center;
 }
 
@@ -22010,9 +22023,8 @@ body:has(.garden-page) .garden-floating-header .site-header {
   }
 
   .fixed-page--top-course-lexus-premiere-course-introduction .premier-plan-summary h1 {
-    flex-wrap: nowrap;
-    row-gap: 2px;
-    white-space: nowrap;
+    flex-wrap: wrap;
+    row-gap: 4px;
   }
 
   .fixed-page--top-course-lexus-premiere-course-introduction .premier-plan-summary h1 strong {
