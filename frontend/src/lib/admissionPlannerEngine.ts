@@ -187,13 +187,9 @@ const groupsBelongToSameUniversity = (left: MergedGroup, right: MergedGroup) => 
 
 const pairPenalty = (
   left: MergedGroup,
-  leftDates: string[],
   right: MergedGroup,
-  rightDates: string[],
   goal: PlannerGoal,
 ) => {
-  const dates = overlap(leftDates, rightDates);
-  if (dates.length === 0) return 0;
   const kind = conflictKind(left.group.stage, right.group.stage);
   if (!kind) return 0;
 
@@ -208,30 +204,30 @@ const pairPenalty = (
     uncertainAssignments.has(left.group.assignment) || uncertainAssignments.has(right.group.assignment)
       ? 0.45
       : 1;
-  return base * uncertainty * dates.length * Math.max(groupPriority(left, goal), groupPriority(right, goal));
+  return base * uncertainty * Math.max(groupPriority(left, goal), groupPriority(right, goal));
 };
 
-const scorePlan = (groups: MergedGroup[], choices: string[][], goal: PlannerGoal) => {
+const scorePlan = (
+  choices: string[][],
+  penalties: number[][],
+  dayNumbers: Map<string, number>,
+  consecutivePenalty: number,
+) => {
+  const groupsByDate = new Map<string, number[]>();
   let score = 0;
-  for (let leftIndex = 0; leftIndex < groups.length; leftIndex += 1) {
-    for (let rightIndex = leftIndex + 1; rightIndex < groups.length; rightIndex += 1) {
-      score += pairPenalty(
-        groups[leftIndex],
-        choices[leftIndex],
-        groups[rightIndex],
-        choices[rightIndex],
-        goal,
-      );
+  choices.forEach((dates, rightIndex) => {
+    for (const date of new Set(dates)) {
+      const earlierGroups = groupsByDate.get(date) ?? [];
+      for (const leftIndex of earlierGroups) score += penalties[rightIndex][leftIndex];
+      groupsByDate.set(date, earlierGroups);
     }
-  }
+    for (const date of dates) groupsByDate.get(date)!.push(rightIndex);
+  });
 
-  const examDays = [...new Set(choices.flat())].sort();
+  const examDays = [...groupsByDate.keys()].sort();
   for (let index = 1; index < examDays.length; index += 1) {
-    const previous = new Date(`${examDays[index - 1]}T00:00:00Z`).getTime();
-    const current = new Date(`${examDays[index]}T00:00:00Z`).getTime();
-    if ((current - previous) / 86_400_000 === 1) score += goal === "priority" ? 3 : 10;
+    if (dayNumbers.get(examDays[index])! - dayNumbers.get(examDays[index - 1])! === 1) score += consecutivePenalty;
   }
-
   return score;
 };
 
@@ -241,6 +237,14 @@ const chooseBestAssignments = (
   forcedChoices: PlannerForcedChoices,
 ) => {
   const options = groups.map((group) => assignmentOptions(group, forcedChoices));
+  // Reuse each pair's daily penalty and compare only groups sharing a date.
+  const penalties = groups.map((right, rightIndex) =>
+    groups.slice(0, rightIndex).map((left) => pairPenalty(left, right, goal)),
+  );
+  const dayNumbers = new Map(
+    [...new Set(options.flat(2))].map((date) => [date, Date.parse(`${date}T00:00:00Z`) / 86_400_000]),
+  );
+  const consecutivePenalty = goal === "priority" ? 3 : 10;
   let explored = 0;
   let bestScore = Number.POSITIVE_INFINITY;
   let bestChoices: string[][] = groups.map(() => []);
@@ -251,7 +255,7 @@ const chooseBestAssignments = (
     if (explored >= maxPlans) return;
     if (index === groups.length) {
       explored += 1;
-      const score = scorePlan(groups, working, goal);
+      const score = scorePlan(working, penalties, dayNumbers, consecutivePenalty);
       if (score < bestScore) {
         bestScore = score;
         bestChoices = working.map((dates) => [...dates]);

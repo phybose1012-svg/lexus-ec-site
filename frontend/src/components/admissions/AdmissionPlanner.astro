@@ -121,7 +121,7 @@ const plannerPayload = JSON.stringify({
             </aside>
           </div>
           <div class="admissions-planner__actions">
-            <p data-planner-selection-hint>最大12方式まで選択できます。</p>
+            <p data-planner-selection-hint hidden></p>
             <button type="button" class="admissions-planner__next" data-planner-next="2" disabled>次へ：志望度・受験日 <span aria-hidden="true">→</span></button>
           </div>
         </section>
@@ -246,7 +246,7 @@ const plannerPayload = JSON.stringify({
   };
 
   const STORAGE_KEY = "lexus-admission-plan-2027-v2";
-  const MAX_SELECTIONS = 12;
+  const MAX_SELECTIONS = 40;
   const priorityLabels: Record<PlannerPriority, string> = {
     1: "第一志望",
     2: "必ず受験したい",
