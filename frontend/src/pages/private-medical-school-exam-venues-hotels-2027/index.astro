@@ -14,6 +14,7 @@ import {
   hotelOperatingStatusLabels2027,
   hotelVenueAccessReviewStateLabels2027,
   privateMedicalVenueHotels2027,
+  type HotelVenueAccess2027,
 } from "../../data/privateMedicalVenueHotels2027";
 import {
   privateMedicalExamVenuesHotels2027FieldDefinitions,
@@ -23,6 +24,17 @@ import { privateMedicalExamVenuesHotels2027SourceUrls } from "../../data/private
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import "../../styles/admissions-2027.css";
 import "../../styles/venues-hotels-2027.css";
+
+function hotelJourneyTime(access: HotelVenueAccess2027, publishedTime: string | undefined) {
+  // A route may list individual legs. Only show an explicit total or a direct walk here.
+  const total = publishedTime?.match(/^(?:ホテルから)?(?:合計)?((?:徒歩)?(?:約)?\d+(?:[〜～]\d+)?分)$/u)?.[1];
+  if (total) return access.modes.length === 1 && access.modes[0] === "walk" && !total.startsWith("徒歩") ? `徒歩${total}` : total;
+
+  if (access.reviewState.includes("official_direct")) {
+    const directWalk = publishedTime?.match(/^([^／（]+まで)(?:ホテル公式)?(徒歩(?:約)?\d+分)(?=$|[／（])/u);
+    if (directWalk) return `${directWalk[1]} ${directWalk[2]}`;
+  }
+}
 
 const metadata = privateMedicalExamVenuesHotels2027Metadata;
 const title = metadata.title;
@@ -1035,17 +1047,42 @@ const structuredData = {
                           access && !access.reviewState.includes("needs_route_review")
                             ? access.travelTimeLabel
                             : undefined;
+                        const journeyTime = access && hotelJourneyTime(access, displayableTravelTime);
+                        const sameBuilding = access && (
+                          hotel.name === venue.name ||
+                          /同じ建物内|同一施設内|同一施設・同一住所/.test(access.routeSummary)
+                        );
+                        const mapsUrl = access && !sameBuilding && !journeyTime && `https://www.google.com/maps/dir/?${new URLSearchParams({
+                          api: "1",
+                          origin: `${hotel.name} ${hotel.address}`,
+                          destination: `${venue.name} ${venue.address}`,
+                          travelmode: access.modes.includes("rail") || access.modes.includes("bus") ? "transit" : access.modes.includes("taxi") ? "driving" : "walking",
+                        })}`;
                         return (
                           <article id={`hotel-${hotel.hotelId}--venue-${venue.venueId}`}>
                             <p class="venue-guide-hotel__status">{hotelOperatingStatusLabels2027[hotel.operatingStatus]}</p>
                             <h6>{hotel.name}</h6>
+                            {access && (
+                              <p class="venue-guide-hotel__journey">
+                                <span>会場まで</span>
+                                {journeyTime && <strong>{journeyTime}</strong>}
+                                {!journeyTime && sameBuilding && <strong>同じ建物内</strong>}
+                                {mapsUrl && <a href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label={`${hotel.name}から${venue.name}までの所要時間を地図で見る`}>所要時間を地図で見る ↗</a>}
+                              </p>
+                            )}
                             <p class="venue-guide-hotel__address">{hotel.address}</p>
-                            <dl>
-                              <div><dt>最寄り</dt><dd>{hotel.nearestStation}</dd></div>
-                              {access && <div><dt>会場まで</dt><dd>{access.routeSummary}{displayableTravelTime ? `（${displayableTravelTime}）` : ""}</dd></div>}
-                              {access && <div><dt>経路の確認</dt><dd>{access.reviewState.map((state) => hotelVenueAccessReviewStateLabels2027[state]).join("／")}</dd></div>}
-                              {access?.caution && <div><dt>注意</dt><dd>{access.caution}</dd></div>}
-                            </dl>
+                            {access && (
+                              <details class="venue-guide-hotel__notes venue-guide-hotel__route">
+                                <summary>経路・当日の注意</summary>
+                                <dl>
+                                  <div><dt>最寄り</dt><dd>{hotel.nearestStation}</dd></div>
+                                  <div><dt>経路</dt><dd>{access.routeSummary}</dd></div>
+                                  {displayableTravelTime && displayableTravelTime !== journeyTime && <div><dt>時間の内訳</dt><dd>{displayableTravelTime}</dd></div>}
+                                  <div><dt>経路の確認</dt><dd>{access.reviewState.map((state) => hotelVenueAccessReviewStateLabels2027[state]).join("／")}</dd></div>
+                                  {access.caution && <div><dt>注意</dt><dd>{access.caution}</dd></div>}
+                                </dl>
+                              </details>
+                            )}
                             {hotel.amenities.length > 0 && <ul class="venue-guide-hotel__amenities">{hotel.amenities.map((amenity) => <li title={amenity.detail} aria-label={`${amenity.label}：${amenity.detail}`}>{amenity.label}</li>)}</ul>}
                             {(hotel.note || hotel.amenities.length > 0) && (
                               <details class="venue-guide-hotel__notes">

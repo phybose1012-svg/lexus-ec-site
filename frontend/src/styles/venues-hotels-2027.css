@@ -921,6 +921,52 @@
   font-weight: 900;
 }
 
+.venue-guide-hotel__journey {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 10px;
+  min-height: 44px;
+  margin: 6px 0 8px;
+  padding: 0 10px;
+  border-radius: 5px;
+  background: #faf1dc;
+  color: #533600;
+}
+
+.venue-guide-hotel__journey span {
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.venue-guide-hotel__journey strong {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.venue-guide-hotel__journey a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: inherit;
+  font-size: 0.83rem;
+  font-weight: 800;
+  text-underline-offset: 0.15em;
+}
+
+.venue-guide-hotel__route {
+  padding-block: 0;
+}
+
+.venue-guide-hotel__route summary {
+  padding-block: 11px;
+  min-height: 44px;
+}
+
+.venue-guide-hotel__route[open] dl {
+  padding: 0 0 11px;
+}
+
 .venue-guide-hotel__address {
   margin: 0 0 14px;
   color: var(--venue-muted);
