@@ -69,51 +69,59 @@ const plannerPayload = JSON.stringify({
         <section class="admissions-planner__step" aria-labelledby="planner-step-1" data-planner-panel="1" data-planner-controls>
           <div class="admissions-planner__step-heading">
             <span>STEP 1 / 4</span>
-            <h3 id="planner-step-1" tabindex="-1">まず、受験したい大学・方式を。</h3>
-            <p>大学を切り替えながら、気になる方式を追加しましょう。異なる選抜区分も一緒に選べます。</p>
+            <h3 id="planner-step-1" tabindex="-1">受験する大学・方式を選ぶ</h3>
+            <p>大学を選び、受験する方式にチェックを入れます。複数校を受ける場合は「別の大学を追加」を押してください。</p>
           </div>
 
           <div class="admissions-planner__choose-layout">
-          <div>
-          <label class="admissions-planner__field">
-            <span>選抜区分で絞り込む</span>
-            <select data-planner-category aria-label="選抜区分で絞り込む">
-              <option value="all">すべての選抜区分</option>
-              <option value="general">一般選抜</option>
-              <option value="common">共通テスト利用</option>
-              <option value="comprehensive">総合型選抜</option>
-              <option value="recommendation">学校推薦型選抜</option>
-              <option value="designated">指定校・系列校推薦</option>
-              <option value="regional">地域枠</option>
-              <option value="returnee">帰国生</option>
-              <option value="ib">国際バカロレア等</option>
-              <option value="international">留学生等</option>
-              <option value="special">その他の特別選抜</option>
-            </select>
-          </label>
-          <label class="admissions-planner__field">
-            <span>大学</span>
-            <select data-planner-university aria-label="大学を選択">
-              {
-                universities.map((university) => (
-                  <option value={university.id}>
-                    {university.name}（{university.prefecture}）
-                  </option>
-                ))
-              }
-            </select>
-          </label>
-
-          <div class="admissions-planner__route-options" data-planner-route-options></div>
-          <p class="admissions-planner__limit">一度に12方式まで選択できます。</p>
-          </div>
-          <aside class="admissions-planner__basket" aria-label="選択中の大学・方式">
-            <div class="admissions-planner__basket-heading"><h4>あなたの選択</h4><span data-planner-count aria-live="polite">0大学・0方式</span></div>
-            <div data-planner-basket></div>
-          </aside>
+            <div>
+              <label class="admissions-planner__field">
+                <span>受験する大学</span>
+                <select data-planner-university aria-label="受験する大学">
+                  <option value="" disabled selected>大学を選択してください</option>
+                  {
+                    universities.map((university) => (
+                      <option value={university.id}>
+                        {university.name}（{university.prefecture}）
+                      </option>
+                    ))
+                  }
+                </select>
+              </label>
+              <div data-planner-route-fields hidden>
+                <h4 class="admissions-planner__route-heading">受験する方式（複数選択可）</h4>
+                <label class="admissions-planner__field">
+                  <span>選抜区分で絞り込む</span>
+                  <select data-planner-category aria-label="選抜区分で絞り込む">
+                    <option value="all">すべての選抜区分</option>
+                    <option value="general">一般選抜</option>
+                    <option value="common">共通テスト利用</option>
+                    <option value="comprehensive">総合型選抜</option>
+                    <option value="recommendation">学校推薦型選抜</option>
+                    <option value="designated">指定校・系列校推薦</option>
+                    <option value="regional">地域枠</option>
+                    <option value="returnee">帰国生</option>
+                    <option value="ib">国際バカロレア等</option>
+                    <option value="international">留学生等</option>
+                    <option value="special">その他の特別選抜</option>
+                  </select>
+                </label>
+                <div class="admissions-planner__route-options" data-planner-route-options></div>
+              </div>
+            </div>
+            <aside class="admissions-planner__basket" aria-label="選択中の大学・方式">
+              <div class="admissions-planner__basket-heading">
+                <h4 id="planner-basket-title">選択中の大学</h4>
+                <span data-planner-count aria-live="polite">0大学・0方式</span>
+              </div>
+              <button type="button" class="admissions-planner__add-university" data-planner-add-university hidden>
+                <span aria-hidden="true">＋</span> 別の大学を追加
+              </button>
+              <div class="admissions-planner__basket-list" data-planner-basket role="region" aria-labelledby="planner-basket-title"></div>
+            </aside>
           </div>
           <div class="admissions-planner__actions">
-            <p data-planner-selection-hint>方式を1つ以上選ぶと次へ進めます。</p>
+            <p data-planner-selection-hint hidden></p>
             <button type="button" class="admissions-planner__next" data-planner-next="2" disabled>次へ：志望度・受験日 <span aria-hidden="true">→</span></button>
           </div>
         </section>
@@ -238,7 +246,7 @@ const plannerPayload = JSON.stringify({
   };
 
   const STORAGE_KEY = "lexus-admission-plan-2027-v2";
-  const MAX_SELECTIONS = 12;
+  const MAX_SELECTIONS = 40;
   const priorityLabels: Record<PlannerPriority, string> = {
     1: "第一志望",
     2: "必ず受験したい",
@@ -314,7 +322,9 @@ const plannerPayload = JSON.stringify({
 
     const universitySelect = root.querySelector<HTMLSelectElement>("[data-planner-university]");
     const categorySelect = root.querySelector<HTMLSelectElement>("[data-planner-category]");
+    const routeFields = root.querySelector<HTMLElement>("[data-planner-route-fields]");
     const routeOptions = root.querySelector<HTMLElement>("[data-planner-route-options]");
+    const addUniversity = root.querySelector<HTMLButtonElement>("[data-planner-add-university]");
     const selectedList = root.querySelector<HTMLElement>("[data-planner-selected]");
     const summary = root.querySelector<HTMLElement>("[data-planner-summary]");
     const calendarSection = root.querySelector<HTMLElement>("[data-planner-calendar-section]");
@@ -323,7 +333,9 @@ const plannerPayload = JSON.stringify({
     const saveStatus = root.querySelector<HTMLElement>("[data-planner-save-status]");
     if (
       !universitySelect ||
+      !routeFields ||
       !routeOptions ||
+      !addUniversity ||
       !selectedList ||
       !summary ||
       !calendarSection ||
@@ -432,6 +444,11 @@ const plannerPayload = JSON.stringify({
     };
 
     const renderRouteOptions = () => {
+      routeFields.hidden = !universitySelect.value;
+      if (routeFields.hidden) {
+        routeOptions.replaceChildren();
+        return;
+      }
       const routes = (routesByUniversity.get(universitySelect.value) ?? []).filter((route) => !categorySelect || categorySelect.value === "all" || route.category === categorySelect.value);
       if (!routes.length) {
         routeOptions.innerHTML = '<p class="admissions-planner__empty">この大学には該当区分の掲載方式がありません。選抜区分または大学を変更してください。</p>';
@@ -635,10 +652,17 @@ const plannerPayload = JSON.stringify({
           const name = routeById.get(item.routeId)!.universityName;
           groups.set(name, [...(groups.get(name) ?? []), item]);
         });
-        basket.innerHTML = selections.length ? [...groups].map(([name, items]) => `<div class="admissions-planner__basket-group"><strong>${escapeHtml(name)}</strong><ul>${items.map((item) => {
+        basket.tabIndex = selections.length ? 0 : -1;
+        basket.innerHTML = selections.length ? [...groups].map(([name, items]) => `<ul class="admissions-planner__basket-group" aria-label="${escapeHtml(name)}">${items.map((item, index) => {
           const route = routeById.get(item.routeId)!;
-          return `<li><span>${escapeHtml(route.routeName)}</span><button type="button" data-planner-remove="${escapeHtml(route.id)}" aria-label="${escapeHtml(routeLabel(route))}を削除">削除</button></li>`;
-        }).join("")}</ul></div>`).join("") : '<p class="admissions-planner__basket-empty">選んだ大学・方式が<br />ここにまとまります。</p>';
+          return `<li>
+            <div class="admissions-planner__basket-route">
+              ${index === 0 ? `<strong>${escapeHtml(name)}</strong>` : ""}
+              <span>${escapeHtml(route.routeName)}</span>
+            </div>
+            <button type="button" data-planner-remove="${escapeHtml(route.id)}" aria-label="${escapeHtml(routeLabel(route))}を削除">削除</button>
+          </li>`;
+        }).join("")}</ul>`).join("") : '<p class="admissions-planner__basket-empty">大学・方式が選ばれていません。</p>';
       }
       const review = root.querySelector<HTMLElement>("[data-planner-review]");
       if (review) review.innerHTML = `<div class="admissions-planner__review-heading"><strong>${count}</strong><span>${goal === "priority" ? "志望度を優先" : "受験機会を優先"}</span></div><ol class="admissions-planner__review-list">${selections.map((item) => {
@@ -669,7 +693,12 @@ const plannerPayload = JSON.stringify({
       const printButton = root.querySelector<HTMLButtonElement>("[data-print-section]");
       if (printButton) printButton.hidden = flow.step !== 4;
       const hint = root.querySelector<HTMLElement>("[data-planner-selection-hint]");
-      if (hint) hint.textContent = selections.length ? "追加が終わったら、次へ進みましょう。" : "方式を1つ以上選ぶと次へ進めます。";
+      const isFull = selections.length >= MAX_SELECTIONS;
+      addUniversity.hidden = selections.length === 0 || isFull;
+      if (hint) {
+        hint.hidden = selections.length > 0 && !isFull;
+        hint.textContent = isFull ? `${MAX_SELECTIONS}方式を選択済みです。` : `最大${MAX_SELECTIONS}方式まで選択できます。`;
+      }
     };
 
     const render = () => {
@@ -811,6 +840,18 @@ const plannerPayload = JSON.stringify({
         return;
       }
 
+    });
+
+    addUniversity.addEventListener("click", () => {
+      if (categorySelect) categorySelect.value = "all";
+      renderRouteOptions();
+      universitySelect.scrollIntoView({ block: "center" });
+      universitySelect.focus({ preventScroll: true });
+      try {
+        universitySelect.showPicker?.();
+      } catch {
+        // The focused select remains available where the native picker cannot open programmatically.
+      }
     });
 
     root.addEventListener("click", (event) => {

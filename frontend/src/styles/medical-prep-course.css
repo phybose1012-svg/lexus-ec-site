@@ -684,6 +684,10 @@
     padding-block: 56px;
   }
 
+  .prep-section-head {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .prep-section-head h2,
   .prep-message h2,
   .prep-garden h2 {

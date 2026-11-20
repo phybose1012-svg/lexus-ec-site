@@ -47,10 +47,10 @@ test("方式選択欄の補足は専願の方式だけに『※専願のみ』�
   const renderSource = component.split("const renderRouteOptions = () => {")[1].split("const renderSelected = () => {")[0];
   const routeOptions = { innerHTML: "" };
   // Exercise the actual option renderer with all published, conditional and pending routes.
-  const renderOptions = new Function("routesByUniversity", "universitySelect", "categorySelect", "selections", "MAX_SELECTIONS", "routeOptions", "escapeHtml", renderSource.replace(/\};\s*$/u, ""));
+  const renderOptions = new Function("routesByUniversity", "universitySelect", "categorySelect", "selections", "MAX_SELECTIONS", "routeFields", "routeOptions", "escapeHtml", renderSource.replace(/\};\s*$/u, ""));
   const escapeHtml = (value) => String(value ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
   for (const route of routes) {
-    renderOptions(new Map([[route.universityId, [route]]]), { value: route.universityId }, { value: "all" }, [], 12, routeOptions, escapeHtml);
+    renderOptions(new Map([[route.universityId, [route]]]), { value: route.universityId }, { value: "all" }, [], 40, { hidden: false }, routeOptions, escapeHtml);
     const expected = route.requirements?.exclusive === "専願" ? ["※専願のみ"] : [];
     assert.deepEqual([...routeOptions.innerHTML.matchAll(/<small>(.*?)<\/small>/gu)].map((match) => match[1]), expected, route.id);
     assert.match(routeOptions.innerHTML, /data-planner-route-toggle/u);

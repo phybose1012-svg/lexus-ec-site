@@ -972,7 +972,16 @@
 @media (max-width: 900px) {
   .article-hero__inner,
   .article-body-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .article-content {
+    grid-template-columns: minmax(0, 1fr);
+    overflow-wrap: anywhere;
+  }
+
+  .article-content :where(img, iframe, video, table) {
+    max-inline-size: 100%;
   }
 
   .article-hero__inner {

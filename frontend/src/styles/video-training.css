@@ -1393,6 +1393,7 @@
   .vt-video-card__zoom {
     right: 8px;
     bottom: 8px;
+    min-height: 44px;
     padding: 7px 10px;
     font-size: 0.76rem;
   }
@@ -1425,6 +1426,8 @@
 
   .vt-problem-dialog__close {
     min-width: 82px;
+    min-height: 44px;
+    flex-shrink: 0;
     padding: 8px 12px;
   }
 
@@ -1442,8 +1445,8 @@
 
   .vt-problem-dialog__nav {
     grid-row: 2;
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
   }
 
   .vt-problem-dialog__nav--prev {
