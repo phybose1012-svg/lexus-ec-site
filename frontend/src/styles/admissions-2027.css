@@ -2594,7 +2594,7 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 
   .admissions-page-switcher {
     width: 100%;
-    margin-bottom: 32px;
+    margin-bottom: 14px;
   }
 
   .admissions-page-switcher__label {
@@ -2603,13 +2603,24 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   }
 
   .admissions-page-switcher__options {
-    grid-template-columns: 1fr;
     gap: 6px;
   }
 
   .admissions-page-switcher__option {
-    min-height: 54px;
-    padding-inline: 12px;
+    min-height: 48px;
+    gap: 4px;
+    padding: 6px 7px;
+    font-size: .75rem;
+  }
+
+  .admissions-page-switcher__option strong > span {
+    display: inline-block;
+  }
+
+  .admissions-page-switcher__indicator {
+    width: 1.25rem;
+    height: 1.25rem;
+    font-size: .82rem;
   }
 
   .admissions-kicker {
@@ -4564,31 +4575,9 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
     padding-block: 10px 18px;
   }
 
-  .admissions-page--general .admissions-page-switcher {
-    margin-bottom: 14px;
-  }
-
-  .admissions-page--general .admissions-page-switcher__options,
   .admissions-page--general .admissions-hero__actions {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 6px;
-  }
-
-  .admissions-page--general .admissions-page-switcher__option {
-    min-height: 48px;
-    gap: 4px;
-    padding: 6px 7px;
-    font-size: .75rem;
-  }
-
-  .admissions-page--general .admissions-page-switcher__option strong > span {
-    display: inline-block;
-  }
-
-  .admissions-page--general .admissions-page-switcher__indicator {
-    width: 1.25rem;
-    height: 1.25rem;
-    font-size: .82rem;
   }
 
   .admissions-page--general .admissions-hero__grid {
