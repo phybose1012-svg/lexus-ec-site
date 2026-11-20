@@ -21,7 +21,7 @@ const images = {
 const quickLinks = [
   { label: "講師紹介", href: "/top/teacher/", tone: "blue" },
   { label: "合格体験記", href: "/top/voice/", tone: "green" },
-  { label: "理念と沿革", href: "/top/history/", tone: "red" },
+  { label: "理念と沿革", href: "#history-timeline", tone: "red" },
 ];
 
 const qualities = [
@@ -217,28 +217,27 @@ const timeline = [
         <p class="history-hero__label page-head__label">HISTORY</p>
         <h1 class="page-head__title">医学部予備校として躍進し続けた軌跡</h1>
         <span class="page-head__rule" aria-hidden="true"></span>
-        <p class="history-hero__anniversary">おかげさまで<br />レクサスは<br /><strong>35周年を迎えます。</strong></p>
-        <div class="history-button-row">
+        <p class="history-hero__anniversary">おかげさまで、レクサスは<strong>35周年</strong>を迎えます。</p>
+        <nav class="history-button-row" aria-label="レクサスについて">
           {quickLinks.map((action) => <a class={`button button--${action.tone}`} href={action.href}>{action.label}</a>)}
-        </div>
+        </nav>
       </div>
     </section>
 
     <section class="history-message" aria-labelledby="history-message-title">
       <div class="history-message__band">
         <h2 id="history-message-title">代表よりメッセージ</h2>
+        <p class="history-message__byline">代表 <strong>島内義仁</strong></p>
       </div>
       <div class="content history-message__grid">
         <figure class="history-message__portrait">
           <img src={images.representative} alt="レクサス教育センター 代表取締役 島内義仁" width="435" height="533" loading="lazy" decoding="async" />
-          <figcaption>
-            <span>レクサス教育センター代表</span>
-            <strong>島内 義仁</strong>
-          </figcaption>
         </figure>
         <div class="history-message__body">
-          <p class="history-message__lead">医学部合格に自信あり！</p>
-          <p>レクサス教育センターを設立して33年。「受験生を合格へと引っ張り上げる予備校」として、以下の3点を磨き上げてきました。</p>
+          <div class="history-message__intro">
+            <p class="history-message__lead">医学部合格に自信あり！</p>
+            <p>レクサス教育センターを設立して33年。「受験生を合格へと引っ張り上げる予備校」として、以下の3点を磨き上げてきました。</p>
+          </div>
           <div class="history-quality-list">
             {qualities.map((quality) => (
               <article class="history-quality">
@@ -253,7 +252,7 @@ const timeline = [
       </div>
     </section>
 
-    <section class="history-timeline" aria-labelledby="history-timeline-title">
+    <section class="history-timeline" id="history-timeline" aria-labelledby="history-timeline-title">
       <div class="content">
         <header class="history-section-head">
           <p>OUR HISTORY</p>
@@ -266,7 +265,7 @@ const timeline = [
                 <span>{item.year}</span>
               </div>
               <div class="history-timeline-item__content">
-                <strong class="history-timeline-item__title">{item.year} {item.title}</strong>
+                <h3 class="history-timeline-item__title">{item.title}</h3>
                 <div class="history-timeline-item__body">
                   <div>
                     {item.body.map((paragraph) => <p>{paragraph}</p>)}
