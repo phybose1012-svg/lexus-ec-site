@@ -14,6 +14,7 @@ import {
   hotelOperatingStatusLabels2027,
   hotelVenueAccessReviewStateLabels2027,
   privateMedicalVenueHotels2027,
+  type HotelVenueAccess2027,
 } from "../../data/privateMedicalVenueHotels2027";
 import {
   privateMedicalExamVenuesHotels2027FieldDefinitions,
@@ -23,6 +24,17 @@ import { privateMedicalExamVenuesHotels2027SourceUrls } from "../../data/private
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import "../../styles/admissions-2027.css";
 import "../../styles/venues-hotels-2027.css";
+
+function hotelJourneyTime(access: HotelVenueAccess2027, publishedTime: string | undefined) {
+  // A route may list individual legs. Only show an explicit total or a direct walk here.
+  const total = publishedTime?.match(/^(?:ホテルから)?(?:合計)?((?:徒歩)?(?:約)?\d+(?:[〜～]\d+)?分)$/u)?.[1];
+  if (total) return access.modes.length === 1 && access.modes[0] === "walk" && !total.startsWith("徒歩") ? `徒歩${total}` : total;
+
+  if (access.reviewState.includes("official_direct")) {
+    const directWalk = publishedTime?.match(/^([^／（]+まで)(?:ホテル公式)?(徒歩(?:約)?\d+分)(?=$|[／（])/u);
+    if (directWalk) return `${directWalk[1]} ${directWalk[2]}`;
+  }
+}
 
 const metadata = privateMedicalExamVenuesHotels2027Metadata;
 const title = metadata.title;
@@ -679,7 +691,7 @@ const structuredData = {
               方式・試験段階ごとの正式会場と、その会場に対応する宿泊先を確認し、受験票発行後の最終確認に役立てられます。
             </p>
             <div class="admissions-hero__actions">
-              <a class="admissions-primary-button" href="#finder">会場・大学を探す</a>
+              <a class="admissions-primary-button" href="#finder">試験会場を選んでホテルを見る</a>
               <a class="admissions-secondary-button" href="#planning">宿泊計画の注意点</a>
             </div>
           </div>
@@ -761,14 +773,14 @@ const structuredData = {
     <section class="venue-guide-finder" id="finder" aria-labelledby="finder-title">
       <div class="content">
         <header class="admissions-section-heading admissions-section-heading--split">
-          <div><p>FIND YOUR VENUE</p><h2 id="finder-title">会場・大学を探す</h2></div>
-          <p>条件を組み合わせると、会場別一覧と大学別一覧を同時に絞り込めます。</p>
+          <div><h2 id="finder-title">試験会場から周辺ホテルを探す</h2></div>
+          <p>受験票の会場名を確認し、その会場を下で選んでください。</p>
         </header>
 
         <form class="venue-guide-filters" data-venue-filters>
           <div class="venue-guide-filters__primary">
             <label class="venue-guide-filters__search">
-              <span>大学名・会場名から検索</span>
+              <span>大学名・会場名で候補を絞る</span>
               <input type="search" name="query" placeholder="例：杏林、幕張、枚方" autocomplete="off" />
             </label>
             <details class="venue-guide-filters__advanced">
@@ -788,6 +800,21 @@ const structuredData = {
             </details>
           </div>
         </form>
+        <div class="venue-guide-hotel-picker" hidden data-hotel-picker>
+          <label>
+            <span>1. 試験会場を選ぶ</span>
+            <select data-hotel-venue aria-describedby="venue-guide-picker-status">
+              <option value="">試験会場を選択してください</option>
+              {venueGroups.map((group) => (
+                <optgroup label={group.prefecture}>
+                  {group.entries.map(({ venue }) => <option value={venue.venueId}>{venue.name}</option>)}
+                </optgroup>
+              ))}
+            </select>
+          </label>
+          <p id="venue-guide-picker-status" aria-live="polite" data-hotel-picker-status></p>
+          <a class="admissions-primary-button" data-hotel-picker-link hidden>2. この会場の周辺ホテルを見る</a>
+        </div>
         <p class="venue-guide-filter-result" aria-live="polite" data-filter-result>全件を表示しています。</p>
       </div>
     </section>
@@ -1007,9 +1034,9 @@ const structuredData = {
                   </div>
                 </section>
 
-                <section class="venue-guide-hotels" aria-labelledby={`hotels-${venue.venueId}`}>
+                <section class="venue-guide-hotels" id={`venue-stays-${venue.venueId}`} aria-labelledby={`hotels-${venue.venueId}`} tabindex="-1">
                   <div class="venue-guide-hotels__heading">
-                    <div><p>STAY NEARBY</p><h5 id={`hotels-${venue.venueId}`}>会場周辺の宿泊施設</h5></div>
+                    <div><p>{venue.name}</p><h5 id={`hotels-${venue.venueId}`}>この会場の周辺ホテル</h5></div>
                     <span>{hotels.length}施設</span>
                   </div>
                   {hotels.length > 0 ? (
@@ -1020,17 +1047,42 @@ const structuredData = {
                           access && !access.reviewState.includes("needs_route_review")
                             ? access.travelTimeLabel
                             : undefined;
+                        const journeyTime = access && hotelJourneyTime(access, displayableTravelTime);
+                        const sameBuilding = access && (
+                          hotel.name === venue.name ||
+                          /同じ建物内|同一施設内|同一施設・同一住所/.test(access.routeSummary)
+                        );
+                        const mapsUrl = access && !sameBuilding && !journeyTime && `https://www.google.com/maps/dir/?${new URLSearchParams({
+                          api: "1",
+                          origin: `${hotel.name} ${hotel.address}`,
+                          destination: `${venue.name} ${venue.address}`,
+                          travelmode: access.modes.includes("rail") || access.modes.includes("bus") ? "transit" : access.modes.includes("taxi") ? "driving" : "walking",
+                        })}`;
                         return (
                           <article id={`hotel-${hotel.hotelId}--venue-${venue.venueId}`}>
                             <p class="venue-guide-hotel__status">{hotelOperatingStatusLabels2027[hotel.operatingStatus]}</p>
                             <h6>{hotel.name}</h6>
+                            {access && (
+                              <p class="venue-guide-hotel__journey">
+                                <span>会場まで</span>
+                                {journeyTime && <strong>{journeyTime}</strong>}
+                                {!journeyTime && sameBuilding && <strong>同じ建物内</strong>}
+                                {mapsUrl && <a href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label={`${hotel.name}から${venue.name}までの所要時間を地図で見る`}>所要時間を地図で見る ↗</a>}
+                              </p>
+                            )}
                             <p class="venue-guide-hotel__address">{hotel.address}</p>
-                            <dl>
-                              <div><dt>最寄り</dt><dd>{hotel.nearestStation}</dd></div>
-                              {access && <div><dt>会場まで</dt><dd>{access.routeSummary}{displayableTravelTime ? `（${displayableTravelTime}）` : ""}</dd></div>}
-                              {access && <div><dt>経路の確認</dt><dd>{access.reviewState.map((state) => hotelVenueAccessReviewStateLabels2027[state]).join("／")}</dd></div>}
-                              {access?.caution && <div><dt>注意</dt><dd>{access.caution}</dd></div>}
-                            </dl>
+                            {access && (
+                              <details class="venue-guide-hotel__notes venue-guide-hotel__route">
+                                <summary>経路・当日の注意</summary>
+                                <dl>
+                                  <div><dt>最寄り</dt><dd>{hotel.nearestStation}</dd></div>
+                                  <div><dt>経路</dt><dd>{access.routeSummary}</dd></div>
+                                  {displayableTravelTime && displayableTravelTime !== journeyTime && <div><dt>時間の内訳</dt><dd>{displayableTravelTime}</dd></div>}
+                                  <div><dt>経路の確認</dt><dd>{access.reviewState.map((state) => hotelVenueAccessReviewStateLabels2027[state]).join("／")}</dd></div>
+                                  {access.caution && <div><dt>注意</dt><dd>{access.caution}</dd></div>}
+                                </dl>
+                              </details>
+                            )}
                             {hotel.amenities.length > 0 && <ul class="venue-guide-hotel__amenities">{hotel.amenities.map((amenity) => <li title={amenity.detail} aria-label={`${amenity.label}：${amenity.detail}`}>{amenity.label}</li>)}</ul>}
                             {(hotel.note || hotel.amenities.length > 0) && (
                               <details class="venue-guide-hotel__notes">
@@ -1123,6 +1175,42 @@ const structuredData = {
       const prefectureCounters = [...document.querySelectorAll("[data-prefecture-count]")];
       const result = document.querySelector("[data-filter-result]");
       const advancedFilterStatus = document.querySelector("[data-filter-advanced-status]");
+      const hotelPicker = document.querySelector("[data-hotel-picker]");
+      const venueSelect = document.querySelector("[data-hotel-venue]");
+      const hotelLink = document.querySelector("[data-hotel-picker-link]");
+      const hotelPickerStatus = document.querySelector("[data-hotel-picker-status]");
+      const venueOptionGroups = venueSelect ? [...venueSelect.querySelectorAll("optgroup")] : [];
+
+      const updateHotelLink = () => {
+        if (!venueSelect || !hotelLink) return;
+        hotelLink.hidden = !venueSelect.value;
+        if (venueSelect.value) {
+          hotelLink.setAttribute("href", `#venue-stays-${venueSelect.value}`);
+        } else {
+          hotelLink.removeAttribute("href");
+        }
+      };
+
+      const updateVenuePicker = () => {
+        if (!hotelPicker || !venueSelect || !hotelPickerStatus) return;
+        const selected = venueSelect.value;
+        const visibleIds = new Set(cards.filter((card) => card.dataset.kind === "venue" && !card.hidden).map((card) => card.id.slice("venue-".length)));
+        const groups = venueOptionGroups.map((group) => {
+          const filtered = group.cloneNode(false);
+          for (const option of group.children) {
+            if (visibleIds.has(option.value)) filtered.append(option.cloneNode(true));
+          }
+          return filtered;
+        }).filter((group) => group.children.length > 0);
+        venueSelect.replaceChildren(venueSelect.options[0], ...groups);
+        venueSelect.value = visibleIds.has(selected) ? selected : "";
+        venueSelect.disabled = !visibleIds.size;
+        hotelPickerStatus.textContent = visibleIds.size ? "" : "該当する会場がありません。検索語や絞り込み条件を変えてください。";
+        hotelPicker.hidden = false;
+        updateHotelLink();
+      };
+
+      venueSelect?.addEventListener("change", updateHotelLink);
       const normalize = (value) => String(value || "").normalize("NFKC").trim().toLocaleLowerCase("ja");
       let assignmentRecords = [];
       try {
@@ -1225,6 +1313,7 @@ const structuredData = {
           const empty = document.querySelector(`[data-filter-empty="${section}"]`);
           if (empty instanceof HTMLElement) empty.hidden = section === "venues" ? visibleVenues > 0 : visibleUniversities > 0;
         }
+        updateVenuePicker();
         if (result) result.textContent = `会場 ${visibleVenues}件・大学 ${visibleUniversities}校を表示しています。`;
         if (advancedFilterStatus) {
           advancedFilterStatus.textContent = activeAdvancedFilterCount > 0
