@@ -110,13 +110,18 @@ const plannerPayload = JSON.stringify({
               </div>
             </div>
             <aside class="admissions-planner__basket" aria-label="選択中の大学・方式">
-              <div class="admissions-planner__basket-heading"><h4>選択済みの大学・方式</h4><span data-planner-count aria-live="polite">0大学・0方式</span></div>
-              <div data-planner-basket></div>
+              <div class="admissions-planner__basket-heading">
+                <h4 id="planner-basket-title">選択中の大学</h4>
+                <span data-planner-count aria-live="polite">0大学・0方式</span>
+              </div>
+              <button type="button" class="admissions-planner__add-university" data-planner-add-university hidden>
+                <span aria-hidden="true">＋</span> 別の大学を追加
+              </button>
+              <div class="admissions-planner__basket-list" data-planner-basket role="region" aria-labelledby="planner-basket-title"></div>
             </aside>
           </div>
           <div class="admissions-planner__actions">
             <p data-planner-selection-hint>最大12方式まで選択できます。</p>
-            <button type="button" class="admissions-planner__add-university" data-planner-add-university hidden><span aria-hidden="true">＋</span> 別の大学を追加</button>
             <button type="button" class="admissions-planner__next" data-planner-next="2" disabled>次へ：志望度・受験日 <span aria-hidden="true">→</span></button>
           </div>
         </section>
@@ -647,10 +652,17 @@ const plannerPayload = JSON.stringify({
           const name = routeById.get(item.routeId)!.universityName;
           groups.set(name, [...(groups.get(name) ?? []), item]);
         });
-        basket.innerHTML = selections.length ? [...groups].map(([name, items]) => `<div class="admissions-planner__basket-group"><strong>${escapeHtml(name)}</strong><ul>${items.map((item) => {
+        basket.tabIndex = selections.length ? 0 : -1;
+        basket.innerHTML = selections.length ? [...groups].map(([name, items]) => `<ul class="admissions-planner__basket-group" aria-label="${escapeHtml(name)}">${items.map((item, index) => {
           const route = routeById.get(item.routeId)!;
-          return `<li><span>${escapeHtml(route.routeName)}</span><button type="button" data-planner-remove="${escapeHtml(route.id)}" aria-label="${escapeHtml(routeLabel(route))}を削除">削除</button></li>`;
-        }).join("")}</ul></div>`).join("") : '<p class="admissions-planner__basket-empty">選んだ大学・方式が<br />ここにまとまります。</p>';
+          return `<li>
+            <div class="admissions-planner__basket-route">
+              ${index === 0 ? `<strong>${escapeHtml(name)}</strong>` : ""}
+              <span>${escapeHtml(route.routeName)}</span>
+            </div>
+            <button type="button" data-planner-remove="${escapeHtml(route.id)}" aria-label="${escapeHtml(routeLabel(route))}を削除">削除</button>
+          </li>`;
+        }).join("")}</ul>`).join("") : '<p class="admissions-planner__basket-empty">大学・方式が選ばれていません。</p>';
       }
       const review = root.querySelector<HTMLElement>("[data-planner-review]");
       if (review) review.innerHTML = `<div class="admissions-planner__review-heading"><strong>${count}</strong><span>${goal === "priority" ? "志望度を優先" : "受験機会を優先"}</span></div><ol class="admissions-planner__review-list">${selections.map((item) => {
