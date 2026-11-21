@@ -1,0 +1,33 @@
+---
+import PrivateMedicalPrepLayout from "../../../../layouts/PrivateMedicalPrepLayout.astro";
+import {
+  getPrivateMedicalSchoolPath,
+  privateMedicalPrepPath,
+  privateMedicalRegions,
+  privateMedicalRosterSource,
+  privateMedicalSchools,
+} from "../../../../data/privateMedicalSchools";
+
+const description = `全国の私立大学${privateMedicalSchools.length}校の医学部医学科を地域別に掲載。志望校を選ぶと、年度・選抜区分・科目別の対策記事を確認できます。`;
+---
+
+<PrivateMedicalPrepLayout title="私立医学部入試対策" description={description} path={privateMedicalPrepPath}>
+  {privateMedicalRegions.map(({ name, universities }) => (
+    <section>
+      <h2>{name}</h2>
+      <ul class="private-medical-prep__schools">
+        {universities.map(([id, university]) => (
+          <li>
+            <a class="private-medical-prep__school" href={getPrivateMedicalSchoolPath(id)}>
+              {university}<span aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+  <p class="private-medical-prep__sources">
+    掲載校は文部科学省の私立大学区分に基づきます。
+    <a href={privateMedicalRosterSource}>文部科学省「大学別医学部入学定員等一覧」</a>
+  </p>
+</PrivateMedicalPrepLayout>

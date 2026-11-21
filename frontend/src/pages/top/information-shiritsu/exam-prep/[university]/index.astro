@@ -1,0 +1,58 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import PrivateMedicalPrepLayout from "../../../../../layouts/PrivateMedicalPrepLayout.astro";
+import {
+  getPrivateMedicalSchoolPath,
+  privateMedicalDirectoryPath,
+  privateMedicalSchools,
+} from "../../../../../data/privateMedicalSchools";
+import { getLegacyRedirectByPath } from "../../../../../lib/legacyRedirects";
+import { getPrivateMedicalExamPostGroups } from "../../../../../lib/privateMedicalExamPosts";
+
+export const getStaticPaths = (() =>
+  privateMedicalSchools.map((school) => ({ params: { university: school.id }, props: { school } }))
+) satisfies GetStaticPaths;
+
+const { school } = Astro.props as InferGetStaticPropsType<typeof getStaticPaths>;
+const years = getPrivateMedicalExamPostGroups(school.id);
+const legacyPath = `${privateMedicalDirectoryPath}${school.legacySlug}/`;
+const information = getLegacyRedirectByPath(legacyPath);
+const strategy = getLegacyRedirectByPath(`${legacyPath}strategy/`);
+---
+
+<PrivateMedicalPrepLayout
+  title={`${school.name} 医学部医学科の入試対策`}
+  isUniversity
+  description="年度・選抜区分・科目別の対策記事と、大学別の入試情報を掲載しています。"
+  path={getPrivateMedicalSchoolPath(school.id)}
+>
+  <section>
+    <h2>年度・選抜区分・科目別の対策記事</h2>
+    {years.size === 0 ? <p>年度・科目別の対策記事は準備中です。</p> : (
+      [...years].map(([year, selections]) => (
+        <div class="private-medical-prep__year">
+          <h3>{year}年度</h3>
+          {[...selections.values()].map((posts) => (
+            <div>
+              <h4>{posts[0].selectionLabel}</h4>
+              <ul class="private-medical-prep__links">
+                {posts.map((post) => (
+                  <li><a href={post.path}>{post.subjectLabel}｜{post.title}</a></li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      ))
+    )}
+  </section>
+  {(information || strategy) && (
+    <section>
+      <h2>大学別の入試情報・総合対策</h2>
+      <ul class="private-medical-prep__links">
+        {information && <li><a href={information.to}>大学別情報・面接対策</a></li>}
+        {strategy && <li><a href={strategy.to}>入試問題の傾向と対策</a></li>}
+      </ul>
+    </section>
+  )}
+</PrivateMedicalPrepLayout>

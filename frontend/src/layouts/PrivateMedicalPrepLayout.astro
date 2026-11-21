@@ -1,0 +1,32 @@
+---
+import SiteLayout from "./SiteLayout.astro";
+import { seo } from "../data/home";
+import { privateMedicalDirectoryPath, privateMedicalPrepPath } from "../data/privateMedicalSchools";
+import "../styles/private-medical-prep.css";
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  isUniversity?: boolean;
+}
+
+const { title, description, path, isUniversity } = Astro.props;
+---
+
+<SiteLayout title={`${title}｜医学部予備校レクサス`} description={description}
+  canonical={new URL(path, seo.canonical).href} ogImage={seo.ogImage}>
+  <main class="private-medical-prep">
+    <header class="private-medical-prep__hero">
+      <div class="content">
+        <nav aria-label="パンくずリスト" class="private-medical-prep__breadcrumbs">
+          <a href={privateMedicalDirectoryPath}>私立医学部情報</a>
+          {isUniversity && <a href={privateMedicalPrepPath}>私立医学部入試対策</a>}
+        </nav>
+        <h1>{title}</h1>
+        <p>{description}</p>
+      </div>
+    </header>
+    <div class="content private-medical-prep__body"><slot /></div>
+  </main>
+</SiteLayout>

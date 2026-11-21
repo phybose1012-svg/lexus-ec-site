@@ -1,5 +1,7 @@
 import { getFixedPageStaticPaths } from "./fixedPageSource";
 import { migratedPosts } from "./postSource";
+import { getPrivateMedicalSchoolPath, privateMedicalPrepPath, privateMedicalSchools } from "../data/privateMedicalSchools";
+import { privateMedicalExamPosts } from "./privateMedicalExamPosts";
 import { privateMedicalAdmissions2027Metadata } from "../data/privateMedicalAdmissions2027Metadata";
 import { privateMedicalSpecialAdmissions2027Metadata } from "../data/privateMedicalSpecialAdmissions2027Metadata";
 import { privateMedicalExamVenuesHotels2027Metadata } from "../data/privateMedicalExamVenuesHotels2027Metadata";
@@ -106,6 +108,10 @@ export const getSitemapEntries = () => {
   for (const path of staticPagePaths) {
     addEntry(entries, { path, lastmod: staticPageLastmods.get(path) });
   }
+
+  addEntry(entries, { path: privateMedicalPrepPath });
+  for (const { id } of privateMedicalSchools) addEntry(entries, { path: getPrivateMedicalSchoolPath(id) });
+  for (const post of privateMedicalExamPosts) addEntry(entries, { path: post.path });
 
   for (const route of getFixedPageStaticPaths()) {
     addEntry(entries, { path: route.props.page.path });

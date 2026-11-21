@@ -1,0 +1,102 @@
+.private-medical-prep__hero {
+  background: #fbf5f1;
+  border-bottom: 1px solid #ecdcd5;
+  padding: clamp(1.75rem, 4vw, 3.5rem) 0;
+}
+
+.private-medical-prep__hero h1 {
+  color: var(--red);
+  font-size: clamp(1.875rem, 4.5vw, 3rem);
+  line-height: 1.35;
+  margin: 0 0 0.6rem;
+}
+
+.private-medical-prep__hero p {
+  margin: 0;
+}
+
+.private-medical-prep__breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1.1rem;
+}
+
+.private-medical-prep__breadcrumbs a,
+.private-medical-prep__body a {
+  color: var(--red);
+  text-underline-offset: 0.2em;
+}
+
+.private-medical-prep__breadcrumbs a,
+.private-medical-prep__body a:not(.private-medical-prep__school) {
+  text-decoration: underline;
+}
+
+.private-medical-prep__body {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.private-medical-prep__body section + section {
+  margin-top: 2.25rem;
+}
+
+.private-medical-prep__body h2 {
+  font-size: 1.4rem;
+  margin: 0 0 0.8rem;
+}
+
+.private-medical-prep__schools {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.private-medical-prep__school {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  gap: 0.5rem;
+  min-height: 3.25rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #dcd3cf;
+  border-radius: 0.5rem;
+  background: #fff;
+  font-weight: 700;
+}
+
+.private-medical-prep__school:hover,
+.private-medical-prep__school:focus-visible {
+  background: #fbf5f1;
+  border-color: var(--red);
+}
+
+.private-medical-prep__year {
+  padding: 1rem clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid #dcd3cf;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.private-medical-prep__year h4 {
+  margin-bottom: 0.5rem;
+}
+
+.private-medical-prep__links {
+  padding: 0;
+  margin: 0;
+}
+
+.private-medical-prep__links li + li {
+  margin-top: 0.5rem;
+}
+
+.private-medical-prep__sources {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}

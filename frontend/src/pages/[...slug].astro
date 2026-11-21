@@ -2,6 +2,7 @@
 import LeadForm from "../components/fixed/LeadForm.astro";
 import { defaultPageActions } from "../data/fixedPages";
 import { seo } from "../data/home";
+import { privateMedicalDirectoryPath, privateMedicalPrepPath } from "../data/privateMedicalSchools";
 import { getFixedPageByPath, getFixedPageStaticPaths, type ExtractedPage } from "../lib/fixedPageSource";
 import { getLegacyRedirectByPath, getLegacyRedirectStaticPaths, type LegacyRedirect } from "../lib/legacyRedirects";
 import { getMigratedPostByPath, getMigratedPostStaticPaths, type MigratedPost } from "../lib/postSource";
@@ -59,7 +60,7 @@ const unstack = unstackPaths.has(page.path);
 // boxed multi-column university link grids to match production.
 const directoryPaths = new Set<string>([
   "/top/information-kokuritsu/",
-  "/top/information-shiritsu/",
+  privateMedicalDirectoryPath,
 ]);
 const directory = directoryPaths.has(page.path);
 const premierPlanPages: Record<
@@ -264,6 +265,13 @@ const needsFixedSourceH1 = !page.form && !premierPlan && !genekiPlan && !isLegal
 <SiteLayout title={page.title} description={page.description} canonical={page.canonical} ogImage={seo.ogImage}>
   <main class={`fixed-page ${routeClass}${unstack ? " fixed-page--unstack" : ""}${directory ? " fixed-page--unstack fixed-page--directory" : ""}${page.form ? " fixed-page--form" : ""}${premierPlan ? " fixed-page--premier-plan" : ""}${genekiPlan ? " fixed-page--geneki-plan" : ""}${parentLetterPage ? " fixed-page--parent-letter" : ""}`}>
     {needsFixedSourceH1 && <h1 class="visually-hidden">{page.h1}</h1>}
+    {page.path === privateMedicalDirectoryPath && (
+      <section class="private-medical-prep-entry" aria-label="私立医学部入試対策">
+        <div class="content">
+          <a class="button button--red" href={privateMedicalPrepPath}>私立医学部入試対策・大学一覧</a>
+        </div>
+      </section>
+    )}
     {parentLetterPage && (
       <section class="parent-letter-hero" aria-labelledby="parent-letter-title">
         <div class="content parent-letter-hero__inner">
@@ -503,3 +511,9 @@ const needsFixedSourceH1 = !page.form && !premierPlan && !genekiPlan && !isLegal
   )}
 </SiteLayout>
 )}
+
+<style>
+  .private-medical-prep-entry {
+    padding-top: 1.25rem;
+  }
+</style>

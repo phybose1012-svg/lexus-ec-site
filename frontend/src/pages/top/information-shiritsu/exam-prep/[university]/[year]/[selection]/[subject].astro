@@ -1,0 +1,41 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import ArticleLayout from "../../../../../../../layouts/ArticleLayout.astro";
+import { seo } from "../../../../../../../data/home";
+import { getPrivateMedicalSchoolPath, privateMedicalSchools } from "../../../../../../../data/privateMedicalSchools";
+import { privateMedicalExamPosts } from "../../../../../../../lib/privateMedicalExamPosts";
+
+export const getStaticPaths = (() =>
+  privateMedicalExamPosts.map((post) => ({
+    params: { university: post.university, year: String(post.year), selection: post.selection, subject: post.subject },
+    props: { post },
+  }))
+) satisfies GetStaticPaths;
+
+const { post } = Astro.props as InferGetStaticPropsType<typeof getStaticPaths>;
+const school = privateMedicalSchools.find(({ id }) => id === post.university);
+if (!school) throw new Error(`Missing university for ${post.path}`);
+
+const { Content } = post.article;
+const toc = post.article.getHeadings().flatMap(({ depth, slug, text }) =>
+  depth === 2 || depth === 3 ? [{ id: slug, text, level: depth as 2 | 3 }] : [],
+);
+---
+
+<ArticleLayout
+  template="subject-analysis"
+  title={post.title}
+  description={post.description}
+  canonical={new URL(post.path, seo.canonical).href}
+  category="私立医学部入試対策"
+  toc={toc}
+  infoItems={[
+    { label: "大学", value: school.name },
+    { label: "年度", value: `${post.year}年度` },
+    { label: "選抜区分", value: post.selectionLabel },
+    { label: "科目", value: post.subjectLabel },
+  ]}
+>
+  <p><a href={getPrivateMedicalSchoolPath(school.id)}>{school.name}の入試対策一覧に戻る</a></p>
+  <Content />
+</ArticleLayout>
