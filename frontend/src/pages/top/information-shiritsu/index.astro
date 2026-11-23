@@ -1,152 +1,174 @@
 ---
 import LegacyArticlePage from "../../../components/fixed/LegacyArticlePage.astro";
-import { privateMedicalExamVenueSummary2027 } from "../../../data/privateMedicalExamVenues2027";
-import { privateMedicalVenueHotels2027 } from "../../../data/privateMedicalVenueHotels2027";
 
-const publishedHotelCount = privateMedicalVenueHotels2027.filter(
-  (hotel) => hotel.reviewState === "verified" && hotel.operatingStatus === "official_site_active",
-).length;
+const admissionsLinks = [
+  { label: "一般・共通テスト利用の日程", href: "/private-medical-school-admissions-schedule-2027/" },
+  { label: "総合型・学校推薦などの日程", href: "/private-medical-school-special-admissions-schedule-2027/" },
+  { label: "試験会場・周辺ホテル", href: "/private-medical-school-exam-venues-hotels-2027/" },
+];
+
+const universitySections = [
+  { title: "大学別の入試情報・現役医大生の声", id: "university-guide", legacyHeading: "現役医大生のホンネ" },
+  { title: "面接・志望理由のヒント", id: "interview-guide", legacyHeading: "私立医学部情報面接対策｜本学志望理由のヒント" },
+  { title: "入試問題の傾向と対策", id: "exam-strategy", legacyHeading: "入試問題の傾向と対策" },
+];
+
+const navigation = [
+  { label: "2027年度の入試情報", links: admissionsLinks },
+  { label: "大学別の情報・対策", links: universitySections.map(({ title, id }) => ({ label: title, href: "#" + id })) },
+];
+
+const updateDirectory = (body: string) => body
+  .replace(/(<h2\b[^>]*?)>([\s\S]*?)<\/h2>/gi, (heading, opening: string, text: string) => {
+    const label = text.replace(/<[^>]+>|\s+/g, "");
+    const section = universitySections.find(({ legacyHeading }) => label === legacyHeading);
+    return section ? opening + ' id="' + section.id + '" tabindex="-1">' + section.title + "</h2>" : heading;
+  })
+  .replace(
+    "医学部予備校 レクサス教育センターが集めた、現役医大生（レクサスのOB、OG）のホンネを大学別にまとめてみました。",
+    "大学を選ぶと、2026年度の入試結果や学費、カリキュラムや大学生活を確認できます。",
+  );
 ---
 
 <LegacyArticlePage
   path="/top/information-shiritsu/"
-  eyebrow="PRIVATE MED SCHOOLS"
   heading="私立医学部情報"
+  description="2027年度の私立医学部の入試日程・試験会場と、大学別の入試情報・現役医大生の声、面接対策や入試問題の傾向を確認できます。"
+  transformContent={updateDirectory}
   directory
 >
-  <section
-    slot="before-content"
-    class="shiritsu-admissions-feature"
-    aria-labelledby="shiritsu-admissions-feature-heading"
-  >
-    <header class="shiritsu-admissions-feature__header">
-      <p class="shiritsu-admissions-feature__kicker">2027 PRIVATE MEDICAL ADMISSIONS</p>
-      <h2 id="shiritsu-admissions-feature-heading">2027年度 私立医学部入試情報</h2>
-      <p>全国31大学の入試日程から、試験会場・受験時の宿泊情報までご確認いただけます。</p>
-    </header>
-
-    <a
-      class="shiritsu-venue-banner"
-      href="/private-medical-school-exam-venues-hotels-2027/"
-      aria-label="2027年度 私立医学部の入試会場・周辺ホテルガイドを見る"
-    >
-      <span class="shiritsu-venue-banner__content">
-        <span class="shiritsu-venue-banner__kicker">
-          <span>NEW</span>
-          EXAM VENUE &amp; HOTEL GUIDE 2027
-        </span>
-        <span class="shiritsu-venue-banner__title">
-          <small>2027年度 私立医学部</small>
-          入試会場と周辺ホテルを<br />まとめて確認
-        </span>
-        <span class="shiritsu-venue-banner__description">
-          大学公式資料に基づき、一次・二次試験の会場を区別。受験票指定や定員超過時の変更条件も確認できます。
-        </span>
-
-        <span class="shiritsu-venue-banner__stats" aria-label="掲載データ数">
-          <span><strong>{privateMedicalExamVenueSummary2027.universityCount}</strong><small>大学</small></span>
-          <span><strong>{privateMedicalExamVenueSummary2027.routeCount}</strong><small>方式</small></span>
-          <span><strong>{privateMedicalExamVenueSummary2027.uniqueVenueCount}</strong><small>会場データ</small></span>
-          <span><strong>{publishedHotelCount}</strong><small>ホテル</small></span>
-        </span>
-
-        <span class="shiritsu-venue-banner__link">
-          会場・ホテルガイドを見る
-          <span aria-hidden="true">→</span>
-        </span>
-      </span>
-
-      <span class="shiritsu-venue-banner__visual" aria-hidden="true">
-        <svg viewBox="0 0 390 270" role="presentation">
-          <path class="shiritsu-venue-banner__route" d="M60 210 C113 150 160 216 211 154 S305 101 343 55" />
-          <path class="shiritsu-venue-banner__route-dot" d="M60 210 C113 150 160 216 211 154 S305 101 343 55" />
-          <g class="shiritsu-venue-banner__calendar">
-            <rect x="34" y="35" width="108" height="82" rx="12" />
-            <path d="M35 60h106" />
-            <path d="M58 27v18M118 27v18" />
-            <text x="88" y="91" text-anchor="middle">2027</text>
-          </g>
-          <g class="shiritsu-venue-banner__pin">
-            <path d="M176 79c0-23 18-40 40-40s40 17 40 40c0 31-40 68-40 68s-40-37-40-68Z" />
-            <circle cx="216" cy="79" r="14" />
-          </g>
-          <g class="shiritsu-venue-banner__hotel">
-            <path d="M264 131h91v92h-91z" />
-            <path d="M279 99h61v124h-61z" />
-            <path d="M297 184h25v39h-25z" />
-            <path d="M291 120h12v12h-12zM316 120h12v12h-12zM291 145h12v12h-12zM316 145h12v12h-12z" />
-            <text x="309" y="114" text-anchor="middle">HOTEL</text>
-          </g>
-          <circle class="shiritsu-venue-banner__route-point" cx="60" cy="210" r="9" />
-          <circle class="shiritsu-venue-banner__route-point" cx="343" cy="55" r="9" />
-        </svg>
-        <span class="shiritsu-venue-banner__visual-label shiritsu-venue-banner__visual-label--venue">一次・二次会場</span>
-        <span class="shiritsu-venue-banner__visual-label shiritsu-venue-banner__visual-label--hotel">周辺ホテル</span>
-      </span>
-    </a>
-
-    <div class="shiritsu-admissions-feature__grid">
-      <a
-        class="shiritsu-admissions-feature__card"
-        href="/private-medical-school-admissions-schedule-2027/"
-      >
-        <span class="shiritsu-admissions-feature__visual" aria-hidden="true">
-          <img
-            src="/og/private-medical-admissions-2027.png"
-            alt=""
-            width="1731"
-            height="909"
-            decoding="async"
-          />
-        </span>
-        <span class="shiritsu-admissions-feature__body">
-          <span class="shiritsu-admissions-feature__eyebrow">
-            <span>2027年度</span>
-            一般選抜・共通テスト利用
-          </span>
-          <span class="shiritsu-admissions-feature__title">
-            全国31大学の入試日程を<br />まとめて確認
-          </span>
-          <span class="shiritsu-admissions-feature__description">
-            出願締切・一次試験・二次試験を、締切順・試験日順・大学別・全日程で確認できます。
-          </span>
-          <span class="shiritsu-admissions-feature__link">
-            一般選抜等の日程を見る
-            <span aria-hidden="true">→</span>
-          </span>
-        </span>
-      </a>
-
-      <a
-        class="shiritsu-admissions-feature__card shiritsu-admissions-feature__card--special"
-        href="/private-medical-school-special-admissions-schedule-2027/"
-      >
-        <span class="shiritsu-admissions-feature__visual" aria-hidden="true">
-          <img
-            src="/og/private-medical-special-admissions-2027.png"
-            alt=""
-            width="1731"
-            height="909"
-            decoding="async"
-          />
-        </span>
-        <span class="shiritsu-admissions-feature__body">
-          <span class="shiritsu-admissions-feature__eyebrow">
-            <span>2027年度</span>
-            総合型・学校推薦型等
-          </span>
-          <span class="shiritsu-admissions-feature__title">
-            一般選抜以外の日程と<br />出願条件を確認
-          </span>
-          <span class="shiritsu-admissions-feature__description">
-            総合型・学校推薦型・地域枠・帰国生・IBなどを、方式別の日程と条件で確認できます。
-          </span>
-          <span class="shiritsu-admissions-feature__link">
-            総合型・推薦型等の日程を見る
-            <span aria-hidden="true">→</span>
-          </span>
-        </span>
-      </a>
-    </div>
-  </section>
+  <nav slot="before-content" class="shiritsu-guide" aria-label="私立医学部情報の案内">
+    {navigation.map(({ label, links }) => (
+      <section class="shiritsu-guide__group">
+        <h2>{label}</h2>
+        <ul>
+          {links.map(({ label, href }) => (
+            <li>
+              <a href={href}>
+                <span>{label}</span>
+                <span class="shiritsu-guide__arrow" aria-hidden="true">{href.startsWith("#") ? "↓" : "→"}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </nav>
 </LegacyArticlePage>
+
+<style>
+  .shiritsu-guide {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    width: min(1000px, calc(100% - 32px));
+    margin: 0 auto 22px;
+  }
+
+  .shiritsu-guide__group {
+    align-self: start;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #dcd2c2;
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  .shiritsu-guide__group h2 {
+    margin: 0;
+    padding: 9px 14px;
+    color: #613125;
+    background: #f7f0e5;
+    font-size: 0.9rem;
+    font-weight: 800;
+    line-height: 1.4;
+  }
+
+  .shiritsu-guide__group:nth-child(2) h2 {
+    color: #204b3a;
+    background: #edf3ed;
+  }
+
+  .shiritsu-guide__group ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .shiritsu-guide__group li + li {
+    border-top: 1px solid #eee8df;
+  }
+
+  .shiritsu-guide__group a {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 6px 14px;
+    color: #302922;
+    font-size: clamp(0.84rem, 2.9vw, 1rem);
+    font-weight: 750;
+    line-height: 1.45;
+    text-decoration: none;
+  }
+
+  .shiritsu-guide__group a:hover,
+  .shiritsu-guide__group a:focus-visible {
+    background: #f7f4ee;
+    color: #752b20;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .shiritsu-guide__group a:focus-visible {
+    outline: 2px solid #752b20;
+    outline-offset: -2px;
+  }
+
+  .shiritsu-guide__arrow {
+    color: #5e4939;
+    font-size: 1.05rem;
+  }
+
+  :global(.legacy-article-page:has(.shiritsu-guide) .legacy-article-hero) {
+    padding-block: 14px 4px;
+  }
+
+  :global(.legacy-article-page:has(.shiritsu-guide) .legacy-article-hero :is(.page-head__strip, .page-head__label, .page-head__rule)) {
+    display: none;
+  }
+
+  :global(.legacy-article-page:has(.shiritsu-guide) .page-head__title) {
+    margin: 0;
+    font-size: clamp(1.45rem, 4vw, 2.1rem);
+  }
+
+  :global(.legacy-article-section:has(.shiritsu-guide)) {
+    padding-block-start: 12px;
+  }
+
+  :global(.legacy-article-section:has(.shiritsu-guide) .lap-sechead) {
+    display: none;
+  }
+
+  :global(.legacy-article-section:has(.shiritsu-guide) .lap-sec) {
+    padding-block: 14px 20px;
+  }
+
+  :global(.legacy-article-section:has(.shiritsu-guide) .lap-sec h2[id]) {
+    scroll-margin-top: 16px;
+  }
+
+  @media (max-width: 680px) {
+    .shiritsu-guide {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .shiritsu-guide__group h2 {
+      padding-block: 7px;
+    }
+  }
+</style>

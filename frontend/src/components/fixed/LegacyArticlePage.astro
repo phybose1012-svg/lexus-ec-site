@@ -18,6 +18,7 @@ interface Props {
   /** If set, the article body starts at the first occurrence of this heading text
    *  (drops the legacy elementor intro: duplicate title / mascot / quick-link buttons). */
   fromHeading?: string;
+  transformContent?: (body: string) => string;
   /** Optional title/description overrides. */
   title?: string;
   description?: string;
@@ -32,7 +33,7 @@ interface Props {
   raw?: boolean;
 }
 
-const { path, eyebrow = "INFORMATION", fromHeading, title, description, heading, directory = false, raw = false } = Astro.props;
+const { path, eyebrow = "INFORMATION", fromHeading, title, description, heading, directory = false, raw = false, transformContent } = Astro.props;
 const page = extractLegacyContentByPath(path);
 if (!page) throw new Error(`LegacyArticlePage: no legacy content for ${path}`);
 
@@ -42,7 +43,7 @@ const guideImage = "/assets/legacy/wp-content/uploads/2025/11/PR用見本2026-10
 // NB: never string-slice contentHtml (it leaves unbalanced tags that close the
 // container early and spill content full-width). The intro is cleaned in the DOM.
 void fromHeading;
-const body = page.contentHtml;
+const body = transformContent?.(page.contentHtml) ?? page.contentHtml;
 
 const bodyWrapClass =
   "fixed-page fixed-page--unstack legacy-article-section" +
