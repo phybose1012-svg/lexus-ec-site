@@ -13,23 +13,11 @@ const description =
 const images = {
   garden: "/assets/legacy/wp-content/uploads/2025/02/レクサスガーデン-1-04.jpg",
   heroGarden: "/assets/lexus-garden/hero-exterior.webp",
-  architectureCutaway: "/assets/lexus-garden/architecture-cutaway.webp",
   entranceResidence: "/assets/lexus-garden/entrance-residence.webp",
   logoStrip: "/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png",
   mascot: "/assets/legacy/wp-content/uploads/2025/02/新レクサスくん-指さし-2_20240826143701-899x1024.png",
   guide: "/assets/legacy/wp-content/uploads/2025/11/PR用見本2026-1024x1024.jpg",
 };
-
-const buildingLevels = [
-  { floor: "7階", use: "居住スペース", type: "residence", position: "13.8%" },
-  { floor: "6階", use: "教室", type: "classroom", position: "26.6%" },
-  { floor: "5階", use: "居住スペース", type: "residence", position: "39.5%" },
-  { floor: "4階", use: "居住スペース", type: "residence", position: "50.3%" },
-  { floor: "3階", use: "居住スペース", type: "residence", position: "60.8%" },
-  { floor: "2階", use: "居住スペース", type: "residence", position: "71.3%" },
-  { floor: "1階", use: "自習スペース", type: "study", position: "82.2%" },
-  { floor: "地下", use: "教室", type: "classroom", position: "93.9%" },
-] as const;
 
 const heroFacts = [
   { value: "塾生専用", label: "一般入居者が混ざらない受験生だけの寮" },
@@ -111,7 +99,7 @@ const floorPlans = [
 const lifeGallery = [
   { label: "居室のミニキッチン", src: "/assets/legacy/wp-content/uploads/2024/11/居室内写真7-scaled.jpg" },
   { label: "居室のデスクスペース", src: "/assets/legacy/wp-content/uploads/2024/11/居室内写真1-scaled.jpg" },
-  { label: "自習室の個別ブース", src: "/assets/legacy/wp-content/uploads/2024/11/DSC00015-scaled.jpg" },
+  { label: "地下自習室の個別ブース", src: "/assets/legacy/wp-content/uploads/2024/11/DSC00015-scaled.jpg" },
   { label: "居室内の洗濯機スペース", src: "/assets/legacy/wp-content/uploads/2024/11/DSC09748-scaled.jpg" },
   { label: "講師による質問対応", src: "/assets/legacy/wp-content/uploads/2024/11/DSC00006-scaled.jpg" },
   { label: "居室のベッド・学習机", src: "/assets/legacy/wp-content/uploads/2024/11/DSC09792-scaled.jpg" },
@@ -198,9 +186,8 @@ const exteriorGallery = [
             <span>専用寮。</span>
           </h1>
           <p class="garden-hero__lead">
-            教室・自習スペース・寮の居室が、すべて同じ建物にあります。授業が終わったら、館内を移動して自習したり、自分の部屋に戻ったりできます。
+            居室と夜まで使える自習環境を、校舎直結で利用できます。食事の宅配はオプションです。
           </p>
-          <a class="garden-building-jump" href="#garden-building">建物のフロア案内を見る <span aria-hidden="true">↓</span></a>
           <p class="garden-hero__statement">
             入居者は塾生に限られます。居室や共用設備を確認し、内見や利用条件は個別にご相談ください。
           </p>
@@ -230,34 +217,6 @@ const exteriorGallery = [
     <div class="garden-logo-band" aria-hidden="true">
       <img src={images.logoStrip} alt="" width="800" height="58" decoding="async" />
     </div>
-
-    <section id="garden-building" class="garden-building" aria-labelledby="garden-building-title">
-      <div class="content garden-building__layout">
-        <div class="garden-building__intro">
-          <h2 id="garden-building-title">校舎と寮が、ひとつの建物に。</h2>
-          <p>地下と6階に教室、1階に自習スペース。2〜5階と7階は寮の居住スペースです。</p>
-          <figure class="garden-building__photo">
-            <img src={images.garden} alt="白いタイルとバルコニーが並ぶレクサスガーデンの外観" width="788" height="518" loading="lazy" decoding="async" />
-            <figcaption>レクサスガーデンの外観写真</figcaption>
-          </figure>
-        </div>
-
-        <figure class="garden-building__section">
-          <div class="garden-building__diagram">
-            <img src={images.architectureCutaway} alt="レクサスガーデンを正面から見た立体断面イメージ" width="1024" height="1365" loading="lazy" decoding="async" />
-            <dl class="garden-building__levels">
-              {buildingLevels.map((level) => (
-                <div class:list={["garden-building__level", `garden-building__level--${level.type}`]} style={`--floor-y: ${level.position}`}>
-                  <dt>{level.floor}</dt>
-                  <dd>{level.use}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-          <figcaption>各階の用途を示した断面イメージ</figcaption>
-        </figure>
-      </div>
-    </section>
 
     <section class="garden-overview" aria-labelledby="garden-overview-title">
       <div class="content garden-overview__grid">
@@ -686,126 +645,3 @@ const exteriorGallery = [
     })();
   </script>
 </BaseLayout>
-
-<style>
-  .garden-building-jump {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5em;
-    min-height: 44px;
-    color: #1d5440;
-    font-size: 0.88rem;
-    font-weight: 800;
-    text-underline-offset: 0.2em;
-  }
-
-  .garden-building {
-    padding: clamp(32px, 6vw, 88px) 0;
-    background: #f8f6f1;
-    scroll-margin-top: 110px;
-  }
-
-  .garden-building__layout {
-    display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    align-items: center;
-    gap: clamp(24px, 5vw, 72px);
-  }
-
-  .garden-building__intro h2 {
-    margin: 0;
-    color: #211a14;
-    font-family: var(--font-serif);
-    font-size: clamp(1.6rem, 3.2vw, 2.7rem);
-    line-height: 1.38;
-  }
-
-  .garden-building__intro > p {
-    margin: 12px 0 0;
-    color: #504237;
-    font-size: clamp(0.91rem, 1.7vw, 1.06rem);
-    line-height: 1.8;
-  }
-
-  .garden-building__photo,
-  .garden-building__section {
-    margin: 0;
-    min-width: 0;
-  }
-
-  .garden-building__photo {
-    margin-top: 16px;
-  }
-
-  .garden-building__diagram {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) clamp(112px, 32%, 168px);
-    gap: clamp(5px, 1.2vw, 14px);
-    align-items: stretch;
-  }
-
-  .garden-building__photo img,
-  .garden-building__diagram img {
-    width: 100%;
-    border-radius: 8px;
-  }
-
-  .garden-building figcaption {
-    margin-top: 7px;
-    color: #554d44;
-    font-size: 0.76rem;
-    line-height: 1.5;
-  }
-
-  .garden-building__levels {
-    position: relative;
-    margin: 0;
-  }
-
-  .garden-building__level {
-    position: absolute;
-    inset: var(--floor-y) 0 auto;
-    transform: translateY(-50%);
-    display: grid;
-    grid-template-columns: 2.1em minmax(0, 1fr);
-    align-items: center;
-    gap: 0.3em;
-    padding: 0.2em 0.42em;
-    border-inline-start: 2px solid #bd9769;
-    border-radius: 3px;
-    background: #eee4d4;
-    color: #4a341f;
-    font-size: clamp(0.7rem, 1.28vw, 1rem);
-    line-height: 1.25;
-  }
-
-  .garden-building__level--classroom {
-    border-color: #337257;
-    background: #e3eee5;
-    color: #194834;
-  }
-
-  .garden-building__level--study {
-    border-color: #3f6b80;
-    background: #e1edf2;
-    color: #264957;
-  }
-
-  .garden-building__level dt,
-  .garden-building__level dd {
-    margin: 0;
-    font-weight: 800;
-  }
-
-  @media (max-width: 760px) {
-    .garden-building__layout {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 18px;
-    }
-
-    .garden-building__section {
-      width: min(100%, 520px);
-      margin-inline: auto;
-    }
-  }
-</style>
