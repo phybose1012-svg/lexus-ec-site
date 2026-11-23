@@ -114,10 +114,9 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 
 .admissions-page-switcher__label {
   margin-bottom: 9px;
-  color: #5f554d;
-  font-size: 0.69rem;
+  color: #443a32;
+  font-size: 0.84rem;
   font-weight: 900;
-  letter-spacing: 0.08em;
 }
 
 .admissions-page-switcher__options {
@@ -181,16 +180,23 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   width: 1.75rem;
   height: 1.75rem;
   border-radius: 50%;
+  border: 1px solid transparent;
   color: var(--switcher-accent);
   background: var(--switcher-tint);
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 1.05rem;
+  font-weight: 800;
   line-height: 1;
 }
 
-.admissions-page-switcher__option:not(.is-current):is(:hover, :focus-visible) .admissions-page-switcher__indicator {
+.admissions-page-switcher__option:not(.is-current) .admissions-page-switcher__indicator {
   color: #fff;
   background: var(--switcher-accent);
+}
+
+.admissions-page-switcher__option:not(.is-current):is(:hover, :focus-visible) .admissions-page-switcher__indicator {
+  color: var(--switcher-accent);
+  border-color: currentColor;
+  background: #fff;
 }
 
 .admissions-page-switcher__option.is-current {
@@ -2599,7 +2605,7 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
 
   .admissions-page-switcher__label {
     margin-bottom: 7px;
-    font-size: 0.64rem;
+    font-size: 0.78rem;
   }
 
   .admissions-page-switcher__options {
@@ -2618,9 +2624,9 @@ body:has(.admissions-page) .mobile-fixed-nav-wrap {
   }
 
   .admissions-page-switcher__indicator {
-    width: 1.25rem;
-    height: 1.25rem;
-    font-size: .82rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: .95rem;
   }
 
   .admissions-kicker {
