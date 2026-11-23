@@ -1,4 +1,5 @@
 import admissionInfoPosts from "../data/generated/admissionInfoPosts.json";
+import privateMedicalAdmissions2026 from "../data/privateMedicalAdmissions2026.json";
 import interviewPrepPosts from "../data/generated/interviewPrepPosts.json";
 import universityStrategyPosts from "../data/generated/universityStrategyPosts.json";
 import voiceInterviewPosts from "../data/generated/voiceInterviewPosts.json";
@@ -153,6 +154,20 @@ const universityTypeCategory = (value: string) => {
   return "";
 };
 
+const outdatedPrivateAdmissionStatId = /^(?:男女比|現浪比|年齢比)-2024年度/;
+const outdatedPrivateAdmissionStatBlock =
+  /<h3\b[^>]*\bid=["'](?:男女比|現浪比|年齢比)-2024年度[^"']*["'][^>]*>[\s\S]*?<\/h3>[\s\S]*?(?=<h[23]\b|$)/g;
+
+const removeOutdatedPrivateAdmissionStats = (post: MigratedPost): MigratedPost => {
+  if (!Object.hasOwn(privateMedicalAdmissions2026, post.path)) return post;
+
+  return {
+    ...post,
+    contentHtml: post.contentHtml.replace(outdatedPrivateAdmissionStatBlock, ""),
+    toc: post.toc.filter(({ id }) => !outdatedPrivateAdmissionStatId.test(id)),
+  };
+};
+
 const prepareMigratedPost = (post: MigratedPost): MigratedPost => {
   const path = normalizeMigratedPostPath(post.path);
   const normalizedPost = {
@@ -191,7 +206,7 @@ export const migratedPosts = [
   // Honor removal requests even if an older generated source is restored.
   .filter((post) => !retiredVoicePaths.includes(normalizeMigratedPostPath(post.path)))
   .filter((post) => !dedicatedFixedPostPaths.has(normalizeMigratedPostPath((post as MigratedPost).path)))
-  .map((post) => prepareMigratedPost(applyVerifiedUniversityAdmissions(post as MigratedPost))) as MigratedPost[];
+  .map((post) => prepareMigratedPost(applyVerifiedUniversityAdmissions(removeOutdatedPrivateAdmissionStats(post as MigratedPost)))) as MigratedPost[];
 
 export const getMigratedPostStaticPaths = () =>
   migratedPosts.map((post) => ({

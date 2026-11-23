@@ -1,0 +1,94 @@
+---
+import history2026 from "../../data/privateMedicalAdmissions2026.json";
+
+interface Props {
+  pathname: string;
+}
+
+const { pathname } = Astro.props;
+const history = history2026[pathname as keyof typeof history2026];
+---
+
+{history && (
+  <section class="admission-history" id="admissions-2026" aria-labelledby="admissions-2026-title">
+    <h2 id="admissions-2026-title">2026年度の入試情報</h2>
+    <p>{history.category}</p>
+    <dl>
+      {history.facts.map(([label, value]) => (
+        <div>
+          <dt>{label}</dt>
+          <dd>{value}</dd>
+        </div>
+      ))}
+    </dl>
+    <ul aria-label="大学公式サイトの資料">
+      {history.sources.map(({ label, url }) => (
+        <li><a href={url}>{label}（大学公式）</a></li>
+      ))}
+    </ul>
+  </section>
+)}
+
+<style>
+  .admission-history {
+    padding: clamp(14px, 3vw, 22px);
+    margin-block-end: 1.25rem;
+    border: 1px solid #d9d0c2;
+    border-radius: 12px;
+    background: #fffdf8;
+    color: #28221c;
+    scroll-margin-top: 7rem;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(1.15rem, 3vw, 1.4rem);
+    line-height: 1.4;
+  }
+
+  p {
+    margin: .35rem 0 .65rem;
+    font-size: .9rem;
+    font-weight: 700;
+  }
+
+  dl,
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .35rem 1.35rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  dl > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 .4rem;
+  }
+
+  dt,
+  a {
+    font-size: .875rem;
+  }
+
+  dd {
+    margin: 0;
+    font-weight: 700;
+  }
+
+  ul {
+    margin-block-start: .45rem;
+    list-style: none;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: #842018;
+    text-decoration: underline;
+    text-underline-offset: .18em;
+  }
+</style>

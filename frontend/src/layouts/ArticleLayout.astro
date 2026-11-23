@@ -4,6 +4,7 @@ import {getPrivateAdmissionsLayout} from "../lib/privateAdmissionsLayoutProfiles
 import OsakaikaAdmissionsTabs from "../components/articles/OsakaikaAdmissionsTabs.astro";
 import ArticleCta from "../components/articles/ArticleCta.astro";
 import ArticleInfoGrid from "../components/articles/ArticleInfoGrid.astro";
+import UniversityAdmissionHistory2026 from "../components/articles/UniversityAdmissionHistory2026.astro";
 import ArticleToc, { type ArticleTocItem } from "../components/articles/ArticleToc.astro";
 import {
   getArticleTemplateDefinition,
@@ -75,7 +76,8 @@ const {
   ctaVariant,
 } = Astro.props;
 
-const admissionsLayout = getPrivateAdmissionsLayout(new URL(canonical, "https://lexus-ec.com").pathname);
+const pathname = new URL(canonical, "https://lexus-ec.com").pathname;
+const admissionsLayout = getPrivateAdmissionsLayout(pathname);
 const isOsakaikaTabs = admissionsLayout?.variant === "osakaika";
 const isPrivateTabs = !!admissionsLayout && !isOsakaikaTabs;
 const hasAdmissionsTabs = isOsakaikaTabs || isPrivateTabs;
@@ -200,6 +202,7 @@ const resolvedCtaVariant = ctaVariant ?? templateDefinition.ctaVariant;
 
     <div class="article-container article-body-grid">
       <article class="article-main">
+        <UniversityAdmissionHistory2026 pathname={pathname} />
         {!hasAdmissionsTabs && keyPoints.length > 0 && (
           <section class="article-keypoints" aria-label="この記事の要点">
             <h2>この記事の要点</h2>
