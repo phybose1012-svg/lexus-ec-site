@@ -12,9 +12,9 @@ interface Props {
 }
 
 const { canonical, sourcePath } = Astro.props;
-const title = "個別説明会予約 - 医学部予備校 レクサス E.C.";
+const title = "無料個別面談のご予約｜医学部予備校 レクサス E.C.";
 const description =
-  "医学部受験の無料面談をオンラインまたは渋谷校舎で受け付けています。学習や進路、レクサス教育センターの指導内容について相談できます。予約フォームから希望日時をお知らせください。";
+  "医学部受験の無料個別面談は、オンラインまたは渋谷校舎でご予約いただけます。保護者の方だけでも、受験生ご本人だけでも、親子ご一緒でもご参加いただけます。";
 const configuredEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT;
 const endpoint = configuredEndpoint || "/form-submit";
 const localFormAttrs = configuredEndpoint ? {} : { "data-local-form": "pending" };
@@ -27,16 +27,15 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
 <BaseLayout title={title} description={description} canonical={canonical} ogImage={seo.ogImage}>
   <SiteHeader />
   <main class="legacy-reservation-page">
-    <section class="reservation-lead" aria-label="無料面談のご予約">
+    <section class="reservation-lead" aria-label="無料個別面談のご予約">
       <div class="reservation-lead__copy">
         <img class="page-head__strip" src="/assets/legacy/wp-content/uploads/2024/11/背景ロゴだらけメニュー透明3-1024x74.png" alt="" width="800" height="58" decoding="async" />
         <p class="page-head__label">RESERVATION</p>
-        <h1 class="reservation-lead__title page-head__title" data-admin-editable="reservation.title">無料面談のご予約</h1>
+        <h1 class="reservation-lead__title page-head__title" data-admin-editable="reservation.title">無料個別面談のご予約</h1>
         <span class="page-head__rule" aria-hidden="true"></span>
         <p class="reservation-lead__body" data-admin-editable="reservation.lead">
-          体験授業や入学をご検討の方は、<br />
-          まず無料面談をご予約下さい。<br />
-          詳しくご説明いたします。
+          保護者の方だけでも、受験生ご本人だけでも、親子ご一緒でもご参加いただけます。<br />
+          学習や進路、体験授業や入学についてご相談ください。
         </p>
         <ul class="reservation-lead__tags" aria-label="ご相談内容">
           <li>オンライン可</li>
@@ -55,7 +54,7 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
       </p>
     </section>
 
-    <section class="reservation-form-wrap" id="reservation-form" aria-label="個別説明会予約フォーム">
+    <section class="reservation-form-wrap" id="reservation-form" aria-label="無料個別面談の予約フォーム">
       <p class="reservation-form-handoff" data-curriculum-handoff-status hidden>
         作成した仮カリキュラムを備考欄へ引き継ぎました。内容は予約前に編集できます。
       </p>
@@ -73,7 +72,7 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
           <input type="text" name="kana" required placeholder="たなか　こたろう" />
         </label>
         <fieldset class="legacy-reservation-field legacy-reservation-field--radio">
-          <legend>現在どれが当てはまりますか？ <em>*</em></legend>
+          <legend>受験生の学年・現在の状況 <em>*</em></legend>
           {studentOptions.map((option) => (
             <label><input type="radio" name="studentType" value={option} required />{option}</label>
           ))}
