@@ -77,7 +77,8 @@ const {
 } = Astro.props;
 
 const pathname = new URL(canonical, "https://lexus-ec.com").pathname;
-const admissionsLayout = hasPrivateMedicalUniversityOverview(pathname) ? null : getPrivateAdmissionsLayout(pathname);
+const isPrivateMedicalOverview = hasPrivateMedicalUniversityOverview(pathname);
+const admissionsLayout = isPrivateMedicalOverview ? null : getPrivateAdmissionsLayout(pathname);
 const isOsakaikaTabs = admissionsLayout?.variant === "osakaika";
 const isPrivateTabs = !!admissionsLayout && !isOsakaikaTabs;
 const hasAdmissionsTabs = isOsakaikaTabs || isPrivateTabs;
@@ -202,7 +203,7 @@ const resolvedCtaVariant = ctaVariant ?? templateDefinition.ctaVariant;
 
     <div class="article-container article-body-grid">
       <article class="article-main">
-        {!hasAdmissionsTabs && keyPoints.length > 0 && (
+        {!hasAdmissionsTabs && !isPrivateMedicalOverview && keyPoints.length > 0 && (
           <section class="article-keypoints" aria-label="この記事の要点">
             <h2>この記事の要点</h2>
             <ul>
@@ -211,7 +212,7 @@ const resolvedCtaVariant = ctaVariant ?? templateDefinition.ctaVariant;
           </section>
         )}
 
-        {!hasAdmissionsTabs && <ArticleInfoGrid items={infoItems} />}
+        {!hasAdmissionsTabs && !isPrivateMedicalOverview && <ArticleInfoGrid items={infoItems} />}
 
         <div class="article-content">
           <slot />
@@ -219,7 +220,7 @@ const resolvedCtaVariant = ctaVariant ?? templateDefinition.ctaVariant;
       </article>
 
       {!hasAdmissionsTabs && <aside class="article-sidebar">
-        <ArticleToc items={toc} />
+        <ArticleToc items={toc} alignEntries={isPrivateMedicalOverview} />
         <ArticleCta variant={resolvedCtaVariant} />
         {tags.length > 0 && (
           <section class="article-tags" aria-label="タグ">
