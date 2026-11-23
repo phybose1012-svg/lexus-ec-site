@@ -7,6 +7,7 @@ type UniversityOverview = {
   officialUrl: string;
   sections: Record<string, OverviewSection>;
   intro?: string;
+  textCorrections?: { original: string; updated: string }[];
   sources: { label: string; url: string }[];
   statistics: Record<string, { value: string; title?: string }>;
 };
@@ -47,7 +48,7 @@ export function privateMedicalUniversityOverview(post: MigratedPost): MigratedPo
     '<p>出願前に、大学公式サイトで最新の出願日程・試験科目・募集要項をご確認ください。</p>' +
     '<p><a href="' + escapeHtml(data.officialUrl) + '">大学公式サイトで最新の入試情報を見る</a></p>';
 
-  const contentHtml = post.contentHtml
+  let contentHtml = post.contentHtml
     .replace(overviewSections, (block) => {
       const title = headingText(block.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i)?.[1] ?? "");
       if (title === "一般選抜情報" || title === "一次選抜情報") return currentAdmissions;
@@ -71,6 +72,10 @@ export function privateMedicalUniversityOverview(post: MigratedPost): MigratedPo
       const section = data.sections[id];
       return section ? heading + renderSection(section) : block;
     });
+
+  for (const { original, updated } of data.textCorrections ?? []) {
+    contentHtml = contentHtml.replace(original, escapeHtml(updated));
+  }
 
   const toc = [...contentHtml.matchAll(/<h([23])\b[^>]*id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/h\1>/gi)]
     .map((match) => ({
