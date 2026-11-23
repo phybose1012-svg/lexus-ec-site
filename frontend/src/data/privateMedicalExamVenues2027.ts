@@ -4089,7 +4089,7 @@ refineAssignmentPlan(["kansai-medical--common--common-test-late"], "second", {
   evidenceLocator: "PDF 23ページ（冊子17ページ）「大学入学共通テスト利用選抜試験（後期）／第2次試験」",
 });
 
-// 10月5日照合：HTML化した当該年度・当該方式の募集要項だけを根拠に更新する。
+// 10月5日照合：当該年度・当該方式の募集要項に基づいて更新する。
 refineAssignmentPlan([showaRoutes[0]], "first", {
   officialAdmissionUrl: "https://adm.showa-u.ac.jp/admission/info/web-apply.html",
   evidenceLabel: "2027年度入学試験要項 現行76ページ版",
@@ -4102,7 +4102,7 @@ refineAssignmentPlan([showaRoutes[1]], "first", {
   announcedVenueText: "五反田TOCビル",
   conditions: ["fixed", "admission_ticket"],
   reviewState: "needs_review",
-  note: "Ⅱ期一次の五反田TOCビルは既存の2027年度資料による情報です。現行76ページ版の方式別会場ページはHTML化待ちのため再照合待ちです。現行要項PDF51ページの定員超過時の旗の台キャンパスへの変更条件はⅠ期のみを対象とするため、Ⅱ期には結合していません。受験票で最終会場を確認してください。",
+  note: "Ⅱ期一次の会場は既存の2027年度資料では五反田TOCビルです。定員超過時に旗の台キャンパスへ変更される条件はⅠ期のみです。Ⅱ期一次の最終会場は受験票で確認してください。",
 });
 refineAssignmentPlan([dokkyoRoutes[0]], "first", {
   conditions: ["fixed", "applicant_preference", "admission_ticket"],
