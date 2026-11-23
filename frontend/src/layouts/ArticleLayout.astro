@@ -222,7 +222,7 @@ const resolvedCtaVariant = ctaVariant ?? templateDefinition.ctaVariant;
       {!hasAdmissionsTabs && <aside class="article-sidebar">
         <ArticleToc items={toc} alignEntries={isPrivateMedicalOverview} />
         <ArticleCta variant={resolvedCtaVariant} />
-        {tags.length > 0 && (
+        {!isPrivateMedicalOverview && tags.length > 0 && (
           <section class="article-tags" aria-label="タグ">
             <p>タグ</p>
             <ul>
