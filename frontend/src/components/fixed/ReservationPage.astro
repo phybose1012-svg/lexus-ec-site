@@ -34,8 +34,8 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
         <h1 class="reservation-lead__title page-head__title" data-admin-editable="reservation.title">無料個別面談のご予約</h1>
         <span class="page-head__rule" aria-hidden="true"></span>
         <p class="reservation-lead__body" data-admin-editable="reservation.lead">
-          保護者の方だけでも、受験生ご本人だけでも、親子ご一緒でもご参加いただけます。<br />
-          学習や進路、体験授業や入学についてご相談ください。
+          <span class="reservation-lead__sentence">保護者の方だけでも、<wbr />受験生ご本人だけでも、<wbr />親子ご一緒でも<wbr />ご参加いただけます。</span>
+          <span class="reservation-lead__sentence">学習や進路、<wbr />体験授業や入学について<wbr />ご相談ください。</span>
         </p>
         <ul class="reservation-lead__tags" aria-label="ご相談内容">
           <li>オンライン可</li>
@@ -159,6 +159,13 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
   <SiteFooter />
 
   <style>
+    .reservation-lead__sentence {
+      display: block;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+      text-wrap: balance;
+    }
+
     .reservation-reject-modal {
       position: fixed;
       inset: 0;
