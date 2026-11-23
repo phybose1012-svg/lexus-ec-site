@@ -888,7 +888,7 @@ const structuredData = {
                         <div><dt>試験日</dt><dd>{assignment.examDateLabel}</dd></div>
                         <div><dt>公表会場</dt><dd>{assignment.announcedVenueText}</dd></div>
                         <div><dt>指定・選択条件</dt><dd>{conditionText(assignment) || "指定条件の記載なし"}</dd></div>
-                        <div><dt>根拠</dt><dd>{assignment.evidenceLabel}{assignment.evidenceLocator && `（${assignment.evidenceLocator}）`}</dd></div>
+                        <div><dt>出典</dt><dd>{assignment.evidenceLabel}{assignment.evidenceLocator && `（${assignment.evidenceLocator}）`}</dd></div>
                       </dl>
                       {linkedVenues.length > 8 ? (
                         <details class="venue-guide-university__venue-disclosure">
@@ -1028,7 +1028,7 @@ const structuredData = {
                           <div><dt>指定・選択条件</dt><dd>{conditionText(assignment) || "指定条件の記載なし"}</dd></div>
                         </dl>
                         {assignment.note && <small>{assignment.note}</small>}
-                        {assignment.officialAdmissionUrl && <a class="venue-guide-source-link" href={assignment.officialAdmissionUrl} target="_blank" rel="noopener noreferrer">大学公式の根拠 ↗</a>}
+                        {assignment.officialAdmissionUrl && <a class="venue-guide-source-link" href={assignment.officialAdmissionUrl} target="_blank" rel="noopener noreferrer">大学公式の案内を見る ↗</a>}
                       </article>;
                     })}
                   </div>
@@ -1101,7 +1101,7 @@ const structuredData = {
                       })}
                     </div>
                   ) : (
-                    <p class="venue-guide-hotels__pending">この会場は宿泊施設の公式情報・経路を確認中です。件数を埋めるための推測掲載はしていません。</p>
+                    <p class="venue-guide-hotels__pending">この会場の周辺ホテルは未掲載です。会場名や最寄り駅でホテルを探し、予約前に会場までの所要時間を確認してください。</p>
                   )}
                 </section>
                 </div>

@@ -869,7 +869,7 @@ const structuredData = {
     <section class="admissions-full-schedule special-full-calendar" id="full-calendar" aria-labelledby="full-calendar-title">
       <div class="content">
         <div class="admissions-section-heading admissions-section-heading--light admissions-section-heading--printable">
-          <div><p>COMPLETE SCHEDULE</p><h2 id="full-calendar-title">出願から手続まで、全日程カレンダー</h2><p>日付は正規化データから生成。ヘッダーと左端の日付列を固定しています。</p></div>
+          <div><p>COMPLETE SCHEDULE</p><h2 id="full-calendar-title">出願から手続まで、全日程カレンダー</h2><p>出願締切、試験日、合格発表日、入学手続期限を日付順に確認できます。</p></div>
           <button type="button" class="admissions-print-button" data-print-section="full-calendar" data-print-title="2027年度 私立医学部 総合型・学校推薦型 全日程カレンダー"><span aria-hidden="true">⎙</span>このセクションを印刷</button>
         </div>
         <div class="special-full-calendar__legend">{stageColumns.map(({ key, short }) => <span class={`special-stage special-stage--${key}`}>{short}</span>)}</div>
@@ -910,7 +910,7 @@ const structuredData = {
       <div class="content">
         <div class="admissions-section-heading"><p>OFFICIAL SOURCES</p><h2 id="sources-title">31大学の公式資料</h2><p>大学公式の募集要項・入試概要・入試ガイドへのリンクです。</p></div>
         <ol>{privateMedicalSpecialAdmissionsUniversities2027.map((entry, index) => <li><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{entry.name}</strong><small>{publicationLabels[entry.publicationStatus]}</small></div><a href={entry.officialUrl} target="_blank" rel="noopener noreferrer">公式情報 ↗</a></li>)}</ol>
-        <aside class="admissions-data-access"><p><strong>掲載データについて</strong>人が読むページとJSONは同じ正本データから生成しています。未公表事項は確定値として構造化していません。最終更新：<time datetime={metadata.dateModified}>{lastUpdated}</time></p><a href={datasetUrl} type="application/json">機械可読JSONを見る</a></aside>
+        <aside class="admissions-data-access"><p><strong>日程の確認について</strong>最新の日程や、このページに掲載されていない日程は、各大学の公式案内で確認してください。最終更新：<time datetime={metadata.dateModified}>{lastUpdated}</time></p><a href={datasetUrl} type="application/json">入試日程データを開く（JSON）</a></aside>
       </div>
     </section>
 
