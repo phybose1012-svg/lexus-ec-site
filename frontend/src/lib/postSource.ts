@@ -1,4 +1,5 @@
 import admissionInfoPosts from "../data/generated/admissionInfoPosts.json";
+import { privateMedicalUniversityOverview } from "./privateMedicalUniversityOverview";
 import interviewPrepPosts from "../data/generated/interviewPrepPosts.json";
 import universityStrategyPosts from "../data/generated/universityStrategyPosts.json";
 import voiceInterviewPosts from "../data/generated/voiceInterviewPosts.json";
@@ -214,7 +215,11 @@ export const migratedPosts = [
   // Honor removal requests even if an older generated source is restored.
   .filter((post) => !retiredVoicePaths.includes(normalizeMigratedPostPath(post.path)))
   .filter((post) => !dedicatedFixedPostPaths.has(normalizeMigratedPostPath((post as MigratedPost).path)))
-  .map((post) => prepareMigratedPost(correctMigratedPost(post as MigratedPost))) as MigratedPost[];
+  .map((post) => {
+    const original = post as MigratedPost;
+    const resolved = privateMedicalUniversityOverview(original) ?? correctMigratedPost(original);
+    return prepareMigratedPost(resolved);
+  }) as MigratedPost[];
 
 export const getMigratedPostStaticPaths = () =>
   migratedPosts.map((post) => ({

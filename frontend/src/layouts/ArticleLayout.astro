@@ -1,6 +1,7 @@
 ---
 import ArticleCta from "../components/articles/ArticleCta.astro";
 import ArticleInfoGrid from "../components/articles/ArticleInfoGrid.astro";
+import { hasPrivateMedicalUniversityOverview } from "../lib/privateMedicalUniversityOverview";
 import ArticleToc, { type ArticleTocItem } from "../components/articles/ArticleToc.astro";
 import {
   getArticleTemplateDefinition,
@@ -72,6 +73,8 @@ const {
   ctaVariant,
 } = Astro.props;
 
+const pathname = new URL(canonical, "https://lexus-ec.com").pathname;
+const isPrivateMedicalOverview = hasPrivateMedicalUniversityOverview(pathname);
 const templateDefinition = getArticleTemplateDefinition(template);
 const allCategories = category ? [category, ...categories.filter((item) => item !== category)] : categories;
 const defaultHeroVariant =
@@ -190,7 +193,7 @@ const resolvedCtaVariant = ctaVariant ?? templateDefinition.ctaVariant;
 
     <div class="article-container article-body-grid">
       <article class="article-main">
-        {keyPoints.length > 0 && (
+        {!isPrivateMedicalOverview && keyPoints.length > 0 && (
           <section class="article-keypoints" aria-label="この記事の要点">
             <h2>この記事の要点</h2>
             <ul>
@@ -199,7 +202,7 @@ const resolvedCtaVariant = ctaVariant ?? templateDefinition.ctaVariant;
           </section>
         )}
 
-        <ArticleInfoGrid items={infoItems} />
+        {!isPrivateMedicalOverview && <ArticleInfoGrid items={infoItems} />}
 
         <div class="article-content">
           <slot />
@@ -207,9 +210,9 @@ const resolvedCtaVariant = ctaVariant ?? templateDefinition.ctaVariant;
       </article>
 
       <aside class="article-sidebar">
-        <ArticleToc items={toc} />
+        <ArticleToc items={toc} alignEntries={isPrivateMedicalOverview} />
         <ArticleCta variant={resolvedCtaVariant} />
-        {tags.length > 0 && (
+        {!isPrivateMedicalOverview && tags.length > 0 && (
           <section class="article-tags" aria-label="タグ">
             <p>タグ</p>
             <ul>
