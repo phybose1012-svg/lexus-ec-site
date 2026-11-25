@@ -1,4 +1,5 @@
 ---
+import { parseFragment, type DefaultTreeAdapterMap } from "parse5";
 import LegacyArticlePage from "../../../components/fixed/LegacyArticlePage.astro";
 
 const admissionsLinks = [
@@ -18,7 +19,45 @@ const navigation = [
   { label: "大学別の情報・対策", links: universitySections.map(({ title, id, image }) => ({ label: title, href: "#" + id, image })) },
 ];
 
-const updateDirectory = (body: string) => body
+function findSectionHeading(node: DefaultTreeAdapterMap["childNode"]): DefaultTreeAdapterMap["element"] | undefined {
+  if ("tagName" in node && node.tagName === "h2") return node;
+  if ("childNodes" in node) {
+    for (const child of node.childNodes) {
+      const heading = findSectionHeading(child);
+      if (heading) return heading;
+    }
+  }
+}
+
+function orderDirectorySections(body: string) {
+  const fragment = parseFragment(body, { sourceCodeLocationInfo: true });
+  const content = fragment.childNodes.find((node): node is DefaultTreeAdapterMap["element"] =>
+    "attrs" in node && node.attrs.some(({ name, value }) => name === "class" && value.split(/\s+/).includes("page-content"))
+  );
+  const directory = (content ?? fragment).childNodes.find((node): node is DefaultTreeAdapterMap["element"] =>
+    "attrs" in node && node.attrs.some(({ name, value }) => name === "class" && value.split(/\s+/).includes("elementor"))
+  );
+  const endTag = directory?.sourceCodeLocation?.endTag;
+  if (!directory || !endTag) return body;
+
+  // A heading and the following heading-free siblings belong to one section.
+  const sections = directory.childNodes.flatMap((node) => {
+    const heading = findSectionHeading(node);
+    const start = node.sourceCodeLocation?.startOffset;
+    if (!heading || start === undefined) return [];
+    return [{ id: heading.attrs.find(({ name }) => name === "id")?.value, start }];
+  });
+  const indices = universitySections.map(({ id }) => sections.findIndex((section) => section.id === id));
+  const first = Math.min(...indices);
+  if (first < 0 || Math.max(...indices) !== first + indices.length - 1) return body;
+
+  const start = sections[first].start;
+  const end = sections[first + indices.length]?.start ?? endTag.startOffset;
+  const ordered = indices.map((index) => body.slice(sections[index].start, sections[index + 1]?.start ?? end));
+  return body.slice(0, start) + ordered.join("") + body.slice(end);
+}
+
+const updateDirectory = (body: string) => orderDirectorySections(body
   .replace(/(<h2\b[^>]*?)>([\s\S]*?)<\/h2>/gi, (heading, opening: string, text: string) => {
     const label = text.replace(/<[^>]+>|\s+/g, "");
     const section = universitySections.find(({ legacyHeading }) => label === legacyHeading);
@@ -27,7 +66,7 @@ const updateDirectory = (body: string) => body
   .replace(
     "医学部予備校 レクサス教育センターが集めた、現役医大生（レクサスのOB、OG）のホンネを大学別にまとめてみました。",
     "大学を選ぶと、2026年度の入試結果や学費、カリキュラムや大学生活を確認できます。",
-  );
+  ));
 ---
 
 <LegacyArticlePage
