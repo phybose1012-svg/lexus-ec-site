@@ -785,26 +785,8 @@
   color: var(--red);
 }
 
-/* Long interview headings wrap under the label, with one column for the numbers. */
-.article-page--interview-prep-guide .article-toc li {
-  display: grid;
-  grid-template-columns: 1.3rem minmax(0, 1fr);
-  align-items: baseline;
-  column-gap: 6px;
-  padding-left: 0;
-}
-
-.article-page--interview-prep-guide .article-toc li::before {
-  margin-right: 0;
-  font-variant-numeric: tabular-nums;
-}
-
 .article-page--interview-prep-guide .article-toc a {
   overflow-wrap: anywhere;
-}
-
-.article-page--interview-prep-guide .article-toc__item--child a {
-  font-weight: 650;
 }
 
 @media (max-width: 680px) {
