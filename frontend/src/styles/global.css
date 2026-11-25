@@ -2169,6 +2169,12 @@ body:has(.premium-hero) :is(
     --mobile-header-top-height: 128px;
     --mobile-header-actions-height: 86px;
     --mobile-header-total-height: 214px;
+    --mobile-header-top-inset: max(env(safe-area-inset-top, 0px), var(--mobile-viewport-offset-top, 0px));
+  }
+
+  html:has(.mobile-fixed-nav-wrap) {
+    overscroll-behavior-y: none;
+    scroll-padding-top: calc(var(--mobile-header-actions-height) + var(--mobile-header-top-inset) + 10px);
   }
 
   /* Phones and tablets share one compact header: the brand/tagline block
@@ -2185,7 +2191,7 @@ body:has(.premium-hero) :is(
   .mobile-fixed-nav-wrap {
     display: block;
     position: sticky;
-    top: 0;
+    top: var(--mobile-header-top-inset);
     z-index: 120;
   }
 

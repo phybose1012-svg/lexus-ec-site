@@ -80,7 +80,7 @@ const visibleItems = items.filter((item) => item.id && item.text);
 
   @media (max-width: 960px) {
     :global(html:has(.article-toc--aligned)) {
-      scroll-padding-top: calc(var(--mobile-header-actions-height, 86px) + 14px);
+      scroll-padding-top: calc(var(--mobile-header-actions-height, 86px) + var(--mobile-header-top-inset, 0px) + 14px);
     }
   }
 
