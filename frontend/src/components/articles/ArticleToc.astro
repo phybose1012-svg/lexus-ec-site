@@ -121,6 +121,14 @@ const visibleItems = items.filter((item) => item.id && item.text);
     border-block-end: 1px solid var(--muted);
   }
 
+  :global(.article-page--interview-prep-guide) .article-toc--aligned li.article-toc__item--child {
+    counter-increment: none;
+  }
+
+  :global(.article-page--interview-prep-guide) .article-toc--aligned li.article-toc__item--child::before {
+    content: "";
+  }
+
   @media (max-width: 680px) {
     :global(.article-page--interview-prep-guide) .article-toc--aligned .article-toc__item--child a {
       font-size: 0.78125rem;
