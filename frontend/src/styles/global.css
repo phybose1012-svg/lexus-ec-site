@@ -2188,6 +2188,16 @@ body:has(.premium-hero) :is(
     overflow: visible;
   }
 
+  /* Give the logo the same visible-top clearance as the adjacent shortcut bar.
+     Keeping this space in flow moves the shortcuts down with the logo. */
+  body > .site-header:has(+ .mobile-fixed-nav-wrap) {
+    padding-block-start: var(--mobile-header-top-inset);
+  }
+
+  body > .site-header:has(+ .mobile-fixed-nav-wrap)::before {
+    top: var(--mobile-header-top-inset);
+  }
+
   .mobile-fixed-nav-wrap {
     display: block;
     position: sticky;
