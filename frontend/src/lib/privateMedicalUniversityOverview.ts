@@ -89,6 +89,7 @@ export function privateMedicalUniversityOverview(post: MigratedPost): MigratedPo
 
   return {
     ...post,
+    modified: "2026-11-25",
     lead: data.intro ?? post.lead,
     description: post.title + "医学部の大学基本情報と2026年度入試の結果をご紹介します。",
     contentHtml,
