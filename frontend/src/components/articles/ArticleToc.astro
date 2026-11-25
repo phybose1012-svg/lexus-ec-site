@@ -80,7 +80,7 @@ const visibleItems = items.filter((item) => item.id && item.text);
 
   @media (max-width: 960px) {
     :global(html:has(.article-toc--aligned)) {
-      scroll-padding-top: calc(var(--mobile-header-actions-height, 86px) + 14px);
+      scroll-padding-top: calc(var(--mobile-header-actions-height, 86px) + var(--mobile-header-top-inset, 0px) + 14px);
     }
   }
 
@@ -119,6 +119,20 @@ const visibleItems = items.filter((item) => item.id && item.text);
     margin-block-start: 0.28rem;
     border-inline-start: 1px solid var(--muted);
     border-block-end: 1px solid var(--muted);
+  }
+
+  :global(.article-page--interview-prep-guide) .article-toc--aligned li.article-toc__item--child {
+    counter-increment: none;
+  }
+
+  :global(.article-page--interview-prep-guide) .article-toc--aligned li.article-toc__item--child::before {
+    content: "";
+  }
+
+  @media (max-width: 680px) {
+    :global(.article-page--interview-prep-guide) .article-toc--aligned .article-toc__item--child a {
+      font-size: 0.78125rem;
+    }
   }
 
   .article-toc--aligned a[aria-current="location"] {

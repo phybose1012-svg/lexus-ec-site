@@ -785,6 +785,31 @@
   color: var(--red);
 }
 
+.article-page--interview-prep-guide .article-toc a {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 680px) {
+  .article-page--interview-prep-guide .article-toc {
+    padding: 12px;
+  }
+
+  .article-page--interview-prep-guide .article-toc__title {
+    margin-bottom: 7px;
+  }
+
+  .article-page--interview-prep-guide .article-toc ol {
+    gap: 3px;
+  }
+
+  .article-page--interview-prep-guide .article-toc a {
+    min-height: 32px;
+    padding-block: 5px;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+}
+
 .article-cta {
   background: #8b0000;
   color: #fff;

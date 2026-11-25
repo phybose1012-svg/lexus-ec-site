@@ -2169,6 +2169,12 @@ body:has(.premium-hero) :is(
     --mobile-header-top-height: 128px;
     --mobile-header-actions-height: 86px;
     --mobile-header-total-height: 214px;
+    --mobile-header-top-inset: max(env(safe-area-inset-top, 0px), var(--mobile-viewport-offset-top, 0px));
+  }
+
+  html:has(.mobile-fixed-nav-wrap) {
+    overscroll-behavior-y: none;
+    scroll-padding-top: calc(var(--mobile-header-actions-height) + var(--mobile-header-top-inset) + 10px);
   }
 
   /* Phones and tablets share one compact header: the brand/tagline block
@@ -2182,10 +2188,20 @@ body:has(.premium-hero) :is(
     overflow: visible;
   }
 
+  /* Give the logo the same visible-top clearance as the adjacent shortcut bar.
+     Keeping this space in flow moves the shortcuts down with the logo. */
+  body > .site-header:has(+ .mobile-fixed-nav-wrap) {
+    padding-block-start: var(--mobile-header-top-inset);
+  }
+
+  body > .site-header:has(+ .mobile-fixed-nav-wrap)::before {
+    top: var(--mobile-header-top-inset);
+  }
+
   .mobile-fixed-nav-wrap {
     display: block;
     position: sticky;
-    top: 0;
+    top: var(--mobile-header-top-inset);
     z-index: 120;
   }
 
