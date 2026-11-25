@@ -94,8 +94,10 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
         </label>
         <div class="legacy-reservation-field">
           <label for="reservation-tel"><span>ご連絡先(電話番号) <em>*</em></span></label>
-          <input id="reservation-tel" type="tel" name="tel" required placeholder="090-1234-5678" aria-describedby="reservation-tel-help" />
-          <p id="reservation-tel-help" class="legacy-reservation-field-help">メール連絡で問題が生じた場合に限り、お電話で予約確認をいたします。</p>
+          <div class="legacy-reservation-tel-box">
+            <input id="reservation-tel" type="tel" name="tel" required placeholder="090-1234-5678" aria-describedby="reservation-tel-help" />
+            <p id="reservation-tel-help" class="legacy-reservation-field-help">メール連絡で問題が生じた場合に限り、お電話で予約確認をいたします。</p>
+          </div>
         </div>
         <label class="legacy-reservation-field">
           <span>ご希望の日程は？(第一希望) <em>*</em></span>
@@ -160,7 +162,32 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
   <SiteFooter />
 
   <style>
+    .legacy-reservation-tel-box {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: #fff;
+    }
+
+    .legacy-reservation-tel-box > input {
+      display: block;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .legacy-reservation-tel-box:focus-within {
+      outline: 2px solid var(--blue);
+      outline-offset: 2px;
+    }
+
+    .legacy-reservation-tel-box > input:focus {
+      outline: none;
+    }
+
     .legacy-reservation-field-help {
+      padding: 0 9px 8px;
+      font-weight: 500;
       margin: 0;
       color: var(--muted);
       font-size: 0.8125rem;

@@ -1,5 +1,7 @@
 ---
 import LegacyArticlePage from "../../components/fixed/LegacyArticlePage.astro";
+
+const scrollHint = /<div\b[^>]*\bclass="[^"]*\belementor-element-eb93a02\b[^"]*"[^>]*>\s*<div\b[^>]*>\s*<p>\s*←\s*ｓｃｒｏｌｌ\s*→\s*<\/p>\s*<\/div>\s*<\/div>/u;
 ---
 
 <LegacyArticlePage
@@ -7,6 +9,7 @@ import LegacyArticlePage from "../../components/fixed/LegacyArticlePage.astro";
   eyebrow="ABOUT"
   heading="医学部数学を完全攻略する“鬼特訓”"
   fromHeading="学習の流れ"
+  transformContent={(body) => body.replace(scrollHint, "")}
 />
 
 <style>
