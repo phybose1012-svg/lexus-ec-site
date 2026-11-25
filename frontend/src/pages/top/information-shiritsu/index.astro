@@ -2,20 +2,20 @@
 import LegacyArticlePage from "../../../components/fixed/LegacyArticlePage.astro";
 
 const admissionsLinks = [
-  { label: "一般・共通テスト利用の日程", href: "/private-medical-school-admissions-schedule-2027/" },
-  { label: "総合型・学校推薦などの日程", href: "/private-medical-school-special-admissions-schedule-2027/" },
-  { label: "試験会場・周辺ホテル", href: "/private-medical-school-exam-venues-hotels-2027/" },
+  { label: "一般・共通テスト利用の日程", href: "/private-medical-school-admissions-schedule-2027/", image: "/assets/optimized/shiritsu-guide-general.webp" },
+  { label: "総合型・学校推薦などの日程", href: "/private-medical-school-special-admissions-schedule-2027/", image: "/assets/optimized/shiritsu-guide-special.webp" },
+  { label: "試験会場・周辺ホテル", href: "/private-medical-school-exam-venues-hotels-2027/", image: "/assets/optimized/shiritsu-guide-venue.webp" },
 ];
 
 const universitySections = [
-  { title: "大学別の入試情報・現役医大生の声", id: "university-guide", legacyHeading: "現役医大生のホンネ" },
-  { title: "面接・志望理由のヒント", id: "interview-guide", legacyHeading: "私立医学部情報面接対策｜本学志望理由のヒント" },
-  { title: "入試問題の傾向と対策", id: "exam-strategy", legacyHeading: "入試問題の傾向と対策" },
+  { title: "大学別の入試情報・現役医大生の声", id: "university-guide", image: "/assets/optimized/icon-request-192.webp", legacyHeading: "現役医大生のホンネ" },
+  { title: "面接・志望理由のヒント", id: "interview-guide", image: "/assets/optimized/icon-consult-192.webp", legacyHeading: "私立医学部情報面接対策｜本学志望理由のヒント" },
+  { title: "入試問題の傾向と対策", id: "exam-strategy", image: "/assets/optimized/shiritsu-guide-strategy.webp", legacyHeading: "入試問題の傾向と対策" },
 ];
 
 const navigation = [
   { label: "2027年度の入試情報", links: admissionsLinks },
-  { label: "大学別の情報・対策", links: universitySections.map(({ title, id }) => ({ label: title, href: "#" + id })) },
+  { label: "大学別の情報・対策", links: universitySections.map(({ title, id, image }) => ({ label: title, href: "#" + id, image })) },
 ];
 
 const updateDirectory = (body: string) => body
@@ -42,9 +42,12 @@ const updateDirectory = (body: string) => body
       <section class="shiritsu-guide__group">
         <h2>{label}</h2>
         <ul>
-          {links.map(({ label, href }) => (
+          {links.map(({ label, href, image }) => (
             <li>
               <a href={href}>
+                <span class="shiritsu-guide__thumbnail" aria-hidden="true">
+                  <img src={image} alt="" width="96" height="50" decoding="async" />
+                </span>
                 <span>{label}</span>
                 <span class="shiritsu-guide__arrow" aria-hidden="true">{href.startsWith("#") ? "↓" : "→"}</span>
               </a>
@@ -101,10 +104,10 @@ const updateDirectory = (body: string) => body
 
   .shiritsu-guide__group a {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
-    gap: 8px;
-    min-height: 44px;
+    gap: 12px;
+    min-height: 62px;
     padding: 6px 14px;
     color: #302922;
     font-size: clamp(0.84rem, 2.9vw, 1rem);
@@ -124,6 +127,33 @@ const updateDirectory = (body: string) => body
   .shiritsu-guide__group a:focus-visible {
     outline: 2px solid #752b20;
     outline-offset: -2px;
+  }
+
+  .shiritsu-guide__thumbnail {
+    display: grid;
+    place-items: center;
+    width: 96px;
+    aspect-ratio: 96 / 50;
+    overflow: hidden;
+    border-radius: 6px;
+    background: #f7f0e5;
+  }
+
+  .shiritsu-guide__group:nth-child(2) .shiritsu-guide__thumbnail {
+    background: #edf3ed;
+  }
+
+  .shiritsu-guide__thumbnail img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .shiritsu-guide__group:nth-child(2) .shiritsu-guide__thumbnail img {
+    width: auto;
+    max-width: 78%;
+    height: 86%;
   }
 
   .shiritsu-guide__arrow {
@@ -169,6 +199,16 @@ const updateDirectory = (body: string) => body
 
     .shiritsu-guide__group h2 {
       padding-block: 7px;
+    }
+
+    .shiritsu-guide__group a {
+      min-height: 54px;
+      gap: 9px;
+      padding-inline: 10px;
+    }
+
+    .shiritsu-guide__thumbnail {
+      width: 76px;
     }
   }
 </style>
