@@ -53,6 +53,9 @@ export function privateMedicalUniversityOverview(post: MigratedPost): MigratedPo
       const title = headingText(block.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i)?.[1] ?? "");
       if (title === "一般選抜情報" || title === "一次選抜情報") return currentAdmissions;
       if (title === "募集要項") return "";
+      if (title === "大学の魅力") {
+        return block.replace(/(<h2\b[^>]*>)[\s\S]*?<\/h2>/i, "$1大学生の声（大学の魅力）</h2>");
+      }
       if (title === "大学基本情報" && !block.includes('id="学納金"')) {
         return block + "<h3>学納金</h3>" + renderSection(data.sections["学納金"]);
       }

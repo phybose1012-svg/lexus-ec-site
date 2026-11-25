@@ -54,10 +54,11 @@ const visibleItems = items.filter((item) => item.id && item.text);
 
     const selectFromScroll = () => {
       frame = 0;
+      const topPadding = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
       let current = entries[0];
       for (const entry of entries) {
-        const offset = parseFloat(getComputedStyle(entry.heading).scrollMarginTop) || 100;
-        if (entry.heading.getBoundingClientRect().top <= offset + 4) current = entry;
+        const margin = parseFloat(getComputedStyle(entry.heading).scrollMarginTop) || 0;
+        if (entry.heading.getBoundingClientRect().top <= topPadding + margin + 4) current = entry;
         else break;
       }
       select(current.link);
@@ -73,6 +74,23 @@ const visibleItems = items.filter((item) => item.id && item.text);
 </script>
 
 <style>
+  :global(html:has(.article-toc--aligned)) {
+    scroll-padding-top: 78px;
+  }
+
+  @media (max-width: 960px) {
+    :global(html:has(.article-toc--aligned)) {
+      scroll-padding-top: calc(var(--mobile-header-actions-height, 86px) + 14px);
+    }
+  }
+
+  :global(.article-page:has(.article-toc--aligned) .article-content :is(h2, h3)[id]:target) {
+    outline: 2px solid #a96945;
+    outline-offset: 2px;
+    border-radius: 4px;
+    background-color: #f7eedf;
+  }
+
   .article-toc--aligned li {
     display: grid;
     grid-template-columns: 1.3rem minmax(0, 1fr);
