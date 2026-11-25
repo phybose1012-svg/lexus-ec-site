@@ -92,10 +92,11 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
           <span>ご連絡先(メールアドレス) <em>*</em></span>
           <input type="email" name="email" required placeholder="予約内容の確認メールをお送りします。" />
         </label>
-        <label class="legacy-reservation-field">
-          <span>ご連絡先(電話番号) <em>*</em></span>
-          <input type="tel" name="tel" required placeholder="メール連絡で問題が生じた場合に限り、お電話で予約確認をいたします。" />
-        </label>
+        <div class="legacy-reservation-field">
+          <label for="reservation-tel"><span>ご連絡先(電話番号) <em>*</em></span></label>
+          <input id="reservation-tel" type="tel" name="tel" required placeholder="090-1234-5678" aria-describedby="reservation-tel-help" />
+          <p id="reservation-tel-help" class="legacy-reservation-field-help">メール連絡で問題が生じた場合に限り、お電話で予約確認をいたします。</p>
+        </div>
         <label class="legacy-reservation-field">
           <span>ご希望の日程は？(第一希望) <em>*</em></span>
           <input type="date" name="preferredDate1" required />
@@ -159,6 +160,13 @@ const timeOptions = ["9:30 ～ 11:00", "11:30 ～ 13:00", "13:30 ～ 15:00", "15
   <SiteFooter />
 
   <style>
+    .legacy-reservation-field-help {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.8125rem;
+      line-height: 1.5;
+    }
+
     .reservation-lead__sentence {
       display: block;
       word-break: keep-all;
